@@ -1,0 +1,17 @@
+
+fix landing flicker
+add lables in crisp model mode for l23
+extend app to IE11
+
+
+    Does legacy model work for IE11?
+        original versions at 
+            http://sciencehike.com/Philosophy167/illustrations/lemma02.html
+            http://sciencehike.com/Philosophy167/illustrations/lemma03.html
+        Object.assign may fail on IE11
+
+
+inner framwork tasks
+    in bsl-framework, remove class attribute from html-element when it is empty
+
+

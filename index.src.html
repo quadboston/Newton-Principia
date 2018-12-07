@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exploring Newton Lemmas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+    <!-- 
+    <link rel="stylesheet" href="https://use.typekit.net/tdy5xyj.css">
+    <script src="full-app/css/components/switch.css.js"></script>
+
+    -->
+
+    
+    <link rel="stylesheet" type="text/css" href="src/vendor-local/jquery-ui.1.21.1.min.css">
+    <script src="src/vendor-local/jquery.3.3.1.min.js"></script>
+    <script src="src/vendor-local/jquery-ui.1.21.1.min.js"></script>
+    <script src="vendor/bsl/core/ns2b.js"></script>
+    <script src="vendor/bsl/core/d8d-device.js"></script>
+    <script src="vendor/bsl/animated-frames/aframes.js"></script>
+    <script src="vendor/bsl/slider/d8d-app-template.js"></script>
+    <script src="vendor/bsl/bezier/bezier.js"></script>
+    <script src="vendor/bsl/bezier/bezier-media.js"></script>
+    <script src="vendor/bsl/mat/mat.js"></script>
+    <script src="vendor/bsl/mat/matrix-base.js"></script>
+    <script src="vendor/bsl/mat/integral.js"></script>
+    <script src="vendor/bsl/core/bsl-throttle.js"></script>
+    <script src="vendor/bsl/core/keyboard-keys.js"></script>
+    <script src="vendor/bsl/core/colors.js"></script>
+    <script src="vendor/bsl/core/svg.js"></script>
+    <script src="vendor/bsl/core/colors.js"></script>
+    <script src="src/full-app/css/reset.css.js"></script>
+    <script src="src/full-app/css/fapp.css.js"></script>
+    <script src="src/full-app/css/base/base.css.js"></script>
+    <script src="src/full-app/css/base/typography.css.js"></script>
+    <script src="src/full-app/css/pages/landing.css.js"></script>
+    <script src="src/full-app/css/pages/inner-page.css.js"></script>
+    <script src="src/full-app/css/components/nav-bar-and-drawer.css.js"></script>
+    <script src="src/full-app/css/components/pagination.css.js"></script>
+    <script src="src/full-app/css/components/topic.css.js"></script>
+    <script src="src/full-app/css/components/checkbox.css.js"></script>
+    <script src="src/full-app/css/components/tabs.css.js"></script>
+    <script src="src/full-app/css/components/how-to.css.js"></script>
+    <script src="src/full-app/css/components/sapp-slider-menu-topic.css.js"></script>
+    <script src="src/full-app/css/css-conf.js"></script>
+    <script src="src/full-app/css/dispatch-css.js"></script>
+    <script src="src/full-app/html/body.html.js"></script>
+    <script src="src/full-app/html/landing-core.html.js"></script>
+    <script src="src/full-app/dom/create-lemma-dom.js"></script>
+    <script src="src/full-app/dom/video-help-manager.js"></script>
+    <script src="src/full-app/dom/dom-dividor-resizer.js"></script>
+    <script src="src/full-app/dom/origin-picture-vis-slider.js"></script>
+    <script src="src/full-app/dom/dom-exegesis-tabs.js"></script>
+    <script src="src/full-app/dom/dom-menu.js"></script>
+    <script src="src/full-app/dom/topic-engine.js"></script>
+    <script src="src/full-app/dom/events.js"></script>
+    <script src="src/full-app/dom/fapp.js"></script>
+    <script src="src/full-app/lib/mobile-tester.js"></script>
+    <script src="src/full-app/lib/animated-slider/js.js"></script>
+    <script src="src/full-app/lib/animated-slider/css.js"></script>
+    <script src="src/full-app/lib/bezier/bezier.js"></script>
+    <script src="src/full-app/lib/dom-util.js"></script>
+    <script src="src/full-app/lib/d8d/d8d-I.js"></script>
+    <script src="src/full-app/lib/d8d/drag-point-decorator/decorator.css.js"></script>
+    <script src="src/full-app/lib/d8d/drag-point-decorator/decorator.js"></script>
+    <script src="src/full-app/fconf.js"></script>
+    <script src="src/full-app/sconf.js"></script>
+    <script src="src/full-app/main.js"></script>
+    <script src="src/sub-app/lemma-2-3/sconf.js"></script>
+    <script src="src/sub-app/lemma-2-3/css/css-order.js"></script>
+    <script src="src/sub-app/lemma-2-3/css/widget-media.css.js"></script>
+    <script src="src/sub-app/lemma-2-3/css/slider.css.js"></script>
+    <script src="src/sub-app/lemma-2-3/css/model.css.js"></script>
+    <script src="src/sub-app/lemma-2-3/main.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/preset-data.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/dom.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/d8d-II.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/gui-construct.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/gui-slider.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/gui-update.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/gui-visibility.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/gui-widthest.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/model.js"></script>
+    <script src="src/sub-app/lemma-2-3/core/event-handlers.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/topic-map.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma2/text-claims.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma2/text-proofs.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma3/text-claims.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma3/text-proofs.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma3/references.js"></script>
+    <script src="src/sub-app/lemma-2-3/data/lemma2/references.js"></script>
+    <script src="src/sub-app/lemma-9/sconf.js"></script>
+    <script src="src/sub-app/lemma-9/main.js"></script>
+    <script src="src/sub-app/lemma-9/css/css-order.js"></script>
+    <script src="src/sub-app/lemma-9/css/proof-vs-claim-modes.css.js"></script>
+    <script src="src/sub-app/lemma-9/css/media.css.js"></script>
+    <script src="src/sub-app/lemma-9/core/media.js"></script>
+    <script src="src/sub-app/lemma-9/core/create-proof-slider.js"></script>
+    <script src="src/sub-app/lemma-9/models/study-model.js"></script>
+    <script src="src/sub-app/lemma-9/models/media-model.js"></script>
+    <script src="src/sub-app/lemma-9/models/main-legend.js"></script>
+    <script src="src/sub-app/lemma-9/models/d8d-II.js"></script>
+    <script src="src/sub-app/lemma-9/data/topic-map.js"></script>
+    <script src="src/sub-app/lemma-9/data/lemma9/text-claims.js"></script>
+    <script src="src/sub-app/lemma-9/data/lemma9/text-proofs.js"></script>
+    <script src="src/sub-app/lemma-9/data/references.js"></script>
+  </head>
+  <body></body>
+</html>

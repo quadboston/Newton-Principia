@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="173" height="142" viewBox="0 0 173 142">
+  <g fill="none" fill-rule="evenodd" transform="translate(-8 -3.52)">
+    <rect width="198.652" height="149.753"/>
+    <g transform="translate(21.73 14.838)">
+      <g stroke="#000" stroke-opacity=".414" stroke-width=".521" transform="translate(.497 .032)">
+        <rect width="39.326" height="117.693"/>
+        <rect width="39.326" height="114.729" x="39.719" y="2.965" fill="#000" fill-opacity=".01"/>
+        <rect width="39.326" height="102.277" x="79.438" y="15.416" fill="#000" fill-opacity=".01"/>
+        <rect width="39.326" height="77.375" x="119.157" y="40.318" fill="#000" fill-opacity=".01"/>
+      </g>
+      <g transform="translate(.497 2.996)">
+        <rect width="39.326" height="114.729"/>
+        <rect width="39.326" height="102.277" x="39.326" y="12.451" stroke="#000" stroke-opacity=".56" stroke-width=".521"/>
+        <rect width="39.326" height="77.375" x="79.438" y="37.353" stroke="#000" stroke-opacity=".56" stroke-width=".521"/>
+      </g>
+    </g>
+    <g transform="translate(21.441 14.573)">
+      <path fill="#000" d="M0.393258286,118.286053 L157.303315,118.286053 L157.303315,118.582509 L0.393258286,118.582509 L0,118.582509 L0,0 L0.393258286,0 L0.393258286,118.286053 Z"/>
+      <path stroke="#000" stroke-width=".521" d="M157.303315,118.582509 C157.303315,53.0911978 86.8762217,0 0,0"/>
+    </g>
+    <rect width="39.847" height="3.19" x="22.36" y="14.312" fill="#000" fill-opacity=".2" stroke="#000" stroke-width=".521"/>
+    <g fill="#000" font-family="GoudyOldStyleT-Italic, Goudy Old Style" font-size="10.694" font-style="italic" transform="translate(8.07 .357)">
+      <text>
+        <tspan x="1.966" y="16.675">a</tspan>
+      </text>
+      <text>
+        <tspan x="8.258" y="143.558">A</tspan>
+      </text>
+      <text>
+        <tspan x="0" y="52.25">K</tspan>
+      </text>
+      <text>
+        <tspan x="39.326" y="61.143">L</tspan>
+      </text>
+      <text>
+        <tspan x="78.652" y="70.037">M</tspan>
+      </text>
+      <text>
+        <tspan x="50.337" y="143.558">B</tspan>
+      </text>
+      <text>
+        <tspan x="89.27" y="143.558">C</tspan>
+      </text>
+      <text>
+        <tspan x="127.809" y="143.558">D</tspan>
+      </text>
+      <text>
+        <tspan x="165.168" y="143.558">E</tspan>
+      </text>
+      <text>
+        <tspan x="41.292" y="37.427">b</tspan>
+      </text>
+      <text>
+        <tspan x="46.011" y="10.746">l</tspan>
+      </text>
+      <text>
+        <tspan x="84.551" y="14.896">m</tspan>
+      </text>
+      <text>
+        <tspan x="125.843" y="26.754">n</tspan>
+      </text>
+      <text>
+        <tspan x="165.168" y="50.471">o</tspan>
+      </text>
+      <text>
+        <tspan x="84.551" y="43.356">c</tspan>
+      </text>
+      <text>
+        <tspan x="123.876" y="64.108">d</tspan>
+      </text>
+    </g>
+    <g fill="#000" stroke="#000" stroke-width=".578" transform="translate(19.868 12.498)">
+      <ellipse cx="2.36" cy="1.779" rx="2.36" ry="1.779"/>
+      <ellipse cx="61.742" cy="10.969" rx="2.36" ry="1.779"/>
+      <ellipse cx="101.067" cy="28.756" rx="2.36" ry="1.779"/>
+      <ellipse cx="145.506" cy="72.632" rx="2.36" ry="1.779"/>
+      <ellipse cx="158.483" cy="119.472" rx="2.36" ry="1.779"/>
+    </g>
+  </g>
+</svg>
