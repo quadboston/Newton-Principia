@@ -223,17 +223,6 @@ Styles for controlling the colors of the model can be found on the settings page
   width: 100%;
   border-radius: 5px; }
 
-.video-mobile-wrapper {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(32, 41, 54, 0.9);
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 1005; }
-
-
 .help-box {
   float:left;
   margin-top:8px;

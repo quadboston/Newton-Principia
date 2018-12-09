@@ -88,20 +88,36 @@ Mobile pagination buttons
     width: 40px;
     height: 40px; }
 
-.video-btn {
-  background: ${colorPaleBlue};
-  border-radius: 24px;
-  cursor: pointer;
-  padding: 16px 56px; }
-  .video-btn:hover {
-    background: ${colorLightGrey}; }
+.mobile-link img {
+    opacity:0.5; /* makes arrow less annoying */
+}
 
-/*~~~~~~~~~~~~~~~~~~~~
-Media Queries
-~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //\\\\ This toggles between mobile and desktop redirection buttons
+           display. When screen is wider than 720px, then desktop is on.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.mobile-link.page-btn {
+    display: none; 
+} 
+
 @media only screen and (max-width: 720px) {
-  .page-btn {
-    display: none !important; } }
+    .mobile-link.page-btn {
+        display: flex;
+  }
+
+    .desktop-link.page-btn {
+        display: none;
+  }
+}
+
+.page-btn.non-displayed {
+    display: none;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    \\\\// This toggles between mobile and desktop redirection buttons
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 
 /*
 .checkbox-wrap input[type="checkbox"] {

@@ -47,31 +47,16 @@
         //=====================================
         var wwPaginatorButton$  = $$
            .c( 'a' )
-           .a( 'class', 'page-btn page-btn--right' )
+           .a( 'class', 'page-btn desktop-link page-btn--right' )
            .a( 'href', 'javascript:void(0)' )
            .html('<img src="images/right-page-triangle.svg">') 
            .to( rootvm.approot )
            ;
         var wwPaginatorButton$  = $$
            .c( 'a' )
-           .a( 'class', 'page-btn page-btn--left' )
+           .a( 'class', 'page-btn desktop-link page-btn--left' )
            .a( 'href', 'javascript:void(0)' )
            .html('<img src="images/left-page-triangle.svg">') 
-           .to( rootvm.approot )
-           ;
-        var wwPaginatorButton$ = $$
-           .c( 'div' )
-           .a( 'class', 'video-mobile-wrapper' )
-           .html(`
-                <!-- this causes google's error message 
-                     Error parsing header X-XSS-Protection: 1; mode=block
-                -->
-                <!--                         
-                <iframe class="video-mobile" width="420" height="345" 
-                        src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                </iframe>
-                        -->
-           `)
            .to( rootvm.approot )
            ;
         //=====================================
@@ -115,13 +100,27 @@
             ;
         sDomN.runVideoHelpButton$ = $$
             .c('img')
-            .addClass( "model-help" )
-            .a( 'src', "images/lightbulb.svg" )
-            .a( 'alt', "watch videohelp" )
-            .a( 'title', "watch videohelp" )
+            .addClass( "video-help-button" )
+            .css('width','35px')
+            .a( 'src', "images/camera-lightbulb.png" )
+            .a( 'alt', "Watch videohelp" )
+            .a( 'title', "Watch videohelp" )
+            /*
+            .e('mouseover', function() {
+                sDomN.helpBoxText$.innerHTML = 'Watch videohelp';
+            })
+            */
             .to( wwHelpOnTop$() )
             ;
-        $$
+        sDomN.idleHelpButton$ = $$
+            .c('img')
+            .addClass( "model-help" )
+            .a( 'src', "images/lightbulb.svg" )
+            .a( 'alt', "Hover over the diagram to interact" )
+            //.a( 'title', "Hover over the diagram to interact" )
+            .to( wwHelpOnTop$() )
+            ;
+        sDomN.helpBoxText$ = $$
             .c('span')
             .addClass( "help-box__text" )
             .html('Hover over the diagram to interact')
@@ -156,7 +155,7 @@
         //..........................
         // //\\ local video
         //. . . . . . . . . . . . . 
-        sDomN.localVideoWrap$ = $$
+        sDomN.videoWrap$ = $$
             .c( 'div' )
             .css( 'display', 'none' )
             .addClass( cssp + '-showreel-video-wrap' )
@@ -165,12 +164,12 @@
             ;
         sDomN.localVideo$ = $$
             .c( 'video' )
-            //.css( 'display', fconf.USE_LOCAL_VIDEO ? 'block' : 'none' )
             .css( 'display', 'none' )
             .addClass( cssp + '-showreel-video' )
             .a('muted','true')
+            .a('controls','true')
             .a('preload','true')
-            .to( sDomN.localVideoWrap$() )
+            .to( sDomN.videoWrap$() )
             ;
         sDomN.localVideoSource$ = $$
             .c( 'source' )
@@ -186,7 +185,6 @@
         //. . . . . . . . . . . . . 
         sDomN.iframedVideo$ = $$
             .c( 'iframe' )
-            //.css( 'display', fconf.USE_LOCAL_VIDEO ? 'none' : 'block' )
             .css( 'display', 'none' )
             .addClass( cssp + '-showreel-video-iframe' )
             .a('frameborder','0')
@@ -194,7 +192,7 @@
             .a('mozallowfullscreen','true')
             .a('allowfullscreen','true')
             //.to( sDomN.medRoot )
-            .to( sDomN.localVideoWrap$() )
+            .to( sDomN.videoWrap$() )
             ;
         //. . . . . . . . . . . . . 
         // \\// iframed video
@@ -205,12 +203,12 @@
         //. . . . . . . . . . . . . 
         sDomN.doCloseVideoHelp$ = $$
             .c( 'div' )
-            .a('title','close video and return back to model')
-            .css( 'display', 'block' )
+            .a('title','close video')
+            .css( 'display', 'none' )
             .addClass( cssp + '-close-html-button' )
             .html('X')
             //.to( sDomN.medRoot )
-            .to(sDomN.localVideoWrap$())
+            .to(sDomN.videoWrap$())
             ;
         //..........................
         // \\// close-video button

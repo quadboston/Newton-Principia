@@ -8,6 +8,7 @@
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
     var sconf       = sn('sconf',fconf);
+    var fmethods    = sn('methods',fapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -308,9 +309,14 @@
                         // //\\ swaps original texts depending on new amode
                         //==================================================
                         if( mtype === 'text' || mtype === 'proof' ) {
-                            var searchStr = '.original-text.' + amode['proof'] + '.' + amode['text'];
-                            var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
-                            chosenTextDiv[0] && $$.removeClass( 'chosen', chosenTextDiv[0] );
+                            if( amode['proof'] && amode['text'] ) {
+                                ////this state of application does already exist
+                                ////do remove it from CSS
+                                var searchStr = '.original-text.' + amode['proof'] + '.' + amode['text'];
+                                var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
+    ccc( 'search established state=' + searchStr + ' found=', chosenTextDiv[0] );
+                                chosenTextDiv[0] && $$.removeClass( 'chosen', chosenTextDiv[0] );
+                            }
 
                             if( mtype === 'text' ) {
                                 var formerMType = 'text';
@@ -318,13 +324,18 @@
                             } else {
                                 var formerMType = 'proof';
                                 var unchangedMType = 'text';
-                            }    
-                            var unchangedMode = amode[unchangedMType];
-                            var changedMode = mid;
-                            //ccc( 'mtype=' + mtype + ' mid=' + mid );
-                            var searchStr = '.original-text.' + unchangedMode + '.' + changedMode;
-                            var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
-                            chosenTextDiv[0] && $$.addClass( 'chosen', chosenTextDiv[0] );
+                            }
+    
+                            var notToBeChangedMode = amode[unchangedMType];
+                            if( notToBeChangedMode ) {
+                                ////this state does already exist ... do set CSS
+                                var changedMode = mid;
+                                //ccc( 'mtype=' + mtype + ' mid=' + mid );
+                                var searchStr = '.original-text.' + notToBeChangedMode + '.' + changedMode;
+                                var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
+    ccc( searchStr, chosenTextDiv)
+                                chosenTextDiv[0] && $$.addClass( 'chosen', chosenTextDiv[0] );
+                            }
                         }
                         //==================================================
                         // \\// swaps original texts depending on new amode
@@ -344,14 +355,19 @@
                         // //\\ updates application mode
                         //==================================================
                         amode[mtype] = mid;
-                        //ccc( 'amode[' + mtype + ']=' + amode[mtype] );
+                        //ccc( 'set new state: amode[' + mtype + ']=' + amode[mtype] );
+                        fmethods.spawnVideoList && fmethods.spawnVideoList();
                         //==================================================
                         // \\// updates application mode
                         //==================================================
 
-                        if( sapp.lemmaNumber === 9 && mtype !== 'proof' ) { //todo
-                            ////synchs with tab switch
+                        //if( sapp.lemmaNumber === 9 && mtype !== 'proof' ) {//it was only for l9 ...
+                        if( mtype !== 'proof' ) { //todm ... this looks clumsy
+                            ////Synchs with tab switch:
                             ////"text"-call still must update "proof"-texts hidden by tab-switch
+                            ////In other words, when one switches the text, then text's proof-type-mode and
+                            ////claim-type-mode are hidden.
+                            ////This picks up existing proof-type-mode and unhides it:
                             rg['mobile-tabs'][ amode['proof']+'-og' ].click();
                         }
 

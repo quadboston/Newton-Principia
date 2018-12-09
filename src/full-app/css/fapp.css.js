@@ -353,12 +353,16 @@ ret +=`
     //==================================
     ret +=`
     .model-help {
-        border:3px solid transparent;
-        border-radius:15px;
         cursor: pointer;
+        opacity:1;
     }
+    .video-help-button {
+        cursor: pointer;
+        opacity:0.2;
+    }
+    .video-help-button:hover,
     .model-help:hover {
-        border:3px solid grey;
+        opacity:1;
     }
     `;
     //==================================
@@ -374,7 +378,7 @@ ret +=`
     .bsl-showreel-video-wrap {
         position:relative;
         margin-bottom:10px;
-        background-color:#DDDDDD;
+        background-color:transparent; /*#DDDDDD;*/
         left        :50%;
         transform   :translate(-50%,0%);
     }
@@ -395,16 +399,16 @@ ret +=`
         width:20px;
         height:20px;
         border-radius:15px;
-        right:0;
-        top:0;
+        right:-20px;
+        top:10px;
         padding-top:5px;
         padding-left:9px;
         color:white;
         font-size:16px;
         font-weight:bold;
-        background-color:rgba(0,0,100,1);
+        background-color:rgba(0,0,0,1);
         cursor:pointer;
-        opacity:0.5;
+        opacity:1;
         z-index:1000;
     }
     `;

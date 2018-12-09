@@ -104,7 +104,7 @@
         });
         $$ .c('li')
            .addClass('tabs__indicator')
-           .a('role','role="indicator')
+           .a('role','role="indicator"')
            .to(ul);
 
 
@@ -114,9 +114,10 @@
             for (i = 0; i < tab.length; i++) {
                 //kvk: possibly "spaces" memory leak in form of non-removing an extra " "
                 //after "active"
-                tab[i].className = tab[i].className.replace(" active", "");
+                //tab[i].className = tab[i].className.replace(" active", "");
+                $$.$(tab[i]).removeClass(" active");
             }
-            evt.currentTarget.className += " active";
+            $$.$(evt.currentTarget).addClass(" active");
             sDomN.processSelectedTab( tabName );
         }
     }

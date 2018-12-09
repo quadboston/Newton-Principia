@@ -14,6 +14,7 @@
     var sapp        = sn('sapp'); 
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
+    var amode       = sn('mode',sapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -38,131 +39,147 @@
     ///=========================================================
     function create_video_help_manager()
     {
+        var menuListPopUp$;
+        sDomN.runVideoHelpButton$.e( 'click', function() { menuListPopUp$.css('display','block'); });
+        sDomN.doCloseVideoHelp$.e( 'click',  function(e) { leaveVideo(); });
 
-        var USE_EXTERNAL_VIDEO = !fconf.USE_LOCAL_VIDEO;
-        var EXTERNAL_VIDEO_TIMEOUT = 3600000;
-        var AUTOPLAY_EXTERNAL_VIDEO = true; //forces autoplay via URL ... set false if set in html
-        var USER_CLICK_CANCELS_VIDEO = false;
+        /*
+        ///never processed ... todm why
+        sDomN.localVideo$.e('loadeddata', function() {
+           ccc('loadeddata');
+          if(sDomN.localVideo$().readyState >= 2) {
+            ccc('2222222');
+            sDomN.localVideo$().play();}
+        });
+        */
+        fmethods.spawnVideoList = spawnVideoList;
+        //111111111111111111111111
+        return;
+        //111111111111111111111111
 
 
-        var EXTERNAL_URL = '';
-        //var EXTERNAL_URL = "https://www.youtube.com/embed/3xLQW5rm92s";
-        var EXTERNAL_URL = "https://www.youtube.com/embed/pS-hjfKlips";
-        //var EXTERNAL_URL = "https://www.youtube.com/embed/csIW4W_DYX4";
 
 
-        if( USE_EXTERNAL_VIDEO ) {
-            setExternalVideo();
-        } else {
-            //setAutonomousVideo();
-        }
 
 
-        function setExternalVideo()
+        ///populates popup video list
+        function spawnVideoList()
         {
-            var showreelIFrame$ = sDomN.iframedVideo$;
-            var showreelIFrame = showreelIFrame$();
-            showreelIFrame$.css( 'display', 'none' );
-            var closeButton$ = sDomN.doCloseVideoHelp$.css( 'display', 'none' );
-
-	        sDomN.runVideoHelpButton$.e( 'click', function(e) {
-                if( EXTERNAL_URL ) {
-                    showreelIFrame.src = EXTERNAL_URL + 
-                    ( AUTOPLAY_EXTERNAL_VIDEO ? '?autoplay=1' : '');
+            if( !menuListPopUp$ ) { createPopupPane(); }
+            var list = [];
+            ssD.videoList.forEach( function(item) {
+                if( item.lemmaNumber && sapp.lemmaNumber !== item.lemmaNumber ) return;
+                var selected = true;
+                if( item.modeType ) {
+                    selected = false;
+                    Object.keys( item.modeType ).forEach( function( modeType ) {
+                        if( amode[ modeType ] === item.modeType[ modeType ] ) selected = true;
+                    });
                 }
-                sDomN.localVideoWrap$.css( 'display', 'block' );
-                showreelIFrame$.css( 'display', 'block' );
-                closeButton$.css( 'display', 'block' )
-                setTimeout( leaveIFrame, EXTERNAL_VIDEO_TIMEOUT );
-                if( USER_CLICK_CANCELS_VIDEO ) {
-                    //sets video-cancel by user click on iframe:
-                    setClickEventOnIFrame();
-                }
+                selected && list.push( item );
             });
+            //.does not populate list if no videos configured for these app states
+            if( !list.length ) {
+                sDomN.runVideoHelpButton$.css('display','none'); //hides video-button for empty list
+                return;
+            }
+            sDomN.runVideoHelpButton$.css('display','block'); //shows video-button for non-empty list
 
-	        closeButton$.e( 'click',  function(e) {
-                leaveIFrame();
+            menuListPopUp$.html('');
+            addPopupCloseButton();
+            list.forEach( function( listItem ) {
+                $$
+                    .c('div')
+                    .html( '<img width="25"src="images/camera-lightbulb.png" ' +
+                           ' style="position:relative;top:2px; vertical-align:middle;"> ' +
+                           '<span style="vertical-align:middle;">' + listItem.caption + '</span>')
+                    .css('cursor','pointer')
+                    .e('click', function() {
+                        runVideo( listItem.URL, listItem.isExternal );
+                        menuListPopUp$.css('display','none')
+                    })
+                    .to(menuListPopUp$())
+                    ;
             });
-
-            function leaveIFrame()
-            {
-                showreelIFrame.src = "dummy-iframe.html";             
-                showreelIFrame$.css( 'display', 'none' );
-                closeButton$.css( 'display', 'none' );
-                sDomN.localVideoWrap$.css( 'display', 'none' );
-            }
-
-            function setClickEventOnIFrame () {
-                //https://stackoverflow.com/questions/2381336/detect-click-into-iframe-using-javascript
-                focus();
-                var listener = window.addEventListener('blur', function() {
-                    if (document.activeElement === showreelIFrame) {
-                        leaveIFrame();
-                    }
-                    window.removeEventListener('blur', listener);
-                });
-            }
         }
 
 
-
-        // //\\ autonomous video
-        function setAutonomousVideo()
+        function runVideo( URL, isExternal )
         {
-            var showreelVideo$ = $('#showreel-video');
-            if( !showreelVideo$.length ) return;
-            var showreelVideo = showreelVideo$[0];
-
-            //var sourceTag = showreelVideo$.children( 'video source' )
-            //.attr( 'src', AUTONOMOUS_URL );
-
-            var videoWrap$ = $("#showreel-video-wrap");
-            var closeButton$ = $('.close-html-button');
-            var had_enough_data;
-            var HAVE_ENOUGH_DATA = 4;
-	        var haveEnoughData = function ()
-	        {
-		        if( had_enough_data ) return true;
-		        had_enough_data = showreelVideo.readyState === HAVE_ENOUGH_DATA;
-                return had_enough_data;
-	        };
-	        $('#play-showreel').click (function(e) {
-                if( haveEnoughData() ) {
-                    videoWrap$.addClass( 'playing' );
-                    closeButton$.addClass( 'shown' );
-                    sDomN.localVideoWrap$.css( 'display', 'block' );
-                    showreelVideo.play();
-                }
-            });
-
-            function leaveVideo()
-            {
-                showreelVideo.pause();
-                $("#showreel-video-wrap").removeClass( 'playing' );
-                closeButton$.removeClass( 'shown' );
-            }
-
-            showreelVideo.onended = leaveVideo;
-            $(document.body).on( 'keydown', function( event ) {
-                ////leaves video on key "Escape"
-                if( event.keyCode === 27 ) {
-                    leaveVideo();
-                }
-            });
-	        closeButton$.click (function(e) {
-                leaveVideo();
-            });
-            showreelVideo$.on( 'mouseleave', function() {
-                showreelVideo$.removeAttr( 'controls' );
-            });
-            showreelVideo$.on( 'mouseover', function() {
-                showreelVideo$.attr( 'controls', '1' );
-            });
-            if( USER_CLICK_CANCELS_VIDEO ) {
-                //sets video-cancel by user click on iframe:
-                showreelVideo$.on( 'click', leaveVideo );
+            leaveVideo();
+            if( isExternal ) {
+                runExternal(URL);
+            } else {
+                runInternal(URL);
             }
         }
+        function leaveVideo()
+        {
+            sDomN.localVideo$().pause();
+            sDomN.localVideoSource$().src =  "dummy-iframe.html";
+            sDomN.iframedVideo$().src = ""; //dummy-iframe.html";             
+            setDisplayForInternal( 'none' );
+            setDisplayForExternal( 'none' );
+        }
+
+
+        function runExternal( URL )
+        {
+            sDomN.iframedVideo$().src = URL + '?autoplay=1';
+            setDisplayForExternal( 'block' );
+        }
+
+        function runInternal(URL) {
+            sDomN.localVideoSource$().src = URL;
+            setDisplayForInternal( 'block' );
+            sDomN.localVideo$().play();
+        };
+
+        function setDisplayForInternal( display )
+        {
+            sDomN.localVideo$.css(       'display', display );
+            sDomN.doCloseVideoHelp$.css(  'display', display );
+            sDomN.videoWrap$.css(   'display', display );
+        }
+        function setDisplayForExternal( display )
+        {
+            sDomN.iframedVideo$.css(    'display', display );
+            sDomN.doCloseVideoHelp$.css('display', display );
+            sDomN.videoWrap$.css(       'display', display );
+        }
+
+
+        function createPopupPane()
+        {
+            menuListPopUp$ = $$
+                .c('div')
+                .css('display','none')
+                .css('position', 'absolute')
+                .css('padding', '5px')
+                .css('padding-right', '25px')
+                .css('border-radius', '5px')
+                .css('border', '1px solid black')
+                .css('left', '30px')
+                .css('top', '50px')
+                .css('background-color', 'white')
+                .css('z-index','111111111')
+                .to(sDomN.medSuperroot)
+                ;
+        }
+        function addPopupCloseButton()
+        {
+            $$
+                .c('div')
+                .to(menuListPopUp$())
+                .css('position','absolute')
+                .css('top','2px')
+                .css('right','5px')
+                .e( 'click', function(){menuListPopUp$.css('display','none')})
+                .css('cursor','pointer')
+                .html('X')
+                ;
+        }
+
     }
 
 

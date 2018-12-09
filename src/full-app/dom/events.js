@@ -1,6 +1,8 @@
 // //\\// Application core-events setup
 ( function() {
-    var sn          = window.b$l.sn;
+    var ns          = window.b$l;
+    var $$          = ns.$$;
+    var sn          = ns.sn;
     var fapp        = sn('fapp' ); 
     var sapp        = sn('sapp' ); 
     var fconf       = sn('fconf',fapp);
@@ -40,11 +42,15 @@
     {
         setNextLemmaButton( 'right' );
         setNextLemmaButton( 'left' );
+        setNextLemmaButton( 'right', 'mobile' );
+        setNextLemmaButton( 'left', 'mobile' );
     };
 
-    function setNextLemmaButton( direction )
+    function setNextLemmaButton( direction, mobile_or_desktop )
     {
-        var pager = document.querySelector( '.page-btn--' + direction );
+        var cssPrefix = mobile_or_desktop === 'mobile' ? '.mobile-link' : '.desktop-link';
+        var searchClass = 'a' + cssPrefix + '.page-btn--' + direction;
+        var pager = document.querySelector( searchClass );
         if( pager ) {
             var next = -1;
             fconf.enabledLemmas.forEach( function(lem, ix) {
@@ -56,18 +62,22 @@
                     if( lem < sapp.lemmaNumber ) { next = lem; }
                 }
             });
-            if( next > 0 ) {
-                pager.title = "Go to lemma " + next;    
+            if( next > -1 ) {
+                var newLoc = window.location.pathname + '?conf=lemma=' + next;
+                pager.title = "Go to lemma " + next;
+                pager.href= newLoc;
             } else {
-                pager.style.visibility = 'hidden';
+                $$.$(pager).addClass( 'non-displayed' );
             }
+            /*
             if( next > 0 ) {
+                ///this did work but anchor works better
                 pager.addEventListener( 'click', function() {
-                    var newLoc = window.location.pathname + '?conf=lemma=' + next;
                     window.location = newLoc;
                     return false;
                 });
             }
+            */
         }
     }
     

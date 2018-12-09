@@ -32,8 +32,12 @@
 
 ///// next text: ////////////////////
 english : `
+            For the difference of the inscribed and circumscribed figures is the sum of the parallelograms Kl, Lm, Mn, and Do, that is
+            (because they all have equal bases), the |widthest-rectangular|rectangle|| having as base Kb (the base of one of them) and as altitude
+            Aa (the sum of the altitudes), that is, the rectangle ABla. But this rectangle, because its width AB is diminished
+            indefinitely, becomes less than any given rectangle. Therefore (by lem. 1) the inscribed figure and the circumscribed
+            figure and, all the more, the intermediate curvilinear figure become ultimately equal. Q.E.D.    −Cohen translation
 
-none
 `,
 
 
@@ -44,11 +48,18 @@ none
 
 ///// next text: ////////////////////
 hypertext : `
-none
+            The diffference in area between the
+            |inscribed-rectangles|inscribed rectangles|| and
+            |circumscribed-rectangles|circumscribed rectangles|| is equal to the area of a
+            |widthest-rectangular|single rectangle|| on the end. As the number of rectangles is increased indefinitely, the width of each
+            decreases indefinitely. This includes the |widthest-rectangular|single rectangle|| just mentioned. Since its width decreases indefinitely,
+            its area decreases indefinitely, becoming as close to 0 as you like. So the difference between the areas
+            of all the
+            |inscribed-rectangles|inscribed rectangles|| and
+            |circumscribed-rectangles|circumscribed rectangles|| becomes as close to 0 as you like. For the current shape, that
+            |widthest-rectangular|single rectangle|| is on the left.
 
 `,
-
-
 
 
 

@@ -172,23 +172,6 @@
         fmethods.createLemmaDom();
         sapp.init_sapp();
         sapp.isInitialized = true;
-
-        ///=================================================
-        /// //\\ 5) Mobile video
-        ///=================================================
-        $('.video-mobile-wrapper').hide();   
-            $('.video-btn').on('click',
-            function() {
-                $('.video-mobile-wrapper').toggle();
-            });
-        $('.video-mobile-wrapper').on('click', function() {
-           $('.video-mobile-wrapper').hide();
-        }); 
-        ///=================================================
-        /// \\// 5) Mobile video
-        ///=================================================
-
-
         //.does initial transclusion
         fmethods.test_mobile_and_attach_exegesis_tabs();
         //.sets default ... disabled so "Area-legend" cannot be a default

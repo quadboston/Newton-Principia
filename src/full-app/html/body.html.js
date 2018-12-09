@@ -62,23 +62,13 @@
         // //\\ lemma nav bar
         //==================================================
         if( pmode === 'lemma' ){
-            /*
-            if( ln !== 9 ) {
-                    <!-- seems not in use completely: its css is commented out -->
-                    <!--
-                    <script src="src0/cards.js"></script>
-                    -->
-            }
-            */
- 
             body += `
                 <div class="bottom-nav"> 
                     <div class="mobile-page-btn">
-                        <a href="lemma${ln}.html" class="btn btn__pagination btn__pagination--left">
+                        <a class="btn page-btn mobile-link page-btn--left">
                             <img src="images/left-arrow.svg">
                         </a>
-                        <div class="video-btn">Watch Video</div>
-                        <a href="lemma${ln}.html" class="btn btn__pagination btn__pagination--right">
+                        <a class="btn page-btn mobile-link page-btn--right">
                             <img src="images/right-arrow.svg">
                         </a>
                     </div>

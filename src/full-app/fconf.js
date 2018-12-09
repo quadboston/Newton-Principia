@@ -68,8 +68,6 @@
         ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED : false,
         ORIGINAL_FIGURE_VISIBILITY : 0.6,
         ORIGINAL_FIGURE_VISIBILITY_ANIMATION_DURATION_MS : 3000,
-
-        USE_LOCAL_VIDEO : false //vs social-remote-or-youtube
         //--------------------
         // \\// page-wide
         //--------------------

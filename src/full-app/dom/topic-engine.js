@@ -66,6 +66,8 @@
             ///loops inside of specific proof-mode
             Object.keys( rawTexts[proofMode] ).forEach( function( key ) {
                 var txt = transformText( rawTexts[proofMode][key] );
+                //.RM "original-text" means CSS class of exegesis-text-html
+                //.which is obtained by parsing raw-exegesis-script
                 var classStr = 'original-text ' + proofMode + ' ' + key;
                 //txtDom += '<div class="' + classStr + '">' + txt + '</div>';
 
