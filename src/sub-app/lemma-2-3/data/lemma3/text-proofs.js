@@ -32,7 +32,11 @@
 
 ///// next text: ////////////////////
 english : `
-            not yet entered
+            <dense class='orig';>For let AF be equal to the greatest width, 
+            and let the parallelogram FAaf be completed. This parallelogram will 
+            be greater than the difference of the inscribed and circumscribed figures; 
+            but if its width AF is diminished indefinitely, it will become less than 
+            any given rectangle. Q.E.D.</dense><attribution> −Cohen translation</attribution>
 `,
 
 hypertext : `

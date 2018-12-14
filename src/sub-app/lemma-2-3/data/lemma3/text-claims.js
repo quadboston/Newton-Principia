@@ -35,7 +35,10 @@
 
 ///// next text: ////////////////////
 hypertext : `
-no text entered
+        Even if the lengths of the |base|bases|| are unequal, the area of the |figure|figure||, 
+        the area of all the |inscribed-rectangles|inscribed rectangles||,
+        and the area of all the |circumscribed-rectangles|circumscribed rectangles|| 
+        <i>still</i> become essentially equal to each other; their difference becomes as close to 0 as you like.
 `,
 
 
@@ -44,7 +47,9 @@ no text entered
 
 ///// next text: ////////////////////
 english : `
-no text entered
+        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths AB, BC, CD,... 
+        of the parallelograms are unequal and are all diminished indefinitely.</dense>
+        <attribution> −Cohen translation</attribution>
 `,
 
 
