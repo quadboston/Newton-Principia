@@ -50,7 +50,7 @@
         sDomN.bgImage$ = $$
             .c( 'img' )
             .a( 'class', cssp +'-bg-image' )
-            .a( 'src', 'img/lemma9-original.png' )
+            .a( 'src', 'content-img/lemma9-original.png' )
             .to( sDomN.medRoot )
             ;
         //..........................
