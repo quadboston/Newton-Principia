@@ -1,17 +1,19 @@
 <?php
 
-    //**********************************************************
+    //***************************************************************
     /*
-        Spawns template-project folder.
-        (former ./cli.php)
+        Builds index.prod.html and its associates from
+        index.src.html  and src
         
         The only parameter it needs is a
         $argv[1], an understandable path to
-        template-project html file.
+        index.src.html
 
-        If this path validation fails, the spawn does not start.
+        If this path validation fails, the build does not start.
         
-        See configuration at "//\\ does configuration" below.
+        See configuration at "//\\ does configuration" below
+        and comments about uglify install at
+        "// //\\ uglify"
     */
     //**********************************************************
 

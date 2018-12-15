@@ -66,11 +66,12 @@
                     tfamily :'figure'
             },
 
-            'widthest-rectangular':{ 
+            'widthest-rectangular':
+            { 
                     //id:['widthest-rectangular'],
                     classQuery:'.proof-tag, .widthest-rectangular, .diffAmtm',
-                    topicColor:'auto',
-                    tfamily :'proof'
+                    //tfamily :'proof',
+                    topicColor:'auto'
             },
 
             'circumscribed-rectangles':
