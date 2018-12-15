@@ -133,10 +133,24 @@
 	        xy2lineShape( dr.wallL,x1,yy,x1, ff(x1) );
 	        xy2lineShape( dr.wallR,x2,yy,x2, ff(x2) );
 
-            //:paints figureInternalArea
-            var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
+
+            //=============================================
+            // //\\ paints figureInternalArea
+            //=============================================
+            //var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
+            var wfirstPoint = curveMicroPts[0];
+            var wlastPoint = curveMicroPts[curveMicroPts.length-1];
+            //.this code connects four points two tips on base and first and end
+            //.points on curve making base as a part of area perimeter
+            var figureInternalArea = curveMicroPts.concat([
+                [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy] 
+            ]);
             var figureInternalAreaStr = figureInternalArea.join(" ");
 	        dr.figureInternalArea.setAttribute( "points",figureInternalAreaStr );
+            //=============================================
+            // \\// paints figureInternalArea
+            //=============================================
+
 
 	        l23.adjustVisibilityForBaseDelta();
         }
