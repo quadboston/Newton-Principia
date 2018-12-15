@@ -84,15 +84,6 @@ header {
     color: ${colorMain};
     letter-spacing: 0; }
 
-.landing-bg {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/newton-bg.jpg") center center;
-  background-size: cover;
-  top: 0px;
-  left: 0px; }
-
 .landing-text {
   padding-top: 124px;
   position: relative;

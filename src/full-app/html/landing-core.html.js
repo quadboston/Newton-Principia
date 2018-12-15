@@ -33,12 +33,10 @@
         <header>
             <div class="wrapper">
                 <div class="landing-text">
-                    <h1 class="landing-title">An Interactive Exploration
+                    <h1 class="landing-title">Interactive Illustrations
                         <br>
-                        <span>of</span> Newton’s Lemmas</h1>
-                    <p class="sub-title"> A couple sentences about Newton's
-                         Principia and describing the interactive models in general. It would
-                        also be a table of contents to quickly go to any model for the Principia
+                        for Newton’s <span>Principia</span></h1>
+                    <p class="sub-title"> 
                     </p>
                     <a href="${landingPath}?conf=lemma=${fconf.startLemmaReadingNumber}" class="read">
                         <div class="read__text">
@@ -53,7 +51,7 @@
                     </a>
                 </div>
             </div>
-            <img class="newton-img" src="images/newton.jpg">
+            <img class="newton-img" src="images/landing-img.jpg">
             <!-- END wrapper -->
         </header>
         `;
@@ -159,22 +157,14 @@
         landingCore += `
 
         <div class="about wrapper">
-                <div class="about__text">
-                    <h2>About the project</h2>
-                    <p>This website was created as a way to better explain Newton’s Lemmas.
-                         Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Integer fermentum mauris vel ante laoreet egestas.
-                         Suspendisse eu dui vitae orci
-                        accumsan iaculis.
-                    </p>
-                </div>
                 <div class="about__author">
                     <p class="about__author__text">
-                        Programming by John Scott and Konstantin Krillov.<br>
+                        Programming by Konstantin Krillov and John Scott.<br>
                         A User Interface Design by
                         <span class="dd-label">
                             <a href="http://theoddson.io">Darien Dodson</a>.
-                        </span>
+                        </span><br>
+                        Produced by John Scott.
                     </p>
                 </div>
         </div>
