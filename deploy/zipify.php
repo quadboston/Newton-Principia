@@ -154,16 +154,10 @@
     //=====================================================
     // //\\ gets additional optional name
     //=====================================================
-
-    if( count($argv) > 2 )
-    {
-        $archive_postfix = '-'.$argv[2];
-    } else {
-        $archive_postfix    = readline( 'optional name =' );
-        $postfix_len        = strlen( $archive_postfix );
-        $archive_postfix    = $archive_postfix ? '-' .
-                              $archive_postfix : '';
-    }
+    $archive_postfix    = readline( 'optional name =' );
+    $postfix_len        = strlen( $archive_postfix );
+    $archive_postfix    = $archive_postfix ? '-' .
+                          $archive_postfix : '';
     $archive_postfix    = preg_replace( 
                             '#\s+#',
                             '-',
@@ -181,11 +175,10 @@
 
 
 
-    //*****************************************************
+    //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     // //\\// begins making changes in file system
     //        exit;
-    //*****************************************************
-
+    //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     //=====================================================
     // //\\ zips up
     //=====================================================

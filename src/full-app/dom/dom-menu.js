@@ -333,7 +333,6 @@
                                 //ccc( 'mtype=' + mtype + ' mid=' + mid );
                                 var searchStr = '.original-text.' + notToBeChangedMode + '.' + changedMode;
                                 var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
-    ccc( searchStr, chosenTextDiv)
                                 chosenTextDiv[0] && $$.addClass( 'chosen', chosenTextDiv[0] );
                             }
                         }

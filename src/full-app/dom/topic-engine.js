@@ -94,7 +94,7 @@
             //.not the best: misses all goodies from topic to be attached to "a"
             // fixed below ... by query-selector
             var txt = txt.replace( re, 
-                '<a class="topic-link $1" href="javascript:void(0)">$2</a>' );
+                '<a class="topic-link $1">$2</a>' );
             return txt;
         }
         //==============================================
@@ -122,6 +122,9 @@
         //=================================================
         globalCss += `
 
+            #bsl-text-widget.bsl-text-widget a.topic-link {
+                display:inline-block;
+            }
             /*=============================*/
             /* //\\ links in original text */
             /*=============================*/
