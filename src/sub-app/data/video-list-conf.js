@@ -28,7 +28,7 @@
             // \\// this option actually restricts presence of a video clip
             //=============================================================
             isExternal     : true, //"false" must work ... todo: do reseach why does not work
-            URL            :"media/B1S1L02Claim.mp4"
+            URL            :"content-guide/B1S1L02Claim.mp4"
         },
         {
             caption        : 'Lemma 2 One more video for all texts',
