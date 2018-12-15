@@ -3,13 +3,16 @@
     //***************************************************************
     /*
         Builds index.prod.html and its associates from
-        index.src.html  and src
+        index.src.html and from src
         
-        The only parameter it needs is a
-        $argv[1], an understandable path to
-        index.src.html
+        usage: php deployment-engine.php path-to-index.src.html [addgit]
 
-        If this path validation fails, the build does not start.
+        parameters:
+            1. The only parameter it needs is a
+               $argv[1], an understandable path to
+               index.src.html
+               If this path validation fails, the build does not start.
+            2. addgit is optional. It must be exactly like this string.
         
         See configuration at "//\\ does configuration" below
         and comments about uglify install at

@@ -59,6 +59,7 @@
     //=====================================================
     // //\\ does gets zippee name from cmd
     //=====================================================
+    $add_git_repo = false;
     if( count($argv) < 2 )
     {
         //too risky: $path_to_dir = '../../../vendor';
@@ -68,6 +69,10 @@
         if( !is_dir( $path_to_dir ) )
         {
             exit( 'file ' . $path_to_dir . " does not exist\n" );
+        }
+        if( count($argv) > 2 )
+        {
+            $add_git_repo = $argv[2] == 'addgit';
         }
     }
     //=====================================================
@@ -154,7 +159,7 @@
     {
         $archive_postfix = '-'.$argv[2];
     } else {
-        $archive_postfix    = readline( 'add name to bsl =' );
+        $archive_postfix    = readline( 'optional name =' );
         $postfix_len        = strlen( $archive_postfix );
         $archive_postfix    = $archive_postfix ? '-' .
                               $archive_postfix : '';
@@ -189,8 +194,11 @@
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
     cli( "cp -R $folder_to_zip $name_of_copy",
          "cloning the zippee to new name" );
-    cli( 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy . ' -x *.git* ',
-         'zipping up the copy' );
+    $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
+    //.excludes .git from zip if requested
+    $command .= $add_git_repo ? '' : ' -x *.git* ';
+
+    cli( $command, 'zipping up the copy' );
     cli( "rm -rf $name_of_copy", "removing zippee copy" );
     //=====================================================
     // \\// zips up
