@@ -314,7 +314,6 @@
                                 ////do remove it from CSS
                                 var searchStr = '.original-text.' + amode['proof'] + '.' + amode['text'];
                                 var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
-    ccc( 'search established state=' + searchStr + ' found=', chosenTextDiv[0] );
                                 chosenTextDiv[0] && $$.removeClass( 'chosen', chosenTextDiv[0] );
                             }
 

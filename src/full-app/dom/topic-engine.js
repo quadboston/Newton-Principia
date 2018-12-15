@@ -122,9 +122,13 @@
         //=================================================
         globalCss += `
 
+            /* vital: insists on visibility and overrides possibly
+               coinciding target-child css which disables the child
+            */
             #bsl-text-widget.bsl-text-widget a.topic-link {
-                display:inline-block;
+                display:inline;
             }
+
             /*=============================*/
             /* //\\ links in original text */
             /*=============================*/
