@@ -46,20 +46,40 @@ hypertext : `
 
 ///// next text: ////////////////////
 english : `
-        If in any figure |figure|AacE||, comprehended by the straight lines |wall|Aa|| and |base|Ae|| and the |curve|curve acE||, any number of parallelograms Ab, Bc,
-        Cd, ... are inscribed upon equal bases AB, BC, CD, ... and have sides Bb, Cc, Dd, ... parallel to the |wall|side
-        Aa|| of the figure; and if the parallelograms aKbl, bLcm, cMdn, ... are completed; if then the width of these
-        parallelograms is diminished and their number increased indefinitely, I say that the ultimate ratios which
-        the inscribed figure AKbLcMdD, the circumscribed figure AalbmcndoE, and the |figure|curvilinear figure AabcdE|| have
-        to one another are ratios of equality.    −Cohen translation
+        If in any figure |figure|AacE||, 
+        comprehended by the straight lines |wall|Aa|| and |base|Ae|| and the |curve|curve acE||, 
+        any number of parallelograms |inscribed-rectangles|Ab, Bc, Cd||, ... 
+        are inscribed upon equal bases AB, BC, CD, ...
 
+        and have sides Bb, Cc, Dd, ... 
+        parallel to the |wall|side Aa|| of the figure; 
+        and if the parallelograms aKbl, bLcm, cMdn, ... are completed; 
+        if then the width of these parallelograms is diminished and their number increased indefinitely, 
+
+        I say that the ultimate ratios which the |inscribed-rectangles|inscribed figure AKbLcMdD||, 
+        the |circumscribed-rectangles|circumscribed figure AalbmcndoE||, 
+        and the |figure|curvilinear figure AabcdE|| 
+        have to one another are ratios of equality.    −Cohen translation
 
 `,
 
 
 ///// next text: ////////////////////
 latin : `
-    none
+        Si in figura quavis |figure|AacE|| 
+        rectis |wall|Aa||, |base|AE||, & |curve|curva acE|| comprehensa, 
+        inscribantur parallelogramma quotcunq; |inscribed-rectangles|Ab, Bc, Cd||, 
+        &c. sub basibus AB, BC, CD, &c. æqualibus, 
+
+        & lateribus Bb, Cc, Dd, &c. 
+        figuræ |wall|lateri Aa|| parallelis contenta; 
+        & compleantur parallelogramma aKbl, bLcm, cMdn, &c. 
+        Dein horum parallelogrammorum latitudo minuatur, & numerus augeatur in infinitum: 
+
+        dico quod ultimæ rationes, quas habent ad se invicem figura |inscribed-rectangles|inscripta AKbLcMdD||, 
+        |circumscribed-rectangles|circumscripta AalbmcndoE||, 
+        & |figure|curvilinea AabcdE||, 
+        sunt rationes æqualitatis.
 `
 //=================================================
 // \\// Do fill texts here
