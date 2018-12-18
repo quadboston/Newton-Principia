@@ -204,6 +204,7 @@
                 {
                     var mid         =marg.mid;
                     var caption     =marg.caption;
+                    //.inputRack is a group-of-menu-dom-elements (?related to one menu itmem)
                     var inputRack   =marg.inputRack;
                     var mitemIx     =marg.mitemIx;
 

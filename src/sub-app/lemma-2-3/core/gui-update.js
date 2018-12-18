@@ -8,10 +8,13 @@
     var sacf    = sconf;
 
     var ss          = sn('ss',fapp);
+    var ssModes     = sn('ssModes',ss);
+
     
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('l23', srg);
     var sapp        = sn('sapp');
+    var sDomF       = sn('dfunctions', sapp);
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
@@ -152,7 +155,20 @@
             //=============================================
 
 
+            // //\\ sets curves type
+
 	        l23.adjustVisibilityForBaseDelta();
+
+            // //\\ resets app modes
+            var wfirst = curveMicroPts[0];
+            var wlast = curveMicroPts[curveMicroPts.length-1];
+            //:note: y axis is apparently flipped, bottom > top
+            //:dr.figureBasics.deltaOnLeft is already calculated and
+            //:can be used
+            //:and means decresing function witm max on left
+            ssModes[ 'highest y is on the right' ] =  wfirst[1] > wlast[1];
+            // \\// resets app modes
+
         }
 
 

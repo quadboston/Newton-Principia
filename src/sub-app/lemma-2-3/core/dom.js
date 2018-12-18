@@ -176,7 +176,7 @@
             .to(svg)
             ;
 
-        $$.cNS( 'polyline' )
+        sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
             .aNS( 'id', 'figureInternalArea' )
             .aNS( 'class', "tofill" )
             .to(svg)

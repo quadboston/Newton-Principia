@@ -10,6 +10,8 @@
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('l23', srg);
     var sapp        = sn('sapp');
+    var sDomN       = sn('dnative', sapp);
+
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
@@ -65,10 +67,15 @@
             });
             
             gui.showFig = function(){ //in legacy-art-gui is referenced in lemma2.html
-                if($('.figur').is(':checked'))  {
+                //no good: var cbox = document.getElementById('checkbox_4').getAttribute('checked');
+                //no good: if($('.figur').is(':checked'))  {
+                var checked = document.getElementById('checkbox_4').checked;
+                if(checked)  {
                     $('.outline').toggle();
+                    sDomN.figureInternalArea$.removeClass('hidden');
                 }else{
                     $('.outline').toggle();
+                    sDomN.figureInternalArea$.addClass('hidden');
                 }
             }
             // \\// copy-pasted from gui-art

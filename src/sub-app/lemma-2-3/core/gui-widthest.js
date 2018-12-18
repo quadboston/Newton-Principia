@@ -83,17 +83,29 @@
 	        pt.setAttributeNS(null, "class", "figure");
 	        pt.setAttributeNS(null, "r", showRectPts ? sacf.FINEPTS_RADIUS : 0);
 	        if (fb.deltaOnLeft) {
-		        var x = fb.minX;
+		        var x = fb.minX; //x of control point
 		        var y = numModel.f(x);
+                //.offset and sizes
 		        guiup.updateRectLike(
                         dr.faaf, x, Math.min(y, fb.baseY),
                         dr.widest, Math.abs(fb.baseY-y));
 	        } else {
-		        var x = 100; //fb.maxX;
-		        var y = numModel.f(x);
+
+                // //\\ somehow this does not work
+		        //var x = 100; //fb.maxX;
+		        //var y = numModel.f(x);
+		        //guiup.updateRectLike(
+                //        dr.faaf, x-dr.widest,
+                //        Math.min(y, fb.baseY), dr.widest, Math.abs(fb.baseY-y));
+                // \\// somehow this does not work
+
+                var x = fb.maxX-dr.widest;
+                var y = numModel.f(x);
 		        guiup.updateRectLike(
-                        dr.faaf, x-dr.widest,
-                        Math.min(y, fb.baseY), dr.widest, Math.abs(fb.baseY-y));
+                        dr.faaf,
+                        x, Math.min(y, fb.baseY),
+                        dr.widest, Math.abs(fb.baseY-y));
+                //ccc(fb.minX, fb.maxX, ' dr.widest='+dr.widest );
 		        dr.widest *= -1;
 	        }
 	        guiup.updateLabel( dr.labelf, x+dr.widest-3, y-10);

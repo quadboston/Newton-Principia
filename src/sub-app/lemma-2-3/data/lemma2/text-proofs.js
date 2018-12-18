@@ -47,7 +47,9 @@ english : `
 
 
 ///// next text: ////////////////////
-hypertext : `
+hypertext :
+[
+     `
             The diffference in area between the
             |inscribed-rectangles|inscribed rectangles|| and
             |circumscribed-rectangles|circumscribed rectangles|| is equal to the area of a
@@ -57,12 +59,20 @@ hypertext : `
             of all the
             |inscribed-rectangles|inscribed rectangles|| and
             |circumscribed-rectangles|circumscribed rectangles|| becomes as close to 0 as you like. For the current shape, that
-            |widthest-rectangular|single rectangle|| is on the left.
+            |widthest-rectangular|single rectangle|| `,
 
-`,
-
-
-
+            //this is a sample how to set dependency on application mode:
+            //application modes store is in the JS-object: ns.fapp.ss.ssData.ssModes'
+            //see, for example, how ssModes is set in module gui-update.js:
+            //  ssModes[ 'highest y is on the right' ] =  wfirst[1] > wlast[1];
+            //  in other words format is: ssModes[key]=boolean-value
+            //  the same key is used below
+            //if no key is set, then 'default' is in use:
+            {
+                'default' : 'is on the left',
+                'highest y is on the right' : 'is on the right',
+            }
+],
 
 ///// next text: ////////////////////
 latin : `

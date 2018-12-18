@@ -15,18 +15,21 @@
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
+    var ssModes     = sn('ssModes',ss);
     var rg          = sn('registry',ssD);
     var rawTexts    = sn('rawTexts', ssD);
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
 
     var globalCss = '';
-    var txtDom = []; //key pairs:
+    var contRacks = []; //key pairs:
 
-    sDomF.originalTexts_2_html_texts = originalTexts_2_html_texts;
     sDomF.createTextWidget = createTextWidget;
     sDomF.topicModel_2_css_html = topicModel_2_css_html;
+    sDomF.repopulateContent = repopulateContent;
+    //000000000000000000000000000000000000000000
     return;
+    //000000000000000000000000000000000000000000
 
 
 
@@ -40,6 +43,7 @@
     ///==========================================
     function createTextWidget()
     {
+        originalTexts_2_html_texts();
         sDomN.text$ = $$
             .c('div')
             .a( 'id', cssp+'-text-widget' )
@@ -54,49 +58,29 @@
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
-        var res = 
-            '\\|([^\\|]+)\\|' + //catches topicId
-               '([^\\|]+)'    + //catches topic caption
-            '\\|\\|';
-        var re = new RegExp( res, 'g' );
-        var re_amp = /\&/g;
-
-        ///loops via all texts which were scripted by content contributer
+        ///loops via all texts which were scripted by content contributor
         Object.keys( rawTexts ).forEach( function( proofMode ) {
             ///loops inside of specific proof-mode
             Object.keys( rawTexts[proofMode] ).forEach( function( key ) {
-                var txt = transformText( rawTexts[proofMode][key] );
                 //.RM "original-text" means CSS class of exegesis-text-html
                 //.which is obtained by parsing raw-exegesis-script
                 var classStr = 'original-text ' + proofMode + ' ' + key;
-                //txtDom += '<div class="' + classStr + '">' + txt + '</div>';
-
-                txt += references.text || '';
-                //**************************************************
-                //.here content, txt, is prepared for html-injection
-                //**************************************************
-                txtDom.push({ classStr:classStr, text:txt });
+                ///normalizes textRack format
+                var scriptRack = rawTexts[proofMode][key];
+                if( !Array.isArray(scriptRack) ) {
+                    scriptRack = [scriptRack];
+                }
+                if( references.text ) {
+                    scriptRack.push( references.text );
+                }
+                contRacks.push({
+                    classStr:classStr,
+                    scriptRack:scriptRack,
+                    domComponents:[],
+                    components:[]
+                });
             });
         });
-
-        function transformText( text )
-        {
-            //.html excapes text
-            //var txt = ns.htmlesc( text );
-        
-            txt = text.replace( re_amp, '&amp;' );
-            if( topics.convert_lineFeed2htmlBreak ) {
-                //.converts text from <pre> format
-                var txt = ns.pre2fluid( txt ) 
-            }
-            var re = new RegExp( res, 'g' );
-
-            //.not the best: misses all goodies from topic to be attached to "a"
-            // fixed below ... by query-selector
-            var txt = txt.replace( re, 
-                '<a class="topic-link $1">$2</a>' );
-            return txt;
-        }
         //==============================================
         // \\// sapwns script-embedded-in-text to html
         //==============================================
@@ -242,24 +226,103 @@
 
 
 
+    ///contents depends on model mode
+    ///this function visualizes the texts upon the mode
+    ///at late run-time event, this function is, for example,
+    ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
+    function repopulateContent()
+    {
+        //purges all contents and can be a bug
+        //bs tabs are transcluded into the same el:
+        //sDomN.text$.html('');
 
+        contRacks.forEach( function( contentRack ) {
 
+            if( !contentRack.domEl ) {
+                contentRack.domEl = $$
+                  .c('div')
+                  .addClass( contentRack.classStr )
+                  //*******************************************************
+                  //.here page content injects into html for the first time
+                  //*******************************************************
+                  .to( sDomN.text$() )
+                  ();
+            }
+            transformText( contentRack );
+
+            var domComponents = contentRack.domComponents;
+            contentRack.components.forEach( function( component, cix ) {
+                if( !domComponents[cix] ) {
+                    domComponents[cix] = $$
+                        .c('div')
+                        .css( 'display', 'inline' )
+                        //*******************************************************
+                        //.here page content injects into html for the first time
+                        //*******************************************************
+                        .to( contentRack.domEl )
+                        ();
+                    domComponents[cix].innerHTML = component.text;
+                }
+                //todo: ineffective: do throttle or create html only once and
+                //      update only CSS-display
+                if( component.modeIsTogglable ) {
+                    domComponents[cix].innerHTML = component.text;
+                }
+            });
+        });
+    }
+
+    ///parses scripts of the text
+    ///builds components from script
+    function transformText( contentRack )
+    {
+        var res = 
+            '\\|([^\\|]+)\\|' + //catches topicId
+               '([^\\|]+)'    + //catches topic caption
+            '\\|\\|';
+        var re = new RegExp( res, 'g' );
+        var re_amp = /\&/g;
+        var components = contentRack.components;
+        contentRack.scriptRack.forEach( function( textEl, tix ) {
+            if( typeof( textEl ) === 'object' ) {
+                var theScript = textEl['default'];
+                Object.keys( ssModes ).forEach( function( smode ) {
+                    theScript = ( ssModes[smode] && textEl[smode] ) || theScript;
+                    //if( ssModes[smode] && textEl[smode] )
+                    //ccc( 'new script:' + ( ssModes[smode] && textEl[smode] ) );
+                });
+            } else {
+                var theScript = textEl;
+            }
+            txt = theScript.replace( re_amp, '&amp;' );
+            if( topics.convert_lineFeed2htmlBreak ) {
+                //.converts text from <pre> format
+                var txt = ns.pre2fluid( txt ) 
+            }
+            if( typeof( textEl ) === 'object' ) {
+                ////reparses text every time ...
+                ////todo: ineffective ... parses toggles at "each change"
+                components[tix] =
+                {
+                    modeIsTogglable : typeof( textEl ) === 'object',
+                    text : txt.replace( re, '<a class="topic-link $1">$2</a>' )
+                };
+            } else {
+                ////makes it up only once ... no redundant parsing
+                components[tix] = components[tix] ||
+                {
+                    modeIsTogglable : false,
+                    text : txt.replace( re, '<a class="topic-link $1">$2</a>' )
+                };
+            }
+        });
+    }
 
     ///this function needs application-model-view already created
     function topicModel_2_css_html()
     {
         createColorCodingCSS();
-        //sDomN.text$.html( txtDom );
-        txtDom.forEach( function( contentTextBlock ) {
-            $$.c('div')
-              .addClass( contentTextBlock.classStr )
-              .html( contentTextBlock.text )
-              //************************************
-              //.here page content injects into html
-              //************************************
-              .to( sDomN.text$() )
-              ;
-        });
+        repopulateContent();
 
         var wDefs = topics.topicDef;
         var topicsN = Object.keys( wDefs ).length;
@@ -410,7 +473,6 @@
             //c cc( 'domEls=', domEls );
             //.finds all anchors bound to the link-key
             var anchors = sDomN.text$().querySelectorAll( 'a.topic-link.' + topicId );
-
             anchors.forEach( function(attachee) {
 
                 //.fixes goodies missed at creation

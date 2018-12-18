@@ -124,6 +124,12 @@
                     $:      function( obj )                 { ctxEl = obj                                            },
 
                     c:      function( type )                { ctxEl =                document.createElement( type ); },
+                    //.gets single by id
+                    g:      function( id )                  { ctxEl =                document.getElementById( id ); },
+                    //.gets single
+                    q:      function( selector, parent )    { ctxEl =                (parent||document.body).querySelector( selector ); },
+                    //.gets array of all
+                    qa:     function( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },

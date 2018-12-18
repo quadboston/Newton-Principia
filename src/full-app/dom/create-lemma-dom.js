@@ -79,7 +79,6 @@
         //--------------------------------------------------------
         // \\// binds widget to containers
         //--------------------------------------------------------
-        sDomF.originalTexts_2_html_texts();
         sDomF.createTextWidget();
         fmethods.createDividorResizer();
 

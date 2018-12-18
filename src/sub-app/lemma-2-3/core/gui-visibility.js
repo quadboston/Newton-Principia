@@ -72,6 +72,7 @@
 	        guiup.calculate8paintCurve_8_paintAxes();
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
             sDomF.medD8D && sDomF.medD8D.updateAllDecPoints();
+            sDomF.repopulateContent();
         }
         //======================================
         // \\// view top-manager

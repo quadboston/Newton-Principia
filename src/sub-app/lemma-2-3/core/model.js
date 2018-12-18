@@ -101,10 +101,12 @@
 	        return sum;
         }
 
+        ///finds index of control point with maximum x
         function ctrlPt_2_maxIx()
         {
             const pts = dr.ctrlPts;
 	        var xi;
+            var n;
 	        for (var i=0; i<pts.length; i++) {
 		        if ( !i || pts[i].x > n) {
 			        n = pts[i].x;
@@ -113,10 +115,12 @@
 	        }
 	        return xi;
         }
+        ///finds index of control point with minimum x
         function ctrlPt_2_minIx() 
         {
             const pts = dr.ctrlPts;
 	        var xi;
+            var n;
 	        for (var i=0; i<pts.length; i++) {
 		        if ( !i || pts[i].x < n) {
 			        n = pts[i].x;
@@ -133,6 +137,8 @@
         //==================================
         // //\\ widths
         //==================================
+        ///todm: this fun. and calcSum... are seen as too convoluted ...
+        ///      what do they do?
         function nextWidth(i)
         {
 	        dr.baseWidths[i] = dr.baseWidths[i] / dr.sumWidth *
@@ -148,6 +154,7 @@
         //----------------------------------
         function calcSumBaseWidth( bases )
         {
+            //what does it do?: ccc( 'start',dr.baseWidths );
 	        var sum = 0;
 	        var meanWidth = 0;
 	        if( !dr.baseWidths.length ) {
