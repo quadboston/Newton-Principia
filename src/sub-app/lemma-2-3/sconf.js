@@ -37,12 +37,12 @@
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
-        var pictureWidth = 282;
-        var pictureHeight = 290;
-        var activeAreaOffsetX = 31.5;
-        var activeAreaOffsetY = 29;
+        var pictureWidth = 268;//276;//282;
+        var pictureHeight = 270;//290;
+        var activeAreaOffsetX = 23;//31.5;
+        var activeAreaOffsetY = 35;//182;//29;
         //.set it from graph editor
-        var pictureActiveArea = 259 - activeAreaOffsetY;
+        var pictureActiveArea = 259 - activeAreaOffsetY;//259 - activeAreaOffsetY;
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
@@ -79,10 +79,10 @@
             ctrlPtXYs_js    :
             [
                 {x:activeAreaOffsetX,             y: activeAreaOffsetY},
-                {x:85,          y: 51.5},
-                {x:139,         y: 89.0},
-                {x:193,         y: 148.5 },
-                {x:248,         y: 259.5 }
+                {x:activeAreaOffsetX - 31.5 + 85,          y: activeAreaOffsetY - 29 + 51.5},
+                {x:activeAreaOffsetX - 31.5 + 139,         y: activeAreaOffsetY - 29 + 89.0},
+                {x:activeAreaOffsetX - 31.5 + 193,         y: activeAreaOffsetY - 29 + 148.5 },
+                {x:activeAreaOffsetX - 31.5 + 248,         y: activeAreaOffsetY - 29 + 259.5 }
             ],
 
             //.widths coinsided with dashed-rect ... set to empty array if not to match dashed rect
