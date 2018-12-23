@@ -31,35 +31,47 @@
 //        Dont use backtick "`" in the text content.
 
 ///// next text: ////////////////////
-english : `
-            For the difference of the inscribed and circumscribed figures is the sum of the parallelograms Kl, Lm, Mn, and Do, that is
-            (because they all have equal bases), the |widthest-rectangular|rectangle|| having as base Kb (the base of one of them) and as altitude
-            Aa (the sum of the altitudes), that is, the rectangle ABla. But this rectangle, because its width AB is diminished
-            indefinitely, becomes less than any given rectangle. Therefore (by lem. 1) the inscribed figure and the circumscribed
-            figure and, all the more, the intermediate curvilinear figure become ultimately equal. Q.E.D.    −Cohen translation
-
+latin : `
+            Nam figuræ |inscribed-rectangles|inscriptæ|| & |circumscribed-rectangles|circumscriptæ|| differentia 
+            est summa parallelogrammorum Kl + Lm + Mn + Do, 
+            hoc est (ob æquales omnium bases)
+            rectangulum sub unius basi Kb 
+            & altitudinum summa Aa, id est rectangulum |widthest-rectangular|ABla||. 
+            
+            Sed hoc rectangulum, eo quod latitudo ejus AB in infinitum minuitur, sit minus quovis dato. 
+            Ergo per Lemma I, figura |inscribed-rectangles|inscripta|| & |circumscribed-rectangles|circumscripta|| & 
+            multo magis |figure|figura curvilinea|| intermedia fiunt ultimo æquales. Q. E. D.
 `,
 
 
+///// next text: ////////////////////
+english : `
+            For the difference of the |inscribed-rectangles|inscribed|| and |circumscribed-rectangles|circumscribed|| figures 
+            is the sum of the parallelograms Kl, Lm, Mn, and Do, 
+            that is (because they all have equal bases), 
+            the rectangle having as base Kb (the base of one of them) 
+            and as altitude Aa (the sum of the altitudes), that is, the rectangle |widthest-rectangular|ABla||.
 
+            But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle. 
+            Therefore (by lem. 1) the |inscribed-rectangles|inscribed figure|| and the |circumscribed-rectangles|circumscribed figure|| and, 
+            all the more, the intermediate |figure|curvilinear figure|| become ultimately equal. Q.E.D.    −Cohen translation
 
-
+`,
 
 
 ///// next text: ////////////////////
 hypertext :
 [
      `
-            The diffference in area between the
-            |inscribed-rectangles|inscribed rectangles|| and
-            |circumscribed-rectangles|circumscribed rectangles|| is equal to the area of a
-            |widthest-rectangular|single rectangle|| on the end. As the number of rectangles is increased indefinitely, the width of each
-            decreases indefinitely. This includes the |widthest-rectangular|single rectangle|| just mentioned. Since its width decreases indefinitely,
-            its area decreases indefinitely, becoming as close to 0 as you like. So the difference between the areas
-            of all the
-            |inscribed-rectangles|inscribed rectangles|| and
-            |circumscribed-rectangles|circumscribed rectangles|| becomes as close to 0 as you like. For the current shape, that
-            |widthest-rectangular|single rectangle|| `,
+            The diffference in area between the |inscribed-rectangles|inscribed rectangles|| and |circumscribed-rectangles|circumscribed rectangles|| 
+            is equal to the area of a |widthest-rectangular|single rectangle|| on the end. 
+            As the number of rectangles is increased indefinitely, the width of each
+            decreases indefinitely, including the |widthest-rectangular|single rectangle|| just mentioned. 
+            Since its width decreases indefinitely,
+            its area decreases indefinitely, becoming arbitrarily close to 0. So the difference between the areas of the
+            |inscribed-rectangles|inscribed rectangles||, the
+            |circumscribed-rectangles|circumscribed rectangles||, and the |figure|figure|| in between them becomes arbitrarily close to 0. For the current figure, 
+            that |widthest-rectangular|single rectangle|| is on the `,
 
             //this is a sample how to set dependency on application mode:
             //application modes store is in the JS-object: ns.fapp.ss.ssData.ssModes'
@@ -69,15 +81,12 @@ hypertext :
             //  the same key is used below
             //if no key is set, then 'default' is in use:
             {
-                'default' : 'is on the left',
-                'highest y is on the right' : 'is on the right',
-            }
-],
+                'default' : 'left',
+                'highest y is on the right' : 'right',
+            },
 
-///// next text: ////////////////////
-latin : `
-            not yet entered
-`
+            `.`
+]
 
 //=================================================
 // \\// Do fill texts here
@@ -87,4 +96,3 @@ latin : `
 
 };}
 }) ();
-

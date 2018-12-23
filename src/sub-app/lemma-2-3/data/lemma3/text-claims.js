@@ -34,11 +34,9 @@
 
 
 ///// next text: ////////////////////
-hypertext : `
-        Even if the lengths of the |base|bases|| are unequal, the area of the |figure|figure||, 
-        the area of all the |inscribed-rectangles|inscribed rectangles||,
-        and the area of all the |circumscribed-rectangles|circumscribed rectangles|| 
-        <i>still</i> become essentially equal to each other; their difference becomes as close to 0 as you like.
+latin : `
+        Eædem rationes ultimæ sunt etiam rationes æqualitatis, ubi parallelogrammorum latitudines AB, BC, CD, &c. 
+        sunt inæquales, & omnes minuuntur in infinitum.
 `,
 
 
@@ -56,8 +54,11 @@ english : `
 
 
 ///// next text: ////////////////////
-latin : `
-no text entered
+hypertext : `
+        Even if the lengths of the |base|bases|| are unequal, the area of the |figure|figure||, 
+        the area of all the |inscribed-rectangles|inscribed rectangles||,
+        and the area of all the |circumscribed-rectangles|circumscribed rectangles|| 
+        <i>still</i> become essentially equal to each other; their difference becomes arbitrarily close to 0.
 `
 //=================================================
 // \\// Do fill texts here
