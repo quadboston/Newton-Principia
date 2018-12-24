@@ -55,10 +55,10 @@ english : `
 
 ///// next text: ////////////////////
 hypertext : `
-        Even if the lengths of the |base|bases|| are unequal, the area of the |figure|figure||, 
-        the area of all the |inscribed-rectangles|inscribed rectangles||,
-        and the area of all the |circumscribed-rectangles|circumscribed rectangles|| 
-        <i>still</i> become essentially equal to each other; their difference becomes arbitrarily close to 0.
+        Even if the lengths of the |base|bases|| are unequal, the areas of the |figure|figure||, 
+        the |inscribed-rectangles|inscribed rectangles||,
+        and the |circumscribed-rectangles|circumscribed rectangles|| 
+        <i>still</i> all converge to the same value.
 `
 //=================================================
 // \\// Do fill texts here

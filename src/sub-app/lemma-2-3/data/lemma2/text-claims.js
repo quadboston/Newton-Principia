@@ -32,12 +32,12 @@
 
 ///// next text: ////////////////////
 hypertext : `
-        Consider any |figure|figure|| bounded by a |curve|curve||, a |base|base||, and a |wall|side||. Its |base|base|| can be divided into any number of equal-length bases
-        for |inscribed-rectangles|inscribed rectangles|| and |circumscribed-rectangles|circumscribed rectangles||. If we increase the number of these rectangles indefinitely, the area of
-        the |figure|figure||, the area of all the |inscribed-rectangles|inscribed rectangles||, and the area of all the
-        |circumscribed-rectangles|circumscribed rectangles|| essentially become equal to each other; their difference becomes as close
-        to 0 as you like.
-
+        Consider any |figure|figure|| bounded by a |curve|curve||, a |base|base||, and a |wall|side||. 
+        Its |base|base|| can be divided into any number of equal-length bases
+        for |inscribed-rectangles|inscribed rectangles|| and |circumscribed-rectangles|circumscribed rectangles||. 
+        If we increase the number of these rectangles indefinitely, 
+        then the areas of the |figure|figure||, the |inscribed-rectangles|inscribed rectangles||, and the
+        |circumscribed-rectangles|circumscribed rectangles|| all converge to the same value.
 `,
 
 
