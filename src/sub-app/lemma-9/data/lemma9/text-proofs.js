@@ -32,30 +32,30 @@
 
 ///// next text: ////////////////////
 english : `
-For while the points |point_B|B||, |point_C|C|| approach towards the point |point_A|A||,
-suppose always |AD|AD|| to be produced to the remote points |point_d|d|| and |point_e|e||,
-so as |Ad|Ad||, |Ae|Ae|| may be proportional to |AD|AD||, |AE|AE||;
+For while points |point_B|B|| and |point_C|C|| approach point |point_A|A||,
+let |AD|AD|| be understood always to be produced to the distant points |point_d|d|| and |point_e|e||,
+so that |Ad|Ad|| and |Ae|Ae|| are proportional to |AD|AD|| and |AE|AE||;
 
-and the ordinates |db|db||, |ec|ec||, to be drawn
-parallel to the ordinates |DB|DB|| and |EC|EC||,
-and meeting |AB|AB|| and |AC|AC|| produced in |point_b|b|| and |point_c|c||.
+and erect ordinates |db|db|| and |ec|ec||
+parallel to ordinates |DB|DB|| and |EC|EC||
+and meeting |AB|AB|| and |AC|AC||, produced, at |point_b|b|| and |point_c|c||.
 
-Let the curve |Abc|Abc|| be similar to the curve |ABC|ABC||, and
-draw the right line |Ag|Ag|| so as to touch both curves in |point_A|A||, and
-cut the ordinates |DB|DB||, |EC|EC||, |db|db||, |ec|ec||, in F, G, |point_f|f||, |point_g|g||.
+Understand the curve |Abc|Abc|| to be drawn similar to |ABC|ABC||, and
+the straight line |Ag|Ag|| to be drawn touching both curves at |point_A|A|| and
+cutting the ordinates |DB|DB||, |EC|EC||, |db|db||, and |ec|ec|| at F, G, |point_f|f||, and |point_g|g||.
 
-Then supposing the length |Ae|Ae|| to remain the same,
-let the points |point_B|B|| and |point_C|C|| meet the point |point_A|A||; and the angle cAg vanishing,
+Then, with the length |Ae|Ae|| remaining the same,
+let points |point_B|B|| and |point_C|C|| come together with point |point_A|A||; and as the angle cAg vanishes,
 
-the curvilinear areas |Abd|Abd||, |Ace|Ace|| will coincide with the
-rectilinear areas |Afd|Afd||, |Age|Age||;
-and therefore (by Lem 5) will be one to other in the duplicate ratio of the sides |Ad|Ad||, |Ae|Ae||.
+the curvilinear areas |Abd|Abd|| and |Ace|Ace|| will coincide with the
+rectilinear areas |Afd|Afd|| and |Age|Age||,
+and thus (by lem. 5) will be in the squared ratio of the sides |Ad|Ad|| and |Ae|Ae||.
 
-But the areas |ABD|ABD||, |ACE|ACE|| are always proportional to these areas;
-and so the sides |AD|AD||, |AE|AE|| are to these sides.
+But areas |ABD|ABD|| and |ACE|ACE|| are always proportional to these areas,
+and sides |AD|AD|| and |AE|AE|| to these sides.
 
-And therefore the areas |ABD|ABD||, |ACE|ACE|| are ultimately one to the other
-in the duplicate ratio of the sides |AD|AD||, |AE|AE||. 
+Therefore areas |ABD|ABD|| and |ACE|ACE|| also are ultimately 
+in the squared ratio of the sides |AD|AD|| and |AE|AE||.  Q.E.D.
 
 
 `,

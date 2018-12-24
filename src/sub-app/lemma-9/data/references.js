@@ -32,11 +32,9 @@
             Lemma 9 Latin text and Figure. 3rd Edition.
         </a>
         <br>
-        <a href="https://en.wikisource.org/wiki/The_Mathematical_Principles_of_Natural_Philosophy_(1729)/Book_1/Section_1#Lem9">
-            3rd Edition to English translation by Andrew Motte.
+        <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
+            3rd Edition to English translation by I. Bernard Cohen.
         </a>
-
-
         `;
     }
 

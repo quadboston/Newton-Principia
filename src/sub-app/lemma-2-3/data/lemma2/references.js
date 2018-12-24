@@ -1,5 +1,10 @@
-// Fill this file with the texts, Latin and English.
-// (Perhaps in the future in any other language ).
+/*
+    References for borrowed content.
+    The Latin is not copyrighted.
+    The Cohen translation is copyrighted.
+    My impression is that my use of copyrighted material falls under the Fair Use Rule
+    (see https://www.nolo.com/legal-encyclopedia/fair-use-rule-copyright-material-30100.html)
+*/
 
 ( function() {
     var ns          = window.b$l;
@@ -21,7 +26,7 @@
 
 
 
-
+ 
     function referencesModule()
     {
         references.text = ` 
