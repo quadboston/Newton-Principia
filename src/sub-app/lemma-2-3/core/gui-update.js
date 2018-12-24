@@ -88,7 +88,7 @@
         }
         function updateLabel( item, x, y )
         {
-            xy2shape( item, "x", x, "y", y );
+            //xy2shape( item, "x", x, "y", y );
         }
         ///updates item with rectangular parameters x, y, width, height
         function updateRectLike(item, x, y, width, height) {
