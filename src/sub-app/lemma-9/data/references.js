@@ -28,12 +28,12 @@
         <br><br>
         Sources:
         <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338107">
-            Lemma 9 Latin text and Figure. 3rd Edition.
+        <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
+            3rd Edition English translation by I. Bernard Cohen.
         </a>
         <br>
-        <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
-            3rd Edition to English translation by I. Bernard Cohen.
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338107">
+            Lemma 9 Latin text and figure. 3rd Edition.
         </a>
         `;
     }
