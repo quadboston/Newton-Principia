@@ -31,7 +31,7 @@
 
 ///// next text: ////////////////////
 hypertext : `
-Consider |ABD ACE|two triangles|| formed in the following way: they are bounded by a |AE|straight line|| and a |ABC|curved line|| which intersect at a certain |point_A|point||, and these lines are connected by two |BD EC|parallel lines||. As the |BD EC|parallel lines|| approach the mentioned |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
+Consider |ABD ACE|two curvlinear triangles|| bounded on one side by a |AE|line||, on another side by a |ABC|curve||, and on their last sides by |BD EC|parallel lines||. Note the |point_A|point|| joining the shared |AE|line|| and |ABC|curve||. As the |BD EC|parallel lines|| approach that |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
 `,
 
 
