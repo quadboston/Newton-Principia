@@ -50,7 +50,7 @@ english : `
             is the sum of the parallelograms Kl, Lm, Mn, and Do, 
             that is (because they all have equal bases), 
             the rectangle having as base Kb (the base of one of them) 
-            and as altitude Aa (the sum of the altitudes), that is, the rectangle |widthest-rectangular|ABla||.
+            and as altitude |wall|Aa|| (the sum of the altitudes), that is, the rectangle |widthest-rectangular|ABla||.
 
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle. 
             Therefore (by lem. 1) the |inscribed-rectangles|inscribed figure|| and the |circumscribed-rectangles|circumscribed figure|| and, 

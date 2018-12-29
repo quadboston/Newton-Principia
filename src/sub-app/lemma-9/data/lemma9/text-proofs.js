@@ -68,26 +68,15 @@ in the squared ratio of the sides |AD|AD|| and |AE|AE||.  Q.E.D.
 
 ///// next text: ////////////////////
 hypertext : `
-Make an |Abd Ace|enlargement|| of the |ABD ACE|two original triangles||,
-and place them such that they still share the same |point_A|point|| and |Ae|straight line|| 
-shared by the |ABD ACE|original triangles||.
+Make an |Abd Ace|enlargement|| of the |ABD ACE|two original triangles||, and place them such that they still share the same |point_A|point|| and |Ae|straight line|| shared by the |ABD ACE|original triangles||.
 
-As the |ABD ACE|two original triangles|| shrink, 
-keep the length of the |Ae|shared line|| for the |Ace|largest triangle|| the same length,
-and adjust the |Ab Ac db ec|other sides|| and |Abc|curve|| of the |Abd Ace|enlarged triangles|| as necessary 
-so that they continue to be |Abd Ace|enlarged versions|| of the |ABD ACE|shrinking triangles||.
+As the |ABD ACE|two original triangles|| shrink, keep the length of the |Ae|shared line|| for the |Ace|largest triangle|| the same length, and adjust the |Ab Ac db ec|other sides|| and |Abc|curve|| of the |Abd Ace|enlarged triangles|| as necessary so that they continue to be |Abd Ace|enlarged versions|| of the |ABD ACE|shrinking triangles||.
 
-In the limit, as the |ABD ACE|two original triangles|| shrink, the |Abc|curve|| that bounds
-the |Abd Ace|two enlarged curvilinear triangles|| flattens to a |Ag|straight line||, meaning the 
-|Abd Ace|two enlarged curvilinear triangles|| become |Afd Age|two linear triangles||. By Lemma 5,
-we know the ratio of the areas of these |Afd Age|two linear triangles|| will be equal to the
-squared ratio of their |Ad Ae|matching sides||.
+In the limit, as the |ABD ACE|two original triangles|| shrink, the |Abc|curve|| that bounds the |Abd Ace|two enlarged curvilinear triangles|| flattens to a |Ag|straight line||, meaning the |Abd Ace|two enlarged curvilinear triangles|| become |Afd Age|two linear triangles||. By Lemma 5, we know the ratio of the areas of these |Afd Age|two linear triangles|| will be equal to the squared ratio of their |Ad Ae|matching sides||.
 
-We also know that |Ad Ae|matching sides|| of the |Abd Ace|enlarged triangles|| must have the same ratio
-to each other as |AD AE|matching sides|| of the |ABD ACE|original triangles||.
+We also know that |Ad Ae|matching sides|| of the |Abd Ace|enlarged triangles|| must have the same ratio to each other as |AD AE|matching sides|| of the |ABD ACE|original triangles||.
 
-So in the limit, the |ABDPerACE|ratio of the areas|| of the |ABD ACE|original triangles|| converge 
-to the same |AD2AE|ratio as the squares|| of their |AD AE|sides||.
+So in the limit, the |ABDPerACE|ratio of the areas|| of the |ABD ACE|original triangles|| converge to the same |AD2AE|ratio as the squares|| of their |AD AE|sides||.
 `,
 
 

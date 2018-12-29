@@ -44,8 +44,7 @@ If the straight line |AE|AE|| and
 the curve |ABC|ABC||,
 both given in position,
 intersect each other at a given angle |point_A|A||, and
-//to that right line,
-//in another given angle, |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
 and meet the curve in |point_B|B|| and |point_C|C||,
 and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
 I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
