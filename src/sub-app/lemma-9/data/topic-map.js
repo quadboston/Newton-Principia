@@ -109,8 +109,7 @@
         AD2AE:
         {   id:
             [   'legend-AD2PerAE2','number-AD2PerAE2',
-                'claim-legend-AD2PerAE2', 'claim-number-AD2PerAE2',
-                'legend-AfdPerAge', 'number-AfdPerAge'
+                'claim-legend-AD2PerAE2', 'claim-number-AD2PerAE2'
             ],
             topicColor:'#006688'
         }

@@ -68,32 +68,26 @@ in the squared ratio of the sides |AD|AD|| and |AE|AE||.  Q.E.D.
 
 ///// next text: ////////////////////
 hypertext : `
-For while the points |point_B|B||, |point_C|C|| approach towards the point |point_A|A||,
-suppose always |AD|AD|| to be produced to the remote points |point_d|d|| and |point_e|e||,
-so as |Ad|Ad||, |Ae|Ae|| may be proportional to |AD|AD||, |AE|AE||;
+Make an |Abd Ace|enlargement|| of the |ABD ACE|two original triangles||,
+and place them such that they still share the same |point_A|point|| and |Ae|straight line|| 
+shared by the |ABD ACE|original triangles||.
 
-and the ordinates |db|db||, |ec|ec||, to be drawn
-parallel to the ordinates |DB|DB|| and |EC|EC||,
-and meeting |AB|AB|| and |AC|AC|| produced in |point_b|b|| and |point_c|c||.
+As the |ABD ACE|two original triangles|| shrink, 
+keep the length of the |Ae|shared line|| for the |Ace|largest triangle|| the same length,
+and adjust the |Ab Ac db ec|other sides|| and |Abc|curve|| of the |Abd Ace|enlarged triangles|| as necessary 
+so that they continue to be |Abd Ace|enlarged versions|| of the |ABD ACE|shrinking triangles||.
 
-Let the curve |Abc|Abc|| be similar to the curve |ABC|ABC||, and
-draw the right line |Ag|Ag|| so as to touch both curves in |point_A|A||, and
-cut the ordinates |DB|DB||, |EC|EC||, |db|db||, |ec|ec||, in F, G, |point_f|f||, |point_g|g||.
+In the limit, as the |ABD ACE|two original triangles|| shrink, the |Abc|curve|| that bounds
+the |Abd Ace|two enlarged curvilinear triangles|| flattens to a |Ag|straight line||, meaning the 
+|Abd Ace|two enlarged curvilinear triangles|| become |Afd Age|two linear triangles||. By Lemma 5,
+we know the ratio of the areas of these |Afd Age|two linear triangles|| will be equal to the
+squared ratio of their |Ad Ae|matching sides||.
 
-Then supposing the length |Ae|Ae|| to remain the same,
-let the points |point_B|B|| and |point_C|C|| meet the point |point_A|A||; and the angle cAg vanishing,
+We also know that |Ad Ae|matching sides|| of the |Abd Ace|enlarged triangles|| must have the same ratio
+to each other as |AD AE|matching sides|| of the |ABD ACE|original triangles||.
 
-the curvilinear areas |Abd|Abd||, |Ace|Ace|| will coincide with the
-rectilinear areas |Afd|Afd||, |Age|Age||;
-and therefore (by Lem 5) will be one to other in the duplicate ratio of the sides |Ad|Ad||, |Ae|Ae||.
-
-But the areas |ABD|ABD||, |ACE|ACE|| are always proportional to these areas;
-and so the sides |AD|AD||, |AE|AE|| are to these sides.
-
-And therefore the areas |ABD|ABD||, |ACE|ACE|| are ultimately one to the other
-in the duplicate ratio of the sides |AD|AD||, |AE|AE||. 
-
-
+So in the limit, the |ABDPerACE|ratio of the areas|| of the |ABD ACE|original triangles|| converge 
+to the same |AD2AE|ratio as the squares|| of their |AD AE|sides||.
 `,
 
 
