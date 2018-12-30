@@ -54,7 +54,7 @@ english : `
 
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle. 
             Therefore (by lem. 1) the |inscribed-rectangles|inscribed figure|| and the |circumscribed-rectangles|circumscribed figure|| and, 
-            all the more, the intermediate |figure|curvilinear figure|| become ultimately equal.  Q.E.D.    −Cohen translation
+            all the more, the intermediate |figure|curvilinear figure|| become ultimately equal.  Q.E.D.
 
 `,
 

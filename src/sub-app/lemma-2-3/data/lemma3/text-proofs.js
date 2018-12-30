@@ -46,7 +46,7 @@ english : `
             This parallelogram will be greater than the difference of 
             the |inscribed-rectangles|inscribed|| and |circumscribed-rectangles|circumscribed|| figures; 
             but if its width AF is diminished indefinitely, 
-            it will become less than any given rectangle.  Q.E.D.</dense><attribution> −Cohen translation</attribution>
+            it will become less than any given rectangle.  Q.E.D.</dense>
 `,
 
 hypertext :

@@ -59,7 +59,7 @@ english : `
         I say that the ultimate ratios which the |inscribed-rectangles|inscribed figure AKbLcMdD||, 
         the |circumscribed-rectangles|circumscribed figure AalbmcndoE||, 
         and the |figure|curvilinear figure AabcdE|| 
-        have to one another are ratios of equality.    −Cohen translation
+        have to one another are ratios of equality.
 
 `,
 

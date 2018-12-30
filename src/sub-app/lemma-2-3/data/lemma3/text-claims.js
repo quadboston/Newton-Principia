@@ -47,7 +47,6 @@ latin : `
 english : `
         <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths AB, BC, CD,... 
         of the parallelograms are unequal and are all diminished indefinitely.</dense>
-        <attribution> −Cohen translation</attribution>
 `,
 
 
