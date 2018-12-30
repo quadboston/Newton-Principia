@@ -58,11 +58,12 @@
         {
             var baseMax = sacf.baseMax;
 	        // labels
-	        constructLabels(dr.curvLabels.list, "figure tostroke", 'abcde');
+	        /*constructLabels(dr.curvLabels.list, "figure tostroke", 'abcde');
 	        constructLabels(dr.baseLabels.list, "figure tostroke", 'ABCDE');
 	        constructLabels(dr.leftLabels.list, "inscribed tostroke", 'KLMNO');
 	        constructLabels(dr.righLabels.list, "circumscribed tostroke", 'lmnop');
-
+            */
+            
 	        // rects
 	        constructShapesList("rect", dr.righRects, baseMax, "circumscribed rect tofill tostroke");
 	        constructShapesList("rect", dr.leftRects, baseMax, "inscribed rect tofill tostroke");

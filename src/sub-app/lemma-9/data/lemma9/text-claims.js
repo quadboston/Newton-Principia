@@ -31,7 +31,7 @@
 
 ///// next text: ////////////////////
 hypertext : `
-Consider |ABD ACE|two triangles|| formed in the following way: they are bounded by a |AE|straight line|| and a |ABC|curved line|| which intersect at a certain |point_A|point||, and these lines are connected by two |BD EC|parallel lines||. As the |BD EC|parallel lines|| approach the mentioned |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
+Consider |ABD ACE|two curvlinear triangles|| bounded on one side by a |AE|line||, on another side by a |ABC|curve||, and on their last sides by |BD EC|parallel lines||. Note the |point_A|point|| joining the shared |AE|line|| and |ABC|curve||. As the |BD EC|parallel lines|| approach that |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
 `,
 
 
@@ -40,18 +40,15 @@ Consider |ABD ACE|two triangles|| formed in the following way: they are bounded 
 
 ///// next text: ////////////////////
 english : `
-If a right line |AE|AE|| and
-a curve line |ABC|ABC||,
-both given by position,
-cut each other in a given angle; and
-to that right line,
-in another given angle, |BD|BD||, |EC|CE|| are ordinately applied,
-meeting the curve in |point_B|B||, |point_C|C||;
-and the points B and C together approach towards, and meet in, the point |point_A|A||:
-I say that the areas of the triangles |ABD|ABD||, |ACE|ACE||, will ultimately be one to the other
-in the |AD2AE|duplicate ratio|| of the sides.
-
-
+If the straight line |AE|AE|| and
+the curve |ABC|ABC||,
+both given in position,
+intersect each other at a given angle |point_A|A||, and
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
+and meet the curve in |point_B|B|| and |point_C|C||,
+and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
+I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
+as the |AD2AE|squares of the sides||.
 `,
 
 
@@ -60,34 +57,31 @@ in the |AD2AE|duplicate ratio|| of the sides.
 ///// next text: ////////////////////
 latin : `
 Si recta |AE|AE|| &
-If a right line |AE|AE|| and
+If the straight line |AE|AE|| and
 
 curva |ABC|ABC||
-a curve line |ABC|ABC||,
+the curve |ABC|ABC||,
 
 positione datæ
-both given by position,
+both given in position,
 
-se mutio secent in angulo dato A, &
-cut each other in a given angle; and
+se mutio secent in angulo dato |point_A|A||, &
+intersect each other at a given angle |point_A|A||, and
 
-ad rectam illam
-to that right line,
-
-in alio dato angulo ordinatim applicentur |BD|BD||, |EC|CE||
-in another given angle, |BD|BD||, |EC|CE|| are ordinately applied,
+ad rectam illam in alio dato angulo ordinatim applicentur |BD|BD||, |EC|CE||
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
 
 curvæ occurrentes in |point_B|B||, |point_C|C||,
-meeting the curve in |point_B|B||, |point_C|C||;
+and meet the curve in |point_B|B|| and |point_C|C||,
 
 dein puncta |point_B|B||, |point_C|C|| simul accedant and punctum |point_A|A||:
-and the points |point_B|B|| and |point_C|C|| together approach towards, and meet in, the point |point_A|A||:
+and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
 
 dico quod areæ triangulorum |ABD|ABD||, |ACE|ACE|| erunt ul[t]imo invicem 
-I say that the areas of the triangles |ABD|ABD||, |ACE|ACE||, will ultimately be one to the other
+I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
 
 in |AD2AE|duplicata ratione|| laterum.
-in the |AD2AE|duplicate ratio|| of the sides.
+as the |AD2AE|squares of the sides||.
 
 `
 //=================================================

@@ -138,7 +138,7 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Areas')
+                  .html('Data')
                   .to(row);
         //===================
         // \\// table caption
@@ -291,7 +291,7 @@
         $$  .c('td')
             .a('colspan','6')
             .addClass('table-caption')
-            .html('Areas')
+            .html('Data')
             .to(row);
         //===================
         // \\// table caption
