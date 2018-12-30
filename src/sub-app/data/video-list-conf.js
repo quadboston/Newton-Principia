@@ -14,13 +14,19 @@
     ssD.videoList =
     [
         {
-            caption        : 'Lemma 2 Model Guide for claim/lite',
+            //caption        : 'Lemma 2 Model Guide for claim/lite',
             //=============================================================
             // //\\ this option actually restricts presence of a video clip
-            //in absense of this option or its suboptions, the clip
-            //added to wider set of app. modes
+            //      in absense of this option or its suboptions, the clip
+            //      added to wider set of app. modes
             //=============================================================
             lemmaNumber    : 2,
+
+            //.in the presens of this option, the icon will be moved to
+            //.exegesis tab
+            //.otherwise, the icon will be placed into model pane help strip
+            exegesisTab    : 'claim-og',
+
             modeType       : { 'proof':'claim',
                                'text':'hypertext'
                             },

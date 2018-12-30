@@ -40,7 +40,9 @@
     function create_video_help_manager()
     {
         var menuListPopUp$;
-        sDomN.runVideoHelpButton$.e( 'click', function() { menuListPopUp$.css('display','block'); });
+        sDomN.runVideoHelpButton$.e( 'click', function() {
+            menuListPopUp$.css('display','block');
+        });
         sDomN.doCloseVideoHelp$.e( 'click',  function(e) { leaveVideo(); });
 
         /*
@@ -61,47 +63,121 @@
 
 
 
-
-        ///populates popup video list
+        ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+        // //\\ populates video icons for
+        //         1) popup video list or
+        //         2) exegesis tabs 
+        ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
         function spawnVideoList()
         {
             if( !menuListPopUp$ ) { createPopupPane(); }
-            var list = [];
+            var iconClass = 'exegesis-tab-icon-placeholder';
+
+            var listForPopup = [];
+            var listForExegesisTabs = {};
             ssD.videoList.forEach( function(item) {
                 if( item.lemmaNumber && sapp.lemmaNumber !== item.lemmaNumber ) return;
-                var selected = true;
-                if( item.modeType ) {
-                    selected = false;
-                    Object.keys( item.modeType ).forEach( function( modeType ) {
-                        if( amode[ modeType ] === item.modeType[ modeType ] ) selected = true;
-                    });
-                }
-                selected && list.push( item );
-            });
-            //.does not populate list if no videos configured for these app states
-            if( !list.length ) {
-                sDomN.runVideoHelpButton$.css('display','none'); //hides video-button for empty list
-                return;
-            }
-            sDomN.runVideoHelpButton$.css('display','block'); //shows video-button for non-empty list
 
-            menuListPopUp$.html('');
-            addPopupCloseButton();
-            list.forEach( function( listItem ) {
-                $$
+                ///----------------------
+                ///prebilds exegesis list
+                ///----------------------
+                if( item.exegesisTab ) {
+                    var selected = true;
+                    if( item.modeType ) {
+                        selected = false;
+                        Object.keys( item.modeType ).forEach( function( modeType ) {
+                            if( amode[ modeType ] === item.modeType[ modeType ] ) {
+                                selected = true;
+                            }
+                        });
+                    }
+                    if( selected ) {
+                        listForExegesisTabs[ iconClass + '_' + item.exegesisTab ] = item;
+                    }
+
+                ///----------------------
+                ///prebilds popup list
+                ///----------------------
+                } else {
+                    var selected = true;
+                    if( item.modeType ) {
+                        selected = false;
+                        Object.keys( item.modeType ).forEach( function( modeType ) {
+                            if( amode[ modeType ] === item.modeType[ modeType ] ) selected = true;
+                        });
+                    }
+                    selected && listForPopup.push( item );
+                }
+            });
+
+            //----------------------------------------------------------
+            // //\\ exegesis tabs
+            //----------------------------------------------------------
+            ///cleans up video icon placeholders in exegesis-tabs
+            Object.keys( rg[ iconClass ] ).forEach( function( tabKey ) {
+                rg[ iconClass ][ tabKey ].innerHTML = '';
+            });
+            ///repopulates video icon placehoders in exegesis-tabs
+            Object.keys( listForExegesisTabs ).forEach( function( itemKey ) {
+                var listItem = listForExegesisTabs[ itemKey ];
+                var itemDom$ = createVideoIconEntry( listItem );
+                itemDom$.to( rg[ iconClass ][ listItem.exegesisTab ] );
+            });
+            //----------------------------------------------------------
+            // \\// exegesis tabs
+            //----------------------------------------------------------
+
+
+            //-------------------------------------------------------------------
+            // //\\ does populate listForPopup ...
+            //      only if videos configured for these app states
+            //-------------------------------------------------------------------
+            if( !listForPopup.length ) {
+                sDomN.runVideoHelpButton$.css('display','none'); //hides video-button for empty list
+            } else {
+                sDomN.runVideoHelpButton$.css('display','block'); //shows video-button for non-empty list
+
+                menuListPopUp$.html('');
+                addPopupCloseButton();
+
+                listForPopup.forEach( function( listItem ) {
+                    var itemDom$ = createVideoIconEntry( listItem );
+                    itemDom$.to(menuListPopUp$());
+                });
+            }
+            //-------------------------------------------------------------------
+            // \\// does populate listForPopup ...
+            //-------------------------------------------------------------------
+            return; //rrrrrr
+
+
+
+            function createVideoIconEntry( listItem )
+            {
+                return $$
                     .c('div')
-                    .html( '<img width="25"src="images/camera-lightbulb.png" ' +
-                           ' style="position:relative;top:2px; vertical-align:middle;"> ' +
-                           '<span style="vertical-align:middle;">' + listItem.caption + '</span>')
+                    .addClass('video-icon-fragment')
+                    .html( '<img class="video-help-button" width="25" src="images/camera-lightbulb.png" ' +
+                           '>' +
+                           (listItem.caption ? 
+                                ' <span style="vertical-align:middle;">' + listItem.caption + '</span>' :
+                                ''
+                           )
+                    )
                     .css('cursor','pointer')
+                    .css('display', 'inline')
                     .e('click', function() {
                         runVideo( listItem.URL, listItem.isExternal );
                         menuListPopUp$.css('display','none')
                     })
-                    .to(menuListPopUp$())
                     ;
-            });
+            }
         }
+        ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+        // \\// populates video icons for
+        ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+
+
 
 
         function runVideo( URL, isExternal )
@@ -153,6 +229,7 @@
         {
             menuListPopUp$ = $$
                 .c('div')
+                .addClass( 'video-list-popup' )
                 .css('display','none')
                 .css('position', 'absolute')
                 .css('padding', '5px')

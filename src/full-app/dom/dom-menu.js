@@ -367,7 +367,7 @@
                             ////In other words, when one switches the text, then text's proof-type-mode and
                             ////claim-type-mode are hidden.
                             ////This picks up existing proof-type-mode and unhides it:
-                            rg['mobile-tabs'][ amode['proof']+'-og' ].click();
+                            rg['mobile-tabs'][ amode['proof']+'-og' ].clicker.click();
                         }
 
                         ///refreshes legacy state of subapplication for l23 ...
