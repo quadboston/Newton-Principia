@@ -49,7 +49,7 @@
                 var tabKey = amode['proof']+'-og';
                 var tab = rg['mobile-tabs'][ tabKey ];
                 //ccc( 'refreshing ' + amode['proof'] )
-                tab.click();
+                tab.clicker.click();
             //} else {
             //    sDomN.processSelectedTab( sconf.defaultMobileTabSelection );
             //}
@@ -92,15 +92,35 @@
             ['proof-og','proof','Proof']
 
         ].forEach( function( tab ) {
-            var li = $$ .c('li')
+            //.this is an individual tab
+            var tabDom = $$ .c('li')
                .addClass('tabs__tab Tab'+(tab[3]?' active':''))
                .addClass('tab-'+tab[0])
-               .html(tab[2])
-               .e('click',function(event) { openTab(event, tab[0], tab[1]); } )
+               //.html(tab[2])
                .to(ul)
                ();
-            li.innerHTML = '<a href="javascript:void(0)">'+tab[2]+'</a>';
-            ssF.tr('mobile-tabs',tab[0],li); //availibies tab to an entire fapp
+            var iconClass = 'exegesis-tab-icon-placeholder';
+            var ww = $$
+                .c('div')
+                .addClass(iconClass)
+                .css( 'display', 'inline' )
+                .to( tabDom )
+                ();
+            ssF.tr(iconClass,tab[0],ww);
+
+            var clicker = $$
+                .c('a')
+                .html(tab[2])
+                .a('href','#')
+                .e('click',function(event) {
+                    openTab(tab[0], tabDom);
+                    return false; //has no effect ... todm why?
+                })
+                .to( tabDom )
+                (); 
+            //tr puts to registry: availibies tab to an entire fapp in
+            //sn('registry',ssD) as ssD.registry['mobile-tabs'][tab[0]]
+            ssF.tr('mobile-tabs',tab[0],{ clicker: clicker } );
         });
         $$ .c('li')
            .addClass('tabs__indicator')
@@ -108,16 +128,13 @@
            .to(ul);
 
 
-        function openTab(evt, tabName) 
+        function openTab( tabName, tabDom ) 
         {
             tab = document.getElementsByClassName("Tab");
             for (i = 0; i < tab.length; i++) {
-                //kvk: possibly "spaces" memory leak in form of non-removing an extra " "
-                //after "active"
-                //tab[i].className = tab[i].className.replace(" active", "");
-                $$.$(tab[i]).removeClass(" active");
+                $$.$(tab[i]).removeClass("active");
             }
-            $$.$(evt.currentTarget).addClass(" active");
+            $$.$(tabDom).addClass("active");
             sDomN.processSelectedTab( tabName );
         }
     }

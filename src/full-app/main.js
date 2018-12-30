@@ -176,7 +176,7 @@
         fmethods.test_mobile_and_attach_exegesis_tabs();
         //.sets default ... disabled so "Area-legend" cannot be a default
         //.because of sapp.isInitialized, we can set tabs and menus
-        rg['mobile-tabs'][ sconf.defaultMobileTabSelection ].click();
+        rg['mobile-tabs'][ sconf.defaultMobileTabSelection ].clicker.click();
         fmethods.setupEvents();
         fmethods.fullResize();
     }

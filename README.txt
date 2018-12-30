@@ -38,31 +38,45 @@ Jargon
 
 Data/Claim/Proof tab switch
 
-    Before version 650, this tab was in one place in HTML.
-    Since version 673, this tab transcludes its place when width shrinks to mobile-width
-    (800px in ver 673).
+    It seems designed unreasonably complex.
+    It is a switch between lemma-content-mode: claim or proof. For desktop,
+    the data-legend does not exist there and is always on.
+    But, depending on the web-device-screen, data-legend is added to the switch for mobiles.
+    Because of this complexity, the switch is constructed not as a decent CSS-view, but as JavaScript code.
+    This make the view defining the content and not the content normally defining a view.
+
+    Moreover, this tabe belongs to different parts of content: in mobile it is in mobile view and between
+    the model and data-legend, in desktop, it is in text pane and not a part of model pane.
+    This is also would be hard to accomplish by CSS and html, so the html-transclusion is used by means of
+    JavaScript.
+
+    Normally, the switch or menu should not be a part of content view, but somewere aside, for example, on top
+    or on sides.
+
+    Moreover, the Claim/Proof menu was initially a part of top-application menu which
+    controlled all state changes including English/Latin/Informal...
+    Since adding the switch, the switch hides Claim/Proof menu which still exist
+    as part of intial architecture. Because of this, there are actually two controls:
+    swhitch and originall "master"Claim/Proof". There is an extra JS code exists which
+    synchronizes these two "menus".
+
+    (
+        Before version 650, this switch was in one place in HTML.
+        Since version 673, this tab transcludes its place when width shrinks to mobile-width
+        (800px in ver 673).
         Transclusion introduces two complexities in code:
-            1. JS has to detect change to mobile. This must be in synch with CSS-detection of
-                change-to-mobile, which is "two masters on one spot" and requires extra code.
-                (app/full-app/lib/mobile-tester.js)
+            1. JS has to detect change-to-mobile. This must be in synch with CSS-detection of
+                change-to-mobile, which is "a second masters on one spot" and requires extra code
+                to sinch two masters: (app/full-app/lib/mobile-tester.js)
             2. Transclusion happens not inside of one-type-of-html, but between two types
                 In desktop, the switch-html is inside "text" area and on top of the text.
                 In mobile, the switch-html is inside "media" area and between svg and
                 digital-legend.
-        Moveover, conceptually this switch mixes two different types of options:
-            application-mode Claim/Proof with Area-legend which is media-presentation-view state.
 
-        Note: the Claim/Proof menu was initially a part of top-application menu which
-            controlled all state changes including English/Latin/Informal...
-            Since adding the switch, the switch hides Claim/Proof menu which still exist
-            as part of intial architecture. Because of this, there are actually two controls:
-            swhitch and originall "master"Claim/Proof". There is an extra JS code exists which
-            synchronizes these two "menus".
-
-    Another possible variant is placing switch under main menu which does not need all the complexities of transclusion:
-        For example: 
-        http://landkey.net/z/bs/lemma9/demo/archive/660-tabs-above-the-content-variant/660.html?conf=lemma=9
-
+        Another possible variant is placing switch under main menu which does not need all the complexities of transclusion:
+            For example: 
+            http://landkey.net/z/bs/lemma9/demo/archive/660-tabs-above-the-content-variant/660.html?conf=lemma=9
+    )
 
 Topic engine.
 
