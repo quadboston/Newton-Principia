@@ -27,7 +27,10 @@
 
     function setModule()
     {
+        //.if set to true, then all line-feeds in source script will be converted to <br>
+        //.which may add up empty lines
         topics.convert_lineFeed2htmlBreak = false;
+
         topics.topicDef =
         {
             ///do fill this map as desired,

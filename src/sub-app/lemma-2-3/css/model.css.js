@@ -116,6 +116,7 @@ svg text {
 #lemma2.bsl-approot #widthest-visib-toggler-wrap,
 #lemma2.bsl-approot .bsl-approot.proof--claim .widthest-rectangular,
 .bsl-approot.proof--claim #widthest-visib-toggler-wrap,
+.widthest-rectangular.invisible,
 .bsl-approot.proof--claim .widthest-rectangular {
     display:none;
 }

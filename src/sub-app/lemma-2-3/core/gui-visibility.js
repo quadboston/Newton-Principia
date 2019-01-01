@@ -1,5 +1,6 @@
 ( function () {
     var ns          = window.b$l;
+    var $$          = ns.$$;
     var sn          = ns.sn;    
 	var bsl	        = ns;
     var fapp        = ns.sn('fapp' ); 
@@ -102,6 +103,7 @@
 	        setVisibilityGap(dr.righRects, view.isCircumscribed);		
 	        setVisibilityGap(dr.righLabels, !sapp.isLite() && view.isCircumscribed);
 	        gui.show_widthest_claim_labels( view );
+            gui.toggle_widthest_rect_visib;
         }
 
         ///fills visibility in items' list 

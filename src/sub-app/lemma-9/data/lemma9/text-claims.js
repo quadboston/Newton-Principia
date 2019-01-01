@@ -55,7 +55,7 @@ as the |AD2AE|squares of the sides||.
 
 
 ///// next text: ////////////////////
-latin : `
+latin : `<pre>
 Si recta |AE|AE|| &
 If the straight line |AE|AE|| and
 
@@ -82,7 +82,7 @@ I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately 
 
 in |AD2AE|duplicata ratione|| laterum.
 as the |AD2AE|squares of the sides||.
-
+</pre>
 `
 //=================================================
 // \\// Do fill texts here

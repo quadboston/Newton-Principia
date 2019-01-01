@@ -197,6 +197,16 @@
         //====================================================================
     }
 
+
+
+
+    ///====================================================================
+    /// this dom is apparently handled in /lemma-2-3/core/event-handlers.js
+    /// the names to which events are attached may be hard to find in code
+    /// because the attachment is handled like a "batch":
+    /// Object.keys( study.eventHandlers ).
+    ///         forEach( function( methodName ) ....
+    ///====================================================================
     function create_digital_legend()
     {
         sDomN.digitalLegend$ = $$  .c('div')
@@ -259,18 +269,16 @@
 
                 <div class="areas__checkboxes-row"
                      id="widthest-visib-toggler-wrap">
-                    <div class="checkbox-wrap" style="visibility:hidden;">
-                        <input id="checkbox_3" type="checkbox" name="option" 
-                               class="checkbox">
-                        <label for="checkbox_3"></label>
+                    <div class="checkbox-wrap">
+                        <input id="toggleWidthest" type="checkbox" name="option" 
+                               class="checkbox" checked>
+                        <label for="toggleWidthest"></label>
                     </div>
                     <span class="number">
                         <span class="diffAmtm" id="diffAmtd"></span>
                     </span>
                     <span class="tag proof-tag">end rectangle</span>
                 </div>
-
-
 
         `);
 

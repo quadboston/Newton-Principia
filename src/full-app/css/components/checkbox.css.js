@@ -21,11 +21,13 @@
 // //\\ css /////////////////////////////////////////
 var ret = `
 
-    
 
 .checkbox-wrap input[type="checkbox"] {
   opacity: 0;
   display: none; }
+
+
+/* //\\\\ this block creates nice fancy checkboxes in data-legend */    
 
 .checkbox-wrap label::before {
   background-color: ${colorPaleBlue};
@@ -73,6 +75,10 @@ var ret = `
 /*Adding focus styles on the checkbox*/
 .checkbox-wrap input[type="checkbox"]:focus + label::before {
   outline: #3b99fc auto 5px; }
+
+/* \\\\// this block creates nice fancy checkboxes in data-legend */    
+
+
 
 /*~~~~~~~~~~~~~~~~~~~~
 Styles for the mobile tabs

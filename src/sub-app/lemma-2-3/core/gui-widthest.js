@@ -100,7 +100,11 @@
                 // \\// somehow this does not work
 
                 var x = fb.maxX-dr.widest;
-                var y = numModel.f(x);
+
+                //.bug fix:
+                //var y = numModel.f(x);
+                var   y = numModel.f(fb.maxX);
+
 		        guiup.updateRectLike(
                         dr.faaf,
                         x, Math.min(y, fb.baseY),

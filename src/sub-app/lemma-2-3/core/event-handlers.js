@@ -1,5 +1,6 @@
 ( function () {
     var ns          = window.b$l;
+    var $$          = ns.$$;
     var cssp        = ns.CSS_PREFIX;
     var sn          = ns.sn;    
 	var bsl	        = ns;
@@ -38,7 +39,8 @@
         {
             toggleChangeFigure  : toggleChangeFigure,
 	        toggleInscribed     : toggleInscribed,
-	        toggleCircumscribed : toggleCircumscribed
+	        toggleCircumscribed : toggleCircumscribed,
+	        toggleWidthest : showOrHide_widthest
         };
         study.setupEvents = setupEvents;
         return;
@@ -87,6 +89,14 @@
         //======================================
         // //\\ event-handlers
         //======================================
+        function showOrHide_widthest() {
+            if(document.getElementById('toggleWidthest').checked){
+                $$.$(dr.faaf).removeClass( 'invisible' );
+            } else {
+                $$.$(dr.faaf).addClass( 'invisible' );
+            }
+        }
+
         function toggleInscribed() {
 	        sdata.view.isInscribed^=1;
 	        l23.show_LPR();
