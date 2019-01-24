@@ -360,7 +360,6 @@
                         // \\// updates application mode
                         //==================================================
 
-                        //if( sapp.lemmaNumber === 9 && mtype !== 'proof' ) {//it was only for l9 ...
                         if( mtype !== 'proof' ) { //todm ... this looks clumsy
                             ////Synchs with tab switch:
                             ////"text"-call still must update "proof"-texts hidden by tab-switch
@@ -373,7 +372,8 @@
                         ///refreshes legacy state of subapplication for l23 ...
                         ///todo ... patch ... merges l23 legacy state engine and l9
                         ///should be in some state enging specific to subapplication ...
-                        if(( sapp.lemmaNumber === 2 || sapp.lemmaNumber === 3) && mtype === 'proof' ) {
+                        if(( sapp.sappId === 'lemma2' || sapp.sappId === 'lemma3') &&
+                             mtype === 'proof' ) {
                             ss.study.sdata.view.isClaim = amode.proof === 'claim';
                         }
 

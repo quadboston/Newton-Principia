@@ -20,7 +20,8 @@
         var colorLight = conf.css['color-light']; 
         var mediaPerc = sconf.mediaDefaultWidthPercent;
         var textPercStr = cssmods.calculateTextPerc( mediaPerc ).toFixed(2) + '%';
-        var aroot_DesktopOverflow = sapp.pageMode === 'lemma' ? 'overflow-x:hidden' : 'overflow:visible';
+        var aroot_DesktopOverflow = sapp.pageMode === 'lemma' ?
+                                    'overflow-x:hidden' : 'overflow:visible';
 
 
         var ret =

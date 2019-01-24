@@ -1,0 +1,56 @@
+{
+    "mediaBgImage" : "contents/lemma2/img/lemma-23-3rd-ed.png",
+    "convert_lineFeed2htmlBreak" : false,
+
+     "topicDef" :
+     {
+        "figure":
+        { 
+                "classQuery":"#baseAxis, #wallL, #polylineCurve, .figure.areas__checkboxes-row, #figureInternalArea",
+                "tfamily" :"figure"
+        },
+
+        "base":
+        {
+                "classQuery":"#baseAxis",
+                "tfamily" :"figure"
+        },
+
+        "wall":
+        {
+                "classQuery":"#wallL",
+                "tfamily" :"figure"
+        },
+
+        "curve":
+        { 
+                "classQuery":"#polylineCurve, .ctrlPt",
+                "tfamily" :"figure"
+        },
+
+        "figure-area" :
+        { 
+                "classQuery":"#figureInternalArea",
+                "tfamily" :"figure"
+        },
+
+        "widthest-rectangular":
+        { 
+                "classQuery":".proof-tag, .widthest-rectangular, .diffAmtm",
+                "topicColor":"auto"
+        },
+
+        "circumscribed-rectangles":
+        { 
+            "classQuery":".circumscribed.rect, .circumscribed-tag, .circumscribed.areas__checkboxes-row",
+            "topicColor":"auto"
+        },
+
+        "inscribed-rectangles":
+        { 
+            "classQuery":".inscribed.rect, .inscribed.areas__checkboxes-row",
+            "topicColor":"auto"
+        }
+    }
+}
+

@@ -76,7 +76,7 @@
             var listForPopup = [];
             var listForExegesisTabs = {};
             ssD.videoList.forEach( function(item) {
-                if( item.lemmaNumber && sapp.lemmaNumber !== item.lemmaNumber ) return;
+                if( sapp.sappId !== item.sappId ) return;
 
                 ///----------------------
                 ///prebilds exegesis list

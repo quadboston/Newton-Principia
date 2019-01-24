@@ -10,10 +10,23 @@
     <link rel="stylesheet" href="https://use.typekit.net/tdy5xyj.css">
     -->
 
+    <!-- //\\ MathJax ************************************************* -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          CommonHTML: { linebreaks: { automatic: true } },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG:        { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" 
+    >
+    </script>
+    <!-- \\// MathJax ************************************************* -->
+
 
 
     <!-- //\\ replace with prod script -->
-
     <!-- //\\ vendor -->
     <!-- //\\ makes uglifier a bit slower -->
     <link rel="stylesheet" type="text/css" href="src/vendor/jquery-ui.1.21.1.min.css">
@@ -32,8 +45,10 @@
     <script src="src/vendor/bsl/core/bsl-throttle.js"></script>
     <script src="src/vendor/bsl/core/keyboard-keys.js"></script>
     <script src="src/vendor/bsl/core/colors.js"></script>
+    <script src="src/vendor/bsl/ajax/ajax.js"></script>
     <script src="src/vendor/bsl/core/svg.js"></script>
-    <script src="src/vendor/bsl/core/colors.js"></script>
+    <script src="src/vendor/bsl/core/load-scripts.js"></script>
+    <script src="src/vendor/bsl/ajax/load-ajax-files.js"></script>
     <!-- \\// vendor -->
 
 
@@ -70,6 +85,7 @@
     <script src="src/full-app/dom/topic-engine.js"></script>
     <script src="src/full-app/dom/events.js"></script>
     <script src="src/full-app/dom/fapp.js"></script>
+    <script src="src/full-app/dom/get-content-texts.js"></script>
     <script src="src/full-app/lib/mobile-tester.js"></script>
     <script src="src/full-app/lib/animated-slider/js.js"></script>
     <script src="src/full-app/lib/animated-slider/css.js"></script>
@@ -86,53 +102,9 @@
     <!-- //\\ full app config -->
     <script src="src/full-app/fconf.js"></script>
     <script src="src/full-app/sconf.js"></script>
-    <script src="src/sub-app/data/video-list-conf.js"></script>
+    <script src="contents/video-list-conf.js"></script>
+    <script src="src/sub-app/subapps-list.js"></script>
     <!-- \\// full app config -->
-
-
-    <!-- //\\ lemma 2, 3 -->
-    <script src="src/sub-app/lemma-2-3/sconf.js"></script>
-    <script src="src/sub-app/lemma-2-3/css/css-order.js"></script>
-    <script src="src/sub-app/lemma-2-3/css/widget-media.css.js"></script>
-    <script src="src/sub-app/lemma-2-3/css/slider.css.js"></script>
-    <script src="src/sub-app/lemma-2-3/css/model.css.js"></script>
-    <script src="src/sub-app/lemma-2-3/main.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/preset-data.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/dom.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/d8d-II.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/gui-construct.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/gui-slider.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/gui-update.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/gui-visibility.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/gui-widthest.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/model.js"></script>
-    <script src="src/sub-app/lemma-2-3/core/event-handlers.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/topic-map.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma2/text-claims.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma2/text-proofs.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma3/text-claims.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma3/text-proofs.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma3/references.js"></script>
-    <script src="src/sub-app/lemma-2-3/data/lemma2/references.js"></script>
-    <!-- \\// lemma 2, 3 -->
-
-    <!-- //\\ lemma 9 -->
-    <script src="src/sub-app/lemma-9/sconf.js"></script>
-    <script src="src/sub-app/lemma-9/main.js"></script>
-    <script src="src/sub-app/lemma-9/css/css-order.js"></script>
-    <script src="src/sub-app/lemma-9/css/proof-vs-claim-modes.css.js"></script>
-    <script src="src/sub-app/lemma-9/css/media.css.js"></script>
-    <script src="src/sub-app/lemma-9/core/media.js"></script>
-    <script src="src/sub-app/lemma-9/core/create-proof-slider.js"></script>
-    <script src="src/sub-app/lemma-9/models/study-model.js"></script>
-    <script src="src/sub-app/lemma-9/models/media-model.js"></script>
-    <script src="src/sub-app/lemma-9/models/main-legend.js"></script>
-    <script src="src/sub-app/lemma-9/models/d8d-II.js"></script>
-    <script src="src/sub-app/lemma-9/data/topic-map.js"></script>
-    <script src="src/sub-app/lemma-9/data/lemma9/text-claims.js"></script>
-    <script src="src/sub-app/lemma-9/data/lemma9/text-proofs.js"></script>
-    <script src="src/sub-app/lemma-9/data/references.js"></script>
-    <!-- \\// lemma 9 -->
     <!-- \\// replace with prod script -->
 
   </head>

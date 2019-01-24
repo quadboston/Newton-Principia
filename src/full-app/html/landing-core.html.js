@@ -14,8 +14,6 @@
 
     html.landingCore = function()
     {
-        var lemmaRomanNumbers = fconf.appview.lemmaRomanNumbers;
-        var ln = sapp.lemmaNumber;
         var pmode = sapp.pageMode;
         var landingCore = '';
         var landingPath = window.location.pathname;
@@ -38,11 +36,11 @@
                         for Newton’s <span>Principia</span></h1>
                     <p class="sub-title"> 
                     </p>
-                    <a href="${landingPath}?conf=lemma=${fconf.startLemmaReadingNumber}" class="read">
+                    <a href="${landingPath}?conf=sappId=${fconf.landingApp}" class="read">
                         <div class="read__text">
                             <span class="read__label">Begin Reading</span>
                             <span class="read__title">
-                                Lemma ${lemmaRomanNumbers[fconf.startLemmaReadingNumber]}
+                                ${fconf.landingApp}
                             </span>
                         </div>
                         <div class="read__arrow">
@@ -76,24 +74,20 @@
                     <!--<li><a href="#">Lemma 1</a></li>-->
         `;
 
-
-        fconf.enabledLemmas.forEach( function( lnumber ) {
-            var romNumber = lemmaRomanNumbers[lnumber];
+        fconf.sappModulesArray.forEach( function( sappItem ) {
             landingCore += `
-                <li><a href="${landingPath}?conf=lemma=${lnumber}">
-                    <span class="table-title">Lemma ${romNumber}</span>
+                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
+                    <span class="table-title">${sappItem.caption}</span>
                     <span class="table-tag">View</span></a>
                 </li>
             `;
         });
         landingCore += `
                 <li><a href="#" class="disabled">
-                        <span>Lemma ${lemmaRomanNumbers[10]}</span>
+                        <span>Lemma X</span>
                         <span class="table-tag">Coming Soon</span>
                     </a>
                 </li>
-                <!--<li><a href="#"></span>Lemma 4</span><span class="table-tag">View</span></a></li>-->
-                <!--<li><a href="#"></span>Lemma 5</span><span class="table-tag">View</span></a></li>-->
              </ul>
         </div>
         <!--END table of contents-->

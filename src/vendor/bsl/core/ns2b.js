@@ -556,6 +556,24 @@
 
 (function () {
     var ns = window.b$l;
+    ns.loadScript = function( src, onload, type )
+    {
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/
+        //      Basics_of_HTTP/MIME_types#JavaScript_types
+        type = type || 'text/javascript';
+        var scrip = document.createElement('script');
+        scrip.onload = onload;
+        document.head.appendChild( scrip );
+        //https://medium.com/@vschroeder/javascript-how-to-execute-code-from-an-
+        //asynchronously-loaded-script-although-when-it-is-not-bebcbd6da5ea
+        scrip.src = src;
+    }
+}) ();
+
+
+
+(function () {
+    var ns = window.b$l;
     ns.createDebugger();
     ns.conf = ns.url2conf( {} );
 }) ();

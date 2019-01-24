@@ -169,9 +169,11 @@
                         return true;
                         }
                         ////todo patch
-                        if( sapp.sappKey === 'l23' ) {
-                            closestDragWrap.pointWrap.achieved.achieved.x = closestDragWrap.pointWrap.x; //mPoint[0];
-                            closestDragWrap.pointWrap.achieved.achieved.y = closestDragWrap.pointWrap.y; //mPoint[1];
+                        if( sapp.sappId === 'lemma2' || sapp.sappId === 'lemma3' ) {
+                            closestDragWrap.pointWrap.achieved.achieved.x =
+                            closestDragWrap.pointWrap.x; //mPoint[0];
+                            closestDragWrap.pointWrap.achieved.achieved.y =
+                            closestDragWrap.pointWrap.y; //mPoint[1];
                     }
                     //ns.d( 'app: ' + down_move_up + ' id=' + draggeePoint.name );
                     detected_user_interaction_effect && detected_user_interaction_effect();

@@ -21,16 +21,14 @@
 
     html.body = function()
     {
-        var romans      = fconf.appview.lemmaRomanNumbers;
         var pmode       = sapp.pageMode;
-        var ln          = sapp.lemmaNumber;
         var landingPath = window.location.pathname;
 
         if( pmode === 'lemma' ) {
-            var lemmaRomanNumber = romans[ln];
-            document.title = 'Lemma ' + lemmaRomanNumber.toUpperCase();
+            var rootDomId = sapp.sappId;
+            document.title = sapp.siteCaptionPlain;
         } else {
-            var ln = '';
+            var rootDomId = 'landing';
         }
         var body = '';
 
@@ -48,7 +46,7 @@
         //==================================================
         // http://sites.trin.cam.ac.uk/manuscripts/NQ_16_200/manuscript.php?fullpage=1/
         body += `
-               <div id="${pmode}${ln}" class="bsl-approot">
+               <div id="${rootDomId}" class="bsl-approot">
         `;
         //==================================================
         // \\// creates application root
@@ -120,7 +118,7 @@
             body += `
                     <div class="sub-nav-bar">
                             <!-- tmp: title on menu bar -->
-                            <h1>Lemma ${lemmaRomanNumber}</h1>
+                            <h1>${sapp.siteCaptionHTML}</h1>
                     </div>
                 </div>
             `; 
@@ -142,7 +140,7 @@
         body += `
             <div id="navDrawer" class="nav-drawer">
                 <a href="index.html" class="nav-drawer__title">
-                    An Interactive Exploration <br><span>of</span> Newton’s Lemmas
+                    ${sapp.siteCaptionHTML}
                 </a>
                 <ul>
         `;
@@ -152,18 +150,18 @@
         //--------------------------------------------------
         // //\\ builds list of nav drawer links
         //--------------------------------------------------
-        fconf.enabledLemmas.forEach( function(lnumber) {
-            var romann = romans[lnumber];
-            var selected = lnumber === ln ? ' selected' : '';
+        fconf.sappModulesArray.forEach( function( sappItem ) {
+            var selected = sappItem.sappId === sapp.sappId ? ' selected' : '';
             body += `
                         <li class="nav-drawer__list-item${selected}">
                             <div class="nav-drawer__dot">
                                 <img src="images/nav-dot.svg">
                             </div>
-                            <a href="${landingPath}?conf=lemma=${lnumber}">
-                                <h3 class="nav-drawer__list-item__title">Lemma ${romann}</h3>
-                                <span class="nav-drawer__list-item__desc">Lorem ipsum dolor set 
-                                ipsum set dolor acnut lima noir set lorem ipsum doler sut.</span>
+                            <a href="${landingPath}?conf=sappId=${sappItem.sappId}">
+                                <h3 class="nav-drawer__list-item__title">
+                                    ${sappItem.caption}</h3>
+                                <span class="nav-drawer__list-item__desc">${sappItem.annotation}
+                                </span>
                             </a>
                         </li>
             `;
@@ -203,8 +201,6 @@
                 <div id="shade"></div>
             <!-- END navigation markup ~~~~~~~~~~~~~~~~~ -->
             `;
-
-            var romann = fconf.appview.lemmaRomanNumbers[ln];
         }
         //==================================================
         // nav markup end

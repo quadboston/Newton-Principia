@@ -27,10 +27,12 @@
     function fullResize( arg )
     {
         fmethods.test_mobile_and_attach_exegesis_tabs();
+
+        //.??
         //.application part
         //.solves draggee-point-arrows-misplacement
         //.after resize
-        //if( sapp.lemmaNumber === 9 ) 
+
         sapp.upcreate();
         sDomF.resizeMenuDecorations();
         fmethods.restrictMediaDimensions && fmethods.restrictMediaDimensions(
@@ -52,22 +54,17 @@
         var searchClass = 'a' + cssPrefix + '.page-btn--' + direction;
         var pager = document.querySelector( searchClass );
         if( pager ) {
-            var next = -1;
-            fconf.enabledLemmas.forEach( function(lem, ix) {
-                if( next > -1 ) return; //all found
-                if( direction === 'right' ) {
-                    if( lem > sapp.lemmaNumber ) { next = lem; }
-                } else {
-                    lem = fconf.enabledLemmas[ fconf.enabledLemmas.length - ix - 1 ];
-                    if( lem < sapp.lemmaNumber ) { next = lem; }
-                }
-            });
-            if( next > -1 ) {
-                var newLoc = window.location.pathname + '?conf=lemma=' + next;
-                pager.title = "Go to lemma " + next;
-                pager.href= newLoc;
-            } else {
+
+            var mList = fconf.sappModulesList[ sapp.sappId ];
+            sapp.ix = mList.ix;
+            var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
+            if( next >= fconf.sappModulesArray.length || next < 0 ) {
                 $$.$(pager).addClass( 'non-displayed' );
+            } else {
+                var nextSapp = fconf.sappModulesArray[ next ];
+                var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
+                pager.title = "Go to " + nextSapp.caption;
+                pager.href= newLoc;
             }
             /*
             if( next > 0 ) {

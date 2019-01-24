@@ -218,6 +218,20 @@
         // \\// video help
         //..........................
 
+        if( sconf.mediaBgImage ) {
+            //..........................
+            // //\\ study image
+            //..........................
+            sDomN.bgImage$ = $$
+                .c( 'img' )
+                .a( 'class', cssp +'-bg-image' )
+                .a( 'src', sconf.mediaBgImage )
+                .to( sDomN.medRoot )
+                ;
+            //..........................
+            // \\// study image
+            //..........................
+        }
 
         ssF.create8prepopulate_svg();
         //.disabled ... effect is too strong

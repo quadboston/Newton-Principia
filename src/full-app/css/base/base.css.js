@@ -9,7 +9,8 @@
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
 
-        var body_DesktopOverflow = sapp.pageMode === 'lemma' ? 'overflow:hidden' : 'overflow-x:hidden';
+        var body_DesktopOverflow = sapp.pageMode === 'lemma' ?
+                                   'overflow:hidden' : 'overflow-x:hidden';
 
 // //\\ css /////////////////////////////////////////
 var ret = `

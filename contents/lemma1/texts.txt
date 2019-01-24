@@ -1,0 +1,167 @@
+*::*proof|english
+
+<br>
+
+In XIX century mathematical language, the lemma can be expressed as follows.<br><br>
+
+At first, we setup context notations and definition of limit.<br><br>
+
+<b>Notations:</b><br>
+
+Function \( G \), \( G : \Gamma \rightarrow  2^{\mathbb{R}} \), is defined where either
+
+    \[ \text{1)} \Gamma = (a,b) \subset \mathbb{R} \text{ and }
+       c \, \in\ [a,b] \text{ or} \\
+       \text{2)} \Gamma = \mathbb{N} \text{ and } c = \infty .
+    \] <br><br>
+
+In this context, we may omit a clause "\( _{\gamma \to c} \)" 
+    in expressions
+    \(h = \lim_{\gamma \to c} G_\gamma \) and
+    \( G_\gamma \underset{ {\gamma \to c} }\to h \).
+    <br><br>
+
+
+
+
+
+
+<!-- //\\ limit ***************************************************************** -->
+<b>Definition of limit:</b><br>
+
+For some \( h \in\ \mathbb{R} \) we say<br>
+    \[
+        { G_\gamma }\underset{ {\gamma \to c} }\to h 
+            \quad \overset{df} \iff \quad
+
+            \forall _{\varepsilon \gt 0} 
+            \exists _{N_\delta} \forall _{\gamma \in\ N_\delta} \forall _{g \in\ G_\gamma} \;
+            | g - h | \lt \varepsilon  \qquad   \text{ (l) }
+    \]<br>
+
+where for some \(\delta\), neighbourhood of c is defined as
+    \[
+            N_\delta \; \overset{df} = \;
+
+                \begin{cases}
+
+                    \{ n \; | \; n \gt \delta \}, \; \delta \in\ \mathbb{N} &
+                    \text{ if } \Gamma = \mathbb{N} \\ 
+
+                    \{ t\; | \; 0 \lt |t - c| \lt \delta , t \in\ (a,b) \},
+                 \; \delta \gt 0 &
+                    \text{ otherwise } 
+
+                \end{cases}
+    \]
+\(\blacksquare\)<br>
+
+If (l) holds, then the number h is called limit and (l) is denoted as<br>
+
+    \[h = \lim_{\gamma \to c} G_\gamma     \qquad \text{ (ll) } \]<br>
+
+<!-- \\// limit ***************************************************************** -->
+
+
+In case when all sets \( G_{\gamma} \) are single-elemented, the difference between
+\( G_{\gamma} = \{ g_{\gamma} \} \) 
+and \( g_{\gamma} \) becomes irrelevant, and the defintion 
+
+(l) becomes equivalent to usual definition of limit given in introductory Calculus, when in particular for 2), (l) becomes definition of sequence limit and for 1) - defintion of function limit.<br><br>
+
+
+One convenient notation can be made before stating the lemma 1: set of differences
+
+    \[
+        A \overset{\bullet}- B \; \overset{df} = \; \{ a - b | a \in\ A \; \& \; b \in\ B \}
+    \]
+
+<b>Lemma 1:</b>
+
+    \[
+        ( 
+            { G_\gamma }\rightarrow\ h ,\;
+            { {G'}_\gamma }\rightarrow\ h' ,\;
+            { ( G_\gamma \overset{\bullet}- {G'}_\gamma } )
+              \rightarrow\ 0
+        )   \implies \\
+        h = h'
+    \]
+\(\blacksquare\)<br><br>
+
+
+<i>Lemma 1 variants:</i><br><br>
+
+    Lemma 1' does not hold if to remove conditions 
+    \(
+        { G_\gamma }\rightarrow\ h , \;
+        { {G'}_\gamma }\rightarrow\ h'
+    \)
+    ,<br>
+    these conditions are vital. Lemma 1 still holds if to keep one of these conditions. It can be stated slightly different in this way:<br><br>
+
+
+<b>Lemma 1':</b>
+    \[
+        ( 
+            { G_\gamma }\rightarrow\ h , \;\;
+            { ( G_\gamma \overset{\bullet}- {G'}_\gamma } )
+            \rightarrow\ 0
+        )   \implies \\
+        { {G'}_\gamma }\rightarrow\ h \;\;
+    \]
+\(\blacksquare\)<br><br>
+
+
+But we still can remove both conditions if to make Lemma's 1 third condition stronger:<br>
+
+<b>Lemma 1cauchy:</b>
+
+    \[
+        { G \overset{\delta}- G' }
+        \underset{ {\delta \to 0} }\rightarrow\ 0
+        \iff \\
+        ( \exists_h \: h = \text{ lim }G_\gamma = \text{ lim }G'_\gamma ) 
+
+    \]
+    where
+    \[
+        G \overset{\delta}- G' \; \overset{df} = \;
+        \{ g - g' | g,g' \in\ N_\delta \}
+    \]
+\(\blacksquare\)<br>
+
+<br><br>
+
+
+<b>Historical Notes</b><br><br>
+
+However, when applying this Lemma 1 to following parts of Principia, the Newtons reasoning is different than of XIX and XX centuries.<br><br>
+
+The set \( \mathbb{R} \) did not exist at Newtons times in context of Cauchy or Dedekind real numbers theory.<br><br>
+
+When reading Lemma 3 in Principia, one may think, the h (the curve's area) is not constructed logicaly but exist as given value from Visual-Geometry or Physics. In the proof of Lemma 3, (Lemma 1) calculates the area.<br><br>
+
+In contrary in XIX century math, (Lemma 1) defines the area ( as this is done in Riemann or Darboux definitions of integral ) in context of real numbers theory and then applies this definition to Geometry or Physics if required.<br><br>
+
+
+*::*claim|hypertext
+
+see proof/English
+
+*::*claim|english
+
+see proof/English
+
+*::*claim|latin
+
+see proof/English
+
+*::*proof|hypertext
+
+see proof/English
+
+*::*proof|latin
+
+see proof/English
+

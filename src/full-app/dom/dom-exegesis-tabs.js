@@ -43,16 +43,13 @@
 
         } else {
             parent.insertBefore( sDomN.exegesisTabs.tab, parent.firstChild );
-            //.sets default because "Data" may make texts "empty"
-            //if( sapp.lemmaNumber === 9 ) { //todm
-                var amode = sn('mode',sapp);
-                var tabKey = amode['proof']+'-og';
-                var tab = rg['mobile-tabs'][ tabKey ];
-                //ccc( 'refreshing ' + amode['proof'] )
-                tab.clicker.click();
-            //} else {
-            //    sDomN.processSelectedTab( sconf.defaultMobileTabSelection );
-            //}
+            //.??sets default because "Data" may make texts "empty"
+
+            var amode = sn('mode',sapp);
+            var tabKey = amode['proof']+'-og';
+            var tab = rg['mobile-tabs'][ tabKey ];
+            //ccc( 'refreshing ' + amode['proof'] )
+            tab.clicker.click();
         }
     };
 
@@ -62,7 +59,9 @@
             if( mobile ) {
                 attachExegesisTabs(
                     sDomN.medRoot,
-                    sapp.lemmaNumber === 9 ? sDomN.mmedia : document.querySelector('.slider-group')
+                    sapp.sappId === 'lemma9' ?
+                                     sDomN.mmedia :
+                                     document.querySelector('.slider-group')
                 )
             } else {
                 attachExegesisTabs( sDomN.text$() )

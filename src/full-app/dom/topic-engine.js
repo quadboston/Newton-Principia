@@ -27,6 +27,7 @@
     sDomF.createTextWidget = createTextWidget;
     sDomF.topicModel_2_css_html = topicModel_2_css_html;
     sDomF.repopulateContent = repopulateContent;
+    sDomF.originalTexts_2_html_texts = originalTexts_2_html_texts;
     //000000000000000000000000000000000000000000
     return;
     //000000000000000000000000000000000000000000
@@ -43,7 +44,6 @@
     ///==========================================
     function createTextWidget()
     {
-        originalTexts_2_html_texts();
         sDomN.text$ = $$
             .c('div')
             .a( 'id', cssp+'-text-widget' )
@@ -67,6 +67,18 @@
                 var classStr = 'original-text ' + proofMode + ' ' + key;
                 ///normalizes textRack format
                 var scriptRack = rawTexts[proofMode][key];
+
+                // //\\ preliminary prepasing to extract active content
+                //      (}{)...(}
+                var splittedRack = scriptRack.split( /\(\}/g );
+                scriptRack = splittedRack.map( function(splitted) {
+                    if( /^\{\)/.test( splitted ) ) {
+                        return JSON.parse(splitted.substr(2));
+                    } else {
+                        return splitted;
+                    }
+                });                
+
                 if( !Array.isArray(scriptRack) ) {
                     scriptRack = [scriptRack];
                 }
@@ -75,7 +87,7 @@
                 }
                 contRacks.push({
                     classStr:classStr,
-                    scriptRack:scriptRack,
+                    scriptRack:scriptRack, //atomic text mapped to UI text-pane
                     domComponents:[],
                     components:[]
                 });
@@ -268,8 +280,34 @@
                 if( component.modeIsTogglable ) {
                     domComponents[cix].innerHTML = component.text;
                 }
+                fireMathJax( domComponents[cix] );
             });
         });
+    }
+
+    function fireMathJax( domEl )
+    {
+        mathJax_2_HTML();
+        ///===============================================
+        /// waits for MathJax and fires it up over domEl
+        ///===============================================
+        function mathJax_2_HTML()
+        {
+            if( !window.MathJax ) {
+                ccc( 'still waiting ' + Date.now() );
+                //.no way to avoid this ... mj doc does not help:
+                setTimeout( mathJax_2_HTML, 100 );
+                return;
+            }
+            //ccc( 'MathJax is loaded. ' + Date.now() );
+
+            //MathJax.Hub.Typeset() 
+            //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
+            //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
+            //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
+
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl]);
+        }
     }
 
     ///parses scripts of the text
@@ -281,7 +319,7 @@
                '([^\\|]+)'    + //catches topic caption
             '\\|\\|';
         var re = new RegExp( res, 'g' );
-        var re_amp = /\&/g;
+        //var re_amp = /\&/g;
         var components = contentRack.components;
         contentRack.scriptRack.forEach( function( textEl, tix ) {
             if( typeof( textEl ) === 'object' ) {
@@ -294,7 +332,7 @@
             } else {
                 var theScript = textEl;
             }
-            txt = theScript.replace( re_amp, '&amp;' );
+            txt = theScript; //.replace( re_amp, '&amp;' );
             if( topics.convert_lineFeed2htmlBreak ) {
                 //.converts text from <pre> format
                 var txt = ns.pre2fluid( txt ) 

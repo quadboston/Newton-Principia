@@ -19,12 +19,12 @@
         // //\\ site-wide
         //--------------------
         //:scenario
-        enabledLemmas : [2,3,9],
-        startLemmaReadingNumber : 2,
         LANDING_MODE : 'claim',
-        TEXT_MODE : 'text-none',
         //:data
         svgNS :  "http://www.w3.org/2000/svg",
+
+        siteCaptionPlain : "An Interactive Exploration of Newton’s Lemmas",
+        siteCaptionHTML : "An Interactive Exploration <br><span>of</span> Newton’s Lemmas",
         //--------------------
         // \\// site-wide
         //--------------------
@@ -45,14 +45,6 @@
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
         DRAGGEE_HALF_SIZE : 40, //px
         NAVIGATION_DECORATIONS_ALWAYS_VISIBLE : false,
-        appview :
-        {
-            lemmaRomanNumbers :
-            [
-                'o', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 
-                'x', 'xi', 'xii', 'xiii', 'xiv', 'xv', 'xvi'
-            ]
-        },
 
         dragPointDecoratorClasses :
         [ 'text--hypertext', 'text--english' ],
@@ -62,7 +54,7 @@
 
         //developer's proposals
         //these constants are used for development planning: they are not needed for application
-        approvalGranted: {},
+        //approvalGranted: {},
         //fconf.approvalGranted[ 'area-fragments-manager-to-link-with-app' ] = true;
 
         ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED : false,

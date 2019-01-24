@@ -1,0 +1,103 @@
+
+
+*::*claim|hypertext
+
+Consider |ABD ACE|two curvlinear triangles|| bounded on one side by a |AE|line||, on another side by a |ABC|curve||, and on their last sides by |BD EC|parallel lines||. Note the |point_A|point|| joining the shared |AE|line|| and |ABC|curve||. As the |BD EC|parallel lines|| approach that |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
+
+
+*::*claim|english
+
+If the straight line |AE|AE|| and
+the curve |ABC|ABC||,
+both given in position,
+intersect each other at a given angle |point_A|A||, and
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
+and meet the curve in |point_B|B|| and |point_C|C||,
+and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
+I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
+as the |AD2AE|squares of the sides||.
+
+
+*::*claim|latin
+
+<pre>
+
+Si recta |AE|AE|| &amp;
+If the straight line |AE|AE|| and
+
+curva |ABC|ABC||
+the curve |ABC|ABC||,
+
+positione datæ
+both given in position,
+
+se mutio secent in angulo dato |point_A|A||, &amp;
+intersect each other at a given angle |point_A|A||, and
+
+ad rectam illam in alio dato angulo ordinatim applicentur |BD|BD||, |EC|CE||
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
+
+curvæ occurrentes in |point_B|B||, |point_C|C||,
+and meet the curve in |point_B|B|| and |point_C|C||,
+
+dein puncta |point_B|B||, |point_C|C|| simul accedant and punctum |point_A|A||:
+and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
+
+dico quod areæ triangulorum |ABD|ABD||, |ACE|ACE|| erunt ul[t]imo invicem 
+I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
+
+in |AD2AE|duplicata ratione|| laterum.
+as the |AD2AE|squares of the sides||.
+
+</pre>
+
+
+
+*::*proof|english
+
+For while points |point_B|B|| and |point_C|C|| approach point |point_A|A||,
+let |AD|AD|| be understood always to be produced to the distant points |point_d|d|| and |point_e|e||,
+so that |Ad|Ad|| and |Ae|Ae|| are proportional to |AD|AD|| and |AE|AE||;
+
+and erect ordinates |db|db|| and |ec|ec||
+parallel to ordinates |DB|DB|| and |EC|EC||
+and meeting |AB|AB|| and |AC|AC||, produced, at |point_b|b|| and |point_c|c||.
+
+Understand the curve |Abc|Abc|| to be drawn similar to |ABC|ABC||, and
+the straight line |Ag|Ag|| to be drawn touching both curves at |point_A|A|| and
+cutting the ordinates |DB|DB||, |EC|EC||, |db|db||, and |ec|ec|| at F, G, |point_f|f||, and |point_g|g||.
+
+Then, with the length |Ae|Ae|| remaining the same,
+let points |point_B|B|| and |point_C|C|| come together with point |point_A|A||; and as the angle cAg vanishes,
+
+the curvilinear areas |Abd|Abd|| and |Ace|Ace|| will coincide with the
+rectilinear areas |Afd|Afd|| and |Age|Age||,
+and thus (by lem. 5) will be in the squared ratio of the sides |Ad|Ad|| and |Ae|Ae||.
+
+But areas |ABD|ABD|| and |ACE|ACE|| are always proportional to these areas,
+and sides |AD|AD|| and |AE|AE|| to these sides.
+
+Therefore areas |ABD|ABD|| and |ACE|ACE|| also are ultimately 
+in the squared ratio of the sides |AD|AD|| and |AE|AE||.  Q.E.D.
+
+
+*::*proof|hypertext
+
+Make an |Abd Ace|enlargement|| of the |ABD ACE|two original triangles||, and place them such that they still share the same |point_A|point|| and |Ae|straight line|| shared by the |ABD ACE|original triangles||.
+
+As the |ABD ACE|two original triangles|| shrink, keep the length of the |Ae|shared line|| for the |Ace|largest triangle|| the same length, and adjust the |Ab Ac db ec|other sides|| and |Abc|curve|| of the |Abd Ace|enlarged triangles|| as necessary so that they continue to be |Abd Ace|enlarged versions|| of the |ABD ACE|shrinking triangles||.
+
+In the limit, as the |ABD ACE|two original triangles|| shrink, the |Abc|curve|| that bounds the |Abd Ace|two enlarged curvilinear triangles|| flattens to a |Ag|straight line||, meaning the |Abd Ace|two enlarged curvilinear triangles|| become |Afd Age|two linear triangles||. By Lemma 5, we know the ratio of the areas of these |Afd Age|two linear triangles|| will be equal to the squared ratio of their |Ad Ae|matching sides||.
+
+We also know that |Ad Ae|matching sides|| of the |Abd Ace|enlarged triangles|| must have the same ratio to each other as |AD AE|matching sides|| of the |ABD ACE|original triangles||.
+
+So in the limit, the |ABDPerACE|ratio of the areas|| of the |ABD ACE|original triangles|| converge to the same |AD2AE|ratio as the squares|| of their |AD AE|sides||.
+
+
+
+
+*::*proof|latin
+
+not yet entered
+
+
