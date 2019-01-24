@@ -13,6 +13,7 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var rg          = sn('registry',ssD);
+    var rawTexts    = sn('rawTexts', ssD);
 
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
@@ -331,7 +332,8 @@
                                 ////this state does already exist ... do set CSS
                                 var changedMode = mid;
                                 //ccc( 'mtype=' + mtype + ' mid=' + mid );
-                                var searchStr = '.original-text.' + notToBeChangedMode + '.' + changedMode;
+                                var searchStr = '.original-text.' + notToBeChangedMode + '.' +
+                                                changedMode;
                                 var chosenTextDiv = sDomN.text$().querySelectorAll( searchStr );
                                 chosenTextDiv[0] && $$.addClass( 'chosen', chosenTextDiv[0] );
                             }
@@ -380,6 +382,26 @@
                         //==================================================
                         // //\\ recalculates app for new application mode
                         //==================================================
+                        ///hides or shows main-data-legend if prescribed in essay
+                        ///if following modes already defined
+                        if( amode['proof'] && amode['text'] ) {
+                            var wRT = rawTexts[ amode.proof ] &&
+                                      rawTexts[ amode.proof ][ amode.text ];
+                            var eHeader = wRT && wRT.header;
+                            if( eHeader ) {
+                                if( eHeader.dataLegend === "0" ) {
+                                    $$.$(sDomN.medRoot).addClass('main-legend-disabled');
+                                } else if( eHeader.dataLegend === "1" ) {
+                                    $$.$(sDomN.medRoot).removeClass('main-legend-disabled');
+                                }
+                                if( eHeader.mediaBgImage ) {
+                                    sDomN.bgImage$.removeClass( 'disabled' );
+                                    sDomN.bgImage$.a( 'src', eHeader.mediaBgImage );
+                                } else if( eHeader.mediaBgImage === '' ) {
+                                    sDomN.bgImage$.addClass( 'disabled' );
+                                }
+                            }
+                        }
                         if( sapp.readyToPopulateMenu ) { sapp.upcreate(); }
                         //==================================================
                         // \\// recalculates app for new application mode

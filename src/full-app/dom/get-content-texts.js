@@ -64,15 +64,42 @@
             var txt = loadedFilesById.texts.text;
             var parts = txt.split( /\*::\*/g );
             parts.forEach( function(part) {
+
+                //.removes empty parts
                 if( part.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
+
+                //--------------------------------------
+                // //\\ splits the part ...
+                //--------------------------------------
+                //      part = proof|english precontent
+                //             precontent = \nJSON*..*\n content 
+                //             JSON part is optional                
+                //              
+                //      below: command[1] = proof
+                //             command[2] = english
+                //             command[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
                 var command = part.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
-                //ccc( command );
+
                 if( command && command[3] ) {
+                    var wPreText = command[3];
+                    var wIx = wPreText.indexOf("*..*");
+                    if( wIx > -1 ) {
+                        var wHeader = wPreText.substring(0, wIx-1);
+                        var essayHeader = JSON.parse( wHeader );
+                        wPreText = wPreText.substring( wIx+4 );
+                    }
                     rawTexts[ command[1] ] = rawTexts[ command[1] ] || {};
-                    rawTexts[ command[1] ][ command[2] ] = command[3];
+                    rawTexts[ command[1] ][ command[2] ] =
+                    {
+                        text:wPreText,
+                        header:essayHeader
+                    };
                 }
+                //--------------------------------------
+                // \\// splits the part ...
+                //--------------------------------------
 
             });
             continueAppInit();

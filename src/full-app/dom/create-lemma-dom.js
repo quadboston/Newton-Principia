@@ -218,20 +218,22 @@
         // \\// video help
         //..........................
 
+        //..........................
+        // //\\ study image
+        //..........................
+        sDomN.bgImage$ = $$
+            .c( 'img' )
+            .a( 'class', cssp +'-bg-image' )
+            .to( sDomN.medRoot )
+            ;
         if( sconf.mediaBgImage ) {
-            //..........................
-            // //\\ study image
-            //..........................
-            sDomN.bgImage$ = $$
-                .c( 'img' )
-                .a( 'class', cssp +'-bg-image' )
-                .a( 'src', sconf.mediaBgImage )
-                .to( sDomN.medRoot )
-                ;
-            //..........................
-            // \\// study image
-            //..........................
+            sDomN.bgImage$.a( 'src', sconf.mediaBgImage );
+        } else {
+            sDomN.bgImage$.addClass( 'disabled' );
         }
+        //..........................
+        // \\// study image
+        //..........................
 
         ssF.create8prepopulate_svg();
         //.disabled ... effect is too strong

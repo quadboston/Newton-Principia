@@ -61,14 +61,16 @@
         ///loops via all texts which were scripted by content contributor
         Object.keys( rawTexts ).forEach( function( proofMode ) {
             ///loops inside of specific proof-mode
-            Object.keys( rawTexts[proofMode] ).forEach( function( key ) {
+            var essays = rawTexts[proofMode];
+            Object.keys( essays ).forEach( function( key ) {
                 //.RM "original-text" means CSS class of exegesis-text-html
                 //.which is obtained by parsing raw-exegesis-script
                 var classStr = 'original-text ' + proofMode + ' ' + key;
-                ///normalizes textRack format
-                var scriptRack = rawTexts[proofMode][key];
+                var scriptRack = essays[key].text;
 
+                //-----------------------------------------------------
                 // //\\ preliminary prepasing to extract active content
+                //-----------------------------------------------------
                 //      (}{)...(}
                 var splittedRack = scriptRack.split( /\(\}/g );
                 scriptRack = splittedRack.map( function(splitted) {
@@ -78,6 +80,9 @@
                         return splitted;
                     }
                 });                
+                //-----------------------------------------------------
+                // \\// preliminary prepasing to extract active content
+                //-----------------------------------------------------
 
                 if( !Array.isArray(scriptRack) ) {
                     scriptRack = [scriptRack];

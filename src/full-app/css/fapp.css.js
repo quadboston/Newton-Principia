@@ -293,6 +293,11 @@ ret += `
     /*====================================*/
     /* \\// table formatter               */
     /*====================================*/
+
+    .bsl-media-root.main-legend-disabled .main-legend {
+        display:none;
+    }
+
 `;
     
 if( conf.exegesis_floats ) {
