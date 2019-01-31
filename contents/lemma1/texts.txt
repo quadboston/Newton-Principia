@@ -293,7 +293,40 @@ Newton's proof is done in style "reductio ad absurdum":<br><br>
  \)<br><br>
 
 
+Above proof may feel too "encrypted" for the beginner. Moreover, one may like to have non "reductio ad absurdum" but "contstuctive" proof: <br><br>
 
+<b>Lemma 1. "Constructive" proof.</b><br><br>
+ 
+    We will prove that \( G'_\gamma \rightarrow\ h. \) Then because of limit is unique, this will imply h=h'. Proof: <br><br>
+
+    Let us take an arbitrary \( \varepsilon > 0 \).
+
+    For some \( \delta > 0 \), all the values \( g_\gamma \) will lie non farer than
+    \( \varepsilon \) from \( h: | g_\gamma - h | < \varepsilon \).<br><br>
+
+    By the same reasoning for some \( \delta' > 0 \),
+    \( | g'_\gamma - h' | < \varepsilon \) and 
+
+    for some \( \delta'' > 0 \),
+    \( | g_\gamma - g'_\gamma | < \varepsilon \).<br><br>
+
+    Then on the smallest neighbourhood \( N_{\delta'''} \) for \( \delta''' =
+    min(  \delta,  \delta',  \delta'' ) \), 
+
+    the last three inequalities will imply that:
+    \( | g'_\gamma - h | < 3\varepsilon \).<br><br>
+
+    Let us take an arbitrary \( \varepsilon' > 0.\) Taking then
+    \( \varepsilon = \varepsilon' / 3 \), we will obtain:
+
+    \( | g'_\gamma - h | < \varepsilon' \).<br><br>
+
+    This implies: \( G'_\gamma \rightarrow\ h. \)
+    \(\blacksquare \)
+
+ <br><br>
+
+<b>Note:</b> We use "constructiveness" in quotation marks because it is a mere illusion which only delays a resort to "reductio ad absurdum" which still is used in prove of limit uniqueness.
 
 
 <!-- ************************************************************************* -->
