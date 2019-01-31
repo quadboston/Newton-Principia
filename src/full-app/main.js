@@ -74,9 +74,9 @@
     //=========================================================
     function init() 
     {
-        //===============================
-        // //\\ establishes configuration
-        //===============================
+        //=====================================================
+        // //\\ establishes configuration and loads app scripts
+        //=====================================================
         ns.url2conf( fconf );
 
         sapp.sappId = fconf.sappId;
@@ -112,9 +112,9 @@
             sapp.siteCaptionPlain = fconf.siteCaptionPlain;
             continueInit();
         }
-        //===============================
-        // \\// establishes configuration
-        //===============================
+        //=====================================================
+        // \\// establishes configuration and loads app scripts
+        //=====================================================
     }
 
     function continueInit()
@@ -148,7 +148,7 @@
                 function() {
                     initLemma();
                     document.documentElement.className =
-                        document.documentElement.className.replace( 'non-loaded', '' );
+                    document.documentElement.className.replace( 'non-loaded', '' );
                     fmethods.setupSiteWideEvents();
                 }
             );
@@ -162,7 +162,7 @@
             //.todmm ... why without 1s transition the landing flickers?
             //todm ... use regEx to cooperate with other frameworks on html-element
             document.documentElement.className =
-                document.documentElement.className.replace( 'non-loaded', '' );
+            document.documentElement.className.replace( 'non-loaded', '' );
             //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             // \\// removes landing-start-state
             //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

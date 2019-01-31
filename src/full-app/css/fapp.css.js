@@ -96,6 +96,11 @@
         transition: opacity 1s ease;
     }
 
+    .bsl-bg-image.disabled {
+        display : none;
+    }
+
+
     /*---------------------------*/
     /* //\\ horizontal resizer   */ 
     /*---------------------------*/

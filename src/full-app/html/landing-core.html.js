@@ -40,7 +40,7 @@
                         <div class="read__text">
                             <span class="read__label">Begin Reading</span>
                             <span class="read__title">
-                                ${fconf.landingApp}
+                                ${fconf.sappModulesList[fconf.landingApp].caption}
                             </span>
                         </div>
                         <div class="read__arrow">

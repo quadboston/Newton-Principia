@@ -299,7 +299,7 @@
         function mathJax_2_HTML()
         {
             if( !window.MathJax ) {
-                ccc( 'still waiting ' + Date.now() );
+                ccc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
                 //.no way to avoid this ... mj doc does not help:
                 setTimeout( mathJax_2_HTML, 100 );
                 return;
@@ -315,8 +315,8 @@
         }
     }
 
-    ///parses scripts of the text
-    ///builds components from script
+    ///parses active and passive components of content-script
+    ///to initiated components to be used in run-time
     function transformText( contentRack )
     {
         var res = 

@@ -63,6 +63,7 @@
             }
             var txt = loadedFilesById.texts.text;
             var parts = txt.split( /\*::\*/g );
+            sconf.submenus = {};
             parts.forEach( function(part) {
 
                 //.removes empty parts
@@ -83,6 +84,8 @@
                 var command = part.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 if( command && command[3] ) {
+                    var com1 = command[1];
+                    var com2 = command[2];
                     var wPreText = command[3];
                     var wIx = wPreText.indexOf("*..*");
                     if( wIx > -1 ) {
@@ -90,18 +93,93 @@
                         var essayHeader = JSON.parse( wHeader );
                         wPreText = wPreText.substring( wIx+4 );
                     }
-                    rawTexts[ command[1] ] = rawTexts[ command[1] ] || {};
-                    rawTexts[ command[1] ][ command[2] ] =
+                    rawTexts[ com1 ] = rawTexts[ com1 ] || {};
+                    rawTexts[ com1 ][ com2 ] =
                     {
                         text:wPreText,
                         header:essayHeader
                     };
+
+                    sconf.submenus = sconf.submenus || {};
+
+                    setMenu( com1, 'proof' )
+                    setMenu( com2, 'text' )
+                    //ccc( com1, com2, essayHeader );
+
+                    //=======================================
+                    // //\\ parses and sets menu
+                    //=======================================
+                    function setMenu( com, mtype )
+                    {
+                        //=======================================
+                        // //\\ how submenu built
+                        //=======================================
+                            /*
+                            submenus :
+                            {
+                                proof: {
+                                    list:
+                                    [
+                                        { id:'claim' },
+                                        { id:'proof' }
+                                    ],
+                                    'default' : 'claim'
+                                },
+
+                                text: {
+                                    list:
+                                    [
+                                        { id:'latin',   caption:'Latin' },
+                                        { id:'english', caption:'English' },
+                                        { id:'hypertext', caption:'Lite' }
+                                    ],
+                                    'default' : 'hypertext'
+                                }
+                                //worked
+                                ,decorations: {
+                                    list:
+                                    [
+                                        { id:'origin'},
+                                        { id:'modern'},
+                                        { id:'both' }
+                                    ],
+                                    'default' : 'both'
+                                }
+                            }
+                            */
+                        //=======================================
+                        // \\// how submenu built
+                        //=======================================
+                        var men = sconf.submenus[ mtype ] = sconf.submenus[ mtype ] ||
+                             {  list : [],
+                                "default" : com,
+                                duplicates : {}
+                             };
+                        //ccc( 'checing dup ' + com + ' ' + mtype  + ' men=', men); 
+                        if( !men.duplicates[ com ] ) {
+                            //var menuItem = { id:com, caption:essayHeader.menuCaption } 
+                            var menuItem = { id:com };
+                            men.duplicates[ com ] = menuItem;
+                            men.list.push(menuItem );
+                        }
+                        if( essayHeader && essayHeader["default"] === "1" ) {
+                            men["default"] = com;
+                        }
+                        if( essayHeader && essayHeader.menuCaption && mtype === 'text' ) {
+                            men.duplicates[ com ].caption = essayHeader.menuCaption;
+                        }
+                    }
+                    //=======================================
+                    // \\// parses and sets menu
+                    //=======================================
                 }
                 //--------------------------------------
                 // \\// splits the part ...
                 //--------------------------------------
 
             });
+
+            //ccc( sconf.submenus[ 'proof' ]);
             continueAppInit();
         }
     }

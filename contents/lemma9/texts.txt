@@ -1,24 +1,9 @@
 
-
-*::*claim|hypertext
-
-Consider |ABD ACE|two curvlinear triangles|| bounded on one side by a |AE|line||, on another side by a |ABC|curve||, and on their last sides by |BD EC|parallel lines||. Note the |point_A|point|| joining the shared |AE|line|| and |ABC|curve||. As the |BD EC|parallel lines|| approach that |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
-
-
-*::*claim|english
-
-If the straight line |AE|AE|| and
-the curve |ABC|ABC||,
-both given in position,
-intersect each other at a given angle |point_A|A||, and
-if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
-and meet the curve in |point_B|B|| and |point_C|C||,
-and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
-I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
-as the |AD2AE|squares of the sides||.
-
-
 *::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
 
 <pre>
 
@@ -50,6 +35,42 @@ in |AD2AE|duplicata ratione|| laterum.
 as the |AD2AE|squares of the sides||.
 
 </pre>
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+If the straight line |AE|AE|| and
+the curve |ABC|ABC||,
+both given in position,
+intersect each other at a given angle |point_A|A||, and
+if |BD|BD|| and |EC|CE|| are drawn as ordinates to the straight line |AE|AE|| at another given angle
+and meet the curve in |point_B|B|| and |point_C|C||,
+and if then points |point_B|B|| and |point_C|C|| simultaneously approach point |point_A|A||,
+I say that the areas of the triangles |ABD|ABD|| and |ACE|ACE|| will ultimately be to each other
+as the |AD2AE|squares of the sides||.
+
+
+
+*::*proof|latin
+
+not yet entered
+
+
+
+*::*claim|hypertext
+{
+  "default" : "1",
+  "menuCaption" : "Lite"
+}
+*..*
+
+Consider |ABD ACE|two curvlinear triangles|| bounded on one side by a |AE|line||, on another side by a |ABC|curve||, and on their last sides by |BD EC|parallel lines||. Note the |point_A|point|| joining the shared |AE|line|| and |ABC|curve||. As the |BD EC|parallel lines|| approach that |point_A|point||, in the limit, the |ABDPerACE|ratio of the triangles’ areas|| equals the |AD2AE|squared ratio|| of their |AD AE|sides||.
+
+
 
 
 
@@ -95,9 +116,5 @@ So in the limit, the |ABDPerACE|ratio of the areas|| of the |ABD ACE|original tr
 
 
 
-
-*::*proof|latin
-
-not yet entered
 
 

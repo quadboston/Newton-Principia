@@ -394,11 +394,13 @@
                                 } else if( eHeader.dataLegend === "1" ) {
                                     $$.$(sDomN.medRoot).removeClass('main-legend-disabled');
                                 }
-                                if( eHeader.mediaBgImage ) {
-                                    sDomN.bgImage$.removeClass( 'disabled' );
-                                    sDomN.bgImage$.a( 'src', eHeader.mediaBgImage );
-                                } else if( eHeader.mediaBgImage === '' ) {
-                                    sDomN.bgImage$.addClass( 'disabled' );
+                                if( typeof eHeader.mediaBgImage === 'string' ) {
+                                    if( eHeader.mediaBgImage ) {
+                                        sDomN.bgImage$.removeClass( 'disabled' );
+                                        sDomN.bgImage$.a( 'src', eHeader.mediaBgImage );
+                                    } else if( eHeader.mediaBgImage === '' ) {
+                                        sDomN.bgImage$.addClass( 'disabled' );
+                                    }
                                 }
                             }
                         }

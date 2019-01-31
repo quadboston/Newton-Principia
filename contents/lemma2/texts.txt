@@ -1,36 +1,8 @@
-
-
-*::*claim|hypertext
-
-
-        Consider any |figure|figure|| bounded by a |curve|curve||, a |base|base||, and a |wall|side||. 
-        Its |base|base|| can be divided into any number of equal-length bases
-        for |inscribed-rectangles|inscribed rectangles|| and |circumscribed-rectangles|circumscribed rectangles||. 
-        If we increase the number of these rectangles indefinitely, 
-        then the areas of the |figure|figure||, the |inscribed-rectangles|inscribed rectangles||, and the
-        |circumscribed-rectangles|circumscribed rectangles|| all converge to the same value.
-
-
-
-*::*claim|english
-
-
-        If in any figure |figure|AacE||, 
-        comprehended by the straight lines |wall|Aa|| and |base|Ae|| and the |curve|curve acE||, 
-        any number of parallelograms |inscribed-rectangles|Ab, Bc, Cd||, ... 
-        are inscribed upon equal bases AB, BC, CD, ...
-
-        and have sides Bb, Cc, Dd, ... 
-        parallel to the |wall|side Aa|| of the figure; 
-        and if the parallelograms aKbl, bLcm, cMdn, ... are completed; 
-        if then the width of these parallelograms is diminished and their number increased indefinitely, 
-
-        I say that the ultimate ratios which the |inscribed-rectangles|inscribed figure AKbLcMdD||, 
-        the |circumscribed-rectangles|circumscribed figure AalbmcndoE||, 
-        and the |figure|curvilinear figure AabcdE|| 
-        have to one another are ratios of equality.
-
 *::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
 
         Si in figura quavis |figure|AacE|| 
         rectis |wall|Aa||, |base|AE||, &amp; |curve|curva acE|| comprehensa, 
@@ -48,7 +20,51 @@
         sunt rationes æqualitatis.
 
 
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+
+        If in any figure |figure|AacE||, 
+        comprehended by the straight lines |wall|Aa|| and |base|Ae|| and the |curve|curve acE||, 
+        any number of parallelograms |inscribed-rectangles|Ab, Bc, Cd||, ... 
+        are inscribed upon equal bases AB, BC, CD, ...
+
+        and have sides Bb, Cc, Dd, ... 
+        parallel to the |wall|side Aa|| of the figure; 
+        and if the parallelograms aKbl, bLcm, cMdn, ... are completed; 
+        if then the width of these parallelograms is diminished and their number increased indefinitely, 
+
+        I say that the ultimate ratios which the |inscribed-rectangles|inscribed figure AKbLcMdD||, 
+        the |circumscribed-rectangles|circumscribed figure AalbmcndoE||, 
+        and the |figure|curvilinear figure AabcdE|| 
+        have to one another are ratios of equality.
+
+
+
+*::*claim|hypertext
+{
+  "default" : "1",
+  "menuCaption" : "Lite"
+}
+*..*
+
+
+        Consider any |figure|figure|| bounded by a |curve|curve||, a |base|base||, and a |wall|side||. 
+        Its |base|base|| can be divided into any number of equal-length bases
+        for |inscribed-rectangles|inscribed rectangles|| and |circumscribed-rectangles|circumscribed rectangles||. 
+        If we increase the number of these rectangles indefinitely, 
+        then the areas of the |figure|figure||, the |inscribed-rectangles|inscribed rectangles||, and the
+        |circumscribed-rectangles|circumscribed rectangles|| all converge to the same value.
+
+
+
 *::*proof|latin
+{
+}
+*..*
 
             Nam figuræ |inscribed-rectangles|inscriptæ|| &amp; |circumscribed-rectangles|circumscriptæ|| differentia 
             est summa parallelogrammorum Kl + Lm + Mn + Do, 
