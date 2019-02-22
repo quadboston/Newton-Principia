@@ -1,4 +1,5 @@
 {
+    "mediaBgImage" : "contents/lemma1/img/lemma1.png",
     "topics.convert_lineFeed2htmlBreak" : false,
     "topicDef" : {}
 }

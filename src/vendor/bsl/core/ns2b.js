@@ -1,7 +1,7 @@
 //*******************************************************************
 //          b$l = Beaver $cript Library.
 //          Intended to be lite weight JS generic library.
-//          Copyright (c) 2018 Konstantin Kirillov
+//          Copyright (c) 2018 - 2019 Konstantin Kirillov
 //          Licenses: MIT, GPL, GPL2.
 //*******************************************************************
 
@@ -20,7 +20,7 @@
     //.purpose is only to short manual typing for development debug
     window.ccc          = window.console.log;
 
-    var ns = setAppNamespace( APP_NAME );
+    var ns = setAppNamespace();
     setDomWrap( ns );
     return;
 
@@ -29,21 +29,22 @@
 
 
 
-    function setAppNamespace( name )
+    function setAppNamespace()
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
-        var ns = window[ name ];
+        var ns = window[ APP_NAME ];
         if( ns ) {
             if( ns[ uniqueEarthWide ] ) { return ns; }
             //.lets community to take care about this app
-            throw 'global name collision: the window["' + name + '"] already exists in web-browser';
+            throw 'global name collision: the window["' + APP_NAME +
+                  '"] already exists in web-browser';
         } else {
-            var ns = window[ name ] = {};
+            var ns = window[ APP_NAME ] = {};
             ns[ uniqueEarthWide ] = true;
             ns.uniqueEarthWide = uniqueEarthWide;
             ns.sn = sn;
-            ns.APP_NAME = name;
-            ns.CSS_PREFIX = name.replace( /\$/g, 's' );
+            ns.APP_NAME = APP_NAME;
+            ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
             return ns;
         }
 
@@ -115,6 +116,12 @@
         //      simple replacement of jQuery
         var $$ = ns.$$ =
         ( function() {
+
+            ///syntax sugar to supply object in two forms: wrapped into $$ or naked
+            function alt( obj )
+            {
+                return (typeof obj === 'function' ? obj() : obj);
+            }
             
             var gen = function() {
                 var ctxEl = null;
@@ -133,8 +140,21 @@
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
-                    to:     function( to, obj )             { ctxEl = obj || ctxEl;  to.appendChild( ctxEl ); },
-                    ch:     function( ch, obj )             { ctxEl = obj || ctxEl;  ctxEl.appendChild( ch ); },
+                    to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
+                    ch:     function( ch, obj )             { ctxEl = obj || ctxEl;
+                                                              //.encourages syntax for alternatively empty list of children
+                                                              //.$$.ch( obj ? ... : ... )
+                                                              if( !ch ) return;
+
+                                                              if( Array.isArray( ch ) ) {
+                                                                ///if array, then adds children in sequence
+                                                                ch.forEach( function( child ) {
+                                                                    child && ctxEl.appendChild( alt( child ) );
+                                                                });
+                                                              } else {
+                                                                ctxEl.appendChild( alt( ch ) );
+                                                              }
+                                                            },
                     e:      function( type, callback, obj ) { ctxEl = obj || ctxEl;  ctxEl.addEventListener( type, callback ); },
                     css:    function( name, value, obj )    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
                     html:   function( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
@@ -215,6 +235,37 @@
                                     }
                                 }
                 };
+
+                //:here JavaScript writer can look which additional shortcuts do exist
+                //:here we can add more dependent shortcuts
+                methods.cls = methods.addClass;
+                methods.id = function( text, obj ) { methods.a( 'id', text, obj ); }; //.adds id
+                methods.src = function( text, obj ) { methods.a( 'src', text, obj ); }; //.adds src
+                methods.href = function( text, obj ) { methods.a( 'href', text, obj ); }; //.adds src
+                methods.div = function( obj ) { methods.c( 'div', obj ); }; //.creates div
+                methods.img = function( obj ) { methods.c( 'img', obj ); }; //.creates img
+                methods.span = function( obj ) { methods.c( 'span', obj ); }; //.creates span
+                methods.style = function( obj ) { methods.c( 'style', obj ); }; //.creates style
+                methods.$ul = function( obj ) { methods.c( 'ul', obj ); }; //.creates ul
+                methods.$li = function( obj ) { methods.c( 'li', obj ); }; //.creates li
+                methods.$a = function( obj ) { methods.c( 'a', obj ); }; //.creates li
+
+                methods.di = function( id, obj ) { methods.c( 'div', obj ); methods.a( 'id', id ); }; //.creates div, sets id
+                methods.dc = function( cls, obj ) { methods.c( 'div', obj ); methods.addClass( cls ); }; //.creates div, sets class
+                methods.dic = function( id, cls, obj ) {
+                                methods.di( id, obj );
+                                methods.addClass( cls );
+                }; //.creates div, sets id and class
+                methods.dict = function( id, cls, to, obj ) {
+                                methods.di( id, obj );
+                                methods.addClass( cls );
+                                methods.to( to );
+                }; //.creates div, sets id and class, and appends to "to"
+                methods.dct = function( cls, to, obj ) {
+                                methods.dc( cls, obj )
+                                methods.to( to );
+                }; //.creates div, sets class, and appends to "to"
+
                 var wrap = function() { return ctxEl; };
                 Object.keys( methods ).forEach( function( key ) {
                     var method = methods[ key ];
@@ -394,6 +445,15 @@
     }
 
 
+    ///sugar for Object.keys( obj ).forEach ...
+    ns.eachprop = function( obj, callBack )
+    {
+        Object.keys( obj ).forEach( function( key ) {
+            callBack( obj[ key ], key );
+        });
+    };
+
+
 
 	///	Purpose:		Cloning object trees by value till refdepth.
 
@@ -528,7 +588,7 @@
     function update( moreText )
     {
         if( !cssDom$ ) {
-            cssDom$ = ns.$$.c( 'style' ).to( document.head );
+            cssDom$ = ns.$$.style().to( document.head );
         }
         if( moreText ) { cssText += moreText; }
         cssDom$.html( cssText );

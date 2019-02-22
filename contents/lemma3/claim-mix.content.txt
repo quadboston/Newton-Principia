@@ -1,0 +1,46 @@
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths AB, BC, CD,... 
+        of the parallelograms are unequal and are all diminished indefinitely.</dense>
+
+
+
+*::*claim|hypertext
+{
+  "default" : "1",
+  "menuCaption" : "Lite"
+}
+*..*
+
+        Even if the lengths of the ¦base¦bases¦¦ are unequal, the areas of the ¦figure¦figure¦¦, 
+        the ¦inscribed-rectangles¦inscribed rectangles¦¦,
+        and the ¦circumscribed-rectangles¦circumscribed rectangles¦¦ 
+        <i>still</i> all converge to the same value.
+
+
+
+
+
+*::*proof|latin
+            Sit enim AF æqualis latitudini maximæ 
+            &amp; compleatur ¦widthest-rectangular¦parallelogrammum FAaf¦¦. 
+            Hoc erit majus quam differentia 
+            ¦inscribed-rectangles¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles¦figuræ circumscripta¦¦;
+            at latitudine sua AF in infinitum diminuta, 
+            minus fiet dato quovis rectangulo. Q. E. D.
+
+
+
+
+
+
+
+
+
+
+

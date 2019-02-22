@@ -1,0 +1,23 @@
+*::*claim|xixcentury
+{
+  "mediaBgImage" : "",
+  "menuCaption" : "XIX Century",
+  "dataLegend":"0"
+}
+*..*
+
+
+For any monotonic and bounded function \( [A,E] \overset f \to \mathbb{R} \),
+
+    \[
+            \underset{\delta \to 0} {\text{lim }} U_\delta =
+            \underset{\delta \to 0} {\text{lim }} L_\delta .
+    \]
+
+In plain words, circumscribed and inscribed sums converge to the same limit making upper and lower Darboux intergrals equal.
+
+
+
+
+
+

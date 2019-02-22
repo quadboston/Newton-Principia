@@ -7,12 +7,14 @@
 
 
 
-    ///updates and, if requested, creates svg-shape
+    ///Updates svg-shape. Svg-shape creates before update if missed in arg.
     ///Optional Input:
-    ///     arg.svgel
+    ///     arg.svgel - element to be updated
     ///     arg.parent
     ///     arg.type
     ///     arg.style
+    ///     and other attributes in form "key"-"value"
+    ///Returns new or updated svgel - svg element
 	nssvg.u = function( arg )
     {
         if( !arg.svgel ) {
@@ -22,11 +24,24 @@
         } else {
             var svgel = arg.svgel;
         }
+
         Object.keys( arg ).forEach( function( key ) {
-            ////sets attributes
+ 
+            //--------------------------------------
+            // //\\ ignores 'parent' and 'type'
+            //      properties which were used above
+            //      and leaves the loop
+            //--------------------------------------
+            //.ignores these properties
             if( key === 'parent' || key === 'type' ) return;
+            //--------------------------------------
+            // \\// ignores 'parent' and 'type'
+            //--------------------------------------
+
+            //-------------------------------------
+            // //\\ sets syle properties and leaves
+            //-------------------------------------
             if( key === 'style' ) {
-                ////sets syle properties
                 var style = arg.style;
                 if( style ) {
                     var stl = svgel.style;
@@ -36,11 +51,21 @@
                 }
                 return;
             }
+            //-------------------------------------
+            // \\// sets syle properties and leaves
+            //-------------------------------------
+
+            //-------------------------------------
+            // //\\ sets remaining attributes
+            //-------------------------------------
             var val = arg[ key ];
             if( val || val === 0 ) {
                 //// val is not '' and not undefined
                 svgel.setAttributeNS( null, key, val );
             }
+            //-------------------------------------
+            // \\// sets remaining attributes
+            //-------------------------------------
         });
         return svgel;
     };

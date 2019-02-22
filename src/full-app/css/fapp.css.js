@@ -12,9 +12,13 @@
 
     ///application-wide helper
     cssmods.calculateTextPerc = function( mediaPerc ) {
-        //todo 8 is a hack ... lesser value, like 6 causes flicker ...
+        //todo 
+        //100 - mediaPerc - NNN
+        //is a hack
+        //...NNN like 15 breaks app-CSS-floating model
+        //...NNN like 6 causes flicker ...
         //ps bs a CSS/JS loop when CSS causes resize, JS catches resize and changes CSS
-        return 100 - mediaPerc - 8; 
+        return 100 - mediaPerc - 15; 
     };
     cssmods['main-sapp'] = function( cssp, conf ) {
         var colorLight = conf.css['color-light']; 
@@ -22,6 +26,15 @@
         var textPercStr = cssmods.calculateTextPerc( mediaPerc ).toFixed(2) + '%';
         var aroot_DesktopOverflow = sapp.pageMode === 'lemma' ?
                                     'overflow-x:hidden' : 'overflow:visible';
+
+        if( fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) {
+            var essayPaneFloat = 'float : ' +
+            ( conf.model_float_dir === 'right' ? 'left' : 'right' ) + ';';
+            var mediaPaneFloat = '';
+        } else {
+            var mediaPaneFloat = 'float : ' + conf.model_float_dir + ';';
+            var essayPaneFloat = '';
+        }            
 
 
         var ret =
@@ -37,7 +50,7 @@
 
 
     /******************************************/
-    /* //\\ page primary sections             */
+    /* //|| page primary sections             */
     /******************************************/
     .bsl-approot {
         width:100%;
@@ -46,10 +59,16 @@
         ${aroot_DesktopOverflow}
     }
 
-    .bsl-menu-filler, /* todm need? */
+    .bsl-menu-filler { /* vital */
+        height: ${fconf.attach_menu_to_essaion_root ? 65 : 90}px;
+    }
+
+    /*================================*/
+    /* //|| top menu                  */
+    /*================================*/
     .bsl-menu {
         vertical-align: top;
-        height: 90px;
+        height: ${fconf.attach_menu_to_essaion_root ? 50 : 75}px;
         width: 98%;
         margin:0px;
         padding:10px;
@@ -60,14 +79,21 @@
         font-family:helvetica,arial,san-serif;
         z-index:1001;
     }
+    /*================================*/
+    /* ||// top menu                  */
+    /*================================*/
 
+
+    /*================================*/
+    /* //|| media pane                */
+    /*================================*/
     .bsl-media-superroot {
-        float       :${conf.model_float_dir};
+        ${mediaPaneFloat}
         position    :relative;
-        display     :block;
+        display     :inline-block;
         width       :${mediaPerc.toFixed(2)}%;
-        xxxxx-done-programmatically-max-width   :1000px;
-        height      :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 140px )'};
+        height      :auto;
+
         padding     :0;
         margin      :0;
         margin-right:2%; /* pushes the text right */
@@ -99,6 +125,9 @@
     .bsl-bg-image.disabled {
         display : none;
     }
+    /*================================*/
+    /* ||// media pane                */
+    /*================================*/
 
 
     /*---------------------------*/
@@ -125,35 +154,78 @@
     /*---------------------------*/
 
 
+
+
+    /*================================*/
+    /* //|| essay pane                */
+    /*================================*/
     .bsl-text-widget {
-        padding             :2%;
-        width               :${(conf.exegesis_floats && 'auto') || textPercStr };
-        height              :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 140px )'};
-        overflow-y          :${(conf.exegesis_floats && 'none') || 'auto'};
-        margin-right        :${(conf.exegesis_floats && '0')    || '50px'};
-        background-color    :${conf.css.exegesisBackgroundColor};
+        ${essayPaneFloat}
+        position        :relative; /* does not help ... no difference */
+        padding         :2%;
+
+        width           :${(conf.exegesis_floats && 'auto') ||
+                            textPercStr };
+        //height        :100%; /* works not well: loses y-scroll-bar */
+        height          :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 140px )'};
+        overflow-y      :auto; 
+        margin-right    :${(conf.exegesis_floats && '0')    || '50px'};
+        overflow-x      :hidden; /*patch for css-opacity-transition*/
+        background-color:${conf.css.exegesisBackgroundColor};
     }
+    /*================================*/
+    /* ||// essay pane                */
+    /*================================*/
+
+
 
     /*========================================*/
-    /* //\\ exegesis-modes to sizes           */
+    /* //|| model data legend                 */
     /*========================================*/
-    .bsl-approot.text--none .bsl-media-superroot {
-        width:94%;
-        margin-left:3%;
-        margin-right:3%;
-        /* this sugar needs synch with JS-resize event
-        transition: width 1s ease;
-        */
+    .bsl-model-data-legend {
+        display :inline-block;
+        width   :${fconf.DATA_LEGEND_WIDTH}px;
+        /* effectively affects legend: */
+        text-align  :center;
+        vertical-align:top;
     }
-    .bsl-approot.text--none #bsl-resizable-handle {
-      display: none;
+    .bsl-model-data-legend > * {
+        display :inline-block;
     }
-    .bsl-approot.text--none .bsl-media-root {
-            width       :100%;
-            left        :0;
-    }
+    /*========================================*/
+    /* ||// model data legend                 */
+    /*========================================*/
 
-    @media (max-width: 800px) {
+
+    /*========================================*/
+    /* //|| small desktop                     */
+    /*========================================*/
+    @media (max-width: ${fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
+        .bsl-model-data-legend {
+            display: inline-block;
+            width:100%;
+        }
+        .bsl-text-widget {
+            height  :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 340px )'};
+        }
+    }
+    /*========================================*/
+    /* //|| small desktop                     */
+    /*========================================*/
+
+
+
+    /*========================================*/
+    /* //|| mobile                            */
+    /*========================================*/
+    @media (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
+
+        .bsl-approot {
+            /* solves the problem of double y-scroll-bar and truncated legend:
+               todm: needs other solution, padding is a patch ...
+            */
+            padding-bottom:40px;
+        }
 
         /* todm: this "double-selector" is a poor practice */
         #bsl-media-superroot.bsl-media-superroot {
@@ -179,8 +251,8 @@
         }
     }
     /*========================================*/
-    /* \\// exegesis-modes to sizes           */
-    /* \\// page primary sections             */
+    /* ||// mobile                            */
+    /* ||// page primary sections             */
     /******************************************/
     `;
 
@@ -200,11 +272,11 @@ ret += `
     }
 
     /* visibility per model-mode */
-    .proof--claim .main-legend.proof {
+    .theorion--claim .main-legend.proof {
         display:none;
     }
     /* visibility per model-mode */
-    .proof--proof .main-legend.claim {
+    .theorion--proof .main-legend.claim {
         display:none;
     }
 
@@ -434,12 +506,16 @@ ret +=`
     // //\\ video icon
     //==================================
     ret +=`
-        .video-icon-fragment > img {
+        .video-icon-img-container > img {
             position:relative;
-            width:20px;
+            /* version 1685: because of not perfect design,
+               the jerk of caption happens when this number
+               is greater than 18px
+            */
+            width:18px;
             top:1px;
         }
-        .video-list-popup .video-icon-fragment > img {
+        .video-list-popup .video-icon-img-container > img {
             top:2px;
             vertical-align:middle;
         }

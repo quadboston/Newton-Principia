@@ -1,0 +1,39 @@
+
+
+
+*::*proof|english
+            <dense class='orig';>For let AF be equal to the greatest width, 
+            and let the ¦widthest-rectangular¦parallelogram FAaf¦¦ be completed. 
+            This parallelogram will be greater than the difference of 
+            the ¦inscribed-rectangles¦inscribed¦¦ and ¦circumscribed-rectangles¦circumscribed¦¦ figures; 
+            but if its width AF is diminished indefinitely, 
+            it will become less than any given rectangle.  Q.E.D.</dense>
+
+
+
+*::*proof|hypertext
+
+            We can create a ¦widthest-rectangular¦new end rectangle¦¦ whose area is greater or equal to 
+            the difference in area between the 
+            ¦inscribed-rectangles¦inscribed¦¦ and ¦circumscribed-rectangles¦circumscribed¦¦ rectangles. 
+            We guarantee it is no smaller than the difference by making its base equal 
+            to the greatest width. 
+
+            As the number of rectangles is increased indefinitely, the width of each 
+            decreases indefinitely, including the ¦widthest-rectangular¦rectangle¦¦ just mentioned. 
+            Since its width decreases indefinitely, its area decreases indefinitely, 
+            becoming arbitrarily close to 0. So the difference between the areas of the 
+            ¦inscribed-rectangles¦inscribed rectangles¦¦, the
+            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure¦figure¦¦ in between them becomes arbitrarily close to 0. 
+            For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
+            ¿?
+            {
+                "default" : "left",
+                "highest y is on the right" : "right"
+            }
+            ¿
+            .
+
+
+
+

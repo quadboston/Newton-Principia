@@ -1,0 +1,8 @@
+claim-latin.content.txt
+claim-xixcentury.content.txt
+claim-mix.content.txt
+proof-xixcentury.content.txt
+proof-xix-century-II.content.txt
+proof-xix-century-II.svg.txt
+proof-xix-century-III.content.txt
+proof-mix.content.txt

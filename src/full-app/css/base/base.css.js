@@ -37,7 +37,7 @@ var ret = `
     { 
         ${body_DesktopOverflow}
     }
-    @media only screen and (max-width:${fconf.mobileDetectorMediaThreshold}px) {
+    @media only screen and (max-width:${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
         body
         { 
             overflow-y:auto;

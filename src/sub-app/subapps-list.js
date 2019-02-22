@@ -23,6 +23,7 @@
                 {  src:"css/media.css.js" },
                 {  src:"core/media.js" },
                 {  src:"core/create-proof-slider.js" },
+                {  src:"core/limit-demos.js" },
                 {  src:"models/study-model.js" },
                 {  src:"models/media-model.js" },
                 {  src:"models/main-legend.js" },

@@ -26,18 +26,22 @@
 
     function fullResize( arg )
     {
-        fmethods.test_mobile_and_attach_exegesis_tabs();
+        //ccc( 'mobile='+ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]());
+        //ccc( 'small desktop='+ns.widthThresholds
+        //     [ fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD ]() );
 
-        //.??
-        //.application part
-        //.solves draggee-point-arrows-misplacement
-        //.after resize
 
-        sapp.upcreate();
-        sDomF.resizeMenuDecorations();
+        //.todo not the best architecture
+        //.apparently
+            //.application part
+            //.solves draggee-point-arrows-misplacement
+            //.after resize
+        //!!'doDividorSynch'
+
         fmethods.restrictMediaDimensions && fmethods.restrictMediaDimensions(
             null, null, !!'doDividorSynch'
         );
+        sapp.upcreate();
     }
 
     function setupSiteWideEvents()

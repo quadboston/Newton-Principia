@@ -44,12 +44,10 @@
     //=========================================================
     function create8prepopulate_svg()
     {
-
         //..........................
         // //\\ media
         //..........................
         ////makes svg-draw-area
-        //pitfall: no dice: sDomN.svg = $$.c( 'svg' ).a( 'class', '...' ).a( 'id', ... ).to( ... )();
         sDomN.svg = document.createElementNS( fconf.svgNS, 'svg' );
         sDomN.mmedia = sDomN.svg;
         sDomN.svg.setAttributeNS( null, 'class', cssp +'-media' );
@@ -71,7 +69,7 @@
         //..........................
     }
     //=========================================================
-    // \\//
+    // \\// updates and creates media
     //=========================================================
 
 

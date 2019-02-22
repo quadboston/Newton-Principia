@@ -1,0 +1,20 @@
+
+*::*proof|english
+{ "dataLegend":"0",
+  "mediaBgImage" : "",
+  "menuCaption" : "English"
+}
+*..*
+
+If you deny it, let them become ultimately unequal, and let their ultimate difference be D.
+
+Therefore, they cannot approach nearer to each other than by the given difference D,
+
+contrary to the hypothesis.
+
+
+<br><br>
+Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Central Argument." by Dana Densmore. Published by Green Lion Press 2003, 2010.
+
+
+

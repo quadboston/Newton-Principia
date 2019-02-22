@@ -101,9 +101,9 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
-            .addClass('main-legend')
-            .addClass('proof')
-            .to(sDomN.medRoot)
+            .cls( 'main-legend proof' )
+            .to( sDomN.modelDataLegend$ )
+            //sDomN.medRoot)
             ();
         var tr = ssF.tr;
 
@@ -254,9 +254,8 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.claim = $$
             .c('table')
-            .addClass('main-legend')
-            .addClass('claim')
-            .to(sDomN.medRoot)
+            .cls( 'main-legend claim' )
+            .to( sDomN.modelDataLegend$ )
             ();
         var tr = ssF.tr;
 

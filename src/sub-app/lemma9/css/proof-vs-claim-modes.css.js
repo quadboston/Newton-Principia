@@ -36,12 +36,12 @@
     /* //\\ modes          */
     /*      proof vs claim */
     /*=====================*/
-    .bsl-approot.proof--proof .proof--claim,
-    .bsl-approot.proof--claim .proof--proof {
+    .bsl-approot.theorion--proof .theorion--claim,
+    .bsl-approot.theorion--claim .theorion--proof {
         visibility:hidden;
     }    
-    .bsl-approot.proof--claim .proof--claim,
-    .bsl-approot.proof--proof .proof--proof {
+    .bsl-approot.theorion--claim .theorion--claim,
+    .bsl-approot.theorion--proof .theorion--proof {
         visibility:visible;
     }    
     /*=====================*/

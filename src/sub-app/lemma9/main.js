@@ -37,12 +37,13 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
+        sapp.init_sapp_II = init_sapp_II;
     }
 
     //=========================================================
     // //\\ inits app
     //=========================================================
-    function init_sapp( finish ) 
+    function init_sapp() 
     {
         //==========================
         //:at landing, copies study-model-pars from config to app model
@@ -57,10 +58,13 @@
         //======================================
         sapp.upcreate();
         ssF.initMediaModel();
-        finish();
         //======================================
         // \\// inits model and it's view
         //======================================
+    }
+    function init_sapp_II() 
+    {
+        ssF.initMediaModel_II();
     }
     //=========================================================
     // \\// inits app

@@ -35,7 +35,7 @@
                 function init()
                 {
                     contentDom = document.getElementById('script');
-                    window.b$l.ajax.send( 'texts.txt', null,
+                    window.b$l.ajax.send( 't.txt', null,
                         onSuccess,
                         function ( txt ) { 
                             contentDom.textContent = txt;
@@ -73,6 +73,8 @@
         </script>
     </head>
     <body>
+        Run this file from the server like:<br>
+        http://localhost/bwork/principia/prj/Newton-Principia/contents/lemma3/test.html
         <div id="script"></div>
     </body>
 </html>

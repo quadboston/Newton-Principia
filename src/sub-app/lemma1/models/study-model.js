@@ -12,10 +12,12 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
+
     //.registry is used for study-model-elements or media-model-elements
     var rg          = sn('registry',ssD);
 
     var sapp        = sn('sapp');
+    var sDomN       = sn('dnative', sapp);
 
     var tr          = ssF.tr;
     var tp          = ssF.tp;
@@ -56,6 +58,13 @@
         var claimRatio      = ssD.claimRatio;
         var tiltRatio       = ssD.tiltRatio;
 
+
+        var mat	        = ns.mat        = ns.mat || {};
+        var limDemo     = mat.limDemo   = mat.limDemo || {};
+        if( !limDemo.instance ) {
+            limDemo.instance = limDemo.setDemo( limDemo.dataSamples.beats_sample );
+        }
+        limDemo.instance.doSelfTest( sDomN.svg );
 
 
         //===================================================

@@ -15,6 +15,7 @@
     var rg          = sn('registry',ssD);
     
     var sapp        = sn('sapp'); 
+    var amode       = sn('mode',sapp);
     var srg_modules = sn('srg_modules', sapp);
     var sDomN       = sn('dnative', sapp);
 
@@ -39,16 +40,32 @@
     }
 
 
-    function menuExtraWork( mtype, mid )
+    function menuExtraWork( teaf_id, leaf_id )
     {
-        if( mtype !== 'text' || (sapp.sappId !== 'lemma2' && sapp.sappId !== 'lemma3') ) {
+
+
+
+
+        if( teaf_id !== 'aspect' || (sapp.sappId !== 'lemma2' && sapp.sappId !== 'lemma3') ) {
             return;
         }
+
+        ///refreshes legacy state of subapplication for l23 ...
+        ///should be in some state enging specific to subapplication ...
+        ss.study.sdata.view.isClaim = amode.theorion === 'claim';
+
+
         ///=========================================================================
         /// //\\ 2) Switch: This controls the translation switch ...?Newton/informal
         ///      function l23_english_latin_switch()
         ///=========================================================================
-        var isHyper = mid === 'hypertext';
+        var isHyper = leaf_id === 'hypertext';
+
+        ///apparently this and letter-labels is somehow disabled to
+        ///prevent conflict with
+        ///colors of topic engine
+        ///... possibly look here: var l = constructSingleInList_dom("text", list, style+" label");
+        ///... in lemma2/core/gui-construct.js
         document.querySelectorAll('.label').forEach( function( el ) {
             el.style.visibility = isHyper ? 'hidden' : 'visible';
         });
@@ -197,10 +214,10 @@
     ///====================================================================
     function create_digital_legend()
     {
-        sDomN.digitalLegend$ = $$  .c('div')
-            .to( sDomN.medRoot )
-            .a('id',"areadesk")
-            .a('class',"areas dull desc default-content main-legend")
+        sDomN.digitalLegend$ = $$.dict(
+            "areadesk",
+            "areas dull desc default-content main-legend",
+            sDomN.modelDataLegend$ )
             .html(`
 
                 <div class="line"></div>

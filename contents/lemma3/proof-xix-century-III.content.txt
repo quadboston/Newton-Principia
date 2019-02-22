@@ -1,0 +1,66 @@
+
+<br><br><br>
+
+We can now return to Newton's text:<br>
+
+
+
+<b>Lemma 3:</b>
+
+        \[
+            \text{if } f \text{ is monotonic, then }
+            \overset{U}{\int_{a}^{b}} = \overset{L}{\int_{a}^{b}}.
+        \]
+\(\blacktriangle \) Proof:
+
+    For any partition \( P_\delta, \)
+
+    \[
+        u-l =
+        \sum_{i=0}^{n-1} ( \phi^i_\text{cir} - \phi^i_\text{ins} ) d_i
+
+                \le      \quad \quad \quad  \\
+
+        \quad   
+                d_{max} \sum_{i=0}^{n-1} ( \phi^i_\text{cir} - \phi^i_\text{ins} ) 
+
+                \le       \quad \quad \quad   \\
+
+        \quad  \quad  \quad  \quad  
+                d_{max} ( f(b) - f(a) ) 
+
+                \le       \quad \quad \text{(majorant)}  \\
+
+
+        \delta ( f(b) - f(a) ). \quad \quad \quad \\
+    \]
+    Therefore
+        \[
+
+                     U^{-}_{\delta} - L^{+}_{\delta} \underset{ \delta \to 0 } \to 0
+        \]
+and using Lemma 1 with
+
+\(  h = U^{-}_{\delta}, h' = L^{+}_{\delta},
+    G_\delta = \{ h \}, G'_\delta = \{ h' \}, \) we conclude
+    \( U^{-}_{\delta} = L^{+}_{\delta}
+\)
+\( \blacksquare \)<br>
+Note: The (majorant) item corresponds to the highest column with biggest base in original text.<br>
+
+<br><br><br>
+
+
+
+
+
+
+
+<b>Historical Notes</b><br><br>
+
+Apparently Newton's reasoning in Lemma 1 and Lemma 3 are different than of XIX and XX centuries.<br><br>
+
+Newton calculates area taking as granted its existence. XIX century reasoning first constructs real numbers and defines a limit out of "logical material" and then proves the Lemmas in this context.
+When mathmatical part of the theory is built, it is applied to to Geometry or Physics if required.<br><br>
+
+

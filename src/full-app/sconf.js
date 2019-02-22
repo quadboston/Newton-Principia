@@ -14,8 +14,7 @@
     to_sconf =
     {
 
-        defaultMobileTabSelection : 'claim-og',
-        //defaultMobileTabSelection : 'proof-og',
+        //defaultMobileTabSelection : 'claim-og', //todo ... make better naming
 
         mediaOffset : [ 0, 0 ],                 //in respect to media-root
         mediaDefaultWidthPercent : 40,          //in respect to total width

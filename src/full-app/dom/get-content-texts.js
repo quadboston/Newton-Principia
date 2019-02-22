@@ -37,9 +37,11 @@
     ///==========================================
     function get_content_texts( continueAppInit )
     {
+        var allEssaions;
+        ///this ajax load takes all aux. files and list of contents
         nsmethods.loadAjaxFiles(
             [
-                { id: 'texts', link:'contents/' + sapp.sappId + '/texts.txt' }
+                { id: 'contents-list.txt', link:'contents/' + sapp.sappId + '/contents-list.txt' }
                ,{ id: 'references',
                   link:'contents/' + sapp.sappId + '/references.html'
                 }
@@ -47,10 +49,38 @@
                   link:'contents/' + sapp.sappId + '/topic-map.json'
                 }
             ],
-            onSuccess
+            on_auxiliaryLoad_success
         );
 
-        function onSuccess( loadedFilesById )
+        ///This ajax load takes contents-files, concatenates them, and calls
+        ///final subroutine, on_contentFilesLoad_Success.
+        function on_auxiliaryLoad_success( loadedFilesById_I )
+        {
+            var list = loadedFilesById_I[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
+            var listForAjax = [];
+            list.forEach( function( listItem ) {
+                if( !listItem.match( /^\s*$/ ) ) {
+                    listForAjax.push({
+                          id: listItem,
+                          link:'contents/' + sapp.sappId + '/' + listItem
+                    });
+                }
+            });
+            nsmethods.loadAjaxFiles( listForAjax, function( loadedFilesById_II ) {
+                    listForAjax.forEach( function( listItem ) {
+                        allEssaions += loadedFilesById_II[ listItem.id ].text;
+                    });
+                    on_contentFilesLoad_Success( loadedFilesById_I );
+                }
+            );
+        }
+
+
+        
+        //====================================================
+        // //\\ on content Files Load Success
+        //====================================================
+        function on_contentFilesLoad_Success( loadedFilesById )
         {
             references.text = loadedFilesById.references.text || references.text || '';
 
@@ -61,55 +91,56 @@
                 topics.topicDef = tmRack.topicDef;
                 sconf.mediaBgImage = tmRack.mediaBgImage;
             }
-            var txt = loadedFilesById.texts.text;
-            var parts = txt.split( /\*::\*/g );
+            var txt = allEssaions; //loadedFilesById.texts.text;
+
+            var ESSAYON_DIVIDOR = /\*::\*/g;
+            var essayons = txt.split( ESSAYON_DIVIDOR );
             sconf.submenus = {};
-            parts.forEach( function(part) {
+            essayons.forEach( function(essayon) {
 
-                //.removes empty parts
-                if( part.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
+                //.removes empty essayons
+                if( essayon.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
 
                 //--------------------------------------
-                // //\\ splits the part ...
+                // //\\ splits the essayon ...
                 //--------------------------------------
-                //      part = proof|english precontent
+                //      essayon = proof|english precontent
                 //             precontent = \nJSON*..*\n content 
-                //             JSON part is optional                
+                //             JSON essayon is optional                
                 //              
-                //      below: command[1] = proof
-                //             command[2] = english
-                //             command[3] = precontent
+                //      below: ess_instructions[1] = theophase: claim, proof, theorems, neutral, ... 
+                //             ess_instructions[2] = essaspect: english,... latin, ...
+                //             ess_instructions[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
-                var command = part.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
+                var ess_instructions = essayon.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
-                if( command && command[3] ) {
-                    var com1 = command[1];
-                    var com2 = command[2];
-                    var wPreText = command[3];
+                if( ess_instructions && ess_instructions[3] ) {
+                    var theophase = ess_instructions[1];
+                    var essaspect = ess_instructions[2];
+                    var wPreText = ess_instructions[3];
                     var wIx = wPreText.indexOf("*..*");
                     if( wIx > -1 ) {
                         var wHeader = wPreText.substring(0, wIx-1);
-                        var essayHeader = JSON.parse( wHeader );
                         wPreText = wPreText.substring( wIx+4 );
                     }
-                    rawTexts[ com1 ] = rawTexts[ com1 ] || {};
-                    rawTexts[ com1 ][ com2 ] =
+                    var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
+
+                    rawTexts[ theophase ] = rawTexts[ theophase ] || {};
+                    rawTexts[ theophase ][ essaspect ] =
                     {
-                        text:wPreText,
-                        header:essayHeader
+                        bodyscript:wPreText, essayHeader:essayHeader
                     };
 
                     sconf.submenus = sconf.submenus || {};
-
-                    setMenu( com1, 'proof' )
-                    setMenu( com2, 'text' )
-                    //ccc( com1, com2, essayHeader );
+                    setMenu( theophase, 'theorion' )
+                    setMenu( essaspect, 'aspect' )
+                    //ccc( theophase, essaspect, essayHeader );
 
                     //=======================================
                     // //\\ parses and sets menu
                     //=======================================
-                    function setMenu( com, mtype )
+                    function setMenu( leafId, menu_tNod_id )
                     {
                         //=======================================
                         // //\\ how submenu built
@@ -117,7 +148,7 @@
                             /*
                             submenus :
                             {
-                                proof: {
+                                theorion: {
                                     list:
                                     [
                                         { id:'claim' },
@@ -125,48 +156,46 @@
                                     ],
                                     'default' : 'claim'
                                 },
-
-                                text: {
+                                aspect: {
                                     list:
                                     [
                                         { id:'latin',   caption:'Latin' },
-                                        { id:'english', caption:'English' },
-                                        { id:'hypertext', caption:'Lite' }
-                                    ],
-                                    'default' : 'hypertext'
+                                    ....
                                 }
                                 //worked
                                 ,decorations: {
                                     list:
-                                    [
-                                        { id:'origin'},
-                                        { id:'modern'},
-                                        { id:'both' }
-                                    ],
-                                    'default' : 'both'
-                                }
+                                ....
                             }
                             */
                         //=======================================
                         // \\// how submenu built
                         //=======================================
-                        var men = sconf.submenus[ mtype ] = sconf.submenus[ mtype ] ||
+                        var men = sconf.submenus[ menu_tNod_id ] = sconf.submenus[ menu_tNod_id ] ||
                              {  list : [],
-                                "default" : com,
+                                //.will be overriden if aspect-default is preset in script
+                                "default" : leafId,
                                 duplicates : {}
                              };
-                        //ccc( 'checing dup ' + com + ' ' + mtype  + ' men=', men); 
-                        if( !men.duplicates[ com ] ) {
-                            //var menuItem = { id:com, caption:essayHeader.menuCaption } 
-                            var menuItem = { id:com };
-                            men.duplicates[ com ] = menuItem;
-                            men.list.push(menuItem );
+                        //ccc( 'checing dup ' + leafId + ' ' + menu_tNod_id  + ' men=', men); 
+                        if( !men.duplicates[ leafId ] ) {
+                            //var menuItem = { id:aspect, caption:essayHeader.menuCaption } 
+                            var menuItem = { id:leafId };
+                            men.duplicates[ leafId ] = menuItem;
+                            men.list.push( menuItem );
+                            if( menu_tNod_id === 'theorion' ) {
+                                sDomN.theorionMenuMembersCount =
+                                    ( sDomN.theorionMenuMembersCount || 0 ) + 1;
+                            } else if( menu_tNod_id === 'aspect' ) {
+                                sDomN.aspectionMenuMembersCount =
+                                    ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
+                            }
                         }
-                        if( essayHeader && essayHeader["default"] === "1" ) {
-                            men["default"] = com;
+                        if( essayHeader["default"] === "1" ) {
+                            men["default"] = leafId;
                         }
-                        if( essayHeader && essayHeader.menuCaption && mtype === 'text' ) {
-                            men.duplicates[ com ].caption = essayHeader.menuCaption;
+                        if( essayHeader.menuCaption && menu_tNod_id === 'aspect' ) {
+                            men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                         }
                     }
                     //=======================================
@@ -174,7 +203,7 @@
                     //=======================================
                 }
                 //--------------------------------------
-                // \\// splits the part ...
+                // \\// splits the essayon ...
                 //--------------------------------------
 
             });
@@ -182,6 +211,10 @@
             //ccc( sconf.submenus[ 'proof' ]);
             continueAppInit();
         }
+        //====================================================
+        // \\// on content Files Load Success
+        //====================================================
+
     }
 
 

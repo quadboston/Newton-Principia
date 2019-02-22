@@ -39,217 +39,77 @@
     //=========================================================
     function createLemmaDom()
     {
-        sDomF.createMenu();
-        sDomF.createExegesisTabs();
+        //:vital ... this is may be a css filler ...
+        $$.dct(cssp + '-menu-filler', fapp.fappRoot$)();
 
-        //=====================================
-        // //\\ arrived with lemma23-artist-GUI
-        //=====================================
-        var wwPaginatorButton$  = $$
-           .c( 'a' )
-           .a( 'class', 'page-btn desktop-link page-btn--right' )
-           .a( 'href', 'javascript:void(0)' )
-           .html('<img src="images/right-page-triangle.svg">') 
-           .to( rootvm.approot )
-           ;
-        var wwPaginatorButton$  = $$
-           .c( 'a' )
-           .a( 'class', 'page-btn desktop-link page-btn--left' )
-           .a( 'href', 'javascript:void(0)' )
-           .html('<img src="images/left-page-triangle.svg">') 
-           .to( rootvm.approot )
-           ;
-        //=====================================
-        // \\// arrived with lemma23-artist-GUI
-        //=====================================
+        //==============================================================
+        // //\\ horizontal Paginator Button
+        //      arrived with lemma23-artist-GUI
+        //==============================================================
+        ['right', 'left'].forEach( function( bname ) {
+            var wwPaginatorButton$ = $$
+               .c( 'a' )
+               .cls( 'page-btn desktop-link page-btn--'+bname )
+               .href( 'javascript:void(0)' )
+               .html('<img src="images/'+bname+'-page-triangle.svg">') 
+               .to( fapp.fappRoot$ );
+        });
+        //==============================================================
+        // \\// horizontal Paginator Button
+        //==============================================================
 
 
+        //==============================================================
+        // //\\ essay and media panes
+        //==============================================================
+        for( wx=0; wx<2; wx++ ) {
+            if( ( wx===0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ||
+                ( wx===1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ) {
+                // //\\ creates essaion pane
+                //      "essaion superroot"
+                var w = cssp+'-text-widget';
+                var wCls = w;
+                if( fconf.attach_menu_to_essaion_root ) {
+                    wCls += ' leftside-menuholder';
+                }
+                sDomN.essaionsRoot$ = $$.dict( w, wCls, fapp.fappRoot$ );
+                // \\// creates essaion pane
+            } else {
+                //: creates media superroot
+                var wCSS = cssp + '-media-superroot';
+                var medSuperroot$ = sDomN.medSuperroot$ = $$.dict(
+                    wCSS,
+                    wCSS,
+                    fapp.fappRoot$ );
+            }
+        }
+        //==============================================================
+        // \\// essay and media panes
+        //==============================================================
 
-        //--------------------------------------------------------
-        // //\\ binds widget to containers
-        //--------------------------------------------------------
-        var medSuperroot$  = $$.c( 'div' )
-            .a( 'id', cssp + '-media-superroot' )
-            .addClass( cssp + '-media-superroot' )
-            .to( rootvm.approot )
-            ;
-        var medSuperroot   = medSuperroot$();
-        sDomN.medSuperroot$ = medSuperroot$;
-        sDomN.medSuperroot  = medSuperroot;
-        //--------------------------------------------------------
-        // \\// binds widget to containers
-        //--------------------------------------------------------
-        sDomF.createTextWidget();
+
+
+        //==============================================================
+        // //\\ model data legend
+        //==============================================================
+        sDomN.modelDataLegend$ = $$.dct( cssp + '-model-data-legend',
+                                         fapp.fappRoot$ );
+        //==============================================================
+        // \\// model data legend
+        //==============================================================
+
+
+
+        sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
-
-        //--------------------------
-        // //\\ in media superroot
-        //--------------------------
-
-        //--------------------------
-        // //\\ top media controls
-        //--------------------------
-        var topMediaControls$ = sDomN.topMediaControls$ = $$.c( 'div' )
-            .addClass( 'top-media-controls' )
-            .to( medSuperroot )
-            ;
-        var wwHelpOnTop$ = $$.c( 'div' )
-            .addClass( 'help-box' )
-            .to( topMediaControls$() )
-            ;
-        sDomN.runVideoHelpButton$ = $$
-            .c('img')
-            .addClass( "video-help-button" )
-            .css('width','35px')
-            .a( 'src', "images/camera-lightbulb.png" )
-            .a( 'alt', "Watch videohelp" )
-            .a( 'title', "Watch videohelp" )
-            /*
-            .e('mouseover', function() {
-                sDomN.helpBoxText$.innerHTML = 'Watch videohelp';
-            })
-            */
-            .to( wwHelpOnTop$() )
-            ;
-        sDomN.idleHelpButton$ = $$
-            .c('img')
-            .addClass( "model-help" )
-            .a( 'src', "images/lightbulb.svg" )
-            .a( 'alt', "Hover over the diagram to interact" )
-            //.a( 'title', "Hover over the diagram to interact" )
-            .to( wwHelpOnTop$() )
-            ;
-        sDomN.helpBoxText$ = $$
-            .c('span')
-            .addClass( "help-box__text" )
-            .html('Hover over the diagram to interact')
-            .to( wwHelpOnTop$() )
-            ;
-        //--------------------------
-        // \\// top media controls
-        //--------------------------
-
-        //..........................
-        // //\\ media root
-        //..........................
-        var medRoot$ = $$
-            .c( 'div' )
-            .addClass( cssp + '-media-root' )
-            .addClass( 'model' )
-            .to( medSuperroot )
-            ;
-        var medRoot        = medRoot$();
-        sDomN.medRoot$     = medRoot$;
-        sDomN.medRoot      = medRoot;
-        if( fconf.NAVIGATION_DECORATIONS_ALWAYS_VISIBLE ) {
-            sDomN.medRoot$.addClass( 'active-tip' );
-        }
-        //..........................
-        // \\// media root
-        //..........................
-
-
-        //..........................
-        // //\\ video help
-        //..........................
-        // //\\ local video
-        //. . . . . . . . . . . . . 
-        sDomN.videoWrap$ = $$
-            .c( 'div' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video-wrap' )
-            //.to( sDomN.medRoot )
-            .to( sDomN.text$() )
-            ;
-        sDomN.localVideo$ = $$
-            .c( 'video' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video' )
-            .a('muted','true')
-            .a('controls','true')
-            .a('preload','true')
-            .to( sDomN.videoWrap$() )
-            ;
-        sDomN.localVideoSource$ = $$
-            .c( 'source' )
-            .a('type','video/mp4')
-            .to( sDomN.localVideo$() )
-            ;
-        //. . . . . . . . . . . . . 
-        // \\// local video
-        //. . . . . . . . . . . . . 
-
-        //..........................
-        // //\\ iframed video
-        //. . . . . . . . . . . . . 
-        sDomN.iframedVideo$ = $$
-            .c( 'iframe' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video-iframe' )
-            .a('frameborder','0')
-            .a('webkitallowfullscreen','true')
-            .a('mozallowfullscreen','true')
-            .a('allowfullscreen','true')
-            //.to( sDomN.medRoot )
-            .to( sDomN.videoWrap$() )
-            ;
-        //. . . . . . . . . . . . . 
-        // \\// iframed video
-        //..........................
-
-        //..........................
-        // //\\ close-video button
-        //. . . . . . . . . . . . . 
-        sDomN.doCloseVideoHelp$ = $$
-            .c( 'div' )
-            .a('title','close video')
-            .css( 'display', 'none' )
-            .addClass( cssp + '-close-html-button' )
-            .html('X')
-            //.to( sDomN.medRoot )
-            .to(sDomN.videoWrap$())
-            ;
-        //..........................
-        // \\// close-video button
-        //. . . . . . . . . . . . . 
-    
-        fmethods.create_video_help_manager();
-        //..........................
-        // \\// video help
-        //..........................
-
-        //..........................
-        // //\\ study image
-        //..........................
-        sDomN.bgImage$ = $$
-            .c( 'img' )
-            .a( 'class', cssp +'-bg-image' )
-            .to( sDomN.medRoot )
-            ;
-        if( sconf.mediaBgImage ) {
-            sDomN.bgImage$.a( 'src', sconf.mediaBgImage );
-        } else {
-            sDomN.bgImage$.addClass( 'disabled' );
-        }
-        //..........................
-        // \\// study image
-        //..........................
-
-        ssF.create8prepopulate_svg();
-        //.disabled ... effect is too strong
-        //$$.$( sDomN.mmedia ).e( 'mouseover', sDomF.detected_user_interaction_effect );
-        ssF.create_digital_legend();
-        sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
-        if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
-            sDomF.create_original_picture_vis_slider();
-        }
-        //--------------------------
-        // \\// in media superroot
-        //--------------------------
+        fmethods.populate_mediaSupreRoot();
     }
 
 
-    ///this makes one-time effect of fading-out the original picture
+
+    //===================================================================
+    // //\\ this makes one-time effect of fading-out the original picture
+    //===================================================================
     function detected_user_interaction_effect()
     {
         if( detected_user_interaction_effect_DONE ) return;
@@ -257,8 +117,12 @@
 
         //todm: this is not very well thought:
         //      sapp.dnative && sapp.dnative.bgImage$
-        sapp.dnative && sapp.dnative.bgImage$ && sapp.dnative.bgImage$.addClass( 'in-study' );
+        sapp.dnative && sapp.dnative.bgImage$ &&
+                        sapp.dnative.bgImage$.addClass( 'in-study' );
     }
+    //===================================================================
+    // \\// this makes one-time effect of fading-out the original picture
+    //===================================================================
 
 
 }) ();

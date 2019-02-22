@@ -25,7 +25,6 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'load_init_sapp';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     return;
 
 
@@ -35,12 +34,13 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
+        sapp.init_sapp_II = init_sapp_II;
     }
 
     //=========================================================
     // //\\ inits app
     //=========================================================
-    function init_sapp( finish ) 
+    function init_sapp() 
     {
         /*
         //==========================
@@ -55,14 +55,17 @@
         //======================================
         // //\\ inits model and it's view
         //======================================
-        //sapp.upcreate();
-
+        sapp.upcreate();
         ssF.initMediaModel();
-        finish();
         //======================================
         // \\// inits model and it's view
         //======================================
         
+    }
+
+    function init_sapp_II() 
+    {
+        ssF.initMediaModel_II && ssF.initMediaModel_II();
     }
     //=========================================================
     // \\// inits app

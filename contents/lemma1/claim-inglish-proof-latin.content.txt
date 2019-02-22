@@ -1,0 +1,50 @@
+
+*::*claim|english
+{ "dataLegend":"0",
+  "mediaBgImage" : "",
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+Quantities, as well as the ratios of quantities, which in any finite time you please
+
+constantly tend towards equality, and before the end of that time
+
+approach nearer to each other than by any given difference you please,
+
+become ultimately equal.
+
+<br><br>
+Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Central Argument." by Dana Densmore. Published by Green Lion Press 2003, 2010.
+
+
+
+
+*::*proof|latin
+{ "dataLegend":"0",
+  "mediaBgImage" : ""
+}
+*..*
+
+<pre>
+
+Si negas; fiant ultimo inæquales, &amp fit earum ultima differentia D.
+
+Ergo nequeunt propius ad æqualitatem accedere quam
+pro data differentia D: contra hypothesin.
+
+</pre>
+
+    <br>Sources</b><br>
+
+        <a href="https://www.e-rara.ch/zut/wihibe/content/titleinfo/338026" target="_blank">
+        Latin. 3rd Edition. Beginning of the book.</a><br>
+
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/349621" target="_blank">
+        Lemma 1. Latin. 3rd Edition</a>
+
+
+
+
+

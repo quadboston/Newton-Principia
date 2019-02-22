@@ -1,0 +1,13 @@
+
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+        Eædem rationes ultimæ sunt etiam rationes æqualitatis, ubi parallelogrammorum latitudines AB, BC, CD, &amp;c. 
+        sunt inæquales, &amp; omnes minuuntur in infinitum.
+
+
+

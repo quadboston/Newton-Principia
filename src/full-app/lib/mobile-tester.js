@@ -1,7 +1,10 @@
 /*
+    Enables width detection synch between media-query and JS.
     Creates threshold point in @media ... and
-    sets the test-method to test mobile mode.
-    At completion the test, calls callback if any supplied.
+    sets the JS-test-method to this threshold.
+
+    The test-method can be called from JavaScript with two methods
+    of test enabled: boolean test value return and callback.
 */
 ( function() {
     var ns          = window.b$l;
@@ -9,44 +12,48 @@
     var sn          = ns.sn;    
     var cssp        = ns.CSS_PREFIX;
 
+    ns.widthThresholds = {};
+    ns.create_mobile_tester = create_mobile_tester;
+    return;
+
+
+
+
 
 
 
     ///=========================================================
-    /// constructs mobile_tester
+    /// Creates media query, test-probe-div, and test-method.
     ///=========================================================
-    ns.create_mobile_tester = function( domElToAttachTo, mediaThreshold )
+    function create_mobile_tester( domElToAttachTo, mediaThreshold )
     {
+        var thresId = ''+mediaThreshold;
+        if( ns.widthThresholds[ thresId ] ) return;
+        var cls = cssp+'-mobile-width-detector-'+mediaThreshold;
         var tester = $$
-           .c( 'div' )
+           .dct( cls, domElToAttachTo )
            .css( 'position', 'absolute' )
-           .css( 'visibility', 'hidden' )
-           .addClass( cssp+'-mobile-width-detector' )
-           .to( domElToAttachTo )
-           ;
+           .css( 'visibility', 'hidden' );
 
-        $$ .c( 'style' )
+        $$ .style()
            .to( document.head )
            .html( `
-                .bsl-mobile-width-detector {
+                .${cls} {
                     width:200px;
                 }
                 @media only screen and (max-width: ${mediaThreshold}px) {
-                    .bsl-mobile-width-detector {
+                    .${cls} {
                         width:100px;
                     }
                 }
            `);
         
-        ns.test_mobile_mode = function( cb )
+        ns.widthThresholds[ thresId ] = function( cb )
         {
             var testWidth = tester().getBoundingClientRect().width;
-            if( testWidth <150 ) {
-                var mobile = true;
-            } else {
-                var mobile = false;
-            }
+            var mobile = testWidth <150;
             cb && cb(mobile);
+            return mobile;
         };
     }
 

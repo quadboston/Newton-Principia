@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="utf-8">
+        <!--meta name="viewport" 
+                content="width=device-width, initial-scale=1.0,
+                maximum-scale=1.0, minimum-scale=1.0"
+        -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <script src="../../src/vendor/bsl/ajax/ajax.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              CommonHTML: { linebreaks: { automatic: true } },
+              "HTML-CSS": { linebreaks: { automatic: true } },
+              SVG:        { linebreaks: { automatic: true } }
+            });
+        </script>
+        <script type="text/javascript"
+                  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" 
+                  defer
+        >
+        </script>
+
+        <script>
+            var ccc = window.console.log;
+
+            ( function() {
+	            var ns	= window.b$l;
+                var contentDom;
+
+                window.addEventListener( 'DOMContentLoaded', init );
+                function init()
+                {
+                    contentDom = document.getElementById('script');
+                    window.b$l.ajax.send( 'proof-xix-century-II.content.txt', null,
+                        onSuccess,
+                        function ( txt ) { 
+                            contentDom.textContent = txt;
+                        }
+                    );
+                }
+                function onSuccess( ajy )
+                {
+                    var txt = ajy.xml.responseText;
+                    //we give this up: no time to develop this after MathJax parser
+                    //txt = txt.replace( /\n/g, '<br>\n' );
+                    contentDom.innerHTML = txt;
+                    runWhenMathJaxIsLoaded();
+                }
+
+                function runWhenMathJaxIsLoaded()
+                {
+                    if( !window.MathJax ) {
+                        ccc( 'still waiting ' + Date.now() );
+                        //.no way to avoid this ... mj doc does not help:
+                        setTimeout( runWhenMathJaxIsLoaded, 100 );
+                        return;
+                    }
+                    ccc( 'MathJax is loaded. ' + Date.now() );
+
+                    //MathJax.Hub.Typeset() 
+                    //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
+                    //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
+                    //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
+
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub,contentDom]);
+                }
+
+            }) ();
+        </script>
+    </head>
+    <body>
+        Run this file from the server like:<br>
+        http://localhost/bwork/principia/prj/Newton-Principia/contents/lemma3/test.html
+        <div id="script"></div>
+    </body>
+</html>

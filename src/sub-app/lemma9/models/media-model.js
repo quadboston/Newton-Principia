@@ -190,13 +190,13 @@
         wCCA( 'area-ACE', medCurvPivots,       tC, point_A.medpos, point_E.medpos );
         wCCA( 'area-ABD', medCurvPivots,       tB, point_A.medpos, point_D.medpos );
 
-        paintCurvArea( 'area-Ace', 'proof--proof tfamily-proof' );
+        paintCurvArea( 'area-Ace', 'theorion--proof tfamily-proof' );
 
-        paintCurvArea( 'area-Abd', 'proof--proof tfamily-proof' );
+        paintCurvArea( 'area-Abd', 'theorion--proof tfamily-proof' );
 
-        paintCurvArea( 'area-ACE', 'proof--claim tfamily-claim' );
+        paintCurvArea( 'area-ACE', 'theorion--claim tfamily-claim' );
 
-        paintCurvArea( 'area-ABD', 'proof--claim tfamily-claim' );
+        paintCurvArea( 'area-ABD', 'theorion--claim tfamily-claim' );
         function paintCurvArea( areaId, fullMode )
         {
             var area = rg[ areaId ];
@@ -247,12 +247,12 @@
             $$.addClass( fullMode + ' tofill', area.mediael);
         }
         //:calls to calculate and paint
-        //removed by project-manager: paintLikeAGE( 'AGE', 'proof--claim tfamily-claim' );
-        //paintLikeAGE( 'AFD', 'rgba( 255,0,0, 0 )', 'proof--claim' );
-        //removed by project-manager: paintLikeAGE( 'AFD', 'proof--claim tfamily-claim' );
+        //removed by project-manager: paintLikeAGE( 'AGE', 'theorion--claim tfamily-claim' );
+        //paintLikeAGE( 'AFD', 'rgba( 255,0,0, 0 )', 'theorion--claim' );
+        //removed by project-manager: paintLikeAGE( 'AFD', 'theorion--claim tfamily-claim' );
 
-        paintLikeAGE( 'Age', 'proof--proof tfamily-proof' );
-        paintLikeAGE( 'Afd', 'proof--proof tfamily-proof' );
+        paintLikeAGE( 'Age', 'theorion--proof tfamily-proof' );
+        paintLikeAGE( 'Afd', 'theorion--proof tfamily-proof' );
         //==========================================
         // \\// linear areas
         // \\// paints areas
@@ -279,6 +279,7 @@
 
         } else {
             ssF.initMediaModel = initMediaModel;
+            ssF.initMediaModel_II = initMediaModel_II;
         }
         return;
         // \\//\\// ends imperative part of the module
@@ -293,12 +294,13 @@
         {
             sDomF.topicModel_2_css_html();
             ssF.initDragModel();
-            sDomF.populateMenu();
+        }
+
+        function initMediaModel_II()
+        {
             ssF.create_proofSlider();
             ssF.mediaModelInitialized = true;
-        };
-
-
+        }
 
         //==========================================
         // //\\ paint helpers

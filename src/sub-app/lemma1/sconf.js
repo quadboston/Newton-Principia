@@ -56,13 +56,14 @@
         //----------------------------------
         //point e    28x46
         //point A    28x456 
-        var pictureWidth = 504;
-        var pictureHeight = 495;
-        var activeAreaOffsetX = 28; //28; 
-        var activeAreaOffsetY = 46; 
+        var pictureWidth = 1000;
+        var pictureHeight = 1000;
+
+        //var activeAreaOffsetX = 28; //28; 
+        //va/r activeAreaOffsetY = 46; 
         //.set it from graph editor
-        var pictureActiveArea = 456 - activeAreaOffsetY;
-        var mod2med_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
+        //var pictureActiveArea = 456 - activeAreaOffsetY;
+        //var mod2med_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
@@ -153,12 +154,13 @@
             //LEGEND_NUMERICAL_SCALE : 1,
 
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            mod2med_scale       : mod2med_scale,
-            med2mod_scale       : 1/mod2med_scale,
+            //mod2med_scale       : mod2med_scale,
+            //med2mod_scale       : 1/mod2med_scale,
 
-            activeAreaOffsetX   : activeAreaOffsetX,
-            activeAreaOffsetY   : activeAreaOffsetY +
-                                  ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 ),
+            //activeAreaOffsetX   : activeAreaOffsetX,
+            //activeAreaOffsetY   : activeAreaOffsetY +
+            //                      ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 ),
+
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
 

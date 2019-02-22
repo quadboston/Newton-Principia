@@ -39,7 +39,7 @@
             .c( 'div' )
             .a( 'class', cssp +'-resizable-handle' )
             .a( 'id', cssp +'-resizable-handle' )
-            .to( sDomN.medSuperroot )
+            .to( sDomN.medSuperroot$ )
             ();
         sDomN.mediaHorizontalHandler = $$
             .c( 'img' )
@@ -47,7 +47,7 @@
             .to( wResizer )
             ();
         ///dynamic CSS placeholder
-        sDomN.mediaHorizontalHandlerCSS$ = $$.c('style').to(document.head);
+        sDomN.mediaHorizontalHandlerCSS$ = $$.style().to(document.head);
         //---------------------------
         // \\// dom roots
         //---------------------------
@@ -145,83 +145,125 @@
         ///=============================================================================
         function restrictMediaDimensions( proposedWidth, rootW, doDividorSynch )
         {
-            rootW = rootW || rootvm.approot.getBoundingClientRect().width;
+            //=============================
+            // //\\ prepares parameters
+            //=============================
+            var isMobile = ns.widthThresholds
+                            [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();
+            var isSmalDesk = ns.widthThresholds
+                            [ fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD ]();
+            rootW = rootW || fapp.fappRoot$().getBoundingClientRect().width;
+
+            // //\\ getting max legend Height
             var legendHeight = 0;
             sDomN.mainLegends.forEach( function( legend ) {
                 var hh = legend.getBoundingClientRect().height * 1.5;
                 if( legendHeight < hh ) { legendHeight = hh; }
             });
+            // \\// getting max legend Height
 
+            // //\\ gets media aspect ratio: todo must be already known
             var medBox  = sDomN.mmedia.getBoundingClientRect();
             var curMedW = medBox.width;
             var curMedH = medBox.height;
             var aRat    = curMedH / curMedW;
+            // \\// gets media aspect ratio
+            //=============================
+            // \\// prepares parameters
+            //=============================
 
-            var superBox  = sDomN.medSuperroot.getBoundingClientRect();
-            //ccc( 'cur w= ' + superBox.width );
+
+            //=============================
+            // //\\ calculates new values
+            //=============================
+            //.gets current pane-of-interest width
+            var superBox  = sDomN.medSuperroot$().getBoundingClientRect();
+            //.estimates pane-of-interest new width
             var newSuperW = proposedWidth || superBox.width;
-            //ccc( 'proposedWidth= ' + proposedWidth );
-
-            var newMedW   = newSuperW - sconf.main_horizontal_dividor_width_px;
+            //.checking for model-data-legend-width
+            var legendWidthContribution = !isSmalDesk ? fconf.DATA_LEGEND_WIDTH : 0;
+            //.estimates new media width
+            var newMedW   = newSuperW -
+                                sconf.main_horizontal_dividor_width_px -
+                                legendWidthContribution;
             var newMedH   = aRat * newMedW;
-
-            /*
-            ccc( ' ratio=' + aRat.toFixed(2) +
-            ' newSuperW=' + newSuperW.toFixed(2) +
-            ' ' top=' + superBox.top.toFixed(2) +
-            ' window.innerHeight=' + window.innerHeight )
-            */
 
             var MIN_SUPRE_W = sconf.MINIMAL_MEDIA_CONTAINER_WIDTH +
                               sconf.main_horizontal_dividor_width_px;
             var topLimit = window.innerHeight - legendHeight - medBox.top;
             newSuperW = Math.max(
-                MIN_SUPRE_W,
-                Math.min( newSuperW,
-                          topLimit / aRat + sconf.main_horizontal_dividor_width_px
-                )
-            );
-            //ccc( 'restricted= ' + newSuperW );
+                            MIN_SUPRE_W,
+                            Math.min( newSuperW,
+                                      topLimit / aRat +
+                                      sconf.main_horizontal_dividor_width_px
+                            ));
 
-            ///===================================
-            ///makes "soft css" ... non-inline-css
-            //it was: height : ${newMedH.toFixed(2)}px;
-            var videoW = ( ( rootW - newSuperW ) * 0.8); //todo why 0.8? box-sizing model?
+            var textPaneW_perc = cssmods.calculateTextPerc(
+                100 * ( newSuperW + legendWidthContribution ) / rootW );
+            var textPaneW_str = textPaneW_perc.toFixed(2) + '%';
+
+            // //\\ video preparations
+            //.todo why 0.8? box-sizing model?
+            var videoW = textPaneW_perc / 100 * rootW * 0.8;
             var videoH = videoW*10/16;
             var videoW_px = videoW.toFixed(2) + 'px';
             var videoH_px = videoH.toFixed(2) + 'px';
             var videoW_mobile_px = (0.94*rootW).toFixed(2) + 'px';
             var videoH_mobile_px = (0.94*rootW*10/16).toFixed(2) + 'px';
-            var textPaneW = cssmods.calculateTextPerc( 100 * newSuperW / rootW ).toFixed(2) + '%';
+            // \\// video preparations
+            //=============================
+            // \\// calculates new values
+            //=============================
 
+
+
+            //========================================
+            // //\\ throws calculated values into CSS
+            //========================================
+            var wMobileThres = fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD;
             sDomN.mediaHorizontalHandlerCSS$.html(`
                 .bsl-media-superroot {
                    width  :${newSuperW}px;
                 }
                 .bsl-text-widget {
-                    width :${(fconf.exegesis_floats && 'auto') || textPaneW};
+                    width :${(fconf.exegesis_floats && 'auto') || textPaneW_str};
                 }
                 .bsl-showreel-video-wrap {
-                    width : ${videoW_px};
-                    height : ${videoH_px};
+                    width   : ${videoW_px};
+                    height  : ${videoH_px};
                 }
-                @media only screen and (max-width: 800px) {
+                @media only screen and (max-width:${wMobileThres}px) {
                     .bsl-showreel-video-wrap {
-                        width       :${videoW_mobile_px};
-                        height      :${videoH_mobile_px};
+                        width   :${videoW_mobile_px};
+                        height  :${videoH_mobile_px};
                     }
                 }
             `);
-            ///===================================
+            //========================================
+            // \\// throws calculated values into CSS
+            //========================================
 
 
-            //.synchs resize and dividor-slider states
+
+            //===============================================
+            // //\\ synchs results with dividor-slider states
+            //===============================================
             if( doDividorSynch ) { 
                 pointWrap_local.achieved.achieved = newSuperW;
             }
+            //===============================================
+            // \\// synchs results with dividor-slider states
+            //===============================================
 
-            //fmethods.alignVideoPlaceholders && fmethods.alignVideoPlaceholders();
+
+            //===============================================
+            // //\\ updated model and its view
+            //===============================================
             sapp.upcreate();
+            //===============================================
+            // \\// updated model and its view
+            //===============================================
+
             return newSuperW;
         }
         ///=============================================================================

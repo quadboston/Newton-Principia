@@ -7,7 +7,9 @@
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
     cssmods.initSiteWideCSS = initSiteWideCSS;
+    //0000000000000000000000000000000000000000
     return;
+    //0000000000000000000000000000000000000000
 
 
 
@@ -15,22 +17,7 @@
 
 
 
-    /*
-        it was:
-        @import "base/variables";
-        @import "base/base";
-        @import "base/typography";
-        @import "pages/landing";
-        @import "pages/inner-page";
-        @import "components/nav-bar-and-drawer";
-        @import "components/switch";
-        @import "components/slider";
-        @import "components/pagination";
-        @import "components/checkbox";
-        @import "components/tabs";
-        @import "components/how-to";
-        @import "components/model";
-    */
+
     function initSiteWideCSS(cssp, fconf) 
     {
         //data-entry: put module names here in order
@@ -41,13 +28,14 @@
             landing
             inner-page
             nav-bar-and-drawer
-            topic
             pagination
             checkbox
             tabs
             how-to
             main-sapp
-            sapp-slider-menu-topic
+            menu-on-top
+            essaion-pane
+            menu-on-left
         `
 
 

@@ -1,5 +1,6 @@
 ( function() {
     var ns           = window.b$l;
+    var $$           = ns.$$;
     var sn           = ns.sn;
     var fapp         = ns.sn('fapp' ); 
     var fconf        = ns.sn('fconf',fapp);
@@ -8,27 +9,30 @@
     var sapp         = sn('sapp');
     var html         = sn('html');
 
+    html.siteTitlePage = siteTitlePage;
+    //000000000000000000000000000000
+    return;
+    //000000000000000000000000000000
 
 
 
 
-    html.landingCore = function()
+
+
+
+    function siteTitlePage()
     {
+        var fappRoot$ = fapp.fappRoot$;
+
         var pmode = sapp.pageMode;
-        var landingCore = '';
+        var coreText = '';
         var landingPath = window.location.pathname;
-
-
-
-
 
 
         //==================================================
         // //\\ header
         //==================================================
-
-        landingCore += `
-        <header>
+        $$.c('header').to( fappRoot$() ).html(`
             <div class="wrapper">
                 <div class="landing-text">
                     <h1 class="landing-title">Interactive Illustrations
@@ -51,8 +55,7 @@
             </div>
             <img class="newton-img" src="images/landing-img.jpg">
             <!-- END wrapper -->
-        </header>
-        `;
+        `);
         //==================================================
         // \\// header
         //==================================================
@@ -60,38 +63,34 @@
 
 
 
-
-
-
-
         //==================================================
         // //\\ table of contents
         //==================================================
-        landingCore += `
-            <div class="landing-table-of-contents wrapper">
+        var coreText =`
                 <h2>Table of contents</h2>
                 <ul>
                     <!--<li><a href="#">Lemma 1</a></li>-->
         `;
 
         fconf.sappModulesArray.forEach( function( sappItem ) {
-            landingCore += `
+            coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
                     <span class="table-title">${sappItem.caption}</span>
                     <span class="table-tag">View</span></a>
                 </li>
             `;
         });
-        landingCore += `
+        coreText += `
                 <li><a href="#" class="disabled">
                         <span>Lemma X</span>
                         <span class="table-tag">Coming Soon</span>
                     </a>
                 </li>
              </ul>
-        </div>
-        <!--END table of contents-->
+             <!--END table of contents-->
         `;
+        $$  .c('div').addClass('landing-table-of-contents wrapper').to( fappRoot$() )
+            .html(coreText);
         //==================================================
         // \\// table of contents
         //==================================================
@@ -100,9 +99,7 @@
         //==================================================
         // //\\ how-to
         //==================================================
-        landingCore += `
-
-        <div class="how-to">
+        coreText = `
             <div class="wrapper">
                 <h2>Usage Guide</h2>
                 <div class=" how-to-grid">
@@ -130,9 +127,10 @@
                 </div>
             </div>
             <!-- END wrapper -->
-        </div>
          <!--END how to-->
         `;
+        $$  .c('div').addClass('how-to').to( fappRoot$() )
+            .html(coreText);
         //==================================================
         // \\// how-to
         //==================================================
@@ -143,14 +141,10 @@
 
 
 
-
-
         //==================================================
         // //\\ about wrapper
         //==================================================
-        landingCore += `
-
-        <div class="about wrapper">
+        coreText = `
                 <div class="about__author">
                     <p class="about__author__text">
                         Programming by Konstantin Krillov and John Scott.<br>
@@ -161,14 +155,12 @@
                         Produced by John Scott.
                     </p>
                 </div>
-        </div>
-        <!--END about-->
         `;
+        $$  .c('div').addClass('about wrapper').to( fappRoot$() )
+            .html(coreText);
         //==================================================
         // \\// about wrapper
         //==================================================
-
-        return landingCore;
-    };
+    }
 }) ();
 

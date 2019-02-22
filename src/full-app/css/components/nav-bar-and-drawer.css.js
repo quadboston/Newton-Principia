@@ -1,6 +1,7 @@
 (function() {
     var ns  = window.b$l;
     var sn  = ns.sn;
+
     var cssmods = sn('cssModules');
     var THIS_MODULE = 'nav-bar-and-drawer';
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
@@ -37,8 +38,11 @@ Nav Bar Styles
   display: flex;
   grid-area: nav;
   position: fixed;
-  height: 75px;
+
+  height: ${fconf.attach_menu_to_essaion_root ? 50 : 75}px;
+
   width: 100%;
+
   padding-top:20px;
   align-items: center;
   top:0px;
@@ -261,7 +265,7 @@ Media Queries
         }
     }
 }*/
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
   .pager__right, .pager__left {
     display: none; }
   #navDrawer {

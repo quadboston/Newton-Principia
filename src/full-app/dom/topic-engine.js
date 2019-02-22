@@ -22,9 +22,8 @@
     var references  = sn('references', ssD);
 
     var globalCss = '';
-    var contRacks = []; //key pairs:
+    var esseyions_halfBuilt = []; //key pairs:
 
-    sDomF.createTextWidget = createTextWidget;
     sDomF.topicModel_2_css_html = topicModel_2_css_html;
     sDomF.repopulateContent = repopulateContent;
     sDomF.originalTexts_2_html_texts = originalTexts_2_html_texts;
@@ -38,63 +37,50 @@
 
 
 
-
-    ///==========================================
-    ///creates html for text pane
-    ///==========================================
-    function createTextWidget()
-    {
-        sDomN.text$ = $$
-            .c('div')
-            .a( 'id', cssp+'-text-widget' )
-            .addClass( cssp+'-text-widget' )
-            .to(rootvm.approot)
-            ;
-    };
-
-
     function originalTexts_2_html_texts()
     {
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
         ///loops via all texts which were scripted by content contributor
-        Object.keys( rawTexts ).forEach( function( proofMode ) {
+        Object.keys( rawTexts ).forEach( function( theophase ) {
             ///loops inside of specific proof-mode
-            var essays = rawTexts[proofMode];
-            Object.keys( essays ).forEach( function( key ) {
+            var essays = rawTexts[theophase];
+            Object.keys( essays ).forEach( function( essaspect ) {
                 //.RM "original-text" means CSS class of exegesis-text-html
                 //.which is obtained by parsing raw-exegesis-script
-                var classStr = 'original-text ' + proofMode + ' ' + key;
-                var scriptRack = essays[key].text;
+                var classStr = 'original-text ' + theophase + ' ' + essaspect;
+                var bodyscript = essays[essaspect].bodyscript;
 
                 //-----------------------------------------------------
                 // //\\ preliminary prepasing to extract active content
                 //-----------------------------------------------------
-                //      (}{)...(}
-                var splittedRack = scriptRack.split( /\(\}/g );
-                scriptRack = splittedRack.map( function(splitted) {
-                    if( /^\{\)/.test( splitted ) ) {
-                        return JSON.parse(splitted.substr(2));
+                var ACTION_SPLITTER = /¿/g;
+                var ACTION_INDICATOR = /\?/;
+                //possible alternative:
+                //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
+                //var ACTION_INDICATOR = /^\?/;
+
+                var bodySplit = bodyscript.split( ACTION_SPLITTER );
+                var bodyActiveFragments = bodySplit.map( function( splittee ) {
+                    if( ACTION_INDICATOR.test( splittee ) ) {
+                        return JSON.parse( splittee.substring(1) );
                     } else {
-                        return splitted;
+                        return splittee;
                     }
                 });                
                 //-----------------------------------------------------
                 // \\// preliminary prepasing to extract active content
                 //-----------------------------------------------------
 
-                if( !Array.isArray(scriptRack) ) {
-                    scriptRack = [scriptRack];
-                }
                 if( references.text ) {
-                    scriptRack.push( references.text );
+                    bodyActiveFragments.push( references.text );
                 }
-                contRacks.push({
+                esseyions_halfBuilt.push({
                     classStr:classStr,
-                    scriptRack:scriptRack, //atomic text mapped to UI text-pane
+                    bodyActiveFragments:bodyActiveFragments, //atomic text mapped to UI text-pane
                     domComponents:[],
-                    components:[]
+                    html_bFags:[]
                 });
             });
         });
@@ -201,10 +187,10 @@
                     color: black;
                     stroke: black;
                 }
-                .text--english .topic-link.tfamily-${fkey},
-                .text--english .tfamily-${fkey}.tostroke,
-                .text--hypertext .topic-link.tfamily-${fkey},
-                .text--hypertext .tfamily-${fkey}.tostroke {
+                .aspect--english .topic-link.tfamily-${fkey},
+                .aspect--english .tfamily-${fkey}.tostroke,
+                .aspect--hypertext .topic-link.tfamily-${fkey},
+                .aspect--hypertext .tfamily-${fkey}.tostroke {
                     color: rgba(${fcolor}, 1);
                     stroke: rgba(${fcolor}, 1);
                 }
@@ -223,8 +209,8 @@
                 .bsl-approot .tfamily-${fkey}.tofill.op1.highlighted {fill-opacity:1;  }/*todm patch*/
 
                 /* this specifity must yield to topicid */
-                .text--english .tfamily-${fkey}.tofill,
-                .text--hypertext .tfamily-${fkey}.tofill {
+                .aspect--english .tfamily-${fkey}.tofill,
+                .aspect--hypertext .tfamily-${fkey}.tofill {
                     fill: rgba(${fcolor}, 1);
                 }
                 /*---------------*/
@@ -251,46 +237,46 @@
     {
         //purges all contents and can be a bug
         //bs tabs are transcluded into the same el:
-        //sDomN.text$.html('');
+        //sDomN.essaionsRoot$.html('');
 
-        contRacks.forEach( function( contentRack ) {
+        esseyions_halfBuilt.forEach( function( halfBuilt_ess ) {
 
-            if( !contentRack.domEl ) {
-                contentRack.domEl = $$
+            if( !halfBuilt_ess.domEl ) {
+                halfBuilt_ess.domEl = $$
                   .c('div')
-                  .addClass( contentRack.classStr )
+                  .addClass( halfBuilt_ess.classStr )
                   //*******************************************************
                   //.here page content injects into html for the first time
                   //*******************************************************
-                  .to( sDomN.text$() )
+                  .to( sDomN.essaionsRoot$() )
                   ();
             }
-            transformText( contentRack );
+            activeFrags_2_htmlFrags( halfBuilt_ess );
 
-            var domComponents = contentRack.domComponents;
-            contentRack.components.forEach( function( component, cix ) {
-                if( !domComponents[cix] ) {
-                    domComponents[cix] = $$
+            var domComponents = halfBuilt_ess.domComponents;
+            halfBuilt_ess.html_bFags.forEach( function( bFrag, fix ) {
+                if( !domComponents[fix] ) {
+                    domComponents[fix] = $$
                         .c('div')
                         .css( 'display', 'inline' )
                         //*******************************************************
                         //.here page content injects into html for the first time
                         //*******************************************************
-                        .to( contentRack.domEl )
+                        .to( halfBuilt_ess.domEl )
                         ();
-                    domComponents[cix].innerHTML = component.text;
+                    domComponents[fix].innerHTML = bFrag.text;
                 }
                 //todo: ineffective: do throttle or create html only once and
                 //      update only CSS-display
-                if( component.modeIsTogglable ) {
-                    domComponents[cix].innerHTML = component.text;
+                if( bFrag.modeIsTogglable ) {
+                    domComponents[fix].innerHTML = bFrag.text;
                 }
-                fireMathJax( domComponents[cix] );
+                BodyMathJax_2_HTML( domComponents[ fix ] );
             });
         });
     }
 
-    function fireMathJax( domEl )
+    function BodyMathJax_2_HTML( domEl )
     {
         mathJax_2_HTML();
         ///===============================================
@@ -299,12 +285,12 @@
         function mathJax_2_HTML()
         {
             if( !window.MathJax ) {
-                ccc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
+                //c cc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
                 //.no way to avoid this ... mj doc does not help:
                 setTimeout( mathJax_2_HTML, 100 );
                 return;
             }
-            //ccc( 'MathJax is loaded. ' + Date.now() );
+            //c cc( 'MathJax is loaded. ' + Date.now() );
 
             //MathJax.Hub.Typeset() 
             //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
@@ -315,49 +301,69 @@
         }
     }
 
-    ///parses active and passive components of content-script
-    ///to initiated components to be used in run-time
-    function transformText( contentRack )
+
+
+    //===============================================
+    //
+    //===============================================
+    function activeFrags_2_htmlFrags( halfBuilt_ess )
     {
         var res = 
-            '\\|([^\\|]+)\\|' + //catches topicId
-               '([^\\|]+)'    + //catches topic caption
-            '\\|\\|';
+            '\\¦([^¦]+)\\¦' + //catches topicId
+               '([^¦]+)'    + //catches topic caption
+            '\\¦\\¦';
         var re = new RegExp( res, 'g' );
         //var re_amp = /\&/g;
-        var components = contentRack.components;
-        contentRack.scriptRack.forEach( function( textEl, tix ) {
-            if( typeof( textEl ) === 'object' ) {
-                var theScript = textEl['default'];
+        var html_bFags = halfBuilt_ess.html_bFags;
+        halfBuilt_ess.bodyActiveFragments.forEach( function( activeFrag, tix ) {
+
+            //--------------------------------------------------------
+            // //\\ finalizes script active instructions
+            //--------------------------------------------------------
+            if( typeof( activeFrag ) === 'object' ) {
+                var finalActive = activeFrag['default'];
                 Object.keys( ssModes ).forEach( function( smode ) {
-                    theScript = ( ssModes[smode] && textEl[smode] ) || theScript;
-                    //if( ssModes[smode] && textEl[smode] )
-                    //ccc( 'new script:' + ( ssModes[smode] && textEl[smode] ) );
+                    finalActive = ( ssModes[smode] && activeFrag[smode] ) || finalActive;
+                    //if( ssModes[smode] && activeFrag[smode] )
+                    //ccc( 'new script:' + ( ssModes[smode] && activeFrag[smode] ) );
                 });
             } else {
-                var theScript = textEl;
+                var finalActive = activeFrag;
             }
-            txt = theScript; //.replace( re_amp, '&amp;' );
+            //--------------------------------------------------------
+            // \\// finalizes script active instructions
+            //--------------------------------------------------------
+
+
+
+            //--------------------------------------------------------
+            // //\\ html conversion of body fragments
+            //--------------------------------------------------------
+            txt = finalActive; //.replace( re_amp, '&amp;' );
             if( topics.convert_lineFeed2htmlBreak ) {
                 //.converts text from <pre> format
                 var txt = ns.pre2fluid( txt ) 
             }
-            if( typeof( textEl ) === 'object' ) {
+            if( typeof( activeFrag ) === 'object' ) {
                 ////reparses text every time ...
                 ////todo: ineffective ... parses toggles at "each change"
-                components[tix] =
+                html_bFags[tix] =
                 {
-                    modeIsTogglable : typeof( textEl ) === 'object',
+                    modeIsTogglable : typeof( activeFrag ) === 'object',
                     text : txt.replace( re, '<a class="topic-link $1">$2</a>' )
                 };
             } else {
                 ////makes it up only once ... no redundant parsing
-                components[tix] = components[tix] ||
+                html_bFags[tix] = html_bFags[tix] ||
                 {
                     modeIsTogglable : false,
                     text : txt.replace( re, '<a class="topic-link $1">$2</a>' )
                 };
             }
+            //--------------------------------------------------------
+            // \\// html conversion of body fragments
+            //--------------------------------------------------------
+
         });
     }
 
@@ -403,56 +409,56 @@
                 globalCss +=`
 
                     /* //\\ fill color variations */
-                    .bsl-approot.text--english .topicid-${topicId}.tofill,
-                    .bsl-approot.text--hypertext .topicid-${topicId}.tofill {
+                    .bsl-approot.aspect--english .topicid-${topicId}.tofill,
+                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill {
                         fill: ${tcolorFill};
                     }
-                    .bsl-approot.text--english .highlighted.topicid-${topicId}.tofill,
-                    .bsl-approot.text--hypertext .highlighted.topicid-${topicId}.tofill {
+                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill,
+                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill {
                         fill: ${tcolorFill};
                     }
                     /* \\// fill color variations */
 
                     /* //\\ fill opacity variations */
-                    .bsl-approot.text--english .topicid-${topicId}.tofill,
-                    .bsl-approot.text--hypertext .topicid-${topicId}.tofill {
+                    .bsl-approot.aspect--english .topicid-${topicId}.tofill,
+                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill {
                         fill-opacity:0.2;
                     }
-                    .bsl-approot.text--english .highlighted.topicid-${topicId}.tofill,
-                    .bsl-approot.text--hypertext .highlighted.topicid-${topicId}.tofill {
+                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill,
+                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill {
                         fill-opacity:0.5;
                     }
-                    .bsl-approot.text--english .topicid-${topicId}.tofill.op1,
-                    .bsl-approot.text--hypertext .topicid-${topicId}.tofill.op1 {
+                    .bsl-approot.aspect--english .topicid-${topicId}.tofill.op1,
+                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill.op1 {
                         fill-opacity:0.6;
                     }
-                    .bsl-approot.text--english .highlighted.topicid-${topicId}.tofill.op1,
-                    .bsl-approot.text--hypertext .highlighted.topicid-${topicId}.tofill.op1 {
+                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill.op1,
+                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill.op1 {
                         fill-opacity:1;
                     }
                     /* \\// fill opacity variations */
 
 
                     /* //\\ stroke color variations */
-                    .bsl-approot.text--english .topic-link.${topicId},
-                    .bsl-approot.text--english .main-legend .topicid-${topicId},
-                    .bsl-approot.text--english .topicid-${topicId}.tostroke,
+                    .bsl-approot.aspect--english .topic-link.${topicId},
+                    .bsl-approot.aspect--english .main-legend .topicid-${topicId},
+                    .bsl-approot.aspect--english .topicid-${topicId}.tostroke,
 
-                    .bsl-approot.text--hypertext .topic-link.${topicId},
-                    .bsl-approot.text--hypertext .main-legend .topicid-${topicId},
-                    .bsl-approot.text--hypertext .topicid-${topicId}.tostroke {
+                    .bsl-approot.aspect--hypertext .topic-link.${topicId},
+                    .bsl-approot.aspect--hypertext .main-legend .topicid-${topicId},
+                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tostroke {
                         stroke: ${tcolorStroke};
                         color: ${tcolorStroke};
                     }
                     /* \\// stroke color variations */
 
                     /* //\\ stroke opacity variations */
-                    .bsl-approot.text--english .topicid-${topicId}.tostroke,
-                    .bsl-approot.text--hypertext .topicid-${topicId}.tostroke {
+                    .bsl-approot.aspect--english .topicid-${topicId}.tostroke,
+                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tostroke {
                         stroke-opacity:0.6;
                     }
-                    .bsl-approot.text--english .highlighted.topicid-${topicId}.tostroke,
-                    .bsl-approot.text--hypertext .highlighted.topicid-${topicId}.tostroke {
+                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tostroke,
+                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tostroke {
                         stroke-opacity:1;
                     }
                     /* \\// stroke opacity variations */
@@ -515,7 +521,7 @@
             //========================================================
             //c cc( 'domEls=', domEls );
             //.finds all anchors bound to the link-key
-            var anchors = sDomN.text$().querySelectorAll( 'a.topic-link.' + topicId );
+            var anchors = sDomN.essaionsRoot$().querySelectorAll( 'a.topic-link.' + topicId );
             anchors.forEach( function(attachee) {
 
                 //.fixes goodies missed at creation

@@ -1,0 +1,97 @@
+*::*proof|xixcentury
+{
+  "mediaBgImage" : "",
+  "menuCaption" : "XIX Century",
+  "default" : "0",
+  "dataLegend":"0"
+}
+*..*
+
+
+<b>Notations</b><br><br>
+
+
+We will study a bounded function defined on closed interval \( [a,b] \overset f \to \mathbb{R}. \) <br><br>
+
+For given ordered set of numbers \( X = x_0 \lt x_1 \lt ... \lt x_n,
+\text{ where }  x_0 = a \text{ and } x_n = b, \) partition of interval \( [a,b] \) is:
+
+    \[
+        P(X) \overset{\;df} {=} \; \{ \Delta_i\; | \; \Delta_i = [x_i, x_{i+1}] \}.
+    \]
+
+Lengts of component intervals will be denoted as \( d_i = x_{i+1} - x_{i} \) with
+\( d_{max} = max\{d_i\}. \)
+
+<br><br>
+
+For two partitions P' and P'', their mix will be defined as 
+    \[
+        P'P'' \overset{\;df} {=} P(X'  \bigcup X'' ).
+    \]
+
+
+¦circumscribed-rectangles¦
+    Circumscribed
+    \( \Phi_{cir} \)
+¦¦,
+
+inscribed \( \Phi_{ins} \), and interscribed \( \Phi_{inter} \)
+figure is defined as a function:
+
+
+\[ \Delta_i \overset{\Phi_{type}} {\mapsto} \phi^{i}_{\text{type}}, \text{ where } \\
+    \phi^i_\text{cir} = \underset{x \in \Delta_i} {\text{sup}} f(x) \\
+    \phi^i_\text{ins} = \underset{x \in \Delta_i} {\text{inf}} f(x) \\
+    \phi^i_\text{inter} = f(x) \text{ at arbitray } x \in \Delta_i
+\]
+
+In literature, the construct like figure \( \Phi_{type} \) can be called "tagged partition".
+
+<br>
+\(  \)
+<br>
+
+For each type of partition, we define a sum
+
+    \[  \sigma_{type} = \sum_{i=0}^{n-1} d_i \phi^{i}_{type}
+    \]
+
+and employ the following shortcuts:
+
+    \[
+        u = \sigma_{cir},
+        l = \sigma_{ins},
+        r = \sigma_{inter}.
+    \]
+
+
+\( u \) and \( l \) are called upper and lower Darboux sum correspondingly, \( r \) is called Riemann sum.
+
+Riemann sums are not encountered in original Lemma 3, but \( u \) and \( l \)
+match circumscribed and inscribed sums exactly.<br><br>
+
+
+For \( \delta \gt 0 \) if \( \delta \gt \underset{\;\;i} max\{d_i\} \),
+we denote sum as \( \sigma_{type,\delta} \). Likewise, sets of sums constrained by \( \delta \) will be denoted as 
+    \[ 
+            U_\delta = \{ u_\delta \}
+            = \{ u_\delta | \delta \gt \underset{\;\;i} max\{d_i\} \} \\
+            \text{and analogiously } \\
+            R_\delta = \{ r_\delta \}, L_\delta = \{ l_\delta \} \text{ and } \\
+            S_\delta \text{ for either } R_\delta, L_\delta, or R_\delta.
+    \]
+We denote their exact boundaries as:
+
+    \[ 
+            S^+_\delta = \text{ sup } \{ s | s \in S_\delta \} \\
+            S^-_\delta = \text{ inf } \{ s | s \in S_\delta \}
+    \]
+
+At this point of the journey, the distinction from original Lemma 3 appears crucial, instead of calculating the area under curve, we will define it.<br><br>
+
+
+
+
+
+

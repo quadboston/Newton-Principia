@@ -28,6 +28,7 @@
 
 
     ssF.initMediaModel = initMediaModel;
+    ssF.initMediaModel_II = initMediaModel_II;
     return;
 
 
@@ -37,7 +38,10 @@
     {
         sDomF.topicModel_2_css_html();
         //ssF.initDragModel();
-        sDomF.populateMenu();
+    }
+
+    function initMediaModel_II()
+    {
         //ssF.create_proofSlider();
         ssF.mediaModelInitialized = true;
     };

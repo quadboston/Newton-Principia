@@ -20,6 +20,7 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD); //todo should be child of ss
+    var rawTexts    = sn('rawTexts', ssD);
 
     fmethods.create_video_help_manager = create_video_help_manager;
     //000000000000000000000000000000000000000
@@ -39,9 +40,11 @@
     ///=========================================================
     function create_video_help_manager()
     {
-        var menuListPopUp$;
-        sDomN.runVideoHelpButton$.e( 'click', function() {
-            menuListPopUp$.css('display','block');
+        var videoListPopup_onModelPane$;
+        //.this dom el. is to be created when descendants of
+        //.sDomN.medSuperroot$ created in media-super-root.js
+        sDomN.videoListPopup_button_onModelPane$.e( 'click', function() {
+            videoListPopup_onModelPane$.css( 'display','block' );
         });
         sDomN.doCloseVideoHelp$.e( 'click',  function(e) { leaveVideo(); });
 
@@ -70,105 +73,82 @@
         ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
         function spawnVideoList()
         {
-            if( !menuListPopUp$ ) { createPopupPane(); }
-            var iconClass = 'exegesis-tab-icon-placeholder';
+            if( !videoListPopup_onModelPane$ ) { createPopupPane(); }
 
-            var listForPopup = [];
-            var listForExegesisTabs = {};
-            ssD.videoList.forEach( function(item) {
-                if( sapp.sappId !== item.sappId ) return;
+            //:popup list cleanup
+            videoListPopup_onModelPane$.html('');
+            sDomN.videoListPopup_button_onModelPane$.css(
+                'display','none');
 
-                ///----------------------
-                ///prebilds exegesis list
-                ///----------------------
-                if( item.exegesisTab ) {
-                    var selected = true;
-                    if( item.modeType ) {
-                        selected = false;
-                        Object.keys( item.modeType ).forEach( function( modeType ) {
-                            if( amode[ modeType ] === item.modeType[ modeType ] ) {
-                                selected = true;
-                            }
-                        });
-                    }
-                    if( selected ) {
-                        listForExegesisTabs[ iconClass + '_' + item.exegesisTab ] = item;
-                    }
-
-                ///----------------------
-                ///prebilds popup list
-                ///----------------------
-                } else {
-                    var selected = true;
-                    if( item.modeType ) {
-                        selected = false;
-                        Object.keys( item.modeType ).forEach( function( modeType ) {
-                            if( amode[ modeType ] === item.modeType[ modeType ] ) selected = true;
-                        });
-                    }
-                    selected && listForPopup.push( item );
-                }
-            });
-
-            //----------------------------------------------------------
-            // //\\ exegesis tabs
-            //----------------------------------------------------------
+            //:theorion menu cleanup
             ///cleans up video icon placeholders in exegesis-tabs
-            Object.keys( rg[ iconClass ] ).forEach( function( tabKey ) {
-                rg[ iconClass ][ tabKey ].innerHTML = '';
+            var iconClass = 'videoicon-placeholder';
+            ns.eachprop( rg[ iconClass ], function( iconRg$, iid ) {
+                iconRg$.html('');
+                //c cc( iid + ' must become empty=',iconRg$() );
             });
-            ///repopulates video icon placehoders in exegesis-tabs
-            Object.keys( listForExegesisTabs ).forEach( function( itemKey ) {
-                var listItem = listForExegesisTabs[ itemKey ];
-                var itemDom$ = createVideoIconEntry( listItem );
-                itemDom$.to( rg[ iconClass ][ listItem.exegesisTab ] );
-            });
-            //----------------------------------------------------------
-            // \\// exegesis tabs
-            //----------------------------------------------------------
+            var vConf = rawTexts[ amode['theorion'] ][ amode['aspect'] ]
+                           .essayHeader.video;
 
+            if( vConf ) {
+                if( vConf['to model help'] ) {
+                    var listForPopup = [];
+                    listForPopup.push( vConf );
+                    //-------------------------------------------------------------------
+                    // //\\ does populate listForPopup ...
+                    //      only if videos configured for these app states
+                    //-------------------------------------------------------------------
+                    sDomN.videoListPopup_button_onModelPane$.css( 'display','block' );
+                    //shows video-button for non-empty list
+                    addPopupCloseButton();
+                    listForPopup.forEach( function( vConf ) {
+                        var itemDom$ = createVideoIconEntry( vConf );
+                        itemDom$.to( videoListPopup_onModelPane$() );
+                    });
+                    //-------------------------------------------------------------------
+                    // \\// does populate listForPopup ...
+                    //-------------------------------------------------------------------
 
-            //-------------------------------------------------------------------
-            // //\\ does populate listForPopup ...
-            //      only if videos configured for these app states
-            //-------------------------------------------------------------------
-            if( !listForPopup.length ) {
-                sDomN.runVideoHelpButton$.css('display','none'); //hides video-button for empty list
-            } else {
-                sDomN.runVideoHelpButton$.css('display','block'); //shows video-button for non-empty list
-
-                menuListPopUp$.html('');
-                addPopupCloseButton();
-
-                listForPopup.forEach( function( listItem ) {
-                    var itemDom$ = createVideoIconEntry( listItem );
-                    itemDom$.to(menuListPopUp$());
-                });
+                } else {
+                    //----------------------------------------------------------
+                    // //\\ teorion video buttons
+                    //----------------------------------------------------------
+                    var itemDom$ = createVideoIconEntry( vConf );
+                    var dom_already_built = rg[ iconClass ][ amode['theorion'] ];
+                    if( dom_already_built  ) {
+                        itemDom$.to( dom_already_built );
+                    }
+                    //----------------------------------------------------------
+                    // \\// teorion video buttons
+                    //----------------------------------------------------------
+                }
             }
-            //-------------------------------------------------------------------
-            // \\// does populate listForPopup ...
-            //-------------------------------------------------------------------
             return; //rrrrrr
 
-
-
-            function createVideoIconEntry( listItem )
+            ///todm: this desing should be improved, but so far:
+            /// this html-control is removable, so no pointer and click
+            /// must exist when it is removed ... so
+            /// it has a placeholder where it is placed or removed
+            /// and such placeholder is neutral in respect for clicks
+            function createVideoIconEntry( vConf )
             {
                 return $$
-                    .c('div')
-                    .addClass('video-icon-fragment')
-                    .html( '<img class="video-help-button" width="25" src="images/camera-lightbulb.png" ' +
+                    .div()
+                    .cls('video-icon-img-container')
+                    .html( '<img class="video-help-button" width="25"' +
+                           'src="images/camera-lightbulb.png" ' +
                            '>' +
-                           (listItem.caption ? 
-                                ' <span style="vertical-align:middle;">' + listItem.caption + '</span>' :
-                                ''
+                           ( vConf.caption ?
+                             ' <span style="vertical-align:middle;">' +
+                             vConf.caption + '</span>' :
+                             ''
                            )
                     )
                     .css('cursor','pointer')
                     .css('display', 'inline')
                     .e('click', function() {
-                        runVideo( listItem.URL, listItem.isExternal );
-                        menuListPopUp$.css('display','none')
+                        runVideo( vConf.URL, !vConf.isNotExternal );
+                        videoListPopup_onModelPane$.css( 'display', 'none' )
                     })
                     ;
             }
@@ -227,7 +207,7 @@
 
         function createPopupPane()
         {
-            menuListPopUp$ = $$
+            videoListPopup_onModelPane$ = $$
                 .c('div')
                 .addClass( 'video-list-popup' )
                 .css('display','none')
@@ -240,18 +220,18 @@
                 .css('top', '50px')
                 .css('background-color', 'white')
                 .css('z-index','111111111')
-                .to(sDomN.medSuperroot)
+                .to(sDomN.medSuperroot$)
                 ;
         }
         function addPopupCloseButton()
         {
             $$
                 .c('div')
-                .to(menuListPopUp$())
+                .to(videoListPopup_onModelPane$())
                 .css('position','absolute')
                 .css('top','2px')
                 .css('right','5px')
-                .e( 'click', function(){menuListPopUp$.css('display','none')})
+                .e( 'click', function(){videoListPopup_onModelPane$.css('display','none')})
                 .css('cursor','pointer')
                 .html('X')
                 ;

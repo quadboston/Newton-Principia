@@ -147,10 +147,6 @@
     //=====================================================
     $appname = 'app';
     $prod_folder = 'prod';
-    $vendor_folder = 'vendor';
-    $source_folder = 'src-duplicated';
-    //.removes excessive leading path (if any) from links
-    $removable_extra_path_prefix_re = '#^vbsl/vendor/#';
 
     //.needs too much work
     //.for links starting at web root
@@ -264,28 +260,21 @@
             if( $stest )
             {
                 // //\\ link to script discovered in html
-                //echo $link_match[5] . "\n";
+                //echo 'file for engine found: ' . $link_match[5] . "\n";
                 $link_indent = $link_match[1];
                 $module_text = file_get_contents( $link_match[5] );
-                if( $module_text !== FALSE )
+                if( $module_text === FALSE )
                 {
+                    //echo 'empty file for engine: file path = ' . $link_match[5] . "\n";
+                } else {
                     // //\\ app-script-file really exists
                     //      local path to app-script-file = $link_match[5]
-                    //.works well: 
-                    $spath_re = '#^((\.\.\/)*)([^\.].*)\/([^\/]+)$#';
-                    $link_parts = array();
-                    $spath_stest = preg_match( 
-                            $spath_re,
-                            $link_match[5],
-                            $link_parts
-                    );
-                    if( $spath_stest )
-                    {
-                        if( $link_match[2] === 'link' ) {
-                            $assembled_css_file .= $module_text . "\n";
-                        } else {
-                            $assembled_file .= $module_text . "\n";
-                        }
+                    if( $link_match[2] === 'link' ) {
+                        //echo "text added to css engine\n";
+                        $assembled_css_file .= $module_text . "\n";
+                    } else {
+                        //echo "text added to js engine\n";
+                        $assembled_file .= $module_text . "\n";
                     }
                     // \\// app-script-file really exists
                 }
@@ -301,11 +290,12 @@
 
 
 
-    //===================================
-    // //\\ makes engine js and css files
-    //===================================
+    //==========================================
+    // //\\ writes app.min.js and css.js to disk
+    //==========================================
     if( $assembled_file ) {
         //echo substr( $assembled_file, 0, 1000 ) . "\n" . $prod_src_engine . "\n";
+        //file_put_contents( path-to-file, file-content );
         file_put_contents( $prod_src_engine, $assembled_file );
 
         ///does uglifying tasks
@@ -315,22 +305,24 @@
             //.rem this out to find ugl. message locations
             cli( "rm -f $prod_src_engine", "removing concatenated non-uglified" );
         }
+    } else {
+        echo "empty engine " . $prod_src_engine . "\n";
     }
     if( $assembled_css_file ) {
         //echo substr( $assembled_css_file, 0, 1000 ) . "\n" . $prod_css_engine . "\n";
         file_put_contents( $prod_css_engine, $assembled_css_file );
     }
-    //===================================
-    // \\// makes engine js and css files
-    //===================================
+    //==========================================
+    // \\// writes app.min.js and css.js to disk
+    //==========================================
 
 
 
 
     
-    //=============================
-    // //\\ makes landing files
-    //=============================
+    //========================================
+    // //\\ makes index.prod.html and saves it
+    //========================================
     function spawn_landing_file( $content, $regex, $links, $folderto, $fileto )
     {
         $new_content = preg_replace( 
@@ -362,10 +354,10 @@
                         $link_indent .
                         '<script src="' . $prod_min_engine . '"></script>',
                         'index.prod.html', '' );
-    //=============================
-    // \\// makes landing files
-    //=============================
+    //========================================
+    // \\// makes index.prod.html and saves it
+    //========================================
 
-    echo "spawned\n";
+    echo "spawning done\n";
 
 

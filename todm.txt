@@ -1,4 +1,6 @@
 
+//\\// minor todos
+
 fix landing flicker
 add lables in crisp model mode for l23
 extend app to IE11

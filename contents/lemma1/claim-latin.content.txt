@@ -1,0 +1,32 @@
+
+*::*claim|latin
+{ "dataLegend":"0",
+  "mediaBgImage" : "",
+  "menuCaption" : "Latin"
+}
+*..*
+
+<pre>
+Quantitates, ut {&amp;} quantitatum *rationes, quæ ad æqualitatem
+
+tempore quivis finito constanter tendunt, {&amp;} ante
+
+finem temporis illius propius ad invicem accedunt quam pro data
+
+quavis differentia, fiunt ultimo æquales.
+
+
+</pre>
+
+    <br>Sources</b><br>
+
+        <a href="https://www.e-rara.ch/zut/wihibe/content/titleinfo/338026" target="_blank">
+        Latin. 3rd Edition. Beginning of the book.</a><br>
+
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/349621" target="_blank">
+        Lemma 1. Latin. 3rd Edition</a>
+
+
+
+
+

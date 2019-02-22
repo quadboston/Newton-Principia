@@ -73,8 +73,13 @@ var ret = `
   stroke: ${colorMain};
   fill: transparent;
   color: ${colorMain}; }
-  .circumscribed.label {
-    fill: ${colorMain}; }
+
+
+ /* apparently for letter-labels for lemma 2 */
+ .circumscribed.label
+ {
+    fill: ${colorMain};
+ }
 
 .inscribed {
   stroke: ${colorMain};
@@ -113,10 +118,10 @@ svg text {
 #lemma2.bsl-approot .label.f,
 #lemma2.bsl-approot .label.F,
 #lemma2.bsl-approot #widthest-visib-toggler-wrap,
-#lemma2.bsl-approot .bsl-approot.proof--claim .widthest-rectangular,
-.bsl-approot.proof--claim #widthest-visib-toggler-wrap,
+#lemma2.bsl-approot .bsl-approot.theorion--claim .widthest-rectangular,
+.bsl-approot.theorion--claim #widthest-visib-toggler-wrap,
 .widthest-rectangular.invisible,
-.bsl-approot.proof--claim .widthest-rectangular {
+.bsl-approot.theorion--claim .widthest-rectangular {
     display:none;
 }
 
