@@ -59,23 +59,41 @@
 
             // //\\ copy-pasted from gui-art
             //$( ".model" ).on("mouseenter mouseleave",function() {
-            $( '.' + cssp + '-media' ).on("mouseenter mouseleave",function() {
+            sDomN.mmedia$
+                .e( "mouseenter", doToggleHelp )
+                .e( "mouseleave", doToggleHelp )
+                ;
+
+            function doToggleHelp()
+            {
                 toggleChangeFigure();
-                $('.help-box__text').text($('.help-box__text').text() == 
-                    'Hover over the diagram to interact' ?
+                var txtEl = sDomN.helpBoxText$();
+                var defaultT = 'Hover over the diagram to interact';
+                txtEl.innerHTML = txtEl.innerHTML === defaultT ?
                     'Drag the dot to alter the diagram' :
-                    'Hover over the diagram to interact');
-            });
+                    defaultT;
+            }
             
-            gui.showFig = function(){ //in legacy-art-gui is referenced in lemma2.html
-                //no good: var cbox = document.getElementById('checkbox_4').getAttribute('checked');
+            gui.showFig = function(){
+                //https://stackoverflow.com/questions/4754699/
+                //  how-do-i-determine-if-a-checkbox-is-checked
+                //no good: var cbox = document.getElementById(
+                //'checkbox_4').getAttribute('checked');
                 //no good: if($('.figur').is(':checked'))  {
                 var checked = document.getElementById('checkbox_4').checked;
+
                 if(checked)  {
-                    $('.outline').toggle();
+                    //$('.outline').toggle();
+                    $$.qa( '.outline' )().forEach( outlinee => {
+                        //ccc( 'checked', outlinee );
+                        outlinee.style.visibility === 'visible'; //todm ... is this a right action?
+                    });
                     sDomN.figureInternalArea$.removeClass('hidden');
                 }else{
-                    $('.outline').toggle();
+                    $$.qa( '.outline' )().forEach( outlinee => {
+                        //ccc( 'non checked', outlinee );
+                        outlinee.style.visibility === 'hidden';
+                    });
                     sDomN.figureInternalArea$.addClass('hidden');
                 }
             }

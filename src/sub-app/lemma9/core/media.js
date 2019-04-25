@@ -51,7 +51,7 @@
         ////makes svg-draw-area
         //pitfall: no dice: sDomN.svg = $$.c( 'svg' ).a( 'class', '...' ).a( 'id', ... ).to( ... )();
         sDomN.svg = document.createElementNS( fconf.svgNS, 'svg' );
-        sDomN.mmedia = sDomN.svg;
+        sDomN.mmedia$ = $$.$( sDomN.svg );
         sDomN.svg.setAttributeNS( null, 'class', cssp +'-media' );
         sDomN.svg.setAttributeNS( null, 'version', "1.1" );    //todo ??
         sDomN.svg.setAttributeNS( null, 'viewBox', '0 0 ' +

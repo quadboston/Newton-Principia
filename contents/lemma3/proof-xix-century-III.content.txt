@@ -27,12 +27,12 @@ We can now return to Newton's text:<br>
                 \le       \quad \quad \quad   \\
 
         \quad  \quad  \quad  \quad  
-                d_{max} ( f(b) - f(a) ) 
+                d_{max} |f(b) - f(a)| 
 
-                \le       \quad \quad \text{(majorant)}  \\
+                \lt       \quad \quad \text{(majorant)}  \\
 
 
-        \delta ( f(b) - f(a) ). \quad \quad \quad \\
+        \delta |f(b) - f(a)|. \quad \quad \quad \\
     \]
     Therefore
         \[
@@ -46,7 +46,7 @@ and using Lemma 1 with
     \( U^{-}_{\delta} = L^{+}_{\delta}
 \)
 \( \blacksquare \)<br>
-Note: The (majorant) item corresponds to the highest column with biggest base in original text.<br>
+Note: The ¦widthest-rectangular¦(majorant) item¦¦ corresponds to the highest column with biggest base in original text.<br>
 
 <br><br><br>
 

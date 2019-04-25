@@ -2,6 +2,7 @@
 
 ( function () {
     var ns          = window.b$l;
+    var $$          = ns.$$;    
     var sn          = ns.sn;    
 	var bsl	        = ns;
     var fapp        = ns.sn('fapp' ); 
@@ -70,7 +71,7 @@
                 bases           : 4,
                 movables        : {} //key-value for movable jswrap
             });
-            sDomN.mmedia = dr.svgSeg;
+            sDomN.mmedia$ = $$.$( dr.svgSeg );
 
             appstate.movingBasePt = false;
             appstate.showRectPts  = false;

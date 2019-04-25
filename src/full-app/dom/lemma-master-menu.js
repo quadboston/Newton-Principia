@@ -1,3 +1,16 @@
+/*
+        vital jargon:
+            teaf  - menu top level leaf
+            teaf_id = "theorion", "aspect"
+            leaf  - menu low level leaf
+            menu tree is like:
+                teaf_id = "theorion"
+                              leaf_id = claim, proof, ...           
+                teaf_id = "aspect"
+                              leaf_id = latin, english, hypertext, ...           
+*/
+
+
 ( function() {
     var ns          = window.b$l;
     var cssp        = ns.CSS_PREFIX;
@@ -350,7 +363,10 @@
                 }
             }
         }
-        if( sapp.readyToPopulateMenu ) { sapp.upcreate(); }
+        if( sapp.readyToPopulateMenu ) { 
+            //.includes sapp.upcreate();
+            fmethods.restrictMediaDimensions(null, null, !!'doDividorSynch');
+        }
         //==================================================
         // \\// hides or shows image and legend
         //==================================================

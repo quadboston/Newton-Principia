@@ -153,10 +153,7 @@
             var pdom = pt.dom;
 	        //pdom.setAttributeNS(null, "class", "movable ctrlPt tofill");
 	        pdom.setAttributeNS(null, "class", "movable ctrlPt");
-	        //$$.$(pdom).addClass("movable ctrlPt tofill");
 
-
-//start here: ccc( 'ctrl pt=', pt )
 	        pdom.setAttributeNS(null, "cx", ctrlPtXYs_js[i].x);
 	        pdom.setAttributeNS(null, "cy", ctrlPtXYs_js[i].y);
 	        pdom.setAttributeNS(null, "r", sacf.CTRL_RADIUS);

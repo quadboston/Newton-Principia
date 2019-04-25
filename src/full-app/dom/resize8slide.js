@@ -61,7 +61,7 @@
         var frameworkD8D = d8d_p.createFramework( 
             findDraggee,
             //sDomN.medSuperroot,
-            rootvm.approot,
+            fapp.fappRoot$(),
             fconf.DRAG_POINTS_THROTTLE_TIME
         );
         //.........................................
@@ -76,7 +76,11 @@
         var pointWrap_local =
         {
             name                    :'dividor',     //makes a placeholder for handler
+
+            //.means media superroot width in pixels
+            //.this default is irrelevant because it is updated at the first resize
             achieved_at_move        :sconf.mediaDefaultWidthPercent * window.innerWidth,
+
             medpos2dompos           :medpos2dompos
         };
 
@@ -118,14 +122,10 @@
                 case 'up': achWrap.achieved = pointWrap_local.achieved_at_move;
                 break;
                 case 'move':
-                    var rootW = rootvm.approot.getBoundingClientRect().width;
                     var newSuperW = restrictMediaDimensions(
-                        achWrap.achieved - arg.move[0],
-                        rootW
+                        achWrap.achieved - arg.move[0]
                     );
                     pointWrap_local.achieved_at_move = newSuperW;
-                    //ccc( 'move='+arg.move[0] + ' achieved=' + achWrap.achieved +
-                    //' new ach=' + pointWrap_local.achieved_at_move );
                 break;
             }
         }
@@ -143,73 +143,173 @@
         /// //\\ restricts and sets super root and text pane sizes
         ///      used in resize and in master-dividor-slider
         ///=============================================================================
-        function restrictMediaDimensions( proposedWidth, rootW, doDividorSynch )
+        function restrictMediaDimensions( proposed_medSupW, rootW, doDividorSynch )
         {
+            var isMobile = ns.widthThresholds
+                           [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();
             //=============================
             // //\\ prepares parameters
             //=============================
-            var isMobile = ns.widthThresholds
-                            [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();
-            var isSmalDesk = ns.widthThresholds
-                            [ fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD ]();
-            rootW = rootW || fapp.fappRoot$().getBoundingClientRect().width;
 
-            // //\\ getting max legend Height
-            var legendHeight = 0;
-            sDomN.mainLegends.forEach( function( legend ) {
-                var hh = legend.getBoundingClientRect().height * 1.5;
-                if( legendHeight < hh ) { legendHeight = hh; }
-            });
-            // \\// getting max legend Height
 
             // //\\ gets media aspect ratio: todo must be already known
-            var medBox  = sDomN.mmedia.getBoundingClientRect();
+            var medBox  = sDomN.mmedia$.box();
             var curMedW = medBox.width;
             var curMedH = medBox.height;
-            var aRat    = curMedH / curMedW;
+            //var aRat    = curMedH / curMedW;
+            var aRat    = sconf.innerMediaHeight / sconf.innerMediaWidth;
             // \\// gets media aspect ratio
-            //=============================
-            // \\// prepares parameters
-            //=============================
 
+            var VERTICAL_SAFE_HEIGHT_1 = 20;
+            var VERTICAL_SAFE_HEIGHT_2 = 20;
+            var navHeight = sDomN.navBar$.box().height;
+
+            var rWidth = window.innerWidth;
+            var rHeight = window.innerHeight - navHeight - VERTICAL_SAFE_HEIGHT_1;
+
+            var appRootAsp = rHeight / rWidth;
+            var wideScreen = appRootAsp < 0.5 || rWidth > 
+                             fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD;
+
+            //-------------------------------------------
+            // //\\ slider group patch for lemmas 2 and 3
+            //-------------------------------------------
+            var sliderGroup$ = ns.$$.q( '.slider-group' );
+            var sliderGroupH = sliderGroup$() ? sliderGroup$.box().height : 0;
+            //-------------------------------------------
+            // \\// slider group patch for lemmas 2 and 3
+            //-------------------------------------------
 
             //=============================
             // //\\ calculates new values
             //=============================
-            //.gets current pane-of-interest width
-            var superBox  = sDomN.medSuperroot$().getBoundingClientRect();
-            //.estimates pane-of-interest new width
-            var newSuperW = proposedWidth || superBox.width;
-            //.checking for model-data-legend-width
-            var legendWidthContribution = !isSmalDesk ? fconf.DATA_LEGEND_WIDTH : 0;
-            //.estimates new media width
-            var newMedW   = newSuperW -
-                                sconf.main_horizontal_dividor_width_px -
-                                legendWidthContribution;
-            var newMedH   = aRat * newMedW;
+            var helpBoxHeight = sDomN.helpBoxAboveMedia$.box().height;
+            var lbox = sDomN.legendRoot$.box();
+            var legendWidth = lbox.width;
+            var legendHeight = lbox.height;
 
-            var MIN_SUPRE_W = sconf.MINIMAL_MEDIA_CONTAINER_WIDTH +
-                              sconf.main_horizontal_dividor_width_px;
-            var topLimit = window.innerHeight - legendHeight - medBox.top;
-            newSuperW = Math.max(
-                            MIN_SUPRE_W,
-                            Math.min( newSuperW,
-                                      topLimit / aRat +
-                                      sconf.main_horizontal_dividor_width_px
-                            ));
+            var legendWidth = 0;
+            var legendHeight = 0;
 
-            var textPaneW_perc = cssmods.calculateTextPerc(
-                100 * ( newSuperW + legendWidthContribution ) / rootW );
-            var textPaneW_str = textPaneW_perc.toFixed(2) + '%';
+
+            sDomN.legendRoot$.children( child => {
+                var box = child.getBoundingClientRect();
+                var wWidth = box.width;
+                var wHeight = box.height;
+                if( legendWidth < wWidth ) {
+                    legendWidth = wWidth;
+                }
+                if( legendHeight < wHeight ) {
+                    legendHeight = wHeight;
+                }
+            });
+
+
+            if( isMobile ) {
+                //------------------------------------------------------------------
+                // //\\ very tedious way to get the necessary height of visible text
+                //      by iterating through essaion children-texts
+                //------------------------------------------------------------------
+                var maxHeight = 250; //makes at least part of vertical menu visible
+                sDomN.essaionsRoot$.children( child => {
+                    var wHeight = child.getBoundingClientRect().height;
+                    if( maxHeight < wHeight ) {
+                        maxHeight = wHeight;
+                    }
+                });
+                var essayH_str = ( Math.min( maxHeight, window.innerHeight/2 ) ).toFixed(2)
+                                 + 'px';
+                //------------------------------------------------------------------
+                // \\// very tedious way to get the necessary height of visible text
+                //------------------------------------------------------------------
+                var essayW_str = "92%";
+                var medRW_str = "92%";
+
+            } else {
+
+
+                if( wideScreen ) {
+                    var ess8mod = rWidth - legendWidth - 30;
+                } else {
+                    var ess8mod = rWidth;
+                }
+                var frac = [0.40, sconf.mediaDefaultWidthPercent/100 ];
+                var essayWidth = frac[0]/(frac[0]+frac[1])*ess8mod-10;
+
+                //-------------------------------------------------
+                // //\\ setting media super root
+                //-------------------------------------------------
+                var medSupW = frac[1]/(frac[0]+frac[1])*ess8mod-10;
+                if( proposed_medSupW ) {
+                    var medSupW = proposed_medSupW;
+                    var ESS_MIN_WIDTH = 200;
+                    medSupW = Math.min( ess8mod - ESS_MIN_WIDTH, medSupW );
+                    medSupW = Math.max( 200, medSupW ); //protects if ess8mod is too small
+                    if( !wideScreen ) {
+                        ////one more patch to count too wide legend
+                        medSupW = Math.max( legendWidth, medSupW );
+                    }
+                    medSupW = Math.max( medSupW, fconf.MODEL_MIN_WIDTH );
+                    var essayWidth = ess8mod - medSupW - 20;
+                }
+                //-------------------------------------------------
+                // \\// setting media super root
+                //-------------------------------------------------
+
+
+                //-------------------------------------------------
+                // //\\ setting media width
+                //-------------------------------------------------
+                var medRW = medSupW - sconf.main_horizontal_dividor_width_px-20;
+                if( !wideScreen ) {
+                    ////model and legend are in "portrait mode"
+                    var medRH_ = 
+                                 rHeight - legendHeight //=medSupH
+                                 - sliderGroupH
+                                 - helpBoxHeight
+                                 - VERTICAL_SAFE_HEIGHT_2;
+                    var medRW_ = medRH_/aRat;
+                    var medRW = Math.min( medRW_, medRW );
+                    if( !proposed_medSupW ) {
+                        var medSupW = medRW + sconf.main_horizontal_dividor_width_px;
+                        var essayWidth = ess8mod - medSupW - 20;
+                    }
+                }
+                //-------------------------------------------------
+                // \\// setting media width
+                //-------------------------------------------------
+
+                //-------------------------------------------------
+                // //\\ setting legendMargin_str
+                //-------------------------------------------------
+                if( !wideScreen ) {
+                    var legendMargin_str =
+                        ( ( medSupW - legendWidth 
+                        - 30    //todm: this is a patch which fixes lemma9 legend ... why?
+                        ) /
+                        2 ).toFixed(2) + 'px';
+                        //ccc( 'medSupW='+medSupW + ' legendWidth=' + legendWidth +
+                        //     ' legendMargin_str=' + legendMargin_str )
+                }
+                //-------------------------------------------------
+                // \\// setting legendMargin_str
+                //-------------------------------------------------
+                var essayW_str  = (essayWidth-20).toFixed(2)+'px';
+                var essayH_str  = rHeight.toFixed(2)+'px';
+                var medSupW_str = medSupW.toFixed(2)+'px';
+                var medRW_str   = medRW.toFixed(2)+'px';
+            }
+
 
             // //\\ video preparations
             //.todo why 0.8? box-sizing model?
-            var videoW = textPaneW_perc / 100 * rootW * 0.8;
+            //var videoW = textPaneW_perc / 100 * rWidth * 0.8;
+            var videoW = essayWidth * 0.8;
             var videoH = videoW*10/16;
             var videoW_px = videoW.toFixed(2) + 'px';
             var videoH_px = videoH.toFixed(2) + 'px';
-            var videoW_mobile_px = (0.94*rootW).toFixed(2) + 'px';
-            var videoH_mobile_px = (0.94*rootW*10/16).toFixed(2) + 'px';
+            var videoW_mobile_px = (0.94*rWidth).toFixed(2) + 'px';
+            var videoH_mobile_px = (0.94*rWidth*10/16).toFixed(2) + 'px';
             // \\// video preparations
             //=============================
             // \\// calculates new values
@@ -220,25 +320,55 @@
             //========================================
             // //\\ throws calculated values into CSS
             //========================================
-            var wMobileThres = fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD;
+            sDomN.legendRoot$
+                .css( 'display', 'block' )
+                .css( 'float',   'left' )
+                //.css( 'width',  legendW_str )
+                //effectively affects legend:
+                .css( 'text-align', 'center' )
+                .css( 'vertical-align', 'top' )
+                ;
+
+            sDomN.essaionsRoot$
+                .css( 'width',  essayW_str )
+                .css( 'height',  essayH_str )
+                ;
+            sDomN.medRoot$
+                .css( 'width',  medRW_str );
+
             sDomN.mediaHorizontalHandlerCSS$.html(`
-                .bsl-media-superroot {
-                   width  :${newSuperW}px;
-                }
-                .bsl-text-widget {
-                    width :${(fconf.exegesis_floats && 'auto') || textPaneW_str};
-                }
                 .bsl-showreel-video-wrap {
                     width   : ${videoW_px};
                     height  : ${videoH_px};
                 }
-                @media only screen and (max-width:${wMobileThres}px) {
+                @media only screen and (max-width:${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
                     .bsl-showreel-video-wrap {
                         width   :${videoW_mobile_px};
                         height  :${videoH_mobile_px};
                     }
                 }
             `);
+
+            if( isMobile ) {
+                sDomN.legendRoot$
+                    .css( 'display', 'block' )
+                    .css( 'float', 'none' )
+                    ;
+                sDomN.medSuperroot$
+                    .css( 'width',  '100%' );
+            } else {
+                sDomN.medSuperroot$
+                    .css( 'width',  medSupW_str );
+                if( wideScreen ) {
+                    sDomN.legendRoot$
+                        .css( 'margin-left',  '0' )
+                        .css( 'margin-right', '0' );
+                } else {
+                    sDomN.legendRoot$
+                        .css( 'margin-left',  legendMargin_str )
+                        .css( 'margin-right',  legendMargin_str );
+                }
+            }
             //========================================
             // \\// throws calculated values into CSS
             //========================================
@@ -248,8 +378,8 @@
             //===============================================
             // //\\ synchs results with dividor-slider states
             //===============================================
-            if( doDividorSynch ) { 
-                pointWrap_local.achieved.achieved = newSuperW;
+            if( doDividorSynch ) {
+                pointWrap_local.achieved.achieved = medSupW;
             }
             //===============================================
             // \\// synchs results with dividor-slider states
@@ -264,7 +394,7 @@
             // \\// updated model and its view
             //===============================================
 
-            return newSuperW;
+            return medSupW; //in particular, goes to dividor-slider stashed-update
         }
         ///=============================================================================
         /// \\// restricts and sets super root and text pane sizes
@@ -307,7 +437,7 @@
         ///converts own media pos to dom-pos
         function medpos2dompos()
         {
-            var parentBox = rootvm.approot.getBoundingClientRect();
+            var parentBox = fapp.fappRoot$.box();
             var handleBox = sDomN.mediaHorizontalHandler.getBoundingClientRect();
             var handlePos = [
                     handleBox.left-parentBox.left,

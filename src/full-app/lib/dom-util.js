@@ -43,7 +43,7 @@
     sDomF.css2media = function()
     {
         //todo rid: ccc( sconf.innerMediaWidth + ' parent=' + sDomN.mmedia.parentNode.getBoundingClientRect().width);
-        return sconf.innerMediaWidth / sDomN.mmedia.parentNode.getBoundingClientRect().width;
+        return sconf.innerMediaWidth / sDomN.mmedia$().parentNode.getBoundingClientRect().width;
     };
 
 }) ();

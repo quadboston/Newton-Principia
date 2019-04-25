@@ -39,26 +39,6 @@
     //=========================================================
     function createLemmaDom()
     {
-        //:vital ... this is may be a css filler ...
-        $$.dct(cssp + '-menu-filler', fapp.fappRoot$)();
-
-        //==============================================================
-        // //\\ horizontal Paginator Button
-        //      arrived with lemma23-artist-GUI
-        //==============================================================
-        ['right', 'left'].forEach( function( bname ) {
-            var wwPaginatorButton$ = $$
-               .c( 'a' )
-               .cls( 'page-btn desktop-link page-btn--'+bname )
-               .href( 'javascript:void(0)' )
-               .html('<img src="images/'+bname+'-page-triangle.svg">') 
-               .to( fapp.fappRoot$ );
-        });
-        //==============================================================
-        // \\// horizontal Paginator Button
-        //==============================================================
-
-
         //==============================================================
         // //\\ essay and media panes
         //==============================================================
@@ -92,7 +72,7 @@
         //==============================================================
         // //\\ model data legend
         //==============================================================
-        sDomN.modelDataLegend$ = $$.dct( cssp + '-model-data-legend',
+        sDomN.legendRoot$ = $$.dct( cssp + '-legend-root',
                                          fapp.fappRoot$ );
         //==============================================================
         // \\// model data legend
@@ -103,6 +83,7 @@
         sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
         fmethods.populate_mediaSupreRoot();
+
     }
 
 

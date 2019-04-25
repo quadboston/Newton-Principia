@@ -42,26 +42,11 @@
     //=========================================================
     function init_sapp() 
     {
-        //==========================
-        //:at landing, copies study-model-pars from config to app model
-        ssD.EPSILON   = sconf.EPSILON;
-        //==========================
-
-        //======================================
-        // //\\ inits model and it's view
-        //======================================
-        sapp.upcreate();
-        ssF.initMediaModel();
-        sapp.readyToPopulateMenu = true;
-        //======================================
-        // \\// inits model and it's view
-        //======================================
-        
     }
 
     function init_sapp_II() 
     {
-        ssF.initMediaModel_II && ssF.initMediaModel_II();
+        //ssF.initMediaModel_II && ssF.initMediaModel_II();
     }
     //=========================================================
     // \\// inits app

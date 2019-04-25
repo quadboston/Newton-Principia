@@ -24,6 +24,7 @@
     {
         ssCssOrder.list =
         [
+            'inner-page',
             'slider',
             'model',
             'widget-media'

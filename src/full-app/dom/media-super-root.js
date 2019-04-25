@@ -37,16 +37,14 @@
     function populate_mediaSupreRoot()
     {
 
-        var medSuperroot$ = sDomN.medSuperroot$;
-
         //--------------------------
         // //\\ top media controls
         //--------------------------
         var topMediaControls$ = sDomN.topMediaControls$ = $$.c( 'div' )
             .addClass( 'top-media-controls' )
-            .to( medSuperroot$ )
+            .to( sDomN.medSuperroot$ )
             ;
-        var wwHelpOnTop$ = $$.c( 'div' )
+        var wwHelpOnTop$ = sDomN.helpBoxAboveMedia$ = $$.c( 'div' )
             .addClass( 'help-box' )
             .to( topMediaControls$() )
             ;
@@ -89,7 +87,7 @@
             .c( 'div' )
             .addClass( cssp + '-media-root' )
             .addClass( 'model' )
-            .to( medSuperroot$ )
+            .to( sDomN.medSuperroot$ )
             ;
         var medRoot        = medRoot$();
         sDomN.medRoot$     = medRoot$;
@@ -100,6 +98,7 @@
         //..........................
         // \\// media root
         //..........................
+
 
 
         //..........................
@@ -190,7 +189,7 @@
 
         ssF.create8prepopulate_svg();
         //.disabled ... effect is too strong
-        //$$.$( sDomN.mmedia ).e( 'mouseover', sDomF.detected_user_interaction_effect );
+        //sDomN.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
         ssF.create_digital_legend();
         sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {

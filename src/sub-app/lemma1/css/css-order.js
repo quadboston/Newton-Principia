@@ -25,8 +25,7 @@
     {
         ssCssOrder.list =
         [
-            'proof-vs-claim-modes',
-            'media'
+            'proof-vs-claim-modes'
         ];
     }
 

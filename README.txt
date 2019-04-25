@@ -75,5 +75,6 @@ Topic engine.
     Topic-family can be assigned a color. For example, "claim" usually has color "green".
     Topic-color overrides family color.
 
-    Spacing in lemmas is set in Newton-Principia/src/sub-app/lemma-2-3/data/topic-map.js
+    Spacing(??forgot what is this?) in lemmas
+    is set in Newton-Principia/src/sub-app/lemma-2-3/data/topic-map.js
 

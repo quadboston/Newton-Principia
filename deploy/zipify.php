@@ -131,18 +131,51 @@
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $list = glob( "*.version" );
+    $path_to_version_file = "version.js";
+    $list = glob( $path_to_version_file );
+    if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
-    if( count($list) < 1    ) exit( "version is missed\n" );
-    $parts = preg_split( '#\.#', $list[0] );
-    if( count( $parts ) < 2    ) exit( "format must be number.version\n" );
+    $js_text = file_get_contents( $list[0] );
+    if( $js_text === FALSE ) exit( "js_text is missed\n" );
 
-    $version = intval( $parts[0] );
-    if( !$version || $version . '' !== $parts[0] )
+    //see $versionPattern below
+    $version_re = '#' . 
+                        '\s*' .
+                    'fapp.version' .
+                        '\s*' .
+                    '=' .
+                        '\s*' .
+                    '(\d*)' .
+                        '\s*' .
+                    ';' .
+                        '\s*' .
+                    '//' .
+                        '\s*' .
+                    'application version' .
+                  '#';
+    $matches = array();
+    //http://php.net/manual/en/function.preg-match.php    
+    $test = preg_match( 
+            $version_re,
+            $js_text,
+            $matches
+    );
+    if( !$matches ) exit( 'invalid version string in file ' .
+                          $list[0] . '.' );
+    $version = (int)$matches[1];
+    if( (!$version && $version !== 0) || $version . '' !== $matches[1] )
     {
-        exit( 'invalid version "' . $parts[0] . "\"\n" );
+        exit( 'invalid version "' . $matches[1] . "\"\n" );
     }
-    //printf( "current version = $version\n" );
+    $next_version = $version + 1;
+    //echo "new version = $next_version\n";
+    $versionPattern = "\n    fapp.version =  $next_version; //application version";
+    $new_content = preg_replace( 
+            $version_re,
+            $versionPattern,
+            $js_text
+    );
+    //echo $new_content;
     //=====================================================
     // \\// gets version
     //=====================================================
@@ -153,6 +186,7 @@
 
     //=====================================================
     // //\\ gets additional optional name
+    //      from command line from user
     //=====================================================
     $archive_postfix    = readline( 'optional name =' );
     $postfix_len        = strlen( $archive_postfix );
@@ -179,6 +213,7 @@
     // //\\// begins making changes in file system
     //        exit;
     //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+
     //=====================================================
     // //\\ zips up
     //=====================================================
@@ -203,26 +238,25 @@
 
 
     //=====================================================
-    // //\\ updates version
+    // //\\ updates version-container file
     //=====================================================
-    $next_version = $version + 1;
     chdir( $folder_to_zip );
-    cli( "mv $version.version $next_version.version ", 'updating version' );
+    $success = file_put_contents( $path_to_version_file, $new_content );
+    if( $success === FALSE ) {
+        exit( "\n\nerror updating version-container file '$path_to_version_file'\n\n" );
+    }
     //=====================================================
-    // \\// updates version
+    // \\// updates version-container file
     //=====================================================
-
-
-
 
 
 
     //=====================================================
     // //\\ waits for user attention
     //=====================================================
-    printf( "\n$version of $zippee_full_path\nzipped\n" );
-    printf( "new = $next_version\n" );
-    $w = readline( '' );
+    printf( "\nversion $version of $zippee_full_path\nzipped\n" );
+    printf( "new version = $next_version\n" );
+    $w = readline( '... bye ... press any key to leave the task ... ' );
     //echo "OK\n";
     //=====================================================
     // \\// waits for user attention

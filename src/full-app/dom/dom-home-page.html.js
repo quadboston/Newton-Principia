@@ -9,7 +9,7 @@
     var sapp         = sn('sapp');
     var html         = sn('html');
 
-    html.siteTitlePage = siteTitlePage;
+    html.buildHomePage = buildHomePage;
     //000000000000000000000000000000
     return;
     //000000000000000000000000000000
@@ -20,41 +20,28 @@
 
 
 
-    function siteTitlePage()
+    function buildHomePage()
     {
-        var fappRoot$ = fapp.fappRoot$;
-
         var pmode = sapp.pageMode;
         var coreText = '';
         var landingPath = window.location.pathname;
 
-
         //==================================================
         // //\\ header
         //==================================================
-        $$.c('header').to( fappRoot$() ).html(`
-            <div class="wrapper">
+        $$.c('header').to( fapp.homePage$() ).html(`
+            <div class="hp-section-wrap">
                 <div class="landing-text">
                     <h1 class="landing-title">Interactive Illustrations
                         <br>
                         for Newton’s <span>Principia</span></h1>
+                    <!--
                     <p class="sub-title"> 
                     </p>
-                    <a href="${landingPath}?conf=sappId=${fconf.landingApp}" class="read">
-                        <div class="read__text">
-                            <span class="read__label">Begin Reading</span>
-                            <span class="read__title">
-                                ${fconf.sappModulesList[fconf.landingApp].caption}
-                            </span>
-                        </div>
-                        <div class="read__arrow">
-                            <img src="images/read-arrow.svg">
-                        </div>
-                    </a>
+                    -->
                 </div>
             </div>
             <img class="newton-img" src="images/landing-img.jpg">
-            <!-- END wrapper -->
         `);
         //==================================================
         // \\// header
@@ -72,24 +59,29 @@
                     <!--<li><a href="#">Lemma 1</a></li>-->
         `;
 
+        var book = null;
         fconf.sappModulesArray.forEach( function( sappItem ) {
+            if( sappItem.sappId === 'home-pane' ) return;
+            if( book === null || book !== sappItem.book ) {
+                book = sappItem.book;
+                coreText += `
+                    <li><div class="content-book-title">
+                            <span class="table-title">${book}</span><br><br>
+                        </div>
+                    </li>
+                `;
+            }
             coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
-                    <span class="table-title">${sappItem.caption}</span>
-                    <span class="table-tag">View</span></a>
+                    <span class="table-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
                 </li>
             `;
         });
         coreText += `
-                <li><a href="#" class="disabled">
-                        <span>Lemma X</span>
-                        <span class="table-tag">Coming Soon</span>
-                    </a>
-                </li>
              </ul>
              <!--END table of contents-->
         `;
-        $$  .c('div').addClass('landing-table-of-contents wrapper').to( fappRoot$() )
+        $$  .c('div').addClass('landing-table-of-contents hp-section-wrap').to( fapp.homePage$() )
             .html(coreText);
         //==================================================
         // \\// table of contents
@@ -100,7 +92,7 @@
         // //\\ how-to
         //==================================================
         coreText = `
-            <div class="wrapper">
+            <div class="hp-section-wrap">
                 <h2>Usage Guide</h2>
                 <div class=" how-to-grid">
                 <div class="how-to__cell">
@@ -126,10 +118,8 @@
                 </div><!--END cell-->
                 </div>
             </div>
-            <!-- END wrapper -->
-         <!--END how to-->
         `;
-        $$  .c('div').addClass('how-to').to( fappRoot$() )
+        $$  .c('div').addClass('how-to').to( fapp.homePage$() )
             .html(coreText);
         //==================================================
         // \\// how-to
@@ -147,20 +137,24 @@
         coreText = `
                 <div class="about__author">
                     <p class="about__author__text">
-                        Programming by Konstantin Krillov and John Scott.<br>
+                        Programming by Konstantin Kirillov and John Scott.<br>
                         A User Interface Design by
                         <span class="dd-label">
                             <a href="http://theoddson.io">Darien Dodson</a>.
                         </span><br>
                         Produced by John Scott.
+                        <span style="display:inlilne-block; float:right; right:10px;">
+                            Version 0.${fapp.version}
+                        </span>
                     </p>
                 </div>
         `;
-        $$  .c('div').addClass('about wrapper').to( fappRoot$() )
+        var aboutWrapper$ = $$  .c('div').addClass('about hp-section-wrap').to( fapp.homePage$() )
             .html(coreText);
         //==================================================
         // \\// about wrapper
         //==================================================
+
     }
 }) ();
 

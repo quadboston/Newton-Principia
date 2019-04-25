@@ -71,44 +71,9 @@
         });
 
         var addRem = isHyper ? 'addClass' : 'removeClass';
-        var wVideo = document.querySelector('.video-desktop');
-        //.todm querySelectorAll ?
-        wVideo && ( wVideo.style.visibility = isHyper ?'hidden' : 'visible');
         //.area labels color vs black toggle
         $$.$(document.querySelector('.areas'))[addRem]('dull');
-
-        /*
-        //conflicts with topic-engine colors
-        document.querySelectorAll('.model').forEach( function( el ) {
-            $$.$(el)[addRem]( 'informalcolor' );
-        });
-        */
-
-        /*
-        //todm what for? n/i ?
-        if( !isHyper ) {
-            //$('.informal').hide(); //apparently sets switch-default-position
-        } else {
-            //$('.informal').show();
-        }
-        */
         ///-------------------------------------------------------------------------
-        /// //\\ apparently toggles all colored goodies of informal text
-        ///-------------------------------------------------------------------------
-        ///translates the description text, changes the model style from b&w to color 
-        /*
-        function translate(){
-            //todm make fade
-            $('.desc').find('.informal, .newton').fadeToggle( "fast", "linear" );
-            //todm make fade
-            $('.video-desktop').toggle();
-            $('.label').toggle();
-            $('.model').toggleClass('informalcolor');
-            $('.areas').toggleClass('dull');//area labels color vs black toggle
-        }
-        */
-        ///-------------------------------------------------------------------------
-        /// \\// apparently toggles all colored goodies of informal text
         /// \\// 2) Switch: This controls the translation switch ...?Newton/informal
         ///=========================================================================
     }
@@ -119,7 +84,7 @@
         //====================================================================
         // //\\ makes media-draw-area
         //====================================================================
-        var svg = sDomN.mmedia = sDomN.svg = $$.cNS( 'svg' )
+        var svg = sDomN.svg = $$.cNS( 'svg' )
             .aNS( 'id',     'illus' )
             .aNS( 'class',   cssp +'-media' )
             .aNS( 'version', '1.1' ) //todo ??
@@ -132,6 +97,7 @@
             .aNS( 'preserveAspectRatio', "xMidYMid meet" )  //todm ?
             .to( sDomN.medRoot )
             ();
+        sDomN.mmedia$ = $$.$( svg );
         //====================================================================
         // \\// makes media-draw-area
         //====================================================================
@@ -217,7 +183,7 @@
         sDomN.digitalLegend$ = $$.dict(
             "areadesk",
             "areas dull desc default-content main-legend",
-            sDomN.modelDataLegend$ )
+            sDomN.legendRoot$ )
             .html(`
 
                 <div class="line"></div>

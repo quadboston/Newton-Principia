@@ -108,7 +108,7 @@
             sDomN.bgImage$.css( 'opacity', weakerPictureOpacity );
             sDomN.visib_left_image$.css( 'opacity', pictureOpacity );
 
-            sDomN.mmedia.style.opacity = '' + strongerModelOpacity;
+            sDomN.mmedia$.css( 'opacity', '' + strongerModelOpacity );
             sDomN.visib_right_image$.css( 'opacity', modelOpacity );
         }
     }

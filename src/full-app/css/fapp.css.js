@@ -24,8 +24,6 @@
         var colorLight = conf.css['color-light']; 
         var mediaPerc = sconf.mediaDefaultWidthPercent;
         var textPercStr = cssmods.calculateTextPerc( mediaPerc ).toFixed(2) + '%';
-        var aroot_DesktopOverflow = sapp.pageMode === 'lemma' ?
-                                    'overflow-x:hidden' : 'overflow:visible';
 
         if( fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) {
             var essayPaneFloat = 'float : ' +
@@ -40,14 +38,9 @@
         var ret =
 
 
-
-// //\\ css /////////////////////////////////////////
-`
+        // //\\ css /////////////////////////////////////////
+        `
     /* @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900"); */
-
-
-
-
 
     /******************************************/
     /* //|| page primary sections             */
@@ -56,33 +49,15 @@
         width:100%;
         margin:0;
         padding:0;
-        ${aroot_DesktopOverflow}
     }
 
-    .bsl-menu-filler { /* vital */
+
+    /* vital */
+    /*
+    .bsl-menu-filler { 
         height: ${fconf.attach_menu_to_essaion_root ? 65 : 90}px;
     }
-
-    /*================================*/
-    /* //|| top menu                  */
-    /*================================*/
-    .bsl-menu {
-        vertical-align: top;
-        height: ${fconf.attach_menu_to_essaion_root ? 50 : 75}px;
-        width: 98%;
-        margin:0px;
-        padding:10px;
-        padding-top:0px;
-        padding-bottom:0px;
-        top: 0px;
-        border-radius:10px;
-        font-family:helvetica,arial,san-serif;
-        z-index:1001;
-    }
-    /*================================*/
-    /* ||// top menu                  */
-    /*================================*/
-
+    */
 
     /*================================*/
     /* //|| media pane                */
@@ -90,13 +65,12 @@
     .bsl-media-superroot {
         ${mediaPaneFloat}
         position    :relative;
+        float       :left;
         display     :inline-block;
-        width       :${mediaPerc.toFixed(2)}%;
         height      :auto;
 
         padding     :0;
         margin      :0;
-        margin-right:2%; /* pushes the text right */
         overflow    :visible;
     }
 
@@ -106,7 +80,6 @@
         display     :block;
 
         /* todm: simpler solution: add padding to parent, 21px */
-        width       :calc(100% - ${sconf.main_horizontal_dividor_width_px}px);
         left        :${sconf.main_horizontal_dividor_width_px}px;
         padding     :0;
         margin      :0;
@@ -125,7 +98,27 @@
     .bsl-bg-image.disabled {
         display : none;
     }
+
     /*================================*/
+    /* //|| bsl-media                 */
+    /*================================*/
+    .bsl-media {
+        position:absolute;
+        width:100%;
+        left:0;
+        top:0;
+        opacity:1;
+        z-index:10;
+    }
+
+    .bsl-bg-image {
+        width:100%;
+        left:0;
+        top:0;
+        z-index:9;
+    }
+    /*================================*/
+    /* ||// bsl-media                 */
     /* ||// media pane                */
     /*================================*/
 
@@ -149,6 +142,13 @@
     .brc-slider-draggee.dividor:hover:after {
         background-color: transparent;
     }        
+
+    /* patch: should be nicely disabling divide-panes-functionality todm */
+    /*
+    #bsl-resizable-handle {
+        xxxxxxtop:-300%;
+    }
+    */
     /*---------------------------*/
     /* \\// horizontal resizer   */ 
     /*---------------------------*/
@@ -162,14 +162,14 @@
     .bsl-text-widget {
         ${essayPaneFloat}
         position        :relative; /* does not help ... no difference */
-        padding         :2%;
+        padding         :10px;
+        padding-left    :5px;
+        padding-right   :20px;
 
         width           :${(conf.exegesis_floats && 'auto') ||
                             textPercStr };
-        //height        :100%; /* works not well: loses y-scroll-bar */
-        height          :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 140px )'};
-        overflow-y      :auto; 
-        margin-right    :${(conf.exegesis_floats && '0')    || '50px'};
+        overflow-y      :auto;
+        margin          :0;
         overflow-x      :hidden; /*patch for css-opacity-transition*/
         background-color:${conf.css.exegesisBackgroundColor};
     }
@@ -179,39 +179,6 @@
 
 
 
-    /*========================================*/
-    /* //|| model data legend                 */
-    /*========================================*/
-    .bsl-model-data-legend {
-        display :inline-block;
-        width   :${fconf.DATA_LEGEND_WIDTH}px;
-        /* effectively affects legend: */
-        text-align  :center;
-        vertical-align:top;
-    }
-    .bsl-model-data-legend > * {
-        display :inline-block;
-    }
-    /*========================================*/
-    /* ||// model data legend                 */
-    /*========================================*/
-
-
-    /*========================================*/
-    /* //|| small desktop                     */
-    /*========================================*/
-    @media (max-width: ${fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
-        .bsl-model-data-legend {
-            display: inline-block;
-            width:100%;
-        }
-        .bsl-text-widget {
-            height  :${(conf.exegesis_floats && 'auto') || 'calc(100vh - 340px )'};
-        }
-    }
-    /*========================================*/
-    /* //|| small desktop                     */
-    /*========================================*/
 
 
 
@@ -248,6 +215,7 @@
             height      :auto;
             margin-right:3%;
             margin-left: 2%;
+            margin-bottom: 20px;
         }
     }
     /*========================================*/
@@ -265,7 +233,16 @@
 /*========================================*/
 ret += `
 
-    @media only screen and (max-width: 800px) {
+    .bsl-legend-root {
+        padding-left : 30px;
+        padding-right : 10px;
+    }
+
+    .main-legend td {
+        text-align:center;
+    }
+
+    @media only screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
         .main-legend.hidden {
             display:none;
         }

@@ -19,6 +19,7 @@
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomF       = sn('dfunctions',sapp);
+    var sDomN       = sn('dnative', sapp);
 
     var srg         = sn('sapprg', fapp ); 
     //:nearly a patch
@@ -72,14 +73,22 @@
     function init() 
     {
         ns.url2conf( fconf );
-        sapp.sappId = fconf.sappId;
-        sapp.pageMode = sapp.sappId ?  'lemma' : 'landing';
 
-        if( sapp.pageMode === 'lemma' ) {
-            starts_lemmaInit();
-        } else {
-            completes_homePageInit()
-        }
+        //:todm this seems messy ... fix later
+        fconf.sappId = fconf.sappId || 'home-pane';
+        sapp.sappId = fconf.sappId;
+        sapp.pageMode = sapp.sappId === 'home-pane' ?  'home-pane' : 'lemma';
+
+        sapp.siteCaptionHTML = fconf.siteCaptionHTML;
+        sapp.siteCaptionPlain = fconf.siteCaptionPlain;
+
+        cssmods.initHomePageCSS(cssp, fconf);
+        html.buildCommonHTMLBody();
+        fapp.fappRoot$.id( sapp.pageMode );
+
+        html.buildHomePage();
+        document.title = sapp.siteCaptionPlain;
+        starts_lemmaInit();
     }
     //=========================================================
     // \\// inits full app
@@ -108,20 +117,24 @@
         // \\// prepares sub-application-source-code-files list for load
 
         ///loads sub-application-source-code-files
-        nsmethods.loadScripts(
-            codesList,
-            function()
-            {
-                ////executes this body when all scripts completed loading
-                ///executes modules from modules registry
-                ns.eachprop( srg_modules, function( module ) {
-                    module();
-                });
-                ssF.init_conf();
-                ns.url2conf( fconf ); //overrides subapp conf
-                continues_lemma_afterSourcesLoad();
-            }
-        );
+        if( sapp.sappId === 'home-pane' ) {
+            continues_lemma_afterSourcesLoad();
+        } else {
+            nsmethods.loadScripts(
+                codesList,
+                function()
+                {
+                    ////executes this body when all scripts completed loading
+                    ///executes modules from modules registry
+                    ns.eachprop( srg_modules, function( module ) {
+                        module();
+                    });
+                    ssF.init_conf();
+                    ns.url2conf( fconf ); //overrides subapp conf
+                    continues_lemma_afterSourcesLoad();
+                }
+            );
+        }
     }
     //=========================================================
     // \\//  establishes configuration, loads sub-app scripts
@@ -139,28 +152,26 @@
         //=======================================
         // //\\ gets content texts and continues
         //=======================================
-        sDomF.get_content_texts(
-            function() {
 
-                //=======================================
-                // //\\ html and css
-                //=======================================
-                cssmods.initSiteWideCSS(cssp, fconf);
-                sn('ssCssOrder',ss).list.forEach( function( cssName ) {
-                    ns.globalCss.addText( cssmod[cssName]( cssp, fconf ) );
-                });
-                ns.globalCss.update();
-                html.body();
-                //=======================================
-                // \\// html and css
-                //=======================================
+        if( sapp.sappId === 'home-pane' ) {
+            continues_lemma_afterContentsLoad();
+        } else {
+            sDomF.get_content_texts( function() {
+                    //=======================================
+                    // //\\ html and css
+                    //=======================================
+                    cssmods.initSiteWideCSS(cssp, fconf);
+                    sn('ssCssOrder',ss).list.forEach( function( cssName ) {
+                        ns.globalCss.addText( cssmod[cssName]( cssp, fconf ) );
+                    });
+                    ns.globalCss.update();
+                    //=======================================
+                    // \\// html and css
+                    //=======================================
 
-
-                continues_lemma_afterContentsLoad();
-                remove_landing_state_from_top_html();
-                fmethods.setupSiteWideEvents();
-            }
-        );
+                    continues_lemma_afterContentsLoad();
+            });
+        }
         //=======================================
         // \\// gets content texts and continues
         //=======================================
@@ -179,57 +190,34 @@
     //=======================================
     function continues_lemma_afterContentsLoad()
     {
-        fmethods.createLemmaDom();
-        sDomF.originalTexts_2_html_texts();
-        sapp.init_sapp();
-        sDomF.populateMenu();
-        sapp.init_sapp_II && sapp.init_sapp_II();
+        if( sapp.sappId !== 'home-pane' ) {
+            fmethods.createLemmaDom();
+            sDomF.originalTexts_2_html_texts();
+            sapp.init_sapp();
+            sDomF.populateMenu();
+            sapp.init_sapp_II && sapp.init_sapp_II();
 
-        sapp.isInitialized = true;
-        //.does initial transclusion
-                //fmethods.test_mobile_and_attach_exegesis_tabs();
-        //.sets default ... disabled so "Area-legend" cannot be a default
-        //.because of sapp.isInitialized, we can set tabs and menus
-                //rg['mobile-tabs'][ sconf.defaultMobileTabSelection ].clicker.click();
-        fmethods.setupEvents();
-        fmethods.fullResize();
+            sapp.isInitialized = true;
+            //.does initial transclusion
+                    //fmethods.test_mobile_and_attach_exegesis_tabs();
+            //.sets default ... disabled so "Area-legend" cannot be a default
+            //.because of sapp.isInitialized, we can set tabs and menus
+                    //rg['mobile-tabs'][ sconf.defaultMobileTabSelection ].clicker.click();
+            fmethods.setupEvents();
+            fmethods.fullResize();
+        }
+        //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
+        remove_landing_state_from_top_html();
+        fmethods.setupSiteWideEvents();
+
+        if( sapp.sappId === 'home-pane' ) {
+            sDomN.homeButton$().click();
+        }
     }
     //=======================================
     // \\// finalizes lemma
     //=======================================
 
-
-
-
-    //=======================================
-    // //\\ completes homePageInit
-    //=======================================
-    function completes_homePageInit()
-    {
-        sapp.siteCaptionHTML = fconf.siteCaptionHTML;
-        sapp.siteCaptionPlain = fconf.siteCaptionPlain;
-        //=======================================
-        // //\\ html and css
-        //=======================================
-        cssmods.initSiteWideCSS(cssp, fconf);
-        ns.globalCss.update();
-        html.body();
-        //=======================================
-        // \\// html and css
-        //=======================================
-
-        //=======================================
-        // //\\ finalizes home-page load
-        //=======================================
-        remove_landing_state_from_top_html();
-        fmethods.setupSiteWideEvents();
-        //=======================================
-        // \\// finalizes home-page load
-        //=======================================
-    }
-    //=======================================
-    // \\// completes homePageInit
-    //=======================================
 
 
 
@@ -286,6 +274,9 @@
     ///================================================
     /// \\// sugar: sets rg[ id ][pos] = val
     ///================================================
+
+
+
 
 
 }) ();

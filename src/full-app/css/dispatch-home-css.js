@@ -6,7 +6,7 @@
     var cssmods     = sn('cssModules');
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
-    cssmods.initSiteWideCSS = initSiteWideCSS;
+    cssmods.initHomePageCSS = initHomePageCSS;
     //0000000000000000000000000000000000000000
     return;
     //0000000000000000000000000000000000000000
@@ -18,21 +18,18 @@
 
 
 
-    function initSiteWideCSS(cssp, fconf) 
+    function initHomePageCSS(cssp, fconf) 
     {
 
         //data-entry: put module names here in order
         `
-            nav-bar-and-drawer
-            checkbox
-            tabs
-            main-sapp
-            menu-on-top
-            essaion-pane
-            menu-on-left
+            reset
+            base
+            typography
+            home-pane
+            inner-page
+            how-to
         `
-
-
 
         .split(/\r\n|\n/g)
         .forEach( function( modname ) {

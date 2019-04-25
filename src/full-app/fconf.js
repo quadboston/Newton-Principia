@@ -15,11 +15,13 @@
     //====================================================
     to_fconf =
     {
+
+        //sappId : 'homePage',
+
         //--------------------
         // //\\ site-wide
         //--------------------
-        //:scenario
-        LANDING_MODE : 'claim',
+
         //:data
         svgNS :  "http://www.w3.org/2000/svg",
 
@@ -39,8 +41,8 @@
 
         //.below this value, JS considers the device as a mobile
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 800,
-        SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD :2000, //px
-
+        SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD :1300, //px
+        MODEL_MIN_WIDTH : 200, //when dragging
 
         model_float_dir : 'right', //vs left
         exegesis_floats : !true,   //floats around media-pane

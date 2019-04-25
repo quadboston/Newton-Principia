@@ -85,7 +85,6 @@
             //----------------------------------
             // //\\ scenario
             //----------------------------------
-            LANDING_MODE : 'claim',
             hideProofSlider : true, // false,
             //----------------------------------
             // \\// scenario
@@ -96,6 +95,8 @@
             //----------------------------------
             // //\\ original lemma parameters
             //----------------------------------
+            EPSILON : 0.1,
+
             curvePivots :
             [
                 [0, 0],
@@ -164,7 +165,7 @@
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
 
-            thickness           : 1,
+            thickness           : 2,
 
             GENERIC_COLOR       : '0, 0, 0',
             CORE_CURVE_COLOR    : '160, 0, 0',

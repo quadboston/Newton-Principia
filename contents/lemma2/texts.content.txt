@@ -120,13 +120,16 @@
             that ¦widthest-rectangular¦single rectangle¦¦ is on the 
 
             <!--
-            //this is a sample how to set dependency on application mode:
-            //application modes store is in the JS-object: ns.fapp.ss.ssData.ssModes'
-            //see, for example, how ssModes is set in module gui-update.js:
-            //  ssModes[ 'highest y is on the right' ] =  wfirst[1] > wlast[1];
-            //  in other words format is: ssModes[key]=boolean-value
-            //  the same key is used below
-            //if no key is set, then 'default' is in use:
+                This is a key-value sample what text-to-show in place of this text fragment:
+                text-to-show depends on application mode,
+                the key is a mode and value is a text-to-show.
+            
+                Application modes store is in the JS-object: ns.fapp.ss.ssData.ssModes'
+                see, for example, how ssModes is set in module gui-update.js:
+                  ssModes[ 'highest y is on the right' ] =  wfirst[1] > wlast[1];
+                  in other words format is: ssModes[key]=boolean-value
+                  the same key is used below
+                if no key is set, then 'default' is in use:
             -->
             ¿?
             {

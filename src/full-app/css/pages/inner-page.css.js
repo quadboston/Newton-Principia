@@ -21,228 +21,100 @@
 // //\\ css /////////////////////////////////////////
 var ret = `
 
-    
+    /*
+    .${cssp}-media-root {
+      width: calc(100% - 90px) ;
+    }
+    */
 
-/*~~~~~~~~~~~~~~~~~~~~
-Styles for the Lemma page live here
-Here you can find styles for layouts and general page styles. 
-Styles for controlling the colors of the model can be found on the settings page.
-~~~~~~~~~~~~~~~~~~~~*/
-#egrip {
-  display: flex;
-  align-items: center;
-  right: 0px;
-  top: 0;
-  padding: 0 8px;
-  position: absolute;
-  height: 100%;
-  cursor: pointer; }
-  #egrip:hover {
-    background: ${colorLight}; }
+    /*--------------------------------------
+        //|| master pagination button
+      -------------------------------------*/
+    .master-pagination-btn {
+        box-sizing: border-box;
+        xxxxfloat: left;
+        display:inline-block;
 
+        background-color: ${colorWhite};
+        border-radius: ${borderRadius};
+        cursor: pointer;
 
+        box-shadow: 2px 0 40px 0 rgba(32, 41, 54, 0.4);
+        white-space : nowrap;
 
-/********************************/
+        text-align:center;
 
-  #areadsk {
-    display: none;
-    visibility: hidden; }
+        height: 29px;
+        margin: 0 16px 0 16px;
+        padding: 5px 8px 2px 8px;
+        transition: all .2s ease;
+        z-index: 1002;
+    }
+    .master-pagination-btn img {
+        width : 7px;
+        opacity : 0.5;
+        margin-left: 5px;
+        margin-right: 5px;
+        vertical-align:middle;
+    }
 
-  .title-fixed {
-    overflow: hidden;
-    background: ${colorWhite};
-    position: fixed;
-    top: 0px;
-    width: calc(50% - 102px);
-    max-width: calc(50% - 102px);
-    min-width: 0px;
-    left: 48px;
-    padding: 0 40px 0 12px; }
+    .master-pagination-btn.current-lemma,
+    .master-pagination-btn:hover {
+        box-shadow: 0 4px 10px 0 rgba(32, 41, 54, 0.2);
+    }
 
-.model-section {
-  background: ${colorLight};
-
-  /********************************/
-  /*
-  display: flex;
-  */
-  float:right;
-
-  grid-area: playground;
-  height: 100vh;
-  flex-direction: column;
-  /*width: -webkit-calc(50vw - 40px);
-    width:    -moz-calc(50vw - 40px);
-    width:         calc(50vw - 40px);*/
-
-  /******************************************/
-  width: 50%;
-
-  padding: 8px 0 0px 0; }
-  .model-section__top {
-    height: -moz-calc(100% - 180px);
-    height: -webkit-calc(100% - 180px);
-    height: calc(100% - 180px);
-    justify-content: center;
-    display: flex;
-    flex-direction: column; }
-  .model-section__bottom {
-    height: 180px; }
-  .model-section .desc {
-    padding-top: 16px;
-    width: -webkit-calc(100% - 64px);
-    width: -moz-calc(100% - 64px);
-    width: calc(100% - 64px);
-    padding: 0 32px; }
-    .model-section .desc__header {
-      margin: 12px 0; }
-    .model-section .desc .line {
-      width: 100%;
-      height: 1px;
-      background-color: ${colorLightGrey}; }
-  .model-section .desc__header-title {
-    font-family: 'Helvetica';
-    font-size: 18px; }
-
-.model {
-  display: flex;
-  width: 100%;
-  height: 84%;
-  align-items: center;
-  justify-content: center; }
-
-.${cssp}-media-root {
-  width: calc(100% - 90px) ;
-}
-
-#illus {
-  width: 100%;
-  }
-
-.desc--claim {
-  margin-top: 24px;
-  margin-bottom: 64px; }
-
-.desc--proof {
-  margin-top: 24px;
-  }
-
-#areadesk {
-    margin:auto;
-    margin-top:20px;
-    width:200px;
-}
-
-
-    .desc--proof.hidden,
-    .desc--claim.hidden {
+    .master-pagination-btn.non-displayed {
         display:none;
     }
 
-@media only screen and (max-width: 800px) {
-    #areadesk.hidden {
-        display:none;
+    .middle-subnav-bar {
+        margin:auto;
     }
-}
+
+    .home-button {
+        width               : 85px;
+        margin-left         : 35px;
+        font-weight         : bold;
+        color               : white;
+        background-color    : #303946;
+    }
+
+    .home-button:hover {
+        background-color    : #404956;
+    }
+
+    .home-button.is-hidden:hover,
+    .home-button.is-hidden {
+        font-weight         : normal;
+        color               : ${colorMediumGrey};
+        background-color    : white;
+    }
 
 
-.desc__header {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center; }
-  .desc__header-title {
-    margin: 0px; }
-
-.mobileShow {
-  display: block !important; }
-
-.mobileHide {
-  display: none !important; }
-
-.movable {
-  cursor: pointer; }
-
-.btn {
-  background-color: ${colorWhite};
-  border-radius: ${borderRadius};
-  cursor: pointer; }
-  .btn__menu {
-    box-shadow: 2px 0 96px 0 rgba(32, 41, 54, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: flex-start;
-
-    flex-direction: column;
-    width: 32px;
-    height: 32px;
-    margin: 0 16px 0 16px;
-    transition: all .2s ease;
-    z-index: 1002; }
-    .btn__menu__bar {
-      display: flex;
-      justify-content: space-between;
-      width: 18px;
-      height: 2px;
-      padding: 1px 0; }
-      .btn__menu__bar--dot {
-        display: block;
-        width: 1px;
-        height: 1px;
-        background-color: ${colorMain};
-        margin-right: 4px; }
-      .btn__menu__bar--line {
-        display: block;
-        width: 16px;
-        height: 1px;
-        background-color: ${colorMain}; }
-  .btn:hover {
-    box-shadow: 0 4px 12px 0 rgba(32, 41, 54, 0.2); }
-
-.desc--areas {
-  position: absolute;
-  bottom: 0px; }
-  .desc--areas h2 {
-    font-family: 'Helvetica',sans-serif;
-    font-size: 1rem; }
-
-.areas__checkboxes {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 1rem; }
-  .areas__checkboxes-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px; }
-  .areas__checkboxes .checkbox {
-    margin-right: 12px; }
-
-.video-desktop {
-  display: none;
-  margin-bottom: 32px;
-  min-height: 320px;
-  width: 100%;
-  border-radius: 5px; }
-
-.help-box {
-  float:left;
-  margin-top:8px;
-  color: ${colorMediumGrey};
-  font-size: 12px;
-  padding: 0 16px;
-  border-radius: ${borderRadius};
-  display: flex;
-  align-items: center;
-}
+    /*--------------------------------------
+        ||// master pagination button
+      -------------------------------------*/
 
 
-  .help-box img {
-    margin-right: 8px;
-  }
-
-
-  .scrollarea {
-    padding-top:20px;
-  }
+    /*---------------------------------------------
+        //|| Hover over the diagram to interact
+      --------------------------------------------*/
+    .help-box {
+        float:left;
+        margin-top:8px;
+        color: ${colorMediumGrey};
+        font-size: 12px;
+        padding: 0 16px;
+        border-radius: ${borderRadius};
+        display: flex;
+        align-items: center;
+    }
+    .help-box img {
+        margin-right: 8px;
+    }
+    /*---------------------------------------------
+        ||// Hover over the diagram to interact
+      --------------------------------------------*/
 
 `;
 // \\// css /////////////////////////////////////////

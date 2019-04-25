@@ -130,6 +130,17 @@
                     //.wraps flat-dom-object-into-platform
                     $:      function( obj )                 { ctxEl = obj                                            },
 
+                    children:    function( callback, obj )
+                                 {
+                                    ctxEl = obj || ctxEl;
+                                    if( !( ctxEl && ctxEl.children ) ) return;
+                                    [].forEach.call( ctxEl.children, function( child, ix ) {
+                                        if( child && child.style.display !== 'none' ) {
+                                            callback( child, ix );
+                                        }
+                                    });
+                                 },
+
                     c:      function( type )                { ctxEl =                document.createElement( type ); },
                     //.gets single by id
                     g:      function( id )                  { ctxEl =                document.getElementById( id ); },
@@ -137,6 +148,32 @@
                     q:      function( selector, parent )    { ctxEl =                (parent||document.body).querySelector( selector ); },
                     //.gets array of all
                     qa:     function( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
+
+
+                    // //\\ information providers 
+                    box:    function( obj )                 { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              return ctxEl && ctxEl.getBoundingClientRect();
+                                                            },
+                    _html:    function( obj )               { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              return ctxEl && ctxEl.innerHTML;
+                                                            },
+                    _css:   function( prop, obj )           { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              return ctxEl && ctxEl.style[ prop ];
+                                                            },
+                    _a:     function( prop, obj )           { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              return ctxEl && ctxEl.getAttribute( prop );
+                                                            },
+                    _cls:   function( obj )           { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              return ctxEl && ctxEl.getAttribute( 'class' );
+                                                            },
+                    // \\// information providers 
+
+
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
@@ -163,9 +200,10 @@
                     //adds class.
                     addClass:   function( text, obj )
                                 {   
+                                    ctxEl = obj || ctxEl;  //bug fix: if text === '', then 
+                                                           //element is still created to save
+                                                           //the "chain" of $$ calls
                                     if( !text ) return; //sugar, saves extra "if"
-
-                                    ctxEl = obj || ctxEl;  
                                     var clss = classes=text.split(/\s+/);
                                     if( clss.length>1 ) {
                                         ////many classes are supplied ...
@@ -269,7 +307,12 @@
                 var wrap = function() { return ctxEl; };
                 Object.keys( methods ).forEach( function( key ) {
                     var method = methods[ key ];
-                    wrap[ key ] = function() { method.apply( {}, arguments ); return wrap; };
+                    wrap[ key ] = function() {
+                        var res = method.apply( {}, arguments );
+                        ///if method is of "process type", then the framework wrap ($$) is returned
+                        ///if method is of "give information type", then this information is returned
+                        return typeof res === 'undefined' ? wrap : res;
+                    };
                 });
                 return wrap;
             };
@@ -636,6 +679,37 @@
     var ns = window.b$l;
     ns.createDebugger();
     ns.conf = ns.url2conf( {} );
+}) ();
+
+
+
+
+(function () {
+    var ns          = window.b$l;
+    var sn          = ns.sn;    
+    var methods     = sn('methods');
+
+    ///polifill for forEach for nodes
+    //https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+    //https://stackoverflow.com/questions/43743560/foreach-vs-array-prototype-foreach-call
+    /*
+    //needs more research ... if this does not exist, there must be a reason for this:
+    if (window.NodeList && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+    */
+
+
+    ///deep iteration of DOM-element-tree
+    methods.elTree = function( el, callback )
+    {
+        callback( el );
+        var children = el.children;
+        if( !children || !children.length ) return;
+        //https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
+        [].forEach.call( children, el => methods.elTree( el, callback ) );
+    }
+
 }) ();
 
 

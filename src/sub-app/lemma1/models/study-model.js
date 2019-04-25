@@ -53,38 +53,32 @@
     function upcreate()
     {
         //:study-pars
-        var modCurvPivots   = ssD.curvePivots;    //curve params
-        var tC              = ssD.tC;             //point C curve param = vanish param
-        var claimRatio      = ssD.claimRatio;
-        var tiltRatio       = ssD.tiltRatio;
-
+        var EPSILON   = ssD.EPSILON;    //curve params
 
         var mat	        = ns.mat        = ns.mat || {};
         var limDemo     = mat.limDemo   = mat.limDemo || {};
         if( !limDemo.instance ) {
+            //.recall: beats_sample is a result of execution of the data generator
+            //.beats_sample = prepareBeatData()
             limDemo.instance = limDemo.setDemo( limDemo.dataSamples.beats_sample );
         }
-        limDemo.instance.doSelfTest( sDomN.svg );
+        limDemo.instance.model_2_media( sDomN.svg );
+        var lim = limDemo.dataSamples.beats_sample.lim;
+        var modE = tp( 'point_E', [-0.05,lim + EPSILON] );
+
+        var epsNeighb = tr( 'eps_Neighb', 'eps_Neighb',
+            [
+                [ modE[0], 2*lim - modE[1] ],
+                [ modE[0], modE[1] ]
+            ]
+        );
 
 
-        //===================================================
-        // //\\ spawns study model from main parameters ssD
-        //===================================================
-        //=======================
-        // //\\ calculates areas
-        //=======================
-        //=======================
-        // \\// calculates areas
-        //=======================
-
-        //===================================================
-        // \\// spawns study model from main parameters ssD
-        //===================================================
 
         //-------------------------------------------------------
         // //\\ media part
         //-------------------------------------------------------
-        ssF.upcreateMedia();
+        ssF.upcreateMedia( limDemo );
         //-------------------------------------------------------
         // \\// media part
         //-------------------------------------------------------

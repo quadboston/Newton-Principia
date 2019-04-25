@@ -41,7 +41,8 @@
         ///this ajax load takes all aux. files and list of contents
         nsmethods.loadAjaxFiles(
             [
-                { id: 'contents-list.txt', link:'contents/' + sapp.sappId + '/contents-list.txt' }
+                { id: 'contents-list.txt',
+                  link:'contents/' + sapp.sappId + '/contents-list.txt' }
                ,{ id: 'references',
                   link:'contents/' + sapp.sappId + '/references.html'
                 }
@@ -108,16 +109,17 @@
                 //             precontent = \nJSON*..*\n content 
                 //             JSON essayon is optional                
                 //              
-                //      below: ess_instructions[1] = theophase: claim, proof, theorems, neutral, ... 
-                //             ess_instructions[2] = essaspect: english,... latin, ...
+                //      below: ess_instructions[1] = teaf_id: claim, proof,
+                //                                            theorems, neutral, ... 
+                //             ess_instructions[2] = leaf_id: english,... latin, ...
                 //             ess_instructions[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
                 var ess_instructions = essayon.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 if( ess_instructions && ess_instructions[3] ) {
-                    var theophase = ess_instructions[1];
-                    var essaspect = ess_instructions[2];
+                    var teaf_id = ess_instructions[1];
+                    var leaf_id = ess_instructions[2];
                     var wPreText = ess_instructions[3];
                     var wIx = wPreText.indexOf("*..*");
                     if( wIx > -1 ) {
@@ -126,21 +128,21 @@
                     }
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    rawTexts[ theophase ] = rawTexts[ theophase ] || {};
-                    rawTexts[ theophase ][ essaspect ] =
+                    rawTexts[ teaf_id ] = rawTexts[ teaf_id ] || {};
+                    rawTexts[ teaf_id ][ leaf_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
 
                     sconf.submenus = sconf.submenus || {};
-                    setMenu( theophase, 'theorion' )
-                    setMenu( essaspect, 'aspect' )
-                    //ccc( theophase, essaspect, essayHeader );
+                    setMenu( teaf_id, 'theorion' )
+                    setMenu( leaf_id, 'aspect' )
+                    //ccc( teaf_id, leaf_id, essayHeader );
 
                     //=======================================
                     // //\\ parses and sets menu
                     //=======================================
-                    function setMenu( leafId, menu_tNod_id )
+                    function setMenu( leafId, teaf_id )
                     {
                         //=======================================
                         // //\\ how submenu built
@@ -171,22 +173,22 @@
                         //=======================================
                         // \\// how submenu built
                         //=======================================
-                        var men = sconf.submenus[ menu_tNod_id ] = sconf.submenus[ menu_tNod_id ] ||
+                        var men = sconf.submenus[ teaf_id ] = sconf.submenus[ teaf_id ] ||
                              {  list : [],
                                 //.will be overriden if aspect-default is preset in script
                                 "default" : leafId,
                                 duplicates : {}
                              };
-                        //ccc( 'checing dup ' + leafId + ' ' + menu_tNod_id  + ' men=', men); 
+                        //ccc( 'checing dup ' + leafId + ' ' + teaf_id  + ' men=', men); 
                         if( !men.duplicates[ leafId ] ) {
                             //var menuItem = { id:aspect, caption:essayHeader.menuCaption } 
                             var menuItem = { id:leafId };
                             men.duplicates[ leafId ] = menuItem;
                             men.list.push( menuItem );
-                            if( menu_tNod_id === 'theorion' ) {
+                            if( teaf_id === 'theorion' ) {
                                 sDomN.theorionMenuMembersCount =
                                     ( sDomN.theorionMenuMembersCount || 0 ) + 1;
-                            } else if( menu_tNod_id === 'aspect' ) {
+                            } else if( teaf_id === 'aspect' ) {
                                 sDomN.aspectionMenuMembersCount =
                                     ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
                             }
@@ -194,7 +196,7 @@
                         if( essayHeader["default"] === "1" ) {
                             men["default"] = leafId;
                         }
-                        if( essayHeader.menuCaption && menu_tNod_id === 'aspect' ) {
+                        if( essayHeader.menuCaption && teaf_id === 'aspect' ) {
                             men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                         }
                     }

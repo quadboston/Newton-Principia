@@ -50,7 +50,7 @@
         
         ns.widthThresholds[ thresId ] = function( cb )
         {
-            var testWidth = tester().getBoundingClientRect().width;
+            var testWidth = tester.box().width;
             var mobile = testWidth <150;
             cb && cb(mobile);
             return mobile;

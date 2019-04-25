@@ -29,7 +29,7 @@ Newton's proof is done in style "reductio ad absurdum":<br><br>
  \)<br><br>
 
 
-Below is the less "consize" and more "contstuctive" proof without "reductio ad absurdum". <br><br>
+Below is the less "concise" and more "constructive" proof without "reductio ad absurdum". <br><br>
 
 <b>Lemma 1. "Constructive" proof.</b><br><br>
  

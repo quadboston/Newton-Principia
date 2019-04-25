@@ -76,7 +76,7 @@
         var tb = mlegend.tb.proof = $$
             .c('table')
             .cls( 'main-legend proof' )
-            .to( sDomN.modelDataLegend$ )
+            .to( sDomN.legendRoot$ )
             ();
         var tr = ssF.tr;
 
@@ -228,7 +228,7 @@
         var tb = mlegend.tb.claim = $$
             .c('table')
             .cls( 'main-legend claim' )
-            .to( sDomN.modelDataLegend$ )
+            .to( sDomN.legendRoot$ )
             ();
         var tr = ssF.tr;
 

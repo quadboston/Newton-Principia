@@ -8,19 +8,19 @@
 *..*
 
 
-<b>Notations</b><br><br>
+<b>Context</b><br><br>
 
 
-We will study a bounded function defined on closed interval \( [a,b] \overset f \to \mathbb{R}. \) <br><br>
+We will study a bounded function defined on closed interval ¦curve¦\( [a,b] \overset f \to \mathbb{R}. \)¦¦ <br><br>
 
 For given ordered set of numbers \( X = x_0 \lt x_1 \lt ... \lt x_n,
-\text{ where }  x_0 = a \text{ and } x_n = b, \) partition of interval \( [a,b] \) is:
+\text{ where }  x_0 = a \text{ and } x_n = b, \) partition of interval ¦base¦\( [a,b] \)¦¦ is:
 
     \[
         P(X) \overset{\;df} {=} \; \{ \Delta_i\; | \; \Delta_i = [x_i, x_{i+1}] \}.
     \]
 
-Lengts of component intervals will be denoted as \( d_i = x_{i+1} - x_{i} \) with
+Lengths of component intervals will be denoted as \( d_i = x_{i+1} - x_{i} \) with
 \( d_{max} = max\{d_i\}. \)
 
 <br><br>
@@ -36,7 +36,7 @@ For two partitions P' and P'', their mix will be defined as
     \( \Phi_{cir} \)
 ¦¦,
 
-inscribed \( \Phi_{ins} \), and interscribed \( \Phi_{inter} \)
+¦inscribed-rectangles¦inscribed \( \Phi_{ins} \)¦¦, and interscribed \( \Phi_{inter} \)
 figure is defined as a function:
 
 
@@ -46,7 +46,7 @@ figure is defined as a function:
     \phi^i_\text{inter} = f(x) \text{ at arbitray } x \in \Delta_i
 \]
 
-In literature, the construct like figure \( \Phi_{type} \) can be called "tagged partition".
+(In some textbooks, the construct like figure \( \Phi_{type} \) is called "tagged partition".)
 
 <br>
 \(  \)
@@ -75,11 +75,11 @@ match circumscribed and inscribed sums exactly.<br><br>
 For \( \delta \gt 0 \) if \( \delta \gt \underset{\;\;i} max\{d_i\} \),
 we denote sum as \( \sigma_{type,\delta} \). Likewise, sets of sums constrained by \( \delta \) will be denoted as 
     \[ 
-            U_\delta = \{ u_\delta \}
-            = \{ u_\delta | \delta \gt \underset{\;\;i} max\{d_i\} \} \\
+            U_\delta = 
+            \{ u_\delta | \delta \gt \underset{\;\;i} max\{d_i\} \} \\
             \text{and analogiously } \\
-            R_\delta = \{ r_\delta \}, L_\delta = \{ l_\delta \} \text{ and } \\
-            S_\delta \text{ for either } R_\delta, L_\delta, or R_\delta.
+            R_\delta, L_\delta. \\
+            S_\delta \text{ will denote either } U_\delta, L_\delta, or R_\delta.
     \]
 We denote their exact boundaries as:
 

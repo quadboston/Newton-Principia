@@ -21,7 +21,7 @@
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
 
-    var globalCss = '';
+    var oneTimeUse_globalCSS = '';
     var esseyions_halfBuilt = []; //key pairs:
 
     sDomF.topicModel_2_css_html = topicModel_2_css_html;
@@ -42,16 +42,19 @@
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
-        ///loops via all texts which were scripted by content contributor
-        Object.keys( rawTexts ).forEach( function( theophase ) {
-            ///loops inside of specific proof-mode
-            var essays = rawTexts[theophase];
-            Object.keys( essays ).forEach( function( essaspect ) {
+        /*
+            //recall the structure of rawText
+            rawTexts[ teaf_id ][ leaf_id ] =
+            {
+                bodyscript:PreText, essayHeader:essayHeader
+            };
+        */
+        ns.eachprop( rawTexts, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( aspect, leaf_id ) => {
                 //.RM "original-text" means CSS class of exegesis-text-html
                 //.which is obtained by parsing raw-exegesis-script
-                var classStr = 'original-text ' + theophase + ' ' + essaspect;
-                var bodyscript = essays[essaspect].bodyscript;
-
+                var classStr = 'original-text ' + teaf_id + ' ' + leaf_id;
+                var bodyscript = aspect.bodyscript;
                 //-----------------------------------------------------
                 // //\\ preliminary prepasing to extract active content
                 //-----------------------------------------------------
@@ -60,7 +63,6 @@
                 //possible alternative:
                 //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
                 //var ACTION_INDICATOR = /^\?/;
-
                 var bodySplit = bodyscript.split( ACTION_SPLITTER );
                 var bodyActiveFragments = bodySplit.map( function( splittee ) {
                     if( ACTION_INDICATOR.test( splittee ) ) {
@@ -72,22 +74,28 @@
                 //-----------------------------------------------------
                 // \\// preliminary prepasing to extract active content
                 //-----------------------------------------------------
-
                 if( references.text ) {
+                    ////references to essay-sources to be cited or to be the base of essay
                     bodyActiveFragments.push( references.text );
                 }
                 esseyions_halfBuilt.push({
-                    classStr:classStr,
-                    bodyActiveFragments:bodyActiveFragments, //atomic text mapped to UI text-pane
-                    domComponents:[],
-                    html_bFags:[]
+                    classStr            : classStr,
+                    //atomic fragments which are eigher text or
+                    //JSON object which sets action
+                    //The action defines what fragment displays:
+                    //the action looks for application state and by this state
+                    //displays fragment's content.
+                    bodyActiveFragments : bodyActiveFragments,
+
+                    domComponents       : [],
+                    html_bFags          : []
                 });
             });
         });
         //==============================================
         // \\// sapwns script-embedded-in-text to html
         //==============================================
-    };
+    }
 
 
 
@@ -107,7 +115,7 @@
         //=================================================
         // //\\ non family and topic specific highlight CSS
         //=================================================
-        globalCss += `
+        oneTimeUse_globalCSS += `
 
             /* vital: insists on visibility and overrides possibly
                coinciding target-child css which disables the child
@@ -117,7 +125,7 @@
             }
 
             /*=============================*/
-            /* //\\ links in original text */
+            /* //|| links in original text */
             /*=============================*/
             a.topic-link {
                 padding:1px;
@@ -125,27 +133,52 @@
                 border-radius:4px;
             }
             /*=============================*/
-            /* \\// links in original text */
+            /* ||// links in original text */
             /*=============================*/
+
+
+
+
+            /* todm place in common sheet */
+            .stroke-width-5 {
+                stroke-width:5px;
+            }
+            opacity-5 {
+                opacity : 0.5;
+            }
+
+
+
+
 
 
             /*=================================================
             //\\ higlights topic items when hovered by mouse
             =================================================*/
+            .bsl-approot .original-text .tofill.highlighted,
             .bsl-approot .bsl-media .tofill.highlighted {
                 fill-opacity : 0.5; /* <1 to enable two topics in one topic-link */
                 visibility:visible;
             }
+            .bsl-approot .original-text .tofill.op1,
             .bsl-approot .bsl-media .tofill.op1 {
                 fill-opacity : 0.6;
             }
+            .bsl-approot .original-text .tofill.highlighted.op1,
             .bsl-approot .bsl-media .tofill.highlighted.op1 {
                 fill-opacity : 1;
             }
+            .bsl-approot .original-text .tostroke.highlighted,
             .bsl-approot .bsl-media .tostroke.highlighted {
                 stroke-opacity:0.8; /* <1 to enable two topics in one topic-link */ 
                 stroke-width:7px;
                 visibility:visible;
+            }
+
+            /* rescales stroke for big svg pictures */
+            .bsl-approot .original-text .scale1000 .tostroke.highlighted,
+            .bsl-approot .bsl-media .scale1000 .tostroke.highlighted {
+                stroke-width:30px;
             }
             /*=================================================
             \\// higlights topic items when hovered by mouse
@@ -173,6 +206,7 @@
 
         //=================================================
         // //\\ family specific highlight CSS
+        //      enough self-explaining code
         //=================================================
         Object.keys( sconf.tfamilyColor ).forEach( function( fkey ) {
             var fcolor = fc[fkey];
@@ -187,10 +221,8 @@
                     color: black;
                     stroke: black;
                 }
-                .aspect--english .topic-link.tfamily-${fkey},
-                .aspect--english .tfamily-${fkey}.tostroke,
-                .aspect--hypertext .topic-link.tfamily-${fkey},
-                .aspect--hypertext .tfamily-${fkey}.tostroke {
+                .bsl-approot .topic-link.tfamily-${fkey},
+                .bsl-approot .tfamily-${fkey}.tostroke {
                     color: rgba(${fcolor}, 1);
                     stroke: rgba(${fcolor}, 1);
                 }
@@ -206,18 +238,19 @@
                     fill-opacity:0.2;
                 }
                 .bsl-approot .tfamily-${fkey}.tofill.op1             {fill-opacity:0.7;}
-                .bsl-approot .tfamily-${fkey}.tofill.op1.highlighted {fill-opacity:1;  }/*todm patch*/
+                /*.todm patch*/
+                .bsl-approot .tfamily-${fkey}.tofill.op1.highlighted {fill-opacity:1;  }
 
                 /* this specifity must yield to topicid */
-                .aspect--english .tfamily-${fkey}.tofill,
-                .aspect--hypertext .tfamily-${fkey}.tofill {
+                .bsl-approot .tfamily-${fkey}.tofill,
+                .bsl-approot .tfamily-${fkey}.tofill {
                     fill: rgba(${fcolor}, 1);
                 }
                 /*---------------*/
                 /* \\// to fill  */
                 /*---------------*/
             `;
-            globalCss += ww;
+            oneTimeUse_globalCSS += ww;
         });
         //=================================================
         // \\// family specific highlight CSS
@@ -228,14 +261,18 @@
     //==============================================
 
 
-
-    ///contents depends on model mode
-    ///this function visualizes the texts upon the mode
+    ///Converts these stubs, halfBuilt_ess.bodyActiveFragments, to
+    ///     1. halfBuilt_ess.html_bFags ( depending on app mode )
+    ///     2. creates dom-placeholders for essaion's fragments which not yet created
+    ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
+    ///      
+    ///This function visualizes the texts upon the mode
     ///at late run-time event, this function is, for example,
     ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
+    ///
     function repopulateContent()
     {
-        //purges all contents and can be a bug
+        //??? outdated comment??: purges all contents and can be a bug
         //bs tabs are transcluded into the same el:
         //sDomN.essaionsRoot$.html('');
 
@@ -252,6 +289,8 @@
                   ();
             }
             activeFrags_2_htmlFrags( halfBuilt_ess );
+            //above line produces this: halfBuilt_ess.html_bFags
+            //as furthre-processed-fragments-of-essaion
 
             var domComponents = halfBuilt_ess.domComponents;
             halfBuilt_ess.html_bFags.forEach( function( bFrag, fix ) {
@@ -367,11 +406,67 @@
         });
     }
 
-    ///this function needs application-model-view already created
+    ///this function needs application-model-view already created,
+    ///as of this version, it is executed only once
     function topicModel_2_css_html()
     {
+        var mediaClass = sDomN.mmedia$._cls() || '';
+        var essayAspects = mediaClass.match( /(?:\s|^)essay-(\S*)/ );
+        if( essayAspects ) {
+            essayAspects = essayAspects[1].split( '--' );
+            ///makes media-model visible only like by
+            ///bsl-approot theorion--claim aspect--english
+            oneTimeUse_globalCSS += `
+                .${cssp}-approot .${cssp}-media-superroot {
+                    display:none;
+                }
+                .${cssp}-approot.theorion--${essayAspects[0]}.aspect--${essayAspects[1]}
+                .${cssp}-media-superroot {
+                    display:inline-block;
+                }
+            `;
+        }
+
         createColorCodingCSS();
         repopulateContent();
+
+        // //\\ escaping in RegEx
+        //https://javascript.info/regexp-escaping
+        //no good? misses { 
+        //[ \ ^ $ . | ? * + ( )
+        //https://stackoverflow.com/questions/5663987/how-to-properly-escape-characters-in-regexp
+        // \\// escaping in RegEx
+
+        //----------------------------------------------------------------------
+        // //\\ here we must find information about the text which
+        //----------------------------------------------------------------------
+        //      contains hot-topic svg-element, must extract their ids
+        //      and place them into topics.topicDef
+        var extractsId_re = /\s*topicid-(\S*)/;
+        var wDefs = topics.topicDef;
+        ns.methods.elTree( sDomN.essaionsRoot$(), el => {
+            var cls = el.getAttribute( 'class' );
+            if( typeof cls === 'string' && cls.indexOf( 'topicid-' ) > -1 ) {
+                //suspect is found ... do extract the id
+                var match = cls.match( extractsId_re );
+                if( match ) {
+                    var topicKey = match[1];
+                    var tv = wDefs[ topicKey ] = wDefs[ topicKey ] ||
+                             { "topicColor":"auto" };
+                    tv.classQuery = tv.classQuery || "";
+                    var qkey = 'topicid-' + topicKey;
+                    if( tv.classQuery.indexOf( qkey ) < 0 ) {
+                        //ccc( 'alreadyThere=' + alreadyThere );
+                        //adds something like this: .topicid-circumscribed-rectangles
+                        tv.classQuery += ( ( tv.classQuery.length && ', ' ) || '') + '.' + qkey;
+                    }
+                }
+                //ccc( el.className, typeof el.className );
+            }
+        });
+        //----------------------------------------------------------------------
+        // \\// here we must find information about the text which
+        //----------------------------------------------------------------------
 
         var wDefs = topics.topicDef;
         var topicsN = Object.keys( wDefs ).length;
@@ -380,7 +475,6 @@
             // //\\ processes specific topicId
             //=========================================================
             var shapes = wDefs[ topicId ];
-
             //=======================================
             // //\\ builds token-definition colorizer
             //=======================================
@@ -406,59 +500,57 @@
             // \\// autogenerates topic color
             //-------------------------------
             if( tcolor ) {
-                globalCss +=`
+                oneTimeUse_globalCSS +=`
 
                     /* //\\ fill color variations */
-                    .bsl-approot.aspect--english .topicid-${topicId}.tofill,
-                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill {
+                    /* it overrides family fill by adding .bsl-media-root
+                       for specifity */
+                    .bsl-approot .bsl-media-root .topicid-${topicId}.tofill {
                         fill: ${tcolorFill};
                     }
-                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill,
-                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill {
+                    .bsl-approot .bsl-media-root .highlighted.topicid-${topicId}.tofill {
                         fill: ${tcolorFill};
                     }
                     /* \\// fill color variations */
 
                     /* //\\ fill opacity variations */
-                    .bsl-approot.aspect--english .topicid-${topicId}.tofill,
-                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill {
+                    .bsl-approot .bsl-media-root .topicid-${topicId}.tofill {
                         fill-opacity:0.2;
                     }
-                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill,
-                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill {
+                    .bsl-approot .bsl-media-root .highlighted.topicid-${topicId}.tofill {
                         fill-opacity:0.5;
                     }
-                    .bsl-approot.aspect--english .topicid-${topicId}.tofill.op1,
-                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tofill.op1 {
+                    .bsl-approot .bsl-media-root .topicid-${topicId}.tofill.op1 {
                         fill-opacity:0.6;
                     }
-                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tofill.op1,
-                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tofill.op1 {
+                    .bsl-approot .bsl-media-root .highlighted.topicid-${topicId}.tofill.op1 {
                         fill-opacity:1;
                     }
                     /* \\// fill opacity variations */
 
 
                     /* //\\ stroke color variations */
-                    .bsl-approot.aspect--english .topic-link.${topicId},
-                    .bsl-approot.aspect--english .main-legend .topicid-${topicId},
-                    .bsl-approot.aspect--english .topicid-${topicId}.tostroke,
+                    .bsl-approot .bsl-media-root .topic-link.${topicId},
+                    .bsl-approot .bsl-media-root .main-legend .topicid-${topicId},
 
-                    .bsl-approot.aspect--hypertext .topic-link.${topicId},
-                    .bsl-approot.aspect--hypertext .main-legend .topicid-${topicId},
-                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tostroke {
+                    .bsl-approot .bsl-media-root .topicid-${topicId}.tostroke {
                         stroke: ${tcolorStroke};
+                        color: ${tcolorStroke};
+                    }
+                    .bsl-approot .bsl-text-widget .topic-link.${topicId},
+                    .bsl-approot .bsl-text-widget .main-legend .topicid-${topicId},
+                    .bsl-approot .bsl-text-widget .topicid-${topicId}.tostroke {
                         color: ${tcolorStroke};
                     }
                     /* \\// stroke color variations */
 
                     /* //\\ stroke opacity variations */
-                    .bsl-approot.aspect--english .topicid-${topicId}.tostroke,
-                    .bsl-approot.aspect--hypertext .topicid-${topicId}.tostroke {
+                    .bsl-approot .original-text  .topicid-${topicId}.tostroke,
+                    .bsl-approot .bsl-media-root .topicid-${topicId}.tostroke {
                         stroke-opacity:0.6;
                     }
-                    .bsl-approot.aspect--english .highlighted.topicid-${topicId}.tostroke,
-                    .bsl-approot.aspect--hypertext .highlighted.topicid-${topicId}.tostroke {
+                    .bsl-approot .original-text .highlighted.topicid-${topicId}.tostroke,
+                    .bsl-approot .bsl-media-root .highlighted.topicid-${topicId}.tostroke {
                         stroke-opacity:1;
                     }
                     /* \\// stroke opacity variations */
@@ -503,6 +595,7 @@
             if( shapes.classQuery ) {
                 var shapesEls = document.querySelectorAll( shapes.classQuery );
                 shapesEls.forEach( function( domel ) {
+                    if( domel.tagName === 'a') return;
                     var domel$ = $$.$(domel);
                     domel$.addClass( 'topicid-' + topicId );
                     if( shapes.tfamily ) {
@@ -562,7 +655,7 @@
         //========================================================
         // //\\ finalizes global css
         //========================================================
-        ns.globalCss.add8update( globalCss );
+        ns.globalCss.add8update( oneTimeUse_globalCSS );
         //========================================================
         // \\// finalizes global css
         //========================================================

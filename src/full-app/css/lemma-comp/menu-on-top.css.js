@@ -12,16 +12,10 @@
 `
 
 
-    .sub-nav-bar.bsl-menu h1 {
-        display :inline-block;
-        float   :left;
-    }
-
     /*=======================================
      menu top leaf properties
      =======================================*/
-    .bsl-menu
-    .menu-teaf {
+    .bsl-menu .menu-teaf {
         position        :relative;
         display         :inline-block;
         float           :right;

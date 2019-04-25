@@ -10,7 +10,21 @@
     var sappModulesArray = fconf.sappModulesArray =
     [
         {   landingApp : true,  //marks default landing app
+            sappId : 'home-pane',
+            book : '',
+            caption : 'Contents',
+            sappCodeReference : '',
+            annotation : "Home Page and Contents",
+            codesList :
+            [
+                {  src:"sconf.js" },
+                {  src:"main.js" }
+            ]
+        },
+
+        {   landingApp : false,  //marks default landing app
             sappId : 'lemma1',
+            book : 'Book 1',
             caption : 'Lemma I',
             sappCodeReference : '',
             annotation : "Core lemma introducing limit method",
@@ -20,7 +34,6 @@
                 {  src:"main.js" },
                 {  src:"css/css-order.js" },
                 {  src:"css/proof-vs-claim-modes.css.js" },
-                {  src:"css/media.css.js" },
                 {  src:"core/media.js" },
                 {  src:"core/create-proof-slider.js" },
                 {  src:"core/limit-demos.js" },
@@ -32,6 +45,7 @@
         },
 
         {   sappId : 'lemma2',
+            book : 'Book 1',
             caption : 'Lemma II',
             sappCodeReference : '',
             annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
@@ -42,6 +56,7 @@
                 {  src:"css/widget-media.css.js" },
                 {  src:"css/slider.css.js" },
                 {  src:"css/model.css.js" },
+                {  src:"css/inner-page.css.js" },
                 {  src:"main.js" },
                 {  src:"core/preset-data.js" },
                 {  src:"core/dom.js" },
@@ -57,6 +72,7 @@
         },
 
         {   sappId : 'lemma3',
+            book : 'Book 1',
             caption : 'Lemma III',
             sappCodeReference : 'lemma2',
             annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
@@ -64,6 +80,7 @@
 
 
         {   sappId : 'lemma9',
+            book : 'Book 1',
             caption : 'Lemma IX',
             sappCodeReference : '',
             annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
@@ -73,7 +90,6 @@
                 { src:'main.js' },
                 { src:'css/css-order.js' },
                 { src:'css/proof-vs-claim-modes.css.js' },
-                { src:'css/media.css.js' },
                 { src:'core/media.js' },
                 { src:'core/create-proof-slider.js' },
                 { src:'models/study-model.js' },

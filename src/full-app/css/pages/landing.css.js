@@ -2,7 +2,7 @@
     var ns  = window.b$l;
     var sn  = ns.sn;
     var cssmods = sn('cssModules');
-    var THIS_MODULE = 'landing';
+    var THIS_MODULE = 'home-pane';
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
         var colorMain = ccs['color-main'];
@@ -18,238 +18,244 @@
 
 
 
-// //\\ css /////////////////////////////////////////
-var ret = `
 
-    
-    
 
-/*~~~~~~~~~~~~~~~~~~~~
-Styles  for the landing page can be found here
-Need to fix mobile styling
-~~~~~~~~~~~~~~~~~~~~*/
-.wrapper {
-  width: calc(100vw - 80px);
-  margin: auto; }
 
-#landing {
-  background-color: ${colorMain}; }
-  #landing .nav-bar {
-    background-color: transparent; }
-  #landing .btn__menu {
-    background: transparent; }
-    #landing .btn__menu__bar--dot, #landing .btn__menu__bar--line {
-      background: ${colorWhite}; }
-  #landing .exit-ani .btn__menu {
-    background: transparent; }
-    #landing .exit-ani .btn__menu__bar--dot, #landing .exit-ani .btn__menu__bar--line {
-      background: ${colorMain}; }
-  #landing h1, #landing h2 {
-    color: ${colorWhite}; }
-  #landing h2 {
-    font-size: 28px;
-    margin-bottom: 24px; }
+        // //\\ css /////////////////////////////////////////
+        var ret = `
 
-header {
-  position:relative;  
-  grid-area: header;
-  padding: 40px 0;
-  margin-bottom: 56px; }
+    /*====================================================== 
+       //|| home page generics
+      ======================================================*/
+    #home-pane {
+      width:100%;
+      padding-top: 80px;
+      background-color: ${colorMain};
+    }
 
-/* used in landing page as link-class which points to suggested first reading */
-.read {
-  background: ${colorWhite};
-  display: flex;
-  border-radius: 2px;
-  padding: 12px;
-  width: 175px; }
-  .read__text {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 24px); }
-  .read__arrow {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 24px; }
-  .read__label {
-    opacity: 0.58;
-    font-family: Helvetica;
-    font-size: 12px;
-    color: ${colorMain};
-    margin-bottom: 4px; }
-  .read__title {
-    font-family: Helvetica;
-    font-size: 16px;
-    color: ${colorMain};
-    letter-spacing: 0; }
+    .hp-section-wrap {
+      width: calc(100vw - 80px);
+      margin: auto; }
 
-.landing-text {
-  padding-top: 124px;
-  position: relative;
-  width: 100%;
-  z-index: 1; }
+      #home-pane h1, #home-pane h2 {
+        color: ${colorWhite}; }
 
-.newton-img {
-  position: absolute;
-  top: 72px;
-  z-index: 0;
-  right: 96px; }
+      #home-pane h2 {
+        font-size: 28px;
+        margin-bottom: 24px; }
+    /*====================================================== 
+       ||// home page generics
+      ======================================================*/
 
-.landing-title {
-  font-family: "essonnes-display", 'Garamond','Times', serif;
-  font-weight: 300;
-  font-size: 58px;
-  color: ${colorWhite};
-  letter-spacing: 1.32px;
-  line-height: 78px;
-  margin-bottom: 16px;
-  grid-area: title; }
-  .landing-title span {
-    font-style: italic; }
 
-.lemmas {
-  display: block;
-  position: relative;
-  grid-area: lemmas;
-  margin-top: 128px; }
-  .lemmas h3 {
-    font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-    font-size: 24px;
-    color: ${colorMain};
-    letter-spacing: 0.55px;
-    padding: 8px 0 4px 0; }
-  .lemmas__cell {
-    background: ${colorLight};
-    border-radius: ${borderRadius};
-    display: flex;
-    flex-direction: column;
-    padding: 12px;
-    position: relative; }
-    .lemmas__cell--coming-soon {
-      opacity: .5; }
-    .lemmas__cell__thumbnail {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+
+
+    /*====================================================== 
+       //|| home-page header
+      ======================================================*/
+    header {
+      position:relative;  
+      grid-area: header;
+      padding: 0 0;
+      margin-bottom: 56px;
+    }
+
+
+    /*====================================================== 
+       //|| front-page master caption and read first button
+      ======================================================*/
+    .landing-text {
+      padding-top: 0px;
+      position: relative;
       width: 100%;
-      height: 300px;
-      min-height: 160px; }
-      .lemmas__cell__thumbnail img {
-        max-height: 80%;
-        width: auto; }
+      z-index: 1;
+    }
 
-.how-to {
-  padding: 64px 0;
-  text-align: center;
-  background: #E9E2DA;
-  grid-area: howTo; }
-  .how-to h2 {
-    color: ${colorMain} !important;
-    text-align: left; }
-  .how-to-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 12px; }
-  .how-to__cell {
-    padding: 0 24px; }
-    .how-to__cell__image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 160px;
-      margin-bottom: 12px; }
-    .how-to__cell h4 {
-      font-size: 24px;
-      color: ${colorMain} !important; }
 
-.landing-table-of-contents {
-  grid-area: lemmas;
-  padding: 80px 0; }
-  .landing-table-of-contents ul a {
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 20px;
-    font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-    margin-bottom: 32px;
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    transition: all .6s;
-    width: 100%; }
-    .landing-table-of-contents ul a:hover {
-      border-bottom: 1px solid white;
-      transition: all .2s; }
-  .landing-table-of-contents ul .table-tag {
-    font-family: 'Helvetica', sans-serif;
-    font-size: 14px;
-    font-weight: 300; }
-  .landing-table-of-contents ul .disabled {
-    opacity: .5; }
-    .landing-table-of-contents ul .disabled:hover {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
 
-.about {
-  color: ${colorWhite};
-  font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-  margin-top: 128px; }
-  .about__text {
-    width: 100%;
-    margin-right: 10%; }
-    .about__text p {
-      font-size: 18px;
-      line-height: 1.5; }
-    .about__text h2 {
-      margin-bottom: 12px;
-      color: ${colorWhite}; }
-
-  .about__author {
-    width: 100%;
-    margin-top:20px;
-    color: ${colorWhite};
-  }
-
-    .about__author__text {
-      font-size: 18px; }
-    .about__author__image {
+    /*====================================================== 
+       //|| front-page master caption
+      ======================================================*/
+    .landing-title {
+      font-family: "essonnes-display", 'Garamond','Times', serif;
+      font-weight: 300;
+      font-size: 58px;
       color: ${colorWhite};
-      clip-path: ellipse(72px 72px at center);
-      -moz-clip-path: ellipse(72px 72px at center);
-      -webkit-clip-path: ellipse(72px 72px at center); }
+      letter-spacing: 1.32px;
+      line-height: 78px;
+      margin-bottom: 16px;
+      grid-area: title; }
+      .landing-title span {
+        font-style: italic; }
+    /*====================================================== 
+       ||// front-page master caption
+      ======================================================*/
 
-.sub-title {
-  font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-  font-size: 16px;
-  font-style: italic;
-  color: ${colorWhite};
-  margin-bottom: 24px;
-  max-width: 500px;
-  width: 60%; }
 
-.dd-label {
-  font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: rgba(255, 255, 255, 0.6);
-  padding: 8px; }
-  .dd-label a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: underline; }
-    .dd-label a:hover {
-      color: white; }
 
-.landing-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 12px;
-  grid-template-areas: 'header header header header' 'lemmas lemmas lemmas lemmas' 'howTo howTo howTo howTo' 'about about about about';
-  padding: 0 120px;
-  position: relative;
-  z-index: 1; }
 
-.lemmas-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 12px; }
+    /*====================================================== 
+       //|| front-page master sub-caption
+      ======================================================*/
+    /*
+    .sub-title {
+      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: ${colorWhite};
+      margin-bottom: 24px;
+      max-width: 500px;
+      width: 60%; }
+    */
+    /*====================================================== 
+       ||// front-page master sub-caption
+      ======================================================*/
+
+
+
+    /*====================================================== 
+       ||// front-page master caption and read first button
+      ======================================================*/
+    .newton-img {
+      position: absolute;
+      top: 72px;
+      z-index: 0;
+      right: 96px; }
+    /*====================================================== 
+       ||// home-page header
+      ======================================================*/
+
+
+
+
+    /*====================================================== 
+       //|| table of contents
+      ======================================================*/
+        .landing-table-of-contents {
+          position: relative;
+          grid-area: lemmas;
+          padding: 80px 0;
+          padding-top: 150px;
+        }
+
+
+      .landing-table-of-contents .content-book-title,
+      .landing-table-of-contents ul a {
+        color: white;
+        font-size: 20px;
+        font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+        padding-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        transition: all .6s;
+        width: 100%;
+      }
+
+        .landing-table-of-contents ul a:hover {
+          border-bottom: 1px solid white;
+          transition: all .2s; }
+      .landing-table-of-contents ul .table-tag {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 14px;
+        font-weight: 300; }
+      .landing-table-of-contents ul .disabled {
+        opacity: .5; }
+        .landing-table-of-contents ul .disabled:hover {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+    /*====================================================== 
+       ||// table of contents
+      ======================================================*/
+
+
+
+
+
+    /*====================================================== 
+       //|| how to
+      ======================================================*/
+    .how-to {
+      padding: 64px 0;
+      text-align: center;
+      background: #E9E2DA;
+      grid-area: howTo; }
+      .how-to h2 {
+        color: ${colorMain} !important;
+        text-align: left; }
+      .how-to-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 12px; }
+      .how-to__cell {
+        padding: 0 24px; }
+        .how-to__cell__image {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 160px;
+          margin-bottom: 12px; }
+        .how-to__cell h4 {
+          font-size: 24px;
+          color: ${colorMain} !important; }
+    /*====================================================== 
+       ||// how to
+      ======================================================*/
+
+
+
+
+
+
+    /*====================================================== 
+       //|| about
+      ======================================================*/
+    .about {
+      color: ${colorWhite};
+      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+      margin-top: 128px; }
+      .about__text {
+        width: 100%;
+        margin-right: 10%; }
+        .about__text p {
+          font-size: 18px;
+          line-height: 1.5; }
+        .about__text h2 {
+          margin-bottom: 12px;
+          color: ${colorWhite}; }
+
+
+      .about__author {
+        width: 100%;
+        margin-top:20px;
+        color: ${colorWhite};
+      }
+
+        .about__author__text {
+          font-size: 18px; }
+        .about__author__image {
+          color: ${colorWhite};
+          clip-path: ellipse(72px 72px at center);
+          -moz-clip-path: ellipse(72px 72px at center);
+          -webkit-clip-path: ellipse(72px 72px at center); }
+
+
+    .dd-label {
+      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 8px; }
+      .dd-label a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: underline; }
+        .dd-label a:hover {
+          color: white; }
+    /*====================================================== 
+       ||// about
+      ======================================================*/
+
+
+
+
 
 @keyframes mousemove {
   0% {
@@ -273,17 +279,8 @@ Media Queries
     grid-template-columns: 1fr;
     grid-column-gap: 12px;
     grid-row-gap: 80px; }
-  .landing-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 12px;
-    grid-template-areas: 'header' 'scrollarea'  'lemmas' 'about';
-    padding: 0 16px !important;
-    width: calc(100vw - 32px); }
-  .lemmas-grid {
-    display: grid;
-    grid-template-columns: 1fr !important;
-    grid-gap: 12px; }
+
+
   .about {
     flex-direction: column; }
     .about .about__text {
@@ -296,10 +293,6 @@ Media Queries
       .about .about__author__image {
         transform: scale(0.8);
         clip-path: ellipse(72px 72px at center); } }
-
-
-
-
 
 `;
 // \\// css /////////////////////////////////////////
