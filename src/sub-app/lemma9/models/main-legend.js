@@ -149,7 +149,6 @@
         //===================
         //:Abd Ace
         var row = $$.c('tr')
-            //.addClass('tfamily-proof')
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'Abd' );
@@ -157,7 +156,6 @@
         makeCl( row, 'AbdPerAce', 'Abd/Ace' );
         //:Afd Age
         var row = $$.c('tr')
-            //.addClass('tfamily-proof')
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'Afd' );
@@ -172,7 +170,6 @@
         // //\\ vanishing areas
         //===================
         var row = $$.c('tr')
-                    .addClass('tfamily-claim')
                     .addClass('tostroke')
                     .to(tb)();
         makeCl( row, 'ABD', null, 2, 2 );
@@ -180,7 +177,6 @@
         $$.c('td').to(row); //empty filler-cell
         makeCl( row, 'ABDPerACE', 'ABD/ACE' );
         var row = $$.c('tr')
-                    .addClass('tfamily-claim')
                     .addClass('tostroke')
                     .to(tb)();
         makeCl( row, 'ACE', null, 2, 2 );
@@ -196,51 +192,21 @@
 
         //:model linear unit 
         var row = $$.c('tr')
-            .addClass('tfamily-claim')
-            .addClass('tostroke')
+            //.addClass('tostroke')
             .to(tb)();
         //$$.c('td').a('colspan','6').to(row);
-        makeCl( row, 'model-linear-unit', 'Ae');
+        makeCl( row, 'model-linear-unit', 'Ae').cls('tp-_ae-length tostroke');
         clustersToUpdate['model-linear-unit'].innerHTML = sconf.LEGEND_NUMERICAL_SCALE.toFixed();
         return;
 
-
-        ///Makes:  magnitude's cluster in table,
-        ///Effect: represents magnitude in html-table-row in 
-        ///        form "mname = mvalue",
-        ///Input:  mname = magnitude name
-        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight )
-        {
-            var c$ = $$.c('td')
-                       .html( mcaption||mname )
-                       .addClass('tostroke')
-                       .to(row);
-            if( alignCaptionToRight ) {
-                c$.addClass('align-to-right')
-            }
-
-            if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
-
-            //todm .this does not guarantee adding the class to td ... so far only
-            //.topic-engine probably takes care about the class - do fix this
-            tr( 'legend-'+mname, 'domel', c$() );
-
-            $$.c('td').html('=').addClass('eq-sign').to(row);
-            var c$ = $$.c('td')
-                       .addClass('value')
-                       .addClass('tostroke')
-                       .to(row);
-            if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-            var updateeCell = tr( 'number-'+mname, 'domel', c$() );
-            clustersToUpdate[mname] = updateeCell;
+        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
+            return makeClBoth(
+                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'proof' );
         }
     }
     //=========================================
     // \\// creates proof table
     //=========================================
-
-
-
 
 
 
@@ -302,7 +268,6 @@
         // //\\ vanishing areas
         //===================
         var row = $$.c('tr')
-            .addClass('tfamily-claim')
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'ABDPerACE', 'ABD/ACE' );
@@ -312,32 +277,76 @@
 
         //:sides row
         var row = $$.c('tr')
-            .addClass('tfamily-claim')
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'AD2PerAE2', 'AD²/AE²');
         return;
 
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal )
-        {
-            var c$ = $$.c('td')
-                       .html( mcaption||mname )
-                       .to(row);
-            if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
-            tr( 'claim-legend-'+mname, 'domel', c$() );
-            $$.c('td').html('=').to(row);
-            var c$ = $$.c('td')
-                       .addClass('value')
-                       .to(row);
-            if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-            var updateeCell = tr( 'claim-number-'+mname, 'domel', c$() );
-            clustersToUpdate_claim[mname] = updateeCell;
+        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
+            return makeClBoth(
+                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'claim' );
         }
     }
     //=========================================
     // \\// creates claim table
     //=========================================
+
+
+
+
+    //=========================================
+    //
+    //=========================================
+    ///Makes:  magnitude's cluster in table,
+    ///Effect: represents magnitude in html-table-row in 
+    ///        form "mname = mvalue",
+    ///Input:  mname = magnitude name
+    function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
+    {
+        var tr = ssF.tr;
+        var cssName = mname.replace( /([A-Z])/g, ( match, key1 ) => (
+                      '_' + key1.toLowerCase()
+        ));
+
+        var c$ = $$.c('td')
+                   .html( mcaption||mname )
+                   .addClass('tostroke tocolor tobold tp-' + cssName)
+                   .to(row);
+        if( alignCaptionToRight ) {
+            c$.addClass('align-to-right')
+        }
+
+        if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
+
+
+        //todm .this does not guarantee adding the class to td ... so far only
+        //.topic-engine probably takes care about the class - do fix this
+        //tr( 'legend-'+mname, 'domel', c$() );
+        //tr( 'claim-legend-'+mname, 'domel', c$() );
+
+        $$.c('td').html('=').to(row)
+        //.addClass('eq-sign')
+        ;
+
+        var c$ = $$.c('td')
+                   .cls('value')
+                   .cls('tostroke tocolor tobold tp-'+cssName)
+                   .to(row);
+        if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
+        //var updateeCell = tr( 'td-'+mname, 'domel', c$() );
+        if( claim0proof === 'claim' ) {
+            //var updateeCell = tr( 'claim-number-'+mname, 'domel', c$() );
+            //clustersToUpdate_claim[mname] = updateeCell;
+            clustersToUpdate_claim[mname] = c$();
+        } else {
+            //var updateeCell = tr( 'number-'+mname, 'domel', c$() );
+            clustersToUpdate[mname] = c$(); //updateeCell;
+        }
+        return c$;
+    }
+
+
 
 }) ();
 

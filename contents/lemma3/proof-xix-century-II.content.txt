@@ -219,7 +219,7 @@ which implies equivalence of Riemann and Darboux integrals:
             
         \]
 
-In plain words, the existence of Riemann integral depends on existence of the gap between ¦low-darboux¦low¦¦ and ¦upper-darboux¦upper¦¦ of Darboux integrals. If there is no gap, then ¦figure¦Riemann integral¦¦ exists and equal to ¦figure¦Darboux integrals¦¦. In plain graphs:
+In plain words, the existence of Riemann integral depends on existence of the gap between ¦low-darboux¦low¦¦ and ¦upper-darboux¦upper¦¦ of Darboux integrals. If there is no gap, then ¦figure-area¦Riemann integral¦¦ exists and equal to ¦figure-area¦Darboux integrals¦¦. In plain graphs:
 <br><br>
 
 

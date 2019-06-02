@@ -2,6 +2,7 @@
 {
   "mediaBgImage" : "",
   "menuCaption" : "XIX Century",
+  "default" : "0",
   "dataLegend":"0"
 }
 *..*

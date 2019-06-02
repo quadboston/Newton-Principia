@@ -98,7 +98,7 @@
         font-size       :80%;
         padding-right   :5px;
 
-        /* todom: this is hell-complex, but works making 
+        /* todm: this is hell-complex, but works making 
            caption vertically-centered in the radio-slot */
         top             :50%;
         transform       :translate(0%, -10%);

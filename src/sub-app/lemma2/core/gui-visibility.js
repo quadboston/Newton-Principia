@@ -8,6 +8,7 @@
 
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
+    var sDomN       = sn('dnative', sapp);
 
     var amode       = sn('mode',sapp);
     var sDomF       = sn('dfunctions', sapp);
@@ -72,7 +73,7 @@
 	        guiup.calculate8paintCurve_8_paintAxes();
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
             sDomF.medD8D && sDomF.medD8D.updateAllDecPoints();
-            sDomF.repopulateContent();
+            if( sDomN.topicModelInitialized ) sDomF.repopulateContent();
         }
         //======================================
         // \\// view top-manager

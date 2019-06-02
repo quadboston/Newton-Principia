@@ -17,7 +17,8 @@
 }
 *..*
 
-        Even if the lengths of the ¦base¦bases¦¦ are unequal, the areas of the ¦figure¦figure¦¦, 
+        Even if the lengths of the ¦base¦bases¦¦ are unequal, the areas of the
+        ¦figure-area¦figure¦¦, 
         the ¦inscribed-rectangles¦inscribed rectangles¦¦,
         and the ¦circumscribed-rectangles¦circumscribed rectangles¦¦ 
         <i>still</i> all converge to the same value.

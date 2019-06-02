@@ -17,18 +17,25 @@
     ///attaches this html to hostDomEl
     function addD8D_decorationPoint(
         hostDomEl,      //usually dragSurface
-        cssId,          //optional
-        color,          //optional
+        dragCssCls,      //optional
+        dragDecorColor, //optional
         parent_classes  //optional
     ) {
         var decPoint = document.createElement( 'div' );
-        decPoint.setAttribute( 'class', 'brc-slider-draggee' + ( cssId ? ' ' + cssId : '' ) );
-        if( cssId && color ) {
-            var fullCssId = 'brc-slider-draggee-' + cssId;
-            decPoint.setAttribute( 'id', fullCssId );
-            dpdec.create_individualCss( fullCssId, color, parent_classes );
+        dpdec.createGlobal(); //idempotent
+        if( dragCssCls && dragDecorColor ) {
+            //amended: decPoint.setAttribute( 'id', fullCssId );
+            dpdec.create_individualCss( dragCssCls, dragDecorColor, parent_classes );
             //later on, don't forget to make ns.globalCss.update();
         }
+        var cssCls = 'brc-slider-draggee'
+           //.the second purpose of this line: it allows the handle to be managed
+           //.from other module css, for example, 
+           //.allows to hide dividor draggee at highlight
+           + ( dragCssCls ? ' ' + dragCssCls : '' )
+        ;
+        decPoint.setAttribute( 'class', cssCls );
+
         hostDomEl.appendChild( decPoint );
 
         var left = document.createElement( 'div' );

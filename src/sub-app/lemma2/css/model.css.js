@@ -140,15 +140,6 @@ svg text {
 }
 /* \\//  subapplication (lemma 2, 3 specific) fix; */
 
-/*
-.text--english .tfamily-figure.tofill, .text--hypertext .tfamily-figure.tofill
-tofill topicid-figure tfamily-figure topicid-figure-area hidden
-*/
-
-.tfamily-figure.tofill.hidden {
-    visibility:hidden;
-}
-
 `;
 // \\// css /////////////////////////////////////////
 

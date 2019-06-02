@@ -24,7 +24,7 @@
             Since its width decreases indefinitely, its area decreases indefinitely, 
             becoming arbitrarily close to 0. So the difference between the areas of the 
             ¦inscribed-rectangles¦inscribed rectangles¦¦, the
-            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure¦figure¦¦ in between them becomes arbitrarily close to 0. 
+            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. 
             For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
             ¿?
             {

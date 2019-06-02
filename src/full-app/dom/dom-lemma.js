@@ -18,7 +18,7 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD); //todo should be child of ss
+    var rg          = sn('registry',ssD); //todm should be child of ss
 
     var detected_user_interaction_effect_DONE = false;
     sDomF.detected_user_interaction_effect = detected_user_interaction_effect;

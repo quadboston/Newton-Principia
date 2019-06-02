@@ -64,7 +64,7 @@
         ///apparently this and letter-labels is somehow disabled to
         ///prevent conflict with
         ///colors of topic engine
-        ///... possibly look here: var l = constructSingleInList_dom("text", list, style+" label");
+        ///... possibly look here: var l = makeS_inList("text", list, style+" label");
         ///... in lemma2/core/gui-construct.js
         document.querySelectorAll('.label').forEach( function( el ) {
             el.style.visibility = isHyper ? 'hidden' : 'visible';
@@ -84,20 +84,16 @@
         //====================================================================
         // //\\ makes media-draw-area
         //====================================================================
-        var svg = sDomN.svg = $$.cNS( 'svg' )
+        sDomN.mmedia$ = $$.cNS( 'svg' )
             .aNS( 'id',     'illus' )
             .aNS( 'class',   cssp +'-media' )
-            .aNS( 'version', '1.1' ) //todo ??
             .aNS( 'viewBox', '0 0 ' +
                              sconf.innerMediaWidth + ' ' +
                              sconf.innerMediaHeight )
-            .aNS( 'baseProfile', "full" ) //magic todo? //todm ?
-            //todo magic: https://stackoverflow.com/questions/
-            //            16438416/cross-browser-svg-preserveaspectratio
-            .aNS( 'preserveAspectRatio', "xMidYMid meet" )  //todm ?
+            .aNS( 'preserveAspectRatio', "xMidYMid meet" )
             .to( sDomN.medRoot )
-            ();
-        sDomN.mmedia$ = $$.$( svg );
+            ;
+        var svg = sDomN.svg = sDomN.mmedia$();
         //====================================================================
         // \\// makes media-draw-area
         //====================================================================
@@ -125,31 +121,32 @@
 
         $$.cNS( 'line' )
             .aNS( 'id', 'baseAxis' )
-            .aNS( 'class', "figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-base figure outline tostroke" )
             .to(svg)
             ;
 
         $$.cNS( 'line' )
             .aNS( 'id', 'wallL' )
-            .aNS( 'class', "figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-wall figure outline tostroke" )
             .to(svg)
             ;
 
         $$.cNS( 'line' )
             .aNS( 'id', 'wallR' )
-            .aNS( 'class', "figure outline tostroke" )
+            .aNS( 'class', "tp-figure figure outline tostroke" )
             .to(svg)
             ;
 
         $$.cNS( 'polyline' )
             .aNS( 'id', 'polylineCurve' )
-            .aNS( 'class', "figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-curve figure outline tostroke" )
             .to(svg)
             ;
 
         sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
             .aNS( 'id', 'figureInternalArea' )
-            .aNS( 'class', "tofill" )
+            .aNS( 'class', "tp-figure-area tofill hidden" )
+            .aNS( 'fill', "rgba(0,222,222,0.5)" )
             .to(svg)
             ;
 
@@ -193,15 +190,18 @@
 
 
                 <div class="circumscribed  areas__checkboxes-row">
-                    <div class="checkbox-wrap">
+                    <div class="tp-circumscribed checkbox-wrap tobg">
                         <input id="toggleCircumscribed" type="checkbox" name="option" 
                                class="checkbox circumscribed" checked>
-                        <label for="toggleCircumscribed"></label>
+                        <label class="tp-circumscribed-rectangles"
+                               for="toggleCircumscribed"></label>
                     </div>
                     <span class="number">
-                        <span class="circAmtd" id="circAmtd"></span>
+                        <span class="tp-circumscribed-rectangles tocolor tobold circAmtd"
+                              id="circAmtd"></span>
                     </span>
-                    <span class="tag circumscribed-tag">circumscribed</span>
+                    <span class="tp-circumscribed-rectangles tag circumscribed-tag
+                          tp-circumscribed tocolor tobold">circumscribed</span>
                 </div>
                 <!--END Circumscribed-->
 
@@ -209,17 +209,18 @@
 
                 <!-- copy pasted from lemma2.html -->
                 <div class="figure  areas__checkboxes-row">
-                    <div class="checkbox-wrap">
+                    <div class="checkbox-wrap tobg">
                         <input id="checkbox_4" type="checkbox" name="option"
                                class="checkbox figure"
                                onclick="window.b$l.fapp.ss.gui.showFig()"
                                checked>
-                        <label for="checkbox_4"></label>
+                        <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
                     </div>
                     <span class="number">
-                        <span class="figAmt" id="figAmt">100.0</span>
+                        <span class="tp-figure tp-figure-area tocolor tobold figAmt"
+                              id="figAmt">100.0</span>
                     </span>
-                    <span>figure</span>
+                    <span class="tp-figure tp-figure-area tocolor tobold figAmt">figure</span>
                 </div>
                 <!--END figure-->
 
@@ -228,12 +229,14 @@
                     <div class="checkbox-wrap">
                         <input id="toggleInscribed" type="checkbox" name="option" 
                                class="checkbox inscribed" checked>
-                        <label for="toggleInscribed"></label>
+                        <label class="tp-inscribed-rectangles" for="toggleInscribed"></label>
                     </div>
                     <span class="number">
-                        <span class="inAmt" id="inAmtd"></span>
+                        <span class="tp-inscribed-rectangles tocolor tobold inAmt"
+                              id="inAmtd"></span>
                     </span>
-                    <span class="tag inscribed-tag">inscribed</span>
+                    <span class="tp-inscribed-rectangles tocolor tobold tag
+                          inscribed-tag">inscribed</span>
                 </div>
                 <!--END inscribed-->
 
@@ -243,12 +246,14 @@
                     <div class="checkbox-wrap">
                         <input id="toggleWidthest" type="checkbox" name="option" 
                                class="checkbox" checked>
-                        <label for="toggleWidthest"></label>
+                        <label class="tp-widthest-rectangular" for="toggleWidthest"></label>
                     </div>
                     <span class="number">
-                        <span class="diffAmtm" id="diffAmtd"></span>
+                        <span class="tp-widthest-rectangular tocolor tobold diffAmtm"
+                              id="diffAmtd"></span>
                     </span>
-                    <span class="tag proof-tag">end rectangle</span>
+                    <span class="tp-widthest-rectangular tocolor tobold tag proof-tag">
+                          end rectangle</span>
                 </div>
 
         `);

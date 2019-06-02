@@ -9,7 +9,7 @@
         <!-- U+ -->
         <circle cx="180" cy="290" r="3" fill="#0da2f6"/>
         <circle cx="160" cy="295" r="3" fill="#0da2f6"/>
-        <!-- adding classes topicid-circumscribed-rectangles tostroke
+        <!-- adding classes tp-circumscribed-rectangles tostroke
              is an experiment to see how topic engine works on inline-model diagram
         -->
         <path
@@ -29,18 +29,18 @@
         <circle cx="160" cy="300" r="3" fill="#aaaa00"/>
         <circle cx="140" cy="300" r="3" fill="#aaaa00"/>
         <path
-            class="topicid-upper-darboux tostroke stroke-width-5"
+            class="tp-upper-darboux tostroke stroke-width-5"
             style="stroke:#aaaa00; fill:transparent;"
             d="M 200,300 C 300,300 500,300 800,300"
         />
         <text x="850" y="280" 
-            class="mark topicid-upper-darboux tofill opacity-5 op1"
+            class="mark tp-upper-darboux tofill opacity-5 op1"
             fill="#aaaa00">-</text>
         <text x="820" y="300"
-            class="mark topicid-upper-darboux tofill opacity-5 op1"
+            class="mark tp-upper-darboux tofill opacity-5 op1"
             fill="#aaaa00">U</text>
         <text x="850" y="320" 
-            class="mark topicid-upper-darboux tofill opacity-5 op1"
+            class="mark tp-upper-darboux tofill opacity-5 op1"
             fill="#aaaa00">&#x03B4;</text>
 
 
@@ -54,7 +54,7 @@
         <circle cx="160" cy="500" r="3" fill="#aaaa00"/>
         <circle cx="140" cy="500" r="3" fill="#aaaa00"/>
         <path
-            class="topicid-low-darboux tostroke stroke-width-5"
+            class="tp-low-darboux tostroke stroke-width-5"
             style="stroke:#aaaa00; fill:transparent;"
             d="M 200,500 C 300,500 500,500 800,500"
         />

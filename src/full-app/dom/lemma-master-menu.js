@@ -363,9 +363,9 @@
                 }
             }
         }
-        if( sapp.readyToPopulateMenu ) { 
+        if( sapp.readyToResize ) { 
             //.includes sapp.upcreate();
-            fmethods.restrictMediaDimensions(null, null, !!'doDividorSynch');
+            fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
         }
         //==================================================
         // \\// hides or shows image and legend

@@ -320,6 +320,9 @@
             var sample = gen();
             var masterGen = {};
             Object.keys( sample ).forEach( function( key ) { //todm ... works for functions ? not only for objects?
+                //todm: big fix: gen() to sample ... why not works?
+                //masterGen[ key ] = function() { return sample[ key ].apply( {}, arguments ); };
+
                 masterGen[ key ] = function() { return gen()[ key ].apply( {}, arguments ); };
             });
             return masterGen;
@@ -491,9 +494,11 @@
     ///sugar for Object.keys( obj ).forEach ...
     ns.eachprop = function( obj, callBack )
     {
-        Object.keys( obj ).forEach( function( key ) {
-            callBack( obj[ key ], key );
+        var keys = Object.keys( obj );
+        keys.forEach( function( key, kix ) {
+            callBack( obj[ key ], key, kix );
         });
+        return keys;
     };
 
 

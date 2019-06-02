@@ -53,19 +53,11 @@
         sDomN.svg = document.createElementNS( fconf.svgNS, 'svg' );
         sDomN.mmedia$ = $$.$( sDomN.svg );
         sDomN.svg.setAttributeNS( null, 'class', cssp +'-media' );
-        sDomN.svg.setAttributeNS( null, 'version', "1.1" );    //todo ??
         sDomN.svg.setAttributeNS( null, 'viewBox', '0 0 ' +
                                  sconf.innerMediaWidth + ' ' +
                                  sconf.innerMediaHeight );
-        //magic todo?
-        sDomN.svg.setAttributeNS( null, 'baseProfile', "full" ); //todm ?
-
-        //todo magic: https://stackoverflow.com/questions/16438416/cross-browser-svg-preserveaspectratio
-        sDomN.svg.setAttributeNS( null, 'preserveAspectRatio', "xMidYMid meet" );  //todm ?
-
+        sDomN.svg.setAttributeNS( null, 'preserveAspectRatio', "xMidYMid meet" );
         $$.to( sDomN.medRoot, sDomN.svg );
-        //sDomN.svg.setAttributeNS( null, 'fill', "#FFFFAA" );
-        //no good: sDomN.svg.style.fill = "#FFFFAA";
         //..........................
         // \\// media
         //..........................

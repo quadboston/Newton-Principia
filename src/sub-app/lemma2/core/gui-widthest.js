@@ -64,16 +64,16 @@
         //===============================================
         gui.constructWidthestRectangular = function()
         {
-            dr.labelf = guicon.constructSingle_dom( "text", "figure label f", "f" );
-            dr.labelF = guicon.constructSingle_dom( "text", "figure label F", "F" );
+            dr.labelf = guicon.makeShape( "text", "figure label f", "f" );
+            dr.labelF = guicon.makeShape( "text", "figure label F", "F" );
             dr.faaf   = ( function() {
 	                        var x = document.createElementNS( sacf.svgns, "rect");
 	                        //not in use: x.setAttributeNS(null, "class", "dottedRect");
 	                        dr.svgSeg.appendChild(x);
 	                        return x;
             })();
-            $$.$(dr.faaf).addClass( 'widthest-rectangular tofill tostroke' );
-            //redundant ... class works well: ssF.tr( 'widthest-rectangular', 'domel', dr.faaf );
+            $$.$(dr.faaf).addClass(
+                'widthest-rectangular tp-widthest-rectangular tofill' );
         };
 
         gui.widthEnd = function(pt, showRectPts, view)
@@ -120,7 +120,6 @@
         gui.show_widthest_claim_labels = function( view )
         {
             var visib = !sapp.isLite() && !sdata.view.isClaim ? "visible":"hidden";
-//ccc( !sapp.isLite(), view.isClaim );
 	        dr.labelf.setAttributeNS(null, "visibility", visib );
             dr.labelf.style.visibility = visib; //vital line
 	        dr.labelF.setAttributeNS(null, "visibility", visib );

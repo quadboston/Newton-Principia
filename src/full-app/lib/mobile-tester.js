@@ -1,4 +1,5 @@
 /*
+    This is not mobile detector. This is a JS/CSS syncer.
     Enables width detection synch between media-query and JS.
     Creates threshold point in @media ... and
     sets the JS-test-method to this threshold.

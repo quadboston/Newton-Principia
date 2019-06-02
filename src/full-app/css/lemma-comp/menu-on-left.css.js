@@ -165,7 +165,7 @@
         font-weight     :bold;
         padding-right   :0;
 
-        /* todom: this is hell-complex, but works making 
+        /* todm: this is hell-complex, but works making 
            caption vertically-centered in the radio-slot */
         top             :50%;
         transform       :translate(0%, -17%);
@@ -177,7 +177,7 @@
        this CSS-entry tries to adjust aspect-top-menu-node-caption */
     .leftside-menuholder .aspect
     .litem .caption {
-        /* todom: this is hell-complex, but works making 
+        /* todm: this is hell-complex, but works making 
            caption vertically-centered in the radio-slot */
         transform       :translate(0%, -10%);
     }
@@ -212,7 +212,7 @@
     //-----------------------------
     ret += `
 
-    /* /// todo what? ... was used to set background under shadow and handle
+    /* /// todm what? ... was used to set background under shadow and handle
        /// todm is redundant ... shadow and handle can use z-index < 0
        /// holds shadow and handle
     */

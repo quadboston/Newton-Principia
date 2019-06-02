@@ -16,9 +16,8 @@
 
     var d8d_p       = sn('d8d-point',fmethods);
     fmethods.createDividorResizer = createDividorResizer;
-    //000000000000000000000000000000000000000000000000000
     return;
-    //000000000000000000000000000000000000000000000000000
+
 
 
 
@@ -58,12 +57,11 @@
         //.........................................
         // //\\ creates lower-layer framework
         //.........................................
-        var frameworkD8D = d8d_p.createFramework( 
-            findDraggee,
-            //sDomN.medSuperroot,
-            fapp.fappRoot$(),
-            fconf.DRAG_POINTS_THROTTLE_TIME
-        );
+        var frameworkD8D = fmethods.panesD8D = d8d_p.createFramework({
+            findDraggee : findDraggee,
+            dragSurface : fapp.fappRoot$(),
+            DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
+        });
         //.........................................
         // \\// creates lower-layer framework
         //.........................................
@@ -75,18 +73,17 @@
         //============================================================
         var pointWrap_local =
         {
-            name                    :'dividor',     //makes a placeholder for handler
+            //.id is vital to have for removing extra disk over dividor
+            dragCssCls           : 'dividor',     //makes a placeholder for handler
 
             //.means media superroot width in pixels
             //.this default is irrelevant because it is updated at the first resize
-            achieved_at_move        :sconf.mediaDefaultWidthPercent * window.innerWidth,
+            //achieved_at_move    : sconf.mediaDefaultWidthPercent * window.innerWidth,
 
-            medpos2dompos           :medpos2dompos
+            medpos2dompos       : handle2root
         };
-
-        var dragWrap = frameworkD8D.createDragUpdate({
-
-            achieved            : pointWrap_local.achieved_at_move,
+        var dragWrap = frameworkD8D.pointWrap_2_dragWrap({
+            //achieved            : pointWrap_local.achieved_at_move,
             pointWrap           : pointWrap_local,
             update_decPoint     : update_decPoint, //updates "decorational Point", not "decimal"
             doProcess           : doProcess
@@ -96,12 +93,8 @@
         // \\// dragWrap is a top level point which
         //============================================================
 
-        $$.addClass( 'grey', dragWrap.decPoint );
-        $$.addClass( 'axis-x', dragWrap.decPoint );
-        fmethods.restrictMediaDimensions = restrictMediaDimensions;
-        //111111111111111111111111111
+        fmethods.finish_Media8Ess8Legend_resize = finish_Media8Ess8Legend_resize;
         return;
-        //111111111111111111111111111
 
 
 
@@ -116,16 +109,18 @@
         ///=============================================================================
         function doProcess( arg )
         {
-            var achWrap = pointWrap_local.achieved;
-
+            var pL = pointWrap_local;
+            var pA = pL.achieved;
             switch( arg.down_move_up ) {
-                case 'up': achWrap.achieved = pointWrap_local.achieved_at_move;
-                break;
+                case 'up':
                 case 'move':
-                    var newSuperW = restrictMediaDimensions(
-                        achWrap.achieved - arg.move[0]
+                    var newSuperW = finish_Media8Ess8Legend_resize(
+                        pA.achieved - arg.move[0]
                     );
-                    pointWrap_local.achieved_at_move = newSuperW;
+                    //pL.achieved_at_move = newSuperW;
+                    if( arg.down_move_up === 'up' ) {
+                        pA.achieved = newSuperW; //pL.achieved_at_move;
+                    }
                 break;
             }
         }
@@ -143,7 +138,7 @@
         /// //\\ restricts and sets super root and text pane sizes
         ///      used in resize and in master-dividor-slider
         ///=============================================================================
-        function restrictMediaDimensions( proposed_medSupW, rootW, doDividorSynch )
+        function finish_Media8Ess8Legend_resize( proposed_medSupW, rootW, doDividorSynch )
         {
             var isMobile = ns.widthThresholds
                            [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();
@@ -152,12 +147,8 @@
             //=============================
 
 
-            // //\\ gets media aspect ratio: todo must be already known
-            var medBox  = sDomN.mmedia$.box();
-            var curMedW = medBox.width;
-            var curMedH = medBox.height;
-            //var aRat    = curMedH / curMedW;
-            var aRat    = sconf.innerMediaHeight / sconf.innerMediaWidth;
+            // //\\ gets media aspect ratio
+            var aRat = sconf.innerMediaHeight / sconf.innerMediaWidth;
             // \\// gets media aspect ratio
 
             var VERTICAL_SAFE_HEIGHT_1 = 20;
@@ -302,7 +293,7 @@
 
 
             // //\\ video preparations
-            //.todo why 0.8? box-sizing model?
+            //.todm why 0.8? box-sizing model?
             //var videoW = textPaneW_perc / 100 * rWidth * 0.8;
             var videoW = essayWidth * 0.8;
             var videoH = videoW*10/16;
@@ -336,6 +327,8 @@
             sDomN.medRoot$
                 .css( 'width',  medRW_str );
 
+            ///this only modifies a whole CSS for this element
+            ///the whole CSS in in file fapp.css.js
             sDomN.mediaHorizontalHandlerCSS$.html(`
                 .bsl-showreel-video-wrap {
                     width   : ${videoW_px};
@@ -380,6 +373,7 @@
             //===============================================
             if( doDividorSynch ) {
                 pointWrap_local.achieved.achieved = medSupW;
+                fmethods.panesD8D.updateAllDecPoints();
             }
             //===============================================
             // \\// synchs results with dividor-slider states
@@ -407,13 +401,13 @@
         // //\\ finds draggee
         //====================
         ///Returns: dragWrap if it is close to testPoint.
-        function findDraggee( testPoint )
+        function findDraggee( testPoint, dummy, dragSurface )
         {
             //.if distance to testPoint is "outside" of this par.,
             //.dragWrap is not "considered" for drag
             var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
 
-            var handlePos = medpos2dompos();
+            var handlePos = handle2root( dragSurface );
             var testMedpos = testPoint;
             var testMediaX = testMedpos[0];
             var testMediaY = testMedpos[1];
@@ -435,23 +429,24 @@
 
 
         ///converts own media pos to dom-pos
-        function medpos2dompos()
+        function handle2root( dragSurface )
         {
-            var parentBox = fapp.fappRoot$.box();
-            var handleBox = sDomN.mediaHorizontalHandler.getBoundingClientRect();
-            var handlePos = [
-                    handleBox.left-parentBox.left,
-                    handleBox.top - parentBox.top + handleBox.height/2
+            //.vital to remember: parent of decPoint, not of mediaHorizontalHandler
+            var rr = dragSurface.getBoundingClientRect(); //was: fapp.fappRoot$.box();
+            var hh = sDomN.mediaHorizontalHandler.getBoundingClientRect();
+            var h2r = [
+                hh.left - rr.left,
+                hh.top - rr.top + hh.height/2
             ];
-            return handlePos;
+            return h2r;
         }
 
-        ///repositions and decorated handle
-        function update_decPoint( decPoint )
+        ///repositions decoration-point
+        function update_decPoint( decPoint, dragSurface )
         {
-            var dompos = medpos2dompos();
-            decPoint.style.left = dompos[0] + 'px';            
-            decPoint.style.top = dompos[1] + 'px';            
+            var h2r = handle2root( dragSurface );
+            decPoint.style.left = h2r[0] + 'px';            
+            decPoint.style.top = h2r[1] + 'px';
         }
     }
 

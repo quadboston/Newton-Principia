@@ -25,8 +25,7 @@
             .nav-bar {
                 background:     transparent;
                 display:        flex;
-                xxxxgrid-area:      nav;
-                align-items:    flex-start; xxxxcenter:x;
+                align-items:    flex-start;
                 width:          100%;
                 padding-top:    20px;
                 padding-bottom: 20px;

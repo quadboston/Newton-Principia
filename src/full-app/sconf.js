@@ -13,9 +13,6 @@
     //====================================================
     to_sconf =
     {
-
-        //defaultMobileTabSelection : 'claim-og', //todo ... make better naming
-
         mediaOffset : [ 0, 0 ],                 //in respect to media-root
         mediaDefaultWidthPercent : 40,          //in respect to total width
         MINIMAL_MEDIA_CONTAINER_WIDTH : 350,    //todm approximate

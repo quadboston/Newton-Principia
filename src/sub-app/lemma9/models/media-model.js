@@ -60,35 +60,37 @@
         var medCurvPivots      = modCurvPivots.map( modpos2medpos );
         var medRemoteCurPivots = ssD.modRemoteCurPivots.map( modpos2medpos );
 
-        var point_A     = pos2pointy( 'point_A',
-                                      { tfamily:'claim',
-                                        cssClass:'tfamily-claim tofill tostroke op1'
+        var pointA     = pos2pointy( 'point-A',
+                                      { 
+                                        cssClass:'tofill tostroke op1',
+                                        'fill' : 'blue'
                                       }
                                     );
-        var point_D     = pos2pointy( 'point_D', { tfamily:'claim',
-                                      cssClass:'tfamily-claim tofill tostroke op1' } );
-        var point_E     = pos2pointy( 'point_E', { tfamily:'claim',
-                              cssClass:'tfamily-claim tostroke',
-                              'fill' : 'transparent', //todm: patch: removes black core from the point
+        var pointD     = pos2pointy( 'point-D', {
+                                      cssClass:'tofill tostroke op1' } );
+        var pointE     = pos2pointy( 'point-E', {
+                              cssClass:'tostroke',
+                              stroke : 'blue',
+                              'fill' : 'transparent',
                               'stroke-width' : 1
                           });
-        var point_B     = pos2pointy( 'point_B', { tfamily:'claim',
-                              cssClass:'tfamily-claim tostroke debB',
-                              'fill' : 'transparent', //todm: patch: removes black core from the point
+        var pointB     = pos2pointy( 'point-B', {
+                              cssClass:'tostroke',
+                              'fill' : 'transparent',
                               'stroke-width' : 1
                           });
-        var point_C     = pos2pointy( 'point_C', { tfamily:'claim',
-                              cssClass:'tfamily-claim tostroke',
-                              'fill' : 'transparent', //todm: patch: removes black core from the point
+        var pointC     = pos2pointy( 'point-C', {
+                              cssClass:'tostroke',
+                              'fill' : 'transparent',
                               'stroke-width' : 1
                           });
 
-        var point_d     = pos2pointy('point_d', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
-        var point_e     = pos2pointy('point_e', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
-        var point_b     = pos2pointy('point_b', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
-        var point_c     = pos2pointy('point_c', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
-        var point_g     = pos2pointy('point_g', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
-        var point_f     = pos2pointy('point_f', { tfamily:'proof', cssClass:'tfamily-proof tofill tostroke op1' } );
+        var pointOd     = pos2pointy('point-d', {cssClass:'tofill tostroke op1' } );
+        var pointOe     = pos2pointy('point-e', {cssClass:'tofill tostroke op1' } );
+        var pointOb     = pos2pointy('point-b', {cssClass:'tofill tostroke op1' } );
+        var pointOc     = pos2pointy('point-c', {cssClass:'tofill tostroke op1' } );
+        var pointOg     = pos2pointy('point-g', {cssClass:'tofill tostroke op1' } );
+        var pointOf     = pos2pointy('point-f', {cssClass:'tofill tostroke op1' } );
         //===================================================
         // \\// spawns study model from main parameters ssD
         //===================================================
@@ -106,22 +108,22 @@
         // //\\ does paint view
         //      (in viewBox for SVG)
         //==========================================
-        pointies2line( 'line_AD', [point_A, point_D], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_AE', [point_A, point_E], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_Ad', [point_A, point_d], { cssClass:'tfamily-proof tostroke' } );
-        pointies2line( 'line_Ae', [point_A, point_e], { cssClass:'tfamily-proof tostroke' } );
+        pointies2line( 'AE', [pointA, pointE], { cssClass:'tostroke' } );
+        pointies2line( 'AD', [pointA, pointD], { cssClass:'tostroke' } );
+        pointies2line( 'Ad', [pointA, pointOd], { cssClass:'tostroke' } );
+        pointies2line( 'Ae', [pointA, pointOe], { cssClass:'tostroke' } );
 
-        pointies2line( 'line_AC', [point_A, point_C], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_AB', [point_A, point_B], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_Ab', [point_A, point_b], { cssClass:'tfamily-proof tostroke' } );
-        pointies2line( 'line_Ac', [point_A, point_c], { cssClass:'tfamily-proof tostroke' } );
+        pointies2line( 'AC', [pointA, pointC], { cssClass:'tostroke' } );
+        pointies2line( 'AB', [pointA, pointB], { cssClass:'tostroke' } );
+        pointies2line( 'Ab', [pointA, pointOb], { cssClass:'tostroke' } );
+        pointies2line( 'Ac', [pointA, pointOc], { cssClass:'tostroke' } );
 
-        pointies2line( 'line_Ag', [point_A, point_g], { cssClass:'tfamily-proof tostroke' } );
+        pointies2line( 'Ag', [pointA, pointOg], { cssClass:'tostroke' } );
 
-        pointies2line( 'line_EC', [point_E, point_C], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_DB', [point_D, point_B], { cssClass:'tfamily-claim tostroke' } );
-        pointies2line( 'line_ec', [point_e, point_c], { cssClass:'tfamily-proof tostroke' } );
-        pointies2line( 'line_db', [point_d, point_b], { cssClass:'tfamily-proof tostroke' } );
+        pointies2line( 'EC', [pointE, pointC], { cssClass:'tostroke' } );
+        pointies2line( 'DB', [pointD, pointB], { cssClass:'tostroke' } );
+        pointies2line( 'ec', [pointOe, pointOc], { cssClass:'tostroke' } );
+        pointies2line( 'db', [pointOd, pointOb], { cssClass:'tostroke' } );
 
 
 
@@ -148,19 +150,12 @@
         var w0 = 1;
         for( var w0=1; w0<3; w0++) {
             var ww = mainCurve.mediael.pivotPoints[w0].svgel;
-            $$.$( ww ).addClass( 'shapeid-pivotPoint'+w0+' tostroke' );
+            $$.$( ww ).addClass( 'tp-_a_b_c' +' tostroke' );
             tr( 'pivotPoint'+w0, 'svgel', ww );
         }
-        /*
-        duplicate with drag-model.js ... for drags array ... todm:sort out
-        rg.pivotPoint1.tfamily = 'primary-curve';
-        rg.pivotPoint2.tfamily = 'primary-curve';
-        rg.pivotPoint1.name = 'pivotPoint1';
-        rg.pivotPoint2.name = 'pivotPoint2';
-        */
 
-        $$.addClass( 'tostroke', mainCurve.mediael.paintedCurve)
-          .addClass( 'shapeid-' + 'mainCurve')
+        $$.cls( 'tostroke', mainCurve.mediael.paintedCurve)
+          .cls( 'tp-' + '_a_b_c')
           ;
 
         var remoteCurve = tr( 'remoteCurve' );
@@ -174,7 +169,7 @@
                 'stroke-width' : 1 * sconf.thickness
             }
         });
-        $$.addClass('tostroke', remoteCurve.mediael.paintedCurve); //todm addClassNS
+        $$.addClass('tostroke tp-_abc', remoteCurve.mediael.paintedCurve);
         // \\// paints curve with two pivot points
 
 
@@ -185,20 +180,21 @@
         // //\\ paints curved areas
         //==========================================
         var wCCA = ssF.calculateCurvedArea;
-        wCCA( 'area-Ace', medRemoteCurPivots,  tC, point_A.medpos, point_e.medpos );
-        wCCA( 'area-Abd', medRemoteCurPivots,  tB, point_A.medpos, point_d.medpos );
-        wCCA( 'area-ACE', medCurvPivots,       tC, point_A.medpos, point_E.medpos );
-        wCCA( 'area-ABD', medCurvPivots,       tB, point_A.medpos, point_D.medpos );
+        wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
+        wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
+        wCCA( 'area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos );
+        wCCA( 'area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
 
-        paintCurvArea( 'area-Ace', 'theorion--proof tfamily-proof' );
-
-        paintCurvArea( 'area-Abd', 'theorion--proof tfamily-proof' );
-
-        paintCurvArea( 'area-ACE', 'theorion--claim tfamily-claim' );
-
-        paintCurvArea( 'area-ABD', 'theorion--claim tfamily-claim' );
-        function paintCurvArea( areaId, fullMode )
+        paintCurvArea( 'Ace', 'theorion--proof', '_ace' );
+        //.apparently makes this shape-element exclusively present in 
+        //.'theorion--proof' mode
+        paintCurvArea( 'Abd', 'theorion--proof', '_abd' );
+        //.null makes this element present in both modes
+        paintCurvArea( 'ACE', null, '_a_c_e' );
+        paintCurvArea( 'ABD', null, '_a_b_d' );
+        function paintCurvArea( areaId_, fullMode, cls )
         {
+            var areaId = 'area-' + areaId_;
             var area = rg[ areaId ];
             var lowCurve = rg[ areaId ].curve;
             
@@ -219,10 +215,8 @@
                 parent : sDomN.svg
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
-            $$.$(area.mediael)
-              .addClass( 'shapeid-'+areaId ) //cosmetic for ver 647
-              .addClass( fullMode + ' tofill' );
-              ;
+            fullMode = fullMode ? ' ' + fullMode : '';
+            $$.$(area.mediael).cls( ' tp-'+cls + fullMode + ' tofill' );
         }
         //==========================================
         // \\// paints curved areas
@@ -234,7 +228,7 @@
         // //\\ linear areas
         //==========================================
         ///paints AGE-like area
-        function paintLikeAGE( areaId, fullMode )
+        function paintLikeAGE( areaId, fullMode, cls )
         {
             var area = rg[ areaId ];
             var vertices = area.vertices.map( modpos2medpos );
@@ -244,15 +238,17 @@
                 parent : sDomN.svg
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
-            $$.addClass( fullMode + ' tofill', area.mediael);
+
+            fullMode = fullMode ? ' ' + fullMode : '';
+            $$.$( area.mediael ).cls( 'tofill' + fullMode + ' tp-' + cls);
         }
         //:calls to calculate and paint
-        //removed by project-manager: paintLikeAGE( 'AGE', 'theorion--claim tfamily-claim' );
+        //removed by project-manager: paintLikeAGE( 'AGE', 'theorion--claim' );
         //paintLikeAGE( 'AFD', 'rgba( 255,0,0, 0 )', 'theorion--claim' );
-        //removed by project-manager: paintLikeAGE( 'AFD', 'theorion--claim tfamily-claim' );
+        //removed by project-manager: paintLikeAGE( 'AFD', 'theorion--claim' );
 
-        paintLikeAGE( 'Age', 'theorion--proof tfamily-proof' );
-        paintLikeAGE( 'Afd', 'theorion--proof tfamily-proof' );
+        paintLikeAGE( 'Age', 'theorion--proof', '_age' );
+        paintLikeAGE( 'Afd', 'theorion--proof', '_afd' );
         //==========================================
         // \\// linear areas
         // \\// paints areas
@@ -328,10 +324,10 @@
                 pivots  : [ pivots[0].medpos, pivots[1].medpos ],
                 'stroke-width' : ( attr && attr[ 'stroke-width' ] || 1 ) * sconf.thickness
             });
-            var cssClass = attr && attr['cssClass'];
-            $$.addClass( cssClass, line.svgel )   //todm addClassNS
-              .addClass( 'tostroke')
-              .addClass( 'stroke');
+            var cssClass = attr && attr['cssClass'] && ( attr['cssClass'] + ' ' );
+            var cssName = pName.replace( /([A-Z])/g, ( match, key1 ) => (
+                          '_' + key1.toLowerCase() ));
+            $$.$(line.svgel).cls( cssClass + 'tp-' + cssName );
         }
 
 
@@ -341,11 +337,9 @@
         {
             var pos             = rg[ pName ].pos;
             var pt              = tr( pName );
-            pt.name             = pName;
             pt.pos              = pos;
             pt.medpos2dompos    = sDomF.medpos2dompos;
             pt.medpos           = modpos2medpos( pt.pos );
-            pt.tfamily          = attrs.tfamily;
             pt.svgel = sv.u({
                 svgel   : pt.svgel,
                 parent  : sDomN.svg,
@@ -355,11 +349,14 @@
                 'stroke-width' : (( attrs && attrs[ 'stroke-width' ] ) || 0) * sconf.thickness,
                 cx : pt.medpos[0],
                 cy : pt.medpos[1],
+                //.defines visible size of a dot on screen
                 r : 4 * sconf.thickness
             });
-            var cssClass = attrs && attrs['cssClass'];
-            //pt.svgel.setAttributeNS( null, 'class', cssClass );
-            $$.addClass( cssClass, pt.svgel ); //todm addClassNS
+            var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
+            var cssName = pName
+                .replace( /([A-Z])/g, ( match, key1 ) => (
+                          '_' + key1.toLowerCase() ));
+            $$.$(pt.svgel).cls( cssClass + 'tp-' +  cssName );
             return pt;
         }
         //==========================================

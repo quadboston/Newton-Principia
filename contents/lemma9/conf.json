@@ -1,0 +1,9 @@
+{
+    "mediaBgImage" : "contents/lemma9/img/lemma9-original.png",
+
+    "//.if set to true, then all line-feeds in source script will be converted to <br>" : null,
+    "//.which may add up empty lines" : null,
+    "convert_lineFeed2htmlBreak" : false
+}
+
+

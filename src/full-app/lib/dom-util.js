@@ -26,14 +26,16 @@
         var c2m = sDomF.css2media();
         return [ medpos[0] / c2m + off[0], medpos[1] / c2m  + off[1]];
     };
+
     ///converts dom-pos to media pos
-    sDomF.dompos2medpos = function( dompos )
+    sDomF.pOnDs_2_innerViewBox = function( point_on_drag_surface )
     {
+        var pod = point_on_drag_surface; //for lemma1, drag_surface = sDomN.medRoot
         var moffset = sconf.mediaOffset;
         var c2m = sDomF.css2media();
         return [
-            c2m * ( dompos[0] - moffset[0] ),
-            c2m * ( dompos[1] - moffset[1] )
+            c2m * ( pod[0] - moffset[0] ),
+            c2m * ( pod[1] - moffset[1] )
         ];
     };
     //===============================
@@ -42,8 +44,10 @@
 
     sDomF.css2media = function()
     {
-        //todo rid: ccc( sconf.innerMediaWidth + ' parent=' + sDomN.mmedia.parentNode.getBoundingClientRect().width);
-        return sconf.innerMediaWidth / sDomN.mmedia$().parentNode.getBoundingClientRect().width;
+        //.is a bug
+        //return sconf.innerMediaWidth / sDomN.mmedia$().parentNode.getBoundingClientRect().width;
+
+        return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
     };
 
 }) ();

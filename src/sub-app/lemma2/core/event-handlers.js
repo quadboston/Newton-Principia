@@ -86,15 +86,17 @@
                     //$('.outline').toggle();
                     $$.qa( '.outline' )().forEach( outlinee => {
                         //ccc( 'checked', outlinee );
-                        outlinee.style.visibility === 'visible'; //todm ... is this a right action?
+                        $$.$(outlinee).removeClass( 'hidden' );
+                        //outlinee.style.visibility = 'visible'; //todm ... is this a right action?
                     });
-                    sDomN.figureInternalArea$.removeClass('hidden');
+                    //sDomN.figureInternalArea$.removeClass('hidden');
                 }else{
                     $$.qa( '.outline' )().forEach( outlinee => {
-                        //ccc( 'non checked', outlinee );
-                        outlinee.style.visibility === 'hidden';
+                        //outlinee.style.visibility = 'hidden';
+                        $$.$(outlinee).cls( 'hidden' );
                     });
-                    sDomN.figureInternalArea$.addClass('hidden');
+                    //sDomN.figureInternalArea$.cls('hidden');
+                    //ccc( 'non checked sDomN.figureInternalArea$', sDomN.figureInternalArea$() );
                 }
             }
             // \\// copy-pasted from gui-art

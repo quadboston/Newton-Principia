@@ -64,17 +64,17 @@
         // //\\ spawns study model from main parameters ssD
         //===================================================
         var tanA        = modCurvPivots[1][0] / modCurvPivots[1][1];
-                          tp( 'point_A', [ 0, 0 ] );
-        var mod_e       = tp( 'point_e', [ 0, yRange ] );
+                          tp( 'point-A', [ 0, 0 ] );
+        var mod_e       = tp( 'point-e', [ 0, yRange ] );
 
-        var modC        = tp( 'point_C', bezier.parT2point( tC, modCurvPivots ) );
+        var modC        = tp( 'point-C', bezier.parT2point( tC, modCurvPivots ) );
         //var test      = tp( 'point_TEST', bezier.parT2point( 0.79, modCurvPivots ) );
 
         var Ey          = tiltRatio * modC[1];
         var Dy          = claimRatio * Ey;
 
-        var modD        = tp( 'point_D', [ 0, Dy ] );
-        var modE        = tp( 'point_E', [ 0, Ey ] );
+        var modD        = tp( 'point-D', [ 0, Dy ] );
+        var modE        = tp( 'point-E', [ 0, Ey ] );
 
         var remoteRatio = ssD.remoteRatio = mod_e[1] / modE[1];
 
@@ -87,12 +87,12 @@
                             modCurvPivots[1],
                             modCurvPivots[2]
         )[0];
-        var modB        = tp( 'point_B', bezier.parT2point( tB, modCurvPivots ) );
+        var modB        = tp( 'point-B', bezier.parT2point( tB, modCurvPivots ) );
         // \\// looking for pointB
 
-        var mod_b       = tp( 'point_b', mat.sm( remoteRatio, modB ) );
-        var mod_c       = tp( 'point_c', mat.sm( remoteRatio, modC ) );
-        var mod_d       = tp( 'point_d', mat.sm( remoteRatio, modD ) );
+        var mod_b       = tp( 'point-b', mat.sm( remoteRatio, modB ) );
+        var mod_c       = tp( 'point-c', mat.sm( remoteRatio, modC ) );
+        var mod_d       = tp( 'point-d', mat.sm( remoteRatio, modD ) );
 
         // //\\ making areas
         tr( 'AGE', 'vertices', make_points_AGE( modC, modE, tanA ) );
@@ -103,9 +103,9 @@
 
 
         var mod_g = rg[ 'Age' ].vertices[1];
-        tp( 'point_g', mod_g );
+        tp( 'point-g', mod_g );
         var mod_f = mat.sm( claimRatio, mod_g );
-        tp( 'point_f', mod_f );
+        tp( 'point-f', mod_f );
 
 
 

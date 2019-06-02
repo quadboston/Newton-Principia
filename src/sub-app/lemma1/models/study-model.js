@@ -30,6 +30,10 @@
     var modName     = 'studyModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
+
+    var modelPaths = null;
+
+
     return;
 
 
@@ -41,10 +45,7 @@
 
     function setModule()
     {
-        ssF.calculateCurvedArea = calculateCurvedArea;
-        ssF.x0y_2_t             = x0y_2_t;
-        ssF.const2positions     = const2positions;
-        sapp.upcreate           = upcreate;
+        sapp.upcreate = upcreate;
     }
 
     //=========================================================
@@ -60,20 +61,77 @@
         if( !limDemo.instance ) {
             //.recall: beats_sample is a result of execution of the data generator
             //.beats_sample = prepareBeatData()
-            limDemo.instance = limDemo.setDemo( limDemo.dataSamples.beats_sample );
-        }
-        limDemo.instance.model_2_media( sDomN.svg );
-        var lim = limDemo.dataSamples.beats_sample.lim;
-        var modE = tp( 'point_E', [-0.05,lim + EPSILON] );
+            var ww = limDemo.dataSamples.beats_sample;
+            ww.SVG_XAXIS_LEN    = 800;
+            ww.SVG_XAXIS_START  = 100;
 
-        var epsNeighb = tr( 'eps_Neighb', 'eps_Neighb',
+            ww.SVG_YAXIS_LEN    = 800;
+            ww.SVG_YAXIS_START  = 50;
+            limDemo.instance = limDemo.setDemo( ww );
+            modelPaths = limDemo.instance.model_2_media( sDomN.svg );
+        }
+        var lim = limDemo.dataSamples.beats_sample.lim;
+        var modE = tp( 'point-E', [-0.06,lim + EPSILON] );
+        //ccc('upcr: modE.posY=' + rg['point-E']['pos'][1] );
+        ///full interval of epsilon range
+        tr( 'eps_Neighb', 'eps_Neighb',
             [
                 [ modE[0], 2*lim - modE[1] ],
                 [ modE[0], modE[1] ]
             ]
         );
+        ///upper half of epsilon strip
+        tr( 'eps_NeighbUp', 'eps_NeighbUp',
+            [
+                [ modE[0], lim ],
+                [ modE[0], EPSILON + lim ]
+            ]
+        );
 
+        //-----------------------------------------
+        // //\\ finds gamma-neighbourhood
+        //-----------------------------------------
+        var absVariation = modelPaths.absVariation;
+        var neighbIx = 0;
+        absVariation.forEach( (abs, ix) => {
+            if( EPSILON > abs ) {
+                neighbIx = ix;
+            }
+        });
+        var xNeighb= modelPaths.xArray[ neighbIx ];
+        var yNeighb= modelPaths.absVariation[ neighbIx ];
+        //ccc( neighbIx, xNeighb, yNeighb );
 
+        tr( 'yNeighbUpper', 'yNeighbUpper',
+            {
+                upperLine :
+                [
+                    [ 0,        lim+yNeighb ],
+                    [ xNeighb,  lim+yNeighb ]
+                ],
+                lowerLine :
+                [
+                    [ 0,        lim-yNeighb ],
+                    [ xNeighb,  lim-yNeighb ]
+                ]
+            }
+        );
+        tr( 'neighbVertical', 'neighbVertical',
+            [
+                [ xNeighb,  lim+yNeighb ],
+                [ xNeighb,  0 ]
+            ]
+        );
+        tr( 'neighbHor', 'neighbHor',
+            [
+                [ 0,        0 ],
+                [ xNeighb,  0 ]
+            ]
+        );
+        //-----------------------------------------
+        // \\// finds gamma-neighbourhood
+        //-----------------------------------------
+                
 
         //-------------------------------------------------------
         // //\\ media part
@@ -86,96 +144,6 @@
     //=========================================================
     // \\// updates figure (and creates if none)
     //=========================================================
-
-
-
-    //==========================================
-    // //\\ model helpers
-    // //\\ calculates area similar to AGE
-    //==========================================
-    //==========================================
-    // \\// calculates area similar to AGE
-    //==========================================
-
-
-    //==========================================
-    // //\\ calculateCurvedArea
-    //==========================================
-    function calculateCurvedArea( areaId, pivots, tend, startPoint, endPoint )
-    {
-        var area = tr( areaId );
-        area.curve = bezier.bezier2lower( pivots, tend );
-        area.startPoint = startPoint;
-        area.endPoint = endPoint;
-    }
-    //==========================================
-    // \\// calculateCurvedArea
-    //==========================================
-
-
-    //====================================================================
-    // //\\ converts point-on-curve-coordinate x or y
-    //      to curve parameter t
-    //====================================================================
-    ///returns: there can be two t`s:
-    ///         in this case, t-of-closest-to-pivot0 is returned
-    ///input:   x0y   = x or y
-    ///         x0yIx = 1 for y, =0 for x
-    function x0y_2_t( x0y, x0yIx )
-    {
-        // //\\ patches: todm
-        //.avoid_param_t_interval_ends
-        var avoid_ends = 0.00001;
-        //.no negative x-ses and y-s
-        x0y = Math.max( avoid_ends, x0y );
-        // \\// patches: todm
-
-        var modCurvPivots = ssD.curvePivots;
-
-        var aa = modCurvPivots[0][x0yIx] - 2 * modCurvPivots[1][x0yIx] + modCurvPivots[2][x0yIx];
-        var bb = -2*modCurvPivots[0][x0yIx] + 2 * modCurvPivots[1][x0yIx];
-        var cc = modCurvPivots[0][x0yIx] - x0y;
-        var roots = mat.squarePolyRoot( aa, bb, cc );
-        if( roots.length === 0 ) {
-            throw "Unexpected no-solution case: do better coding: todm";
-        } else if( roots.length === 1 ) {
-            var result = roots[0];
-        } else if( Array.isArray(roots[0]) ) {
-            ////edge cases, returns extremum of t
-            var result = -bb / ( 2 * aa );
-        } else {
-            //c cc( 'two real roots: x0y=' + x0y + ' t1,t2=', roots );
-            //'pivots=', modCurvPivots,
-            //'aa=' + aa + ',' + bb + ',' + cc );
-            //.here the home-cooking begins
-            if( roots[0] < 0 ) {
-                roots[0] = roots[1];
-            }
-            if( roots[1] < 0 ) {
-                roots[1] = roots[0];
-            }
-            var result = Math.min( roots[0], roots[1], 1 - avoid_ends );
-        }
-        result = Math.max( Math.min( result, 1-avoid_ends ), avoid_ends );
-        return result;
-    }
-    //====================================================================
-    // \\// converts point-on-curve-coordinate x or y
-    //====================================================================
-
-
-    ///====================================================================
-    ///rescales pivots
-    ///====================================================================
-    function const2positions( con, positions )
-    {
-        return positions.map( function( pos ) {
-            return mat.sm( con, pos );
-        });
-    }
-    //====================================================================
-    // \\// model helpers
-    //====================================================================
 
 }) ();
 

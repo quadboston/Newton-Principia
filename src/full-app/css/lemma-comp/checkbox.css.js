@@ -39,6 +39,8 @@ var ret = `
   height: 14px;
   width: 14px; }
 
+/* this thing apparently makes these corner-like-rotated-borders
+   simulating a check-mark */
 .checkbox-wrap label::after {
   content: "";
   display: inline-block;

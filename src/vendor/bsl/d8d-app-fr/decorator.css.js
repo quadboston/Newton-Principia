@@ -7,6 +7,7 @@
     var globalCssCreated_flag = false;
 
     dpdec.create_individualCss = create_individualCss;
+    dpdec.createGlobal = createGlobal;
     return;
 
 
@@ -16,14 +17,10 @@
 
 
 
-
+    ///Input: parent_classes - optional array:
+    ///                        these classes do increase specifity for decoration-point.
     function create_individualCss( id, color, parent_classes )
     {
-
-        if( !globalCssCreated_flag ) {
-            createGlobal();
-        }            
-
         parent_classes = parent_classes || [''];
         var ret = '';
 
@@ -36,7 +33,7 @@
             /*=============================*/
             /* //\\ parent after           */
             /*=============================*/
-            ${dclass} #${id}.brc-slider-draggee:hover:after {
+            ${dclass} .${id}.brc-slider-draggee:hover:after {
                 background-color: ${color};
             }
             /*=============================*/
@@ -47,10 +44,10 @@
             /*=============================*/
             /* //\\ animates slider arrows */
             /*=============================*/
-            ${dclass} #${id} .brc-slider-draggee-right {
+            ${dclass} .${id} .brc-slider-draggee-right {
                 border-left:15px solid ${color};
             }
-            ${dclass} #${id} .brc-slider-draggee-left {
+            ${dclass} .${id} .brc-slider-draggee-left {
                 border-right:15px solid ${color};
             }
             /*=============================*/
@@ -65,6 +62,7 @@
 
     function createGlobal()
     {
+        if( globalCssCreated_flag ) return;
         var ret =
 
         // //\\ css /////////////////////////////////////////
@@ -108,7 +106,9 @@
 
 
         /*=============================*/
-        /* //\\ parent after           */
+        /* //\\ parent after;          */
+        /*      this is handle's disk  */
+        /*      if visible;            */
         /*=============================*/
         .brc-slider-draggee:hover:after {
             content:''; /* seems vital ... why? */

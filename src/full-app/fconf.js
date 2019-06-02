@@ -60,8 +60,9 @@
         DRAGGEE_HALF_SIZE : 40, //px
         NAVIGATION_DECORATIONS_ALWAYS_VISIBLE : false,
 
-        dragPointDecoratorClasses :
-        [ 'aspect--hypertext', 'aspect--english' ],
+        //since ver 1931 was automated from contents
+        //dragPointDecoratorClasses : [],
+        //[ 'aspect--hypertext', 'aspect--english', 'aspect--xixcentury' ],
         //--------------------
         // \\// view
         //--------------------

@@ -18,7 +18,7 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD); //todo should be child of ss
+    var rg          = sn('registry',ssD);
 
     fmethods.populate_mediaSupreRoot = populate_mediaSupreRoot;
     //000000000000000000000000000000000000000
@@ -190,7 +190,7 @@
         ssF.create8prepopulate_svg();
         //.disabled ... effect is too strong
         //sDomN.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
-        ssF.create_digital_legend();
+        ssF.create_digital_legend && ssF.create_digital_legend();
         sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
             sDomF.create_original_picture_vis_slider();

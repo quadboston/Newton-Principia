@@ -49,8 +49,10 @@
         {
             var ligthStr = light.toFixed(2);
 
+            var opasS = ( opas === 1 && '1' ) || opas.toFixed(3);
+
             var hueS = hue.toFixed()
-            var hsla = 'hsla( ' + hueS + ', ' + satur + '%, ' + ligthStr + '%, ' + opas + ')';
+            var hsla = 'hsla( ' + hueS + ', ' + satur + '%, ' + ligthStr + '%, ' + opasS + ')';
             var hsl0 = 'hsla( ' + hueS + ', ' + satur + '%, ' + ligthStr + '%, 0 )'; //for gradients with 0 opacity at one stop
 
             var rgb = ns.hsl2rgb( hue, satur * 0.01, light * 0.01 );
@@ -62,7 +64,8 @@
             var bbS = bb.toFixed();
             var ww = rrS + ',' +  ggS + ',' +  bbS;
             var rgb = 'rgb(' + ww + ')';
-            var rgba = 'rgba(' + ww + ',' + opas + ')';
+            var rgba = 'rgba(' + ww + ',' + opasS + ')';
+            var rgbaCSS = rrS + '-' +  ggS + '-' +  bbS + '-' + opasS;
         
             return { 
                 hsl0: hsl0,
@@ -78,7 +81,8 @@
                 rrS: rrS,
                 ggS: ggS,
                 bbS: bbS,
-                opas : opas
+                opas : opas,
+                rgbaCSS : rgbaCSS
             };
         };
 

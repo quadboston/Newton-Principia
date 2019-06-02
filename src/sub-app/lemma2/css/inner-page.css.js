@@ -87,11 +87,14 @@
 
             .desc__header {
               margin-bottom: 12px;
-              display: flex;
+              text-align:center;
               align-items: center;
             }
 
             .desc__header-title {
+                font-family: 'Helvetica',sans-serif;
+                font-size: 14px;
+                font-weight: bold;
                 margin: 0px;
             }
 

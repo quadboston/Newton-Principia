@@ -32,14 +32,13 @@ var ret = `
       -------------------------------------*/
     .master-pagination-btn {
         box-sizing: border-box;
-        xxxxfloat: left;
         display:inline-block;
 
         background-color: ${colorWhite};
         border-radius: ${borderRadius};
         cursor: pointer;
 
-        box-shadow: 2px 0 40px 0 rgba(32, 41, 54, 0.4);
+        box-shadow: 0px 0 20px 0 rgba(32, 41, 54, 0.4);
         white-space : nowrap;
 
         text-align:center;
@@ -60,7 +59,7 @@ var ret = `
 
     .master-pagination-btn.current-lemma,
     .master-pagination-btn:hover {
-        box-shadow: 0 4px 10px 0 rgba(32, 41, 54, 0.2);
+        box-shadow: 0 0px 0px 0 rgba(32, 41, 54, 0.2);
     }
 
     .master-pagination-btn.non-displayed {

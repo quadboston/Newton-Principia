@@ -28,19 +28,27 @@
     /// //\\ inits common framework for the set of  point-draggees
     ///-----------------------------------------------------------
     /// There can be as many frameworks as one wishes.
-    function createFramework(
+    function createFramework(args)
+    {
         //---------------------------------------------
-        // //\\ AAAAAAAAA PPPPPPPP IIIIIIIIII
+        // //\\ API
         //---------------------------------------------
-        findDraggee,                       //function which finds draggeePoint 
-        dragSurface,                       
-        DRAG_POINTS_THROTTLE_TIME,         //optional
-        detected_user_interaction_effect,  //optional sugar for "down" event
-        decPoint_parentClasses             //optional; decPoint stands for "decorationalPoint"
+        //.function which finds draggeePoint 
+        var findDraggee = args.findDraggee;           
+        var dragSurface = args.dragSurface;
+
+        //:the rest is optional
+        var DRAG_POINTS_THROTTLE_TIME =  args.DRAG_POINTS_THROTTLE_TIME;
+        //.sugar for "down" event
+        var detected_user_interaction_effect = args.detected_user_interaction_effect;
+        //.decPoint stands for "decorationalPoint"
+        var decPoint_parentClasses = args.decPoint_parentClasses;
+        var processMouseDown = args.processMouseDown; //optional
         //---------------------------------------------
-        // \\// AAAAAAAAA PPPPPPPP IIIIIIIIII
+        // \\// API
         //---------------------------------------------
-    ) {
+
+
         var selectedElement;               //flag
         var dragWraps = [];                //level of dragWrap-points where each point is on top
                                            //of it's own api.pointWrap supplied in api for each point
@@ -53,7 +61,7 @@
         });
         //111111111111111111111111111111111111111111111
         return {
-            createDragUpdate : createDragUpdate,
+            pointWrap_2_dragWrap : pointWrap_2_dragWrap,
             dragWraps:dragWraps,
             updateAllDecPoints:updateAllDecPoints
         };
@@ -70,66 +78,77 @@
         function updateAllDecPoints()
         {
             dragWraps.forEach( function( dragWrap ) {
-                dragWrap.update_decPoint && dragWrap.update_decPoint( dragWrap.decPoint );
+                var uP = dragWrap.update_decPoint;
+                uP && uP( dragWrap.decPoint, dragSurface );
             });
         }
 
 
         ///Creates drag handler for each specific point-draggee.
         ///Usually called when each model point is created to be dragged.
-        function createDragUpdate( api )
+        function pointWrap_2_dragWrap( api )
         {
             //---------------------------------------------
             // //\\ AAAAAAAAA PPPPPPPP IIIIIIIIII
             //---------------------------------------------
             var pointWrap            = api.pointWrap || {};
-            var initialAchived       = api.achieved;
             var doProcess            = api.doProcess;           //to be set at point-def.
             var update_decPoint      = api.update_decPoint;     //optional
-            var cssId                = pointWrap.name;          //optional for css
-            var finalColor           = pointWrap.finalColor;    //optional
+            var dragCssCls           = pointWrap.dragCssCls;    //optional
+            var dragDecorColor       = pointWrap.dragDecorColor;//optional
             // //\\ functions' side effects
             //      todm side effects can be fixed by indexing points and
             //      making registry here ... still an extra construct
             //      adds members to pointWrap
-            pointWrap.achieved      = { achieved: initialAchived };
+            pointWrap.achieved      = { achieved: api.achieved || {} };
+            //.recall, parent of decPoint is dragSurface
+            var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (
+                               '_' + key1.toLowerCase() ));
+
             var decPoint            = update_decPoint &&
                                             dpdec.addD8D_decorationPoint(
                                                 dragSurface,
-                                                cssId,
-                                                finalColor,
+                                                cssIdLowCase,
+                                                dragDecorColor,
                                                 decPoint_parentClasses
                                             );
-                                        
-            //c cc( cssId + ' pointWrap.finalColor=' +  pointWrap.finalColor)
+            //c cc( cssIdLowCase + ' pointWrap.dragDecorColor=' +  pointWrap.dragDecorColor)
             // \\// functions' side effects
             //---------------------------------------------
             // \\// AAAAAAAAA PPPPPPPP IIIIIIIIII
             //---------------------------------------------
 
+            update_decPoint && update_decPoint( decPoint, dragSurface ); //todo ... redundant?
 
+            //.the throttle is abandoned since v1960
+            //.abandoned because it is hard to remember and explain to other developer
+            //.the complexity which arised with throttle: the complexity is
+            //.that event "move" can be overriden with "up" and developer must always
+            //.remember this in doProcess() function
+            //var doDragUpdate = ns.throttle( 
+            //        ....
+            //        DRAG_POINTS_THROTTLE_TIME || 0
+            //);
+            //.if one needs to throttle the drag, do throttle "doProcess()"
+            //.explicitly in specific lemma
 
+            function doDragUpdate( arg )
+            {
+                //logical sugar:
+                //remembers pointWrap which can be changed in closure of doProcess
+                //when pointWrap is generated in the loop
+                arg.pointWrap = pointWrap; 
 
-            update_decPoint && update_decPoint( decPoint );
-            var doDragUpdate = ns.throttle( 
-                function( arg )
-                {
-                    //logical sugar:
-                    //remembers pointWrap which can be changed in closure of doProcess
-                    //when pointWrap is generated in the loop
-                    arg.pointWrap = pointWrap; 
+                //:these both can be in one function call,
+                //:they are in different calls for clear api logic
+                doProcess( arg );
+                update_decPoint && update_decPoint( decPoint, dragSurface );
+                if( arg.down_move_up === 'up' ) {
+                    ////this cleans up drag and drop lifecycle
+                    selectedElement=0;
+                }
+            }
 
-                    //:these both can be in one function call,
-                    //:they are in different calls for clear api logic
-                    doProcess( arg );
-                    update_decPoint && update_decPoint( decPoint );
-
-                    if( arg.down_move_up === 'up' ) {
-                        selectedElement=0;
-                    }
-                },
-                DRAG_POINTS_THROTTLE_TIME || 0
-            );
             var dragWrap =
             {
                 pointWrap       :pointWrap,
@@ -145,14 +164,14 @@
 
 
         ///d8d handler shared between all draggee-points.
-        ///Input: mPoint
+        ///Input: point_on_dragSurf
         ///       it is precalculated by lower level handler and supplied to this function:
         ///       it is offset in "local-surface" if no special converter is supplied:
         ///       details are in d8d code:
-        ///            var mPoint = eventPoint_2_localPoint( childEvent );
+        ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
 		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
-        function d8d_app( move, down_move_up, mPoint, event )
+        function d8d_app( move, down_move_up, point_on_dragSurf, event )
         {
             //ns.d('app: d8d_app call begins: mode="' + down_move_up + '"');
             switch( down_move_up )
@@ -160,27 +179,20 @@
                 case 'down': 
                     if( selectedElement ) {
                         //var ww = 'app: ' + down_move_up +
-                        //         ' still not-cleaned-up ... down cancells';
+                        //         ' is still not-cleaned-up ... down event cancells';
                         //ns.d(ww);
                         return true;
                     }
-                    var closestDragWrap = findDraggee( mPoint, dragWraps );  
-                    if( !closestDragWrap ) {
-                        return true;
-                        }
-                        ////todo patch
-                        if( sapp.sappId === 'lemma2' || sapp.sappId === 'lemma3' ) {
-                            closestDragWrap.pointWrap.achieved.achieved.x =
-                            closestDragWrap.pointWrap.x; //mPoint[0];
-                            closestDragWrap.pointWrap.achieved.achieved.y =
-                            closestDragWrap.pointWrap.y; //mPoint[1];
-                    }
-                    //ns.d( 'app: ' + down_move_up + ' id=' + draggeePoint.name );
+                    var closestDragWrap = findDraggee( point_on_dragSurf, dragWraps, dragSurface );
+                    if( !closestDragWrap ) return true;
+                    var cPW = closestDragWrap.pointWrap;
+                    processMouseDown && processMouseDown( cPW );
                     detected_user_interaction_effect && detected_user_interaction_effect();
                     selectedElement = closestDragWrap;
                 break;
                 case 'move': 
                 case 'up':
+                    //.is throttled: does condence move and up events
                     selectedElement.doDragUpdate( { down_move_up:down_move_up, move:move } );
                 break;
             }

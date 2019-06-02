@@ -1,6 +1,9 @@
 // //\\//   attaches library function to b$l
 ( function () {
 	var ns	= window.b$l;
+    ns.throttle = throttle;
+    return;
+
 
 
     ///This is a throttler not bouncer.
@@ -14,7 +17,7 @@
     ///          if falsy, then never wait and never curry.
     ///          Ultimately fires if called at elapsed >= wait. If not called this way, then 
     ///          times out to wait, since last call.
-    ns.throttle = function( fun, wait )
+    function throttle( fun, wait )
     {
         var timeout = null;
         var timeStart = null;
@@ -22,12 +25,12 @@
         return function( arg_, doCallNow, doCancel ) {
             arg = arg_; //updates arg at every call
             var time = Date.now();
-            var elapsed = ( timeStart === null && 0 ) || ( time - timeStart );
+            var elapsed = timeStart === null ? 0 : time - timeStart;
             if( !wait || elapsed > wait || doCallNow ) {
                 fun( arg );
                 if( timeout !== null ) clearTimeout( timeout );
                 timeout = null;
-                timeStart = null;
+                timeStart = time;
                 return;
             }
             if( doCancel && timeout !== null ) {
@@ -41,7 +44,7 @@
                 function() {
 		            fun( arg );
 		            timeout = null;
-                    timeStart = null;
+                    timeStart = time;
 	            },
                 wait
             );

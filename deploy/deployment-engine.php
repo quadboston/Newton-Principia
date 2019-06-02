@@ -301,7 +301,10 @@
         ///does uglifying tasks
         if( $do_uglify )
         {
-            cli( "$path_to_uglifier $prod_src_engine -c -m -o $prod_min_engine", "uglifying" );
+            $wcomm = "$path_to_uglifier $prod_src_engine -c -m -o $prod_min_engine";
+            //echo $wcomm;
+            //cli( $wcomm, "uglifying", TRUE );
+            cli( $wcomm, "uglifying" );
             //.rem this out to find ugl. message locations
             cli( "rm -f $prod_src_engine", "removing concatenated non-uglified" );
         }

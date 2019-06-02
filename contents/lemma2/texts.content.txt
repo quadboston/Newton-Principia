@@ -39,7 +39,7 @@
 
         I say that the ultimate ratios which the ¦inscribed-rectangles¦inscribed figure AKbLcMdD¦¦, 
         the ¦circumscribed-rectangles¦circumscribed figure AalbmcndoE¦¦, 
-        and the ¦figure¦curvilinear figure AabcdE¦¦ 
+        and the ¦figure-area¦curvilinear figure AabcdE¦¦ 
         have to one another are ratios of equality.
 
 
@@ -62,7 +62,7 @@
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
         for ¦inscribed-rectangles¦inscribed rectangles¦¦ and ¦circumscribed-rectangles¦circumscribed rectangles¦¦. 
         If we increase the number of these rectangles indefinitely, 
-        then the areas of the ¦figure¦figure¦¦, the ¦inscribed-rectangles¦inscribed rectangles¦¦, and the
+        then the areas of the ¦figure-area¦figure¦¦, the ¦inscribed-rectangles¦inscribed rectangles¦¦, and the
         ¦circumscribed-rectangles¦circumscribed rectangles¦¦ all converge to the same value.
 
 
@@ -116,7 +116,7 @@
             Since its width decreases indefinitely,
             its area decreases indefinitely, becoming arbitrarily close to 0. So the difference between the areas of the
             ¦inscribed-rectangles¦inscribed rectangles¦¦, the
-            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure¦figure¦¦ in between them becomes arbitrarily close to 0. For the current figure, 
+            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. For the current figure, 
             that ¦widthest-rectangular¦single rectangle¦¦ is on the 
 
             <!--

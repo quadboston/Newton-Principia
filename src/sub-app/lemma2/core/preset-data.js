@@ -44,7 +44,7 @@
             //=====================================
             Object.assign( dr,
             {
-                svgSeg          : document.getElementById( 'illus' ),
+                svgSeg          : sDomN.mmedia$(), //document.getElementById( 'illus' ),
                 polylineCurve   : document.getElementById( 'polylineCurve' ),
                 figureInternalArea : document.getElementById( 'figureInternalArea' ),
 

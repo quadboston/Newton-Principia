@@ -66,7 +66,7 @@
             dataInMove:         function( dataArg, draggee ) {
                                     //:master place where tC updates
 
-                                    //.todo wrong: belongs to subapp instance
+                                    //.todm wrong: belongs to subapp instance
                                     ssD.tC = dataArg;
                                     sapp.upcreate();
                                     setCaption( sDomF.proofSlider.slider );
@@ -74,7 +74,7 @@
             //.callback when handler stops
             dataInArrival:      function( dataArg ) {
                                     //.does synch secondary slider
-                                    rg.point_C.achieved.achieved = dataArg;
+                                    rg['point-C'].achieved.achieved = dataArg;
                                 },
             setCaption: setCaption
         });
@@ -87,7 +87,7 @@
         ///converts study-model pos to draggee caption
         function setCaption( slider_arg )
         {
-            var pC = rg.point_C.pos;
+            var pC = rg['point-C'].pos;
             var pClen = Math.sqrt( pC[0]*pC[0]+pC[1]*pC[1] ) /
                         sconf.APP_MODEL_Y_RANGE;
             var capt = sconf.LEGEND_NUMERICAL_SCALE ?

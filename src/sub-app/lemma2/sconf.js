@@ -68,6 +68,8 @@
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
+            activeAreaOffsetY   : activeAreaOffsetY,
+            pictureActiveArea   : pictureActiveArea,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -90,9 +92,9 @@
 
             ////GUI
             svgns           : "http://www.w3.org/2000/svg",
-            FINEPTS_RADIUS  : 20,
-            MOVABLE_BASE_RADIUS : 4,
-            CTRL_RADIUS     : 5,
+            FINEPTS_RADIUS  : 10,
+            MOVABLE_BASE_RADIUS : 3,
+            CTRL_RADIUS     : 3,
 	        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
 
             //:d8d
@@ -109,6 +111,7 @@
         //----------------------------------
         // //\\ spawns to_conf
         //----------------------------------
+        /*
         sconf.tfamilyColor =
         {
             generic         : sconf.GENERIC_COLOR,
@@ -117,6 +120,7 @@
             'primary-curve' : sconf.CORE_CURVE_COLOR,
             'figure'        : sconf.FIGURE_COLOR
         };
+        */
         //=====================================
         // \\// configures application engine
         //=====================================

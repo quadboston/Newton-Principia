@@ -26,16 +26,16 @@
         window.addEventListener( 'resize', fullResize );
     };
 
-    function fullResize( arg )
+    function fullResize()
     {
-        //.todo not the best architecture
+        //.todm not the best architecture
         //.apparently
             //.application part
             //.solves draggee-point-arrows-misplacement
             //.after resize
         //!!'doDividorSynch'
         ///this statement is inside of this routine: sapp.upcreate();
-        fmethods.restrictMediaDimensions && fmethods.restrictMediaDimensions(
+        fmethods.finish_Media8Ess8Legend_resize && fmethods.finish_Media8Ess8Legend_resize(
             null, null, !!'doDividorSynch'
         );
     }

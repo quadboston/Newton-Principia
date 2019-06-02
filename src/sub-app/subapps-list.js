@@ -35,12 +35,10 @@
                 {  src:"css/css-order.js" },
                 {  src:"css/proof-vs-claim-modes.css.js" },
                 {  src:"core/media.js" },
-                {  src:"core/create-proof-slider.js" },
                 {  src:"core/limit-demos.js" },
                 {  src:"models/study-model.js" },
                 {  src:"models/media-model.js" },
-                {  src:"models/main-legend.js" },
-                {  src:"models/d8d-II.js" }
+                {  src:"models/d8d-model.js" }
             ]
         },
 
@@ -60,7 +58,7 @@
                 {  src:"main.js" },
                 {  src:"core/preset-data.js" },
                 {  src:"core/dom.js" },
-                {  src:"core/d8d-II.js" },
+                {  src:"core/d8d-model.js" },
                 {  src:"core/gui-construct.js" },
                 {  src:"core/gui-slider.js" },
                 {  src:"core/gui-update.js" },
@@ -95,7 +93,7 @@
                 { src:'models/study-model.js' },
                 { src:'models/media-model.js' },
                 { src:'models/main-legend.js' },
-                { src:'models/d8d-II.js' }
+                { src:'models/d8d-model.js' }
             ]
         }
     ];

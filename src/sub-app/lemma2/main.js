@@ -1,14 +1,5 @@
 // //\\// Main entrance into sub-application.
 
-        // TODO: graphic artist help
-        // fade descriptions
-        // ?form color coded in/circ
-        // nn bases location fix
-        // B&W squares in Newton's?
-        // Scale with screen size
-        // MY TODO
-        // clean up code
-
 (function() {
     var ns          = window.b$l;
     var $$          = ns.$$;    
@@ -55,7 +46,7 @@
 
         //:initMediaModel
         sDomF.topicModel_2_css_html();
-        sapp.readyToPopulateMenu = true;
+        sapp.readyToResize = true;
     }
 
     function init_sapp_II()

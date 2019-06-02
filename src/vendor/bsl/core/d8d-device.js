@@ -5,9 +5,13 @@
 //                  - submits results to app-processor, d8d_app
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
 //          Copyright (c) 2018 Konstantin Kirillov. License MIT.
+//
+//          file history: /var/www/html/bwork/CANV-SVG-VIDEO-CSS/canvas/
+//                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
 //*************************************************************************************
 ( function () {
-	var ns = window.b$l;		
+    var ns          = window.b$l        = window.b$l        || {};
+    var ccc         = window.console.log;
     //.for applications with complex d8d-handlers creation/deletion
     //.bookkeeps created or deleted ns.d8d objects
     //var eventCounter=0; 
@@ -29,6 +33,7 @@
         //:application-level-handler
         // see function-call-signature in code below
 		var d8d_app  = arg.d8d_app;
+
         //:	where to draw:
         //  final destination of mouse-point-coordinates detection;
         //		can be a div or media;
@@ -36,10 +41,15 @@
         //		in general for media, finally detected mouse-point is
         //		in internal media coordinates;
 		var surface	= arg.surface;	
+
  		//:	to whom to attach events
 		var att = arg.attachee || surface;
+
         //:
-		var eventPoint_2_localPoint = arg.eventPoint_2_localPoint || eventPos_2_surfacePos;
+        //.this is an excessive functionality and reduced to eventPos_2_surfacePos
+		//var eventPoint_2_localPoint = arg.eventPoint_2_localPoint || eventPos_2_surfacePos;
+		var eventPoint_2_localPoint = eventPos_2_surfacePos;
+
         var skipD8D = arg.skipD8D || default_skip;
         //------------------------------------------
         // \\// input arguments
@@ -61,6 +71,15 @@
         // \\// locals
         //------------------------------------------
 
+        addEvents();
+
+        //00000000000000000000000000000000000000000000000000000000000000000000000000
+        return { removeEvents : removeEvents }; //exports d8d-object of this module
+        //00000000000000000000000000000000000000000000000000000000000000000000000000
+
+
+
+
 
 
 
@@ -68,15 +87,15 @@
         //******************************************************************
 		// //\\ d8d-scenario root events
         //******************************************************************
-		//  possible Android fix:
-        //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
-        //. todo: touch must provide event which then tested for
-        //  Ctrl-pressed flag: use different handler
-        att.addEventListener( 'touchstart', doStartDown );  
-        att.addEventListener( 'mousedown', doStartDown );
-
-        return { removeEvents : removeEvents }; //exports d8d-object of this module
-        // \\//\\// end of module execution
+        function addEvents()
+        {
+		    //  possible Android fix:
+            //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
+            //. todo: touch must provide event which then tested for
+            //  Ctrl-pressed flag: use different handler
+            att.addEventListener( 'touchstart', doStartDown );  
+            att.addEventListener( 'mousedown', doStartDown );
+        };
 
         function removeEvents()
         {
@@ -89,10 +108,6 @@
 
 
 
-
-
-
-
         //*****************************************
 		// //\\ DOWN SUBROUTINES
         //*****************************************
@@ -101,7 +116,6 @@
         function doStartDown( ev )
         {
             if( skipD8D( ev ) ) return;
-            //ns.d('***ev id=' + eventId + ' doStartDown' );
 
             ///touch-down
             if( ev.touches && ev.touches.length === 1 ) {
@@ -146,21 +160,21 @@
                 //ns.d('broken d8d scenario: the previous startPoint is still exist');
                 return true;
             }
-            var mPoint = eventPoint_2_localPoint( childEvent );
-            if( !mPoint ) {
+            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
+            if( !point_on_dragSurf ) {
                 //ns.d('do_complete_down: media point failed');
                 return true;
             }
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_app( [0,0], 'down', mPoint, childEvent );
+			var forbidden = d8d_app( [0,0], 'down', point_on_dragSurf, childEvent );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
                 //ns.d( 'move start has been cancelled by top-level ' +
                 //       'drag-and-drop-processor: eventId=' + eventId );
                 return true;
             }
-			startPoint = mPoint;
-            lastPoint = mPoint;
+			startPoint = point_on_dragSurf;
+            lastPoint = point_on_dragSurf;
         }
         //=========================================
 		// \\// second level of down-handling
@@ -249,15 +263,20 @@
             var eventPoint = childEvent &&
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
-            var mPoint = eventPoint && eventPoint_2_localPoint( childEvent );
+            var point_on_dragSurf = eventPoint && eventPoint_2_localPoint( childEvent );
 
             if( startPoint ) {
                 ////startPoint is not missed ...
                 stopsAftershocks( rootEvent || childEvent );
-                var move = do_complete_move( mPoint || lastPoint, childEvent );
+
+                //.programmer may want to make d8d_app throttable:
+                //.this is why it is importan to provide "up" with point_on_dragSurf
+                //.in case the "move" event will be erased by "up"
+                var point_on_dragSurf = point_on_dragSurf || lastPoint;
+                var move = do_complete_move( point_on_dragSurf, childEvent );
 		        startPoint = null; 
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-             	d8d_app( move, 'up', mPoint, childEvent );
+             	d8d_app( move, 'up', point_on_dragSurf, childEvent );
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
             //} else {
                 ////broken scenario

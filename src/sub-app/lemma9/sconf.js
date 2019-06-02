@@ -168,7 +168,8 @@
             GENERIC_COLOR       : '0, 0, 0',
             CORE_CURVE_COLOR    : '160, 0, 0',
             CORE_AREA_COLOR     : '0,125,0',
-            REMOTE_AREA_COLOR   : '0,0,255'
+            REMOTE_AREA_COLOR   : '0,0,255',
+            topicColorPerAnchor : !true
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -179,6 +180,7 @@
         //----------------------------------
         // //\\ spawns to_conf
         //----------------------------------
+        /*
         to_sconf.tfamilyColor =
         {
             generic         : to_sconf.GENERIC_COLOR,
@@ -186,21 +188,7 @@
             proof           : to_sconf.REMOTE_AREA_COLOR,
             'primary-curve' : to_sconf.CORE_CURVE_COLOR
         };
-
-        ///possibly lemma-9-specific
-        ///todo find and fix
-        to_sconf.text =
-        {
-            offsetX: 1111, //broken
-            offsetY: 111,  //broken
-                           //to_sconf.MONITOR_Y_FLIP * to_sconf.APP_MODEL_Y_RANGE/
-            style:
-            {
-                "font-family":'montserrat,arial,helvetica',
-                "font-weight":'normal',
-                "font-size":40
-            }
-        };
+        */
         to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE / to_sconf.APP_MODEL_Y_RANGE;
         //----------------------------------
         // \\// spawns to_conf

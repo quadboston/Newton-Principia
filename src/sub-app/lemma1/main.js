@@ -44,7 +44,7 @@
     {
         //==========================
         //:at landing, copies study-model-pars from config to app model
-        ssD.EPSILON   = sconf.EPSILON;
+        ssD.EPSILON = sconf.EPSILON;
         //==========================
 
         //======================================
@@ -52,7 +52,7 @@
         //======================================
         sapp.upcreate();
         ssF.initMediaModel();
-        sapp.readyToPopulateMenu = true;
+        sapp.readyToResize = true;
         //======================================
         // \\// inits model and it's view
         //======================================

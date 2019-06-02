@@ -27,9 +27,7 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'dragModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
-    return;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+    return;  //rrrrrr
 
 
 
@@ -56,15 +54,14 @@
         //======================================
         // //\\ sets framework of draggee-points
         //======================================
-        var medD8D = sDomF.medD8D = d8d_p.createFramework( 
-            findDraggee,
-            sDomN.svg.parentNode,
+        var medD8D = sDomF.medD8D = d8d_p.createFramework({
+            findDraggee : findDraggee,
+            dragSurface : sDomN.svg.parentNode,
             //:optional
-            sconf.DRAG_POINTS_THROTTLE_TIME, //todo undefined
-            sDomF.detected_user_interaction_effect,
-            fconf.dragPointDecoratorClasses
-            //for devel: function(){}
-        );
+            DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
+            detected_user_interaction_effect : sDomF.detected_user_interaction_effect,
+            decPoint_parentClasses : fconf.dragPointDecoratorClasses
+        });
         //======================================
         // \\// sets framework of draggee-points
         //======================================
@@ -74,37 +71,42 @@
         //==========================================
         // //\\ sets drag points
         //==========================================
-        sapp.readyToPopulateMenu = true;
+        sapp.readyToResize = true;
 
         //.........................................
         // //\\ moves inner ratio
         //.........................................
         var claimRatio_max = sconf.claimRatio_max;
-        rg[ 'point_B' ].dragPriority = 9;
+        var wpoint              = rg[ 'point-B' ];
+        wpoint.dragDecorColor   = 'blue';
+        wpoint.dragPriority     = 9;
+        wpoint.dragCssCls       = 'point-B';
         createDragger({
-            achieved            : sconf.claimRatio,
-            pointWrap           : rg[ 'point_B' ],
-            cssClasses          : ['green','axis-y'],
-            doProcess           : function( arg )
+            achieved    : sconf.claimRatio,
+            pointWrap   : wpoint,
+            cssClasses  : ['axis-y'],
+            doProcess   : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 switch( arg.down_move_up ) {
                     case 'up':   ach.achieved = ssD.claimRatio;
                     break;
                     case 'move':
-                                ////some of these Ey, Dy, values are perpendicular projections, not
-                                ////y-coordinates
-                                ////but since proportion holds, they are good here  ... 
-                                var Ey = bezier.parT2point( ssD.tC, modCurvPivots )[1];
+                        ////some of these Ey, Dy, values are perpendicular projections, not
+                        ////y-coordinates
+                        ////but since proportion holds, they are good here  ... 
+                        var Ey = bezier.parT2point( ssD.tC, modCurvPivots )[1];
 
-                                var startDy = ach.achieved * Ey;
-                                var newDy   = Math.min( Ey * claimRatio_max,
-                                              startDy - arg.move[1] * sconf.med2mod_scale * sDomF.css2media() );
-                                newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
-                                ssD.claimRatio = newDy/Ey;
-                                //c cc( 'new: claimRatio=' + ssD.claimRatio + ' Dy=' +
-                                //      ( ssD.claimRatio * Ey ) );
-                                sapp.upcreate();
+                        var startDy = ach.achieved * Ey;
+                        var newDy   = Math.min( Ey * claimRatio_max,
+                                          startDy - arg.move[1] * sconf.med2mod_scale *
+                                                    sDomF.css2media()
+                                      );
+                        newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
+                        ssD.claimRatio = newDy/Ey;
+                        //c cc( 'new: claimRatio=' + ssD.claimRatio + ' Dy=' +
+                        //      ( ssD.claimRatio * Ey ) );
+                        sapp.upcreate();
                     break;
                 }
             }
@@ -119,26 +121,31 @@
         //.........................................
         // //\\ moves E
         //.........................................
+        var wpoint              = rg[ 'point-E' ];
+        wpoint.dragDecorColor   = 'blue';
+        wpoint.dragCssCls       = 'point-E';
         createDragger({
             achieved            : sconf.tiltRatio,
-            pointWrap           : rg[ 'point_E' ],
-            cssClasses          : ['green','axis-y'],
+            pointWrap           : wpoint,
+            cssClasses          : ['axis-y'],
             doProcess : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 switch( arg.down_move_up ) {
-                    case 'up':   ach.achieved = ssD.tiltRatio;
+                    case 'up': ach.achieved = ssD.tiltRatio;
                     break;
-                    case 'move':
-                                 var Epy = bezier.parT2point( ssD.tC, modCurvPivots )[1];
-                                 var startEy = ach.achieved * Epy;
-                                 var newEy   = Math.min( 
-                                                sconf.Ep2yrange_max * sconf.APP_MODEL_Y_RANGE,
-                                                sconf.tiltRatio_max * Epy,
-                                               startEy - arg.move[1] * sconf.med2mod_scale * sDomF.css2media() );
-                                 newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
-                                 ssD.tiltRatio = newEy/Epy;
-                                 sapp.upcreate();
+                    case 'move' :
+                         var Epy = bezier.parT2point( ssD.tC, modCurvPivots )[1];
+                         var startEy = ach.achieved * Epy;
+                         var newEy   = Math.min( 
+                                            sconf.Ep2yrange_max * sconf.APP_MODEL_Y_RANGE,
+                                            sconf.tiltRatio_max * Epy,
+                                            startEy - arg.move[1] *
+                                                      sconf.med2mod_scale * sDomF.css2media()
+                                       );
+                         newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
+                         ssD.tiltRatio = newEy/Epy;
+                         sapp.upcreate();
                     break;
                 }
             }
@@ -153,12 +160,14 @@
         //.........................................
         // //\\ moves inner size, Cx
         //.........................................
-        var Cx_min          = sconf.Cx_min;
-        //.was: var REPEL_D_FROM_E = 0.999;
-        rg[ 'point_C' ].dragPriority = 10;
+        var Cx_min              = sconf.Cx_min;
+        var wpoint              = rg[ 'point-C' ];
+        wpoint.dragPriority     = 10;
+        wpoint.dragCssCls       = 'point-C';
+
         createDragger({
             achieved            : sconf.tC,
-            pointWrap           : rg[ 'point_C' ],
+            pointWrap           : rg[ 'point-C' ],
             cssClasses          : ['green'],
             doProcess : function( arg )
             {
@@ -171,7 +180,8 @@
                     case 'move': 
                                  var startCx = bezier.parT2point(
                                                ach.achieved, modCurvPivots )[0];
-                                 var newCx = startCx + arg.move[0] * sconf.med2mod_scale * sDomF.css2media();
+                                 var newCx = startCx + arg.move[0] *
+                                             sconf.med2mod_scale * sDomF.css2media();
                                  newCx = Math.max( newCx, Cx_min );
                                  //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
                                  //     ' arg.move[0]=' + arg.move[0] );
@@ -198,12 +208,12 @@
         //.........................................
         var mainCurve           = rg['mainCurve'];
         var wpoint              = mainCurve.mediael.pivotPoints[1];
-        wpoint.name             = 'pivotPoint1';
+        wpoint.dragCssCls       = 'pivotPoint1';
+
         //****************************************************************
-        //todo: wpoint, pointWrap, rg['point_E'] - like must always be in 
+        //todo: wpoint, pointWrap, rg['point-E'] - like must always be in 
         //      the same place, in rg
         //****************************************************************
-        wpoint.tfamily          = 'primary-curve'; //todm: do this at media-model.js level
         createDragger({
             achieved            : sconf.curvePivots[1].concat([]),
             pointWrap           : wpoint,
@@ -241,8 +251,8 @@
         // //\\ moves bezier end pivot
         //.........................................
         var wpoint              = mainCurve.mediael.pivotPoints[2];
-        wpoint.name             = 'pivotPoint2';
-        wpoint.tfamily          = 'primary-curve';
+        wpoint.dragCssCls        = 'pivotPoint2';
+
         createDragger({
             achieved            : sconf.curvePivots[2].concat([]),
             pointWrap           : wpoint,
@@ -283,15 +293,12 @@
 
         function createDragger( argc )
         {
-            var pointWrap               = argc.pointWrap;
-            var pointKey                = pointWrap.name;
-            argc.update_decPoint        = update_decPoint;
+            var pointWrap        = argc.pointWrap;
+            argc.update_decPoint = update_decPoint;
 
-            if( !pointWrap.finalColor && pointWrap.tfamily ) {
-                pointWrap.finalColor = 'rgb(' + sconf.tfamilyColor[ pointWrap.tfamily ] + ')';
-            }
+            pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 
-            var dragWrap = medD8D.createDragUpdate( argc );
+            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
             if( argc.cssClasses ) {
                 argc.cssClasses.forEach( function( cls ) {
                     //no need: if( !dragWrap.decPoint ) return;
@@ -319,7 +326,7 @@
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.dompos2medpos( testPoint );
+    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -338,7 +345,7 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.dompos2medpos( testPoint );
+        var testMedpos = sDomF.pOnDs_2_innerViewBox( testPoint );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
         //c cc( '\n\n****', testPoint, testMediaX, testMediaY, ' sDomF.css2media='+sDomF.css2media );
@@ -353,13 +360,13 @@
 
             //.td is a "rect-metric" for distance between testPoint and drag-point-candidate
             if( td <= DRAGGEE_HALF_SIZE ) {
-                //c cc( 'test:' + dragPoint.name + ' ' + td, dragPoint.medpos); 
+                //c cc( 'test:' + dragPoint.dragCssCls + ' ' + td, dragPoint.medpos); 
                 if( !closestDragWrap || closestTd > td ||
                     (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
-                    //c cc( dragPoint.name + ' ' + td );
+                    //c cc( dragPoint.dragCssCls + ' ' + td );
                }
             }
         });

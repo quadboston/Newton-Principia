@@ -33,7 +33,7 @@
             //      and leaves the loop
             //--------------------------------------
             //.ignores these properties
-            if( key === 'parent' || key === 'type' ) return;
+            if( key === 'parent' || key === 'type' || key === 'text' ) return;
             //--------------------------------------
             // \\// ignores 'parent' and 'type'
             //--------------------------------------
@@ -60,6 +60,17 @@
             //-------------------------------------
             var val = arg[ key ];
             if( val || val === 0 ) {
+                // //\\ adds a piece of sugar into CSS:
+                //      removes excessive digits from CSS:
+                //      assuming that scale of svg will be > 100px
+                if( arg.type === 'circle' ) {
+                    if( ( key==='cx' || key==='cy' || key==='r' ) &&
+                        typeof val === 'number'
+                    ) {
+                        val = val.toFixed(3);  
+                    }
+                }
+                // \\// adds a piece of sugar into CSS
                 //// val is not '' and not undefined
                 svgel.setAttributeNS( null, key, val );
             }

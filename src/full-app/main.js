@@ -198,17 +198,26 @@
             sapp.init_sapp_II && sapp.init_sapp_II();
 
             sapp.isInitialized = true;
-            //.does initial transclusion
-                    //fmethods.test_mobile_and_attach_exegesis_tabs();
-            //.sets default ... disabled so "Area-legend" cannot be a default
-            //.because of sapp.isInitialized, we can set tabs and menus
-                    //rg['mobile-tabs'][ sconf.defaultMobileTabSelection ].clicker.click();
             fmethods.setupEvents();
-            fmethods.fullResize();
+
+            ///.this is a patch: the cause and real solution is not known;
+            ///.and it still does not work for l2,3
+            ///
+            ///.this timeout is vital: it allows to hovering-arrows to get to their
+            ///.place: othewise, the img.style.top for draggee is wrong which
+            ///.moves arrows to the top edge of media which is wrong
+            ///.the value of timeout seems also vital for l9
+            //setTimeout( fmethods.fullResize, 50 ); 50 is enouth for l9
+            setTimeout( fmethods.fullResize, 500 );
+
         }
         //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
         remove_landing_state_from_top_html();
         fmethods.setupSiteWideEvents();
+        //ccc( 'end of main proc' );
+        //setTimeout( fmethods.fullResize, 1000 );
+        //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
+        //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
 
         if( sapp.sappId === 'home-pane' ) {
             sDomN.homeButton$().click();

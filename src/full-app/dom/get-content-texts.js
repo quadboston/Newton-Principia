@@ -47,8 +47,8 @@
                   link:'contents/' + sapp.sappId + '/references.html'
                 }
                ,{ id: 'topic-map',
-                  link:'contents/' + sapp.sappId + '/topic-map.json'
-                }
+                  link:'contents/' + sapp.sappId + '/conf.json'
+               }
             ],
             on_auxiliaryLoad_success
         );
@@ -89,7 +89,7 @@
                 var tmRack = JSON.parse(loadedFilesById['topic-map'].text);
                 var topics = sn('topics', ssD);
                 topics.convert_lineFeed2htmlBreak = tmRack.convert_lineFeed2htmlBreak;
-                topics.topicDef = tmRack.topicDef;
+                //topics.topicDef = tmRack.topicDef;
                 sconf.mediaBgImage = tmRack.mediaBgImage;
             }
             var txt = allEssaions; //loadedFilesById.texts.text;
@@ -137,6 +137,19 @@
                     sconf.submenus = sconf.submenus || {};
                     setMenu( teaf_id, 'theorion' )
                     setMenu( leaf_id, 'aspect' )
+
+                    // //\\ media-drag-decoration-enabled-aspect
+                    //      currently unlocks all aspects in content for
+                    //      being able to have dragged points and other elements in model,
+                    //      todm: looks like useless artifact.
+                    var wDecArr = fconf.dragPointDecoratorClasses = fconf.dragPointDecoratorClasses || [];
+                    var wDecorAspect = 'aspect--' + leaf_id;
+                    if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
+                        wDecArr.push( wDecorAspect );
+                    }
+                    // \\// media-drag-decoration-enabled-aspect
+
+
                     //ccc( teaf_id, leaf_id, essayHeader );
 
                     //=======================================

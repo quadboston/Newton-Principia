@@ -146,7 +146,7 @@
     /* patch: should be nicely disabling divide-panes-functionality todm */
     /*
     #bsl-resizable-handle {
-        xxxxxxtop:-300%;
+        top:-300%;
     }
     */
     /*---------------------------*/
@@ -503,7 +503,11 @@ ret +=`
     //==================================
 
 
-
+    ret +=`
+        .hidden {
+            visibility : hidden;
+        };
+    `;
 
 /*====================================*/
 /* \\// main-legend                   */

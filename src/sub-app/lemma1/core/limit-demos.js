@@ -43,12 +43,10 @@
     function setDemo( arg )
     {
         const PI2 = 2* Math.PI;
-        const SVG_SCALE = 1000;
-        const SVG_XAXIS_LEN = 800;
-        const SVG_XAXIS_START = 100;
-        const SVG_YAXIS_LEN = 900;
-        const SVG_YAXIS_START = 50; //goes from screen top to bottom
-        
+        const SVG_XAXIS_LEN     = arg.SVG_XAXIS_LEN || 800;
+        const SVG_XAXIS_START   = arg.SVG_XAXIS_START || 100;
+        const SVG_YAXIS_LEN     = arg.SVG_YAXIS_LEN || 900;
+        const SVG_YAXIS_START   = arg.SVG_YAXIS_START || 50; //goes from screen top to bottom
 
         var functionSamples =
         { 
@@ -74,7 +72,7 @@
         var lowBoundary     = functionSamples[arg.functionSample].lowBoundary;
         var topBoundary     = functionSamples[arg.functionSample].topBoundary;
 
-
+        var xArray = [];
         var yMax = [];
         var yMin = [];
         var yAbsMax = [];
@@ -100,13 +98,12 @@
             var path = paths.graph;
             nssvg.u({
                 type    :'polyline',
+                'class' :'tp-set-function tofill',
                 points  :path,
                 parent  :svg,
                 style   :
                 {
-                    stroke:'none',
-                    fill  :'blue',
-                    opacity : 0.8
+                    stroke:'none'
                 }
             });
 
@@ -166,7 +163,7 @@
                     stroke:'red',
                     "stroke-width":'1',
                     fill  :'none',
-                    opacity : 0.3
+                    opacity : 1
                 }
             });
             nssvg.u({
@@ -178,7 +175,7 @@
                     stroke:'red',
                     "stroke-width":'1',
                     fill  :'none',
-                    opacity : 0.3
+                    opacity : 1
                 }
             });
 
@@ -193,16 +190,16 @@
                     stroke:'green',
                     "stroke-width":'3',
                     fill  :'none',
-                    opacity : 0.8
+                    opacity : 1
                 }
             });
 
             // //\\ drawing decorations
             ///axis x
-            var limLine = xy2media( xStart-0.1, 0 ) + ' ' + xy2media( xStart + xRange, 0 );
+            var axisX = xy2media( xStart-0.1, 0 ) + ' ' + xy2media( xStart + xRange, 0 );
             nssvg.u({
                 type    :'polyline',
-                points  :limLine,
+                points  :axisX,
                 parent  :svg,
                 style   :
                 {
@@ -213,10 +210,10 @@
                 }
             });
             ///axis y
-            var limLine = xy2media( xStart, -0.1 ) + ' ' + xy2media( xStart, 1 );
+            var axisY = xy2media( xStart, 0 ) + ' ' + xy2media( xStart, 1 );
             nssvg.u({
                 type    :'polyline',
-                points  :limLine,
+                points  :axisY,
                 parent  :svg,
                 style   :
                 {
@@ -227,6 +224,7 @@
                 }
             });
             // \\// drawing decorations
+            return paths;
         }
         //====================================
         // \\// self test runner
@@ -280,6 +278,7 @@
                 var x  = point[0];
                 var yl = point[1];
                 var yt = point[2];
+                xArray[ix] = x;
 
                 //.finds variation aground lim,
                 //.secures the case that point1/point2 can be low/top or top/low
@@ -328,7 +327,11 @@
                 max:maxPath, min:minPath, abs:absPath,
 
                 //.y-neighbourhoods boundaries
-                yNeighbourhoodMax:yNeighbourhoodMax, yNeighbourhoodMin:yNeighbourhoodMin
+                yNeighbourhoodMax:yNeighbourhoodMax, yNeighbourhoodMin:yNeighbourhoodMin,
+                upperVariation : yMax,
+                lowerVariation : yMin,
+                absVariation : yAbsMax,
+                xArray : xArray
             };
 
             function buldPoint( ix )
