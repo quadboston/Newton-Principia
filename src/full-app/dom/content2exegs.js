@@ -18,12 +18,9 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var references  = sn('references', ssD);
-    var rawTexts    = sn('rawTexts', ssD);
-
-    sDomF.get_content_texts = get_content_texts;
-    //000000000000000000000000000000000000000000
-    return;
-    //000000000000000000000000000000000000000000
+    var exegs    = sn('exegs', ssD);
+    sDomF.ajax_2_prepopulated_exegsMatrix = ajax_2_prepopulated_exegsMatrix;
+    return; //0000000000000000000000000000000000
 
 
 
@@ -35,38 +32,48 @@
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function get_content_texts( continueAppInit )
+    function ajax_2_prepopulated_exegsMatrix( continueAppInit )
     {
         var allEssaions;
-        ///this ajax load takes all aux. files and list of contents
+        ///this ajax-load takes following aux. files including list of contents
         nsmethods.loadAjaxFiles(
             [
                 { id: 'contents-list.txt',
-                  link:'contents/' + sapp.sappId + '/contents-list.txt' }
+                  link:'contents/' + fconf.sappId + '/contents-list.txt' }
                ,{ id: 'references',
-                  link:'contents/' + sapp.sappId + '/references.html'
+                  link:'contents/' + fconf.sappId + '/references.html'
                 }
-               ,{ id: 'topic-map',
-                  link:'contents/' + sapp.sappId + '/conf.json'
+               ,{ id: 'content-config',
+                  link:'contents/' + fconf.sappId + '/conf.json'
                }
             ],
             on_auxiliaryLoad_success
         );
 
-        ///This ajax load takes contents-files, concatenates them, and calls
+        ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, on_contentFilesLoad_Success.
         function on_auxiliaryLoad_success( loadedFilesById_I )
         {
             var list = loadedFilesById_I[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
+
+            //------------------------------------
+            // //\\  making the list for ajax-load
+            //------------------------------------
+            //."nothing is loaded yet:
             var listForAjax = [];
             list.forEach( function( listItem ) {
                 if( !listItem.match( /^\s*$/ ) ) {
                     listForAjax.push({
                           id: listItem,
-                          link:'contents/' + sapp.sappId + '/' + listItem
+                          link:'contents/' + fconf.sappId + '/' + listItem
                     });
                 }
             });
+            //------------------------------------
+            // \\//  making the list for ajax-load
+            //------------------------------------
+
+            ///fires ajax-load for listForAjax
             nsmethods.loadAjaxFiles( listForAjax, function( loadedFilesById_II ) {
                     listForAjax.forEach( function( listItem ) {
                         allEssaions += loadedFilesById_II[ listItem.id ].text;
@@ -84,19 +91,21 @@
         function on_contentFilesLoad_Success( loadedFilesById )
         {
             references.text = loadedFilesById.references.text || references.text || '';
-
-            if( loadedFilesById['topic-map'] ) {
-                var tmRack = JSON.parse(loadedFilesById['topic-map'].text);
+            if( loadedFilesById['content-config'] ) {
+                var tmRack = JSON.parse(loadedFilesById['content-config'].text);
                 var topics = sn('topics', ssD);
                 topics.convert_lineFeed2htmlBreak = tmRack.convert_lineFeed2htmlBreak;
-                //topics.topicDef = tmRack.topicDef;
-                sconf.mediaBgImage = tmRack.mediaBgImage;
+                sconf.contentConfig = tmRack;
             }
             var txt = allEssaions; //loadedFilesById.texts.text;
 
             var ESSAYON_DIVIDOR = /\*::\*/g;
             var essayons = txt.split( ESSAYON_DIVIDOR );
             sconf.submenus = {};
+            var bgImgCount = 0;
+            var bgImages = {};
+            bgImages.cssId2rk = {};
+            bgImages.path2rk = {};
             essayons.forEach( function(essayon) {
 
                 //.removes empty essayons
@@ -128,11 +137,17 @@
                     }
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    rawTexts[ teaf_id ] = rawTexts[ teaf_id ] || {};
-                    rawTexts[ teaf_id ][ leaf_id ] =
+                    //.todm: patch: missed submodel property does default to 'common'
+                    //              empty string denotes absence of submodel
+                    essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
+                                           essayHeader.submodel :
+                                           'common';
+                    exegs[ teaf_id ] = exegs[ teaf_id ] || {};
+                    var exeg = exegs[ teaf_id ][ leaf_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
+                    collectBgImg( essayHeader, exeg );
 
                     sconf.submenus = sconf.submenus || {};
                     setMenu( teaf_id, 'theorion' )
@@ -142,7 +157,8 @@
                     //      currently unlocks all aspects in content for
                     //      being able to have dragged points and other elements in model,
                     //      todm: looks like useless artifact.
-                    var wDecArr = fconf.dragPointDecoratorClasses = fconf.dragPointDecoratorClasses || [];
+                    var wDecArr = fconf.dragPointDecoratorClasses =
+                                  fconf.dragPointDecoratorClasses || [];
                     var wDecorAspect = 'aspect--' + leaf_id;
                     if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
                         wDecArr.push( wDecorAspect );
@@ -222,9 +238,40 @@
                 //--------------------------------------
 
             });
-
             //ccc( sconf.submenus[ 'proof' ]);
             continueAppInit();
+            return;
+
+
+
+
+
+
+            // //\\ bg images
+            function collectBgImg( essayHeader, exeg ) {
+                var pr = bgImages.path2rk;
+                var imgId = essayHeader.mediaBgImage;
+                imgId = !ns.h( essayHeader, 'mediaBgImage' ) ?
+                          'common' :
+                          ( imgId === null ? 'empty' : imgId );
+                if( !ns.h( pr, imgId ) ) {
+                    var cssId = 'bg'+bgImgCount;
+                    bgImages.cssId2rk[ cssId ] = pr[ imgId ] =
+                    {
+                        cssId : cssId,
+                        src: imgId === 'empty' ?
+                             'images/empty.png' :
+                             'contents/' + fconf.sappId + '/img/' +
+                                ( imgId === 'common' ?
+                                    sconf.contentConfig.mediaBgImage :
+                                    imgId
+                                )
+                    };
+                    bgImgCount++;
+                }
+                exeg.imgRk = pr[ imgId ];
+            }
+            // \\// bg images
         }
         //====================================================
         // \\// on content Files Load Success

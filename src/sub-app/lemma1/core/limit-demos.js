@@ -21,7 +21,7 @@
 
             rangeAmpl       : 7,
             rangeLevel      : 1, //should be 1 because it multiplies 
-            xPointsNum      : 400,
+            xPointsNum      : 100,
 
             xStart          : 0.000001,
             xRange          : 1,
@@ -238,8 +238,8 @@
         function xy2media( x, y )
         {
             var yf = 1-y;
-            return (SVG_XAXIS_START + SVG_XAXIS_LEN * x).toFixed(8) + ',' +
-                   (SVG_YAXIS_START + SVG_YAXIS_LEN * yf).toFixed(8);
+            return (SVG_XAXIS_START + SVG_XAXIS_LEN * x).toFixed(3) + ',' +
+                   (SVG_YAXIS_START + SVG_YAXIS_LEN * yf).toFixed(3);
         }
 
         function xy2mediaArr( x, y )
@@ -262,6 +262,10 @@
         {
             var step = xRange / xPointsNum;
             var svgp = '';
+            var svgLowPath = [];
+            var svgTopPath = [];
+            var modelLowPath = [];
+
             var pathBack = '';
 
             var maxPath = '';
@@ -301,6 +305,9 @@
                 yMin[ix] = minCur;
                 yAbsMax[ix] = absCur;
 
+                modelLowPath[ix] = [x,yl];
+                svgLowPath[ix] = xy2media(x,yl);
+                svgTopPath[ix] = xy2media(x,yt);
                 //.draws lower boundary of the set-function
                 svgp += ' ' + xy2media(x,point[1]);
                 //.draws upper boundary of the set-function
@@ -331,7 +338,10 @@
                 upperVariation : yMax,
                 lowerVariation : yMin,
                 absVariation : yAbsMax,
-                xArray : xArray
+                xArray : xArray,
+                svgLowPath : svgLowPath,
+                svgTopPath : svgTopPath,
+                modelLowPath : modelLowPath
             };
 
             function buldPoint( ix )

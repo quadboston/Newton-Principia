@@ -51,13 +51,11 @@
     //======================================================
     // \\// establishes landing-start-state
     //======================================================
-    document.addEventListener( "DOMContentLoaded", init );
+    document.addEventListener( "DOMContentLoaded", initConfiguration );
 
     ssF.tr = tr;
     ssF.tp = tp;
-    //00000000000000000000000000000000000000
-    return;
-    //00000000000000000000000000000000000000
+    return; //00000000000000000000000000000000000000
 
 
 
@@ -70,25 +68,20 @@
     //=========================================================
     // //\\ inits full app
     //=========================================================
-    function init() 
+    function initConfiguration() 
     {
         ns.url2conf( fconf );
-
-        //:todm this seems messy ... fix later
         fconf.sappId = fconf.sappId || 'home-pane';
-        sapp.sappId = fconf.sappId;
-        sapp.pageMode = sapp.sappId === 'home-pane' ?  'home-pane' : 'lemma';
-
         sapp.siteCaptionHTML = fconf.siteCaptionHTML;
         sapp.siteCaptionPlain = fconf.siteCaptionPlain;
+        document.title = sapp.siteCaptionPlain;
 
         cssmods.initHomePageCSS(cssp, fconf);
         html.buildCommonHTMLBody();
-        fapp.fappRoot$.id( sapp.pageMode );
-
+        fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
         html.buildHomePage();
-        document.title = sapp.siteCaptionPlain;
-        starts_lemmaInit();
+
+        config8run_subappModules();
     }
     //=========================================================
     // \\// inits full app
@@ -100,41 +93,56 @@
     //=========================================================
     // //\\  establishes configuration, loads sub-app scripts
     //=========================================================
-    function starts_lemmaInit()
+    function config8run_subappModules()
     {
-        var mList = fconf.sappModulesList[ sapp.sappId ];
-        sapp.siteCaptionHTML = mList.caption;
-        sapp.siteCaptionPlain = mList.caption;
-        sapp.ix = mList.ix; 
+        //==============================
+        // //\\ configure subapp modules
+        //==============================
+        var lemmaConfig = fconf.sappModulesList[ fconf.sappId ];
+        sapp.siteCaptionHTML = lemmaConfig.caption;
+        sapp.siteCaptionPlain = lemmaConfig.caption;
+        sapp.ix = lemmaConfig.ix; 
 
-        // //\\ prepares sub-application-source-code-files list for load
-        ///prepends common path
-        var effectiveId = mList.sappCodeReference || mList.sappId;
-        var codesList = mList.codesList || [];
+        //------------------------------------------------
+        // //\\ prepares sub-application-source-code-files
+        //------------------------------------------------
+        //      list for load
+        //.makes common path
+        var effectiveId = lemmaConfig.sappCodeReference || lemmaConfig.sappId;
+        var codesList = lemmaConfig.codesList || [];
         codesList.forEach( function( codeItem ) {
             codeItem.src = "src/sub-app/" + effectiveId + "/" + codeItem.src;
         });
-        // \\// prepares sub-application-source-code-files list for load
+        //------------------------------------------------
+        // \\// prepares sub-application-source-code-files
+        // \\// configure subapp modules
+        //==============================
 
-        ///loads sub-application-source-code-files
-        if( sapp.sappId === 'home-pane' ) {
-            continues_lemma_afterSourcesLoad();
+
+        //=======================================
+        // //\\ loads and executes subapp modules
+        //=======================================
+        if( fconf.sappId === 'home-pane' ) {
+            loadsContents();
         } else {
             nsmethods.loadScripts(
                 codesList,
                 function()
                 {
-                    ////executes this body when all scripts completed loading
-                    ///executes modules from modules registry
+                    ////executes loaded modules from modules registry
+                    ////after all modules have been loaded
                     ns.eachprop( srg_modules, function( module ) {
                         module();
                     });
                     ssF.init_conf();
                     ns.url2conf( fconf ); //overrides subapp conf
-                    continues_lemma_afterSourcesLoad();
+                    loadsContents();
                 }
             );
         }
+        //=======================================
+        // \\// loads and executes subapp modules
+        //=======================================
     }
     //=========================================================
     // \\//  establishes configuration, loads sub-app scripts
@@ -146,17 +154,15 @@
     //=========================================================
     // //\\ continues lemma after sources
     //=========================================================
-    function continues_lemma_afterSourcesLoad()
+    function loadsContents()
     {
-
         //=======================================
         // //\\ gets content texts and continues
         //=======================================
-
-        if( sapp.sappId === 'home-pane' ) {
-            continues_lemma_afterContentsLoad();
+        if( fconf.sappId === 'home-pane' ) {
+            subappCore_after_contentsLoad();
         } else {
-            sDomF.get_content_texts( function() {
+            sDomF.ajax_2_prepopulated_exegsMatrix( function() {
                     //=======================================
                     // //\\ html and css
                     //=======================================
@@ -168,8 +174,7 @@
                     //=======================================
                     // \\// html and css
                     //=======================================
-
-                    continues_lemma_afterContentsLoad();
+                    subappCore_after_contentsLoad();
             });
         }
         //=======================================
@@ -186,16 +191,18 @@
 
 
     //=======================================
-    // //\\ finalizes lemma
+    // //\\ starts subapp core
     //=======================================
-    function continues_lemma_afterContentsLoad()
+    function subappCore_after_contentsLoad()
     {
-        if( sapp.sappId !== 'home-pane' ) {
+        if( fconf.sappId !== 'home-pane' ) {
+            ////the body which follows below can be put in cb for image-loader-ajax
             fmethods.createLemmaDom();
-            sDomF.originalTexts_2_html_texts();
+            sDomF.exeg_2_frags();
+            sDomF.frags_2_essdom8topiccss();
             sapp.init_sapp();
             sDomF.populateMenu();
-            sapp.init_sapp_II && sapp.init_sapp_II();
+            sapp.finish_sapp_UI && sapp.finish_sapp_UI();
 
             sapp.isInitialized = true;
             fmethods.setupEvents();
@@ -207,7 +214,7 @@
             ///.place: othewise, the img.style.top for draggee is wrong which
             ///.moves arrows to the top edge of media which is wrong
             ///.the value of timeout seems also vital for l9
-            //setTimeout( fmethods.fullResize, 50 ); 50 is enouth for l9
+            //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
             setTimeout( fmethods.fullResize, 500 );
 
         }
@@ -219,12 +226,12 @@
         //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
         //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
 
-        if( sapp.sappId === 'home-pane' ) {
+        if( fconf.sappId === 'home-pane' ) {
             sDomN.homeButton$().click();
         }
     }
     //=======================================
-    // \\// finalizes lemma
+    // \\// starts subapp core
     //=======================================
 
 

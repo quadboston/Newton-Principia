@@ -16,6 +16,7 @@
 
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -34,7 +35,7 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
-        sapp.init_sapp_II = init_sapp_II;
+        sapp.finish_sapp_UI = finish_sapp_UI;
     }
 
     //=========================================================
@@ -42,16 +43,13 @@
     //=========================================================
     function init_sapp() 
     {
-        //==========================
-        //:at landing, copies study-model-pars from config to app model
-        ssD.EPSILON = sconf.EPSILON;
-        //==========================
-
         //======================================
         // //\\ inits model and it's view
         //======================================
-        sapp.upcreate();
-        ssF.initMediaModel();
+        ns.eachprop( studyMods, ( stdMod, modName ) => {
+            stdMod.upcreate();
+            stdMod.initMediaModel();
+        });
         sapp.readyToResize = true;
         //======================================
         // \\// inits model and it's view
@@ -59,9 +57,9 @@
         
     }
 
-    function init_sapp_II() 
+    function finish_sapp_UI() 
     {
-        ssF.initMediaModel_II && ssF.initMediaModel_II();
+        ssF.mediaModelInitialized = true;
     }
     //=========================================================
     // \\// inits app

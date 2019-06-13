@@ -13,6 +13,8 @@
 
     var sapp        = sn('sapp' ); 
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
 
     var d8d_p       = sn('d8d-point',fmethods);
     fmethods.createDividorResizer = createDividorResizer;
@@ -115,7 +117,7 @@
                 case 'up':
                 case 'move':
                     var newSuperW = finish_Media8Ess8Legend_resize(
-                        pA.achieved - arg.move[0]
+                        pA.achieved - arg.surfMove[0]
                     );
                     //pL.achieved_at_move = newSuperW;
                     if( arg.down_move_up === 'up' ) {
@@ -383,7 +385,15 @@
             //===============================================
             // //\\ updated model and its view
             //===============================================
-            sapp.upcreate();
+            ///options to update all:
+            //ns.eachprop( studyMods, ( stdMod, modName ) => {
+            //    stdMod.upcreate();
+            //});
+
+            var aSub = amode['submodel'];
+            if( ns.h( amode, 'submodel' ) && aSub ) {
+                studyMods[ aSub ] && studyMods[ aSub ].upcreate();
+            }
             //===============================================
             // \\// updated model and its view
             //===============================================

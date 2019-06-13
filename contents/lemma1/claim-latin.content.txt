@@ -1,13 +1,14 @@
 
 *::*claim|latin
 { "dataLegend":"0",
-  "mediaBgImage" : "",
+  "default" : "0",
+  "submodel" : "",
   "menuCaption" : "Latin"
 }
 *..*
 
 <pre>
-Quantitates, ut {&amp;} quantitatum *rationes, quæ ad æqualitatem
+Quantitates, ut {&amp;} quantitatum * rationes, quæ ad æqualitatem
 
 tempore quivis finito constanter tendunt, {&amp;} ante
 

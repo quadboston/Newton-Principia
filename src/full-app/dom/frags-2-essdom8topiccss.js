@@ -15,11 +15,10 @@
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
-    var ssModes     = sn('ssModes',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
+    var exegs       = sn('exegs', ssD);
 
     var oneTimeUse_globalCSS = '';
 
@@ -34,10 +33,10 @@
 
     var SPACE_reg = /\s+/;
     var TOP_ANCH_reg = 
-        '¦([^¦]+)¦' + //catches topicId
-        '([^¦]+)'   + //catches topic caption
-        '¦¦';
-
+        '¦([^¦]+)¦' +   //catches topicId
+        '([^¦]+)'   +   //catches topic caption
+        '¦¦'        +   //catches topic terminator
+        '(?:(¦)|\n|.|$)'; //catches delayed topc-link for MathJax sibling
 
     var topAnch_reg = new RegExp( TOP_ANCH_reg, 'gu' );
     //.adding flag "g" ruins the job ... why?
@@ -47,9 +46,8 @@
     //---------------------------------------------
 
 
-    sDomF.topicModel_2_css_html = topicModel_2_css_html;
-    sDomF.repopulateContent = repopulateContent;
-    return; //00000
+    sDomF.frags_2_essdom8topiccss = frags_2_essdom8topiccss;
+    return; //000000000000000000000000000000000000000000
 
 
 
@@ -60,38 +58,48 @@
 
 
 
-    ///this function needs application-model-view already created,
+    ///this function needs application-model-view already created;
     ///as of this version, it is executed only once
-    function topicModel_2_css_html()
+    function frags_2_essdom8topiccss()
     {
-        establishCurrentMode();
-        topics.esseyions_rack.forEach( function( ess_rack ) {
-            ess_rack.domEl = $$
-              .c('div')
-              .cls( ess_rack.classStr )
-              //*******************************************************
-              //.here page content injects into html for the first time
-              //*******************************************************
-              .to( sDomN.essaionsRoot$() )
-              ();
+        ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
+                exeg.domEl = $$
+                  .c('div')
+                  .cls( exeg.classStr )
+                  //*******************************************************
+                  //.here page content injects into html for the first time
+                  //*******************************************************
+                  .to( sDomN.essaionsRoot$() )
+                  ();
 
-            ///collecting |...|..|| anchor-topics
-            ess_rack.activeFrags.forEach( function( activeFrag, tix ) {
-                if( typeof( activeFrag ) === 'object' ) {
-                    ns.eachprop( activeFrag, (avalue) => {
-                        extractLinks( avalue );
-                    });
-                } else {
-                    //.strange why topAnch_reg (with flag "g") works
-                    //.and topAnch_reg2 does not
-                    extractLinks( activeFrag );
-                }
+                ///collecting |...|..|| anchor-topics
+                exeg.activeFrags.forEach( function( activeFrag, tix ) {
+                    if( typeof( activeFrag ) === 'object' ) {
+                        ns.eachprop( activeFrag, (avalue) => {
+                            fragment_2_indexedTopics( avalue );
+                        });
+                    } else {
+                        //.strange why topAnch_reg (with flag "g") works
+                        //.and topAnch_reg2 does not
+                        fragment_2_indexedTopics( activeFrag );
+                    }
+                });
             });
         });
         //ccc( 'topicLinks=', topics.topicLinks );
         topLinks_2_colors();
-        repopulateContent();
-        sDomF.anchors2topics();
+        populateContent();
+
+        oneTimeUse_globalCSS += `
+            .${cssp}-text-widget .exeg-frag {
+                display : none;
+            }
+            .${cssp}-text-widget .active-static {
+                display : inline;
+            }
+        `;
+        sDomF.anchors2topiccss();
 
         //========================================================
         // //\\ finalizes global css
@@ -107,8 +115,8 @@
 
 
 
-    ///Converts these stubs, ess_rack.activeFrags, to
-    ///     1. ess_rack.builtFrags ( depending on app mode )
+    ///Converts these stubs, exeg.activeFrags, to
+    ///     1. exeg.builtFrags ( depending on app mode )
     ///     2. creates dom-placeholders for essaion's fragments which not yet created
     ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
     ///      
@@ -116,49 +124,35 @@
     ///at late run-time event, this function is, for example,
     ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
     ///
-    function repopulateContent()
+    function populateContent()
     {
-        var esseyions_rack = topics.esseyions_rack;
-
-        //??? outdated comment??: purges all contents and can be a bug
-        //bs tabs are transcluded into the same el:
-        //sDomN.essaionsRoot$.html('');
-        esseyions_rack.forEach( function( ess_rack ) {
-
-
-            activeFrags_2_htmlFrags( ess_rack );
-            //above line produces this: ess_rack.builtFrags
-            //as furthre-processed-fragments-of-essaion
-
-
-            var domComponents = ess_rack.domComponents;
-            ess_rack.builtFrags.forEach( function( bFrag, fix ) {
-                /*
-                if( !ess_rack.domEl ) {
-                    ccc( 'missed ess_rack.domEl ' );
-                    return; //todo patch ... rethink landing scenario
-                }
-                */
-                if( !domComponents[fix] ) {
-                    domComponents[fix] = $$
-                        .c('div')
-                        .css( 'display', 'inline' )
-                        //*******************************************************
-                        //.here page content injects into html for the first time
-                        //*******************************************************
-                        .to( ess_rack.domEl )
-                        ();
-                    domComponents[fix].innerHTML = bFrag.text;
-                    BodyMathJax_2_HTML( domComponents[ fix ] );
-                }
-                //todm: ineffective: do throttle or create html only once and
-                //      update only CSS-display
-                if( bFrag.modeIsTogglable ) {
-                    domComponents[fix].innerHTML = bFrag.text;
-                    BodyMathJax_2_HTML( domComponents[ fix ] );
-                }
+        ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
+                activeFrags_2_htmlFrags( exeg );
+                //above line produces this: exeg.builtFrags
+                //as further-processed-fragments-of-exeg
+                exeg.builtFrags.forEach( function( bFrag, fix ) {
+                    ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
+                        afrag.dom = afrag2dom( exeg, afrag, fid );
+                    });
+                });
             });
         });
+        function afrag2dom( exeg, bFrag, fid )
+        {
+            //*******************************************************
+            //.here page content injects into html for the first time
+            //*******************************************************
+            bFrag.dom$ = $$.c('div').to( exeg.domEl );
+            bFrag.dom$.cls( 'active-'+fid + ' exeg-frag');
+            oneTimeUse_globalCSS += `
+                .${cssp}-text-widget.active-${fid} .active-${fid} {
+                    display : inline;
+                }
+            `;
+            bFrag.dom$.html( bFrag.activeFrag );
+            BodyMathJax_2_HTML( bFrag.dom$() );
+        }
     }
 
 
@@ -166,73 +160,57 @@
     //===============================================
     //
     //===============================================
-    function activeFrags_2_htmlFrags( ess_rack )
+    function activeFrags_2_htmlFrags( exeg )
     {
-        var builtFrags = ess_rack.builtFrags;
-        ess_rack.activeFrags.forEach( function( activeFrag, tix ) {
+        var builtFrags = exeg.builtFrags;
+        exeg.activeFrags.forEach( function( activeFrag, tix ) {
 
-            //--------------------------------------------------------
-            // //\\ finalizes script active instructions
-            //--------------------------------------------------------
-            if( typeof( activeFrag ) === 'object' ) {
-                var finalActive = activeFrag['default'];
-                Object.keys( ssModes ).forEach( function( smode ) {
-                    finalActive = ( ssModes[smode] && activeFrag[smode] ) || finalActive;
-                    //if( ssModes[smode] && activeFrag[smode] )
-                    //ccc( 'new script:' + ( ssModes[smode] && activeFrag[smode] ) );
-                });
-            } else {
-                var finalActive = activeFrag;
+            builtFrags[tix] = {};
+
+            if( typeof( activeFrag ) !== 'object' ) {
+                activeFrag = { 'static' : activeFrag };
             }
-            //--------------------------------------------------------
-            // \\// finalizes script active instructions
-            //--------------------------------------------------------
+            builtFrags[tix].activeFrags = {};
+            ns.eachprop( activeFrag, ( afrag, akey ) => {
+                builtFrags[tix].activeFrags[akey] =
+                    { activeFrag : finalizeFragment( afrag ) };
+            });
+        });
+        return;
 
-
-
-            //--------------------------------------------------------
-            // //\\ html conversion of body fragments
-            //--------------------------------------------------------
-            txt = finalActive; //.replace( re_amp, '&amp;' );
+        //--------------------------------------------------------
+        // //\\ html conversion of body fragments
+        //--------------------------------------------------------
+        function finalizeFragment( frag )
+        {
             if( topics.convert_lineFeed2htmlBreak ) {
                 //.converts text from <pre> format
-                var txt = ns.pre2fluid( txt ) 
+                frag = ns.pre2fluid( frag ) 
             }
-            if( typeof( activeFrag ) === 'object' ) {
-                ////reparses text every time ...
-                ////todm: ineffective ... parses toggles at "each change"
-                var txt = txt.replace( topAnch_reg, replWithAnchor );
-                builtFrags[tix] =
-                {
-                    modeIsTogglable : true,
-                    text : txt
-                };
-            } else {
-                ////makes it up only once ... no redundant parsing
-                if( !builtFrags[tix] ) {
-                    var txt = txt.replace( topAnch_reg, replWithAnchor );
-                    builtFrags[tix] =
-                    {
-                        modeIsTogglable : false,
-                        text : txt
-                    };
-                }
-            }
+            return frag.replace( topAnch_reg, replWithAnchor );
+        }
 
-            function replWithAnchor( match, skey, scaption )
-            {
-                var rack = topics.topicLinks[ skey ];
-                if( !rack ) return;
+
+        function replWithAnchor( match, skey, scaption, cflag )
+        {
+            var rack = topics.topicLinks[ skey ];
+            if( !rack ) return;
+            if( cflag ) {
+                //start here
+                ////we have forward link for MathJax
+                //topics.delayedAnchors = {};
+                //var delayedIx = 0;
+                ccc( 'got forward:' + scaption );
+            } else {
                 //.we cannot use skey because spaces inside of it, so
                 //.we use colorId
                 var repl = '<a class="tl-' + rack.colorId + '">'+ scaption + '</a>';
                 return repl;
             }
-            //--------------------------------------------------------
-            // \\// html conversion of body fragments
-            //--------------------------------------------------------
-
-        });
+        }
+        //--------------------------------------------------------
+        // \\// html conversion of body fragments
+        //--------------------------------------------------------
     }
 
 
@@ -290,41 +268,9 @@
         }
     }
 
-
-    function establishCurrentMode()
-    {
-        // //\\ gets established theorion-aspect mode
-        var mediaClass = sDomN.mmedia$._cls() || '';
-        var essayAspects = mediaClass.match( /(?:\s|^)essay-(\S*)/ );
-        // \\// gets established theorion-aspect mode
-
-        //=====================================================
-        // //\\ makes only one media-model togglable visibility
-        //=====================================================
-        //      othe theo-asp modes are simply ignored
-        if( essayAspects ) {
-            essayAspects = essayAspects[1].split( '--' );
-            ///makes media-model visible only like by
-            ///bsl-approot theorion--claim aspect--english
-            oneTimeUse_globalCSS += `
-                .${cssp}-approot .${cssp}-media-superroot {
-                    display:none;
-                }
-                .${cssp}-approot.theorion--${essayAspects[0]}.aspect--${essayAspects[1]}
-                .${cssp}-media-superroot {
-                    display:inline-block;
-                }
-            `;
-        }
-        //=====================================================
-        // \\// makes only one media-model togglable visibility
-        //=====================================================
-    }
-
-
     ///collecting |...|..|| anchor-topics
     ///does loop via all possible active fragments
-    function extractLinks( activeFrag )
+    function fragment_2_indexedTopics( activeFrag )
     {
         var topicPreAnchors = activeFrag.match( topAnch_reg );
         if( topicPreAnchors ) {
@@ -332,7 +278,6 @@
                 ////loops via all anchors having topic-link tl-TOPIC
                 if( !link ) return;
                 var parsedLink = link.match( topAnch_reg2 );
-
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================

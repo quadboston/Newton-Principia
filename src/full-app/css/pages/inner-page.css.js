@@ -38,7 +38,7 @@ var ret = `
         border-radius: ${borderRadius};
         cursor: pointer;
 
-        box-shadow: 0px 0 20px 0 rgba(32, 41, 54, 0.4);
+        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
         white-space : nowrap;
 
         text-align:center;
@@ -57,8 +57,13 @@ var ret = `
         vertical-align:middle;
     }
 
-    .master-pagination-btn.current-lemma,
     .master-pagination-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0px 20px 0 rgba(32, 41, 54, 0.2);
+        transition: all .2s ease;
+    }
+    .master-pagination-btn.current-lemma {
+        transform: none;
         box-shadow: 0 0px 0px 0 rgba(32, 41, 54, 0.2);
     }
 

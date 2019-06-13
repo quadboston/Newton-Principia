@@ -1,5 +1,6 @@
 // //\\// application-level d8d module
 ( function () {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -19,6 +20,8 @@
     var srg_modules = sn('srg_modules', sapp);
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
@@ -43,6 +46,7 @@
         var gui         = sn('gui', l23 );
         var guiup       = sn('guiUpdate',gui);
         var appstate    = sn('appstate', l23 );
+        var medD8D;
 
         gui.createDragModel = createDragModel;
         return; //mmmmmmmmmm
@@ -50,13 +54,14 @@
 
 
         function createDragModel() {
-            sDomF.medD8D = d8d_p.createFramework ({
-                findDraggee                         : findDraggee,
-                dragSurface                         : sDomN.medRoot,
-                DRAG_POINTS_THROTTLE_TIME           : false,
-                detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
-                processMouseDown                    : processMouseDown
-            });
+            medD8D = sn(SUB_MODEL, studyMods ).medD8D =
+                d8d_p.createFramework ({
+                    findDraggee                         : findDraggee,
+                    dragSurface                         : sDomN.medRoot,
+                    DRAG_POINTS_THROTTLE_TIME           : false,
+                    detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
+                    processMouseDown                    : processMouseDown
+                });
             setDragPoints();
         }
 
@@ -76,7 +81,7 @@
 
         function setPoint( pointWrap, pwix ) {
             if( pointWrap.type === 'base' ) {
-                if( sapp.sappId === 'lemma2' ) return; //base is "dead" in lemma2
+                if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
                 pointWrap.dragCssCls = 'base-'+pwix;
                 pointWrap.dragDecorColor='blue';
             } else {
@@ -92,7 +97,7 @@
                 ////when they are created
                 var decorator = null;
             }
-            var dragWrap = sDomF.medD8D.pointWrap_2_dragWrap({
+            var dragWrap = medD8D.pointWrap_2_dragWrap({
                 pointWrap       :pointWrap,
                 doProcess       :doProcess,
                 update_decPoint :decorator
@@ -124,9 +129,17 @@
         {
             if( arg.down_move_up === 'move' ) {
                 var pw = arg.pointWrap;
-                move2js( pw, arg.move, pw.achieved );
+                move2js( pw, arg.surfMove, pw.achieved );
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
-                sapp.upcreate();
+
+                //ns.eachprop( studyMods, ( stdMod, modName ) => {
+                //    stdMod.upcreate();
+                //});
+                if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
+                    //.this is a duty of contributor to provide:
+                    //.if( studyMods[ ww ] ) {
+                    studyMods[ amode['submodel'] ].upcreate();
+                }
             }
         }
 

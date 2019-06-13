@@ -9,6 +9,7 @@
     var sapp        = sn('sapp' ); 
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss',fapp);
     var ssD         = sn('ssData',ss);
@@ -68,7 +69,9 @@
 
                                     //.todm wrong: belongs to subapp instance
                                     ssD.tC = dataArg;
-                                    sapp.upcreate();
+                                    ns.eachprop( studyMods, ( stdMod, modName ) => {
+                                        stdMod.upcreate();
+                                    });
                                     setCaption( sDomF.proofSlider.slider );
                                 },
             //.callback when handler stops

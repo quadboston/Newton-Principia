@@ -32,6 +32,7 @@
     function setAppNamespace()
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
+        var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
         var ns = window[ APP_NAME ];
         if( ns ) {
             if( ns[ uniqueEarthWide ] ) { return ns; }
@@ -45,21 +46,32 @@
             ns.sn = sn;
             ns.APP_NAME = APP_NAME;
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
+
+            //:more good goodies
+            ns.h = has;
+            ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
 
-        ///sets namespace
-        function sn( subname, parentNS )
+
+        ///Returns own property only if it exists. Otherwise, returns false.
+        function has( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
+        };
+
+        ///In plain words: makes-sure object-property exists and returns it.
+        ///Input: optional emptyTemplate provides ability set {} or []
+        function sn( subname, parentNS, emptyTemplate )
         {
             var parentNS = parentNS || ns;
-            if( parentNS.hasOwnProperty( subname ) ) {
+            if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
                 return parentNS[ subname ];
-            } 
-            var sns = parentNS[ subname ] = {};
+            }
+            var sns = parentNS[ subname ] = emptyTemplate || {};
             return sns;
 
             /*
-            //proposes property conflict detection with JS native objects in 
+            //proposes even deeper property conflict detection with JS native objects in 
             //prototype-tree depths
             var sns = parentNS[ subname ];
             if( sns ) {
@@ -73,6 +85,7 @@
             return sns;
             */
         }
+
     }
 
 

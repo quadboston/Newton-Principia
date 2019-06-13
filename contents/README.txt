@@ -33,7 +33,7 @@ Active areas have content which depends on essaion index, depends on pair (theor
         ¿?
         {
             "default" : "left",
-            "highest y is on the right" : "right"
+            "right" : "right"
         }
         ¿
     Active area is simply a JSON key/value text where effect of key is defined in JavaScript code.

@@ -10,6 +10,7 @@
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomF       = sn('dfunctions', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss', fapp);
 
@@ -26,7 +27,7 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
-        sapp.init_sapp_II = init_sapp_II;
+        sapp.finish_sapp_UI = finish_sapp_UI;
     }
 
     function init_sapp()
@@ -41,15 +42,14 @@
         guicon.constructFigure();
         
         study.eventHandlers.toggleChangeFigure();
-        sapp.upcreate();
+        ns.eachprop( studyMods, ( stdMod, modName ) => {
+            stdMod.upcreate();
+        });
         gui.buildSlider();
-
-        //:initMediaModel
-        sDomF.topicModel_2_css_html();
         sapp.readyToResize = true;
     }
 
-    function init_sapp_II()
+    function finish_sapp_UI()
     {
         var l23         = ss;
         var gui         = sn('gui', l23 );

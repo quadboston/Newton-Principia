@@ -124,18 +124,18 @@
             //.abandoned because it is hard to remember and explain to other developer
             //.the complexity which arised with throttle: the complexity is
             //.that event "move" can be overriden with "up" and developer must always
-            //.remember this in doProcess() function
-            //var doDragUpdate = ns.throttle( 
+            //.remember this in do Process() function
+            //var do DragUpdate = ns.throttle( 
             //        ....
             //        DRAG_POINTS_THROTTLE_TIME || 0
             //);
-            //.if one needs to throttle the drag, do throttle "doProcess()"
+            //.if one needs to throttle the drag, do throttle "do Process()"
             //.explicitly in specific lemma
 
             function doDragUpdate( arg )
             {
                 //logical sugar:
-                //remembers pointWrap which can be changed in closure of doProcess
+                //remembers pointWrap which can be changed in closure of do Process
                 //when pointWrap is generated in the loop
                 arg.pointWrap = pointWrap; 
 
@@ -171,7 +171,7 @@
         ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
 		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
-        function d8d_app( move, down_move_up, point_on_dragSurf, event )
+        function d8d_app( surfMove, down_move_up, point_on_dragSurf, event )
         {
             //ns.d('app: d8d_app call begins: mode="' + down_move_up + '"');
             switch( down_move_up )
@@ -193,7 +193,7 @@
                 case 'move': 
                 case 'up':
                     //.is throttled: does condence move and up events
-                    selectedElement.doDragUpdate( { down_move_up:down_move_up, move:move } );
+                    selectedElement.doDragUpdate( { down_move_up:down_move_up, surfMove:surfMove } );
                 break;
             }
         }

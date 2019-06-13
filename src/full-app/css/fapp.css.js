@@ -95,10 +95,11 @@
         transition: opacity 1s ease;
     }
 
+    /*
     .bsl-bg-image.disabled {
         display : none;
     }
-
+    */
     /*================================*/
     /* //|| bsl-media                 */
     /*================================*/
@@ -116,6 +117,23 @@
         left:0;
         top:0;
         z-index:9;
+    }
+
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    /* this really solved firefox problem of "shadow-dragging-object"
+       the problem tested and logged in 
+       83-current-svg-firefox-problems.zip
+       as of June 12, 2019 ( a year later we don't see this problem in FF )
+       circle.movable { user-select: none; .... 
+    */
+    .bsl-media text {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome and Opera */
     }
     /*================================*/
     /* ||// bsl-media                 */

@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var cssp        = ns.CSS_PREFIX;
     var $$          = ns.$$;
@@ -16,6 +17,7 @@
     
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
+    var studyMods   = sn('studyMods', sapp);
     var srg_modules = sn('srg_modules', sapp);
     var sDomN       = sn('dnative', sapp);
 
@@ -34,7 +36,7 @@
 
     function setModule()
     {
-        ssF.create8prepopulate_svg  = create8prepopulate_svg;
+        ssF.continue_create_8_prepopulate_svg  = continue_create_8_prepopulate_svg;
         ssF.create_digital_legend   = create_digital_legend;
         ss.menuExtraWork            = menuExtraWork;
     }
@@ -43,10 +45,7 @@
     function menuExtraWork( teaf_id, leaf_id )
     {
 
-
-
-
-        if( teaf_id !== 'aspect' || (sapp.sappId !== 'lemma2' && sapp.sappId !== 'lemma3') ) {
+        if( teaf_id !== 'aspect' || (fconf.sappId !== 'lemma2' && fconf.sappId !== 'lemma3') ) {
             return;
         }
 
@@ -78,27 +77,9 @@
         ///=========================================================================
     }
 
-    function create8prepopulate_svg()
+    function continue_create_8_prepopulate_svg()
     {
-
-        //====================================================================
-        // //\\ makes media-draw-area
-        //====================================================================
-        sDomN.mmedia$ = $$.cNS( 'svg' )
-            .aNS( 'id',     'illus' )
-            .aNS( 'class',   cssp +'-media' )
-            .aNS( 'viewBox', '0 0 ' +
-                             sconf.innerMediaWidth + ' ' +
-                             sconf.innerMediaHeight )
-            .aNS( 'preserveAspectRatio', "xMidYMid meet" )
-            .to( sDomN.medRoot )
-            ;
-        var svg = sDomN.svg = sDomN.mmedia$();
-        //====================================================================
-        // \\// makes media-draw-area
-        //====================================================================
-
-
+        var svg = studyMods[ SUB_MODEL ].mmedia$.aNS( 'id', 'illus' )();
 
         //====================================================================
         // //\\ paints preliminary elements
@@ -217,10 +198,10 @@
                         <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
                     </div>
                     <span class="number">
-                        <span class="tp-figure tp-figure-area tocolor tobold figAmt"
+                        <span class="tp-figure-area tocolor tobold figAmt"
                               id="figAmt">100.0</span>
                     </span>
-                    <span class="tp-figure tp-figure-area tocolor tobold figAmt">figure</span>
+                    <span class="tp-figure tocolor tobold figAmt">figure</span>
                 </div>
                 <!--END figure-->
 

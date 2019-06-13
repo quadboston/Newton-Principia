@@ -27,10 +27,11 @@
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
+    var exegs    = sn('exegs', ssD);
 
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
@@ -327,7 +328,10 @@
         //==================================================
         amode[teaf_id] = leaf_id;
         if( amode['theorion'] && amode['aspect'] ) {
+            var rtRk = exegs[ amode['theorion'] ][ amode['aspect'] ];
+            amode['submodel'] = rtRk.essayHeader.submodel;
             fmethods.spawnVideoList && fmethods.spawnVideoList();
+            sDomN.bgImage$ = rtRk.imgRk.dom$;
         }
         //.menu work for special subapp
         ss.menuExtraWork && ss.menuExtraWork( teaf_id, leaf_id );
@@ -344,8 +348,8 @@
         //      if its menu item exist and is already constructed
         //==================================================
         if( amode['theorion'] && amode['aspect'] ) {
-            var wRT = rawTexts[ amode.theorion ] &&
-                      rawTexts[ amode.theorion ][ amode.aspect ];
+            var wRT = exegs[ amode.theorion ] &&
+                      exegs[ amode.theorion ][ amode.aspect ];
             var eHeader = wRT && wRT.header;
             if( eHeader ) {
                 if( eHeader.dataLegend === "0" ) {
@@ -353,18 +357,10 @@
                 } else if( eHeader.dataLegend === "1" ) {
                     $$.$(sDomN.medRoot).removeClass('main-legend-disabled');
                 }
-                if( typeof eHeader.mediaBgImage === 'string' ) {
-                    if( eHeader.mediaBgImage ) {
-                        sDomN.bgImage$.removeClass( 'disabled' );
-                        sDomN.bgImage$.a( 'src', eHeader.mediaBgImage );
-                    } else if( eHeader.mediaBgImage === '' ) {
-                        sDomN.bgImage$.addClass( 'disabled' );
-                    }
-                }
             }
         }
         if( sapp.readyToResize ) { 
-            //.includes sapp.upcreate();
+            //.includes sapp.up-create();
             fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
         }
         //==================================================

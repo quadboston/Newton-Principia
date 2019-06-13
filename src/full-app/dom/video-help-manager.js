@@ -20,7 +20,7 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
+    var exegs    = sn('exegs', ssD);
 
     fmethods.create_video_help_manager = create_video_help_manager;
     //000000000000000000000000000000000000000
@@ -87,7 +87,7 @@
                 iconRg$.html('');
                 //c cc( iid + ' must become empty=',iconRg$() );
             });
-            var vConf = rawTexts[ amode['theorion'] ][ amode['aspect'] ]
+            var vConf = exegs[ amode['theorion'] ][ amode['aspect'] ]
                            .essayHeader.video;
 
             if( vConf ) {

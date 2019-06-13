@@ -15,6 +15,7 @@
     var d8d_p       = sn('d8d-point',fmethods);
 
     var sapp        = sn('sapp');
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -37,7 +38,7 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
-        sapp.init_sapp_II = init_sapp_II;
+        sapp.finish_sapp_UI = finish_sapp_UI;
     }
 
     //=========================================================
@@ -56,15 +57,20 @@
         //======================================
         // //\\ inits model and it's view
         //======================================
-        sapp.upcreate();
-        ssF.initMediaModel();
+        ns.eachprop( studyMods, ( stdMod, modName ) => {
+            stdMod.upcreate();
+            stdMod.initMediaModel();
+        });
         //======================================
         // \\// inits model and it's view
         //======================================
     }
-    function init_sapp_II() 
+    function finish_sapp_UI() 
     {
-        ssF.initMediaModel_II();
+        ns.eachprop( studyMods, ( stdMod, modName ) => {
+            ssF.create_proofSlider();
+            ssF.mediaModelInitialized = true;
+        });
     }
     //=========================================================
     // \\// inits app

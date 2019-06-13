@@ -73,17 +73,15 @@
         // //\\ model data legend
         //==============================================================
         sDomN.legendRoot$ = $$.dct( cssp + '-legend-root',
-                                         fapp.fappRoot$ );
+                                    fapp.fappRoot$ );
         //==============================================================
         // \\// model data legend
         //==============================================================
 
-
-
         sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
         fmethods.populate_mediaSupreRoot();
-
+        
     }
 
 
@@ -98,8 +96,7 @@
 
         //todm: this is not very well thought:
         //      sapp.dnative && sapp.dnative.bgImage$
-        sapp.dnative && sapp.dnative.bgImage$ &&
-                        sapp.dnative.bgImage$.addClass( 'in-study' );
+        sDomN.bgImage$ && sDomN.bgImage$.addClass( 'in-study' );
     }
     //===================================================================
     // \\// this makes one-time effect of fading-out the original picture

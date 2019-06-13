@@ -32,6 +32,8 @@ relevant? yen and more ... Math symbols defined by LaTeX package «amsfonts»
 
 font:
     https://www.checkmyworking.com/cm-web-fonts/
+    Greeks for svg: https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
+        don't use codes: just copy/paste chars right into xhtml <text ... 
 
     over top of my head:
         https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available

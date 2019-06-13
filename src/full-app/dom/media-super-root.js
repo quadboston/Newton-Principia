@@ -19,6 +19,10 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
+    var exegs    = sn('exegs', ssD);
+    var bgImages    = sn('bgImages', ssD);
+
+
 
     fmethods.populate_mediaSupreRoot = populate_mediaSupreRoot;
     //000000000000000000000000000000000000000
@@ -170,26 +174,61 @@
         // \\// video help
         //..........................
 
-        //..........................
-        // //\\ study image
-        //..........................
-        sDomN.bgImage$ = $$
-            .c( 'img' )
-            .a( 'class', cssp +'-bg-image' )
-            .to( sDomN.medRoot )
-            ;
-        if( sconf.mediaBgImage ) {
-            sDomN.bgImage$.a( 'src', sconf.mediaBgImage );
-        } else {
-            sDomN.bgImage$.addClass( 'disabled' );
-        }
-        //..........................
-        // \\// study image
-        //..........................
+        //..............................
+        // //\\ study image and submodel
+        //..............................
+        var images = {};
+        //top mode CSS: bsl-approot theorion--claim aspect--hypertext
+        var imgCss = cssp +'-bg-image';
+        var css = `
+            .${cssp}-approot .${imgCss},
+            .${cssp}-approot .${cssp}-media {
+                display:none;
+            }
+        `;
 
-        ssF.create8prepopulate_svg();
+        //todo img load scenarios: remove timeout from load/resize ...
+        ns.eachprop( exegs, ( theor, tkey ) => {
+            ns.eachprop( theor, ( aspect, akey ) => {
+                var imgRk = aspect.imgRk;
+                var cssId = imgRk.cssId;
+
+                if( !ns.h( imgRk, 'dom$' ) ) {
+                    imgRk.dom$ = $$
+                        .img()
+                        .a( 'src', imgRk.src )
+                        .to( sDomN.medRoot )
+                        ;
+                }
+                imgRk.dom$.cls( imgCss + ' ' + cssId )
+                css += `
+                    .${cssp}-approot.theorion--${tkey}.aspect--${akey} .${cssId} {
+                        display :inline;
+                    }
+                `;
+
+                ///submodel
+                if( aspect.essayHeader.submodel ) {
+                    css += `
+                        .${cssp}-approot.theorion--${tkey}.aspect--${akey}
+                        .${cssp}-media.submodel-${aspect.essayHeader.submodel} {
+                            display:block;
+                        }
+                    `;
+                }
+            });
+        });
+        ns.globalCss.addText( css );
+        //..............................
+        // \\// study image and submodel
+        //..............................
+
+        sDomF.create8prepopulate_svg();
+        //.patches l2
+        ssF.continue_create_8_prepopulate_svg && ssF.continue_create_8_prepopulate_svg();
+
         //.disabled ... effect is too strong
-        //sDomN.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
+        //stdMod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
         ssF.create_digital_legend && ssF.create_digital_legend();
         sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {

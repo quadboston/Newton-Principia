@@ -8,16 +8,16 @@
     var sacf    = sconf;
 
     var ss          = sn('ss',fapp);
-    var ssModes     = sn('ssModes',ss);
 
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomF       = sn('dfunctions', sapp);
+    var sDomN       = sn('dnative', sapp);
+
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     return;
 
 
@@ -164,7 +164,13 @@
             //:dr.figureBasics.deltaOnLeft is already calculated and
             //:can be used
             //:and means decresing function witm max on left
-            ssModes[ 'highest y is on the right' ] =  wfirst[1] > wlast[1];
+            if( wfirst[1] > wlast[1] ) {
+                sDomN.essaionsRoot$.removeClass( 'active-left' );
+                sDomN.essaionsRoot$.addClass( 'active-right' );
+            } else {
+                sDomN.essaionsRoot$.removeClass( 'active-right' );
+                sDomN.essaionsRoot$.addClass( 'active-left' );
+            }
             // \\// resets app modes
 
         }

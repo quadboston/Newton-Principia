@@ -28,8 +28,8 @@
             For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
             ¿?
             {
-                "default" : "left",
-                "highest y is on the right" : "right"
+                "left" : "left",
+                "right" : "right"
             }
             ¿
             .

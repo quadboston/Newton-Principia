@@ -46,14 +46,15 @@
         //----------------------------------------------------
         to_sconf =
         {
-            EPSILON : 0.2,
+            EPSILON : 0.36,
+            DELTA_FRACTION : 0.7,
 
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             innerMediaWidth     : innerMediaWidth,
-            innerMediaHeight    : innerMediaWidth,
+            innerMediaHeight    : innerMediaWidth+100,
             mod2med_scale       : innerMediaWidth,
             med2mod_scale       : 1/innerMediaWidth,
             thickness           : 2,

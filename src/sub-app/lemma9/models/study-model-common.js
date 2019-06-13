@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var sn          = ns.sn;
     var bezier      = sn('bezier');
@@ -16,6 +17,7 @@
     var rg          = sn('registry',ssD);
 
     var sapp        = sn('sapp');
+    var studyMods   = sn('studyMods', sapp);
 
     var tr          = ssF.tr;
     var tp          = ssF.tp;
@@ -42,7 +44,7 @@
         ssF.calculateCurvedArea = calculateCurvedArea;
         ssF.x0y_2_t             = x0y_2_t;
         ssF.const2positions     = const2positions;
-        sapp.upcreate           = upcreate;
+        sn(SUB_MODEL, studyMods ).upcreate = upcreate;
     }
 
     //=========================================================
@@ -161,7 +163,7 @@
         //-------------------------------------------------------
         // //\\ media part
         //-------------------------------------------------------
-        ssF.upcreateMedia();
+        sn(SUB_MODEL, studyMods ).upcreateMedia();
         //-------------------------------------------------------
         // \\// media part
         //-------------------------------------------------------

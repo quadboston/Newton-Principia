@@ -34,7 +34,7 @@
     function setModule()
     {
         sapp.init_sapp = init_sapp;
-        sapp.init_sapp_II = init_sapp_II;
+        sapp.finish_sapp_UI = finish_sapp_UI;
     }
 
     //=========================================================
@@ -44,9 +44,8 @@
     {
     }
 
-    function init_sapp_II() 
+    function finish_sapp_UI() 
     {
-        //ssF.initMediaModel_II && ssF.initMediaModel_II();
     }
     //=========================================================
     // \\// inits app

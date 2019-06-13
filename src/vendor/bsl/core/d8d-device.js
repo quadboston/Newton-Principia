@@ -48,7 +48,6 @@
         //:
         //.this is an excessive functionality and reduced to eventPos_2_surfacePos
 		//var eventPoint_2_localPoint = arg.eventPoint_2_localPoint || eventPos_2_surfacePos;
-		var eventPoint_2_localPoint = eventPos_2_surfacePos;
 
         var skipD8D = arg.skipD8D || default_skip;
         //------------------------------------------
@@ -128,7 +127,7 @@
                     att.addEventListener( 'touchend',    touchEnd);
                     att.addEventListener( 'touchcancel', touchEnd);
                 } else {
-                    //ns.d('\neid=' + eventId + 'move is forbidden');
+                    //ns.d('\neid=' + eventId + 'm ove is forbidden');
                 }
             ///mouse-down
             } else {
@@ -141,7 +140,7 @@
                     // fires right after the mouseDown ...
                     att.addEventListener( 'mouseleave',  mouseEnd);
                 } else {
-                    //ns.d('\nev id=' + eventId + 'move is forbidden');
+                    //ns.d('\nev id=' + eventId + 'm ove is forbidden');
                 }
             }
         }
@@ -160,7 +159,7 @@
                 //ns.d('broken d8d scenario: the previous startPoint is still exist');
                 return true;
             }
-            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
+            var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
             if( !point_on_dragSurf ) {
                 //ns.d('do_complete_down: media point failed');
                 return true;
@@ -202,28 +201,28 @@
                 //ns.d('mouseMove: no start point exist');
                 return;
             } 
-            var mPoint = eventPoint_2_localPoint( childEvent );
-            if(!mPoint) { 
+            var surfPoint = eventPos_2_surfacePos( childEvent );
+            if(!surfPoint) { 
                 //ns.d('\nmouseMove: media point failed');
                 return;
             }
-            lastPoint = mPoint;
-			do_complete_move( mPoint, childEvent );
+            lastPoint = surfPoint;
+			do_complete_move( surfPoint, childEvent );
 			return false;
         }
 
         ///adds move - the "sugar"
-		function do_complete_move( mPoint, childEvent )
+		function do_complete_move( surfPoint, childEvent )
 		{
-			var move =
+			var surfMove =
 			[	
-				mPoint[ 0 ] - startPoint[ 0 ],
-				mPoint[ 1 ] - startPoint[ 1 ]
+				surfPoint[ 0 ] - startPoint[ 0 ],
+				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            d8d_app( move, 'move', mPoint, childEvent );
+            d8d_app( surfMove, 'move', surfPoint, childEvent );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            return move;
+            return surfMove;
 		};
         //*****************************************
 		// \\// MOVE SUBROUTINES
@@ -263,7 +262,7 @@
             var eventPoint = childEvent &&
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
-            var point_on_dragSurf = eventPoint && eventPoint_2_localPoint( childEvent );
+            var point_on_dragSurf = eventPoint && eventPos_2_surfacePos( childEvent );
 
             if( startPoint ) {
                 ////startPoint is not missed ...
@@ -273,10 +272,10 @@
                 //.this is why it is importan to provide "up" with point_on_dragSurf
                 //.in case the "move" event will be erased by "up"
                 var point_on_dragSurf = point_on_dragSurf || lastPoint;
-                var move = do_complete_move( point_on_dragSurf, childEvent );
+                var surfMove = do_complete_move( point_on_dragSurf, childEvent );
 		        startPoint = null; 
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-             	d8d_app( move, 'up', point_on_dragSurf, childEvent );
+             	d8d_app( surfMove, 'up', point_on_dragSurf, childEvent );
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
             //} else {
                 ////broken scenario

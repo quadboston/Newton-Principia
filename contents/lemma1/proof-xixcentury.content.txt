@@ -1,7 +1,9 @@
 *::*proof|xixcentury
 {
-  "mediaBgImage" : "",
+  "mediaBgImage" : "lemma1-proof.png",
+  "comment mediaBgImage" : null,
   "menuCaption" : "XIX Century",
+  "submodel" : "proof-xix",
   "default" : "0",
   "dataLegend":"0"
 }

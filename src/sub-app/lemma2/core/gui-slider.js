@@ -12,6 +12,7 @@
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomF       = sn('dfunctions', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
@@ -85,14 +86,16 @@
 		        sliderEvent( newB-dr.bases, newB, dr.basePts );
 		        dr.bases = newB;
 		        showBasesNumberInGui( sliderOutput, baseLabel );
-		        sapp.upcreate();
+                ns.eachprop( studyMods, ( stdMod, modName ) => {
+                    stdMod.upcreate();
+                });
           	}
 
             function sliderEvent(bd, newBases, basePts) {
                 sDomF.detected_user_interaction_effect();
             	//var baseDelta = bd;
 	            for (var i=newBases-bd; i<newBases; i++) {
-    		        if( sapp.sappId === 'lemma3' ) {
+    		        if( fconf.sappId === 'lemma3' ) {
     		            guiup.set_pt2movable( basePts.list[i] );
                     }
 	            }

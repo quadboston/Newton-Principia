@@ -105,7 +105,7 @@
             var strongerModelOpacity = Math.min(1, Math.max(0,sliderParameter*2)).toFixed(3);
             var weakerPictureOpacity = Math.max(0,1-sliderParameter*1.2).toFixed(3);;
 
-            sDomN.bgImage$.css( 'opacity', weakerPictureOpacity );
+            sDomN.bgImage$ && sDomN.bgImage$.css( 'opacity', weakerPictureOpacity );
             sDomN.visib_left_image$.css( 'opacity', pictureOpacity );
 
             sDomN.mmedia$.css( 'opacity', '' + strongerModelOpacity );

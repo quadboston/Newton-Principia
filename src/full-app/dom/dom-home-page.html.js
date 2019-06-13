@@ -22,7 +22,6 @@
 
     function buildHomePage()
     {
-        var pmode = sapp.pageMode;
         var coreText = '';
         var landingPath = window.location.pathname;
 
@@ -141,6 +140,12 @@
                         A User Interface Design by
                         <span class="dd-label">
                             <a href="http://theoddson.io">Darien Dodson</a>.
+                        </span><br>
+                        Welcome to project home: 
+                        <span class="dd-label">
+                            <a href="https://github.com/quadboston/Newton-Principia"
+                               target="_blank">
+                                github.com/quadboston/Newton-Principia</a>.
                         </span><br>
                         Produced by John Scott.
                         <span style="display:inlilne-block; float:right; right:10px;">

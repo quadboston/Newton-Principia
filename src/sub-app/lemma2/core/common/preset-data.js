@@ -1,6 +1,7 @@
 // //\\// App config
 
 ( function () {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;    
     var sn          = ns.sn;    
@@ -8,8 +9,10 @@
     var fapp        = ns.sn('fapp' ); 
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);
+
     var sapp        = sn('sapp');
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss',fapp);
     
@@ -44,7 +47,8 @@
             //=====================================
             Object.assign( dr,
             {
-                svgSeg          : sDomN.mmedia$(), //document.getElementById( 'illus' ),
+                svgSeg          : studyMods[ SUB_MODEL ].mmedia$(),
+
                 polylineCurve   : document.getElementById( 'polylineCurve' ),
                 figureInternalArea : document.getElementById( 'figureInternalArea' ),
 
@@ -67,11 +71,10 @@
                 righLabels      : {offset:0, visOffset:0, list:[]},
                 figureBasics    : {minX:0, maxX:0, baseY:0, deltaOnLeft:true},
                 ctrlPts         : [],
-                baseWidths      : sapp.sappId === 'lemma3' ? sconf.baseWidths_for_lemma3 : [],
+                baseWidths      : fconf.sappId === 'lemma3' ? sconf.baseWidths_for_lemma3 : [],
                 bases           : 4,
                 movables        : {} //key-value for movable jswrap
             });
-            sDomN.mmedia$ = $$.$( dr.svgSeg );
 
             appstate.movingBasePt = false;
             appstate.showRectPts  = false;

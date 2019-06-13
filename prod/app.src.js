@@ -32,6 +32,7 @@
     function setAppNamespace()
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
+        var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
         var ns = window[ APP_NAME ];
         if( ns ) {
             if( ns[ uniqueEarthWide ] ) { return ns; }
@@ -45,21 +46,32 @@
             ns.sn = sn;
             ns.APP_NAME = APP_NAME;
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
+
+            //:more good goodies
+            ns.h = has;
+            ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
 
-        ///sets namespace
-        function sn( subname, parentNS )
+
+        ///Returns own property only if it exists. Otherwise, returns false.
+        function has( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
+        };
+
+        ///In plain words: makes-sure object-property exists and returns it.
+        ///Input: optional emptyTemplate provides ability set {} or []
+        function sn( subname, parentNS, emptyTemplate )
         {
             var parentNS = parentNS || ns;
-            if( parentNS.hasOwnProperty( subname ) ) {
+            if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
                 return parentNS[ subname ];
-            } 
-            var sns = parentNS[ subname ] = {};
+            }
+            var sns = parentNS[ subname ] = emptyTemplate || {};
             return sns;
 
             /*
-            //proposes property conflict detection with JS native objects in 
+            //proposes even deeper property conflict detection with JS native objects in 
             //prototype-tree depths
             var sns = parentNS[ subname ];
             if( sns ) {
@@ -73,6 +85,7 @@
             return sns;
             */
         }
+
     }
 
 
@@ -901,7 +914,6 @@
         //:
         //.this is an excessive functionality and reduced to eventPos_2_surfacePos
 		//var eventPoint_2_localPoint = arg.eventPoint_2_localPoint || eventPos_2_surfacePos;
-		var eventPoint_2_localPoint = eventPos_2_surfacePos;
 
         var skipD8D = arg.skipD8D || default_skip;
         //------------------------------------------
@@ -981,7 +993,7 @@
                     att.addEventListener( 'touchend',    touchEnd);
                     att.addEventListener( 'touchcancel', touchEnd);
                 } else {
-                    //ns.d('\neid=' + eventId + 'move is forbidden');
+                    //ns.d('\neid=' + eventId + 'm ove is forbidden');
                 }
             ///mouse-down
             } else {
@@ -994,7 +1006,7 @@
                     // fires right after the mouseDown ...
                     att.addEventListener( 'mouseleave',  mouseEnd);
                 } else {
-                    //ns.d('\nev id=' + eventId + 'move is forbidden');
+                    //ns.d('\nev id=' + eventId + 'm ove is forbidden');
                 }
             }
         }
@@ -1013,7 +1025,7 @@
                 //ns.d('broken d8d scenario: the previous startPoint is still exist');
                 return true;
             }
-            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
+            var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
             if( !point_on_dragSurf ) {
                 //ns.d('do_complete_down: media point failed');
                 return true;
@@ -1055,28 +1067,28 @@
                 //ns.d('mouseMove: no start point exist');
                 return;
             } 
-            var mPoint = eventPoint_2_localPoint( childEvent );
-            if(!mPoint) { 
+            var surfPoint = eventPos_2_surfacePos( childEvent );
+            if(!surfPoint) { 
                 //ns.d('\nmouseMove: media point failed');
                 return;
             }
-            lastPoint = mPoint;
-			do_complete_move( mPoint, childEvent );
+            lastPoint = surfPoint;
+			do_complete_move( surfPoint, childEvent );
 			return false;
         }
 
         ///adds move - the "sugar"
-		function do_complete_move( mPoint, childEvent )
+		function do_complete_move( surfPoint, childEvent )
 		{
-			var move =
+			var surfMove =
 			[	
-				mPoint[ 0 ] - startPoint[ 0 ],
-				mPoint[ 1 ] - startPoint[ 1 ]
+				surfPoint[ 0 ] - startPoint[ 0 ],
+				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            d8d_app( move, 'move', mPoint, childEvent );
+            d8d_app( surfMove, 'move', surfPoint, childEvent );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            return move;
+            return surfMove;
 		};
         //*****************************************
 		// \\// MOVE SUBROUTINES
@@ -1116,7 +1128,7 @@
             var eventPoint = childEvent &&
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
-            var point_on_dragSurf = eventPoint && eventPoint_2_localPoint( childEvent );
+            var point_on_dragSurf = eventPoint && eventPos_2_surfacePos( childEvent );
 
             if( startPoint ) {
                 ////startPoint is not missed ...
@@ -1126,10 +1138,10 @@
                 //.this is why it is importan to provide "up" with point_on_dragSurf
                 //.in case the "move" event will be erased by "up"
                 var point_on_dragSurf = point_on_dragSurf || lastPoint;
-                var move = do_complete_move( point_on_dragSurf, childEvent );
+                var surfMove = do_complete_move( point_on_dragSurf, childEvent );
 		        startPoint = null; 
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-             	d8d_app( move, 'up', point_on_dragSurf, childEvent );
+             	d8d_app( surfMove, 'up', point_on_dragSurf, childEvent );
                 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
             //} else {
                 ////broken scenario
@@ -1534,18 +1546,18 @@
             //.abandoned because it is hard to remember and explain to other developer
             //.the complexity which arised with throttle: the complexity is
             //.that event "move" can be overriden with "up" and developer must always
-            //.remember this in doProcess() function
-            //var doDragUpdate = ns.throttle( 
+            //.remember this in do Process() function
+            //var do DragUpdate = ns.throttle( 
             //        ....
             //        DRAG_POINTS_THROTTLE_TIME || 0
             //);
-            //.if one needs to throttle the drag, do throttle "doProcess()"
+            //.if one needs to throttle the drag, do throttle "do Process()"
             //.explicitly in specific lemma
 
             function doDragUpdate( arg )
             {
                 //logical sugar:
-                //remembers pointWrap which can be changed in closure of doProcess
+                //remembers pointWrap which can be changed in closure of do Process
                 //when pointWrap is generated in the loop
                 arg.pointWrap = pointWrap; 
 
@@ -1581,7 +1593,7 @@
         ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
 		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
-        function d8d_app( move, down_move_up, point_on_dragSurf, event )
+        function d8d_app( surfMove, down_move_up, point_on_dragSurf, event )
         {
             //ns.d('app: d8d_app call begins: mode="' + down_move_up + '"');
             switch( down_move_up )
@@ -1603,7 +1615,7 @@
                 case 'move': 
                 case 'up':
                     //.is throttled: does condence move and up events
-                    selectedElement.doDragUpdate( { down_move_up:down_move_up, move:move } );
+                    selectedElement.doDragUpdate( { down_move_up:down_move_up, surfMove:surfMove } );
                 break;
             }
         }
@@ -3352,10 +3364,11 @@ var ret = `
         transition: opacity 1s ease;
     }
 
+    /*
     .bsl-bg-image.disabled {
         display : none;
     }
-
+    */
     /*================================*/
     /* //|| bsl-media                 */
     /*================================*/
@@ -3373,6 +3386,23 @@ var ret = `
         left:0;
         top:0;
         z-index:9;
+    }
+
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    /* this really solved firefox problem of "shadow-dragging-object"
+       the problem tested and logged in 
+       83-current-svg-firefox-problems.zip
+       as of June 12, 2019 ( a year later we don't see this problem in FF )
+       circle.movable { user-select: none; .... 
+    */
+    .bsl-media text {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome and Opera */
     }
     /*================================*/
     /* ||// bsl-media                 */
@@ -3792,8 +3822,8 @@ return ret;
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
 
-        var body_DesktopOverflow = sapp.pageMode === 'lemma' ?
-                                   'overflow:hidden' : 'overflow-x:hidden';
+        var body_DesktopOverflow = fconf.sappId === 'home-pane' ?
+                                   'overflow-x:hidden' : 'overflow:hidden';
 
 // //\\ css /////////////////////////////////////////
 var ret = `
@@ -4269,7 +4299,7 @@ var ret = `
         border-radius: ${borderRadius};
         cursor: pointer;
 
-        box-shadow: 0px 0 20px 0 rgba(32, 41, 54, 0.4);
+        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
         white-space : nowrap;
 
         text-align:center;
@@ -4288,8 +4318,13 @@ var ret = `
         vertical-align:middle;
     }
 
-    .master-pagination-btn.current-lemma,
     .master-pagination-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0px 20px 0 rgba(32, 41, 54, 0.2);
+        transition: all .2s ease;
+    }
+    .master-pagination-btn.current-lemma {
+        transform: none;
         box-shadow: 0 0px 0px 0 rgba(32, 41, 54, 0.2);
     }
 
@@ -5262,9 +5297,7 @@ var ret = `
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
     cssmods.initSiteWideCSS = initSiteWideCSS;
-    //0000000000000000000000000000000000000000
-    return;
-    //0000000000000000000000000000000000000000
+    return; //00000000000000000000000000000000
 
 
 
@@ -5485,7 +5518,7 @@ var ret = `
         //==================================================
         // //\\ page master menu
         //==================================================
-        var ww = fconf.sappModulesList[ sapp.sappId ];
+        var ww = fconf.sappModulesList[ fconf.sappId ];
         var caption = ww.book + '.' + ww.caption + '.';
 
         var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
@@ -5529,7 +5562,6 @@ var ret = `
                 .ch(    
                     sDomN.leftButton$ = $$
                     .dc( "master-pagination-btn" )
-                    //.html('<img src="images/back-arrow-link.svg">')
                 )
                 .ch(
                     sDomN.midddleButton$ = $$
@@ -5539,7 +5571,6 @@ var ret = `
                 .ch(    
                     sDomN.rightButton$ = $$
                     .dc( "master-pagination-btn" )
-                    //.html('<img src="images/right-page-triangle.svg">')
                 )
                 //==================================================
                 // \\// builds lemmas' navigator
@@ -5594,7 +5625,6 @@ var ret = `
 
     function buildHomePage()
     {
-        var pmode = sapp.pageMode;
         var coreText = '';
         var landingPath = window.location.pathname;
 
@@ -5714,6 +5744,12 @@ var ret = `
                         <span class="dd-label">
                             <a href="http://theoddson.io">Darien Dodson</a>.
                         </span><br>
+                        Welcome to project home: 
+                        <span class="dd-label">
+                            <a href="https://github.com/quadboston/Newton-Principia"
+                               target="_blank">
+                                github.com/quadboston/Newton-Principia</a>.
+                        </span><br>
                         Produced by John Scott.
                         <span style="display:inlilne-block; float:right; right:10px;">
                             Version 0.${fapp.version}
@@ -5736,7 +5772,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2109; //application version
+    fapp.version =  2235; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -5816,17 +5852,15 @@ var ret = `
         // //\\ model data legend
         //==============================================================
         sDomN.legendRoot$ = $$.dct( cssp + '-legend-root',
-                                         fapp.fappRoot$ );
+                                    fapp.fappRoot$ );
         //==============================================================
         // \\// model data legend
         //==============================================================
 
-
-
         sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
         fmethods.populate_mediaSupreRoot();
-
+        
     }
 
 
@@ -5841,8 +5875,7 @@ var ret = `
 
         //todm: this is not very well thought:
         //      sapp.dnative && sapp.dnative.bgImage$
-        sapp.dnative && sapp.dnative.bgImage$ &&
-                        sapp.dnative.bgImage$.addClass( 'in-study' );
+        sDomN.bgImage$ && sDomN.bgImage$.addClass( 'in-study' );
     }
     //===================================================================
     // \\// this makes one-time effect of fading-out the original picture
@@ -5873,6 +5906,10 @@ var ret = `
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
+    var exegs    = sn('exegs', ssD);
+    var bgImages    = sn('bgImages', ssD);
+
+
 
     fmethods.populate_mediaSupreRoot = populate_mediaSupreRoot;
     //000000000000000000000000000000000000000
@@ -6024,26 +6061,61 @@ var ret = `
         // \\// video help
         //..........................
 
-        //..........................
-        // //\\ study image
-        //..........................
-        sDomN.bgImage$ = $$
-            .c( 'img' )
-            .a( 'class', cssp +'-bg-image' )
-            .to( sDomN.medRoot )
-            ;
-        if( sconf.mediaBgImage ) {
-            sDomN.bgImage$.a( 'src', sconf.mediaBgImage );
-        } else {
-            sDomN.bgImage$.addClass( 'disabled' );
-        }
-        //..........................
-        // \\// study image
-        //..........................
+        //..............................
+        // //\\ study image and submodel
+        //..............................
+        var images = {};
+        //top mode CSS: bsl-approot theorion--claim aspect--hypertext
+        var imgCss = cssp +'-bg-image';
+        var css = `
+            .${cssp}-approot .${imgCss},
+            .${cssp}-approot .${cssp}-media {
+                display:none;
+            }
+        `;
 
-        ssF.create8prepopulate_svg();
+        //todo img load scenarios: remove timeout from load/resize ...
+        ns.eachprop( exegs, ( theor, tkey ) => {
+            ns.eachprop( theor, ( aspect, akey ) => {
+                var imgRk = aspect.imgRk;
+                var cssId = imgRk.cssId;
+
+                if( !ns.h( imgRk, 'dom$' ) ) {
+                    imgRk.dom$ = $$
+                        .img()
+                        .a( 'src', imgRk.src )
+                        .to( sDomN.medRoot )
+                        ;
+                }
+                imgRk.dom$.cls( imgCss + ' ' + cssId )
+                css += `
+                    .${cssp}-approot.theorion--${tkey}.aspect--${akey} .${cssId} {
+                        display :inline;
+                    }
+                `;
+
+                ///submodel
+                if( aspect.essayHeader.submodel ) {
+                    css += `
+                        .${cssp}-approot.theorion--${tkey}.aspect--${akey}
+                        .${cssp}-media.submodel-${aspect.essayHeader.submodel} {
+                            display:block;
+                        }
+                    `;
+                }
+            });
+        });
+        ns.globalCss.addText( css );
+        //..............................
+        // \\// study image and submodel
+        //..............................
+
+        sDomF.create8prepopulate_svg();
+        //.patches l2
+        ssF.continue_create_8_prepopulate_svg && ssF.continue_create_8_prepopulate_svg();
+
         //.disabled ... effect is too strong
-        //sDomN.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
+        //stdMod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
         ssF.create_digital_legend && ssF.create_digital_legend();
         sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
@@ -6076,7 +6148,7 @@ var ret = `
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
+    var exegs    = sn('exegs', ssD);
 
     fmethods.create_video_help_manager = create_video_help_manager;
     //000000000000000000000000000000000000000
@@ -6143,7 +6215,7 @@ var ret = `
                 iconRg$.html('');
                 //c cc( iid + ' must become empty=',iconRg$() );
             });
-            var vConf = rawTexts[ amode['theorion'] ][ amode['aspect'] ]
+            var vConf = exegs[ amode['theorion'] ][ amode['aspect'] ]
                            .essayHeader.video;
 
             if( vConf ) {
@@ -6314,6 +6386,8 @@ var ret = `
 
     var sapp        = sn('sapp' ); 
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
 
     var d8d_p       = sn('d8d-point',fmethods);
     fmethods.createDividorResizer = createDividorResizer;
@@ -6416,7 +6490,7 @@ var ret = `
                 case 'up':
                 case 'move':
                     var newSuperW = finish_Media8Ess8Legend_resize(
-                        pA.achieved - arg.move[0]
+                        pA.achieved - arg.surfMove[0]
                     );
                     //pL.achieved_at_move = newSuperW;
                     if( arg.down_move_up === 'up' ) {
@@ -6684,7 +6758,15 @@ var ret = `
             //===============================================
             // //\\ updated model and its view
             //===============================================
-            sapp.upcreate();
+            ///options to update all:
+            //ns.eachprop( studyMods, ( stdMod, modName ) => {
+            //    stdMod.upcreate();
+            //});
+
+            var aSub = amode['submodel'];
+            if( ns.h( amode, 'submodel' ) && aSub ) {
+                studyMods[ aSub ] && studyMods[ aSub ].upcreate();
+            }
             //===============================================
             // \\// updated model and its view
             //===============================================
@@ -6861,7 +6943,7 @@ var ret = `
             var strongerModelOpacity = Math.min(1, Math.max(0,sliderParameter*2)).toFixed(3);
             var weakerPictureOpacity = Math.max(0,1-sliderParameter*1.2).toFixed(3);;
 
-            sDomN.bgImage$.css( 'opacity', weakerPictureOpacity );
+            sDomN.bgImage$ && sDomN.bgImage$.css( 'opacity', weakerPictureOpacity );
             sDomN.visib_left_image$.css( 'opacity', pictureOpacity );
 
             sDomN.mmedia$.css( 'opacity', '' + strongerModelOpacity );
@@ -6970,10 +7052,11 @@ var ret = `
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
+    var exegs    = sn('exegs', ssD);
 
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
@@ -7270,7 +7353,10 @@ var ret = `
         //==================================================
         amode[teaf_id] = leaf_id;
         if( amode['theorion'] && amode['aspect'] ) {
+            var rtRk = exegs[ amode['theorion'] ][ amode['aspect'] ];
+            amode['submodel'] = rtRk.essayHeader.submodel;
             fmethods.spawnVideoList && fmethods.spawnVideoList();
+            sDomN.bgImage$ = rtRk.imgRk.dom$;
         }
         //.menu work for special subapp
         ss.menuExtraWork && ss.menuExtraWork( teaf_id, leaf_id );
@@ -7287,8 +7373,8 @@ var ret = `
         //      if its menu item exist and is already constructed
         //==================================================
         if( amode['theorion'] && amode['aspect'] ) {
-            var wRT = rawTexts[ amode.theorion ] &&
-                      rawTexts[ amode.theorion ][ amode.aspect ];
+            var wRT = exegs[ amode.theorion ] &&
+                      exegs[ amode.theorion ][ amode.aspect ];
             var eHeader = wRT && wRT.header;
             if( eHeader ) {
                 if( eHeader.dataLegend === "0" ) {
@@ -7296,18 +7382,10 @@ var ret = `
                 } else if( eHeader.dataLegend === "1" ) {
                     $$.$(sDomN.medRoot).removeClass('main-legend-disabled');
                 }
-                if( typeof eHeader.mediaBgImage === 'string' ) {
-                    if( eHeader.mediaBgImage ) {
-                        sDomN.bgImage$.removeClass( 'disabled' );
-                        sDomN.bgImage$.a( 'src', eHeader.mediaBgImage );
-                    } else if( eHeader.mediaBgImage === '' ) {
-                        sDomN.bgImage$.addClass( 'disabled' );
-                    }
-                }
             }
         }
         if( sapp.readyToResize ) { 
-            //.includes sapp.upcreate();
+            //.includes sapp.up-create();
             fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
         }
         //==================================================
@@ -7339,11 +7417,10 @@ var ret = `
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
-    var ssModes     = sn('ssModes',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
+    var exegs       = sn('exegs', ssD);
 
     var oneTimeUse_globalCSS = '';
 
@@ -7358,10 +7435,10 @@ var ret = `
 
     var SPACE_reg = /\s+/;
     var TOP_ANCH_reg = 
-        '¦([^¦]+)¦' + //catches topicId
-        '([^¦]+)'   + //catches topic caption
-        '¦¦';
-
+        '¦([^¦]+)¦' +   //catches topicId
+        '([^¦]+)'   +   //catches topic caption
+        '¦¦'        +   //catches topic terminator
+        '(?:(¦)|\n|.|$)'; //catches delayed topc-link for MathJax sibling
 
     var topAnch_reg = new RegExp( TOP_ANCH_reg, 'gu' );
     //.adding flag "g" ruins the job ... why?
@@ -7371,9 +7448,8 @@ var ret = `
     //---------------------------------------------
 
 
-    sDomF.topicModel_2_css_html = topicModel_2_css_html;
-    sDomF.repopulateContent = repopulateContent;
-    return; //00000
+    sDomF.frags_2_essdom8topiccss = frags_2_essdom8topiccss;
+    return; //000000000000000000000000000000000000000000
 
 
 
@@ -7384,38 +7460,48 @@ var ret = `
 
 
 
-    ///this function needs application-model-view already created,
+    ///this function needs application-model-view already created;
     ///as of this version, it is executed only once
-    function topicModel_2_css_html()
+    function frags_2_essdom8topiccss()
     {
-        establishCurrentMode();
-        topics.esseyions_rack.forEach( function( ess_rack ) {
-            ess_rack.domEl = $$
-              .c('div')
-              .cls( ess_rack.classStr )
-              //*******************************************************
-              //.here page content injects into html for the first time
-              //*******************************************************
-              .to( sDomN.essaionsRoot$() )
-              ();
+        ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
+                exeg.domEl = $$
+                  .c('div')
+                  .cls( exeg.classStr )
+                  //*******************************************************
+                  //.here page content injects into html for the first time
+                  //*******************************************************
+                  .to( sDomN.essaionsRoot$() )
+                  ();
 
-            ///collecting |...|..|| anchor-topics
-            ess_rack.activeFrags.forEach( function( activeFrag, tix ) {
-                if( typeof( activeFrag ) === 'object' ) {
-                    ns.eachprop( activeFrag, (avalue) => {
-                        extractLinks( avalue );
-                    });
-                } else {
-                    //.strange why topAnch_reg (with flag "g") works
-                    //.and topAnch_reg2 does not
-                    extractLinks( activeFrag );
-                }
+                ///collecting |...|..|| anchor-topics
+                exeg.activeFrags.forEach( function( activeFrag, tix ) {
+                    if( typeof( activeFrag ) === 'object' ) {
+                        ns.eachprop( activeFrag, (avalue) => {
+                            fragment_2_indexedTopics( avalue );
+                        });
+                    } else {
+                        //.strange why topAnch_reg (with flag "g") works
+                        //.and topAnch_reg2 does not
+                        fragment_2_indexedTopics( activeFrag );
+                    }
+                });
             });
         });
         //ccc( 'topicLinks=', topics.topicLinks );
         topLinks_2_colors();
-        repopulateContent();
-        sDomF.anchors2topics();
+        populateContent();
+
+        oneTimeUse_globalCSS += `
+            .${cssp}-text-widget .exeg-frag {
+                display : none;
+            }
+            .${cssp}-text-widget .active-static {
+                display : inline;
+            }
+        `;
+        sDomF.anchors2topiccss();
 
         //========================================================
         // //\\ finalizes global css
@@ -7431,8 +7517,8 @@ var ret = `
 
 
 
-    ///Converts these stubs, ess_rack.activeFrags, to
-    ///     1. ess_rack.builtFrags ( depending on app mode )
+    ///Converts these stubs, exeg.activeFrags, to
+    ///     1. exeg.builtFrags ( depending on app mode )
     ///     2. creates dom-placeholders for essaion's fragments which not yet created
     ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
     ///      
@@ -7440,49 +7526,35 @@ var ret = `
     ///at late run-time event, this function is, for example,
     ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
     ///
-    function repopulateContent()
+    function populateContent()
     {
-        var esseyions_rack = topics.esseyions_rack;
-
-        //??? outdated comment??: purges all contents and can be a bug
-        //bs tabs are transcluded into the same el:
-        //sDomN.essaionsRoot$.html('');
-        esseyions_rack.forEach( function( ess_rack ) {
-
-
-            activeFrags_2_htmlFrags( ess_rack );
-            //above line produces this: ess_rack.builtFrags
-            //as furthre-processed-fragments-of-essaion
-
-
-            var domComponents = ess_rack.domComponents;
-            ess_rack.builtFrags.forEach( function( bFrag, fix ) {
-                /*
-                if( !ess_rack.domEl ) {
-                    ccc( 'missed ess_rack.domEl ' );
-                    return; //todo patch ... rethink landing scenario
-                }
-                */
-                if( !domComponents[fix] ) {
-                    domComponents[fix] = $$
-                        .c('div')
-                        .css( 'display', 'inline' )
-                        //*******************************************************
-                        //.here page content injects into html for the first time
-                        //*******************************************************
-                        .to( ess_rack.domEl )
-                        ();
-                    domComponents[fix].innerHTML = bFrag.text;
-                    BodyMathJax_2_HTML( domComponents[ fix ] );
-                }
-                //todm: ineffective: do throttle or create html only once and
-                //      update only CSS-display
-                if( bFrag.modeIsTogglable ) {
-                    domComponents[fix].innerHTML = bFrag.text;
-                    BodyMathJax_2_HTML( domComponents[ fix ] );
-                }
+        ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
+                activeFrags_2_htmlFrags( exeg );
+                //above line produces this: exeg.builtFrags
+                //as further-processed-fragments-of-exeg
+                exeg.builtFrags.forEach( function( bFrag, fix ) {
+                    ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
+                        afrag.dom = afrag2dom( exeg, afrag, fid );
+                    });
+                });
             });
         });
+        function afrag2dom( exeg, bFrag, fid )
+        {
+            //*******************************************************
+            //.here page content injects into html for the first time
+            //*******************************************************
+            bFrag.dom$ = $$.c('div').to( exeg.domEl );
+            bFrag.dom$.cls( 'active-'+fid + ' exeg-frag');
+            oneTimeUse_globalCSS += `
+                .${cssp}-text-widget.active-${fid} .active-${fid} {
+                    display : inline;
+                }
+            `;
+            bFrag.dom$.html( bFrag.activeFrag );
+            BodyMathJax_2_HTML( bFrag.dom$() );
+        }
     }
 
 
@@ -7490,73 +7562,57 @@ var ret = `
     //===============================================
     //
     //===============================================
-    function activeFrags_2_htmlFrags( ess_rack )
+    function activeFrags_2_htmlFrags( exeg )
     {
-        var builtFrags = ess_rack.builtFrags;
-        ess_rack.activeFrags.forEach( function( activeFrag, tix ) {
+        var builtFrags = exeg.builtFrags;
+        exeg.activeFrags.forEach( function( activeFrag, tix ) {
 
-            //--------------------------------------------------------
-            // //\\ finalizes script active instructions
-            //--------------------------------------------------------
-            if( typeof( activeFrag ) === 'object' ) {
-                var finalActive = activeFrag['default'];
-                Object.keys( ssModes ).forEach( function( smode ) {
-                    finalActive = ( ssModes[smode] && activeFrag[smode] ) || finalActive;
-                    //if( ssModes[smode] && activeFrag[smode] )
-                    //ccc( 'new script:' + ( ssModes[smode] && activeFrag[smode] ) );
-                });
-            } else {
-                var finalActive = activeFrag;
+            builtFrags[tix] = {};
+
+            if( typeof( activeFrag ) !== 'object' ) {
+                activeFrag = { 'static' : activeFrag };
             }
-            //--------------------------------------------------------
-            // \\// finalizes script active instructions
-            //--------------------------------------------------------
+            builtFrags[tix].activeFrags = {};
+            ns.eachprop( activeFrag, ( afrag, akey ) => {
+                builtFrags[tix].activeFrags[akey] =
+                    { activeFrag : finalizeFragment( afrag ) };
+            });
+        });
+        return;
 
-
-
-            //--------------------------------------------------------
-            // //\\ html conversion of body fragments
-            //--------------------------------------------------------
-            txt = finalActive; //.replace( re_amp, '&amp;' );
+        //--------------------------------------------------------
+        // //\\ html conversion of body fragments
+        //--------------------------------------------------------
+        function finalizeFragment( frag )
+        {
             if( topics.convert_lineFeed2htmlBreak ) {
                 //.converts text from <pre> format
-                var txt = ns.pre2fluid( txt ) 
+                frag = ns.pre2fluid( frag ) 
             }
-            if( typeof( activeFrag ) === 'object' ) {
-                ////reparses text every time ...
-                ////todm: ineffective ... parses toggles at "each change"
-                var txt = txt.replace( topAnch_reg, replWithAnchor );
-                builtFrags[tix] =
-                {
-                    modeIsTogglable : true,
-                    text : txt
-                };
-            } else {
-                ////makes it up only once ... no redundant parsing
-                if( !builtFrags[tix] ) {
-                    var txt = txt.replace( topAnch_reg, replWithAnchor );
-                    builtFrags[tix] =
-                    {
-                        modeIsTogglable : false,
-                        text : txt
-                    };
-                }
-            }
+            return frag.replace( topAnch_reg, replWithAnchor );
+        }
 
-            function replWithAnchor( match, skey, scaption )
-            {
-                var rack = topics.topicLinks[ skey ];
-                if( !rack ) return;
+
+        function replWithAnchor( match, skey, scaption, cflag )
+        {
+            var rack = topics.topicLinks[ skey ];
+            if( !rack ) return;
+            if( cflag ) {
+                //start here
+                ////we have forward link for MathJax
+                //topics.delayedAnchors = {};
+                //var delayedIx = 0;
+                ccc( 'got forward:' + scaption );
+            } else {
                 //.we cannot use skey because spaces inside of it, so
                 //.we use colorId
                 var repl = '<a class="tl-' + rack.colorId + '">'+ scaption + '</a>';
                 return repl;
             }
-            //--------------------------------------------------------
-            // \\// html conversion of body fragments
-            //--------------------------------------------------------
-
-        });
+        }
+        //--------------------------------------------------------
+        // \\// html conversion of body fragments
+        //--------------------------------------------------------
     }
 
 
@@ -7614,41 +7670,9 @@ var ret = `
         }
     }
 
-
-    function establishCurrentMode()
-    {
-        // //\\ gets established theorion-aspect mode
-        var mediaClass = sDomN.mmedia$._cls() || '';
-        var essayAspects = mediaClass.match( /(?:\s|^)essay-(\S*)/ );
-        // \\// gets established theorion-aspect mode
-
-        //=====================================================
-        // //\\ makes only one media-model togglable visibility
-        //=====================================================
-        //      othe theo-asp modes are simply ignored
-        if( essayAspects ) {
-            essayAspects = essayAspects[1].split( '--' );
-            ///makes media-model visible only like by
-            ///bsl-approot theorion--claim aspect--english
-            oneTimeUse_globalCSS += `
-                .${cssp}-approot .${cssp}-media-superroot {
-                    display:none;
-                }
-                .${cssp}-approot.theorion--${essayAspects[0]}.aspect--${essayAspects[1]}
-                .${cssp}-media-superroot {
-                    display:inline-block;
-                }
-            `;
-        }
-        //=====================================================
-        // \\// makes only one media-model togglable visibility
-        //=====================================================
-    }
-
-
     ///collecting |...|..|| anchor-topics
     ///does loop via all possible active fragments
-    function extractLinks( activeFrag )
+    function fragment_2_indexedTopics( activeFrag )
     {
         var topicPreAnchors = activeFrag.match( topAnch_reg );
         if( topicPreAnchors ) {
@@ -7656,7 +7680,6 @@ var ret = `
                 ////loops via all anchors having topic-link tl-TOPIC
                 if( !link ) return;
                 var parsedLink = link.match( topAnch_reg2 );
-
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
@@ -7745,7 +7768,7 @@ var ret = `
             //.solves draggee-point-arrows-misplacement
             //.after resize
         //!!'doDividorSynch'
-        ///this statement is inside of this routine: sapp.upcreate();
+        ///this statement is inside of this routine: sapp.up-create();
         fmethods.finish_Media8Ess8Legend_resize && fmethods.finish_Media8Ess8Legend_resize(
             null, null, !!'doDividorSynch'
         );
@@ -7770,7 +7793,7 @@ var ret = `
     {
         var pager$ = direction === 'right' ? sDomN.rightButton$ : sDomN.leftButton$;
 
-        var mList = fconf.sappModulesList[ sapp.sappId ];
+        var mList = fconf.sappModulesList[ fconf.sappId ];
         sapp.ix = mList.ix;
         var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
         if( next >= fconf.sappModulesArray.length || next < 0 ||
@@ -7818,12 +7841,9 @@ var ret = `
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var references  = sn('references', ssD);
-    var rawTexts    = sn('rawTexts', ssD);
-
-    sDomF.get_content_texts = get_content_texts;
-    //000000000000000000000000000000000000000000
-    return;
-    //000000000000000000000000000000000000000000
+    var exegs    = sn('exegs', ssD);
+    sDomF.ajax_2_prepopulated_exegsMatrix = ajax_2_prepopulated_exegsMatrix;
+    return; //0000000000000000000000000000000000
 
 
 
@@ -7835,38 +7855,48 @@ var ret = `
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function get_content_texts( continueAppInit )
+    function ajax_2_prepopulated_exegsMatrix( continueAppInit )
     {
         var allEssaions;
-        ///this ajax load takes all aux. files and list of contents
+        ///this ajax-load takes following aux. files including list of contents
         nsmethods.loadAjaxFiles(
             [
                 { id: 'contents-list.txt',
-                  link:'contents/' + sapp.sappId + '/contents-list.txt' }
+                  link:'contents/' + fconf.sappId + '/contents-list.txt' }
                ,{ id: 'references',
-                  link:'contents/' + sapp.sappId + '/references.html'
+                  link:'contents/' + fconf.sappId + '/references.html'
                 }
-               ,{ id: 'topic-map',
-                  link:'contents/' + sapp.sappId + '/conf.json'
+               ,{ id: 'content-config',
+                  link:'contents/' + fconf.sappId + '/conf.json'
                }
             ],
             on_auxiliaryLoad_success
         );
 
-        ///This ajax load takes contents-files, concatenates them, and calls
+        ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, on_contentFilesLoad_Success.
         function on_auxiliaryLoad_success( loadedFilesById_I )
         {
             var list = loadedFilesById_I[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
+
+            //------------------------------------
+            // //\\  making the list for ajax-load
+            //------------------------------------
+            //."nothing is loaded yet:
             var listForAjax = [];
             list.forEach( function( listItem ) {
                 if( !listItem.match( /^\s*$/ ) ) {
                     listForAjax.push({
                           id: listItem,
-                          link:'contents/' + sapp.sappId + '/' + listItem
+                          link:'contents/' + fconf.sappId + '/' + listItem
                     });
                 }
             });
+            //------------------------------------
+            // \\//  making the list for ajax-load
+            //------------------------------------
+
+            ///fires ajax-load for listForAjax
             nsmethods.loadAjaxFiles( listForAjax, function( loadedFilesById_II ) {
                     listForAjax.forEach( function( listItem ) {
                         allEssaions += loadedFilesById_II[ listItem.id ].text;
@@ -7884,19 +7914,21 @@ var ret = `
         function on_contentFilesLoad_Success( loadedFilesById )
         {
             references.text = loadedFilesById.references.text || references.text || '';
-
-            if( loadedFilesById['topic-map'] ) {
-                var tmRack = JSON.parse(loadedFilesById['topic-map'].text);
+            if( loadedFilesById['content-config'] ) {
+                var tmRack = JSON.parse(loadedFilesById['content-config'].text);
                 var topics = sn('topics', ssD);
                 topics.convert_lineFeed2htmlBreak = tmRack.convert_lineFeed2htmlBreak;
-                //topics.topicDef = tmRack.topicDef;
-                sconf.mediaBgImage = tmRack.mediaBgImage;
+                sconf.contentConfig = tmRack;
             }
             var txt = allEssaions; //loadedFilesById.texts.text;
 
             var ESSAYON_DIVIDOR = /\*::\*/g;
             var essayons = txt.split( ESSAYON_DIVIDOR );
             sconf.submenus = {};
+            var bgImgCount = 0;
+            var bgImages = {};
+            bgImages.cssId2rk = {};
+            bgImages.path2rk = {};
             essayons.forEach( function(essayon) {
 
                 //.removes empty essayons
@@ -7928,11 +7960,17 @@ var ret = `
                     }
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    rawTexts[ teaf_id ] = rawTexts[ teaf_id ] || {};
-                    rawTexts[ teaf_id ][ leaf_id ] =
+                    //.todm: patch: missed submodel property does default to 'common'
+                    //              empty string denotes absence of submodel
+                    essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
+                                           essayHeader.submodel :
+                                           'common';
+                    exegs[ teaf_id ] = exegs[ teaf_id ] || {};
+                    var exeg = exegs[ teaf_id ][ leaf_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
+                    collectBgImg( essayHeader, exeg );
 
                     sconf.submenus = sconf.submenus || {};
                     setMenu( teaf_id, 'theorion' )
@@ -7942,7 +7980,8 @@ var ret = `
                     //      currently unlocks all aspects in content for
                     //      being able to have dragged points and other elements in model,
                     //      todm: looks like useless artifact.
-                    var wDecArr = fconf.dragPointDecoratorClasses = fconf.dragPointDecoratorClasses || [];
+                    var wDecArr = fconf.dragPointDecoratorClasses =
+                                  fconf.dragPointDecoratorClasses || [];
                     var wDecorAspect = 'aspect--' + leaf_id;
                     if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
                         wDecArr.push( wDecorAspect );
@@ -8022,9 +8061,40 @@ var ret = `
                 //--------------------------------------
 
             });
-
             //ccc( sconf.submenus[ 'proof' ]);
             continueAppInit();
+            return;
+
+
+
+
+
+
+            // //\\ bg images
+            function collectBgImg( essayHeader, exeg ) {
+                var pr = bgImages.path2rk;
+                var imgId = essayHeader.mediaBgImage;
+                imgId = !ns.h( essayHeader, 'mediaBgImage' ) ?
+                          'common' :
+                          ( imgId === null ? 'empty' : imgId );
+                if( !ns.h( pr, imgId ) ) {
+                    var cssId = 'bg'+bgImgCount;
+                    bgImages.cssId2rk[ cssId ] = pr[ imgId ] =
+                    {
+                        cssId : cssId,
+                        src: imgId === 'empty' ?
+                             'images/empty.png' :
+                             'contents/' + fconf.sappId + '/img/' +
+                                ( imgId === 'common' ?
+                                    sconf.contentConfig.mediaBgImage :
+                                    imgId
+                                )
+                    };
+                    bgImgCount++;
+                }
+                exeg.imgRk = pr[ imgId ];
+            }
+            // \\// bg images
         }
         //====================================================
         // \\// on content Files Load Success
@@ -8053,14 +8123,13 @@ var ret = `
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
-    var ssModes     = sn('ssModes',ss);
     var rg          = sn('registry',ssD);
-    var rawTexts    = sn('rawTexts', ssD);
+    var exegs       = sn('exegs', ssD);
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
 
-    sDomF.originalTexts_2_html_texts = originalTexts_2_html_texts;
-    return; //00000
+    sDomF.exeg_2_frags = exeg_2_frags;
+    return;
 
 
 
@@ -8073,26 +8142,18 @@ var ret = `
 
 
 
-    function originalTexts_2_html_texts()
+    function exeg_2_frags()
     {
-        var esseyions_rack = topics.esseyions_rack = []; //key pairs:
-
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
-        /*
-            //recall the structure of rawText
-            rawTexts[ teaf_id ][ leaf_id ] =
-            {
-                bodyscript:PreText, essayHeader:essayHeader
-            };
-        */
-        ns.eachprop( rawTexts, ( theorionAspects, teaf_id ) => {
-            ns.eachprop( theorionAspects, ( aspect, leaf_id ) => {
+        ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
+            ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
                 //.RM "original-text" means CSS class of exegesis-text-html
                 //.which is obtained by parsing raw-exegesis-script
-                var classStr = 'original-text ' + teaf_id + ' ' + leaf_id;
-                var bodyscript = aspect.bodyscript;
+                var essId = teaf_id + ' ' + leaf_id;
+                var classStr = 'original-text ' + essId;
+                var bodyscript = exeg.bodyscript;
                 //-----------------------------------------------------
                 // //\\ preliminary prepasing to extract active content
                 //-----------------------------------------------------
@@ -8102,6 +8163,12 @@ var ret = `
                 //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
                 //var ACTION_INDICATOR = /^\?/;
                 var bodySplit = bodyscript.split( ACTION_SPLITTER );
+
+                //atomic fragments which are eigther text or
+                //JSON object which sets action
+                //The action defines what fragment displays:
+                //the action looks for application state and by this state
+                //displays fragment's content.
                 var activeFrags = bodySplit.map( function( splittee ) {
                     if( ACTION_INDICATOR.test( splittee ) ) {
                         return JSON.parse( splittee.substring(1) );
@@ -8116,18 +8183,10 @@ var ret = `
                     ////references to essay-sources to be cited or to be the base of essay
                     activeFrags.push( references.text );
                 }
-                esseyions_rack.push({
-                    classStr            : classStr,
-                    //atomic fragments which are eigher text or
-                    //JSON object which sets action
-                    //The action defines what fragment displays:
-                    //the action looks for application state and by this state
-                    //displays fragment's content.
-                    activeFrags         : activeFrags,
-
-                    domComponents       : [],
-                    builtFrags          : []
-                });
+                exeg.classStr       = classStr;
+                exeg.activeFrags    = activeFrags;
+                exeg.domComponents  = [];
+                exeg.builtFrags     = [];
             });
         });
         //==============================================
@@ -8159,7 +8218,7 @@ var ret = `
     var qqa = document.querySelectorAll;
     var ccc = console.log;
 
-    sDomF.anchors2topics = anchors2topics;
+    sDomF.anchors2topiccss = anchors2topiccss;
     return;
 
 
@@ -8169,7 +8228,7 @@ var ret = `
 
 
 
-    function anchors2topics()
+    function anchors2topiccss()
     {
         var topicLinks = topics.topicLinks;
         var appRoot$ = fapp.fappRoot$;
@@ -8269,6 +8328,7 @@ var ret = `
                     `;
 
                 } else {
+                    ///colors per shape
                     shape2color[ skey ] = `
                         .${cssp}-approot .tp-${skey}.tocolor {
                            color : ${scolor};
@@ -8315,6 +8375,16 @@ var ret = `
                     .${cssp}-approot.tp-${colorIx} svg .tp-${skey}.tostroke {
                         stroke-width:8px;
                     }
+
+                    /* //|| special for svg-text */
+                    .${cssp}-approot svg text.tp-${skey} {
+                        fill-opacity : 0.7;
+                    }
+                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                        fill-opacity : 1;
+                    }
+                    /* // ||// special for svg-text */
+
                 `;
                 ///boldifies svg-text at topic highlight
                 alink.col8shape_2_opac[ skey ] += `
@@ -8373,6 +8443,93 @@ var ret = `
 
 })();
 
+
+
+//\\// Application Entry
+( function() {
+    var ns          = window.b$l;
+    var $$          = ns.$$;
+    var cssp        = ns.CSS_PREFIX;
+    var sn          = ns.sn;
+    var rootvm      = sn('rootvm');
+    var cssmods     = sn('cssModules');
+    var dpdec       = ns.sn('drag-point-decorator');
+    var html        = sn('html');
+
+    var nsmethods   = sn('methods');
+
+    var fapp        = sn('fapp'); 
+    var fmethods    = sn('methods',fapp);
+    var fconf       = sn('fconf',fapp);
+    var sconf       = sn('sconf',fconf);
+
+    var sapp        = sn('sapp');
+    var srg_modules = sn('srg_modules', sapp);
+    var sDomF       = sn('dfunctions',sapp);
+    var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
+
+    sDomF.create8prepopulate_svg = create8prepopulate_svg;
+    return;
+    //00000000000000000000000000000000000000
+
+
+
+
+    //=========================================================
+    // //\\ updates and creates media
+    //=========================================================
+
+
+    function create8prepopulate_svg()
+    {
+        ns.eachprop( studyMods, ( stdMod, modName ) => {
+            create8prepopulate_singleSvg( stdMod );
+        });
+    }
+
+
+
+    function create8prepopulate_singleSvg( stdMod )
+    {
+        //..........................
+        // //\\ media
+        //..........................
+        ////makes svg-draw-area
+
+        sDomN.mmedia$ = //todo: patch: sets this to most recent called media creator:
+        stdMod.mmedia$ = $$.$( document.createElementNS( fconf.svgNS, 'svg' ) );
+
+        var mmedia = sDomN.mmedia = stdMod.mmedia = stdMod.mmedia$();
+        mmedia.setAttributeNS( null, 'class', cssp +'-media' );
+
+        //https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/version
+        //mmedia.setAttributeNS( null, 'version', "1.1" ); //no need
+
+        mmedia.setAttributeNS( null, 'viewBox', '0 0 ' +
+                                 sconf.innerMediaWidth + ' ' +
+                                 sconf.innerMediaHeight );
+        //https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio
+        //minor details:
+        //https://stackoverflow.com/questions/16438416/cross-browser-svg-preserveaspectratio
+        mmedia.setAttributeNS( null, 'preserveAspectRatio', "xMidYMid meet" );
+
+        //depricated in svg:
+        //mmedia.setAttributeNS( null, 'baseProfile', "full" );
+
+        stdMod.mmedia$.to( sDomN.medRoot );
+        //mmedia.setAttributeNS( null, 'fill', "#FFFFAA" );
+        //no good: mmedia.style.fill = "#FFFFAA";
+        //..........................
+        // \\// media
+        //..........................
+    }
+    //=========================================================
+    // \\// updates and creates media
+    //=========================================================
+
+
+}) ();
 
 
 /*
@@ -8829,8 +8986,11 @@ var ret = `
     var fapp        = ns.sn('fapp' ); 
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);
+
     var sDomN       = sn('dnative', sapp);
     var sDomF       = sn('dfunctions', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
 
 
 
@@ -8862,12 +9022,19 @@ var ret = `
     // \\// medpos2dompos and inverse
     //===============================
 
+
+    ///cssMed2innMed
     sDomF.css2media = function()
     {
-        //.is a bug
-        //return sconf.innerMediaWidth / sDomN.mmedia$().parentNode.getBoundingClientRect().width;
-
-        return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
+        if( amode['submodel'] ) {
+            //c cc(amode['submodel'], studyMods )
+            return sconf.innerMediaWidth /
+                   studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+        } else {
+            //c cc( '... not exist' );
+            return 1;
+            //return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
+        }
     };
 
 }) ();
@@ -8926,13 +9093,11 @@ var ret = `
     //======================================================
     // \\// establishes landing-start-state
     //======================================================
-    document.addEventListener( "DOMContentLoaded", init );
+    document.addEventListener( "DOMContentLoaded", initConfiguration );
 
     ssF.tr = tr;
     ssF.tp = tp;
-    //00000000000000000000000000000000000000
-    return;
-    //00000000000000000000000000000000000000
+    return; //00000000000000000000000000000000000000
 
 
 
@@ -8945,25 +9110,20 @@ var ret = `
     //=========================================================
     // //\\ inits full app
     //=========================================================
-    function init() 
+    function initConfiguration() 
     {
         ns.url2conf( fconf );
-
-        //:todm this seems messy ... fix later
         fconf.sappId = fconf.sappId || 'home-pane';
-        sapp.sappId = fconf.sappId;
-        sapp.pageMode = sapp.sappId === 'home-pane' ?  'home-pane' : 'lemma';
-
         sapp.siteCaptionHTML = fconf.siteCaptionHTML;
         sapp.siteCaptionPlain = fconf.siteCaptionPlain;
+        document.title = sapp.siteCaptionPlain;
 
         cssmods.initHomePageCSS(cssp, fconf);
         html.buildCommonHTMLBody();
-        fapp.fappRoot$.id( sapp.pageMode );
-
+        fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
         html.buildHomePage();
-        document.title = sapp.siteCaptionPlain;
-        starts_lemmaInit();
+
+        config8run_subappModules();
     }
     //=========================================================
     // \\// inits full app
@@ -8975,41 +9135,56 @@ var ret = `
     //=========================================================
     // //\\  establishes configuration, loads sub-app scripts
     //=========================================================
-    function starts_lemmaInit()
+    function config8run_subappModules()
     {
-        var mList = fconf.sappModulesList[ sapp.sappId ];
-        sapp.siteCaptionHTML = mList.caption;
-        sapp.siteCaptionPlain = mList.caption;
-        sapp.ix = mList.ix; 
+        //==============================
+        // //\\ configure subapp modules
+        //==============================
+        var lemmaConfig = fconf.sappModulesList[ fconf.sappId ];
+        sapp.siteCaptionHTML = lemmaConfig.caption;
+        sapp.siteCaptionPlain = lemmaConfig.caption;
+        sapp.ix = lemmaConfig.ix; 
 
-        // //\\ prepares sub-application-source-code-files list for load
-        ///prepends common path
-        var effectiveId = mList.sappCodeReference || mList.sappId;
-        var codesList = mList.codesList || [];
+        //------------------------------------------------
+        // //\\ prepares sub-application-source-code-files
+        //------------------------------------------------
+        //      list for load
+        //.makes common path
+        var effectiveId = lemmaConfig.sappCodeReference || lemmaConfig.sappId;
+        var codesList = lemmaConfig.codesList || [];
         codesList.forEach( function( codeItem ) {
             codeItem.src = "src/sub-app/" + effectiveId + "/" + codeItem.src;
         });
-        // \\// prepares sub-application-source-code-files list for load
+        //------------------------------------------------
+        // \\// prepares sub-application-source-code-files
+        // \\// configure subapp modules
+        //==============================
 
-        ///loads sub-application-source-code-files
-        if( sapp.sappId === 'home-pane' ) {
-            continues_lemma_afterSourcesLoad();
+
+        //=======================================
+        // //\\ loads and executes subapp modules
+        //=======================================
+        if( fconf.sappId === 'home-pane' ) {
+            loadsContents();
         } else {
             nsmethods.loadScripts(
                 codesList,
                 function()
                 {
-                    ////executes this body when all scripts completed loading
-                    ///executes modules from modules registry
+                    ////executes loaded modules from modules registry
+                    ////after all modules have been loaded
                     ns.eachprop( srg_modules, function( module ) {
                         module();
                     });
                     ssF.init_conf();
                     ns.url2conf( fconf ); //overrides subapp conf
-                    continues_lemma_afterSourcesLoad();
+                    loadsContents();
                 }
             );
         }
+        //=======================================
+        // \\// loads and executes subapp modules
+        //=======================================
     }
     //=========================================================
     // \\//  establishes configuration, loads sub-app scripts
@@ -9021,17 +9196,15 @@ var ret = `
     //=========================================================
     // //\\ continues lemma after sources
     //=========================================================
-    function continues_lemma_afterSourcesLoad()
+    function loadsContents()
     {
-
         //=======================================
         // //\\ gets content texts and continues
         //=======================================
-
-        if( sapp.sappId === 'home-pane' ) {
-            continues_lemma_afterContentsLoad();
+        if( fconf.sappId === 'home-pane' ) {
+            subappCore_after_contentsLoad();
         } else {
-            sDomF.get_content_texts( function() {
+            sDomF.ajax_2_prepopulated_exegsMatrix( function() {
                     //=======================================
                     // //\\ html and css
                     //=======================================
@@ -9043,8 +9216,7 @@ var ret = `
                     //=======================================
                     // \\// html and css
                     //=======================================
-
-                    continues_lemma_afterContentsLoad();
+                    subappCore_after_contentsLoad();
             });
         }
         //=======================================
@@ -9061,16 +9233,18 @@ var ret = `
 
 
     //=======================================
-    // //\\ finalizes lemma
+    // //\\ starts subapp core
     //=======================================
-    function continues_lemma_afterContentsLoad()
+    function subappCore_after_contentsLoad()
     {
-        if( sapp.sappId !== 'home-pane' ) {
+        if( fconf.sappId !== 'home-pane' ) {
+            ////the body which follows below can be put in cb for image-loader-ajax
             fmethods.createLemmaDom();
-            sDomF.originalTexts_2_html_texts();
+            sDomF.exeg_2_frags();
+            sDomF.frags_2_essdom8topiccss();
             sapp.init_sapp();
             sDomF.populateMenu();
-            sapp.init_sapp_II && sapp.init_sapp_II();
+            sapp.finish_sapp_UI && sapp.finish_sapp_UI();
 
             sapp.isInitialized = true;
             fmethods.setupEvents();
@@ -9082,7 +9256,7 @@ var ret = `
             ///.place: othewise, the img.style.top for draggee is wrong which
             ///.moves arrows to the top edge of media which is wrong
             ///.the value of timeout seems also vital for l9
-            //setTimeout( fmethods.fullResize, 50 ); 50 is enouth for l9
+            //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
             setTimeout( fmethods.fullResize, 500 );
 
         }
@@ -9094,12 +9268,12 @@ var ret = `
         //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
         //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
 
-        if( sapp.sappId === 'home-pane' ) {
+        if( fconf.sappId === 'home-pane' ) {
             sDomN.homeButton$().click();
         }
     }
     //=======================================
-    // \\// finalizes lemma
+    // \\// starts subapp core
     //=======================================
 
 
@@ -9183,8 +9357,6 @@ var ret = `
     //====================================================
     to_fconf =
     {
-
-        //sappId : 'homePage',
 
         //--------------------
         // //\\ site-wide
@@ -9330,11 +9502,15 @@ var ret = `
                 {  src:"main.js" },
                 {  src:"css/css-order.js" },
                 {  src:"css/proof-vs-claim-modes.css.js" },
-                {  src:"core/media.js" },
                 {  src:"core/limit-demos.js" },
-                {  src:"models/study-model.js" },
-                {  src:"models/media-model.js" },
-                {  src:"models/d8d-model.js" }
+                {  src:"models/study-model-limit-definition.js" },
+                {  src:"models/media-model-limit-definition.js" },
+                {  src:"models/d8d-model-limit-definition.js" },
+                {  src:"models/media-model-limit-definition-labels.js" },
+
+                {  src:"models/proof-xix/study-model.js" },
+                {  src:"models/proof-xix/d8d-model.js" },
+                {  src:"models/proof-xix/media-model.js" }
             ]
         },
 
@@ -9352,16 +9528,16 @@ var ret = `
                 {  src:"css/model.css.js" },
                 {  src:"css/inner-page.css.js" },
                 {  src:"main.js" },
-                {  src:"core/preset-data.js" },
-                {  src:"core/dom.js" },
-                {  src:"core/d8d-model.js" },
+                {  src:"core/common/preset-data.js" },
+                {  src:"core/common/dom.js" },
+                {  src:"core/common/d8d-model.js" },
                 {  src:"core/gui-construct.js" },
                 {  src:"core/gui-slider.js" },
                 {  src:"core/gui-update.js" },
-                {  src:"core/gui-visibility.js" },
+                {  src:"core/common/gui-visibility.js" },
                 {  src:"core/gui-widthest.js" },
                 {  src:"core/model.js" },
-                {  src:"core/event-handlers.js" }
+                {  src:"core/common/event-handlers.js" }
             ]
         },
 
@@ -9384,12 +9560,11 @@ var ret = `
                 { src:'main.js' },
                 { src:'css/css-order.js' },
                 { src:'css/proof-vs-claim-modes.css.js' },
-                { src:'core/media.js' },
                 { src:'core/create-proof-slider.js' },
-                { src:'models/study-model.js' },
-                { src:'models/media-model.js' },
+                { src:'models/study-model-common.js' },
+                { src:'models/media-model-common.js' },
                 { src:'models/main-legend.js' },
-                { src:'models/d8d-model.js' }
+                { src:'models/d8d-model-common.js' }
             ]
         }
     ];

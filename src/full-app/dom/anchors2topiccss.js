@@ -18,7 +18,7 @@
     var qqa = document.querySelectorAll;
     var ccc = console.log;
 
-    sDomF.anchors2topics = anchors2topics;
+    sDomF.anchors2topiccss = anchors2topiccss;
     return;
 
 
@@ -28,7 +28,7 @@
 
 
 
-    function anchors2topics()
+    function anchors2topiccss()
     {
         var topicLinks = topics.topicLinks;
         var appRoot$ = fapp.fappRoot$;
@@ -128,6 +128,7 @@
                     `;
 
                 } else {
+                    ///colors per shape
                     shape2color[ skey ] = `
                         .${cssp}-approot .tp-${skey}.tocolor {
                            color : ${scolor};
@@ -174,6 +175,16 @@
                     .${cssp}-approot.tp-${colorIx} svg .tp-${skey}.tostroke {
                         stroke-width:8px;
                     }
+
+                    /* //|| special for svg-text */
+                    .${cssp}-approot svg text.tp-${skey} {
+                        fill-opacity : 0.7;
+                    }
+                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                        fill-opacity : 1;
+                    }
+                    /* // ||// special for svg-text */
+
                 `;
                 ///boldifies svg-text at topic highlight
                 alink.col8shape_2_opac[ skey ] += `

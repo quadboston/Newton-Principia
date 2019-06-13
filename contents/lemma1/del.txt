@@ -3,7 +3,7 @@
 { "dataLegend":"0",
   "mediaBgImage" : null,
   "submodel" : "limit-definition",
-  "default" : "0",
+  "default" : "1",
   "menuCaption" : "XIX Century"
 }
 *..*
@@ -11,21 +11,28 @@
 <br>
 
 In XIX century mathematical language, the lemma can be expressed as follows.
-We will leave out of our scope ratios and proportions of Euclid framework used by Newton and will treat values as simple numbers. At first, we set up context with definition of limit.<br><br><br>
+At first, we set up context notations and definition of limit.<br><br><br>
+
+
 
 <b>Notations:</b><br><br>
 
-We will study a function ¦set-function¦\[ G: \gamma \mapsto G_\gamma \]¦¦
+We will study a function ¦set-function¦\[ G: \gamma \mapsto G_\gamma \subset {\mathbb{R}}, \]¦¦
 
-where \( \gamma \in \Gamma; \; \Gamma, G_\gamma \subset {\mathbb{R}}; \;
-         \Gamma, G_\gamma \ne \varnothing
-  \).<br><br>
+where \( \gamma \in {\mathbb{R}} \).
+
+
+    \[ \text{1)} \Gamma = (a,b) \subset \mathbb{R} \text{ and }
+       c \, \in\ [a,b] \text{ or} \\
+       \text{2)} \Gamma = \mathbb{N} \text{ and } c = \infty .
+    \] 
+
 
 
 <!-- //\\ limit ***************************************************************** -->
 <b>Definition of limit:</b><br><br>
 
-For some \( c,h \in\ \mathbb{R} \) we say<br>
+For some \( h \in\ \mathbb{R} \) we say<br>
     \[
         { G_\gamma }\underset{ {\gamma \to c} }\to h 
             \quad \overset{df} \iff \quad
@@ -35,13 +42,30 @@ For some \( c,h \in\ \mathbb{R} \) we say<br>
             | g - h | \lt \varepsilon  \qquad   \text{ (l) }
     \]<br>
 
-where for some \(\delta > 0 \), the "neighbourhood of c" \(N_\delta\) is defined as non-empty set: 
+where for some \(\delta\), neighbourhood of c is defined as
     \[
             N_\delta \; \overset{df} = \;
-            \{ \gamma\; | \; 0 \lt |\gamma - c| \lt \delta , \gamma \in\ \Gamma \}
+
+                \begin{cases}
+
+                    \{ n \; | \; n \gt \delta \}, \; \delta \in\ \mathbb{N} &
+                    \text{ if } \Gamma = \mathbb{N} \\ 
+
+                    \{ t\; | \; 0 \lt |t - c| \lt \delta , t \in\ (a,b) \},
+                 \; \delta \gt 0 &
+                    \text{ otherwise } 
+
+                \end{cases}
     \]
 
 \(\blacktriangle \)<br>
+
+In this context, we may omit the clause "\( _{\gamma \to c} \)" 
+    in expressions
+    ¦lim¦\(h\)¦¦ \( = \lim_{\gamma \to c} G_\gamma \) and
+    \( G_\gamma \underset{ {\gamma \to c} }\to h \).<br><br><br>
+
+
 
 If (l) holds, then the number h is called limit and (l) is denoted as<br>
 
@@ -49,20 +73,16 @@ If (l) holds, then the number h is called limit and (l) is denoted as<br>
 
 <!-- \\// limit ***************************************************************** -->
 
-In context of this essay, we may omit the clause "\( _{\gamma \to c} \)" 
-    in expressions
-    ¦lim¦\(h\)¦¦ \( = \lim_{\gamma \to c} G_\gamma \) and
-    \( G_\gamma \underset{ {\gamma \to c} }\to h \).<br><br><br>
-
 
 In case when all sets \( G_{\gamma} \) are single-elemented, the difference between
 \( G_{\gamma} = \{ g_{\gamma} \} \) 
-and \( g_{\gamma} \) becomes irrelevant making (l) function limit definition usually given in introductory Calculus. Chosing  \( \Gamma = \{ 1, 1/2, ..., 1/n, ... \} \) and \( c = 0 \) introduces limit of sequence.<br><br>
+and \( g_{\gamma} \) becomes irrelevant, and the defintion 
 
-
+(l) becomes equivalent to usual definition of limit given in introductory Calculus, when in particular for 2), (l) becomes definition of sequence limit and for 1) - defintion of function limit.<br><br>
 
 
 One convenient notation can be made before stating the lemma 1: set of differences
+
     \[
         X \overset{\bullet}- X' \; \overset{df} = \; \{ x - x' | x \in\ X \; \& \; x' \in\ X' \}
     \]
@@ -146,11 +166,14 @@ where we used notations:
                     \text{inf } \{ g | g \in G_\gamma \}
                 \]
 
-Note, "sup" and "inf" can be reduced to above limit definition:
-if s is upper bound of A then:
-                \[ s = \text{sup} A \quad \overset{df} \iff \quad
-                   s \in A  \text{ or }
-                   s = \lim_{a \to s} I_a \\
-                   \text{ were } I : a \mapsto \{a\} \text{ and } a \in A
-                \]
+
+
+
+
+
+
+
+
+
+
 

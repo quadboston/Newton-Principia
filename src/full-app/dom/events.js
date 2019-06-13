@@ -34,7 +34,7 @@
             //.solves draggee-point-arrows-misplacement
             //.after resize
         //!!'doDividorSynch'
-        ///this statement is inside of this routine: sapp.upcreate();
+        ///this statement is inside of this routine: sapp.up-create();
         fmethods.finish_Media8Ess8Legend_resize && fmethods.finish_Media8Ess8Legend_resize(
             null, null, !!'doDividorSynch'
         );
@@ -59,7 +59,7 @@
     {
         var pager$ = direction === 'right' ? sDomN.rightButton$ : sDomN.leftButton$;
 
-        var mList = fconf.sappModulesList[ sapp.sappId ];
+        var mList = fconf.sappModulesList[ fconf.sappId ];
         sapp.ix = mList.ix;
         var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
         if( next >= fconf.sappModulesArray.length || next < 0 ||

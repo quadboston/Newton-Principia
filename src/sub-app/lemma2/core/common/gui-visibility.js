@@ -1,4 +1,5 @@
 ( function () {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -9,6 +10,7 @@
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var amode       = sn('mode',sapp);
     var sDomF       = sn('dfunctions', sapp);
@@ -48,7 +50,8 @@
         //======================================
         // //\\ exports module
         //======================================
-        sapp.upcreate = refreshSVG_master;
+        sn(SUB_MODEL, studyMods ).upcreate = refreshSVG_master;
+
         Object.assign( l23, {
 	        //refreshSVG_master               : refreshSVG_master,
             //refreshSVG                      : refreshSVG_master,
@@ -68,12 +71,14 @@
         // //\\ view top-manager
         //======================================
         function refreshSVG_master() {
+            studyMods[ SUB_MODEL ].mmedia$.cls( 'submodel-' + SUB_MODEL );
 	        guiup.updateFigureBasicsJS();
 	        show_LPR();
 	        guiup.calculate8paintCurve_8_paintAxes();
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
-            sDomF.medD8D && sDomF.medD8D.updateAllDecPoints();
-            if( sDomN.topicModelInitialized ) sDomF.repopulateContent();
+            var ww = studyMods[ SUB_MODEL ].medD8D;
+            ww && ww.updateAllDecPoints();
+            //if( sDomN.topicModelInitialized ) sDomF.repopulateContent(); //todo toggle active
         }
         //======================================
         // \\// view top-manager

@@ -34,11 +34,15 @@
                 {  src:"main.js" },
                 {  src:"css/css-order.js" },
                 {  src:"css/proof-vs-claim-modes.css.js" },
-                {  src:"core/media.js" },
                 {  src:"core/limit-demos.js" },
-                {  src:"models/study-model.js" },
-                {  src:"models/media-model.js" },
-                {  src:"models/d8d-model.js" }
+                {  src:"models/study-model-limit-definition.js" },
+                {  src:"models/media-model-limit-definition.js" },
+                {  src:"models/d8d-model-limit-definition.js" },
+                {  src:"models/media-model-limit-definition-labels.js" },
+
+                {  src:"models/proof-xix/study-model.js" },
+                {  src:"models/proof-xix/d8d-model.js" },
+                {  src:"models/proof-xix/media-model.js" }
             ]
         },
 
@@ -56,16 +60,16 @@
                 {  src:"css/model.css.js" },
                 {  src:"css/inner-page.css.js" },
                 {  src:"main.js" },
-                {  src:"core/preset-data.js" },
-                {  src:"core/dom.js" },
-                {  src:"core/d8d-model.js" },
+                {  src:"core/common/preset-data.js" },
+                {  src:"core/common/dom.js" },
+                {  src:"core/common/d8d-model.js" },
                 {  src:"core/gui-construct.js" },
                 {  src:"core/gui-slider.js" },
                 {  src:"core/gui-update.js" },
-                {  src:"core/gui-visibility.js" },
+                {  src:"core/common/gui-visibility.js" },
                 {  src:"core/gui-widthest.js" },
                 {  src:"core/model.js" },
-                {  src:"core/event-handlers.js" }
+                {  src:"core/common/event-handlers.js" }
             ]
         },
 
@@ -88,12 +92,11 @@
                 { src:'main.js' },
                 { src:'css/css-order.js' },
                 { src:'css/proof-vs-claim-modes.css.js' },
-                { src:'core/media.js' },
                 { src:'core/create-proof-slider.js' },
-                { src:'models/study-model.js' },
-                { src:'models/media-model.js' },
+                { src:'models/study-model-common.js' },
+                { src:'models/media-model-common.js' },
                 { src:'models/main-legend.js' },
-                { src:'models/d8d-model.js' }
+                { src:'models/d8d-model-common.js' }
             ]
         }
     ];

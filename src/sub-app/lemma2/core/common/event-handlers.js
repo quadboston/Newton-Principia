@@ -1,4 +1,5 @@
 ( function () {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;
     var cssp        = ns.CSS_PREFIX;
@@ -11,6 +12,7 @@
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
@@ -58,8 +60,7 @@
 
 
             // //\\ copy-pasted from gui-art
-            //$( ".model" ).on("mouseenter mouseleave",function() {
-            sDomN.mmedia$
+            studyMods[ SUB_MODEL ].mmedia$
                 .e( "mouseenter", doToggleHelp )
                 .e( "mouseleave", doToggleHelp )
                 ;

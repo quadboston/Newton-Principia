@@ -99,7 +99,7 @@
         //==================================================
         // //\\ page master menu
         //==================================================
-        var ww = fconf.sappModulesList[ sapp.sappId ];
+        var ww = fconf.sappModulesList[ fconf.sappId ];
         var caption = ww.book + '.' + ww.caption + '.';
 
         var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
@@ -143,7 +143,6 @@
                 .ch(    
                     sDomN.leftButton$ = $$
                     .dc( "master-pagination-btn" )
-                    //.html('<img src="images/back-arrow-link.svg">')
                 )
                 .ch(
                     sDomN.midddleButton$ = $$
@@ -153,7 +152,6 @@
                 .ch(    
                     sDomN.rightButton$ = $$
                     .dc( "master-pagination-btn" )
-                    //.html('<img src="images/right-page-triangle.svg">')
                 )
                 //==================================================
                 // \\// builds lemmas' navigator

@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -12,6 +13,8 @@
     var sapp        = sn('sapp' ); 
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -27,6 +30,9 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'dragModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
+
+    var stdMod;
+
     return;  //rrrrrr
 
 
@@ -38,7 +44,8 @@
 
     function setModule()
     {
-        ssF.initDragModel = initDragModel;
+        stdMod = sn( SUB_MODEL, studyMods );
+        stdMod.initDragModel = initDragModel;
     }
 
 
@@ -54,9 +61,9 @@
         //======================================
         // //\\ sets framework of draggee-points
         //======================================
-        var medD8D = sDomF.medD8D = d8d_p.createFramework({
+        var medD8D = sn(SUB_MODEL, studyMods ).medD8D = d8d_p.createFramework({
             findDraggee : findDraggee,
-            dragSurface : sDomN.svg.parentNode,
+            dragSurface : sDomN.medRoot,
             //:optional
             DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect : sDomF.detected_user_interaction_effect,
@@ -99,14 +106,15 @@
 
                         var startDy = ach.achieved * Ey;
                         var newDy   = Math.min( Ey * claimRatio_max,
-                                          startDy - arg.move[1] * sconf.med2mod_scale *
-                                                    sDomF.css2media()
+                                          startDy - arg.surfMove[1] * sconf.med2mod_scale *
+                                                    //sDomF.css2media()
+                                                    css2media()
                                       );
                         newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
                         ssD.claimRatio = newDy/Ey;
                         //c cc( 'new: claimRatio=' + ssD.claimRatio + ' Dy=' +
                         //      ( ssD.claimRatio * Ey ) );
-                        sapp.upcreate();
+                        studyMods[ amode['submodel'] ].upcreate();
                     break;
                 }
             }
@@ -140,12 +148,12 @@
                          var newEy   = Math.min( 
                                             sconf.Ep2yrange_max * sconf.APP_MODEL_Y_RANGE,
                                             sconf.tiltRatio_max * Epy,
-                                            startEy - arg.move[1] *
-                                                      sconf.med2mod_scale * sDomF.css2media()
+                                            startEy - arg.surfMove[1] *
+                                                      sconf.med2mod_scale * css2media()
                                        );
                          newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
                          ssD.tiltRatio = newEy/Epy;
-                         sapp.upcreate();
+                         studyMods[ amode['submodel'] ].upcreate();
                     break;
                 }
             }
@@ -178,22 +186,22 @@
                                  sDomF.proofSlider.slider.d8d_emulateAbsFractionX( ssD.tC, 'up' );
                     break;
                     case 'move': 
-                                 var startCx = bezier.parT2point(
-                                               ach.achieved, modCurvPivots )[0];
-                                 var newCx = startCx + arg.move[0] *
-                                             sconf.med2mod_scale * sDomF.css2media();
-                                 newCx = Math.max( newCx, Cx_min );
-                                 //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
-                                 //     ' arg.move[0]=' + arg.move[0] );
+                         var startCx = bezier.parT2point(
+                                       ach.achieved, modCurvPivots )[0];
+                         var newCx = startCx + arg.surfMove[0] *
+                                     sconf.med2mod_scale * css2media();
+                         newCx = Math.max( newCx, Cx_min );
+                         //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
+                         //     ' arg.move[0]=' + arg.move[0] );
 
-                                 var newTC = ssF.x0y_2_t( newCx, 0 );
+                         var newTC = ssF.x0y_2_t( newCx, 0 );
 
-                                 //:this is done through proofSlider
-                                 //ssD.tC = newTC;
-                                 //ssF.upcreate();
+                         //:this is done through proofSlider
+                         //ssD.tC = newTC;
+                         //ssF.upcreate();
 
-                                 //.does update through proofSlider synch
-                                 sDomF.proofSlider.slider.d8d_emulateAbsFractionX( newTC, 'move' );
+                         //.does update through proofSlider synch
+                         sDomF.proofSlider.slider.d8d_emulateAbsFractionX( newTC, 'move' );
                     break;
                 }
             }
@@ -227,17 +235,17 @@
                                  //c cc( 'up ach=' + pv[0] + ', ' + pv[1] );
                     break;
                     case 'move': 
-                                var css2media = sDomF.css2media();
-                                var mx = css2media * sconf.med2mod_scale * arg.move[0];
-                                var my = css2media * sconf.med2mod_scale * arg.move[1] * yflip;
-                                var newMy = ach.achieved[1] + my;
-                                var newMx = ach.achieved[0] + mx;
-                                newMy = Math.min( newMy, sconf.pivot1y_max );
-                                newMx = Math.max( newMx, sconf.tanA_min * newMy )
-                                pv[0] = newMx;
-                                pv[1] = newMy;
-                                //c cc( 'res x,y= ' + pv[0] + ', ' + pv[1] );
-                                sapp.upcreate();
+                        var wwMed = css2media();
+                        var mx = wwMed * sconf.med2mod_scale * arg.surfMove[0];
+                        var my = wwMed * sconf.med2mod_scale * arg.surfMove[1] * yflip;
+                        var newMy = ach.achieved[1] + my;
+                        var newMx = ach.achieved[0] + mx;
+                        newMy = Math.min( newMy, sconf.pivot1y_max );
+                        newMx = Math.max( newMx, sconf.tanA_min * newMy )
+                        pv[0] = newMx;
+                        pv[1] = newMy;
+                        //c cc( 'res x,y= ' + pv[0] + ', ' + pv[1] );
+                        studyMods[ amode['submodel'] ].upcreate();
                     break;
                 }
             }
@@ -265,20 +273,19 @@
                     case 'up':   ach.achieved = pv.concat([]);
                     break;
                     case 'move': 
-                                var css2media = sDomF.css2media();
-                                var mx = css2media * sconf.med2mod_scale * arg.move[0];
-                                var my = css2media * sconf.med2mod_scale * arg.move[1] * yflip;
+                        var wwMed = css2media();
+                        var mx = wwMed * sconf.med2mod_scale * arg.surfMove[0];
+                        var my = wwMed * sconf.med2mod_scale * arg.surfMove[1] * yflip;
 
-                                var newX = ach.achieved[0] + mx;
-                                var newY = ach.achieved[1] + my;
-                                var newX = Math.min( newX, sconf.pivot2x_max );
-                                var newY = Math.max( newY, sconf.pivot2y_min );
-                                var newY = Math.min( newY, sconf.pivot2y_max );
+                        var newX = ach.achieved[0] + mx;
+                        var newY = ach.achieved[1] + my;
+                        var newX = Math.min( newX, sconf.pivot2x_max );
+                        var newY = Math.max( newY, sconf.pivot2y_min );
+                        var newY = Math.min( newY, sconf.pivot2y_max );
 
-                                pv[0] = newX;
-                                pv[1] = newY;
-
-                                sapp.upcreate();
+                        pv[0] = newX;
+                        pv[1] = newY;
+                        studyMods[ amode['submodel'] ].upcreate();
                     break;
                 }
             }
@@ -348,7 +355,8 @@
         var testMedpos = sDomF.pOnDs_2_innerViewBox( testPoint );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
-        //c cc( '\n\n****', testPoint, testMediaX, testMediaY, ' sDomF.css2media='+sDomF.css2media );
+        //c cc( '\n\n****', testPoint, testMediaX, testMediaY,
+        //' wwMed='+wwMed );
 
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;
@@ -376,6 +384,19 @@
     // \\// finds draggee
     //====================
 
+
+
+    function css2media()
+    {
+        return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
+        /*
+        if( amode['submodel'] ) {
+            ccc(amode['submodel'], studyMods )
+            return sconf.innerMediaWidth /
+                   studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+        }
+        */
+    }
 
 }) ();
 

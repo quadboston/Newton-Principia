@@ -1,8 +1,8 @@
 
 *::*claim|english
 { "dataLegend":"0",
-  "mediaBgImage" : "",
-  "default" : "0",
+  "default" : "1",
+  "submodel" : "",
   "menuCaption" : "English"
 }
 *..*
@@ -22,8 +22,7 @@ Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Ce
 
 
 *::*proof|latin
-{ "dataLegend":"0",
-  "mediaBgImage" : ""
+{ "dataLegend":"0"
 }
 *..*
 

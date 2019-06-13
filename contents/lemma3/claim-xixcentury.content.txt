@@ -1,6 +1,5 @@
 *::*claim|xixcentury
 {
-  "mediaBgImage" : "",
   "menuCaption" : "XIX Century",
   "dataLegend":"0"
 }

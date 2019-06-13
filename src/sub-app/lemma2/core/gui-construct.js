@@ -109,14 +109,14 @@
         function constructBasePts_dom( show, basePts )
         {
             //.this restriction is done via css ... the rect is simply hidden
-	        //.if( sapp.sappId === 'lemma3' ) {
+	        //.if( fconf.sappId === 'lemma3' ) {
             //   constructEndBasePt_dom(basePts, show ? "figure" : "todm-fix-this");
 
             constructEndBasePt_dom(basePts, show ? "figure" : "todm-fix-this");
 
 	        for (var i=1, len=sacf.baseMax; i <= len; i++) {
       		    pt = makeDragP( "base", i );
-		        if( sapp.sappId === 'lemma3' ) {
+		        if( fconf.sappId === 'lemma3' ) {
 		            guiup.set_pt2movable( pt ); //todo-patch-disable-base-drag 1 of 2
                 }
                 pt.dom.style.fill = 'rgba(255,255,255,0.3)';

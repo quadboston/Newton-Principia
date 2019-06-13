@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'limit-definition';
     var ns          = window.b$l;
     var sn          = ns.sn;
     var bezier      = sn('bezier');
@@ -18,6 +19,7 @@
 
     var sapp        = sn('sapp');
     var sDomN       = sn('dnative', sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var tr          = ssF.tr;
     var tp          = ssF.tp;
@@ -30,10 +32,7 @@
     var modName     = 'studyModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-
     var modelPaths = null;
-
-
     return;
 
 
@@ -45,7 +44,7 @@
 
     function setModule()
     {
-        sapp.upcreate = upcreate;
+        sn(SUB_MODEL, studyMods ).upcreate = upcreate;
     }
 
     //=========================================================
@@ -53,8 +52,16 @@
     //=========================================================
     function upcreate()
     {
+        //==========================
+        //:at landing, copies study-model-pars from config to app model
+        if( !ns.h( ssD, 'EPSILON' ) ) {
+            ssD.EPSILON = sconf.EPSILON;
+            ssD.delta_fraction = sconf.DELTA_FRACTION;
+        }
+        //==========================
         //:study-pars
         var EPSILON   = ssD.EPSILON;    //curve params
+        var delta_fraction = ssD.delta_fraction;
 
         var mat	        = ns.mat        = ns.mat || {};
         var limDemo     = mat.limDemo   = mat.limDemo || {};
@@ -68,7 +75,11 @@
             ww.SVG_YAXIS_LEN    = 800;
             ww.SVG_YAXIS_START  = 50;
             limDemo.instance = limDemo.setDemo( ww );
-            modelPaths = limDemo.instance.model_2_media( sDomN.svg );
+
+            modelPaths = limDemo.instance.model_2_media(
+                studyMods[ SUB_MODEL ].mmedia
+            );
+            tr( 'modelPaths', 'modelPaths', modelPaths );
         }
         var lim = limDemo.dataSamples.beats_sample.lim;
         var modE = tp( 'point-E', [-0.06,lim + EPSILON] );
@@ -100,7 +111,18 @@
         });
         var xNeighb= modelPaths.xArray[ neighbIx ];
         var yNeighb= modelPaths.absVariation[ neighbIx ];
+
+        var neighbIxChosen = 1;
+        var ww = delta_fraction * xNeighb;
+        modelPaths.modelLowPath.forEach( (point, ix) => {
+            if( point[0] <= ww && ix ) {
+                neighbIxChosen = ix;
+            }
+        });
+        tr('neighbIxChosen', 'neighbIxChosen', neighbIxChosen);
+
         //ccc( neighbIx, xNeighb, yNeighb );
+        var modD = tp( 'point-D', [delta_fraction * xNeighb, 0] );
 
         tr( 'yNeighbUpper', 'yNeighbUpper',
             {
@@ -122,12 +144,24 @@
                 [ xNeighb,  0 ]
             ]
         );
+        ///permitted delta range:
         tr( 'neighbHor', 'neighbHor',
             [
                 [ 0,        0 ],
                 [ xNeighb,  0 ]
             ]
         );
+        ///permitted delta range:
+        tr( 'chosenDelta', 'chosenDelta',
+            [
+                [ 0,        0 ],
+                [ modD[0],  modD[1] ]
+            ]
+        );
+
+
+
+
         //-----------------------------------------
         // \\// finds gamma-neighbourhood
         //-----------------------------------------
@@ -136,7 +170,7 @@
         //-------------------------------------------------------
         // //\\ media part
         //-------------------------------------------------------
-        ssF.upcreateMedia( limDemo );
+        sn(SUB_MODEL, studyMods ).upcreateMedia( limDemo );
         //-------------------------------------------------------
         // \\// media part
         //-------------------------------------------------------

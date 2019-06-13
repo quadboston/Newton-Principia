@@ -1,7 +1,7 @@
 
 *::*proof|english
 { "dataLegend":"0",
-  "mediaBgImage" : "",
+  "submodel" : "",
   "menuCaption" : "English"
 }
 *..*

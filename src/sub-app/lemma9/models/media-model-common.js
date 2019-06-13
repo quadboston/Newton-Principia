@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -12,6 +13,7 @@
     var sapp        = sn('sapp' ); 
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss',fapp);
     var ssD         = sn('ssData',ss);
@@ -37,7 +39,7 @@
 
     function setModule()
     {
-        ssF.upcreateMedia   = upcreateMedia;
+        sn(SUB_MODEL, studyMods ).upcreateMedia = upcreateMedia;
     }
 
 
@@ -131,7 +133,7 @@
         var mainCurve = tr( 'mainCurve' );
         mainCurve.mediael = bezier.mediafy({
             mediael : mainCurve.mediael,
-            svg : sDomN.svg,
+            svg : studyMods[ SUB_MODEL ].mmedia,
             pivots : medCurvPivots,
             bcurve :
             {
@@ -161,7 +163,7 @@
         var remoteCurve = tr( 'remoteCurve' );
         remoteCurve.mediael = bezier.mediafy({
             mediael : remoteCurve.mediael,
-            svg : sDomN.svg,
+            svg : studyMods[ SUB_MODEL ].mmedia,
             pivots : medRemoteCurPivots,
             bcurve :
             {
@@ -212,7 +214,7 @@
                 svgel : area.mediael,
                 type : 'path',
                 d:dd,
-                parent : sDomN.svg
+                parent : studyMods[ SUB_MODEL ].mmedia
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
             fullMode = fullMode ? ' ' + fullMode : '';
@@ -235,7 +237,7 @@
             area.mediael = sv.polyline({
                 pivots : vertices,
                 svgel : area.mediael,
-                parent : sDomN.svg
+                parent : studyMods[ SUB_MODEL ].mmedia
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
 
@@ -271,11 +273,10 @@
         // \\// does paint view
         //==========================================
         if( ssF.mediaModelInitialized ) {
-            sDomF.medD8D && sDomF.medD8D.updateAllDecPoints();
-
+            var ww = studyMods[ SUB_MODEL ].medD8D;
+            ww && ww.updateAllDecPoints();
         } else {
-            ssF.initMediaModel = initMediaModel;
-            ssF.initMediaModel_II = initMediaModel_II;
+            sn(SUB_MODEL, studyMods ).initMediaModel = initMediaModel;
         }
         return;
         // \\//\\// ends imperative part of the module
@@ -288,15 +289,10 @@
 
         function initMediaModel()
         {
-            sDomF.topicModel_2_css_html();
-            ssF.initDragModel();
+            studyMods[ SUB_MODEL ].mmedia$.cls( 'submodel-' + SUB_MODEL );
+            sn( SUB_MODEL, studyMods ).initDragModel();
         }
 
-        function initMediaModel_II()
-        {
-            ssF.create_proofSlider();
-            ssF.mediaModelInitialized = true;
-        }
 
         //==========================================
         // //\\ paint helpers
@@ -320,7 +316,7 @@
             var line = tr( pName );
             line.svgel = sv.polyline({
                 svgel   : line.svgel,
-                parent  : sDomN.svg,
+                parent  : studyMods[ SUB_MODEL ].mmedia,
                 pivots  : [ pivots[0].medpos, pivots[1].medpos ],
                 'stroke-width' : ( attr && attr[ 'stroke-width' ] || 1 ) * sconf.thickness
             });
@@ -342,7 +338,7 @@
             pt.medpos           = modpos2medpos( pt.pos );
             pt.svgel = sv.u({
                 svgel   : pt.svgel,
-                parent  : sDomN.svg,
+                parent  : studyMods[ SUB_MODEL ].mmedia,
                 type    : 'circle',
                 fill    : attrs && attrs.fill,
                 stroke  : attrs && attrs.stroke,

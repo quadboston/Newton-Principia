@@ -9,8 +9,11 @@
     var fapp        = ns.sn('fapp' ); 
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);
+
     var sDomN       = sn('dnative', sapp);
     var sDomF       = sn('dfunctions', sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var amode       = sn('mode',sapp);
 
 
 
@@ -42,12 +45,19 @@
     // \\// medpos2dompos and inverse
     //===============================
 
+
+    ///cssMed2innMed
     sDomF.css2media = function()
     {
-        //.is a bug
-        //return sconf.innerMediaWidth / sDomN.mmedia$().parentNode.getBoundingClientRect().width;
-
-        return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
+        if( amode['submodel'] ) {
+            //c cc(amode['submodel'], studyMods )
+            return sconf.innerMediaWidth /
+                   studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+        } else {
+            //c cc( '... not exist' );
+            return 1;
+            //return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
+        }
     };
 
 }) ();
