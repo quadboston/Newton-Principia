@@ -1,45 +1,47 @@
-Essay syntax.
+Text commenting an entire lemma called an essay here.
 
-    Essay is a collection of essaions. Semantically, each essaion dedicated to specific aspect
-    of the Book and mathematical phase of expression. The phase can be theorem or claim.
-    In other words, essaion is indexed with pair (theorion,aspect):
+    Essay is paritioned into claim or proof or other aspects like English or Latin.
+    Each partition is called exegesis.
+    In program code, exegesis is denoted simply as exeg.
+
+    In other words, exegesis is indexed with pair (theorion,aspect):
 
         theorion: specific part of theorem: Claim, Proof, Theorem, neutral, ...
     and
         aspect:  Lite, English, Latin, ...
 
-    Essaions separated with characters:
+    exegs separated with characters:
         *::*
-        <optional essaion header> 
+        <optional exeg header> 
         *..*
-        <essaion body>
+        <exegesis body>
 
-    The <essaion body> is further separated to activity-areas:
+    The <exegesis body> is further separated to activity-areas:
 
         ¿       ( separates active areas )
         ¦       ( separates topics, this is not ASCII "|" char )
     
     The remaining text is a mix of LaTeX text and HTML.
     Between HTML tags, there is an ordinary text which can have any characters except,
-    obviously, LaTeX escape chars, except upper-level-essaions separators and except
+    obviously, LaTeX escape chars, except upper-level-exegs separators and except
     ordinary HTML-special chars:
         &, >, < ( html specials ). However in plain text, &amp; &gt; &lt; can be used.
 
     The contributor can use any HTML tags.
 
-Active areas have content which depends on essaion index, depends on pair (theorion,aspect).
+Active areas have content which depends on exeg index, depends on pair (theorion,aspect).
     For example:
         For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
         ¿?
         {
-            "default" : "left",
+            "left" : "left",
             "right" : "right"
         }
         ¿
     Active area is simply a JSON key/value text where effect of key is defined in JavaScript code.
 
 references.html,
-    if provided, sets common footer for all essaions.
+    if provided, sets common footer for all exegs.
 
 
 Topic-engine highlight links
@@ -65,11 +67,15 @@ Topic-engine highlight links
     low case like "A" => "_a".
 
     An alternative way to enable topic-links is to manually code like
+        in content:
+            <a class="tl-mytopic" href="">my text</a>
+        and in JavaScript:
+            <circle class="tp-mytopic tofill tobold ... " ...
 
-    in content:
-        <a class="tl-mytopic" href="">my text</a>
-    and in JavaScript:
-        <circle class="tp-mytopic tofill tobold ... " ...
+    ¦mytopic-1 mytopc-2¦sum¦¦
+    ¦mytopic-1 mytopc-2¦sum¦¦¦ - same as above but forces topic into MathJax sibling-html-element
+    ¦mytopic-1 mytopc-2¦sum¦¦¦¦ - same as above but forces topic into all MathJax sibling-html-elements
+
 
     If lemma is already coded and new content needs adding topics, then an
     easy way to find list available topics is to run the following command in Chrome console:

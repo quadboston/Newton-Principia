@@ -34,8 +34,6 @@
     var globalStyle$ = null;
     var limDemo = null;
     var epsLab = null;
-    var epsNeighb_svg = null;
-    var epsNeighbUp_svg = null;
     var epsLowLine = null;
     var epsUpperLine = null;
     var neighbHor = null;

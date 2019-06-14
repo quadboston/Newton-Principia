@@ -51,6 +51,9 @@
         padding:0;
     }
 
+    .bsl-approot svg text {
+        font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
+    }
 
     /* vital */
     /*

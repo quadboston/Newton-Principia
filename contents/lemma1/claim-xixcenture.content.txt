@@ -13,11 +13,26 @@
 In XIX century mathematical language, the lemma can be expressed as follows.
 We will leave out of our scope ratios and proportions of Euclid framework used by Newton and will treat values as simple numbers. At first, we set up context with definition of limit.<br><br><br>
 
+¦function-argument¦γ¦¦¦¦
+¦set-function¦G¦¦¦¦
+¦function-domain¦Γ¦¦¦¦
+¦neighborhood¦N¦¦¦¦
+¦neighborhood¦δ¦¦¦¦
+¦epsilon¦ε¦¦¦¦
+¦lim¦h¦¦¦¦
+¦lim-arg¦c¦¦¦¦
+
+
+
+
+
 <b>Notations:</b><br><br>
 
-We will study a function ¦set-function¦\[ G: \gamma \mapsto G_\gamma \]¦¦
+We will study a function \[ G: \gamma \mapsto G_\gamma \]
 
-where \( \gamma \in \Gamma; \; \Gamma, G_\gamma \subset {\mathbb{R}}; \;
+where
+
+  \( \gamma \in \Gamma; \; \Gamma, G_\gamma \subset {\mathbb{R}}; \;
          \Gamma, G_\gamma \ne \varnothing
   \).<br><br>
 
@@ -25,7 +40,7 @@ where \( \gamma \in \Gamma; \; \Gamma, G_\gamma \subset {\mathbb{R}}; \;
 <!-- //\\ limit ***************************************************************** -->
 <b>Definition of limit:</b><br><br>
 
-For some \( c,h \in\ \mathbb{R} \) we say<br>
+For some \( c,h \in\ \mathbb{R} \),<br>
     \[
         { G_\gamma }\underset{ {\gamma \to c} }\to h 
             \quad \overset{df} \iff \quad

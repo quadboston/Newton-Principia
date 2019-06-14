@@ -97,7 +97,7 @@
             type : 'polyline',
             points : pivotsStr,
             style : arg.style,
-            stroke : arg.stroke || 'rgba( 0,0,255, 1 )', 
+            stroke : arg.stroke || 'rgba( 0,0,0, 1 )', 
                 //must be transparent bs stroke or fill are often exclusive
 
 

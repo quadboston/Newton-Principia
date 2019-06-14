@@ -78,7 +78,7 @@
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
             var ww = studyMods[ SUB_MODEL ].medD8D;
             ww && ww.updateAllDecPoints();
-            //if( sDomN.topicModelInitialized ) sDomF.repopulateContent(); //todo toggle active
+            //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax(); //todo toggle ???active
         }
         //======================================
         // \\// view top-manager

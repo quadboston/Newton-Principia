@@ -94,7 +94,6 @@
             if( loadedFilesById['content-config'] ) {
                 var tmRack = JSON.parse(loadedFilesById['content-config'].text);
                 var topics = sn('topics', ssD);
-                topics.convert_lineFeed2htmlBreak = tmRack.convert_lineFeed2htmlBreak;
                 sconf.contentConfig = tmRack;
             }
             var txt = allEssaions; //loadedFilesById.texts.text;

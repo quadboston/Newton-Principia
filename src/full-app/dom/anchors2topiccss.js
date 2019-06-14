@@ -16,9 +16,11 @@
 
     var qq = document.querySelector;
     var qqa = document.querySelectorAll;
+    var appRoot$;
     var ccc = console.log;
 
     sDomF.anchors2topiccss = anchors2topiccss;
+    sDomF.setMouseHiglight = setMouseHiglight;
     return;
 
 
@@ -31,15 +33,22 @@
     function anchors2topiccss()
     {
         var topicLinks = topics.topicLinks;
-        var appRoot$ = fapp.fappRoot$;
+        appRoot$ = fapp.fappRoot$;
         var topicAnchors = $$.qa( "a" )();
         if( !topicAnchors ) return;
 
         var style = document.createElement( 'style' );
         document.head.appendChild( style );
-        styleStr = '';
         var anchors2colors = '';
         var shape2color = {};
+
+
+        ///enables non-hilighted and tohidden as "hidden" state
+        styleStr = `
+            .${cssp}-approot .tohidden {
+                visibility: hidden;
+            }
+        `;
 
         topicAnchors.forEach( anchor => {
             var cls = anchor.className;
@@ -70,10 +79,13 @@
                 var rgb1 = alink.rgb1;
             }
             ///assigns color to anchor CSS
+            //  this feature is disabled because bloats MathJax font
+            //  anchors2colors += `
+            //  a.tl-${alink.colorId} {
+            //       padding-left:3px;
+            //       padding-right:3px;
             anchors2colors += `
                 a.tl-${alink.colorId} {
-                   padding-left:3px;
-                   padding-right:3px;
                    border-radius:4px;
                    color:${rgb1};
                    opacity:0.8;
@@ -154,8 +166,21 @@
                     .${cssp}-approot .tp-${skey} {
                         opacity: 0.7;
                     }
+                    .${cssp}-approot svg .tp-${skey} {
+                        opacity : 1;
+                        fill-opacity : 0.3;
+                        stroke-opacity: 0.5;
+                    }
+
+
+
+                    /* ================= */
+                    /* //|| highlighted  */
+                    /* ================= */
                     .${cssp}-approot.tp-${colorIx} .tp-${skey} {
                         opacity: 1;
+                    }
+                    .${cssp}-approot.tp-${colorIx} .tohidden.tp-${skey} {
                         visibility:visible;
                     }
                     /* does bold on anchor hover */
@@ -163,11 +188,6 @@
                        font-weight : bold;
                     }
 
-                    .${cssp}-approot svg .tp-${skey} {
-                        opacity : 1;
-                        fill-opacity : 0.3;
-                        stroke-opacity: 0.5;
-                    }
                     .${cssp}-approot.tp-${colorIx} svg .tp-${skey} {
                         fill-opacity : 0.7;
                         stroke-opacity: 1;
@@ -175,11 +195,17 @@
                     .${cssp}-approot.tp-${colorIx} svg .tp-${skey}.tostroke {
                         stroke-width:8px;
                     }
+                    /* ================= */
+                    /* //|| highlighted  */
+                    /* ================= */
+
+
 
                     /* //|| special for svg-text */
                     .${cssp}-approot svg text.tp-${skey} {
                         fill-opacity : 0.7;
                     }
+                    /* ***** highlighted */
                     .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
                         fill-opacity : 1;
                     }
@@ -223,23 +249,18 @@
         });
 
         style.innerHTML = styleStr;
-        return;
-
-
-
-
-
-        function setMouseHiglight( anchor, coreName )
-        {
-            anchor.addEventListener( 'mouseover', ev => {
-                appRoot$.addClass( 'tp-' + coreName );
-            });
-            anchor.addEventListener( 'mouseleave', ev => {
-                appRoot$.removeClass( 'tp-' + coreName );
-            });
-        }
     }
 
+
+    function setMouseHiglight( anchor, coreName )
+    {
+        anchor.addEventListener( 'mouseover', ev => {
+            appRoot$.addClass( 'tp-' + coreName );
+        });
+        anchor.addEventListener( 'mouseleave', ev => {
+            appRoot$.removeClass( 'tp-' + coreName );
+        });
+    }
 
 })();
 

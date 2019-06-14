@@ -36,7 +36,8 @@
         '¦([^¦]+)¦' +   //catches topicId
         '([^¦]+)'   +   //catches topic caption
         '¦¦'        +   //catches topic terminator
-        '(?:(¦)|\n|.|$)'; //catches delayed topc-link for MathJax sibling
+        '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
+        '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
     var topAnch_reg = new RegExp( TOP_ANCH_reg, 'gu' );
     //.adding flag "g" ruins the job ... why?
@@ -44,7 +45,6 @@
     //---------------------------------------------
     // \\// topic engine variables
     //---------------------------------------------
-
 
     sDomF.frags_2_essdom8topiccss = frags_2_essdom8topiccss;
     return; //000000000000000000000000000000000000000000
@@ -89,7 +89,10 @@
         });
         //ccc( 'topicLinks=', topics.topicLinks );
         topLinks_2_colors();
-        populateContent();
+
+        //patch:
+        exegs_2_tpAn8dom8mjax();
+        //setTimeout( sDomF.tpanch2mjax, 3000 );
 
         oneTimeUse_globalCSS += `
             .${cssp}-text-widget .exeg-frag {
@@ -98,17 +101,14 @@
             .${cssp}-text-widget .active-static {
                 display : inline;
             }
+            .${cssp}-text-widget .delayed-far,
+            .${cssp}-text-widget .delayed-anchor {
+                display : none;
+            }
         `;
-        sDomF.anchors2topiccss();
-
-        //========================================================
-        // //\\ finalizes global css
-        //========================================================
         ns.globalCss.add8update( oneTimeUse_globalCSS );
+        sDomF.anchors2topiccss();
         sDomN.topicModelInitialized = true;
-        //========================================================
-        // \\// finalizes global css
-        //========================================================
     };
 
 
@@ -124,21 +124,21 @@
     ///at late run-time event, this function is, for example,
     ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
     ///
-    function populateContent()
+    function exegs_2_tpAn8dom8mjax()
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
-                activeFrags_2_htmlFrags( exeg );
+                aFrags_2_tpAnchors( exeg );
                 //above line produces this: exeg.builtFrags
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
-                        afrag.dom = afrag2dom( exeg, afrag, fid );
+                        afrag.dom = afrag_2_dom8mathjax( exeg, afrag, fid );
                     });
                 });
             });
         });
-        function afrag2dom( exeg, bFrag, fid )
+        function afrag_2_dom8mathjax( exeg, bFrag, fid )
         {
             //*******************************************************
             //.here page content injects into html for the first time
@@ -160,20 +160,18 @@
     //===============================================
     //
     //===============================================
-    function activeFrags_2_htmlFrags( exeg )
+    function aFrags_2_tpAnchors( exeg )
     {
-        var builtFrags = exeg.builtFrags;
+        var bfs = exeg.builtFrags = [];
         exeg.activeFrags.forEach( function( activeFrag, tix ) {
-
-            builtFrags[tix] = {};
-
+            bfs[tix] = {};
             if( typeof( activeFrag ) !== 'object' ) {
                 activeFrag = { 'static' : activeFrag };
             }
-            builtFrags[tix].activeFrags = {};
+            bfs[tix].activeFrags = {};
             ns.eachprop( activeFrag, ( afrag, akey ) => {
-                builtFrags[tix].activeFrags[akey] =
-                    { activeFrag : finalizeFragment( afrag ) };
+                bfs[tix].activeFrags[akey] =
+                    { activeFrag : afrag.replace( topAnch_reg, replWithAnchor ) }
             });
         });
         return;
@@ -181,32 +179,18 @@
         //--------------------------------------------------------
         // //\\ html conversion of body fragments
         //--------------------------------------------------------
-        function finalizeFragment( frag )
-        {
-            if( topics.convert_lineFeed2htmlBreak ) {
-                //.converts text from <pre> format
-                frag = ns.pre2fluid( frag ) 
-            }
-            return frag.replace( topAnch_reg, replWithAnchor );
-        }
-
-
-        function replWithAnchor( match, skey, scaption, cflag )
+        function replWithAnchor( match, skey, scaption, cflag, farFlag, remainder )
         {
             var rack = topics.topicLinks[ skey ];
             if( !rack ) return;
-            if( cflag ) {
-                //start here
-                ////we have forward link for MathJax
-                //topics.delayedAnchors = {};
-                //var delayedIx = 0;
-                ccc( 'got forward:' + scaption );
-            } else {
-                //.we cannot use skey because spaces inside of it, so
-                //.we use colorId
-                var repl = '<a class="tl-' + rack.colorId + '">'+ scaption + '</a>';
-                return repl;
-            }
+            var dix = cflag ? ' delayed-anchor' : '';
+            dix += farFlag ? ' delayed-far' : '';
+            
+            //.we cannot use skey because spaces inside of it, so
+            //.we use colorId
+            var repl = '<a class="tl-' + rack.colorId + dix + '">'+ scaption +
+                       '</a>' + (remainder || '' );
+            return repl;
         }
         //--------------------------------------------------------
         // \\// html conversion of body fragments
@@ -264,7 +248,7 @@
             //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
             //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
 
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl]);
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,0]);
         }
     }
 

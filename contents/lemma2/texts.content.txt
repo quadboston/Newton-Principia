@@ -135,7 +135,7 @@
             -->
             ¿?
             {
-                "default" : "left",
+                "left" : "left",
                 "right" : "right"
             }
             ¿

@@ -85,17 +85,22 @@
         xNCh     = xy2m( nLineChosen[1][0]/2-0.01, nLineChosen[1][1]+0.03 );
         xNdeltaCh = xy2m( nLineChosen[1][0]/2-0.01+0.035, nLineChosen[1][1]+0.02 );
 
+        //var fontDef = 'bold 40px sans-serif';
+        //var fontDef = 'bold 40px MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw,sans-serif';
+        var fontDef = 'normal 40px MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw,sans-serif';
+        var fontFam = 'MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw,sans-serif';
+        var fontSize = '40px';
+
         xNeighbMark = sv.printText({
             svgel   : xNeighbMark,
             parent  : mmedia,
             type    : 'text',
             text    : "c+δ'", //&#x03B4;'
             fill    : 'black',
-            style   : { font: 'bold 40px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : xDelta[0],
             y : xDelta[1]
         });
-
 
         var ww = points2media( nLineChosen );
         ww = ww[1];
@@ -105,32 +110,40 @@
             parent  : mmedia,
             type    : 'text',
             text    : "δ", //&#x03B4;'
-            fill    : 'blue',
-            style   : { font: 'bold 40px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : ww[0]-10,
             y : ww[1]+45
         });
+        $$.$(xChosenMark).cls( 'tp-neighborhood tofill' );
+
         xNm = sv.printText({
             svgel   : xNm,
             parent  : mmedia,
             type    : 'text',
             text    : 'N',
-            fill    : 'blue',
-            style   : { font: 'bold 40px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : xNCh[0],
             y : xNCh[1]
         });
+        $$.$(xNm).cls( 'tp-neighborhood tofill' );
+
+
         xNdm = sv.printText({
             svgel   : xNdm,
             parent  : mmedia,
             type    : 'text',
             text    : 'δ',
-            fill    : 'blue',
-            style   : { font: 'bold 30px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : xNdeltaCh[0],
             y : xNdeltaCh[1]
         });
+        $$.$(xNdm).cls( 'tp-neighborhood tofill' );
 
+
+
+        //==========================================
+        // //\\ epsilon stuff
+        //==========================================
         var EPS_X = -0.035;
         var epsPoint = rg[ 'eps_Neighb' ][ 'eps_Neighb' ][1];
         var lim = limDemo.dataSamples.beats_sample.lim;
@@ -140,11 +153,11 @@
             parent  : mmedia,
             type    : 'text',
             text    : 'ε',
-            fill    : 'red',
-            style   : { font: 'bold 30px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : epsP[0],
             y : epsP[1]
         });
+        $$.$( epsLab ).cls( 'tp-epsilon tofill' );
 
         var limP = xy2m( -0.045, lim );
         limSvg = sv.printText({
@@ -152,9 +165,6 @@
             parent  : mmedia,
             type    : 'text',
             text    : 'h',
-            fill    : 'green',
-            //style   : { font: '30px sans-serif' },
-            //style   : { fill: 'green' },
             x : limP[0],
             y : limP[1]
         });
@@ -164,6 +174,9 @@
                 font: 30px sans-serif;
             }
         `;
+        //==========================================
+        // \\// epsilon stuff
+        //==========================================
         
         //----------------
         // //\\ gamma axis
@@ -174,17 +187,11 @@
             parent  : mmedia,
             type    : 'text',
             text    : 'γ',
-            fill    : 'black',
-            //style   : { font: '30px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : gammaAxisP[0],
             y : gammaAxisP[1]
         });
-        $$.$(gammaAxisSvg).cls( 'tp-gamma' );
-        pwork.globalStyleStr += `
-            .${cssp}-approot .tp-gamma {
-                font: 30px sans-serif;
-            }
-        `;
+        $$.$(gammaAxisSvg).cls( 'tp-function-argument tofill' );
         //----------------
         // \\// gamma axis
         //----------------
@@ -199,7 +206,6 @@
             type    : 'text',
             text    : 'g',
             fill    : 'black',
-            //style   : { font: '30px sans-serif' },
             x : gAxisP[0],
             y : gAxisP[1]
         });
@@ -222,14 +228,12 @@
             parent  : mmedia,
             type    : 'text',
             text    : 'c',
-            fill    : 'black',
-            //style   : { font: '30px sans-serif' },
             x : cP[0],
             y : cP[1]
         });
-        $$.$(cPSvg).cls( 'tp-c' );
+        $$.$(cPSvg).cls( 'tp-lim-arg tofill' );
         pwork.globalStyleStr += `
-            .${cssp}-approot .tp-c {
+            .${cssp}-approot .tp-lim-arg {
                 font: 30px sans-serif;
             }
         `;
@@ -247,7 +251,6 @@
             type    : 'text',
             text    : 'a',
             fill    : 'black',
-            //style   : { font: '30px sans-serif' },
             x : aP[0],
             y : aP[1]
         });
@@ -271,7 +274,6 @@
             type    : 'text',
             text    : 'b',
             fill    : 'black',
-            //style   : { font: '30px sans-serif' },
             x : bP[0],
             y : bP[1]
         });
@@ -297,13 +299,13 @@
             type    : 'text',
             text    : 'Γ = (a,b)', //'&#x0393;',
             fill    : 'black',
-            //style   : { font: '30px sans-serif' },
+            style   : { fontFamily: fontFam, fontSize: fontSize },
             x : legendP[0],
             y : legendP[1]
         });
-        $$.$(legendSvg).cls( 'tp-legend' );
+        $$.$(legendSvg).cls( 'tp-function-domain tofill' );
         pwork.globalStyleStr += `
-            .${cssp}-approot .tp-legend {
+            .${cssp}-approot .tp-function-domain {
                 font: 30px sans-serif;
             }
         `;

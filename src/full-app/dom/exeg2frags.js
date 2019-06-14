@@ -78,7 +78,6 @@
                 exeg.classStr       = classStr;
                 exeg.activeFrags    = activeFrags;
                 exeg.domComponents  = [];
-                exeg.builtFrags     = [];
             });
         });
         //==============================================
