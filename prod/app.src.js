@@ -5775,7 +5775,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2264; //application version
+    fapp.version =  2268; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -7495,9 +7495,8 @@ var ret = `
         //ccc( 'topicLinks=', topics.topicLinks );
         topLinks_2_colors();
 
-        //patch:
         exegs_2_tpAn8dom8mjax();
-        //setTimeout( sDomF.tpanch2mjax, 3000 );
+        //this is moved into MathJax callback: setTimeout( sDomF.tpanch2mjax, 3000 );
 
         oneTimeUse_globalCSS += `
             .${cssp}-text-widget .exeg-frag {
@@ -7538,12 +7537,12 @@ var ret = `
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
-                        afrag.dom = afrag_2_dom8mathjax( exeg, afrag, fid );
+                        afrag.dom = afrag_2_dom8mj( exeg, afrag, fid );
                     });
                 });
             });
         });
-        function afrag_2_dom8mathjax( exeg, bFrag, fid )
+        function afrag_2_dom8mj( exeg, bFrag, fid )
         {
             //*******************************************************
             //.here page content injects into html for the first time
@@ -7653,7 +7652,7 @@ var ret = `
             //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
             //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
 
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,0]);
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,domEl]);
         }
     }
 
@@ -8213,12 +8212,13 @@ var ret = `
 
 
 
-    function tpanch2mjax()
+    function tpanch2mjax( domEl )
     {
         var setMouseHiglight = sDomF.setMouseHiglight;
         var topicLinks = topics.topicLinks;
-        var delayedAns = $$.qa( ".delayed-anchor" )();
-        if( !delayedAns ) return;
+        var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
+        if( !delayedAns.length ) return;
+        ccc( '***************** entering t2jm', delayedAns );
 
         delayedAns.forEach( an => {
             var cls = an.className;
@@ -8245,11 +8245,15 @@ var ret = `
                             }
                             if( targetText === grand.textContent ) {
                                 ////paints all matching leaf nodes in MathJax tree
-                                //ccc( 'target found=',grand );
+                                //if( targetText === 'G' ) ccc( 'G target found', grand );
                                 targetFound = true;
-                                grand.innerHTML = "<a class=" + match[0] +
-                                    '>' + targetText + '</a>';
-                                setMouseHiglight( grand, colorIx );
+                                //. ...'A' ... is an extra protection against MathJax problem
+                                //.            the problem was nested? wrapping into <a ...
+                                //if( grand.tagName !== 'A' ) {
+                                    grand.innerHTML = "<a class=" + match[0] +
+                                        '>' + targetText + '</a>';
+                                    setMouseHiglight( grand, colorIx );
+                                //}
                             }
                         }
                     });
@@ -8260,7 +8264,7 @@ var ret = `
             };
             //.important to know: this line runs after "anchors2topics" performed because
             //.it is scheduled this way by MathJax...Hub machinery
-            an.parentNode.removeChild( an ); //child.remove() for moderns
+            //an.parentNode.removeChild( an ); //child.remove() for moderns
         });
     }
 

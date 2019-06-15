@@ -28,12 +28,13 @@
 
 
 
-    function tpanch2mjax()
+    function tpanch2mjax( domEl )
     {
         var setMouseHiglight = sDomF.setMouseHiglight;
         var topicLinks = topics.topicLinks;
-        var delayedAns = $$.qa( ".delayed-anchor" )();
-        if( !delayedAns ) return;
+        var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
+        if( !delayedAns.length ) return;
+        ccc( '***************** entering t2jm', delayedAns );
 
         delayedAns.forEach( an => {
             var cls = an.className;
@@ -60,11 +61,15 @@
                             }
                             if( targetText === grand.textContent ) {
                                 ////paints all matching leaf nodes in MathJax tree
-                                //ccc( 'target found=',grand );
+                                //if( targetText === 'G' ) ccc( 'G target found', grand );
                                 targetFound = true;
-                                grand.innerHTML = "<a class=" + match[0] +
-                                    '>' + targetText + '</a>';
-                                setMouseHiglight( grand, colorIx );
+                                //. ...'A' ... is an extra protection against MathJax problem
+                                //.            the problem was nested? wrapping into <a ...
+                                //if( grand.tagName !== 'A' ) {
+                                    grand.innerHTML = "<a class=" + match[0] +
+                                        '>' + targetText + '</a>';
+                                    setMouseHiglight( grand, colorIx );
+                                //}
                             }
                         }
                     });
@@ -75,7 +80,7 @@
             };
             //.important to know: this line runs after "anchors2topics" performed because
             //.it is scheduled this way by MathJax...Hub machinery
-            an.parentNode.removeChild( an ); //child.remove() for moderns
+            //an.parentNode.removeChild( an ); //child.remove() for moderns
         });
     }
 

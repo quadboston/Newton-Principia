@@ -90,9 +90,8 @@
         //ccc( 'topicLinks=', topics.topicLinks );
         topLinks_2_colors();
 
-        //patch:
         exegs_2_tpAn8dom8mjax();
-        //setTimeout( sDomF.tpanch2mjax, 3000 );
+        //this is moved into MathJax callback: setTimeout( sDomF.tpanch2mjax, 3000 );
 
         oneTimeUse_globalCSS += `
             .${cssp}-text-widget .exeg-frag {
@@ -133,12 +132,12 @@
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
-                        afrag.dom = afrag_2_dom8mathjax( exeg, afrag, fid );
+                        afrag.dom = afrag_2_dom8mj( exeg, afrag, fid );
                     });
                 });
             });
         });
-        function afrag_2_dom8mathjax( exeg, bFrag, fid )
+        function afrag_2_dom8mj( exeg, bFrag, fid )
         {
             //*******************************************************
             //.here page content injects into html for the first time
@@ -248,7 +247,7 @@
             //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
             //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
 
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,0]);
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,domEl]);
         }
     }
 
