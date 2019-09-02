@@ -10,8 +10,14 @@
 
 <br>
 
-In XIX century mathematical language, the lemma can be expressed as follows.
-We will leave out of our scope ratios and proportions of Euclid framework used by Newton and will treat values as simple numbers. At first, we set up context with definition of limit.<br><br><br>
+This is possibly closest interpretation of Newton's definition of limit in terms if XIX century.
+Because of Newton uses it for inscribed and circumscribed sums limits in lemma 2 and 3 and because these sums are sets for given number of partition intervals, these limits are limits of sets.
+We do not add to this interpretation Euclid axiomatics or ratios which would be an additional essay, so
+limits here are limits of numbers and not proportions of values of different kind.<br><br>
+
+There should be less reason to treat this definition in terms of XX-century which uses topological spaces which is too far from the lemma content.<br><br>
+
+At first, we set up context with definition of limit.<br><br><br>
 
 ¦function-argument¦γ¦¦¦¦
 ¦set-function¦G¦¦¦¦
@@ -168,4 +174,7 @@ if s is upper bound of A then:
                    s = \lim_{a \to s} I_a \\
                    \text{ were } I : a \mapsto \{a\} \text{ and } a \in A
                 \]
+<br>
+Therefore sup or inf notations are "covered" by definition of limit and are a convenient "sugar" over this definition.
+
 

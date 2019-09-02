@@ -96,11 +96,23 @@
             var update_decPoint      = api.update_decPoint;     //optional
             var dragCssCls           = pointWrap.dragCssCls;    //optional
             var dragDecorColor       = pointWrap.dragDecorColor;//optional
-            // //\\ functions' side effects
-            //      todm side effects can be fixed by indexing points and
-            //      making registry here ... still an extra construct
-            //      adds members to pointWrap
-            pointWrap.achieved      = { achieved: api.achieved || {} };
+
+            // api.achieved is an optional parameter
+            // if it is falsy and not 0, then it is not used
+            // otherwise, it is placed into 
+            //
+            //      pointWrap.achieved = { achieved : api.achieved }
+            //
+            // this approach creates functions' side effects:
+            // here we are modifying important input-parameter, pointWrap
+            //
+            // todm side effects can be fixed by indexing points and
+            // making registry here ... still an extra construct
+            // adds members to pointWrap
+            //
+            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : {};
+
+
             //.recall, parent of decPoint is dragSurface
             var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (
                                '_' + key1.toLowerCase() ));

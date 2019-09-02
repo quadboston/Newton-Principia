@@ -62,4 +62,32 @@ http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking
 raw codes:
 
 ▲, ⏶
+/////////////////////////////////////////////////////////
+
+sibling areas:
+    all: https://en.wikipedia.org/wiki/List_of_interactive_geometry_software
+
+    https://www.geogebra.org/
+        interactive on-line
+        https://www.geogebra.org/classic#3d
+
+    intro: https://opensourceforu.com/2018/07/scientific-graphics-visualisation-an-introduction-to-pstricks/
+    PSTrics in html ... LaTeX2HTML5 - a proposal for the future of digital publishing ...
+        abandoned prj?: https://www.youtube.com/watch?v=QYMLMUKJyFc
+        no demo found:
+        install: https://github.com/pyramation/Mathapedia
+
+    integration with LaTeX: https://tex.stackexchange.com/questions/488159/integration-between-web-languages-and-tex-derived-languages
+        https://www.ctan.org/pkg/tex4ht
+            no demo found
+    not much info: Integration between web languages and TeX derived languages
+        https://tex.stackexchange.com/questions/488159/integration-between-web-languages-and-tex-derived-languages
+
+
+
+
+
+
+
+
 

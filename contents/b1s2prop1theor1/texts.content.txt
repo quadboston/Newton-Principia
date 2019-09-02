@@ -1,0 +1,96 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+<pre>
+to be entered
+</pre>
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+to be entered
+
+*::*proof|latin
+
+not yet entered
+
+
+
+*::*claim|hypertext
+{
+  "default" : "1",
+  "menuCaption" : "Lite"
+}
+*..*
+
+to be entered
+
+
+*::*proof|english
+
+to be entered
+
+*::*proof|hypertext
+
+to be entered
+
+*::*claim|model
+{
+  "menuCaption" : "Model"
+}
+*..*
+
+to be entered
+
+
+*::*proof|model
+{
+  "default" : "1",
+  "menuCaption" : "Model"
+}
+*..*
+
+<b>Numerical Simulation</b><br><br>
+
+Dragging the slider under the picture changes the
+¦time¦time¦¦.
+
+The slider follows the proof. The particle imaginary analysis starts from point B.<br><br>
+
+At beginning of each step, the particle ¦free-path¦moves free¦¦ like from point B to c.
+
+At each step, applied ¦force¦force¦¦ changes direction of movement and ¦path¦final position and final path¦¦.
+
+<br><br>
+At each step, three triangles are compared to illustrate Kepler's law: the two ¦kepler-triangle¦triangles¦¦ circumscribed by the summary movment: triangle at previous step and final triangle of the current step
+
+and 
+
+¦free-triangle¦triangle¦¦ circumscribed by free movement.<br><br>
+
+
+At page landing, the default parameters are chosen to fit Newton's drawing. They are:<br><br>
+
+    Force,          f = 3.9 / (r*r)<br>
+    Time step,      delta_t = 1<br>
+    Initial speed,  v0 = 1<br>
+
+<br>
+Change them, by dragging point B. This will change initial direction of speed and the path length, delta_s, at initial step.<br><br>
+
+The initial speed will stay always equal to 1. The time step will change as delta_t = delta_s / v0.
+
+<br><br>
+Formula for force is not changeable in this version.
+
+
+
+

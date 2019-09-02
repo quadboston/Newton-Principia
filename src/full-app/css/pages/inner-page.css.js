@@ -76,7 +76,7 @@ var ret = `
     }
 
     .home-button {
-        width               : 85px;
+        width               : 175px;
         margin-left         : 35px;
         font-weight         : bold;
         color               : white;

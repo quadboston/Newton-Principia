@@ -282,13 +282,14 @@
 
 
     ///================================================
-    /// //\\ sugar: sets rg[ id ][pos] = val
+    /// //\\ to position
+    ///      sugar: sets rg[ id ][pos] = val
     ///================================================
     ///Sets rg[ id ][pos] = val
     ///If rg[ id ] does not exist, then creates it.
     function tp( id, val ) { return tr( id, 'pos', val ); }
     ///================================================
-    /// \\// sugar: sets rg[ id ][pos] = val
+    /// \\// to position
     ///================================================
 
 

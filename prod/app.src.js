@@ -48,13 +48,19 @@
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
 
             //:more good goodies
+            ns.haz = haz;
             ns.h = has;
             ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
 
+        ///Returns own property if property does exist. Otherwise, returns false.
+        function haz( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : false;
+        };
 
-        ///Returns own property only if it exists. Otherwise, returns false.
+        ///Returns ownself only if property does exist. Otherwise, returns false.
         function has( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
         };
@@ -191,6 +197,9 @@
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
                     to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
+
+                    //API: ch is an array of racks or single rack:
+                    //     rack is a wrapped element or raw DOM element
                     ch:     function( ch, obj )             { ctxEl = obj || ctxEl;
                                                               //.encourages syntax for alternatively empty list of children
                                                               //.$$.ch( obj ? ... : ... )
@@ -1518,11 +1527,23 @@
             var update_decPoint      = api.update_decPoint;     //optional
             var dragCssCls           = pointWrap.dragCssCls;    //optional
             var dragDecorColor       = pointWrap.dragDecorColor;//optional
-            // //\\ functions' side effects
-            //      todm side effects can be fixed by indexing points and
-            //      making registry here ... still an extra construct
-            //      adds members to pointWrap
-            pointWrap.achieved      = { achieved: api.achieved || {} };
+
+            // api.achieved is an optional parameter
+            // if it is falsy and not 0, then it is not used
+            // otherwise, it is placed into 
+            //
+            //      pointWrap.achieved = { achieved : api.achieved }
+            //
+            // this approach creates functions' side effects:
+            // here we are modifying important input-parameter, pointWrap
+            //
+            // todm side effects can be fixed by indexing points and
+            // making registry here ... still an extra construct
+            // adds members to pointWrap
+            //
+            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : {};
+
+
             //.recall, parent of decPoint is dragSurface
             var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (
                                '_' + key1.toLowerCase() ));
@@ -4340,7 +4361,7 @@ var ret = `
     }
 
     .home-button {
-        width               : 85px;
+        width               : 175px;
         margin-left         : 35px;
         font-weight         : bold;
         color               : white;
@@ -5538,7 +5559,7 @@ var ret = `
                             ////home-pane becomes visible
                             fapp.homePage$.removeClass( 'is-hidden' );
                             sDomN.homeButton$
-                                .html( 'X' )
+                                .html( 'Back to the Lemmas' )
                                 .removeClass( 'is-hidden' )
                                 ;
                             fapp.fappRoot$.css( 'overflow', 'visible' );
@@ -5775,7 +5796,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2268; //application version
+    fapp.version =  2356; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -8218,7 +8239,6 @@ var ret = `
         var topicLinks = topics.topicLinks;
         var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
         if( !delayedAns.length ) return;
-        ccc( '***************** entering t2jm', delayedAns );
 
         delayedAns.forEach( an => {
             var cls = an.className;
@@ -9420,13 +9440,14 @@ var ret = `
 
 
     ///================================================
-    /// //\\ sugar: sets rg[ id ][pos] = val
+    /// //\\ to position
+    ///      sugar: sets rg[ id ][pos] = val
     ///================================================
     ///Sets rg[ id ][pos] = val
     ///If rg[ id ] does not exist, then creates it.
     function tp( id, val ) { return tr( id, 'pos', val ); }
     ///================================================
-    /// \\// sugar: sets rg[ id ][pos] = val
+    /// \\// to position
     ///================================================
 
 
@@ -9662,7 +9683,30 @@ var ret = `
                 { src:'models/main-legend.js' },
                 { src:'models/d8d-model-common.js' }
             ]
-        }
+        },
+
+
+        {   sappId : 'b1s2prop1theor1',
+            book : 'Book 1',
+            caption : 'Proposition I',
+            sappCodeReference : '',
+            annotation : "",
+            codesList :
+            [
+                { src:'sconf.js' },
+                { src:'main.js' },
+                { src:'css/css-order.js' },
+                { src:'css/proof-vs-claim-only-one-model-visibility.css.js' },
+                { src:'css/css.css.js' },
+                { src:'models/study-model.js' },
+                { src:'models/media-model.js' },
+                { src:'models/create-media-model.js' },
+                { src:'models/create-media-model-lib.js' },
+                { src:'models/main-legend.js' },
+                { src:'models/d8d-model.js' }
+            ]
+        },
+
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

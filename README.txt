@@ -56,25 +56,24 @@ Vital for developer
         5. prescript contains topic-marks which must be parsed to HTML
         6. resulted HTML may have MathJax and has to be parsed into HTML
 
+Running project from local PC.
 
-Topic engine.
+    It should not run from folder on local PC with file://...
+    protocol in Chrome. And should not in other browser ...
+    Apparently because of "cross-domain" permissions.
+    You may try MS Edge though or FireFox, they were known less restrictive.
 
-    Figure dom-elements are grouped by topics.
+    This is because, this application loads texts and MathJax via ajax.
+    The proper way is to install server. The good one is Apache.
 
-        For example, 
-        topic "ABD" has svg curved area ABD, caption "legend-ABD", and data "number-ABD", and
-        hyperlink in the text.
+    On Windows, after installation, there should be a folder like:
 
-        which is supplied in configuartion file in line:
-        ABD:{ id:['area-ABD', 'legend-ABD', 'number-ABD'], tfamily :'claim' },
+    c:/Apache24/htdocs/
 
-    Topic members can be assigned a distinct color.
+    where one can put Newton-Principia folder.
+    Then land on
+    localhost/Newton-Principia/index.src.html
 
-    Topics can be grouped into topic-family.
-    For example, vanished areas and approaching points belong family: "claim".
-    Topic-family can be assigned a color. For example, "claim" usually has color "green".
-    Topic-color overrides family color.
+    IIS should work too, but it feels as less convenient.
 
-    Spacing(??forgot what is this?) in lemmas
-    is set in Newton-Principia/src/sub-app/lemma-2-3/data/topic-map.js
 

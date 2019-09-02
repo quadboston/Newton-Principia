@@ -34,7 +34,6 @@
         var topicLinks = topics.topicLinks;
         var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
         if( !delayedAns.length ) return;
-        ccc( '***************** entering t2jm', delayedAns );
 
         delayedAns.forEach( an => {
             var cls = an.className;

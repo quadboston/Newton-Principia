@@ -48,13 +48,19 @@
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
 
             //:more good goodies
+            ns.haz = haz;
             ns.h = has;
             ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
 
+        ///Returns own property if property does exist. Otherwise, returns false.
+        function haz( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : false;
+        };
 
-        ///Returns own property only if it exists. Otherwise, returns false.
+        ///Returns ownself only if property does exist. Otherwise, returns false.
         function has( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
         };
@@ -191,6 +197,9 @@
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
                     to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
+
+                    //API: ch is an array of racks or single rack:
+                    //     rack is a wrapped element or raw DOM element
                     ch:     function( ch, obj )             { ctxEl = obj || ctxEl;
                                                               //.encourages syntax for alternatively empty list of children
                                                               //.$$.ch( obj ? ... : ... )
