@@ -76,6 +76,7 @@
         // \\//
         //===================================================
 
+        tr('stepIx','value',-1);
         var pathRacks = [];
         tr( 'pathRacks', 'pathRacks', pathRacks );
 
@@ -94,7 +95,8 @@
             }
         }
 
-        rg.forces.vectors.length = Math.min( rg.forces.vectors.length, spatialStepsMax-1 );
+        rg.forces.vectors.length = Math.min(
+            rg.forces.vectors.length, spatialStepsMax-1 );
         speeds.length = Math.min( speeds.length, spatialStepsMax-1 );
         freePath.length = Math.min( freePath.length, spatialStepsMax-2 );
 
@@ -106,9 +108,9 @@
         var pointS = pos2pointy(
             'S',
               { 
-                cssClass:'tofill tostroke',
+                cssClass: 'tofill tostroke',
+                //to confusing: tpclass : 'force',
                 tpclass : 'force-center',
-                'fill' : 'blue',
               }
         );
 
@@ -140,7 +142,37 @@
                 paintTriangle( pkey, !'cssCls', 'kepler-triangle', 'rgba( 100,100,255,0.2)' );
             }
 
+            //---------------------------------------------------------
+            // //\\ free triangles
+            //---------------------------------------------------------
+            if( pix > 1 ) {
+                var kix = pix-2;
 
+                //makes freeTriangles
+                //freeTriangles array master-index offset is pi = 2
+                var pkey = 'freetr-' + kix;
+                var ktr = tr( pkey );
+                ktr.vertices = [ path[pix-1], freePath[pix-2], S ];
+                //paints Kepler's triangles rg[pkey] along the path:
+                paintTriangle( pkey, 'tofill', 'free-triangle', 'rgba( 100,255,100,0.2)' );
+            }
+            //---------------------------------------------------------
+            // \\// free triangles
+            //---------------------------------------------------------
+        });
+
+        path.forEach( (pt, pix) => {
+            var pkey = 'path-' + pix;
+            tp( pkey, pt );
+            pathRacks[ pix ] = pos2pointy(
+                pkey,
+                  { 
+                    //cssClass:'tofill tostroke',
+                    'fill' : 'transparent',
+                    //tpclass : 'path',
+                    r : 1,
+                  }
+            );
 
             //---------------------------------------------------------
             // //\\ paints forces
@@ -238,27 +270,12 @@
             //---------------------------------------------------------
             // \\// paints forces
             //---------------------------------------------------------
-
-
-
-            //---------------------------------------------------------
-            // //\\ free triangles
-            //---------------------------------------------------------
-            if( pix > 1 ) {
-                var kix = pix-2;
-
-                //makes freeTriangles
-                //freeTriangles array master-index offset is pi = 2
-                var pkey = 'freetr-' + kix;
-                var ktr = tr( pkey );
-                ktr.vertices = [ path[pix-1], freePath[pix-2], S ];
-                //paints Kepler's triangles rg[pkey] along the path:
-                paintTriangle( pkey, !'cssCls', 'free-triangle', 'rgba( 100,255,100,0.2)' );
-            }
-            //---------------------------------------------------------
-            // \\// free triangles
-            //---------------------------------------------------------
         });
+
+
+
+
+
 
 
 
@@ -267,7 +284,11 @@
         var wwPivots = [pointS,A];
         pointies2line(
             'radiusToFirstPoint', wwPivots,
-            {stroke:'black', 'stroke-width':1}
+            {
+                stroke:'black',
+                'stroke-width':1,
+                tpclass : 'path',
+             }
         );
         // \\// paints first radius
 
@@ -328,10 +349,16 @@
         pos2pointy(
             'B',
             { 
-                cssClass : 'tofill tostroke',
+                //this possibly collides with white filling
+                //cssClass : 'tostroke',
+
                 'fill' : 'white',
                 'stroke' : 'blue',
                 'stroke-width' : 3,
+
+                //this possibly collides with white filling
+                //tpclass : 'path',
+
                 r : 6,
             }
         );
@@ -356,6 +383,10 @@
         //----------------------------------------
         function createSlider()
         {
+            tr( 'displayTime', 'value', '' );
+            tr( 'displayStep', 'value', '' );
+            tr( 'thoughtStep', 'value', '' );
+
             //  timeSlider already has a parameter "t"
             //  we are adding more elements and functionality
             //  into this namespace now
@@ -368,15 +399,15 @@
             // //\\ slider object
             tp( 'sliderStart', startPointPos );
             tp( 'sliderEnd', endPointPos );
-            var sliderStart = pos2pointy( 'sliderStart', { fill : '#9999dd' } );
-            var sliderEnd = pos2pointy( 'sliderEnd', { fill : '#9999dd' } );
+            var sliderStart = pos2pointy( 'sliderStart', { fill : '#9999dd', tpclass:'time', cssClass : 'tofill tostroke', } );
+            var sliderEnd = pos2pointy( 'sliderEnd', { fill : '#9999dd', tpclass:'time', cssClass : 'tofill tostroke', } );
             ///draws rails
             var slider = pointies2line(
                  'time-slider',
                  [sliderStart, sliderEnd],
-                 {stroke:'#9999dd', 'stroke-width':3}
+                 {stroke:'#9999dd', 'stroke-width':3, tpclass:'time', cssClass : 'tofill tostroke', }
             );
-            $$.$(slider.svgel).cls( 'tp-time-slider' );
+            $$.$(slider.svgel).cls( 'tp-time' );
             // \\// slider object
 
             var time = rg.time;
@@ -388,6 +419,7 @@
             pos2pointy(
                 'time',
                 {
+                    cssClass : 'tostroke',
                     stroke : '#9999dd',
                     'stroke-width' : 3,
                     fill : 'white',
@@ -619,12 +651,32 @@
             //*******************************************
             function drawEvolution( time )
             {
+//ccc( 'from slider: time=' + time );
                 //skips first step:
                 var steps = pathRacks.length;
-                time = time / steps * (steps-1) + 1;
+                //time = time / steps * (steps-1) + 1;
+                //time = time / steps;
                 var stepIx = Math.floor( time * 4 );
+//ccc( 'stepIx=' + stepIx)
                 var substepIx = stepIx%4;
                 stepIx = ( stepIx - substepIx ) / 4;
+                rg.stepIx.value = stepIx;
+
+//ccc( 'stepIx=' + stepIx + '  substepIx = ' + substepIx);
+
+                rg.displayStep.value = stepIx+'';
+                rg.thoughtStep.value = "thought " + (substepIx+1);
+                if( substepIx <3 ) {
+                    rg.displayTime.value = (stepIx*rg.timeStep.t).toFixed(3);
+                } else {
+                    ////here the thought experiment ended and time
+                    ////begins grow again
+                    var effTime = ((stepIx + (time - stepIx - 0.75) * 4)*(rg.timeStep.t)).toFixed(3);
+                    rg.displayTime.value = effTime;
+                    rg.displayStep.value = (stepIx+1)+'';
+                    rg.thoughtStep.value = '';
+                }
+
                 if( pathRacks.length <= stepIx ) return;
                 clearScenario();
 
@@ -669,6 +721,7 @@
                     $$.$(paintee.svgel).addClass( 'opacity1' ).removeClass( 'opacity0' );
                     //ccc( 'draws: ' +stepIx + '.' + substepIx + ' ' + leafix);
                 });
+                ssF.upcreate_mainLegend();
             }
         }
         //*******************************************

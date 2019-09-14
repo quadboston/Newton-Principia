@@ -126,7 +126,7 @@
 
         sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
             .aNS( 'id', 'figureInternalArea' )
-            .aNS( 'class', "tp-figure-area tofill hidden" )
+            .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
             .aNS( 'fill', "rgba(0,222,222,0.5)" )
             .to(svg)
             ;

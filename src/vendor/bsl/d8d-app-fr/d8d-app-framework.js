@@ -110,8 +110,13 @@
             // making registry here ... still an extra construct
             // adds members to pointWrap
             //
-            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : {};
-
+            //--------------------------------------------
+            //small test case for lemma 3:
+            //if( pointWrap.dragCssCls === "base-2" ) {
+            //    ccc('arg.archived', api.achieved);
+            //}
+            //--------------------------------------------
+            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : { achieved : {} };
 
             //.recall, parent of decPoint is dragSurface
             var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (

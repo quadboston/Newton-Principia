@@ -25,7 +25,7 @@
             becoming arbitrarily close to 0. So the difference between the areas of the 
             ¦inscribed-rectangles¦inscribed rectangles¦¦, the
             ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. 
-            For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
+            For the current ¦figure¦figure¦¦, that ¦widthest-rectangular¦single rectangle¦¦ is on the
             ¿?
             {
                 "left" : "left",

@@ -38,7 +38,6 @@ var ret = `
         border-radius: ${borderRadius};
         cursor: pointer;
 
-        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
         white-space : nowrap;
 
         text-align:center;
@@ -49,6 +48,7 @@ var ret = `
         transition: all .2s ease;
         z-index: 1002;
     }
+
     .master-pagination-btn img {
         width : 7px;
         opacity : 0.5;
@@ -57,15 +57,22 @@ var ret = `
         vertical-align:middle;
     }
 
+    /* //\\ effect of outstanding button in top menu */
     .master-pagination-btn:hover {
         transform: scale(1.1);
-        box-shadow: 0 0px 20px 0 rgba(32, 41, 54, 0.2);
+        box-shadow: 0 0px 12px 0 rgba(32, 41, 54, 0.2);
         transition: all .2s ease;
     }
+    .master-pagination-btn.current-lemma:hover,
     .master-pagination-btn.current-lemma {
-        transform: none;
-        box-shadow: 0 0px 0px 0 rgba(32, 41, 54, 0.2);
+        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
+        transform: scale(1.0);
     }
+    .master-pagination-btn {
+        transform: none;
+        box-shadow: 0 0px 4px 0 rgba(32, 41, 54, 0.2);
+    }
+    /* \\// effect of outstanding button in top menu */
 
     .master-pagination-btn.non-displayed {
         display:none;

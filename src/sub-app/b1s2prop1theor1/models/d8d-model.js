@@ -98,7 +98,7 @@
             var pointWrap = rg.time;
             //:sets dragger handle color
             pointWrap.dragCssCls    = 'time-slider-point';
-            pointWrap.dragDecorColor= '#9999dd';
+            pointWrap.dragDecorColor= '#00aaba';
 
             var argc =
             {
@@ -139,7 +139,7 @@
                         rg.spatialStepsMax.pos;
                     time.t = Math.max(
                              Math.min( newTime, rg.spatialStepsMax.pos )
-                             , 0 );
+                             , 1.75000001 ); //1.75 fits slider 4-step scenario
                     time.doUpdateModelAndMediaPosition();
                     break;
             }

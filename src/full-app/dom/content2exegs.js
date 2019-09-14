@@ -136,6 +136,12 @@
                     }
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
+                    // //\\ establishes fixed colors lemma-wise
+                    if( ns.h( essayHeader, 'fixed-colors' ) ) {
+                        Object.assign( ssD, { 'fixed-colors' : essayHeader[ 'fixed-colors' ] } );
+                    }
+                    // \\// establishes fixed colors lemma-wise
+
                     //.todm: patch: missed submodel property does default to 'common'
                     //              empty string denotes absence of submodel
                     essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?

@@ -54,48 +54,61 @@
             var cls = anchor.className;
             var match = cls.match( /tl-(\S*)/ );
             if( !match ) return;
-            var colorIx = parseInt( match[1] );
-            var alink = topics.topicIndexedLinks[ colorIx ];
-
+            var tplink_ix       = parseInt( match[1] );
+            var alink           = topics.topicIndexedLinks[ tplink_ix ];
+            var anchorIsBold    = alink && alink.anchorIsBold;
             //-----------------------------
             // //\\ assigns color to anchor
             //-----------------------------
             //:gets global shape color
             //:fist color of anchor stack of linked shapes
             var alkeys = Object.keys( alink.shapes );
-            //.gets first shape id
-            var firstShapeId = alkeys[0];
-            //.gets first shape
-            var globalShape = topics.topicShapes[ firstShapeId ];
-            var g_rgba = globalShape.rgba;
-            var g_rgb1 = globalShape.rgb1;
-            var rgba = g_rgba;
-            var rgb1 = g_rgb1;
 
-            if( sconf.topicColorPerAnchor ) {
-                //alternative color from anchor stack
-                //anchor generated color
-                var rgba = alink.rgba;
-                var rgb1 = alink.rgb1;
+            if( alink.parsedLinks.length > 1 ) {
+                ////does something special for the color of this link,
+                ////there are many shapes and colors referenced by the link,
+                ////so it is not known which which color to use, so
+                ////we use black:
+                var rgba = 'rgba( 0, 0, 0, 0.7 )';
+                var rgb1 = 'rgba( 0, 0, 0, 1 )';
+                //ccc( alink.parsedLinks );
+            } else {
+
+                //.gets first shape id
+                var firstShapeId = alkeys[0];
+                //.gets first shape
+                var globalShape = topics.topicShapes[ firstShapeId ];
+                var g_rgba = globalShape.rgba;
+                var g_rgb1 = globalShape.rgb1;
+                var rgba = g_rgba;
+                var rgb1 = g_rgb1;
+
+                if( sconf.topicColorPerAnchor ) {
+                    //alternative color from anchor stack
+                    //anchor generated color
+                    var rgba = alink.rgba;
+                    var rgb1 = alink.rgb1;
+                }
             }
             ///assigns color to anchor CSS
             //  this feature is disabled because bloats MathJax font
             //  anchors2colors += `
-            //  a.tl-${alink.colorId} {
+            //  a.tl-${alink.tplink_ix_str} {
             //       padding-left:3px;
             //       padding-right:3px;
             anchors2colors += `
-                a.tl-${alink.colorId} {
+                a.tl-${alink.tplink_ix + ''} {
                    border-radius:4px;
                    color:${rgb1};
                    opacity:0.8;
+                   font-weight : ${anchorIsBold?'bold':'normal'};
                 }
-                a.tl-${alink.colorId}:hover {
+                a.tl-${alink.tplink_ix + ''}:hover {
                    opacity:1;
                    background-color:#eaeaea;
                    cursor:default;
                 }
-                a.tl-${alink.colorId}:hover span{
+                a.tl-${alink.tplink_ix + ''}:hover span{
                    font-weight :bold;
                    background-color:#eaeaea;
                    cursor:default;
@@ -108,7 +121,7 @@
             //-----------------------------------
             //inits mouse machine
             //-----------------------------------
-            setMouseHiglight( anchor, colorIx );
+            setMouseHiglight( anchor, tplink_ix );
 
 
             Object.keys( alink.shapes ).forEach( skey => {
@@ -177,22 +190,22 @@
                     /* ================= */
                     /* //|| highlighted  */
                     /* ================= */
-                    .${cssp}-approot.tp-${colorIx} .tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey} {
                         opacity: 1;
                     }
-                    .${cssp}-approot.tp-${colorIx} .tohidden.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} .tohidden.tp-${skey} {
                         visibility:visible;
                     }
                     /* does bold on anchor hover */
-                    .${cssp}-approot.tp-${colorIx} .tp-${skey}.tobold {
+                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey}.tobold {
                        font-weight : bold;
                     }
 
-                    .${cssp}-approot.tp-${colorIx} svg .tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey} {
                         fill-opacity : 0.7;
                         stroke-opacity: 1;
                     }
-                    .${cssp}-approot.tp-${colorIx} svg .tp-${skey}.tostroke {
+                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey}.tostroke {
                         stroke-width:8px;
                     }
                     /* ================= */
@@ -206,7 +219,7 @@
                         fill-opacity : 0.7;
                     }
                     /* ***** highlighted */
-                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
                         fill-opacity : 1;
                     }
                     /* // ||// special for svg-text */
@@ -214,7 +227,7 @@
                 `;
                 ///boldifies svg-text at topic highlight
                 alink.col8shape_2_opac[ skey ] += `
-                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
                         font-weight:bold;
                     }
                 `;

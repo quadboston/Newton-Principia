@@ -16,12 +16,16 @@ Text commenting an entire lemma called an essay here.
         *..*
         <exegesis body>
 
-    The <exegesis body> is further separated to activity-areas:
+    The <exegesis body> is comprised of activity-areas.
+    Activity areas contain either activity-json or exeg's content.
+    Exegs's content is comprised with topic-anchors, and content-text between them.
+
+    Activity-json is indicated with "?" at the beginning.
 
         ¿       ( separates active areas )
-        ¦       ( separates topics, this is not ASCII "|" char )
+        ¦       ( separates topic-anchors, this is not ASCII "|" char )
     
-    The remaining text is a mix of LaTeX text and HTML.
+    The content-text is a mix of LaTeX text and HTML.
     Between HTML tags, there is an ordinary text which can have any characters except,
     obviously, LaTeX escape chars, except upper-level-exegs separators and except
     ordinary HTML-special chars:
@@ -29,8 +33,8 @@ Text commenting an entire lemma called an essay here.
 
     The contributor can use any HTML tags.
 
-Active areas have content which depends on exeg index, depends on pair (theorion,aspect).
-    For example:
+    Example of activity-json:
+        ...
         For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
         ¿?
         {
@@ -38,6 +42,7 @@ Active areas have content which depends on exeg index, depends on pair (theorion
             "right" : "right"
         }
         ¿
+        ...
     Active area is simply a JSON key/value text where effect of key is defined in JavaScript code.
 
 references.html,
@@ -69,7 +74,7 @@ Topic-engine highlight links
     An alternative way to enable topic-links is to manually code like
         in content:
             <a class="tl-mytopic" href="">my text</a>
-        and in JavaScript:
+        and in HTML (including JavaScript-controlled HTML):
             <circle class="tp-mytopic tofill tobold ... " ...
 
     ¦mytopic-1 mytopc-2¦sum¦¦

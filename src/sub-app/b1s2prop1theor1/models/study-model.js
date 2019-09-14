@@ -74,8 +74,7 @@
         tr( 'forces', 'vectors', [] );
 
         //sets namespace for slider and initial time value
-        tr( 'time','t', 0 ); //there will be a lot of parameters
-                             //added to this object
+        tr( 'time','t', 1.75000001 ); //1.75000001 for first nice value in slider
         tp( 'speeds', [] )[0] = sconf.v0;
 
         //sets point B
@@ -140,17 +139,20 @@
         // //\\ calculates body's motion
         //      calcuates basic values, from which
         //      decorational values will be derived
-        //      later
+        //      later;
+        //      time here starts with 0 and
+        //      has nothing to do with
+        //      time rg.time.... set for lemma;
         //=========================================
         (function() {
             //sconf.timeMax,
             var path = rg.path.pos;
             var timeStep = rg.timeStep.t;
-
             for( pi = 1; pi<spatialStepsMax; pi++ ) {
 
                 //takes speed from previous step
                 var speed = speeds[pi-1];
+                var formerSpeed = pi > 1 ? speeds[pi-2] : speed;
 
                 //speed does advance the path increment
                 var step =
@@ -158,6 +160,7 @@
                     speed[0]*timeStep, 
                     speed[1]*timeStep,
                 ];
+
                 //path increment is added to path
                 path[pi] =
                 [
@@ -170,7 +173,7 @@
                 //(but have contributions of forces before current
                 //force is applied)
                 if( pi > 1 ) {
-                    var freeSpeed = speeds[pi-2];
+                    var freeSpeed = formerSpeed;
                     freePath[pi-2] =
                     [
                         path[pi-1][0]+freeSpeed[0]*timeStep,
@@ -214,6 +217,7 @@
         // //\\ media part
         //-------------------------------------------------------
         sn(SUB_MODEL, studyMods ).upcreateMedia();
+        //ssF.upcreate_mainLegend(); //placed into "slider"
         //-------------------------------------------------------
         // \\// media part
         //-------------------------------------------------------

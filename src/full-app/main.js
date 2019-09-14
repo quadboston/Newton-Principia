@@ -198,7 +198,7 @@
         if( fconf.sappId !== 'home-pane' ) {
             ////the body which follows below can be put in cb for image-loader-ajax
             fmethods.createLemmaDom();
-            sDomF.exeg_2_frags();
+            sDomF.exeg_2_frags(); //to active-areas
             sDomF.frags_2_essdom8topiccss();
             sapp.init_sapp();
             sDomF.populateMenu();

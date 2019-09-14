@@ -100,7 +100,7 @@
         // //\\ page master menu
         //==================================================
         var ww = fconf.sappModulesList[ fconf.sappId ];
-        var caption = ww.book + '.' + ww.caption + '.';
+        var caption = ww.book + '. ' + ww.caption + '.';
 
         var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
             .to( fapp.fappRoot$ )

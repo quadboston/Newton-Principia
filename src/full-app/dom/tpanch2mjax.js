@@ -32,6 +32,9 @@
     {
         var setMouseHiglight = sDomF.setMouseHiglight;
         var topicLinks = topics.topicLinks;
+
+        ///this search must be protected: duplicates will cause
+        ///duplicate substitutions
         var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
         if( !delayedAns.length ) return;
 
@@ -40,7 +43,7 @@
             var match = cls.match( /\btl-(\S*)\b/ );
             if( !match ) return;
             var delayedFar = cls.match( /\bdelayed-far\b/ );
-            var colorIx = parseInt( match[1] );
+            var tplink_ix = parseInt( match[1] );
             var sib = an;
             var targetText = an.textContent;
             var targetFound = false;
@@ -62,13 +65,24 @@
                                 ////paints all matching leaf nodes in MathJax tree
                                 //if( targetText === 'G' ) ccc( 'G target found', grand );
                                 targetFound = true;
+
+                                //--------------------------------------------------
+                                // //\\ this "if" protects topic-anchors against
+                                //--------------------------------------------------
+                                //      double nesting ... the problem is that
+                                //      multiple initiating |....|...|| anchors
+                                //      can repeatedly convert the same element causing
+                                //      this nesting ....
                                 //. ...'A' ... is an extra protection against MathJax problem
                                 //.            the problem was nested? wrapping into <a ...
-                                //if( grand.tagName !== 'A' ) {
+                                if( grand.tagName !== 'A' ) {
                                     grand.innerHTML = "<a class=" + match[0] +
                                         '>' + targetText + '</a>';
-                                    setMouseHiglight( grand, colorIx );
-                                //}
+                                    setMouseHiglight( grand, tplink_ix );
+                                }
+                                //--------------------------------------------------
+                                // \\// this "if" protects topic-anchors against
+                                //--------------------------------------------------
                             }
                         }
                     });

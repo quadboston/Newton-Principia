@@ -39,6 +39,11 @@ Jargon
 
 Vital for developer
 
+    * some svg/html elements may have ".hidden" css class; if they are a part
+    of tp-mytopic engine, then to unlock .hidden state when tp-link is hovered,
+    the token, "tohidden" must be supplied to this element.
+
+
     Related vital topic is "Content essay syntax" in README-MATHJAX-WRITING.txt.
 
     get-content-texts.js and topic-engine.js convert essay-script to HTML/JavaScript

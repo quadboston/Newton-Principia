@@ -1541,8 +1541,13 @@
             // making registry here ... still an extra construct
             // adds members to pointWrap
             //
-            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : {};
-
+            //--------------------------------------------
+            //small test case for lemma 3:
+            //if( pointWrap.dragCssCls === "base-2" ) {
+            //    ccc('arg.archived', api.achieved);
+            //}
+            //--------------------------------------------
+            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : { achieved : {} };
 
             //.recall, parent of decPoint is dragSurface
             var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (
@@ -2713,6 +2718,17 @@
     };
     // \\// some proofreading 
 
+    //api:arg = [r,g,b,a ]
+    ns.rgba2hsla = function( arg ) {
+        var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
+        return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3] ];
+    };
+
+    ///not tested
+    ns.rgba2colors = function( arg ) {
+        var hsl = ns.rgba2hsla( arg );
+        return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3] );
+    }
 
     //was: function getRandomColor()
     ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
@@ -4323,7 +4339,6 @@ var ret = `
         border-radius: ${borderRadius};
         cursor: pointer;
 
-        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
         white-space : nowrap;
 
         text-align:center;
@@ -4334,6 +4349,7 @@ var ret = `
         transition: all .2s ease;
         z-index: 1002;
     }
+
     .master-pagination-btn img {
         width : 7px;
         opacity : 0.5;
@@ -4342,15 +4358,22 @@ var ret = `
         vertical-align:middle;
     }
 
+    /* //\\ effect of outstanding button in top menu */
     .master-pagination-btn:hover {
         transform: scale(1.1);
-        box-shadow: 0 0px 20px 0 rgba(32, 41, 54, 0.2);
+        box-shadow: 0 0px 12px 0 rgba(32, 41, 54, 0.2);
         transition: all .2s ease;
     }
+    .master-pagination-btn.current-lemma:hover,
     .master-pagination-btn.current-lemma {
-        transform: none;
-        box-shadow: 0 0px 0px 0 rgba(32, 41, 54, 0.2);
+        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
+        transform: scale(1.0);
     }
+    .master-pagination-btn {
+        transform: none;
+        box-shadow: 0 0px 4px 0 rgba(32, 41, 54, 0.2);
+    }
+    /* \\// effect of outstanding button in top menu */
 
     .master-pagination-btn.non-displayed {
         display:none;
@@ -5543,7 +5566,7 @@ var ret = `
         // //\\ page master menu
         //==================================================
         var ww = fconf.sappModulesList[ fconf.sappId ];
-        var caption = ww.book + '.' + ww.caption + '.';
+        var caption = ww.book + '. ' + ww.caption + '.';
 
         var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
             .to( fapp.fappRoot$ )
@@ -5796,7 +5819,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2356; //application version
+    fapp.version =  2417; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -7451,7 +7474,7 @@ var ret = `
     //---------------------------------------------
     // //\\ topic engine variables
     //---------------------------------------------
-    var topicsCount = 0;
+    var tplinkCount = 0;
     var shapesCount = 0;
     var topicLinks = topics.topicLinks = {};
     var topicShapes = topics.topicShapes = {};
@@ -7459,7 +7482,7 @@ var ret = `
 
     var SPACE_reg = /\s+/;
     var TOP_ANCH_reg = 
-        '¦([^¦]+)¦' +   //catches topicId
+        '¦([^¦]+)¦' +   //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
         '¦¦'        +   //catches topic terminator
         '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
@@ -7553,7 +7576,9 @@ var ret = `
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
-                aFrags_2_tpAnchors( exeg );
+                //start here:
+                //replaces script-anchors with html-anchors:
+                aFrags_2_aFragsWithAnchors( exeg );
                 //above line produces this: exeg.builtFrags
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
@@ -7585,16 +7610,18 @@ var ret = `
     //===============================================
     //
     //===============================================
-    function aFrags_2_tpAnchors( exeg )
+    function aFrags_2_aFragsWithAnchors( exeg )
     {
         var bfs = exeg.builtFrags = [];
         exeg.activeFrags.forEach( function( activeFrag, tix ) {
             bfs[tix] = {};
             if( typeof( activeFrag ) !== 'object' ) {
+                ////normalizes activeFrag to form { prop:value }
                 activeFrag = { 'static' : activeFrag };
             }
             bfs[tix].activeFrags = {};
             ns.eachprop( activeFrag, ( afrag, akey ) => {
+                ////normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 bfs[tix].activeFrags[akey] =
                     { activeFrag : afrag.replace( topAnch_reg, replWithAnchor ) }
             });
@@ -7612,8 +7639,8 @@ var ret = `
             dix += farFlag ? ' delayed-far' : '';
             
             //.we cannot use skey because spaces inside of it, so
-            //.we use colorId
-            var repl = '<a class="tl-' + rack.colorId + dix + '">'+ scaption +
+            //.we use tplink_ix_str
+            var repl = '<a class="tl-' + rack.tplink_ix + dix + '">'+ scaption +
                        '</a>' + (remainder || '' );
             return repl;
         }
@@ -7629,21 +7656,43 @@ var ret = `
         var LIGHT = 30;
         var OPACITY = 0.6;
         var colorsCount = topicIndexedLinks.length;
+
+        // //\\ apparently used only with alternative color-linking
+        //      by anchor and not by shape sconf.topicColorPerAnchor
         topicIndexedLinks.forEach( ( tLink, cCount ) => {
             var hue = 359 / colorsCount * cCount;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, OPACITY );
+            var opacity = OPACITY;
+            if( tLink['fixed-color'] ) {
+                //ccc( 'rgba=',tLink['fixed-color'] );
+                var overridden = ns.rgba2hsla( tLink['fixed-color'] );
+                hue = overridden[ 0 ];
+                var opacity = overridden[ 3 ] || OPACITY;
+            }
+            //ccc( 'hsla=', [ hue, SATUR, LIGHT, OPACITY ] );
+            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
             tLink.rgba = corRack.rgba;
             tLink.rgbaCSS = corRack.rgbaCSS;
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
             tLink.rgb1 = corRack.rgba;
         });
+        // \\// apparently used only with alternative color-linking
+
 
         ns.eachprop( topicShapes, ( shape, scount ) => {
             var sc = shape.shapesCount;
             var rem = sc%2;
             var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( shapesCount / 2 );
             var hue = 359 / shapesCount * zebra;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, OPACITY );
+            var opacity = OPACITY;
+
+            var fc = shape['fixed-color'];
+            if( fc ) {
+                var overridden = ns.rgba2hsla( fc );
+                hue = overridden[ 0 ];
+                var opacity = overridden[ 3 ] || OPACITY;
+            }
+
+            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
             shape.rgba = corRack.rgba;
             shape.rgbaCSS = corRack.rgbaCSS;
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
@@ -7672,12 +7721,11 @@ var ret = `
             //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
             //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
             //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
-
             MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,domEl]);
         }
     }
 
-    ///collecting |...|..|| anchor-topics
+    ///collecting |...|..|| - like anchor-topics
     ///does loop via all possible active fragments
     function fragment_2_indexedTopics( activeFrag )
     {
@@ -7690,19 +7738,32 @@ var ret = `
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
-                var topicId = parsedLink[1];
-                if( !topicLinks.hasOwnProperty( topicId ) ) {
-                    var colorIx = topicsCount++;
-                    topicIndexedLinks[ colorIx ] =
-                    topicLinks[ topicId ] = {
-                        colorIx:colorIx,
-                        colorId:colorIx+'',
-                        shapes:{},
-                        link:parsedLink[2]
+
+                //this is "anchor mark" ... not the "unique key"
+                var tplinkConf = parsedLink[1];
+                //ccc( 'tplinkConf='+tplinkConf );
+
+                ///this makes tplink missed from tplink_ix index, but
+                ///does not matter because these links are searched and
+                ///replaced again in aFrags_2_aFragsWithAnchor
+                if( !topicLinks.hasOwnProperty( tplinkConf ) ) {
+
+                    //.it counts tplinkConf which "duplicates"
+                    //.shapes or do not map to any shape
+                    var tplink_ix = tplinkCount++;
+
+                    topicIndexedLinks[ tplink_ix ] =
+                    topicLinks[ tplinkConf ] = {
+                        tplink_ix : tplink_ix,
+                        shapes : {},
+                        //link:parsedLink[2], not-used
+                        'fixed-color' :
+                            ns.h( ssD, 'fixed-colors' ) &&
+                            ns.haz( ssD['fixed-colors'], tplinkConf )
                     };
                 }
-                var tLink = topicLinks[ topicId ];
-                var colorIx = tLink.colorIx;
+                var tLink = topicLinks[ tplinkConf ];
+                var tplink_ix = tLink.tplink_ix;
                 //=========================================
                 // \\// indexes topic links and colors
                 //=========================================
@@ -7710,20 +7771,33 @@ var ret = `
                 //=========================================
                 // //\\ indexes shapes locally and globally
                 //=========================================
-                var parsedLinks = topicId.split( SPACE_reg );
-                parsedLinks.forEach( shapeId_ => {
 
-                    var shapeId = shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
-                        '_' + key1.toLowerCase()
-                    ));
+                // splits anchor-configuration to smaller tokens, each
+                // token for separate shape
+                var parsedLinks = tplinkConf.split( SPACE_reg );
+                tLink.parsedLinks = parsedLinks;
+
+                // loops via separate shapes
+                parsedLinks.forEach( shapeId_ => {
+                    var shapeId =
+                        shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
+                            '_' + key1.toLowerCase()
+                        ));
                     //ccc( shapeId );
                     tLink.shapes[ shapeId ] = true;
+                    //patch: todm:
+                    if( 'cssbold' === shapeId ) {
+                        tLink.anchorIsBold = true;
+                    }
+
+                    ///checks does this shape exist globally-lemma-wise
                     if( !topicShapes.hasOwnProperty( shapeId ) ) {
                         topicShapes[ shapeId ] = {
-                            topicId : topicId,
-                            colorIx:colorIx,
-                            shapesCount:shapesCount,
-                            shapeId : shapeId
+                            tplinkConf      : tplinkConf,
+                            'fixed-color'   : tLink[ 'fixed-color' ],
+                            tplink_ix       : tplink_ix,
+                            shapesCount     : shapesCount,
+                            shapeId         : shapeId,
                         }
                         shapesCount++;
                     }
@@ -7966,6 +8040,12 @@ var ret = `
                     }
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
+                    // //\\ establishes fixed colors lemma-wise
+                    if( ns.h( essayHeader, 'fixed-colors' ) ) {
+                        Object.assign( ssD, { 'fixed-colors' : essayHeader[ 'fixed-colors' ] } );
+                    }
+                    // \\// establishes fixed colors lemma-wise
+
                     //.todm: patch: missed submodel property does default to 'common'
                     //              empty string denotes absence of submodel
                     essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
@@ -8146,8 +8226,10 @@ var ret = `
 
 
 
-
-
+    ///=======================================================
+    ///splits provided exegs into active-areas
+    ///better to say?: (lemma-segments to active-areas)
+    ///=======================================================
     function exeg_2_frags()
     {
         //==============================================
@@ -8237,6 +8319,9 @@ var ret = `
     {
         var setMouseHiglight = sDomF.setMouseHiglight;
         var topicLinks = topics.topicLinks;
+
+        ///this search must be protected: duplicates will cause
+        ///duplicate substitutions
         var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
         if( !delayedAns.length ) return;
 
@@ -8245,7 +8330,7 @@ var ret = `
             var match = cls.match( /\btl-(\S*)\b/ );
             if( !match ) return;
             var delayedFar = cls.match( /\bdelayed-far\b/ );
-            var colorIx = parseInt( match[1] );
+            var tplink_ix = parseInt( match[1] );
             var sib = an;
             var targetText = an.textContent;
             var targetFound = false;
@@ -8267,13 +8352,24 @@ var ret = `
                                 ////paints all matching leaf nodes in MathJax tree
                                 //if( targetText === 'G' ) ccc( 'G target found', grand );
                                 targetFound = true;
+
+                                //--------------------------------------------------
+                                // //\\ this "if" protects topic-anchors against
+                                //--------------------------------------------------
+                                //      double nesting ... the problem is that
+                                //      multiple initiating |....|...|| anchors
+                                //      can repeatedly convert the same element causing
+                                //      this nesting ....
                                 //. ...'A' ... is an extra protection against MathJax problem
                                 //.            the problem was nested? wrapping into <a ...
-                                //if( grand.tagName !== 'A' ) {
+                                if( grand.tagName !== 'A' ) {
                                     grand.innerHTML = "<a class=" + match[0] +
                                         '>' + targetText + '</a>';
-                                    setMouseHiglight( grand, colorIx );
-                                //}
+                                    setMouseHiglight( grand, tplink_ix );
+                                }
+                                //--------------------------------------------------
+                                // \\// this "if" protects topic-anchors against
+                                //--------------------------------------------------
                             }
                         }
                     });
@@ -8349,48 +8445,61 @@ var ret = `
             var cls = anchor.className;
             var match = cls.match( /tl-(\S*)/ );
             if( !match ) return;
-            var colorIx = parseInt( match[1] );
-            var alink = topics.topicIndexedLinks[ colorIx ];
-
+            var tplink_ix       = parseInt( match[1] );
+            var alink           = topics.topicIndexedLinks[ tplink_ix ];
+            var anchorIsBold    = alink && alink.anchorIsBold;
             //-----------------------------
             // //\\ assigns color to anchor
             //-----------------------------
             //:gets global shape color
             //:fist color of anchor stack of linked shapes
             var alkeys = Object.keys( alink.shapes );
-            //.gets first shape id
-            var firstShapeId = alkeys[0];
-            //.gets first shape
-            var globalShape = topics.topicShapes[ firstShapeId ];
-            var g_rgba = globalShape.rgba;
-            var g_rgb1 = globalShape.rgb1;
-            var rgba = g_rgba;
-            var rgb1 = g_rgb1;
 
-            if( sconf.topicColorPerAnchor ) {
-                //alternative color from anchor stack
-                //anchor generated color
-                var rgba = alink.rgba;
-                var rgb1 = alink.rgb1;
+            if( alink.parsedLinks.length > 1 ) {
+                ////does something special for the color of this link,
+                ////there are many shapes and colors referenced by the link,
+                ////so it is not known which which color to use, so
+                ////we use black:
+                var rgba = 'rgba( 0, 0, 0, 0.7 )';
+                var rgb1 = 'rgba( 0, 0, 0, 1 )';
+                //ccc( alink.parsedLinks );
+            } else {
+
+                //.gets first shape id
+                var firstShapeId = alkeys[0];
+                //.gets first shape
+                var globalShape = topics.topicShapes[ firstShapeId ];
+                var g_rgba = globalShape.rgba;
+                var g_rgb1 = globalShape.rgb1;
+                var rgba = g_rgba;
+                var rgb1 = g_rgb1;
+
+                if( sconf.topicColorPerAnchor ) {
+                    //alternative color from anchor stack
+                    //anchor generated color
+                    var rgba = alink.rgba;
+                    var rgb1 = alink.rgb1;
+                }
             }
             ///assigns color to anchor CSS
             //  this feature is disabled because bloats MathJax font
             //  anchors2colors += `
-            //  a.tl-${alink.colorId} {
+            //  a.tl-${alink.tplink_ix_str} {
             //       padding-left:3px;
             //       padding-right:3px;
             anchors2colors += `
-                a.tl-${alink.colorId} {
+                a.tl-${alink.tplink_ix + ''} {
                    border-radius:4px;
                    color:${rgb1};
                    opacity:0.8;
+                   font-weight : ${anchorIsBold?'bold':'normal'};
                 }
-                a.tl-${alink.colorId}:hover {
+                a.tl-${alink.tplink_ix + ''}:hover {
                    opacity:1;
                    background-color:#eaeaea;
                    cursor:default;
                 }
-                a.tl-${alink.colorId}:hover span{
+                a.tl-${alink.tplink_ix + ''}:hover span{
                    font-weight :bold;
                    background-color:#eaeaea;
                    cursor:default;
@@ -8403,7 +8512,7 @@ var ret = `
             //-----------------------------------
             //inits mouse machine
             //-----------------------------------
-            setMouseHiglight( anchor, colorIx );
+            setMouseHiglight( anchor, tplink_ix );
 
 
             Object.keys( alink.shapes ).forEach( skey => {
@@ -8472,22 +8581,22 @@ var ret = `
                     /* ================= */
                     /* //|| highlighted  */
                     /* ================= */
-                    .${cssp}-approot.tp-${colorIx} .tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey} {
                         opacity: 1;
                     }
-                    .${cssp}-approot.tp-${colorIx} .tohidden.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} .tohidden.tp-${skey} {
                         visibility:visible;
                     }
                     /* does bold on anchor hover */
-                    .${cssp}-approot.tp-${colorIx} .tp-${skey}.tobold {
+                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey}.tobold {
                        font-weight : bold;
                     }
 
-                    .${cssp}-approot.tp-${colorIx} svg .tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey} {
                         fill-opacity : 0.7;
                         stroke-opacity: 1;
                     }
-                    .${cssp}-approot.tp-${colorIx} svg .tp-${skey}.tostroke {
+                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey}.tostroke {
                         stroke-width:8px;
                     }
                     /* ================= */
@@ -8501,7 +8610,7 @@ var ret = `
                         fill-opacity : 0.7;
                     }
                     /* ***** highlighted */
-                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
                         fill-opacity : 1;
                     }
                     /* // ||// special for svg-text */
@@ -8509,7 +8618,7 @@ var ret = `
                 `;
                 ///boldifies svg-text at topic highlight
                 alink.col8shape_2_opac[ skey ] += `
-                    .${cssp}-approot.tp-${colorIx} svg text.tp-${skey} {
+                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
                         font-weight:bold;
                     }
                 `;
@@ -9356,7 +9465,7 @@ var ret = `
         if( fconf.sappId !== 'home-pane' ) {
             ////the body which follows below can be put in cb for image-loader-ajax
             fmethods.createLemmaDom();
-            sDomF.exeg_2_frags();
+            sDomF.exeg_2_frags(); //to active-areas
             sDomF.frags_2_essdom8topiccss();
             sapp.init_sapp();
             sDomF.populateMenu();

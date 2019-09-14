@@ -25,7 +25,7 @@
     //---------------------------------------------
     // //\\ topic engine variables
     //---------------------------------------------
-    var topicsCount = 0;
+    var tplinkCount = 0;
     var shapesCount = 0;
     var topicLinks = topics.topicLinks = {};
     var topicShapes = topics.topicShapes = {};
@@ -33,7 +33,7 @@
 
     var SPACE_reg = /\s+/;
     var TOP_ANCH_reg = 
-        '¦([^¦]+)¦' +   //catches topicId
+        '¦([^¦]+)¦' +   //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
         '¦¦'        +   //catches topic terminator
         '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
@@ -127,7 +127,9 @@
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
-                aFrags_2_tpAnchors( exeg );
+                //start here:
+                //replaces script-anchors with html-anchors:
+                aFrags_2_aFragsWithAnchors( exeg );
                 //above line produces this: exeg.builtFrags
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
@@ -159,16 +161,18 @@
     //===============================================
     //
     //===============================================
-    function aFrags_2_tpAnchors( exeg )
+    function aFrags_2_aFragsWithAnchors( exeg )
     {
         var bfs = exeg.builtFrags = [];
         exeg.activeFrags.forEach( function( activeFrag, tix ) {
             bfs[tix] = {};
             if( typeof( activeFrag ) !== 'object' ) {
+                ////normalizes activeFrag to form { prop:value }
                 activeFrag = { 'static' : activeFrag };
             }
             bfs[tix].activeFrags = {};
             ns.eachprop( activeFrag, ( afrag, akey ) => {
+                ////normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 bfs[tix].activeFrags[akey] =
                     { activeFrag : afrag.replace( topAnch_reg, replWithAnchor ) }
             });
@@ -186,8 +190,8 @@
             dix += farFlag ? ' delayed-far' : '';
             
             //.we cannot use skey because spaces inside of it, so
-            //.we use colorId
-            var repl = '<a class="tl-' + rack.colorId + dix + '">'+ scaption +
+            //.we use tplink_ix_str
+            var repl = '<a class="tl-' + rack.tplink_ix + dix + '">'+ scaption +
                        '</a>' + (remainder || '' );
             return repl;
         }
@@ -203,21 +207,43 @@
         var LIGHT = 30;
         var OPACITY = 0.6;
         var colorsCount = topicIndexedLinks.length;
+
+        // //\\ apparently used only with alternative color-linking
+        //      by anchor and not by shape sconf.topicColorPerAnchor
         topicIndexedLinks.forEach( ( tLink, cCount ) => {
             var hue = 359 / colorsCount * cCount;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, OPACITY );
+            var opacity = OPACITY;
+            if( tLink['fixed-color'] ) {
+                //ccc( 'rgba=',tLink['fixed-color'] );
+                var overridden = ns.rgba2hsla( tLink['fixed-color'] );
+                hue = overridden[ 0 ];
+                var opacity = overridden[ 3 ] || OPACITY;
+            }
+            //ccc( 'hsla=', [ hue, SATUR, LIGHT, OPACITY ] );
+            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
             tLink.rgba = corRack.rgba;
             tLink.rgbaCSS = corRack.rgbaCSS;
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
             tLink.rgb1 = corRack.rgba;
         });
+        // \\// apparently used only with alternative color-linking
+
 
         ns.eachprop( topicShapes, ( shape, scount ) => {
             var sc = shape.shapesCount;
             var rem = sc%2;
             var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( shapesCount / 2 );
             var hue = 359 / shapesCount * zebra;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, OPACITY );
+            var opacity = OPACITY;
+
+            var fc = shape['fixed-color'];
+            if( fc ) {
+                var overridden = ns.rgba2hsla( fc );
+                hue = overridden[ 0 ];
+                var opacity = overridden[ 3 ] || OPACITY;
+            }
+
+            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
             shape.rgba = corRack.rgba;
             shape.rgbaCSS = corRack.rgbaCSS;
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
@@ -246,12 +272,11 @@
             //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
             //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
             //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
-
             MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,domEl]);
         }
     }
 
-    ///collecting |...|..|| anchor-topics
+    ///collecting |...|..|| - like anchor-topics
     ///does loop via all possible active fragments
     function fragment_2_indexedTopics( activeFrag )
     {
@@ -264,19 +289,32 @@
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
-                var topicId = parsedLink[1];
-                if( !topicLinks.hasOwnProperty( topicId ) ) {
-                    var colorIx = topicsCount++;
-                    topicIndexedLinks[ colorIx ] =
-                    topicLinks[ topicId ] = {
-                        colorIx:colorIx,
-                        colorId:colorIx+'',
-                        shapes:{},
-                        link:parsedLink[2]
+
+                //this is "anchor mark" ... not the "unique key"
+                var tplinkConf = parsedLink[1];
+                //ccc( 'tplinkConf='+tplinkConf );
+
+                ///this makes tplink missed from tplink_ix index, but
+                ///does not matter because these links are searched and
+                ///replaced again in aFrags_2_aFragsWithAnchor
+                if( !topicLinks.hasOwnProperty( tplinkConf ) ) {
+
+                    //.it counts tplinkConf which "duplicates"
+                    //.shapes or do not map to any shape
+                    var tplink_ix = tplinkCount++;
+
+                    topicIndexedLinks[ tplink_ix ] =
+                    topicLinks[ tplinkConf ] = {
+                        tplink_ix : tplink_ix,
+                        shapes : {},
+                        //link:parsedLink[2], not-used
+                        'fixed-color' :
+                            ns.h( ssD, 'fixed-colors' ) &&
+                            ns.haz( ssD['fixed-colors'], tplinkConf )
                     };
                 }
-                var tLink = topicLinks[ topicId ];
-                var colorIx = tLink.colorIx;
+                var tLink = topicLinks[ tplinkConf ];
+                var tplink_ix = tLink.tplink_ix;
                 //=========================================
                 // \\// indexes topic links and colors
                 //=========================================
@@ -284,20 +322,33 @@
                 //=========================================
                 // //\\ indexes shapes locally and globally
                 //=========================================
-                var parsedLinks = topicId.split( SPACE_reg );
-                parsedLinks.forEach( shapeId_ => {
 
-                    var shapeId = shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
-                        '_' + key1.toLowerCase()
-                    ));
+                // splits anchor-configuration to smaller tokens, each
+                // token for separate shape
+                var parsedLinks = tplinkConf.split( SPACE_reg );
+                tLink.parsedLinks = parsedLinks;
+
+                // loops via separate shapes
+                parsedLinks.forEach( shapeId_ => {
+                    var shapeId =
+                        shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
+                            '_' + key1.toLowerCase()
+                        ));
                     //ccc( shapeId );
                     tLink.shapes[ shapeId ] = true;
+                    //patch: todm:
+                    if( 'cssbold' === shapeId ) {
+                        tLink.anchorIsBold = true;
+                    }
+
+                    ///checks does this shape exist globally-lemma-wise
                     if( !topicShapes.hasOwnProperty( shapeId ) ) {
                         topicShapes[ shapeId ] = {
-                            topicId : topicId,
-                            colorIx:colorIx,
-                            shapesCount:shapesCount,
-                            shapeId : shapeId
+                            tplinkConf      : tplinkConf,
+                            'fixed-color'   : tLink[ 'fixed-color' ],
+                            tplink_ix       : tplink_ix,
+                            shapesCount     : shapesCount,
+                            shapeId         : shapeId,
                         }
                         shapesCount++;
                     }

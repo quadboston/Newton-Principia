@@ -90,6 +90,7 @@
             }
             if( typeof pointWrap.x === 'number' ) {
                 var decorator = Update_decPoint( pointWrap )
+                var achieved = { x:pointWrap.x, y:pointWrap.y };
             } else {
                 ////avoids excessive assignment to idle points
                 ////which are not yet ready
@@ -97,7 +98,13 @@
                 ////when they are created
                 var decorator = null;
             }
+
+            ///small test-case
+            //if( pointWrap.dragCssCls === "base-2" ) {
+            //    ccc('assigned achieved', achieved, " point wrap", pointWrap);
+            //}
             var dragWrap = medD8D.pointWrap_2_dragWrap({
+                achieved        :achieved,
                 pointWrap       :pointWrap,
                 doProcess       :doProcess,
                 update_decPoint :decorator

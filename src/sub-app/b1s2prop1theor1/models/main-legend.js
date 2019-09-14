@@ -15,9 +15,7 @@
     var ss      = sn('ss',fapp);
     var ssD     = sn('ssData',ss);
     var ssF     = sn('ssFunctions',ss);
-
-    var clustersToUpdate = [];
-    var clustersToUpdate_claim = [];
+    var rg          = sn('registry',ssD);
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
@@ -27,6 +25,10 @@
     var modName     = 'mainLegend_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
+
+
+    var clustersToUpdate = [];
+    var clustersToUpdate_claim = [];
     return;
 
 
@@ -40,51 +42,54 @@
     {
         ssF.upcreate_mainLegend = upcreate_mainLegend;
         //.uncomment this to ad a legend
-        //ssF.create_digital_legend = create_digital_legend;
+        ssF.create_digital_legend = create_digital_legend;
     }
 
+    ///this function is called from common-application-library,
+    ///from full-app/dom/...
     function create_digital_legend()
     {
-        //if( ssF.create_digital_legend ) return;
+        //ccc( 'starts create_digital_legend' );
         var mlegend = ssF.tr( 'main-legend' );
-        doCreateTable_claim( mlegend );
         doCreateTable_proof( mlegend );
     }
 
     //=========================================
     // //\\ updates values during simulation
+    //      at this lemma, it is called from
+    //      slider;
     //=========================================
     function upcreate_mainLegend()
     {
-        var calcA = ssD.calculatedAreas;
-        var claimR = ssD.claimRatio;
-
-        var www = sconf.LEGEND_NUMERICAL_SCALE;
-        var wD2 = www * www;
-        var dig = www > 10 ? 0 : 4;
-
+        //ccc( 'does upcreate_mainLegend' );
         var ww = clustersToUpdate;
-        ww.Abd.innerHTML        = (wD2*calcA[ 'Afd' ].total).toFixed(dig);
-        ww.Afd.innerHTML        = (wD2*calcA[ 'Afd' ].base).toFixed(dig);
-        ww.AfdPerAge.innerHTML  = (calcA[ 'Afd' ].base/calcA[ 'Age' ].base).toFixed(3);
+        ww.time.innerHTML       = rg.displayTime.value;
+        ww.step.innerHTML       = rg.displayStep.value;
+        ww.thought.innerHTML    = rg.thoughtStep.value;
 
-        ww.Ace.innerHTML        = (wD2*calcA[ 'Age' ].total).toFixed(dig);
-        ww.Age.innerHTML        = (wD2*calcA[ 'Age' ].base).toFixed(dig);
-        ww.AbdPerAce.innerHTML  = (calcA[ 'Afd' ].total/calcA[ 'Age' ].total).toFixed(3);
-
-        //:vanishing areas
-        //:sets display of "main vanishing values"
-        //:these statements do output all the "vanishing" digits
-        ww.ABD.innerHTML        = (wD2*calcA[ 'AFD' ].total).toFixed(dig+4);
-        ww.ACE.innerHTML        = (wD2*calcA[ 'AGE' ].total).toFixed(dig+4);
-
-        ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
-        ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
-        
-        var ww = clustersToUpdate_claim;
-        //: vanishing areas
-        ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
-        ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
+        var stepIx = rg.stepIx.value;
+        if( stepIx > 0 ) {
+            var force = rg.forces.vectors[stepIx-1];
+            var fx = force[0];
+            var fy = force[1];
+            var fabs = Math.sqrt( fx*fx + fy*fy );
+            ww.force.innerHTML = fabs.toFixed(3);
+            ww.fx.innerHTML = fx.toFixed(3);
+            ww.fy.innerHTML = fy.toFixed(3);
+        }
+        var speed = rg.speeds.pos[stepIx-1];
+        if( speed ) {
+            var vx = speed[0].toFixed(3);
+            var vy = speed[1].toFixed(3);
+            var vabs = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
+        //} else {
+        //    var vx = '';
+        //    var vy = '';
+        //    var vabs = '';
+        }
+        ww.speed.innerHTML = vabs;
+        ww.vx.innerHTML = vx;
+        ww.vy.innerHTML = vy;
     }
     //=========================================
     // \\// updates values during simulation
@@ -118,9 +123,9 @@
             .addClass('proof row1')
             .addClass('tostroke')
             .to(tb)();              
-        makeFormatterCell( row, 'DD', '11111', 'first' );
-        makeFormatterCell( row, 'DD', '11111', 'second' );
-        makeFormatterCell( row, 'DDD/DDD', '11111', 'third' );
+        makeFormatterCell( row, 'speedv0', '11111', 'firstxxxxx' );
+        makeFormatterCell( row, 'speedvx', '11111', 'secondxxxx' );
+        makeFormatterCell( row, 'speedvy', '11111', 'thirdxxxxx' );
         function makeFormatterCell( row, mcaption, val, id )
         {
             $$.c('td').html( mcaption ).to(row);
@@ -130,8 +135,6 @@
         //=====================================================
         // \\// idle first row to format table for fixed-layout
         //=====================================================
-
-
 
 
         //===================
@@ -140,70 +143,61 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Data')
+                  .html('Model Data')
                   .to(row);
         //===================
         // \\// table caption
         //===================
 
+        // begins to fill data rows
+
         //===================
-        // //\\ remote areas
+        // //\\
         //===================
-        //:Abd Ace
+        //:time
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'Abd' );
-        makeCl( row, 'Ace', null, null, null, !!'alignCaptionToRight' );
-        makeCl( row, 'AbdPerAce', 'Abd/Ace' );
-        //:Afd Age
+        makeCl( row, 'time' );
+        makeCl( row, 'step' );
+        //makeCl( row, 'thought' );
+        // format( see below: ) row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'claim' 
+        //                           mname - is a "vital" name: does indexing of cluster-to-update,
+        //                                   seems goes to tp-"name" machinery,
+        makeCl( row,
+                'thought',
+                ']no caption[', // mcaption,
+                2,   // spanIx,
+                2,   // spanVal,
+                '',  // alignCaptionToRight,
+                '',  // 'claim'
+                !!'no equal sign'
+        );
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'Afd' );
-        makeCl( row, 'Age', null, null, null, !!'alignCaptionToRight' );
-        makeCl( row, 'AfdPerAge', 'Afd/Age' );
-        //===================
-        // \\// remote areas
-        //===================
-
-
-        //===================
-        // //\\ vanishing areas
-        //===================
+        makeCl( row, 'force', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'fx', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'fy', null, null, null, !!'alignCaptionToRight', 'proof' );
         var row = $$.c('tr')
-                    .addClass('tostroke')
-                    .to(tb)();
-        makeCl( row, 'ABD', null, 2, 2 );
-        $$.c('td').to(row); //empty filler-cell
-        $$.c('td').to(row); //empty filler-cell
-        makeCl( row, 'ABDPerACE', 'ABD/ACE' );
-        var row = $$.c('tr')
-                    .addClass('tostroke')
-                    .to(tb)();
-        makeCl( row, 'ACE', null, 2, 2 );
-        //$$.c('td').a('colspan','6').to(row);
-        $$.c('td').to(row); //empty filler-cell
-        $$.c('td').to(row); //empty filler-cell
-        makeCl( row, 'AD2PerAE2', 'AD²/AE²');
-        //===================
-        // \\// vanishing areas
-        //===================
-
-        
-
-        //:model linear unit 
-        var row = $$.c('tr')
-            //.addClass('tostroke')
+            .addClass('tostroke')
             .to(tb)();
-        //$$.c('td').a('colspan','6').to(row);
-        makeCl( row, 'model-linear-unit', 'Ae').cls('tp-_ae-length tostroke');
-        clustersToUpdate['model-linear-unit'].innerHTML = sconf.LEGEND_NUMERICAL_SCALE.toFixed();
+        makeCl( row, 'speed', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'vx', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'vy', null, null, null, !!'alignCaptionToRight', 'proof' );
+        //===================
+        // \\//
+        //===================
         return;
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
+
+        function makeCl(
+                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
+                claim0proof, noEqualSign
+         ) {
             return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'proof' );
+                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
+                'proof', noEqualSign );
         }
     }
     //=========================================
@@ -211,88 +205,6 @@
     //=========================================
 
 
-
-
-    //=========================================
-    // //\\ creates claim table
-    //      similar to doCreateTable()
-    //=========================================
-    function doCreateTable_claim(mlegend)
-    {
-        mlegend.tb = mlegend.tb || {};
-        var tb = mlegend.tb.claim = $$
-            .c('table')
-            .cls( 'main-legend claim' )
-            .to( sDomN.legendRoot$ )
-            ();
-        var tr = ssF.tr;
-
-
-
-
-        //=====================================================
-        // //\\ idle first row to format table for fixed-layout
-        //=====================================================
-        //:Abd Ace
-        var row = $$.c('tr')
-            .addClass('claim row1')
-            .addClass('tostroke')
-            .to(tb)();
-        makeFormatterCell( row, 'DD', '11111', 'first' );
-        function makeFormatterCell( row, mcaption, val, id )
-        {
-            $$.c('td').html( mcaption ).to(row);
-            $$.c('td').html('=').addClass('eq-sign '+id).to(row);
-            $$.c('td').html( val+'' ).to(row);
-        }
-        //=====================================================
-        // \\// idle first row to format table for fixed-layout
-        //=====================================================
-
-
-
-        //===================
-        // //\\ table caption
-        //===================
-        var row = $$.c('tr').to(tb)();
-        $$  .c('td')
-            .a('colspan','6')
-            .addClass('table-caption')
-            .html('Data')
-            .to(row);
-        //===================
-        // \\// table caption
-        //===================
-
-
-
-        //===================
-        // //\\ vanishing areas
-        //===================
-        var row = $$.c('tr')
-            .addClass('tostroke')
-            .to(tb)();
-        makeCl( row, 'ABDPerACE', 'ABD/ACE' );
-        //===================
-        // \\// vanishing areas
-        //===================
-
-        //:sides row
-        var row = $$.c('tr')
-            .addClass('tostroke')
-            .to(tb)();
-        makeCl( row, 'AD2PerAE2', 'AD²/AE²');
-        return;
-
-
-        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
-            return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'claim' );
-        }
-    }
-    //=========================================
-    // \\// creates claim table
-    //=========================================
 
 
 
@@ -304,33 +216,36 @@
     ///Effect: represents magnitude in html-table-row in 
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
+    function makeClBoth( row, mname, mcaption, spanIx, spanVal,
+                         alignCaptionToRight, claim0proof, noEqualSign )
     {
         var tr = ssF.tr;
         var cssName = mname.replace( /([A-Z])/g, ( match, key1 ) => (
                       '_' + key1.toLowerCase()
         ));
 
-        var c$ = $$.c('td')
-                   .html( mcaption||mname )
-                   .addClass('tostroke tocolor tobold tp-' + cssName)
-                   .to(row);
-        if( alignCaptionToRight ) {
-            c$.addClass('align-to-right')
+        if( mcaption !== ']no caption[' ) {
+            var c$ = $$.c('td')
+                       .html( mcaption||mname )
+                       .addClass('tostroke tocolor tobold tp-' + cssName)
+                       .to(row);
+            if( alignCaptionToRight ) {
+                c$.addClass('align-to-right')
+            }
+            if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
         }
-
-        if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
-
 
         //todm .this does not guarantee adding the class to td ... so far only
         //.topic-engine probably takes care about the class - do fix this
         //tr( 'legend-'+mname, 'domel', c$() );
         //tr( 'claim-legend-'+mname, 'domel', c$() );
 
-        $$.c('td').html('=').to(row)
-        //.addClass('eq-sign')
-        ;
-
+        if( !noEqualSign ) {
+            //$$.c('td').html( noEqualSign ? '' : '=' ).to(row)
+            $$.c('td').html( '=' ).to(row)
+                //.addClass('eq-sign')
+                ;
+        }
         var c$ = $$.c('td')
                    .cls('value')
                    .cls('tostroke tocolor tobold tp-'+cssName)

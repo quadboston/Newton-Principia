@@ -1,13 +1,27 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Latin",
+
+  "comment1 for contributors" : "fixed-colors are in effect over all lemma, no matter in which fragment here they are set",
+  "comment2 for contributors" : "fixed-colors are in [R,G,B,OPTIONAL_OPACITY_FOR_NONHIGHLIGHTED_MODE] format",
+  "comment3 for contributors" : "LITE and SATURATION parameters (implied from fixed-colors) are ignored",
+
+  "fixed-colors" :
+  {
+    "kepler-triangle" : [0,   0, 100],
+    "force"           : [255, 0, 0,1],
+    "force-center"    : [255, 0, 0,1],
+    "free-path"       : [0,100,0],
+    "free-triangle"   : [0,100,0],
+    "time"            : [0,100,100,1],
+    "path"            : [0,0,100]
+  }
 }
 *..*
 
-<pre>
-to be entered
-</pre>
+<img src="contents/b1s2prop1theor1/img/latin.png" style="width:100%">
+
 
 
 *::*claim|english
@@ -20,7 +34,7 @@ to be entered
 
 *::*proof|latin
 
-not yet entered
+<img src="contents/b1s2prop1theor1/img/latin.png" style="width:100%">
 
 
 
@@ -58,39 +72,52 @@ to be entered
 }
 *..*
 
-<b>Numerical Simulation</b><br><br>
+
+
+<b>Numerical Model</b><br><br>
 
 Dragging the slider under the picture changes the
 ¦time¦time¦¦.
-
-The slider follows the proof. The particle imaginary analysis starts from point B.<br><br>
-
-At beginning of each step, the particle ¦free-path¦moves free¦¦ like from point B to c.
-
-At each step, applied ¦force¦force¦¦ changes direction of movement and ¦path¦final position and final path¦¦.
-
 <br><br>
-At each step, three triangles are compared to illustrate Kepler's law: the two ¦kepler-triangle¦triangles¦¦ circumscribed by the summary movment: triangle at previous step and final triangle of the current step
 
-and 
+The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point B.<br><br>
+        1. the body moves ¦free-path¦freely¦¦ from point B to point c,
+           ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal to former ¦kepler-triangle¦"kepler-triangle"¦¦ size,<br><br>
 
-¦free-triangle¦triangle¦¦ circumscribed by free movement.<br><br>
+        2. the ¦force¦force¦¦ changes the speed,
+           \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)¦force cssbold¦f¦¦¦\(f\)\(\Delta t \).<br><br>
+
+        3. the ¦force¦force¦¦ changes ¦path¦final position¦¦ from point c to point C,
+           \( \Delta \)¦path-change cssbold¦s¦¦¦\(s_{f}\)\( = \)¦force cssbold¦f¦¦¦\(f\)
+           \( \!\cdot\!\ (\Delta t)^2 \),
+
+           ¦free-triangle¦"free-movement-triangle-area"¦¦
+           is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
+           <br><br>
+
+        4. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+    next steps repeat the same way<br><br><br>
 
 
-At page landing, the default parameters are chosen to fit Newton's drawing. They are:<br><br>
 
-    Force,          f = 3.9 / (r*r)<br>
-    Time step,      delta_t = 1<br>
-    Initial speed,  v0 = 1<br>
+At page landing, the default parameters are chosen to fit Newton's drawing. They are:
+
+    ¦force¦f¦¦¦
+    ¦force¦force :¦¦¦
+    ¦time¦time step :¦¦¦
+    ¦time¦t¦¦¦¦
+    ¦path¦s¦¦¦¦
+
+    \[ \\
+    \text{force :}          \; f = 3.9 / r^2 , \\
+    \text{time step :}      \; \Delta t = 1 ,\\
+    \text{initial speed :}  \; v_{0} = 1.
+    \]
 
 <br>
-Change them, by dragging point B. This will change initial direction of speed and the path length, delta_s, at initial step.<br><br>
+Change them, by dragging point B. This will change initial direction of speed and the path length, \( \Delta s \), at initial step.<br><br>
 
-The initial speed will stay always equal to 1. The time step will change as delta_t = delta_s / v0.
-
-<br><br>
-Formula for force is not changeable in this version.
-
-
+The initial speed will stay always equal to 1. The time step will change as \( \Delta t = \Delta s / v_{0} \).
+Formula for force is not changeable in this version.<br><br>
 
 

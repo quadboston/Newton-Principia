@@ -41,7 +41,7 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods ).upcreateMedia = upcreateMedia;
+        sn(SUB_MODEL, studyMods).upcreateMedia = upcreateMedia;
 
 
 
@@ -53,7 +53,6 @@
             //===================================================
             // //\\
             //===================================================
-
             //:study-pars
             var S       = rg.S.pos;
             var force   = rg.force.pos;
@@ -68,7 +67,6 @@
             // \\//
             //===================================================
             studyMods[SUB_MODEL].createMedia();
-
 
 
             //==========================================

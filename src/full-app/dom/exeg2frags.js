@@ -32,8 +32,10 @@
 
 
 
-
-
+    ///=======================================================
+    ///splits provided exegs into active-areas
+    ///better to say?: (lemma-segments to active-areas)
+    ///=======================================================
     function exeg_2_frags()
     {
         //==============================================
