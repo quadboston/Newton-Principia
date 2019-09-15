@@ -78,7 +78,7 @@
 
         cssmods.initHomePageCSS(cssp, fconf);
         html.buildCommonHTMLBody();
-        fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
+        //fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
         html.buildHomePage();
 
         config8run_subappModules();

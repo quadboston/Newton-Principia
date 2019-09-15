@@ -65,7 +65,7 @@
                 book = sappItem.book;
                 coreText += `
                     <li><div class="content-book-title">
-                            <span class="table-title">${book}</span><br><br>
+                            <span class="table-title">${book}</span>
                         </div>
                     </li>
                 `;

@@ -46,9 +46,10 @@
     /* //|| page primary sections             */
     /******************************************/
     .bsl-approot {
-        width:100%;
-        margin:0;
-        padding:0;
+        position    : relative;
+        width       : 100%;
+        margin      : 0;
+        padding     : 0;
     }
 
     .bsl-approot svg text {

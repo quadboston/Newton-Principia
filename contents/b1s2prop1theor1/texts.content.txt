@@ -89,7 +89,7 @@ The slider follows the proof. The ¦path¦particle path¦¦ thought experiment s
 
         3. the ¦force¦force¦¦ changes ¦path¦final position¦¦ from point c to point C,
            \( \Delta \)¦path-change cssbold¦s¦¦¦\(s_{f}\)\( = \)¦force cssbold¦f¦¦¦\(f\)
-           \( \!\cdot\!\ (\Delta t)^2 \),
+           \( \!\cdot\!\ (\Delta t)^2 / 2 \),
 
            ¦free-triangle¦"free-movement-triangle-area"¦¦
            is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,

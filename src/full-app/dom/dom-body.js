@@ -53,12 +53,9 @@
         //==========================================
         // //\\ creates home page behind the scenes
         //==========================================
-        //fapp.homePage$ = $$.cdt( 'bsl-home-pane', fappRoot$ );
         fapp.homePage$ = $$
               .div()
-              .id( 'home-pane' )
               .cls( 'bsl-home-pane is-hidden' )
-              //.to( document.body );
               .to( fappRoot$ );
         //==========================================
         // \\// creates home page behind the scenes
@@ -73,21 +70,7 @@
         //==========================================
         // //\\ creates basic css
         //==========================================
-        ns.globalCss.addText( `
-            .bsl-home-pane {
-                position : absolute;
-                z-index : 100;
-            }
-            .bsl-home-pane {
-                top : 0;
-                left : 0;
-                transition : left 1s ease;
-            }
-            .bsl-home-pane.is-hidden {
-                left : -130%;
-            }
-        `);
-        ns.globalCss.update();
+        ns.globalCss.update(); //seems vital ...why?
         //==========================================
         // \\// creates basic css
         //==========================================

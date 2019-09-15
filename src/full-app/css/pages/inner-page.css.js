@@ -83,11 +83,12 @@ var ret = `
     }
 
     .home-button {
-        width               : 175px;
+        width               : 190px;
         margin-left         : 35px;
         font-weight         : bold;
         color               : white;
         background-color    : #303946;
+        z-index             : 1011;
     }
 
     .home-button:hover {

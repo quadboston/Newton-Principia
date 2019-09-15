@@ -27,22 +27,31 @@
     /*====================================================== 
        //|| home page generics
       ======================================================*/
-    #home-pane {
-      width:100%;
-      padding-top: 80px;
-      background-color: ${colorMain};
+    .bsl-home-pane {
+        position        : absolute;
+        width           : 100%;
+        padding-top     : 80px;
+        top             : 0;
+        left            : 0;
+        transition      : left 1s ease;
+        background-color: ${colorMain};
+        z-index         : 1005;
     }
 
     .hp-section-wrap {
-      width: calc(100vw - 80px);
-      margin: auto; }
-
-      #home-pane h1, #home-pane h2 {
-        color: ${colorWhite}; }
-
-      #home-pane h2 {
+        width: calc(100vw - 80px);
+        margin: auto;
+    }
+    .bsl-home-pane h1, .bsl-home-pane h2 {
+        color: ${colorWhite};
+    }
+    .bsl-home-pane h2 {
         font-size: 28px;
-        margin-bottom: 24px; }
+        margin-bottom: 24px;
+    }
+    .bsl-home-pane.is-hidden {
+        left : -130%;
+    }
     /*====================================================== 
        ||// home page generics
       ======================================================*/
@@ -94,26 +103,6 @@
 
 
 
-
-    /*====================================================== 
-       //|| front-page master sub-caption
-      ======================================================*/
-    /*
-    .sub-title {
-      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: ${colorWhite};
-      margin-bottom: 24px;
-      max-width: 500px;
-      width: 60%; }
-    */
-    /*====================================================== 
-       ||// front-page master sub-caption
-      ======================================================*/
-
-
-
     /*====================================================== 
        ||// front-page master caption and read first button
       ======================================================*/
@@ -125,8 +114,6 @@
     /*====================================================== 
        ||// home-page header
       ======================================================*/
-
-
 
 
     /*====================================================== 
@@ -151,6 +138,11 @@
         transition: all .6s;
         width: 100%;
       }
+
+      .landing-table-of-contents .content-book-title {
+        padding-bottom: 15px;
+      }
+
 
         .landing-table-of-contents ul a:hover {
           border-bottom: 1px solid white;

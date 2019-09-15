@@ -3352,9 +3352,10 @@ var ret = `
     /* //|| page primary sections             */
     /******************************************/
     .bsl-approot {
-        width:100%;
-        margin:0;
-        padding:0;
+        position    : relative;
+        width       : 100%;
+        margin      : 0;
+        padding     : 0;
     }
 
     .bsl-approot svg text {
@@ -4020,22 +4021,31 @@ var ret = `
     /*====================================================== 
        //|| home page generics
       ======================================================*/
-    #home-pane {
-      width:100%;
-      padding-top: 80px;
-      background-color: ${colorMain};
+    .bsl-home-pane {
+        position        : absolute;
+        width           : 100%;
+        padding-top     : 80px;
+        top             : 0;
+        left            : 0;
+        transition      : left 1s ease;
+        background-color: ${colorMain};
+        z-index         : 1005;
     }
 
     .hp-section-wrap {
-      width: calc(100vw - 80px);
-      margin: auto; }
-
-      #home-pane h1, #home-pane h2 {
-        color: ${colorWhite}; }
-
-      #home-pane h2 {
+        width: calc(100vw - 80px);
+        margin: auto;
+    }
+    .bsl-home-pane h1, .bsl-home-pane h2 {
+        color: ${colorWhite};
+    }
+    .bsl-home-pane h2 {
         font-size: 28px;
-        margin-bottom: 24px; }
+        margin-bottom: 24px;
+    }
+    .bsl-home-pane.is-hidden {
+        left : -130%;
+    }
     /*====================================================== 
        ||// home page generics
       ======================================================*/
@@ -4087,26 +4097,6 @@ var ret = `
 
 
 
-
-    /*====================================================== 
-       //|| front-page master sub-caption
-      ======================================================*/
-    /*
-    .sub-title {
-      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: ${colorWhite};
-      margin-bottom: 24px;
-      max-width: 500px;
-      width: 60%; }
-    */
-    /*====================================================== 
-       ||// front-page master sub-caption
-      ======================================================*/
-
-
-
     /*====================================================== 
        ||// front-page master caption and read first button
       ======================================================*/
@@ -4118,8 +4108,6 @@ var ret = `
     /*====================================================== 
        ||// home-page header
       ======================================================*/
-
-
 
 
     /*====================================================== 
@@ -4144,6 +4132,11 @@ var ret = `
         transition: all .6s;
         width: 100%;
       }
+
+      .landing-table-of-contents .content-book-title {
+        padding-bottom: 15px;
+      }
+
 
         .landing-table-of-contents ul a:hover {
           border-bottom: 1px solid white;
@@ -4384,11 +4377,12 @@ var ret = `
     }
 
     .home-button {
-        width               : 175px;
+        width               : 190px;
         margin-left         : 35px;
         font-weight         : bold;
         color               : white;
         background-color    : #303946;
+        z-index             : 1011;
     }
 
     .home-button:hover {
@@ -5519,12 +5513,9 @@ var ret = `
         //==========================================
         // //\\ creates home page behind the scenes
         //==========================================
-        //fapp.homePage$ = $$.cdt( 'bsl-home-pane', fappRoot$ );
         fapp.homePage$ = $$
               .div()
-              .id( 'home-pane' )
               .cls( 'bsl-home-pane is-hidden' )
-              //.to( document.body );
               .to( fappRoot$ );
         //==========================================
         // \\// creates home page behind the scenes
@@ -5539,21 +5530,7 @@ var ret = `
         //==========================================
         // //\\ creates basic css
         //==========================================
-        ns.globalCss.addText( `
-            .bsl-home-pane {
-                position : absolute;
-                z-index : 100;
-            }
-            .bsl-home-pane {
-                top : 0;
-                left : 0;
-                transition : left 1s ease;
-            }
-            .bsl-home-pane.is-hidden {
-                left : -130%;
-            }
-        `);
-        ns.globalCss.update();
+        ns.globalCss.update(); //seems vital ...why?
         //==========================================
         // \\// creates basic css
         //==========================================
@@ -5715,7 +5692,7 @@ var ret = `
                 book = sappItem.book;
                 coreText += `
                     <li><div class="content-book-title">
-                            <span class="table-title">${book}</span><br><br>
+                            <span class="table-title">${book}</span>
                         </div>
                     </li>
                 `;
@@ -5819,7 +5796,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2417; //application version
+    fapp.version =  2419; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -9345,7 +9322,7 @@ var ret = `
 
         cssmods.initHomePageCSS(cssp, fconf);
         html.buildCommonHTMLBody();
-        fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
+        //fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
         html.buildHomePage();
 
         config8run_subappModules();
