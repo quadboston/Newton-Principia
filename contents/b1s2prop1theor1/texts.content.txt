@@ -123,20 +123,20 @@ The slider follows the proof. The ¦path¦particle path¦¦ thought experiment s
 
 
 
-    At page landing, the default parameters are chosen to fit Newton's drawing. They are:
+    We estimated the default parameters which fit Newton's original drawing for
+page landing. They are:
 
         ¦force¦f¦¦¦
         ¦force¦force :¦¦¦
         ¦time¦time step :¦¦¦
         ¦time¦t¦¦¦
-        ¦path¦s¦¦¦¦
 
         \[ \\
         \text{force :}          \; f = 3.9 / r^2 , \\
         \text{time step :}      \; \Delta t = 1 ,\\
         \text{initial speed :}  \; v_{0} = 1.
         \]
-
+(We were not able yet to estimate Newton's computer brand.)
 
 Dragging point B can change the initial path and make it smaller which automatically extends model to increased number of steps.
 <br><br>
@@ -163,20 +163,37 @@ Keep speed v0 intact. v0' = v0 = 1.
 Set time step to smaller interval: Δt' = q;
 <br>
 Set f' intact, but add Δt in formula (*).
-\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)¦force cssbold¦f¦¦¦\(f\)\(\Delta t \)
+\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\) = ¦force cssbold¦f¦¦¦\(f\)\(\Delta t \)
 
 <br>
 Add Δt in formula (**).
 \( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)
-\( = \)
+=
 \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)
 \(\Delta t \)
 
+<br><br>
+which for double-step 2Δt matches definition of average speed:
 <br>
-which for double-step 2Δt implies
-<br>
-\( \Delta \)¦path-change cssbold¦r¦¦¦\(r\)\( = \)
-¦speed-change cssbold¦v¦¦¦\(v\)
+\( \Delta \)¦path-change cssbold¦r¦¦¦\( r \)
+=
+
+¦path-change cssbold¦r¦¦¦\(r_{C}\)-¦path-change cssbold¦r¦¦¦\(r_{A}\)
+=
+
+\( \Delta \)¦path-change cssbold¦s¦¦¦\(s\) + 
+¦speed-change cssbold¦v¦¦¦\( v_{A} 2\Delta t \)
+=
+
+\( ( \)
+¦speed-change cssbold¦v¦¦¦\( v_{A} \) + ¦speed-change cssbold¦v¦¦¦\(v_{B} ) \Delta t \)
+=
+
+\( \frac{1}2 \)¦speed-change cssbold¦v¦¦¦\( ( v_{A} \) + ¦speed-change cssbold¦v¦¦¦\(v_{B} ) ~ 2\Delta t \)
+
+=
+
+¦speed-change cssbold¦v¦¦¦\( \overset{-} v \)
 \( 2 \Delta t \).
 
 <br><br>
