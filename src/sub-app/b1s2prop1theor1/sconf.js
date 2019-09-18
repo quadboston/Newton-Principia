@@ -119,6 +119,11 @@
             timeMax : 10,
             initialTimieStep : 1,
             spatialStepsMax0 : 6,
+
+            //maximum first path from A to B
+            //too big values will allow user to place
+            //point B on legend area ... will look strange ...
+            s0max : 1.4,    
             //-----------
             // \\// model
             //-----------

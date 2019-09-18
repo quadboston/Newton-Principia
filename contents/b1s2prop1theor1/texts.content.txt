@@ -80,44 +80,105 @@ Dragging the slider under the picture changes the
 ¦time¦time¦¦.
 <br><br>
 
-The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point B.<br><br>
-        1. the body moves ¦free-path¦freely¦¦ from point B to point c,
-           ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal to former ¦kepler-triangle¦"kepler-triangle"¦¦ size,<br><br>
+The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point A. Time step Δt is chosen as a unit, so in context of Δt, movements and speeds are numerically equal.<br><br>
 
-        2. the ¦force¦force¦¦ changes the speed,
-           \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)¦force cssbold¦f¦¦¦\(f\)\(\Delta t \).<br><br>
+        1. the body ¦path¦moves¦¦ from point A to point B, and circumscribes a 
+           ¦kepler-triangle¦"kepler-triangle-area"¦¦, <br><br>
 
-        3. the ¦force¦force¦¦ changes ¦path¦final position¦¦ from point c to point C,
-           \( \Delta \)¦path-change cssbold¦s¦¦¦\(s_{f}\)\( = \)¦force cssbold¦f¦¦¦\(f\)
-           \( \!\cdot\!\ (\Delta t)^2 / 2 \),
+        2. the ¦force¦force¦¦ changes the speed,<br>
+           ¦speed-change cssbold¦v¦¦¦\(v_{BC}\)\( = \)
+                ¦speed-change cssbold¦v¦¦¦\(v_{Bc}\) + 
+                ¦force cssbold¦f¦¦¦\(f\) or<br>
 
-           ¦free-triangle¦"free-movement-triangle-area"¦¦
-           is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
-           <br><br>
+                \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)
+                ¦force cssbold¦f¦¦¦\(f\).\(\;\;\;\)
+                (*)
+            <br><br>
+
+           if speed would not change, then 
+            body would move ¦free-path¦freely¦¦ from point B to point c,
+           the area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
+           to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
+
+        3. because of speed change, ¦path¦final position¦¦ changes from point c to point C,<br>
+            ¦path-change cssbold¦s¦¦¦\(s_{BC}\)\( = \)
+                ¦path-change cssbold¦s¦¦¦\(s_{Bc}\) +
+                ¦force cssbold¦f¦¦¦\(f\)
+            or<br>
+
+            \( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)\( = \)
+            \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)
+            .\(\;\;\;\)
+            (**)
+            <br><br>
+
+            ¦free-triangle¦"free-movement-triangle-area"¦¦
+            is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
+            <br><br>
 
         4. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
-    next steps repeat the same way<br><br><br>
+
+
+        The double-step from point B to point D repeats analoguosly<br><br><br>
 
 
 
-At page landing, the default parameters are chosen to fit Newton's drawing. They are:
+    At page landing, the default parameters are chosen to fit Newton's drawing. They are:
 
-    ¦force¦f¦¦¦
-    ¦force¦force :¦¦¦
-    ¦time¦time step :¦¦¦
-    ¦time¦t¦¦¦¦
-    ¦path¦s¦¦¦¦
+        ¦force¦f¦¦¦
+        ¦force¦force :¦¦¦
+        ¦time¦time step :¦¦¦
+        ¦time¦t¦¦¦
+        ¦path¦s¦¦¦¦
 
-    \[ \\
-    \text{force :}          \; f = 3.9 / r^2 , \\
-    \text{time step :}      \; \Delta t = 1 ,\\
-    \text{initial speed :}  \; v_{0} = 1.
-    \]
+        \[ \\
+        \text{force :}          \; f = 3.9 / r^2 , \\
+        \text{time step :}      \; \Delta t = 1 ,\\
+        \text{initial speed :}  \; v_{0} = 1.
+        \]
+
+
+Dragging point B can change the initial path and make it smaller which automatically extends model to increased number of steps.
+<br><br>
+
+There are two equivalent options to extend the model.<br>
+Let q to be a fraction of initial path s0: s0' = q*s0.<br>
+New number of steps is set to N' = Math.floor(N/q).
+<br><br>
+
+Option 1.<br> 
+Keep time interval = 1. So, the new speed will become v0' = q*v0.
+<br>
+f' = q*f. With replacement f with f' and v0 with v0', the formulas (*) and (**) remains intact.
+<br><br>
+
+Option 2. (Chosen)
+<br>
+This option produces the same numerical path and picture as in Option 1, but makes easier transition to modern Physics notations. It also makes a better comparision with original drawing, because the initial speed is the same as
+in non-extended model.
+<br><br>
+
+Keep speed v0 intact. v0' = v0 = 1.
+<br>
+Set time step to smaller interval: Δt' = q;
+<br>
+Set f' intact, but add Δt in formula (*).
+\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)¦force cssbold¦f¦¦¦\(f\)\(\Delta t \)
 
 <br>
-Change them, by dragging point B. This will change initial direction of speed and the path length, \( \Delta s \), at initial step.<br><br>
+Add Δt in formula (**).
+\( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)
+\( = \)
+\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)
+\(\Delta t \)
 
-The initial speed will stay always equal to 1. The time step will change as \( \Delta t = \Delta s / v_{0} \).
-Formula for force is not changeable in this version.<br><br>
+<br>
+which for double-step 2Δt implies
+<br>
+\( \Delta \)¦path-change cssbold¦r¦¦¦\(r\)\( = \)
+¦speed-change cssbold¦v¦¦¦\(v\)
+\( 2 \Delta t \).
+
+<br><br>
 
 

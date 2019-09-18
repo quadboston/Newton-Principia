@@ -55,7 +55,7 @@
         //so far, as of August 26,2019,
         //there is one model in set studyMods: "common" model
         ns.eachprop( studyMods, ( stdMod, modName ) => {
-            stdMod.upcreate();
+            stdMod.update0create_model8media();
             stdMod.initMediaModel();
         });
         //======================================

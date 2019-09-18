@@ -1,16 +1,14 @@
 Text commenting an entire lemma called an essay here.
 
-    Essay is paritioned into claim or proof or other aspects like English or Latin.
-    Each partition is called exegesis.
-    In program code, exegesis is denoted simply as exeg.
+    Essay is paritioned into fragments.
+    Each fragment is marked with pair of categories: math-category/writing-category.
+    For example, claim/English or proof/lite.
+    In program,
+        essay fragment called exegesis or shortly "exeg",
+        math-category called "theorion",
+        writing-category called "aspect",
 
-    In other words, exegesis is indexed with pair (theorion,aspect):
-
-        theorion: specific part of theorem: Claim, Proof, Theorem, neutral, ...
-    and
-        aspect:  Lite, English, Latin, ...
-
-    exegs separated with characters:
+    In content script, exegs separated with characters:
         *::*
         <optional exeg header> 
         *..*
@@ -27,7 +25,7 @@ Text commenting an entire lemma called an essay here.
     
     The content-text is a mix of LaTeX text and HTML.
     Between HTML tags, there is an ordinary text which can have any characters except,
-    obviously, LaTeX escape chars, except upper-level-exegs separators and except
+    obviously, LaTeX escape chars, except upper-level-exegs separators, and except
     ordinary HTML-special chars:
         &, >, < ( html specials ). However in plain text, &amp; &gt; &lt; can be used.
 
@@ -43,7 +41,7 @@ Text commenting an entire lemma called an essay here.
         }
         ¿
         ...
-    Active area is simply a JSON key/value text where effect of key is defined in JavaScript code.
+    Active area is simply a JSON key/value text where effect of key must be defined in JavaScript code.
 
 references.html,
     if provided, sets common footer for all exegs.

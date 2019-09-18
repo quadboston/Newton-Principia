@@ -115,8 +115,7 @@
                 { src:'css/css.css.js' },
                 { src:'models/study-model.js' },
                 { src:'models/media-model.js' },
-                { src:'models/create-media-model.js' },
-                { src:'models/create-media-model-lib.js' },
+                { src:'models/media-model-lib.js' },
                 { src:'models/main-legend.js' },
                 { src:'models/d8d-model.js' }
             ]

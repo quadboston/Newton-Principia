@@ -140,7 +140,7 @@
                     time.t = Math.max(
                              Math.min( newTime, rg.spatialStepsMax.pos )
                              , 1.75000001 ); //1.75 fits slider 4-step scenario
-                    time.doUpdateModelAndMediaPosition();
+                    time.updateSliderPos8repaintEvolution();
                     break;
             }
         }
@@ -192,11 +192,11 @@
                             ach.achieved[1] - arg.surfMove[1] *
                             sconf.med2mod_scale * css2media(),
                     ];
-                    var wrongSet = ssF.pointB_2_time0();
+                    //ccc( 'drag B checks pos=', newPos );
+                    var wrongSet = ssF.pointB_2_time0( newPos );
                     if( wrongSet ) return;
-
                     rg.B.pos = newPos;
-                    sn(SUB_MODEL, studyMods ).upcreate();
+                    sn(SUB_MODEL, studyMods ).update0create_model8media();
                     break;
             }
         }

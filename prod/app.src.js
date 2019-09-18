@@ -5796,7 +5796,7 @@ var ret = `
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  2419; //application version
+    fapp.version =  2435; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();
@@ -9786,8 +9786,7 @@ var ret = `
                 { src:'css/css.css.js' },
                 { src:'models/study-model.js' },
                 { src:'models/media-model.js' },
-                { src:'models/create-media-model.js' },
-                { src:'models/create-media-model-lib.js' },
+                { src:'models/media-model-lib.js' },
                 { src:'models/main-legend.js' },
                 { src:'models/d8d-model.js' }
             ]

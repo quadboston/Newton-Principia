@@ -42,7 +42,8 @@
         //ssF.x0y_2_t             = x0y_2_t;
         //ssF.const2positions     = const2positions;
         ssF.init_model            = init_model;
-        sn(SUB_MODEL, studyMods ).upcreate = upcreate;
+        sn(SUB_MODEL, studyMods ).update0create_model8media = update0create_model8media;
+        sn(SUB_MODEL, studyMods ).upcreate = update0create_model8media;
     }
 
 
@@ -89,21 +90,40 @@
     //===================================================
 
 
-    ///estimates time and speed direction in the first step
-    function pointB_2_time0()
+    ///estimates time and speed direction in the first step and
+    ///resets speeds, timeStep, and number of steps;
+    function pointB_2_time0( newPos )
     {
-        var path0 = [ rg.B.pos[0] - rg.path.pos[0][0],  rg.B.pos[1] - rg.path.pos[0][1], ];
+        if( !newPos ) {
+            newPos = rg.B.pos;
+        }
+        var path0 = [ newPos[0] - rg.path.pos[0][0],  newPos[1] - rg.path.pos[0][1], ];
         var r = Math.sqrt( path0[0]*path0[0] + path0[1]*path0[1] );
+        //ccc( 'new r='+r + ' fconf.s0max=' + sconf.s0max + ' rg.B.pos', rg.B.pos );
+        if( r >= sconf.s0max ) {
+            var wwstr = "first path cannot be greater than " + sconf.s0max;
+            //ccc( wwstr );
+            return wwstr;
+        }
         var vabs0 = rg.vabs0.vabs0;
         var time0 = r/vabs0;
+        //time0 can become big at this moment
+
         var newv0 = [ path0[0]/r*vabs0, path0[1]/r*vabs0, ];
+        // abs value of v0 is the same
+
         var newCount = Math.floor( sconf.spatialStepsMax0 / time0 );
-        if( newCount < 2 ) {
+        // newCount can become small
+        //ccc( 'newCount=' + newCount );
+
+        if( newCount < 3 ) {
+            //ccc('incorrect set for B' );
             return 'incorrect set for B';
         }
         tp( 'speeds', [] )[0] = newv0;
         tr( 'timeStep', 't', time0 );
         tp( 'spatialStepsMax', newCount );
+        //ccc('OKorrect: time0=' + time0 + ' newCount=' + newCount );
     }
 
 
@@ -111,9 +131,10 @@
     //=========================================================
     // //\\ updates figure (and creates if none)
     //=========================================================
-    function upcreate()
+    function update0create_model8media()
     {
-        pointB_2_time0();
+        //todo must not be here ... all must be already checked
+        if( pointB_2_time0() ) return; 
 
         //:study-pars
         var spatialStepsMax = rg.spatialStepsMax.pos;
@@ -127,12 +148,13 @@
 
 
         //:fixes lenghts to synch with new spatialStepsMax
-        path.length = Math.min( path.length, spatialStepsMax );
-        forces.length = Math.min( forces.length, spatialStepsMax-1 );
-        speeds.length = Math.min( speeds.length, spatialStepsMax-1 );
-        freePath.length = Math.min( freePath.length, spatialStepsMax-2 );
+        path.length         = Math.min( path.length, spatialStepsMax );
+        forces.length       = Math.min( forces.length, spatialStepsMax-1 );
+        speeds.length       = Math.min( speeds.length, spatialStepsMax-1 );
+        freePath.length     = Math.min( freePath.length, spatialStepsMax-2 );
         if( rg.time.t > spatialStepsMax - 1.01 ) {
             rg.time.t = spatialStepsMax - 1.01;
+            ccc( 'rg.time.t corrected to not exceeed steps max=' + rg.time.t );
         }
 
         //=========================================
@@ -216,7 +238,7 @@
         //-------------------------------------------------------
         // //\\ media part
         //-------------------------------------------------------
-        sn(SUB_MODEL, studyMods ).upcreateMedia();
+        sn(SUB_MODEL, studyMods ).createMedia0updateMedia_I();
         //ssF.upcreate_mainLegend(); //placed into "slider"
         //-------------------------------------------------------
         // \\// media part
@@ -225,15 +247,6 @@
     //=========================================================
     // \\// updates figure (and creates if none)
     //=========================================================
-
-
-
-    //==========================================
-    // //\\ model helpers
-    //==========================================
-    //====================================================================
-    // \\// model helpers
-    //====================================================================
 
 }) ();
 
