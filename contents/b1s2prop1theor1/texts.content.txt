@@ -80,12 +80,17 @@ Dragging the slider under the picture changes the
 ¦time¦time¦¦.
 <br><br>
 
-The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point A. Time step Δt is chosen as a unit, so in context of Δt, movements and speeds are numerically equal.<br><br>
+The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point B. Time step Δt is chosen as a unit, so in context of Δt, movements and speeds are numerically equal.<br><br>
 
-        1. the body ¦path¦moves¦¦ from point A to point B, and circumscribes a 
+        0. at arriving to point B, the body ¦path¦moves¦¦ from point A to point B and circumscribes a 
            ¦kepler-triangle¦"kepler-triangle-area"¦¦, <br><br>
 
-        2. the ¦force¦force¦¦ changes the speed,<br>
+        1 thought. if speed would not change, then 
+           body would move ¦free-path¦freely¦¦ from point B to point c,
+           the area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
+           to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
+
+        2 thought. the ¦force¦force¦¦ changes the speed,<br>
            ¦speed-change cssbold¦v¦¦¦\(v_{BC}\)\( = \)
                 ¦speed-change cssbold¦v¦¦¦\(v_{Bc}\) + 
                 ¦force cssbold¦f¦¦¦\(f\) or<br>
@@ -95,12 +100,8 @@ The slider follows the proof. The ¦path¦particle path¦¦ thought experiment s
                 (*)
             <br><br>
 
-           if speed would not change, then 
-            body would move ¦free-path¦freely¦¦ from point B to point c,
-           the area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
-           to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
 
-        3. because of speed change, ¦path¦final position¦¦ changes from point c to point C,<br>
+        3 thought. because of speed change, ¦path¦final position¦¦ changes from point c to point C,<br>
             ¦path-change cssbold¦s¦¦¦\(s_{BC}\)\( = \)
                 ¦path-change cssbold¦s¦¦¦\(s_{Bc}\) +
                 ¦force cssbold¦f¦¦¦\(f\)
@@ -116,10 +117,10 @@ The slider follows the proof. The ¦path¦particle path¦¦ thought experiment s
             is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
             <br><br>
 
-        4. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+        4 thought. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 
-        The double-step from point B to point D repeats analoguosly<br><br><br>
+        Next steps repeat analoguosly<br><br><br>
 
 
 

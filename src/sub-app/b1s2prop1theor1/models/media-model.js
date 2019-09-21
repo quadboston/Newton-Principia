@@ -691,7 +691,7 @@
                 rg.stepIx.value = stepIx;
 
                 //ccc( 'stepIx=' + stepIx + '  substepIx = ' + substepIx);
-                rg.displayStep.value = stepIx+'';
+                rg.displayStep.value = (stepIx-1) + '';
                 rg.thoughtStep.value = "thought " + (substepIx+1);
                 if( substepIx <3 ) {
                     rg.displayTime.value = (stepIx*rg.timeStep.t).toFixed(3);
@@ -700,8 +700,11 @@
                     ////begins grow again
                     var effTime = ((stepIx + (time - stepIx - 0.75) * 4)*(rg.timeStep.t)).toFixed(3);
                     rg.displayTime.value = effTime;
-                    rg.displayStep.value = (stepIx+1)+'';
-                    rg.thoughtStep.value = '';
+                    if( stepIx === 1 ) {
+                        ////before thought experiment, no indication of it is shown
+                        rg.thoughtStep.value = "";
+                        rg.displayStep.value = "...";
+                    }
                 }
 
                 if( pathRacks.length <= stepIx ) return;
