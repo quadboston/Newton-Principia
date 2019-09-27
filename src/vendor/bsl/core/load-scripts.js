@@ -25,8 +25,8 @@
     //
     //      Input: scriptList
     //                  scriptItem.src - link or path
-    //                  scriptItem.cb - optional callback for individual image load
-    //             lastCb - optional callback called when all images loaded
+    //                  scriptItem.cb - optional callback for individual script load
+    //             lastCb - optional callback called when all scripts loaded
     //===============================================================================
     function loadScripts( scriptList, lastCb )
     {

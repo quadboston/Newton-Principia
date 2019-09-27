@@ -77,8 +77,8 @@
         //: sets drag points
         //==========================================
         sapp.readyToResize = true;
-        createDragger_time();
-        createDragger_pointB();
+        createDragger_T();
+        //createDragger_pointB();
         ns.globalCss.update(); //for decorator
         return;
 
@@ -93,22 +93,24 @@
 
 
 
-        function createDragger_time()
+        function createDragger_T()
         {
-            var pointWrap = rg.time;
+            var pointWrap = rg.T;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'time-slider-point';
-            pointWrap.dragDecorColor= '#00aaba';
+            pointWrap.dragCssCls    = 't-slider-point';
+
+            //todo ... not proof
+            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
 
             var argc =
             {
-                achieved            : rg.time.t,
-                pointWrap           : rg.time,
+                achieved            : [ rg.T.pos[0], rg.T.pos[1] ],
+                pointWrap           : rg.T,
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderT,
             };
             var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-            
+
             ['axis-x'].forEach( function( cls ) {
                 $$.addClass( cls, dragWrap.decPoint );
             });
@@ -127,20 +129,23 @@
         function doProcess_sliderT( arg )
         {
             var ach = arg.pointWrap.achieved;
-            var time = rg.time;
+            var T = rg.T;
             switch( arg.down_move_up ) {
                 case 'up':
-                     ach.achieved = time.t;
+                     ach.achieved = [ T.pos[0], T.pos[1] ];
                      break;
                 case 'move':
-                    var newTime = ach.achieved + arg.surfMove[0] *
-                        sconf.med2mod_scale * css2media() /
-                        time.slideModelRailsLength *
-                        rg.spatialStepsMax.pos;
-                    time.t = Math.max(
-                             Math.min( newTime, rg.spatialStepsMax.pos )
-                             , 1.75000001 ); //1.75 fits slider 4-step scenario
-                    time.updateSliderPos8repaintEvolution();
+                    var newT = [
+                            ach.achieved[0] + arg.surfMove[0] *
+                            sconf.med2mod_scale * css2media(),
+                            ach.achieved[1]
+                        ];
+
+                        //protects drag from going outside the window
+                        if( newT[0] > 2.5 || newT[0] < -6.5 ) return;
+
+                        T.pos = newT;
+                        T.model8media_upcreate();
                     break;
             }
         }
@@ -193,7 +198,7 @@
                             sconf.med2mod_scale * css2media(),
                     ];
                     //ccc( 'drag B checks pos=', newPos );
-                    var wrongSet = ssF.pointB_2_time0( newPos );
+                    //var wrongSet = ssF.pointB_2_time0( newPos );
                     if( wrongSet ) return;
                     rg.B.pos = newPos;
                     sn(SUB_MODEL, studyMods ).model8media_upcreate();

@@ -107,6 +107,32 @@
     };
 
 
+    ///"manually" created polyline which formes ellipse,
+    ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
+    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
+    //        rotationRads rotates around position x0,y0;
+    ///returns: svg-element;
+    nssvg.ellipse = function( arg )
+    {
+        var { stepsCount, a, b, x0, y0, rotationRads } = arg;
+        var polyline = arg.pivots = [];
+        var step = 2*Math.PI/stepsCount;
+        var rC = Math.cos( rotationRads );
+        var rS = Math.sin( rotationRads );
+        var t0 = arg.t0 || 0;
+        for( var ii = 0; ii < stepsCount; ii++ ) {
+            var t = step * ii;
+            var x = a*Math.cos(t+t0);
+            var y = b*Math.sin(t+t0);
+            var xx = x * rC - y * rS + x0;
+            var yy = x * rS + y * rC + y0;
+            polyline.push( [ xx, yy ] );
+        }
+        polyline.push( [ xx, yy ] );
+        //makes ellipse closed:
+        polyline.push( polyline[0] );
+        return nssvg.polyline( arg ); 
+    };
 
 
     ///====================================

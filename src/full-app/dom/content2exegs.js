@@ -18,8 +18,8 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var references  = sn('references', ssD);
-    var exegs    = sn('exegs', ssD);
-    sDomF.ajax_2_prepopulated_exegsMatrix = ajax_2_prepopulated_exegsMatrix;
+    var exegs       = sn('exegs', ssD);
+    sDomF.bookfiles_to_exegesisBodies = bookfiles_to_exegesisBodies;
     return; //0000000000000000000000000000000000
 
 
@@ -32,9 +32,9 @@
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function ajax_2_prepopulated_exegsMatrix( continueAppInit )
+    function bookfiles_to_exegesisBodies( continueAppInit )
     {
-        var allEssaions;
+        var allEssaionsStr = "";
         ///this ajax-load takes following aux. files including list of contents
         nsmethods.loadAjaxFiles(
             [
@@ -47,23 +47,23 @@
                   link:'contents/' + fconf.sappId + '/conf.json'
                }
             ],
-            on_auxiliaryLoad_success
+            on_bookfiles_conf_load
         );
 
         ///This ajax-load takes contents-files, concatenates them, and calls
-        ///final subroutine, on_contentFilesLoad_Success.
-        function on_auxiliaryLoad_success( loadedFilesById_I )
+        ///final subroutine, on_lemma_bookfiles_load.
+        function on_bookfiles_conf_load( conf_files_list )
         {
-            var list = loadedFilesById_I[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
+            var lemma_bookfiles_list = conf_files_list[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
 
             //------------------------------------
             // //\\  making the list for ajax-load
             //------------------------------------
             //."nothing is loaded yet:
-            var listForAjax = [];
-            list.forEach( function( listItem ) {
+            var lbf_forAjax = [];
+            lemma_bookfiles_list.forEach( function( listItem ) {
                 if( !listItem.match( /^\s*$/ ) ) {
-                    listForAjax.push({
+                    lbf_forAjax.push({
                           id: listItem,
                           link:'contents/' + fconf.sappId + '/' + listItem
                     });
@@ -73,12 +73,12 @@
             // \\//  making the list for ajax-load
             //------------------------------------
 
-            ///fires ajax-load for listForAjax
-            nsmethods.loadAjaxFiles( listForAjax, function( loadedFilesById_II ) {
-                    listForAjax.forEach( function( listItem ) {
-                        allEssaions += loadedFilesById_II[ listItem.id ].text;
+            ///fires ajax-load for lbf_forAjax
+            nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
+                    lbf_forAjax.forEach( function( listItem ) {
+                        allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
                     });
-                    on_contentFilesLoad_Success( loadedFilesById_I );
+                    on_lemma_bookfiles_load( conf_files_list );
                 }
             );
         }
@@ -88,7 +88,7 @@
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
-        function on_contentFilesLoad_Success( loadedFilesById )
+        function on_lemma_bookfiles_load( loadedFilesById )
         {
             references.text = loadedFilesById.references.text || references.text || '';
             if( loadedFilesById['content-config'] ) {
@@ -96,7 +96,7 @@
                 var topics = sn('topics', ssD);
                 sconf.contentConfig = tmRack;
             }
-            var txt = allEssaions; //loadedFilesById.texts.text;
+            var txt = allEssaionsStr;
 
             var ESSAYON_DIVIDOR = /\*::\*/g;
             var essayons = txt.split( ESSAYON_DIVIDOR );

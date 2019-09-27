@@ -182,7 +182,7 @@
                     .${cssp}-approot svg .tp-${skey} {
                         opacity : 1;
                         fill-opacity : 0.3;
-                        stroke-opacity: 0.5;
+                        stroke-opacity: ${ sconf.default_tp_stroke_opacity || 0.5 };
                     }
 
 
@@ -206,7 +206,7 @@
                         stroke-opacity: 1;
                     }
                     .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey}.tostroke {
-                        stroke-width:8px;
+                        stroke-width:${ sconf.default_tp_stroke_width || 8 }px;
                     }
                     /* ================= */
                     /* //|| highlighted  */

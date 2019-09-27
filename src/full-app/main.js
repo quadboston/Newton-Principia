@@ -123,20 +123,20 @@
         // //\\ loads and executes subapp modules
         //=======================================
         if( fconf.sappId === 'home-pane' ) {
-            loadsContents();
+            loads_and_preparses_book();
         } else {
             nsmethods.loadScripts(
                 codesList,
                 function()
                 {
                     ////executes loaded modules from modules registry
-                    ////after all modules have been loaded
+                    ////after all scripts have been loaded
                     ns.eachprop( srg_modules, function( module ) {
                         module();
                     });
                     ssF.init_conf();
-                    ns.url2conf( fconf ); //overrides subapp conf
-                    loadsContents();
+                    ns.url2conf( fconf ); //overrides subapp conf again
+                    loads_and_preparses_book();
                 }
             );
         }
@@ -154,7 +154,7 @@
     //=========================================================
     // //\\ continues lemma after sources
     //=========================================================
-    function loadsContents()
+    function loads_and_preparses_book()
     {
         //=======================================
         // //\\ gets content texts and continues
@@ -162,7 +162,7 @@
         if( fconf.sappId === 'home-pane' ) {
             subappCore_after_contentsLoad();
         } else {
-            sDomF.ajax_2_prepopulated_exegsMatrix( function() {
+            sDomF.bookfiles_to_exegesisBodies( function() {
                     //=======================================
                     // //\\ html and css
                     //=======================================
@@ -196,10 +196,21 @@
     function subappCore_after_contentsLoad()
     {
         if( fconf.sappId !== 'home-pane' ) {
+
+            ////perhaps this is a cause of random failed load bug: ...
             ////the body which follows below can be put in cb for image-loader-ajax
             fmethods.createLemmaDom();
+
+            //-------------------------------------
+            // //\\ book load final part
+            //-------------------------------------
             sDomF.exeg_2_frags(); //to active-areas
             sDomF.frags_2_essdom8topiccss();
+            //-------------------------------------
+            // \\// book load final part
+            //-------------------------------------
+
+
             sapp.init_sapp();
             sDomF.populateMenu();
             sapp.finish_sapp_UI && sapp.finish_sapp_UI();

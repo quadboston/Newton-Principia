@@ -203,9 +203,17 @@
 
     function topLinks_2_colors()
     {
+
         var SATUR = 99;
-        var LIGHT = 30;
+
+        //:this solution is not good:
+        //:some lemmas need bright red, but
+        //:bright green text is hard to read ...
+        //:so we resort to dark color LIGHT = 30
+        //var LIGHT = 40;
+        var LIGHT = sconf.default_tp_lightness ||  30;
         var OPACITY = 0.6;
+
         var colorsCount = topicIndexedLinks.length;
 
         // //\\ apparently used only with alternative color-linking

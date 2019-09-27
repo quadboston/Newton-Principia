@@ -121,6 +121,27 @@
             ]
         },
 
+
+        {   sappId : 'b1sec5lemma20',
+            book : 'Book 1',
+            caption : 'Sec. 5. Lemma 20',
+            sappCodeReference : '',
+            annotation : "",
+            codesList :
+            [
+                { src:'sconf.js' },
+                { src:'main.js' },
+                { src:'css/css-order.js' },
+                { src:'css/proof-vs-claim-only-one-model-visibility.css.js' },
+                { src:'css/css.css.js' },
+                { src:'models/study-model.js' },
+                { src:'models/media-model.js' },
+                { src:'models/media-model-lib.js' },
+                { src:'models/main-legend.js' },
+                { src:'models/d8d-model.js' }
+            ]
+        },
+
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

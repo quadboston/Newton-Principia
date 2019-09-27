@@ -42,8 +42,8 @@
         //ssF.x0y_2_t             = x0y_2_t;
         //ssF.const2positions     = const2positions;
         ssF.init_model            = init_model;
-        sn(SUB_MODEL, studyMods ).update0create_model8media = update0create_model8media;
-        sn(SUB_MODEL, studyMods ).upcreate = update0create_model8media;
+        sn(SUB_MODEL, studyMods ).model8media_upcreate = model8media_upcreate;
+        sn(SUB_MODEL, studyMods ).upcreate = model8media_upcreate;
     }
 
 
@@ -131,7 +131,7 @@
     //=========================================================
     // //\\ updates figure (and creates if none)
     //=========================================================
-    function update0create_model8media()
+    function model8media_upcreate()
     {
         //todo must not be here ... all must be already checked
         if( pointB_2_time0() ) return; 
@@ -238,7 +238,7 @@
         //-------------------------------------------------------
         // //\\ media part
         //-------------------------------------------------------
-        sn(SUB_MODEL, studyMods ).createMedia0updateMedia_I();
+        sn(SUB_MODEL, studyMods ).media_upcreate();
         //ssF.upcreate_mainLegend(); //placed into "slider"
         //-------------------------------------------------------
         // \\// media part

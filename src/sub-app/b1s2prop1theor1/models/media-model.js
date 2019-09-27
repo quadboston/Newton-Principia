@@ -47,7 +47,7 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods).createMedia0updateMedia_I = createMedia0updateMedia_I;
+        sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
         sn(SUB_MODEL, studyMods ).initMediaModel = initMediaModel;
 
         modpos2medpos   = ssF.modpos2medposLL;
@@ -60,7 +60,7 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    function createMedia0updateMedia_I()
+    function media_upcreate()
     {
         var studmod = studyMods[SUB_MODEL];
         createMedia0updateMedia();

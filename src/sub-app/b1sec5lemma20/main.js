@@ -56,7 +56,8 @@
         //there is one model in set studyMods: "common" model
         ns.eachprop( studyMods, ( stdMod, modName ) => {
             stdMod.model8media_upcreate();
-            stdMod.initMediaModel();
+            stdMod.mmedia$.cls( 'submodel-' + modName );
+            stdMod.initDragModel();
         });
         //======================================
         // \\// inits model and it's view
