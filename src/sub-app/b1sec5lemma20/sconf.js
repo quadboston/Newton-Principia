@@ -43,8 +43,10 @@
         //----------------------------------
         var pictureWidth = 2000;
         var pictureHeight = 1660;
-        var centerX_onPicture = 810;
-        var centerY_onPicture = 900;
+
+        var centerX_onPicture = 821;
+        var centerY_onPicture = 906;
+
         var pictureActiveArea;
         var activeAreaOffsetX = centerX_onPicture;
 
@@ -59,7 +61,6 @@
             //derived points, should not be used in model
             Q : [1077, 1231],
             t : [1511, 574],
-            xxxr : [1028, 835],
             r : [1028, 830],
 
             D : [1410, 965],
@@ -97,13 +98,13 @@
         //  application coordinate Y
         //  -1 if it goes in opposite-to-screen
         //      direction starting from
-        //      centerOnPicture_Y
+        //      centerY_onPicture
         //  1  codirectional with the screen
         //     which means from screen-top to
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
         var mod2med_scale = pictureActiveArea;
-        var centerOnPicture_Y = centerY_onPicture;
+        var centerY_onPicture = centerY_onPicture;
         var activeAreaOffsetOnPictureY = centerY_onPicture;
         //----------------------------------
         // \\// app view parameters
@@ -118,9 +119,18 @@
         {
             initialPoints : pointsOnPicture,
 
-            //ellipse
-            a : 2.05,
+            a : 2.03,
             b : 1,
+            rotationRads : Math.PI*0.19,
+
+            //given points on ellipse if fractions of
+            //full cycle of param t
+            initialparP : 0.259,
+            initialparA : 0.7542,
+            initialparC : 0.379,
+            initialparB : 0.0468,
+            initialParT : 0.760, //parameter T on line Pt
+
 
             //----------------------------------
             // //\\ model-view parameters
@@ -133,7 +143,8 @@
 
             pictureActiveArea   : pictureActiveArea,
             activeAreaOffsetX   : activeAreaOffsetX,
-            centerOnPicture_Y   : centerOnPicture_Y,
+            centerOnPicture_Y   : centerY_onPicture,
+            centerOnPicture_X   : centerX_onPicture,
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
 
@@ -154,7 +165,8 @@
 
             default_tp_stroke_opacity : 1,
             default_tp_stroke_width : 20,
-            default_tp_lightness : 50, //50 is full lightness
+            //default_tp_lightness : 50, //50 is full lightness
+            default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 3,
         };
 

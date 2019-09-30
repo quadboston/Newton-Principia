@@ -1,6 +1,7 @@
 ( function() {
 	var ns	    = window.b$l;
     var nssvg   = ns.sn( 'svg' );
+    var mat     = ns.sn( 'mat' );
     var svgNS   = "http://www.w3.org/2000/svg";
 
 
@@ -117,15 +118,32 @@
         var { stepsCount, a, b, x0, y0, rotationRads } = arg;
         var polyline = arg.pivots = [];
         var step = 2*Math.PI/stepsCount;
-        var rC = Math.cos( rotationRads );
-        var rS = Math.sin( rotationRads );
+
+        //var rC = Math.cos( rotationRads );
+        //var rS = Math.sin( rotationRads );
+
         var t0 = arg.t0 || 0;
         for( var ii = 0; ii < stepsCount; ii++ ) {
+            ///this is slow but unified ... keep it for a while
+            var ell = mat.ellipse({
+                t:step * ii,
+                a,
+                b,
+                x0,
+                y0,
+                t0,
+                rotationRads,
+            });
+            var xx = ell.x;
+            var yy = ell.y;
+            /*
+            //this is fast but is a code prolifiration
             var t = step * ii;
             var x = a*Math.cos(t+t0);
             var y = b*Math.sin(t+t0);
             var xx = x * rC - y * rS + x0;
             var yy = x * rS + y * rC + y0;
+            */
             polyline.push( [ xx, yy ] );
         }
         polyline.push( [ xx, yy ] );

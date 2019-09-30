@@ -78,7 +78,7 @@
         //==========================================
         sapp.readyToResize = true;
         createDragger_T();
-        //createDragger_pointB();
+        createDragger_a();
         ns.globalCss.update(); //for decorator
         return;
 
@@ -135,39 +135,35 @@
                      ach.achieved = [ T.pos[0], T.pos[1] ];
                      break;
                 case 'move':
-                    var newT = [
-                            ach.achieved[0] + arg.surfMove[0] *
-                            sconf.med2mod_scale * css2media(),
-                            ach.achieved[1]
-                        ];
-
-                        //protects drag from going outside the window
-                        if( newT[0] > 2.5 || newT[0] < -6.5 ) return;
-
-                        T.pos = newT;
-                        T.model8media_upcreate();
+                    T.pos2value([
+                        ach.achieved[0] + arg.surfMove[0] *
+                        sconf.med2mod_scale * css2media(),
+                        ach.achieved[1]
+                    ]);
                     break;
             }
         }
 
-        // //\\ dragger of point B
-        function createDragger_pointB()
+        //============================================
+        // //\\ slider a
+        //============================================
+        function createDragger_a()
         {
-            var pointWrap = rg.B;
+            var pointWrap = rg.a;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'point-B-slider';
-            pointWrap.dragDecorColor= 'blue';
-
+            pointWrap.dragCssCls    = 'tp-ellipse';
+            //todm ... not straight
+            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
             var argc =
             {
-                achieved            : rg.B.pos,
-                pointWrap           : rg.B,
+                achieved            : [ rg.a.pos[0], rg.a.pos[1] ],
+                pointWrap           : rg.a,
                 update_decPoint     : update_decPoint,
-                doProcess           : doProcess_sliderB,
+                doProcess           : doProcess_slider_a,
             };
             var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-            
-            ['rotate'].forEach( function( cls ) {
+
+            ['axis-x'].forEach( function( cls ) {
                 $$.addClass( cls, dragWrap.decPoint );
             });
 
@@ -175,40 +171,34 @@
             function update_decPoint( decPoint )
             {
                 var dompos = sDomF.medpos2dompos.call( pointWrap );
-                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';            
             }
         }
-        //todo check note in buffer: slider
-        function doProcess_sliderB( arg )
+
+        function doProcess_slider_a( arg )
         {
             var ach = arg.pointWrap.achieved;
-            var pos = rg.B.pos;
+            var a = rg.a;
             switch( arg.down_move_up ) {
                 case 'up':
-                     ach.achieved = pos;
+                     ach.achieved = [ a.pos[0], a.pos[1] ];
                      break;
                 case 'move':
-                    var newPos = [
+                    sDomF.detected_user_interaction_effect();
+                    var new_a = [
                             ach.achieved[0] + arg.surfMove[0] *
                             sconf.med2mod_scale * css2media(),
-
-                            ach.achieved[1] - arg.surfMove[1] *
-                            sconf.med2mod_scale * css2media(),
-                    ];
-                    //ccc( 'drag B checks pos=', newPos );
-                    //var wrongSet = ssF.pointB_2_time0( newPos );
-                    if( wrongSet ) return;
-                    rg.B.pos = newPos;
-                    sn(SUB_MODEL, studyMods ).model8media_upcreate();
+                            ach.achieved[1]
+                        ];
+                        a.pos2value( new_a );
                     break;
             }
         }
-
-
+        //============================================
+        // \\// slider a
+        //============================================
     }; 
-
     //==========================================
     // \\// inits drag points
     //==========================================

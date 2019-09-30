@@ -71,9 +71,12 @@
 
         var mat     = ns.sn( 'mat' );
         var wwT=rg.T.pos;
+
+        //todm this is a patch: do use Pr/Pt
+        var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
+
         var wwR=rg.R.pos;
         var wwP=rg.P.pos;
-        var PT = mat.unitVector( [wwT[0]-wwP[0], wwT[1]-wwP[1] ] ).abs;
         var PR = mat.unitVector( [wwR[0]-wwP[0], wwR[1]-wwP[1] ] ).abs;
         var PR_PT = (PR/PT);
         ww[ 'PT' ].innerHTML = PT.toFixed(3);

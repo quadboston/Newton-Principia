@@ -195,7 +195,12 @@
 
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
+
+                    //https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course#Scripting_in_namespaced_XML
+                    //for consistency ...(null, ... whys is this "consistency" ... ? the must be a cowpath ...
+                    //https://stackoverflow.com/questions/35057909/difference-between-setattribute-and-setattributensnull
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
+
                     to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
 
                     //API: ch is an array of racks or single rack:

@@ -36,6 +36,7 @@
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
+    var ellipseColor;
     return;
 
 
@@ -89,12 +90,12 @@
             return 'rgba('+r+','+g+','+b+','+op+')';
         }
 
+        ellipseColor        = arr2rgba( wwfc[ "ellipse" ] ) || 'rgba(0,100,0,1)';
         var keyColor        = arr2rgba( wwfc[ "key-triangle" ] ) || '#ff0000';
         var RTColor         = arr2rgba( wwfc[ "RT" ] ) || '#ff0000';
         var basePointColor  =                           '#0000aa'; 
         var baseColor       = arr2rgba( wwfc[ "base-figure" ] )  || '#0000dd'; 
         var statGenColor    = arr2rgba( wwfc[ "static-generator" ] ) || '#eeaa00';
-        var ellipseColor    = arr2rgba( wwfc[ "ellipse" ] ) || 'rgba(0,100,0,1)';
         var generatingColor = arr2rgba( wwfc[ "generators" ] ) || '#00aaee'; 
         var givenParallels  = arr2rgba( wwfc[ "given-paralellogram" ] ) || '#ff00ff';
         var lwidth          = sconf.defaultLineWidth;
@@ -122,7 +123,7 @@
             b               : rg.b.value*sconf.mod2med_scale,
             x0              : rg.O.medpos[0],
             y0              : rg.O.medpos[1],
-            rotationRads    : Math.PI*0.180,
+            rotationRads    : sconf.rotationRads,
             svgel           : ellipse.svgel,
             parent          : studyMods[ SUB_MODEL ].mmedia,
 
@@ -368,16 +369,16 @@
                 tpclass : 'key-triangle',
             }
         );
-        rg.P.svgel = null; //changes "z-order"
+        //rg.P.svgel = null; //changes "z-order"
         var pointS = pos2pointy(
             'P',
-              { 
+              {
                 cssClass: 'tofill tostroke',
-                'stroke' : keyColor,
-                'fill' : 'black',
-                'stroke-width':2,
-                r : 2,
-                tpclass : 'base-figure',
+                'stroke'        : keyColor,
+                'fill'          : 'black',
+                'stroke-width'  : 2,
+                r               : 4,
+                tpclass         : 'base-figure',
               }
         );
         //------------------------
@@ -394,7 +395,10 @@
             { 
                 cssClass        : 'tofill tostroke',
                 'stroke'        : generatingColor,
-                'fill'          : 'white',
+
+                //not yet ready for drag: 'fill'          : 'white',
+                'fill'          : generatingColor,
+
                 'stroke-width'  : 2,
                 r               : 7,
                 //tpclass         : 'generators',
@@ -424,27 +428,36 @@
         pos2pointy(
             'A',
             { 
-                cssClass: 'tofill tostroke',
-                'fill' : basePointColor,
-                tpclass : 'base-figure',
+                tpclass         : 'base-figure',
+                cssClass        : 'tofill tostroke',
+                'stroke'        : basePointColor,
+                'fill'          : basePointColor,
+                'stroke-width'  : 2,
+                r               : 4,
             }
         );
 
         pos2pointy(
             'B',
             { 
-                cssClass: 'tofill tostroke',
-                'fill' : basePointColor,
-                tpclass : 'base-figure',
+                tpclass         : 'base-figure',
+                cssClass        : 'tofill tostroke',
+                'stroke'        : basePointColor,
+                'fill'          : basePointColor,
+                'stroke-width'  : 2,
+                r               : 4,
             }
         );
 
         pos2pointy(
             'C',
             { 
-                cssClass: 'tofill tostroke',
-                'fill' : basePointColor,
-                tpclass : 'base-figure',
+                tpclass         : 'base-figure',
+                cssClass        : 'tofill tostroke',
+                'stroke'        : basePointColor,
+                'fill'          : 'red', //basePointColor,
+                'stroke-width'  : 2,
+                r               : 1,
             }
         );
 
@@ -500,7 +513,9 @@
 
 
 
-
+        //-----------------------------------------------
+        // //\\ adds methods to rg.T only once
+        //-----------------------------------------------
         ///attaches updater right to the point T to ease
         ///this function lookup right from dragger-of-T
         if( !ns.h( rg.T, 'model8media_upcreate' )) {
@@ -512,18 +527,149 @@
             rg.T.model8media_upcreate = function() {
                 studyMods[ SUB_MODEL ].model8media_upcreate();
             }
-        }
 
+            ///for slider
+            rg.T.pos2value = function( newPos )
+            {
+                var T = rg.T;
+                var newValue = T.pos2Tpar( newPos )
+                //protects drag from going outside the window
+                if( newValue < -6.5 || newValue > 2.5 ) return;
+                T.value = newValue;
+                T.pos[0] = newPos[0];
+                T.pos[1] = newPos[1];
+                T.model8media_upcreate();
+            }
+        }
+        //-----------------------------------------------
+        // \\// adds methods to rg.T only once
+        //-----------------------------------------------
+
+
+        if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
+            ////if slider is not already created ...
+            createSliderPlaceholder_a();
+        }
     }
     //=========================================================
     // \\// updates and creates media
     //=========================================================
+
+
 
     ///shortcut to build medpos property
     function pn2mp( ptname ) {
         var pt = rg[ ptname ];
         pt.medpos = ssF.modpos2medposLL( pt.pos );
     }
+
+
+        //----------------------------------------
+        // //\\ makes up time slider
+        //      creates slider only once per
+        //      app model creation;
+        //----------------------------------------
+        function createSliderPlaceholder_a()
+        {
+            var neutral_a         = 1; //neutral value of a is for circle
+            var max_a             = 4;
+            var min_a             = 0.1;
+            var range_a           = max_a - min_a;
+
+            var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth*0.1 ) *
+                                    sconf.med2mod_scale;
+            var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale*0.8;
+            var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight*0.9 ) *
+                                    sconf.med2mod_scale;
+            var railsLength       = endX - startX;
+
+            var startPos          = [ startX, startY ];
+            var endPos            = [ endX, startY ];
+
+            // //\\ slider object
+            //sets registry
+            tp( 'sliderStart', startPos );
+            tp( 'sliderEnd', endPos );
+
+            var sliderStart = pos2pointy( 'sliderStart',
+                              { fill : '#9999dd', tpclass:'ellipse', cssClass : 'tofill tostroke', } );
+            var sliderEnd = pos2pointy( 'sliderEnd',
+                              { fill : '#9999dd', tpclass:'ellipse', cssClass : 'tofill tostroke', } );
+            ///draws rails
+            var slider = pointies2line(
+                 'slider-a',
+                 [sliderStart, sliderEnd],
+                 {stroke:'#9999dd', 'stroke-width':3, tpclass:'ellipse', cssClass : 'tofill tostroke', }
+            );
+            $$.$(slider.svgel).cls( 'tp-ellipse' );
+            // \\// slider object
+
+            var a           = rg.a;
+            var handleXpos  = ( a.value - min_a ) / range_a * railsLength + startX;
+            a.pos           = [ handleXpos, startY ];
+            a.startX        = startX;
+            a.endX          = endX;
+            a.railsLength   = railsLength;
+            pos2pointy(
+                'a',
+                {
+                    cssClass : 'tostroke',
+                    stroke : ellipseColor,
+                    'stroke-width' : 3,
+                    fill : 'white',
+                    r : 8,
+                    tpclass : 'ellipse',
+                }
+            );
+
+            a.text_svg = sv.printText({
+                parent : studyMods[ SUB_MODEL ].mmedia,
+                text :'a',
+                x : rg.a.medpos[0]-15,
+                y : rg.a.medpos[1]+80,
+               'stroke-width' : 3,
+                style : { 'font-size' : '60px' },
+                stroke  : ellipseColor,
+            });
+
+            rg.a.model8media_upcreate = function() {
+                studyMods[ SUB_MODEL ].model8media_upcreate();
+            }
+
+            ///for slider
+            a.pos2value = function( newPos, dontUpdateModel )
+            {
+                var newValue = ( max_a - min_a ) * ( newPos[0] - startX ) / railsLength + min_a;
+                if( newValue < min_a || newValue > max_a ) return;
+                a.value = newValue;
+                a.pos[0] = newPos[0];
+                a.pos[1] = newPos[1];
+                updateSliderHandlePos();
+                if( !dontUpdateModel ) {
+                    a.model8media_upcreate();
+                }
+                return true;
+            }
+
+            function updateSliderHandlePos()
+            {
+                //var sliderXpos = (a.value - min_a ) / range_a * railsLength + startX;
+                //a.pos[0] = sliderXpos;
+                a.medpos = modpos2medpos( a.pos );
+                sv.u({
+                    svgel   : a.svgel,
+                    parent  : studyMods[ SUB_MODEL ].mmedia,
+                    cx : a.medpos[0],
+                    cy : a.medpos[1],
+                });
+                a.text_svg.setAttributeNS( null, 'x', a.medpos[0]-15 );
+                a.text_svg.setAttributeNS( null, 'y', a.medpos[1]+80 );
+            };
+            updateSliderHandlePos();
+        }
+        //----------------------------------------
+        // \\// makes up time slider
+        //----------------------------------------
 
 
 
