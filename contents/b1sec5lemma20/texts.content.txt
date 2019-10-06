@@ -10,6 +10,8 @@
   "fixed-colors" :
   {
     "key-triangle"          : [255,   0, 0, 1],
+    "similar-triangle"      : [0,     0, 255, 1],
+
     "PT"                    : [255,   0, 0, 1],
 
     "base-figure"           : [0,     0, 255, 1],
@@ -81,7 +83,8 @@ will move points T and ¦key-triangle¦R¦¦.
 
 <b>Numerical Model</b><br><br>
 
-Proof for ellipse \( x^2/a^2 + y^2/b^2 = 1 \).
+¦ellipse¦a¦¦¦ ¦ellipse¦b¦¦¦
+Proof for ¦ellipse¦ellipse¦¦ \( x^2/a^2 + y^2/b^2 = 1 \).
 <br><br>
 
 
@@ -93,7 +96,7 @@ therefore, the ratio ¦key-triangle¦PR/PT¦¦ is constant when point ¦generato
 
 Proof for (1):
 If ¦ellipse¦ellipse¦¦ is a circle, then comparision of angles implies that <br><br>
-1.2) triangles CPB and RPT are similar;<br><br>
+1.2) triangles ¦similar-triangle¦CPB¦¦ and ¦key-triangle¦RPT¦¦ are similar;<br><br>
 therefore ¦key-triangle¦PR/PT¦¦ = ratio of sides PC/PB of given triangle, so this ratio is a constant, and
 therefore ¦key-triangle¦PR/PT¦¦ = ¦static-generator¦Pr/Pt¦¦ which implies the similartity in the proposition (1)
 <br><br>

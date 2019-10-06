@@ -339,6 +339,47 @@
         // \\// static triangle
         //------------------------
 
+
+        //------------------------
+        // //\\ similar triangles
+        //      in circle case
+        //------------------------
+        pointies2line(
+            'CPsimilar',
+            [ rg.C, rg.P],
+            {
+                cssClass:'tostroke',
+                'stroke'      : 'transparent',
+                'stroke-width':7,
+                tpclass : 'similar-triangle',
+            }
+        );
+        pointies2line(
+            'BPsimilar',
+            [ rg.B, rg.P],
+            {
+                cssClass:'tostroke',
+                'stroke'      : 'transparent',
+                'stroke-width':7,
+                tpclass : 'similar-triangle',
+            }
+        );
+        pointies2line(
+            'BCsimilar',
+            [ rg.B, rg.C],
+            {
+                cssClass:'tostroke',
+                'stroke'      : 'transparent',
+                'stroke-width':7,
+                tpclass : 'similar-triangle',
+            }
+        );
+        //------------------------
+        // \\// similar triangles
+        //------------------------
+
+
+
         //------------------------
         // //\\ key triangle
         //------------------------

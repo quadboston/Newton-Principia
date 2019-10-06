@@ -1,0 +1,88 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin",
+
+  "comment1 for contributors" : "fixed-colors are in effect over all lemma, no matter in which fragment here they are set",
+  "comment2 for contributors" : "fixed-colors are in [R,G,B,OPTIONAL_OPACITY_FOR_NONHIGHLIGHTED_MODE] format",
+  "comment3 for contributors" : "LITE and SATURATION parameters (implied from fixed-colors) are ignored",
+
+  "fixed-colors" :
+  {
+    "gamma"                 : [255,   0, 0, 1],
+    "g-parameter"           : [255,   0, 0, 1],
+    "balance-parameters"    : [255,   0, 0, 1],
+    "CB"                    : [255,   0, 0, 1],
+
+    "PT"                    : [255,   0, 0, 1],
+
+    "base-figure"           : [0,     0, 255, 1],
+    "angle-alpha"           : [255,   0, 0, 1],
+    "angle-beta"            : [255,   0, 0, 1],
+
+    "static-generator"      : [255,   0, 255, 1],
+    "ellipse"               : [0,   150, 0, 1],
+    "tangent"               : [0,   150, 0, 1],
+    "given-paralellogram"   : [0,   200, 255, 1],
+    "generators"            : [200, 150, 0, 1]
+  }
+}
+*..*
+
+<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+to be entered
+
+*::*proof|latin
+
+<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">
+
+
+
+
+*::*proof|english
+
+to be entered
+
+
+*::*claim|model
+{
+  "menuCaption" : "Model"
+}
+*..*
+
+
+
+*::*proof|model
+{
+  "default" : "1",
+  "menuCaption" : "Model"
+}
+*..*
+
+
+
+<b>Numerical Model</b><br><br>
+
+Given parameters are: <br><br>
+
+¦gamma¦gamma = BOM¦¦, <br>
+¦angle-alpha¦alpha = BCA¦¦,<br>
+¦angle-beta¦beta = CBA¦¦<br>
+¦balance-parameters¦c = CO¦¦, ¦CB¦CB=1¦¦, <br>
+<br>
+Parameter ¦g-parameter¦g¦¦ = ¦g-parameter¦OM¦¦ varies. <br>
+When ¦g-parameter¦g¦¦ changes, point ¦generators¦D¦¦ runs along ¦ellipse¦hyperbola¦¦.<br>
+<br><br>
+
+
+
+

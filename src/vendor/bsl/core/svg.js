@@ -152,6 +152,26 @@
         return nssvg.polyline( arg ); 
     };
 
+    ///"manually" created polyline which formes curve,
+    ///signature:                       nssvg.curve({ stepsCount, step, curve( curvePar ) })
+    ///signature of callback "curve":   curve( g ) |-> {x:x, y:y}
+    ///returns:                         svg-element
+    nssvg.curve = function( arg )
+    {
+        var { stepsCount, start, step, curve } = arg;
+        var polyline = arg.pivots = [];
+        for( var ii = 0; ii < stepsCount; ii++ ) {
+            var curv = curve( start + step * ii );
+            var xx = curv.x;
+            var yy = curv.y;
+            polyline.push( [ xx, yy ] );
+        }
+        polyline.push( [ xx, yy ] );
+        //makes curve closed:
+        polyline.push( polyline[0] );
+        return nssvg.polyline( arg ); 
+    };
+
 
     ///====================================
     ///Creates or updates svg-text element

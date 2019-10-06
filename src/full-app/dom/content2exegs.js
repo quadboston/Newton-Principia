@@ -257,7 +257,9 @@
                 var pr = bgImages.path2rk;
                 var imgId = essayHeader.mediaBgImage;
                 imgId = !ns.h( essayHeader, 'mediaBgImage' ) ?
+                          //if no im in header, then id is common
                           'common' :
+                          //if null in head., then set to keyword "empty"
                           ( imgId === null ? 'empty' : imgId );
                 if( !ns.h( pr, imgId ) ) {
                     var cssId = 'bg'+bgImgCount;
@@ -268,7 +270,10 @@
                              'images/empty.png' :
                              'contents/' + fconf.sappId + '/img/' +
                                 ( imgId === 'common' ?
+
+                                    //it turns out that "common" means "from conf"
                                     sconf.contentConfig.mediaBgImage :
+
                                     imgId
                                 )
                     };
