@@ -89,15 +89,21 @@
         function pointWrap_2_dragWrap( api )
         {
             //---------------------------------------------
-            // //\\ AAAAAAAAA PPPPPPPP IIIIIIIIII
+            // //\\ AAA PPP III
             //---------------------------------------------
             var pointWrap            = api.pointWrap || {};
             var doProcess            = api.doProcess;           //to be set at point-def.
             var update_decPoint      = api.update_decPoint;     //optional
             var dragCssCls           = pointWrap.dragCssCls;    //optional
             var dragDecorColor       = pointWrap.dragDecorColor;//optional
+            //api.achieved is optional parameter
+            //---------------------------------------------
+            // \\// AAA PPP III
+            //---------------------------------------------
 
-            // api.achieved is an optional parameter
+            //==============================================
+            // //\\ api.achieved is an optional parameter
+            //==============================================
             // if it is falsy and not 0, then it is not used
             // otherwise, it is placed into 
             //
@@ -116,27 +122,64 @@
             //    ccc('arg.archived', api.achieved);
             //}
             //--------------------------------------------
-            pointWrap.achieved = api.achieved || api.achieved === 0 ? { achieved : api.achieved } : { achieved : {} };
+            pointWrap.achieved = api.achieved ||
+                api.achieved === 0 ?
+                { achieved : api.achieved } : { achieved : {} };
+            //==============================================
+            // \\// api.achieved is an optional parameter
+            //==============================================
 
-            //.recall, parent of decPoint is dragSurface
-            var cssIdLowCase = dragCssCls && dragCssCls.replace( /([A-Z])/g, ( match, key1 ) => (
-                               '_' + key1.toLowerCase() ));
 
-            var decPoint            = update_decPoint &&
-                                            dpdec.addD8D_decorationPoint(
-                                                dragSurface,
-                                                cssIdLowCase,
-                                                dragDecorColor,
-                                                decPoint_parentClasses
-                                            );
-            //c cc( cssIdLowCase + ' pointWrap.dragDecorColor=' +  pointWrap.dragDecorColor)
-            // \\// functions' side effects
-            //---------------------------------------------
-            // \\// AAAAAAAAA PPPPPPPP IIIIIIIIII
-            //---------------------------------------------
+            //==============================================
+            // //\\ optional features
+            //==============================================
+            var decPoint = null;
+            var addFeaturesToDecPoint = null;
+            if( update_decPoint ) {
+                if( dragCssCls ) {
+                    addFeaturesToDecPoint =
+                    {
+                        dragDecorColor  : dragDecorColor,
+                        css_class_as_id : dragCssCls.replace(
+                                                /([A-Z])/g,
+                                                ( match, key1 ) => ( '_' + key1.toLowerCase() )
+                                          ),
+                    };
+                }
+                decPoint = dpdec.addD8D_decorationPoint(
+                    dragSurface,
+                    addFeaturesToDecPoint,
+                    decPoint_parentClasses
+                );
+                update_decPoint( decPoint, dragSurface ); //todo ... redundant?
+            }
+            //==============================================
+            // \\// optional features
+            //==============================================
 
-            update_decPoint && update_decPoint( decPoint, dragSurface ); //todo ... redundant?
 
+            //==============================================
+            // //\\ drag wrap
+            //==============================================
+            var dragWrap =
+            {
+                pointWrap       :pointWrap,
+                doDragUpdate    :doDragUpdate,
+                update_decPoint :update_decPoint,
+                decPoint        :decPoint
+            };
+            dragWraps.push( dragWrap );
+            //==============================================
+            // \\// drag wrap
+            //==============================================
+            return dragWrap;
+
+
+
+
+            //==============================================
+            // //\\ do drag update
+            //==============================================
             //.the throttle is abandoned since v1960
             //.abandoned because it is hard to remember and explain to other developer
             //.the complexity which arised with throttle: the complexity is
@@ -148,10 +191,9 @@
             //);
             //.if one needs to throttle the drag, do throttle "do Process()"
             //.explicitly in specific lemma
-
             function doDragUpdate( arg )
             {
-                //logical sugar:
+                //logical sugar: //todm too complex ... do simplify
                 //remembers pointWrap which can be changed in closure of do Process
                 //when pointWrap is generated in the loop
                 arg.pointWrap = pointWrap; 
@@ -165,16 +207,9 @@
                     selectedElement=0;
                 }
             }
-
-            var dragWrap =
-            {
-                pointWrap       :pointWrap,
-                doDragUpdate    :doDragUpdate,
-                update_decPoint :update_decPoint,
-                decPoint        :decPoint
-            };
-            dragWraps.push( dragWrap );
-            return dragWrap;
+            //==============================================
+            // \\// do drag update
+            //==============================================
         }
 
 

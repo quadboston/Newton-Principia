@@ -152,9 +152,48 @@
         return nssvg.polyline( arg ); 
     };
 
+    ///"manually" created polyline which formes ellipse's sector,
+    ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
+    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
+    ///returns: svg-element;
+    nssvg.ellipseSector = function( arg )
+    {
+        var { stepsCount, a, b, x0, y0, rotationRads, t0, t1 } = arg;
+        var polyline = arg.pivots = [];
+
+        stepsCount = stepsCount || 100;
+        t0 = t0 || 0; //start
+        t1 = t1 || Math.PI*2; //end
+        a = a || 1;
+        b = b || 1;
+        var step = ( t1 - t0 ) / stepsCount;
+        polyline.push( [x0,y0] );
+        for( var ii = 0; ii <= stepsCount; ii++ ) {
+            var ell = mat.ellipse({
+                t:step * ii,
+                a,
+                b,
+                x0,
+                y0,
+                t0,
+                rotationRads,
+            });
+            var xx = ell.x;
+            var yy = ell.y;
+            polyline.push( [ xx, yy ] );
+        }
+        polyline.push( [ xx, yy ] );
+        //makes sector closed:
+        polyline.push( polyline[0] );
+        return nssvg.polyline( arg ); 
+    };
+
+
     ///"manually" created polyline which formes curve,
     ///signature:                       nssvg.curve({ stepsCount, step, curve( curvePar ) })
     ///signature of callback "curve":   curve( g ) |-> {x:x, y:y}
+    ///autocloses unless                arg.dontClose = true,
+    ///
     ///returns:                         svg-element
     nssvg.curve = function( arg )
     {
@@ -168,7 +207,9 @@
         }
         polyline.push( [ xx, yy ] );
         //makes curve closed:
-        polyline.push( polyline[0] );
+        if( !arg.dontClose ) {
+            polyline.push( polyline[0] );
+        }
         return nssvg.polyline( arg ); 
     };
 

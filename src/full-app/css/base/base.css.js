@@ -29,7 +29,7 @@ var ret = `
         /* \\// added for lemma9 */
 
         background-color:${ccs['color-light']};
-        font-size:15px; //this defines what 1rem is
+        font-size:15px; /*this defines what 1rem is */
     }
 
     /* //\\ added for lemma9 */

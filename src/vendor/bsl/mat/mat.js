@@ -53,6 +53,7 @@
     function ellipse( args )
     {
         var { t, a, b, x0, y0, t0, rotationRads } = args;
+        rotationRads = rotationRads || 0;
         var rC = Math.cos( rotationRads );
         var rS = Math.sin( rotationRads );
         var t0 = t0 || 0;
@@ -70,7 +71,6 @@
 
         var x = xx * rC - yy * rS + x0;
         var y = xx * rS + yy * rC + y0;
-
         return { x, y, cos, sin, tangent:[tanX,tanY], args};
     }
 

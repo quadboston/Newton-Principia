@@ -72,6 +72,9 @@
         //todm this is a patch: do use Pr/Pt
         var g = Math.abs( rg.g.value ) < 1e-20 ? 1 : rg.g.value;
         ww[ 'g' ].innerHTML = g.toFixed(3);
+
+        ww[ 'beta' ].innerHTML = rg.beta.value.toFixed(3);
+        ww[ 'alpha' ].innerHTML = rg.alpha.value.toFixed(3);
     }
     //=========================================
     // \\// updates values during simulation
@@ -146,8 +149,11 @@
             //.addClass('tostroke')
             .to(tb)();
         makeCl( row, 'g', 'g', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'g-parameter' );
-        //makeCl( row, 'PR', 'PR', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
-        //makeCl( row, 'PR-PT', 'PR/PT', null, null,  !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
+
+        var row = $$.c('tr')
+            .to(tb)();
+        makeCl( row, 'alpha', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
+        makeCl( row, 'beta', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
         //===================
         // \\//
         //===================

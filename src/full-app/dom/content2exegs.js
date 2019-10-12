@@ -17,6 +17,8 @@
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
+    var bgImages    = sn('bgImages',ssD);
+
     var references  = sn('references', ssD);
     var exegs       = sn('exegs', ssD);
     sDomF.bookfiles_to_exegesisBodies = bookfiles_to_exegesisBodies;
@@ -101,10 +103,9 @@
             var ESSAYON_DIVIDOR = /\*::\*/g;
             var essayons = txt.split( ESSAYON_DIVIDOR );
             sconf.submenus = {};
-            var bgImgCount = 0;
-            var bgImages = {};
             bgImages.cssId2rk = {};
             bgImages.path2rk = {};
+            bgImages.bgImgCount = 0;
             essayons.forEach( function(essayon) {
 
                 //.removes empty essayons
@@ -262,7 +263,7 @@
                           //if null in head., then set to keyword "empty"
                           ( imgId === null ? 'empty' : imgId );
                 if( !ns.h( pr, imgId ) ) {
-                    var cssId = 'bg'+bgImgCount;
+                    var cssId = 'bg'+bgImages.bgImgCount;
                     bgImages.cssId2rk[ cssId ] = pr[ imgId ] =
                     {
                         cssId : cssId,
@@ -277,7 +278,7 @@
                                     imgId
                                 )
                     };
-                    bgImgCount++;
+                    bgImages.bgImgCount++;
                 }
                 exeg.imgRk = pr[ imgId ];
             }

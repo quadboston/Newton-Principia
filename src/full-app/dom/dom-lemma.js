@@ -37,7 +37,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function createLemmaDom()
+    function createLemmaDom( bgImagesAreLoaded )
     {
         //==============================================================
         // //\\ essay and media panes
@@ -80,7 +80,7 @@
 
         sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
-        fmethods.populate_mediaSupreRoot();
+        fmethods.populate_mediaSupreRoot( bgImagesAreLoaded );
         
     }
 

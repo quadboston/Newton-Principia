@@ -43,19 +43,29 @@
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
-        var pictureWidth = 928;
-        var pictureHeight = 850;
+        //var pictureWidth = 928;
+        //var pictureHeight = 850;
+        var pictureWidth = 1856;
+        var pictureHeight = 1700;
+
+        var masterCenterX = 850;
+        var masterCenterX = 853;
+        var masterCenterY = 976;
+        var masterCenterY = 978;
 
         var centerX_onPicture = 384;
         var centerY_onPicture = 551;
+        var centerY_onPicture = 553;
 
         var pictureActiveArea;
-        var activeAreaOffsetX = centerX_onPicture;
 
         var pointsOnPicture =
         {
-            C : [56, 550],
-            B : [836, 552],
+            //C : [56, 550],
+            C : [50, 550],
+            //B : [836, 552],
+            B : [838, 552],
+            //B : [834, 554],
             P : [548, 77],
             M : [391,634],
             N : [380, 476],
@@ -70,7 +80,6 @@
 
 
         var gamma = Math.PI*0.49;
-        var b;
         var a;
         var beta;
         var alpha;
@@ -88,16 +97,19 @@
             var AA = pp.AA;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
             pictureActiveArea = mat.unitVector(BC).abs;
-            b = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
-            a = 1 - b;
+            var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
+            a = 1 - wwb;
+            a = 0.428;
+            a = 0.435;
 
             //---sets initial param g
             var OM = [ M[0] - O[0], M[1] - O[1] ];
             initial_Munit = mat.unitVector(OM);
             initial_g = initial_Munit.abs/pictureActiveArea;
-            //initial_g *= 0.9; //patch
+            initial_g = 0.105;
             //is an absolute value of an angle:
             gamma = Math.acos( initial_Munit.unitVec[0] ); 
+            gamma *= 1.01;
 
             //---sets initial decorational param gN
             var ON = [ N[0] - O[0], N[1] - O[1] ];
@@ -107,9 +119,17 @@
 
             var BAA = mat.p1_to_p2( B, AA );
             beta = -Math.asin( BAA.unitVec[1] ); 
+            beta = 0.862;
+            beta = 0.870;
+            beta = 0.859;
+            beta = 0.863;
+
             //ccc( 'beta fraction=' + (beta/Math.PI).toFixed(3) );
             var CAA = mat.p1_to_p2( C, AA );
             alpha = -Math.asin( CAA.unitVec[1] ); 
+            alpha = 0.543;
+            alpha = 0.528;
+
             //ccc( 'alpha fraction=' + (alpha/Math.PI).toFixed(3) );
         })();
 
@@ -125,8 +145,6 @@
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
         var mod2med_scale = pictureActiveArea;
-        var centerY_onPicture = centerY_onPicture;
-        var activeAreaOffsetOnPictureY = centerY_onPicture;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -140,7 +158,6 @@
 
             //CBAng   : CBAng,
             gamma   : gamma,
-            b       : b,
             a       : a,
             beta    : beta,
             alpha   : alpha,
@@ -153,9 +170,9 @@
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
 
             pictureActiveArea   : pictureActiveArea,
-            activeAreaOffsetX   : activeAreaOffsetX,
-            centerOnPicture_Y   : centerY_onPicture,
-            centerOnPicture_X   : centerX_onPicture,
+            activeAreaOffsetX   : masterCenterX,
+            centerOnPicture_X   : masterCenterX,
+            centerOnPicture_Y   : masterCenterY,
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
 
@@ -180,7 +197,6 @@
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 2,
         });
-
 
 
         //----------------------------------

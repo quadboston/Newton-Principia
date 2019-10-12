@@ -104,28 +104,18 @@
         var givenParallels  = arr2rgba( wwfc[ "given-paralellogram" ] ) || '#ff00ff';
         var lwidth          = sconf.defaultLineWidth;
 
-        ///-------------------------------------------------
-        ///builds center point first to be used in ellipse
-        ///-------------------------------------------------
-        pos2pointy(
-            'O',
-            {
-                cssClass : 'tofill tostroke',
-                'fill' : baseColor,
-                tpclass : 'base-figure',
-                r : 6,
-            }
-        );
 
         ///-------------------------------------------------
-        ///makes ellipse first to put point over it later
+        ///makes conic first to put point over it later
         ///-------------------------------------------------
         var calculateConicPoint = studyMods[SUB_MODEL].calculateConicPoint;
         var curve = tr( 'curve' );
         (function () {
-            var stepsCount = 200;
-            var start_g = - 1.5;
-            var end_g = 1.5;
+            var stepsCount = 400;
+            //var start_g = - 1.5;
+            //var end_g = 1.5;
+            var start_g = - 5;
+            var end_g = 5;
             var range_g = end_g - start_g;
             var step = range_g / stepsCount;
             curve.svgel = sv.curve({
@@ -141,6 +131,7 @@
                 parent : studyMods[ SUB_MODEL ].mmedia,
                 'stroke-width':1,
                 stroke  : ellipseColor,
+                dontClose : true,
             });
             $$.$(curve.svgel).cls( 'tp-ellipse tostroke' );
         })();
@@ -148,12 +139,30 @@
         //-------------------------------------------------
         // //\\ adds to points their media position
         //-------------------------------------------------
+
+        /*
+        ///-------------------------------------------------
+        ///builds center point first to be used in ellipse
+        ///-------------------------------------------------
+        pos2pointy(
+            'O',
+            {
+                cssClass : 'tofill tostroke',
+                'fill' : baseColor,
+                tpclass : 'base-figure',
+                r : 6,
+            }
+        );
+        */
+
+        pn2mp( 'O' );
         pn2mp( 'G' );
         pn2mp( 'D' );
         pn2mp( 'A' );
         pn2mp( 'AA' );
         pn2mp( 'B' );
         pn2mp( 'N' );
+        pn2mp( 'H' );
         //-------------------------------------------------
         // \\// adds to points their media position
         //-------------------------------------------------
@@ -163,8 +172,8 @@
         // //\\ base sides
         //-------------------------------------------------
         pointies2line(
-            'BOM-B',
-            [ rg.B, rg.O],
+            'BHM-B',
+            [ rg.B, rg.H ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -173,8 +182,8 @@
             }
         );
         pointies2line(
-            'BOM-M',
-            [ rg.G, rg.O],
+            'BHM-M',
+            [ rg.G, rg.H ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -183,8 +192,8 @@
             }
         );
         pointies2line(
-            'OG',
-            [ rg.O, rg.G],
+            'NG',
+            [ rg.N, rg.G ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -193,8 +202,8 @@
             }
         );
         pointies2line(
-            'CO',
-            [ rg.A, rg.O],
+            'CH',
+            [ rg.A, rg.H ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -204,7 +213,7 @@
         );
         pointies2line(
             'BA',
-            [ rg.B, rg.A],
+            [ rg.B, rg.A ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -214,7 +223,7 @@
         );
         pointies2line(
             'BD',
-            [ rg.B, rg.D],
+            [ rg.B, rg.D ],
             {
                 cssClass:'tostroke',
                 'stroke-width':lwidth,
@@ -281,6 +290,100 @@
                 tpclass : 'angle-alpha',
             }
         );
+
+        //---------------------------------------
+        // //\\ angles alpha and beta
+        //---------------------------------------
+        var ANGLE_SIZE = 0.1;
+        var B_AA = mat.p1_to_p2(rg.B.pos, rg.AA.pos );
+        rg.beta.angleSvg = sv.ellipseSector({
+            stepsCount : 20,
+            // //\\ todm ... mod2med_scale must be incapsulated in model
+            //instead we are converting from model to media manually here 
+            //it is very annoying to always remember to
+            //make a correction with MONITOR_Y_FLIP ...
+            //todm ... do a better programming
+            x0 : rg.B.medpos[0],
+            y0 : rg.B.medpos[1],
+            a  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            b  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            t0 : Math.PI-rg.beta.value*sconf.MONITOR_Y_FLIP,
+            // \\// todm ... mod2med_scale must be incapsulated in model
+
+            t1 : Math.PI,
+            svgel : rg.beta.angleSvg,
+            parent : studyMods[ SUB_MODEL ].mmedia,
+            //fill : 'rgba( 255, 0, 0, 0.1 )',
+            fill : 'transparent',
+            'stroke-width':1,
+            //a, b, t0, t1
+        });
+        $$.$(rg.beta.angleSvg).cls( 'tp-angle-beta tostroke' );
+
+        var A_AA = mat.p1_to_p2(rg.A.pos, rg.AA.pos );
+        rg.alpha.angleSvg = sv.ellipseSector({
+            stepsCount : 20,
+            x0 : rg.A.medpos[0],
+            y0 : rg.A.medpos[1],
+            a  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            b  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            t0 : 0,
+            t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
+            svgel : rg.alpha.angleSvg,
+            parent : studyMods[ SUB_MODEL ].mmedia,
+            fill : 'transparent',
+            'stroke-width':1,
+        });
+        $$.$(rg.alpha.angleSvg).cls( 'tp-angle-alpha tostroke' );
+
+        // //\\ applied angles
+        // //\\ applied alpha
+        var AG = mat.p1_to_p2(rg.A.pos, rg.G.pos );
+        var cosAlphaS = AG.unitVec[0];
+        var alphaS = Math.acos( cosAlphaS ) * ( AG.unitVec[1] < 0 ? -1 : 1 );
+        rg.alpha.appliedAngleSvg = sv.ellipseSector({
+            stepsCount : 20,
+            x0 : rg.A.medpos[0],
+            y0 : rg.A.medpos[1],
+            //a  : sconf.mod2med_scale*AG.abs*0.3,
+            //b  : sconf.mod2med_scale*AG.abs*0.3,
+            a  : sconf.mod2med_scale*ANGLE_SIZE,
+            b  : sconf.mod2med_scale*ANGLE_SIZE,
+            t0 : alphaS*sconf.MONITOR_Y_FLIP,
+            t1 : (alphaS + rg.alpha.value) * sconf.MONITOR_Y_FLIP,
+            svgel : rg.alpha.appliedAngleSvg,
+            parent : studyMods[ SUB_MODEL ].mmedia,
+            fill : 'rgba( 155, 155, 0, 0.3 )',
+            stroke: 'transparent',
+            'stroke-width':1,
+        });
+        $$.$(rg.alpha.appliedAngleSvg).cls( 'tp-angle-alpha tofill' );
+        // \\// applied alpha
+        // //\\ applied beta
+        var BG = mat.p1_to_p2(rg.B.pos, rg.G.pos );
+        var cosBetaS = BG.unitVec[0];
+        var betaS = Math.acos( cosBetaS ) * ( BG.unitVec[1] < 0 ? -1 : 1 );
+        rg.beta.appliedAngleSvg = sv.ellipseSector({
+            stepsCount : 20,
+            x0 : rg.B.medpos[0],
+            y0 : rg.B.medpos[1],
+            a  : sconf.mod2med_scale*ANGLE_SIZE,
+            b  : sconf.mod2med_scale*ANGLE_SIZE,
+            t0 : betaS*sconf.MONITOR_Y_FLIP,
+            t1 : (betaS - rg.beta.value) * sconf.MONITOR_Y_FLIP,
+            svgel : rg.beta.appliedAngleSvg,
+            parent : studyMods[ SUB_MODEL ].mmedia,
+            fill : 'rgba( 155, 155, 0, 0.3 )',
+            stroke: 'transparent',
+            'stroke-width':1,
+        });
+        $$.$(rg.beta.appliedAngleSvg).cls( 'tp-angle-beta tofill' );
+        // \\// applied alpha
+        // \\// applied angles
+        //---------------------------------------
+        // \\// angles alpha and beta
+        //---------------------------------------
+
 
         pointies2line(
             'AABAangleAA',
@@ -394,23 +497,23 @@
             'AA',
             { 
                 tpclass         : 'base-figure',
-                cssClass        : 'tofill tostroke',
-                'stroke'        : basePointColor,
-                'fill'          : basePointColor,
+                cssClass        : 'tofill tostroke aa-point',
+                stroke          : GParamColor,
+                'fill'          : 'white',
                 'stroke-width'  : 2,
-                r               : 4,
+                r               : 6,
             }
         );
 
 
         pos2pointy(
             'G',
-            { 
+            {
                 cssClass        : 'tofill tostroke',
-                stroke  : GParamColor,
+                stroke          : GParamColor,
                 'fill'          : 'white',
                 'stroke-width'  : 2,
-                r               : 7,
+                r               : 6,
             }
         );
         pos2pointy(
@@ -421,6 +524,16 @@
                 //'fill'          : 'white',
                 'stroke-width'  : 2,
                 r               : 4,
+            }
+        );
+        pos2pointy(
+            'H',
+            {
+                cssClass        : 'tofill tostroke h-point',
+                stroke          : GParamColor,
+                'fill'          : 'white',
+                'stroke-width'  : 2,
+                r               : 7,
             }
         );
         //-------------------------------------------------
@@ -454,17 +567,16 @@
                 //protects drag from going outside the window
                 if( newValue < -6.5 || newValue > 2.5 ) return;
                 rg.g.value = newValue;
-                G.pos[0] = newPos[0];
-                G.pos[1] = newPos[1];
                 G.model8media_upcreate();
             }
 
-            //does project (pos-P) on Pt:
             rg.G.pos2Gpar = function( pos )
             {
-                var O=rg.O.pos;
-                var Opos = mat.p1_to_p2( O, pos );
-                var g = Opos.abs * ( Opos.unitVec[1] > 0 ? -1 : 1 ) ; 
+                var H=rg.H.pos;
+                var gamma = rg.gamma.value;
+                var dd = [ pos[0]-H[0], pos[1]-H[1] ];
+                //projects shift to direction of unit vector "gamma":
+                var g = -dd[0]*Math.cos(gamma) - dd[1]*Math.sin(gamma);
                 return g;
             }
         }
@@ -472,10 +584,67 @@
         // \\// adds methods to rg.G only once
         //-----------------------------------------------
 
+        //-----------------------------------------------
+        // //\\ adds methods to rg.A only once
+        //-----------------------------------------------
+        ///attaches updater right to the point G to ease
+        ///this function lookup right from dragger-of-G
+        if( !ns.h( rg.AA, 'model8media_upcreate' )) {
+            rg.AA.model8media_upcreate = function() {
+                studyMods[ SUB_MODEL ].model8media_upcreate();
+            }
+
+            ///for slider
+            rg.AA.pos2value = function( newPos )
+            {
+                var AA = rg.AA;
+                var { alpha, beta } = AA.pos2alpha8beta( newPos )
+                rg.alpha.value = alpha;
+                rg.beta.value = beta;
+                AA.model8media_upcreate();
+            }
+
+            rg.AA.pos2alpha8beta = function( pos )
+            {
+                var BA = mat.p1_to_p2( rg.B.pos, pos );
+                var cosBeta = -BA.unitVec[0];
+                var beta = Math.acos( cosBeta ) * ( BA.unitVec[1] < 0 ? -1 : 1 );
+
+                var A_AA = mat.p1_to_p2( rg.A.pos, pos );
+                var cosAlpha = A_AA.unitVec[0];
+                var alpha = Math.acos( cosAlpha ) * ( A_AA.unitVec[1] < 0 ? -1 : 1 );
+                return { alpha, beta };
+            }
+        }
+        //-----------------------------------------------
+        // \\// adds methods to rg.A only once
+        //-----------------------------------------------
+
+        //-----------------------------------------------
+        // //\\ adds methods to rg.H only once
+        //-----------------------------------------------
+        ///attaches updater right to the point G to ease
+        ///this function lookup right from dragger-of-G
+        if( !ns.h( rg.H, 'model8media_upcreate' )) {
+            rg.H.model8media_upcreate = function() {
+                studyMods[ SUB_MODEL ].model8media_upcreate();
+            }
+            ///for slider
+            rg.H.pos2value = function( newPos )
+            {
+                var H = rg.H;
+                rg.a.value = newPos[0] - rg.A.pos[0];
+                H.model8media_upcreate();
+            }
+        }
+        //-----------------------------------------------
+        // \\// adds methods to rg.H only once
+        //-----------------------------------------------
+
 
         if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
             ////if slider is not already created ...
-            createSliderPlaceholder_a();
+            //todm make svg-scale slider: createSliderPlaceholder_a();
         }
     }
     //=========================================================
@@ -496,11 +665,11 @@
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
+    /*
     function createSliderPlaceholder_a()
     {
-        var neutral_a         = 1; //neutral value of a is for circle
-        var max_a             = 0.999;
-        var min_a             = 0.0001;
+        var max_a             = 4;
+        var min_a             = -3;
         var range_a           = max_a - min_a;
 
         var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth*0.1 ) *
@@ -564,7 +733,7 @@
         }
 
         ///for slider
-        a.pos2value = function( newPos, dontUpdateModel )
+        a.pos2value = function( newPos )
         {
             var newValue = ( max_a - min_a ) * ( newPos[0] - startX ) / railsLength + min_a;
             if( newValue < min_a || newValue > max_a ) return;
@@ -588,9 +757,7 @@
             a.pos[0] = newPos[0];
             a.pos[1] = newPos[1];
             updateSliderHandlePos();
-            if( !dontUpdateModel ) {
-                a.model8media_upcreate();
-            }
+            a.model8media_upcreate();
             return true;
         }
 
@@ -610,6 +777,7 @@
         };
         updateSliderHandlePos();
     }
+    */
     //----------------------------------------
     // \\// param a slider
     //----------------------------------------

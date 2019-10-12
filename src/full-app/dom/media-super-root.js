@@ -17,17 +17,16 @@
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
+    var bgImages    = sn('bgImages', ssD);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
     var exegs    = sn('exegs', ssD);
-    var bgImages    = sn('bgImages', ssD);
 
 
 
     fmethods.populate_mediaSupreRoot = populate_mediaSupreRoot;
-    //000000000000000000000000000000000000000
     return;
-    //000000000000000000000000000000000000000
+
 
 
 
@@ -38,7 +37,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function populate_mediaSupreRoot()
+    function populate_mediaSupreRoot( bgImagesAreLoaded )
     {
 
         //--------------------------
@@ -188,6 +187,7 @@
         `;
 
         //todo img load scenarios: remove timeout from load/resize ...
+        var actuallyLoaded = 0;
         ns.eachprop( exegs, ( theor, tkey ) => {
             ns.eachprop( theor, ( aspect, akey ) => {
                 var imgRk = aspect.imgRk;
@@ -196,6 +196,14 @@
                 if( !ns.h( imgRk, 'dom$' ) ) {
                     imgRk.dom$ = $$
                         .img()
+                        ;
+                    imgRk.dom$().onload = function() {
+                        if( bgImages.bgImgCount === ++actuallyLoaded ) {
+                            //setTimeout( bgImagesAreLoaded, 1000 );
+                            bgImagesAreLoaded();
+                        }
+                    };
+                    imgRk.dom$
                         .a( 'src', imgRk.src )
                         .to( sDomN.medRoot )
                         ;

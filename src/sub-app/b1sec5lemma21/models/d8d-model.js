@@ -78,7 +78,9 @@
         //==========================================
         sapp.readyToResize = true;
         createDragger_G();
-        createDragger_a();
+        createDragger_AA();
+        createDragger_H();
+        //createDragger_a();
         ns.globalCss.update(); //for decorator
         return;
 
@@ -96,11 +98,10 @@
         function createDragger_G()
         {
             var pointWrap = rg.G;
-            //:sets dragger handle color
-            pointWrap.dragCssCls    = 't-slider-point';
 
-            //todo ... not proof
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
+            //:sets additional features ... dragger handle color
+            pointWrap.dragCssCls    = 'g-slider-point';
+            pointWrap.dragDecorColor = pointWrap.stroke;
 
             var argc =
             {
@@ -136,6 +137,107 @@
                      break;
                 case 'move':
                     G.pos2value([
+                        ach.achieved[0] + arg.surfMove[0] *
+                        sconf.med2mod_scale * css2media(),
+                        ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
+                        sconf.med2mod_scale * css2media()
+                    ]);
+                    break;
+            }
+        }
+
+        function createDragger_AA()
+        {
+            var pointWrap = rg.AA;
+            //:sets dragger handle color
+            pointWrap.dragCssCls    = 'aa-slider-point';
+            pointWrap.dragDecorColor = pointWrap.stroke;
+
+            var argc =
+            {
+                achieved            : [ rg.AA.pos[0], rg.AA.pos[1] ],
+                pointWrap           : rg.AA,
+                update_decPoint     : update_decPoint,
+                doProcess           : doProcess_sliderAA,
+            };
+            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+
+            ['rotate'].forEach( function( cls ) {
+                $$.addClass( cls, dragWrap.decPoint );
+            });
+
+            ///decorates DraggeeHoverer movement    
+            function update_decPoint( decPoint )
+            {
+                var dompos = sDomF.medpos2dompos.call( pointWrap );
+                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
+                decPoint.style.left = dompos[0] + 'px';            
+                decPoint.style.top = dompos[1] + 'px';            
+            }
+        }
+
+
+        function doProcess_sliderAA( arg )
+        {
+            var ach = arg.pointWrap.achieved;
+            var AA = rg.AA;
+            switch( arg.down_move_up ) {
+                case 'up':
+                     ach.achieved = [ AA.pos[0], AA.pos[1] ];
+                     break;
+                case 'move':
+                    AA.pos2value([
+                        ach.achieved[0] + arg.surfMove[0] *
+                        sconf.med2mod_scale * css2media(),
+                        ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
+                        sconf.med2mod_scale * css2media()
+                    ]);
+                    break;
+            }
+        }
+
+        function createDragger_H()
+        {
+            var pointWrap = rg.H;
+            //:sets dragger handle color
+            pointWrap.dragCssCls    = 'h-slider-point';
+            pointWrap.dragDecorColor = pointWrap.stroke;
+
+            var argc =
+            {
+                achieved            : [ rg.H.pos[0], rg.H.pos[1] ],
+                pointWrap           : rg.H,
+                update_decPoint     : update_decPoint,
+                doProcess           : doProcess_sliderH,
+            };
+            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+
+            ['x-axis'].forEach( function( cls ) {
+                $$.addClass( cls, dragWrap.decPoint );
+            });
+
+            ///decorates DraggeeHoverer movement    
+            function update_decPoint( decPoint )
+            {
+                var dompos = sDomF.medpos2dompos.call( pointWrap );
+                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
+                decPoint.style.left = dompos[0] + 'px';            
+                decPoint.style.top = dompos[1] + 'px';            
+            }
+        }
+
+
+        function doProcess_sliderH( arg )
+        {
+            var ach = arg.pointWrap.achieved;
+            var H = rg.H;
+            switch( arg.down_move_up ) {
+                case 'up':
+                     ach.achieved = [ H.pos[0], H.pos[1] ];
+                     break;
+                case 'move':
+                    sDomF.detected_user_interaction_effect();
+                    H.pos2value([
                         ach.achieved[0] + arg.surfMove[0] *
                         sconf.med2mod_scale * css2media(),
                         ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *

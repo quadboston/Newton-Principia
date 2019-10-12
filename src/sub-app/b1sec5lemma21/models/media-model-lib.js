@@ -93,6 +93,8 @@
         var pt              = tr( pName );
         pt.medpos2dompos    = sDomF.medpos2dompos;
         pt.medpos           = modpos2medpos( pt.pos );
+        pt.stroke           = attrs && attrs.stroke;
+        pt.fill             = attrs && attrs.fill;
         pt.svgel = sv.u({
             svgel   : pt.svgel,
             parent  : studyMods[ SUB_MODEL ].mmedia,

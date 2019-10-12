@@ -14,29 +14,38 @@
 
 
     ///creates decPoint, properly css-classed html of draggee-point-decorations and
-    ///attaches this html to hostDomEl
+    ///attaches this html to domParent_of_decorationPoint
     function addD8D_decorationPoint(
-        hostDomEl,      //usually dragSurface
-        dragCssCls,      //optional
-        dragDecorColor, //optional
-        parent_classes  //optional
+        domParent_of_decorationPoint,   //required: usually dragSurface
+        addFeaturesToDecPoint,          //optional
+        parent_classes                  //optional
     ) {
+        if( addFeaturesToDecPoint ) {
+            var css_class_as_id = addFeaturesToDecPoint.css_class_as_id; //required
+            var dragDecorColor =  addFeaturesToDecPoint.dragDecorColor; //optional
+        }
+
         var decPoint = document.createElement( 'div' );
         dpdec.createGlobal(); //idempotent
-        if( dragCssCls && dragDecorColor ) {
-            //amended: decPoint.setAttribute( 'id', fullCssId );
-            dpdec.create_individualCss( dragCssCls, dragDecorColor, parent_classes );
-            //later on, don't forget to make ns.globalCss.update();
-        }
-        var cssCls = 'brc-slider-draggee'
-           //.the second purpose of this line: it allows the handle to be managed
-           //.from other module css, for example, 
-           //.allows to hide dividor draggee at highlight
-           + ( dragCssCls ? ' ' + dragCssCls : '' )
-        ;
-        decPoint.setAttribute( 'class', cssCls );
+        var cssCls = 'brc-slider-draggee';
 
-        hostDomEl.appendChild( decPoint );
+        if( addFeaturesToDecPoint ) {
+            //.this line allows the handle to be managed
+            //.from other module css, for example, 
+            //.allows to hide dividor draggee at highlight
+            cssCls += ' ' + css_class_as_id;
+
+            if( dragDecorColor ) {
+                //amended: decPoint.setAttribute( 'id', fullCssId );
+                dpdec.create_individualCss(
+                    css_class_as_id, dragDecorColor, parent_classes
+                );
+                //later on, don't forget to make ns.globalCss.update();
+            }
+        }
+
+        decPoint.setAttribute( 'class', cssCls );
+        domParent_of_decorationPoint.appendChild( decPoint );
 
         var left = document.createElement( 'div' );
         left.setAttribute( 'class', 'brc-slider-draggee-left' );

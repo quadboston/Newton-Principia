@@ -61,11 +61,11 @@
     {
         //:primary params
         var a = tr( 'a', 'value', sconf.a );
-        var b = tr( 'b', 'value', sconf.b );
         tr( 'alpha', 'value', sconf.alpha );
         tr( 'beta', 'value', sconf.beta );
         tr( 'gamma', 'value', sconf.gamma );
         tr( 'O', 'pos', [0,0] );
+        tr( 'H', 'pos', [0,0] );
 
         //dependent parameters
         tr( 'nB', 'value', [ 1, 0 ] );
@@ -78,6 +78,10 @@
         //decorations:
         tr( 'gN', 'value', sconf.initial_gN );
 
+        setRgPoint( 'A', [ -rg.a.value, 0 ] )
+        setRgPoint( 'B', [ 1-rg.a.value, 0 ] )
+
+        var b = tr( 'b' );
         deriveParameters();
         //dev tool:
         //ellipsePar_create8paint( 1.50 )
@@ -85,8 +89,8 @@
 
     function deriveParameters()
     {
-        setRgPoint( 'A', [ -rg.a.value, 0 ] )
-        setRgPoint( 'B', [ rg.b.value, 0 ] )
+        rg.b.value = 1- rg.a.value;
+        setRgPoint( 'H', [ rg.A.pos[0] + rg.a.value, rg.O.pos[1] ] );
     }
 
 
@@ -101,26 +105,35 @@
         var A = rg.A.pos;
         var B = rg.B.pos;
 
-        if( g === b ) {
-            g = b - 1e-20; //todm        
-        } else if( g === a ) {
-            g = a - 1e-20; //todm        
-        }
-
         //explanation:
-        //g*sin(BS) = b*sin(BS+G)
-        //(g-b)tgBS = b(cosG + sinG);
-        var tanBS = g/(b-g) * ( Math.cos(gamma) + Math.sin(gamma) );
-        var BS = Math.atan( tanBS );
+        //triangle ABG sines theorem: b*sin(BS) = g*sin(BS+G)
+        //(b-g*cosG)tgBS = gsinG;
+        var cosG = Math.cos(gamma);
+        var sinG = Math.sin(gamma);
+
+        var ww = b-g*cosG;
+        if( Math.abs(ww) < 1e-20 ) {
+            BS = Math.PI/2;
+        } else {
+            var tanBS = g/ww * sinG;
+            var BS = Math.atan( tanBS );
+        }
         var addAngleBeta = beta-BS;
         var rayB = [ -Math.cos( addAngleBeta ), Math.sin( addAngleBeta ) ];
-        var tanAS = g/(a-g) * ( -Math.cos(gamma) + Math.sin(gamma) );
-        var AS = Math.atan( tanAS );
+
+        //triangle BAG sines theorem: a*sin(AS) = g*sin(G-AS)
+        //(a+g*cosG)tgBS = g*sinG;
+        var ww = a+g*cosG;
+        if( Math.abs(ww) < 1e-20 ) {
+            AS = Math.PI/2;
+        } else {
+            var tanAS = g/ww * sinG;
+            var AS = Math.atan( tanAS );
+        }
         var addAngleAlpha = alpha-AS;
         var rayA = [ Math.cos( addAngleAlpha ), Math.sin( addAngleAlpha ) ];
         var D = mat.linesCross( rayA, A, rayB, B );
-        var G = [ g*Math.cos( gamma ), g*Math.sin(-gamma) ];
-
+        var G = [ g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1] ];
 
         // //\\ point AA
         var rayB = [ -Math.cos( beta ), Math.sin( beta ) ];
@@ -152,7 +165,10 @@
 
 
         //decorations:
-        var N = [ rg.gN.value*Math.cos( rg.gamma.value ), -rg.gN.value*Math.sin(rg.gamma.value) ];
+        var N = [
+            rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
+            -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
+        ];
         setRgPoint( 'N', N );
 
         //-------------------------------------------------------

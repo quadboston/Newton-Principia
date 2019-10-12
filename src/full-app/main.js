@@ -199,46 +199,54 @@
 
             ////perhaps this is a cause of random failed load bug: ...
             ////the body which follows below can be put in cb for image-loader-ajax
-            fmethods.createLemmaDom();
-
-            //-------------------------------------
-            // //\\ book load final part
-            //-------------------------------------
-            sDomF.exeg_2_frags(); //to active-areas
-            sDomF.frags_2_essdom8topiccss();
-            //-------------------------------------
-            // \\// book load final part
-            //-------------------------------------
-
-
-            sapp.init_sapp();
-            sDomF.populateMenu();
-            sapp.finish_sapp_UI && sapp.finish_sapp_UI();
-
-            sapp.isInitialized = true;
-            fmethods.setupEvents();
-
-            ///.this is a patch: the cause and real solution is not known;
-            ///.and it still does not work for l2,3
-            ///
-            ///.this timeout is vital: it allows to hovering-arrows to get to their
-            ///.place: othewise, the img.style.top for draggee is wrong which
-            ///.moves arrows to the top edge of media which is wrong
-            ///.the value of timeout seems also vital for l9
-            //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
-            setTimeout( fmethods.fullResize, 500 );
-
+            fmethods.createLemmaDom( bgImagesAreLoaded );
+        } else {
+            bgImagesAreLoaded();
         }
-        //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
-        remove_landing_state_from_top_html();
-        fmethods.setupSiteWideEvents();
-        //ccc( 'end of main proc' );
-        //setTimeout( fmethods.fullResize, 1000 );
-        //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
-        //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
 
-        if( fconf.sappId === 'home-pane' ) {
-            sDomN.homeButton$().click();
+        function bgImagesAreLoaded()
+        {
+
+            if( fconf.sappId !== 'home-pane' ) {
+
+                //-------------------------------------
+                // //\\ book load final part
+                //-------------------------------------
+                sDomF.exeg_2_frags(); //to active-areas
+                sDomF.frags_2_essdom8topiccss();
+                //-------------------------------------
+                // \\// book load final part
+                //-------------------------------------
+
+
+                sapp.init_sapp();
+                sDomF.populateMenu();
+                sapp.finish_sapp_UI && sapp.finish_sapp_UI();
+
+                sapp.isInitialized = true;
+                fmethods.setupEvents();
+
+                ///.this is a patch: the cause and real solution is not known;
+                ///.and it still does not work for l2,3
+                ///
+                ///.this timeout is vital: it allows to hovering-arrows to get to their
+                ///.place: othewise, the img.style.top for draggee is wrong which
+                ///.moves arrows to the top edge of media which is wrong
+                ///.the value of timeout seems also vital for l9
+                //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
+                setTimeout( fmethods.fullResize, 500 );
+            }
+            //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
+            remove_landing_state_from_top_html();
+            fmethods.setupSiteWideEvents();
+            //ccc( 'end of main proc' );
+            //setTimeout( fmethods.fullResize, 1000 );
+            //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
+            //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
+
+            if( fconf.sappId === 'home-pane' ) {
+                sDomN.homeButton$().click();
+            }
         }
     }
     //=======================================

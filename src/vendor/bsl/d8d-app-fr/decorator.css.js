@@ -19,7 +19,7 @@
 
     ///Input: parent_classes - optional array:
     ///                        these classes do increase specifity for decoration-point.
-    function create_individualCss( id, color, parent_classes )
+    function create_individualCss( css_class_as_id, individual_color, parent_classes )
     {
         parent_classes = parent_classes || [''];
         var ret = '';
@@ -33,8 +33,8 @@
             /*=============================*/
             /* //\\ parent after           */
             /*=============================*/
-            ${dclass} .${id}.brc-slider-draggee:hover:after {
-                background-color: ${color};
+            ${dclass} .${css_class_as_id}.brc-slider-draggee:hover:after {
+                background-color: ${individual_color};
             }
             /*=============================*/
             /* \\// parent after           */
@@ -44,11 +44,11 @@
             /*=============================*/
             /* //\\ animates slider arrows */
             /*=============================*/
-            ${dclass} .${id} .brc-slider-draggee-right {
-                border-left:15px solid ${color};
+            ${dclass} .${css_class_as_id} .brc-slider-draggee-right {
+                border-left:15px solid ${individual_color};
             }
-            ${dclass} .${id} .brc-slider-draggee-left {
-                border-right:15px solid ${color};
+            ${dclass} .${css_class_as_id} .brc-slider-draggee-left {
+                border-right:15px solid ${individual_color};
             }
             /*=============================*/
             /* \\// animates slider arrows */
