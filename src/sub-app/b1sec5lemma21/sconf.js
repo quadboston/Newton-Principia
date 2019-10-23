@@ -57,7 +57,7 @@
         var centerY_onPicture = 551;
         var centerY_onPicture = 553;
 
-        var pictureActiveArea;
+        var mod2med_scale;
 
         var pointsOnPicture =
         {
@@ -96,7 +96,7 @@
             var N = pp.N;
             var AA = pp.AA;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
-            pictureActiveArea = mat.unitVector(BC).abs;
+            mod2med_scale = mat.unitVector(BC).abs;
             var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
             a = 1 - wwb;
             a = 0.428;
@@ -105,7 +105,7 @@
             //---sets initial param g
             var OM = [ M[0] - O[0], M[1] - O[1] ];
             initial_Munit = mat.unitVector(OM);
-            initial_g = initial_Munit.abs/pictureActiveArea;
+            initial_g = initial_Munit.abs/mod2med_scale;
             initial_g = 0.105;
             //is an absolute value of an angle:
             gamma = Math.acos( initial_Munit.unitVec[0] ); 
@@ -114,7 +114,7 @@
             //---sets initial decorational param gN
             var ON = [ N[0] - O[0], N[1] - O[1] ];
             initial_Nunit = mat.unitVector(ON);
-            to_sconf.initial_gN = -initial_Nunit.abs/pictureActiveArea;
+            to_sconf.initial_gN = -initial_Nunit.abs/mod2med_scale;
 
 
             var BAA = mat.p1_to_p2( B, AA );
@@ -144,7 +144,6 @@
         //     which means from screen-top to
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
-        var mod2med_scale = pictureActiveArea;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -168,8 +167,8 @@
             // //\\ model-view parameters
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
+            originalMod2med_scale : mod2med_scale,
 
-            pictureActiveArea   : pictureActiveArea,
             activeAreaOffsetX   : masterCenterX,
             centerOnPicture_X   : masterCenterX,
             centerOnPicture_Y   : masterCenterY,
@@ -206,9 +205,8 @@
             var med2mod_scale = 1/mod2med_scale;
 
             //for Y:
-            APP_MODEL_Y_RANGE = pictureActiveArea / mod2med_scale;
 
-            to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
+            to_sconf.APP_MODEL_Y_RANGE = 1;
             to_sconf.mod2med_scale = mod2med_scale;
             to_sconf.med2mod_scale = med2mod_scale;
             to_sconf.mod2med_scale_initial = mod2med_scale;

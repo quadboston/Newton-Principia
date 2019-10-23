@@ -27,6 +27,7 @@
 
     //todm: tmp fix: LL added: to avoid duplicate names: not sure do they exist
     ssF.modpos2medposLL   = modpos2medpos;
+    ssF.modpos2medpos_originalLL   = modpos2medpos_original;
     ssF.pointies2lineLL   = pointies2line;
     ssF.pos2pointyLL      = pos2pointy;
     ssF.paintTriangleLL   = paintTriangle;
@@ -50,6 +51,13 @@
         if( !pos ) { pos = this; }
         return [ pos[0] * sconf.mod2med_scale + sconf.activeAreaOffsetX,
                  pos[1] * sconf.mod2med_scale * sconf.MONITOR_Y_FLIP +
+                 sconf.centerOnPicture_Y ];
+    }
+    function modpos2medpos_original( pos )
+    {
+        if( !pos ) { pos = this; }
+        return [ pos[0] * sconf.originalMod2med_scale + sconf.activeAreaOffsetX,
+                 pos[1] * sconf.originalMod2med_scale * sconf.MONITOR_Y_FLIP +
                  sconf.centerOnPicture_Y ];
     }
     // \\// pos to pos

@@ -80,7 +80,7 @@
         createDragger_G();
         createDragger_AA();
         createDragger_H();
-        //createDragger_a();
+        createDragger_media_scale();
         ns.globalCss.update(); //for decorator
         return;
 
@@ -248,21 +248,21 @@
         }
 
         //============================================
-        // //\\ slider a
+        // //\\ slider media_scale
         //============================================
-        function createDragger_a()
+        function createDragger_media_scale()
         {
-            var pointWrap = rg.a;
+            var pointWrap = rg.media_scale;
             //:sets dragger handle color
             pointWrap.dragCssCls    = 'tp-ellipse';
             //todm ... not straight
             pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
             var argc =
             {
-                achieved            : [ rg.a.pos[0], rg.a.pos[1] ],
-                pointWrap           : rg.a,
+                achieved            : [ rg.media_scale.pos[0], rg.media_scale.pos[1] ],
+                pointWrap           : rg.media_scale,
                 update_decPoint     : update_decPoint,
-                doProcess           : doProcess_slider_a,
+                doProcess           : doProcess_slider_media_scale,
             };
             var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
 
@@ -279,27 +279,28 @@
             }
         }
 
-        function doProcess_slider_a( arg )
+        function doProcess_slider_media_scale( arg )
         {
             var ach = arg.pointWrap.achieved;
-            var a = rg.a;
+            var media_scale = rg.media_scale;
             switch( arg.down_move_up ) {
                 case 'up':
-                     ach.achieved = [ a.pos[0], a.pos[1] ];
+                     ach.achieved = [ media_scale.pos[0], media_scale.pos[1] ];
                      break;
                 case 'move':
                     sDomF.detected_user_interaction_effect();
-                    var new_a = [
+                    var new_media_scale = [
                             ach.achieved[0] + arg.surfMove[0] *
-                            sconf.med2mod_scale * css2media(),
+                            //sconf.med2mod_scale * css2media(),
+                            (1/sconf.originalMod2med_scale) * css2media(),
                             ach.achieved[1]
                         ];
-                        a.pos2value( new_a );
+                        media_scale.pos2value( new_media_scale );
                     break;
             }
         }
         //============================================
-        // \\// slider a
+        // \\// slider media_scale
         //============================================
     }; 
     //==========================================

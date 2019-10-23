@@ -642,10 +642,17 @@
         //-----------------------------------------------
 
 
-        if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
+        //if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
             ////if slider is not already created ...
             //todm make svg-scale slider: createSliderPlaceholder_a();
+        //}
+        if( !ns.h( rg.media_scale, 'model8media_upcreate' ) ) {
+            ////if slider is not already created ...
+            //todm make svg-scale slider: createSliderPlaceholder_a();
+            createSliderPlaceholder_media_scale();
         }
+
+
     }
     //=========================================================
     // \\// updates and creates media
@@ -661,16 +668,16 @@
 
 
     //----------------------------------------
-    // //\\ param a slider
+    // //\\ param media_scale slider
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    /*
-    function createSliderPlaceholder_a()
+    function createSliderPlaceholder_media_scale()
     {
-        var max_a             = 4;
-        var min_a             = -3;
-        var range_a           = max_a - min_a;
+        var max_media_scale             = 3;
+        var min_media_scale             = 0.3;
+        var range_media_scale           = max_media_scale - min_media_scale;
+        var SUGGESTED_COLOR             = "#999999";
 
         var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth*0.1 ) *
                                 sconf.med2mod_scale;
@@ -688,98 +695,91 @@
         tp( 'sliderEnd', endPos );
 
         var sliderStart = pos2pointy( 'sliderStart',
-                          { fill : '#9999dd', tpclass:'balance-parameters', cssClass : 'tofill tostroke', } );
+            { fill : '#9999dd', tpclass:'media_scale', cssClass : 'tofill tostroke', } );
         var sliderEnd = pos2pointy( 'sliderEnd',
-                          { fill : '#9999dd', tpclass:'balance-parameters', cssClass : 'tofill tostroke', } );
+            { fill : '#9999dd', tpclass:'media_scale', cssClass : 'tofill tostroke', } );
         ///draws rails
         var slider = pointies2line(
-             'slider-a',
+             'slider-media_scale',
              [sliderStart, sliderEnd],
-             {stroke:'#9999dd', 'stroke-width':3, tpclass:'balance-parameters', cssClass : 'tofill tostroke', }
+             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:'media_scale',
+                                cssClass : 'tofill tostroke', }
         );
-        $$.$(slider.svgel).cls( 'tp-balance-parameters' );
+        $$.$(slider.svgel).cls( 'tp-media_scale' );
         // \\// slider object
 
-        var a           = rg.a;
-        var handleXpos  = ( a.value - min_a ) / range_a * railsLength + startX;
-        a.pos           = [ handleXpos, startY ];
-        a.startX        = startX;
-        a.endX          = endX;
-        a.railsLength   = railsLength;
+        var media_scale           = rg.media_scale;
+        var handleXpos  = ( media_scale.value - min_media_scale ) /
+                            range_media_scale * railsLength + startX;
+        media_scale.pos           = [ handleXpos, startY ];
+        media_scale.startX        = startX;
+        media_scale.endX          = endX;
+        media_scale.railsLength   = railsLength;
         pos2pointy(
-            'a',
+            'media_scale',
             {
                 cssClass : 'tostroke',
-                stroke : balanceParColor,
+                stroke : SUGGESTED_COLOR,
                 'stroke-width' : 3,
                 fill : 'white',
                 r : 8,
-                tpclass : 'balance-parameters',
+                tpclass : 'media_scale',
             }
         );
 
-        a.text_svg = sv.printText({
+        media_scale.text_svg = sv.printText({
             parent : studyMods[ SUB_MODEL ].mmedia,
-            text :'c',
-            //x : rg.a.medpos[0]-11,
-            //y : rg.a.medpos[1]+11,
+            text :'scale',
            'stroke-width' : 3,
             style : { 'font-size' : '30px' },
-            stroke  : balanceParColor,
+            stroke  : SUGGESTED_COLOR,
         });
 
-        rg.a.model8media_upcreate = function() {
+        rg.media_scale.model8media_upcreate = function() {
             studyMods[ SUB_MODEL ].model8media_upcreate();
         }
 
         ///for slider
-        a.pos2value = function( newPos )
+        media_scale.pos2value = function( newPos )
         {
-            var newValue = ( max_a - min_a ) * ( newPos[0] - startX ) / railsLength + min_a;
-            if( newValue < min_a || newValue > max_a ) return;
+            var newValue = ( max_media_scale - min_media_scale ) * ( newPos[0] - startX ) /
+                             railsLength + min_media_scale;
+            if( newValue < min_media_scale || newValue > max_media_scale ) return;
 
             // //\\ todm: fullLength patch,
             //            to fit CB in window
             var fullLength = 1;
-            //var lim = Math.max( newValue-0.45, 0.42 - newValue );
-            //sconf.mod2med_scale = sconf.mod2med_scale_initial;
-            //sconf.med2mod_scale = 1/sconf.mod2med_scale;
-            //if( lim > 0 ) {
-            //    var fullLength = 1 - lim*1.4;
-                //not the best way: too many changes:
-                //sconf.mod2med_scale = sconf.mod2med_scale_initial * (1 - lim*1.4);
-                //sconf.med2mod_scale = 1/sconf.mod2med_scale;
-            //}
-            a.value = newValue * fullLength;
-            rg.b.value = fullLength-a.value;
+            media_scale.value = newValue * fullLength;
+            sconf.mod2med_scale = sconf.originalMod2med_scale * media_scale.value;
+            sconf.med2mod_scale = 1/sconf.mod2med_scale;
             // \\// todm: fullLength patch
 
-            a.pos[0] = newPos[0];
-            a.pos[1] = newPos[1];
+            media_scale.pos[0] = newPos[0];
+            media_scale.pos[1] = newPos[1];
             updateSliderHandlePos();
-            a.model8media_upcreate();
+            media_scale.model8media_upcreate();
             return true;
         }
 
         function updateSliderHandlePos()
         {
-            //var sliderXpos = (a.value - min_a ) / range_a * railsLength + startX;
-            //a.pos[0] = sliderXpos;
-            a.medpos = modpos2medpos( a.pos );
+            //var sliderXpos = (media_scale.value - min_media_scale ) /
+            //range_media_scale * railsLength + startX;
+            //media_scale.pos[0] = sliderXpos;
+            media_scale.medpos = ssF.modpos2medpos_originalLL( media_scale.pos );
             sv.u({
-                svgel   : a.svgel,
+                svgel   : media_scale.svgel,
                 parent  : studyMods[ SUB_MODEL ].mmedia,
-                cx : a.medpos[0],
-                cy : a.medpos[1],
+                cx : media_scale.medpos[0],
+                cy : media_scale.medpos[1],
             });
-            a.text_svg.setAttributeNS( null, 'x', a.medpos[0]-8 );
-            a.text_svg.setAttributeNS( null, 'y', a.medpos[1]+40 );
+            media_scale.text_svg.setAttributeNS( null, 'x', media_scale.medpos[0]-8 );
+            media_scale.text_svg.setAttributeNS( null, 'y', media_scale.medpos[1]+40 );
         };
         updateSliderHandlePos();
     }
-    */
     //----------------------------------------
-    // \\// param a slider
+    // \\// param media_scale slider
     //----------------------------------------
 
 

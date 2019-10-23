@@ -61,6 +61,7 @@
     {
         //:primary params
         var a = tr( 'a', 'value', sconf.a );
+        tr( 'media_scale', 'value', 1 );
         tr( 'alpha', 'value', sconf.alpha );
         tr( 'beta', 'value', sconf.beta );
         tr( 'gamma', 'value', sconf.gamma );
