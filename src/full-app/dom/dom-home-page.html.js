@@ -55,7 +55,6 @@
         var coreText =`
                 <h2>Table of contents</h2>
                 <ul>
-                    <!--<li><a href="#">Lemma 1</a></li>-->
         `;
 
         var book = null;
@@ -63,6 +62,7 @@
             if( sappItem.sappId === 'home-pane' ) return;
             if( book === null || book !== sappItem.book ) {
                 book = sappItem.book;
+                ////add title "Book ... " when list switches to the next book ...
                 coreText += `
                     <li><div class="content-book-title">
                             <span class="table-title">${book}</span>
@@ -73,6 +73,7 @@
             coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
                     <span class="table-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
+                    </a>
                 </li>
             `;
         });

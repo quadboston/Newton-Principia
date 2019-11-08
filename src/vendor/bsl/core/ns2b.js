@@ -687,6 +687,32 @@
 })();
 
 
+///global dynamic css manager;
+///keeps css in one html-style-element;
+///updates/changes all at once without creating new html-style-element;
+( function() {
+ 	var ns                  = window.b$l;
+    var dynamicGlobalCss    = ns.sn('dynamicGlobalCss');
+    var cssText             = '';
+    var cssDom$             = null;
+    dynamicGlobalCss.update        = update;       
+    dynamicGlobalCss.getText       = getText;
+    return;
+
+    function update( newText )
+    {
+        if( !cssDom$ ) {
+            cssDom$ = ns.$$.style().to( document.head );
+        }
+        cssText = cssText;
+        cssDom$.html( newText );
+    };
+    function getText()
+    {
+        return cssText;
+    };
+})();
+
 
 
 (function () {

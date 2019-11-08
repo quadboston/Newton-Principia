@@ -132,15 +132,20 @@
         color: white;
         font-size: 20px;
         font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-        padding-bottom: 8px;
         display: flex;
         justify-content: space-between;
         transition: all .6s;
         width: 100%;
       }
 
+      .landing-table-of-contents ul a {
+        padding-top: 0px;
+        padding-bottom: 10px;
+      }
+
       .landing-table-of-contents .content-book-title {
-        padding-bottom: 15px;
+        padding-top: 15px;
+        padding-bottom: 10px;
       }
 
 
