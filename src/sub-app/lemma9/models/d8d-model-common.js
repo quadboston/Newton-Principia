@@ -65,7 +65,7 @@
             findDraggee : findDraggee,
             dragSurface : sDomN.medRoot,
             //:optional
-            DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
+            //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses : fconf.dragPointDecoratorClasses
         });
@@ -87,7 +87,7 @@
         var wpoint              = rg[ 'point-B' ];
         wpoint.dragDecorColor   = 'blue';
         wpoint.dragPriority     = 9;
-        wpoint.dragCssCls       = 'point-B';
+        wpoint.spinnerClsId       = 'point-B';
         createDragger({
             achieved    : sconf.claimRatio,
             pointWrap   : wpoint,
@@ -131,7 +131,7 @@
         //.........................................
         var wpoint              = rg[ 'point-E' ];
         wpoint.dragDecorColor   = 'blue';
-        wpoint.dragCssCls       = 'point-E';
+        wpoint.spinnerClsId       = 'point-E';
         createDragger({
             achieved            : sconf.tiltRatio,
             pointWrap           : wpoint,
@@ -171,7 +171,7 @@
         var Cx_min              = sconf.Cx_min;
         var wpoint              = rg[ 'point-C' ];
         wpoint.dragPriority     = 10;
-        wpoint.dragCssCls       = 'point-C';
+        wpoint.spinnerClsId       = 'point-C';
 
         createDragger({
             achieved            : sconf.tC,
@@ -216,7 +216,7 @@
         //.........................................
         var mainCurve           = rg['mainCurve'];
         var wpoint              = mainCurve.mediael.pivotPoints[1];
-        wpoint.dragCssCls       = 'pivotPoint1';
+        wpoint.spinnerClsId       = 'pivotPoint1';
 
         //****************************************************************
         //todo: wpoint, pointWrap, rg['point-E'] - like must always be in 
@@ -259,7 +259,7 @@
         // //\\ moves bezier end pivot
         //.........................................
         var wpoint              = mainCurve.mediael.pivotPoints[2];
-        wpoint.dragCssCls        = 'pivotPoint2';
+        wpoint.spinnerClsId        = 'pivotPoint2';
 
         createDragger({
             achieved            : sconf.curvePivots[2].concat([]),
@@ -305,13 +305,15 @@
 
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
             if( argc.cssClasses ) {
+                var orientation = '';
                 argc.cssClasses.forEach( function( cls ) {
-                    //no need: if( !dragWrap.decPoint ) return;
-                    $$.addClass( cls, dragWrap.decPoint );
+                    orientation += orientation ? ' ' + cls : cls;
                 });
+                argc.orientation = orientation;
             }
+
+            medD8D.pointWrap_2_dragWrap( argc );
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
@@ -368,13 +370,13 @@
 
             //.td is a "rect-metric" for distance between testPoint and drag-point-candidate
             if( td <= DRAGGEE_HALF_SIZE ) {
-                //c cc( 'test:' + dragPoint.dragCssCls + ' ' + td, dragPoint.medpos); 
+                //c cc( 'test:' + dragPoint.spinnerClsId + ' ' + td, dragPoint.medpos); 
                 if( !closestDragWrap || closestTd > td ||
                     (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
-                    //c cc( dragPoint.dragCssCls + ' ' + td );
+                    //c cc( dragPoint.spinnerClsId + ' ' + td );
                }
             }
         });

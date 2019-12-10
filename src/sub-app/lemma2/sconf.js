@@ -98,7 +98,7 @@
 	        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
 
             //:d8d
-            DRAG_POINTS_THROTTLE_TIME : 0, // 3 //300 //ms, softens drag8drop on performance-weak-devices
+            //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
 
             GENERIC_COLOR       : '0, 0, 0',

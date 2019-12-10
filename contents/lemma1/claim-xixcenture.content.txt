@@ -84,7 +84,6 @@ and \( g_{\gamma} \) becomes irrelevant making (l) function limit definition usu
 
 
 
-
 One convenient notation can be made before stating the lemma 1: set of differences
     \[
         X \overset{\bullet}- X' \; \overset{df} = \; \{ x - x' | x \in\ X \; \& \; x' \in\ X' \}
@@ -179,4 +178,7 @@ if s is upper bound of A then:
 <br>
 Therefore sup or inf notations are "covered" by definition of limit and are a convenient "sugar" over this definition.
 
+<br><br>
+
+This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
 

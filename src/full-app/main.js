@@ -55,7 +55,8 @@
 
     ssF.tr = tr;
     ssF.tp = tp;
-    return; //00000000000000000000000000000000000000
+    return;
+
 
 
 
@@ -134,8 +135,9 @@
                     ns.eachprop( srg_modules, function( module ) {
                         module();
                     });
-                    ssF.init_conf();
-                    ns.url2conf( fconf ); //overrides subapp conf again
+                    ssF.init_conf(); //todo must be before contributor scripts 
+                    //ns.url2conf( fconf ); //overrides subapp conf again
+                    ns.url2conf( sconf );   //overrides subapp conf again
                     loads_and_preparses_book();
                 }
             );

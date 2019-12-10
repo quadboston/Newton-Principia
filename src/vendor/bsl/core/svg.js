@@ -184,6 +184,7 @@
         }
         polyline.push( [ xx, yy ] );
         //makes sector closed:
+        //todm not good:  use arg...
         polyline.push( polyline[0] );
         return nssvg.polyline( arg ); 
     };
@@ -191,18 +192,30 @@
 
     ///"manually" created polyline which formes curve,
     ///signature:                       nssvg.curve({ stepsCount, step, curve( curvePar ) })
-    ///signature of callback "curve":   curve( g ) |-> {x:x, y:y}
+
+    ///signature of callback "curve":   curve returns curve( curvePar ) = {x:x, y:y} or [x,y]
+    ///                                     x,y are in media frame of reference
+
+    ///                                 
     ///autocloses unless                arg.dontClose = true,
     ///
     ///returns:                         svg-element
     nssvg.curve = function( arg )
     {
         var { stepsCount, start, step, curve } = arg;
+
         var polyline = arg.pivots = [];
         for( var ii = 0; ii < stepsCount; ii++ ) {
             var curv = curve( start + step * ii );
-            var xx = curv.x;
-            var yy = curv.y;
+            if( Array.isArray( curv ) ) {
+                var xx = curv[0];
+                var yy = curv[1];
+            } else {
+                var xx = curv.x;
+                var yy = curv.y;
+                //todm make
+                //var curv = [ curv.x, curv.y ];
+            }
             polyline.push( [ xx, yy ] );
         }
         polyline.push( [ xx, yy ] );

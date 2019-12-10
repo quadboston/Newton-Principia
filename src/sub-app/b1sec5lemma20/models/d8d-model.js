@@ -65,7 +65,7 @@
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
             dragSurface                         : sDomN.medRoot,
-            DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
+            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
 
             //this "destroys" main image of original manuscript at drag start
             //detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
@@ -97,7 +97,7 @@
         {
             var pointWrap = rg.T;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 't-slider-point';
+            pointWrap.spinnerClsId    = 't-slider-point';
 
             //todo ... not proof
             pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
@@ -109,11 +109,8 @@
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderT,
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap( argc );
 
-            ['axis-x'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
@@ -151,7 +148,7 @@
         {
             var pointWrap = rg.a;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'tp-ellipse';
+            pointWrap.spinnerClsId    = 'tp-ellipse';
             //todm ... not straight
             pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
             var argc =
@@ -161,11 +158,7 @@
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_slider_a,
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['axis-x'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
+            medD8D.pointWrap_2_dragWrap( argc );
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )

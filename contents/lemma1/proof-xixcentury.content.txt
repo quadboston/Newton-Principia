@@ -66,5 +66,7 @@ Below is the less "concise" and more "constructive" proof without "reductio ad a
  <br><br>
 
 <b>Note:</b> We use "constructiveness" in quotation marks because it is a mere illusion which only delays a resort to "reductio ad absurdum" which still is used in proving limit uniqueness.
+<br><br>
 
+This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
 

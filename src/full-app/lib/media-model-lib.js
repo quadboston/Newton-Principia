@@ -18,19 +18,14 @@
     var ss          = sn('ss',fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
     var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
 
     //todm: tmp fix: LL added: to avoid duplicate names: not sure do they exist
     ssF.modpos2medposLL   = modpos2medpos;
+    ssF.modpos2medpos_originalLL   = modpos2medpos_original;
     ssF.pointies2lineLL   = pointies2line;
     ssF.pos2pointyLL      = pos2pointy;
     ssF.paintTriangleLL   = paintTriangle;
-
     return;
 
 
@@ -52,6 +47,13 @@
                  pos[1] * sconf.mod2med_scale * sconf.MONITOR_Y_FLIP +
                  sconf.activeAreaOffsetY ];
     }
+    function modpos2medpos_original( pos )
+    {
+        if( !pos ) { pos = this; }
+        return [ pos[0] * sconf.originalMod2med_scale + sconf.activeAreaOffsetX,
+                 pos[1] * sconf.originalMod2med_scale * sconf.MONITOR_Y_FLIP +
+                 sconf.activeAreaOffsetY ];
+    }
     // \\// pos to pos
 
 
@@ -59,7 +61,7 @@
     ///makes line
     function pointies2line( pName, pivots, attr )
     {
-        var line = tr( pName );
+        var line = ssF.tr( pName );
         line.svgel = sv.polyline({
             svgel   : line.svgel,
             stroke  : attr && attr.stroke,                    
@@ -90,9 +92,11 @@
     function pos2pointy( pName, attrs )
     {
         //pt is a rack of namespace (plain JavaScript object)
-        var pt              = tr( pName );
+        var pt              = ssF.tr( pName );
         pt.medpos2dompos    = sDomF.medpos2dompos;
         pt.medpos           = modpos2medpos( pt.pos );
+        pt.stroke           = attrs && attrs.stroke;
+        pt.fill             = attrs && attrs.fill;
         pt.svgel = sv.u({
             svgel   : pt.svgel,
             parent  : studyMods[ SUB_MODEL ].mmedia,

@@ -60,9 +60,9 @@
         // //\\ creates lower-layer framework
         //.........................................
         var frameworkD8D = fmethods.panesD8D = d8d_p.createFramework({
-            findDraggee : findDraggee,
             dragSurface : fapp.fappRoot$(),
-            DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
+            //todo : do this:
+            //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
         });
         //.........................................
         // \\// creates lower-layer framework
@@ -70,29 +70,24 @@
 
 
         //============================================================
-        // //\\ dragWrap is a top level point which
+        // //\\ drag Wrap is a top level point which
         //      sits on own, low-level pointWrap
         //============================================================
         var pointWrap_local =
         {
             //.id is vital to have for removing extra disk over dividor
-            dragCssCls           : 'dividor',     //makes a placeholder for handler
-
-            //.means media superroot width in pixels
-            //.this default is irrelevant because it is updated at the first resize
-            //achieved_at_move    : sconf.mediaDefaultWidthPercent * window.innerWidth,
-
-            medpos2dompos       : handle2root
+            spinnerClsId    : 'dividor',     //makes a placeholder for handler
+            //achieved        : { achieved : finish_Media8Ess8Legend_resize( null) },
         };
-        var dragWrap = frameworkD8D.pointWrap_2_dragWrap({
+        frameworkD8D.pointWrap_2_dragWrap({
             //achieved            : pointWrap_local.achieved_at_move,
             pointWrap           : pointWrap_local,
-            update_decPoint     : update_decPoint, //updates "decorational Point", not "decimal"
-            doProcess           : doProcess
-
+            //update_decPoint     : update_decPoint, //updates "decorational Point", not "decimal"
+            doProcess           : doProcess,
+            dragHandleDOM       : sDomN.mediaHorizontalHandler,
         });
         //============================================================
-        // \\// dragWrap is a top level point which
+        // \\// drag Wrap is a top level point which
         //============================================================
 
         fmethods.finish_Media8Ess8Legend_resize = finish_Media8Ess8Legend_resize;
@@ -116,12 +111,17 @@
             switch( arg.down_move_up ) {
                 case 'up':
                 case 'move':
+                    //"drags in opposite direction" ... so "-move" is below:
                     var newSuperW = finish_Media8Ess8Legend_resize(
                         pA.achieved - arg.surfMove[0]
                     );
                     //pL.achieved_at_move = newSuperW;
                     if( arg.down_move_up === 'up' ) {
                         pA.achieved = newSuperW; //pL.achieved_at_move;
+                        //todo ... no dice ... jerks
+                        //fmethods.finish_Media8Ess8Legend_resize(
+                        //    newSuperW, !'rootW', !!'doDividorSynch'
+                        //);
                     }
                 break;
             }
@@ -147,7 +147,6 @@
             //=============================
             // //\\ prepares parameters
             //=============================
-
 
             // //\\ gets media aspect ratio
             var aRat = sconf.innerMediaHeight / sconf.innerMediaWidth;
@@ -403,61 +402,6 @@
         ///=============================================================================
         /// \\// restricts and sets super root and text pane sizes
         ///=============================================================================
-
-
-
-
-        //====================
-        // //\\ finds draggee
-        //====================
-        ///Returns: dragWrap if it is close to testPoint.
-        function findDraggee( testPoint, dummy, dragSurface )
-        {
-            //.if distance to testPoint is "outside" of this par.,
-            //.dragWrap is not "considered" for drag
-            var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
-
-            var handlePos = handle2root( dragSurface );
-            var testMedpos = testPoint;
-            var testMediaX = testMedpos[0];
-            var testMediaY = testMedpos[1];
-
-            var tdX = Math.abs( testMediaX - handlePos[0] );
-            var tdY = Math.abs( testMediaY - handlePos[1] );
-            var td  = Math.max( tdX, tdY );
-
-            //.td is a "rect-metric" for distance between testPoint and drag-point-candidate
-            if( td <= DRAGGEE_HALF_SIZE ) {
-                //ccc( '\n\n****', 'pos=',handlePos, 'mouse=',testPoint, testMediaX, testMediaY );
-                return dragWrap;
-            }
-        }
-        //====================
-        // \\// finds draggee
-        //====================
-
-
-
-        ///converts own media pos to dom-pos
-        function handle2root( dragSurface )
-        {
-            //.vital to remember: parent of decPoint, not of mediaHorizontalHandler
-            var rr = dragSurface.getBoundingClientRect(); //was: fapp.fappRoot$.box();
-            var hh = sDomN.mediaHorizontalHandler.getBoundingClientRect();
-            var h2r = [
-                hh.left - rr.left,
-                hh.top - rr.top + hh.height/2
-            ];
-            return h2r;
-        }
-
-        ///repositions decoration-point
-        function update_decPoint( decPoint, dragSurface )
-        {
-            var h2r = handle2root( dragSurface );
-            decPoint.style.left = h2r[0] + 'px';            
-            decPoint.style.top = h2r[1] + 'px';
-        }
     }
 
 }) ();

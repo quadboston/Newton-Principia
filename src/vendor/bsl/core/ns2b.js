@@ -48,6 +48,9 @@
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
 
             //:more good goodies
+            ns.hae = hae;
+            ns.haf = haf;
+            ns.hob = hob;
             ns.haz = haz;
             ns.h = has;
             ns.has = function( prop ) { return has( ns, prop ); };
@@ -58,6 +61,27 @@
         function haz( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : false;
+        };
+
+        ///If property exists, returns function which takes callback to be executed
+        ///on this this property.
+        ///Otherwise, returns empty function.
+        function hae( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   ( fun ) => { fun( obj[ property ] ) } : () => {};
+        };
+
+        ///Returns own property if property does exist. Otherwise, returns empty function.
+        function haf( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : ()=>{};
+        };
+
+        ///if property does not exist, returns empty object;
+        //    otherwise, returns property which is intended to be object
+        function hob( obj, property ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : {};
         };
 
         ///Returns ownself only if property does exist. Otherwise, returns false.
@@ -245,7 +269,7 @@
                                     if( !at ) {
                                         //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
                                         //ctxEl.className = text;
-                                        ctxEl.setAttribute( 'class', text ); //For SVG
+                                        ctxEl.setAttribute( 'class', text ); //good for SVG too
                                         return;
                                     }
                                     var ats = ' ' + at + ' ';

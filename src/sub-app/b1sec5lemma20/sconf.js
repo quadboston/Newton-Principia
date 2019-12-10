@@ -143,6 +143,7 @@
 
             pictureActiveArea   : pictureActiveArea,
             activeAreaOffsetX   : activeAreaOffsetX,
+            activeAreaOffsetY   : centerY_onPicture,
             centerOnPicture_Y   : centerY_onPicture,
             centerOnPicture_X   : centerX_onPicture,
             innerMediaHeight    : pictureHeight,

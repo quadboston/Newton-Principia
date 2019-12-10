@@ -19,8 +19,8 @@
     var sapp        = sn('sapp');
     var studyMods   = sn('studyMods', sapp);
 
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
+    var tr; //       = ssF.tr;
+    var tp; //       = ssF.tp;
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
@@ -29,8 +29,6 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'studyModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-    //ssF.pointB_2_time0 = pointB_2_time0;
     return;
 
 
@@ -51,7 +49,7 @@
         ssF.init_model_parameters = init_model_parameters;
         sn(SUB_MODEL, studyMods ).model8media_upcreate = model8media_upcreate;
         sn(SUB_MODEL, studyMods ).upcreate = model8media_upcreate;
-        sn(SUB_MODEL, studyMods ).calculateConicPoint_algo = calculateConicPoint_algo;
+        ssF.model8media_upcreate  = model8media_upcreate;
     }
 
     //===================================================
@@ -59,32 +57,66 @@
     //===================================================
     function init_model_parameters()
     {
+        tr = ssF.tr;
+        tp = ssF.tp;
+
         //:primary params
-        var a = tr( 'a', 'value', sconf.a );
-        tr( 'alpha', 'value', sconf.alpha );
-        tr( 'beta', 'value', sconf.beta );
-        tr( 'gamma', 'value', sconf.gamma );
         tr( 'O', 'pos', [0,0] );
-        tr( 'H', 'pos', [0,0] );
 
-        //dependent parameters
-        tr( 'nB', 'value', [ 1, 0 ] );
-        tr( 'nA', 'value', [ -1, 0 ] );
+        var n = sconf.basePairs.length-1;
+        tr( 'n', 'value', n );
+        tr( 'm', 'value', n );
 
-        //variable parameter
-        tr( 'g', 'value', sconf.initial_g );
-        //tr( 'g', 'value', 0.4 );
+        Object.keys( sconf.pname2point ).forEach( pname => {
+            tr( pname, 'pos', sconf.pname2point[ pname ].pos ); //in sync by reference
+            //todm ... circular dependency:
+            var opoint = sconf.pname2point[ pname ];
+            opoint.pointWrap = rg[ pname ];
+            rg[ pname ].originalPoint = opoint;
+            opoint.ptype = opoint.pname === "S" || opoint.pname === "S" ?
+                           'approximator' : 'experimental';
+        });
 
-        //decorations:
-        tr( 'gN', 'value', sconf.initial_gN );
+        //----------------------------------------------------------
+        // //\\ calculates and stores original
+        //----------------------------------------------------------
+        //      experimental function "dividedDifferences"
+        ( function () {
+            var xy = [];
+            //... length - 1 because of stripping last element which is "(S,R)";
+            for( i=0; i<n; i++ ) {
+                xy[ i ] = [ sconf.basePairs[ i ][0].pos[0], sconf.basePairs[ i ][1].pos[1] ];
+            }
+            //.makes beginning of original-book-curve smooth
+            xy.splice( 0,0, [xy[ 0 ][ 0 ] - 0.5, xy[ 0 ][ 1 ] * 0.7] );
+            //.makes beginning of original-book-curve smooth
+            xy = xy.concat( [ [xy[ xy.length-1 ][ 0 ] + 0.5, xy[ xy.length-1 ][ 1 ] * 1.2 ] ] );
+            //ccc( 'xy=', xy );
+            var experimental = tr( 'experimental', 'value', xy );
+            //sets the function:
+            rg.experimental.dividedDifferences = mat.calculate_divided_differences( xy );
+            //checks the job;
+            //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
+            //var Sx = sconf.pname2point.S.pos[0];
+            //var rr = dd( Sx );
+            //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] + ' res=' + rr);
 
-        setRgPoint( 'A', [ -rg.a.value, 0 ] )
-        setRgPoint( 'B', [ 1-rg.a.value, 0 ] )
+        })();
+        //----------------------------------------------------------
+        // \\// calculates and stores original
+        //----------------------------------------------------------
 
-        var b = tr( 'b' );
-        baseParams_2_extendedParams();
-        //dev tool:
-        //ellipsePar_create8paint( 1.50 )
+        //----------------------------------------------------------
+        // //\\ constructing draggable points
+        //----------------------------------------------------------
+        /*
+        ( function () {
+            tr( 'draggable_points', 'pos', [0,0] );
+        })();
+        */
+        //----------------------------------------------------------
+        // \\// constructing draggable points
+        //----------------------------------------------------------
     }
 
     //***************************************************
@@ -92,19 +124,30 @@
     //***************************************************
     function model8media_upcreate()
     {
-        baseParams_2_extendedParams();
-        var {D,G,AA} = calculateConicPoint_algo( rg.g.value );
-        setRgPoint( 'D', D );
-        setRgPoint( 'G', G );
-        setRgPoint( 'AA', AA );
 
+        //----------------------------------------------------------
+        // //\\ calculates and stores approximator curve
+        //----------------------------------------------------------
+        ( function () {
+            var xy = [];
+            var m = rg.m.value;
+            for( i=0; i<m; i++ ) {
+                xy[ i ] = [ sconf.basePairs[ i ][0].pos[0], sconf.basePairs[ i ][1].pos[1] ];
+            }
+            tr( 'approximator_curve', 'value', xy );
+            //sets the function:
+            rg.approximator_curve.dividedDifferences = mat.calculate_divided_differences( xy );
 
-        //decorations:
-        var N = [
-            rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
-            -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
-        ];
-        setRgPoint( 'N', N );
+            //takes care about single poit (S,R) which approximeates curve at abscissa S
+            var pointApproxim = sconf.basePairs[ sconf.basePairs.length-1 ][1];
+            pointApproxim.pos[1] = rg.approximator_curve
+                .dividedDifferences
+                .calculate_polynomial( pointApproxim.pos[0] );
+        })();
+        //----------------------------------------------------------
+        // \\// calculates and stores approximator curve
+        //----------------------------------------------------------
+
 
         //-------------------------------------------------------
         // //\\ media part
@@ -118,92 +161,6 @@
     //***************************************************
     // \\// updates figure (and creates if none)
     //***************************************************
-
-
-
-
-
-
-
-
-    function baseParams_2_extendedParams()
-    {
-        rg.b.value = 1- rg.a.value;
-        setRgPoint( 'H', [ rg.A.pos[0] + rg.a.value, rg.O.pos[1] ] );
-    }
-
-
-    ///input:   parameter g, along the model line OG
-    function calculateConicPoint_algo( g )
-    {
-        var a = rg.a.value;
-        var b = rg.b.value;
-        var gamma = rg.gamma.value;
-        var alpha = rg.alpha.value;
-        var beta = rg.beta.value;
-        var A = rg.A.pos;
-        var B = rg.B.pos;
-
-        //explanation:
-        //triangle ABG sines theorem: b*sin(BS) = g*sin(BS+G)
-        //(b-g*cosG)tgBS = gsinG;
-        var cosG = Math.cos(gamma);
-        var sinG = Math.sin(gamma);
-
-        var ww = b-g*cosG;
-        if( Math.abs(ww) < 1e-20 ) {
-            BS = Math.PI/2;
-        } else {
-            var tanBS = g/ww * sinG;
-            var BS = Math.atan( tanBS );
-        }
-        var addAngleBeta = beta-BS;
-        var rayB = [ -Math.cos( addAngleBeta ), Math.sin( addAngleBeta ) ];
-
-        //triangle BAG sines theorem: a*sin(AS) = g*sin(G-AS)
-        //(a+g*cosG)tgBS = g*sinG;
-        var ww = a+g*cosG;
-        if( Math.abs(ww) < 1e-20 ) {
-            AS = Math.PI/2;
-        } else {
-            var tanAS = g/ww * sinG;
-            var AS = Math.atan( tanAS );
-        }
-        var addAngleAlpha = alpha-AS;
-        var rayA = [ Math.cos( addAngleAlpha ), Math.sin( addAngleAlpha ) ];
-        var D = mat.linesCross( rayA, A, rayB, B );
-        var G = [ g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1] ];
-
-        // //\\ point AA
-        var rayB = [ -Math.cos( beta ), Math.sin( beta ) ];
-        var rayA = [ Math.cos( alpha ), Math.sin( alpha ) ];
-        var AA = mat.linesCross( rayA, A, rayB, B );
-        // \\// point AA
-
-        return { D, G, AA };
-    }
-    //===================================================
-    // \\// registers model pars into common scope
-    //===================================================
-
-
-
-    function setRgPoint( nameP, pos, tangent )
-    {
-        //we cannot do P = tr( nameP, 'pos', [x, y] );
-        //in a fear to erase [x,y] reference which may be already stored
-        var P = sn( nameP, rg );
-        var Ppos = sn( 'pos', P, [] );
-        Ppos[0] = pos[0];
-        Ppos[1] = pos[1];
-        if( tangent )
-        {
-            var Ptangent = sn( 'tangent', P, [] );
-            Ptangent[0] = tangent[0];
-            Ptangent[1] = tangent[1];
-        }
-        return rg[ nameP ];
-    } 
 
 }) ();
 

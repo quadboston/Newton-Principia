@@ -104,6 +104,7 @@
                                 ;
                             fapp.fappRoot$.css( 'overflow', 'visible' );
                             document.body.style.overflow = 'visible';
+                            $$.$( document.body ).addClass( 'contents' );
                       } else {
                             fapp.homePage$.addClass( 'is-hidden' );
                             sDomN.homeButton$
@@ -111,6 +112,7 @@
                                 .addClass( 'is-hidden' )
                                 ;
                             document.body.style.overflow = 'hidden';
+                            $$.$( document.body ).removeClass( 'contents' );
                       }
                       return false;
                 })

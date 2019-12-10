@@ -133,27 +133,12 @@
                 stroke  : ellipseColor,
                 dontClose : true,
             });
-            $$.$(curve.svgel).cls( 'tp-ellipse tostroke' );
+            $$.$(curve.svgel).cls( 'tp-ellipse tostroke thickable' );
         })();
 
         //-------------------------------------------------
         // //\\ adds to points their media position
         //-------------------------------------------------
-
-        /*
-        ///-------------------------------------------------
-        ///builds center point first to be used in ellipse
-        ///-------------------------------------------------
-        pos2pointy(
-            'O',
-            {
-                cssClass : 'tofill tostroke',
-                'fill' : baseColor,
-                tpclass : 'base-figure',
-                r : 6,
-            }
-        );
-        */
 
         pn2mp( 'O' );
         pn2mp( 'G' );
@@ -449,7 +434,7 @@
         pos2pointy(
             'D',
             { 
-                cssClass        : 'tofill tostroke',
+                cssClass        : 'tofill tostroke thickable',
                 'stroke'        : generatingColor,
 
                 //not yet ready for drag: 'fill'          : 'white',

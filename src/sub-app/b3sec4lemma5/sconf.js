@@ -38,103 +38,71 @@
     //====================================================
     function init_conf()
     {
-        var to_sconf = {};
-
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
         var pictureWidth = 1340;
         var pictureHeight = 864;
+        var originX_onPicture = 98.0;
+        var originY_onPicture = 474;
 
-        var masterCenterX = 980;
-        var masterCenterY = 474;
+        var basePairs =
+        [
+            [
+                { H : [originX_onPicture, originY_onPicture] },
+                { A : [0, 159] },
+            ],
+            [
+                { I : [329, originY_onPicture] },
+                { B : [0, 96] },
+            ],
+            [
+                { K : [563, originY_onPicture] },
+                //C : [561, 157],
+                { C : [0, 157] },
+            ],
+            [
+                { L : [781, originY_onPicture] },
+                //D : [783, 345],
+                { D : [0, 345] },
+            ],
+            [
+                { M : [1005, originY_onPicture] },
+                //E : [1008, 588],
+                { E : [0, 588] },
+            ],
+            [
+                { N : [1236, originY_onPicture] },
+                //F : [1239, 774],
+                { F : [0, 774] },
+            ],
 
-        var centerX_onPicture = masterCenterX;
-        var centerY_onPicture = masterCenterY;
 
-        var mod2med_scale;
+            ///the last one is an approximatee
+            [
+                { S : [485, originY_onPicture] },
+                { R : [0, 119] },
+            ],
+        ];
+        basePairs.forEach( pair => {
 
-        var pointsOnPicture =
-        {
-            H : [masterCenterX, masterCenterY],
-            I : [329, masterCenterY],  //473],
-            S : [486, masterCenterY],  //472],
-            K : [563, masterCenterY],  //472],
-            L : [781, masterCenterY],  //473],
-            M : [1005, masterCenterY], //476],
-            N : [1236, masterCenterY], //475],
+            var x = pair[0];
+            pair[0].pname = Object.keys( x )[0];
+            pair[0].picturepos = x[ pair[0].pname ];
 
-
-            C : [50, 550],
-            B : [838, 552],
-            P : [548, 77],
-            T : [411, 219],
-            O : [centerX_onPicture, centerY_onPicture],
-            R : [734, 346],
-            AA : [568, 244],
-
-        };
+            var y = pair[1];
+            pair[1].pname = Object.keys( y )[0];
+            pair[1].picturepos = y[ pair[1].pname ];
+            pair[1].picturepos[0] = pair[0].picturepos[0]; // = abscissa
+        });
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
 
 
-        var gamma = Math.PI*0.49;
-        var a;
-        var beta;
-        var alpha;
-
-        var initial_g;
-
-        ///derives initial model parameters from picture's points
-        (function() {
-            var pp = pointsOnPicture;
-            var B = pp.B;
-            var C = pp.C;
-            var O = pp.O;
-            var M = pp.M;
-            var N = pp.N;
-            var AA = pp.AA;
-            var BC = [ B[0] - C[0], B[1] - C[1] ];
-            mod2med_scale = mat.unitVector(BC).abs;
-            var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
-            a = 1 - wwb;
-            a = 0.428;
-            a = 0.435;
-
-            //---sets initial param g
-            var OM = [ M[0] - O[0], M[1] - O[1] ];
-            initial_Munit = mat.unitVector(OM);
-            initial_g = initial_Munit.abs/mod2med_scale;
-            initial_g = 0.105;
-            //is an absolute value of an angle:
-            gamma = Math.acos( initial_Munit.unitVec[0] ); 
-            gamma *= 1.01;
-
-            //---sets initial decorational param gN
-            var ON = [ N[0] - O[0], N[1] - O[1] ];
-            initial_Nunit = mat.unitVector(ON);
-            to_sconf.initial_gN = -initial_Nunit.abs/mod2med_scale;
-
-
-            var BAA = mat.p1_to_p2( B, AA );
-            beta = -Math.asin( BAA.unitVec[1] ); 
-            beta = 0.862;
-            beta = 0.870;
-            beta = 0.859;
-            beta = 0.863;
-
-            //ccc( 'beta fraction=' + (beta/Math.PI).toFixed(3) );
-            var CAA = mat.p1_to_p2( C, AA );
-            alpha = -Math.asin( CAA.unitVec[1] ); 
-            alpha = 0.543;
-            alpha = 0.528;
-
-            //ccc( 'alpha fraction=' + (alpha/Math.PI).toFixed(3) );
-        })();
 
         //----------------------------------
-        // //\\ app view parameters
+        // //\\ MONITOR Y FLIP
         //----------------------------------
         //  application coordinate Y
         //  -1 if it goes in opposite-to-screen
@@ -145,38 +113,95 @@
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
         //----------------------------------
-        // \\// app view parameters
+        // \\// MONITOR Y FLIP
         //----------------------------------
+
+
+
+        //---------------------------------------------------------------------------
+        // //\\ derives initial model parameters from picture's points
+        //---------------------------------------------------------------------------
+        //appar. as by I.N.: difference between two first x-points:
+        var mod2med_scale = basePairs[1][0].picturepos[0] - basePairs[0][0].picturepos[0];
+        var med2mod_scale = 1/mod2med_scale;
+
+        var pname2point = {};
+        //var initialModPoints;
+        var factor = MONITOR_Y_FLIP * med2mod_scale;
+        (function() {
+            basePairs.forEach( bpair => {
+                bpair.forEach( point => {
+                    var pp = point.picturepos;
+                    var pname = point.pname;
+                    var pos = [ pp[0] - originX_onPicture, pp[1] - originY_onPicture ];
+                    point.pos = [ pos[0]*med2mod_scale, pos[1]*factor ];
+                    pname2point[pname] = point;
+                });
+            });
+        })();
+
+
+        //================================================================
+        /*
+        ccc( 'pname2point', JSON.stringify( pname2point, null, '    ' ) );
+        ccc( 'basePairs', JSON.stringify( basePairs, null, '    ' ) );
+        //in pname2point and basePairs at this moment, the point format is:
+        {
+            "H": [
+                98,
+                474
+            ],
+            "pname": "H",
+            "picturepos": [
+                98,
+                474
+            ],
+            "pos": [
+                0,
+                0
+            ]
+        },
+        */
+        //================================================================
+
+
+        //adds model's origin
+        pname2point.O = { pos:[0,0], pname : 'O' };
+        //ccc( basePairs );
+        //---------------------------------------------------------------------------
+        // \\// derives initial model parameters from picture's points
+        //---------------------------------------------------------------------------
+
+
 
 
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        Object.assign( to_sconf, {
-            initialPoints : pointsOnPicture,
+        Object.assign( sconf, {
 
-            //CBAng   : CBAng,
-            gamma   : gamma,
-            a       : a,
-            beta    : beta,
-            alpha   : alpha,
+            MONITOR_Y_FLIP : MONITOR_Y_FLIP,
 
-            initial_g : initial_g,
+            pname2point : pname2point,
+            basePairs : basePairs,
 
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
-            MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             originalMod2med_scale : mod2med_scale,
+            activeAreaOffsetX   : originX_onPicture,
+            activeAreaOffsetY   : originY_onPicture,
+            originX_onPicture   : originX_onPicture,
+            originY_onPicture   : originY_onPicture,
 
-            activeAreaOffsetX   : masterCenterX,
-            centerOnPicture_X   : masterCenterX,
-            centerOnPicture_Y   : masterCenterY,
+            //todm do refactor
+            centerOnPicture_X   : originX_onPicture,
+            centerOnPicture_Y   : originY_onPicture,
+
+
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
-
             thickness           : 1,
-
             topicColorPerAnchor : !true,
             //----------------------------------
             // \\// model-view parameters
@@ -186,47 +211,23 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
+            enableTools : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------
 
             default_tp_stroke_opacity : 2,
             default_tp_stroke_width : 10,
-            //default_tp_lightness : 50, //50 is full lightness
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 2,
+
+            mod2med_scale : mod2med_scale,
+            med2mod_scale : med2mod_scale,
+            mod2med_scale_initial : mod2med_scale,
+            med2mod_scale_initial : med2mod_scale,
         });
-
-
         //----------------------------------
-        // //\\ spawns to_conf
-        //----------------------------------
-        (function () {
-            var med2mod_scale = 1/mod2med_scale;
-
-            //for Y:
-
-            to_sconf.APP_MODEL_Y_RANGE = 1;
-            to_sconf.mod2med_scale = mod2med_scale;
-            to_sconf.med2mod_scale = med2mod_scale;
-            to_sconf.mod2med_scale_initial = mod2med_scale;
-            to_sconf.med2mod_scale_initial = med2mod_scale;
-        })();
-        //----------------------------------
-        // \\// spawns to_conf
         // \\// prepares sconf data holder
-        //----------------------------------------------------
-
-
-
-        //----------------------------------------------------
-        // //\\ copy-pastes to sconf
-        //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function( key ) {
-            sconf[ key ] = to_sconf[ key ];
-        });
-        //----------------------------------------------------
-        // \\// copy-pastes to sconf
         //----------------------------------------------------
     };
     //====================================================

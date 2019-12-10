@@ -301,7 +301,7 @@
     {
         var pt              = tr( pName );
         var pos             = pt.pos;
-        pt.dragCssCls       = pName;
+        pt.spinnerClsId       = pName;
         pt.pos              = pos;
         pt.dragDecorColor   = attrs.dragDecorColor || pt.dragDecorColor;
         pt.medpos2dompos    = sDomF.medpos2dompos;

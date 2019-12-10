@@ -26,9 +26,14 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
 
-
+    var domModel$ = {
+        firstRow$ : [],
+        body$ : [],
+    }
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
+    var visibilizeTableLocal;
+    var fillTableData_inModule;
     return;
 
 
@@ -65,18 +70,16 @@
     //=========================================
     function upcreate_mainLegend()
     {
-        var ww = clustersToUpdate;
-        ww[ 'a' ].innerHTML = rg.a.value.toFixed(3);
-        ww[ 'b' ].innerHTML = rg.b.value.toFixed(3);
+        visibilizeTableLocal();
+        fillTableData_inModule({
+            tdata:rg.approximator_curve.dividedDifferences.coefficients,
+            indexFrom:1
+        });
+        //rg.approximator_curve.dividedDifferences
+        //var poly = F[0][0][1];
 
-        //todm this is a patch: do use Pr/Pt
-        var g = Math.abs( rg.g.value ) < 1e-20 ? 1 : rg.g.value;
-        ww[ 'g' ].innerHTML = g.toFixed(3);
+        //{ coefficients:F, calculate_polynomial }
 
-        ww[ 'beta' ].innerHTML = rg.beta.value.toFixed(3);
-        ww[ 'alpha' ].innerHTML = rg.alpha.value.toFixed(3);
-
-        ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
     }
     //=========================================
     // \\// updates values during simulation
@@ -92,32 +95,41 @@
     //=========================================
     function doCreateTable_proof(mlegend)
     {
+        fillTableData_inModule = fillTableData;
+        var tr = ssF.tr;
+
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
             .cls( 'main-legend proof' )
+
+            //.css( 'table-layout', 'auto' ) //makes problem ... table moves out of pane ...
+            //.css( 'width', '500px' )       //possible responsivness problems
+
+            //removes set of .main-legend.proof {
+            .css( 'border-collapse', 'collapse' )
+
             .to( sDomN.legendRoot$ )
             //sDomN.medRoot)
             ();
-        var tr = ssF.tr;
 
 
         //=====================================================
         // //\\ idle first row to format table for fixed-layout
         //=====================================================
+        var max_m = sconf.basePairs.length-1; //rg.n.value;
         var row = $$.c('tr')
-            .addClass('proof row1')
-            .addClass('tostroke')
-            .to(tb)();              
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        function makeFormatterCell( row, mcaption, val, id )
-        {
-            $$.c('td').html( mcaption ).to(row);
-            $$.c('td').html('=').addClass('eq-sign '+id).to(row);
-            $$.c('td').html( val+'' ).to(row);
-        }
+
+            //vital ... removes global css which corrupts table
+            //.addClass('proof row1 tostroke')
+            .addClass('proof tostroke')
+
+            .css( 'visibility', 'hidden' ) //todm ... tmp fix
+            .to(tb)();
+        //:todm ... kitchen ... non-reliable
+        $$.c('td').html( 'xxx' ).to(row);
+        $$.c('td').html( '-0.333x' ).to(row);
+        $$.c('td').html( 'xx' ).to(row);
         //=====================================================
         // \\// idle first row to format table for fixed-layout
         //=====================================================
@@ -129,7 +141,7 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Model Data')
+                  .html('Divided Differences')
                   .to(row);
         //===================
         // \\// table caption
@@ -140,37 +152,142 @@
         //===================
         // //\\
         //===================
-        var row = $$.c('tr')
-            //.addClass('tostroke')
-            .to(tb)();
-        makeCl( row, 'a', 'c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
-        makeCl( row, 'b', '1-c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
-
-        var row = $$.c('tr')
-            //.addClass('tostroke')
-            .to(tb)();
-        makeCl( row, 'g', 'g', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'g-parameter' );
-
-        var row = $$.c('tr')
-            .to(tb)();
-        makeCl( row, 'alpha', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
-        makeCl( row, 'beta', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
-        var row = $$.c('tr')
-            .to(tb)();
-        makeCl( row, 'media_scale', 'scale', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'media_scale' );
+        doCreateTable();
+        visibilizeTableLocal = visibilizeTable;
+        visibilizeTable();
         //===================
         // \\//
         //===================
         return;
 
 
-        function makeCl(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                claim0proof, noEqualSign, cssName
-         ) {
+
+        function doCreateTable()
+        {
+            //.creates only once
+            if( domModel$.firstRow$.lenght ) return;
+            var row = $$.c('tr')
+                //.addClass('tostroke')
+                .to( tb )()
+                ;
+            for( var cellIx=0; cellIx<max_m; cellIx++ )
+            {
+                var bpair = sconf.basePairs[ cellIx ];
+                var letter = bpair[0].pname;
+                var id = rowIx+'-'+cellIx+'-letter';
+                domModel$.firstRow$[ cellIx ] = makeCl({
+                    row,
+                    mname: id,
+                    mcaption: letter,
+                    claim0proof: 'proof',
+                    tpCssName: 'experimental ' + id,
+                    noEqualSign : true,
+                });
+            }
+            for( var rowIx=0; rowIx<=max_m; rowIx++ )
+            {
+                var row = $$.c('tr')
+                    //.addClass('tostroke')
+                    .to( tb )()
+                    ;
+                domModel$.body$[ rowIx ] = [];
+                for( var cellIx=0; cellIx<=max_m-rowIx-1; cellIx++ )
+                {
+                    var indices = ''+cellIx;
+                    if( rowIx ) {
+                         indices += cellIx+rowIx;
+                    }
+                    var id = rowIx+'-'+cellIx+'-cell';
+                    var P = cellIx ? '' : '<br>=P<sub>'+rowIx+'</sub>';
+
+                    var tpCssName = cellIx === 0 ?
+                                        'approximator ' + id:
+                                        ( rowIx === 0 ?
+                                            'experimental ' + id : '' )
+                    domModel$.body$[ rowIx ][ cellIx ] = makeCl({
+                        row,
+                        mname: id,
+                        mcaption: 'y<sub>' + indices + '</sub>' + P,
+                        claim0proof: 'proof',
+                        tpCssName: tpCssName,
+                        noEqualSign : true,
+                        cellIx,
+                    });
+                }
+            }
+        }
+
+
+        function visibilizeTable()
+        {
+            // //\\ hides all
+            for( var cellIx=0; cellIx<max_m; cellIx++ )
+            {
+                domModel$.firstRow$[ cellIx ].forEach( c$ => {
+                    c$.addClass( 'hidden' );
+                });
+            }
+            for( var rowIx=0; rowIx<=max_m; rowIx++ )
+            {
+                for( var cellIx=0; cellIx<=max_m-rowIx-1; cellIx++ )
+                {
+                    domModel$.body$[ rowIx ][ cellIx ].forEach( c$ => {
+                        c$.addClass( 'hidden' );
+                    });
+                }
+            }
+            // \\// hides all
+
+            if( !ns.h( rg, 'm' ) ) return;
+
+
+            // //\\ shows only existing
+            var m = rg.m.value
+            for( var cellIx=0; cellIx<m; cellIx++ )
+            {
+                domModel$.firstRow$[ cellIx ].forEach( c$ => {
+                        c$.removeClass( 'hidden' );
+                    });
+            }
+            for( var rowIx=0; rowIx<=m; rowIx++ )
+            {
+                for( var cellIx=0; cellIx<=m-rowIx-1; cellIx++ )
+                {
+                    domModel$.body$[ rowIx ][ cellIx ].forEach( c$ => {
+                        c$.removeClass( 'hidden' );
+                    });
+                }
+            }
+            // \\// shows only existing
+
+        }
+
+
+        function fillTableData({ tdata, indexFrom })
+        {
+            var m = rg.m.value
+            var indexTo = 1;
+
+            for( var rowIx=0; rowIx<=m; rowIx++ )
+            {
+                for( var cellIx=0; cellIx<=m-rowIx-1; cellIx++ )
+                {
+                    domModel$.body$[ rowIx ][ cellIx ][indexTo].html(
+                        '=' + tdata[ rowIx ][ cellIx ][ indexFrom ].toFixed(3) );
+                }
+            }
+        }
+
+
+
+
+        function makeCl({
+            row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
+            claim0proof, noEqualSign, tpCssName, cellIx
+         }) {
             return makeClBoth(
                 row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                'proof', noEqualSign, cssName );
+                'proof', noEqualSign, tpCssName, cellIx );
         }
     }
     //=========================================
@@ -190,24 +307,26 @@
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
-                         alignCaptionToRight, claim0proof, noEqualSign, cssName )
+                         alignCaptionToRight, claim0proof, noEqualSign, tpCssName, cellIx )
     {
         var tr = ssF.tr;
         //todm: ?no need for extra function argument:
-        //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = (cssName || mname ).replace( /([A-Z])/g, ( match, key1 ) => (
+        //      tp-tpCssName may be taken from "rg.Elem point wrap" ...
+        tpCssName = (tpCssName || mname ).replace( /([A-Z])/g, ( match, key1 ) => (
                       '_' + key1.toLowerCase()
         ));
+        var cells$ = [];
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')
                        .html( mcaption||mname )
-                       .addClass('tostroke tocolor tobold tp-' + cssName)
+                       .addClass('tostroke tocolor tobold tp-' + tpCssName)
                        .to(row);
             if( alignCaptionToRight ) {
                 c$.addClass('align-to-right')
             }
             if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
+            cells$.push( c$ );
         }
 
         //todm .this does not guarantee adding the class to td ... so far only
@@ -217,25 +336,42 @@
 
         if( !noEqualSign ) {
             //$$.c('td').html( noEqualSign ? '' : '=' ).to(row)
-            $$.c('td').html( '=' ).to(row)
+            var c$ = $$.c('td').html( '=' ).to(row)
                 //.addClass('eq-sign')
                 ;
+            cells$.push( c$ );
         }
-        var c$ = $$.c('td')
+
+        //========================================================
+        // //\\ last placeholder
+        //========================================================
+        var lastPlaceholder$ = $$.c('td')
                    .cls('value')
-                   .cls('tostroke tocolor tobold tp-'+cssName)
+                   .cls('tostroke tocolor tobold tp-'+tpCssName)
+                   .css( 'padding-right', '4px' )
+                   .css( 'padding-left', '0px' )
                    .to(row);
-        if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        //var updateeCell = tr( 'td-'+mname, 'domel', c$() );
+        if( spanIx === 2 ) { lastPlaceholder$.a('colspan',''+spanVal); }
+        cells$.push( lastPlaceholder$ );
+        //var updateeCell = tr( 'td-'+mname, 'domel', lastPlaceholder$() );
         if( claim0proof === 'claim' ) {
-            //var updateeCell = tr( 'claim-number-'+mname, 'domel', c$() );
+            //var updateeCell = tr( 'claim-number-'+mname, 'domel', lastPlaceholder$() );
             //clustersToUpdate_claim[mname] = updateeCell;
-            clustersToUpdate_claim[mname] = c$();
+            clustersToUpdate_claim[mname] = lastPlaceholder$();
         } else {
-            //var updateeCell = tr( 'number-'+mname, 'domel', c$() );
-            clustersToUpdate[mname] = c$(); //updateeCell;
+            //var updateeCell = tr( 'number-'+mname, 'domel', lastPlaceholder$() );
+            clustersToUpdate[mname] = lastPlaceholder$(); //updateeCell;
         }
-        return c$;
+        //========================================================
+        // \\// last placeholder
+        //========================================================
+
+        //filler after cluster
+        var filler$ = $$.c('td').html( ' ' ).to(row)
+            ;
+        cells$.push( filler$ );
+
+        return cells$;
     }
 
 

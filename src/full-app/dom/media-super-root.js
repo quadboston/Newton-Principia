@@ -20,6 +20,7 @@
     var bgImages    = sn('bgImages', ssD);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
+    var rgtools     = sn('tools',ssD);
     var exegs    = sn('exegs', ssD);
 
 
@@ -51,6 +52,35 @@
             .addClass( 'help-box' )
             .to( topMediaControls$() )
             ;
+        //..........................
+        // //\\ change tools button
+        //..........................
+        if( sconf.enableTools ) {
+            sDomN.changeToolsButton$ = $$
+                .c( 'div' )
+                .addClass( 'change-tools-button' )
+                .html( "tools" )
+                .to( topMediaControls$() )
+                .css( 'display', 'block' )
+                .e( 'click', () => {
+                    rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
+                    if( rgtools.value === 'on' ) {
+                        fapp.fappRoot$.addClass( 'rgtools' );
+                    } else {
+                        fapp.fappRoot$.removeClass( 'rgtools' );
+                    }
+                    ns.haf( ssF, 'model8media_upcreate' )();
+                })
+                ;
+                rgtools.value = 'off'
+                fapp.fappRoot$.removeClass( 'rgtools' );
+        }
+        //..........................
+        // \\// change tools button
+        //..........................
+
+
+
         sDomN.videoListPopup_button_onModelPane$ = $$
             .c('img')
             .addClass( "video-help-button" )
@@ -103,6 +133,25 @@
         //..........................
 
 
+
+        //..........................
+        // //\\ change mode button
+        //..........................
+        sDomN.changeModeButton$ = $$
+            .c( 'div' )
+            .addClass( cssp + '-change-mode-button' )
+            .html( "Submit" )
+            .to( sDomN.medRoot )
+            .css( 'display', 'none' ) //todo
+            .e( 'click', () => {
+                alert( 'this feature is in progress ... ' );
+                //rg.mode.value = rg.mode.value === 'solving' ? 'showing' : 'solving';
+                //ns.haf( ssF, 'model8media_upcreate' )();
+            })
+            ;
+        //..........................
+        // \\// change mode button
+        //..........................
 
         //..........................
         // //\\ video help

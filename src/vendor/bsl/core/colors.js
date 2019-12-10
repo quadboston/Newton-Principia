@@ -171,6 +171,17 @@
       return [ h, s, l ];
     }
 
+    ///array to color string:
+    ///[ 123, 123, 123, 0.222 ] -> rgba(...
+    ns.arr2rgba = function ( arr )
+    {
+        if( !arr || !arr.length) return '';
+        var r=Math.floor( arr[0] );
+        var g=Math.floor( arr[1] );
+        var b=Math.floor( arr[2] );
+        var op= arr[3].toFixed(4);
+        return 'rgba('+r+','+g+','+b+','+op+')';
+    }
 
 
 }) ();

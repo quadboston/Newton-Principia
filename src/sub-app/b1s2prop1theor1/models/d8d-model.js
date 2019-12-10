@@ -65,7 +65,7 @@
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
             dragSurface                         : sDomN.medRoot,
-            DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
+            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
 
             //this "destroys" main image of original manuscript at drag start
             //detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
@@ -97,7 +97,7 @@
         {
             var pointWrap = rg.time;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'time-slider-point';
+            pointWrap.spinnerClsId    = 'time-slider-point';
             pointWrap.dragDecorColor= '#00aaba';
 
             var argc =
@@ -106,13 +106,10 @@
                 pointWrap           : rg.time,
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderT,
+                orientation         : 'axis-x',
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap( argc );
             
-            ['axis-x'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
-
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
             {
@@ -150,7 +147,7 @@
         {
             var pointWrap = rg.B;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'point-B-slider';
+            pointWrap.spinnerClsId    = 'point-B-slider';
             pointWrap.dragDecorColor= 'blue';
 
             var argc =
@@ -159,13 +156,10 @@
                 pointWrap           : rg.B,
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderB,
+                orientation         : 'rotate',
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap( argc );
             
-            ['rotate'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
-
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
             {

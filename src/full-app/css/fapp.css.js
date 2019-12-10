@@ -42,6 +42,20 @@
         `
     /* @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900"); */
 
+
+    /* fixes for bully css-reset-tool */
+    sub {
+        vertical-align: sub;
+        font-size: smaller;
+    }
+
+    /* fixes for bully css-reset-tool */
+    sup {
+        vertical-align: super;
+        font-size: smaller;
+    }
+
+
     /******************************************/
     /* //|| page primary sections             */
     /******************************************/
@@ -281,9 +295,11 @@ ret += `
 
     .main-legend td {
         padding:1px;
+        /* for dev mode: border: 1px solid black; */
     }
     .main-legend {
-        table-layout:fixed;
+        /* table-layout:fixed; */
+        table-layout:auto;
         margin:auto;
     }
 
@@ -316,7 +332,7 @@ ret += `
         border-spacing: 10px 0px;
     }
     .main-legend.proof {
-        width:370px;
+        width:470px; /* was 370px */
     }
     .proof.row1 {
         opacity:0;

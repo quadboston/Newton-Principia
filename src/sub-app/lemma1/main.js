@@ -47,8 +47,10 @@
         // //\\ inits model and it's view
         //======================================
         ns.eachprop( studyMods, ( stdMod, modName ) => {
-            stdMod.upcreate();
-            stdMod.initMediaModel();
+            if( ns.h( stdMod, 'upcreate' ) ) {
+                stdMod.upcreate();
+                stdMod.initMediaModel();
+            }
         });
         sapp.readyToResize = true;
         //======================================

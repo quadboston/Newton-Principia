@@ -21,6 +21,7 @@
     var rg          = sn('registry',ssD); //todm should be child of ss
 
     var detected_user_interaction_effect_DONE = false;
+    rg.detected_user_interaction_effect_DONE = false;
     sDomF.detected_user_interaction_effect = detected_user_interaction_effect;
 
     fmethods.createLemmaDom = createLemmaDom;
@@ -93,6 +94,7 @@
     {
         if( detected_user_interaction_effect_DONE ) return;
         detected_user_interaction_effect_DONE = true;
+        rg.detected_user_interaction_effect_DONE = true;
 
         //todm: this is not very well thought:
         //      sapp.dnative && sapp.dnative.bgImage$

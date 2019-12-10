@@ -64,3 +64,7 @@ Newton calculates area taking as granted its existence. XIX century reasoning fi
 When mathmatical part of the theory is built, it is applied to to Geometry or Physics if required.<br><br>
 
 
+<br><br>
+
+This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
+

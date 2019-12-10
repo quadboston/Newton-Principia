@@ -234,6 +234,9 @@
                         if( essayHeader.menuCaption && teaf_id === 'aspect' ) {
                             men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                         }
+                        if( essayHeader.theorionCaption && teaf_id === 'theorion' ) {
+                            men.duplicates[ leafId ].caption = essayHeader.theorionCaption;
+                        }
                     }
                     //=======================================
                     // \\// parses and sets menu

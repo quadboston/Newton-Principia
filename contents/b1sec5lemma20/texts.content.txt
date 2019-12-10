@@ -245,3 +245,5 @@ One who would like to follow original Newton's proof probably starts from
 <br><br>
 
 
+This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
+

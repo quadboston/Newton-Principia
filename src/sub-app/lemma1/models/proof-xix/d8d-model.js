@@ -59,7 +59,7 @@
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
             dragSurface                         : sDomN.medRoot,
-            DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
+            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses
         });
@@ -104,14 +104,11 @@
                 achieved            : ssD.EPSILON,
                 pointWrap           : pointWrap,
                 update_decPoint     : update_decPoint,
-                doProcess           : doProcessE
+                doProcess           : doProcessE,
+                orientation         : 'axis-y',
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap( argc );
             
-            ['axis-y'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
-
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
             {

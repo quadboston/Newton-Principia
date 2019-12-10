@@ -58,7 +58,7 @@
                 d8d_p.createFramework ({
                     findDraggee                         : findDraggee,
                     dragSurface                         : sDomN.medRoot,
-                    DRAG_POINTS_THROTTLE_TIME           : false,
+                    //DRAG_POINTS_THROTTLE_TIME           : false,
                     detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
                     processMouseDown                    : processMouseDown
                 });
@@ -82,10 +82,10 @@
         function setPoint( pointWrap, pwix ) {
             if( pointWrap.type === 'base' ) {
                 if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
-                pointWrap.dragCssCls = 'base-'+pwix;
+                pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor='blue';
             } else {
-                pointWrap.dragCssCls = 'ctrl-'+pwix;   //optional for css
+                pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
                 pointWrap.dragDecorColor='red';        //optional
             }
             if( typeof pointWrap.x === 'number' ) {
@@ -100,19 +100,16 @@
             }
 
             ///small test-case
-            //if( pointWrap.dragCssCls === "base-2" ) {
+            //if( pointWrap.spinnerClsId === "base-2" ) {
             //    ccc('assigned achieved', achieved, " point wrap", pointWrap);
             //}
-            var dragWrap = medD8D.pointWrap_2_dragWrap({
+            medD8D.pointWrap_2_dragWrap({
                 achieved        :achieved,
                 pointWrap       :pointWrap,
                 doProcess       :doProcess,
-                update_decPoint :decorator
+                update_decPoint :decorator,
+                orientation     : pointWrap.type !== 'base' ? 'rotate' : false,
             });
-            if( pointWrap.type !== 'base' ) {
-                ////makes decoration point rotating
-                $$.cls( 'rotate', dragWrap.decPoint );
-            }
         }
 
 
@@ -194,7 +191,7 @@
                 if( !closestPoint || closestPoint.td > td ) {
                     closestPoint = { td:td, pt:pointWrap };
                     closest = dwrap;
-                    //if( pointWrap.dragCssCls === 'ctrl-'+1 ) {
+                    //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
                     //    //ccc( 'selected' );
                 }
             }

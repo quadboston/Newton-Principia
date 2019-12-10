@@ -1,20 +1,17 @@
-//*************************************************************************************
-// //\\//   "device-level" drag and drop processor
+//***************************************************************************************************
+// //\\//   "device-level" (lowest browser possible level) drag and drop processor;
 //          ns.d8d - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
 //                  - submits results to app-processor, d8d_app
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
-//          Copyright (c) 2018 Konstantin Kirillov. License MIT.
+//          Copyright (c) 2018-2019 Konstantin Kirillov. License MIT.
 //
 //          file history: /var/www/html/bwork/CANV-SVG-VIDEO-CSS/canvas/
 //                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
-//*************************************************************************************
+//***************************************************************************************************
 ( function () {
     var ns          = window.b$l        = window.b$l        || {};
     var ccc         = window.console.log;
-    //.for applications with complex d8d-handlers creation/deletion
-    //.bookkeeps created or deleted ns.d8d objects
-    //var eventCounter=0; 
 
 
 
@@ -37,17 +34,13 @@
         //:	where to draw:
         //  final destination of mouse-point-coordinates detection;
         //		can be a div or media;
-        //		media means canvas, img, or possibly video;
+        //      media means canvas, img, or possibly video;
         //		in general for media, finally detected mouse-point is
         //		in internal media coordinates;
 		var surface	= arg.surface;	
 
  		//:	to whom to attach events
 		var att = arg.attachee || surface;
-
-        //:
-        //.this is an excessive functionality and reduced to eventPos_2_surfacePos
-		//var eventPoint_2_localPoint = arg.eventPoint_2_localPoint || eventPos_2_surfacePos;
 
         var skipD8D = arg.skipD8D || default_skip;
         //------------------------------------------
@@ -62,19 +55,17 @@
         // //\\ locals
         //------------------------------------------
         //.is a d8d-in-progress-flag ...
-        //.do program it carefully
 		var startPoint	= null; 
 		var lastPoint   = null;
-        //var eventId     = eventCounter++;
         //------------------------------------------
         // \\// locals
         //------------------------------------------
-
         addEvents();
-
-        //00000000000000000000000000000000000000000000000000000000000000000000000000
         return { removeEvents : removeEvents }; //exports d8d-object of this module
-        //00000000000000000000000000000000000000000000000000000000000000000000000000
+
+
+
+
 
 
 
@@ -156,17 +147,15 @@
         {
             //ns.d( 'do_complete_down: started' );
             if( startPoint !== null ) {
-                //ns.d('broken d8d scenario: the previous startPoint is still exist');
                 return true;
             }
             var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
             if( !point_on_dragSurf ) {
-                //ns.d('do_complete_down: media point failed');
                 return true;
             }
-            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_app( [0,0], 'down', point_on_dragSurf, childEvent );
-            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+			var forbidden = d8d_app( [0,0], 'down', point_on_dragSurf, childEvent, [0,0] );
+            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
                 //ns.d( 'move start has been cancelled by top-level ' +
                 //       'drag-and-drop-processor: eventId=' + eventId );
@@ -206,22 +195,21 @@
                 //ns.d('\nmouseMove: media point failed');
                 return;
             }
+            var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
             lastPoint = surfPoint;
-			do_complete_move( surfPoint, childEvent );
+			do_complete_move( surfPoint, childEvent, moveIncrement );
 			return false;
         }
 
         ///adds move - the "sugar"
-		function do_complete_move( surfPoint, childEvent )
+		function do_complete_move( surfPoint, childEvent, moveIncrement )
 		{
 			var surfMove =
 			[	
 				surfPoint[ 0 ] - startPoint[ 0 ],
 				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
-            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            d8d_app( surfMove, 'move', surfPoint, childEvent );
-            //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+            d8d_app( surfMove, 'move', surfPoint, childEvent, moveIncrement );
             return surfMove;
 		};
         //*****************************************
@@ -262,23 +250,20 @@
             var eventPoint = childEvent &&
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
-            var point_on_dragSurf = eventPoint && eventPos_2_surfacePos( childEvent );
+            var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
 
             if( startPoint ) {
-                ////startPoint is not missed ...
                 stopsAftershocks( rootEvent || childEvent );
-
                 //.programmer may want to make d8d_app throttable:
-                //.this is why it is importan to provide "up" with point_on_dragSurf
+                //.this is why it is importan to provide "up" with surfPoint
                 //.in case the "move" event will be erased by "up"
-                var point_on_dragSurf = point_on_dragSurf || lastPoint;
-                var surfMove = do_complete_move( point_on_dragSurf, childEvent );
-		        startPoint = null; 
-                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-             	d8d_app( surfMove, 'up', point_on_dragSurf, childEvent );
-                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            //} else {
-                ////broken scenario
+                var surf_point = surfPoint || lastPoint;
+
+                var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
+                var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
+		        startPoint = null;
+             	d8d_app( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
+            //} else { ////broken scenario
             }
 		};
         //*****************************************

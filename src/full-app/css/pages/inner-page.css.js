@@ -128,6 +128,50 @@ var ret = `
         ||// Hover over the diagram to interact
       --------------------------------------------*/
 
+
+
+    /*---------------------------------------------
+        //|| tools button
+      --------------------------------------------*/
+    .change-tools-button {
+        float:right;
+        margin-top:8px;
+        color: ${colorMediumGrey};
+        font-size: 12px;
+        padding: 0 16px;
+        border-radius: ${borderRadius};
+        border : 1px solid grey;
+        display: flex;
+        align-items: center;
+        cursor:pointer;
+    }
+    .change-tools-button img {
+        margin-right: 8px;
+    }
+    .change-tools-button:hover {
+        border : 1px solid black;
+        color : black;
+    }
+    /*---------------------------------------------
+        ||// tools button
+      --------------------------------------------*/
+
+
+    /*********************************************/
+    .todo-this-fails-for-fancy-handlers {
+    }
+    .tp-thickness,
+    .tp-media_scale {
+        display : none;
+    }
+    .rgtools .tp-thickness,
+    .rgtools .tp-media_scale {
+        display : block;
+    }
+    /*********************************************/
+
+
+
 `;
 // \\// css /////////////////////////////////////////
 

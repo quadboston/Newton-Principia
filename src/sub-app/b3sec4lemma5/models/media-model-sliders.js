@@ -18,8 +18,6 @@
     var ss          = sn('ss',fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
     var rg          = sn('registry',ssD);
 
     var srg         = sn('sapprg', fapp ); 
@@ -45,29 +43,32 @@
 
     function setModule()
     {
-        ssF.createSliderPlaceholder_media_scale = createSliderPlaceholder_media_scale;
-        ssF.createSliderPlaceholder_thickness = createSliderPlaceholder_thickness;
+        ssF.createSliderPlaceholder_m = createSliderPlaceholder_m;
         pos2pointy      = ssF.pos2pointyLL;
         pointies2line   = ssF.pointies2lineLL;
     }
 
 
+
+
+
     //----------------------------------------
-    // //\\ param media_scale slider
+    // //\\ param m slider
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function createSliderPlaceholder_media_scale()
+    function createSliderPlaceholder_m()
     {
-        var max_media_scale             = 3;
-        var min_media_scale             = 0.3;
-        var range_media_scale           = max_media_scale - min_media_scale;
-        var SUGGESTED_COLOR             = "#999999";
+        var max_m             = rg.n.value;
+        var min_m             = 1;
+        var range_m           = max_m - min_m;
+        var SUGGESTED_COLOR   = ssD.experColor;
 
-        var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth*0.1 ) *
+        var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth * 0.05 ) *
                                 sconf.med2mod_scale;
-        var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale*0.8;
-        var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight *.87 ) *
+        var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale * 0.35;
+        //var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight * 0.05 ) *
+        var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight * 0.80 ) *
                                 sconf.med2mod_scale;
         var railsLength       = endX - startX;
 
@@ -76,233 +77,103 @@
 
         // //\\ slider object
         //sets registry
-        tp( 'sliderStart', startPos );
-        tp( 'sliderEnd', endPos );
+        ssF.tp( 'sliderStart_m', startPos );
+        ssF.tp( 'sliderEnd_m', endPos );
 
-        var sliderStart = pos2pointy( 'sliderStart',
-            { fill : '#9999dd', tpclass:'media_scale', cssClass : 'tofill tostroke', } );
-        var sliderEnd = pos2pointy( 'sliderEnd',
-            { fill : '#9999dd', tpclass:'media_scale', cssClass : 'tofill tostroke', } );
+        var sliderStart = pos2pointy( 'sliderStart_m',
+            { fill : '#9999dd', tpclass:'m', cssClass : 'tofill tostroke', } );
+        var sliderEnd = pos2pointy( 'sliderEnd_m',
+            { fill : '#9999dd', tpclass:'m', cssClass : 'tofill tostroke', } );
         ///draws rails
         var slider = pointies2line(
-             'slider-media_scale',
+             'slider-m',
              [sliderStart, sliderEnd],
-             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:'media_scale',
+             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:'m',
                                 cssClass : 'tofill tostroke', }
         );
-        $$.$(slider.svgel).cls( 'tp-media_scale' );
+        $$.$(slider.svgel).cls( 'tp-m' );
         // \\// slider object
 
-        var media_scale           = rg.media_scale;
-        var handleXpos  = ( media_scale.value - min_media_scale ) /
-                            range_media_scale * railsLength + startX;
-        media_scale.pos           = [ handleXpos, startY ];
-        media_scale.startX        = startX;
-        media_scale.endX          = endX;
-        media_scale.railsLength   = railsLength;
+        var m           = rg.m;
+        var handleXpos  = ( m.value - min_m ) /
+                          range_m * railsLength + startX;
+        m.pos           = [ handleXpos, startY ];
+        m.startX        = startX;
+        m.endX          = endX;
+        m.railsLength   = railsLength;
         pos2pointy(
-            'media_scale',
+            'm',
             {
                 cssClass : 'tostroke',
                 stroke : SUGGESTED_COLOR,
                 'stroke-width' : 3,
                 fill : 'white',
                 r : 8,
-                tpclass : 'media_scale',
+                tpclass : 'm',
             }
         );
-
-        media_scale.text_svg = sv.printText({
+        m.text_svg = sv.printText({
             parent : studyMods[ SUB_MODEL ].mmedia,
-            text :'scale',
-           'stroke-width' : 3,
-            style : { 'font-size' : '30px' },
+            text :'m',
+           'stroke-width' : 1,
+            style : { 'font-size' : '25px',
+                      'font-family' : 'helvetica, san-serif',
+                       color : SUGGESTED_COLOR,
+            },
             stroke  : SUGGESTED_COLOR,
+            fill  : SUGGESTED_COLOR,
         });
 
-        rg.media_scale.model8media_upcreate = function() {
+        rg.m.model8media_upcreate = function() {
             studyMods[ SUB_MODEL ].model8media_upcreate();
         }
 
         ///for slider
-        media_scale.pos2value = function( newPos )
+        m.pos2value = function( newPos )
         {
-            var newValue = ( max_media_scale - min_media_scale ) * ( newPos[0] - startX ) /
-                             railsLength + min_media_scale;
-            if( newValue < min_media_scale || newValue > max_media_scale ) return;
+            var newValue = ( max_m - min_m ) * ( newPos[0] - startX ) /
+                             railsLength + min_m;
+            if( newValue < min_m || newValue > max_m ) return;
 
-            // //\\ todm: fullLength patch,
-            //            to fit CB in window
-            var fullLength = 1;
-            media_scale.value = newValue * fullLength;
-            sconf.mod2med_scale = sconf.originalMod2med_scale * media_scale.value;
-            sconf.med2mod_scale = 1/sconf.mod2med_scale;
-            // \\// todm: fullLength patch
+            m.value = Math.round( newValue );
+            m.value = Math.max(  min_m, Math.min( max_m, m.value ) );
 
-            media_scale.pos[0] = newPos[0];
-            media_scale.pos[1] = newPos[1];
-            updateSliderHandlePos();
-            media_scale.model8media_upcreate();
-            return true;
-        }
-
-        function updateSliderHandlePos()
-        {
-            //var sliderXpos = (media_scale.value - min_media_scale ) /
-            //range_media_scale * railsLength + startX;
-            //media_scale.pos[0] = sliderXpos;
-            media_scale.medpos = ssF.modpos2medpos_originalLL( media_scale.pos );
-            sv.u({
-                svgel   : media_scale.svgel,
-                parent  : studyMods[ SUB_MODEL ].mmedia,
-                cx : media_scale.medpos[0],
-                cy : media_scale.medpos[1],
-            });
-            media_scale.text_svg.setAttributeNS( null, 'x', media_scale.medpos[0]-8 );
-            media_scale.text_svg.setAttributeNS( null, 'y', media_scale.medpos[1]+37 );
-        };
-        updateSliderHandlePos();
-    }
-    //----------------------------------------
-    // \\// param media_scale slider
-    //----------------------------------------
-
-
-
-
-
-    //----------------------------------------
-    // //\\ param media_scale slider
-    //      creates slider only once per
-    //      app model creation;
-    //----------------------------------------
-    function createSliderPlaceholder_thickness()
-    {
-        var max_thickness             = 30;
-        var min_thickness             = 1;
-        var range_thickness           = max_thickness - min_thickness;
-        var SUGGESTED_COLOR           = "#999999";
-
-        var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth * 0.1 ) *
-                                sconf.med2mod_scale;
-        var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale * 0.4;     //was full = 0.8;
-        var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight * 0.93 ) * //was 0.9 ) *
-                                sconf.med2mod_scale;
-        var railsLength       = endX - startX;
-
-        var startPos          = [ startX, startY ];
-        var endPos            = [ endX, startY ];
-
-        // //\\ slider object
-        //sets registry
-        tp( 'sliderStart_thickness', startPos );
-        tp( 'sliderEnd_thickness', endPos );
-
-        var sliderStart = pos2pointy( 'sliderStart_thickness',
-            { fill : '#9999dd', tpclass:'thickness', cssClass : 'tofill tostroke', } );
-        var sliderEnd = pos2pointy( 'sliderEnd_thickness',
-            { fill : '#9999dd', tpclass:'thickness', cssClass : 'tofill tostroke', } );
-        ///draws rails
-        var slider = pointies2line(
-             'slider-thickness',
-             [sliderStart, sliderEnd],
-             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:'thickness',
-                                cssClass : 'tofill tostroke', }
-        );
-        $$.$(slider.svgel).cls( 'tp-thickness' );
-        // \\// slider object
-
-        var thickness           = rg.thickness;
-        var handleXpos          = ( thickness.value - min_thickness ) /
-                                    range_thickness * railsLength + startX;
-        thickness.pos           = [ handleXpos, startY ];
-        thickness.startX        = startX;
-        thickness.endX          = endX;
-        thickness.railsLength   = railsLength;
-        pos2pointy(
-            'thickness',
-            {
-                cssClass : 'tostroke',
+            m.text_svg = sv.printText({
+                parent : studyMods[ SUB_MODEL ].mmedia,
+                text :'m = ' + m.value,
+                svgel : m.text_svg,
+               'stroke-width' : 1,
+                style : { 'font-size' : '25px' },
                 stroke : SUGGESTED_COLOR,
-                'stroke-width' : 3,
-                fill : 'white',
-                r : 8,
-                tpclass : 'thickness',
-            }
-        );
+            });
 
-        thickness.text_svg = sv.printText({
-            parent : studyMods[ SUB_MODEL ].mmedia,
-            text :'thickness',
-           'stroke-width' : 3,
-            style : { 'font-size' : '30px' },
-            stroke  : SUGGESTED_COLOR,
-        });
-
-        rg.thickness.model8media_upcreate = function() {
-            studyMods[ SUB_MODEL ].model8media_upcreate();
-        }
-
-        ///for slider
-        thickness.pos2value = function( newPos )
-        {
-            var newValue = ( max_thickness - min_thickness ) * ( newPos[0] - startX ) /
-                             railsLength + min_thickness;
-            if( newValue < min_thickness || newValue > max_thickness ) return;
-
-            //==========================================
-            // //\\ sets thickness to specified elements
-            //==========================================
-            thickness.value = newValue;
-            ns.dynamicGlobalCss.update(`
-                .tofill.tostroke.tp-_d,
-                .tp-ellipse.tostroke {
-                    stroke-width : ${newValue.toFixed()};
-                }
-            `);
-            //==========================================
-            // \\// sets thickness to specified elements
-            //==========================================
-
-            thickness.pos[0] = newPos[0];
-            thickness.pos[1] = newPos[1];
+            m.pos[0] = newPos[0];
+            m.pos[1] = newPos[1];
             updateSliderHandlePos();
-            thickness.model8media_upcreate();
+            m.model8media_upcreate();
             return true;
         }
 
         function updateSliderHandlePos()
         {
-            //var sliderXpos = (thickness.value - min_thickness ) /
-            //range_thickness * railsLength + startX;
-            //thickness.pos[0] = sliderXpos;
-            thickness.medpos = ssF.modpos2medpos_originalLL( thickness.pos );
+            //var sliderXpos = (m.value - min_m ) /
+            //range_m * railsLength + startX;
+            //m.pos[0] = sliderXpos;
+            m.medpos = ssF.modpos2medpos_originalLL( m.pos );
             sv.u({
-                svgel   : thickness.svgel,
+                svgel   : m.svgel,
                 parent  : studyMods[ SUB_MODEL ].mmedia,
-                cx : thickness.medpos[0],
-                cy : thickness.medpos[1],
+                cx : m.medpos[0],
+                cy : m.medpos[1],
             });
-            thickness.text_svg.setAttributeNS( null, 'x', thickness.medpos[0]-8 );
-            thickness.text_svg.setAttributeNS( null, 'y', thickness.medpos[1]+37 );
+            m.text_svg.setAttributeNS( null, 'x', m.medpos[0]-8 );
+            m.text_svg.setAttributeNS( null, 'y', m.medpos[1]+37 );
         };
         updateSliderHandlePos();
     }
     //----------------------------------------
-    // \\// param thickness slider
+    // \\// param m slider
     //----------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }) ();

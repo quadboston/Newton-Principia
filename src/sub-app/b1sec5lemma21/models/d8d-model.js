@@ -65,10 +65,7 @@
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
             dragSurface                         : sDomN.medRoot,
-            DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
-
-            //this "destroys" main image of original manuscript at drag start
-            //detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
+            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
@@ -80,8 +77,7 @@
         createDragger_G();
         createDragger_AA();
         createDragger_H();
-        createDragger_media_scale();
-        createDragger_thickness();
+        stdMod.initCommonDragModel( medD8D, css2media )
         ns.globalCss.update(); //for decorator
         return;
 
@@ -101,7 +97,7 @@
             var pointWrap = rg.G;
 
             //:sets additional features ... dragger handle color
-            pointWrap.dragCssCls    = 'g-slider-point';
+            pointWrap.spinnerClsId    = 'g-slider-point';
             pointWrap.dragDecorColor = pointWrap.stroke;
 
             var argc =
@@ -110,12 +106,9 @@
                 pointWrap           : rg.G,
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderG,
+                orientation         : 'axis-y',
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['axis-y'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
+            medD8D.pointWrap_2_dragWrap( argc );
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
@@ -151,7 +144,7 @@
         {
             var pointWrap = rg.AA;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'aa-slider-point';
+            pointWrap.spinnerClsId    = 'aa-slider-point';
             pointWrap.dragDecorColor = pointWrap.stroke;
 
             var argc =
@@ -160,12 +153,9 @@
                 pointWrap           : rg.AA,
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderAA,
+                orientation         : 'rotate',
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['rotate'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
+            medD8D.pointWrap_2_dragWrap( argc );
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
@@ -201,7 +191,7 @@
         {
             var pointWrap = rg.H;
             //:sets dragger handle color
-            pointWrap.dragCssCls    = 'h-slider-point';
+            pointWrap.spinnerClsId    = 'h-slider-point';
             pointWrap.dragDecorColor = pointWrap.stroke;
 
             var argc =
@@ -211,11 +201,7 @@
                 update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderH,
             };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['x-axis'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
+            medD8D.pointWrap_2_dragWrap( argc );
 
             ///decorates DraggeeHoverer movement    
             function update_decPoint( decPoint )
@@ -247,120 +233,6 @@
                     break;
             }
         }
-
-        //============================================
-        // //\\ slider media_scale
-        //============================================
-        function createDragger_media_scale()
-        {
-            var pointWrap = rg.media_scale;
-            //:sets dragger handle color
-            pointWrap.dragCssCls    = 'tp-ellipse';
-            //todm ... not straight
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-            var argc =
-            {
-                achieved            : [ rg.media_scale.pos[0], rg.media_scale.pos[1] ],
-                pointWrap           : rg.media_scale,
-                update_decPoint     : update_decPoint,
-                doProcess           : doProcess_slider_media_scale,
-            };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['axis-x'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
-
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
-        }
-
-        function doProcess_slider_media_scale( arg )
-        {
-            var ach = arg.pointWrap.achieved;
-            var media_scale = rg.media_scale;
-            switch( arg.down_move_up ) {
-                case 'up':
-                     ach.achieved = [ media_scale.pos[0], media_scale.pos[1] ];
-                     break;
-                case 'move':
-                    sDomF.detected_user_interaction_effect();
-                    var new_media_scale = [
-                            ach.achieved[0] + arg.surfMove[0] *
-                            //sconf.med2mod_scale * css2media(),
-                            (1/sconf.originalMod2med_scale) * css2media(),
-                            ach.achieved[1]
-                        ];
-                        media_scale.pos2value( new_media_scale );
-                    break;
-            }
-        }
-        //============================================
-        // \\// slider media_scale
-        //============================================
-
-        //============================================
-        // //\\ slider thickness
-        //============================================
-        function createDragger_thickness()
-        {
-            var pointWrap = rg.thickness;
-            //:sets dragger handle color
-            pointWrap.dragCssCls    = 'tp-ellipse';
-            //todm ... not straight
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-            var argc =
-            {
-                achieved            : [ rg.thickness.pos[0], rg.thickness.pos[1] ],
-                pointWrap           : rg.thickness,
-                update_decPoint     : update_decPoint,
-                doProcess           : doProcess_slider_thickness,
-            };
-            var dragWrap = medD8D.pointWrap_2_dragWrap( argc );
-
-            ['axis-x'].forEach( function( cls ) {
-                $$.addClass( cls, dragWrap.decPoint );
-            });
-
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
-        }
-
-        function doProcess_slider_thickness( arg )
-        {
-            var ach = arg.pointWrap.achieved;
-            var thickness = rg.thickness;
-            switch( arg.down_move_up ) {
-                case 'up':
-                     ach.achieved = [ thickness.pos[0], thickness.pos[1] ];
-                     break;
-                case 'move':
-                    sDomF.detected_user_interaction_effect();
-                    var new_thickness = [
-                            ach.achieved[0] + arg.surfMove[0] *
-                            //sconf.med2mod_scale * css2media(),
-                            (1/sconf.originalMod2med_scale) * css2media(),
-                            ach.achieved[1]
-                        ];
-                        thickness.pos2value( new_thickness );
-                    break;
-            }
-        }
-        //============================================
-        // \\// slider thickness
-        //============================================
-
-
     }; 
     //==========================================
     // \\// inits drag points

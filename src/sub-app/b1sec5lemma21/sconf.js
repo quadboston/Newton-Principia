@@ -170,6 +170,10 @@
             originalMod2med_scale : mod2med_scale,
 
             activeAreaOffsetX   : masterCenterX,
+            activeAreaOffsetY   : masterCenterY,
+            originX_onPicture   : masterCenterX, //needed for common sliders
+            originY_onPicture   : masterCenterY, //needed for common sliders
+
             centerOnPicture_X   : masterCenterX,
             centerOnPicture_Y   : masterCenterY,
             innerMediaHeight    : pictureHeight,
@@ -186,6 +190,7 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
+            enableTools : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------

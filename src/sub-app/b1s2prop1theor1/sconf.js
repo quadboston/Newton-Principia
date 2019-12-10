@@ -165,6 +165,7 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
+            //todm: fails: enableTools : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------
