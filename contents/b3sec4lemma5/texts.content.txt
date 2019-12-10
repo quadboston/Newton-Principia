@@ -87,18 +87,17 @@ Adee, 45 Liberty Street.
 *..*
 
 
-Any given unknown polynomial
+Any given polynomial
 
 ¦given¦y¦¦(x) =
 
 ¦given¦a<sub>0</sub>¦¦ + ¦given¦a<sub>1</sub>¦¦x<sup>1</sup> + ... +
-¦given¦a<sub>n</sub>¦¦ x<sup>n</sup>,<br><br>
-
-can be exactly approximated with polynomial ¦approximator¦s<sup>m</sup>¦¦ when
+¦given¦a<sub>n</sub>¦¦ x<sup>n</sup>
+¦given¦y¦¦ is equal to polynomial ¦approximator¦s<sup>m</sup>¦¦ when
 <br><br>
 
-for arbitrarily selected m+1 different ¦experimental¦points x<sub>i</sub>¦¦, <br>
-the values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known and <br><br>
+for arbitrarily selected different ¦experimental¦points
+x<sub>0</sub>, ... , x<sub>m</sub>¦¦, <br>
 
 m = n, <br>
 ¦approximator¦s<sup>k</sup>¦¦ = ¦approximator¦P<sub>0</sub>¦¦ + ¦approximator¦P<sub>1</sub>¦¦q<sup>1</sup> + ... +
@@ -117,6 +116,12 @@ d<sub>i,j</sub> = ¦experimental¦x<sub>j</sub> - x<sub>i</sub>¦¦.<br>
 
 Polynomials ¦approximator¦s<sup>k</sup>¦¦ are called <a href="https://en.wikipedia.org/wiki/Newton_polynomial" target="_blank">Newton interpolation polynomials</a>.
 
+<br><br>
+
+In plain words, any ¦given¦given unknown polynomial y¦¦
+can be exactly aprroximated with ¦approximator¦Newton polynomial¦¦ if
+values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known.
+
 
 
 *::*proof|model
@@ -128,7 +133,7 @@ Polynomials ¦approximator¦s<sup>k</sup>¦¦ are called <a href="https://en.wik
 
 <b>Theorem.</b> In context of the model claim, we have to prove
 
-¦given¦y¦¦ = ¦approximator¦s<sup>m</sup>¦¦.
+¦given¦y¦¦ = ¦approximator¦s<sup>n</sup>¦¦.
 
 <br><br>
 
@@ -136,26 +141,26 @@ Polynomials ¦approximator¦s<sup>k</sup>¦¦ are called <a href="https://en.wik
 
 S t e p  1. There is always exist unique polynomial<br><br>
 
-¦approximator¦z<sup>n</sup>(x)¦¦
+¦given¦z<sup>n</sup>(x)¦¦
 = ¦given¦b<sub>0</sub>¦¦ + ¦given¦b<sub>1</sub>¦¦x<sup>1</sup> + ... +
 ¦given¦b<sub>n</sub>¦¦ x<sup>n</sup>,<br><br>
 
- satisfying all points
-(¦experimental¦x<sub>i</sub>¦¦, ¦experimental¦y<sub>i</sub>¦¦ ) for i = 0,..., n+1.
+satisfying all points
+(¦experimental¦x<sub>i</sub>¦¦, ¦experimental¦y<sub>i</sub>¦¦ ) for i = 0,..., n.
 <br><br>
 
-and therefore z = y.
+and therefore ¦given¦z<sup>n</sup>¦¦ = ¦given¦y¦¦.
 
 <br><br><br>
 
 
 S t e p  2.
 
-For this polinomial z, by induction, we can
+For this polinomial ¦given¦z<sup>n</sup>¦¦, by induction, we can
 find out what divided differences y<sub>i,i+j</sub> are and, in particular, can see
 that <br><br>
 
-P<sub>n</sub> = b<sub>n</sub>.
+¦approximator¦P<sub>n</sub>¦¦ = ¦given¦b<sub>n</sub>¦¦.
 
 <br><br>
 S t e p  3.
@@ -167,21 +172,20 @@ Theorem's case n = 1 is proven by taking ¦approximator¦s<sup>1</sup>¦¦ =
 <br><br>
 
 Suppose we did prove case n. Consider an extra point 
-(¦experimental¦x<sub>n+2</sub>¦¦, ¦experimental¦y<sub>n+2</sub>¦¦ )
+(¦experimental¦x<sub>n+1</sub>¦¦, ¦experimental¦y<sub>n+1</sub>¦¦ )
 and polinomial <br><br> 
 
-¦approximator¦u¦¦ = ¦approximator¦s<sup>n</sup>¦¦ +
-¦approximator¦U¦¦q<sup>n+1</sup>
-
-<br><br><br>
-
-The first member satisfies first n+1 points and the last member is zero on these points.
-Therefore for any ¦approximator¦U¦¦q<sup>n+1</sup>, ¦approximator¦u¦¦ satisfy first n+1 points.
+u = ¦approximator¦s<sup>n</sup>¦¦ + Uq<sup>n+1</sup>
 
 <br><br>
 
-Let's choose coefficient ¦approximator¦U¦¦ to satisfy the last point.
-Then u = z and U = P<sub>n+1</sub>. Therefore,<br><br>
+The first member satisfies first n+1 points and the last member is zero on these points.
+Therefore for any U, u satisfies first n+1 points.
+
+<br><br>
+
+Let's choose coefficient U to satisfy the extra point.
+Then u = ¦given¦z<sup>n</sup>¦¦ and ¦approximator¦U¦¦ = ¦approximator¦P<sub>n+1</sub>¦¦. Therefore,<br><br>
 
 u = ¦approximator¦s<sup>n+1</sup>¦¦. <b>[]</b>
 
