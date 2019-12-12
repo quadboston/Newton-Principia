@@ -80,6 +80,8 @@
         }
 
         function setPoint( pointWrap, pwix ) {
+            var no_spinner = false;
+            var decorator;
             if( pointWrap.type === 'base' ) {
                 if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
@@ -89,14 +91,14 @@
                 pointWrap.dragDecorColor='red';        //optional
             }
             if( typeof pointWrap.x === 'number' ) {
-                var decorator = Update_decPoint( pointWrap )
+                decorator = Update_decPoint( pointWrap )
                 var achieved = { x:pointWrap.x, y:pointWrap.y };
             } else {
-                ////avoids excessive assignment to idle points
+                ////avoids excessive no_spinner assignment to idle points
                 ////which are not yet ready
                 ////one must code "decorator" for new points
                 ////when they are created
-                var decorator = null;
+                no_spinner = true;
             }
 
             ///small test-case
@@ -104,10 +106,12 @@
             //    ccc('assigned achieved', achieved, " point wrap", pointWrap);
             //}
             medD8D.pointWrap_2_dragWrap({
-                achieved        :achieved,
-                pointWrap       :pointWrap,
-                doProcess       :doProcess,
-                update_decPoint :decorator,
+                pointWrap       : pointWrap,
+                doProcess       : doProcess,
+                //-------------------------
+                achieved        : achieved,
+                no_spinner      : no_spinner,
+                update_decPoint : decorator,
                 orientation     : pointWrap.type !== 'base' ? 'rotate' : false,
             });
         }

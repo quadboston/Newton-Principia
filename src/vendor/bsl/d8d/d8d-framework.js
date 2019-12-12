@@ -106,6 +106,7 @@
             var orientation          = api.orientation;
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
+            var tooltip              = api.tooltip;
             //---------------------------------------------
             // \\// AAA PPP III
             //---------------------------------------------
@@ -142,6 +143,7 @@
                 decPoint = dpdec.adds_decorSpinner({
                         spinner_domParent : dragSurface,
                         opt : {
+                        tooltip,
                         addFeaturesToDecPoint,
                         parent_classes : decPoint_parentClasses,
                             orientation     : orientation,

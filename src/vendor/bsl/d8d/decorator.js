@@ -30,6 +30,7 @@
             makeCentralDiskInvisible, //affects common properties:
             orientation,
             makeCentralDiskInvisible,
+            tooltip,
         } = (opt||{});
 
         var { spinnerClsId, dragDecorColor } = ( addFeaturesToDecPoint || {} );
@@ -69,7 +70,9 @@
         var decPoint = document.createElement( 'div' );
         spinner_domParent.appendChild( decPoint );
         decPoint.setAttribute( 'class', cls );
-
+        if( tooltip ) {
+            decPoint.setAttribute( 'title', tooltip );
+        }
         var left = document.createElement( 'div' );
         left.setAttribute( 'class', 'brc-slider-draggee-left' );
         decPoint.appendChild( left );

@@ -163,14 +163,13 @@
         pointWrap.spinnerClsId    = 'tp-m';
         //todm ... not straight
         pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-        var argc =
-        {
+        medD8D.pointWrap_2_dragWrap({
             achieved            : [ rg.m.pos[0], rg.m.pos[1] ],
             pointWrap           : rg.m,
             update_decPoint     : update_decPoint,
             doProcess           : doProcess_slider_m,
-        };
-        medD8D.pointWrap_2_dragWrap( argc );
+            tooltip             : "Select Newton Polynomial of degree m",
+        });
 
         ///decorates DraggeeHoverer movement    
         function update_decPoint( decPoint )

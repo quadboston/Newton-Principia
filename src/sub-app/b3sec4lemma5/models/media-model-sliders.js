@@ -62,7 +62,7 @@
         var max_m             = rg.n.value;
         var min_m             = 1;
         var range_m           = max_m - min_m;
-        var SUGGESTED_COLOR   = ssD.experColor;
+        var SUGGESTED_COLOR   = ssD.approxColor; //experColor;
 
         var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth * 0.05 ) *
                                 sconf.med2mod_scale;
@@ -101,7 +101,7 @@
         m.startX        = startX;
         m.endX          = endX;
         m.railsLength   = railsLength;
-        pos2pointy(
+        var m_pt = pos2pointy(
             'm',
             {
                 cssClass : 'tostroke',
@@ -112,6 +112,7 @@
                 tpclass : 'm',
             }
         );
+
         m.text_svg = sv.printText({
             parent : studyMods[ SUB_MODEL ].mmedia,
             text :'m',
@@ -140,7 +141,7 @@
 
             m.text_svg = sv.printText({
                 parent : studyMods[ SUB_MODEL ].mmedia,
-                text :'m = ' + m.value,
+                text :'m = ' + (m.value-1),
                 svgel : m.text_svg,
                'stroke-width' : 1,
                 style : { 'font-size' : '25px' },

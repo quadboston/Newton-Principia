@@ -93,7 +93,7 @@ Any given polynomial
 
 ¦given¦a<sub>0</sub>¦¦ + ¦given¦a<sub>1</sub>¦¦x<sup>1</sup> + ... +
 ¦given¦a<sub>n</sub>¦¦ x<sup>n</sup>
-¦given¦y¦¦ is equal to polynomial ¦approximator¦s<sup>m</sup>¦¦ when
+is equal to polynomial ¦approximator¦s<sup>m</sup>¦¦ when
 <br><br>
 
 for arbitrarily selected different ¦experimental¦points
@@ -112,7 +112,14 @@ y<sub>i,i+1</sub> = (y<sub>i+1</sub> - y<sub>i</sub>) / d<sub>i,i+1</sub>,<br>
 y<sub>i,i+j</sub> = (y<sub>i+1,i+j</sub> - y<sub>i,i+j-1</sub>) / d<sub>i,i+j</sub> for j > 1, <br>
 d<sub>i,j</sub> = ¦experimental¦x<sub>j</sub> - x<sub>i</sub>¦¦.<br>
 
-<br><br><br>
+<br><br>
+
+To be accurate, we define "polynomial" here as a pair ¦given¦( a, y )¦¦, where
+¦given¦a¦¦ = ( ¦given¦a<sub>0</sub>¦¦, ... , ¦given¦a<sub>n</sub>¦¦ ) and
+¦given¦y¦¦ is a function as at the beginning of the claim. There is no
+restriction on ¦given¦a<sub>n</sub>¦¦ =/= 0.
+
+<br><br>
 
 Polynomials ¦approximator¦s<sup>k</sup>¦¦ are called <a href="https://en.wikipedia.org/wiki/Newton_polynomial" target="_blank">Newton interpolation polynomials</a>.
 

@@ -223,6 +223,8 @@
                     //https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course#Scripting_in_namespaced_XML
                     //for consistency ...(null, ... whys is this "consistency" ... ? the must be a cowpath ...
                     //https://stackoverflow.com/questions/35057909/difference-between-setattribute-and-setattributensnull
+                    //it seems does not matter at all how to write setAttribute: as setAttribute or setAttributeNS:
+                    //      https://stackoverflow.com/questions/21361570/simpler-way-to-set-attributes-with-svg
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
 
                     to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
