@@ -67,7 +67,8 @@
             //:optional
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect : sDomF.detected_user_interaction_effect,
-            decPoint_parentClasses : fconf.dragPointDecoratorClasses
+            decPoint_parentClasses : fconf.dragPointDecoratorClasses,
+            medpos2dompos                       : sDomF.medpos2dompos,
         });
         //======================================
         // \\// sets framework of draggee-points
@@ -301,8 +302,6 @@
         function createDragger( argc )
         {
             var pointWrap        = argc.pointWrap;
-            argc.update_decPoint = update_decPoint;
-
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 
             if( argc.cssClasses ) {
@@ -312,16 +311,7 @@
                 });
                 argc.orientation = orientation;
             }
-
             medD8D.pointWrap_2_dragWrap( argc );
-
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
     }; 
     //==========================================

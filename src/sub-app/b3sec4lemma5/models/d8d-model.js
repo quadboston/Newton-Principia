@@ -64,7 +64,8 @@
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
             dragSurface                         : sDomN.medRoot,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses
+            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
+            medpos2dompos                       : sDomF.medpos2dompos,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
         //==========================================
@@ -104,19 +105,9 @@
         {
             achieved            : [ pointWrap.pos[0], pointWrap.pos[1] ],
             pointWrap           : pointWrap,
-            update_decPoint     : update_decPoint,
             doProcess           : doProcess_slider_point,
         };
         medD8D.pointWrap_2_dragWrap( argc );
-
-        ///decorates DraggeeHoverer movement    
-        function update_decPoint( decPoint )
-        {
-            var dompos = sDomF.medpos2dompos.call( pointWrap );
-            //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
-            decPoint.style.left = dompos[0] + 'px';            
-            decPoint.style.top = dompos[1] + 'px';            
-        }
     }
 
 
@@ -164,20 +155,12 @@
         //todm ... not straight
         pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
         medD8D.pointWrap_2_dragWrap({
-            achieved            : [ rg.m.pos[0], rg.m.pos[1] ],
-            pointWrap           : rg.m,
-            update_decPoint     : update_decPoint,
             doProcess           : doProcess_slider_m,
-            tooltip             : "Select Newton Polynomial of degree m",
-        });
+            pointWrap           : rg.m,
 
-        ///decorates DraggeeHoverer movement    
-        function update_decPoint( decPoint )
-        {
-            var dompos = sDomF.medpos2dompos.call( pointWrap );
-            decPoint.style.left = dompos[0] + 'px';            
-            decPoint.style.top = dompos[1] + 'px';            
-        }
+            achieved            : [ rg.m.pos[0], rg.m.pos[1] ],
+            tooltip             : "Selects Newton Polynomial of degree m",
+        });
     }
 
     function doProcess_slider_m( arg )

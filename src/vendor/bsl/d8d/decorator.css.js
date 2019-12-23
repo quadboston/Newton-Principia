@@ -81,7 +81,7 @@
             `
         });
         // \\// css /////////////////////////////////////////
-        ns.globalCss.addText( ret );
+        ns.globalCss.upqueue( ret );
     }
 
 
@@ -253,7 +253,8 @@
 
         `;
         // \\// css /////////////////////////////////////////
-        ns.globalCss.addText( ret );
+        //ns.globalCss.addText( ret );
+        ns.globalCss.upqueue( ret );
         globalCssCreated_flag = true;
     };
 })();

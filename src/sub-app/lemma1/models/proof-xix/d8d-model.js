@@ -61,7 +61,8 @@
             dragSurface                         : sDomN.medRoot,
             //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses
+            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
+            medpos2dompos                       : sDomF.medpos2dompos,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -103,20 +104,10 @@
             {
                 achieved            : ssD.EPSILON,
                 pointWrap           : pointWrap,
-                update_decPoint     : update_decPoint,
                 doProcess           : doProcessE,
                 orientation         : 'axis-y',
             };
             medD8D.pointWrap_2_dragWrap( argc );
-            
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
     }; 
     //==========================================

@@ -28,10 +28,11 @@
     var tplinkCount = 0;
     var shapesCount = 0;
     var topicLinks = topics.topicLinks = {};
-    var topicShapes = topics.topicShapes = {};
+    var shapeid2tshape = topics.shapeid2tshape = {};
     var topicIndexedLinks = topics.topicIndexedLinks = [];
 
     var SPACE_reg = /\s+/;
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     var TOP_ANCH_reg = 
         '¦([^¦]+)¦' +   //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
@@ -39,6 +40,7 @@
         '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
         '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
+    //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
     var topAnch_reg = new RegExp( TOP_ANCH_reg, 'gu' );
     //.adding flag "g" ruins the job ... why?
     var topAnch_reg2 = new RegExp( TOP_ANCH_reg, 'u' );
@@ -60,6 +62,9 @@
 
     ///this function needs application-model-view already created;
     ///as of this version, it is executed only once
+    ///
+    ///called from main.js::bgImagesAreLoaded()...
+    ///
     function frags_2_essdom8topiccss()
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
@@ -237,7 +242,7 @@
         // \\// apparently used only with alternative color-linking
 
 
-        ns.eachprop( topicShapes, ( shape, scount ) => {
+        ns.eachprop( shapeid2tshape, ( shape, scount ) => {
             var sc = shape.shapesCount;
             var rem = sc%2;
             var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( shapesCount / 2 );
@@ -299,6 +304,7 @@
                 //=========================================
 
                 //this is "anchor mark" ... not the "unique key"
+                //recall ... '¦([^¦]+)¦' +   //catches tplinkConf
                 var tplinkConf = parsedLink[1];
                 //ccc( 'tplinkConf='+tplinkConf );
 
@@ -314,7 +320,7 @@
                     topicIndexedLinks[ tplink_ix ] =
                     topicLinks[ tplinkConf ] = {
                         tplink_ix : tplink_ix,
-                        shapes : {},
+                        shapeid_2_isshape : {},
                         //link:parsedLink[2], not-used
                         'fixed-color' :
                             ns.h( ssD, 'fixed-colors' ) &&
@@ -333,25 +339,30 @@
 
                 // splits anchor-configuration to smaller tokens, each
                 // token for separate shape
-                var parsedLinks = tplinkConf.split( SPACE_reg );
-                tLink.parsedLinks = parsedLinks;
+                var shapeIDs = tplinkConf.split( SPACE_reg );
+                tLink.shapeIDs = shapeIDs;
 
                 // loops via separate shapes
-                parsedLinks.forEach( shapeId_ => {
+                shapeIDs.forEach( shapeId_ => {
                     var shapeId =
                         shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
                             '_' + key1.toLowerCase()
                         ));
                     //ccc( shapeId );
-                    tLink.shapes[ shapeId ] = true;
-                    //patch: todm:
+                    tLink.shapeid_2_isshape[ shapeId ] = true;
+
+                    //..........................................................
+                    ///patch: todm:
+                    ///some atomic-shape-predefined-reserverd-words have
+                    ///effect on their siblings in their anchor-definition-group
                     if( 'cssbold' === shapeId ) {
                         tLink.anchorIsBold = true;
                     }
+                    //..........................................................
 
                     ///checks does this shape exist globally-lemma-wise
-                    if( !topicShapes.hasOwnProperty( shapeId ) ) {
-                        topicShapes[ shapeId ] = {
+                    if( !shapeid2tshape.hasOwnProperty( shapeId ) ) {
+                        shapeid2tshape[ shapeId ] = {
                             tplinkConf      : tplinkConf,
                             'fixed-color'   : tLink[ 'fixed-color' ],
                             tplink_ix       : tplink_ix,

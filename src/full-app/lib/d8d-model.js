@@ -90,18 +90,9 @@
             {
                 achieved            : [ rg.media_scale.pos[0], rg.media_scale.pos[1] ],
                 pointWrap           : rg.media_scale,
-                update_decPoint     : update_decPoint,
                 doProcess           : doProcess_slider_media_scale,
             };
             medD8D.pointWrap_2_dragWrap( argc );
-
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
 
         function doProcess_slider_media_scale( arg )
@@ -143,18 +134,9 @@
             {
                 achieved            : [ rg.thickness.pos[0], rg.thickness.pos[1] ],
                 pointWrap           : rg.thickness,
-                update_decPoint     : update_decPoint,
                 doProcess           : doProcess_slider_thickness,
             };
             medD8D.pointWrap_2_dragWrap( argc );
-
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
 
         function doProcess_slider_thickness( arg )

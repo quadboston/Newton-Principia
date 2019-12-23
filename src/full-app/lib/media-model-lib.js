@@ -93,7 +93,6 @@
     {
         //pt is a rack of namespace (plain JavaScript object)
         var pt              = ssF.tr( pName );
-        pt.medpos2dompos    = sDomF.medpos2dompos;
         pt.medpos           = modpos2medpos( pt.pos );
         pt.stroke           = attrs && attrs.stroke;
         pt.fill             = attrs && attrs.fill;

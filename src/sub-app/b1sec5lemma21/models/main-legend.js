@@ -76,7 +76,7 @@
         ww[ 'beta' ].innerHTML = rg.beta.value.toFixed(3);
         ww[ 'alpha' ].innerHTML = rg.alpha.value.toFixed(3);
 
-        ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
+        //ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
     }
     //=========================================
     // \\// updates values during simulation
@@ -155,9 +155,12 @@
             .to(tb)();
         makeCl( row, 'alpha', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
         makeCl( row, 'beta', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
+
+        /*
         var row = $$.c('tr')
             .to(tb)();
         makeCl( row, 'media_scale', 'scale', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'media_scale' );
+        */
         //===================
         // \\//
         //===================

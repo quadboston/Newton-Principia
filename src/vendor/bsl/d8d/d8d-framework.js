@@ -9,7 +9,7 @@
     var fapp        = ns.sn('fapp' ); 
     var fmethods    = sn('methods',fapp);
     var d8d_p       = sn('d8d-point',fmethods);
-    var sapp        = sn('sapp');
+    var ccc = console.log; ccc && ( ccc = console.log );
     d8d_p.createFramework = createFramework;
     return;
 
@@ -32,6 +32,7 @@
             decPoint_parentClasses,
             processMouseDown,
             handle2dragsurf_pos,
+            medpos2dompos,
     }) {
 
         findDraggee = findDraggee || findDraggee_default;
@@ -58,6 +59,11 @@
         //==========================================
         // //\\ converts pos-in-parent to dom-pos
         //==========================================
+        //Gets position of dom-drag-handle in respect to drag-surface.
+        //In contrary to "medpos2dompos",
+        //  it does not convert inner-media-position and
+        //  does not convert inner-model-position to dom position.
+        //The dragHandleDOM must belong the "surface".
         function handle2dragsurf_pos_default( dragWrap, dragSurface )
         {
             var rr = dragSurface.getBoundingClientRect();
@@ -67,9 +73,6 @@
                 hh.left - rr.left + hh.width/2,
                 hh.top - rr.top + hh.height/2
             ];
-            //another option:
-            //if( orien === 'corner-handle' ) {
-            //    var h2r = ...
             return h2r;
         }
         //==========================================
@@ -128,7 +131,16 @@
             //========================================================
             var decPoint = null;
             if( !no_spinner ) {
-                update_decPoint = update_decPoint || update_decPoint_default;
+                /*
+                update_decPoint = update_decPoint === "medpos2dompos" ?
+                    update_decPoint_medpos2dompos :
+                    ( update_decPoint || update_decPoint_default );
+                */
+                update_decPoint = !update_decPoint ?
+                    update_decPoint_medpos2dompos :
+                    ( update_decPoint === 'update_decPoint_default' ?
+                        update_decPoint_default : update_decPoint );
+
                 var addFeaturesToDecPoint = null;
                 if( spinnerClsId ) {
                     var cssIdLowCase = spinnerClsId
@@ -145,7 +157,6 @@
                         opt : {
                         tooltip,
                         addFeaturesToDecPoint,
-                        parent_classes : decPoint_parentClasses,
                             orientation     : orientation,
                             parent_classes  : decPoint_parentClasses,
                             makeCentralDiskInvisible : makeCentralDiskInvisible,
@@ -168,7 +179,8 @@
                 decPoint        : decPoint,
                 orientation     : orientation,
                 dragHandleDOM   : dragHandleDOM,
-            };
+                achieved        : achieved,
+            }
             dragWraps.push( dragWrap );
 
             //todo ... needed?
@@ -200,10 +212,21 @@
             // \\// tiny wrap around doProcess
             //=====================================================
 
-            ///updates move of draggee animated-overlay
+            ///updates spinner position;
+            ///uses already existing-on-drag-surface handle to synch with it;
             function update_decPoint_default( decPoint, dragSurface )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
+                decPoint.style.left = dompos[0] + 'px';            
+                decPoint.style.top = dompos[1] + 'px';            
+            }
+
+            ///does position spinner by converting
+            ///inner-media-position to dom-position
+            ///and setting spinner ot this dom-position
+            function update_decPoint_medpos2dompos()
+            {
+                var dompos = medpos2dompos.call( pointWrap );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';            
             }
@@ -251,6 +274,7 @@
                         dragWrap        : selectedElement_flag,
                     });
                 break;
+                default:
             }
         }
 
@@ -277,6 +301,7 @@
             //.is the drag Wrap point
             var closestDragPriority = 0;
             dragWraps.forEach( function( dragWrap, dix ) {
+                var pointWrap   = dragWrap.pointWrap;
                 var dompos      = handle2dragsurf_pos(  dragWrap, dragSurface );
                 var tdX         = Math.abs( testMediaX - dompos[0] );
                 var tdY         = Math.abs( testMediaY - dompos[1] );
@@ -289,7 +314,7 @@
                         (pointWrap.dragPriority || 0 ) > closestDragPriority ) {
                         closestDragWrap = dragWrap;
                         closestTd = td;
-                        closestDragPriority = dragWrap.pointWrap.dragPriority || 0;
+                        closestDragPriority = pointWrap.dragPriority || 0;
                    }
                 }
             });
@@ -309,44 +334,57 @@
 }) ();
 
 
-    //---------------------------------------------
-    // //\\ abandoned throttler
-    //---------------------------------------------
-    //.the throttle is abandoned since v1960
-    //.abandoned because it is hard to remember and explain to other developer
-    //.the complexity which arised with throttle: the complexity is
-    //.that event "move" can be overriden with "up" and developer must always
-    //.remember this in do Process() function
-    //var do DragUpdate = ns.throttle( 
-    //        ....
-    //        DRAG_POINTS_THROTTLE_TIME || 0
-    //);
-    //.if one needs to throttle the drag, do throttle "do Process()"
-    //.explicitly in specific lemma
-    //---------------------------------------------
-    // \\// abandoned throttler
-    //---------------------------------------------
 
-    //==============================================
-    // //\\ api.achieved is an optional parameter
-    //==============================================
-    // if it is falsy and not 0, then it is not used
-    // otherwise, it is placed into 
-    //
-    //      pointWrap.achieved = { achieved : api.achieved }
-    //
-    // this approach creates functions' side effects:
-    // here we are modifying important input-parameter, pointWrap
-    //
-    //      todm side effects can be fixed by indexing points and
-    //      making registry here ... still an extra construct
-    //      adds members to pointWrap
-    //
-    //--------------------------------------------
-    //pointWrap.achieved = ( achieved || achieved === 0 ) ?
-    //                     { achieved : achieved } : { achieved : {} };
-    //==============================================
-    // \\// api.achieved is an optional parameter
-    //==============================================
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------
+// //\\ abandoned throttler
+//---------------------------------------------
+//.the throttle is abandoned since v1960
+//.abandoned because it is hard to remember and explain to other developer
+//.the complexity which arised with throttle: the complexity is
+//.that event "move" can be overriden with "up" and developer must always
+//.remember this in do Process() function
+//var do DragUpdate = ns.throttle( 
+//        ....
+//        DRAG_POINTS_THROTTLE_TIME || 0
+//);
+//.if one needs to throttle the drag, do throttle "do Process()"
+//.explicitly in specific lemma
+//---------------------------------------------
+// \\// abandoned throttler
+//---------------------------------------------
+
+//==============================================
+// //\\ api.achieved is an optional parameter
+//==============================================
+// if it is falsy and not 0, then it is not used
+// otherwise, it is placed into 
+//
+//      pointWrap.achieved = { achieved : api.achieved }
+//
+// this approach creates functions' side effects:
+// here we are modifying important input-parameter, pointWrap
+//
+//      todm side effects can be fixed by indexing points and
+//      making registry here ... still an extra construct
+//      adds members to pointWrap
+//
+//--------------------------------------------
+//pointWrap.achieved = ( achieved || achieved === 0 ) ?
+//                     { achieved : achieved } : { achieved : {} };
+//==============================================
+// \\// api.achieved is an optional parameter
+//==============================================
 
 

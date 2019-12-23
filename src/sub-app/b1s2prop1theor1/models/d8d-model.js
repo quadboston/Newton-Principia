@@ -69,7 +69,8 @@
 
             //this "destroys" main image of original manuscript at drag start
             //detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses
+            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
+            medpos2dompos                       : sDomF.medpos2dompos,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -104,20 +105,10 @@
             {
                 achieved            : rg.time.t,
                 pointWrap           : rg.time,
-                update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderT,
                 orientation         : 'axis-x',
             };
             medD8D.pointWrap_2_dragWrap( argc );
-            
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
 
 
@@ -154,20 +145,11 @@
             {
                 achieved            : rg.B.pos,
                 pointWrap           : rg.B,
-                update_decPoint     : update_decPoint,
                 doProcess           : doProcess_sliderB,
                 orientation         : 'rotate',
             };
             medD8D.pointWrap_2_dragWrap( argc );
             
-            ///decorates DraggeeHoverer movement    
-            function update_decPoint( decPoint )
-            {
-                var dompos = sDomF.medpos2dompos.call( pointWrap );
-                //ccc( 'updates draggee: medpos=' + pointWrap.medpos[1] + 'dompos=' + dompos[1] );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-            }
         }
         //todo check note in buffer: slider
         function doProcess_sliderB( arg )

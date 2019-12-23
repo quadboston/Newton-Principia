@@ -21,7 +21,7 @@
     //===============================
     // //\\ medpos2dompos and inverse
     //===============================
-    ///converts own media pos to dom-pos
+    ///converts pos-in-media-scope to pos-in-dom-scope-related-to-media-dom-offset
     sDomF.medpos2dompos = function()
     {
         var off = sconf.mediaOffset;

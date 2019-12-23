@@ -62,22 +62,22 @@
             //-----------------------------
             //:gets global shape color
             //:fist color of anchor stack of linked shapes
-            var alkeys = Object.keys( alink.shapes );
+            var alkeys = Object.keys( alink.shapeid_2_isshape );
 
-            if( alink.parsedLinks.length > 1 ) {
+            if( alink.shapeIDs.length > 1 ) {
                 ////does something special for the color of this link,
                 ////there are many shapes and colors referenced by the link,
                 ////so it is not known which which color to use, so
                 ////we use black:
                 var rgba = 'rgba( 0, 0, 0, 0.7 )';
                 var rgb1 = 'rgba( 0, 0, 0, 1 )';
-                //ccc( alink.parsedLinks );
+                //ccc( alink.shapeIDs );
             } else {
 
                 //.gets first shape id
                 var firstShapeId = alkeys[0];
                 //.gets first shape
-                var globalShape = topics.topicShapes[ firstShapeId ];
+                var globalShape = topics.shapeid2tshape[ firstShapeId ];
                 var g_rgba = globalShape.rgba;
                 var g_rgb1 = globalShape.rgb1;
                 var rgba = g_rgba;
@@ -124,11 +124,11 @@
             setMouseHiglight( anchor, tplink_ix );
 
 
-            Object.keys( alink.shapes ).forEach( skey => {
-               var shape = alink.shapes[ skey ];
+            Object.keys( alink.shapeid_2_isshape ).forEach( skey => {
+               var shape = alink.shapeid_2_isshape[ skey ];
                 alink.col8shape_2_css = alink.col8shape_2_css || {};
 
-                var globalShape = topics.topicShapes[ skey ];
+                var globalShape = topics.shapeid2tshape[ skey ];
                 var scolor = globalShape.rgb1;
 
                 if( sconf.topicColorPerAnchor ) {

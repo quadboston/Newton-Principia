@@ -254,7 +254,7 @@
             // //\\ sets thickness to specified elements
             //==========================================
             thickness.value = newValue;
-            ns.dynamicGlobalCss.update(`
+            ns.globalCss.upqueue.update(`
                 .tofill.tostroke.tp-_d,
                 .tp-ellipse.tostroke {
                     stroke-width : ${newValue.toFixed()};

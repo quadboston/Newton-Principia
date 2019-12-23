@@ -109,7 +109,7 @@
             svgel   : xChosenMark,
             parent  : mmedia,
             type    : 'text',
-            text    : "δ", //&#x03B4;'
+            text    : "c+δ", //&#x03B4;'
             style   : { fontFamily: fontFam, fontSize: fontSize },
             x : ww[0]-10,
             y : ww[1]+45

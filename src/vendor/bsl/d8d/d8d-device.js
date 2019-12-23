@@ -11,7 +11,7 @@
 //***************************************************************************************************
 ( function () {
     var ns          = window.b$l        = window.b$l        || {};
-    var ccc         = window.console.log;
+    var ccc = console.log; ccc && ( ccc = console.log );
 
 
 
@@ -105,13 +105,14 @@
         //========================================
         function doStartDown( ev )
         {
+            var forbidden;
             if( skipD8D( ev ) ) return;
 
             ///touch-down
             if( ev.touches && ev.touches.length === 1 ) {
                 var event = ev.touches[0];
                 //seems wrong: event.preventDefault(); //trying for mobiles
-                var forbidden = do_complete_down( event, ev );
+                forbidden = do_complete_down( event, ev );
                 if( !forbidden ) {
                     stopsAftershocks ( ev );
                     att.addEventListener( 'touchmove',   touchMove);
@@ -122,7 +123,7 @@
                 }
             ///mouse-down
             } else {
-                var forbidden = do_complete_down( ev );
+                forbidden = do_complete_down( ev );
                 if( !forbidden ) { 
                     stopsAftershocks ( ev );
                     att.addEventListener( 'mousemove', mouseMove);
@@ -257,7 +258,7 @@
                 //.programmer may want to make d8d_app throttable:
                 //.this is why it is importan to provide "up" with surfPoint
                 //.in case the "move" event will be erased by "up"
-                var surf_point = surfPoint || lastPoint;
+                //var surf_point = surfPoint || lastPoint;
 
                 var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
                 var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );

@@ -27,9 +27,8 @@
         var {
             addFeaturesToDecPoint,
             parent_classes,
-            makeCentralDiskInvisible, //affects common properties:
-            orientation,
             makeCentralDiskInvisible,
+            orientation,
             tooltip,
         } = (opt||{});
 
@@ -50,8 +49,6 @@
                     dragDecorColor,
                     parent_classes
                 );
-                //later on, don't forget to make ns.globalCss.update();
-                //or make it bounce via setTimeout to accomulate all the configured-points ...
             }
             cls += ' ' + spinnerClsId;
         }

@@ -676,6 +676,8 @@
     var globalCss           = ns.sn('globalCss');
     var cssText             = '';
     var cssDom$             = null;
+    var queueHandle         = null;
+    globalCss.upqueue       = upqueue;
     globalCss.update        = update;       
     globalCss.addText       = addText;
     globalCss.getText       = getText;
@@ -683,8 +685,25 @@
     return; //****************************
 
 
-
-
+    ///adds css-text updates to queue after-main-thread;
+    ///used to avoid performance downgrade for frequent series of css updates;
+    function upqueue( moreText )
+    {
+        if( !cssDom$ ) {
+            cssDom$ = ns.$$.style().to( document.head );
+        }
+        if( moreText ) { cssText += moreText; }
+        if( queueHandle !== null ) {
+            clearTimeout( queueHandle );
+        }
+        queueHandle = setInterval(
+            function() {
+                cssDom$.html( cssText );
+                queueHandle = null;
+            },
+            1
+        );
+    };
 
     function update( moreText )
     {
@@ -710,33 +729,6 @@
         update();
         ///good place to output assembled css for later static use
     }
-})();
-
-
-///global dynamic css manager;
-///keeps css in one html-style-element;
-///updates/changes all at once without creating new html-style-element;
-( function() {
- 	var ns                  = window.b$l;
-    var dynamicGlobalCss    = ns.sn('dynamicGlobalCss');
-    var cssText             = '';
-    var cssDom$             = null;
-    dynamicGlobalCss.update        = update;       
-    dynamicGlobalCss.getText       = getText;
-    return;
-
-    function update( newText )
-    {
-        if( !cssDom$ ) {
-            cssDom$ = ns.$$.style().to( document.head );
-        }
-        cssText = cssText;
-        cssDom$.html( newText );
-    };
-    function getText()
-    {
-        return cssText;
-    };
 })();
 
 

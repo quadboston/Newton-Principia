@@ -119,7 +119,7 @@
         var point_E = pos2pointy(
             'point-E',
             { 
-                dragDecorColor: 'red',
+                dragDecorColor: 'rgba(42,1,152,1)', //todo ... patch
                 'stroke-width' : 2,
                 cssClass : 'tp-epsilon tostroke',
                 //.fill : 'white', //patch: removes black core from the point
@@ -180,7 +180,7 @@
         var point_D = pos2pointy(
             'point-D',
             { 
-                dragDecorColor: 'blue',
+                dragDecorColor: '#988201', //todo  //blue',
                 cssClass : 'tp-neighborhood tostroke',
                 'stroke-width' : 2,
                 //.fill : 'white', //patch: removes black core from the point
@@ -304,7 +304,6 @@
         pt.spinnerClsId       = pName;
         pt.pos              = pos;
         pt.dragDecorColor   = attrs.dragDecorColor || pt.dragDecorColor;
-        pt.medpos2dompos    = sDomF.medpos2dompos;
         pt.medpos           = limDemo.instance.xy2mediaArr( pt.pos[0], pt.pos[1] );
         pt.svgel = sv.u({
             svgel   : pt.svgel,

@@ -89,9 +89,13 @@
         //-------------------------------------------------
         var wwfc        = ns.haz( ssD, 'fixed-colors' );
         var arr2rgba    = ns.arr2rgba;
+        var wwex        = wwfc[ "experimental" ];
+        var wwap        = wwfc[ "approximator" ];
         var givenColor  = ssD.givenColor = arr2rgba( wwfc[ "given" ] ) || 'rgba(0,0,0,1)';
-        var experColor  = ssD.experColor = arr2rgba( wwfc[ "experimental" ] ) || 'rgba(0,0,255,1)';
-        var approxColor = ssD.approxColor = arr2rgba( wwfc[ "approximator" ] ) || 'rgba(255,0,0,1)';
+        var experColor  = ssD.experColor = arr2rgba( wwex ) || 'rgba(0,0,255,1)';
+        //var experColorOpaq = ssD.experColorOpaq = arr2rgba( [ wwex[0], wwex[1], wwex[2] ] );
+        //var approxColorOpaq = ssD.approxColorOpaq = arr2rgba( [ wwap[0], wwap[1], wwap[2] ] );
+        var approxColor = ssD.approxColor = arr2rgba( wwap );
         //-------------------------------------------------
         // \\// colors
         //-------------------------------------------------
@@ -101,7 +105,8 @@
         //-------------------------------------------------
         // //\\ paints axis x only once
         //-------------------------------------------------
-        if( pictureLeft && !rg.abscissa ) {
+        //if( pictureLeft && !rg.abscissa ) {
+        if( !rg.abscissa ) {
             ( function () {
                 var mod2med = ssF.modpos2medposLL;
                 tr( "abscissa" );
@@ -200,7 +205,7 @@
             var y = bpair[1];
             var pcolor = x.pointWrap.pcolor;
             var ptype = x.ptype;
-            var handleR = 8;
+            var handleR = 10;
             var m = rg.m.value;
 
             var line = pointies2line(
@@ -220,8 +225,9 @@
             pos2pointy(
                 x.pname,
                 { 
-                    tpclass         : ptype,
-                    cssClass        : 'tofill tostroke thickable',
+                    //tpclass       : ptype, 
+
+                    cssClass        : 'tostroke thickable',
                     'stroke'        : pcolor,
                     'fill'          : 'white',
                     'stroke-width'  : 2,
@@ -252,10 +258,14 @@
             pos2pointy(
                 y.pname,
                 { 
-                    tpclass         : ptype,
-                    cssClass        : 'tofill tostroke thickable',
+                    //todm these fail ... why? ...
+                    //??? remove tpfill to disable tp
+                    //tpclass         : ptype,
+
+                    cssClass        : 'tostroke thickable',
                     'stroke'        : pcolor,
                     'fill'          : pcolor,
+                    //'fill'          : ptype === 'experimental' ? experColorOpaq : approxColor,
                     'stroke-width'  : 2,
                     r               : handleR,
                 }

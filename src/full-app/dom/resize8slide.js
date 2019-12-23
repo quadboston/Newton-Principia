@@ -77,12 +77,10 @@
         {
             //.id is vital to have for removing extra disk over dividor
             spinnerClsId    : 'dividor',     //makes a placeholder for handler
-            //achieved        : { achieved : finish_Media8Ess8Legend_resize( null) },
         };
         frameworkD8D.pointWrap_2_dragWrap({
-            //achieved            : pointWrap_local.achieved_at_move,
             pointWrap           : pointWrap_local,
-            //update_decPoint     : update_decPoint, //updates "decorational Point", not "decimal"
+            update_decPoint     : 'update_decPoint_default',
             doProcess           : doProcess,
             dragHandleDOM       : sDomN.mediaHorizontalHandler,
         });

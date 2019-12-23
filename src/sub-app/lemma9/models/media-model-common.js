@@ -334,7 +334,6 @@
             var pos             = rg[ pName ].pos;
             var pt              = tr( pName );
             pt.pos              = pos;
-            pt.medpos2dompos    = sDomF.medpos2dompos;
             pt.medpos           = modpos2medpos( pt.pos );
             pt.svgel = sv.u({
                 svgel   : pt.svgel,

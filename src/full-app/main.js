@@ -170,9 +170,8 @@
                     //=======================================
                     cssmods.initSiteWideCSS(cssp, fconf);
                     sn('ssCssOrder',ss).list.forEach( function( cssName ) {
-                        ns.globalCss.addText( cssmod[cssName]( cssp, fconf ) );
+                        ns.globalCss.upqueue( cssmod[cssName]( cssp, fconf ) );
                     });
-                    ns.globalCss.update();
                     //=======================================
                     // \\// html and css
                     //=======================================
