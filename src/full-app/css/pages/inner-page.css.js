@@ -133,9 +133,11 @@ var ret = `
     /*---------------------------------------------
         //|| tools button
       --------------------------------------------*/
+    .change-model-data-button,
     .change-tools-button {
         float:right;
         margin-top:8px;
+        margin-left:3px;
         color: ${colorMediumGrey};
         font-size: 12px;
         padding: 0 16px;
@@ -145,9 +147,11 @@ var ret = `
         align-items: center;
         cursor:pointer;
     }
+    .change-model-data-button img,
     .change-tools-button img {
         margin-right: 8px;
     }
+    .change-model-data-button:hover,
     .change-tools-button:hover {
         border : 1px solid black;
         color : black;

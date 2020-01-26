@@ -32,10 +32,11 @@
 
 
 
-    ///=======================================================
-    ///splits provided exegs into active-areas
-    ///better to say?: (lemma-segments to active-areas)
-    ///=======================================================
+    ///===================================================================
+    ///Splits bodyscript-of-exegesis into array of "active"-fragments.
+    ///Attaches this array to exegesis.
+    ///Fragments which is active is parsed into object.
+    ///===================================================================
     function exeg_2_frags()
     {
         //==============================================

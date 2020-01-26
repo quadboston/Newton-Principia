@@ -75,6 +75,9 @@
             tdata:rg.approximator_curve.dividedDifferences.coefficients,
             indexFrom:1
         });
+
+        $$.q('.table-caption')
+          .html( rg.experimental.fname + '. Divided Differences:')
         //rg.approximator_curve.dividedDifferences
         //var poly = F[0][0][1];
 
@@ -139,7 +142,7 @@
         // //\\ table caption
         //===================
         var row = $$.c('tr').to(tb)();
-        $$.c('td').a('colspan','9')
+        $$.c('td').a('colspan','33')
                   .addClass('table-caption')
                   .html('Divided Differences')
                   .to(row);
@@ -164,8 +167,14 @@
 
         function doCreateTable()
         {
+
+            //================================================
+            // //\\ creates first row below the table caption;
+            //      fills it like:
+            //      "H, x=0.00, I, x=1.00 ... "
+            //================================================
             //.creates only once
-            if( domModel$.firstRow$.lenght ) return;
+            if( domModel$.firstRow$.length ) return;
             var row = $$.c('tr')
                 //.addClass('tostroke')
                 .to( tb )()
@@ -173,8 +182,17 @@
             for( var cellIx=0; cellIx<max_m; cellIx++ )
             {
                 var bpair = sconf.basePairs[ cellIx ];
-                var letter = bpair[0].pname;
-                var id = rowIx+'-'+cellIx+'-letter';
+                var letter = bpair[0].pname +
+
+                    //.makes this string smaller to tackle the unclear bug of
+                    //.table disappearence
+                    '<span style="font-size:9px">' +
+                    ', x=' +
+                    bpair[0].pos[0].toFixed(2) +
+                    '</span>'
+                ;
+
+               var id = rowIx+'-'+cellIx+'-letter';
                 domModel$.firstRow$[ cellIx ] = makeCl({
                     row,
                     mname: id,
@@ -184,6 +202,11 @@
                     noEqualSign : true,
                 });
             }
+            //================================================
+            // \\// creates first row below the table caption;
+            //================================================
+
+
             for( var rowIx=0; rowIx<=max_m; rowIx++ )
             {
                 var row = $$.c('tr')
@@ -262,7 +285,7 @@
 
         }
 
-
+        ///this function do not fill header row ...
         function fillTableData({ tdata, indexFrom })
         {
             var m = rg.m.value

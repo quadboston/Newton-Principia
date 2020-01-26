@@ -110,7 +110,7 @@
                 display : none;
             }
         `;
-        ns.globalCss.add8update( oneTimeUse_globalCSS );
+        ns.globalCss.update( oneTimeUse_globalCSS );
         sDomF.anchors2topiccss();
         sDomN.topicModelInitialized = true;
     };
@@ -123,7 +123,10 @@
     ///     1. exeg.builtFrags ( depending on app mode )
     ///     2. creates dom-placeholders for essaion's fragments which not yet created
     ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
-    ///      
+    ///
+
+    ///start here: crack/understand this:
+
     ///This function visualizes the texts upon the mode
     ///at late run-time event, this function is, for example,
     ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
@@ -132,10 +135,8 @@
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
-                //start here:
-                //replaces script-anchors with html-anchors:
-                aFrags_2_aFragsWithAnchors( exeg );
-                //above line produces this: exeg.builtFrags
+                exeg.builtFrags = [];
+                anchConfigs_2_anchors( exeg );
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
@@ -163,24 +164,25 @@
 
 
 
-    //===============================================
-    //
-    //===============================================
-    function aFrags_2_aFragsWithAnchors( exeg )
+    //===========================================================
+    // normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
+    //===========================================================
+    function anchConfigs_2_anchors( exeg )
     {
-        var bfs = exeg.builtFrags = [];
         exeg.activeFrags.forEach( function( activeFrag, tix ) {
-            bfs[tix] = {};
             if( typeof( activeFrag ) !== 'object' ) {
-                ////normalizes activeFrag to form { prop:value }
+                ////normalizes activeFrag to form { prop:value } for non active fragment;
+                ////for active fragments, there can be any string for the "prop" and
+                ////any number of props;
                 activeFrag = { 'static' : activeFrag };
             }
-            bfs[tix].activeFrags = {};
+            var newfrags = {};
             ns.eachprop( activeFrag, ( afrag, akey ) => {
                 ////normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
-                bfs[tix].activeFrags[akey] =
+                newfrags[ akey ] =
                     { activeFrag : afrag.replace( topAnch_reg, replWithAnchor ) }
             });
+            exeg.builtFrags[ tix ] = { activeFrags : newfrags };
         });
         return;
 
@@ -289,34 +291,51 @@
         }
     }
 
-    ///collecting |...|..|| - like anchor-topics
-    ///does loop via all possible active fragments
+
+
+    ///*************************************************************
+    ///collects |...|..|| - like preanchor-topics by TOP_ANCH_reg;
+    ///does loop via all possible active fragments;
+    ///*************************************************************
     function fragment_2_indexedTopics( activeFrag )
     {
+        //by RegExp( TOP_ANCH_reg, 'gu' );
         var topicPreAnchors = activeFrag.match( topAnch_reg );
+
         if( topicPreAnchors ) {
             topicPreAnchors.forEach( link => {
                 ////loops via all anchors having topic-link tl-TOPIC
                 if( !link ) return;
+
+                //by RegExp( TOP_ANCH_reg, 'u' );
                 var parsedLink = link.match( topAnch_reg2 );
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
 
-                //this is "anchor mark" ... not the "unique key"
-                //recall ... '¦([^¦]+)¦' +   //catches tplinkConf
+
+                //=========================================
+                //tplinkConf is a set of shapeIds;
+                //This is pre-anchor index and not the "unique key".
+                //But it is an index of topicLinks.
+                //(Recall beginning of '¦([^¦]+)¦' ... which catches tplinkConf.)
                 var tplinkConf = parsedLink[1];
                 //ccc( 'tplinkConf='+tplinkConf );
+                //=========================================
 
-                ///this makes tplink missed from tplink_ix index, but
-                ///does not matter because these links are searched and
+                //=========================================
+                ///this scenario makes tplink missed from tplink_ix index, but
+                ///it does not matter because these links are searched and
                 ///replaced again in aFrags_2_aFragsWithAnchor
+                ///recall: topicLinks lives in lemma-scope.
+                //=========================================
                 if( !topicLinks.hasOwnProperty( tplinkConf ) ) {
 
                     //.it counts tplinkConf which "duplicates"
                     //.shapes or do not map to any shape
                     var tplink_ix = tplinkCount++;
 
+                    //recall: topicIndexedLinks lives in lemma-scope.
                     topicIndexedLinks[ tplink_ix ] =
                     topicLinks[ tplinkConf ] = {
                         tplink_ix : tplink_ix,
@@ -336,7 +355,6 @@
                 //=========================================
                 // //\\ indexes shapes locally and globally
                 //=========================================
-
                 // splits anchor-configuration to smaller tokens, each
                 // token for separate shape
                 var shapeIDs = tplinkConf.split( SPACE_reg );
@@ -360,7 +378,7 @@
                     }
                     //..........................................................
 
-                    ///checks does this shape exist globally-lemma-wise
+                    ///recall: shapeid2tshape lives in lemma-scope
                     if( !shapeid2tshape.hasOwnProperty( shapeId ) ) {
                         shapeid2tshape[ shapeId ] = {
                             tplinkConf      : tplinkConf,

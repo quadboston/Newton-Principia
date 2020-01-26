@@ -71,7 +71,7 @@
                    ( fun ) => { fun( obj[ property ] ) } : () => {};
         };
 
-        ///Returns own property if property does exist. Otherwise, returns empty function.
+        ///Returns object's property if property does exist. Otherwise, returns empty function.
         function haf( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : ()=>{};
@@ -84,16 +84,17 @@
                    obj[ property ] : {};
         };
 
-        ///Returns ownself only if property does exist. Otherwise, returns false.
+        ///Returns parent object only if own property exists. Otherwise, returns false.
         function has( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
         };
+
 
         ///In plain words: makes-sure object-property exists and returns it.
         ///Input: optional emptyTemplate provides ability set {} or []
         function sn( subname, parentNS, emptyTemplate )
         {
-            var parentNS = parentNS || ns;
+            parentNS = parentNS || ns;
             if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
                 return parentNS[ subname ];
             }
@@ -125,7 +126,7 @@
 
 
     //***************************************************************************
-    // //\\ ns.$$ ... dom wrapp
+    // //\\ dom manipulation library. ns.$$.
     //***************************************************************************
     function setDomWrap( ns )
     {
@@ -214,6 +215,19 @@
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute( 'class' );
                                                             },
+                hascls:   function( cls, obj )          { obj = obj || null;
+                                                          ctxEl = obj || ctxEl;
+                                                          var doesContainCls = false;
+                                                          if( ctxEl ) {
+                                                            var cls_ = ctxEl.getAttribute( 'class' );
+                                                            if( cls_ ) {
+                                                                var re = new RegExp( '(?:^|\\s)' + cls + '(?:\\s|$)', 'g' );
+                                                                doesContainCls = cls_.match( re );
+                                                            }
+                                                          }
+                                                          return doesContainCls;
+                                                        },
+
                     // \\// information providers 
 
 
@@ -257,7 +271,7 @@
                                                            //element is still created to save
                                                            //the "chain" of $$ calls
                                     if( !text ) return; //sugar, saves extra "if"
-                                    var clss = classes=text.split(/\s+/);
+                                    var clss = text.split(/\s+/);
                                     if( clss.length>1 ) {
                                         ////many classes are supplied ...
                                         ////processes each of them
@@ -271,7 +285,7 @@
                                     if( !at ) {
                                         //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
                                         //ctxEl.className = text;
-                                        ctxEl.setAttribute( 'class', text ); //good for SVG too
+                                        ctxEl.setAttribute( 'class', text ); //For SVG
                                         return;
                                     }
                                     var ats = ' ' + at + ' ';
@@ -295,7 +309,7 @@
 
                                     //c onsole.log( 'removing=' + text );
                                     ctxEl = obj || ctxEl;  
-                                    var clss = classes=text.split(/\s+/);
+                                    var clss = text.split(/\s+/);
                                     if( clss.length>1 ) {
                                         ////many classes are supplied ...
                                         ////processes each of them
@@ -357,6 +371,17 @@
                                 methods.to( to );
                 }; //.creates div, sets class, and appends to "to"
 
+                ///toggles class if ctxEl is detected
+                methods.togcls = function( cls, obj ) {
+                                    obj = obj || null;
+                                    ctxEl = obj || ctxEl;
+                                    if( !ctxEl ) return;
+                                    if( methods.hascls( cls, obj ) ) {
+                                        methods.removeClass( cls );
+                                    } else {
+                                        methods.addClass( cls );
+                                    }
+                };
                 var wrap = function() { return ctxEl; };
                 Object.keys( methods ).forEach( function( key ) {
                     var method = methods[ key ];
@@ -373,8 +398,6 @@
             var sample = gen();
             var masterGen = {};
             Object.keys( sample ).forEach( function( key ) { //todm ... works for functions ? not only for objects?
-                //todm: big fix: gen() to sample ... why not works?
-                //masterGen[ key ] = function() { return sample[ key ].apply( {}, arguments ); };
 
                 masterGen[ key ] = function() { return gen()[ key ].apply( {}, arguments ); };
             });
@@ -384,7 +407,7 @@
         // \\// DOM wrap
     }
     //***************************************************************************
-    // \\// ns.$$ ... dom wrapp
+// \\// dom manipulation library. ns.$$.
     //***************************************************************************
 
 
@@ -393,16 +416,17 @@
 
 
 
-// //\\// debugger
+//===========================================
+// //\\ creates debugger once per application
 //        non-dispensable for mobiles
-//        version july 4, 2018
+//===========================================
 ( function () {
 	var ns = window.b$l;
 
 
 
 
-    // creates debugger once per application
+    ///make sure document.bod exists if it is used as a parent
     ns.createDebugger = function ()
     {
         if( ns.d ) return;
@@ -441,6 +465,9 @@
     };
 
 }) ();
+//===========================================
+// \\// creates debugger once per application
+//===========================================
 
 ( function() {
 	var ns = window.b$l;
@@ -537,7 +564,7 @@
 			//:: appends objects if missed
 			if( !obj[ prop ] || typeof obj[ prop ] !== 'object' ) obj[ prop ] = {};
 			obj = obj[ prop ];
-			var prop = tokens[ ii + 1 ];
+			prop = tokens[ ii + 1 ];
 		}
 		obj[ prop ] = value;
         return obj;
@@ -552,6 +579,16 @@
             callBack( obj[ key ], key, kix );
         });
         return keys;
+    };
+
+    ///generalizes Array.map() to Object.map()
+    ns.eachmap = function( obj, callBack )
+    {
+        var objReturn = {};
+        Object.keys( obj ).forEach( function( key ) {
+            objReturn[ key ] = callBack( obj[ key ], key );
+        });
+        return objReturn;
     };
 
 
@@ -634,7 +671,8 @@
             if( typeof wall_preserved.length !== 'undefined' ) {
                 ////edge-calse does not work: the only problem is when wall_preserved.length is defined.
                 ////todm: the only problem is when wall_preserved.length is defined.
-                throw "copying array to object with existing object.length property";
+                throw new Error("copying array to object with" +
+                                " existing object.length property");
             }
 			paste_non_arrays( wall, wall_preserved, level, skip_undefined, refdepth, null );
         };
@@ -647,7 +685,7 @@
 			{
 				if( p !== 'length' )
 				{
-					paper[ p ];
+					//paper[ p ];
 						var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth );
 
 						if( ! ( ( isArrayPaper || skip_undefined ) && typeof theValue === 'undefined' )  )
@@ -655,7 +693,9 @@
 							wall[ p ]		= theValue;
 						}
 				} else {
-					throw 'The subroutine, paste_non_arrays, does not allow to copy property "length".';
+					throw new Error(
+                        'The subroutine, paste_non_arrays,' +
+                        'does not allow to copy property "length".' );
 				}
 			}
 		}
@@ -681,7 +721,6 @@
     globalCss.update        = update;       
     globalCss.addText       = addText;
     globalCss.getText       = getText;
-    globalCss.add8update    = addAndUpdate;
     return; //****************************
 
 
@@ -696,7 +735,7 @@
         if( queueHandle !== null ) {
             clearTimeout( queueHandle );
         }
-        queueHandle = setInterval(
+        queueHandle = setTimeout(
             function() {
                 cssDom$.html( cssText );
                 queueHandle = null;
@@ -723,12 +762,6 @@
     {
         return cssText;
     };
-    function addAndUpdate( text )
-    {
-        addText( text );
-        update();
-        ///good place to output assembled css for later static use
-    }
 })();
 
 

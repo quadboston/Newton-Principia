@@ -99,7 +99,7 @@
     {
         //:sets dragger handle color
         //.making this class unique may help to set correct color ... todm
-        pointWrap.spinnerClsId    = 'dragged-point-'+pointWrap.originalPoint.pname;
+        pointWrap.spinnerClsId    = 'dragged-point-'+pointWrap.pname;
         pointWrap.dragDecorColor = pointWrap.pcolor;
         var argc =
         {

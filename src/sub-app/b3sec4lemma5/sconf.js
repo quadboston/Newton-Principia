@@ -18,6 +18,7 @@
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'load_conf';
+    //var ccc         = console.log; ccc && ( ccc = console.log );
     srg_modules[ modName + '-' + mCount.count ] = setModule;
     return;
 
@@ -38,9 +39,9 @@
     //====================================================
     function init_conf()
     {
-        //----------------------------------
-        // //\\ original material parameters
-        //----------------------------------
+        //--------------------------------------
+        // //\\ original-book picture parameters
+        //--------------------------------------
         var pictureWidth = 1340;
         var pictureHeight = 864;
         var originX_onPicture = 98.0;
@@ -49,8 +50,8 @@
         var basePairs =
         [
             [
-                { H : [originX_onPicture, originY_onPicture] },
-                { A : [0, 159] },
+                { H : [originX_onPicture, originY_onPicture] }, //abscissa
+                { A : [0, 159] },                               //ordinate
             ],
             [
                 { I : [329, originY_onPicture] },
@@ -95,9 +96,39 @@
             pair[1].picturepos = y[ pair[1].pname ];
             pair[1].picturepos[0] = pair[0].picturepos[0]; // = abscissa
         });
-        //----------------------------------
-        // \\// original material parameters
-        //----------------------------------
+        //result is like this: basePairs =
+        /*
+        [
+            [
+                {
+                    "H": [  //abscissa
+                        98,
+                        474
+                    ],
+                    "pname": "H",
+                    "picturepos": [
+                        98,
+                        474
+                    ]
+                },
+                {
+                    "A": [  //ordinate
+                        98,
+                        159
+                    ],
+                    "pname": "A",
+                    "picturepos": [
+                        98,
+                        159
+                    ]
+                }
+            ],
+            ....
+        ]
+        */
+        //--------------------------------------
+        // \\// original-book picture parameters
+        //--------------------------------------
 
 
 
@@ -142,10 +173,11 @@
 
 
         //================================================================
+        //ccc( 'pname2point', JSON.stringify( pname2point, null, '    ' ) );
+        //ccc( 'basePairs', JSON.stringify( basePairs, null, '    ' ) );
         /*
-        ccc( 'pname2point', JSON.stringify( pname2point, null, '    ' ) );
-        ccc( 'basePairs', JSON.stringify( basePairs, null, '    ' ) );
-        //in pname2point and basePairs at this moment, the point format is:
+        //In both pname2point and basePairs at this moment, the leaf-element,
+        //the point has following format:
         {
             "H": [
                 98,
@@ -212,6 +244,7 @@
             //----------------------------------
             hideProofSlider : true, //false,
             enableTools : true,
+            enableDataFunctionsRepository : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------

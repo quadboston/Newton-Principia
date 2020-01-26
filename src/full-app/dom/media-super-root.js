@@ -79,6 +79,25 @@
         // \\// change tools button
         //..........................
 
+        //..........................
+        // //\\ change model data button
+        //..........................
+        if( sconf.enableDataFunctionsRepository ) {
+            sDomN.changeToolsButton$ = $$
+                .c( 'div' )
+                .addClass( 'change-model-data-button' )
+                .html( "data options" )
+                .to( topMediaControls$() )
+                .css( 'display', 'block' )
+                .e( 'click', () => {
+                    ns.haf( ssF, 'toggleData' )();
+                })
+                ;
+        }
+        //..........................
+        // \\// change model data button
+        //..........................
+
 
 
         sDomN.videoListPopup_button_onModelPane$ = $$
@@ -287,7 +306,6 @@
         //.disabled ... effect is too strong
         //stdMod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
         ssF.create_digital_legend && ssF.create_digital_legend();
-        sDomN.mainLegends = document.querySelectorAll( '.main-legend' );
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
             sDomF.create_original_picture_vis_slider();
         }
