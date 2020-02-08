@@ -11,14 +11,30 @@
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
 
+    var ss          = sn('ss', fapp);
+    var ssD         = sn('ssData',ss);
+    var ssF         = sn('ssFunctions',ss);
+
     fmethods.setupEvents            = setupEvents;
+    fmethods.setupCapturerEvents    = setupCapturerEvents;
     fmethods.setupSiteWideEvents    = setupSiteWideEvents;
     fmethods.fullResize             = fullResize;
     return;
 
-
-
-
+    ///===================================================
+    /// sets click event for each capture reference
+    ///===================================================
+    function setupCapturerEvents()
+    {
+        var links = document.querySelectorAll( '.captured-reference' );
+        links.forEach( link => {
+            var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
+            link.setAttribute( 'title', 'click to set model context' );
+            link.addEventListener( 'click', function() {
+                ssF.appState__2__study8media__models( ssD.capture[ match[1] ] );
+            });
+        });
+    };
 
 
     function setupEvents()

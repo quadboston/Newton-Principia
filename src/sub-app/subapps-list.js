@@ -175,7 +175,11 @@
             caption : 'Sec. 4. Lemma 5',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp.concat( mlist_CSS ).concat( mlist_body ),
+            codesList : mlist_startUp
+                .concat( mlist_CSS )
+                .concat( mlist_body )
+                .concat( { src : [ 'models/state-capturer.js' ] } )
+                ,
         },
 
     ];

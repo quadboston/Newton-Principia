@@ -9,7 +9,7 @@
 
   "fixed-colors" :
   {
-    "given"          : [0,     180, 0,      1],
+    "given"          : [0,     50, 0,      1],
     "experimental"   : [0,     0,   255,    1],
     "approximator"   : [255,   0,   0,      1]
   }
@@ -89,7 +89,7 @@ Adee, 45 Liberty Street.
 
 Any given polynomial
 
-¦given¦y¦¦(x) =
+¦given¦y<sup>n</sup>¦¦ =
 
 ¦given¦a<sub>0</sub>¦¦ + ¦given¦a<sub>1</sub>¦¦x<sup>1</sup> + ... +
 ¦given¦a<sub>n</sub>¦¦ x<sup>n</sup>
@@ -116,8 +116,11 @@ d<sub>i,j</sub> = ¦experimental¦x<sub>j</sub> - x<sub>i</sub>¦¦.<br>
 
 To be accurate, we define "polynomial" here as a pair ¦given¦( a, y )¦¦, where
 ¦given¦a¦¦ = ( ¦given¦a<sub>0</sub>¦¦, ... , ¦given¦a<sub>n</sub>¦¦ ) and
-¦given¦y¦¦ is a function as at the beginning of the claim. There is no
-restriction on ¦given¦a<sub>n</sub>¦¦ =/= 0.
+
+¦given¦y¦¦ is a function ¦given¦y¦¦(x) = ¦given¦a<sub>0</sub>¦¦ + ¦given¦a<sub>1</sub>¦¦x<sup>1</sup> + ... + ¦given¦a<sub>n</sub>¦¦ x<sup>n</sup>.
+
+There is no
+restriction on ¦given¦a<sub>n</sub>¦¦ =/= 0. By our conventions, for polynomial z<sup>n</sup>, n is a part of polynomial's notation, but for number b, b<sup>n</sup> is n-th power of b. z<sub>i</sub> denotes z(x<sub>i</sub>).
 
 <br><br>
 
@@ -140,11 +143,11 @@ values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known.
 
 <b>Theorem.</b> In context of the model claim, we have to prove
 
-¦given¦y¦¦ = ¦approximator¦s<sup>n</sup>¦¦.
+¦given¦y<sup>n</sup>¦¦ = ¦approximator¦s<sup>n</sup>¦¦.
 
 <br><br>
 
-<b>Sketch of the proof. </b><br><br>
+<b>Proof. </b><br><br>
 
 S t e p  1. There is always exist unique polynomial<br><br>
 
@@ -156,31 +159,25 @@ satisfying all points
 (¦experimental¦x<sub>i</sub>¦¦, ¦experimental¦y<sub>i</sub>¦¦ ) for i = 0,..., n.
 <br><br>
 
-and therefore ¦given¦z<sup>n</sup>¦¦ = ¦given¦y¦¦.
+and therefore ¦given¦z<sup>n</sup>¦¦ = ¦given¦y<sup>n</sup>¦¦.
 
 <br><br><br>
 
 
 S t e p  2.
 
-For this polinomial ¦given¦z<sup>n</sup>¦¦, by induction, we can
-find out what divided differences y<sub>i,i+j</sub> are and, in particular, can see
-that <br><br>
-
-¦approximator¦P<sub>n</sub>¦¦ = ¦given¦b<sub>n</sub>¦¦.
+For polinomial ¦given¦y<sup>n</sup>¦¦, we can
+find out that divided difference ¦approximator¦P<sub>n</sub>¦¦ = ¦given¦a<sub>n</sub>¦¦.
 
 <br><br>
 S t e p  3.
 
 Theorem's case n = 1 is proven by taking ¦approximator¦s<sup>1</sup>¦¦ =
 ¦approximator¦y<sub>0</sub>¦¦ + 
-¦approximator¦y<sub>0,1</sub>¦¦(x - ¦experimental¦x<sub>0</sub>¦¦).
+¦approximator¦y<sub>0,1</sub>¦¦(x - ¦experimental¦x<sub>0</sub>¦¦).<br>
 
-<br><br>
-
-Suppose we did prove case n. Consider an extra point 
-(¦experimental¦x<sub>n+1</sub>¦¦, ¦experimental¦y<sub>n+1</sub>¦¦ )
-and polinomial <br><br> 
+Suppose we did prove case n. Then for arbitrary ¦given¦y<sup>n+1</sup>¦¦,
+consider polynomial <br><br>
 
 u = ¦approximator¦s<sup>n</sup>¦¦ + Uq<sup>n+1</sup>
 
@@ -192,11 +189,151 @@ Therefore for any U, u satisfies first n+1 points.
 <br><br>
 
 Let's choose coefficient U to satisfy the extra point.
-Then u = ¦given¦z<sup>n</sup>¦¦ and ¦approximator¦U¦¦ = ¦approximator¦P<sub>n+1</sub>¦¦. Therefore,<br><br>
 
-u = ¦approximator¦s<sup>n+1</sup>¦¦. <b>[]</b>
+Then u = ¦given¦y<sup>n+1</sup>¦¦,
+¦approximator¦U¦¦ = ¦given¦a<sub>n+1</sub>¦¦ = 
+¦approximator¦P<sub>n+1</sub>¦¦. <br><br>
+
+Therefore, u = ¦approximator¦s<sup>n+1</sup>¦¦. <b>[]</b>
 
 <br><br>
 
-This essay is written by Konstantin Kirillov.
+<b>Comments:</b> <br><br>
+
+<span class="captured-reference id-0">Click to return to</span>
+
+¦given¦initial lemma's function¦¦ and ¦approximator¦approximating function¦¦ from Newton's book. It approximates ¦given¦given function (in green color)¦¦ roughly well except the interval [H,I].
+
+<br><br><b>1.</b>
+¦approximator¦The approximating polynomial¦¦ does not depend on order of points,
+
+<span class="captured-reference id-1">here we</span>
+
+can swap points H and L and polynomial stays the same.
+
+<br><br><b>2.</b>
+Quality of aproximation depends on orientation of the curve. For example, this 
+
+<span class="captured-reference id-parabola-success-even-with-3-points">parabola with "vertical horns"</span>
+
+is approximated exactly with 3 "probe" points. But 
+
+<span class="captured-reference id-parabola-no-success">parabola flipped in respect line y=x</span>
+
+fails at point 0 (point H).
+
+
+<span class="captured-reference id-parabola-no-success-with-more-points">
+Moving point K close to point H does not make overall picture much better.
+</span>
+
+Moving other point L closer to H
+<span class="captured-reference id-parabola-no-success-with-additional-points-4">
+makes picture even worse.
+</span>
+
+
+<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+
+
+*:::*:::*
+
+{
+    "0": {
+        "basePosX": [
+            0,
+            1,
+            2.012987012987013,
+            2.9567099567099566,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 0,
+        "m": 6
+    },
+    "1": {
+        "basePosX": [
+            2.9567099567099566,
+            1,
+            2.012987012987013,
+            0,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 0,
+        "m": 6
+    },
+
+    "some": {
+        "basePosX": [
+            0,
+            1,
+            2.012987012987013,
+            2.9567099567099566,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 2,
+        "m": 6
+    },
+    "parabola-success-even-with-3-points": {
+        "basePosX": [
+            0,
+            1,
+            2.012987012987013,
+            2.9567099567099566,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 2,
+        "m": 3
+    },
+    "parabola-no-success": {
+        "basePosX": [
+            0,
+            1,
+            2.012987012987013,
+            2.9567099567099566,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 3,
+        "m": 6
+    },
+    "parabola-no-success-with-more-points": {
+        "basePosX": [
+            0,
+            1,
+            0.5354685919469973,
+            2.9567099567099566,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 3,
+        "m": 6
+    },
+    "parabola-no-success-with-additional-points-4": {
+        "basePosX": [
+            0,
+            1,
+            0.5354685919469973,
+            0.2457848537582752,
+            3.9264069264069263,
+            4.926406926406926,
+            1.6753246753246753
+        ],
+        "chosenExperimentalFunction": 3,
+        "m": 6
+    }
+}
+
+
+
+
 

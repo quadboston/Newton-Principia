@@ -32,6 +32,7 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
 
+    ssF.set_media_state = set_media_state;
 
     var modpos2medpos;
     var pointies2line;
@@ -61,6 +62,23 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
+    function set_media_state( astate )
+    {
+        sconf.basePairs.forEach( ( bpair, pix ) => {
+            var bname = bpair[0].pname;
+            var point = sconf.pname2point[ bname ];
+            if( point.hasOwnProperty( 'pointWrap' ) ) {
+                var pwrap = point.pointWrap;
+                pwrap.achieved = { achieved : [ pwrap.pos[0], pwrap.pos[1] ] };
+            }
+        });
+        sDomF.detected_user_interaction_effect();
+    }
+
+
+    //=========================================================
+    // //\\ updates and creates media
+    //=========================================================
     function media_upcreate()
     {
         tr          = ssF.tr;
@@ -72,7 +90,7 @@
             studmod.medD8D && studmod.medD8D.updateAllDecPoints();
         } else {
             $$.q( '.change-model-data-button' )
-              .html( "select function" )
+              .html( "function" )
               ;
         }
         ssF.mediaModelInitialized = true;
@@ -139,47 +157,17 @@
                  return mod2med([ x, dd(x) ]); };
         })();
         rg.experimental.svg = ns.svg.curve({
-            stepsCount:100,
-            start:-0.2,
-            step:0.06,
-            curve : drawCurveFromDividedDifferences,
-            stroke : givenColor,
-            "stroke-width" : 2,
-            svgel : rg.experimental.svg,
-            dontClose : true,
-            parent : studyMods[ SUB_MODEL ].mmedia
+            stepsCount      : 120,
+            start           : -0.2,
+            step            : 0.05,
+            curve           : drawCurveFromDividedDifferences,
+            stroke          : givenColor,
+            "stroke-width"  : 2,
+            svgel           : rg.experimental.svg,
+            dontClose       : true,
+            parent          : studyMods[ SUB_MODEL ].mmedia,
         });
         $$.$(rg.experimental.svg).addClass( 'tostroke thickable tp-given' );
-        //-------------------------------------------------
-        // \\// paints original experimental-curve
-        //-------------------------------------------------
-
-        //-------------------------------------------------
-        // //\\ paints original experimental-curve
-        //-------------------------------------------------
-        /*
-        var repo = ( function() {
-            function dd( xx ) {
-                return xx/4;                
-            };
-            var mod2med = ssF.modpos2medposLL;
-            return function( x ) {
-                 return mod2med([ x, dd(x) ]); };
-        })();
-
-        rg.experimental.svg = ns.svg.curve({
-            stepsCount:30,
-            start:-0.2,
-            step:0.2,
-            curve : repo, 
-            stroke : givenColor,
-            "stroke-width" : 2,
-            svgel : rg.experimental.svg,
-            dontClose : true,
-            parent : studyMods[ SUB_MODEL ].mmedia
-        });
-        $$.$(rg.experimental.svg).addClass( 'tostroke thickable tp-given' );
-        */
         //-------------------------------------------------
         // \\// paints original experimental-curve
         //-------------------------------------------------
@@ -195,15 +183,15 @@
             return function( x ) { return mod2med([ x, dd(x) ]); };
         })();
         rg.approximator_curve.svg = ns.svg.curve({
-            stepsCount:100,
-            start:-0.2,
-            step:0.06,
-            curve : drawCurveFromDividedDifferences_A,
-            stroke : approxColor,
-            "stroke-width" : 2,
-            svgel : rg.approximator_curve.svg,
-            dontClose : true,
-            parent : studyMods[ SUB_MODEL ].mmedia
+            stepsCount      : 120,
+            start           : -0.2,
+            step            : 0.05,
+            curve           : drawCurveFromDividedDifferences_A,
+            stroke          : approxColor,
+            "stroke-width"  : 2,
+            svgel           : rg.approximator_curve.svg,
+            dontClose       : true,
+            parent          : studyMods[ SUB_MODEL ].mmedia,
         });
         $$.$(rg.approximator_curve.svg).addClass( 'tostroke thickable tp-approximator' );
         //-------------------------------------------------

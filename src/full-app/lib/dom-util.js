@@ -15,6 +15,8 @@
     var studyMods   = sn('studyMods', sapp);
     var amode       = sn('mode',sapp);
 
+    var ss          = sn('ss', fapp);
+    var ssF         = sn('ssFunctions',ss);
 
 
 
@@ -59,6 +61,90 @@
             //return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
         }
     };
+
+    sDomF.createsCaptureWindow = function()
+    {
+        var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
+
+        ///establishes capture
+        fapp.captureWind.setText = function( captureData )
+        {
+            cap.captured[ ''+cap.capturePoint ] = captureData;
+            var captureText = JSON.stringify( cap.captured, null, '    ' );
+            dom$.html( captureText  );
+            dom$().scrollTop = dom$().scrollHeight;
+            cap.capturePoint++;
+            var texts = document.querySelectorAll( '.original-text.chosen' );
+
+            for( var ix=0, len=texts.length; ix<len; ix++ ) {
+                var etext = texts[ix];
+                ns.eachprop( cap.captured, (prop, pix) => {
+                    var stateMark = 'captured-state-'+pix;
+                    var capturedEl = etext.querySelector( '.'+stateMark );
+
+                    ///adds new capture link
+                    if( !capturedEl ) {
+                        if( pix === '0' ) {
+                            etext.appendChild( $$.c('pre').html('\ncaptures:\n')() );
+                        }
+                        capturedEl$ = $$.c( 'a' )
+                            .a( 'href', '#' )
+                            .addClass( stateMark )
+                            ///changes the state by click
+                            .e( 'click', ()=> {
+                                //ccc( 'bm=' + pix, cap.captured[ pix ] )
+                                ssF.appState__2__study8media__models( cap.captured[ pix ] );
+                            })
+                            .html( pix + ' ' )
+                            ;
+                        etext.appendChild( capturedEl$() );
+                    }
+                })
+            }
+        };
+        fapp.captureWind.closeWindow = function()
+        {
+            dom$.css( 'display', 'none' );
+        };
+        fapp.captureWind.openWindow = function()
+        {
+            dom$.css( 'display', 'block' );
+        };
+        var dom$ = fapp.captureWind.dom$ = $$
+            .c( 'textarea' )
+            .a( 'disabled', '' )
+            .to( sDomN.topMediaControls$ )
+            ;
+        var top = sDomN.captureButton$.box().top - sDomN.topMediaControls$.box().top + 50;
+        dom$().style.cssText = `
+            position    : absolute;
+            display     : none;
+            top         : ${top}px;
+            width       : 80%;
+            height      : 300px;
+            left        : 50%;
+            transform   : translate(-50%, 0);
+            font-size   : 11px;
+            z-index     : 1111111;
+        `;
+        /*
+        window.addEventListener( 'keydown', function ( event ) {
+		    if( event.ctrlKey && event.shiftKey &&
+                'abcdefghijklmnopqrstuvxyz'.charAt( event.keyCode - 65 ) === 'e' ) {
+                debWind.style.display === 'none' ?
+                    debWind.style.display = 'block' :
+                    debWind.style.display = 'none';
+            }
+        });
+        ns.d( "To save this log to clipboard, try:\n" +
+              "highlight with Ctrl+A and then copy with Ctrl+C\n" +
+              "Click on this text log before highlighting it to set focus on it\n" +
+              "and to exclude irrelevant text.\n\n"
+        );
+        */
+    };
+
+
 
 }) ();
 

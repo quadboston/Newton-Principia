@@ -149,10 +149,36 @@
                                            essayHeader.submodel :
                                            'common';
                     exegs[ teaf_id ] = exegs[ teaf_id ] || {};
+
+                    //---------------------------------------------------------
+                    // //\\ captured states
+                    //---------------------------------------------------------
+                    //we are ready to take body of text ...
+                    //but, before this, we extract captured states
+                    var CAPTURE_POSITION_INDICATOR = '*:::*:::*';
+                    var capturePos = wPreText.indexOf( CAPTURE_POSITION_INDICATOR );
+                    if( capturePos > -1 ) {
+                        ////captures do exist ... split them from text
+                        var captureTxt = wPreText.substring(
+                            capturePos + CAPTURE_POSITION_INDICATOR.length );
+                        wPreText = wPreText.substring( 0, capturePos );
+                        ssD.capture = JSON.parse( captureTxt );
+                    }
+                    //---------------------------------------------------------
+                    // \\// captured states
+                    //---------------------------------------------------------
+
+
+                    //---------------------------------------------------------
+                    // //\\ here we setting body of text
+                    //---------------------------------------------------------
                     var exeg = exegs[ teaf_id ][ leaf_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
+                    //---------------------------------------------------------
+                    // \\// here we setting body of text
+                    //---------------------------------------------------------
                     collectBgImg( essayHeader, exeg );
 
                     sconf.submenus = sconf.submenus || {};

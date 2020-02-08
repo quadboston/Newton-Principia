@@ -30,6 +30,16 @@
     .original-text.chosen {
         display:inline-block;
     }
+
+    .captured-reference {
+        cursor : pointer;
+        color : #555555;
+        background-color : #dddddd;
+    }
+    .captured-reference:hover {
+        color : #000000;
+    }
+
 `;
 
 // \\// css /////////////////////////////////////////

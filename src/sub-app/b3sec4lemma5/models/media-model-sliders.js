@@ -59,41 +59,48 @@
     //----------------------------------------
     function createSliderPlaceholder_m()
     {
+        //this sub is to be generalized:
+        // //\\ generalize: variable parameters
+        var sliderId          = 'm';
+        var rgId              = sliderId;
+        var captionPrefix     = 'm = ';
+        var SUGGESTED_COLOR   = ssD.approxColor; //experColor;
         var max_m             = rg.n.value;
         var min_m             = 1;
-        var range_m           = max_m - min_m;
-        var SUGGESTED_COLOR   = ssD.approxColor; //experColor;
-
         var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth * 0.05 ) *
                                 sconf.med2mod_scale;
         var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale * 0.35;
         //var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight * 0.05 ) *
         var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight * 0.80 ) *
                                 sconf.med2mod_scale;
-        var railsLength       = endX - startX;
+        // \\// generalize: variable parameters
 
+
+        //generalize: spawns:
+        var railsLength       = endX - startX;
         var startPos          = [ startX, startY ];
         var endPos            = [ endX, startY ];
 
         // //\\ slider object
         //sets registry
-        ssF.tp( 'sliderStart_m', startPos );
-        ssF.tp( 'sliderEnd_m', endPos );
+        ssF.tp( 'sliderStart_' + sliderId, startPos );
+        ssF.tp( 'sliderEnd_' + sliderId, endPos );
 
-        var sliderStart = pos2pointy( 'sliderStart_m',
-            { fill : '#9999dd', tpclass:'m', cssClass : 'tofill tostroke', } );
-        var sliderEnd = pos2pointy( 'sliderEnd_m',
-            { fill : '#9999dd', tpclass:'m', cssClass : 'tofill tostroke', } );
+        var sliderStart = pos2pointy( 'sliderStart_' + sliderId,
+            { fill : '#9999dd', tpclass:sliderId, cssClass : 'tofill tostroke', } );
+        var sliderEnd = pos2pointy( 'sliderEnd_' + sliderId,
+            { fill : '#9999dd', tpclass:sliderId, cssClass : 'tofill tostroke', } );
         ///draws rails
         var slider = pointies2line(
-             'slider-m',
+             'slider-' + sliderId,
              [sliderStart, sliderEnd],
-             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:'m',
+             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:sliderId,
                                 cssClass : 'tofill tostroke', }
         );
-        $$.$(slider.svgel).cls( 'tp-m' );
+        $$.$(slider.svgel).cls( 'tp-' + sliderId );
         // \\// slider object
 
+        var range_m     = max_m - min_m;
         var m           = rg.m;
         var handleXpos  = ( m.value - min_m ) /
                           range_m * railsLength + startX;
@@ -102,14 +109,14 @@
         m.endX          = endX;
         m.railsLength   = railsLength;
         var m_pt = pos2pointy(
-            'm',
+            rgId,
             {
                 cssClass : 'tostroke',
                 stroke : SUGGESTED_COLOR,
                 'stroke-width' : 3,
                 fill : 'white',
                 r : 8,
-                tpclass : 'm',
+                tpclass : sliderId,
             }
         );
 
@@ -141,7 +148,7 @@
 
             m.text_svg = sv.printText({
                 parent : studyMods[ SUB_MODEL ].mmedia,
-                text :'m = ' + (m.value-1),
+                text : captionPrefix + (m.value-1),
                 svgel : m.text_svg,
                'stroke-width' : 1,
                 style : { 'font-size' : '25px' },

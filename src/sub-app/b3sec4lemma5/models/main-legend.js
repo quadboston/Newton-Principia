@@ -165,6 +165,37 @@
 
 
 
+        function refillFirstRow()
+        {
+            //================================================
+            // //\\ refills first row below the table caption;
+            //      fills it like:
+            //      "H, x=0.00, I, x=1.00 ... "
+            //================================================
+            for( var cellIx=0; cellIx<max_m; cellIx++ )
+            {
+                var bpair = sconf.basePairs[ cellIx ];
+                var letter = bpair[0].pname +
+
+                    //.makes this string smaller to tackle the unclear bug of
+                    //.table disappearence
+                    '<span style="font-size:9px">' +
+                    ', x=' +
+                    bpair[0].pos[0].toFixed(2) +
+                    '</span>'
+                ;
+                domModel$.firstRow$[ cellIx ][0]
+                    .html( letter )
+                    ;
+            }
+            //================================================
+            // \\// refills first row below the table caption;
+            //================================================
+        }
+
+
+
+
         function doCreateTable()
         {
 
@@ -263,14 +294,15 @@
 
             if( !ns.h( rg, 'm' ) ) return;
 
+            refillFirstRow();
 
             // //\\ shows only existing
             var m = rg.m.value
             for( var cellIx=0; cellIx<m; cellIx++ )
             {
                 domModel$.firstRow$[ cellIx ].forEach( c$ => {
-                        c$.removeClass( 'hidden' );
-                    });
+                    c$.removeClass( 'hidden' );
+                });
             }
             for( var rowIx=0; rowIx<=m; rowIx++ )
             {

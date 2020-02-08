@@ -21,7 +21,7 @@
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
     var rgtools     = sn('tools',ssD);
-    var exegs    = sn('exegs', ssD);
+    var exegs       = sn('exegs', ssD);
 
 
 
@@ -52,11 +52,14 @@
             .addClass( 'help-box' )
             .to( topMediaControls$() )
             ;
+
+
+
         //..........................
         // //\\ change tools button
         //..........................
         if( sconf.enableTools ) {
-            sDomN.changeToolsButton$ = $$
+            $$
                 .c( 'div' )
                 .addClass( 'change-tools-button' )
                 .html( "tools" )
@@ -83,7 +86,7 @@
         // //\\ change model data button
         //..........................
         if( sconf.enableDataFunctionsRepository ) {
-            sDomN.changeToolsButton$ = $$
+            $$
                 .c( 'div' )
                 .addClass( 'change-model-data-button' )
                 .html( "data options" )
@@ -96,6 +99,33 @@
         }
         //..........................
         // \\// change model data button
+        //..........................
+
+        //..........................
+        // //\\ sets capture button
+        //..........................
+        if( sconf.enableCapture ) {
+            sDomN.captureButton$ = $$
+                .c( 'div' )
+                .addClass( 'capture-button' )
+                .html( "capture" )
+                .to( topMediaControls$() )
+                .css( 'display', 'block' )
+                .e( 'click', () => {
+                    if( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
+                        ns.haf( ssF, 'captureAState' )();
+                        fapp.captureWind.openWindow();
+                        sDomN.captureButton$.html( 'close' );
+                    } else {
+                        fapp.captureWind.closeWindow();
+                        sDomN.captureButton$.html( 'capture' );
+                    }
+                })
+                ;
+            sDomF.createsCaptureWindow();
+        }
+        //..........................
+        // \\// sets capture button
         //..........................
 
 

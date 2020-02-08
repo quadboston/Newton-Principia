@@ -236,6 +236,7 @@
                 ///.the value of timeout seems also vital for l9
                 //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
                 setTimeout( fmethods.fullResize, 500 );
+                fmethods.setupCapturerEvents();
             }
             //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
             remove_landing_state_from_top_html();

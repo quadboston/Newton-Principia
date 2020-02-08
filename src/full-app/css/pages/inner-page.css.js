@@ -133,6 +133,7 @@ var ret = `
     /*---------------------------------------------
         //|| tools button
       --------------------------------------------*/
+    .capture-button,
     .change-model-data-button,
     .change-tools-button {
         float:right;
@@ -147,10 +148,12 @@ var ret = `
         align-items: center;
         cursor:pointer;
     }
+    .capture-button img,
     .change-model-data-button img,
     .change-tools-button img {
         margin-right: 8px;
     }
+    .capture-button:hover,
     .change-model-data-button:hover,
     .change-tools-button:hover {
         border : 1px solid black;

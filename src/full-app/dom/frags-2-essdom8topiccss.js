@@ -140,7 +140,7 @@
                 //as further-processed-fragments-of-exeg
                 exeg.builtFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
-                        afrag.dom = afrag_2_dom8mj( exeg, afrag, fid );
+                        afrag_2_dom8mj( exeg, afrag, fid );
                     });
                 });
             });

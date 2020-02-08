@@ -29,12 +29,17 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'studyModel_2_ss';
 
-    var chosenExperimentalFunction;
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
+    ssF.model8media_upcreate  = model8media_upcreate;
+    //=================================================
+    // //\\ configures repo of "experimental" functions
+    //=================================================
     var repoConf;
     (function() {
         var a = 5; //usually interval length
+        var a5 = a*a*a*a*a;
+        var a7 = a5*a*a;
         repoConf =
         [
             {
@@ -50,8 +55,16 @@
                 fun : x => 2*x*x/(a*a),
             },
             {
-                fname : "Parabola y = 2sqrt(|x/" + a + "|)/",
+                fname : "Parabola y = 2sqrt(|x/" + a + "|)",
                 fun : x => 2 * Math.sqrt( Math.abs(x/a) ),
+            },
+            {
+                fname : "Polynomial y = 2(x/" + a + ")<sup>5</sup>",
+                fun : x => { var x2 = x*x; return 2*x2*x2*x/a5; },
+            },
+            {
+                fname : "Polynomial y = 2(x/" + a + ")<sup>7</sup>",
+                fun : x => { var x2 = x*x; var x4=x2*x2; return 2*x4*x2*x/a7; },
             },
             {
                 fname : "Hyperbola y=2/( x + 1 )",
@@ -71,6 +84,9 @@
             },
         ];
     })();
+    //=================================================
+    // \\// configures repo of "experimental" functions
+    //=================================================
     return;
 
 
@@ -98,8 +114,9 @@
 
     function toggleExperimentalFunction( dontRunModel )
     {
-        chosenExperimentalFunction = ( chosenExperimentalFunction + 1 ) % repoConf.length;
-        var chosen = repoConf[ chosenExperimentalFunction ];
+        rg.chosenExperimentalFunction.value =
+            ( rg.chosenExperimentalFunction.value + 1 ) % repoConf.length;
+        var chosen = repoConf[ rg.chosenExperimentalFunction.value ];
         var fun = chosen.fun;
         var n = sconf.basePairs.length-1;
         for( i=0; i<n; i++ ) {
@@ -118,7 +135,8 @@
 
 
     //----------------------------------------------------------
-    // //\\ calculates and stores original
+    // //\\ calculates original function and
+    //      adds it to repo
     //----------------------------------------------------------
     //      experimental function "dividedDifferences"
     //      repo.basePairs = sconf.basePairs ...
@@ -151,7 +169,7 @@
         //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] + ' res=' + rr);
     }
     //----------------------------------------------------------
-    // \\// calculates and stores original
+    // \\// calculates original function and
     //----------------------------------------------------------
 
 
@@ -167,6 +185,7 @@
     {
         tr = ssF.tr;
         tp = ssF.tp;
+        tr( 'chosenExperimentalFunction', 'value', 0 );
 
         //:primary params
         tr( 'O', 'pos', [0,0] );
@@ -189,28 +208,16 @@
             opoint.ptype        = opoint.pname === "S" ?
                                   'approximator' : 'experimental';
         });
-        chosenExperimentalFunction = -1;
+        rg.chosenExperimentalFunction.value = -1;
         ssF.toggleData( !!"don't run model yet" );
-
-        //----------------------------------------------------------
-        // //\\ constructing draggable points
-        //----------------------------------------------------------
-        /*
-        ( function () {
-            tr( 'draggable_points', 'pos', [0,0] );
-        })();
-        */
-        //----------------------------------------------------------
-        // \\// constructing draggable points
-        //----------------------------------------------------------
     }
+
 
     //***************************************************
     // //\\ updates figure (and creates if none)
     //***************************************************
     function model8media_upcreate()
     {
-
         //----------------------------------------------------------
         // //\\ calculates and stores approximator curve
         //----------------------------------------------------------
