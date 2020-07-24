@@ -27,6 +27,11 @@ var ret = `
     }
     */
 
+
+    .top-media-controls {
+        position : relative;
+    }
+
     /*--------------------------------------
         //|| master pagination button
       -------------------------------------*/
@@ -131,8 +136,20 @@ var ret = `
 
 
     /*---------------------------------------------
-        //|| tools button
+        //|| study-lab buttons
       --------------------------------------------*/
+    .bsl-approot.studylab  .capture-button,
+    .bsl-approot.studylab  .change-model-data-button,
+    .bsl-approot.studylab  .change-tools-button {
+        display : flex;
+    }
+    .capture-button,
+    .change-model-data-button,
+    .change-tools-button {
+        display : none;
+    }
+
+    .studylab-button,
     .capture-button,
     .change-model-data-button,
     .change-tools-button {
@@ -144,15 +161,16 @@ var ret = `
         padding: 0 16px;
         border-radius: ${borderRadius};
         border : 1px solid grey;
-        display: flex;
         align-items: center;
         cursor:pointer;
     }
+    .studylab-button img,
     .capture-button img,
     .change-model-data-button img,
     .change-tools-button img {
         margin-right: 8px;
     }
+    .studylab-button:hover,
     .capture-button:hover,
     .change-model-data-button:hover,
     .change-tools-button:hover {
@@ -160,7 +178,7 @@ var ret = `
         color : black;
     }
     /*---------------------------------------------
-        ||// tools button
+        ||// study-lab buttons
       --------------------------------------------*/
 
 

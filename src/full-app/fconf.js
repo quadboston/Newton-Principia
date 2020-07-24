@@ -59,8 +59,10 @@
         NAVIGATION_DECORATIONS_ALWAYS_VISIBLE : false,
 
         //since ver 1931 was automated from contents
+        //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
         //[ 'aspect--hypertext', 'aspect--english', 'aspect--xixcentury' ],
+
         //--------------------
         // \\// view
         //--------------------

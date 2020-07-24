@@ -11,6 +11,7 @@
 
     var sapp    = sn('sapp'); 
     var sDomN   = sn('dnative',sapp);
+    var sDomF   = sn('dfunctions',sapp);
 
     var ss      = sn('ss',fapp);
     var ssD     = sn('ssData',ss);
@@ -220,9 +221,7 @@
                          alignCaptionToRight, claim0proof, noEqualSign )
     {
         var tr = ssF.tr;
-        var cssName = mname.replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase()
-        ));
+        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

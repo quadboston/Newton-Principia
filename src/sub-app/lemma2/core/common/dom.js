@@ -48,6 +48,7 @@
         if( teaf_id !== 'aspect' || (fconf.sappId !== 'lemma2' && fconf.sappId !== 'lemma3') ) {
             return;
         }
+        ////following work is done for teaf_id === 'aspect' and ( lemma2 or lemma3 )
 
         ///refreshes legacy state of subapplication for l23 ...
         ///should be in some state enging specific to subapplication ...

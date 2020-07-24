@@ -32,6 +32,21 @@
         box-sizing      :border-box;
     }
 
+    .leftside-menuholder
+    .menu-teaf {
+        display         :inline-block;
+    }
+    /*
+    // //|| toggles study teafs visibility
+    .bsl-approot .leftside-menuholder .studylab.menu-teaf {
+        display         :none;
+    }
+    .bsl-approot.studylab .leftside-menuholder .studylab.menu-teaf {
+        display         :inline-block;
+    }
+    // ||// toggles study teafs visibility
+    */
+
     /* aspection rotator to vertical direction */
     .left-side-menu-rotator {
         position    :relative;
@@ -242,6 +257,19 @@
         z-index         :1;
     }
     /* ||// shadow     */
+
+
+
+    /* //|| toggles studylab     */
+    .bsl-approot.studylab .menu-teaf .shadow.shape.studylab,
+    .bsl-approot.studylab .menu-teaf .litem.studylab {
+        display         :inline-block;
+    }
+    .bsl-approot .menu-teaf .shadow.shape.studylab,
+    .bsl-approot .menu-teaf .litem.studylab {
+        display : none;
+    }
+    /* ||// toggles studylab     */
     `;
 
 

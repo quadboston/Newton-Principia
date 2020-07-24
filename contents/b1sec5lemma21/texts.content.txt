@@ -2,11 +2,6 @@
 *::*claim|latin
 {
   "menuCaption" : "Latin",
-
-  "comment1 for contributors" : "fixed-colors are in effect over all lemma, no matter in which fragment here they are set",
-  "comment2 for contributors" : "fixed-colors are in [R,G,B,OPTIONAL_OPACITY_FOR_NONHIGHLIGHTED_MODE] format",
-  "comment3 for contributors" : "LITE and SATURATION parameters (implied from fixed-colors) are ignored",
-
   "fixed-colors" :
   {
     "gamma"                 : [255,   0, 0, 1],

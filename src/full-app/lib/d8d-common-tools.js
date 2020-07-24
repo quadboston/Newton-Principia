@@ -49,14 +49,14 @@
     function setModule()
     {
         stdMod = sn( SUB_MODEL, studyMods );
-        stdMod.initCommonDragModel = initCommonDragModel;
+        stdMod.addCommonSliders = addCommonSliders;
     }
 
 
     //==========================================
     // //\\ inits drag points
     //==========================================
-    function initCommonDragModel( medD8D, css2media_ )
+    function addCommonSliders( medD8D, css2media_ )
     {
         css2media = css2media_;
         if( sconf.enableTools ) {

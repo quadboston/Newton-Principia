@@ -19,8 +19,8 @@
     var appRoot$;
     var ccc = console.log;
 
-    sDomF.anchors2topiccss = anchors2topiccss;
-    sDomF.setMouseHiglight = setMouseHiglight;
+    sDomF.tpAnchors_2_anchors8media_css = tpAnchors_2_anchors8media_css;
+    sDomF.setsAnchor_mouseHighlightEvents = setsAnchor_mouseHighlightEvents;
     return;
 
 
@@ -29,19 +29,17 @@
 
 
 
-
-    function anchors2topiccss()
+    function tpAnchors_2_anchors8media_css()
     {
-        var topicLinks = topics.topicLinks;
         appRoot$ = fapp.fappRoot$;
-        var topicAnchors = $$.qa( "a" )();
-        if( !topicAnchors ) return;
+        var allAnchors = $$.qa( "a" )();
+        if( !allAnchors ) return;
 
         var style = document.createElement( 'style' );
         document.head.appendChild( style );
-        var anchors2colors = '';
-        var shape2color = {};
-
+        var anchors__cssHighlighter = { value : '' };
+        var tpid2cssColor = {};
+        var tpid2opac = {};
 
         ///enables non-hilighted and tohidden as "hidden" state
         styleStr = `
@@ -50,222 +48,193 @@
             }
         `;
 
-        topicAnchors.forEach( anchor => {
+        ///at this point, anchors should be completely prepared
+        allAnchors.forEach( anchor => {
             var cls = anchor.className;
             var match = cls.match( /tl-(\S*)/ );
             if( !match ) return;
-            var tplink_ix       = parseInt( match[1] );
-            var alink           = topics.topicIndexedLinks[ tplink_ix ];
-            var anchorIsBold    = alink && alink.anchorIsBold;
-            //-----------------------------
-            // //\\ assigns color to anchor
-            //-----------------------------
-            //:gets global shape color
-            //:fist color of anchor stack of linked shapes
-            var alkeys = Object.keys( alink.shapeid_2_isshape );
-
-            if( alink.shapeIDs.length > 1 ) {
-                ////does something special for the color of this link,
-                ////there are many shapes and colors referenced by the link,
-                ////so it is not known which which color to use, so
-                ////we use black:
-                var rgba = 'rgba( 0, 0, 0, 0.7 )';
-                var rgb1 = 'rgba( 0, 0, 0, 1 )';
-                //ccc( alink.shapeIDs );
-            } else {
-
-                //.gets first shape id
-                var firstShapeId = alkeys[0];
-                //.gets first shape
-                var globalShape = topics.shapeid2tshape[ firstShapeId ];
-                var g_rgba = globalShape.rgba;
-                var g_rgb1 = globalShape.rgb1;
-                var rgba = g_rgba;
-                var rgb1 = g_rgb1;
-
-                if( sconf.topicColorPerAnchor ) {
-                    //alternative color from anchor stack
-                    //anchor generated color
-                    var rgba = alink.rgba;
-                    var rgb1 = alink.rgb1;
-                }
-            }
-            ///assigns color to anchor CSS
-            //  this feature is disabled because bloats MathJax font
-            //  anchors2colors += `
-            //  a.tl-${alink.tplink_ix_str} {
-            //       padding-left:3px;
-            //       padding-right:3px;
-            anchors2colors += `
-                a.tl-${alink.tplink_ix + ''} {
-                   border-radius:4px;
-                   color:${rgb1};
-                   opacity:0.8;
-                   font-weight : ${anchorIsBold?'bold':'normal'};
-                }
-                a.tl-${alink.tplink_ix + ''}:hover {
-                   opacity:1;
-                   background-color:#eaeaea;
-                   cursor:default;
-                }
-                a.tl-${alink.tplink_ix + ''}:hover span{
-                   font-weight :bold;
-                   background-color:#eaeaea;
-                   cursor:default;
-                }
-            `;
-            //-----------------------------
-            // \\// assigns color to anchor
-            //-----------------------------
-
-            //-----------------------------------
-            //inits mouse machine
-            //-----------------------------------
-            setMouseHiglight( anchor, tplink_ix );
-
-
-            Object.keys( alink.shapeid_2_isshape ).forEach( skey => {
-               var shape = alink.shapeid_2_isshape[ skey ];
-                alink.col8shape_2_css = alink.col8shape_2_css || {};
-
-                var globalShape = topics.shapeid2tshape[ skey ];
-                var scolor = globalShape.rgb1;
-
-                if( sconf.topicColorPerAnchor ) {
-                    ///colors per link
-                    var scolor = rgba;
-                    alink.col8shape_2_css[ skey ] = `
-                        .${cssp}-approot .tp-${skey}.tocolor {
-                           color : ${scolor};
-                        }
-                        .${cssp}-approot .tp-${skey}.tobg {
-                           background-color : ${scolor};
-                        }
-                        .${cssp}-approot svg text.tp-${skey}.tofill,
-                        .${cssp}-approot svg .tp-${skey}.tofill {
-                           fill : ${scolor};
-                        }
-                        .${cssp}-approot svg text.tp-${skey}.tostroke,
-                        .${cssp}-approot svg .tp-${skey}.tostroke {
-                           stroke-linecap : round;
-                           stroke : ${scolor};
-                        }
-                    `;
-
-                } else {
-                    ///colors per shape
-                    shape2color[ skey ] = `
-                        .${cssp}-approot .tp-${skey}.tocolor {
-                           color : ${scolor};
-                        }
-                        .${cssp}-approot .tp-${skey}.tobg {
-                           background-color : ${scolor};
-                        }
-                        .${cssp}-approot svg .tp-${skey}.tofill {
-                           fill : ${scolor};
-                        }
-                        .${cssp}-approot svg .tp-${skey}.tostroke {
-                           stroke-linecap : round;
-                           stroke : ${scolor};
-                        }
-                    `;
-                }
-                //-------------------------------------
-                // //\\ makes topicee highlight machine
-                //-------------------------------------
-
-                alink.col8shape_2_opac = alink.col8shape_2_css || {};
-                alink.col8shape_2_opac[ skey ] = `
-                    .${cssp}-approot .tp-${skey} {
-                        opacity: 0.7;
-                    }
-                    .${cssp}-approot svg .tp-${skey} {
-                        opacity : 1;
-                        fill-opacity : 0.3;
-                        stroke-opacity: ${ sconf.default_tp_stroke_opacity || 0.5 };
-                    }
-
-
-
-                    /* ================= */
-                    /* //|| highlighted  */
-                    /* ================= */
-                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey} {
-                        opacity: 1;
-                    }
-                    .${cssp}-approot.tp-${tplink_ix} .tohidden.tp-${skey} {
-                        visibility:visible;
-                    }
-                    /* does bold on anchor hover */
-                    .${cssp}-approot.tp-${tplink_ix} .tp-${skey}.tobold {
-                       font-weight : bold;
-                    }
-
-                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey} {
-                        fill-opacity : 0.7;
-                        stroke-opacity: 1;
-                    }
-                    .${cssp}-approot.tp-${tplink_ix} svg .tp-${skey}.tostroke {
-                        stroke-width:${ sconf.default_tp_stroke_width || 8 }px;
-                    }
-                    /* ================= */
-                    /* //|| highlighted  */
-                    /* ================= */
-
-
-
-                    /* //|| special for svg-text */
-                    .${cssp}-approot svg text.tp-${skey} {
-                        fill-opacity : 0.7;
-                    }
-                    /* ***** highlighted */
-                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
-                        fill-opacity : 1;
-                    }
-                    /* // ||// special for svg-text */
-
-                `;
-                ///boldifies svg-text at topic highlight
-                alink.col8shape_2_opac[ skey ] += `
-                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${skey} {
-                        font-weight:bold;
-                    }
-                `;
-                //-------------------------------------
-                // \\// makes topicee highlight machine
-                //-------------------------------------
+            var tplink_ix = parseInt( match[1] );
+            var tplink    = topics.ix2tplink[ tplink_ix ];
+            assigns_color_to_anchor({ tplink, anchors__cssHighlighter, });
+            setsAnchor_mouseHighlightEvents( anchor, tplink_ix );
+            prepares__highlighting_CSS({
+                tplink, tpid2cssColor, tpid2opac, tplink_ix
             });
-
         });
 
-        styleStr += anchors2colors;
+        //-----------------------------------------------------------
+        // //\\ inserts tp-highlight-machinery css into html-document
+        //-----------------------------------------------------------
+        //essay's anchor colors
+        styleStr += anchors__cssHighlighter.value;
 
+        //media shape colors
+        ns.eachprop( tpid2cssColor, tp_css => {
+            styleStr += tp_css;
+        });
 
-        if( !sconf.topicColorPerAnchor ) {
-            ns.eachprop( shape2color, scolor => {
-                //colors per shape
-                styleStr += scolor;
-            });
-        }
+        //media shape idle-color-intensity
+        ns.eachprop( tpid2opac, tp_css => {
+            styleStr += tp_css;
+        });
 
-        topics.topicIndexedLinks.forEach( alink => {
-
-            if( sconf.topicColorPerAnchor ) {
-                //colors per alink
-                ns.eachprop( alink.col8shape_2_css, icolor => {
-                    styleStr += icolor;
-                });
-            }
-            ns.eachprop( alink.col8shape_2_opac, icolor => {
-                styleStr += icolor;
+        //media shape highlited-color-intensity
+        topics.ix2tplink.forEach( tplink => {
+            ns.eachprop( tplink.tpid2opac, tp_css => {
+                styleStr += tp_css;
             });
         });
 
         style.innerHTML = styleStr;
+        //-----------------------------------------------------------
+        // \\// inserts tp-highlight-machinery css into html-document
+        //-----------------------------------------------------------
     }
 
 
-    function setMouseHiglight( anchor, coreName )
+    ///-----------------------------
+    /// assigns color to anchor
+    ///-----------------------------
+    function assigns_color_to_anchor({
+        tplink,
+        anchors__cssHighlighter,
+    }) {
+        var tplink_ix = tplink.tplink_ix;
+        var tpIDs = Object.keys( tplink.tpid2true );
+
+        if( tpIDs.length > 1 ) {
+            ////tplink which comprised of more than one topics,
+            ////defines color for tplink
+            var rgba_low = 'rgba( 150, 0, 150, 0.7 )';
+            var rgba_high = 'rgba( 150, 0, 150, 1 )';
+        } else {
+            //.gets first shape id
+            var topi_c = topics.id2topic[ tpIDs[0] ];
+            var rgba_low = topi_c.rgba_low;
+            var rgba_high = topi_c.rgba_high;
+        }
+
+        //  apparently padding highlighted anchor does bloat MathJax font,
+        //  so, padding is disabled
+        anchors__cssHighlighter.value += `
+            a.tl-${tplink_ix + ''} {
+               border-radius:4px;
+               color:${rgba_high};
+               opacity:0.8;
+               font-weight : ${ tplink.anchorIsBold ? 'bold' : 'normal' };
+            }
+            a.tl-${tplink_ix + ''}:hover {
+               opacity:1;
+               background-color:#eaeaea;
+               cursor:default;
+            }
+            a.tl-${tplink_ix + ''}:hover span{
+               font-weight :bold;
+               background-color:#eaeaea;
+               cursor:default;
+            }
+        `;
+    }
+
+
+
+
+    function prepares__highlighting_CSS({
+        tplink, tpid2cssColor, tpid2opac, tplink_ix,
+    }) {
+        Object.keys( tplink.tpid2true ).forEach( tpid => {
+
+            //=================================
+            // //\\ sets colors per tpid
+            //=================================
+            if( !tplink.cssNoColorToShapes ) {
+                //recall: ssD.topics.id2topic ...
+                var topi_c = topics.id2topic[ tpid ];
+                var thc = topi_c.rgba_high;
+                tpid2cssColor[ tpid ] = `
+                    .${cssp}-approot .tp-${tpid}.tocolor {
+                       color : ${thc};
+                    }
+                    .${cssp}-approot .tp-${tpid}.tobg {
+                       background-color : ${thc};
+                    }
+                    .${cssp}-approot svg .tp-${tpid}.tofill {
+                       fill : ${thc};
+                    }
+                    .${cssp}-approot svg .tp-${tpid}.tostroke {
+                       stroke-linecap : round;
+                       stroke : ${thc};
+                    }
+                `;
+            }
+            //=================================
+            // \\// sets colors per tpid
+            //=================================
+
+            //===========================================
+            // //\\ highlighted by setting attr
+            //      and manipulating opacity and bold
+            //===========================================
+            tpid2opac[ tpid ] = `
+                .${cssp}-approot .tp-${tpid} {
+                    opacity: 0.7;
+                }
+                .${cssp}-approot svg .tp-${tpid} {
+                    opacity : 1;
+                    fill-opacity : 0.3;
+                    stroke-opacity: ${ sconf.default_tp_stroke_opacity || 0.5 };
+                }
+                /* special for svg-text */
+                .${cssp}-approot svg text.tp-${tpid} {
+                    fill-opacity : 0.7;
+                }
+            `;
+
+            tplink.tpid2opac = tplink.tpid2opac || {};
+            tplink.tpid2opac[ tpid ] = `
+                .${cssp}-approot.tp-${tplink_ix} .tp-${tpid} {
+                    opacity: 1;
+                }
+                .${cssp}-approot.tp-${tplink_ix} .tohidden.tp-${tpid} {
+                    visibility:visible;
+                }
+                /* does bold on anchor hover */
+                .${cssp}-approot.tp-${tplink_ix} .tp-${tpid}.tobold {
+                   font-weight : bold;
+                }
+
+                .${cssp}-approot.tp-${tplink_ix} svg .tp-${tpid} {
+                    fill-opacity : 0.7;
+                    stroke-opacity: 1;
+                }
+                .${cssp}-approot.tp-${tplink_ix} svg .tp-${tpid}.tostroke {
+                    stroke-width:${ sconf.default_tp_stroke_width || 8 }px;
+                }
+
+                /* special for svg-text */
+                /* highlighted */
+                .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid} {
+                    fill-opacity : 1;
+                }
+            `;
+
+            ///boldifies svg-text at topic highlight
+            tplink.tpid2opac[ tpid ] += `
+                .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid} {
+                    font-weight:bold;
+                }
+            `;
+            //===========================================
+            // \\// highlighted by setting attr
+            //===========================================
+        });
+    }
+
+
+
+
+
+    function setsAnchor_mouseHighlightEvents( anchor, coreName )
     {
         anchor.addEventListener( 'mouseover', ev => {
             appRoot$.addClass( 'tp-' + coreName );

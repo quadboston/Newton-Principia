@@ -15,6 +15,7 @@
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
+    //abandoned var pseudoLink  = sn('pseudoLink',ssD, []);
     var rg          = sn('registry',ssD);
     var topics      = sn('topics', ssD);
     var references  = sn('references', ssD);
@@ -26,14 +27,17 @@
     // //\\ topic engine variables
     //---------------------------------------------
     var tplinkCount = 0;
-    var shapesCount = 0;
-    var topicLinks = topics.topicLinks = {};
-    var shapeid2tshape = topics.shapeid2tshape = {};
-    var topicIndexedLinks = topics.topicIndexedLinks = [];
+
+    //: lemma-wise constructs
+    var topicsCount = 0; //indexes shapes lemma-wise
+    var id2topic    = topics.id2topic = {};
+
+    var id2tplink   = topics.id2tplink = {};
+    var ix2tplink   = topics.ix2tplink = [];
 
     var SPACE_reg = /\s+/;
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-    var TOP_ANCH_reg = 
+    var TOP_ANCH_REG = 
         '¦([^¦]+)¦' +   //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
         '¦¦'        +   //catches topic terminator
@@ -41,15 +45,16 @@
         '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
     //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
-    var topAnch_reg = new RegExp( TOP_ANCH_reg, 'gu' );
+    var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
     //.adding flag "g" ruins the job ... why?
-    var topAnch_reg2 = new RegExp( TOP_ANCH_reg, 'u' );
+    var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
     //---------------------------------------------
     // \\// topic engine variables
     //---------------------------------------------
 
-    sDomF.frags_2_essdom8topiccss = frags_2_essdom8topiccss;
-    return; //000000000000000000000000000000000000000000
+    sDomF.frags__2__dom_css_mjax_tpanchors = frags__2__dom_css_mjax_tpanchors;
+    sDomF.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    return;
 
 
 
@@ -65,7 +70,7 @@
     ///
     ///called from main.js::bgImagesAreLoaded()...
     ///
-    function frags_2_essdom8topiccss()
+    function frags__2__dom_css_mjax_tpanchors()
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
@@ -85,15 +90,14 @@
                             fragment_2_indexedTopics( avalue );
                         });
                     } else {
-                        //.strange why topAnch_reg (with flag "g") works
-                        //.and topAnch_reg2 does not
+                        //.strange why TOP_ANCH_REG_gu (with flag "g") works
+                        //.and TOP_ANCH_REG_u does not
                         fragment_2_indexedTopics( activeFrag );
                     }
                 });
             });
         });
-        //ccc( 'topicLinks=', topics.topicLinks );
-        topLinks_2_colors();
+        topics_2_topicsColorModel();
 
         exegs_2_tpAn8dom8mjax();
         //this is moved into MathJax callback: setTimeout( sDomF.tpanch2mjax, 3000 );
@@ -111,7 +115,7 @@
             }
         `;
         ns.globalCss.update( oneTimeUse_globalCSS );
-        sDomF.anchors2topiccss();
+        sDomF.tpAnchors_2_anchors8media_css();
         sDomN.topicModelInitialized = true;
     };
 
@@ -180,7 +184,7 @@
             ns.eachprop( activeFrag, ( afrag, akey ) => {
                 ////normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 newfrags[ akey ] =
-                    { activeFrag : afrag.replace( topAnch_reg, replWithAnchor ) }
+                    { activeFrag : afrag.replace( TOP_ANCH_REG_gu, replWithAnchor ) }
             });
             exeg.builtFrags[ tix ] = { activeFrags : newfrags };
         });
@@ -191,7 +195,7 @@
         //--------------------------------------------------------
         function replWithAnchor( match, skey, scaption, cflag, farFlag, remainder )
         {
-            var rack = topics.topicLinks[ skey ];
+            var rack = topics.id2tplink[ skey ];
             if( !rack ) return;
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
@@ -208,9 +212,8 @@
     }
 
 
-    function topLinks_2_colors()
+    function topics_2_topicsColorModel()
     {
-
         var SATUR = 99;
 
         //:this solution is not good:
@@ -221,37 +224,15 @@
         var LIGHT = sconf.default_tp_lightness ||  30;
         var OPACITY = 0.6;
 
-        var colorsCount = topicIndexedLinks.length;
-
-        // //\\ apparently used only with alternative color-linking
-        //      by anchor and not by shape sconf.topicColorPerAnchor
-        topicIndexedLinks.forEach( ( tLink, cCount ) => {
-            var hue = 359 / colorsCount * cCount;
-            var opacity = OPACITY;
-            if( tLink['fixed-color'] ) {
-                //ccc( 'rgba=',tLink['fixed-color'] );
-                var overridden = ns.rgba2hsla( tLink['fixed-color'] );
-                hue = overridden[ 0 ];
-                var opacity = overridden[ 3 ] || OPACITY;
-            }
-            //ccc( 'hsla=', [ hue, SATUR, LIGHT, OPACITY ] );
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
-            tLink.rgba = corRack.rgba;
-            tLink.rgbaCSS = corRack.rgbaCSS;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
-            tLink.rgb1 = corRack.rgba;
-        });
-        // \\// apparently used only with alternative color-linking
-
-
-        ns.eachprop( shapeid2tshape, ( shape, scount ) => {
-            var sc = shape.shapesCount;
+        var colorsCount = ix2tplink.length;
+        ns.eachprop( ssD.topics.id2topic, ( topi_c, scount ) => {
+            var sc = topi_c.topicsCount;
             var rem = sc%2;
-            var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( shapesCount / 2 );
-            var hue = 359 / shapesCount * zebra;
+            var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( topicsCount / 2 );
+            var hue = 359 / topicsCount * zebra;
             var opacity = OPACITY;
 
-            var fc = shape['fixed-color'];
+            var fc = topi_c['fixed-color'];
             if( fc ) {
                 var overridden = ns.rgba2hsla( fc );
                 hue = overridden[ 0 ];
@@ -259,10 +240,10 @@
             }
 
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
-            shape.rgba = corRack.rgba;
-            shape.rgbaCSS = corRack.rgbaCSS;
+            topi_c.rgba_low = corRack.rgba;
+            topi_c.rgbaCSS = corRack.rgbaCSS;
             var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
-            shape.rgb1 = corRack.rgba;
+            topi_c.rgba_high = corRack.rgba;
         });
     }
 
@@ -294,30 +275,38 @@
 
 
     ///*************************************************************
-    ///collects |...|..|| - like preanchor-topics by TOP_ANCH_reg;
+    ///collects |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///does loop via all possible active fragments;
     ///*************************************************************
     function fragment_2_indexedTopics( activeFrag )
     {
-        //by RegExp( TOP_ANCH_reg, 'gu' );
-        var topicPreAnchors = activeFrag.match( topAnch_reg );
+        /*
+        abandoned
+        if( Array.isArray( activeFrag ) ) {
+            ////we met common app link
+            var topicPreAnchors = [ '¦' + activeFrag.join( ' ' ) + '¦pseudo¦¦' ];
+        } else {
+        */
+
+        var topicPreAnchors = activeFrag.match( TOP_ANCH_REG_gu );
+
 
         if( topicPreAnchors ) {
             topicPreAnchors.forEach( link => {
                 ////loops via all anchors having topic-link tl-TOPIC
                 if( !link ) return;
 
-                //by RegExp( TOP_ANCH_reg, 'u' );
-                var parsedLink = link.match( topAnch_reg2 );
+                //by RegExp( TOP_ANCH_REG, 'u' );
+                var parsedLink = link.match( TOP_ANCH_REG_u );
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
 
 
                 //=========================================
-                //tplinkConf is a set of shapeIds;
+                //tplinkConf is a set of raw_tpIDs;
                 //This is pre-anchor index and not the "unique key".
-                //But it is an index of topicLinks.
+                //But it is an index of id2tplink.
                 //(Recall beginning of '¦([^¦]+)¦' ... which catches tplinkConf.)
                 var tplinkConf = parsedLink[1];
                 //ccc( 'tplinkConf='+tplinkConf );
@@ -327,27 +316,24 @@
                 ///this scenario makes tplink missed from tplink_ix index, but
                 ///it does not matter because these links are searched and
                 ///replaced again in aFrags_2_aFragsWithAnchor
-                ///recall: topicLinks lives in lemma-scope.
+                ///recall: id2tplink lives in lemma-scope.
                 //=========================================
-                if( !topicLinks.hasOwnProperty( tplinkConf ) ) {
-
+                if( !id2tplink.hasOwnProperty( tplinkConf ) ) {
                     //.it counts tplinkConf which "duplicates"
                     //.shapes or do not map to any shape
                     var tplink_ix = tplinkCount++;
 
-                    //recall: topicIndexedLinks lives in lemma-scope.
-                    topicIndexedLinks[ tplink_ix ] =
-                    topicLinks[ tplinkConf ] = {
+                    //recall: ix2tplink and id2tplink do live in lemma-scope.
+                    ix2tplink[ tplink_ix ] =
+                    id2tplink[ tplinkConf ] = {
                         tplink_ix : tplink_ix,
-                        shapeid_2_isshape : {},
+                        tpid2true : {},
                         //link:parsedLink[2], not-used
-                        'fixed-color' :
-                            ns.h( ssD, 'fixed-colors' ) &&
-                            ns.haz( ssD['fixed-colors'], tplinkConf )
+                        'fixed-color' : ns.haz( ssD['fixed-colors'], tplinkConf ),
                     };
                 }
-                var tLink = topicLinks[ tplinkConf ];
-                var tplink_ix = tLink.tplink_ix;
+                var tplink = id2tplink[ tplinkConf ];
+                var tplink_ix = tplink.tplink_ix;
                 //=========================================
                 // \\// indexes topic links and colors
                 //=========================================
@@ -357,37 +343,36 @@
                 //=========================================
                 // splits anchor-configuration to smaller tokens, each
                 // token for separate shape
-                var shapeIDs = tplinkConf.split( SPACE_reg );
-                tLink.shapeIDs = shapeIDs;
+                tplink.raw_tpIDs = tplinkConf.split( SPACE_reg );
 
                 // loops via separate shapes
-                shapeIDs.forEach( shapeId_ => {
-                    var shapeId =
-                        shapeId_.replace( /([A-Z])/g, ( match, key1 ) => (
-                            '_' + key1.toLowerCase()
-                        ));
-                    //ccc( shapeId );
-                    tLink.shapeid_2_isshape[ shapeId ] = true;
+                tplink.raw_tpIDs.forEach( tpid_ => {
 
                     //..........................................................
-                    ///patch: todm:
-                    ///some atomic-shape-predefined-reserverd-words have
-                    ///effect on their siblings in their anchor-definition-group
-                    if( 'cssbold' === shapeId ) {
-                        tLink.anchorIsBold = true;
+                    if( 'cssbold' === tpid_ ) {
+                        tplink.anchorIsBold = true;
+                        return;
+                    } else if( 'css-no-color-to-shapes' === tpid_ ) {
+                        tplink.cssNoColorToShapes = true;
+                        return;
                     }
                     //..........................................................
 
-                    ///recall: shapeid2tshape lives in lemma-scope
-                    if( !shapeid2tshape.hasOwnProperty( shapeId ) ) {
-                        shapeid2tshape[ shapeId ] = {
+
+                    var tpid = topicIdUpperCase_2_underscore( tpid_ );
+                    tplink.tpid2true[ tpid ] = true;
+
+                    ///recall: ssD.topics.id2topic,
+                    ///if tpid is not yet ready added
+                    if( !id2topic.hasOwnProperty( tpid ) ) {
+                        id2topic[ tpid ] = {
                             tplinkConf      : tplinkConf,
-                            'fixed-color'   : tLink[ 'fixed-color' ],
+                            'fixed-color'   : ns.haz( ssD['fixed-colors'], tpid ),
                             tplink_ix       : tplink_ix,
-                            shapesCount     : shapesCount,
-                            shapeId         : shapeId,
+                            topicsCount     : topicsCount, //implicit index
+                            tpid            : tpid,
                         }
-                        shapesCount++;
+                        topicsCount++;
                     }
                 });
                 //=========================================
@@ -396,6 +381,15 @@
             });
         }
     }
+
+
+    function topicIdUpperCase_2_underscore( topicId )
+    {
+        return topicId.replace( /([A-Z])/g,
+            ( match, key1 ) => ( '_' + key1.toLowerCase() )
+        );
+    }
+
 
 }) ();
 

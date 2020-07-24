@@ -25,7 +25,7 @@
 
 
 
-    fmethods.populate_mediaSupreRoot = populate_mediaSupreRoot;
+    fmethods.populate_mediaSuperRoot = populate_mediaSuperRoot;
     return;
 
 
@@ -38,7 +38,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function populate_mediaSupreRoot( bgImagesAreLoaded )
+    function populate_mediaSuperRoot( bgImagesAreLoaded_cb )
     {
 
         //--------------------------
@@ -64,7 +64,7 @@
                 .addClass( 'change-tools-button' )
                 .html( "tools" )
                 .to( topMediaControls$() )
-                .css( 'display', 'block' )
+                //.css( 'display', 'block' )
                 .e( 'click', () => {
                     rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
                     if( rgtools.value === 'on' ) {
@@ -91,7 +91,7 @@
                 .addClass( 'change-model-data-button' )
                 .html( "data options" )
                 .to( topMediaControls$() )
-                .css( 'display', 'block' )
+                //.css( 'display', 'block' )
                 .e( 'click', () => {
                     ns.haf( ssF, 'toggleData' )();
                 })
@@ -110,7 +110,7 @@
                 .addClass( 'capture-button' )
                 .html( "capture" )
                 .to( topMediaControls$() )
-                .css( 'display', 'block' )
+                //.css( 'display', 'block' )
                 .e( 'click', () => {
                     if( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
                         ns.haf( ssF, 'captureAState' )();
@@ -126,6 +126,32 @@
         }
         //..........................
         // \\// sets capture button
+        //..........................
+
+        //..........................
+        // //\\ sets studylab button
+        //..........................
+        if( sconf.enableStudylab ) {
+            sDomN.enableStudylab$ = $$
+                .c( 'div' )
+                .addClass( 'studylab-button' )
+                .a( 'title', 'tools and theory to study and experiment' )
+                .html( "lab" )
+                .to( topMediaControls$() )
+                .css( 'display', 'block' )
+                .e( 'click', () => {
+                    if( sDomN.enableStudylab$._html().indexOf( 'close lab' ) === -1 ) {
+                        sDomN.enableStudylab$.html( 'close lab' );
+                        fapp.fappRoot$.addClass( 'studylab' );
+                    } else {
+                        fapp.fappRoot$.removeClass( 'studylab' )
+                        sDomN.enableStudylab$.html( 'lab' );
+                    }
+                })
+                ;
+        }
+        //..........................
+        // \\// sets studylab button
         //..........................
 
 
@@ -297,8 +323,8 @@
                         ;
                     imgRk.dom$().onload = function() {
                         if( bgImages.bgImgCount === ++actuallyLoaded ) {
-                            //setTimeout( bgImagesAreLoaded, 1000 );
-                            bgImagesAreLoaded();
+                            //setTimeout( bgImagesAreLoaded_cb, 1000 );
+                            bgImagesAreLoaded_cb();
                         }
                     };
                     imgRk.dom$

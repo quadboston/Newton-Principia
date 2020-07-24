@@ -3,6 +3,7 @@
 { "dataLegend":"0",
   "default" : "1",
   "submodel" : "",
+  "mediaBgImage" : "lemma1-proof.png",
   "menuCaption" : "English"
 }
 *..*
@@ -21,8 +22,13 @@ Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Ce
 
 
 
+
+
+
 *::*proof|latin
-{ "dataLegend":"0"
+{
+    "mediaBgImage" : "lemma1-proof.png",
+    "dataLegend":"0"
 }
 *..*
 

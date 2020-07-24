@@ -190,19 +190,17 @@
     };
 
 
-    ///"manually" created polyline which formes curve,
-    ///signature:                       nssvg.curve({ stepsCount, step, curve( curvePar ) })
-
-    ///signature of callback "curve":   curve returns curve( curvePar ) = {x:x, y:y} or [x,y]
-    ///                                     x,y are in media frame of reference
-
+    ///"manually" creates polyline which formes curve,
+    ///signature:           nssvg.curve({ stepsCount, step, curve:function })
+    ///signature of
+    ///callback "curve":    curvePar => ({x:x, y:y} or [x,y])
+    ///                                 x,y are in media frame of reference
     ///                                 
-    ///autocloses unless                arg.dontClose = true,
-    ///
-    ///returns:                         svg-element
+    ///autocloses unless    arg.dontClose = true,
+    ///returns:             svg-element
     nssvg.curve = function( arg )
     {
-        var { stepsCount, start, step, curve } = arg;
+        var { stepsCount, start, step, curve, xOFy } = arg;
 
         var polyline = arg.pivots = [];
         for( var ii = 0; ii < stepsCount; ii++ ) {
@@ -215,6 +213,12 @@
                 var yy = curv.y;
                 //todm make
                 //var curv = [ curv.x, curv.y ];
+            }
+            if( xOFy ) {
+                ////swaps x and y if we draw graph x(y)
+                var ww = xx;
+                var xx = yy;
+                var yy = ww;
             }
             polyline.push( [ xx, yy ] );
         }

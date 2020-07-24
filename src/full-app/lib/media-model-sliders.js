@@ -120,6 +120,8 @@
         });
         $$.$(media_scale.text_svg).cls( 'tp-media_scale' );
 
+        ///this function restricts itself to SUB_MODEL === 'common',
+        ///not very obvious design
         rg.media_scale.model8media_upcreate = function() {
             studyMods[ SUB_MODEL ].model8media_upcreate();
         }
@@ -241,6 +243,7 @@
         });
         $$.$(thickness.text_svg).cls( 'tp-thickness' );
 
+        ///restricts itself to "common" submodel: not really obvious design
         rg.thickness.model8media_upcreate = function() {
             studyMods[ SUB_MODEL ].model8media_upcreate();
         }

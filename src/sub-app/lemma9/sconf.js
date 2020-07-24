@@ -169,7 +169,6 @@
             CORE_CURVE_COLOR    : '160, 0, 0',
             CORE_AREA_COLOR     : '0,125,0',
             REMOTE_AREA_COLOR   : '0,0,255',
-            topicColorPerAnchor : !true
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

@@ -24,7 +24,8 @@
     rg.detected_user_interaction_effect_DONE = false;
     sDomF.detected_user_interaction_effect = detected_user_interaction_effect;
 
-    fmethods.createLemmaDom = createLemmaDom;
+    fmethods.lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot =
+             lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot;
     //000000000000000000000000000000000000000
     return;
     //000000000000000000000000000000000000000
@@ -38,7 +39,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function createLemmaDom( bgImagesAreLoaded )
+    function lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot( bgImagesAreLoaded_cb )
     {
         //==============================================================
         // //\\ essay and media panes
@@ -81,8 +82,7 @@
 
         sDomF.build_menu_top_leafs_placeholders();
         fmethods.createDividorResizer();
-        fmethods.populate_mediaSupreRoot( bgImagesAreLoaded );
-        
+        fmethods.populate_mediaSuperRoot( bgImagesAreLoaded_cb );
     }
 
 

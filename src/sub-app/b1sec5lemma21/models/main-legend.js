@@ -10,6 +10,7 @@
     var sconf   = sn('sconf',fconf);
 
     var sapp    = sn('sapp'); 
+    var sDomF   = sn('dfunctions',sapp);
     var sDomN   = sn('dnative',sapp);
 
     var ss      = sn('ss',fapp);
@@ -198,9 +199,7 @@
         var tr = ssF.tr;
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = (cssName || mname ).replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase()
-        ));
+        cssName = sDomF.topicIdUpperCase_2_underscore( cssName || mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

@@ -134,6 +134,7 @@
                 ix      : mitemIx,
                 menuTeafRack : menuTeafRack,
                 caption :mitem.hasOwnProperty( 'caption' ) ? mitem.caption : leaf_id,
+                studylab : mitem.studylab, //comes from essaion header
                 leaf_id : leaf_id //for debug
             };
             make_menu_leaf( leafRk );
@@ -152,6 +153,9 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ makes radio menu
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+    /// for single leafRk indexed with pair (teaf_id, leaf_id),
+    /// builds its togglable-menu-tab;
+    /// makes tab's components shadow and button;
     function make_menu_leaf( leafRk )
     {
         var leaf_id     =leafRk.leaf_id;
@@ -160,15 +164,20 @@
         var menuTeafRack=leafRk.menuTeafRack;
         var mitemIx     =leafRk.ix;
         var caption     =leafRk.caption;
+        var studylab    =leafRk.studylab;
         var teaf$       =leafRk.teaf$;
         var decorOfShuttle$=leafRk.decorOfShuttle$;
         var decorationsContainer$ = leafRk.decorationsContainer$;
+        //ccc( 'teaf_id='+teaf_id + ' leaf_id=' + leaf_id + ' leaf rack=', leafRk );
 
         //--------------------------
         // //\\ shuttle shadow
         //--------------------------
         leafRk.itemShadow$ = $$.dct( 'shadow shape', decorationsContainer$ )
-             .ch( fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ) );
+            .ch( fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ) );
+        if( studylab && teaf_id === 'aspect' ) {
+            leafRk.itemShadow$.addClass( 'studylab' );
+        }
         //--------------------------
         // \\// shuttle shadow
         //--------------------------
@@ -217,8 +226,12 @@
                         ]
                     )
             ]);
+        if( studylab && teaf_id === 'aspect' ) {
+            li$.addClass( 'studylab' );
+        }
 
-
+        //if( leaf_id === 'model' )
+        //    ccc( 'leafRk=', leafRk, 'teaf$=', teaf$(), 'shape litem=', li$() );
 
         if( menuTeafRack['default'] === leaf_id ) {
             ////at the moment of this version which is 1516,
@@ -334,7 +347,7 @@
             sDomN.bgImage$ = rtRk.imgRk.dom$;
         }
         //.menu work for special subapp
-        ss.menuExtraWork && ss.menuExtraWork( teaf_id, leaf_id );
+        ns.haf( ss, 'menuExtraWork' )( teaf_id, leaf_id );
         //==================================================
         // \\// updates app and ...
         //==================================================

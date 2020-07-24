@@ -143,9 +143,11 @@
 
                 var addFeaturesToDecPoint = null;
                 if( spinnerClsId ) {
-                    var cssIdLowCase = spinnerClsId
-                            .replace( /([A-Z])/g, ( match, key1 ) => (
-                            '_' + key1.toLowerCase() ));
+
+                    //don't do this here: not a d8d concern:
+                    //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore( spinnerClsId );
+                    var cssIdLowCase = spinnerClsId;
+
                     addFeaturesToDecPoint =
                     {
                         dragDecorColor : dragDecorColor,

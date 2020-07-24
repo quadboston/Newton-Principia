@@ -51,11 +51,19 @@
             ns.hae = hae;
             ns.haf = haf;
             ns.hob = hob;
-            ns.haz = haz;
+            ns.haz = haz; //returns own prop if any
             ns.h = has;
+            ns.ha = ha; //has or adds new
             ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
+
+        ///Returns own property if property does exist. Otherwise, returns defaultProperty.
+        function ha( obj, property, defaultProperty ) {
+            return shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : defaultProperty;
+        };
+
 
         ///Returns own property if property does exist. Otherwise, returns false.
         function haz( obj, property ) {
@@ -95,10 +103,12 @@
         function sn( subname, parentNS, emptyTemplate )
         {
             parentNS = parentNS || ns;
-            if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
+            //if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
+            if( has( parentNS, subname ) ) {
                 return parentNS[ subname ];
             }
-            var sns = parentNS[ subname ] = emptyTemplate || {};
+            var sns = parentNS[ subname ] = typeof emptyTemplate !== 'undefined' ?
+                                            emptyTemplate : {};
             return sns;
 
             /*

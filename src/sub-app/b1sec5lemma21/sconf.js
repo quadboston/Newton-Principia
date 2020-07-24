@@ -180,8 +180,6 @@
             innerMediaWidth     : pictureWidth,
 
             thickness           : 1,
-
-            topicColorPerAnchor : !true,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

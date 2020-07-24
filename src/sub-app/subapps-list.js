@@ -22,7 +22,6 @@
         { src:'models/study-model.js' },
         { src:'models/media-model.js' },
         { src:'models/main-legend.js' },
-        { src:'models/d8d-model.js' },
         { src:'models/media-model-sliders.js' },
     ];
 
@@ -94,6 +93,19 @@
             caption : 'Lemma III',
             sappCodeReference : 'lemma2',
             annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
+        },
+
+        {   sappId : 'b1sec1lemma6',
+            book : 'Book 1',
+            caption : 'Lemma VI',
+            sappCodeReference : '',
+            annotation : "",
+            codesList : mlist_startUp
+                .concat( mlist_CSS )
+                .concat( mlist_body )
+                .concat( { src : [ 'models/state-capturer.js' ] } )
+                .concat( { src : [ 'models/d8d-model.js' ] } )
+                ,
         },
 
 
@@ -178,6 +190,7 @@
             codesList : mlist_startUp
                 .concat( mlist_CSS )
                 .concat( mlist_body )
+                .concat( { src : [ 'models/d8d-model.js' ] } )
                 .concat( { src : [ 'models/state-capturer.js' ] } )
                 ,
         },

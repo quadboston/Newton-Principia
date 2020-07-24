@@ -45,9 +45,13 @@ var ret = `
     body {
 	    line-height: 1;
     }
-    ol, ul {
+
+    /* using these decorations only for home-pane */
+    .bsl-home-pane ol,
+    .bsl-home-pane ul {
 	    list-style: none;
     }
+
     blockquote, q {
 	    quotes: none;
     }

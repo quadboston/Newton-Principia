@@ -156,7 +156,6 @@
             */
             // \\// remove RRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-            topicColorPerAnchor : !true,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

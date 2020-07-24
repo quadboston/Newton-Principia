@@ -30,8 +30,7 @@
 
     function tpanch2mjax( domEl )
     {
-        var setMouseHiglight = sDomF.setMouseHiglight;
-        var topicLinks = topics.topicLinks;
+        var setsAnchor_mouseHighlightEvents = sDomF.setsAnchor_mouseHighlightEvents;
 
         ///this search must be protected: duplicates will cause
         ///duplicate substitutions
@@ -78,7 +77,7 @@
                                 if( grand.tagName !== 'A' ) {
                                     grand.innerHTML = "<a class=" + match[0] +
                                         '>' + targetText + '</a>';
-                                    setMouseHiglight( grand, tplink_ix );
+                                    setsAnchor_mouseHighlightEvents( grand, tplink_ix );
                                 }
                                 //--------------------------------------------------
                                 // \\// this "if" protects topic-anchors against

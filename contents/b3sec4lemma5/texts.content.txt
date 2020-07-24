@@ -2,11 +2,6 @@
 *::*claim|latin
 {
   "menuCaption" : "Latin",
-
-  "comment1 for contributors" : "fixed-colors are in effect over all lemma, no matter in which fragment here they are set",
-  "comment2 for contributors" : "fixed-colors are in [R,G,B,OPTIONAL_OPACITY_FOR_NONHIGHLIGHTED_MODE] format",
-  "comment3 for contributors" : "LITE and SATURATION parameters (implied from fixed-colors) are ignored",
-
   "fixed-colors" :
   {
     "given"          : [0,     50, 0,      1],
@@ -82,7 +77,8 @@ Adee, 45 Liberty Street.
 
 *::*claim|model
 {
-  "menuCaption" : "Model"
+  "menuCaption" : "Model",
+  "xxx studylab" : true
 }
 *..*
 
@@ -137,6 +133,7 @@ values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known.
 *::*proof|model
 {
   "default" : "1",
+  "xxx  studylab" : true,
   "menuCaption" : "Model"
 }
 *..*
@@ -157,9 +154,7 @@ S t e p  1. There is always exist unique polynomial<br><br>
 
 satisfying all points
 (¦experimental¦x<sub>i</sub>¦¦, ¦experimental¦y<sub>i</sub>¦¦ ) for i = 0,..., n.
-<br><br>
 
-and therefore ¦given¦z<sup>n</sup>¦¦ = ¦given¦y<sup>n</sup>¦¦.
 
 <br><br><br>
 
@@ -202,14 +197,16 @@ Therefore, u = ¦approximator¦s<sup>n+1</sup>¦¦. <b>[]</b>
 
 <span class="captured-reference id-0">Click to return to</span>
 
-¦given¦initial lemma's function¦¦ and ¦approximator¦approximating function¦¦ from Newton's book. It approximates ¦given¦given function (in green color)¦¦ roughly well except the interval [H,I].
+¦given¦initial lemma's function¦¦ and ¦approximator¦approximating function¦¦ from Newton's book. It approximates ¦given¦given function¦¦ roughly well except the interval [H,I].
 
 <br><br><b>1.</b>
 ¦approximator¦The approximating polynomial¦¦ does not depend on order of points,
 
 <span class="captured-reference id-1">here we</span>
 
-can swap points H and L and polynomial stays the same.
+can swap points H and L and polynomial stays the
+
+<span class="captured-reference id-0">same</span>.
 
 <br><br><b>2.</b>
 Quality of aproximation depends on orientation of the curve. For example, this 

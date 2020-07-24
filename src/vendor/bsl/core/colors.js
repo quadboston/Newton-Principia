@@ -175,7 +175,7 @@
     ///[ 123, 123, 123, 0.222 ] -> rgba(...
     ns.arr2rgba = function ( arr )
     {
-        if( !arr || !arr.length) return 'black';
+        if( !arr || !arr.length) return "rgba('0,0,0,1')"; //was 'black'
         var op = ( typeof arr[3] !== 'undefined' ) ? arr[3] : 1;
         var r=Math.floor( arr[0] );
         var g=Math.floor( arr[1] );

@@ -17,7 +17,7 @@
 
     fmethods.setupEvents            = setupEvents;
     fmethods.setupCapturerEvents    = setupCapturerEvents;
-    fmethods.setupSiteWideEvents    = setupSiteWideEvents;
+    fmethods.does_set_next_lemma_button_event    = does_set_next_lemma_button_event;
     fmethods.fullResize             = fullResize;
     return;
 
@@ -29,7 +29,7 @@
         var links = document.querySelectorAll( '.captured-reference' );
         links.forEach( link => {
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
-            link.setAttribute( 'title', 'click to set model context' );
+            link.setAttribute( 'title', 'click to go to episode' );
             link.addEventListener( 'click', function() {
                 ssF.appState__2__study8media__models( ssD.capture[ match[1] ] );
             });
@@ -56,22 +56,8 @@
         );
     }
 
-    function setupSiteWideEvents()
-    {
-        setNextLemmaButton( 'right' );
-        setNextLemmaButton( 'left' );
 
-        var maxWidth = 0;
-        [].forEach.call( sDomN.middleNavBar$().children, function( child ) {
-            maxWidth = Math.max( maxWidth, child.getBoundingClientRect().width );
-        });
-        [].forEach.call( sDomN.middleNavBar$().children, function( child ) {
-            child.style.width = maxWidth + 'px';
-        });
-
-    };
-
-    function setNextLemmaButton( direction )
+    function does_set_next_lemma_button_event( direction )
     {
         var pager$ = direction === 'right' ? sDomN.rightButton$ : sDomN.leftButton$;
 

@@ -18,10 +18,12 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var bgImages    = sn('bgImages',ssD);
+    var fixedColors = sn('fixed-colors',ssD);
 
     var references  = sn('references', ssD);
     var exegs       = sn('exegs', ssD);
-    sDomF.bookfiles_to_exegesisBodies = bookfiles_to_exegesisBodies;
+    sDomF.load_scenario__list8refs8conf = load_scenario__list8refs8conf;
+    sDomF.getFixedColor = getFixedColor;
     return; //0000000000000000000000000000000000
 
 
@@ -34,7 +36,7 @@
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function bookfiles_to_exegesisBodies( continueAppInit )
+    function load_scenario__list8refs8conf( continueAppInit_cb )
     {
         var allEssaionsStr = "";
         ///this ajax-load takes following aux. files including list of contents
@@ -49,14 +51,15 @@
                   link:'contents/' + fconf.sappId + '/conf.json'
                }
             ],
-            on_bookfiles_conf_load
+            contentsList_2_essaions
         );
 
         ///This ajax-load takes contents-files, concatenates them, and calls
-        ///final subroutine, on_lemma_bookfiles_load.
-        function on_bookfiles_conf_load( conf_files_list )
+        ///final subroutine, essaions2exegs.
+        function contentsList_2_essaions( conf_files_list )
         {
-            var lemma_bookfiles_list = conf_files_list[ 'contents-list.txt' ].text.split(/\r\n|\n|\r/);
+            var lemma_bookfiles_list = conf_files_list[ 'contents-list.txt' ]
+                                       .text.split(/\r\n|\n|\r/);
 
             //------------------------------------
             // //\\  making the list for ajax-load
@@ -80,7 +83,7 @@
                     lbf_forAjax.forEach( function( listItem ) {
                         allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
                     });
-                    on_lemma_bookfiles_load( conf_files_list );
+                    essaions2exegs( conf_files_list );
                 }
             );
         }
@@ -90,7 +93,7 @@
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
-        function on_lemma_bookfiles_load( loadedFilesById )
+        function essaions2exegs( loadedFilesById )
         {
             references.text = loadedFilesById.references.text || references.text || '';
             if( loadedFilesById['content-config'] ) {
@@ -135,11 +138,16 @@
                         var wHeader = wPreText.substring(0, wIx-1);
                         wPreText = wPreText.substring( wIx+4 );
                     }
+                    //.converts essayion's-header-script to header-js-object
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
                     // //\\ establishes fixed colors lemma-wise
-                    if( ns.h( essayHeader, 'fixed-colors' ) ) {
-                        Object.assign( ssD, { 'fixed-colors' : essayHeader[ 'fixed-colors' ] } );
+                    var wwfc = ns.haz( essayHeader, 'fixed-colors' );
+                    if( wwfc ) {
+                        Object.keys( wwfc ).forEach( topicKey => {
+                            var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                            fixedColors[ tk ] = wwfc[ topicKey ];
+                        });
                     }
                     // \\// establishes fixed colors lemma-wise
 
@@ -170,14 +178,14 @@
 
 
                     //---------------------------------------------------------
-                    // //\\ here we setting body of text
+                    // //\\ does index bodyscript and essayHeader
                     //---------------------------------------------------------
                     var exeg = exegs[ teaf_id ][ leaf_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
                     //---------------------------------------------------------
-                    // \\// here we setting body of text
+                    // \\// does index bodyscript and essayHeader
                     //---------------------------------------------------------
                     collectBgImg( essayHeader, exeg );
 
@@ -188,7 +196,11 @@
                     // //\\ media-drag-decoration-enabled-aspect
                     //      currently unlocks all aspects in content for
                     //      being able to have dragged points and other elements in model,
+
                     //      todm: looks like useless artifact.
+                    //      apparent side effect is increasing a specifity for
+                    //          some CSS in "decorator.css.js"
+
                     var wDecArr = fconf.dragPointDecoratorClasses =
                                   fconf.dragPointDecoratorClasses || [];
                     var wDecorAspect = 'aspect--' + leaf_id;
@@ -259,6 +271,7 @@
                         }
                         if( essayHeader.menuCaption && teaf_id === 'aspect' ) {
                             men.duplicates[ leafId ].caption = essayHeader.menuCaption;
+                            men.duplicates[ leafId ].studylab = essayHeader.studylab;
                         }
                         if( essayHeader.theorionCaption && teaf_id === 'theorion' ) {
                             men.duplicates[ leafId ].caption = essayHeader.theorionCaption;
@@ -274,7 +287,7 @@
 
             });
             //ccc( sconf.submenus[ 'proof' ]);
-            continueAppInit();
+            continueAppInit_cb();
             return;
 
 
@@ -283,7 +296,19 @@
 
 
             // //\\ bg images
+            ///
+            /// collects all possible background images racks
+            ///     bgImages.cssId2rk (indexed by cssId )
+            ///             cssId is = bg<imagesCount>
+            ///     path2rk           ( indexed by imgId )
+            ///             imgId is = 'common', 'empty', or from exeg-header
+            ///                   and is a path in /contents/.../img/ folder
+            ///                       except for 'empty'
+            ///                       which is configured by null in exeg header;
+            /// puts the rack specific to exeg into exeg.imgRk
+            ///
             function collectBgImg( essayHeader, exeg ) {
+                //recall: bgImages = ssD.bgImages;
                 var pr = bgImages.path2rk;
                 var imgId = essayHeader.mediaBgImage;
                 imgId = !ns.h( essayHeader, 'mediaBgImage' ) ?
@@ -317,6 +342,15 @@
         // \\// on content Files Load Success
         //====================================================
 
+    }
+
+
+    ///returns fixed color or black
+    function getFixedColor( ptype )
+    {
+        var cleared = sDomF.topicIdUpperCase_2_underscore( ptype || ' ' );
+        var color = ns.haz( ssD[ 'fixed-colors' ], cleared );
+        return ns.arr2rgba( color );
     }
 
 

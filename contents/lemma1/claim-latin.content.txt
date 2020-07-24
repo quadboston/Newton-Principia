@@ -3,6 +3,7 @@
 { "dataLegend":"0",
   "default" : "0",
   "submodel" : "",
+  "mediaBgImage" : "lemma1-proof.png",
   "menuCaption" : "Latin"
 }
 *..*

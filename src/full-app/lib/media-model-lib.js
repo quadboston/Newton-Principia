@@ -36,9 +36,8 @@
 
 
     //==========================================
-    // //\\ paint helpers
-    //==========================================
     // //\\ pos to pos
+    //==========================================
     ///transforms model-coordinates to media-coordinates
     function modpos2medpos( pos )
     {
@@ -54,68 +53,109 @@
                  pos[1] * sconf.originalMod2med_scale * sconf.MONITOR_Y_FLIP +
                  sconf.activeAreaOffsetY ];
     }
+    //==========================================
     // \\// pos to pos
+    //==========================================
 
 
 
-    ///makes line
+    //==============================================
+    // //\\ creates svg-line or updates it if exists
+    //==============================================
+    ///
+    ///API
+    /// Returns: line with line.svgel,
+    /// Sets:
+    ///     line.svgel).cls( cssClass + 'tp-' + tpclass
+    ///     line.svgel
+    /// Input:
+    ///     required:
+    ///         pName - name of line,
+    ///         pivots[0].medpos, pivots[1].medpos
+    ///
+    ///     optional:
+    ///         line as ssF.tr( pName )
+    ///         attr.stroke
+    ///         attr[ 'stroke-width' ]
+    ///         attr.cssClass
+    ///         attr.tpclass
+    ///
+    ///     used external:
+    ///         sconf.thickness
+    ///         studyMods[ SUB_MODEL ].mmedia
+    ///
     function pointies2line( pName, pivots, attr )
     {
-        var line = ssF.tr( pName );
+        attr = attr || {};
+        var tpclass = sDomF.topicIdUpperCase_2_underscore(
+                      ( ns.haz( attr, 'tpclass' ) ) || pName
+        );
+        var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
+        var stroke      = ns.ha( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
+        var strokeWidth = ns.ha( attr, 'stroke-width', 1 );
+        var line = ssF.toreg( pName )();
         line.svgel = sv.polyline({
-            svgel   : line.svgel,
-            stroke  : attr && attr.stroke,                    
+            svgel   : ns.haz( line, 'svgel' ),
+            stroke,
             parent  : studyMods[ SUB_MODEL ].mmedia,
             pivots  : [ pivots[0].medpos, pivots[1].medpos ],
-            'stroke-width' : ( attr && attr[ 'stroke-width' ] || 1 ) * sconf.thickness
+            'stroke-width' : strokeWidth * sconf.thickness, 
         });
-        var cssClass = ( attr && attr['cssClass'] && ( attr['cssClass'] + ' ' ) ) || '';
-
-        var tpclass = (( attr && ns.haz( attr, 'tpclass' ) ) || pName )
-                      .replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase() ));
         $$.$(line.svgel).cls( cssClass + 'tp-' + tpclass );
         return line;
     }
+    //==============================================
+    // \\// creates svg-line or updates it if exists
+    //==============================================
 
 
 
-    ///Adds DOM and decorations to pointRack.
-    ///Input: pName - name of namespace rack
-    ///       attrs - optional attributes
-    ///       point in rack must have coordinates in
-    ///       property "pos", this property must already exist
-    ///
-    ///Does:  main thing is adding coordinates conveted
+    //==============================================
+    // //\\ Adds DOM and decorations to pointRack
+    //==============================================
+    ///Input:
+    ///       required
+    ///         pName - name of namespace rack
+    ///         pos - point in rack must have these coordinates
+    ///       optional:
+    ///         ns.haz( pt, 'svgel' )
+    ///         attrs: see below: //optional attrs 
+    ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = modpos2medpos
     function pos2pointy( pName, attrs )
     {
+        attrs = attrs || {};
+        var tpclass = sDomF.topicIdUpperCase_2_underscore(
+                      ( ns.haz( attrs, 'tpclass' ) ) || pName
+        );
+        var cssClass    = ns.h( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
         //pt is a rack of namespace (plain JavaScript object)
-        var pt              = ssF.tr( pName );
+        var pt              = rg[ pName ];
         pt.medpos           = modpos2medpos( pt.pos );
-        pt.stroke           = attrs && attrs.stroke;
-        pt.fill             = attrs && attrs.fill;
+        //optional attrs
+        pt.stroke           = ns.ha( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
+        pt.fill             = ns.ha( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
+        var strokeWidth     = ns.ha( attrs, 'stroke-width', 0 );
+        var r               = ns.ha( attrs, 'r', 4 ) * sconf.thickness;
+                              //visible size of a dot on screen
         pt.svgel = sv.u({
-            svgel   : pt.svgel,
+            svgel   : ns.haz( pt, 'svgel' ),
             parent  : studyMods[ SUB_MODEL ].mmedia,
             type    : 'circle',
-            fill    : attrs && attrs.fill,
-            stroke  : attrs && attrs.stroke,
-            'stroke-width' : (( attrs && attrs[ 'stroke-width' ] ) || 0) * sconf.thickness,
+            fill    : pt.fill,
+            stroke  : pt.stroke,
+            'stroke-width' : strokeWidth * sconf.thickness,
             cx : pt.medpos[0],
             cy : pt.medpos[1],
-            //.defines visible size of a dot on screen
-            r : ( attrs && attrs.r || 4 ) * sconf.thickness
+            r,
         });
-        var cssClass = ( attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' ) ) || '';
-        //encripts capital letters as: A to _a
-        var tpclass = (( attrs && ns.haz( attrs, 'tpclass' ) ) || pName )
-                      .replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase() ));
         $$.$(pt.svgel).cls( cssClass + 'tp-' +  tpclass );
         return pt;
     }
+    //==============================================
+    // \\// Adds DOM and decorations to pointRack
+    //==============================================
 
 
 
@@ -145,10 +185,7 @@
         //triang.mediael = sv.polyline( svgarg );
         triang.svgel = sv.polyline( svgarg );
 
-        var tpclass = ( tpclass || triangleId )
-                    .replace( /([A-Z])/g, ( match, key1 ) => (
-                    '_' + key1.toLowerCase() ));
-
+        var tpclass = sDomF.topicIdUpperCase_2_underscore( tpclass || triangleId );
         cssCls = cssCls ? ' ' + cssCls : '';
         $$.$( triang.svgel ).cls( 'tofill' + cssCls + ' tp-' + tpclass );
     }

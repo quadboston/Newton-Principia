@@ -78,7 +78,7 @@
         createDragger_G();
         createDragger_AA();
         createDragger_H();
-        stdMod.initCommonDragModel( medD8D, css2media )
+        stdMod.addCommonSliders( medD8D, css2media )
         ns.globalCss.update(); //for decorator
         return;
 

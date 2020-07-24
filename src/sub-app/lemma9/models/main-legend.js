@@ -10,6 +10,7 @@
     var sconf   = sn('sconf',fconf);
 
     var sapp    = sn('sapp'); 
+    var sDomF   = sn('dfunctions',sapp);
     var sDomN   = sn('dnative',sapp);
 
     var ss      = sn('ss',fapp);
@@ -305,9 +306,7 @@
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
     {
         var tr = ssF.tr;
-        var cssName = mname.replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase()
-        ));
+        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
 
         var c$ = $$.c('td')
                    .html( mcaption||mname )

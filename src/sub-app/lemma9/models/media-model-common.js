@@ -28,6 +28,8 @@
     var modName     = 'mediaModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
+    var pointies2line;
+
     return;
 
 
@@ -40,6 +42,7 @@
     function setModule()
     {
         sn(SUB_MODEL, studyMods ).upcreateMedia = upcreateMedia;
+        pointies2line   = ssF.pointies2lineLL;
     }
 
 
@@ -309,25 +312,6 @@
         // \\// pos to pos
 
 
-
-        ///makes line
-        function pointies2line( pName, pivots, attr )
-        {
-            var line = tr( pName );
-            line.svgel = sv.polyline({
-                svgel   : line.svgel,
-                parent  : studyMods[ SUB_MODEL ].mmedia,
-                pivots  : [ pivots[0].medpos, pivots[1].medpos ],
-                'stroke-width' : ( attr && attr[ 'stroke-width' ] || 1 ) * sconf.thickness
-            });
-            var cssClass = attr && attr['cssClass'] && ( attr['cssClass'] + ' ' );
-            var cssName = pName.replace( /([A-Z])/g, ( match, key1 ) => (
-                          '_' + key1.toLowerCase() ));
-            $$.$(line.svgel).cls( cssClass + 'tp-' + cssName );
-        }
-
-
-
         ///converts model-pos and attributes to pointy
         function pos2pointy( pName, attrs )
         {
@@ -348,9 +332,7 @@
                 r : 4 * sconf.thickness
             });
             var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
-            var cssName = pName
-                .replace( /([A-Z])/g, ( match, key1 ) => (
-                          '_' + key1.toLowerCase() ));
+            var cssName = sDomF.topicIdUpperCase_2_underscore( pName );
             $$.$(pt.svgel).cls( cssClass + 'tp-' +  cssName );
             return pt;
         }

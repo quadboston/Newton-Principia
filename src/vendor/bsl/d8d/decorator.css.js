@@ -51,7 +51,10 @@
 
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
+
+            ////if dclass exists, apparently it constrains css to ownself
             dclass = dclass ? '.' + dclass : '';
+
             ret +=
             `
 

@@ -11,6 +11,7 @@
 
     var sapp    = sn('sapp'); 
     var sDomN   = sn('dnative',sapp);
+    var sDomF       = sn('dfunctions',sapp);
 
     var ss      = sn('ss',fapp);
     var ssD     = sn('ssData',ss);
@@ -367,9 +368,7 @@
         var tr = ssF.tr;
         //todm: ?no need for extra function argument:
         //      tp-tpCssName may be taken from "rg.Elem point wrap" ...
-        tpCssName = (tpCssName || mname ).replace( /([A-Z])/g, ( match, key1 ) => (
-                      '_' + key1.toLowerCase()
-        ));
+        tpCssName = sDomF.topicIdUpperCase_2_underscore( tpCssName || mname );
         var cells$ = [];
 
         if( mcaption !== ']no caption[' ) {

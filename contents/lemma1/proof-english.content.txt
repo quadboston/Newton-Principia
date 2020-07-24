@@ -2,6 +2,7 @@
 *::*proof|english
 { "dataLegend":"0",
   "submodel" : "",
+  "mediaBgImage" : "lemma1-proof.png",
   "menuCaption" : "English"
 }
 *..*

@@ -48,35 +48,20 @@
     function setModule()
     {
         stdMod = sn( SUB_MODEL, studyMods );
-        stdMod.initDragModel = initDragModel;
+        stdMod.initDragModel_additionalDragCreators = initDragModel_additionalDragCreators;
     }
 
 
     //==========================================
     // //\\ inits drag model
     //==========================================
-    function initDragModel()
+    function initDragModel_additionalDragCreators()
     {
-        ///======================================
-        /// sets framework
-        ///======================================
-        var medD8D = sn( SUB_MODEL, studyMods ).medD8D =
-        d8d_p.createFramework({
-            findDraggee                         : findDraggee,
-            dragSurface                         : sDomN.medRoot,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
-        });
-        //no need, done in media-model.js:  update_decPoint( decPoint )
-        //==========================================
-        //: sets drag points
-        //==========================================
-        sapp.readyToResize = true;
-        createDraggers_p( medD8D );
-        createDragger_m( medD8D );
-        stdMod.initCommonDragModel( medD8D, css2media )
-        ns.globalCss.update(); //for decorator
-    }; 
+        sapp.additionalDragCreators = [
+            createDraggers_p,
+            createDragger_m,
+        ];
+    };
     //==========================================
     // \\// inits drag model
     //==========================================
@@ -187,51 +172,6 @@
     // \\// slider m
     //============================================
 
-
-    //====================
-    // //\\ finds draggee
-    //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
-    ///
-    ///Returns: point drag Wrap
-    ///         which is closest to testPoint.
-    function findDraggee( point_on_dragSurf, dragWraps ) //, dragSurface )
-    {
-        var pOnS = point_on_dragSurf;
-        //.if distance to pOnS is "outside" of this par.,
-        //.then dragWrap is not "considered" for drag
-        var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
-
-        var closestDragWrap = null;
-        var closestTd = null;
-        //.the bigger is priority, the more "choicable" is the drag Wrap point
-        var closestDragPriority = 0;
-
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( pOnS );
-        var testMediaX = testMedpos[0];
-        var testMediaY = testMedpos[1];
-
-        dragWraps.forEach( function( dragWrap, dix ) {
-            var dragPoint   = dragWrap.pointWrap;
-            if( dragPoint.hideD8Dpoint ) return;
-            var tdX         = Math.abs( testMediaX - dragPoint.medpos[0] );
-            var tdY         = Math.abs( testMediaY - dragPoint.medpos[1] );
-            var td          = Math.max( tdX, tdY );
-
-            if( td <= DRAGGEE_HALF_SIZE ) {
-                if( !closestDragWrap || closestTd > td ||
-                    (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
-                    closestDragWrap = dragWrap;
-                    closestTd = td;
-                    closestDragPriority = dragPoint.dragPriority || 0;
-               }
-            }
-        });
-        return closestDragWrap;
-    }
-    //====================
-    // \\// finds draggee
-    //====================
 
     function css2media()
     {

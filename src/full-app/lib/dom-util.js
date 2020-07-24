@@ -89,6 +89,7 @@
                         }
                         capturedEl$ = $$.c( 'a' )
                             .a( 'href', '#' )
+                            .a( 'title', 'click to go to bookmark ' + pix )
                             .addClass( stateMark )
                             ///changes the state by click
                             .e( 'click', ()=> {
@@ -108,7 +109,11 @@
         };
         fapp.captureWind.openWindow = function()
         {
-            dom$.css( 'display', 'block' );
+            var top = sDomN.captureButton$.box().top - sDomN.topMediaControls$.box().top + 50;
+            dom$
+                .css( 'display', 'block' )
+                .css( 'top', top + 'px' )
+                ;
         };
         var dom$ = fapp.captureWind.dom$ = $$
             .c( 'textarea' )

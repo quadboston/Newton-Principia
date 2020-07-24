@@ -234,7 +234,6 @@
             innerMediaHeight    : pictureHeight,
             innerMediaWidth     : pictureWidth,
             thickness           : 1,
-            topicColorPerAnchor : !true,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -242,6 +241,7 @@
             //----------------------------------
             // //\\ scenario
             //----------------------------------
+            enableStudylab : true,
             hideProofSlider : true, //false,
             enableCapture : true,
             enableTools : true,

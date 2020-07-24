@@ -57,7 +57,8 @@
         ns.eachprop( studyMods, ( stdMod, modName ) => {
             stdMod.model8media_upcreate();
             stdMod.mmedia$.cls( 'submodel-' + modName );
-            stdMod.initDragModel();
+            stdMod.initDragModel_additionalDragCreators();
+            stdMod.initDragModel_base();
         });
         //======================================
         // \\// inits model and it's view

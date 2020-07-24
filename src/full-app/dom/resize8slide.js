@@ -104,7 +104,7 @@
         ///=============================================================================
         function doProcess( arg )
         {
-            var pL = pointWrap_local;
+            var pL = pointWrap_local; //keeps local ref to "official" pointWrap ... todm why?
             var pA = pL.achieved;
             switch( arg.down_move_up ) {
                 case 'up':
@@ -133,7 +133,9 @@
 
 
 
-
+        ///todo: the entire solution is exceptionally complex
+        ///      this must be a simple GUI-space-balancer-with-priorities,
+        ///           instead, it is a spagetty-logic and hard to reverse-engineer,
         ///=============================================================================
         /// //\\ restricts and sets super root and text pane sizes
         ///      used in resize and in master-dividor-slider
@@ -232,17 +234,23 @@
                 var medSupW = frac[1]/(frac[0]+frac[1])*ess8mod-10;
                 if( proposed_medSupW ) {
                     var medSupW = proposed_medSupW;
-                    var ESS_MIN_WIDTH = 200;
-                    medSupW = Math.min( ess8mod - ESS_MIN_WIDTH, medSupW );
-                    medSupW = Math.max( 200, medSupW ); //protects if ess8mod is too small
-                    if( !wideScreen ) {
-                        ////one more patch to count too wide legend
-                        medSupW = Math.max( legendWidth, medSupW );
-                    }
-                    medSupW = Math.max( medSupW, fconf.MODEL_MIN_WIDTH );
-                    var essayWidth = ess8mod - medSupW - 20;
                 }
-                //-------------------------------------------------
+
+                //---------------------------------------------------------------------
+                //todm: convoluted logic
+                // //\\ this block has been removed from if( proposed_medSupW ) {...
+                //---------------------------------------------------------------------
+                var ESS_MIN_WIDTH = 200;
+                medSupW = Math.min( ess8mod - ESS_MIN_WIDTH, medSupW );
+                medSupW = Math.max( 200, medSupW ); //protects if ess8mod is too small
+                if( !wideScreen ) {
+                    ////one more patch to count too wide legend
+                    medSupW = Math.max( legendWidth, medSupW );
+                }
+                medSupW = Math.max( medSupW, fconf.MODEL_MIN_WIDTH );
+                var essayWidth = ess8mod - medSupW - 20;
+                //---------------------------------------------------------------------
+                // \\// this block has been removed from if( proposed_medSupW ) {...
                 // \\// setting media super root
                 //-------------------------------------------------
 
@@ -262,6 +270,10 @@
                     var medRW = Math.min( medRW_, medRW );
                     if( !proposed_medSupW ) {
                         var medSupW = medRW + sconf.main_horizontal_dividor_width_px;
+
+                        //todm: convoluted logic
+                        medSupW = Math.max( legendWidth, medSupW );
+
                         var essayWidth = ess8mod - medSupW - 20;
                     }
                 }
@@ -318,7 +330,6 @@
                 .css( 'text-align', 'center' )
                 .css( 'vertical-align', 'top' )
                 ;
-
             sDomN.essaionsRoot$
                 .css( 'width',  essayW_str )
                 .css( 'height',  essayH_str )
@@ -386,10 +397,9 @@
             //ns.eachprop( studyMods, ( stdMod, modName ) => {
             //    stdMod.upcreate();
             //});
-
-            var aSub = amode['submodel'];
-            if( ns.h( amode, 'submodel' ) && aSub ) {
-                studyMods[ aSub ] && studyMods[ aSub ].upcreate();
+            var studyMod = ns.haz( studyMods, amode.submodel );
+            if( studyMod ) {
+                ns.haf( studyMod, 'upcreate' )();
             }
             //===============================================
             // \\// updated model and its view

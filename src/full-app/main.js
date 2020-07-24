@@ -4,9 +4,7 @@
     var $$          = ns.$$;
     var cssp        = ns.CSS_PREFIX;
     var sn          = ns.sn;
-    var rootvm      = sn('rootvm');
     var cssmods     = sn('cssModules');
-    var dpdec       = ns.sn('drag-point-decorator');
     var html        = sn('html');
 
     var nsmethods   = sn('methods');
@@ -21,14 +19,11 @@
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative', sapp);
 
-    var srg         = sn('sapprg', fapp ); 
     //:nearly a patch
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var cssmod      = sn('ssCssModules',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
 
 
 
@@ -51,10 +46,7 @@
     //======================================================
     // \\// establishes landing-start-state
     //======================================================
-    document.addEventListener( "DOMContentLoaded", initConfiguration );
-
-    ssF.tr = tr;
-    ssF.tp = tp;
+    document.addEventListener( "DOMContentLoaded", home8lemmas__config8spawn );
     return;
 
 
@@ -64,257 +56,169 @@
 
 
 
-
-
-    //=========================================================
-    // //\\ inits full app
-    //=========================================================
-    function initConfiguration() 
+    //***********************************************
+    // //\\ begins establish home and lemmas
+    //***********************************************
+    function home8lemmas__config8spawn() 
     {
+        //=========================
+        // //\\ home8lemmas
+        //=========================
         ns.url2conf( fconf );
-        fconf.sappId = fconf.sappId || 'home-pane';
-        sapp.siteCaptionHTML = fconf.siteCaptionHTML;
-        sapp.siteCaptionPlain = fconf.siteCaptionPlain;
-        document.title = sapp.siteCaptionPlain;
+        fconf.sappId            = fconf.sappId || 'home-pane';
+        sapp.siteCaptionHTML    = fconf.siteCaptionHTML;
+        sapp.siteCaptionPlain   = fconf.siteCaptionPlain;
+        document.title          = sapp.siteCaptionPlain;
 
-        cssmods.initHomePageCSS(cssp, fconf);
+        cssmods.initHomePageCSS( cssp, fconf );
         html.buildCommonHTMLBody();
-        //fapp.fappRoot$.id( fconf.sappId === 'home-pane' ?  'home-pane' : 'lemma' );
         html.buildHomePage();
 
-        config8run_subappModules();
-    }
-    //=========================================================
-    // \\// inits full app
-    //=========================================================
+        //: spawns lemmaConfig
+        var lemmaConfig         = fconf.sappModulesList[ fconf.sappId ];
+        sapp.siteCaptionHTML    = lemmaConfig.caption;
+        sapp.siteCaptionPlain   = lemmaConfig.caption;
+        sapp.ix                 = lemmaConfig.ix; 
+        //=========================
+        // \\// home8lemmas
+        //=========================
 
-
-
-
-    //=========================================================
-    // //\\  establishes configuration, loads sub-app scripts
-    //=========================================================
-    function config8run_subappModules()
-    {
-        //==============================
-        // //\\ configure subapp modules
-        //==============================
-        var lemmaConfig = fconf.sappModulesList[ fconf.sappId ];
-        sapp.siteCaptionHTML = lemmaConfig.caption;
-        sapp.siteCaptionPlain = lemmaConfig.caption;
-        sapp.ix = lemmaConfig.ix; 
-
-        //------------------------------------------------
-        // //\\ prepares sub-application-source-code-files
-        //------------------------------------------------
-        //      list for load
-        //.makes common path
-        var effectiveId = lemmaConfig.sappCodeReference || lemmaConfig.sappId;
-        var codesList = lemmaConfig.codesList || [];
-        codesList.forEach( function( codeItem ) {
-            codeItem.src = "src/sub-app/" + effectiveId + "/" + codeItem.src;
-        });
-        //------------------------------------------------
-        // \\// prepares sub-application-source-code-files
-        // \\// configure subapp modules
-        //==============================
-
-
-        //=======================================
-        // //\\ loads and executes subapp modules
-        //=======================================
+        //=========================
+        // //\\ home
+        //=========================
         if( fconf.sappId === 'home-pane' ) {
-            loads_and_preparses_book();
-        } else {
-            nsmethods.loadScripts(
-                codesList,
-                function()
-                {
-                    ////executes loaded modules from modules registry
-                    ////after all scripts have been loaded
-                    ns.eachprop( srg_modules, function( module ) {
-                        module();
-                    });
-                    ssF.init_conf(); //todo must be before contributor scripts 
-                    //ns.url2conf( fconf ); //overrides subapp conf again
-                    ns.url2conf( sconf );   //overrides subapp conf again
-                    loads_and_preparses_book();
-                }
-            );
+            landingFlag_8_nextLemmaButtons();
+            sDomN.homeButton$().click();
+            return;
         }
-        //=======================================
-        // \\// loads and executes subapp modules
-        //=======================================
+        //=========================
+        // \\// home
+        //=========================
+
+        //=========================
+        // //\\ lemmas
+        //=========================
+        config8run_lemmaModules( lemmaConfig );
+        //=========================
+        // \\// lemmas
+        //=========================
     }
-    //=========================================================
-    // \\//  establishes configuration, loads sub-app scripts
-    //=========================================================
 
-
-
-
-    //=========================================================
-    // //\\ continues lemma after sources
-    //=========================================================
-    function loads_and_preparses_book()
+    function landingFlag_8_nextLemmaButtons()
     {
-        //=======================================
-        // //\\ gets content texts and continues
-        //=======================================
-        if( fconf.sappId === 'home-pane' ) {
-            subappCore_after_contentsLoad();
-        } else {
-            sDomF.bookfiles_to_exegesisBodies( function() {
-                    //=======================================
-                    // //\\ html and css
-                    //=======================================
-                    cssmods.initSiteWideCSS(cssp, fconf);
-                    sn('ssCssOrder',ss).list.forEach( function( cssName ) {
-                        ns.globalCss.upqueue( cssmod[cssName]( cssp, fconf ) );
-                    });
-                    //=======================================
-                    // \\// html and css
-                    //=======================================
-                    subappCore_after_contentsLoad();
-            });
-        }
-        //=======================================
-        // \\// gets content texts and continues
-        //=======================================
-    }
-    //=========================================================
-    // \\// continues lemma after sources
-    //=========================================================
-
-
-
-
-
-
-    //=======================================
-    // //\\ starts subapp core
-    //=======================================
-    function subappCore_after_contentsLoad()
-    {
-        if( fconf.sappId !== 'home-pane' ) {
-
-            ////perhaps this is a cause of random failed load bug: ...
-            ////the body which follows below can be put in cb for image-loader-ajax
-            fmethods.createLemmaDom( bgImagesAreLoaded );
-        } else {
-            bgImagesAreLoaded();
-        }
-
-        function bgImagesAreLoaded()
-        {
-
-            if( fconf.sappId !== 'home-pane' ) {
-
-                //-------------------------------------
-                // //\\ book load final part
-                //-------------------------------------
-                sDomF.exeg_2_frags(); //to active-areas
-                sDomF.frags_2_essdom8topiccss();
-                //-------------------------------------
-                // \\// book load final part
-                //-------------------------------------
-
-
-                sapp.init_sapp();
-                sDomF.populateMenu();
-                sapp.finish_sapp_UI && sapp.finish_sapp_UI();
-
-                sapp.isInitialized = true;
-                fmethods.setupEvents();
-
-                ///.this is a patch: the cause and real solution is not known;
-                ///.and it still does not work for l2,3
-                ///
-                ///.this timeout is vital: it allows to hovering-arrows to get to their
-                ///.place: othewise, the img.style.top for draggee is wrong which
-                ///.moves arrows to the top edge of media which is wrong
-                ///.the value of timeout seems also vital for l9
-                //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
-                setTimeout( fmethods.fullResize, 500 );
-                fmethods.setupCapturerEvents();
-            }
-            //sDomN.captionHTML$.html( sapp.siteCaptionHTML );
-            remove_landing_state_from_top_html();
-            fmethods.setupSiteWideEvents();
-            //ccc( 'end of main proc' );
-            //setTimeout( fmethods.fullResize, 1000 );
-            //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
-            //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
-
-            if( fconf.sappId === 'home-pane' ) {
-                sDomN.homeButton$().click();
-            }
-        }
-    }
-    //=======================================
-    // \\// starts subapp core
-    //=======================================
-
-
-
-
-
-
-    // //\\// helpers
-
-    //===========================================
-    // //\\ removes landing-start-state
-    //===========================================
-    function remove_landing_state_from_top_html()
-    {
+        //--------------------------------------------
+        // //\\ remove_landing_state_from_top_html();
+        //--------------------------------------------
         //.todmm ... why without 1s transition the
         //.landing flickers?
         //.todm ... use regEx to cooperate with
         //.other frameworks on html-element
         var de = document.documentElement;
-        de.className = de.className.replace(
-                       'non-loaded', '' );
+        de.className = de.className.replace( 'non-loaded', '' );
+        //--------------------------------------------
+        // \\// remove_landing_state_from_top_html();
+        //--------------------------------------------
+        fmethods.does_set_next_lemma_button_event( 'right' );
+        fmethods.does_set_next_lemma_button_event( 'left' );
+
+        //ccc( 'end of main proc' );
+        //setTimeout( fmethods.fullResize, 1000 );
+        //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
+        //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
     }
-    //===========================================
-    // \\// removes landing-start-state
-    //===========================================
+    //***********************************************
+    // \\// begins establish home and lemmas
+    //***********************************************
 
 
-    ///================================================
-    /// //\\ does registry initiation or overriding job.
-    ///================================================
-    /// Purpose: to prevent unit's duplication.
-    /// If no rg[id] exists, then creates empty rg[id].
-    /// Then
-    ///     If no key is supplied.
-    ///         Returns rg[id].
-    ///     If key is supplied:
-    ///         Sets rg[ id ][ key ] = val
-    ///         Returns val.
-    function tr( id, key, val )
+
+
+    //***********************************************
+    // //\\ establishes lemmas
+    //***********************************************
+    function config8run_lemmaModules( lemmaConfig )
     {
-        rg[ id ] = rg.hasOwnProperty( id ) ? rg[ id ] : {};
-        if( key ) { rg[ id ][ key ] = val; }
-        return key ? val : rg[ id ];
+        //------------------------------------------------
+        // //\\ prepares sub-application-source-code-files
+        //------------------------------------------------
+        //.makes common path to folder of files
+        var effectiveId     = lemmaConfig.sappCodeReference || lemmaConfig.sappId;
+        var codesList       = lemmaConfig.codesList || [];
+        codesList.forEach( function( codeItem ) {
+            codeItem.src = "src/sub-app/" + effectiveId + "/" + codeItem.src;
+        });
+        //------------------------------------------------
+        // \\// prepares sub-application-source-code-files
+        //------------------------------------------------
+
+
+        nsmethods.loadScripts(
+            codesList,
+            function()
+            {
+                ////executes loaded modules from modules registry
+                ////after all scripts have been loaded
+                ns.eachprop( srg_modules, function( module ) {
+                    module();
+                });
+                ssF.init_conf(); //todo must be before contributor scripts 
+                //alternative: ns.url2conf( fconf ); //overrides subapp conf again
+                ns.url2conf( sconf );   //overrides subapp conf again
+
+                sDomF.load_scenario__list8refs8conf( function() {
+                        //=======================================
+                        // //\\ html and css
+                        //=======================================
+                        //todm: unclear: which part of content
+                        //      this sesction uses, why not full content? ...
+                        cssmods.initSiteWideCSS( cssp, fconf );
+                        sn('ssCssOrder',ss).list.forEach( function( cssName ) {
+                            ns.globalCss.upqueue( cssmod[cssName]( cssp, fconf ) );
+                        });
+                        //=======================================
+                        // \\// html and css
+                        //=======================================
+
+                        ////perhaps this is a cause of random failed load bug: ...
+                        ////the body which follows below can be put in cb for image-loader-ajax
+                        fmethods.lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot(
+                            ///this callback goes to final event of loading all media-bg-images:
+                            () => {
+                                exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture();
+                                landingFlag_8_nextLemmaButtons();
+                            }
+                        );
+                });
+            }
+        );
     }
-    ///================================================
-    /// \\// does registry initiation or overriding job.
-    ///================================================
 
+    function exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture()
+    {
+        sDomF.exegs_2_frags(); //to active-areas
+        sDomF.frags__2__dom_css_mjax_tpanchors();
 
-    ///================================================
-    /// //\\ to position
-    ///      sugar: sets rg[ id ][pos] = val
-    ///================================================
-    ///Sets rg[ id ][pos] = val
-    ///If rg[ id ] does not exist, then creates it.
-    function tp( id, val ) { return tr( id, 'pos', val ); }
-    ///================================================
-    /// \\// to position
-    ///================================================
+        sapp.init_sapp();
+        sDomF.populateMenu();
+        ns.haf( sapp, 'finish_sapp_UI' )(); 
 
+        sapp.isInitialized = true;
+        fmethods.setupEvents();
 
-
+        ///.this is a patch: the cause and real solution is not known;
+        ///.and it still does not work for l2,3
+        ///
+        ///.this timeout is vital: it allows to hovering-arrows to get to their
+        ///.place: othewise, the img.style.top for draggee is wrong which
+        ///.moves arrows to the top edge of media which is wrong
+        ///.the value of timeout seems also vital for l9
+        //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
+        setTimeout( fmethods.fullResize, 500 );
+        fmethods.setupCapturerEvents();
+    }
+    //***********************************************
+    // \\// establishes lemmas
+    //***********************************************
 
 
 }) ();

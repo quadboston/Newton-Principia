@@ -1,0 +1,366 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin",
+  "fixed-colors" :
+  {
+    "both-curves" : [100,     0, 150,  1],
+
+    "given"     : [0,     150, 0,      1],
+    "curve-AB"  : [0,     150, 0,      1],
+    "line-Ad"   : [0,     150, 0,      1],
+    "A"         : [0,     150, 0,      1],
+    "B"         : [0,     150, 0,      1],
+    "angle-RAD" : [0,     150, 0,      1],
+    "line-Ar"   : [0,     150, 0,      1],
+    "line-AB"   : [0,     150, 0,      1],
+
+    "proof"     : [0,     0,   255,    1],
+    "line-rd"   : [0,     0,   255,    1],
+    "line-Ab"   : [0,     0,   255,    1],
+    "curve-Ab"  : [0,     0,   255,    1],
+    "b"         : [0,     0,   255,    1],
+    "d"         : [0,     0,   255,    1],
+
+    "result"    : [200,   40,  0,      1],
+    "L"         : [200,   40,  0,      1],
+    "line-AL"   : [200,   40,  0,      1],
+    "hidden"    : [0,     0,   0,      0]
+  }
+}
+*..*
+
+<img src="contents/b1sec1lemma6/img/b1s1l6-3rded.png" style="width:100%">
+
+    <span style="font-size:10px;">
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
+             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
+             Latin. Sectio I. Lemma VI.
+             License: public domain.
+        </a>
+    </span>
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+If any arc ¦curve-AB¦ACB¦¦, given in position, is subtended by its chord ¦line-AB¦AB¦¦,
+and in any point
+¦A¦A¦¦, in the middle of the continued curvature, is touched by a ¦line-Ad¦right line AD¦¦, produced both ways; then if the points ¦A¦A¦¦ and ¦B¦B¦¦
+
+ <span class="captured-reference id-true-convergence-1">approach one another</span>
+
+ <span class="captured-reference id-meet">and meet</span>,
+
+I say, ¦line-AB line-Ad¦the angle BAD¦¦, contained between,
+the chord and the tangent, will be diminished in infinitum, and ultimately will vanish.
+
+<br><br>
+<span class="captured-reference id-reset-to-origin" style="font-size:12px;">
+Reset diagram to origin</span>
+<br><br>
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+
+*::*proof|latin
+
+<img src="contents/b1sec1lemma6/img/b1s1l6-3rded.png" style="width:100%">
+
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
+             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
+             Latin. Sectio IV. Lemma V.
+             License: public domain.
+        </a>
+
+
+
+
+
+
+
+*::*proof|english
+{
+  "xxxxdefault" : "1"
+}
+*..*
+
+    For if that angle
+
+    <span class="captured-reference id-reset-to-origin">
+    does not vanish</span>, 
+
+    the arc ¦curve-AB¦ACB¦¦ will contain with the
+
+    tangent ¦line-Ad¦AD¦¦ an angle equal to a ¦line-AL line-Ad¦rectilinear angle¦¦; and
+    therefore the curvature at the point ¦A¦A¦¦ will not be continued,
+    which is against the supposition.
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+
+
+*::*claim|model
+{
+  "xxxx    non-compatible-with-studylab    default" : "1",
+  "xxxx    s tudylab" : true,
+  "menuCaption" : "Model"
+}
+*..*
+
+We call right-side line ¦line-Ad¦Ad¦¦ "Euclidian-tangent".<br>
+Line ¦line-AL¦AL¦¦, which will be is a limit of chords, is called "Converged-tangent".<br><br>
+
+<b>Euclid and Newton axioms, definitions, and assumptions for Euclidian-tangent are:<br><br></b>
+
+<ol>
+<li>
+    definition: tangent has only one point with the curve
+</li>
+<li>
+   assumption: when curve's curvature at point ¦A¦A¦¦ is continuous, then
+   there is no non-zero rightlinear angle between tangent and and the curve.
+   <br><br>
+
+   Requirement "continuous curvature"
+   ( in modern sense, as a derivative of tangent direction )
+   is excessive for the purpose of lemma, and should instead mean
+   "continous tangnent direction" and probably
+   means this in the original text
+   <br><br>
+
+   This assumption is proven for circle (EI.16) and may be proven for conics by using this
+   schema: <br><br>
+   for projection of circle into conic cut:<br><br>
+    <ul>
+        <li>rightline goes to rightline,</li>
+        <li>line crosses point goes to line crosses,</li>
+        <li>sequence of points on lines is preserved,</li>
+        <li>betweenness is preserved,</li>
+        <li>which completes the proof<,</li>
+    </ul><br><br>
+
+   We don't know is this assumption proven for non-conics in the Book, and it can be
+   considered as a starting axiom, depending on chosen Geometry framwork.
+
+</li>
+</ol>
+<br><br>
+
+<b>Newton axioms, definitions, and assumptions for "Converged-tangent" are:</b>
+<br><br>
+
+<ol>
+<li>
+   Assumption: <br>
+   chords do converge <br>
+   (at least for curves considered in the Book)
+</li>
+
+
+<li>
+   lemma is itself a Converged-tangent definition ( or construction of such ),
+   and is informal attempt to prove it is equal to Euclidian-tangent. <br><br>
+
+   For "monotonic chords", (monotonic sequence of points b for
+   some neighbourhood of point A) existence of
+   ¦L¦limit L¦¦ is equivalent to Dedekind/Cantor continuity axiom for Geometry.
+</li>
+<br><br>
+
+<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+
+
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Model",
+  "xxxx studylab" : true
+}
+*..*
+
+
+This model follows Newton's proof with more details. Pattern of proof is "ad absurdum".<br><br>
+
+<b>"Proof"</b><br><br>
+
+  Inside the angle ¦angle-_r_a_d¦RAD¦¦, let's draw an arbitrary right line ¦line-rd¦rd¦¦ crossing lines ¦line-Ad¦AD¦¦ and ¦line-Ar¦AR¦¦ not in point ¦A¦A¦¦.
+  <br><br>
+
+  ¦both-curves css-no-color-to-shapes¦Curves AB and Ab¦¦ are proportional with ratio ¦line-AB¦AB¦¦/¦line-Ab¦Ab¦¦.
+  <br><br>
+ 
+  <span class="captured-reference id-reset-to-origin">Suppose</span>
+
+  when points ¦B¦B¦¦ move closer to point ¦A¦A¦¦,
+  the points ¦b¦b¦¦ have upper bound
+  ¦L¦L¦¦ on ¦line-rd¦line rd¦¦.
+  <br><br>
+
+  But when point ¦B¦B¦¦ moves
+
+    <span class="captured-reference id-closer">closer</span>
+
+    to ¦A¦A¦¦, the ¦curve-Ab¦curve Ab¦¦ becomes (flatten and)
+
+    <span class="captured-reference id-more-closer">closer</span>
+
+    to ¦line-Ab¦Ab¦¦ and ultimately cannot lie above any line above ¦line-AL¦AL¦¦.
+    <br>
+    This is actually an assumption based in intuition and cannot be considered as a rigid proof.
+    <br><br>
+
+    Therefore any rectilinear angle between ¦line-AL¦AL¦¦ and
+    ¦line-Ad¦Ad¦¦ lies above curves ¦curve-Ab¦Ab¦¦.
+    ¦curve-AB¦Curve AB¦¦ lies below ¦curve-Ab¦curves Ab¦¦
+    which is against the supposition.
+    <br><br>
+
+    In other words, the lemma claims that
+    <span class="captured-reference id-L-equal-d"> ¦L¦L¦¦ = ¦d¦d¦¦ </span>.
+
+</ol>
+
+
+<br><br>
+<span class="captured-reference id-reset-to-origin" style="font-size:12px;">
+Reset diagram to origin</span>
+<br><br>
+
+<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+
+
+
+*:::*:::*
+
+{
+    "reset-to-origin": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+
+    "L-equal-d": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+    "closer": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.5658328716632559
+                }
+            }
+        }
+    },
+
+    "more-closer": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.10102343776498918
+                }
+            }
+        }
+    },
+
+
+    "true-convergence-1": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.5232929802797621
+                }
+            }
+        }
+    },
+
+    "meet": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.001
+                }
+            }
+        }
+    }
+
+}
+
+
