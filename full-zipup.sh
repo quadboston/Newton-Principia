@@ -7,6 +7,6 @@
 #**************************************************
 
 cd ..
-Newton-Principia/deploy/zipify.php Newton-Principia addgit
+np/deploy/zipify.php np addgit
 
 

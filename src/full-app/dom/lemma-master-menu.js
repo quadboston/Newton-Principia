@@ -42,10 +42,9 @@
 
     sDomF.populateMenu          = populateMenu;
     sDomF.selectMenu            = selectMenu;
+    //sDomF.do_select_leaf        = do_select_leaf;
     sDomF.build_menu_top_leafs_placeholders = build_menu_top_leafs_placeholders;
-    //00000000000000000000000000000000000000
     return;
-    //00000000000000000000000000000000000000
 
 
 
@@ -58,10 +57,10 @@
     // //\\ populate menu
     //      creates menu from config list
     //====================================
-    function populateMenu()
+    function populateMenu( modelOnly )
     {
         ns.eachprop( sconf.submenus, function( submenus, teaf_id ) {
-            build_teaf( teaf_id, submenus );
+            build_teaf( teaf_id, submenus, modelOnly );
         });
     }
     //====================================
@@ -102,7 +101,7 @@
     // //\\ sets menu top leaf
     //====================================
     //Input: menuTeafRack - contains list = array of items in submenu
-    function build_teaf( teaf_id, menuTeafRack )
+    function build_teaf( teaf_id, menuTeafRack, modelOnly )
     {
         var leafRks = {};
         var teaf$   = sDomN.teafs$[ teaf_id ];
@@ -230,13 +229,10 @@
             li$.addClass( 'studylab' );
         }
 
-        //if( leaf_id === 'model' )
-        //    ccc( 'leafRk=', leafRk, 'teaf$=', teaf$(), 'shape litem=', li$() );
+        if( menuTeafRack['default'] === leaf_id  ) {
+            //ccc( 'there must be two def: menuTeafRack = ', menuTeafRack );
+            do_select_leaf( leafRk, !!'will upcreate later' );
 
-        if( menuTeafRack['default'] === leaf_id ) {
-            ////at the moment of this version which is 1516,
-            ////mdefault is preset in esseyion-header like "proof|English"
-            do_select_leaf( leafRk );
         }
     }
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
@@ -248,9 +244,9 @@
 
 
     //---------------------------
-    // //\\ processes menu change
+    // //\\ does select menu-leaf
     //---------------------------
-    function do_select_leaf( leafRk )
+    function do_select_leaf( leafRk, no_subapp_upcreate )
     {
         var leaf_id     =leafRk.leaf_id;
         var teaf_id     =leafRk.teaf_id;
@@ -262,8 +258,9 @@
         var decorOfShuttle$=leafRk.decorOfShuttle$;
         var decorationsContainer$ = leafRk.decorationsContainer$;
 
-        ////selecting menu leaf: teaf_id + ' ' + leaf_id
-        if( amode[ teaf_id ] === leaf_id ) return; //click is idempotent
+        //todm: with this lemma 2 looks bad ... why? ... missed resize?
+        //if( amode[ teaf_id ] === leaf_id ) return; //click is idempotent
+
 
         ( function () {
             //==================================================
@@ -277,8 +274,10 @@
                 lrs[ mitem.id ] &&  //todm do without a check
                     lrs[ mitem.id ].li$.removeClass( 'chosen' );
             });
-            ww$.addClass(teaf_id + '--' + leaf_id);
+            var wwcls = teaf_id + '--' + leaf_id;
+            ww$.addClass( wwcls );
             leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag
+            //c cc( 'setting chosen menu tab class = ' + wwcls);
             //==================================================
             // \\// updates menu mode in CSS classes
             //==================================================
@@ -345,9 +344,12 @@
             amode['submodel'] = rtRk.essayHeader.submodel;
             fmethods.spawnVideoList && fmethods.spawnVideoList();
             sDomN.bgImage$ = rtRk.imgRk.dom$;
+            //c cc( 'does select menu-leaf: image is set in menu', sDomN.bgImage$ );
         }
-        //.menu work for special subapp
-        ns.haf( ss, 'menuExtraWork' )( teaf_id, leaf_id );
+        if( !no_subapp_upcreate ) {
+            //.menu work for special subapp
+            ns.haf( ss, 'menuExtraWork' )( teaf_id, leaf_id );
+        }
         //==================================================
         // \\// updates app and ...
         //==================================================
@@ -372,16 +374,25 @@
                 }
             }
         }
-        if( sapp.readyToResize ) { 
-            //.includes sapp.up-create();
-            fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
+        if( sapp.readyToResize && !no_subapp_upcreate ) {
+            //c cc( 'menu is just selected: setting amode 4 model8media' );
+
+            //we need to run "media" updater because we need to update
+            //archived, "sleeping", d8d past values,
+            //todm ... instead the solution of updating them at "down" event
+            //         will be more elagant and cause less fuss,
+            ns.haf( ssF, 'amode_4_model8media' )( 'model', 'media' );
+
+            //.todm code prolifiration ... model runs twice?
+            fmethods.finish_Media8Ess8Legend_resize__upcreate(
+                null, null, !!'doDividorSynch');
         }
         //==================================================
         // \\// hides or shows image and legend
         //==================================================
     }
     //---------------------------
-    // \\// processes menu change
+    // \\// does select menu-leaf
     //---------------------------
 
 

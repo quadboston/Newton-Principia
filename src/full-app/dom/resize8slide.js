@@ -16,6 +16,9 @@
     var studyMods   = sn('studyMods', sapp);
     var amode       = sn('mode',sapp);
 
+    //var ss          = sn('ss', fapp);
+    //var ssF         = sn('ssFunctions',ss);
+
     var d8d_p       = sn('d8d-point',fmethods);
     fmethods.createDividorResizer = createDividorResizer;
     return;
@@ -88,7 +91,7 @@
         // \\// drag Wrap is a top level point which
         //============================================================
 
-        fmethods.finish_Media8Ess8Legend_resize = finish_Media8Ess8Legend_resize;
+        fmethods.finish_Media8Ess8Legend_resize__upcreate = finish_Media8Ess8Legend_resize__upcreate;
         return;
 
 
@@ -110,14 +113,14 @@
                 case 'up':
                 case 'move':
                     //"drags in opposite direction" ... so "-move" is below:
-                    var newSuperW = finish_Media8Ess8Legend_resize(
+                    var newSuperW = finish_Media8Ess8Legend_resize__upcreate(
                         pA.achieved - arg.surfMove[0]
                     );
                     //pL.achieved_at_move = newSuperW;
                     if( arg.down_move_up === 'up' ) {
                         pA.achieved = newSuperW; //pL.achieved_at_move;
                         //todo ... no dice ... jerks
-                        //fmethods.finish_Media8Ess8Legend_resize(
+                        //fmethods.finish_Media8Ess8Legend_resize__upcreate(
                         //    newSuperW, !'rootW', !!'doDividorSynch'
                         //);
                     }
@@ -140,7 +143,8 @@
         /// //\\ restricts and sets super root and text pane sizes
         ///      used in resize and in master-dividor-slider
         ///=============================================================================
-        function finish_Media8Ess8Legend_resize( proposed_medSupW, rootW, doDividorSynch )
+        function finish_Media8Ess8Legend_resize__upcreate(
+                 proposed_medSupW, rootW, doDividorSynch )
         {
             var isMobile = ns.widthThresholds
                            [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();

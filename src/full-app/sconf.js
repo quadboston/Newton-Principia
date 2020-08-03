@@ -17,6 +17,16 @@
         mediaDefaultWidthPercent : 40,          //in respect to total width
         MINIMAL_MEDIA_CONTAINER_WIDTH : 350,    //todm approximate
         main_horizontal_dividor_width_px : 21,
+
+        //topics:
+        DEFAULT_TP_SATUR : 99,
+        DEFAULT_TP_OPACITY : 0.6,
+
+        //:this solution is not good:
+        //:some lemmas need bright red, but
+        //:bright green text is hard to read ...
+        //:so we resort to dark color LIGHT = 30
+        DEFAULT_TP_LIGHT : 30,
     };
     //====================================================
     // \\// optionally overriden by url-query-config

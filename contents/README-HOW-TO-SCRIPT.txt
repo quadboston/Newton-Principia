@@ -9,15 +9,17 @@ This is an artifact from the past.)
 
 
 
+
+
 Essays structure
 ================
 
-    In program, essay is called "fragment" ( of all-essays ), or "exegesis", or "exeg".
+    In program, essay is called "exegesis", or "exeg".
 
     Essays differ with their purpose: claim, proof, in-English, Model, ...
 
     Math-category of exeg is called "theorion". It can have values: claim, proof, ...
-    Writing-category if exeg is called "aspect". It can have values: English, Latin, Model, ...
+    Writing-category of exeg is called "aspect". It can have values: English, Latin, Model, ...
 
     Each essay is indexed with pair of categories: math-category/writing-category.
     For example, claim/English or proof/lite.
@@ -28,14 +30,20 @@ Essays structure
         *..*
         <exegesis body>
 
-    The <exegesis body> is comprised of activity-areas.
+    The <exegesis body> is comprised of activity-areas called fragments or active-fragments.
+
     Activity areas contain either activity-json or exeg's content.
+
+    Activity areas are separated with character "¿".
+
+    If activity-area begins with character "?", then it is "activity-json which
+    is writtne in JSON format.
+    If no character "?" is present at the beginning of activity-area, then
+    it is a exeg's content.
+
     Exegs's content is comprised with topic-anchors, and content-text between them.
 
-    Activity-json is indicated with "?" at the beginning.
-
-        ¿       ( separates active areas )
-        ¦       ( separates topic-anchors, this is not ASCII "|" char )
+    Character "¦" separates topic-anchors. This is not ASCII "|" char.
     
     The content-text is a mix of LaTeX text and HTML.
     Between HTML tags, there is an ordinary text which can have any characters except,
@@ -56,9 +64,13 @@ Essays structure
         ¿
         ...
     Active area is simply a JSON key/value text where effect of key must be defined in JavaScript code.
+        The key 'static' is reserved ( for non-JSON content ).
+
 
 references.html,
     if provided, sets common footer for all exegs.
+
+
 
 
 
@@ -72,6 +84,9 @@ references.html,
           "dataLegend":"0",
           "mediaBgImage" : null,
           "submodel" : "limit-definition",
+
+          "adding-any-new-key-to-this-JSON-does-not-affect-other-key-pairs-functionality. Like adding this key." : "This keypair is just a comment",
+
           "default" : "0",
           "menuCaption" : "XIX Century"
         }

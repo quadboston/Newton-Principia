@@ -102,11 +102,16 @@
         var tplink_ix = tplink.tplink_ix;
         var tpIDs = Object.keys( tplink.tpid2true );
 
-        if( tpIDs.length > 1 ) {
+        var ww = ns.haz( tplink, 'fixed-color' );
+        if( ww ) {
+            var { rgba_low, rgba_high } = sDomF.colorArray_2_rgba( ww );
+
+        } else if( tpIDs.length > 1 ) {
             ////tplink which comprised of more than one topics,
             ////defines color for tplink
             var rgba_low = 'rgba( 150, 0, 150, 0.7 )';
             var rgba_high = 'rgba( 150, 0, 150, 1 )';
+
         } else {
             //.gets first shape id
             var topi_c = topics.id2topic[ tpIDs[0] ];
@@ -138,7 +143,7 @@
 
 
 
-
+    ///does this for media, not for anchors
     function prepares__highlighting_CSS({
         tplink, tpid2cssColor, tpid2opac, tplink_ix,
     }) {

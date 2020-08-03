@@ -19,6 +19,23 @@
 <img src="contents/b1s2prop1theor1/img/latin.png" style="width:100%">
 
 
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338113">
+             From 3rd Edition.
+             Latin. Sectio II. De inventione virium centripetarum.
+             License: public domain.
+        </a>
+
+
+
+
+
+
+
+
 
 *::*claim|english
 {
@@ -26,17 +43,52 @@
 }
 *..*
 
-to be entered
+SECTION II. Of the Invention of Centripetal Forces.
+PROPOSITION I. THEOREM 1.
+<br><br>
+
+The areas, which revolving bodies describe by radii drawn to an immovable centre of force do lie in the same immovable planes, and are proportional to the times in which they are described.
+
+
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+<br><br>
+
+
 
 *::*proof|latin
 
 <img src="contents/b1s2prop1theor1/img/latin.png" style="width:100%">
 
 
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338113">
+             From 3rd Edition.
+             Latin. Sectio II. De inventione virium centripetarum.
+             License: public domain.
+        </a>
+
+
+
+
+
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Lite"
 }
 *..*
@@ -44,9 +96,125 @@ to be entered
 to be entered
 
 
+
+
+
+
+
+
+
 *::*proof|english
 
-to be entered
+For suppose the time to be divided into equal parts, and in the first part
+of that time let the body by its innate force describe the right line AB
+In the second part of that time, the same would (by Law I.), if not hindered,
+procee[d] directly to c, alo[ng] the line Be equal to AB ; so that by the radii AS, BS, cS,
+
+draw[n] to the centre, the equal areas ASB, BSc, would be described.
+
+<br><br>
+
+But when the body
+is arrived at B, suppose
+that a centripetal force acts at once with a great im
+pulse, and, turning aside the
+body from the right line Be,
+compels it afterwards to con
+tinue its motion along the
+right line BC. Draw cC
+parallel to BS meeting BC
+in C ; and at the end of the
+second part of the time, the
+body (by Cor. I. of the Laws)
+will be found in C, in the same plane with the triangle
+A SB. Join SC, and, because s SB and Cc are parallel, the triangle SBC will be equal to the triangle SBc,
+and therefore also to the triangle SAB.
+<br><br>
+
+By the like argument, if the
+centripetal force acts successively in C, D, E. &amp;c., and makes the body, in
+each single particle of time, to describe the right lines CD, DE, EF7 &amp;c.,
+they will all lie in the same plane : and the triangle SCD will be equal to the triangle SBC, and SDE to SCD, and SEF to SDE.
+<br><br>
+
+And therefore, in equal times, equal areas are described in one immovable plane : and, by
+composition, any sums SADS, SAFS, of those areas, are one to the other
+as the times in which they are described. Now let the number of those
+triangles be augmented, and their breadth diminished in infinitum; and
+
+(by Cor. 4, Lem. III.) their ultimate perimeter ADF will be a curve line : and therefore the centripetal force, by which the body is perpetually drawn
+back from the tangent of this curve, will act continually ; and any described areas SADS, SAFS, which are always proportional to the times of description, will,
+
+in this case also, be proportional to those times. Q.E.D.
+<br><br><br>
+
+
+
+
+COR. 1. The velocity of a body attracted towards an immovable centre,
+in spaces void of resistance, is reciprocally as the perpendicular let fall from that centre on the right line that touches the orbit. For the veloci
+ties in those places A, B, C, D, E. are as the bases AB, BC, CD, DE, EF.
+of equal triangles ; and these bases are reciprocally as the perpendiculars
+let fall upon them.
+<br><br><br>
+
+COR. 2. If the chords AB, BC of two arcs, successively described in equal times by the same body, in spaces void of resistance, are completed
+into a parallelogram ABCV, and the diagonal BV of this parallelogram;
+in the position which it ultimately acquires when those arcs are diminished
+in irifinitum, is produced both ways, it will pass through the centre of force.
+<br><br><br>
+
+
+COR. 3. If the chords AB, BC, and DE, EF, cf arcs described in equal
+times, in spaces void of resistance, are completed into the parallelograms
+ABCV, DEFZ : the forces in B and E are one to the other in the ulti mate ratio of the diagonals BV, EZ, when those arcs are diminished in
+infinitum. For the motions BC and EF of the body (by Cor. 1 of the
+Laws) are compounded of the motions Be, BV, and E/&amp;quot;, EZ : but BV and
+EZ, which are equal to Cc and F/, in the demonstration of this Proposi
+tion, were generated by the impulses of the centripetal force in B and E; and are therefore proportional to those impulses.
+<br><br><br>
+
+
+COR. 4. The forces by which bodies, in spaces void of resistance, are drawn back from rectilinear motions, and turned into curvilinear orbits, are one to another as the versed sines of arcs described in equal times ; which
+versed sines tend to the centre of force, and bisect the chords when those
+arcs are diminished to infinity. For such versed sines are the halves of
+the diagonals mentioned in Cor. 3.
+<br><br><br>
+
+
+COR. 5. And therefore those forces are to the force of gravity as the said
+versed sines to the versed sines perpendicular to the horizon of those para
+bolic arcs which projectiles describe in the same time.
+<br><br><br>
+
+
+COR. 6. And the same things do all hold good (by Cor. 5 of the Laws),
+when the planes in which the bodies are moved, together with the centres of force which are placed in those planes, are not at rest, but move uni
+formly forward in right lines. PROPOSITION II. THEOREM II.
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
 
 *::*proof|hypertext
 
@@ -78,45 +246,46 @@ Dragging the slider under the picture changes the
 
 The slider follows the proof. The ¦path¦particle path¦¦ thought experiment starts at point B. Time step Δt is chosen as a unit, so in context of Δt, movements and speeds are numerically equal.<br><br>
 
-        0. at arriving to point B, the body ¦path¦moves¦¦ from point A to point B and circumscribes a 
+        Before step 1, body ¦path¦moves¦¦ from point A to point B and circumscribes a 
            ¦kepler-triangle¦"kepler-triangle-area"¦¦, <br><br>
 
-        1 thought. if speed would not change, then 
+        step 1. if speed would not change, then 
            body would move ¦free-path¦freely¦¦ from point B to point c,
            the area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
            to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
 
-        2 thought. the ¦force¦force¦¦ changes the speed,<br>
+        step 2. the force adds an impulse ¦force cssbold¦p¦¦ =
+                <b>f</b>\(\Delta t\) to the speed,<br>
            ¦speed-change cssbold¦v¦¦¦\(v_{BC}\)\( = \)
                 ¦speed-change cssbold¦v¦¦¦\(v_{Bc}\) + 
-                ¦force cssbold¦f¦¦¦\(f\) or<br>
+                ¦force cssbold¦p¦¦¦\(p\) or<br>
 
                 \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)\( = \)
-                ¦force cssbold¦f¦¦¦\(f\).\(\;\;\;\)
+                ¦force cssbold¦f¦¦¦\(f\) \( \Delta \) t \(\;\;\;\)
                 (*)
             <br><br>
 
 
-        3 thought. because of speed change, ¦path¦final position¦¦ changes from point c to point C,<br>
+        step 3. because of speed change, ¦path¦final position¦¦ changes from point c to point C,<br>
+            \( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)\( = \) 
             ¦path-change cssbold¦s¦¦¦\(s_{BC}\)\( = \)
                 ¦path-change cssbold¦s¦¦¦\(s_{Bc}\) +
-                ¦force cssbold¦f¦¦¦\(f\)
+                ¦force cssbold¦p¦¦¦\(p\) \( \Delta \) t
             or<br>
 
             \( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)\( = \)
-            \( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)
-            .\(\;\;\;\)
-            (**)
+            ¦speed-change cssbold¦v¦¦¦\(v\)\( \Delta \) t
+            \(\;\;\) (**)
             <br><br>
 
             ¦free-triangle¦"free-movement-triangle-area"¦¦
             is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
             <br><br>
 
-        4 thought. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+        step 4. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 
-        Next steps repeat analoguosly<br><br><br>
+        Next move, CD, is built in steps analogious to steps 1, 2, 3, 4.<br><br><br>
 
 
 
@@ -135,66 +304,10 @@ page landing. They are:
         \]
 (We were not able yet to estimate Newton's computer brand.)
 
-Dragging point B can change the initial path and make it smaller which automatically extends model to increased number of steps.
+Dragging point B can change the initial path and make it smaller which automatically extends model to increased number of moves.
 <br><br>
 
-There are two equivalent options to extend the model.<br>
-Let q to be a fraction of initial path s0: s0' = q*s0.<br>
-New number of steps is set to N' = Math.floor(N/q).
-<br><br>
 
-Option 1.<br> 
-Keep time interval = 1. So, the new speed will become v0' = q*v0.
-<br>
-f' = q*f. With replacement f with f' and v0 with v0', the formulas (*) and (**) remains intact.
-<br><br>
-
-Option 2. (Chosen)
-<br>
-This option produces the same numerical path and picture as in Option 1, but makes easier transition to modern Physics notations. It also makes a better comparision with original drawing, because the initial speed is the same as
-in non-extended model.
-<br><br>
-
-Keep speed v0 intact. v0' = v0 = 1.
-<br>
-Set time step to smaller interval: Δt' = q;
-<br>
-Set f' intact, but add Δt in formula (*).
-\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\) = ¦force cssbold¦f¦¦¦\(f\)\(\Delta t \)
-
-<br>
-Add Δt in formula (**).
-\( \Delta \)¦path-change cssbold¦s¦¦¦\(s\)
-=
-\( \Delta \)¦speed-change cssbold¦v¦¦¦\(v\)
-\(\Delta t \)
-
-<br><br>
-which for double-step 2Δt matches definition of average speed:
-<br>
-\( \Delta \)¦path-change cssbold¦r¦¦¦\( r \)
-=
-
-¦path-change cssbold¦r¦¦¦\(r_{C}\)-¦path-change cssbold¦r¦¦¦\(r_{A}\)
-=
-
-\( \Delta \)¦path-change cssbold¦s¦¦¦\(s\) + 
-¦speed-change cssbold¦v¦¦¦\( v_{A} 2\Delta t \)
-=
-
-\( ( \)
-¦speed-change cssbold¦v¦¦¦\( v_{A} \) + ¦speed-change cssbold¦v¦¦¦\(v_{B} ) \Delta t \)
-=
-
-\( \frac{1}2 \)¦speed-change cssbold¦v¦¦¦\( ( v_{A} \) + ¦speed-change cssbold¦v¦¦¦\(v_{B} ) ~ 2\Delta t \)
-
-=
-
-¦speed-change cssbold¦v¦¦¦\( \overset{-} v \)
-\( 2 \Delta t \).
-
-<br><br>
-
-This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
+<br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
 
 

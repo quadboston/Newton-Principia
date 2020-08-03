@@ -91,52 +91,21 @@
         Object.keys( sconf.pname2point ).forEach( pname => {
             var pWrap = rg[ pname ].pointWrap;
             pWrap.pcolor = sDomF.getFixedColor( pWrap.ptype );
-            //if( pname !== 'R' && pname !== 'D' ) {
             pWrap.doPaintPname = true;
-            pos2pointy(
+            var svg = pos2pointy(
                 pname,
                 {
-                    //tpclass         : pname === 'R' || pname === 'D' ? pWrap.ptype : '',
-                    cssClass        : 'tostroke thickable',
+                    cssClass        : 'tostroke tofill thickable',
                     'stroke-width'  : 2,
                     r               : handleR,
                 }
             );
             pWrap.medpos = rg[ pname ].medpos;
+            rg[ pname ].svgel.style.display =
+                ns.haz( rg[pname], 'undisplay' ) ? 'none' : 'block';
         });
         //-------------------------------------------------
         // \\// adds to points their media position
-        //-------------------------------------------------
-
-
-        //-------------------------------------------------
-        // //\\ paints axes x,y only once
-        //-------------------------------------------------
-        if( !rg.abscissa ) {
-            ( function () {
-                var mod2med = ssF.modpos2medposLL;
-                var aname = "abscissa";
-                ssF.toreg( aname );
-                rg[ aname ].svgel = sv.polyline({
-                    svgel   : rg[ aname ].svgel,
-                    stroke  : givenColor,                    
-                    parent  : studyMods[ SUB_MODEL ].mmedia,
-                    pivots  : [ mod2med([-0.2,0]), mod2med([5,0]) ],
-                    'stroke-width' : 1,
-                });
-                var aname = "ordinate";
-                ssF.toreg( aname );
-                rg[ aname ].svgel = sv.polyline({
-                    svgel   : rg[ aname ].svgel,
-                    stroke  : givenColor,                    
-                    parent  : studyMods[ SUB_MODEL ].mmedia,
-                    pivots  : [ mod2med([0,0]), rg.r.medpos ],
-                    'stroke-width' : 1,
-                });
-            })();
-        }
-        //-------------------------------------------------
-        // \\// paints axes x,y only once
         //-------------------------------------------------
 
 
@@ -156,13 +125,13 @@
                 return res;
             }
         })();
-        rg.givenMediaCurve = ns.sn( 'givenMediaCurve', rg )
+        rg.givenMediaCurve = ns.sn( 'curve-AB', rg );
+        var wwsteps = 100;
         rg.givenMediaCurve.svg = ns.svg.curve({
             xOFy            : false, //true,
-            stepsCount      : 85, // we don't extend it beyound this value
-                                  // where book-picture approximation fails
+            stepsCount      : wwsteps,
             start           : 0,
-            step            : 0.01,
+            step            : rg.B.pointWrap.unrotatedParameterX / wwsteps,
             curve           : givenCurveFunction,
             stroke          : givenColor,
             "stroke-width"  : 2,
@@ -171,6 +140,23 @@
             parent          : studyMods[ SUB_MODEL ].mmedia,
         });
         $$.$(rg.givenMediaCurve.svg).addClass( 'tostroke thickable tp-curve-_a_b tp-both-curves' );
+
+        rg.givenMediaCurveFull = ns.sn( 'curve-AB-full', rg )
+        rg.givenMediaCurveFull.svg = ns.svg.curve({
+            xOFy            : false, //true,
+            stepsCount      : 85, // we don't extend it beyound this value
+                                  // where book-picture approximation fails
+            start           : 0,
+            step            : 0.01,
+            curve           : givenCurveFunction,
+            stroke          : givenColor,
+            "stroke-width"  : 2,
+            svgel           : rg.givenMediaCurveFull.svg,
+            dontClose       : true,
+            parent          : studyMods[ SUB_MODEL ].mmedia,
+        });
+        $$.$(rg.givenMediaCurveFull.svg).addClass(
+            'tostroke thickable tp-curve-_a_b-full tp-both-curves' );
         //-------------------------------------------------
         // \\// paints original givenCurve-curve
         //-------------------------------------------------
@@ -189,7 +175,7 @@
             }
         })();
         rg.magnifiedCurve = ns.sn( 'magnifiedCurve', rg )
-        rg.magnifiedCurve.svg = ns.svg.curve({
+        rg.magnifiedCurve.svgel = ns.svg.curve({
             xOFy            : false, //true,
             stepsCount      : 85, // we don't extend it beyound this value
                                   // where book-picture approximation fails
@@ -198,69 +184,36 @@
             curve           : magnifiedCurveFunction,
             stroke          : proofColor,
             "stroke-width"  : 2,
-            svgel           : rg.magnifiedCurve.svg,
+            svgel           : rg.magnifiedCurve.svgel,
             dontClose       : true,
             parent          : studyMods[ SUB_MODEL ].mmedia,
         });
-        $$.$(rg.magnifiedCurve.svg).addClass( 'tostroke thickable tp-curve-_ab tp-both-curves' );
+        $$.$( rg.magnifiedCurve.svgel ).addClass( 'tostroke thickable tp-curve-_ab tp-both-curves' );
+        rg[ 'magnifiedCurve' ].svgel.style.display =
+            ns.haz( rg[ 'magnifiedCurve' ], 'undisplay' ) ? 'none' : 'block';
         //-------------------------------------------------
         // \\// paints magnified curve
         //-------------------------------------------------
 
-        pointies2line(
-            'line-rd',
-            [ rg.r, rg.d ],
-            {
-                cssClass        :'tostroke thickable',
-                'stroke-width'  : 2,
-            }
-        );
-        pointies2line(
-            'line-Ab',
-            [ rg.A, rg.b ],
-            {
-                cssClass        : 'tostroke thickable',
-                'stroke-width'  : 2,
-            }
-        );
-        pointies2line(
-            'line-AB',
-            [ rg.A, rg.B ],
-            {
-                cssClass        : 'tostroke thickable',
-                'stroke-width'  : 2,
-            }
-        );
-        pointies2line(
-            'line-AL',
-            [ rg.A, rg.L ],
-            {
-                cssClass        : 'tostroke thickable',
-                'stroke-width'  : 2,
-            }
-        );
+        ssF.pointnames2line( 'A', 'd', 'tp-angle-_r_a_d' );
+        ssF.pointnames2line( 'A', 'r', 'tp-angle-_r_a_d' );
+        ssF.pointnames2line( 'A', 'L' );
+        ssF.pointnames2line( 'A', 'b' );
+        ssF.pointnames2line( 'r', 'd' );
+        ssF.pointnames2line( 'A', 'B' );
+        ssF.pointnames2line( 'A', 'D' );
 
+        //:l7
+        ssF.pointnames2line( 'b', 'd' );
+        ssF.pointnames2line( 'B', 'D' );
+        ssF.pointnames2line( 'B', 'F' );
+        ssF.pointnames2line( 'A', 'F' );
+        ssF.pointnames2line( 'A', 'G' );
+        ssF.pointnames2line( 'B', 'E' );
+        ssF.pointnames2line( 'A', 'E' );
+        ssF.pointnames2line( 'B', 'G' );
         //-----------------------------------------------
-        // //\\ angle-_r_a_d
-        //-----------------------------------------------
-        pointies2line(
-                'line-Ad',
-                [ rg.A, rg.d ],
-                {
-                    cssClass        : 'tostroke thickable tp-angle-_r_a_d',
-                    'stroke-width'  : 2,
-                }
-        );
-        pointies2line(
-                'line-Ar',
-                [ rg.A, rg.r ],
-                {
-                    cssClass        : 'tostroke thickable tp-angle-_r_a_d',
-                    'stroke-width'  : 2,
-                }
-        );
-        //-----------------------------------------------
-        // \\// angle-_r_a_d
+        // ... angle-RAD .... abandoned after ver 3079
         //-----------------------------------------------
 
 
@@ -272,7 +225,6 @@
 
             //optional?: if( pWrap.doPaintPname && pictureLeft ) {
             if( pWrap.doPaintPname ) {
-
                 var lpos = rg[ pname ].medpos.concat([]);
                 switch( pname ) {
                     case 'b' : lpos = [ lpos[0]+20, lpos[1]+10 ];
@@ -299,10 +251,13 @@
                     y : lpos[1],
                     style : { 'font-size' : '32px' },
                 });
+                pWrap.pnameLabelsvg.style.display =
+                    ns.haz( rg[pname], 'undisplay' ) ? 'none' : 'block';
             }
 
             ///adds fake points over draggable points to
             ///make white kernels drawn above lines
+            ///todo put in amode-state
             if( pname === 'L' || pname === 'B' ) {
                 var fakeName = pname+'-kernel';
                 var wp = rg[pname].pos;
@@ -317,6 +272,8 @@
                         r               : handleR,
                     }
                 );
+                rg[ fakeName ].svgel.style.display =
+                    ns.haz( rg[ pname ], 'undisplay' ) ? 'none' : 'block';
             }
         });
         //-----------------------------------------------
@@ -329,6 +286,7 @@
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
+        //todo create once but access based on amode-state
         if( !ns.h( rg[ 'B' ].pointWrap, 'model8media_upcreate' )) {
             ( function() {
                 var pointWrap = rg[ 'B' ].pointWrap;
@@ -345,12 +303,6 @@
                     //.prevents user from playing with too big curves
                     if( new_unrotatedParameterX > 0.80 ) return;
                     pointWrap.unrotatedParameterX = new_unrotatedParameterX;
-                    /*
-                    ccc(
-                        //'in d8d: pointWrap=', pointWrap,
-                        'pointWrap.unrotatedParameterX=' + pointWrap.unrotatedParameterX,
-                    );
-                    */
                     pointWrap.model8media_upcreate();
                 }
             }) ();

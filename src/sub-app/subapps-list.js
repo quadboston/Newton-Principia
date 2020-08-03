@@ -108,6 +108,26 @@
                 ,
         },
 
+        {   sappId : 'b1sec1lemma7',
+            book : 'Book 1',
+            caption : 'Lemma VII',
+            sappCodeReference : '',
+            annotation : "",
+            codesList : mlist_startUp
+                .concat( mlist_CSS )
+                .concat(
+                [
+                    { src:'../b1sec1lemma6/models/media-model.js' },
+                    { src:'../b1sec1lemma6/models/main-legend.js' },
+                    { src:'../b1sec1lemma6/models/media-model-sliders.js' },
+                    { src:'../b1sec1lemma6/models/state-capturer.js' },
+                    { src:'../b1sec1lemma6/models/d8d-model.js' },
+
+                    { src:'models/study-model.js' },
+                ] )
+                ,
+        },
+
 
         {   sappId : 'lemma9',
             book : 'Book 1',

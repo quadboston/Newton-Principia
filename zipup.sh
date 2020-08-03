@@ -15,6 +15,6 @@
 #**************************************************
 
 cd ..
-Newton-Principia/deploy/zipify.php Newton-Principia
+np/deploy/zipify.php np
 
 

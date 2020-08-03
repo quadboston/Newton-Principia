@@ -6,21 +6,26 @@
   {
     "both-curves" : [100,     0, 150,  1],
 
-    "given"     : [0,     150, 0,      1],
-    "curve-AB"  : [0,     150, 0,      1],
-    "line-Ad"   : [0,     150, 0,      1],
+    "given"         : [0,     150, 0,      1],
+    "curve-AB"      : [0,     150, 0,      1],
+    "curve-AB-full" : [0,     150, 0,      1],
+
+    "line-AD"       : [0,     150, 0,      1],
     "A"         : [0,     150, 0,      1],
     "B"         : [0,     150, 0,      1],
+    "D"         : [0,     150, 0,      1],
     "angle-RAD" : [0,     150, 0,      1],
     "line-Ar"   : [0,     150, 0,      1],
     "line-AB"   : [0,     150, 0,      1],
 
     "proof"     : [0,     0,   255,    1],
+    "line-Ad"   : [0,     0,   255,    1],
     "line-rd"   : [0,     0,   255,    1],
     "line-Ab"   : [0,     0,   255,    1],
     "curve-Ab"  : [0,     0,   255,    1],
     "b"         : [0,     0,   255,    1],
     "d"         : [0,     0,   255,    1],
+    "r"         : [0,     0,   255,    1],
 
     "result"    : [200,   40,  0,      1],
     "L"         : [200,   40,  0,      1],
@@ -54,18 +59,15 @@
 
 If any arc ¦curve-AB¦ACB¦¦, given in position, is subtended by its chord ¦line-AB¦AB¦¦,
 and in any point
-¦A¦A¦¦, in the middle of the continued curvature, is touched by a ¦line-Ad¦right line AD¦¦, produced both ways; then if the points ¦A¦A¦¦ and ¦B¦B¦¦
+¦A¦A¦¦, in the middle of the continued curvature, is touched by a ¦line-AD¦right line AD¦¦, produced both ways; then if the points ¦A¦A¦¦ and ¦B¦B¦¦
 
  <span class="captured-reference id-true-convergence-1">approach one another</span>
 
  <span class="captured-reference id-meet">and meet</span>,
 
-I say, ¦line-AB line-Ad¦the angle BAD¦¦, contained between,
+I say, ¦line-AB line-AD *anch-color*given¦the angle BAD¦¦, contained between,
 the chord and the tangent, will be diminished in infinitum, and ultimately will vanish.
 
-<br><br>
-<span class="captured-reference id-reset-to-origin" style="font-size:12px;">
-Reset diagram to origin</span>
 <br><br>
 
 
@@ -102,19 +104,12 @@ Reset diagram to origin</span>
 
 
 *::*proof|english
-{
-  "xxxxdefault" : "1"
-}
-*..*
 
-    For if that angle
-
-    <span class="captured-reference id-reset-to-origin">
-    does not vanish</span>, 
+    For if that angle does not vanish, 
 
     the arc ¦curve-AB¦ACB¦¦ will contain with the
 
-    tangent ¦line-Ad¦AD¦¦ an angle equal to a ¦line-AL line-Ad¦rectilinear angle¦¦; and
+    tangent ¦line-AD¦AD¦¦ an angle equal to a ¦line-AL line-Ad¦rectilinear angle¦¦; and
     therefore the curvature at the point ¦A¦A¦¦ will not be continued,
     which is against the supposition.
 
@@ -134,9 +129,7 @@ Reset diagram to origin</span>
 
 *::*claim|model
 {
-  "xxxx    non-compatible-with-studylab    default" : "1",
-  "xxxx    s tudylab" : true,
-  "menuCaption" : "Model"
+  "menuCaption" : "Lab"
 }
 *..*
 
@@ -169,10 +162,10 @@ Line ¦line-AL¦AL¦¦, which will be is a limit of chords, is called "Converged
         <li>line crosses point goes to line crosses,</li>
         <li>sequence of points on lines is preserved,</li>
         <li>betweenness is preserved,</li>
-        <li>which completes the proof<,</li>
+        <li>which completes the proof,</li>
     </ul><br><br>
 
-   We don't know is this assumption proven for non-conics in the Book, and it can be
+   We don't know is this assumption proven for non-conics in the Book, and it may be
    considered as a starting axiom, depending on chosen Geometry framwork.
 
 </li>
@@ -200,7 +193,12 @@ Line ¦line-AL¦AL¦¦, which will be is a limit of chords, is called "Converged
 </li>
 <br><br>
 
-<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+
+<b>In other words, the lemma claims that
+<span class="captured-reference id-L-equal-d"> ¦L¦L¦¦ = ¦d¦d¦¦ </span>.</b>
+
+
+<br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
 
 
 
@@ -209,8 +207,7 @@ Line ¦line-AL¦AL¦¦, which will be is a limit of chords, is called "Converged
 
 *::*proof|model
 {
-  "menuCaption" : "Model",
-  "xxxx studylab" : true
+  "menuCaption" : "Lab"
 }
 *..*
 
@@ -219,10 +216,14 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
 
 <b>"Proof"</b><br><br>
 
-  Inside the angle ¦angle-_r_a_d¦RAD¦¦, let's draw an arbitrary right line ¦line-rd¦rd¦¦ crossing lines ¦line-Ad¦AD¦¦ and ¦line-Ar¦AR¦¦ not in point ¦A¦A¦¦.
+  Take an arbitrary point ¦d¦d¦¦ that ¦D¦D¦¦ is between ¦d¦d¦¦ and ¦A¦A¦¦.
+  Draw the line ¦line-rd¦line rd¦¦ through an arbitrary point ¦r¦r¦¦
+  that both ¦B¦B¦¦ and ¦r¦r¦¦ are on the same side of ¦line-AD¦line AD¦¦.
+
+  Let point ¦b¦b¦¦ be an intersection of lines ¦line-AB¦AB¦¦ and ¦line-rd¦rd¦¦.
   <br><br>
 
-  ¦both-curves css-no-color-to-shapes¦Curves AB and Ab¦¦ are proportional with ratio ¦line-AB¦AB¦¦/¦line-Ab¦Ab¦¦.
+  Draw curve ¦curve-Ab¦Ab¦¦ that ¦both-curves *anch-color¦curves AB and Ab¦¦ are proportional with ratio ¦line-AB¦AB¦¦/¦line-Ab¦Ab¦¦.
   <br><br>
  
   <span class="captured-reference id-reset-to-origin">Suppose</span>
@@ -242,7 +243,7 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
 
     to ¦line-Ab¦Ab¦¦ and ultimately cannot lie above any line above ¦line-AL¦AL¦¦.
     <br>
-    This is actually an assumption based in intuition and cannot be considered as a rigid proof.
+    This is actually an assumption based on intuition and cannot be considered as a rigid proof.
     <br><br>
 
     Therefore any rectilinear angle between ¦line-AL¦AL¦¦ and
@@ -251,18 +252,17 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
     which is against the supposition.
     <br><br>
 
-    In other words, the lemma claims that
-    <span class="captured-reference id-L-equal-d"> ¦L¦L¦¦ = ¦d¦d¦¦ </span>.
 
 </ol>
-
-
-<br><br>
-<span class="captured-reference id-reset-to-origin" style="font-size:12px;">
-Reset diagram to origin</span>
 <br><br>
 
-<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+<br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
+
+
+
+
+
+
 
 
 

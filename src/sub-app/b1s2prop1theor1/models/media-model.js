@@ -692,7 +692,13 @@
 
                 //ccc( 'stepIx=' + stepIx + '  substepIx = ' + substepIx);
                 rg.displayStep.value = (stepIx-1) + '';
-                rg.thoughtStep.value = "thought " + (substepIx+1);
+
+                //---------------------------------------
+                //todm make sure this change is correct
+                //rg.thoughtStep.value = "thought " + (substepIx+1);
+                rg.thoughtStep.value = "step " + (substepIx+1);
+                //---------------------------------------
+
                 if( substepIx <3 ) {
                     rg.displayTime.value = (stepIx*rg.timeStep.t).toFixed(3);
                 } else {

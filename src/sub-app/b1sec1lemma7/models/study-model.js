@@ -70,15 +70,15 @@
         toreg = ssF.toreg;
 
         ( function () {
-        var pos = [];
-        toreg( 'L' )
-            ( 'pname', 'L' )
-            ( 'pos', pos )
-            (
-                'pointWrap', {
-                   pos : pos,
-                }
-            );
+            var pos = [];
+            toreg( 'L' )
+                ( 'pname', 'L' )
+                ( 'pos', pos )
+                (
+                    'pointWrap', {
+                       pos : pos,
+                    }
+                );
             sconf.pname2point.L = pos; //todm ... programming unwanted surprises
         })();
 
@@ -163,11 +163,7 @@
                 ;
                 sconf.pname2point.E = pos;
         })();
-
-
-
     }
-
 
 
     //Called once per every theorion/aspect changing
@@ -267,7 +263,6 @@
 
             rg.d.undisplay = true;
             rg[ 'line-bd' ].undisplay = true;
-            //l7
             rg[ 'line-rd' ].undisplay = true;
             rg[ 'line-Ad' ].undisplay = true;
 
@@ -278,20 +273,23 @@
             sDomF.detected_user_interaction_effect();
 
         } else if(  aspect === 'model' || theorion === 'proof' ) {
-            rg.L.undisplay = false;
-            rg.L.pointWrap.hideD8Dpoint = false;
-            rg[ 'line-AL' ].undisplay = false;
+            rg.L.undisplay = true;
+            rg.L.pointWrap.hideD8Dpoint = true;
+            rg[ 'line-AL' ].undisplay = true;
 
-            rg.r.undisplay = false;
-            rg[ 'line-rd' ].undisplay = false;
+            rg.r.undisplay = true;
             rg.d.undisplay = false;
+            rg[ 'line-bd' ].undisplay = false;
+            rg[ 'line-rd' ].undisplay = true;
+            rg[ 'line-Ad' ].undisplay = false;
 
             rg.b.undisplay = false;
             rg[ 'line-Ab' ].undisplay = false;
-            rg[ 'line-Ad' ].undisplay = false;
+
             rg[ 'magnifiedCurve' ].undisplay = false;
 
-            var captured = "reset-to-origin";
+            //var captured = "reset-to-origin";
+            var captured = "L-equal-d";
             sDomF.detected_user_interaction_effect( 'doUndetected' );
         }
         ns.haf( ssF, setter )( ssD.capture[ captured ] );
@@ -348,7 +346,7 @@
 
         //calculating R,D
         //makes line DR proportionally move
-        //rg.D.pos[0] = rg.d.pos[0] / magn;
+        rg.D.pos[0] = rg.d.pos[0] / magn;
         //rg.R.pos[1] = rg.r.pos[1] / magn;
 
         //:l7

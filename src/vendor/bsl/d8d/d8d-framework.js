@@ -85,7 +85,7 @@
         {
             dragWraps.forEach( function( dragWrap ) {
                 var uP = dragWrap.update_decPoint;
-                uP && uP( dragWrap.decPoint, dragSurface );
+                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap ); //todo does it always have dragWrap ?
             });
         }
 
@@ -131,11 +131,6 @@
             //========================================================
             var decPoint = null;
             if( !no_spinner ) {
-                /*
-                update_decPoint = update_decPoint === "medpos2dompos" ?
-                    update_decPoint_medpos2dompos :
-                    ( update_decPoint || update_decPoint_default );
-                */
                 update_decPoint = !update_decPoint ?
                     update_decPoint_medpos2dompos :
                     ( update_decPoint === 'update_decPoint_default' ?
@@ -186,7 +181,7 @@
             dragWraps.push( dragWrap );
 
             //todo ... needed?
-            update_decPoint && update_decPoint( decPoint, dragSurface );
+            update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
@@ -204,7 +199,7 @@
                 arg.pointWrap = pointWrap; 
 
                 doProcess( arg );
-                update_decPoint && update_decPoint( decPoint, dragSurface );
+                update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
                 if( arg.down_move_up === 'up' ) {
                     ////this cleans up drag and drop lifecycle
                     selectedElement_flag=0;
@@ -215,14 +210,25 @@
             //=====================================================
 
             ///updates spinner position;
+            ///recall: spinner is a div with two children divs which are animated
+            ///        spinner's master-css is made here:
+            ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
             ///uses already existing-on-drag-surface handle to synch with it;
-            function update_decPoint_default( decPoint, dragSurface )
+            function update_decPoint_default( decPoint, dragSurface, pointWrap )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
                 decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
+                decPoint.style.top = dompos[1] + 'px';
+                if( pointWrap.hideD8Dpoint ) {
+                    decPoint.style.display = 'none';
+                } else {
+                    decPoint.style.display = 'block';
+                }
             }
 
+            ///recall: spinner is a div with two children divs which are animated
+            ///        spinner's master-css is made here:
+            ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
             ///does position spinner by converting
             ///inner-media-position to dom-position
             ///and setting spinner ot this dom-position
@@ -231,6 +237,11 @@
                 var dompos = medpos2dompos.call( pointWrap );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';            
+                if( pointWrap.hideD8Dpoint ) {
+                    decPoint.style.display = 'none';
+                } else {
+                    decPoint.style.display = 'block';
+                }
             }
         }
 
@@ -304,6 +315,7 @@
             var closestDragPriority = 0;
             dragWraps.forEach( function( dragWrap, dix ) {
                 var pointWrap   = dragWrap.pointWrap;
+                if( pointWrap.hideD8Dpoint ) return;
                 var dompos      = handle2dragsurf_pos(  dragWrap, dragSurface );
                 var tdX         = Math.abs( testMediaX - dompos[0] );
                 var tdY         = Math.abs( testMediaY - dompos[1] );

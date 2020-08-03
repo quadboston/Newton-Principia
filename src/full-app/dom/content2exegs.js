@@ -22,9 +22,10 @@
 
     var references  = sn('references', ssD);
     var exegs       = sn('exegs', ssD);
-    sDomF.load_scenario__list8refs8conf = load_scenario__list8refs8conf;
+    sDomF.loads_scenarioList8refs8conf__2__essaions_2_exegs = 
+          loads_scenarioList8refs8conf__2__essaions_2_exegs;
     sDomF.getFixedColor = getFixedColor;
-    return; //0000000000000000000000000000000000
+    return;
 
 
 
@@ -36,7 +37,7 @@
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function load_scenario__list8refs8conf( continueAppInit_cb )
+    function loads_scenarioList8refs8conf__2__essaions_2_exegs( continueAppInit_cb )
     {
         var allEssaionsStr = "";
         ///this ajax-load takes following aux. files including list of contents
@@ -51,41 +52,49 @@
                   link:'contents/' + fconf.sappId + '/conf.json'
                }
             ],
-            contentsList_2_essaions
+            contentsList_2_essaions_2_exegs
         );
 
         ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, essaions2exegs.
-        function contentsList_2_essaions( conf_files_list )
+        function contentsList_2_essaions_2_exegs( conf_files_list )
         {
             var lemma_bookfiles_list = conf_files_list[ 'contents-list.txt' ]
                                        .text.split(/\r\n|\n|\r/);
 
-            //------------------------------------
-            // //\\  making the list for ajax-load
-            //------------------------------------
-            //."nothing is loaded yet:
-            var lbf_forAjax = [];
-            lemma_bookfiles_list.forEach( function( listItem ) {
-                if( !listItem.match( /^\s*$/ ) ) {
-                    lbf_forAjax.push({
-                          id: listItem,
-                          link:'contents/' + fconf.sappId + '/' + listItem
-                    });
-                }
-            });
-            //------------------------------------
-            // \\//  making the list for ajax-load
-            //------------------------------------
+            //=========================================================
+            // //\\ ajax load
+            //=========================================================
+                // //\\  making the list
+                //------------------------------------
+                var lbf_forAjax = [];
+                lemma_bookfiles_list.forEach( function( listItem ) {
+                    if( !listItem.match( /^\s*$/ ) ) {
+                        lbf_forAjax.push({
+                              id: listItem,
+                              link:'contents/' + fconf.sappId + '/' + listItem
+                        });
+                    }
+                });
+                //------------------------------------
+                // \\//  making the list
+                //------------------------------------
 
-            ///fires ajax-load for lbf_forAjax
-            nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
-                    lbf_forAjax.forEach( function( listItem ) {
-                        allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
-                    });
-                    essaions2exegs( conf_files_list );
-                }
-            );
+                //------------------------------------
+                // //\\  making the load
+                //------------------------------------
+                nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
+                        lbf_forAjax.forEach( function( listItem ) {
+                            allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
+                        });
+                        essaions2exegs( conf_files_list );
+                    }
+                );
+                //------------------------------------
+                // \\//  making the load
+            //=========================================================
+            // \\// ajax load
+            //=========================================================
         }
 
 
@@ -109,7 +118,9 @@
             bgImages.cssId2rk = {};
             bgImages.path2rk = {};
             bgImages.bgImgCount = 0;
-            essayons.forEach( function(essayon) {
+
+            ///essayons are raw atomic essays
+            essayons.forEach( function( essayon, essayonIx ) {
 
                 //.removes empty essayons
                 if( essayon.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
@@ -121,17 +132,17 @@
                 //             precontent = \nJSON*..*\n content 
                 //             JSON essayon is optional                
                 //              
-                //      below: ess_instructions[1] = teaf_id: claim, proof,
+                //      below: ess_instructions[1] = theorion_id: claim, proof,
                 //                                            theorems, neutral, ... 
-                //             ess_instructions[2] = leaf_id: english,... latin, ...
+                //             ess_instructions[2] = aspect_id: english,... latin, ...
                 //             ess_instructions[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
                 var ess_instructions = essayon.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 if( ess_instructions && ess_instructions[3] ) {
-                    var teaf_id = ess_instructions[1];
-                    var leaf_id = ess_instructions[2];
+                    var theorion_id = ess_instructions[1];
+                    var aspect_id = ess_instructions[2];
                     var wPreText = ess_instructions[3];
                     var wIx = wPreText.indexOf("*..*");
                     if( wIx > -1 ) {
@@ -141,7 +152,20 @@
                     //.converts essayion's-header-script to header-js-object
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    // //\\ establishes fixed colors lemma-wise
+                    //:sets default
+                    if( essayHeader[ "default" ] === "1" ) {
+                        sapp.amodel_initial = ns.haz( sapp, 'amodel_initial' )  ||
+                        {
+                            theorion    : theorion_id,
+                            aspect      : aspect_id,
+                            submodel    : ns.h( essayHeader, 'submodel' ) ?
+                                               essayHeader.submodel :
+                                               'common',
+                        };
+                    }
+
+                    // //\\ establishes unescaped fixed
+                    //      topic cats lemma-wise
                     var wwfc = ns.haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
@@ -149,14 +173,14 @@
                             fixedColors[ tk ] = wwfc[ topicKey ];
                         });
                     }
-                    // \\// establishes fixed colors lemma-wise
+                    // \\// establishes unescaped fixed
 
                     //.todm: patch: missed submodel property does default to 'common'
                     //              empty string denotes absence of submodel
                     essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
                                            essayHeader.submodel :
                                            'common';
-                    exegs[ teaf_id ] = exegs[ teaf_id ] || {};
+                    exegs[ theorion_id ] = exegs[ theorion_id ] || {};
 
                     //---------------------------------------------------------
                     // //\\ captured states
@@ -171,6 +195,8 @@
                             capturePos + CAPTURE_POSITION_INDICATOR.length );
                         wPreText = wPreText.substring( 0, capturePos );
                         ssD.capture = JSON.parse( captureTxt );
+                    } else {
+                        ssD.capture = {}; //code-break-preventor
                     }
                     //---------------------------------------------------------
                     // \\// captured states
@@ -180,7 +206,7 @@
                     //---------------------------------------------------------
                     // //\\ does index bodyscript and essayHeader
                     //---------------------------------------------------------
-                    var exeg = exegs[ teaf_id ][ leaf_id ] =
+                    var exeg = exegs[ theorion_id ][ aspect_id ] =
                     {
                         bodyscript:wPreText, essayHeader:essayHeader
                     };
@@ -190,8 +216,8 @@
                     collectBgImg( essayHeader, exeg );
 
                     sconf.submenus = sconf.submenus || {};
-                    setMenu( teaf_id, 'theorion' )
-                    setMenu( leaf_id, 'aspect' )
+                    setMenu( theorion_id, 'theorion', aspect_id )
+                    setMenu( aspect_id, 'aspect' )
 
                     // //\\ media-drag-decoration-enabled-aspect
                     //      currently unlocks all aspects in content for
@@ -203,19 +229,19 @@
 
                     var wDecArr = fconf.dragPointDecoratorClasses =
                                   fconf.dragPointDecoratorClasses || [];
-                    var wDecorAspect = 'aspect--' + leaf_id;
+                    var wDecorAspect = 'aspect--' + aspect_id;
                     if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
                         wDecArr.push( wDecorAspect );
                     }
                     // \\// media-drag-decoration-enabled-aspect
 
 
-                    //ccc( teaf_id, leaf_id, essayHeader );
+                    //ccc( teaf_id, aspect_id, essayHeader );
 
                     //=======================================
                     // //\\ parses and sets menu
                     //=======================================
-                    function setMenu( leafId, teaf_id )
+                    function setMenu( leafId, teaf_id, childCatId )
                     {
                         //=======================================
                         // //\\ how submenu built
@@ -266,9 +292,25 @@
                                     ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
                             }
                         }
-                        if( essayHeader["default"] === "1" ) {
-                            men["default"] = leafId;
+
+
+                        //------------------------------------------------------------
+                        // //\\ this thing does breed two teaf_ids with "default"
+                        //------------------------------------------------------------
+                        //     for example for claim/english header with default === "1"
+                        //         sconf.submenus[ 'aspect' ].default='english';
+                        //         sconf.submenus[ 'theorion' ].default='claim';
+                        if( ns.h( sapp, 'amodel_initial' ) ) {
+                            var ww = sapp.amodel_initial;
+                            if( ww.theorion === leafId || ww.aspect === leafId ) {
+                                men[ "default" ] = leafId;
+                            }
                         }
+                        //------------------------------------------------------------
+                        // \\// this thing does breed two teaf_ids with "default"
+                        //------------------------------------------------------------
+
+
                         if( essayHeader.menuCaption && teaf_id === 'aspect' ) {
                             men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                             men.duplicates[ leafId ].studylab = essayHeader.studylab;

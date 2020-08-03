@@ -54,6 +54,7 @@
 
     sDomF.frags__2__dom_css_mjax_tpanchors = frags__2__dom_css_mjax_tpanchors;
     sDomF.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    sDomF.colorArray_2_rgba = colorArray_2_rgba;
     return;
 
 
@@ -124,7 +125,7 @@
 
 
     ///Converts these stubs, exeg.activeFrags, to
-    ///     1. exeg.builtFrags ( depending on app mode )
+    ///     1. exeg.builtAFrags ( depending on app mode )
     ///     2. creates dom-placeholders for essaion's fragments which not yet created
     ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
     ///
@@ -139,10 +140,10 @@
     {
         ns.eachprop( exegs, ( theorionAspects, teaf_id ) => {
             ns.eachprop( theorionAspects, ( exeg, leaf_id ) => {
-                exeg.builtFrags = [];
+                exeg.builtAFrags = [];
                 anchConfigs_2_anchors( exeg );
                 //as further-processed-fragments-of-exeg
-                exeg.builtFrags.forEach( function( bFrag, fix ) {
+                exeg.builtAFrags.forEach( function( bFrag, fix ) {
                     ns.eachprop( bFrag.activeFrags, (afrag,fid) => {
                         afrag_2_dom8mj( exeg, afrag, fid );
                     });
@@ -171,6 +172,13 @@
     //===========================================================
     // normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
     //===========================================================
+    ///Input:   exeg.activeFrags
+    ///Output:  exeg.builtAFrags
+    ///         format is: exeg.builtAFrags[ index_in_exeg.activeFrags ] =
+    ///                    { activeFrags : newfrags }
+    ///                    newfrags[ akey ] =
+    ///                              { activeFrag : afrag-body }
+    ///                        akey = 'static', ...
     function anchConfigs_2_anchors( exeg )
     {
         exeg.activeFrags.forEach( function( activeFrag, tix ) {
@@ -186,7 +194,7 @@
                 newfrags[ akey ] =
                     { activeFrag : afrag.replace( TOP_ANCH_REG_gu, replWithAnchor ) }
             });
-            exeg.builtFrags[ tix ] = { activeFrags : newfrags };
+            exeg.builtAFrags[ tix ] = { activeFrags : newfrags };
         });
         return;
 
@@ -214,37 +222,48 @@
 
     function topics_2_topicsColorModel()
     {
-        var SATUR = 99;
-
-        //:this solution is not good:
-        //:some lemmas need bright red, but
-        //:bright green text is hard to read ...
-        //:so we resort to dark color LIGHT = 30
-        //var LIGHT = 40;
-        var LIGHT = sconf.default_tp_lightness ||  30;
-        var OPACITY = 0.6;
+        var SATUR   = sconf.DEFAULT_TP_SATUR;
+        var LIGHT   = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
+        var OPACITY = sconf.DEFAULT_TP_OPACITY;
 
         var colorsCount = ix2tplink.length;
         ns.eachprop( ssD.topics.id2topic, ( topi_c, scount ) => {
-            var sc = topi_c.topicsCount;
-            var rem = sc%2;
-            var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( topicsCount / 2 );
-            var hue = 359 / topicsCount * zebra;
-            var opacity = OPACITY;
-
             var fc = topi_c['fixed-color'];
             if( fc ) {
-                var overridden = ns.rgba2hsla( fc );
-                hue = overridden[ 0 ];
-                var opacity = overridden[ 3 ] || OPACITY;
+                var lh = colorArray_2_rgba( fc )
+            } else {
+                var sc = topi_c.topicsCount;
+                var rem = sc%2;
+                var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( topicsCount / 2 );
+                var hue = 359 / topicsCount * zebra;
+                var lh = hslo_2_low8high( hue, SATUR, LIGHT, OPACITY );
             }
-
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, opacity );
-            topi_c.rgba_low = corRack.rgba;
-            topi_c.rgbaCSS = corRack.rgbaCSS;
-            var corRack = ns.pars2colors( hue, SATUR, LIGHT, 1 );
-            topi_c.rgba_high = corRack.rgba;
+            Object.assign( topi_c, lh );
         });
+    }
+
+    function hslo_2_low8high( hue, sat, light, op )
+    {
+        var corRack     = ns.pars2colors( hue, sat, light, op );
+        rgba_low        = corRack.rgba;
+        rgbaCSS         = corRack.rgbaCSS;
+        var corRack     = ns.pars2colors( hue, sat, light, 1 );
+        rgba_high       = corRack.rgba;
+        return { rgba_low, rgba_high }; 
+    }
+
+
+    function colorArray_2_rgba( colorArray )
+    {
+        var SATUR = sconf.DEFAULT_TP_SATUR;
+        var LIGHT   = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
+        var OPACITY = sconf.DEFAULT_TP_OPACITY;
+
+        var overridden = ns.rgba2hsla( colorArray );
+        hue = overridden[ 0 ];
+        var opacity = overridden[ 3 ] || OPACITY;
+
+        return hslo_2_low8high( hue, SATUR, LIGHT, opacity );
     }
 
 
@@ -280,16 +299,7 @@
     ///*************************************************************
     function fragment_2_indexedTopics( activeFrag )
     {
-        /*
-        abandoned
-        if( Array.isArray( activeFrag ) ) {
-            ////we met common app link
-            var topicPreAnchors = [ '¦' + activeFrag.join( ' ' ) + '¦pseudo¦¦' ];
-        } else {
-        */
-
         var topicPreAnchors = activeFrag.match( TOP_ANCH_REG_gu );
-
 
         if( topicPreAnchors ) {
             topicPreAnchors.forEach( link => {
@@ -329,7 +339,6 @@
                         tplink_ix : tplink_ix,
                         tpid2true : {},
                         //link:parsedLink[2], not-used
-                        'fixed-color' : ns.haz( ssD['fixed-colors'], tplinkConf ),
                     };
                 }
                 var tplink = id2tplink[ tplinkConf ];
@@ -339,12 +348,13 @@
                 //=========================================
 
                 //=========================================
-                // //\\ indexes shapes locally and globally
+                // //\\ indexes topics locally and globally
                 //=========================================
                 // splits anchor-configuration to smaller tokens, each
-                // token for separate shape
+                // token for separate topic or for reserved-command
                 tplink.raw_tpIDs = tplinkConf.split( SPACE_reg );
 
+                var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
                 // loops via separate shapes
                 tplink.raw_tpIDs.forEach( tpid_ => {
 
@@ -352,8 +362,12 @@
                     if( 'cssbold' === tpid_ ) {
                         tplink.anchorIsBold = true;
                         return;
-                    } else if( 'css-no-color-to-shapes' === tpid_ ) {
+                    } else if( '*anch-color' === tpid_ ) {
                         tplink.cssNoColorToShapes = true;
+                        return;
+                    } else if( tpid_.match( ANCH_COLOR_CAT_rg ) ) {
+                        var ww = tplink.colorCateg = tpid_.match( ANCH_COLOR_CAT_rg );
+                        tplink[ 'fixed-color' ] = ns.haz( ssD['fixed-colors'], ww[1] );
                         return;
                     }
                     //..........................................................
@@ -376,7 +390,7 @@
                     }
                 });
                 //=========================================
-                // \\// indexes shapes locally and globally
+                // \\// indexes topics locally and globally
                 //=========================================
             });
         }

@@ -24,6 +24,7 @@
     ssF.modpos2medposLL   = modpos2medpos;
     ssF.modpos2medpos_originalLL   = modpos2medpos_original;
     ssF.pointies2lineLL   = pointies2line;
+    ssF.pointnames2line   = pointnames2line;
     ssF.pos2pointyLL      = pos2pointy;
     ssF.paintTriangleLL   = paintTriangle;
     return;
@@ -102,8 +103,28 @@
             'stroke-width' : strokeWidth * sconf.thickness, 
         });
         $$.$(line.svgel).cls( cssClass + 'tp-' + tpclass );
+
+        ///if we play with 'undisplay' property, then check it
+        if( ns.h( rg[pName], 'undisplay' ) ) {
+            line.svgel.style.display = rg[pName].undisplay ? 'none' : 'block';
+        }
         return line;
     }
+
+    ///adds "sugar" to pointies2line: point names
+    function pointnames2line( name1, name2, cssClass )
+    {
+        pointies2line(
+            'line-' + name1 + name2,
+            [ rg[ name1 ], rg[ name2 ] ],
+            {
+                cssClass        : 'tostroke thickable' +
+                                   ( cssClass ? ' ' + cssClass : '' ),
+                'stroke-width'  : 2,
+            }
+        );
+    }
+
     //==============================================
     // \\// creates svg-line or updates it if exists
     //==============================================

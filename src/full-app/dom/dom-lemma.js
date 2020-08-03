@@ -90,15 +90,24 @@
     //===================================================================
     // //\\ this makes one-time effect of fading-out the original picture
     //===================================================================
-    function detected_user_interaction_effect()
+    function detected_user_interaction_effect( doUndetected )
     {
-        if( detected_user_interaction_effect_DONE ) return;
-        detected_user_interaction_effect_DONE = true;
-        rg.detected_user_interaction_effect_DONE = true;
+        //todm: this is good "if" because prevents extra CSS work
+        //      but because of poor design, it fails to do CSS work
+        //      when this function is called too early before bgImage is
+        //      created;
+        //if( detected_user_interaction_effect_DONE ) return;
 
-        //todm: this is not very well thought:
-        //      sapp.dnative && sapp.dnative.bgImage$
-        sDomN.bgImage$ && sDomN.bgImage$.addClass( 'in-study' );
+        detected_user_interaction_effect_DONE = !doUndetected;
+        rg.detected_user_interaction_effect_DONE = !doUndetected;
+
+        if( !doUndetected ) {
+            //todm: this is not very well thought:
+            //      sapp.dnative && sapp.dnative.bgImage$
+            ns.h( sDomN, 'bgImage$' ) && sDomN.bgImage$.addClass( 'in-study' );
+        } else {
+            ns.h( sDomN, 'bgImage$' ) && sDomN.bgImage$.removeClass( 'in-study' );
+        }
     }
     //===================================================================
     // \\// this makes one-time effect of fading-out the original picture

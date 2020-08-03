@@ -75,9 +75,9 @@ Running project from local PC.
 
     c:/Apache24/htdocs/
 
-    where one can put Newton-Principia folder.
+    where one can put np (Newton-Principia) folder.
     Then land on
-    localhost/Newton-Principia/index.src.html
+    localhost/np/index.src.html
 
     IIS should work too, but it feels as less convenient.
 

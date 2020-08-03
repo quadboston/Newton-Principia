@@ -94,7 +94,7 @@
                             ///changes the state by click
                             .e( 'click', ()=> {
                                 //ccc( 'bm=' + pix, cap.captured[ pix ] )
-                                ssF.appState__2__study8media__models( cap.captured[ pix ] );
+                                ssF.astate_2_model8media( cap.captured[ pix ] );
                             })
                             .html( pix + ' ' )
                             ;

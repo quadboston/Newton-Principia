@@ -29,10 +29,11 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
     ssF.captureAState = captureAState;
-    ssF.appState__2__study8media__models = appState__2__study8media__models;
+    ssF.astate_2_model8media = astate_2_model8media;
 
-
-
+    ssF.astate_2_media = astate_2_media;
+    ssF.astate_2_model8partOfMedia = astate_2_model8partOfMedia;
+    return;
 
 
 
@@ -64,17 +65,27 @@
     }
 
     ///pastes AState
-    function appState__2__study8media__models( astate )
+    function astate_2_model8media( astate )
     {
-        ns.paste( rg, astate.rg );
+        astate_2_model8partOfMedia( astate );
+        astate_2_media( astate );
+    }
+
+    function astate_2_model8partOfMedia( astate )
+    {
+        astate && ns.paste( rg, astate.rg );
+        ns.haf( ssF, 'model_upcreate' )();
+    }
+
+    ///todm: so far, this function exists only because d8d ...
+    function astate_2_media( astate )
+    {
+        ns.haf( ssF, 'media_upcreate' )();
         rg.B.pointWrap.achieved.achieved = rg.B.pointWrap.unrotatedParameterX;
-        sDomF.detected_user_interaction_effect();
-
-        ssF.model8media_upcreate();
-
-        //ccc( 'restored: after upcr: L.pos=', JSON.stringify( rg.L.pointWrap.pos ));
         rg.L.pointWrap.achieved.achieved = [ rg.L.pos[0], rg.L.pos[1] ];
     }
+
+
     //=================================
     // \\// capturers/readers
     //=================================

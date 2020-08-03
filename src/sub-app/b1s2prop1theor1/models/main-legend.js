@@ -160,7 +160,13 @@
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'time' );
-        makeCl( row, 'step' );
+
+        //---------------------------------------
+        //todm make sure this change is correct
+        //makeCl( row, 'step' );
+        makeCl( row, 'step', 'move' ); //second par really sets caption in table
+        //---------------------------------------
+
         //makeCl( row, 'thought' );
         // format( see below: ) row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'claim' 
         //                           mname - is a "vital" name: does indexing of cluster-to-update,
@@ -177,9 +183,9 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'force', null, null, null, !!'alignCaptionToRight', 'proof' );
-        makeCl( row, 'fx', null, null, null, !!'alignCaptionToRight', 'proof' );
-        makeCl( row, 'fy', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'force', '<b>p</b>', null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'fx', 'px', null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'fy', 'py', null, null, !!'alignCaptionToRight', 'proof' );
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();

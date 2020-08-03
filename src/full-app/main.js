@@ -120,11 +120,6 @@
         //--------------------------------------------
         fmethods.does_set_next_lemma_button_event( 'right' );
         fmethods.does_set_next_lemma_button_event( 'left' );
-
-        //ccc( 'end of main proc' );
-        //setTimeout( fmethods.fullResize, 1000 );
-        //fmethods.finish_Media8Ess8Legend_resize(null, null, !!'doDividorSynch');
-        //fmethods.panesD8D && fmethods.panesD8D.updateAllDecPoints();
     }
     //***********************************************
     // \\// begins establish home and lemmas
@@ -165,7 +160,7 @@
                 //alternative: ns.url2conf( fconf ); //overrides subapp conf again
                 ns.url2conf( sconf );   //overrides subapp conf again
 
-                sDomF.load_scenario__list8refs8conf( function() {
+                sDomF.loads_scenarioList8refs8conf__2__essaions_2_exegs( function() {
                         //=======================================
                         // //\\ html and css
                         //=======================================
@@ -197,13 +192,23 @@
     {
         sDomF.exegs_2_frags(); //to active-areas
         sDomF.frags__2__dom_css_mjax_tpanchors();
-
         sapp.init_sapp();
         sDomF.populateMenu();
         ns.haf( sapp, 'finish_sapp_UI' )(); 
-
         sapp.isInitialized = true;
         fmethods.setupEvents();
+
+        //todm:
+        //sets (for second time) initial media depending on amode,
+        //? the first time was needed because of menu needs media in lemmas 2,3
+        //following resize should fix any graphic misfits
+        ns.haf( ssF, 'amode_4_model8media' )( null, 'media' );
+
+        //.todm code prolifiration with "setStates_when_entering..." for upcreate ...
+        //.includes sapp.up-create();
+        fmethods.finish_Media8Ess8Legend_resize__upcreate(
+            null, null, !!'doDividorSynch');
+
 
         ///.this is a patch: the cause and real solution is not known;
         ///.and it still does not work for l2,3
@@ -212,7 +217,7 @@
         ///.place: othewise, the img.style.top for draggee is wrong which
         ///.moves arrows to the top edge of media which is wrong
         ///.the value of timeout seems also vital for l9
-        //setTimeout( fmethods.fullResize, 50 ); 50 is enough for l9
+        //setTimeout( fmethods.full Resize, 50 ); 50 is enough for l9
         setTimeout( fmethods.fullResize, 500 );
         fmethods.setupCapturerEvents();
     }

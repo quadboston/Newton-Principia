@@ -142,7 +142,7 @@
     {
        return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
        //return sconf.innerMediaWidth /
-       //       studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+       //       studyMods[ a mode['submodel'] ].mmedia.getBoundingClientRect().width;
     };
 
 

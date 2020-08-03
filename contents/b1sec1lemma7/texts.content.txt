@@ -1,0 +1,321 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin",
+  "fixed-colors" :
+  {
+    "both-curves" : [100,     0, 150,  1],
+
+    "given"         : [0,     150, 0,      1],
+    "curve-AB"      : [0,     150, 0,      1],
+    "curve-AB-full" : [0,     150, 0,      1],
+    "line-AD"       : [0,     150, 0,      1],
+    "A"             : [0,     150, 0,      1],
+    "B"         : [0,     150, 0,      1],
+    "D"         : [0,     150, 0,      1],
+    "F"         : [0,     150, 0,      1],
+    "E"         : [0,     150, 0,      1],
+    "G"         : [0,     150, 0,      1],
+    "angle-RAD" : [0,     150, 0,      1],
+    "line-Ar"   : [0,     150, 0,      1],
+    "line-AB"   : [0,     150, 0,      1],
+    "line-BD"   : [0,     150, 0,      1],
+    "line-BF"   : [0,     150, 0,      1],
+    "line-AF"   : [0,     150, 0,      1],
+    "line-BE"   : [0,     150, 0,      1],
+    "line-AG"   : [0,     150, 0,      1],
+    "line-AE"   : [0,     150, 0,      1],
+    "line-BG"   : [0,     150, 0,      1],
+
+    "proof"     : [0,     0,   255,    1],
+    "line-Ad"   : [0,     0,   255,    1],
+    "line-rd"   : [0,     0,   255,    1],
+    "line-bd"   : [0,     0,   255,    1],
+    "line-Ab"   : [0,     0,   255,    1],
+    "curve-Ab"  : [0,     0,   255,    1],
+    "b"         : [0,     0,   255,    1],
+    "d"         : [0,     0,   255,    1],
+
+    "result"    : [200,   40,  0,      1],
+    "line-AL"   : [200,   40,  0,      1],
+
+
+    "r"         : [0,     0,   0,      0],
+    "R"         : [0,     0,   0,      0],
+    "L"         : [0,     0,   0,      0],
+    "hidden"    : [0,     0,   0,      0]
+  }
+}
+*..*
+
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+    <span style="font-size:10px;">
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
+             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
+             Latin. Sectio I. Lemma VII.
+             License: public domain.
+        </a>
+    </span>
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+
+The same things being supposed, I say that the ultimate ratio of the ¦curve-AB¦arc¦¦, ¦line-AB¦chord¦¦, and ¦line-AD¦tangent¦¦, any one to any other, is the ratio of equality.
+<br><br>
+
+
+<span class="captured-reference id-colollary-1">COR. 1</span>.
+
+Whence if through ¦B¦B¦¦ we draw ¦line-BF¦BF¦¦ parallel to the ¦line-AD¦tangent¦¦, always cutting
+any right line ¦line-AF¦AF¦¦ passing through ¦A¦A¦¦ in ¦F¦F¦¦,
+this line ¦line-BF¦BF¦¦ will be ultimately in the
+ratio of equality with the evanescent ¦curve-AB¦arc ACB¦¦; because, completing the
+¦line-AF line-BF line-AD line-BD *anch-color*proof¦parallelogram AFBD¦¦, it is always in a ratio of equality with ¦line-AD¦AD¦¦.
+<br><br>
+
+
+<span class="captured-reference id-colollary-2">COR. 2</span>.
+
+And if through ¦B¦B¦¦ and ¦A¦A¦¦ more right lines are drawn, as ¦line-BE¦BE¦¦,
+¦line-BD¦BD¦¦, ¦line-AF¦AF¦¦, ¦line-AG¦AG¦¦, cutting the tangent ¦line-AD¦AD¦¦ and
+its parallel ¦line-BF¦BF¦¦ : the ultimate
+ratio of all the abscissas ¦line-AD¦AD¦¦, ¦line-AE¦AE¦¦, ¦line-BF¦BF¦¦,
+¦line-BG¦BG¦¦, and of ¦line-AB¦the chord¦¦ and ¦curve-AB¦arc AB¦¦,
+any one to any other, will be the ratio of equality.
+<br><br>
+
+COR. 3. And therefore in all our reasoning about ultimate ratios, we
+may freely use any one of those lines for any other.
+<br><br>
+
+<br><br>
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+
+*::*proof|latin
+
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+        <br><br>
+        Sources:
+        <br>
+        <br>
+        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
+             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
+             Latin. Sectio IV. Lemma V.
+             License: public domain.
+        </a>
+
+
+
+
+
+
+
+*::*proof|english
+
+
+For while the point ¦B¦B¦¦
+
+<span class="captured-reference id-true-convergence-1">approaches</span>
+
+towards the point ¦A¦A¦¦, consider always
+¦line-AB¦AB¦¦ and ¦line-AD¦AD¦¦ as produced to the remote points ¦b¦b¦¦ and ¦d¦d¦¦,
+and parallel to the
+secant ¦line-BD¦BD¦¦ draw ¦line-bd¦bd¦¦ : and let the ¦curve-Ab¦arc Acb¦¦ be always similar to the ¦curve-AB¦arc ACB¦¦. Then, supposing the points ¦A¦A¦¦ and ¦B¦B¦¦ to coincide,
+the angle ¦line-Ab line-Ad *anch-color*proof¦dAb¦¦
+will vanish, by the preceding Lemma; and therefore the right lines ¦line-Ab¦Ab¦¦,
+¦line-Ad¦Ad¦¦ (which are always finite), and the intermediate ¦curve-Ab¦arc Acb¦¦, will coincide,
+and become equal among themselves. Wheref[o]re, the right lines ¦line-AB¦AB¦¦, ¦line-AD¦AD¦¦,
+and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to the
+¦curve-Ab¦former¦¦), will vanish, and ultimately acquire the ratio of equality. Q.E.D.
+
+
+<br><br>
+<div style="font-size:10px;">
+    Source: <br>
+    The Mathematical Principles of
+    Natural Philosophy, by Sir Isaac Newton;<br>
+    Translated into English by Andrew Motte.<br>
+    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
+    Adee, 45 Liberty Street.<br>
+    Year is possibly 1846.<br><br>
+</div>
+
+<br><br>
+
+
+
+*:::*:::*
+
+{
+    "reset-to-origin": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+
+    "L-equal-d": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+    "closer": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.5658328716632559
+                }
+            }
+        }
+    },
+
+    "more-closer": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0,
+                "sin": 0,
+                "cos": 1
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.10102343776498918
+                }
+            }
+        }
+    },
+
+
+    "true-convergence-1": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.5232929802797621
+                }
+            }
+        }
+    },
+
+    "colollary-1": {
+        "rg": {
+            "line-BF" : { "undisplay" : false },
+            "line-AF" : { "undisplay" : false },
+            "F" : { "undisplay" : false },
+
+            "line-BG" : { "undisplay" : true },
+            "line-AE" : { "undisplay" : true },
+            "line-BE" : { "undisplay" : true },
+            "line-AG" : { "undisplay" : true },
+            "G" : { "undisplay" : true },
+            "E" : { "undisplay" : true },
+
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+
+    "colollary-2": {
+        "rg": {
+            "line-BF" : { "undisplay" : false },
+            "line-AF" : { "undisplay" : false },
+            "F" : { "undisplay" : false },
+
+            "line-BG" : { "undisplay" : false },
+            "line-AE" : { "undisplay" : false },
+            "line-BE" : { "undisplay" : false },
+            "line-AG" : { "undisplay" : false },
+            "E" : { "undisplay" : false },
+            "G" : { "undisplay" : false },
+
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.7745228215767634
+                }
+            }
+        }
+    },
+
+    "meet": {
+        "rg": {
+            "curveRotationAngle": {
+                "angle": 0.10579977792284677,
+                "sin": 0.10560250842053673,
+                "cos": 0.9944084222367038
+            },
+            "B": {
+                "pointWrap": {
+                    "unrotatedParameterX": 0.001
+                }
+            }
+        }
+    }
+
+}
+
+

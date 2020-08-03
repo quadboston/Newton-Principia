@@ -28,7 +28,7 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
     ssF.captureAState = captureAState;
-    ssF.appState__2__study8media__models = appState__2__study8media__models;
+    ssF.astate_2_model8media = astate_2_model8media;
 
 
 
@@ -64,7 +64,7 @@
     }
 
     ///pastes AState
-    function appState__2__study8media__models( cstate )
+    function astate_2_model8media( cstate )
     {
         var ast = cstate;
         rg.m.value = ast.m;

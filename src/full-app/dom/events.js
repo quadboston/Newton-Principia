@@ -21,6 +21,9 @@
     fmethods.fullResize             = fullResize;
     return;
 
+
+
+
     ///===================================================
     /// sets click event for each capture reference
     ///===================================================
@@ -31,7 +34,8 @@
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
             link.setAttribute( 'title', 'click to go to episode' );
             link.addEventListener( 'click', function() {
-                ssF.appState__2__study8media__models( ssD.capture[ match[1] ] );
+                //.prevents code-crash if subapp does not define "appState__2..."
+                ns.haf( ssF, 'astate_2_model8media' )( ssD.capture[ match[1] ] );
             });
         });
     };
@@ -51,7 +55,8 @@
             //.after resize
         //!!'doDividorSynch'
         ///this statement is inside of this routine: sapp.up-create();
-        fmethods.finish_Media8Ess8Legend_resize && fmethods.finish_Media8Ess8Legend_resize(
+        fmethods.finish_Media8Ess8Legend_resize__upcreate && 
+        ns.haf( fmethods, "finish_Media8Ess8Legend_resize__upcreate" )(
             null, null, !!'doDividorSynch'
         );
     }
