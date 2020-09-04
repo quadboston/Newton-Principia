@@ -29,11 +29,11 @@
     var modName     = 'mediaModel_create';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-    var modpos2medpos;
     var pointies2line;
     var pos2pointy;
-    var paintTriangle;
     var handleR = 5;
+
+    var stdMod;
     return;
 
 
@@ -49,10 +49,10 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
-        modpos2medpos   = ssF.modpos2medposLL;
-        pointies2line   = ssF.pointies2lineLL;
-        pos2pointy      = ssF.pos2pointyLL;
+        stdMod = sn(SUB_MODEL, studyMods);
+        stdMod.media_upcreate = media_upcreate;
+        pointies2line   = ssF.pointies2line;
+        pos2pointy      = ssF.pos2pointy;
     }
 
 
@@ -61,10 +61,9 @@
     //=========================================================
     function media_upcreate()
     {
-        var studmod = studyMods[ SUB_MODEL ];
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            studmod.medD8D && studmod.medD8D.updateAllDecPoints();
+            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.mediaModelInitialized = true;
     }
@@ -82,7 +81,7 @@
         var givenColor  = sDomF.getFixedColor( "given" );
         var proofColor  = sDomF.getFixedColor( "proof" );
 
-
+        stdMod.toogle_hideD8Dpoint(); //todm ... generalize in one spot
 
         //-------------------------------------------------
         // //\\ adds to points their media position
@@ -101,8 +100,6 @@
                 }
             );
             pWrap.medpos = rg[ pname ].medpos;
-            rg[ pname ].svgel.style.display =
-                ns.haz( rg[pname], 'undisplay' ) ? 'none' : 'block';
         });
         //-------------------------------------------------
         // \\// adds to points their media position
@@ -118,7 +115,7 @@
         ///keeps converter in "inner function" closure
         var givenCurveFunction = ( function() {
             //var dd = rg.givenCurveFunction.value;
-            var mod2med = ssF.modpos2medposLL;
+            var mod2med = ssF.mod2inn;
             return function( x ) {
                 var [xx,yy ] = rg.repoConf.value[0].fun( x );
                 var res = mod2med([ xx, yy]);
@@ -137,7 +134,7 @@
             "stroke-width"  : 2,
             svgel           : rg.givenMediaCurve.svg,
             dontClose       : true,
-            parent          : studyMods[ SUB_MODEL ].mmedia,
+            parent          : stdMod.mmedia,
         });
         $$.$(rg.givenMediaCurve.svg).addClass( 'tostroke thickable tp-curve-_a_b tp-both-curves' );
 
@@ -153,7 +150,7 @@
             "stroke-width"  : 2,
             svgel           : rg.givenMediaCurveFull.svg,
             dontClose       : true,
-            parent          : studyMods[ SUB_MODEL ].mmedia,
+            parent          : stdMod.mmedia,
         });
         $$.$(rg.givenMediaCurveFull.svg).addClass(
             'tostroke thickable tp-curve-_a_b-full tp-both-curves' );
@@ -167,7 +164,7 @@
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
         var magnifiedCurveFunction = ( function() {
-            var mod2med = ssF.modpos2medposLL;
+            var mod2med = ssF.mod2inn;
             return function( x ) {
                 var [xx,yy ] = rg.repoConf.value[0].fun( x );
                 var res = mod2med([ xx*magnitude, yy*magnitude]);
@@ -186,11 +183,12 @@
             "stroke-width"  : 2,
             svgel           : rg.magnifiedCurve.svgel,
             dontClose       : true,
-            parent          : studyMods[ SUB_MODEL ].mmedia,
+            parent          : stdMod.mmedia,
         });
-        $$.$( rg.magnifiedCurve.svgel ).addClass( 'tostroke thickable tp-curve-_ab tp-both-curves' );
-        rg[ 'magnifiedCurve' ].svgel.style.display =
-            ns.haz( rg[ 'magnifiedCurve' ], 'undisplay' ) ? 'none' : 'block';
+        var ww$ = $$.$( rg.magnifiedCurve.svgel );
+        ww$.tgcls( 'undisplay', ns.haz( rg.magnifiedCurve, 'undisplay' ) );
+        ww$.addClass( 'tostroke thickable tp-curve-_ab tp-both-curves' );
+
         //-------------------------------------------------
         // \\// paints magnified curve
         //-------------------------------------------------
@@ -246,13 +244,13 @@
                     fill : pWrap.pcolor,
                     "stroke-width" : 2,
                     svgel : pWrap.pnameLabelsvg,
-                    parent : studyMods[ SUB_MODEL ].mmedia,
+                    parent : stdMod.mmedia,
                     x : lpos[0],
                     y : lpos[1],
                     style : { 'font-size' : '32px' },
                 });
-                pWrap.pnameLabelsvg.style.display =
-                    ns.haz( rg[pname], 'undisplay' ) ? 'none' : 'block';
+                $$.$( pWrap.pnameLabelsvg )
+                    .tgcls( 'undisplay', ns.haz( rg[pname], 'undisplay' ) );
             }
 
             ///adds fake points over draggable points to
@@ -261,7 +259,10 @@
             if( pname === 'L' || pname === 'B' ) {
                 var fakeName = pname+'-kernel';
                 var wp = rg[pname].pos;
-                ssF.toreg( fakeName )( 'pos', [ wp[0], wp[1] ]  );
+                ssF.toreg( fakeName )
+                    ( 'pos', [ wp[0], wp[1] ]  )
+                    ( 'undisplay', ns.haz( rg[pname], 'undisplay' )  ) //"removes circle"
+                    ;
                 pos2pointy(
                     fakeName,
                     {
@@ -272,8 +273,6 @@
                         r               : handleR,
                     }
                 );
-                rg[ fakeName ].svgel.style.display =
-                    ns.haz( rg[ pname ], 'undisplay' ) ? 'none' : 'block';
             }
         });
         //-----------------------------------------------
@@ -291,7 +290,7 @@
             ( function() {
                 var pointWrap = rg[ 'B' ].pointWrap;
                 pointWrap.model8media_upcreate = function() {
-                    studyMods[ SUB_MODEL ].model8media_upcreate();
+                    stdMod.model8media_upcreate();
                 }
                 pointWrap.pos2value = function( new_unrotatedParameterX )
                 {
@@ -319,7 +318,7 @@
             ( function() {
                 var pointWrap = rg[ 'L' ].pointWrap;
                 pointWrap.model8media_upcreate = function() {
-                    studyMods[ SUB_MODEL ].model8media_upcreate();
+                    stdMod.model8media_upcreate();
                 }
                 pointWrap.pos2value = function( newPos )
                 {
@@ -346,24 +345,6 @@
         // \\// draws vertical lines and points
         //-----------------------------------------------
 
-
-
-        ///creates tools for the first time and only once
-        if( !ssF.mediaModelInitialized ) {
-            ////if sliders are not yet created ...
-            if( sconf.enableTools ) {
-                ssF.toreg( 'media_scale' )( 'value', 1 );
-                ssF.toreg( 'thickness' )( 'value', 2 );
-                ssF.createSliderPlaceholder_media_scale();
-                ssF.createSliderPlaceholder_thickness();
-            }
-        }
-
-        ///fixes slider pointer detectibility upon mode
-        if( sconf.enableTools ) {
-            rg.media_scale.hideD8Dpoint = rgtools.value === 'on' ? false : true;
-            rg.thickness.hideD8Dpoint = rgtools.value === 'on' ? false : true;
-        }
     }
     //=========================================================
     // \\// updater helper

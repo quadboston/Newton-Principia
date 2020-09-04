@@ -10,7 +10,12 @@
         var ccs = fconf.css;
 
         var body_DesktopOverflow = fconf.sappId === 'home-pane' ?
-                                   'overflow-x:hidden' : 'overflow:hidden';
+                                   'overflow-x:hidden' :
+                                   'overflow:hidden'
+                                   //'overflow-y:hidden' //todo ... why?
+                                   //overflow:auto'    //breaks
+        ;
+
 
 // //\\ css /////////////////////////////////////////
 var ret = `

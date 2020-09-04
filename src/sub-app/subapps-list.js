@@ -25,6 +25,16 @@
         { src:'models/media-model-sliders.js' },
     ];
 
+    var mlist_body_updated =
+    [
+        { src:'sconf.js' },
+        { src:'models/study-model.js' },
+        { src:'models/media-model.js' },
+        { src:'models/main-legend.js' },
+        { src:'models/dom8model-sliders.js' },
+        { src:'models/d8d-sliders.js' },
+        { src:'models/state-capturer.js' },
+    ];
 
     var sappModulesArray = fconf.sappModulesArray =
     [
@@ -40,7 +50,7 @@
         {   landingApp : false,  //marks default landing app
             sappId : 'lemma1',
             book : 'Book 1',
-            caption : 'Lemma I',
+            caption : 'Sec. I. Lemma I',
             sappCodeReference : '',
             annotation : "Core lemma introducing limit method",
             codesList : mlist_startUp
@@ -65,9 +75,9 @@
 
         {   sappId : 'lemma2',
             book : 'Book 1',
-            caption : 'Lemma II',
+            caption : 'Sec. I. Lemma II',
             sappCodeReference : '',
-            annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
+            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
             codesList : mlist_startUp.concat(
             [
                 {  src:"css/css-order.js" },
@@ -90,50 +100,53 @@
 
         {   sappId : 'lemma3',
             book : 'Book 1',
-            caption : 'Lemma III',
+            caption : 'Sec. I. Lemma III',
             sappCodeReference : 'lemma2',
-            annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
+            annotation : "Lorem ipsum  set lorem ipsum doler sut.",
         },
 
         {   sappId : 'b1sec1lemma6',
             book : 'Book 1',
-            caption : 'Lemma VI',
+            caption : 'Sec. I. Lemma VI',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp
+            codesList :
+                mlist_body_updated
                 .concat( mlist_CSS )
-                .concat( mlist_body )
-                .concat( { src : [ 'models/state-capturer.js' ] } )
-                .concat( { src : [ 'models/d8d-model.js' ] } )
                 ,
         },
 
         {   sappId : 'b1sec1lemma7',
             book : 'Book 1',
-            caption : 'Lemma VII',
+            caption : 'Sec. I. Lemma VII',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp
-                .concat( mlist_CSS )
+            codesList :
+                [
+                    { src:'sconf.js' },
+                    { src:'models/study-model.js' },
+                ]
                 .concat(
                 [
                     { src:'../b1sec1lemma6/models/media-model.js' },
                     { src:'../b1sec1lemma6/models/main-legend.js' },
-                    { src:'../b1sec1lemma6/models/media-model-sliders.js' },
+                    { src:'../b1sec1lemma6/models/dom8model-sliders.js' },
                     { src:'../b1sec1lemma6/models/state-capturer.js' },
-                    { src:'../b1sec1lemma6/models/d8d-model.js' },
+                    { src:'../b1sec1lemma6/models/d8d-sliders.js' },
 
-                    { src:'models/study-model.js' },
-                ] )
+                    { src:'../b1sec1lemma6/css/css-order.js' },
+                    { src:'../b1sec1lemma6/css/proof-vs-claim-only-one-model-visibility.css.js' },
+                    { src:'../b1sec1lemma6/css/css.css.js' },
+                ])
                 ,
         },
 
 
         {   sappId : 'lemma9',
             book : 'Book 1',
-            caption : 'Lemma IX',
+            caption : 'Sec. I. Lemma IX',
             sappCodeReference : '',
-            annotation : "Lorem ipsum dolor set ipsum set dolor acnut lima noir set lorem ipsum doler sut.",
+            annotation : "Lorem ipsum dolor acnut lima noir set lorem ipsum doler sut.",
             codesList : mlist_startUp.concat(
             [
                 { src:'css/css-order.js' },
@@ -149,69 +162,75 @@
 
         {   sappId : 'b1s2prop1theor1',
             book : 'Book 1',
-            caption : 'Proposition I',
+            caption : 'Sec. II. Proposition I. Theorem I',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp.concat(
-            [
-                { src:'sconf.js' },
-                { src:'main.js' },
-
-                { src:'css/css-order.js' },
-                { src:'css/proof-vs-claim-only-one-model-visibility.css.js' },
-                { src:'css/css.css.js' },
-                { src:'models/study-model.js' },
-                { src:'models/media-model.js' },
-                { src:'models/main-legend.js' },
-                { src:'models/d8d-model.js' }
-            ])
+            codesList :
+                mlist_body_updated
+                .concat( mlist_CSS )
+                .concat( [
+                    { src: 'models/media-model-draw-evol.js' },
+                    { src: 'models/media-model-clear-scenario.js' },
+                    { src: 'models/media-model-setup-show-scenario.js' },
+                    { src: 'models/media-model-declare-decorations.js' },
+                ] )
+            ,
         },
 
 
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
-            caption : 'Sec. 5. Lemma 20',
+            caption : 'Sec. V. Lemma XX',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp.concat(
+            codesList : [].concat(
             [
+                { src:'sconf.js' },
                 { src:'css/css-order.js' },
                 { src:'css/proof-vs-claim-only-one-model-visibility.css.js' },
                 { src:'css/css.css.js' },
                 { src:'models/study-model.js' },
                 { src:'models/media-model.js' },
                 { src:'models/main-legend.js' },
-                { src:'models/d8d-model.js' }
+
+                { src:'models/d8d-model.js' },
+                //{ src:'models/dom8model-sliders.js' },
+                //{ src:'models/d8d-sliders.js' },
+
+                //{ src:'models/state-capturer.js' },
             ])
         },
 
         {   sappId : 'b1sec5lemma21',
             book : 'Book 1',
-            caption : 'Sec. 5. Lemma 21',
+            caption : 'Sec. V. Lemma XXI',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp.concat(
+            codesList : [].concat(
             [
+                { src:'sconf.js' },
                 { src:'css/css-order.js' },
                 { src:'css/proof-vs-claim-only-one-model-visibility.css.js' },
                 { src:'css/css.css.js' },
                 { src:'models/study-model.js' },
                 { src:'models/media-model.js' },
                 { src:'models/main-legend.js' },
-                { src:'models/d8d-model.js' }
+
+                { src:'models/d8d-model.js' },
+                //{ src:'models/dom8model-sliders.js' },
+                //{ src:'models/d8d-sliders.js' },
+                //{ src:'models/state-capturer.js' },
             ])
         },
 
         {   sappId : 'b3sec4lemma5',
             book : 'Book 3',
-            caption : 'Sec. 4. Lemma 5',
+            caption : 'Sec. IV. Lemma V',
             sappCodeReference : '',
             annotation : "",
-            codesList : mlist_startUp
+            codesList :
+                mlist_body_updated
                 .concat( mlist_CSS )
-                .concat( mlist_body )
-                .concat( { src : [ 'models/d8d-model.js' ] } )
-                .concat( { src : [ 'models/state-capturer.js' ] } )
                 ,
         },
 

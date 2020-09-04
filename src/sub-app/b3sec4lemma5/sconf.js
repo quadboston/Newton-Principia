@@ -89,11 +89,11 @@
 
             var x = pair[0];
             pair[0].pname = Object.keys( x )[0];
-            pair[0].picturepos = x[ pair[0].pname ];
+            pair[0].picturepos = x[ pair[0].pname ];       //makes in synch with pos
 
             var y = pair[1];
             pair[1].pname = Object.keys( y )[0];
-            pair[1].picturepos = y[ pair[1].pname ];
+            pair[1].picturepos = y[ pair[1].pname ];       //makes in synch with pos
             pair[1].picturepos[0] = pair[0].picturepos[0]; // = abscissa
         });
         //result is like this: basePairs =
@@ -148,24 +148,23 @@
         //----------------------------------
 
 
-
         //---------------------------------------------------------------------------
         // //\\ derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
         //appar. as by I.N.: difference between two first x-points:
-        var mod2med_scale = basePairs[1][0].picturepos[0] - basePairs[0][0].picturepos[0];
-        var med2mod_scale = 1/mod2med_scale;
+        var mod2inn_scale = basePairs[1][0].picturepos[0] - basePairs[0][0].picturepos[0];
+        var inn2mod_scale = 1/mod2inn_scale;
 
         var pname2point = {};
         //var initialModPoints;
-        var factor = MONITOR_Y_FLIP * med2mod_scale;
+        var factor = MONITOR_Y_FLIP * inn2mod_scale;
         (function() {
             basePairs.forEach( bpair => {
                 bpair.forEach( point => {
                     var pp = point.picturepos;
                     var pname = point.pname;
                     var pos = [ pp[0] - originX_onPicture, pp[1] - originY_onPicture ];
-                    point.pos = [ pos[0]*med2mod_scale, pos[1]*factor ];
+                    point.pos = [ pos[0]*inn2mod_scale, pos[1]*factor ];
                     pname2point[pname] = point;
                 });
             });
@@ -178,6 +177,7 @@
         /*
         //In both pname2point and basePairs at this moment, the leaf-element,
         //the point has following format:
+        sconf.pname2point[pname] = sconf.basePairs[NN][MM] =
         {
             "H": [
                 98,
@@ -188,7 +188,7 @@
                 98,
                 474
             ],
-            "pos": [
+            "pos": [ //in model units and model-plane-space ...
                 0,
                 0
             ]
@@ -210,9 +210,13 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
+        fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
+ccc( '555' );
         Object.assign( sconf, {
 
             MONITOR_Y_FLIP : MONITOR_Y_FLIP,
+            //SLIDERS_LEGEND_HEIGHT,
+            //SLIDERS_OFFSET_Y : -70,
 
             pname2point : pname2point,
             basePairs : basePairs,
@@ -220,7 +224,7 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
-            originalMod2med_scale : mod2med_scale,
+            originalMod2inn_scale : mod2inn_scale,
             activeAreaOffsetX   : originX_onPicture,
             activeAreaOffsetY   : originY_onPicture,
             originX_onPicture   : originX_onPicture,
@@ -231,7 +235,7 @@
             centerOnPicture_Y   : originY_onPicture,
 
 
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
             thickness           : 1,
             //----------------------------------
@@ -255,10 +259,10 @@
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 2,
 
-            mod2med_scale : mod2med_scale,
-            med2mod_scale : med2mod_scale,
-            mod2med_scale_initial : mod2med_scale,
-            med2mod_scale_initial : med2mod_scale,
+            mod2inn_scale : mod2inn_scale,
+            inn2mod_scale : inn2mod_scale,
+            mod2inn_scale_initial : mod2inn_scale,
+            inn2mod_scale_initial : inn2mod_scale,
         });
         //----------------------------------
         // \\// prepares sconf data holder

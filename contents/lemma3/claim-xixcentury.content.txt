@@ -1,12 +1,11 @@
 *::*claim|xixcentury
 {
-  "menuCaption" : "XIX Century",
+  "menuCaption" : "Study",
   "dataLegend":"0"
 }
 *..*
 
-
-For any monotonic and bounded function ¦curve¦\( [A,E] \overset f \to \mathbb{R} \)¦¦,
+In XIX century notations, for any monotonic and bounded function ¦curve¦\( [A,E] \overset f \to \mathbb{R} \)¦¦,
 
     \[
             \underset{\delta \to 0} {\text{lim }} U_\delta =

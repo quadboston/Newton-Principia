@@ -42,7 +42,7 @@
     function setModule()
     {
         sn(SUB_MODEL, studyMods ).upcreateMedia = upcreateMedia;
-        pointies2line   = ssF.pointies2lineLL;
+        pointies2line   = ssF.pointies2line;
     }
 
 
@@ -62,40 +62,40 @@
 
 
 
-        var medCurvPivots      = modCurvPivots.map( modpos2medpos );
-        var medRemoteCurPivots = ssD.modRemoteCurPivots.map( modpos2medpos );
+        var medCurvPivots      = modCurvPivots.map( mod2innCustom );
+        var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
 
-        var pointA     = pos2pointy( 'point-A',
+        var pointA     = pos2pointy4lemma9( 'point-A',
                                       { 
                                         cssClass:'tofill tostroke op1',
                                         'fill' : 'blue'
                                       }
                                     );
-        var pointD     = pos2pointy( 'point-D', {
+        var pointD     = pos2pointy4lemma9( 'point-D', {
                                       cssClass:'tofill tostroke op1' } );
-        var pointE     = pos2pointy( 'point-E', {
+        var pointE     = pos2pointy4lemma9( 'point-E', {
                               cssClass:'tostroke',
                               stroke : 'blue',
                               'fill' : 'transparent',
                               'stroke-width' : 1
                           });
-        var pointB     = pos2pointy( 'point-B', {
+        var pointB     = pos2pointy4lemma9( 'point-B', {
                               cssClass:'tostroke',
                               'fill' : 'transparent',
                               'stroke-width' : 1
                           });
-        var pointC     = pos2pointy( 'point-C', {
+        var pointC     = pos2pointy4lemma9( 'point-C', {
                               cssClass:'tostroke',
                               'fill' : 'transparent',
                               'stroke-width' : 1
                           });
 
-        var pointOd     = pos2pointy('point-d', {cssClass:'tofill tostroke op1' } );
-        var pointOe     = pos2pointy('point-e', {cssClass:'tofill tostroke op1' } );
-        var pointOb     = pos2pointy('point-b', {cssClass:'tofill tostroke op1' } );
-        var pointOc     = pos2pointy('point-c', {cssClass:'tofill tostroke op1' } );
-        var pointOg     = pos2pointy('point-g', {cssClass:'tofill tostroke op1' } );
-        var pointOf     = pos2pointy('point-f', {cssClass:'tofill tostroke op1' } );
+        var pointOd     = pos2pointy4lemma9('point-d', {cssClass:'tofill tostroke op1' } );
+        var pointOe     = pos2pointy4lemma9('point-e', {cssClass:'tofill tostroke op1' } );
+        var pointOb     = pos2pointy4lemma9('point-b', {cssClass:'tofill tostroke op1' } );
+        var pointOc     = pos2pointy4lemma9('point-c', {cssClass:'tofill tostroke op1' } );
+        var pointOg     = pos2pointy4lemma9('point-g', {cssClass:'tofill tostroke op1' } );
+        var pointOf     = pos2pointy4lemma9('point-f', {cssClass:'tofill tostroke op1' } );
         //===================================================
         // \\// spawns study model from main parameters ssD
         //===================================================
@@ -236,7 +236,7 @@
         function paintLikeAGE( areaId, fullMode, cls )
         {
             var area = rg[ areaId ];
-            var vertices = area.vertices.map( modpos2medpos );
+            var vertices = area.vertices.map( mod2innCustom );
             area.mediael = sv.polyline({
                 pivots : vertices,
                 svgel : area.mediael,
@@ -302,23 +302,23 @@
         //==========================================
         // //\\ pos to pos
         ///transforms model-coordinates to media-coordinates
-        function modpos2medpos( pos )
+        function mod2innCustom( pos )
         {
             if( !pos ) { pos = this; }
-            return [ pos[0] * sconf.mod2med_scale + sconf.activeAreaOffsetX,
-                     pos[1] * sconf.mod2med_scale * sconf.MONITOR_Y_FLIP +
+            return [ pos[0] * sconf.mod2inn_scale + sconf.activeAreaOffsetX,
+                     pos[1] * sconf.mod2inn_scale * sconf.MONITOR_Y_FLIP +
                      sconf.activeAreaOffsetY ];
         }
         // \\// pos to pos
 
 
         ///converts model-pos and attributes to pointy
-        function pos2pointy( pName, attrs )
+        function pos2pointy4lemma9( pName, attrs )
         {
             var pos             = rg[ pName ].pos;
             var pt              = tr( pName );
             pt.pos              = pos;
-            pt.medpos           = modpos2medpos( pt.pos );
+            pt.medpos           = mod2innCustom( pt.pos );
             pt.svgel = sv.u({
                 svgel   : pt.svgel,
                 parent  : studyMods[ SUB_MODEL ].mmedia,

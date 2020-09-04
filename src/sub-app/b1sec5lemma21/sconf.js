@@ -29,6 +29,8 @@
 
 
 
+
+
     function setModule()
     {
         ssF.init_conf = init_conf;
@@ -56,8 +58,10 @@
         var centerX_onPicture = 384;
         var centerY_onPicture = 551;
         var centerY_onPicture = 553;
+        //var activeAreaOffsetX = centerX_onPicture;
+        //var activeAreaOffsetY = centerY_onPicture;
 
-        var mod2med_scale;
+        var mod2inn_scale;
 
         var pointsOnPicture =
         {
@@ -96,7 +100,7 @@
             var N = pp.N;
             var AA = pp.AA;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
-            mod2med_scale = mat.unitVector(BC).abs;
+            mod2inn_scale = mat.unitVector(BC).abs;
             var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
             a = 1 - wwb;
             a = 0.428;
@@ -105,7 +109,7 @@
             //---sets initial param g
             var OM = [ M[0] - O[0], M[1] - O[1] ];
             initial_Munit = mat.unitVector(OM);
-            initial_g = initial_Munit.abs/mod2med_scale;
+            initial_g = initial_Munit.abs/mod2inn_scale;
             initial_g = 0.105;
             //is an absolute value of an angle:
             gamma = Math.acos( initial_Munit.unitVec[0] ); 
@@ -114,7 +118,7 @@
             //---sets initial decorational param gN
             var ON = [ N[0] - O[0], N[1] - O[1] ];
             initial_Nunit = mat.unitVector(ON);
-            to_sconf.initial_gN = -initial_Nunit.abs/mod2med_scale;
+            to_sconf.initial_gN = -initial_Nunit.abs/mod2inn_scale;
 
 
             var BAA = mat.p1_to_p2( B, AA );
@@ -144,6 +148,8 @@
         //     which means from screen-top to
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
+        //var mod2inn_scale =  ...
+        var activeAreaOffsetOnPictureY = centerY_onPicture;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -152,6 +158,7 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
+        fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
         Object.assign( to_sconf, {
             initialPoints : pointsOnPicture,
 
@@ -167,7 +174,7 @@
             // //\\ model-view parameters
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            originalMod2med_scale : mod2med_scale,
+            originalMod2inn_scale : mod2inn_scale,
 
             activeAreaOffsetX   : masterCenterX,
             activeAreaOffsetY   : masterCenterY,
@@ -176,7 +183,7 @@
 
             centerOnPicture_X   : masterCenterX,
             centerOnPicture_Y   : masterCenterY,
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
             thickness           : 1,
@@ -188,6 +195,7 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
+            enableStudylab : true,
             enableTools : true,
             //----------------------------------
             // \\// scenario
@@ -205,15 +213,22 @@
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
-            var med2mod_scale = 1/mod2med_scale;
+            var inn2mod_scale = 1/mod2inn_scale;
 
             //for Y:
 
             to_sconf.APP_MODEL_Y_RANGE = 1;
-            to_sconf.mod2med_scale = mod2med_scale;
-            to_sconf.med2mod_scale = med2mod_scale;
-            to_sconf.mod2med_scale_initial = mod2med_scale;
-            to_sconf.med2mod_scale_initial = med2mod_scale;
+            to_sconf.mod2inn_scale = mod2inn_scale;
+            to_sconf.inn2mod_scale = inn2mod_scale;
+
+            to_sconf.mod2inn_scale_initial = //todm rid
+                mod2inn_scale;
+
+            to_sconf.inn2mod_scale_initial = inn2mod_scale;
+
+            //todo proliferation in each lemma:
+            //for tool sliders:
+            to_sconf.originalMod2inn_scale = to_sconf.mod2inn_scale;
         })();
         //----------------------------------
         // \\// spawns to_conf

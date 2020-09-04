@@ -35,9 +35,10 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
     var stdMod;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
     return;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+
+
 
 
 
@@ -49,142 +50,127 @@
     function setModule()
     {
         stdMod = sn( SUB_MODEL, studyMods );
-        stdMod.initDragModel = initDragModel;
+        stdMod.populates__cust_draggers_list = populates__cust_draggers_list;
     }
 
 
     //==========================================
-    // //\\ inits drag points
+    // //\\ inits drag model
     //==========================================
-    function initDragModel()
+    function populates__cust_draggers_list()
     {
-        ///======================================
-        /// sets framework of draggee-points
-        ///======================================
-        var medD8D = sn( SUB_MODEL, studyMods ).medD8D =
-        d8d_p.createFramework({
-            findDraggee                         : findDraggee,
-            dragSurface                         : sDomN.medRoot,
-            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
+        ns.sn( 'customDraggers_list', stdMod, [] );
+        stdMod.customDraggers_list.push( createDraggers_p );
 
-            //this "destroys" main image of original manuscript at drag start
-            //detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
-        });
-        //no need, done in media-model.js:  update_decPoint( decPoint )
-
-        //==========================================
-        //: sets drag points
-        //==========================================
-        sapp.readyToResize = true;
-        createDragger_T();
-        createDragger_a();
-        ns.globalCss.update(); //for decorator
-        return;
+        //todm ... do automate
+        stdMod.railsCustomSlidersCount = ns.h( stdMod, 'railsCustomSlidersCount' ) ?
+            stdMod.railsCustomSlidersCount + 1 : 1; 
+    };
+    //==========================================
+    // \\// inits drag model
+    //==========================================
 
 
 
+    //===========================================
+    // //\\ create draggers p
+    //===========================================
+    function createDraggers_p( medD8D )
+    {
+        createDragger_T( rg.T, medD8D );
+        createDragger_a( rg.a, medD8D );
+    }
 
 
+    function createDragger_T( pointWrap, medD8D )
+    {
+        //:sets dragger handle color
+        pointWrap.spinnerClsId    = 't-slider-point';
 
+        //todo ... not proof
+        pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
 
-
-
-
-
-
-        function createDragger_T()
+        var argc =
         {
-            var pointWrap = rg.T;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 't-slider-point';
-
-            //todo ... not proof
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-
-            var argc =
-            {
-                achieved            : [ rg.T.pos[0], rg.T.pos[1] ],
-                pointWrap           : rg.T,
-                doProcess           : doProcess_sliderT,
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
-
+            achieved            : [ rg.T.pos[0], rg.T.pos[1] ],
+            pointWrap           : rg.T,
+            doProcess           : doProcess_sliderT,
+        };
+        medD8D.pointWrap_2_dragWrap( argc );
+        return;
 
         function doProcess_sliderT( arg )
         {
             var ach = arg.pointWrap.achieved;
             var T = rg.T;
             switch( arg.down_move_up ) {
-                case 'up':
+                case 'down':
                      ach.achieved = [ T.pos[0], T.pos[1] ];
                      break;
                 case 'move':
                     T.pos2value([
                         ach.achieved[0] + arg.surfMove[0] *
-                        sconf.med2mod_scale * css2media(),
+                        sconf.inn2mod_scale * sDomF.out2inn(),
                         ach.achieved[1]
                     ]);
                     break;
             }
         }
+    }
 
-        //============================================
-        // //\\ slider a
-        //============================================
-        function createDragger_a()
+    //============================================
+    // //\\ slider a
+    //============================================
+    function createDragger_a( pointWrap, medD8D )
+    {
+        //:sets dragger handle color
+        pointWrap.spinnerClsId    = 'tp-ellipse';
+        //todm ... not straight
+        pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
+        var argc =
         {
-            var pointWrap = rg.a;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 'tp-ellipse';
-            //todm ... not straight
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-            var argc =
-            {
-                achieved            : [ rg.a.pos[0], rg.a.pos[1] ],
-                pointWrap           : rg.a,
-                doProcess           : doProcess_slider_a,
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
+            achieved            : [ rg.a.pos[0], rg.a.pos[1] ],
+            pointWrap           : rg.a,
+            doProcess           : doProcess_slider_a,
+        };
+        medD8D.pointWrap_2_dragWrap( argc );
+        return;
 
         function doProcess_slider_a( arg )
         {
             var ach = arg.pointWrap.achieved;
             var a = rg.a;
             switch( arg.down_move_up ) {
-                case 'up':
+                case 'down':
                      ach.achieved = [ a.pos[0], a.pos[1] ];
                      break;
                 case 'move':
                     sDomF.detected_user_interaction_effect();
                     var new_a = [
                             ach.achieved[0] + arg.surfMove[0] *
-                            sconf.med2mod_scale * css2media(),
+                            //sconf.inn2mod_scale * sDomF.out2inn(),
+
+                            (1/sconf.originalMod2inn_scale) *
+                            sDomF.out2inn(),
+
                             ach.achieved[1]
                         ];
                         a.pos2value( new_a );
                     break;
             }
         }
-        //============================================
-        // \\// slider a
-        //============================================
-    }; 
-    //==========================================
+    }
+    //============================================
+    // \\// slider a
     // \\// inits drag points
     //==========================================
-
-
 
 
 
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
+    ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -204,7 +190,7 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( pOnS );
+        var testMedpos = sDomF.outparent2inn( pOnS );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
 
@@ -232,13 +218,6 @@
     //====================
     // \\// finds draggee
     //====================
-
-    function css2media()
-    {
-       return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
-       //return sconf.innerMediaWidth /
-       //       studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
-    };
 
 
 }) ();

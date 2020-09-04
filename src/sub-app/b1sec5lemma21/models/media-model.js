@@ -32,7 +32,6 @@
 
 
 
-    var modpos2medpos;
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
@@ -50,10 +49,9 @@
     function setModule()
     {
         sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
-        modpos2medpos   = ssF.modpos2medposLL;
-        pointies2line   = ssF.pointies2lineLL;
-        pos2pointy      = ssF.pos2pointyLL;
-        paintTriangle   = ssF.paintTriangleLL;
+        pointies2line   = ssF.pointies2line;
+        pos2pointy      = ssF.pos2pointy;
+        paintTriangle   = ssF.paintTriangle;
     }
 
 
@@ -125,7 +123,7 @@
                 step,
                 curve:function( g ) {
                     var { D, G, AA } = calculateConicPoint_algo( g );
-                    var med = ssF.modpos2medposLL( D );
+                    var med = ssF.mod2inn( D );
                     return { x:med[0], y:med[1] };
                 },
                 parent : studyMods[ SUB_MODEL ].mmedia,
@@ -283,17 +281,17 @@
         var B_AA = mat.p1_to_p2(rg.B.pos, rg.AA.pos );
         rg.beta.angleSvg = sv.ellipseSector({
             stepsCount : 20,
-            // //\\ todm ... mod2med_scale must be incapsulated in model
+            // //\\ todm ... mod2inn_scale must be incapsulated in model
             //instead we are converting from model to media manually here 
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
-            a  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
             t0 : Math.PI-rg.beta.value*sconf.MONITOR_Y_FLIP,
-            // \\// todm ... mod2med_scale must be incapsulated in model
+            // \\// todm ... mod2inn_scale must be incapsulated in model
 
             t1 : Math.PI,
             svgel : rg.beta.angleSvg,
@@ -310,8 +308,8 @@
             stepsCount : 20,
             x0 : rg.A.medpos[0],
             y0 : rg.A.medpos[1],
-            a  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2med_scale*ANGLE_SIZE*0.5,
+            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
             t0 : 0,
             t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.angleSvg,
@@ -330,10 +328,10 @@
             stepsCount : 20,
             x0 : rg.A.medpos[0],
             y0 : rg.A.medpos[1],
-            //a  : sconf.mod2med_scale*AG.abs*0.3,
-            //b  : sconf.mod2med_scale*AG.abs*0.3,
-            a  : sconf.mod2med_scale*ANGLE_SIZE,
-            b  : sconf.mod2med_scale*ANGLE_SIZE,
+            //a  : sconf.mod2inn_scale*AG.abs*0.3,
+            //b  : sconf.mod2inn_scale*AG.abs*0.3,
+            a  : sconf.mod2inn_scale*ANGLE_SIZE,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE,
             t0 : alphaS*sconf.MONITOR_Y_FLIP,
             t1 : (alphaS + rg.alpha.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.appliedAngleSvg,
@@ -352,8 +350,8 @@
             stepsCount : 20,
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
-            a  : sconf.mod2med_scale*ANGLE_SIZE,
-            b  : sconf.mod2med_scale*ANGLE_SIZE,
+            a  : sconf.mod2inn_scale*ANGLE_SIZE,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE,
             t0 : betaS*sconf.MONITOR_Y_FLIP,
             t1 : (betaS - rg.beta.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.beta.appliedAngleSvg,
@@ -625,22 +623,6 @@
         //-----------------------------------------------
         // \\// adds methods to rg.H only once
         //-----------------------------------------------
-
-
-        //if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
-            ////if slider is not already created ...
-            //todm make svg-scale slider: createSliderPlaceholder_a();
-        //}
-        //if( !ns.h( rg.media_scale, 'model8media_upcreate' ) ) {
-        if( !ns.h( rg, 'media_scale' ) ) {
-            tr( 'media_scale', 'value', 1 );
-            tr( 'thickness', 'value', 2 );
-            ////if slider is not already created ...
-            //todm make svg-scale slider: createSliderPlaceholder_a();
-            ssF.createSliderPlaceholder_media_scale();
-            ssF.createSliderPlaceholder_thickness();
-        }
-
     }
     //=========================================================
     // \\// updates and creates media
@@ -651,7 +633,7 @@
     ///shortcut to build medpos property
     function pn2mp( ptname ) {
         var pt = rg[ ptname ];
-        pt.medpos = ssF.modpos2medposLL( pt.pos );
+        pt.medpos = ssF.mod2inn( pt.pos );
     }
 
 }) ();

@@ -49,6 +49,7 @@
 
         var pictureActiveArea;
         var activeAreaOffsetX = centerX_onPicture;
+        var activeAreaOffsetY = centerY_onPicture;
 
         var pointsOnPicture =
         {
@@ -72,6 +73,8 @@
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
+
+
 
         (function() {
             var pp = pointsOnPicture;
@@ -103,8 +106,7 @@
         //     which means from screen-top to
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
-        var mod2med_scale = pictureActiveArea;
-        var centerY_onPicture = centerY_onPicture;
+        var mod2inn_scale = pictureActiveArea;
         var activeAreaOffsetOnPictureY = centerY_onPicture;
         //----------------------------------
         // \\// app view parameters
@@ -115,6 +117,7 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
+        fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
         to_sconf =
         {
             initialPoints : pointsOnPicture,
@@ -144,9 +147,12 @@
             pictureActiveArea   : pictureActiveArea,
             activeAreaOffsetX   : activeAreaOffsetX,
             activeAreaOffsetY   : centerY_onPicture,
-            centerOnPicture_Y   : centerY_onPicture,
+
+            centerOnPicture_Y   : centerY_onPicture, //todm proliferation of code
+            originY_onPicture   : centerY_onPicture,
+
             centerOnPicture_X   : centerX_onPicture,
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
             thickness           : 2,
@@ -158,6 +164,8 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
+            enableStudylab : true,
+            enableTools : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------
@@ -167,22 +175,30 @@
             //default_tp_lightness : 50, //50 is full lightness
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 3,
+
+            //:for tools sliders: todo prolifiration
+            originX_onPicture : activeAreaOffsetX, //0,
+            originY_onPicture : activeAreaOffsetY, //0,
         };
 
 
-
+        //todo proliferation in each lemma:
         //----------------------------------
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
-            var med2mod_scale = 1/mod2med_scale;
+            var inn2mod_scale = 1/mod2inn_scale;
 
             //for Y:
-            APP_MODEL_Y_RANGE = pictureActiveArea / mod2med_scale;
+            APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
 
             to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
-            to_sconf.mod2med_scale = mod2med_scale;
-            to_sconf.med2mod_scale = med2mod_scale;
+            to_sconf.mod2inn_scale = mod2inn_scale;
+            to_sconf.inn2mod_scale = inn2mod_scale;
+
+            //todo proliferation in each lemma:
+            //for tool sliders:
+           to_sconf.originalMod2inn_scale = to_sconf.mod2inn_scale;
         })();
         //----------------------------------
         // \\// spawns to_conf

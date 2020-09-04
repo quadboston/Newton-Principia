@@ -18,9 +18,7 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'load_conf';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //0000000000000000000000000000000000000000000
     return;
-    //0000000000000000000000000000000000000000000
 
 
 
@@ -47,16 +45,10 @@
         //point A    28x456 
         var pictureWidth = 687;
         var pictureHeight = 657;
+
         var activeAreaOffsetX = 47; //28; 
         var activeAreaOffsetOnPictureY = 0; 
         var activeAreaOffsetY = 'to be calculated'; 
-
-        /*
-        //for picture twice big
-        activeAreaOffsetX += pictureWidth;
-        pictureWidth *= 2;
-        pictureHeight *= 2;
-        */
 
         //.set it from graph editor
         //.todm: trully 611 and rotated
@@ -98,7 +90,6 @@
         //----------------------------------
 
 
-
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
@@ -109,16 +100,16 @@
             //-----------
             force :
             [
-                [ -2, 3.9 ],
+                [ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
                 [ -1, 0 ],
                 [ 0, 0 ],
                 [ 1, 0 ],
                 [ 2, 0 ]
             ],
             speed : 1,
-            timeMax : 10,
             initialTimieStep : 1,
-            spatialStepsMax0 : 6,
+            //spatialStepsMax0 : 7, //todo was 6
+            spatialStepsMax0 : 40, //todo was 6
 
             //maximum first path from A to B
             //too big values will allow user to place
@@ -142,20 +133,10 @@
             pictureActiveArea   : pictureActiveArea,
             activeAreaOffsetX   : activeAreaOffsetX,
             activeAreaOffsetY   : activeAreaOffsetY,
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
             thickness           : 1,
-
-            // //\\ remove RRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-            /*
-                        GENERIC_COLOR       : '0, 0, 0',
-                        CORE_CURVE_COLOR    : '160, 0, 0',
-                        CORE_AREA_COLOR     : '0,125,0',
-                        REMOTE_AREA_COLOR   : '0,0,255',
-            */
-            // \\// remove RRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -163,11 +144,18 @@
             //----------------------------------
             // //\\ scenario
             //----------------------------------
-            hideProofSlider : true, //false,
-            //todm: fails: enableTools : true,
+            enableStudylab : true,
+            //hideProofSlider : true, //false,
+            enableCapture : true,
+            enableTools : true,
+            //enableDataFunctionsRepository : true,
             //----------------------------------
             // \\// scenario
             //----------------------------------
+
+            //:for tools sliders: todo prolifiration
+            originX_onPicture : activeAreaOffsetX,
+            originY_onPicture : activeAreaOffsetY,
         };
 
 
@@ -183,35 +171,41 @@
             var u2 = uu[0]*uu[0] + uu[1]*uu[1];
             var u = Math.sqrt( u2 );
             //:
-            var mod2med_scale = u; //initial unit
-            var med2mod_scale = 1/mod2med_scale;
+            var mod2inn_scale = u; //initial unit
+            var inn2mod_scale = 1/mod2inn_scale;
             var vmodel = [
-                    uu[0]*med2mod_scale * to_sconf.speed,
+                    uu[0]*inn2mod_scale * to_sconf.speed,
                     MONITOR_Y_FLIP *
-                    uu[1]*med2mod_scale * to_sconf.speed 
+                    uu[1]*inn2mod_scale * to_sconf.speed 
             ];
             to_sconf.v0 = vmodel;
 
             //for Y:
-            APP_MODEL_Y_RANGE = pictureActiveArea / mod2med_scale;
+            APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
 
             to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
-            to_sconf.mod2med_scale = mod2med_scale;
-            to_sconf.med2mod_scale = med2mod_scale;
+            to_sconf.mod2inn_scale = mod2inn_scale;
+
+            to_sconf.inn2mod_scale = inn2mod_scale;
             to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE
                                    / to_sconf.APP_MODEL_Y_RANGE;
             to_sconf.A = [
-                (a[0] - activeAreaOffsetX ) * med2mod_scale,
+                (a[0] - activeAreaOffsetX ) * inn2mod_scale,
                 MONITOR_Y_FLIP *
-                (a[1] - activeAreaOffsetY ) * med2mod_scale
+                (a[1] - activeAreaOffsetY ) * inn2mod_scale
             ];
 
             //redundant ... v0 is enought ... do fix later
             to_sconf.B = [
-                (b[0] - activeAreaOffsetX ) * med2mod_scale,
+                (b[0] - activeAreaOffsetX ) * inn2mod_scale,
                 MONITOR_Y_FLIP *
-                (b[1] - activeAreaOffsetY ) * med2mod_scale
+                (b[1] - activeAreaOffsetY ) * inn2mod_scale
             ];
+
+            //todo proliferation in each lemma:
+            //for tool sliders:
+           to_sconf.originalMod2inn_scale = to_sconf.mod2inn_scale;
+
         })();
 
         /*

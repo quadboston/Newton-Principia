@@ -58,7 +58,7 @@
             /* sub data-legend html-element */
             #areadesk {
                 display:block;
-                margin:auto;
+                xxxmargin:auto;
                 margin-top:20px;
                 width:200px;
             }

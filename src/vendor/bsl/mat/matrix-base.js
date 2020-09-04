@@ -50,9 +50,10 @@
     function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
     */
 
-    mat.unitVector = unitVector;
-    mat.p1_to_p2 = p1_to_p2;
-    mat.linesCross = linesCross;
+    mat.unitVector          = unitVector;
+    mat.p1_to_p2            = p1_to_p2;
+    mat.linesCross          = linesCross;
+    mat.dropPerpendicular   = dropPerpendicular;
     return;
 
 
@@ -77,7 +78,8 @@
     }
 
     //intersection of two lines u,v and u'v' has to be found:
-    //u,u' are unit vectors, v,v' initial positions, q,q' line parameters:
+    //u,u' are (non necessarily unit) vectors, v,v' initial positions,
+    //q,q' line parameters:
     //q*u + v = q'*u' + v' needs to be solved against q,q' to find the cross
     //or xu - yus = vs - v = z, when q,q' are renamed with x,y
     function linesCross( u,v,us,vs ) {
@@ -114,6 +116,19 @@
 
         return r;
     }
+
+    ///input:   point S and two points A,B
+    ///returns: cross of perpendicular from S to line AB
+    function dropPerpendicular( S, A, B )
+    {
+        var u = [ B[0] - A[0], B[1] - A[1] ];
+        var v = [        A[0],        A[1] ];
+        var us = [ u[1], -u[0] ];
+        var vs = S;
+        return linesCross( u,v,us,vs );
+    }
+
+
 
 }) ( window );
 

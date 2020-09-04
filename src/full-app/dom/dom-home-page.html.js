@@ -9,10 +9,8 @@
     var sapp         = sn('sapp');
     var html         = sn('html');
 
-    html.buildHomePage = buildHomePage;
-    //000000000000000000000000000000
+    html.builds_homePane = builds_homePane;
     return;
-    //000000000000000000000000000000
 
 
 
@@ -20,7 +18,7 @@
 
 
 
-    function buildHomePage()
+    function builds_homePane()
     {
         var coreText = '';
         var landingPath = window.location.pathname;

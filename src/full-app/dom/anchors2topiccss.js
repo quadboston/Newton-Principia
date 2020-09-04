@@ -106,17 +106,23 @@
         if( ww ) {
             var { rgba_low, rgba_high } = sDomF.colorArray_2_rgba( ww );
 
-        } else if( tpIDs.length > 1 ) {
-            ////tplink which comprised of more than one topics,
-            ////defines color for tplink
+        } else if( tpIDs.length === 0 ) {
+            ////security case: no topics exist in collection,
+            ////setting default anchor color
             var rgba_low = 'rgba( 150, 0, 150, 0.7 )';
             var rgba_high = 'rgba( 150, 0, 150, 1 )';
 
         } else {
-            //.gets first shape id
+            ////tplink which comprised of more than one topics,
+            //.gets color of the first topic in link's topics collection
             var topi_c = topics.id2topic[ tpIDs[0] ];
-            var rgba_low = topi_c.rgba_low;
-            var rgba_high = topi_c.rgba_high;
+            var ww = ns.haz( topi_c, 'fixed-color' );
+            if( ww ) {
+                var { rgba_low, rgba_high } = sDomF.colorArray_2_rgba( ww );
+            } else {
+                var rgba_low = topi_c.rgba_low;
+                var rgba_high = topi_c.rgba_high;
+            }
         }
 
         //  apparently padding highlighted anchor does bloat MathJax font,

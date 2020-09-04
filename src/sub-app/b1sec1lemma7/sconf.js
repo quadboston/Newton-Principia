@@ -97,22 +97,22 @@
         // //\\ derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
         //appar. as by I.N.: difference between two first x-points:
-        var mod2med_scale = originalPoints.R[1] - originalPoints.A[1];
-        var med2mod_scale = 1/mod2med_scale;
+        var mod2inn_scale = originalPoints.R[1] - originalPoints.A[1];
+        var inn2mod_scale = 1/mod2inn_scale;
 
         var pname2point = {};
-        var factor = MONITOR_Y_FLIP * med2mod_scale;
+        var factor = MONITOR_Y_FLIP * inn2mod_scale;
         (function() {
             Object.keys( originalPoints ).forEach( pkey => {
                 var pp = originalPoints[ pkey ];
                 pname2point[ pkey ] = 
-                [ ( pp[0] - originX_onPicture ) * med2mod_scale,
+                [ ( pp[0] - originX_onPicture ) * inn2mod_scale,
                   ( pp[1] - originY_onPicture ) * factor,
                 ];
             });
         })();
         var curveModelPivots = givenCurvePivots.map( opoint =>
-            [ ( opoint[0] - originX_onPicture ) * med2mod_scale,
+            [ ( opoint[0] - originX_onPicture ) * inn2mod_scale,
               ( opoint[1] - originY_onPicture +
 
                 //additional tune-up: shifting curve exactly into origin A
@@ -142,7 +142,7 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
-            originalMod2med_scale : mod2med_scale,
+            originalMod2inn_scale : mod2inn_scale,
 
             //todm: too long to fix everywhere ...
             activeAreaOffsetX   : originX_onPicture,
@@ -156,7 +156,7 @@
             //centerOnPicture_Y   : originY_onPicture,
 
 
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
             thickness           : 1,
             //----------------------------------
@@ -180,10 +180,10 @@
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 2,
 
-            mod2med_scale : mod2med_scale,
-            med2mod_scale : med2mod_scale,
-            mod2med_scale_initial : mod2med_scale,
-            med2mod_scale_initial : med2mod_scale,
+            mod2inn_scale : mod2inn_scale,
+            inn2mod_scale : inn2mod_scale,
+            mod2inn_scale_initial : mod2inn_scale,
+            inn2mod_scale_initial : inn2mod_scale,
         });
         //----------------------------------
         // \\// prepares sconf data holder

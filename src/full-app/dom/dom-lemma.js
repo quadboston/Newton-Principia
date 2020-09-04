@@ -19,6 +19,7 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD); //todm should be child of ss
+    var wrkwin      = sn('wrkwin',ssD); //work window
 
     var detected_user_interaction_effect_DONE = false;
     rg.detected_user_interaction_effect_DONE = false;
@@ -81,7 +82,7 @@
         //==============================================================
 
         sDomF.build_menu_top_leafs_placeholders();
-        fmethods.createDividorResizer();
+        wrkwin.createDividorResizer();
         fmethods.populate_mediaSuperRoot( bgImagesAreLoaded_cb );
     }
 

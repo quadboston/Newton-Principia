@@ -13,16 +13,15 @@
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);
 
-    html.buildCommonHTMLBody = buildCommonHTMLBody;
-    //000000000000000000000000000000
+    html.builds_body_4_home8lemma = builds_body_4_home8lemma;
     return;
-    //000000000000000000000000000000
+
 
 
 
     
 
-    function buildCommonHTMLBody()
+    function builds_body_4_home8lemma()
     {
         //===================================
         // //\\ creates application root
@@ -43,8 +42,6 @@
         //===================================
         ns.create_mobile_tester( fappRoot$(),
                                  fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD );
-        ns.create_mobile_tester( fappRoot$(),
-                                 fconf.SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD );
         //===================================
         // \\// makes CSS testers
         //===================================
@@ -70,7 +67,8 @@
         //==========================================
         // //\\ creates basic css
         //==========================================
-        ns.globalCss.update(); //seems vital ...why?
+        ns.globalCss.update( '', 'home' ); //seems vital ...why?
+        ns.globalCss.update();             //seems vital ...why?
         //==========================================
         // \\// creates basic css
         //==========================================
@@ -96,6 +94,7 @@
                 .html("Contents")
                 .e( 'click', function() {
                       if( fapp.homePage$().className.indexOf( 'is-hidden' ) > -1 ) {
+                            ns.globalCss.update('','home');
                             ////home-pane becomes visible
                             fapp.homePage$.removeClass( 'is-hidden' );
                             sDomN.homeButton$
@@ -105,7 +104,9 @@
                             fapp.fappRoot$.css( 'overflow', 'visible' );
                             document.body.style.overflow = 'visible';
                             $$.$( document.body ).addClass( 'contents' );
+
                       } else {
+                            ns.globalCss.clearStyleTag( 'home' );
                             fapp.homePage$.addClass( 'is-hidden' );
                             sDomN.homeButton$
                                 .html( 'Contents' )

@@ -14,7 +14,7 @@
     var ccc = console.log; ccc && ( ccc = console.log );
 
 
-
+    var eventId = 0;
 
 
 
@@ -43,6 +43,8 @@
 		var att = arg.attachee || surface;
 
         var skipD8D = arg.skipD8D || default_skip;
+
+        var frameworkId = arg.frameworkId; //piggyback id
         //------------------------------------------
         // \\// input arguments
         //------------------------------------------
@@ -105,12 +107,15 @@
         //========================================
         function doStartDown( ev )
         {
+            eventId++;
             var forbidden;
+            ns.d('\ndown: fw' + frameworkId + ' eid' + eventId);
             if( skipD8D( ev ) ) return;
 
             ///touch-down
             if( ev.touches && ev.touches.length === 1 ) {
                 var event = ev.touches[0];
+
                 //seems wrong: event.preventDefault(); //trying for mobiles
                 forbidden = do_complete_down( event, ev );
                 if( !forbidden ) {
@@ -118,8 +123,9 @@
                     att.addEventListener( 'touchmove',   touchMove);
                     att.addEventListener( 'touchend',    touchEnd);
                     att.addEventListener( 'touchcancel', touchEnd);
+                    ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 } else {
-                    //ns.d('\neid=' + eventId + 'm ove is forbidden');
+                    ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
             ///mouse-down
             } else {
@@ -131,8 +137,9 @@
                     //.todm suspicion: this approach seems not reliable ...
                     // fires right after the mouseDown ...
                     att.addEventListener( 'mouseleave',  mouseEnd);
+                    ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 } else {
-                    //ns.d('\nev id=' + eventId + 'm ove is forbidden');
+                    ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
             }
         }
@@ -151,18 +158,22 @@
                 return true;
             }
             var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
+
             if( !point_on_dragSurf ) {
+                ns.d('\nfw' + frameworkId + ' eid' + eventId + ' point is out dsurf');
                 return true;
             }
+
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			var forbidden = d8d_app( [0,0], 'down', point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
-                //ns.d( 'move start has been cancelled by top-level ' +
-                //       'drag-and-drop-processor: eventId=' + eventId );
                 return true;
             }
 			startPoint = point_on_dragSurf;
+            //ns.d('\nfw' + frameworkId + ' eid' + eventId + ' startPoint=' +
+            //    JSON.stringify(startPoint)
+            //);
             lastPoint = point_on_dragSurf;
         }
         //=========================================
@@ -185,7 +196,7 @@
 
         function mouseMove( childEvent, rootEvent )
         {
-            //ns.d('eid=' + eventId + ' moving');
+            eventId++;
             stopsAftershocks ( rootEvent || childEvent );
             if( !startPoint ) {
                 //ns.d('mouseMove: no start point exist');
@@ -193,7 +204,7 @@
             } 
             var surfPoint = eventPos_2_surfacePos( childEvent );
             if(!surfPoint) { 
-                //ns.d('\nmouseMove: media point failed');
+                ns.d('\nmouseMove: media point failed');
                 return;
             }
             var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
@@ -210,7 +221,14 @@
 				surfPoint[ 0 ] - startPoint[ 0 ],
 				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
-            d8d_app( surfMove, 'move', surfPoint, childEvent, moveIncrement );
+            ///api: 
+            d8d_app(
+                surfMove, //total move which begins from down event
+                'move',
+                surfPoint,
+                childEvent,
+                moveIncrement
+            );
             return surfMove;
 		};
         //*****************************************
@@ -226,7 +244,6 @@
 		// //\\ END SUBROUTINES
         //*****************************************
         function touchEnd( rootEvent ) {
-            //ns.d('***eid=' + eventId + ' removing touch events\n\n');
             att.removeEventListener( 'touchmove',   touchMove );
             att.removeEventListener( 'touchend',    touchEnd );
             att.removeEventListener( 'touchcancel', touchEnd );
@@ -237,6 +254,7 @@
 
         function mouseEnd( child8rootEvent )
         {
+            eventId++;
             //ns.d( '***eid=' + eventId + ' removing mouse events\n\n' );
             att.removeEventListener( 'mousemove', mouseMove );
             att.removeEventListener( 'mouseup',  mouseEnd );
@@ -247,12 +265,10 @@
         ///Input: note: "childEvent" can be missed for touches
 		function do_complete_end( childEvent, rootEvent )
 		{
-            //ns.d('***eid=' + eventId + ' second End starts');
             var eventPoint = childEvent &&
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
             var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
-
             if( startPoint ) {
                 stopsAftershocks( rootEvent || childEvent );
                 //.programmer may want to make d8d_app throttable:
@@ -260,10 +276,17 @@
                 //.in case the "move" event will be erased by "up"
                 //var surf_point = surfPoint || lastPoint;
 
-                var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
-                var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
-		        startPoint = null;
-             	d8d_app( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
+                ///todm this must be worked out for mobile,
+                ///mobile possible does not have meaningful spatial parameters,
+                if( surfPoint ) {
+                    var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
+                    var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
+                 	d8d_app( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
+                } else {
+                 	d8d_app( null, 'up', null, childEvent );
+                }
+	            startPoint = null;
+                //ns.d('end fw' + frameworkId + ' eid' + eventId + ' startPoint cleared');
             //} else { ////broken scenario
             }
 		};
@@ -340,6 +363,12 @@
             } else if( rootEvent.stopPropagation ) {
                 rootEvent.stopPropagation();
             }
+            /*
+            ns.d( 'fw ' + frameworkId + ' blocked dflt and prop ' +
+                'on coord surf "' + surface.getAttribute( 'class' ) + '",' +
+                'on att "' + att.getAttribute( 'class' ) + '"'
+            );
+            */
         }
         //=========================================
         // \\// Clears sibling events.

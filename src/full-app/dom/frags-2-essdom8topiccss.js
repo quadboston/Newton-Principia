@@ -230,7 +230,16 @@
         ns.eachprop( ssD.topics.id2topic, ( topi_c, scount ) => {
             var fc = topi_c['fixed-color'];
             if( fc ) {
+                /*
+                if( topi_c.tpid === '_sc' ) {
+                     ccc(  'tpid after conversion: ' +
+                            'fc=',fc,
+                            // 'lh=', lh
+                     );
+                }
+                */
                 var lh = colorArray_2_rgba( fc )
+
             } else {
                 var sc = topi_c.topicsCount;
                 var rem = sc%2;
@@ -252,18 +261,23 @@
         return { rgba_low, rgba_high }; 
     }
 
-
+    ///color low    goes to supplied-color or default,
+    ///color height goes to opacity = 1
     function colorArray_2_rgba( colorArray )
     {
         var SATUR = sconf.DEFAULT_TP_SATUR;
-        var LIGHT   = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
-        var OPACITY = sconf.DEFAULT_TP_OPACITY;
+        var LIGHT = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
 
+        //.apparently does job as said: color to color
         var overridden = ns.rgba2hsla( colorArray );
         hue = overridden[ 0 ];
-        var opacity = overridden[ 3 ] || OPACITY;
-
-        return hslo_2_low8high( hue, SATUR, LIGHT, opacity );
+        var opacity = overridden[ 3 ] || overridden[ 3 ] === 0 ?
+                        overridden[ 3 ] :
+                        sconf.DEFAULT_TP_OPACITY;
+        //.for grey or black color: we set satur to 0 manually
+        var satur = overridden[1] === 0 ? 0 : SATUR;
+        //.apparently does the color as is, but for high, opacity is set to 1
+        return hslo_2_low8high( hue, satur, LIGHT, opacity );
     }
 
 
@@ -355,9 +369,11 @@
                 tplink.raw_tpIDs = tplinkConf.split( SPACE_reg );
 
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
-                // loops via separate shapes
+                /// loops via separate topic IDs
                 tplink.raw_tpIDs.forEach( tpid_ => {
-
+                    //..........................................................
+                    // //\\ checks for reserved topic categories
+                    //      like '*anch-color', ...
                     //..........................................................
                     if( 'cssbold' === tpid_ ) {
                         tplink.anchorIsBold = true;
@@ -367,13 +383,18 @@
                         return;
                     } else if( tpid_.match( ANCH_COLOR_CAT_rg ) ) {
                         var ww = tplink.colorCateg = tpid_.match( ANCH_COLOR_CAT_rg );
+                        //.fixed set to tp-link
                         tplink[ 'fixed-color' ] = ns.haz( ssD['fixed-colors'], ww[1] );
                         return;
                     }
                     //..........................................................
+                    // \\// checks for reserved topic categories
+                    //..........................................................
 
 
                     var tpid = topicIdUpperCase_2_underscore( tpid_ );
+                    //tplink has collection of topics,
+                    //here is how this collection is populated:
                     tplink.tpid2true[ tpid ] = true;
 
                     ///recall: ssD.topics.id2topic,
@@ -381,11 +402,24 @@
                     if( !id2topic.hasOwnProperty( tpid ) ) {
                         id2topic[ tpid ] = {
                             tplinkConf      : tplinkConf,
+                            //.fixed color added to topic
                             'fixed-color'   : ns.haz( ssD['fixed-colors'], tpid ),
                             tplink_ix       : tplink_ix,
                             topicsCount     : topicsCount, //implicit index
                             tpid            : tpid,
                         }
+                        //further, id2topic[ tpid ] colors converted here:
+                        //topics_2_topicsColorModel()
+                        /*
+                        if( tpid === '_a_b' ) {
+                             ccc(  'tpid added from fragment: ' +
+                                    //'topic=',
+                                    //id2topic[ tpid ],
+                                   'fixed-color=' + id2topic[ tpid ]['fixed-color'],
+                                   'low,high=' + id2topic[ tpid ].rgba_low,
+                             );
+                        }
+                        */
                         topicsCount++;
                     }
                 });

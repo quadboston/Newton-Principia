@@ -3,6 +3,11 @@
     var sn  = ns.sn;
     var cssmods = sn('cssModules');
     var THIS_MODULE = 'inner-page';
+
+
+
+
+
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
         var colorMain = ccs['color-main'];
@@ -18,7 +23,6 @@
 
 
 
-// //\\ css /////////////////////////////////////////
 var ret = `
 
     /*
@@ -155,7 +159,7 @@ var ret = `
     .change-tools-button {
         float:right;
         margin-top:8px;
-        margin-left:3px;
+        margin-right:5px;
         color: ${colorMediumGrey};
         font-size: 12px;
         padding: 0 16px;
@@ -198,11 +202,6 @@ var ret = `
 
 
 `;
-// \\// css /////////////////////////////////////////
-
-
-
-
         return ret;
     };
 })();

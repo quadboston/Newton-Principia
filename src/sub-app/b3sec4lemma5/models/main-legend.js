@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns      = window.b$l;
     var $$      = ns.$$;
     var sn      = ns.sn;    
@@ -10,6 +11,7 @@
     var sconf   = sn('sconf',fconf);
 
     var sapp    = sn('sapp'); 
+    var studyMods   = sn('studyMods', sapp);
     var sDomN   = sn('dnative',sapp);
     var sDomF       = sn('dfunctions',sapp);
 
@@ -35,6 +37,7 @@
     var clustersToUpdate_claim = [];
     var visibilizeTableLocal;
     var fillTableData_inModule;
+    var stdMod;
     return;
 
 
@@ -46,7 +49,8 @@
 
     function setModule()
     {
-        ssF.upcreate_mainLegend = upcreate_mainLegend;
+        stdMod                          = sn( SUB_MODEL, studyMods );
+        stdMod.upcreate_mainLegend      = upcreate_mainLegend;
         //.uncomment this to ad a legend
         ssF.create_digital_legend = create_digital_legend;
     }

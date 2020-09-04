@@ -32,7 +32,7 @@
 
 
 
-    var modpos2medpos;
+    var mod2inn;
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
@@ -49,10 +49,10 @@
     function setModule()
     {
         sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
-        modpos2medpos   = ssF.modpos2medposLL;
-        pointies2line   = ssF.pointies2lineLL;
-        pos2pointy      = ssF.pos2pointyLL;
-        paintTriangle   = ssF.paintTriangleLL;
+        mod2inn       = ssF.mod2inn;
+        pointies2line   = ssF.pointies2line;
+        pos2pointy      = ssF.pos2pointy;
+        paintTriangle   = ssF.paintTriangle;
     }
 
 
@@ -119,8 +119,8 @@
         var ellipse = tr( 'ellipse' );
         ellipse.svgel = sv.ellipse({
             stepsCount      : 100,
-            a               : rg.a.value*sconf.mod2med_scale,
-            b               : rg.b.value*sconf.mod2med_scale,
+            a               : rg.a.value*sconf.mod2inn_scale,
+            b               : rg.b.value*sconf.mod2inn_scale,
             x0              : rg.O.medpos[0],
             y0              : rg.O.medpos[1],
             rotationRads    : sconf.rotationRads,
@@ -130,7 +130,7 @@
             'stroke-width':5,
             stroke  : ellipseColor,
         });
-        $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke' );
+        $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
 
 
 
@@ -156,11 +156,12 @@
         //-------------------------------------------------
         // //\\ base sides
         //-------------------------------------------------
+        var plCls = 'tostroke thickable';
         pointies2line(
             'PB',
             [ rg.P, rg.B],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width' : lwidth,
                 stroke  : baseColor,
                 tpclass : 'base-figure',
@@ -170,7 +171,7 @@
             'PC',
             [ rg.P, rg.C],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : baseColor,
                 tpclass : 'base-figure',
@@ -180,7 +181,7 @@
             'CA',
             [ rg.C, rg.A],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : baseColor,
                 tpclass : 'base-figure',
@@ -190,7 +191,7 @@
             'BA',
             [ rg.B, rg.A],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : baseColor,
                 tpclass : 'base-figure',
@@ -200,7 +201,7 @@
             'BC',
             [ rg.B, rg.C],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : baseColor,
                 tpclass : 'base-figure',
@@ -220,7 +221,7 @@
             'rQ',
             [ rg.r, rg.Q],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : givenParallels,
                 tpclass : 'given-paralellogram',
@@ -230,7 +231,7 @@
             'SP',
             [ rg.S, rg.P],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : givenParallels,
                 tpclass : 'given-paralellogram',
@@ -248,7 +249,7 @@
             'BT',
             [ rg.B, rg.T],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : generatingColor,
                 tpclass : 'generators',
@@ -258,7 +259,7 @@
             'CR',
             [ rg.C, rg.R],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : generatingColor,
                 tpclass : 'generators',
@@ -268,7 +269,7 @@
             'BD',
             [ rg.B, rg.D],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : generatingColor,
                 tpclass : 'generators',
@@ -278,7 +279,7 @@
             'CD',
             [ rg.C, rg.D],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : generatingColor,
                 tpclass : 'generators',
@@ -289,7 +290,7 @@
             'Bt',
             [ rg.B, rg.t],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : ellipseColor,
                 tpclass : 'tangent',
@@ -309,7 +310,7 @@
             'rt',
             [ rg.r, rg.t],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : statGenColor,
                 tpclass : 'static-generator',
@@ -319,7 +320,7 @@
             'Pr',
             [ rg.P, rg.r],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : statGenColor,
                 tpclass : 'static-generator',
@@ -329,7 +330,7 @@
             'Pt',
             [ rg.P, rg.t],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : statGenColor,
                 tpclass : 'static-generator',
@@ -348,7 +349,7 @@
             'CPsimilar',
             [ rg.C, rg.P],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke'      : 'transparent',
                 'stroke-width':7,
                 tpclass : 'similar-triangle',
@@ -358,7 +359,7 @@
             'BPsimilar',
             [ rg.B, rg.P],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke'      : 'transparent',
                 'stroke-width':7,
                 tpclass : 'similar-triangle',
@@ -368,7 +369,7 @@
             'BCsimilar',
             [ rg.B, rg.C],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke'      : 'transparent',
                 'stroke-width':7,
                 tpclass : 'similar-triangle',
@@ -387,7 +388,7 @@
             'PR',
             [ rg.P, rg.R],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':7,
                 tpclass : 'key-triangle',
             }
@@ -396,7 +397,7 @@
             'PT',
             [ rg.P, rg.T],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':7,
                 tpclass : 'key-triangle',
             }
@@ -405,7 +406,7 @@
             'RT',
             [ rg.R, rg.T],
             {
-                cssClass:'tostroke',
+                cssClass: plCls,
                 'stroke-width':4,
                 tpclass : 'key-triangle',
             }
@@ -601,12 +602,12 @@
     ///shortcut to build medpos property
     function pn2mp( ptname ) {
         var pt = rg[ ptname ];
-        pt.medpos = ssF.modpos2medposLL( pt.pos );
+        pt.medpos = ssF.mod2inn( pt.pos );
     }
 
 
         //----------------------------------------
-        // //\\ makes up time slider
+        // //\\ makes up slider
         //      creates slider only once per
         //      app model creation;
         //----------------------------------------
@@ -616,14 +617,30 @@
             var max_a             = 4;
             var min_a             = 0.1;
             var range_a           = max_a - min_a;
+            var customSliderShift = 0; //picture units
 
-            var startX            = ( -sconf.centerOnPicture_X + sconf.innerMediaWidth*0.1 ) *
-                                    sconf.med2mod_scale;
-            var endX              = startX + sconf.innerMediaWidth*sconf.med2mod_scale*0.8;
-            var startY            = ( sconf.centerOnPicture_Y - sconf.innerMediaHeight*0.9 ) *
-                                    sconf.med2mod_scale;
+            //----------------------------------------------------------------------------
+            // //\\ in model units and reference system
+            //----------------------------------------------------------------------------
+            var startX            = ( -sconf.centerOnPicture_X +
+                                     sconf.innerMediaWidth * sconf.SLIDERS_OFFSET_X
+                                    ) *
+                                    sconf.inn2mod_scale;
+            var endX              = startX + sconf.innerMediaWidth * sconf.inn2mod_scale *
+                                             sconf.SLIDERS_LENGTH_X;
+            var startY            = sconf.originY_onPicture
+                                          - sconf.innerMediaHeight
+                                          + sconf.SLIDERS_LEGEND_HEIGHT
+                                          + customSliderShift
+                                          + sconf.SLIDERS_OFFSET_Y
+                                    ;
+            var startY            =  startY * sconf.inn2mod_scale;
+            //----------------------------------------------------------------------------
+            // \\// in model units and reference system
+            //----------------------------------------------------------------------------
+
+
             var railsLength       = endX - startX;
-
             var startPos          = [ startX, startY ];
             var endPos            = [ endX, startY ];
 
@@ -682,7 +699,9 @@
             {
                 var newValue = ( max_a - min_a ) * ( newPos[0] - startX ) / railsLength + min_a;
                 if( newValue < min_a || newValue > max_a ) return;
+
                 a.value = newValue;
+
                 a.pos[0] = newPos[0];
                 a.pos[1] = newPos[1];
                 updateSliderHandlePos();
@@ -696,7 +715,8 @@
             {
                 //var sliderXpos = (a.value - min_a ) / range_a * railsLength + startX;
                 //a.pos[0] = sliderXpos;
-                a.medpos = modpos2medpos( a.pos );
+                //a.medpos = mod2inn( a.pos );
+                a.medpos = ssF.mod2inn_original( a.pos );
                 sv.u({
                     svgel   : a.svgel,
                     parent  : studyMods[ SUB_MODEL ].mmedia,
@@ -705,11 +725,18 @@
                 });
                 a.text_svg.setAttributeNS( null, 'x', a.medpos[0]-15 );
                 a.text_svg.setAttributeNS( null, 'y', a.medpos[1]+80 );
+
+                var shift =
+                    a.medpos[1] +
+                    sconf.GENERIC_SLIDER_HEIGHT_Y * 0.8
+                    ;
+                a.text_svg.setAttributeNS( null, 'y', shift );
             };
+
             updateSliderHandlePos();
         }
         //----------------------------------------
-        // \\// makes up time slider
+        // \\// makes up slider
         //----------------------------------------
 
 

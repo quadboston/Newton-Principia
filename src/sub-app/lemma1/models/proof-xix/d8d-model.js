@@ -62,7 +62,7 @@
             //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
+            inn2outparent                       : sDomF.inn2outparent,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -86,7 +86,7 @@
                      break;
                 case 'move':
                         var newEy = ach.achieved -
-                                 arg.surfMove[1] * sconf.med2mod_scale * sDomF.css2media();
+                                 arg.surfMove[1] * sconf.inn2mod_scale * sDomF.out2inn();
                         ssD.EPSILON = Math.max( Math.min( newEy, 0.4 ), 0.05 );
                         ns.eachprop( studyMods, ( stdMod, modName ) => {
                             stdMod.upcreate();
@@ -121,7 +121,7 @@
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
+    ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -141,11 +141,11 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( pOnS );
+        var testMedpos = sDomF.outparent2inn( pOnS );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
         //c cc( '\n\n****', pOnS, testMediaX, testMediaY,
-        //      ' sDomF.css2media='+sDomF.css2media );
+        //      ' sDomF.out2inn='+sDomF.out2inn );
 
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;

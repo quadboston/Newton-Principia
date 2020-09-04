@@ -54,9 +54,11 @@
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             innerMediaWidth     : innerMediaWidth,
-            innerMediaHeight    : innerMediaWidth+100,
-            mod2med_scale       : innerMediaWidth,
-            med2mod_scale       : 1/innerMediaWidth,
+            //innerMediaHeight    : innerMediaWidth+100,
+            innerMediaHeight    : innerMediaWidth + sconf.SLIDERS_LEGEND_HEIGHT,
+
+            mod2inn_scale       : innerMediaWidth,
+            inn2mod_scale       : 1/innerMediaWidth,
             thickness           : 2,
             GENERIC_COLOR       : '0, 0, 0',
             CORE_CURVE_COLOR    : '160, 0, 0',

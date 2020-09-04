@@ -1,3 +1,21 @@
+/*
+    notes for menu items GUI: the tree is:
+    menu-teath
+        tleaf-decorations-container
+            shape shuttle-...
+            shape
+            shape
+        litem
+        litem
+        litem
+
+    * litem:hover brings border to the tab at user's mouse move
+    * tleaf-decorations-container contains "shadows", different shapes and shuttle
+      which animate mouse moves,
+*/
+
+
+
 (function() {
     var ns  = window.b$l;
     var sn  = ns.sn;
@@ -198,6 +216,7 @@
     }
 
     /* //|| item is hovered */
+    /*      .litem is a menu-item-GUI */
     .leftside-menuholder .menu-teaf
     .litem:hover {
         border          :1px solid black;
@@ -225,28 +244,37 @@
     //-----------------------------
     // //\\ animated-decorations
     //-----------------------------
-    ret += `
-
     /* /// todm what? ... was used to set background under shadow and handle
        /// todm is redundant ... shadow and handle can use z-index < 0
        /// holds shadow and handle
     */
+    ret += `
+
     .leftside-menuholder
     .tleaf-decorations-container {
         box-sizing      :border-box;
         position        :absolute;
         left            :0;
-        top             :0;
+        top             :1px; /* makes litem top and bottom borders visible */
         width           :100%;
         background-color:transparent;
         z-index         :0;
         white-space     :nowrap;
     }
+    `;
+
+
+    /* 
+       18px causes 1px bottom border overlap on hover,
+       20px hides all borders for chosen item and make it non-responsive,
+       17px reveals upper and bottom litem-borders even when chosen item is hovered,
+       see comment on this module's top
+    */
+    ret += `
 
     .leftside-menuholder
     .tleaf-decorations-container .shape {
-        /* fixes empty shapes with poor borders */
-        height      :18px;
+        height      :17px;
     }
 
     /* //|| shadow     */

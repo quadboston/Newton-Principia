@@ -14,6 +14,8 @@
     var sapp        = sn('sapp' ); 
     var sDomF       = sn('dfunctions', sapp);
     var sDomN       = sn('dnative', sapp);
+    var amode       = sn('mode',sapp);
+    var studyMods   = sn('studyMods', sapp);
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
@@ -140,6 +142,7 @@
                 //      javascript-regular-expression-single-space-character
                 var ess_instructions = essayon.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
+                //ess_instructions[3] is text itself
                 if( ess_instructions && ess_instructions[3] ) {
                     var theorion_id = ess_instructions[1];
                     var aspect_id = ess_instructions[2];
@@ -150,18 +153,28 @@
                         wPreText = wPreText.substring( wIx+4 );
                     }
                     //.converts essayion's-header-script to header-js-object
+                    //.assumes if wHeader exists, it must be valid JSON
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    //:sets default
+                    //:sets defaults
+                    essayHeader.submodel = ns.haz( essayHeader, 'submodel' ) || 'common';
+                    if( !ns.h( studyMods, essayHeader.submodel ) ) {
+                        alert( 'Wrong submodel "' + essayHeader.submodel +
+                               '" prescipted in essay ' + theorion_id + '/' + aspect_id +
+                               ' This submodel is not defined in application code.'
+                        );
+                        //todm ... why this return crashes app?
+                        return;
+                    }
                     if( essayHeader[ "default" ] === "1" ) {
                         sapp.amodel_initial = ns.haz( sapp, 'amodel_initial' )  ||
                         {
                             theorion    : theorion_id,
                             aspect      : aspect_id,
-                            submodel    : ns.h( essayHeader, 'submodel' ) ?
-                                               essayHeader.submodel :
-                                               'common',
+                            submodel    : essayHeader.submodel,
                         };
+                        Object.assign( amode, sapp.amodel_initial ); //todm inconsistent
+                        //ccc( 'amodel_initial=', sapp.amodel_initial, 'amode=', amode );
                     }
 
                     // //\\ establishes unescaped fixed

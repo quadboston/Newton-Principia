@@ -32,14 +32,14 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
 
-    ssF.set_media_state = set_media_state;
 
-    var modpos2medpos;
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
     var ellipseColor;
     var balanceParColor;
+
+    var stdMod;
     return;
 
 
@@ -51,29 +51,15 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
-        modpos2medpos   = ssF.modpos2medposLL;
-        pointies2line   = ssF.pointies2lineLL;
-        pos2pointy      = ssF.pos2pointyLL;
-        paintTriangle   = ssF.paintTriangleLL;
+        stdMod = sn(SUB_MODEL, studyMods);
+        stdMod.media_upcreate = media_upcreate;
+
+        pointies2line   = ssF.pointies2line;
+        pos2pointy      = ssF.pos2pointy;
+        paintTriangle   = ssF.paintTriangle;
     }
 
 
-    //=========================================================
-    // //\\ updates and creates media
-    //=========================================================
-    function set_media_state( astate )
-    {
-        sconf.basePairs.forEach( ( bpair, pix ) => {
-            var bname = bpair[0].pname;
-            var point = sconf.pname2point[ bname ];
-            if( point.hasOwnProperty( 'pointWrap' ) ) {
-                var pwrap = point.pointWrap;
-                pwrap.achieved = { achieved : [ pwrap.pos[0], pwrap.pos[1] ] };
-            }
-        });
-        sDomF.detected_user_interaction_effect();
-    }
 
 
     //=========================================================
@@ -94,6 +80,7 @@
               ;
         }
         ssF.mediaModelInitialized = true;
+        stdMod.upcreate_mainLegend(); //placed into "slider"
     }
     //=========================================================
     // \\// updates and creates media
@@ -105,6 +92,8 @@
     //=========================================================
     function createMedia0updateMediaAUX()
     {
+        stdMod.toogle_hideD8Dpoint(); //todm ... generalize in one spot
+
         var pictureLeft = rg.detected_user_interaction_effect_DONE;
         //-------------------------------------------------
         // //\\ colors
@@ -130,7 +119,7 @@
         //if( pictureLeft && !rg.abscissa ) {
         if( !rg.abscissa ) {
             ( function () {
-                var mod2med = ssF.modpos2medposLL;
+                var mod2med = ssF.mod2inn;
                 tr( "abscissa" );
                 rg.abscissa.svgel = sv.polyline({
                     svgel   : rg.abscissa.svgel,
@@ -152,7 +141,7 @@
         //-------------------------------------------------
         drawCurveFromDividedDifferences = ( function() {
             var dd = rg.experimental.expFunction;
-            var mod2med = ssF.modpos2medposLL;
+            var mod2med = ssF.mod2inn;
             return function( x ) {
                  return mod2med([ x, dd(x) ]); };
         })();
@@ -179,7 +168,7 @@
         //-------------------------------------------------
         drawCurveFromDividedDifferences_A = ( function() {
             var dd = rg.approximator_curve.dividedDifferences.calculate_polynomial;
-            var mod2med = ssF.modpos2medposLL;
+            var mod2med = ssF.mod2inn;
             return function( x ) { return mod2med([ x, dd(x) ]); };
         })();
         rg.approximator_curve.svg = ns.svg.curve({
@@ -324,7 +313,7 @@
             if( !ns.h( rg[ x.pname ], 'model8media_upcreate' )) {
                 var pointWrap = rg[ x.pname ];
                 pointWrap.model8media_upcreate = function() {
-                    studyMods[ SUB_MODEL ].model8media_upcreate();
+                    stdMod.model8media_upcreate();
                 }
                 ///for slider
                 pointWrap.pos2value = function( newPos )
@@ -347,29 +336,10 @@
         //-----------------------------------------------
 
 
-
-        //if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
-            ////if slider is not already created ...
-            //todm make svg-scale slider: createSliderPlaceholder_a();
-        //}
-        //if( !ns.h( rg.media_scale, 'model8media_upcreate' ) ) {
         if( !ns.h( rg, 'slider-m' ) ) { //todo 'm' is wrong ... do a real flag
             ////if slider is not already created ...
             ssF.createSliderPlaceholder_m();
             //todm make svg-scale slider: createSliderPlaceholder_a();
-            if( sconf.enableTools ) {
-                tr( 'media_scale', 'value', 1 );
-                tr( 'thickness', 'value', 2 );
-                ssF.createSliderPlaceholder_media_scale();
-                ssF.createSliderPlaceholder_thickness();
-            }
-        }
-
-
-        ///fixes slider pointer detectibility upon mode
-        if( sconf.enableTools ) {
-            rg.media_scale.hideD8Dpoint = rgtools.value === 'on' ? false : true;
-            rg.thickness.hideD8Dpoint = rgtools.value === 'on' ? false : true;
         }
     }
     //=========================================================
@@ -381,7 +351,7 @@
     ///shortcut to build medpos property
     function pn2mp( ptname ) {
         var pt = rg[ ptname ];
-        pt.medpos = ssF.modpos2medposLL( pt.pos );
+        pt.medpos = ssF.mod2inn( pt.pos );
     }
 
 }) ();

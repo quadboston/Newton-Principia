@@ -84,7 +84,7 @@
                 mykey5 : myval5,
             })
 
-            //alternatevely returns umbrella-object
+            //alternatevely returns umbrella-object, rg[ id ]
             ();
             //alternatively returns a specific property
             (mykey4); //returns myval4

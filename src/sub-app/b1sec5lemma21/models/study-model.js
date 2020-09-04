@@ -1,36 +1,20 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var sn          = ns.sn;
-    var bezier      = sn('bezier');
-    var mat         = sn('mat');
-
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
-
-    var sapp        = sn('sapp');
-    var studyMods   = sn('studyMods', sapp);
-
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'studyModel_2_ss';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-    //ssF.pointB_2_time0 = pointB_2_time0;
+    /*
+    var {
+        ns, sn, bezier, mat,
+        fapp, fmethods, fconf, sconf, srg,
+        ss, ssD, ssF, rg, tr, tp,
+        sapp, studyMods, amode, srg_modules,
+        mCount, SUB_MODEL, stdMod,
+    } = window.b$l.app({ modName:'studyModel_2_ss', setModule });
+    */
+    var {
+        ns, sn, mat,
+        sconf, srg,
+        ssD, ssF, rg, tr,
+        sapp, amode,
+        stdMod,
+    } = window.b$l.app({ modName:'studyModel_2_ss', setModule });
     return;
 
 
@@ -38,20 +22,15 @@
 
 
 
-
-
-
-
-
-    ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-    /// registers model pars into common scope
-    ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     function setModule()
     {
-        ssF.init_model_parameters = init_model_parameters;
-        sn(SUB_MODEL, studyMods ).model8media_upcreate = model8media_upcreate;
-        sn(SUB_MODEL, studyMods ).upcreate = model8media_upcreate;
-        sn(SUB_MODEL, studyMods ).calculateConicPoint_algo = calculateConicPoint_algo;
+        stdMod.init_model_parameters= init_model_parameters;
+        stdMod.model8media_upcreate = model8media_upcreate;
+        stdMod.upcreate             = model8media_upcreate;
+        stdMod.calculateConicPoint_algo = calculateConicPoint_algo;
+        stdMod.amode2lemma          = amode2lemma;
+        stdMod.model_upcreate       = model_upcreate;
+        ns.sn( 'customDraggers_list', stdMod, [] ); //todm: fake
     }
 
     //===================================================
@@ -87,10 +66,40 @@
         //ellipsePar_create8paint( 1.50 )
     }
 
+
+    //=================================================
+    // estableishes amode and astate
+    //=================================================
+    function amode2lemma( towhich )
+    {
+        var theorion = amode.theorion;
+        var aspect   = amode.aspect;
+        var submodel = amode.submodel;
+        //sDomF.detected_user_interaction_effect( 'doUndetected' );
+        //if( theorion === 'claim' && aspect !== 'model' ) {
+        var captured = null;
+        /*
+        if( !ssF.mediaModelInitialized ) {
+            var captured = "initial-state";
+        }
+        */
+        stdMod[ 'astate_2_' + towhich ]( ssD.capture[ captured ] );
+    }
+
+
+
     //***************************************************
     // //\\ updates figure (and creates if none)
     //***************************************************
     function model8media_upcreate()
+    {
+        model_upcreate();
+        stdMod.media_upcreate();
+        ssF.upcreate_mainLegend(); //placed into "slider"
+    }
+
+
+    function model_upcreate()
     {
         baseParams_2_extendedParams();
         var {D,G,AA} = calculateConicPoint_algo( rg.g.value );
@@ -105,15 +114,6 @@
             -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
         ];
         setRgPoint( 'N', N );
-
-        //-------------------------------------------------------
-        // //\\ media part
-        //-------------------------------------------------------
-        sn(SUB_MODEL, studyMods ).media_upcreate();
-        ssF.upcreate_mainLegend(); //placed into "slider"
-        //-------------------------------------------------------
-        // \\// media part
-        //-------------------------------------------------------
     }
     //***************************************************
     // \\// updates figure (and creates if none)

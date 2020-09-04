@@ -20,13 +20,16 @@
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
 
+    sDomN.mediaLeftMargin = 0;   //fake initial value before resize ran
+    sDomN.mediaWidth = 1000; //fake initial value before resize ran
+
     //todm: tmp fix: LL added: to avoid duplicate names: not sure do they exist
-    ssF.modpos2medposLL   = modpos2medpos;
-    ssF.modpos2medpos_originalLL   = modpos2medpos_original;
-    ssF.pointies2lineLL   = pointies2line;
+    ssF.pointies2line     = pointies2line;
     ssF.pointnames2line   = pointnames2line;
-    ssF.pos2pointyLL      = pos2pointy;
-    ssF.paintTriangleLL   = paintTriangle;
+    ssF.pnames2line       = pnames2line;
+    ssF.pnames2poly       = pnames2poly;
+    ssF.pos2pointy        = pos2pointy;
+    ssF.paintTriangle     = paintTriangle;
     return;
 
 
@@ -34,29 +37,6 @@
 
 
 
-
-
-    //==========================================
-    // //\\ pos to pos
-    //==========================================
-    ///transforms model-coordinates to media-coordinates
-    function modpos2medpos( pos )
-    {
-        if( !pos ) { pos = this; }
-        return [ pos[0] * sconf.mod2med_scale + sconf.activeAreaOffsetX,
-                 pos[1] * sconf.mod2med_scale * sconf.MONITOR_Y_FLIP +
-                 sconf.activeAreaOffsetY ];
-    }
-    function modpos2medpos_original( pos )
-    {
-        if( !pos ) { pos = this; }
-        return [ pos[0] * sconf.originalMod2med_scale + sconf.activeAreaOffsetX,
-                 pos[1] * sconf.originalMod2med_scale * sconf.MONITOR_Y_FLIP +
-                 sconf.activeAreaOffsetY ];
-    }
-    //==========================================
-    // \\// pos to pos
-    //==========================================
 
 
 
@@ -92,9 +72,12 @@
                       ( ns.haz( attr, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
-        var stroke      = ns.ha( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
+        var ww          =  sDomF.getFixedColor( tpclass );
+        var stroke      = ns.ha( attr, 'stroke', ww );
         var strokeWidth = ns.ha( attr, 'stroke-width', 1 );
-        var line = ssF.toreg( pName )();
+        var line        = ssF.toreg( pName )();
+        line.pname      = pName;
+        line.pivotNames = [ pivots[0].pname, pivots[1].pname ];
         line.svgel = sv.polyline({
             svgel   : ns.haz( line, 'svgel' ),
             stroke,
@@ -102,19 +85,19 @@
             pivots  : [ pivots[0].medpos, pivots[1].medpos ],
             'stroke-width' : strokeWidth * sconf.thickness, 
         });
-        $$.$(line.svgel).cls( cssClass + 'tp-' + tpclass );
-
-        ///if we play with 'undisplay' property, then check it
-        if( ns.h( rg[pName], 'undisplay' ) ) {
-            line.svgel.style.display = rg[pName].undisplay ? 'none' : 'block';
-        }
+        var svgel$ = $$.$(line.svgel);
+        svgel$.tgcls( 'undisplay', ns.haz( rg[pName], 'undisplay' ) );
+        svgel$.cls( cssClass + 'tp-' + tpclass );
+        //if( pName === 'Sc' ) ccc( tpclass, line, 
         return line;
     }
 
+    ///a bit of prolifiration
     ///adds "sugar" to pointies2line: point names
     function pointnames2line( name1, name2, cssClass )
     {
-        pointies2line(
+        //line_rg =
+        return pointies2line(
             'line-' + name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],
             {
@@ -123,11 +106,71 @@
                 'stroke-width'  : 2,
             }
         );
+        
     }
 
+    ///makes short line name: AB from A and B
+    ///returns: rg element
+    function pnames2line( name1, name2, cssClass )
+    {
+        return pointies2line(
+            name1 + name2,
+            [ rg[ name1 ], rg[ name2 ] ],
+            {
+                cssClass        : 'tostroke thickable' +
+                                   ( cssClass ? ' ' + cssClass : '' ),
+                'stroke-width'  : 2,
+            }
+        );
+    }
     //==============================================
     // \\// creates svg-line or updates it if exists
     //==============================================
+
+
+
+    function pnames2poly( pNames, cssClass )
+    {
+        var CLOSED_POLYLINE = true;
+        var pName = pNames.join('');
+        var pivots = pNames.map( pname => rg[ pname ].medpos );
+
+        if( CLOSED_POLYLINE ) {
+            pivots.push( pivots[0] );
+        }
+
+        var attr =
+        {
+            cssClass        : 'tostroke thickable' +
+                               ( cssClass ? ' ' + cssClass : '' ),
+           'stroke-width'  : 2,
+        };
+        var tpclass = sDomF.topicIdUpperCase_2_underscore(
+                      ( ns.haz( attr, 'tpclass' ) ) || pName
+        );
+        var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
+        var stroke      = ns.ha( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
+        var fill ='red';
+        var strokeWidth = ns.ha( attr, 'stroke-width', 1 );
+        var poly        = ssF.toreg( pName )();
+        poly.pname      = pName;
+        poly.pivotNames = pNames.concat();
+        poly.svgel = sv.polyline({
+            svgel   : ns.haz( poly, 'svgel' ),
+            stroke,
+            //fill,
+            parent  : studyMods[ SUB_MODEL ].mmedia,
+            pivots,
+            'stroke-width' : strokeWidth * sconf.thickness, 
+        });
+        var svgel$ = $$.$(poly.svgel);
+        svgel$.tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) );
+        svgel$.cls( cssClass + 'tp-' + tpclass );
+        //if( pName === 'ABS' ) ccc( pName, poly );
+        return poly;
+    }
+
+
 
 
 
@@ -139,11 +182,12 @@
     ///         pName - name of namespace rack
     ///         pos - point in rack must have these coordinates
     ///       optional:
+    ///         attrs, 'tpclass',
     ///         ns.haz( pt, 'svgel' )
     ///         attrs: see below: //optional attrs 
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
-    ///       pt.medpos = modpos2medpos
+    ///       pt.medpos = //mod 2 inn//
     function pos2pointy( pName, attrs )
     {
         attrs = attrs || {};
@@ -151,9 +195,9 @@
                       ( ns.haz( attrs, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
-        //pt is a rack of namespace (plain JavaScript object)
-        var pt              = rg[ pName ];
-        pt.medpos           = modpos2medpos( pt.pos );
+        var pt              = rg[ pName ]; //= value in registry
+        pt.medpos           = ssF.mod2inn( pt.pos );
+        pt.pname            = pName;
         //optional attrs
         pt.stroke           = ns.ha( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
         pt.fill             = ns.ha( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
@@ -171,7 +215,9 @@
             cy : pt.medpos[1],
             r,
         });
-        $$.$(pt.svgel).cls( cssClass + 'tp-' +  tpclass );
+        var svgel$ = $$.$(pt.svgel);
+        svgel$.tgcls( 'undisplay', ns.haz( pt, 'undisplay' ) );
+        svgel$.cls( cssClass + 'tp-' +  tpclass );
         return pt;
     }
     //==============================================
@@ -191,7 +237,7 @@
     function paintTriangle( triangleId, cssCls, tpclass, defaultFill )
     {
         var triang = rg[ triangleId ];
-        var vertices = triang.vertices.map( modpos2medpos );
+        var vertices = triang.vertices.map( ssF.mod2inn );
         var svgarg = {
             pivots  : vertices,
             svgel   : triang.svgel,

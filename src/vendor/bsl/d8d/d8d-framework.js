@@ -11,6 +11,8 @@
     var d8d_p       = sn('d8d-point',fmethods);
     var ccc = console.log; ccc && ( ccc = console.log );
     d8d_p.createFramework = createFramework;
+
+    var createdFrameworks = [];
     return;
 
 
@@ -26,27 +28,47 @@
             //// api
             findDraggee, //function which finds draggeePoint 
             dragSurface,
-            //:the rest is optional
-            //.sugar for "down" event
+
+            //the rest is optional
+
+            //fires this function at down event and only at this event
             detected_user_interaction_effect,
+
             decPoint_parentClasses,
             processMouseDown,
+
+            //only for two things:
+            //  findDraggee_default()
+            //  spinner((update_decPoint_default))
             handle2dragsurf_pos,
-            medpos2dompos,
+
+            inn2outparent, //only for spinner
     }) {
+
+        var DRAGGEE_HALF_SIZE = 40;
 
         findDraggee = findDraggee || findDraggee_default;
         handle2dragsurf_pos = handle2dragsurf_pos || handle2dragsurf_pos_default;
 
-        var DRAGGEE_HALF_SIZE = 40;
+        var frameworkId = createdFrameworks.length;
 
         var selectedElement_flag;
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
         ns.d8d({
             surface : dragSurface,
-            d8d_app : d8d_app //common handler
+            d8d_app : d8d_app, //common handler
+
+            frameworkId,
         });
+
+        var createdFramework = 
+        {
+            frameworkId,
+            dragSurface,
+            decPoint_parentClasses,
+        };
+        createdFrameworks.push( createdFramework );
         return { pointWrap_2_dragWrap, updateAllDecPoints, };
 
 
@@ -60,7 +82,7 @@
         // //\\ converts pos-in-parent to dom-pos
         //==========================================
         //Gets position of dom-drag-handle in respect to drag-surface.
-        //In contrary to "medpos2dompos",
+        //In contrary to "inn2outparent",
         //  it does not convert inner-media-position and
         //  does not convert inner-model-position to dom position.
         //The dragHandleDOM must belong the "surface".
@@ -85,7 +107,9 @@
         {
             dragWraps.forEach( function( dragWrap ) {
                 var uP = dragWrap.update_decPoint;
-                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap ); //todo does it always have dragWrap ?
+                //ccc( 'all dec start: ' );
+                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap );
+                //ccc( 'all dec end: ', dragWrap.decPoint );
             });
         }
 
@@ -105,7 +129,7 @@
             var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
 
             var update_decPoint      = api.update_decPoint;
-            var no_spinner           = api.no_spinner;
+            var nospinner            = api.nospinner;
             var orientation          = api.orientation;
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
@@ -125,14 +149,13 @@
             // \\// api.achieved is an optional parameter
             //==============================================
 
-
             //========================================================
             // //\\ creates and updates drag overlay: decoration point
             //========================================================
             var decPoint = null;
-            if( !no_spinner ) {
+            if( !nospinner ) {
                 update_decPoint = !update_decPoint ?
-                    update_decPoint_medpos2dompos :
+                    update_decPoint_inn2outparent :
                     ( update_decPoint === 'update_decPoint_default' ?
                         update_decPoint_default : update_decPoint );
 
@@ -176,7 +199,8 @@
                 decPoint        : decPoint,
                 orientation     : orientation,
                 dragHandleDOM   : dragHandleDOM,
-                achieved        : achieved,
+                achieved,
+                createdFramework,
             }
             dragWraps.push( dragWrap );
 
@@ -197,12 +221,11 @@
                 //logical bonus: pointWrap may be missed in
                 //doProcess closure ...
                 arg.pointWrap = pointWrap; 
-
                 doProcess( arg );
                 update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
                 if( arg.down_move_up === 'up' ) {
                     ////this cleans up drag and drop lifecycle
-                    selectedElement_flag=0;
+                    selectedElement_flag=null;
                 }
             }
             //=====================================================
@@ -210,10 +233,10 @@
             //=====================================================
 
             ///updates spinner position;
+            ///uses already existing-on-drag-surface handle to synch with it;
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
             ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
-            ///uses already existing-on-drag-surface handle to synch with it;
             function update_decPoint_default( decPoint, dragSurface, pointWrap )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
@@ -226,21 +249,27 @@
                 }
             }
 
+            ///this thing runs when no update_decPoint is supplied to
+            //      pointWrap_2_dragWrap( api )
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
             ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
             ///does position spinner by converting
             ///inner-media-position to dom-position
             ///and setting spinner ot this dom-position
-            function update_decPoint_medpos2dompos()
+            function update_decPoint_inn2outparent()
             {
-                var dompos = medpos2dompos.call( pointWrap );
+                var dompos          = inn2outparent.call( pointWrap );
                 decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top = dompos[1] + 'px';            
-                if( pointWrap.hideD8Dpoint ) {
-                    decPoint.style.display = 'none';
-                } else {
-                    decPoint.style.display = 'block';
+                decPoint.style.top  = dompos[1] + 'px';
+                if( !pointWrap.ignore_hideD8Dpoint_for_CSS ) {
+                    if( pointWrap.hideD8Dpoint ) {
+                        decPoint.style.display = 'none';
+                    } else {
+                        decPoint.style.display = 'block';
+                        //if( pointWrap.pname === 'media-mover' )
+                        //    ccc( 'dp updated: left=' + decPoint.style.left, decPoint );
+                    }
                 }
             }
         }
@@ -258,24 +287,36 @@
         ///                                          eventPos_2_surfacePos;
         function d8d_app( surfMove, down_move_up, point_on_dragSurf, event, moveIncrement )
         {
-            //ns.d('app: d8d_app call begins: mode="' + down_move_up + '"');
+            var fw = createdFramework;
+            //ns.d('fram/w: case="' + down_move_up + '"');
             switch( down_move_up )
             {
                 case 'down': 
+                    //ns.d('down: fw=' + fw.frameworkId );
+
                     if( selectedElement_flag ) {
+                        ns.d('bug ' + down_move_up + '"');
                         ////possible bug
                         ////ns.d(ww);
                         return true;
                     }
-                    var closestDW = findDraggee(
+                    selectedElement_flag = findDraggee(
                             point_on_dragSurf,
                             dragWraps,
                             dragSurface
                     );
-                    if( !closestDW ) return true;
-                    processMouseDown && processMouseDown( closestDW.pointWrap );
+                    if( !selectedElement_flag ) return true;
                     detected_user_interaction_effect && detected_user_interaction_effect();
-                    selectedElement_flag = closestDW;
+                    processMouseDown && processMouseDown( selectedElement_flag.pointWrap );
+
+                    selectedElement_flag.doProcessWrap({
+                        down_move_up    : down_move_up,
+                        surfMove        : surfMove,
+                        moveIncrement   : 0,
+                        dragWrap        : selectedElement_flag,
+                        point_on_dragSurf,
+                    });
+
                 break;
                 case 'move': 
                 case 'up':
@@ -285,6 +326,7 @@
                         surfMove        : surfMove,
                         moveIncrement   : moveIncrement,
                         dragWrap        : selectedElement_flag,
+                        point_on_dragSurf,
                     });
                 break;
                 default:
@@ -302,6 +344,9 @@
         ///         then dragWrap is not "considered" for drag
         function findDraggee_default( point_on_dragSurf, dragWraps )
         {
+            ns.d('findDraggee in bsl: fw' +
+                 ( dragWraps[0] && dragWraps[0].createdFramework.frameworkId )
+            );
             var testMediaX = point_on_dragSurf[0];
             var testMediaY = point_on_dragSurf[1];
 
@@ -320,7 +365,6 @@
                 var tdX         = Math.abs( testMediaX - dompos[0] );
                 var tdY         = Math.abs( testMediaY - dompos[1] );
                 var td          = Math.max( tdX, tdY );
-
                 //.td is a "rect-metric" for distance between
                 //.point_on_dragSurf and drag-point-candidate
                 if( td <= DRAGGEE_HALF_SIZE ) {
@@ -329,6 +373,8 @@
                         closestDragWrap = dragWrap;
                         closestTd = td;
                         closestDragPriority = pointWrap.dragPriority || 0;
+                        ns.d('closest=' + pointWrap.pname +
+                             ' fw' + dragWrap.createdFramework.frameworkId );
                    }
                 }
             });

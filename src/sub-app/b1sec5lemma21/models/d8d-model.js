@@ -35,9 +35,9 @@
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
     var stdMod;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
     return;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+
 
 
 
@@ -49,157 +49,140 @@
     function setModule()
     {
         stdMod = sn( SUB_MODEL, studyMods );
-        stdMod.initDragModel = initDragModel;
+        stdMod.populates__cust_draggers_list = populates__cust_draggers_list;
     }
 
 
     //==========================================
-    // //\\ inits drag points
+    // //\\ inits drag model
     //==========================================
-    function initDragModel()
+    function populates__cust_draggers_list()
     {
-        ///======================================
-        /// sets framework of draggee-points
-        ///======================================
-        var medD8D = sn( SUB_MODEL, studyMods ).medD8D =
-        d8d_p.createFramework({
-            findDraggee                         : findDraggee,
-            dragSurface                         : sDomN.medRoot,
-            //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
-        });
-        //no need, done in media-model.js:  update_decPoint( decPoint )
+        ns.sn( 'customDraggers_list', stdMod, [] );
+        stdMod.customDraggers_list.push( createDraggers_p );
 
-        //==========================================
-        //: sets drag points
-        //==========================================
-        sapp.readyToResize = true;
-        createDragger_G();
-        createDragger_AA();
-        createDragger_H();
-        stdMod.addCommonSliders( medD8D, css2media )
-        ns.globalCss.update(); //for decorator
-        return;
+        //todm ... do automate
+        stdMod.railsCustomSlidersCount = ns.h( stdMod, 'railsCustomSlidersCount' ) ?
+            stdMod.railsCustomSlidersCount + 1 : 1; 
+    };
+    //==========================================
+    // \\// inits drag model
+    //==========================================
 
 
 
 
 
+    function createDraggers_p( medD8D )
+    {
+        createDragger_G( rg.G, medD8D );
+        createDragger_AA( rg.AA, medD8D );
+        createDragger_H( rg.H, medD8D );
+    }
 
 
+    function createDragger_G( pointWrap, medD8D )
+    {
+        //:sets additional features ... dragger handle color
+        pointWrap.spinnerClsId    = 'g-slider-point';
+        pointWrap.dragDecorColor = pointWrap.stroke;
 
-
-
-
-
-        function createDragger_G()
+        var argc =
         {
-            var pointWrap = rg.G;
-
-            //:sets additional features ... dragger handle color
-            pointWrap.spinnerClsId    = 'g-slider-point';
-            pointWrap.dragDecorColor = pointWrap.stroke;
-
-            var argc =
-            {
-                achieved            : [ rg.G.pos[0], rg.G.pos[1] ],
-                pointWrap           : rg.G,
-                doProcess           : doProcess_sliderG,
-                orientation         : 'axis-y',
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
-
+            achieved            : [ rg.G.pos[0], rg.G.pos[1] ],
+            pointWrap           : rg.G,
+            doProcess           : doProcess_sliderG,
+            orientation         : 'axis-y',
+        };
+        medD8D.pointWrap_2_dragWrap( argc );
+        return;
 
         function doProcess_sliderG( arg )
         {
             var ach = arg.pointWrap.achieved;
             var G = rg.G;
             switch( arg.down_move_up ) {
-                case 'up':
+                case 'down':
                      ach.achieved = [ G.pos[0], G.pos[1] ];
                      break;
                 case 'move':
                     G.pos2value([
                         ach.achieved[0] + arg.surfMove[0] *
-                        sconf.med2mod_scale * css2media(),
+                        sconf.inn2mod_scale * sDomF.out2inn(),
                         ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
-                        sconf.med2mod_scale * css2media()
+                        sconf.inn2mod_scale * sDomF.out2inn()
                     ]);
                     break;
             }
         }
+    }
 
-        function createDragger_AA()
+
+    function createDragger_AA( pointWrap, medD8D )
+    {
+        //:sets dragger handle color
+        pointWrap.spinnerClsId    = 'aa-slider-point';
+        pointWrap.dragDecorColor = pointWrap.stroke;
+
+        var argc =
         {
-            var pointWrap = rg.AA;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 'aa-slider-point';
-            pointWrap.dragDecorColor = pointWrap.stroke;
-
-            var argc =
-            {
-                achieved            : [ rg.AA.pos[0], rg.AA.pos[1] ],
-                pointWrap           : rg.AA,
-                doProcess           : doProcess_sliderAA,
-                orientation         : 'rotate',
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
-
+            achieved            : [ rg.AA.pos[0], rg.AA.pos[1] ],
+            pointWrap           : rg.AA,
+            doProcess           : doProcess_sliderAA,
+            orientation         : 'rotate',
+        };
+        medD8D.pointWrap_2_dragWrap( argc );
+        return;
 
         function doProcess_sliderAA( arg )
         {
             var ach = arg.pointWrap.achieved;
             var AA = rg.AA;
             switch( arg.down_move_up ) {
-                case 'up':
+                case 'down':
                      ach.achieved = [ AA.pos[0], AA.pos[1] ];
                      break;
                 case 'move':
                     AA.pos2value([
                         ach.achieved[0] + arg.surfMove[0] *
-                        sconf.med2mod_scale * css2media(),
+                        sconf.inn2mod_scale * sDomF.out2inn(),
                         ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
-                        sconf.med2mod_scale * css2media()
+                        sconf.inn2mod_scale * sDomF.out2inn()
                     ]);
                     break;
             }
         }
+    }
 
-        function createDragger_H()
+    function createDragger_H( pointWrap, medD8D )
+    {
+        //:sets dragger handle color
+        pointWrap.spinnerClsId    = 'h-slider-point';
+        pointWrap.dragDecorColor = pointWrap.stroke;
+
+        var argc =
         {
-            var pointWrap = rg.H;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 'h-slider-point';
-            pointWrap.dragDecorColor = pointWrap.stroke;
-
-            var argc =
-            {
-                achieved            : [ rg.H.pos[0], rg.H.pos[1] ],
-                pointWrap           : rg.H,
-                doProcess           : doProcess_sliderH,
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
-
+            achieved            : [ rg.H.pos[0], rg.H.pos[1] ],
+            pointWrap           : rg.H,
+            doProcess           : doProcess_sliderH,
+        };
+        medD8D.pointWrap_2_dragWrap( argc );
 
         function doProcess_sliderH( arg )
         {
             var ach = arg.pointWrap.achieved;
             var H = rg.H;
             switch( arg.down_move_up ) {
-                case 'up':
+                case 'down':
                      ach.achieved = [ H.pos[0], H.pos[1] ];
                      break;
                 case 'move':
                     sDomF.detected_user_interaction_effect();
                     H.pos2value([
                         ach.achieved[0] + arg.surfMove[0] *
-                        sconf.med2mod_scale * css2media(),
+                        sconf.inn2mod_scale * sDomF.out2inn(),
                         ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
-                        sconf.med2mod_scale * css2media()
+                        sconf.inn2mod_scale * sDomF.out2inn()
                     ]);
                     break;
             }
@@ -216,7 +199,7 @@
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
+    ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -236,7 +219,7 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( pOnS );
+        var testMedpos = sDomF.outparent2inn( pOnS );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
 
@@ -264,14 +247,6 @@
     //====================
     // \\// finds draggee
     //====================
-
-    function css2media()
-    {
-       return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
-       //return sconf.innerMediaWidth /
-       //       studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
-    };
-
 
 }) ();
 

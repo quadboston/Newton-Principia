@@ -66,7 +66,6 @@
     {
         var limDemo = pwork.limDemo;
         var points2media = pwork.points2media;
-        var pos2pointy = pwork.pos2pointy;
 
         var mmedia = studyMods[ SUB_MODEL ].mmedia$();
         var nLine = rg[ 'neighbHor' ][ 'neighbHor' ];

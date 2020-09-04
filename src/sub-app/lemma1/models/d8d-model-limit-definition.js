@@ -65,7 +65,7 @@
             //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
+            inn2outparent                       : sDomF.inn2outparent,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -90,13 +90,14 @@
                      break;
                 case 'move':
                         var newEy = ach.achieved -
-                                 arg.surfMove[1] * sconf.med2mod_scale * css2media();
+                                arg.surfMove[1] * sconf.inn2mod_scale *
+                                sDomF.out2inn();
                         ssD.EPSILON = Math.max( Math.min( newEy, 0.4 ), 0.05 );
-                        if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
+                        //if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
                             //.this is a duty of contributor to provide:
                             //.if( studyMods[ ww ] ) {
                             studyMods[ amode['submodel'] ].upcreate();
-                        }
+                        //}
                      break;
             }
         }
@@ -110,8 +111,6 @@
                      break;
                 case 'move':
                         var norm = rg['neighbHor']['neighbHor'][1][0];
-                        //ccc( 'surfMove=' + arg.surfMove[0] + ' cssMed2innMed=' + css2media() + 
-                        //     ' innMed2mod_scale=' + sconf.med2mod_scale + ' norm='+norm );
                         var newDx = ach.achieved +
 
                                     //todm: hard bug: remove this patch-coeff
@@ -125,7 +124,8 @@
                                     //effect
                                     1.25 *
 
-                                    arg.surfMove[0] * sconf.med2mod_scale * css2media()
+                                    arg.surfMove[0] * sconf.inn2mod_scale *
+                                    sDomF.out2inn()
                                     / norm
                                     ;
                         ssD.delta_fraction = Math.max( Math.min( newDx, 1 ), 0.0001 );
@@ -175,7 +175,7 @@
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
+    ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -195,7 +195,7 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( pOnS );
+        var testMedpos = sDomF.outparent2inn( pOnS );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
 
@@ -223,14 +223,6 @@
     //====================
     // \\// finds draggee
     //====================
-
-    function css2media()
-    {
-       return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
-       //return sconf.innerMediaWidth /
-       //       studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
-    };
-
 
 }) ();
 

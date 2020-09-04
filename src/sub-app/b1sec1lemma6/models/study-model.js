@@ -31,7 +31,8 @@
     var modName     = 'studyModel_2_ss';
 
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-    ssF.model8media_upcreate  = model8media_upcreate;
+
+    var stdMod;
     return;
 
 
@@ -50,13 +51,11 @@
     ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     function setModule()
     {
-        ssF.init_model_parameters = init_model_parameters;
-        sn(SUB_MODEL, studyMods ).model8media_upcreate = model8media_upcreate;
-        sn(SUB_MODEL, studyMods ).upcreate = model8media_upcreate;
-        ssF.model8media_upcreate  = model8media_upcreate;
-        ssF.model_upcreate      = model_upcreate;
-        ssF.media_upcreate      = media_upcreate;
-        ssF.amode_4_model8media = amode_4_model8media;        
+        stdMod                          = sn( SUB_MODEL, studyMods );
+        stdMod.init_model_parameters    = init_model_parameters;
+        stdMod.model8media_upcreate     = model8media_upcreate;
+        stdMod.model_upcreate           = model_upcreate;
+        stdMod.amode2lemma              = amode2lemma;        
     }
 
 
@@ -222,31 +221,16 @@
     //=================================================
     // //\\ state patch
     //=================================================
-    function amode_4_model8media( doModel, doMedia )
+    function amode2lemma( towhich )
     {
-        if( !ns.haz( amode, 'theorion' ) ) {
-            var theorion = sapp.amodel_initial.theorion;
-            var aspect   = sapp.amodel_initial.aspect;
-            var submodel = sapp.amodel_initial.submodel;
-        } else {
-            var theorion = amode.theorion;
-            var aspect   = amode.aspect;
-            var submodel = amode.submodel;
-        }
-
-        if( doModel ) {
+        if( towhich === 'rg8model' ) {
             variableInit();
-            var setter = 'astate_2_model8partOfMedia';
-            applySetter( theorion, aspect, setter );
         }
-        if( doMedia ) {
-            var setter = 'astate_2_media';
-            applySetter( theorion, aspect, setter );
-        }
-    }
 
-    function applySetter( theorion, aspect, setter )
-    {
+        var theorion = amode.theorion;
+        var aspect   = amode.aspect;
+        var submodel = amode.submodel;
+
         rg[ "line-AF" ].undisplay = true;
         rg[ "line-BF" ].undisplay = true;
         rg.F.undisplay = true;
@@ -294,7 +278,7 @@
             var captured = "reset-to-origin";
             sDomF.detected_user_interaction_effect( 'doUndetected' );
         }
-        ns.haf( ssF, setter )( ssD.capture[ captured ] );
+        stdMod[ 'astate_2_' + towhich ]( ssD.capture[ captured ] );
     }
     //=================================================
     // \\// state patch
@@ -311,7 +295,7 @@
     function model8media_upcreate()
     {
         model_upcreate();
-        media_upcreate();
+        media8legend_upcreate();
     }
     //****************************************************
     // \\// updates model and figure (and creates if none)
@@ -370,10 +354,10 @@
     //****************************************************
     // //\\ updates media (and creates if none)
     //****************************************************
-    function media_upcreate()
+    function media8legend_upcreate()
     {
-        sn(SUB_MODEL, studyMods ).media_upcreate();
-        ssF.upcreate_mainLegend(); //placed into "slider"
+        stdMod.media_upcreate();
+        stdMod.upcreate_mainLegend(); //placed into "slider"
     }
     //****************************************************
     // \\// updates media (and creates if none)

@@ -2,7 +2,6 @@
 *::*claim|english
 { "dataLegend":"0",
   "default" : "1",
-  "submodel" : "",
   "mediaBgImage" : "lemma1-proof.png",
   "menuCaption" : "English"
 }
@@ -17,9 +16,16 @@ approach nearer to each other than by any given difference you please,
 become ultimately equal.
 
 <br><br>
-Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Central Argument." by Dana Densmore. Published by Green Lion Press 2003, 2010.
 
 
+<div style="font-size:10px;">
+    Source: <br>
+    William H Donahue cited <br>
+    in the page 47 of book "Newton Principia. The Central Argument." <br>
+    by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
+    We did not find year and name for book by William H Donahue.
+</div>
+<br><br>
 
 
 

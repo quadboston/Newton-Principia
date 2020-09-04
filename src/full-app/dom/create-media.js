@@ -24,7 +24,9 @@
 
     sDomF.create8prepopulate_svg = create8prepopulate_svg;
     return;
-    //00000000000000000000000000000000000000
+
+
+
 
 
 
@@ -32,16 +34,12 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-
-
     function create8prepopulate_svg()
     {
         ns.eachprop( studyMods, ( stdMod, modName ) => {
             create8prepopulate_singleSvg( stdMod );
         });
     }
-
-
 
     function create8prepopulate_singleSvg( stdMod )
     {
@@ -53,7 +51,9 @@
         sDomN.mmedia$ = //todo: patch: sets this to most recent called media creator:
         stdMod.mmedia$ = $$.$( document.createElementNS( fconf.svgNS, 'svg' ) );
 
-        var mmedia = sDomN.mmedia = stdMod.mmedia = stdMod.mmedia$();
+        var mmedia =
+            sDomN.mmedia //todm bug ... media belongs to submodel not to app
+            = stdMod.mmedia = stdMod.mmedia$();
         mmedia.setAttributeNS( null, 'class', cssp +'-media' );
 
         //https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/version
@@ -71,6 +71,7 @@
         //mmedia.setAttributeNS( null, 'baseProfile', "full" );
 
         stdMod.mmedia$.to( sDomN.medRoot );
+
         //mmedia.setAttributeNS( null, 'fill', "#FFFFAA" );
         //no good: mmedia.style.fill = "#FFFFAA";
         //..........................

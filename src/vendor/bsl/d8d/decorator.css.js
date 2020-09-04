@@ -84,7 +84,9 @@
             `
         });
         // \\// css /////////////////////////////////////////
-        ns.globalCss.upqueue( ret );
+        
+        //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
+        ns.globalCss.update( ret );
     }
 
 
@@ -110,7 +112,7 @@
             width       : ${ds.WIDTH};
             height      : ${ds.HEIGHT};
             z-index     : 1000;
-            cursor      : pointer;
+            cursor      : grab;
             /* .good for devel.
             border      : 1px solid red;
             */
@@ -161,8 +163,15 @@
             background-color: black;
             z-index         : 1000;
             visibility      : ${centralDiskVisibility};
-            cursor          : pointer;
+            cursor          : grab;
         }
+
+        .brc-slider-draggee.grabbing:hover:after,
+        .brc-slider-draggee.grabbing {
+            cursor : grabbing;
+        }
+
+
         /*=============================*/
         /* \\// parent after           */
         /*=============================*/
@@ -257,7 +266,8 @@
         `;
         // \\// css /////////////////////////////////////////
         //ns.globalCss.addText( ret );
-        ns.globalCss.upqueue( ret );
+        //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
+        ns.globalCss.update( ret );
         globalCssCreated_flag = true;
     };
 })();

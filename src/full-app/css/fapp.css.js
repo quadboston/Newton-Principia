@@ -11,19 +11,8 @@
 
 
     ///application-wide helper
-    cssmods.calculateTextPerc = function( mediaPerc ) {
-        //todo 
-        //100 - mediaPerc - NNN
-        //is a hack
-        //...NNN like 15 breaks app-CSS-floating model
-        //...NNN like 6 causes flicker ...
-        //ps bs a CSS/JS loop when CSS causes resize, JS catches resize and changes CSS
-        return 100 - mediaPerc - 15; 
-    };
     cssmods['main-sapp'] = function( cssp, conf ) {
         var colorLight = conf.css['color-light']; 
-        var mediaPerc = sconf.mediaDefaultWidthPercent;
-        var textPercStr = cssmods.calculateTextPerc( mediaPerc ).toFixed(2) + '%';
 
         if( fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) {
             var essayPaneFloat = 'float : ' +
@@ -64,6 +53,8 @@
         width       : 100%;
         margin      : 0;
         padding     : 0;
+        /* overflow    : auto;  todo */
+        overflow    : hidden; /* todo why needed for shift-up-bug-making-hidden? */
     }
 
     .bsl-approot svg text {
@@ -85,6 +76,7 @@
         position    :relative;
         float       :left;
         display     :inline-block;
+        box-sizing  :border-box;
         height      :auto;
 
         padding     :0;
@@ -96,6 +88,7 @@
         clear       :both; /* clears against media-top-controls */
         position    :relative;
         display     :block;
+        box-sizing  :border-box;
 
         /* todm: simpler solution: add padding to parent, 21px */
         left        :${sconf.main_horizontal_dividor_width_px}px;
@@ -108,6 +101,7 @@
 
     /* enables original-figure-picture disappearance */
     /* at version 1112, restored by client request */
+    /* todm: .in-study must be lemma-wise flag, not image-wise */
     .bsl-bg-image.in-study {
         opacity:0;
         transition: opacity 1s ease;
@@ -120,6 +114,7 @@
     */
     /*================================*/
     /* //|| bsl-media                 */
+    /*      .bsl-media === svg        */
     /*================================*/
     .bsl-media {
         position:absolute;
@@ -157,11 +152,36 @@
     /* ||// bsl-media                 */
     /* ||// media pane                */
     /*================================*/
+    `;
+
+    //====================================
+    // //\\ display/unsisplay
+    //====================================
+    //svg display
+    //display-inline-and-block-on-svg-elements
+    //https://stackoverflow.com/questions/41437423/difference-between-
+    ret +=`
+        .display-none {
+            display : none;
+        }
+        .display-yes {
+            display : block;
+        }
+
+        .bsl-approot .bsl-media .undisplay
+        {
+            display : none;
+        }
+    `;
+    //====================================
+    // \\// display/unsisplay
+    //====================================
 
 
     /*---------------------------*/
-    /* //\\ horizontal resizer   */ 
+    /* //|| horizontal resizer   */ 
     /*---------------------------*/
+    ret +=`
     #bsl-resizable-handle {
       display: flex;
       align-items: center;
@@ -170,7 +190,7 @@
       padding: 0 8px;
       position: absolute;
       height: 100%;
-      cursor: pointer;
+      cursor: grab;
     }
     #bsl-resizable-handle:hover {
       background: ${colorLight};
@@ -202,8 +222,6 @@
         padding-left    :5px;
         padding-right   :20px;
 
-        width           :${(conf.exegesis_floats && 'auto') ||
-                            textPercStr };
         overflow-y      :auto;
         margin          :0;
         overflow-x      :hidden; /*patch for css-opacity-transition*/
@@ -264,24 +282,39 @@
 
 
 
-/*========================================*/
-/* //\\ main-legend                       */
-/*========================================*/
+//========================================
+// //\\ main-legend                       
+//      the only reason for "flex"
+//      it make table narrow ...
+//      otherwise, margin may solves all
+//========================================
 ret += `
 
     .bsl-legend-root {
-        padding-left : 30px;
-        padding-right : 10px;
+        display : flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
+
+    .main-legend {
+        /* table-layout:fixed; */
+        table-layout:auto;
+        box-sizing: border-box;
+        margin-left : 15px;
+        margin-right : 15px;
+        flex-grow : 0;
+        flex-shrink : 1;
+    }
+
 
     .main-legend td {
         text-align:center;
     }
 
-    @media only screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
-        .main-legend.hidden {
-            display:none;
-        }
+    .main-legend.hidden {
+        display:none;
     }
 
     /* visibility per model-mode */
@@ -296,11 +329,6 @@ ret += `
     .main-legend td {
         padding:1px;
         /* for dev mode: border: 1px solid black; */
-    }
-    .main-legend {
-        /* table-layout:fixed; */
-        table-layout:auto;
-        margin:auto;
     }
 
 
@@ -331,9 +359,14 @@ ret += `
         border-collapse: separate;
         border-spacing: 10px 0px;
     }
+
+    /* was 370px */
+    /*
     .main-legend.proof {
-        width:470px; /* was 370px */
+        width:470px;
     }
+    */
+
     .proof.row1 {
         opacity:0;
     }
@@ -385,39 +418,18 @@ ret += `
     /*====================================*/
     /* \\// table formatter               */
     /*====================================*/
+`;
+
+//.changes legend font size by browser-window-width
+ret +=`
 
     .bsl-media-root.main-legend-disabled .main-legend {
         display:none;
     }
 
-`;
-    
-if( conf.exegesis_floats ) {
-    ret +=`
-        .main-legend {
-            position:absolute;
-            left:32%;
-            top:60%;
-        }
-        .main-legend td {
-            font-size:12px;
-        }
-    `;
-
-} else {
-    ret +=`
-        .main-legend {
-            position:static;
-            width:100%;
-        }
-        .main-legend td {
-            font-size:14px;
-        }
-    `;
-}
-
-
-ret +=`
+    .main-legend td {
+        font-size:14px;
+    }
 
     @media (max-width: 900px) {
         .main-legend td {

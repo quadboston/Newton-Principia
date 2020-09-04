@@ -68,7 +68,7 @@
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses : fconf.dragPointDecoratorClasses,
-            medpos2dompos                       : sDomF.medpos2dompos,
+            inn2outparent                       : sDomF.inn2outparent,
         });
         //======================================
         // \\// sets framework of draggee-points
@@ -106,10 +106,10 @@
                         var Ey = bezier.parT2point( ssD.tC, modCurvPivots )[1];
 
                         var startDy = ach.achieved * Ey;
-                        var newDy   = Math.min( Ey * claimRatio_max,
-                                          startDy - arg.surfMove[1] * sconf.med2mod_scale *
-                                                    //sDomF.css2media()
-                                                    css2media()
+                        var newDy   = Math.min(
+                                        Ey * claimRatio_max,
+                                        startDy - arg.surfMove[1] * sconf.inn2mod_scale *
+                                        sDomF.out2inn()
                                       );
                         newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
                         ssD.claimRatio = newDy/Ey;
@@ -150,7 +150,8 @@
                                             sconf.Ep2yrange_max * sconf.APP_MODEL_Y_RANGE,
                                             sconf.tiltRatio_max * Epy,
                                             startEy - arg.surfMove[1] *
-                                                      sconf.med2mod_scale * css2media()
+                                                      sconf.inn2mod_scale *
+                                                      sDomF.out2inn()
                                        );
                          newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
                          ssD.tiltRatio = newEy/Epy;
@@ -190,7 +191,7 @@
                          var startCx = bezier.parT2point(
                                        ach.achieved, modCurvPivots )[0];
                          var newCx = startCx + arg.surfMove[0] *
-                                     sconf.med2mod_scale * css2media();
+                                     sconf.inn2mod_scale * sDomF.out2inn();
                          newCx = Math.max( newCx, Cx_min );
                          //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
                          //     ' arg.move[0]=' + arg.move[0] );
@@ -236,9 +237,9 @@
                                  //c cc( 'up ach=' + pv[0] + ', ' + pv[1] );
                     break;
                     case 'move': 
-                        var wwMed = css2media();
-                        var mx = wwMed * sconf.med2mod_scale * arg.surfMove[0];
-                        var my = wwMed * sconf.med2mod_scale * arg.surfMove[1] * yflip;
+                        var wwMed = sDomF.out2inn();
+                        var mx = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
+                        var my = wwMed * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
                         var newMy = ach.achieved[1] + my;
                         var newMx = ach.achieved[0] + mx;
                         newMy = Math.min( newMy, sconf.pivot1y_max );
@@ -274,9 +275,9 @@
                     case 'up':   ach.achieved = pv.concat([]);
                     break;
                     case 'move': 
-                        var wwMed = css2media();
-                        var mx = wwMed * sconf.med2mod_scale * arg.surfMove[0];
-                        var my = wwMed * sconf.med2mod_scale * arg.surfMove[1] * yflip;
+                        var wwMed = sDomF.out2inn();
+                        var mx = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
+                        var my = wwMed * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
 
                         var newX = ach.achieved[0] + mx;
                         var newY = ach.achieved[1] + my;
@@ -325,7 +326,7 @@
     //====================
     // //\\ finds draggee
     //====================
-    ///Uses:    sDomF.pOnDs_2_innerViewBox( testPoint );
+    ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
@@ -344,7 +345,7 @@
         //.the bigger is priority, the more "choicable" is the drag Wrap point
         var closestDragPriority = 0;
 
-        var testMedpos = sDomF.pOnDs_2_innerViewBox( testPoint );
+        var testMedpos = sDomF.outparent2inn( testPoint );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
         //c cc( '\n\n****', testPoint, testMediaX, testMediaY,
@@ -375,20 +376,6 @@
     //====================
     // \\// finds draggee
     //====================
-
-
-
-    function css2media()
-    {
-        return sconf.innerMediaWidth / stdMod.mmedia.getBoundingClientRect().width;
-        /*
-        if( amode['submodel'] ) {
-            ccc(amode['submodel'], studyMods )
-            return sconf.innerMediaWidth /
-                   studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
-        }
-        */
-    }
 
 }) ();
 

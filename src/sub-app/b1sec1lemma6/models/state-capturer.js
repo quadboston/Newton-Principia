@@ -14,6 +14,7 @@
     var rg          = sn('registry',ssD);
 
     var sapp        = sn('sapp');
+    var studyMods   = sn('studyMods', sapp);
     var sDomF       = sn('dfunctions',sapp);
 
     var tr; //       = ssF.tr;
@@ -28,11 +29,7 @@
 
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-    ssF.captureAState = captureAState;
-    ssF.astate_2_model8media = astate_2_model8media;
-
-    ssF.astate_2_media = astate_2_media;
-    ssF.astate_2_model8partOfMedia = astate_2_model8partOfMedia;
+    var stdMod;
     return;
 
 
@@ -46,6 +43,8 @@
     ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     function setModule()
     {
+        stdMod                  = sn( SUB_MODEL, studyMods );
+        stdMod.captureAState    = captureAState;
     }
 
     //=================================
@@ -54,38 +53,13 @@
     ///captures AState
     function captureAState()
     {
-        var ast = {
-            rg: {},
-        };
-        ns.paste( ast.rg, { curveRotationAngle: rg.curveRotationAngle } );
-        ns.paste( ast.rg, { B: { pointWrap:
+        var ast = {};
+        ns.paste( ast, { curveRotationAngle: rg.curveRotationAngle } );
+        ns.paste( ast, { B: { pointWrap:
             { unrotatedParameterX : rg.B.pointWrap.unrotatedParameterX }
         }});
         fapp.captureWind.setText( ast );
     }
-
-    ///pastes AState
-    function astate_2_model8media( astate )
-    {
-        astate_2_model8partOfMedia( astate );
-        astate_2_media( astate );
-    }
-
-    function astate_2_model8partOfMedia( astate )
-    {
-        astate && ns.paste( rg, astate.rg );
-        ns.haf( ssF, 'model_upcreate' )();
-    }
-
-    ///todm: so far, this function exists only because d8d ...
-    function astate_2_media( astate )
-    {
-        ns.haf( ssF, 'media_upcreate' )();
-        rg.B.pointWrap.achieved.achieved = rg.B.pointWrap.unrotatedParameterX;
-        rg.L.pointWrap.achieved.achieved = [ rg.L.pos[0], rg.L.pos[1] ];
-    }
-
-
     //=================================
     // \\// capturers/readers
     //=================================

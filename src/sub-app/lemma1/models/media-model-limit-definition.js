@@ -116,7 +116,7 @@
               cssClass : 'tp-epsilon'
             }
         );
-        var point_E = pos2pointy(
+        var point_E = pos2pointy4lemma1(
             'point-E',
             { 
                 dragDecorColor: 'rgba(42,1,152,1)', //todo ... patch
@@ -177,7 +177,7 @@
         );
         $$.$(neighbHorChosen).cls( 'tp-neighborhood tofill' );
 
-        var point_D = pos2pointy(
+        var point_D = pos2pointy4lemma1(
             'point-D',
             { 
                 dragDecorColor: '#988201', //todo  //blue',
@@ -243,7 +243,7 @@
             globalStyleStr : globalStyleStr,
             limDemo : limDemo,
             points2media : points2media,
-            pos2pointy : pos2pointy
+            //pos2pointy4lemma1 : pos2pointy4lemma1
         };
         sn(SUB_MODEL, studyMods ).upcreateMediaLables( passedWork );
         globalStyle$.html( passedWork.globalStyleStr );
@@ -297,7 +297,7 @@
 
 
     ///converts model-pos and attributes to pointy
-    function pos2pointy( pName, attrs )
+    function pos2pointy4lemma1( pName, attrs )
     {
         var pt              = tr( pName );
         var pos             = pt.pos;

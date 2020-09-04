@@ -27,7 +27,8 @@
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
     var rg          = sn('registry',ssD);
-    var exegs    = sn('exegs', ssD);
+    var exegs       = sn('exegs', ssD);
+    var wrkwin      = sn('wrkwin',ssD); //work window
 
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
@@ -199,8 +200,8 @@
                 .css( 'display', 'inline-block' )
                 .css( 'position', 'relative' )
                 .css( 'top', '2px' )
-                .css( 'padding-right', '10px' )
-                .css( 'padding-left', '10px' )
+                .css( 'padding-right', '4%' )
+                .css( 'padding-left', '0%' )
                 .css( 'height', '10px' )
             );
         }
@@ -341,6 +342,7 @@
         amode[teaf_id] = leaf_id;
         if( amode['theorion'] && amode['aspect'] ) {
             var rtRk = exegs[ amode['theorion'] ][ amode['aspect'] ];
+            //recall: rtRk.essayHeader.submodel is always defined:
             amode['submodel'] = rtRk.essayHeader.submodel;
             fmethods.spawnVideoList && fmethods.spawnVideoList();
             sDomN.bgImage$ = rtRk.imgRk.dom$;
@@ -364,7 +366,7 @@
         //==================================================
         if( amode['theorion'] && amode['aspect'] ) {
             var wRT = exegs[ amode.theorion ] &&
-                      exegs[ amode.theorion ][ amode.aspect ];
+                      exegs[ amode.theorion ][ amode.aspect ]; //todo simple
             var eHeader = wRT && wRT.header;
             if( eHeader ) {
                 if( eHeader.dataLegend === "0" ) {
@@ -381,11 +383,14 @@
             //archived, "sleeping", d8d past values,
             //todm ... instead the solution of updating them at "down" event
             //         will be more elagant and cause less fuss,
-            ns.haf( ssF, 'amode_4_model8media' )( 'model', 'media' );
+            ns.haf( studyMods[ amode['submodel'] ], 'amode2lemma' )( 'rg8model' );
+
+            //todm possibly useless:
+            ns.haf( studyMods[ amode['submodel'] ], 'amode2lemma' )( 'media' );
 
             //.todm code prolifiration ... model runs twice?
-            fmethods.finish_Media8Ess8Legend_resize__upcreate(
-                null, null, !!'doDividorSynch');
+            wrkwin.finish_Media8Ess8Legend_resize__upcreate(
+                null, !!'doDividorSynch');
         }
         //==================================================
         // \\// hides or shows image and legend

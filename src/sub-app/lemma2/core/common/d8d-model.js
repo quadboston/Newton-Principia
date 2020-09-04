@@ -80,7 +80,7 @@
         }
 
         function setPoint( pointWrap, pwix ) {
-            var no_spinner = false;
+            var nospinner = false;
             var decorator;
             if( pointWrap.type === 'base' ) {
                 if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
@@ -94,11 +94,11 @@
                 decorator = Update_decPoint( pointWrap )
                 var achieved = { x:pointWrap.x, y:pointWrap.y };
             } else {
-                ////avoids excessive no_spinner assignment to idle points
+                ////avoids excessive nospinner assignment to idle points
                 ////which are not yet ready
                 ////one must code "decorator" for new points
                 ////when they are created
-                no_spinner = true;
+                nospinner = true;
             }
 
             ///small test-case
@@ -110,7 +110,7 @@
                 doProcess       : doProcess,
                 //-------------------------
                 achieved        : achieved,
-                no_spinner      : no_spinner,
+                nospinner      : nospinner,
                 update_decPoint : decorator,
                 orientation     : pointWrap.type !== 'base' ? 'rotate' : false,
             });
@@ -123,7 +123,7 @@
             var pw = pointWrap;
             return ( function( decPoint ) {
                 if( pw.x || pw.x === 0 ) {
-                    var dompos = sDomF.medpos2dompos.call(
+                    var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
                     );
                     decPoint.style.left = dompos[0] + 'px';            
@@ -160,7 +160,7 @@
         {
             //////////////////////////////////////////////////////////
             // //\\ todo. d8d points tmp patch.
-            mousePoint = sDomF.pOnDs_2_innerViewBox( mousePoint );
+            mousePoint = sDomF.outparent2inn( mousePoint );
             // \\// todo. d8d points tmp patch.
             //////////////////////////////////////////////////////////
 

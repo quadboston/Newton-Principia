@@ -1,6 +1,7 @@
 ( function() {
 
     //apparently vital to merge this module with proper submodel
+    //todm: must be generic: not only for common:
     var SUB_MODEL   = 'common'; 
 
     var ns          = window.b$l;
@@ -34,8 +35,6 @@
     var modName     = 'dragModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-
-    var css2media;
     var stdMod;
     return;
 
@@ -49,128 +48,71 @@
     function setModule()
     {
         stdMod = sn( SUB_MODEL, studyMods );
-        stdMod.addCommonSliders = addCommonSliders;
+        stdMod.inits_tools_sliders = inits_tools_sliders;
     }
 
 
-    //==========================================
-    // //\\ inits drag points
-    //==========================================
-    function addCommonSliders( medD8D, css2media_ )
+    ///==========================================
+    /// inits drag points
+    ///==========================================
+    function inits_tools_sliders( medD8D )
     {
-        css2media = css2media_;
-        if( sconf.enableTools ) {
-            createDragger_media_scale();
-            createDragger_thickness();
-        }
-        return;
+        var toolsSliders = ns.sn( 'toolsSliders',stdMod, [] );
+        toolsSliders.forEach( slname => {
+            createDragger( medD8D, slname )
+        });
+    };
 
 
 
-
-
-
-
-
-
-
-
-
-        //============================================
-        // //\\ slider media_scale
-        //============================================
-        function createDragger_media_scale()
+    function createDragger( medD8D, magnitude )
+    {
+        var pointWrap = rg[ magnitude ];
+        //:sets dragger handle color
+        pointWrap.spinnerClsId    = 'tp-' + magnitude;
+        //todm ... not straight
+        pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
+        var argc =
         {
-            var pointWrap = rg.media_scale;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 'tp-media-scale';
-            //todm ... not straight
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-            var argc =
-            {
-                achieved            : [ rg.media_scale.pos[0], rg.media_scale.pos[1] ],
-                pointWrap           : rg.media_scale,
-                doProcess           : doProcess_slider_media_scale,
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
+            pointWrap,
+            doProcess,
+            //update_decPoint:
+                //if this property is missed, then using
+                //d8d-framework.js::update_decPoint_inn2outparent() ...
+                //  ... dompos = inn2outparent.call( pointWrap
+
+                //update_decPoint : 'update_decPoint_default',
+                //      apparently above needs this: dragHandleDOM
+                //      which we don't provide as this "argc" prop;
+        };
+        //ccc( 'does create ' + pointWrap.spinnerClsId + ' ' + pointWrap.pname);
+        medD8D.pointWrap_2_dragWrap( argc );
+    }
+
+
+    function doProcess( arg )
+    {
+        var pointWrap = arg.pointWrap;
+        var ach = pointWrap.achieved;
+        switch( arg.down_move_up ) {
+            case 'down':
+                 ach.achieved = [ pointWrap.pos[0], pointWrap.pos[1] ];
+                 break;
+            case 'move':
+                ns.d('mv: comm-tools');
+                sDomF.detected_user_interaction_effect();
+                var mscale = sDomF.out2inn() / sconf.originalMod2inn_scale;
+                var move_in_model = [ //move in model units
+                        arg.surfMove[0] * mscale,
+                        arg.surfMove[1] * mscale,
+                    ];
+                pointWrap.move_2_updates(
+                    ach.achieved,
+                    move_in_model,
+                );
+                break;
         }
-
-        function doProcess_slider_media_scale( arg )
-        {
-            var ach = arg.pointWrap.achieved;
-            var media_scale = rg.media_scale;
-            switch( arg.down_move_up ) {
-                case 'up':
-                     ach.achieved = [ media_scale.pos[0], media_scale.pos[1] ];
-                     break;
-                case 'move':
-                    sDomF.detected_user_interaction_effect();
-                    var new_media_scale = [
-                            ach.achieved[0] + arg.surfMove[0] *
-                            //sconf.med2mod_scale * css2media(),
-                            (1/sconf.originalMod2med_scale) * css2media(),
-                            ach.achieved[1]
-                        ];
-                        media_scale.pos2value( new_media_scale );
-                    break;
-            }
-        }
-        //============================================
-        // \\// slider media_scale
-        //============================================
-
-
-        //============================================
-        // //\\ slider thickness
-        //============================================
-        function createDragger_thickness()
-        {
-            var pointWrap = rg.thickness;
-            //:sets dragger handle color
-            pointWrap.spinnerClsId    = 'tp-thickness';
-            //todm ... not straight
-            pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-            var argc =
-            {
-                achieved            : [ rg.thickness.pos[0], rg.thickness.pos[1] ],
-                pointWrap           : rg.thickness,
-                doProcess           : doProcess_slider_thickness,
-            };
-            medD8D.pointWrap_2_dragWrap( argc );
-        }
-
-        function doProcess_slider_thickness( arg )
-        {
-            var ach = arg.pointWrap.achieved;
-            var thickness = rg.thickness;
-            switch( arg.down_move_up ) {
-                case 'up':
-                     ach.achieved = [ thickness.pos[0], thickness.pos[1] ];
-                     break;
-                case 'move':
-                    sDomF.detected_user_interaction_effect();
-                    var new_thickness = [
-                            ach.achieved[0] + arg.surfMove[0] *
-                            //sconf.med2mod_scale * css2media(),
-                            (1/sconf.originalMod2med_scale) * css2media(),
-                            ach.achieved[1]
-                        ];
-                        thickness.pos2value( new_thickness );
-                    break;
-            }
-        }
-        //============================================
-        // \\// slider thickness
-        //============================================
-
-
-    }; 
-    //==========================================
-    // \\// inits drag points
-    //==========================================
-
-
-
+    }
 
 }) ();
 

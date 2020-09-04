@@ -171,7 +171,7 @@ http://www.17centurymaths.com/contents/newtoncontents.html
 
 *::*claim|model
 {
-  "menuCaption" : "Model"
+  "menuCaption" : "Study"
 }
 *..*
 
@@ -196,7 +196,7 @@ will move points T and ¦key-triangle¦R¦¦.
 *::*proof|model
 {
   "default" : "1",
-  "menuCaption" : "Model"
+  "menuCaption" : "Study"
 }
 *..*
 

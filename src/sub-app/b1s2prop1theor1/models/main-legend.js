@@ -1,4 +1,5 @@
 ( function() {
+    var SUB_MODEL   = 'common';
     var ns      = window.b$l;
     var $$      = ns.$$;
     var sn      = ns.sn;    
@@ -12,6 +13,7 @@
     var sapp    = sn('sapp'); 
     var sDomN   = sn('dnative',sapp);
     var sDomF   = sn('dfunctions',sapp);
+    var studyMods = sn('studyMods', sapp);
 
     var ss      = sn('ss',fapp);
     var ssD     = sn('ssData',ss);
@@ -30,6 +32,9 @@
 
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
+    var tableCaptionFun;
+
+    var stdMod;
     return;
 
 
@@ -41,7 +46,8 @@
 
     function setModule()
     {
-        ssF.upcreate_mainLegend = upcreate_mainLegend;
+        stdMod = sn( SUB_MODEL, studyMods );
+        stdMod.upcreate_mainLegend = upcreate_mainLegend;
         //.uncomment this to ad a legend
         ssF.create_digital_legend = create_digital_legend;
     }
@@ -62,6 +68,8 @@
     //=========================================
     function upcreate_mainLegend()
     {
+        tableCaptionFun();
+
         //ccc( 'does upcreate_mainLegend' );
         var ww = clustersToUpdate;
         ww.time.innerHTML       = rg.displayTime.value;
@@ -141,16 +149,24 @@
         //===================
         // //\\ table caption
         //===================
+        //prepares force parameters
+        var forceColor = sDomF.getFixedColor( 'field' );
+        tableCaptionFun = function() {
+            var cap = 'Centripetal force f = ' +  rg.force.lawConstant.toFixed(2) +
+                    ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>';
+            tableCaption$.html( cap );
+        }
         var row = $$.c('tr').to(tb)();
-        $$.c('td').a('colspan','9')
+        var tableCaption$ = $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Model Data')
+                  .css( 'color', forceColor )
+                  .cls( 'tp-field' )
                   .to(row);
         //===================
         // \\// table caption
         //===================
 
-        // begins to fill data rows
+        // begins filling data rows
 
         //===================
         // //\\
@@ -164,7 +180,7 @@
         //---------------------------------------
         //todm make sure this change is correct
         //makeCl( row, 'step' );
-        makeCl( row, 'step', 'move' ); //second par really sets caption in table
+        makeCl( row, 'step', 'motion' ); //second par really sets caption in table
         //---------------------------------------
 
         //makeCl( row, 'thought' );
@@ -192,6 +208,7 @@
         makeCl( row, 'speed', null, null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'vx', null, null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'vy', null, null, null, !!'alignCaptionToRight', 'proof' );
+
         //===================
         // \\//
         //===================

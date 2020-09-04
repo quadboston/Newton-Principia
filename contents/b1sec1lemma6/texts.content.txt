@@ -129,7 +129,7 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 
 *::*claim|model
 {
-  "menuCaption" : "Lab"
+  "menuCaption" : "Study"
 }
 *..*
 
@@ -206,10 +206,6 @@ Line ¦line-AL¦AL¦¦, which will be is a limit of chords, is called "Converged
 
 
 *::*proof|model
-{
-  "menuCaption" : "Lab"
-}
-*..*
 
 
 This model follows Newton's proof with more details. Pattern of proof is "ad absurdum".<br><br>
@@ -270,7 +266,6 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
 
 {
     "reset-to-origin": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -281,12 +276,10 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
 
     "L-equal-d": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -297,11 +290,9 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
     "closer": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -312,11 +303,9 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.5658328716632559
                 }
             }
-        }
     },
 
     "more-closer": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -327,12 +316,10 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.10102343776498918
                 }
             }
-        }
     },
 
 
     "true-convergence-1": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -343,11 +330,9 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.5232929802797621
                 }
             }
-        }
     },
 
     "meet": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -358,7 +343,6 @@ This model follows Newton's proof with more details. Pattern of proof is "ad abs
                     "unrotatedParameterX": 0.001
                 }
             }
-        }
     }
 
 }

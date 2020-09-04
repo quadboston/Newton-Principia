@@ -37,13 +37,12 @@
         // //\\ view
         //--------------------
 
+        ESSAY_FRACTION_IN_WORKPANE : 0.33,
+
         //.below this value, JS considers the device as a mobile
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 800,
-        SMALL_DESKTOP_MEDIA_QUERY_WIDTH_THRESHOLD :1300, //px
-        MODEL_MIN_WIDTH : 200, //when dragging
 
         model_float_dir : 'right', //vs left
-        exegesis_floats : !true,   //floats around media-pane
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
         attach_menu_to_essaion_root : true,
         decorateTopMenuWithRadioCircle : false,
@@ -79,6 +78,17 @@
         // \\// page-wide
         //--------------------
     };
+
+
+    if( to_fconf.MODEL_MIN_WIDTH + to_fconf.ESS_MIN_WIDTH  >
+        to_fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD - 100 ) {
+        alert( 'wrong config settings: ' +
+               'MODEL_MIN_WIDTH + ESS_MIN_WIDTH > mobile size' );
+            ////todm: we cannot put min media and min essay together because of
+            ////window's width is too small, do resort to mobile one
+            ////"one column" solution
+            //return; //isMobile = true;
+    }
     //====================================================
     // \\// put configuration parameters here
     //====================================================

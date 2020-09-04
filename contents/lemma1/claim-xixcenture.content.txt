@@ -5,7 +5,7 @@
   "mediaBgImage" : null,
   "submodel" : "limit-definition",
   "default" : "0",
-  "menuCaption" : "XIX Century"
+  "menuCaption" : "Study"
 }
 *..*
 
@@ -14,7 +14,7 @@
 
 This is an interpretation of Newton's definition of limit in context of beginning XIX century (Bolzano).<br><br>
 1. Because of Newton uses it for inscribed and circumscribed sums limits in lemma 3 for non-equal
- partition intervals, the limit is interpreted as limit of sets or numbers.
+ partition intervals, the limit is interpreted as limit of sets of numbers.
  (Non equal intervals produce many partitions for given maximum interval.)
 <br><br>
 2. Real numbers are chosen because of Euclid.V.5 ratios are nothing less than Dedekind's cuts of rational numbers.<br><br>

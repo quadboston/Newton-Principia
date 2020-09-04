@@ -17,7 +17,9 @@
     var rg          = sn('registry',ssD);
 
     var sapp        = sn('sapp');
+    var amode       = sn('mode',sapp);
     var studyMods   = sn('studyMods', sapp);
+    var sDomF       = sn('dfunctions', sapp);
 
     var tr          = ssF.tr;
     var tp          = ssF.tp;
@@ -28,39 +30,66 @@
     var mCount      = sn('modulesCount', sapp);
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = 'studyModel_2_ss';
+
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-    ssF.pointB_2_time0 = pointB_2_time0;
+    var stdMod;
     return;
+
+
+
+
+
 
 
 
 
     function setModule()
     {
-        //ssF.calculateCurvedArea = calculateCurvedArea;
-        //ssF.x0y_2_t             = x0y_2_t;
-        //ssF.const2positions     = const2positions;
-        ssF.init_model            = init_model;
-        sn(SUB_MODEL, studyMods ).model8media_upcreate = model8media_upcreate;
-        sn(SUB_MODEL, studyMods ).upcreate = model8media_upcreate;
+        stdMod                          = sn(SUB_MODEL, studyMods );
+        stdMod.init_model_parameters    = init_model_parameters;
+        stdMod.model8media_upcreate     = model8media_upcreate;
+        stdMod.model_upcreate           = model_upcreate;
+        stdMod.amode2lemma              = amode2lemma;
+        ns.sn( 'customDraggers_list', stdMod, [] ); //todm: fake
     }
-
-
-
 
     //===================================================
     // //\\ registers model pars into common scope
     //===================================================
-    function init_model()
+    function init_model_parameters()
     {
+        toreg = ssF.toreg;
+
         //:primary params
-        tp( 'force', sconf.force );
+        //toreg( 'force' )( 'pos', sconf.force );
+        toreg( 'force' )
+            ( 'lawPower', sconf.force[0][0] ) //-2
+            ( 'lawConstant', sconf.force[0][1] )
+            ;
         tp( 'spatialStepsMax', sconf.spatialStepsMax0 );
 
         tp( 'S', [ 0, 0 ] );
         //path and speeds have master-index, pi, offset pi=0
-        tp( 'path', [] )[0] = sconf.A;
+        //tp( 'path', [] )[0] = sconf.A;
+        toreg( 'path' )( 'pos', [ sconf.A ] );
+
+        //===================================================
+        //interface for B
+        //===================================================
+        sDomF.creModelPointDragger({
+            pname : 'B',
+            acceptPos : B2params,
+            orientation : 'rotate',
+        });
+
+        //===================================================
+        //interface for V (for force)
+        //===================================================
+        sDomF.creModelPointDragger({
+            pname : 'V',
+            acceptPos : V2forceParams,
+        });
 
         //:auxiliary params
         tp( 'freePath', [] );
@@ -75,12 +104,9 @@
         tr( 'forces', 'vectors', [] );
 
         //sets namespace for slider and initial time value
-        tr( 'time','t', 1.75000001 ); //1.75000001 for first nice value in slider
+        tr( 'slider_sltime','t', 1.75000001 ); //1.75000001 for first nice value in slider
         tp( 'speeds', [] )[0] = sconf.v0;
 
-        //sets point B
-        tr( 'B','pos', to_sconf.B ); //there will be a lot of parameters
-                                     //added to this object
         var v0 = sconf.v0;
         var vabs0 = Math.sqrt( v0[0]*v0[0] + v0[1]*v0[1] );
         tr( 'vabs0', 'vabs0', vabs0 );
@@ -90,57 +116,120 @@
     //===================================================
 
 
-    ///estimates time and speed direction in the first step and
-    ///resets speeds, timeStep, and number of steps;
-    function pointB_2_time0( newPos )
+
+    ///=============================================================
+    /// renews initial path parameters from point B
+    ///     estimates time and speed direction in the first step and
+    ///     resets speeds, timeStep, and number of steps;
+    ///=============================================================
+    function B2params( newPos )
     {
-        if( !newPos ) {
-            newPos = rg.B.pos;
-        }
         var path0 = [ newPos[0] - rg.path.pos[0][0],  newPos[1] - rg.path.pos[0][1], ];
-        var r = Math.sqrt( path0[0]*path0[0] + path0[1]*path0[1] );
-        //ccc( 'new r='+r + ' fconf.s0max=' + sconf.s0max + ' rg.B.pos', rg.B.pos );
-        if( r >= sconf.s0max ) {
-            var wwstr = "first path cannot be greater than " + sconf.s0max;
-            //ccc( wwstr );
-            return wwstr;
+        var s0 = Math.sqrt( path0[0]*path0[0] + path0[1]*path0[1] );
+        //ccc( 'new s0='+s0 + ' fconf.s0max=' + sconf.s0max + ' rg.B.pos', rg.B.pos );
+        if( s0 >= sconf.s0max ) {
+            //ccc( "first path cannot be greater than " + sconf.s0max );
+            return;
         }
         var vabs0 = rg.vabs0.vabs0;
-        var time0 = r/vabs0;
+
+        //gets time elapsed to travel new path AB:
         //time0 can become big at this moment
+        var time0 = s0 / vabs0;
 
-        var newv0 = [ path0[0]/r*vabs0, path0[1]/r*vabs0, ];
-        // abs value of v0 is the same
+        // gets new speed (directions), but speed abs value does not change
+        var newv0 = [ path0[0] / s0 * vabs0, path0[1] / s0 * vabs0, ];
 
+        //gets primitive-moves limit from original limit and new dt = time0
         var newCount = Math.floor( sconf.spatialStepsMax0 / time0 );
-        // newCount can become small
-        //ccc( 'newCount=' + newCount );
 
         if( newCount < 3 ) {
-            //ccc('incorrect set for B' );
-            return 'incorrect set for B';
+            ////ignores paths with too small number of moves
+            return;
         }
         tp( 'speeds', [] )[0] = newv0;
         tr( 'timeStep', 't', time0 );
         tp( 'spatialStepsMax', newCount );
         //ccc('OKorrect: time0=' + time0 + ' newCount=' + newCount );
+
+        return true;
     }
+
+
+    ///=============================================================
+    ///when dragging point V, converts V pos change to force-law constant change,
+    ///returns true meaning all changes are allowed,
+    ///=============================================================
+    function V2forceParams( newPos )
+    {
+        var tstep               = rg.timeStep.t;
+        var tstep2              = tstep * tstep;
+        var posB                = rg.B.pos;
+        var posS                = rg.S.pos;
+        var displX              = (newPos[0] - posB[0]); //displacement X
+        var displY              = (newPos[1] - posB[1]);
+        var disp                = Math.sqrt( displX*displX + displY*displY );
+        var newForce            = disp/tstep2;
+        var distanceX           = posB[0] - posS[0];    
+        var distanceY           = posB[1] - posS[1];    
+        var dis2                = distanceX*distanceX + distanceY*distanceY;
+        var dis                 = Math.sqrt( dis2 );
+        var forceSpatialFactor  = Math.exp( rg.force.lawPower * Math.log( dis ) );
+        rg.force.lawConstant    = newForce/forceSpatialFactor;
+        return true;
+    }
+
+
+    //=================================================
+    // estableishes amode and astate
+    //=================================================
+    function amode2lemma( towhich )
+    {
+        var theorion = amode.theorion;
+        var aspect   = amode.aspect;
+        var submodel = amode.submodel;
+        //sDomF.detected_user_interaction_effect( 'doUndetected' );
+        //if( theorion === 'claim' && aspect !== 'model' ) {
+        var captured = null;
+        if( !ssF.mediaModelInitialized ) {
+            var captured = "initial-state";
+        }
+        stdMod[ 'astate_2_' + towhich ]( ssD.capture[ captured ] );
+    }
+
+
+
+    //****************************************************
+    // //\\ updates model and figure (and creates if none)
+    //****************************************************
+    function model8media_upcreate()
+    {
+        model_upcreate();
+        stdMod.media_upcreate();
+    }
+    //****************************************************
+    // \\// updates model and figure (and creates if none)
+    //****************************************************
+
+
 
 
 
     //=========================================================
     // //\\ updates figure (and creates if none)
     //=========================================================
-    function model8media_upcreate()
+    function model_upcreate()
     {
-        //todo must not be here ... all must be already checked
-        if( pointB_2_time0() ) return; 
+        if( !ns.haz( ssF, 'mediaModelInitialized' ) ) {
+            ////first time and only once spawns B into other parameters
+            B2params( rg.B.pos )
+        }
 
         //:study-pars
         var spatialStepsMax = rg.spatialStepsMax.pos;
         var S               = rg.S.pos;
         var B               = rg.B.pos;
-        var force           = rg.force.pos;
+        var force           = rg.force;
         var path            = rg.path.pos;
         var forces          = rg.forces.vectors;
         var freePath        = rg.freePath.pos;
@@ -152,9 +241,11 @@
         forces.length       = Math.min( forces.length, spatialStepsMax-1 );
         speeds.length       = Math.min( speeds.length, spatialStepsMax-1 );
         freePath.length     = Math.min( freePath.length, spatialStepsMax-2 );
-        if( rg.time.t > spatialStepsMax - 1.01 ) {
-            rg.time.t = spatialStepsMax - 1.01;
-            ccc( 'rg.time.t corrected to not exceeed steps max=' + rg.time.t );
+        if( rg.slider_sltime.t > spatialStepsMax - 1.01 ) {
+            rg.slider_sltime.t = spatialStepsMax - 1.011;
+            //todo ... why we need this warning
+            //ccc( 'rg.slider_sltime.t corrected to not exceeed steps max=' +
+            //     rg.slider_sltime.t );
         }
 
         //=========================================
@@ -164,16 +255,17 @@
         //      later;
         //      time here starts with 0 and
         //      has nothing to do with
-        //      time rg.time.... set for lemma;
+        //      time rg.slider_sltime.... set for lemma;
         //=========================================
         (function() {
             //sconf.timeMax,
             var path = rg.path.pos;
             var timeStep = rg.timeStep.t;
+            //pi = path index
             for( pi = 1; pi<spatialStepsMax; pi++ ) {
 
                 //takes speed from previous step
-                var speed = speeds[pi-1];
+                var speed = speeds[pi-1]; //=== speed at A
                 var formerSpeed = pi > 1 ? speeds[pi-2] : speed;
 
                 //speed does advance the path increment
@@ -186,7 +278,7 @@
                 //path increment is added to path
                 path[pi] =
                 [
-                    path[pi-1][0]+step[0],
+                    path[pi-1][0]+step[0], //=== path at A + step === path at B
                     path[pi-1][1]+step[1],
                 ];
                 //freePath would be a "short segment"
@@ -195,6 +287,7 @@
                 //(but have contributions of forces before current
                 //force is applied)
                 if( pi > 1 ) {
+                    ////"path > B" === C, or, D, or ...
                     var freeSpeed = formerSpeed;
                     freePath[pi-2] =
                     [
@@ -213,10 +306,16 @@
                 var rux = rx/r;
                 var ruy = ry/r;
                 //calculate vector to center S
-                var fx = force[0][1]/r2*rux
+
+                //applies force law
+                var forceByDistance = Math.exp( force.lawPower * Math.log( r ) );
+                var forceAbs = force.lawConstant * forceByDistance;
+
+                var fx = forceAbs * rux
                     *timeStep; //applies impuls of force, not force
-                var fy = force[0][1]/r2*ruy
+                var fy = forceAbs * ruy
                     *timeStep; //applies impuls of force, not force
+
                 forces[pi-1] = [fx,fy];
 
                 //force gives impulse to speed
@@ -232,21 +331,8 @@
         //==============================
         // \\// calculates body's motion
         //==============================
-
-
-
-        //-------------------------------------------------------
-        // //\\ media part
-        //-------------------------------------------------------
-        sn(SUB_MODEL, studyMods ).media_upcreate();
-        //ssF.upcreate_mainLegend(); //placed into "slider"
-        //-------------------------------------------------------
-        // \\// media part
-        //-------------------------------------------------------
     }
-    //=========================================================
-    // \\// updates figure (and creates if none)
-    //=========================================================
+
 
 }) ();
 

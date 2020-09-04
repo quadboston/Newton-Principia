@@ -64,7 +64,7 @@
         var activeAreaOffsetY = 46; 
         //.set it from graph editor
         var pictureActiveArea = 456 - activeAreaOffsetY;
-        var mod2med_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
+        var mod2inn_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
@@ -154,13 +154,13 @@
             //LEGEND_NUMERICAL_SCALE : 1,
 
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            mod2med_scale       : mod2med_scale,
-            med2mod_scale       : 1/mod2med_scale,
+            mod2inn_scale       : mod2inn_scale,
+            inn2mod_scale       : 1/mod2inn_scale,
 
             activeAreaOffsetX   : activeAreaOffsetX,
             activeAreaOffsetY   : activeAreaOffsetY +
                                   ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 ),
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
             thickness           : 1,

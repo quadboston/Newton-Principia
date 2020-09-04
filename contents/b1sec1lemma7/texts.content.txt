@@ -172,7 +172,6 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
 
 {
     "reset-to-origin": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -183,12 +182,10 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
 
     "L-equal-d": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -199,11 +196,9 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
     "closer": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -214,11 +209,9 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.5658328716632559
                 }
             }
-        }
     },
 
     "more-closer": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0,
                 "sin": 0,
@@ -229,12 +222,10 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.10102343776498918
                 }
             }
-        }
     },
 
 
     "true-convergence-1": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -245,11 +236,9 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.5232929802797621
                 }
             }
-        }
     },
 
     "colollary-1": {
-        "rg": {
             "line-BF" : { "undisplay" : false },
             "line-AF" : { "undisplay" : false },
             "F" : { "undisplay" : false },
@@ -271,12 +260,10 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
 
     "colollary-2": {
-        "rg": {
             "line-BF" : { "undisplay" : false },
             "line-AF" : { "undisplay" : false },
             "F" : { "undisplay" : false },
@@ -298,11 +285,9 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.7745228215767634
                 }
             }
-        }
     },
 
     "meet": {
-        "rg": {
             "curveRotationAngle": {
                 "angle": 0.10579977792284677,
                 "sin": 0.10560250842053673,
@@ -313,7 +298,6 @@ and the intermediate ¦curve-AB¦arc ACB¦¦ (which are always proportional to t
                     "unrotatedParameterX": 0.001
                 }
             }
-        }
     }
 
 }

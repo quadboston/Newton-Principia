@@ -52,7 +52,7 @@
         //:app view parameters
         //----------------------------------
         var MONITOR_Y_FLIP = 0;
-
+        var SLIDERS_LEGEND_HEIGHT = 0;
 
 
 
@@ -65,8 +65,14 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
+
+
+            //todm ... this still makes?? a gap between svg and slider
+            SLIDERS_LEGEND_HEIGHT : SLIDERS_LEGEND_HEIGHT,
+
+
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            innerMediaHeight    : pictureHeight,
+            innerMediaHeight    : pictureHeight + SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
             activeAreaOffsetY   : activeAreaOffsetY,
             pictureActiveArea   : pictureActiveArea,

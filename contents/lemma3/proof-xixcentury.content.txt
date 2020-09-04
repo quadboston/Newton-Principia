@@ -1,6 +1,6 @@
 *::*proof|xixcentury
 {
-  "menuCaption" : "XIX Century",
+  "menuCaption" : "Study",
   "default" : "0",
   "dataLegend":"0"
 }
@@ -10,7 +10,7 @@
 <b>Context</b><br><br>
 
 
-We will study a bounded function defined on closed interval ¦curve¦\( [a,b] \overset f \to \mathbb{R}. \)¦¦ <br><br>
+In context of XIX century notations, we will study a bounded function defined on closed interval ¦curve¦\( [a,b] \overset f \to \mathbb{R}. \)¦¦<br><br>
 
 For given ordered set of numbers \( X = x_0 \lt x_1 \lt ... \lt x_n,
 \text{ where }  x_0 = a \text{ and } x_n = b, \) partition of interval ¦base¦\( [a,b] \)¦¦ is:

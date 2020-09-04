@@ -2,14 +2,15 @@
 {
   "mediaBgImage" : "lemma1-proof.png",
   "comment mediaBgImage" : null,
-  "menuCaption" : "XIX Century",
+  "menuCaption" : "Study",
   "submodel" : "proof-xix",
   "default" : "0",
   "dataLegend":"0"
 }
 *..*
 
-Here we interpret English translation of the proof. Latin interpretation is out of scope of this page.<br><br>
+Here we interpret English translation of the proof in XIX century notations.
+Latin interpretation is out of scope of this page.<br><br>
 
 
 Newton's proof is done in style "reductio ad absurdum":<br><br>

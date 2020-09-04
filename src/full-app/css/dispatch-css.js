@@ -6,8 +6,8 @@
     var cssmods     = sn('cssModules');
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
-    cssmods.initSiteWideCSS = initSiteWideCSS;
-    return; //00000000000000000000000000000000
+    cssmods.init_siteWideLemmaCSS = init_siteWideLemmaCSS;
+    return;
 
 
 
@@ -16,9 +16,8 @@
 
 
 
-    function initSiteWideCSS(cssp, fconf) 
+    function init_siteWideLemmaCSS(cssp, fconf) 
     {
-
         //data-entry: put module names here in order
         `
             nav-bar-and-drawer
@@ -29,8 +28,6 @@
             essaion-pane
             menu-on-left
         `
-
-
 
         .split(/\r\n|\n/g)
         .forEach( function( modname ) {

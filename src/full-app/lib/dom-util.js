@@ -18,52 +18,123 @@
     var ss          = sn('ss', fapp);
     var ssF         = sn('ssFunctions',ss);
 
+    ssF.mod2inn                 = mod2inn;
+    ssF.mod2inn_original        = mod2inn_original;
+    sDomF.createsCaptureWindow  = createsCaptureWindow;
+    sDomF.out2inn               = out2inn;
+    sDomF.outparent2inn         = outparent2inn;
+    sDomF.inn2outparent         = inn2outparent;
+    return;    
+
+
+
+
+
+
+
+    //==========================================
+    // //\\ pos to pos
+    //==========================================
+    ///transforms model-coordinates to media-coordinates
+    function mod2inn( pos )
+    {
+        if( !pos ) { pos = this; }
+        return [
+            pos[0] * sconf.mod2inn_scale + sconf.activeAreaOffsetX,
+            pos[1] * sconf.mod2inn_scale * sconf.MONITOR_Y_FLIP +
+            sconf.activeAreaOffsetY,
+        ];
+    }
+    ///purpose: use for controls undependent on model scale and origin
+    ///         user controls,
+    function mod2inn_original( pos )
+    {
+        if( !pos ) { pos = this; }
+        return [
+            pos[0] * sconf.originalMod2inn_scale +
+            //sconf.activeAreaOffsetX,
+            sconf.originX_onPicture,
+
+            pos[1] * sconf.originalMod2inn_scale * sconf.MONITOR_Y_FLIP +
+            //sconf.activeAreaOffsetY,
+            sconf.originY_onPicture,
+        ];
+    }
+    //==========================================
+    // \\// pos to pos
+    //==========================================
 
 
     //===============================
-    // //\\ medpos2dompos and inverse
+    // //\\ inn2outparent and inverse
     //===============================
     ///converts pos-in-media-scope to pos-in-dom-scope-related-to-media-dom-offset
-    sDomF.medpos2dompos = function()
+    function inn2outparent()
     {
-        var off = sconf.mediaOffset;
-        var medpos = this.medpos;
-        var c2m = sDomF.css2media();
-        return [ medpos[0] / c2m + off[0], medpos[1] / c2m  + off[1]];
+        var off     = sconf.mediaOffset;
+        var medpos  = this.medpos;
+        var i2o     = 1/sDomF.out2inn();
+        return [
+            medpos[0] * i2o + off[0],
+
+            //this is not required because of media root already margined, so
+            //has been shifted as mediaLeftMargin
+            // + sDomN.mediaLeftMargin,
+
+            medpos[1] * i2o + off[1]
+        ];
     };
 
+
     ///converts dom-pos to media pos
-    sDomF.pOnDs_2_innerViewBox = function( point_on_drag_surface )
+    ///for lemma1, drag_surface = sDomN.medRoot
+    function outparent2inn( outparent )
     {
-        var pod = point_on_drag_surface; //for lemma1, drag_surface = sDomN.medRoot
         var moffset = sconf.mediaOffset;
-        var c2m = sDomF.css2media();
+        var c2m     = sDomF.out2inn();
         return [
-            c2m * ( pod[0] - moffset[0] ),
-            c2m * ( pod[1] - moffset[1] )
+            c2m * ( outparent[0] - moffset[0]
+                    //- sDomN.mediaLeftMargin //media-root is already shifted ...
+                  ),
+            c2m * ( outparent[1] - moffset[1] )
         ];
     };
     //===============================
-    // \\// medpos2dompos and inverse
+    // \\// inn2outparent and inverse
     //===============================
 
 
-    ///cssMed2innMed
-    sDomF.css2media = function()
+    function out2inn()
     {
-        if( amode['submodel'] ) {
-            //c cc(amode['submodel'], studyMods )
-            return sconf.innerMediaWidth /
-                   studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+        return sconf.innerMediaWidth / sDomN.mediaWidth;
+
+        /*
+        //todm: for this at the moment, have to define amode['submodel'] even
+        //      at phase content2exegs.js ... too early ...
+        var sm = studyMods[ amode['submodel'] ];
+        var me = sm.mmedia;
+        var re = me.getBoundingClientRect();
+        var wi = re.width;
+        if( wi === 0 ) {
+            wi = sconf.innerMediaWidth;
+            //ccc( '**** alert: width === 0: media=', me, 'rect=', re );
+            //ccc( '**** alert: width === 0:');
         } else {
-            //c cc( '... not exist' );
-            return 1;
-            //return sconf.innerMediaWidth / sDomN.mmedia$().getBoundingClientRect().width;
+            //ccc( '**** scale is set to = ' + sconf.innerMediaWidth / wi );
         }
+        return sconf.innerMediaWidth / wi;
+               //studyMods[ amode['submodel'] ].mmedia.getBoundingClientRect().width;
+        */
     };
 
-    sDomF.createsCaptureWindow = function()
+
+
+    function createsCaptureWindow()
     {
+        ///this thing collects captured states:
+        /// api: capturePoint - count of currently captured states
+        ///      captured - 
+        ///      pix in code below - id of captured data in string form
         var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
 
         ///establishes capture
@@ -74,8 +145,10 @@
             dom$.html( captureText  );
             dom$().scrollTop = dom$().scrollHeight;
             cap.capturePoint++;
-            var texts = document.querySelectorAll( '.original-text.chosen' );
 
+            ///apparently texts is an essay which is currently chosen,
+            ///           texts will append captured bookmarks
+            var texts = document.querySelectorAll( '.original-text.chosen' );
             for( var ix=0, len=texts.length; ix<len; ix++ ) {
                 var etext = texts[ix];
                 ns.eachprop( cap.captured, (prop, pix) => {
@@ -94,7 +167,18 @@
                             ///changes the state by click
                             .e( 'click', ()=> {
                                 //ccc( 'bm=' + pix, cap.captured[ pix ] )
-                                ssF.astate_2_model8media( cap.captured[ pix ] );
+
+                                ////prevents code-crash if subapp does
+                                //// not define "appState__2..."
+                                var stdMod = ns.haz( studyMods, amode.submodel );
+                                if( ns.h( stdMod, 'astate_2_rg8model8media' ) ) {
+                                    ns.haf( stdMod, 'astate_2_rg8model8media' )(
+                                        cap.captured[ pix ] );
+                                } else {
+                                    ////remove this later
+                                    ns.haf( ssF, 'astate_2_rg8model8media' )(
+                                        cap.captured[ pix ] );
+                                }
                             })
                             .html( pix + ' ' )
                             ;
@@ -148,7 +232,6 @@
         );
         */
     };
-
 
 
 }) ();
