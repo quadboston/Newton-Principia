@@ -27,7 +27,7 @@
     var VERTICAL_SAFE_HEIGHT_1 = 20;
     var VERTICAL_SAFE_HEIGHT_2 = 20;
     var HORIZONTAL_SAFE_WIDTH = 30; //=spare space for possible scroll bars or misfits ...
-    var ESS_MIN_WIDTH = 300;
+    var ESS_MIN_WIDTH = 370;
     var MODEL_MIN_WIDTH = 300; //when dragging
     var LEGEND_MIN_HOR_MARGIN = 15;
 

@@ -25,7 +25,6 @@
         //todm: must be loop via stMods
         stdMod.launches___medD8D__8__cust8tools_sliders =          
                launches___medD8D__8__cust8tools_sliders;
-        stdMod.addsCustomSlider = addsCustomSlider;
     }
 
 
@@ -94,9 +93,11 @@
     ///         which is closest to testPoint.
     function findDraggee( point_on_dragSurf, dragWraps ) //, dragSurface )
     {
+        /*
         ns.d('findDraggee in launcher: fw=' +
             ( dragWraps[0] && dragWraps[0].createdFramework.frameworkId )
         );
+        */
 
         var pOnS = point_on_dragSurf;
         //.if distance to pOnS is "outside" of this par.,
@@ -157,34 +158,6 @@
     //====================
     // \\// finds draggee
     //====================
-
-
-
-    //==========================================
-    // //\\ attemt to unify dragger for point
-    //==========================================
-    function addsCustomSlider({
-        rgX,
-        orientation,
-        nospinner,
-    }) {
-        ns.sn( 'customDraggers_list', stdMod, [] );
-        stdMod.customDraggers_list.push(
-            ( function( medD8D ) {
-                rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
-                sDomF.createDragger_pointX({
-                    medD8D,
-                    rgX,
-                    orientation,
-                    nospinner,
-                })
-            })
-        );
-        //todm ... do automate
-        stdMod.railsCustomSlidersCount = ns.h( stdMod, 'railsCustomSlidersCount' ) ?
-            stdMod.railsCustomSlidersCount + 1 : 1; 
-    }
-
 
 
 }) ();

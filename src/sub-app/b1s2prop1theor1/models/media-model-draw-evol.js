@@ -280,7 +280,7 @@
             //rg[ pname ].pcolor= pcolor; //todm: way to go ...
             pWrap.pcolor        = pcolor;   //todm: overengineering ...
 
-            if( pname !== 'B' && pname !== 'V' ) {
+            if( pname !== 'B' && pname !== 'V' && pname !== 'A'  ) {
                 //B is a special dragging point defined earlier
                     //this possibly collides with white filling
                     //cssClass : 'tostroke',
@@ -367,7 +367,7 @@
         ///make white kernels drawn above lines
         ///todm put in amode-state
         ///------------------------------------------------------
-        [ 'V', 'B' ].forEach( pname => {
+        [ 'V', 'B', 'A' ].forEach( pname => {
             var fakeName = pname+'-white-filler';
             var originalPoint = rg[pname];
             var wp = originalPoint.pos;

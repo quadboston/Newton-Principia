@@ -254,6 +254,7 @@
     }
 
     ///move_2_val8gui8cb
+    ///todm: this sub should be automatically throttled
     function move_2_updates( move_in_model )
     {
         var api = this;

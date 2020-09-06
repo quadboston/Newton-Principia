@@ -193,9 +193,8 @@
                 { src:'models/media-model.js' },
                 { src:'models/main-legend.js' },
 
-                { src:'models/d8d-model.js' },
+                { src:'models/d8d-sliders.js' },
                 //{ src:'models/dom8model-sliders.js' },
-                //{ src:'models/d8d-sliders.js' },
 
                 //{ src:'models/state-capturer.js' },
             ])
@@ -216,9 +215,8 @@
                 { src:'models/media-model.js' },
                 { src:'models/main-legend.js' },
 
-                { src:'models/d8d-model.js' },
+                { src:'models/d8d-sliders.js' },
                 //{ src:'models/dom8model-sliders.js' },
-                //{ src:'models/d8d-sliders.js' },
                 //{ src:'models/state-capturer.js' },
             ])
         },

@@ -1,36 +1,18 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-    var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-    var stdMod;
+    var {
+        ns, sn,
+        sconf,
+        rg,
+        ssF, ssD,
+        sDomF, amode,
+        stdMod,
+    } = window.b$l.app({
+        stdModExportList :
+        {
+            declaresMediaDecorationElements,
+            updatePolygons,
+        },
+    });
     return;
 
 
@@ -40,12 +22,6 @@
 
 
 
-    function setModule()
-    {
-        stdMod = sn(SUB_MODEL, studyMods);
-        stdMod.declaresMediaDecorationElements  = declaresMediaDecorationElements;
-        stdMod.updatePolygons                   = updatePolygons;
-    }
 
 
 
@@ -83,12 +59,12 @@
             f   : [0,0],
         };
         ns.eachprop( sconf.pname2point, (pos,pname) => {
-            ssD.decor[ pname ] = toreg( pname )
+            ssD.decor[ pname ] = ssF.toreg( pname )
             ({
                 pos,
                 medpos : [0,0], //fake
                 pname,
-                //todm ... prolifirated coding: medpos, pos, ...  are two places:
+                //todm ... proliferated coding: medpos, pos, ...  are two places:
                 //         because of pWrap of itself is a prolifiration of rg.pname rack
                 pointWrap : { pos, pname },
             })
@@ -195,7 +171,6 @@
         rg.TP.decoration_range = [ 0, -2 ]; //disables range management
         rg.P.decoration_range = [ 0, -2 ];  //disables range management
         rg.T.decoration_range = [ 0, -2 ];  //disables range management
-        //rg.P.undisplay = false;
         rg.T.undisplay = true;
 
         rg.AC.decoration_range = [ 7, 7 ];
@@ -203,9 +178,9 @@
 
         updatePolygons();
 
-        tr( 'displayTime', 'value', '' );
-        tr( 'displayStep', 'value', '' );
-        tr( 'thoughtStep', 'value', '' );
+        ssF.toreg( 'displayTime' )( 'value', '' );
+        ssF.toreg( 'displayStep' )( 'value', '' );
+        ssF.toreg( 'thoughtStep' )( 'value', '' );
     }
     //----------------------------------------
     // \\// declares decorations

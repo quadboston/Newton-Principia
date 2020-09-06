@@ -211,7 +211,6 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
-ccc( '555' );
         Object.assign( sconf, {
 
             MONITOR_Y_FLIP : MONITOR_Y_FLIP,

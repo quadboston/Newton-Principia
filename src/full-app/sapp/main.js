@@ -37,6 +37,11 @@
             ns.haff( stdMod, 'populates__cust_draggers_list' );
             stdMod.amode2lemma( 'rg8model' );
             stdMod.amode2lemma( 'media' );
+            if( ns.h( stdMod, 'model8media_upcreate' ) ) {
+                ////to=200 feels choppy,
+                ////to=100 helps,
+                stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 100 );
+            }
             ns.haf( stdMod, 'launches___medD8D__8__cust8tools_sliders' )();
         });
     }

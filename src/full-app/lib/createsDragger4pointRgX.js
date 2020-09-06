@@ -98,6 +98,7 @@
                     arg.surfMove[0] * mscale,
                     arg.surfMove[1] * mscale,
                 ];
+                //this sub. basically creates newPos from move
                 pWrap.move_2_updates(
                     scaledMove,
                     mouseOnSurf,

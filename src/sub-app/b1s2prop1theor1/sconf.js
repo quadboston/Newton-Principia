@@ -108,8 +108,7 @@
             ],
             speed : 1,
             initialTimieStep : 1,
-            //spatialStepsMax0 : 7, //todo was 6
-            spatialStepsMax0 : 40, //todo was 6
+            spatialStepsMax0 : 40,
 
             //maximum first path from A to B
             //too big values will allow user to place

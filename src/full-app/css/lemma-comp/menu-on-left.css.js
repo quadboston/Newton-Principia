@@ -87,7 +87,7 @@
     /* theorion */
     .leftside-menuholder
     .menu-teaf.theorion {
-        width       : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH+10}px);
+        width       : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH}px);
     }
 
     /* original text */

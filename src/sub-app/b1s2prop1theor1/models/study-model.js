@@ -1,39 +1,25 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var sn          = ns.sn;
-    var bezier      = sn('bezier');
-    var mat         = sn('mat');
+    var {
+        ns, sn,
+        sconf,
+        rg,
+        ssF, ssD,
+        sDomF, amode,
+        stdMod,
 
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
+        //for lemma-scope-load-modules only
+        tr, tp,
 
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
-
-    var sapp        = sn('sapp');
-    var amode       = sn('mode',sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var sDomF       = sn('dfunctions', sapp);
-
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'studyModel_2_ss';
-
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-    var stdMod;
+    } = window.b$l.app({
+        modName : 'l7-study-model',
+        stdModExportList :
+        {
+            init_model_parameters,
+            model8media_upcreate,
+            model_upcreate,
+            amode2lemma,
+        },
+    });
     return;
 
 
@@ -44,15 +30,6 @@
 
 
 
-    function setModule()
-    {
-        stdMod                          = sn(SUB_MODEL, studyMods );
-        stdMod.init_model_parameters    = init_model_parameters;
-        stdMod.model8media_upcreate     = model8media_upcreate;
-        stdMod.model_upcreate           = model_upcreate;
-        stdMod.amode2lemma              = amode2lemma;
-        ns.sn( 'customDraggers_list', stdMod, [] ); //todm: fake
-    }
 
     //===================================================
     // //\\ registers model pars into common scope
@@ -77,7 +54,7 @@
         //===================================================
         //interface for B
         //===================================================
-        sDomF.creModelPointDragger({
+        sDomF.modelPointDragger({
             pname : 'B',
             acceptPos : B2params,
             orientation : 'rotate',
@@ -86,9 +63,25 @@
         //===================================================
         //interface for V (for force)
         //===================================================
-        sDomF.creModelPointDragger({
+        sDomF.modelPointDragger({
             pname : 'V',
             acceptPos : V2forceParams,
+        });
+
+
+        ///===================================================
+        ///interface for A (for distance to S)
+        ///still needs:
+        ///      media-model.js::pos2pointy( ... 'A', //vital
+        ///      media-model-draw-evol.js::if( ... && pname !== 'A'  ) {
+        ///                              :: [ 'V', 'B', 'A' ].forEach( pname => {
+        ///                                 ... fakeName = pname+'-white-filler'; 
+        ///===================================================
+        ///remember medpos still has to be created and updated,
+        ///this does not create medpos:
+        sDomF.modelPointDragger({
+            pname : 'A',
+            acceptPos : A2distanceToS,
         });
 
         //:auxiliary params
@@ -158,7 +151,7 @@
 
     ///=============================================================
     ///when dragging point V, converts V pos change to force-law constant change,
-    ///returns true meaning all changes are allowed,
+    ///returns true which means newPos is allowed,
     ///=============================================================
     function V2forceParams( newPos )
     {
@@ -166,16 +159,43 @@
         var tstep2              = tstep * tstep;
         var posB                = rg.B.pos;
         var posS                = rg.S.pos;
-        var displX              = (newPos[0] - posB[0]); //displacement X
+        var displX              = (newPos[0] - posB[0]); //displacement x = from Bx to Vx
         var displY              = (newPos[1] - posB[1]);
         var disp                = Math.sqrt( displX*displX + displY*displY );
-        var newForce            = disp/tstep2;
+        var bvNorm              = [ displX/disp, displY/disp ];
+        var newForce            = disp/tstep2; // dr = f*DT*DT
+
         var distanceX           = posB[0] - posS[0];    
         var distanceY           = posB[1] - posS[1];    
         var dis2                = distanceX*distanceX + distanceY*distanceY;
-        var dis                 = Math.sqrt( dis2 );
+        var dis                 = Math.sqrt( dis2 ); //abs val from S to B
+        if( dis < 1e-20 ) return false; //B is too close to S, forbid this configuration
+
+        var bsNorm              = [ -distanceX/dis, -distanceY/dis ];
         var forceSpatialFactor  = Math.exp( rg.force.lawPower * Math.log( dis ) );
+
         rg.force.lawConstant    = newForce/forceSpatialFactor;
+
+        //negative fDirection makes force repelling
+        var fDirection          = bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
+        rg.force.lawConstant   *= fDirection;
+        return true;
+    }
+
+    ///==============================================================
+    /// when dragging, changes initial distance: distance from A to S
+    ///==============================================================
+    function A2distanceToS( newPos )
+    {
+        var posS                = rg.S.pos;
+        var displX              = newPos[0] - posS[0]; //displacement x = from Ax to SVx
+        var displY              = newPos[1] - posS[1];
+        var disp2               = displX*displX + displY*displY;
+        if( disp2 < 1e-40 ) return false; //A is too close to S, forbid this configuration
+        
+        var posB                = rg.B.pos;
+        posB[0]                 += newPos[0] - rg.A.pos[0];
+        posB[1]                 += newPos[1] - rg.A.pos[1];
         return true;
     }
 

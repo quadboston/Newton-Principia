@@ -13,7 +13,6 @@
     ssF.tp = tp;
     ssF.toreg = toreg;
 
-
     //test
     /*
     var myumbr = toreg('my')

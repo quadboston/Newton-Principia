@@ -36,7 +36,7 @@
     {
         var magnit = 'media_scale';
         ssF.toreg( magnit )( 'value', 1 );
-        ssF.createSliderPlaceholder_generic({
+        ssF.sliderTemplate({
             magnit,
             sliderCaption   : 'scale',
             cssClsKey       : ' ' + magnit,

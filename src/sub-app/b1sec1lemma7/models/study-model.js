@@ -1,37 +1,23 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var sn          = ns.sn;
-    var bezier      = sn('bezier');
-    var mat         = sn('mat');
-
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
-
-    var sapp        = sn('sapp');
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-    var sDomF       = sn('dfunctions', sapp);
-
-    var toreg;      // = ssF.toreg;
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'studyModel_2_ss';
-
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-    var stdMod;
+    var {
+        ns, sn, mat,
+        sconf,
+        rg,
+        ssF, ssD,
+        sDomF, amode,
+        d8d_p,
+        stdMod,
+    } = window.b$l.app({
+        modName : 'l7-study-model',
+        stdModExportList :
+        {
+            init_model_parameters,
+            model8media_upcreate,
+            model_upcreate,
+            amode2lemma,
+        },
+    });
+    var toreg; // = ssF.toreg;
     return;
 
 
@@ -43,19 +29,6 @@
 
 
 
-
-
-    ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-    /// registers model pars into common scope
-    ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-    function setModule()
-    {
-        stdMod                          = sn( SUB_MODEL, studyMods );
-        stdMod.init_model_parameters    = init_model_parameters;
-        stdMod.model8media_upcreate     = model8media_upcreate;
-        stdMod.model_upcreate           = model_upcreate;
-        stdMod.amode2lemma      = amode2lemma;        
-    }
 
 
 
@@ -86,7 +59,7 @@
             ({
                 pos,
                 pname,
-                //todm ... prolifirated coding: medpos, pos, ...  are two places:
+                //todm ... proliferated coding: medpos, pos, ...  are two places:
                 //         because of pWrap of itself is a prolifiration of rg.pname rack
                 pointWrap : { pos, pname },
             });
@@ -241,7 +214,7 @@
         rg.G.undisplay = true;
         rg.E.undisplay = true;
 
-        if( theorion === 'claim' && aspect !== 'model' ) {
+        if( ( theorion === 'claim' || theorion === 'corollary' ) && aspect !== 'model' ) {
             var captured = "L-equal-d";
             rg.r.undisplay = true;
             rg.L.undisplay = true;

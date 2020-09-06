@@ -63,6 +63,7 @@
     /// point X dragger interface
     ///     this.achieved.achieved will be created by
     ///     d8d framework
+    /// does this make medpos? - no.
     ///===================================================
     function modelPointDragger({
         pname, acceptPos, orientation, pos, nospinner,
@@ -86,6 +87,7 @@
         ns.sn( 'customDraggers_list', stdMod, [] );
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
+                ///does this make medpos? - no.
                 sDomF.createDragger_pointX({
                     medD8D,
                     rgX,

@@ -1,10 +1,14 @@
 ( function() {
     var {
         ns, sn, mat,
-        sconf, srg,
-        ssD, ssF, rg, tr,
+        sconf,
+        ssD, ssF, rg,
         sapp, amode,
         stdMod,
+
+        //for lemma-scope-load-modules only
+        tr,
+
     } = window.b$l.app({
         modName:'studyModel_2_ss',
         setModule });

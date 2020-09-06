@@ -87,7 +87,7 @@
             ({
                 pos,
                 pname,
-                //todm ... prolifirated coding: medpos, pos, ...  are two places:
+                //todm ... proliferated coding: medpos, pos, ...  are two places:
                 //         because of pWrap of itself is a prolifiration of rg.pname rack
                 pointWrap : { pos, pname },
             });

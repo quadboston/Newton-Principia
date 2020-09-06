@@ -1,41 +1,27 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
+    var {
+        ns, sn,
+        sconf, fconf,
+        rg,
+        ssF, ssD,
+        sDomF, amode,
+        stdMod,
 
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
+        //for lemma-scope-load-modules only
+        tr, tp,
 
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-    var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
+    } = window.b$l.app({
+        modName : 'mediaModel_create',
+        stdModExportList :
+        {
+            media_upcreate,
+        },
+        setModule,
+    });
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
     var handleR = 5;
-
-    var stdMod;
     return;
 
 
@@ -47,15 +33,10 @@
 
     function setModule()
     {
-        stdMod                  = sn(SUB_MODEL, studyMods);
-        stdMod.media_upcreate   = media_upcreate;
-
         pointies2line           = ssF.pointies2line;
         pos2pointy              = ssF.pos2pointy;
         paintTriangle           = ssF.paintTriangle;
     }
-
-
 
     //=========================================================
     // //\\ updates and creates media
@@ -455,7 +436,7 @@
 
 
 
-        // //\\ creates point V to slide
+        // //\\ updates medpos and svg el for point V to slide
         //      put this el-definition last to
         //      override all other graphics
         pos2pointy(
@@ -475,9 +456,19 @@
         );
         // \\// creates point V to slide
 
-
-
-
+        // //\\ updates medpos and svg el for point V to slide
+        //      put this el-definition last to
+        //      override all other graphics
+        pos2pointy(
+            'A',
+            {
+                'fill' : 'white',
+                'stroke' : sDomF.getFixedColor( 'path' ),
+                'stroke-width' : 3,
+                r : 6,
+            }
+        );
+        // \\// creates point V to slide
 
 
         //-------------------------------------------------

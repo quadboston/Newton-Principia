@@ -8,7 +8,8 @@
         //optional variables
         modName,   //default: ''+mCount.count
         setModule,
-        SUB_MODEL, //default: SUB_MODEL : 'common'
+        SUB_MODEL, //default: SUB_MODEL : 'common',
+        stdModExportList,
     }) {
         var $$          = ns.$$;
         var sn          = ns.sn;
@@ -44,16 +45,22 @@
         //-------------------------------------------------------------
         // //\\ module and submodel sugar
         //-------------------------------------------------------------
-        //:advances modules registry
-        var mCount      = sn('modulesCount', sapp);
-        mCount.count = mCount.count ? mCount.count + 1 : 1;
-        modName = ( modName && modName + '-' ) || '';
-        srg_modules[ modName + mCount.count ] = setModule;
-
         //:binds to submodel for case there is a need for this
         SUB_MODEL = SUB_MODEL || 'common';
         var stdMod = sn( SUB_MODEL, studyMods );
 
+        //:advances modules registry
+        var mCount      = sn('modulesCount', sapp);
+        mCount.count = mCount.count ? mCount.count + 1 : 1;
+        modName = ( modName && modName + '-' ) || '';
+        srg_modules[ modName + mCount.count ] = () => {
+            setModule && setModule();
+            if( stdModExportList ) {
+                Object.keys( stdModExportList ).forEach( fname => {
+                    stdMod[ fname ] = stdModExportList[ fname ];
+                });
+            }
+        };
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
         // \\// module and submodel sugar
@@ -71,6 +78,7 @@
             bezier,
             mat,
             d8d_p,
+            sv,
 
             fapp,
             fmethods,

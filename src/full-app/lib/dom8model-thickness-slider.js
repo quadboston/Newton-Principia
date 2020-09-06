@@ -31,7 +31,7 @@
         var magnit = 'thickness';
         ssF.toreg( magnit )( 'value', 2 );
 
-        ssF.createSliderPlaceholder_generic({
+        ssF.sliderTemplate({
             magnit,
             sliderCaption   : magnit,
             cssClsKey       : ' ' + magnit,

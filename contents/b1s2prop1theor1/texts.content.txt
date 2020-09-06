@@ -398,7 +398,7 @@ uniformely in a straight line.
 ¦speed-change cssbold¦v¦¦¦¦
 ¦speed-change¦initial speed :¦¦¦¦
 
-¦path-change cssbold¦s¦¦¦¦
+¦path-change BC path cssbold¦r¦¦¦¦
 
 <b>Calculational Model</b><br><br>
 
@@ -412,32 +412,37 @@ uniformely in a straight line.
 
         step 1. if speed would not change, then 
            body would move ¦free-path¦freely¦¦ from point B to point c,
-           making motion \(s_{Bc} = v_{AB} \Delta t \).
+           making motion \(r_{Bc} = v_{AB} \Delta t \).
 
            The area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
            to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
 
 
-        step 2. the force \(f\) adds an impulse
+        <span class="captured-reference id-1-2">step 2</span>.
+        the force \(f\) adds an impulse
                 \(p = f \Delta t\) to the speed:<br><br>
 
                 \[  v_{BC} = v_{AB} + p \]
                 or 
                 \[ \Delta v = f\Delta t \;\;\;  (*) \]
 
-        step 3. because of speed change ¦BC¦motion¦¦ becomes
+
+            <span class="captured-reference id-1-3">step 3.</span>
+            because of speed change ¦BC¦motion¦¦ becomes
             \[
-               \Delta s = v \Delta t \;\; \;\; (**) \\
-               \Delta s = s_{BC} = v_{BC} \Delta t  = \\
+               \Delta r = v \Delta t \;\; \;\; (**) \\
+               \Delta r = r_{BC} = v_{BC} \Delta t  = \\
                v_{Bc} \Delta t + p \Delta t  = \\
-               s_{Bc} + s_{cC}
+               r_{Bc} + r_{cC}
             \]
 
             ¦free-triangle¦"free-movement-triangle-area"¦¦
             is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
             <br><br>
 
-        step 4. previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+
+        <span class="captured-reference id-1-4">step 4.</span>
+        previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 
         Each of next motions, CD, DE, ... repeats steps 1, 2, 3, 4.<br><br><br>
