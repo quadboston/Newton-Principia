@@ -1,7 +1,20 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Latin",
+  "fixed-colors" :
+  {
+    "given"             : [0,   100, 0],
+    "point-A"           : [0,   100, 0],
+    "proof"             : [0,   0,   100],
+    "AE"                : [0,   100, 0],
+    "Ae"                : [0,   0, 100],
+    "Ac"                : [0,   0, 100],
+    "ec"                : [0,   0, 100],
+
+    "Abc"               : [0,   0,   100],
+    "ABC"               : [0,   100, 0]
+  }
 }
 *..*
 
@@ -37,8 +50,14 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 </pre>
 
 
+
+
+
+
+
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -55,6 +74,11 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 
 
 
+
+
+
+
+
 *::*proof|latin
 
 not yet entered
@@ -63,12 +87,13 @@ not yet entered
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Lite"
 }
 *..*
 
 Consider ¦ABD ACE¦two curvlinear triangles¦¦ bounded on one side by a ¦AE¦line¦¦, on another side by a ¦ABC¦curve¦¦, and on their last sides by ¦DB EC¦parallel lines¦¦. Note the ¦point-A¦point¦¦ joining the shared ¦AE¦line¦¦ and ¦ABC¦curve¦¦. As the ¦DB EC¦parallel lines¦¦ approach that ¦point-A¦point¦¦, in the limit, the ¦ABDPerACE¦ratio of the triangles’ areas¦¦ equals the ¦AD2PerAE2¦squared ratio¦¦ of their ¦AD AE¦sides¦¦.
+
+
 
 
 
@@ -100,6 +125,10 @@ and sides ¦AD¦AD¦¦ and ¦AE¦AE¦¦ to these sides.
 
 Therefore areas ¦ABD¦ABD¦¦ and ¦ACE¦ACE¦¦ also are ultimately 
 in the ¦AD2PerAE2¦squared ratio¦¦ of the sides ¦AD¦AD¦¦ and ¦AE¦AE¦¦.  Q.E.D.
+
+
+
+
 
 
 *::*proof|hypertext

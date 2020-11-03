@@ -14,7 +14,8 @@ contrary to the hypothesis.
 
 
 <br><br>
-Source: William H Donahue cited on Page 47 in the book "Newton Principia. The Central Argument." by Dana Densmore. Published by Green Lion Press 2003, 2010.
 
+<div book-reference-id="Donahue"></div>
+On Page 47.
 
 

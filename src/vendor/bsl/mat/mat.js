@@ -46,10 +46,10 @@
     return;
 
 
-
-    ///input:   ellipse = r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
-    //          rotationRads rotates around position x0,y0;
-    ///returns: point x,y at parameter t and other data
+    ///definition:  ellipse = ((x-x0)/a)^2 + (y-y0)/b)^2 = 1;
+    ///input:       ellipse = r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
+    //              rotationRads rotates around position x0,y0;
+    ///returns:     point x,y at parameter t and other data
     function ellipse( args )
     {
         var { t, a, b, x0, y0, t0, rotationRads } = args;

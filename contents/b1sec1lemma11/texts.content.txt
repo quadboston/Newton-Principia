@@ -1,0 +1,510 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+
+<img src="contents/b1sec1lemma11/img/l11-3rded.jpg" style="width:100%">
+
+<div book-reference-id="latin"></div>
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+The evanescent ¦BD¦subtense¦¦ of the ¦AD curve-AB¦angle of contact¦¦, in all curves 
+¦AJ¦having a finite¦¦ curvature at the point of contact, is ultimately in the
+duplicate ratio of the ¦AB¦subtense¦¦ of the ¦arc-AB¦conterminous arc¦¦.
+<br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+
+
+*::*proof|latin
+
+<img src="contents/b1sec1lemma11/img/l11-3rded.jpg" style="width:100%">
+
+    <br><br>
+    <div book-reference-id="latin"></div>
+
+
+
+
+*::*proof|english
+{
+    "default" : "1"
+}
+*..*
+
+CASE 1. Let that arc be ¦arc-AB¦AB¦¦, its tangent ¦AD¦¦,
+the subtense of the angle of contact perpendicular to the tangent ¦BD¦¦,
+subtense of the arc ¦AB¦¦.
+<br><br>
+
+Let ¦AG¦¦, ¦BG¦¦ be erected perpendicular to the latter subtense ¦AB¦¦ and to the
+tangent ¦AD¦¦,
+meeting at ¦G¦¦, and then let the points ¦D¦¦, ¦B¦¦, ¦G¦¦, come to the points
+¦d¦¦, ¦b¦¦, ¦g¦¦, and let ¦J¦¦ be
+the intersection of the lines ¦BG¦¦, ¦AG¦¦, occuring ultimately,
+where the points ¦D¦¦, ¦B¦¦ come all
+the way to ¦A¦¦.
+<br><br>
+
+
+It is obvious that the distance ¦GJ¦¦ can be less than any assigned [magnitude]
+you please. <!-- KVK: this is not obvious: this is the assumption of the theorem ===
+curve has finite curvature ~ the curve has limit J; or it can be a theorem on itself
+if define "finite curvature" different way like as "second order Taylor member is not zero"
+ -->
+<br><br>
+
+Now, by the nature of circles passing through the points ¦A B G¦ABG¦¦, ¦A b g¦Abg¦¦, square ¦AB¦¦
+is equal ¦AG¦¦ x ¦BD¦¦, and square ¦Ab¦¦ is equal to ¦Ag¦¦ x ¦bd¦¦, and therefore the
+ratio of square ¦AB¦¦ to square ¦Ab¦¦ is compounded of the ratios ¦AG¦¦ to ¦Ag¦¦
+and ¦BD¦¦ to ¦bd¦¦.
+<br><br>
+
+But seeing that ¦GJ¦¦ can be taken to be less than any assigned length
+you please, it can be taken to be less than any assigned length you please,
+
+it can happen
+<!-- KVK: weak wording; must say in "some neighbourhood of A,
+it happens" -->
+
+that the ratio ¦AG¦¦ to ¦Ag¦¦
+differ from
+the ratio of equality by less
+than any assigned difference you please, and therefore, that the 
+
+¦Ab2-AB2¦ratio¦¦ square ¦AB¦¦
+
+to square ¦Ab¦¦ ¦claimRatio¦differ from¦¦ the ¦bd-BD¦ratio¦¦ ¦BD¦¦ to ¦bd¦¦ by less than any assigned diffece you
+plase.
+<!-- KVK: this shows that in Lemma 1, the word "which" relates to ratios,
+not to nominator and denominator of the ratio -->
+<br><br>
+
+
+
+Therefore, by Lemma 1, the ultimate ratio of square ¦AB¦¦ to square ¦Ab¦¦ is the same as
+the ultimate ratio of ¦BD¦¦ to ¦bd¦¦.
+
+<!-- KVK:
+Interpretation 1:
+BD/bd is an arbitrarily chosen, it does not have ultimate ratio;
+the wording "eadem cum" must be not like above, but like:
+
+(BD/bd) / (ABxAB/(AbxAb)) has ulitmate ratio of equality; (*)
+
+secondary, this is a limit of a set: for all chors bd inside of BD, (*) holds
+
+Interpretation 2.
+Ratio AD/Ad is fixed. Then lemma is about of limit of function.
+( lim (ABxAB/(AbxAb)) ) = BD/bd =const
+-->
+<br>
+Q.E.D.
+<br><br><br>
+
+
+CASE 2. Now let ¦BD¦¦ be inclined to ¦AD¦¦ at any given angle you please, and
+the ratio ¦BD¦¦ to ¦bd¦¦ will always the same as before, and therefore will be
+the same as square ¦AB¦¦ to ¦Ab¦¦.
+<br>
+Q.E.D.
+<br><br><br>
+
+
+CASE 3. And even if the angle ¦AD BD¦D¦¦ not be given, but that the straight line
+¦BD¦¦ converge toward some given point, or ¦limitRatio¦be established by any other law
+whatever¦¦, nevertheless, the angles ¦AD BD¦D¦¦, ¦Ad bd¦d¦¦ being
+established by the law in common,
+will always converge to equality and will approach nearer to each other
+than by any assigned difference
+<!-- KVK: again clear epsilon-delta definition of limit/convergence -->
+
+you please, and therefore will ultimately be equal, by Lemma1; and on that account
+the lines ¦BD¦¦, ¦bd¦¦ are in the same ratio to each other as before.
+<br>
+Q.E.D.
+<br><br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+<br><br>
+
+*::*corollary|latin
+
+
+<img src="contents/b1s2prop1theor1/img/p1-latin.png" style="width:100%">
+
+
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+*::*corollary|english
+{
+}
+*..*
+
+COR. 1. Hence, since the tangents ¦AD¦¦, ¦Ad¦¦,
+
+
+the arcs ¦arc-AB¦AB¦¦, ¦arc-Ab¦Ab¦¦, and their sines, ¦BC¦¦, ¦bc¦¦,
+become ultimately equal to the chords ¦AB¦¦, ¦Ab¦¦,
+their squares will also be ultimately as the subtenses ¦BD¦¦, ¦bd¦¦.
+<br><br><br>
+
+COR. 2. The squares of the same are also ultimately as the sagittae of the arcs which
+bisect the chords and converge to a given point. For these sagittae are as the subtenses
+BD, bd.
+<br><br><br>
+
+
+
+COR. 3. Therefore, the sagitta is in the duplicate ratio of the time in which
+a given body describes the arc with a given velocity.
+<br><br><br>
+
+COR. 4. The rectilinear triangles ADB, Adb are ultimately in the triplicate ratio of the sides AD, Ad,
+and in a sesquiplicate ratio of the sides DB, db; as being in the ratio compounded of the sides AD to DB,
+and of Ad to db.
+
+So also the triangles ABC, Abe
+are ultimately in the triplicate ratio of the sides BC, bc. What I call the sesquiplicate ratio is the subduplicate
+of the triplicate, as being compounded of the simple
+and subduplicate ratio.
+<br><br><br>
+
+COR. 5. And because DB, db are ultimately parallel
+and in the duplicate ratio of the lines AD, Ad, the
+ultimate curvilinear areas ADB, Adb will be (by the nature of the parabola)
+two thirds of the rectilinear triangles ADB, Adb and the segments
+AB, Ab will be
+one third
+
+<!-- KVK: does not make sense. This makes sense: AD ~ area^(1/3) -->
+
+of the same triangles. And thence those areas and those segments will be in the triplicite ratio as well of the tangents
+AD, Ad, as of the chords and arcs AB, AB.
+<br><br><br>
+
+
+<div style="font-size:10px;">
+    Sources: <br><br>
+
+    COR. 1, 2, 3. <br>
+    <div book-reference-id="Donahue"></div>
+    <br><br>
+
+    COR. 4 and COR. 5. <br>
+    <div book-reference-id="Motte-3rd"></div>
+</div>
+
+
+
+
+
+
+
+
+
+*::*claim|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a>:</b><br><br>
+
+    <div style="text-align:center">
+        ¦AB¦e¦¦<sup>2</sup> / ¦BD¦a¦¦ -&gt; ¦AJ¦2R¦¦ <br>
+            ¦AB¦e¦¦ -&gt; 0
+    </div>
+    <br>
+    where R is a curvature radius,
+    saggitae a=¦BD¦¦,
+    chord e=¦AB¦¦
+    <br><br>
+    The same holds for arc ¦arc-AB¦  \( \overset{\frown} {AB} \; \) ¦¦ 
+    <div style="text-align:center">
+        ¦arc-AB¦  \( \overset{\frown} {AB} \; \) <sup>2</sup>¦¦ / ¦BD¦¦ -&gt; ¦AJ¦2R¦¦ <br>
+            ¦B¦¦ -&gt; ¦A¦¦
+    </div>
+
+
+
+
+
+
+*::*proof|model
+{
+  "default"     : "1",
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a>:</b><br><br>
+
+    <b>1.</b> <i>in geometrical approach:</i><br>
+
+    due similarity of triangles ¦AB BG AG¦ABG¦¦ and ¦BD AD AB¦BDA¦¦
+    <br>
+    <div style="text-align:center">
+
+        ¦BD¦a¦¦/¦AB¦e¦¦ = ¦AB¦e¦¦/¦AG¦h¦¦ <br>
+        <div style="display:inline-block; border:1px solid #aaaaaa; padding-left:5px; padding-right:5px;">
+            ¦AB¦e¦¦<sup>2</sup>/¦BD¦a¦¦ = ¦AG¦h¦¦ -&gt; ¦AJ¦2R¦¦ <br>
+                ¦AB¦e¦¦ -&gt; 0
+        </div>
+    </div>
+    where diameter of converging circle h = ¦AG¦¦
+    &nbsp;&nbsp; &#9632;
+    <br><br>
+
+
+
+
+   
+    <span class="captured-reference id-add-points-b">Newton's lemma, howerver, is more general:</span>
+    <br>
+    For points ¦b¦¦ and ¦B¦¦ on arc ¦AB¦¦ when ¦AB¦e<sub>B</sub>¦¦ -&gt; 0
+    <div style="text-align:center">
+        ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦bd¦a<sub>b</sub>¦¦ -&gt; ¦AJ¦2R¦¦ <br>
+        ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> / ¦BD¦a<sub>B</sub>¦¦ -&gt; ¦AJ¦2R¦¦ <br>
+    </div>
+    By theorem of fraction of limits
+    <div style="text-align:center">
+            (¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> ¦BD¦a<sub>B</sub>¦¦ )
+            /
+            (¦AB¦e<sub>B</sub>¦¦<sup>2</sup> ¦bd¦a<sub>b</sub>¦¦ )
+            -&gt; 1 <br>
+            ( ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> )
+            /
+            ( ¦bd¦a<sub>b</sub>¦¦ / ¦BD¦a<sub>B</sub>¦¦ )
+            -&gt; 1 <br>
+
+            ( ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> )
+            -
+            ( ¦bd¦a<sub>b</sub>¦¦ / ¦BD¦a<sub>B</sub>¦¦ )
+            -&gt; 0
+    </div>
+    which in Book's language is
+    <div style="text-align:center">
+            ( ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> )
+            \( \overset{u} \sim \; \)
+            ( ¦bd¦a<sub>b</sub>¦¦ / ¦BD¦a<sub>B</sub>¦¦ )
+    </div>
+    Notably, this does not require ( ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> )
+    to converge at all, "b" and "B" can be "independent on each other processes".
+
+
+
+
+
+
+
+
+
+    <br><br><br>
+    <b>2.</b> <i>in analytical approach:</i><br>
+    For curves expandable in Taylor series at point A:
+    <br>
+    <div style="text-align:center">
+        ¦AB¦<b>r</b>¦¦ = <b>τ</b>¦arc-AB¦s¦¦ + κ<b>n</b>¦arc-AB¦s¦¦<sup>2</sup>/2 +
+                   <b>σ</b>¦arc-AB¦s¦¦<sup>3</sup>/6 + ...
+        <br>
+    </div>
+
+    where ¦arc-AB¦s¦¦ is curve's length, <b>r</b>(A) = 0,
+    curvature κ<b>n</b> = d<b>τ</b>/ds,
+    <b>σ</b> = d(κ<b>n</b>)/ds, <b>τ</b> and <b>n</b> are unit vectors.
+    <br><br>
+
+
+    Because of <b>τn</b> = 0 and curvature 0 < κ < oo, the expansion for chord starts from
+    the first degree of s and expansion for sagittae from the second:
+    <br>
+
+        <div style="text-align:center">
+            saggitae ¦BD¦a¦¦ = <b>nr</b> = κs<sup>2</sup>/2 + ...<br>
+        </div>
+        <div style="text-align:center">
+           for chord, ¦AB¦e¦¦<sup>2</sup> = (<b>τr</b>)<sup>2</sup> +
+                                            (<b>nr</b>)<sup>2</sup> = 
+                                            s<sup>2</sup> + ...
+        </div>
+        Ommiting insignificant members:
+        <div style="text-align:center">
+            ¦AB¦e¦¦<sup>2</sup> / ¦BD¦a¦¦ =
+            (s<sup>2</sup>) / (κs<sup>2</sup>/2) + ... -&gt; 2/κ = ¦AJ¦2R¦¦ <br>
+                    when s -&gt;0
+            &nbsp;&nbsp; &#9632;
+        </div>
+        <br><br>
+    </div>
+    <br>
+
+
+
+
+
+
+
+    <b>3.</b> <i>in analytical approach for functions having continuous second derivative
+    d<sup>2</sup><b>r</b>/ds<sup>2</sup></i>:<br>
+
+    In notations of item 2., we seek a limit of a fraction
+        <div style="text-align:center">
+           ¦AB¦e¦¦<sup>2</sup> / ¦BD¦a¦¦ = <br>
+                ((<b>τ</b><sub>o</sub><b>r</b>)<sup>2</sup> +
+                 (<b>n</b><sub>o</sub><b>r</b>)<sup>2</sup>) /
+                <b>n</b><sub>o</sub><b>r</b> = <br>
+        </div>
+        <br>
+    
+    L'Hôpital's rule applied once gives:
+
+        <div style="text-align:center">
+                (2(<b>τ</b><sub>o</sub><b>r</b>)(<b>τ</b><sub>o</sub><b>τ</b>) +
+                2(<b>n</b><sub>o</sub><b>r</b>)(<b>n</b><sub>o</sub><b>τ</b>))
+                /
+                (<b>n</b><sub>o</sub><b>τ</b>)
+        </div>
+        <br>
+
+    Applied twice gives:
+        <div style="text-align:center">
+                ( 2(<b>τ</b><sub>o</sub><b>τ</b>)(<b>τ</b><sub>o</sub><b>τ</b>) +
+                  2(<b>τ</b><sub>o</sub><b>r</b>)(<b>τ</b><sub>o</sub><b>κ</b>) +
+
+                  2(<b>n</b><sub>o</sub><b>τ</b>)(<b>n</b><sub>o</sub><b>τ</b>) +
+                  2(<b>n</b><sub>o</sub><b>r</b>)(<b>n</b><sub>o</sub><b>κ</b>) 
+                )
+                /
+                (<b>n</b><sub>o</sub><b>κ</b>)
+        </div>
+        <br>
+
+    Above fraction has limit 2/κ = ¦AJ¦2R¦¦ when <b>r</b> -&gt; 0
+    &nbsp;&nbsp; &#9632;
+    <br><br>
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+
+
+
+
+
+*:::*:::*
+
+{
+    "add-points-b": {
+         "b" : { "undisplay" : false },
+         "g" : { "undisplay" : false },
+         "d" : { "undisplay" : false },
+         "bd" : { "undisplay" : false },
+         "bg" : { "undisplay" : false },
+         "Ab" : { "undisplay" : false }
+    },
+
+    "__amode2rgstate" :
+    [
+        [
+            "true",
+            {
+                "rg" :
+                {
+                }
+            }
+        ],
+        [
+            " theorion === 'claim' ",
+            {
+                "rg" :
+                {
+                     "BC" : { "undisplay" : true },
+                     "bc" : { "undisplay" : true },
+                     "C" : { "undisplay" : true },
+                     "c" : { "undisplay" : true },
+
+                     "AG" : { "undisplay" : true },
+                     "GJ" : { "undisplay" : true },
+
+                     "Ab"       : { "undisplay" : true },
+                     "Ag"       : { "undisplay" : true },
+                     "Ad"       : { "undisplay" : true },
+                     "arc-Ab"   : { "undisplay" : true },
+                     "bg"       : { "undisplay" : true },
+                     "g"        : { "undisplay" : true },
+                     "bd"       : { "undisplay" : true },
+                     "b"        : { "undisplay" : true },
+                     "d"        : { "undisplay" : true },
+                     "G"        : { "undisplay" : true },
+                     "BG"       : { "undisplay" : true }
+                },
+                "action" : "sDomF.detected_user_interaction_effect()"
+            }
+        ],
+        [
+            "( theorion === 'proof'|| theorion === 'corollary' )",
+            {
+                "rg" :
+                {
+                },
+                "action" : "sDomF.detected_user_interaction_effect()"
+            }
+        ],
+        [
+            "aspect === 'model' && theorion === 'proof'",
+            {
+                "rg" :
+                {
+                     "BC" : { "undisplay" : true },
+                     "bc" : { "undisplay" : true },
+                     "C" : { "undisplay" : true },
+                     "c" : { "undisplay" : true },
+
+
+                     "Ab"       : { "undisplay" : true },
+                     "Ag"       : { "undisplay" : true },
+                     "Ad"       : { "undisplay" : true },
+                     "arc-Ab"   : { "undisplay" : true },
+                     "bg"       : { "undisplay" : true },
+                     "g"        : { "undisplay" : true },
+                     "bd"       : { "undisplay" : true },
+                     "b"        : { "undisplay" : true },
+                     "d"        : { "undisplay" : true }
+                },
+                "action" : "sDomF.detected_user_interaction_effect( 'doUndetected' )"
+            }
+        ],
+        [
+            "theorion === 'corollary' && aspect !== 'model'",
+            {
+                "rg" :
+                {
+                },
+                "action" : "sDomF.detected_user_interaction_effect()"
+            }
+        ]
+    ]
+}
+
+

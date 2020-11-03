@@ -12,16 +12,8 @@
 *..*
 
 <img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
+<div book-reference-id="latin"></div>
 
-        <br><br>
-        Sources:
-        <br>
-        <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
-             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
-             Latin. Sectio IV. Lemma V.
-             License: public domain.
-        </a>
 
 
 *::*claim|english
@@ -32,52 +24,27 @@
 
 
 <img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
-<pre>
-Source: The Mathematical Principles of
-Natural Philosophy, by Sir Isaac Newton;
-Translated into English by Andrew Motte.
-First American Edition, Carefully Revised and corrected. New York. Published By Daniel
-Adee, 45 Liberty Street.
-(Would not able to find the year in this book.)
-</pre>
-
+<div book-reference-id="Motte-3rd"></div>
 
 
 *::*proof|latin
 
 <img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
+<div book-reference-id="latin"></div>
 
-        <br><br>
-        Sources:
-        <br>
-        <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338152" target="_blank">
-             3rd Edition: https://www.e-rara.ch/zut/wihibe/content/pageview/338152
-             Latin. Sectio IV. Lemma V.
-             License: public domain.
-        </a>
+
 
 
 *::*proof|english
 
 
 <img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
-
-
-<pre>
-Source: The Mathematical Principles of
-Natural Philosophy, by Sir Isaac Newton;
-Translated into English by Andrew Motte.
-First American Edition, Carefully Revised and corrected. New York. Published By Daniel
-Adee, 45 Liberty Street.
-(Would not able to find the year in this book.)
-</pre>
-
+<div book-reference-id="Motte-3rd"></div>
 
 
 *::*claim|model
 {
-  "menuCaption" : "Study",
+  "menuCaption" : "Addendum",
   "xxx studylab" : true
 }
 *..*

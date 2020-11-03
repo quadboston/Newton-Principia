@@ -5,7 +5,7 @@
   "mediaBgImage" : null,
   "submodel" : "limit-definition",
   "default" : "0",
-  "menuCaption" : "Study"
+  "menuCaption" : "Addendum"
 }
 *..*
 
@@ -29,8 +29,6 @@ At first, we set up context with definition of limit.<br><br><br>
 ¦epsilon¦ε¦¦¦¦
 ¦lim¦h¦¦¦¦
 ¦lim-arg¦c¦¦¦¦
-
-
 
 
 

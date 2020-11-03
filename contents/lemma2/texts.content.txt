@@ -19,6 +19,10 @@
         &amp; ¦figure¦curvilinea AabcdE¦¦, 
         sunt rationes æqualitatis.
 
+<br><br>
+<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin"></div>
+
 
 *::*claim|english
 {
@@ -41,6 +45,11 @@
         the ¦circumscribed-rectangles¦circumscribed figure AalbmcndoE¦¦, 
         and the ¦figure-area¦curvilinear figure AabcdE¦¦ 
         have to one another are ratios of equality.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen"></div>
+<div book-reference-id="Latin-diagram"></div>
+
 
 
 
@@ -82,6 +91,10 @@
             Ergo per Lemma I, figura ¦inscribed-rectangles¦inscripta¦¦ &amp; ¦circumscribed-rectangles¦circumscripta¦¦ &amp; 
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q. E. D.
 
+<br><br>
+<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin"></div>
+
 
 
 *::*proof|english
@@ -95,6 +108,11 @@
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle. 
             Therefore (by lem. 1) the ¦inscribed-rectangles¦inscribed figure¦¦ and the ¦circumscribed-rectangles¦circumscribed figure¦¦ and, 
             all the more, the intermediate ¦figure¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen"></div>
+<div book-reference-id="Latin-diagram"></div>
+
 
 
 *::*proof|hypertext

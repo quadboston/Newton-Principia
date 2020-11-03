@@ -1,6 +1,6 @@
 *::*proof|xixcentury
 {
-  "menuCaption" : "Study",
+  "menuCaption" : "Addendum",
   "default" : "0",
   "dataLegend":"0"
 }

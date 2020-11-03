@@ -50,7 +50,7 @@ to be entered
 
 *::*claim|model
 {
-  "menuCaption" : "Study"
+  "menuCaption" : "Addendum"
 }
 *..*
 

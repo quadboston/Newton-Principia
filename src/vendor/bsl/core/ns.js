@@ -27,12 +27,20 @@
 
 
 
-
-
     function setAppNamespace()
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
         var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
+
+        function returnOwnPropertyIfExist()
+        {
+            var wwHas = shortcutInClosure_for_speed;
+            return ( function(pname) {
+                return ( wwHas.call( this, pname ) && this[ pname ] );
+            });
+        }
+
+
         var ns = window[ APP_NAME ];
         if( ns ) {
             if( ns[ uniqueEarthWide ] ) { return ns; }
@@ -45,7 +53,10 @@
             ns = window[ APP_NAME ] = {};
             ns[ uniqueEarthWide ] = true;
             ns.uniqueEarthWide = uniqueEarthWide;
+
+            ns.own = returnOwnPropertyIfExist();
             ns.sn = sn;
+
             ns.APP_NAME = APP_NAME;
             ns.CSS_PREFIX = APP_NAME.replace( /\$/g, 's' );
 
@@ -58,7 +69,9 @@
             ns.haz = haz; //returns own prop if any
             ns.h = has;
             ns.ha = ha; //has or adds new
-            ns.has = function( prop ) { return has( ns, prop ); };
+
+            //very very misleading:
+            //ns.has = function( prop ) { return has( ns, prop ); };
             return ns;
         }
 
@@ -71,6 +84,7 @@
 
         ///Returns own property if property does exist. Otherwise, returns false.
         function haz( obj, property ) {
+            if( !obj ) return false;
             return shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : false;
         };
@@ -95,8 +109,9 @@
                    obj[ property ].bind( obj ) : ()=>{};
         };
 
-        ///If prop exist, executes it as a function, and returns function's return.
-        ///Otherwise, returns 'undefined' value.
+        ///If prop exist, executes it as a function with empty args, and
+        ///               returns function's return.
+        ///Otherwise,     returns 'undefined' value.
         function haff( obj, property ) {
             if( shortcutInClosure_for_speed.call( obj, property ) ) {
                 if( typeof obj[ property ] === 'function' ) {
@@ -115,6 +130,7 @@
 
         ///Returns parent object only if own property exists. Otherwise, returns false.
         function has( obj, property ) {
+            if( !obj ) return false;
             return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
         };
 
@@ -130,6 +146,15 @@
             }
             var sns = parentNS[ subname ] = typeof emptyTemplate !== 'undefined' ?
                                             emptyTemplate : {};
+
+            //collide with Object.keys forEach
+            //sns.owned = returnOwnPropertyIfExist();
+            /*
+                var fun = {};
+                fun.prototype = { own : returnOwnPropertyIfExist() };
+                sns = new fun();
+            */
+
             return sns;
 
             /*
@@ -920,6 +945,22 @@
         //https://medium.com/@vschroeder/javascript-how-to-execute-code-from-an-
         //asynchronously-loaded-script-although-when-it-is-not-bebcbd6da5ea
         scrip.src = src;
+    }
+    ns.doScrollToHash = doScrollToHash;
+    return;
+
+    ///enables this scroll for html-created in late-loaded-scripts
+    function doScrollToHash()
+    {
+        var hash = window.location.hash;
+        if( !hash || hash.length < 2 ) return;
+        var hash = hash.substring( 1 );
+        var search = 'a[name=' + hash + ']';
+        //https://stackoverflow.com/questions/265774/programmatically-scroll-to-an-anchor-tag
+        var found = document.querySelector( search );
+        //ccc( hash, search, 'found=' + found );
+        if( !found ) return;
+        found.scrollIntoView( true );
     }
 }) ();
 

@@ -54,6 +54,11 @@
     mat.p1_to_p2            = p1_to_p2;
     mat.linesCross          = linesCross;
     mat.dropPerpendicular   = dropPerpendicular;
+    mat.dropLine            = dropLine;
+    mat.pointPlusTVector    = dropLine;
+    mat.lineSegmentsCross   = lineSegmentsCross;
+    mat.angleBetweenLines   = angleBetweenLines;
+    mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     return;
 
 
@@ -77,12 +82,17 @@
         return unitVector( [ p2[0]-p1[0], p2[1]-p1[1] ] );
     }
 
-    //intersection of two lines u,v and u'v' has to be found:
+    //intersection of two lines to be found:
     //u,u' are (non necessarily unit) vectors, v,v' initial positions,
     //q,q' line parameters:
     //q*u + v = q'*u' + v' needs to be solved against q,q' to find the cross
     //or xu - yus = vs - v = z, when q,q' are renamed with x,y
-    function linesCross( u,v,us,vs ) {
+    function linesCross(
+        u,  //direction-1
+        v,  //start-1
+        us, //direction-2'
+        vs  //start-2'
+    ) {
         //ccc( 'u=', u, 'v=',v, 'us=', us, 'vs=', vs);
         //builds determinant
         var a = u[0];
@@ -117,17 +127,79 @@
         return r;
     }
 
+
+    ///returns intersection of two lines built upon line segments
+    ///(A,B) and (AS,BS)
+    function lineSegmentsCross( A, B, AS, BS ) {
+        var u = [ B[0] - A[0], B[1] - A[1] ];
+        var us = [ BS[0] - AS[0], BS[1] - AS[1] ];
+        return linesCross( u,A,us,AS );
+    }
+
+    ///drops perpendicular which starts at point S and is
+    ///a perpendicular to line segment AB,
     ///input:   point S and two points A,B
-    ///returns: cross of perpendicular from S to line AB
+    ///returns: endPoint of perpendicular which is a point at cross of perpendicular and line AB
     function dropPerpendicular( S, A, B )
     {
+        //direction of line AB = line segment from start point A to end point B
         var u = [ B[0] - A[0], B[1] - A[1] ];
+        //start point of line AB
         var v = [        A[0],        A[1] ];
-        var us = [ u[1], -u[0] ];
+
+        //direction of the perpendicular to line AB
+        var us = [ u[1], -u[0] ];             
+        //start point of the perpendicular
         var vs = S;
+
         return linesCross( u,v,us,vs );
     }
 
+    ///adds t*(vector-AB) to point start
+    ///inputs:    A,B,start - 2-dim. vectors,
+    ///           t - distance parameter,
+    ///returns:   u = start + (B-A)*t
+    function dropLine(
+        t,
+        A,
+        B,
+        start, //optional
+    ){
+        start = start || A;
+        var u = [ B[0] - A[0], B[1] - A[1] ];
+        return [ start[0] + u[0]*t, start[1] + u[1]*t ];
+    }
+
+    /*
+    ///inputs:  vector1=[ startPoint, endPoint ],
+    ///         vector2=[ startPoint, endPoint ],
+    ///outputs: angele between 0 and PI,
+    function positiveAngleBetweenLines([
+        vector1,
+        vector2,
+    ]) {
+        var unitVector1 = p1_to_p2( vector1[0], vector1[1] ).unitVec;
+        var unitVector2 = p1_to_p2( vector2[0], vector2[1] ).unitVec;
+        var cos = unitVector1[0]*unitVector2[0] + unitVector1[1]*unitVector2[1];
+        return { cos, angle:Math.acos( cos ) };
+    }
+    */
+
+    ///partially tested
+    ///inputs:  vector1=[ startPoint, endPoint ],
+    ///         vector2=[ startPoint, endPoint ],
+    ///outputs: angele from vector1 to vector2 in range -PI to PI,
+    ///         counterclockwise direction is positive,
+    function angleBetweenLines([
+        vector1,
+        vector2,
+    ]) {
+        var unitVector1 = p1_to_p2( vector1[0], vector1[1] ).unitVec;
+        var unitVector2 = p1_to_p2( vector2[0], vector2[1] ).unitVec;
+        var cos = unitVector1[0]*unitVector2[0] + unitVector1[1]*unitVector2[1];
+        var sin = unitVector1[0]*unitVector2[1] - unitVector1[1]*unitVector2[0];
+        return { cos, sin, angle:Math.atan2( sin, cos ) };
+    }
 
 
 }) ( window );

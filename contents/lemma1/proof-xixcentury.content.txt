@@ -2,7 +2,7 @@
 {
   "mediaBgImage" : "lemma1-proof.png",
   "comment mediaBgImage" : null,
-  "menuCaption" : "Study",
+  "menuCaption" : "Addendum",
   "submodel" : "proof-xix",
   "default" : "0",
   "dataLegend":"0"

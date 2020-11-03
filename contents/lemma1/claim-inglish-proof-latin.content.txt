@@ -17,14 +17,7 @@ become ultimately equal.
 
 <br><br>
 
-
-<div style="font-size:10px;">
-    Source: <br>
-    William H Donahue cited <br>
-    in the page 47 of book "Newton Principia. The Central Argument." <br>
-    by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
-    We did not find year and name for book by William H Donahue.
-</div>
+<div book-reference-id="Donahue"></div>
 <br><br>
 
 
@@ -47,14 +40,7 @@ pro data differentia D: contra hypothesin.
 
 </pre>
 
-    <br>Sources</b><br>
-
-        <a href="https://www.e-rara.ch/zut/wihibe/content/titleinfo/338026" target="_blank">
-        Latin. 3rd Edition. Beginning of the book.</a><br>
-
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/349621" target="_blank">
-        Lemma 1. Latin. 3rd Edition</a>
-
+<div book-reference-id="latin"></div>
 
 
 

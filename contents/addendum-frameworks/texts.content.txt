@@ -1,0 +1,102 @@
+
+*::*frameworks|introduction
+{
+  "menuCaption" : "Introduction"
+}
+*..*
+
+<b>This Addendum is a draft in progress. Use with your own discretion.</b>
+<br><br><br>
+
+
+<b>Motivation</b>
+<br><br>
+
+We more we read Newton's Principia, the more we feel this is not historical book, but the logical system which has contemporary value.
+<br><br>
+
+Newton builds the Principia on top of Euclid-framework. This framwork is not outdated. Axiomatic logical system cannot be outdated unless the humal logic mutates in thousands years. However, reinterpretaion of Principia in modern frameworks is necessary for understanding. We are not focusing on what Newton meant in his propsitions, but what these propositions mean placed in different axiomatic frameworks.
+<br><br>
+
+We focus on ideas rather than on expression of these ideas in different frameworks. For example, it is a second significance the difference between Euclid's ratios theory and Dedekind's cuts theory; the significant part is what method these theories do establish.
+
+Or for example, the difference between Euclid's Geometry and Hilbert Geometrical axioms is not a concern.
+<br><br><br>
+
+
+
+
+<br>Axiomatic frameworks<br>
+
+<a name="Eframework"></a>
+<b>"E-framework" - "Euclid Framework".</b> Geometry and Ratios in "Euclid's Elements".
+<br><br>
+
+<a name="Cframework"></a>
+<b>"C-framework" - "Calculus Framework"</b> as we call Dedekind / Cantor real numbers theory and modern Calculus, Analytical Geometry, Vector Analisys, and Differntial Geometry built on top this number theory
+<br><br>
+
+Notably, reformulating the Principia in C-framwork does introduce different and additional dogms (used in modern Physics) which would make theory less generic.
+<br><br>
+
+<b>"BW-framework" - Bolzano-Weierstrass</b> epsion-delta language. First part of XIX century.
+<br><br>
+
+
+ 
+
+<b>Notations</b>
+<br><br>
+
+A/B ~ C/D. In E-framework means A/B "is the same ratio" as C/D. In Euclid Book this means to "there is no rational ratio between A/B and C/D" - which is an equivalence relation and we can safely use "=" for it. However, Newton does not use this "advanced" wording, so we will preseve his language and use ~ instead of "=".
+
+<br><br>
+
+A/B \( \overset{u} \sim \; \) C/D. In E-framework this means ratios A/B and C/D are "ulitmately the same".
+
+This corresponds to A/B -&gt; C/D in C-framework.
+<br><br>
+
+In E-framework the A and B are not necessary numbers, they are Magnitueds. In application to Phisics, we
+don't know what they are and don't make the dogma that they are numbers. They are "virgins", but can participate in relationship which is called "ratio".
+<br><br>
+
+In C-framework, in modern Physics we make a dogma that A,B and C,D can be expressed as numbers, we make a dogm that there can exist an object a' which we can use as a "unit" for any other object of "the same nature" a and write A = a/a'. An then we make a dogm that A is a real number and can be used in our theory.
+<br><br>
+
+In E-framework, for example, pretending that we can multiply t*t (where t is a time), would add unnecessary hypothesis to the theory and make it less generic or distort its propositinos.
+In C-framework t*t is completely legal, and as far as we concern applicability of the theory to modern Physics, it does not create visible contradictions.
+<br><br>
+
+
+Ref: <br><br>
+<a href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">https://en.wikipedia.org/wiki/Euclid%27s_Elements</a>
+<br><br>
+<a href="http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf">http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf</a>
+
+
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+
+
+<!--
+Drafts
+
+"EN-framework" - Euclid Framework plus Newton's proposition related to limits, derivative, and integration  described in context of E-framework.
+                This is still a geometircal theory. No Algebra. No Calculus.
+
+
+"NC-framework" - Newton times Calculus framework. Newton and Leibnitz Calculus. Beginning of XVIII century.
+<br><br>
+-->
+<br><br>
+
+

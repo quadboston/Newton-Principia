@@ -5,6 +5,11 @@ best tutorial and dictionary:
     dictionary:
         short: https://pic.plover.com/MISC/symbols.pdf
         long: http://mirrors.ibiblio.org/CTAN/info/symbols/comprehensive/symbols-a4.pdf
+    // arc
+        \overset{ \huge\frown}{PQ}
+        \overset{\frown}{PQ}
+
+
 vital codes:
     https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
 
@@ -32,7 +37,8 @@ relevant? yen and more ... Math symbols defined by LaTeX package «amsfonts»
 
 font:
     https://www.checkmyworking.com/cm-web-fonts/
-    Greeks for svg: https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
+    Greeks for svg:
+        https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
         don't use codes: just copy/paste chars right into xhtml <text ... 
 
     over top of my head:
@@ -82,8 +88,6 @@ sibling areas:
             no demo found
     not much info: Integration between web languages and TeX derived languages
         https://tex.stackexchange.com/questions/488159/integration-between-web-languages-and-tex-derived-languages
-
-
 
 
 

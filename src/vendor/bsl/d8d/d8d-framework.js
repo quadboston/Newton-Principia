@@ -143,8 +143,10 @@
             // //\\ api.achieved is an optional parameter
             //      see page footnote comment;
             //==============================================
-            pointWrap.achieved = ( achieved || achieved === 0 ) ?
-                                 { achieved : achieved } : { achieved : {} };
+            if( !ns.h( pointWrap, 'achieved' ) ) {
+                pointWrap.achieved = ( achieved || achieved === 0 ) ?
+                                     { achieved : achieved } : { achieved : {} };
+            }
             //==============================================
             // \\// api.achieved is an optional parameter
             //==============================================

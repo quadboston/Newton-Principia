@@ -1,0 +1,247 @@
+
+( function() {
+    var {
+        ns, sn,
+        sconf, fconf,
+        fixedColors,
+        ssF, sDomF,
+        rg,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            doExpandConfig,
+        }
+    });
+
+    var LETTER_ROTATION_RADIUS_PER_1000 = 30;
+    var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
+    var LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
+    return;
+
+
+
+
+
+
+    ///==============================================
+    ///==============================================
+    function doExpandConfig() 
+    {
+        var {
+            fixedColorsDef,
+            originalPoints,
+            lines,
+            linesArray,
+            originX_onPicture,
+            originY_onPicture,
+            pictureWidth,
+            pictureHeight,
+            mod2inn_scale,
+        } = sconf;
+
+        originalPoints = originalPoints || {};
+        var pname2point = {};
+
+        //----------------------------------
+        // //\\ MONITOR Y FLIP
+        //----------------------------------
+        //  application coordinate Y
+        //  -1 if it goes in opposite-to-screen
+        //      direction starting from
+        //      centerY_onPicture
+        //  1  codirectional with the screen
+        //     which means from screen-top to
+        //      screen bottom
+        var MONITOR_Y_FLIP = -1;
+        //----------------------------------
+        // \\// MONITOR Y FLIP
+        //----------------------------------
+
+
+
+        //---------------------------------------------------------------------------
+        // //\\ derives initial model parameters from picture's points
+        //---------------------------------------------------------------------------
+        //appar. as by I.N.: difference between two first x-points:
+        var inn2mod_scale = 1/mod2inn_scale;
+
+
+        ///it is vital to set these pars now ...
+        ///they are used in function calls a little below this block ...
+        Object.assign( sconf, {
+            //----------------------------------
+            // //\\ model-view parameters
+            //----------------------------------
+            MONITOR_Y_FLIP,
+
+            mod2inn_scale,
+            inn2mod_scale,
+
+            //todm: ?slider:
+            originalMod2inn_scale   : mod2inn_scale,
+
+            mod2inn_scale_initial : mod2inn_scale,
+            inn2mod_scale_initial : inn2mod_scale,
+
+            //todm: too long to fix everywhere ...
+            activeAreaOffsetX   : originX_onPicture,
+            activeAreaOffsetY   : originY_onPicture,
+
+            //todm check is this safe to disable this
+            //centerOnPicture_X   : originX_onPicture,
+            //centerOnPicture_Y   : originY_onPicture,
+
+            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaWidth     : pictureWidth,
+            //----------------------------------
+            // \\// model-view parameters
+            //----------------------------------
+        });
+
+        var estimatedPictureSize = Math.max(
+                pictureWidth,
+                pictureHeight,
+        );
+        var estimatesSizeScale = estimatedPictureSize/1000;
+
+        var factor = MONITOR_Y_FLIP * inn2mod_scale;
+        var toreg = ssF.toreg;
+        (function() {
+
+            ///expands fixedColorsDef placeholders
+            Object.keys( fixedColorsDef ).forEach( topicKey => {
+                toreg( topicKey )( 'pname', topicKey ); //declares for astate management
+                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                fixedColors[ tk ] = fixedColorsDef[ topicKey ];
+            });
+
+            ///expands originalPoints placeholders
+            ns.eachprop( originalPoints, ( op, pname ) => {
+                op.own = ns.own;
+                var pictureP    = op.own( 'pos' );
+                var modelP      = op.own( 'mpos' );
+
+                //at the moment for missing flag, doPaintPname === true,
+                var doPaintPname= ns.h( op, 'doPaintPname' ) ?
+                                  op.doPaintPname : true;
+
+                var pos = pname2point[ pname ] = !pictureP ?
+                            [0,0] :
+                            [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
+                              ( pictureP[1] - originY_onPicture ) * factor,
+                            ];
+
+                var rgX = ssF.declareGeomtric({ pname, pos, caption:ns.haz( op, 'caption' ) });
+                rgX.doPaintPname = doPaintPname;
+                if( ns.h( op, 'pcolor' ) ) {
+                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    fixedColors[ tk ] = op.pcolor;
+                    rgX.pcolor = sDomF.getFixedColor( op.pcolor );
+                } else {
+                    rgX.pcolor = sDomF.getFixedColor( pname );
+                }
+                rgX.undisplay = ns.h( op, 'undisplay' ) ? op.undisplay : false;
+
+
+                //todm ... make it a stand-alone function to facilitate
+                //         dynamic points creation ... to avoid extra declaration
+                //----------------------------------------------------------
+                // //\\ sets up point letters
+                //----------------------------------------------------------
+                var letterOffset    = estimatesSizeScale * ( ns.h( op, 'letterRotRadius' ) ?
+                                      op.letterRotRadius : LETTER_ROTATION_RADIUS_PER_1000 );
+                var fontSize        = estimatesSizeScale * ( ns.h( op, 'fontSize' ) ?
+                                      op.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+
+                var letterAngle     = ns.h( op, 'letterAngle' ) ? op.letterAngle : 0;
+                var rad             = letterAngle / 180 * Math.PI;
+                rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
+                                      fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
+                rgX.letterOffsetY   = letterOffset * Math.sin( rad ) -
+                                      fontSize*LETTER_CENTER_Y_PER_FONT_SIZE;;
+                rgX.letterOffsetY   *= -1; //for screen y-direction
+                /*
+                ccc(
+                    pname,
+                    'letterAngle=' + letterAngle.toFixed(3),
+                    'letterOffsetX ' + rgX.letterOffsetX.toFixed(),
+                    'letterOffsetY ' + rgX.letterOffsetY.toFixed()
+                );
+                */
+                rgX.fontSize = fontSize;
+                //----------------------------------------------------------
+                // \\// sets up point letters
+                //----------------------------------------------------------
+            });
+
+            //----------------------------------
+            // //\\ expands lines placeholders
+            //----------------------------------
+            linesArray = ns.haz( sconf, 'linesArray' );
+            if( linesArray ) {
+                lines = {};
+                linesArray.forEach( (lineConf) => {
+                    var lname = Object.keys( lineConf )[0];
+                    lines[ lname ] = lineConf[ lname ];
+                });
+            }
+            ns.eachprop( lines, ( gshape, pname ) => {
+                var rgX = toreg( pname )( 'pname', pname );
+                if( ns.h( gshape, 'pcolor' ) ) {
+                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    fixedColors[ tk ] = gshape.pcolor;
+                }
+                if( ns.h( gshape, 'undisplay' ) ) {
+                    rgX.undisplay = gshape.undisplay;
+                }
+            });
+            //----------------------------------
+            // \\// expands lines placeholders
+            //----------------------------------
+        })();
+        //---------------------------------------------------------------------------
+        // \\// derives initial model parameters from picture's points
+        //---------------------------------------------------------------------------
+
+
+
+        //----------------------------------------------------
+        // //\\  prepares sconf data holder
+        //----------------------------------------------------
+        Object.assign( sconf, {
+
+            pname2point,
+            originalPoints,
+            lines,
+
+            //----------------------------------
+            // //\\ model-view parameters
+            //----------------------------------
+            thickness : 1,
+            //----------------------------------
+            // \\// model-view parameters
+            //----------------------------------
+
+            //----------------------------------
+            // //\\ scenario
+            //----------------------------------
+            enableStudylab                  : true,
+            hideProofSlider                 : true, //false,
+            enableCapture                   : true,
+            enableTools                     : true,
+            enableDataFunctionsRepository   : false,
+            //----------------------------------
+            // \\// scenario
+            //----------------------------------
+
+            default_tp_stroke_opacity   : 2,
+            default_tp_stroke_width     : ns.haz( sconf, 'default_tp_stroke_width' ) || 10,
+            default_tp_lightness        : 40, //50 is full lightness
+            defaultLineWidth            : 2,
+        });
+        //----------------------------------
+        // \\// prepares sconf data holder
+        //----------------------------------------------------
+    }
+}) ();
+

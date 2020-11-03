@@ -1,6 +1,6 @@
 *::*claim|xixcentury
 {
-  "menuCaption" : "Study",
+  "menuCaption" : "Addendum",
   "dataLegend":"0"
 }
 *..*

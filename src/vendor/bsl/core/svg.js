@@ -101,12 +101,31 @@
             stroke : arg.stroke || 'rgba( 0,0,0, 1 )', 
                 //must be transparent bs stroke or fill are often exclusive
 
-
             fill : arg.fill || 'transparent',
             'stroke-width' : arg[ 'stroke-width' ] || 1
         });
     };
 
+    ///this sub should work slightly faster than nssvg.polyline
+    nssvg.updatePolyline = function({
+        pivots,
+        svgel,
+        fill,
+        strokeWidth,
+    }) {
+        var pivotsStr = '';
+        var len = pivots.length;
+        for( var pix=0; pix < len; pix++ ) {
+            var point = pivots[pix];
+            if( pivotsStr ) {
+                pivotsStr += ' ';
+            }
+            pivotsStr += point[0].toFixed(2) + ',' + point[1].toFixed(2);
+        }
+        svgel.setAttributeNS( null, 'points', pivotsStr );
+        fill && svgel.setAttributeNS( null, 'fill', fill );
+        strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
+    }
 
     ///"manually" created polyline which formes ellipse,
     ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
@@ -137,7 +156,7 @@
             var xx = ell.x;
             var yy = ell.y;
             /*
-            //this is fast but is a code prolifiration
+            //this is fast but is a code proliferation
             var t = step * ii;
             var x = a*Math.cos(t+t0);
             var y = b*Math.sin(t+t0);
@@ -158,12 +177,22 @@
     ///returns: svg-element;
     nssvg.ellipseSector = function( arg )
     {
-        var { stepsCount, a, b, x0, y0, rotationRads, t0, t1 } = arg;
+        var {
+            stepsCount,
+            a,
+            b,
+            x0,
+            y0,
+            rotationRads,
+            t0, //start angle
+            t1, //end angle
+        } = arg;
         var polyline = arg.pivots = [];
-
+        if( !t0 && t0 !== 0 ) {
+            t0 = 0;
+            t1 = Math.PI*2;
+        }
         stepsCount = stepsCount || 100;
-        t0 = t0 || 0; //start
-        t1 = t1 || Math.PI*2; //end
         a = a || 1;
         b = b || 1;
         var step = ( t1 - t0 ) / stepsCount;

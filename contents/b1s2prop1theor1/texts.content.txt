@@ -85,19 +85,7 @@
 *..*
 
 <img src="contents/b1s2prop1theor1/img/p1-latin.png" style="width:100%">
-
-
-        <br><br>
-        Sources:
-        <br>
-        <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338113">
-             From 3rd Edition.
-             Latin. Sectio II. De inventione virium centripetarum.
-             License: public domain.
-        </a>
-
-
+<div book-reference-id="latin"></div>
 
 
 
@@ -115,13 +103,9 @@ The areas, which bodies driven in orbits [gyros] describe by radii drawn to an i
 
 <br><br>
 
-<div style="font-size:10px;">
-    Source: <br>
-    William H Donahue cited <br>
-    in the page 123 of book "Newton Principia. The Central Argument." <br>
-    by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
-    We did not find year and name for book by William H Donahue.
-</div>
+
+<div book-reference-id="Donahue"></div>
+Page 123.
 
 <br><br>
 
@@ -134,19 +118,7 @@ The areas, which bodies driven in orbits [gyros] describe by radii drawn to an i
 *::*proof|latin
 
 <img src="contents/b1s2prop1theor1/img/p1-latin.png" style="width:100%">
-
-
-        <br><br>
-        Sources:
-        <br>
-        <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338113">
-             From 3rd Edition.
-             Latin. Sectio II. De inventione virium centripetarum.
-             License: public domain.
-        </a>
-
-
+<div book-reference-id="latin"></div>
 
 
 
@@ -251,27 +223,15 @@ always proportional to the times of
 description, will be proportional to those times in this case.
 <br><br><br><br>
 
-
-
-
-
+<div book-reference-id="Donahue"></div>
 
 
 *::*corollary|latin
 
 
 <img src="contents/b1s2prop1theor1/img/p1-latin.png" style="width:100%">
+<div book-reference-id="latin"></div>
 
-
-        <br><br>
-        Sources:
-        <br>
-        <br>
-        <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338113">
-             From 3rd Edition.
-             Latin. Sectio II. De inventione virium centripetarum.
-             License: public domain.
-        </a>
 
 
 
@@ -353,15 +313,9 @@ bodies move, along with the centres of forces located in them, are not at rest, 
 uniformely in a straight line.
 <br><br><br>
 
+<div book-reference-id="Donahue"></div>
+Pages 123 - 141.
 
-
-<div style="font-size:10px;">
-    Source: <br>
-    William H Donahue cited <br>
-    in the pages 123 - 141 of book "Newton Principia. The Central Argument." <br>
-    by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
-    We did not find year and name for book by William H Donahue.
-</div>
 <br><br>
 
 
@@ -373,7 +327,7 @@ uniformely in a straight line.
 
 *::*claim|model
 {
-  "menuCaption" : "Study"
+  "menuCaption" : "Addendum"
 }
 *..*
 
@@ -381,7 +335,7 @@ uniformely in a straight line.
 
 *::*proof|model
 {
-  "menuCaption" : "Study"
+  "menuCaption" : "Addendum"
 }
 *..*
 
@@ -463,11 +417,9 @@ uniformely in a straight line.
 
         Point B dragger changes direction of initial speed and \( \Delta t\).
 
-<br><br>
+<br>
 
-
-<br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
-
+<div book-reference-id="kvk"></div>
 
 
 *:::*:::*
@@ -712,10 +664,20 @@ uniformely in a straight line.
         "TP" : { "undisplay" : true },
         "Bc" : { "decoration_range" : [ 0, 7 ] },
         "Cc" : { "decoration_range" : [ 0, 7 ] }
-    }
+    },
+
+    "__amode2rgstate" :
+    [
+        [
+            "!ssF.mediaModelInitialized",
+            {
+                "captured" : "initial-state",
+                "rg" :
+                {
+                }
+            }
+        ]
+    ]
 }
-
-
-
 
 
