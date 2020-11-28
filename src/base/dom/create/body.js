@@ -98,7 +98,7 @@
                             ////home-pane becomes visible
                             fapp.homePage$.removeClass( 'is-hidden' );
                             sDomN.homeButton$
-                                .html( 'Back to the Lemmas' )
+                                .html( fconf.appDecor.backButtonCaption )
                                 .removeClass( 'is-hidden' )
                                 ;
                             fapp.fappRoot$.css( 'overflow', 'visible' );

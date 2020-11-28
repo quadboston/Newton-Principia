@@ -91,8 +91,8 @@
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption + '.';
             var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
             pager$.html( direction === 'right' ?
-                '<img src="images/right-page-triangle.svg"> ' + fullCaption :
-                fullCaption + ' <img src="images/back-arrow-link.svg">' );
+                '<img src="' + fconf.pathToStem + 'images/right-page-triangle.svg"> ' + fullCaption :
+                fullCaption + ' <img src="' + fconf.pathToStem + 'images/back-arrow-link.svg">' );
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better

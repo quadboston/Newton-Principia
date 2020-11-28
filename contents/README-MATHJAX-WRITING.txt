@@ -13,6 +13,17 @@ best tutorial and dictionary:
 vital codes:
     https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
 
+
+
+font:
+    https://www.checkmyworking.com/cm-web-fonts/
+    Greeks for svg:
+        https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
+        don't use codes: just copy/paste chars right into xhtml <text ... 
+
+    over top of my head:
+        https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available
+
 **************************************************************************************************
 
 good pros on cons: TeX vs HTML
@@ -34,15 +45,6 @@ custom macros
 relevant? yen and more ... Math symbols defined by LaTeX package «amsfonts»
     http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amsfonts-symbols.pdf
 
-
-font:
-    https://www.checkmyworking.com/cm-web-fonts/
-    Greeks for svg:
-        https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
-        don't use codes: just copy/paste chars right into xhtml <text ... 
-
-    over top of my head:
-        https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available
 
 
 

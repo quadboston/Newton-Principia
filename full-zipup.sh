@@ -7,6 +7,6 @@
 #**************************************************
 
 cd ..
-np/deploy/zipify.php np addgit
+ver/deploy/zipify.php ver addgit
 
 

@@ -1,5 +1,3 @@
-// //\\// App config
-
 ( function () {
     var ns          = window.b$l;
     var sn          = ns.sn;    
@@ -18,9 +16,9 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //000000000000000000000000000000000000000000000000000000
     return;
-    //000000000000000000000000000000000000000000000000000000
+
+
 
 
 
@@ -106,27 +104,8 @@
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
-
-            GENERIC_COLOR       : '0, 0, 0',
-            CORE_CURVE_COLOR    : '160, 0, 0',
-            CORE_AREA_COLOR     : '0,125,0',
-            REMOTE_AREA_COLOR   : '0,0,255',
-            FIGURE_COLOR        : '0,97,0'
         });
 
-        //----------------------------------
-        // //\\ spawns to_conf
-        //----------------------------------
-        /*
-        sconf.tfamilyColor =
-        {
-            generic         : sconf.GENERIC_COLOR,
-            claim           : sconf.CORE_AREA_COLOR,
-            proof           : sconf.REMOTE_AREA_COLOR,
-            'primary-curve' : sconf.CORE_CURVE_COLOR,
-            'figure'        : sconf.FIGURE_COLOR
-        };
-        */
         //=====================================
         // \\// configures application engine
         //=====================================

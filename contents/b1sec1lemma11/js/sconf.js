@@ -50,7 +50,7 @@
         var hidden  = [0,     0,   0,      0];
 
 
-        var fixedColorsDef =
+        var predefinedTopics =
         {
             given,
             proof,
@@ -131,43 +131,38 @@
             },
         };
 
-        ///alternatively to this, you can set own colors for originalPoints
-        ///by your own
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || fixedColorsDef[ pname ];
-        });
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = ( originalPoints.J.pos[1] - originalPoints.A.pos[1] ) / 2;
 
-        var lines =
-        {
-            'AB' : { pcolor : given },
-            'AD' : { pcolor : given },
-            'BD' : { pcolor : given },
-            'BC' : { pcolor : given },
-            'AG' : { pcolor : given },
-            'BG' : { pcolor : given },
-            'GJ' : { pcolor : given },
+        var linesArray =
+        [
+            { 'AB' : { pcolor : given }, },
+            { 'AD' : { pcolor : given }, },
+            { 'BD' : { pcolor : given }, },
+            { 'BC' : { pcolor : given }, },
+            { 'AG' : { pcolor : given }, },
+            { 'BG' : { pcolor : given }, },
+            { 'GJ' : { pcolor : given }, },
 
-            'Ab' : { pcolor : proof },
-            'Ad' : { pcolor : proof },
-            'Ag' : { pcolor : proof },
-            'bc' : { pcolor : proof },
-            'bd' : { pcolor : proof },
-            'bg' : { pcolor : proof },
+            { 'Ab' : { pcolor : proof }, },
+            { 'Ad' : { pcolor : proof }, },
+            { 'Ag' : { pcolor : proof }, },
+            { 'bc' : { pcolor : proof }, },
+            { 'bd' : { pcolor : proof }, },
+            { 'bg' : { pcolor : proof }, },
 
-            'AJ' : { pcolor : result },
-        }
+            { 'AJ' : { pcolor : result }, },
+        ];
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
-            fixedColorsDef,
+            predefinedTopics,
             originalPoints,
-            lines,
+            linesArray,
             originX_onPicture,
             originY_onPicture,
             pictureWidth,

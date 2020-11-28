@@ -32,7 +32,6 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 
 <br><br>
 <div book-reference-id="Motte-3rd"></div>
-<div book-reference-id="Donahue"></div>
 
 
 *::*proof|latin
@@ -64,10 +63,14 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 }
 *..*
 
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Eframework">Euclid-framework</a></b><br><br>
+
 We call right-side line ¦Ad¦Ad¦¦ "Euclidian-tangent".<br>
 Line ¦AL¦AL¦¦, which will be is a limit of chords, is called "Converged-tangent".<br><br>
 
-<b>Euclid and Newton axioms, definitions, and assumptions for Euclidian-tangent are:<br><br></b>
+
+Euclid and Newton axioms, definitions, and assumptions for Euclidian-tangent are<br>
 
 <ol>
 <li>
@@ -144,7 +147,7 @@ Line ¦AL¦AL¦¦, which will be is a limit of chords, is called "Converged-tang
 *..*
 
 
-This essay attmepts to reconstruct logical steps of Newton's proof. This attempt does not look successful unless to assume the case of convex curve or curve with monotonic sequence of points "¦b¦¦" approaching their upper bound ¦L¦¦.<br><br>
+This addendum attmepts to reconstruct logical steps of Newton's proof. This attempt does not look successful unless to assume the case of convex curve or curve with monotonic sequence of points "¦b¦¦" approaching their upper bound ¦L¦¦.<br><br>
 
 <b>"Proof"</b><br><br>
 

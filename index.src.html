@@ -53,6 +53,7 @@
     <script src="src/vendor/bsl/mat/integral.js"></script>
     <script src="src/vendor/bsl/mat/approximation.js"></script>
     <script src="src/vendor/bsl/mat/geom-shapes.js"></script>
+    <script src="src/vendor/bsl/mat/functions.js"></script>
 
     <script src="src/vendor/bsl/core/bsl-throttle.js"></script>
     <script src="src/vendor/bsl/core/keyboard-keys.js"></script>
@@ -81,19 +82,14 @@
     <script src="src/base/css/lemma-comp/menu-on-top.css.js"></script>
     <script src="src/base/css/lemma-comp/menu-on-left.css.js"></script>
     <script src="src/base/css/lemma-comp/essaion-pane.css.js"></script>
-
-    <script src="src/base/css/css-conf.js"></script>
     <script src="src/base/css/dispatch-css.js"></script>
     <script src="src/base/css/dispatch-home-css.js"></script>
-    <script src="src/base/lemma/overridable-css-modules/css-order.js"></script>
-    <script src="src/base/lemma/overridable-css-modules/proof-vs-claim-visib.css.js"></script>
     <!-- \\// core css -->
 
 
 
     <!-- //\\ core html -->
     <script src="src/base/dom/create/body.js"></script>
-    <script src="src/base/dom/create/home-page.html.js"></script>
     <script src="src/base/dom/create/lemma.js"></script>
     <script src="src/base/dom/create/media-super-root.js"></script>
     <script src="src/base/dom/create/lemma-master-menu.js"></script>
@@ -111,8 +107,9 @@
     <script src="src/base/parser/content2exegs.js"></script>
     <script src="src/base/parser/exegs2frags.js"></script>
     <script src="src/base/parser/tpanch2mjax.js"></script>
-    <script src="src/base/parser/anchors2topiccss.js"></script>
-
+    <script src="src/base/parser/topics-media-css.js"></script>
+    <script src="src/base/parser/topics-anchor-css.js"></script>
+    <script src="src/base/parser/lib.js"></script>
     <!-- \\// core html -->
 
 
@@ -120,7 +117,9 @@
     <!-- //\\ lib -->
     <script src="version.js"></script>
 
-
+    <script src="src/base/lemma/overridable-css-modules/css-order.js"></script>
+    <script src="src/base/lemma/overridable-css-modules/proof-vs-claim-visib.css.js"></script>
+    <script src="src/base/lemma/state-capturer.js"></script>
     <script src="src/base/lemma/media-model/common.js"></script>
     <script src="src/base/lemma/media-model/functions.js"></script>
     <script src="src/base/lemma/media-model/points.js"></script>
@@ -131,8 +130,9 @@
     <script src="src/base/lemma/media-model/main-legend.js"></script>
     <script src="src/base/lemma/media-model/main-legend-templates.js"></script>
     <script src="src/base/lemma/media-model/dom2model-scales.js"></script>
-
     <script src="src/base/lemma/study-model/model-lib.js"></script>
+    <script src="src/base/lemma/parses-topic-scenario.js"></script>
+    <script src="src/base/lemma/executes-topic-scenario.js"></script>
 
     <script src="src/base/draggers/sliders/tools/def-scale.js"></script>
     <script src="src/base/draggers/sliders/tools/def-thickness.js"></script>
@@ -143,6 +143,9 @@
     <script src="src/base/draggers/points/model-point-dragger.js"></script>
     <script src="src/base/draggers/points/createsDragger4pointRgX.js"></script>
     <script src="src/base/draggers/finalizes-custDraggers8toolsSliders.js"></script>
+
+
+
 
 
     <!-- //\\ abandoned -->
@@ -161,10 +164,13 @@
     <script src="src/main-main.js"></script>
     <!-- \\// core -->
 
+    <script src="conf/css-conf.js"></script>
+    <script src="conf/conf.js"></script>
+    <script src="conf/lemma.conf.js"></script>
+    <script src="conf/home-page-conf.html.js"></script>
+
 
     <!-- //\\ full app config -->
-    <script src="src/conf.js"></script>
-    <script src="src/lemma.conf.js"></script>
     <script src="contents/book-references.js"></script>
     <script src="contents/content-list.js"></script>
     <!-- \\// full app config -->

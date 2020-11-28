@@ -1,10 +1,11 @@
 ( function() {
     var {
-        ns, sn, mat, has, haz,
+        ns, sn, nspaste, mat, has, haz,
         fconf, sconf,
         rg, toreg,
         ssF, ssD,
         sDomF, sDomN, amode,
+        exegs,
         studyMods,
         stdMod,
     } = window.b$l.apptree({
@@ -13,6 +14,9 @@
             amode2lemma,
             line2abs,
             circumscribeCircleOverChordAndBothNormals_XY,
+            dropPerpend,
+            dropLine,
+            dropPoint,
         },
     });
     return;
@@ -61,7 +65,7 @@
                 captured = ns.haz( instr, "captured" ) || captured;
 
                 ///core of condition: sets registry immediately
-                ns.paste( rg, ns.haz( instr, "rg" )||{} );
+                nspaste( rg, ns.haz( instr, "rg" )||{} );
 
                 if( ns.h( instr, 'action' ) ) {
                     ////aka: sDomF.detected_user_interaction_effect()
@@ -72,11 +76,23 @@
         if( ns.haz( ssF, 'amode2rgstate' ) ){
             captured = ssF.amode2rgstate( captured );
         }
+
+
+        amode.scenarioState = 'start';
+        var subessayRack = exegs[ theorion ][ aspect ].subessay2subexeg[ subessay ];
+        var executesTopicScenario = haz( subessayRack, 'stateId2state' );
+
+
         ///for past-lemmas: lemma 1, lemma 2, ...
         //haf( stdMod, 'astate_2_rg8model' )(
-            //todm ... no need to put extra "captured" ... do fix this:
-            stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], captured );
-        //);
+        //todm ... no need to put extra "captured" ... do fix this:
+        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], captured,
+                                  !!executesTopicScenario );
+
+        //executes topic scenario from start-event
+        if( executesTopicScenario ) {
+            ssF.executesTopicScenario( 'start' );
+        }
     }
 
 
@@ -118,6 +134,66 @@
         var B = rg[ points[1] ].pos;
         return mat.circumscribeCircleOverChordAndBothNormals( null, A, B );
     }
+
+
+
+
+
+    //===============================================================
+    // //\\ scriptable arguments in string
+    //===============================================================
+    ///Assigns: "A=B,C,D"
+    ///         Draws perpend from B to line CD and assigns pos to A.
+    ///         A,B,C,D are registry names.
+    function dropPerpend( assigneeTopPoint1Point2_str )
+    {
+        var assigmentPoints = assigneeTopPoint1Point2_str.split( '=' );
+        var points = assigmentPoints[1].split( ',' );
+        nspaste(
+            rg[ assigmentPoints[0] ].pos,
+            mat.dropPerpendicular(
+                rg[ points[0] ].pos,
+                rg[ points[1] ].pos,
+                rg[ points[2] ].pos,
+            )
+        );
+    }
+
+    ///Assigns: "A=scale,C,D,S"
+    ///         Arguments are similar to mat.dropLine()
+    ///         [,S] is optional
+    ///         Draws line segment parallel line CD from point C [or S ] and assigns pos to A.
+    ///         Line segment length = scale * length_CD
+    ///         A,C,D,S are registry names.
+    function dropLine( assigneeScalePoint1Point2_str )
+    {
+        var assigmentPoints = assigneeScalePoint1Point2_str.split( '=' );
+        var operands = assigmentPoints[1].split( ',' );
+        nspaste(
+            rg[ assigmentPoints[0] ].pos,
+            mat.dropLine(
+                parseFloat( operands[0] ),
+                rg[ operands[1] ].pos,
+                rg[ operands[2] ].pos,
+                operands[3] && rg[ operands[3] ].pos,
+            )
+        );
+    }
+
+    ///Assigns: "A=B"
+    ///          A,B are registry names.
+    function dropPoint( operands_str )
+    {
+        var operands = operands_str.split( '=' );
+        nspaste(
+            rg[ operands[0] ].pos,
+            rg[ operands[1] ].pos,
+        );
+    }
+    //===============================================================
+    // \\// scriptable arguments in string
+    //===============================================================
+
 
 
 }) ();

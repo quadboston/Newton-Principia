@@ -5,7 +5,6 @@
     fconf.sappModulesList = {};
 
 
-
     var sappModulesArray = fconf.sappModulesArray =
     [
         {
@@ -34,6 +33,12 @@
             annotation : "Lorem ipsum  set lorem ipsum doler sut.",
         },
 
+        {   sappId : 'b1sec1lemma4',
+            book : 'Book 1',
+            caption : 'Sec. I. Lemma IV',
+            annotation : "Lorem ipsum  set lorem ipsum doler sut.",
+        },
+
         {   sappId : 'b1sec1lemma6',
             book : 'Book 1',
             caption : 'Sec. I. Lemma VI',
@@ -47,9 +52,15 @@
         },
 
 
-        {   sappId : 'lemma9',
+        {   sappId : 'b1sec1lemma9',
             book : 'Book 1',
             caption : 'Sec. I. Lemma IX',
+            annotation : "Lorem ipsum dolor acnut lima noir set lorem ipsum doler sut.",
+        },
+
+        {   sappId : 'b1sec1lemma10',
+            book : 'Book 1',
+            caption : 'Sec. I. Lemma X',
             annotation : "Lorem ipsum dolor acnut lima noir set lorem ipsum doler sut.",
         },
 
@@ -86,10 +97,17 @@
 
         {   sappId : 'addendum-frameworks',
             book : 'Addendum',
-            caption : 'Frameworks',
+            caption : 'Introduction (in progress)',
             annotation : "Comments to the Book",
         },
 
+        /*
+        {   sappId : 'addendum-preliminaries',
+            book : 'Addendum',
+            caption : 'Preliminaries (in progress)',
+            annotation : "Comments to the Book",
+        },
+        */
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

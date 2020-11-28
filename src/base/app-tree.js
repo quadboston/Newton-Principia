@@ -25,6 +25,8 @@
     var cssmod      = sn('ssCssModules',ss);
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
+    var bgImages    = sn('bgImages', ssD);
+
     //.registry is used for study-model-elements or media-model-elements
     var rg          = sn('registry',ssD);
     var rgtools     = sn('tools',ssD);
@@ -32,8 +34,11 @@
     var wrkwin      = sn('wrkwin',ssD); //work window
     var exegs       = sn('exegs', ssD);
     var references  = sn('references', ssD);
-    var topics      = sn('topics', ssD);
     var capture     = sn( 'capture', ssD );
+    var topics      = sn('topics', ssD);
+    var normId2topic= sn('normId2topic', topics);
+    var id2tplink   = sn('id2tplink', topics);
+    var ix2tplink   = sn('ix2tplink', topics, []);
 
     var sapp        = sn('sapp');
     var studyMods   = sn('studyMods', sapp);
@@ -76,15 +81,14 @@
         var mCount      = sn('modulesCount', sapp);
         mCount.count = mCount.count ? mCount.count + 1 : 1;
         modName = ( modName && modName + '-' ) || '';
+        if( ssFExportList ) {
+            Object.keys( ssFExportList ).forEach( fname => {
+                ssF[ fname ] = ssFExportList[ fname ];
+            });
+        }
+
         srg_modules[ modName + mCount.count ] = () => {
             setModule && setModule();
-
-            if( ssFExportList ) {
-                Object.keys( ssFExportList ).forEach( fname => {
-                    ssF[ fname ] = ssFExportList[ fname ];
-                });
-            }
-
             if( stdModExportList ) {
 
                 ///adds media_upcreate if createMedia0updateMediaAUX is in the list;
@@ -151,7 +155,8 @@
             haff : ns.haff,
             url2conf : ns.url2conf,
             eachprop : ns.eachprop,
-            paste : ns.paste,
+            paste : ns.paste,           //todm: remove
+            nspaste : ns.paste,
 
 
             $$,
@@ -173,7 +178,13 @@
 
             ss,
             ssF,
-            ssD, fixedColors, rg, rgtools, wrkwin, exegs, references, topics, capture,
+            ssD, fixedColors, rg, rgtools, wrkwin, exegs, references,
+            bgImages,
+            capture,
+            topics,
+            normId2topic,
+            id2tplink,
+            ix2tplink,
 
             sapp,
             studyMods,

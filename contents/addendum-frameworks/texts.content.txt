@@ -5,14 +5,11 @@
 }
 *..*
 
+
 <b>This Addendum is a draft in progress. Use with your own discretion.</b>
 <br><br><br>
 
-
-<b>Motivation</b>
-<br><br>
-
-We more we read Newton's Principia, the more we feel this is not historical book, but the logical system which has contemporary value.
+The more we read Newton's Principia, the more we feel this is not historical book, but the logical system which has contemporary value.
 <br><br>
 
 Newton builds the Principia on top of Euclid-framework. This framwork is not outdated. Axiomatic logical system cannot be outdated unless the humal logic mutates in thousands years. However, reinterpretaion of Principia in modern frameworks is necessary for understanding. We are not focusing on what Newton meant in his propsitions, but what these propositions mean placed in different axiomatic frameworks.
@@ -22,7 +19,6 @@ We focus on ideas rather than on expression of these ideas in different framewor
 
 Or for example, the difference between Euclid's Geometry and Hilbert Geometrical axioms is not a concern.
 <br><br><br>
-
 
 
 

@@ -1,29 +1,18 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-    var rootvm      = sn('rootvm');
-
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-    var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point',fmethods);
-
-    var sapp        = sn('sapp'); 
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var bgImages    = sn('bgImages', ssD);
-    var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
-    var rgtools     = sn('tools',ssD);
-    var exegs       = sn('exegs', ssD);
+    var {
+        ns, $$, cssp,
+        sn, haff,
+        fapp, fconf, sconf,
+        fmethods,
+        sDomF, sDomN,
+        amode,
+        bgImages,
+        ssF,
+        rg,
+        exegs, rgtools,
+        studyMods,
+    } = window.b$l.apptree({
+    });
 
 
 
@@ -139,13 +128,11 @@
                                            }
                             );
                         }
-
-                        if( ns.h( stdMod, 'captureAState' ) ) {
-                            ns.haf( stdMod, 'captureAState' )( ast );
-                        } else {
-                            ////remove this later
-                            ns.haf( ssF, 'captureAState' )( ast );
-                        }
+                        (
+                            ns.haz( stdMod, 'captureAState' ) ||
+                            ns.haz( ssF, 'captureAState' ) ||
+                            ssF.captureAState_generic
+                        )( ast );
                         //------------------------------------------------
                         // \\// do wrap into capture-method or refactor
                         //------------------------------------------------
@@ -200,7 +187,7 @@
             .c('img')
             .addClass( "video-help-button" )
             .css('width','35px')
-            .a( 'src', "images/camera-lightbulb.png" )
+            .a( 'src', fconf.pathToStem + "images/camera-lightbulb.png" )
             .a( 'alt', "Watch videohelp" )
             .a( 'title', "Watch videohelp" )
             /*
@@ -213,15 +200,17 @@
         sDomN.idleHelpButton$ = $$
             .c('img')
             .addClass( "model-help" )
-            .a( 'src', "images/lightbulb.svg" )
+            .a( 'src', fconf.pathToStem + "images/lightbulb.svg" )
             .a( 'alt', "Hover over the diagram to interact" )
-            //.a( 'title', "Hover over the diagram to interact" )
             .to( wwHelpOnTop$() )
             ;
+        if( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ){
+            sDomN.idleHelpButton$.a( 'title', fconf.appDecor.idleHelpButtonTooltip );
+        }
         sDomN.helpBoxText$ = $$
             .c('span')
             .addClass( "help-box__text" )
-            .html('Hover over the diagram to interact')
+            .html( fconf.appDecor.helpButtonCaption)
             .to( wwHelpOnTop$() )
             ;
         //--------------------------
@@ -425,8 +414,6 @@
         //..............................
 
         sDomF.create8prepopulate_svg();
-        //.patches l2
-        ssF.continue_create_8_prepopulate_svg && ssF.continue_create_8_prepopulate_svg();
 
         //.disabled ... effect is too strong
         //stdMod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );

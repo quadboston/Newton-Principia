@@ -36,9 +36,11 @@
 
     function setModule()
     {
-        ssF.continue_create_8_prepopulate_svg  = continue_create_8_prepopulate_svg;
-        ssF.create_digital_legend   = create_digital_legend;
-        ss.menuExtraWork            = menuExtraWork;
+        ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
+        ssF.sliderGroupLemma2                   = sliderGroupLemma2;
+        ssF.convergenceResultArea               = convergenceResultArea;
+        ssF.create_digital_legend               = create_digital_legend;
+        ss.menuExtraWork                        = menuExtraWork;
     }
 
 
@@ -77,6 +79,22 @@
         /// \\// 2) Switch: This controls the translation switch ...?Newton/informal
         ///=========================================================================
     }
+
+    function convergenceResultArea()
+    {
+        var svg = studyMods[ SUB_MODEL ].mmedia$.aNS( 'id', 'illus' )();
+        $$.cNS( 'polyline' )
+            .aNS( 'id', 'polylineCurve' )
+            .aNS( 'class', "tp-figure tp-curve figure outline tostroke" )
+            .to(svg)
+            ;
+        sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
+            .aNS( 'id', 'figureInternalArea' )
+            .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
+            .to(svg)
+            ;
+    }
+
 
     function continue_create_8_prepopulate_svg()
     {
@@ -118,20 +136,14 @@
             .aNS( 'class', "tp-figure figure outline tostroke" )
             .to(svg)
             ;
+        //====================================================================
+        // \\// paints preliminary elements
+        //====================================================================
+    }
 
-        $$.cNS( 'polyline' )
-            .aNS( 'id', 'polylineCurve' )
-            .aNS( 'class', "tp-figure tp-curve figure outline tostroke" )
-            .to(svg)
-            ;
 
-        sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
-            .aNS( 'id', 'figureInternalArea' )
-            .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
-            .aNS( 'fill', "rgba(0,222,222,0.5)" )
-            .to(svg)
-            ;
-
+    function sliderGroupLemma2()
+    {
         $$.c('div')
             .addClass("slider-group")
             .to( sDomN.medRoot )
@@ -142,11 +154,7 @@
                     <span id="baseLabelSpan"></span>
                 </span>
             `);
-        //====================================================================
-        // \\// paints preliminary elements
-        //====================================================================
     }
-
 
 
 

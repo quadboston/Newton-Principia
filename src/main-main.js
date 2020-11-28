@@ -8,6 +8,8 @@
         $$,
         cssp,
         sn,
+        eachprop,
+        haff,
         cssmods,
         html,
 
@@ -31,6 +33,7 @@
         ssF,
         cssmod,
         wrkwin,
+        normId2topic,
     } = window.b$l.apptree({
     });
 
@@ -79,6 +82,7 @@
         // //\\ sets ids and titles
         //===============================
         ns.url2conf( fconf );
+        fconf.pathToStem        = fconf.pathToStem ? fconf.pathToStem + '/' : '';
         fconf.sappId            = fconf.sappId || 'home-pane';
 
         //pulls content-list.js::sappModulesArray
@@ -101,7 +105,6 @@
         // \\// home8lemmas
         //=========================
 
-
         if( fconf.sappId === 'home-pane' ) {
             //// home. apparently does not do any modules landing-load
             landingFlag_8_nextLemmaButtons();
@@ -120,7 +123,7 @@
         //====================================================
         // does first round of executing setModule for modules
         //====================================================
-        ns.eachprop( srg_modules, function( setModule ) {
+        eachprop( srg_modules, function( setModule ) {
             //// if order insignificant: todo needless?: can? be executed when module loaded right away
             setModule();
         });
@@ -156,7 +159,8 @@
         var codesList;
         nsmethods.loadScripts(
             [
-                { src : "contents/" + lemmaConfig.sappId + "/lemma-conf.js" }
+                { src : fconf.pathToStem + "contents/" + lemmaConfig.sappId + "/lemma-conf.js"
+                }
             ],
             function() {
                 ns.paste( lemmaConfig, fapp.lemmaConfig() );
@@ -166,7 +170,9 @@
                     lemmaSourcePath = lemmaConfig.sappCodeReference;
                     nsmethods.loadScripts(
                         [
-                            { src : "contents/" + lemmaSourcePath + "/lemma-conf.js" }
+                            { src : fconf.pathToStem + "contents/" +
+                                    lemmaSourcePath + "/lemma-conf.js"
+                            }
                         ],
                         function() {
                             ////we don't change lemmaConfig here, but borrow parent's lemma-sources
@@ -191,7 +197,8 @@
         function loadLemmaJSCodes( lemmaConfig )
         {
             codesList.forEach( function( codeItem ) {
-                codeItem.src = "contents/" + lemmaSourcePath + "/js/" + codeItem.src;
+                codeItem.src = fconf.pathToStem + "contents/" +
+                               lemmaSourcePath + "/js/" + codeItem.src;
             });
             ssF.runExpandConfig = !lemmaConfig.dontRun_ExpandConfig;
             nsmethods.loadScripts(
@@ -201,18 +208,18 @@
                     //----------------------------------------------------------
                     ///module can be executed right after load if it is safe or
                     ///module can register subs. in setModule and execute them
-                    ///here rigght below
+                    ///here right below
                     ///
                     ///executes loaded modules from modules registry
                     ///after all scripts have been loaded
                     ///does second round of executing setModule for modules
-                    ns.eachprop( srg_modules, function( setModule ) {
+                    eachprop( srg_modules, function( setModule ) {
                         setModule();
                     });
                     //----------------------------------------------------------
  
                     ///fills gaps with defaults ... todm move to auxil. lib.
-                    ns.eachprop( studyMods, stdMod => {
+                    eachprop( studyMods, stdMod => {
                         ns.sn( 'amode2lemma', stdMod, ssF.amode2lemma );
                     });
 
@@ -226,7 +233,20 @@
                     ns.url2conf( sconf );
 
                     ///loads Book === loads "proferssor's scripts"
-                    sDomF.loads_scenarioList8refs8conf__2__essaions_2_exegs( function() {
+                    ssF.loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs( function() {
+
+                        ////exegs are ready now,
+
+                        //this place looks like
+                        //the best to establish initial topics
+                        //then additional topics will be extracted from exegs
+                        var wwCase = sDomF.topicIdUpperCase_2_underscore;
+                        eachprop( ssD['fixed-colors'], ( topi_c, topicId_ ) => {
+                            normId2topic[ wwCase( topicId_ ) ] = {
+                                'fixed-color' : topi_c,
+                            }
+                        });
+
                         ////executes loaded "proferssor's scripts"
                         //=======================================
                         // //\\ html and css
@@ -263,11 +283,14 @@
 
     function exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture()
     {
-        sDomF.exegs_2_frags(); //to active-areas
-        sDomF.frags__2__dom_css_mjax_tpanchors();
+        ssF.exegs_2_frags(); //to active-areas
+        ssF.frags__2__dom_css_mjax_tpanchors();
 
         ///inits effective or empty astate_2_.... functions
         sapp.init_astate2sapp();
+
+        //.patches l2
+        haff( ssF, 'sliderGroupLemma2' );
 
         //this works for outdated-lemmas ... l9, l2, (l3) l21, l20,
         //new lemmas may use stdMod ns,

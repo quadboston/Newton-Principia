@@ -174,15 +174,17 @@
                     'line-height' : '1',
                 },
             });
-            $$.$( rgX.pnameLabelsvg )
-                .tgcls( 'undisplay', ns.haz( rg[pname], 'undisplay' ) );
+
+            var wwUndisplay = ns.haz( rg, 'allLettersAreHidden' ) || ns.haz( rg[pname], 'undisplay' );
+            $$.$( rgX.pnameLabelsvg ).tgcls( 'undisplay', wwUndisplay );
+
         }
 
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///
         ///move_2_updates is a flag of point for being a draggee
-        if( ns.h( rgX, 'move_2_updates' ) ) {
+        if( ns.h( rgX, 'move_2_updates' ) || ns.h( rgX, 'doWhiteKernel' ) ) {
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
             var rgXX = rg[ fakeName ];

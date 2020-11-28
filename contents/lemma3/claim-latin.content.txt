@@ -2,7 +2,17 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Latin",
+  "fixed-colors" :
+  {
+    "given"                     : [0,    100,  0 ],
+    "curve"                     : [0,    100,  0 ],
+    "figure"                    : [0,    100,  0 ],
+    "figure-area"               : [100,  0,  0 ],
+    "circumscribed-rectangles"  : [0,  50, 100 ],
+    "widthest-rectangular"      : [0,  0, 100 ],
+    "inscribed-rectangles"      : [100,  0, 100 ]
+  }
 }
 *..*
 

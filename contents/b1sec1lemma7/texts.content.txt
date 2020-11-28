@@ -12,6 +12,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -24,7 +25,7 @@ The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦a
 
 *::*claim|model
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "---"
 }
 *..*
 
@@ -222,12 +223,6 @@ For unit cicrle, <br><br>
 
 
 
-<div style="display:none">
-¦curve-AB¦¦ token establishes topic for this curve (because of flaw in design)
-¦phi0¦phi0¦¦
-¦deltaphi¦deltaphi¦¦
-</div>
-
 
 
 
@@ -237,7 +232,6 @@ For unit cicrle, <br><br>
 
 *::*corollary|english
 {
-  "default" : "1"
 }
 *..*
 
@@ -271,6 +265,9 @@ may freely use any one of those lines for any other.
 <div book-reference-id="Motte-3rd"></div>
 
 *::*corollary|model
+{
+  "menuCaption" : "---"
+}
 *..*
 
 

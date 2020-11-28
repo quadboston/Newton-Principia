@@ -22,10 +22,8 @@
 <img src="contents/b1sec5lemma20/img/latin.jpg" style="width:100%">
 
 Following Latin texts is from Lemma 20. <br>
-    Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.<br>
-    Book I Section V.<br>
-    translated and annotated by Ian Bruce<br>
-    http://www.17centurymaths.com/contents/newtoncontents.html<br><br>
+Book I Section V.<br>
+
 <pre>
 LEMMA XX.
 Si parallelogrammum quodvis ASPQ angulis duobus oppositis A &amp; P tangit sectionem
@@ -71,9 +69,17 @@ easque secet recta BD in punctis D, d, &amp; ipsam PQ secet recta Cd in q. Ergo 
 PT ut Pq ad PT; unde PR &amp; Pq sibi invicem aequantur, contra hypothesin.
 </pre>
 
+<div book-reference-id="IanBruce"></div>
+Book I Section V.<br>
+
+
+
+
+
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -91,13 +97,16 @@ A, B, C, P.
 <br><br>
 
 <pre style="font-size:11px">
-Sources:
-This text of Claim of Lemma 20 is
-translated and annotated by Ian Bruce
-Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.
-Book I Section V.
-http://www.17centurymaths.com/contents/newtoncontents.html
 </pre><br>
+
+<div book-reference-id="IanBruce"></div>
+Book I Section V.
+
+
+
+
+
+
 
 
 
@@ -108,9 +117,11 @@ http://www.17centurymaths.com/contents/newtoncontents.html
 
 
 
+
+
+
+
 *::*proof|english
-
-
 
 ¦key-triangle¦PR¦¦¦
 Case I. BP and CP are joined together and from the point D the two right lines DG and
@@ -156,14 +167,13 @@ in the latter can be viewed as an inverted form of the ellipse in the former. Ne
 not followed with a like proof, but has introduced a new way of drawing a conic section.]
 <br><br>
 
-<pre style="font-size:11px">
-Sources:
-This text of Proof of Lemma 20 is
-translated and annotated by Ian Bruce
-Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.
+
+<div book-reference-id="IanBruce"></div>
 Book I Section V.
-http://www.17centurymaths.com/contents/newtoncontents.html
-</pre><br>
+<br>
+
+
+
 
 
 
@@ -174,6 +184,8 @@ http://www.17centurymaths.com/contents/newtoncontents.html
   "menuCaption" : "Addendum"
 }
 *..*
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 For ¦ellipse¦ellipse¦¦ and points P,A,B,C on it's circumference, the ratio
 ¦key-triangle¦PR/PT¦¦ will be constant when the point ¦generators¦D¦¦ moves along this circumference.
@@ -195,12 +207,11 @@ will move points T and ¦key-triangle¦R¦¦.
 
 *::*proof|model
 {
-  "default" : "1",
   "menuCaption" : "Addendum"
 }
 *..*
 
-
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 

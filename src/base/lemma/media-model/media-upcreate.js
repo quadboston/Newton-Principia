@@ -43,6 +43,7 @@
     //=========================================================
     // //\\ updater helper
     //=========================================================
+    ///overrides lemma's stdMod.media_upcreate if missed
     function media_upcreate_basic()
     {
         var stdMod = studyMods[ amode.submodel ];
@@ -67,12 +68,14 @@
             !ns.h( ssD.repoConf, 'customFunction' )
         ) {
             ssF.paintsCurve({
-                    pointsName  : 'AB',
-                    addedCssClass: ssD.repoConf[0].addedCssClass,
-                    fun         : ssD.repoConf[0].fun,
-                    pointA      : ssD.repoConf[0].pointA,
-                    pointB      : ssD.repoConf[0].pointB,
-                    mmedia      : stdMod.mmedia,
+                    mmedia          : stdMod.mmedia,
+                    fun             : ssD.repoConf[0].fun,
+                    pointsName      : ns.haz( ssD.repoConf[0], 'pointsName' ) || 'AB',
+                    rgName          : ns.haz( ssD.repoConf[0], 'rgName' ),
+                    addedCssClass   : ns.haz( ssD.repoConf[0], 'addedCssClass' ),
+                    pointA          : ns.haz( ssD.repoConf[0], 'pointA' ),
+                    pointB          : ns.haz( ssD.repoConf[0], 'pointB' ),
+                    addToStepCount  : 1,
             });
         }
 
@@ -93,7 +96,7 @@
         // \\// upcreates lines
         //=============================================
 
-        haff( stdMod, 'media_upcreate_custom_curves' );
+        haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
         ssF.doPaintPoints();
         if( !ssF.mediaModelInitialized ) {
             haff( stdMod, 'create_digital_legend' );

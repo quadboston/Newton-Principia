@@ -1,24 +1,12 @@
 ( function() {
-    var ns          = window.b$l;
-    var cssp        = ns.CSS_PREFIX;
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-    var fapp        = sn('fapp' ); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions', sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var topics      = sn('topics', ssD);
-
-    var qq = document.querySelector;
-    var qqa = document.querySelectorAll;
-    var ccc = console.log;
-
-    sDomF.tpanch2mjax = tpanch2mjax;
+    var {
+        ssF,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            tpanch2mjax,
+        },
+    });
     return;
 
 
@@ -30,7 +18,7 @@
 
     function tpanch2mjax( domEl )
     {
-        var setsAnchor_mouseHighlightEvents = sDomF.setsAnchor_mouseHighlightEvents;
+        var setsAnchor_mouseHighlightEvents = ssF.setsAnchor_mouseHighlightEvents;
 
         ///this search must be protected: duplicates will cause
         ///duplicate substitutions

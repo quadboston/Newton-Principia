@@ -66,7 +66,12 @@
         //----------------------------------------------------------------------------
         var sliderId          = 'm';
         var captionPrefix     = 'm = ';
+
+        //m is a degree of result-polynomial, it is not a number of
+        //  experimental points, m=0 is not a good count for exp. points:
         var COLOR             = ssD.approxColor; //experColor;
+        //var COLOR             = ssD.experColor;
+
         var max_m             = rg.n.value;
         var min_m             = 1;
         var customSliderShift = 0; //picture units

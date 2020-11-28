@@ -35,7 +35,7 @@ App initialtion schema: conceptual steps labeled with "*":
                   will be loaded in two p-steps
                 ***************************************    
 
-                  sDomF.loads_scenarioList8refs8conf__2__essaions_2_exegs(
+                  ssF.loads_scenarioList8refs8conf__2__essaions_2_exegs(
                         p-step I: list
                                         { id: 'contents-list.txt', ...
                              p-step II: files

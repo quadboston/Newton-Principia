@@ -1,0 +1,176 @@
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios"
+}
+*..*
+
+<pre>
+<b>Ratios Algebraic Structure</b>
+
+We will logically extend "Euclid Ratios" algebraic structure following plan outlined below.
+
+
+1. M - cancellable, commutative, ordered semigroup.
+       Order preserves operation on M.
+       M corresponds to Euclid's and Newton "Magnitudes".
+       For example, line segments, volumes, time intervals.
+   N - non-zero and non-negative integers (which also an example of M)
+   We call (M,N) semigroup module.
+
+
+2. We define action N on M: the operation "." as
+       nm = m + m + ... + m where addition is done n - times.
+
+   We can prove:
+        "modular-properties":
+            (n1+n2)m = n1m + n2m
+            n(m1+m2) = nm1 + mm2
+            n1(n2m)  = (n1n2)m
+            1 m      = m
+
+        order:
+            operation "." preserves order on m
+
+
+3. In order to better compare magnitudes, we define their ratios set R<sub>M</sub>
+        ratio m1/m2 is an ordered pair (m1,m2) with following definitions attached:
+
+            order on R<sub>M</sub>
+            m1/m2 &gt;= n1/n2  &lt;=df=&gt; m1 n2 &gt;= m2 n1       (O)
+            where m1,m2 can be taken from N also,
+
+            equivalence to rational ratio:
+            m1/m2 ~ n1/n2  &lt;=df=&gt; m1 n2 &gt;= m2 n1 && m2 n1 &gt;= m1 n2
+
+            Q<sub>M</sub> =df= is subset rational ratios in R<sub>M</sub>
+
+            equivalence to the same rational ratio is equivalence relation which preserves
+            the order on ratios:
+            m1/m2 ~ m1'/m2'  &lt;=df=&gt; there exists n1/n2 m1/m2 ~ n1/n2 and m1'/m2' ~ n1/n2 (Q)
+
+            To cover remaining non-rational ratios
+                I<sub>M U N</sub> = R<sub>M U N</sub> - Q<sub>M U N</sub>,
+            the definition of equality is:
+                r' ~ r'' there is no rational ratio between r1 and r2    (D)
+            It is equivalent to following two definitions (O) and (E).
+
+            In explicit form:
+                a'/b' ~ a''/b'' &lt;=df=&gt;
+                for any n1/n2
+                   a'n2 &gt; b'n1 =&gt; a''n2 &gt; b''n1 and
+                   a'n2 &lt; b'n1 =&gt; a''n2 &lt; b''n1                 (O)
+
+            In Euclid's form:
+                a'/b' ~ a''/b'' &lt;=df=&gt;
+                for any n1/n2, one and only one of i,ii,iii holds        (E)
+                   i.   a'n2 &gt; b'n1  and  a''n2 &gt; b''n1,
+                   ii.  a'n2 = b'n1  and  a''n2 = b''n1,
+                   iii. a'n2 &lt; b'n1 =&gt; a''n2 &lt; b''n1
+
+            The definition (D) is equivalence relation on entire R<sub>M</sub>, and we call its
+            equivalence classes as IM = R<sub>M</sub> / D.
+
+            If M enough rich to be a subset of IR, then each class in IM contains exactly 
+            one irrational number or one rational number.
+
+            We don't know at the moment can be M more complex and have other numbers in the class
+            containing irrationals.
+                        
+
+1,2,3 is what we need from Euclid. Now we will extend our algebraic structure and then
+rematch it back with the rest of Euclid definitions.
+
+
+
+4. We extend M to group and N to real numbers IR.
+
+    For M:
+        M' =df= { (m1-m2 ) }. (m1-m2) denotes an ordered pair (m1,m2).
+        (m1-m2) + ( m1'-m2' ) =df= (m1+m1')-(m2+m2')        
+
+        rebase operation defined as b+(m1-m2) =df= (m1+b)-(m2+b)
+        m' and m'' are equivalent if they can be equirebased that b'+m' = b''+m''
+
+        + on M' preserves this equivalence, so is well defined on equivalence classes
+        and from now we consider "+" as running on these classes
+        and (m1-m2) now represents its class
+
+        a. (m,m) is a neutral element
+        b. (m2-m1) is an inverse to given (m1-m2)
+        c. (m1-m2) &gt;df&gt; (m1'-m2') &lt;=df=&gt; when rebased m1+b &gt;df&gt; m1'+b'
+           &gt;df&gt; is well defined and compatible with "+".
+        d. M' is an extension of M, of operations on M, operations properties.
+        e. "modular-properties" are preserved when N acts on M'  
+        
+    For IR
+        the path is similar:
+        we extend N to a group N' the same way as M,
+        we extend N' to ordered field of rationals Q by defining
+            (n1/n2) by the same method as for (m1-m2)    
+        we update action . of N' over M'
+        now (M',N') is a module M' over Q with order still preserved by ".".
+
+        now we use Dedekind's method of cuts to extend Q to real numbers.
+        Each real number will represent just one Euclid ratio for this number, but even only if
+        such ratio exists for this number.
+
+        And if set M is "more rich" than IR, then the set N is insufficiently simple 
+        to study M's properties. For example, perhaps when M is a set of rational fractions, Euclid's
+        method should use more complex N to operate on M.
+
+    The constructed toolset has one flaw. We cannot operate with elements of M directly.
+        ma/m'a and m/m' are the same ratios and represented with the same real number.
+        We have to chose a unit. In given context of article or theory, one selects non zero
+        element u of M and do not change it. Then M begins isomorphic to ratios { m/u, m in M } in IM.
+
+    Certain properties must be proven for units.
+        "Independency on unit choice".
+        Operation between units.
+
+
+5. Expressing Euclid's notation as algebraic operations.
+        Compound ratios:
+            comp r,r' = r*r' =  a/b * a'/b' as product of real numbers which these ratios represent.
+                                            if M is not complex than IR.
+        Duplicate ratios:
+            dup r = r*r
+
+
+Sublemma: equirebasing and crossproducting are equivalent.
+
+        Given: ratios a/c are  A/C are equirebase equivalent.
+        =&gt; there exist x,X that
+        ax/cx = AX/CX.
+
+        a xc C/cCcx = A XC c/cCCX.
+
+        aC = Ac =&gt;  a/c  A/C are crossproduct equivalent []
+
+</pre>
+
+
+
+
+Ref: <br><br>
+<a href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">https://en.wikipedia.org/wiki/Euclid%27s_Elements</a>
+<br><br>
+<a href="http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf">http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf</a>
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+<!--
+<a name="Eframework"></a>
+<b>"E-framework" - "Euclid Framework".</b> Geometry and Ratios in "Euclid's Elements".
+A/B \( \overset{u} \sim \; \) C/D. In E-framework this means ratios A/B and C/D are "ulitmately the same".
+-->
+
+
+

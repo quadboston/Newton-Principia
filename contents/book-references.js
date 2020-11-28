@@ -14,8 +14,7 @@
         latin : `
             <span style="font-size:10px;">
                 <br><br>
-                Sources:
-                <br>
+                Source:
                 <br>
                 <a href="https://www.e-rara.ch/zut/wihibe/content/structure/338026"
                      target="_blank">
@@ -24,7 +23,9 @@
                 </a>
             </span>
         `,
+
         Donahue : `
+            <br>
             <div style="font-size:10px;">
                 Source: <br>
                 William H Donahue cited <br>
@@ -63,8 +64,20 @@
         </a>
         `,
 
+        'IanBruce' : `
+        Source:
+        <br>
+        Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.<br>
+        Translated and annotated by Ian Bruce<br>
+        <a href="http://www.17centurymaths.com/contents/newtoncontents.html">
+        http://www.17centurymaths.com/contents/newtoncontents.html</a>
+        <br>
+        `,
+
+
         'kvk' : `
-            <br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
+            <br><span style="font-size:9px">This addendum is written by
+            <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
         `,
 
 

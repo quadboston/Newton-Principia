@@ -88,7 +88,7 @@
                 pointWrap.dragDecorColor='blue';
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor='red';        //optional
+                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
             }
             if( typeof pointWrap.x === 'number' ) {
                 decorator = Update_decPoint( pointWrap )

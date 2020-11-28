@@ -95,6 +95,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -134,7 +135,6 @@ Page 123.
 
 *::*proof|english
 {
-    "default" : "1"
 }
 *..*
 
@@ -236,14 +236,14 @@ description, will be proportional to those times in this case.
 
 
 *::*corollary|model
-
-<!-- todm
-because of non-elaborated parser, this empty essay still has to be included -->
+{
+  "menuCaption" : "---"
+}
+*..*
 
 
 *::*corollary|english
 {
-    "default" : "1"
 }
 *..*
 
@@ -327,7 +327,7 @@ Pages 123 - 141.
 
 *::*claim|model
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "---"
 }
 *..*
 
@@ -353,6 +353,8 @@ Pages 123 - 141.
 ¦speed-change¦initial speed :¦¦¦¦
 
 ¦path-change BC path cssbold¦r¦¦¦¦
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 <b>Calculational Model</b><br><br>
 

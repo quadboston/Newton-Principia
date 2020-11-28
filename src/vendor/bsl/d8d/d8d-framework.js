@@ -107,7 +107,6 @@
         {
             dragWraps.forEach( function( dragWrap ) {
                 var uP = dragWrap.update_decPoint;
-                //ccc( 'all dec start: ' );
                 uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap );
                 //ccc( 'all dec end: ', dragWrap.decPoint );
             });

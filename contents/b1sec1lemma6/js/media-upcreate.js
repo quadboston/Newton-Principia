@@ -10,7 +10,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            media_upcreate_custom_curves,
+            media_upcreate___part_of_medupcr_basic,
         },
     });
     return;
@@ -28,8 +28,11 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate_custom_curves()
+    function media_upcreate___part_of_medupcr_basic()
     {
+        //vital for letters/picture conflict
+        //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
+        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
         //=================================================
         // //\\ analytical derivative dy/dx
@@ -45,6 +48,7 @@
                 pointA      : rg.A,
                 pointB      : rg.B,
                 mmedia      : stdMod.mmedia,
+                addToStepCount : 1,
         });
 
         ssF.paintsCurve({
@@ -53,6 +57,7 @@
                 pointA      : rg.curveStart,
                 pointB      : rg.curveEnd,
                 mmedia      : stdMod.mmedia,
+                addToStepCount : 1,
         });
         //-------------------------------------------------
         // \\// original arc and curve
@@ -75,6 +80,7 @@
                 magnitude,
                 //addedCssClass: 'tp-arc-Ab tp-both-curves', 
                 addedCssClass: 'tp-arc-Ab', 
+                addToStepCount : 1,
         });
         //-------------------------------------------------
         // \\// paints magnified curve

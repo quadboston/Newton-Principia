@@ -74,7 +74,7 @@
             var tpclass = sDomF.topicIdUpperCase_2_underscore(
                           ( ns.haz( attr, 'tpclass' ) ) || pName
             );
-            var ww          = sDomF.getFixedColor( tpclass );
+            var ww          = ns.haz( line, 'pcolor' ) || sDomF.getFixedColor( tpclass );
             var stroke      = ns.ha( attr, 'stroke', ww );
             var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
 
@@ -190,7 +190,7 @@
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function str2line( str, cssClass, line, caption )
+    function str2line( str, cssClass, lineConf, caption )
     {
         var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
         var lpoints = str.split( splitToken );
@@ -200,7 +200,7 @@
             {
                 cssClass        : 'tostroke thickable' +
                                    ( cssClass ? ' ' + cssClass : '' ),
-                'stroke-width'  : ns.sn( 'stroke-width', line, 2 ),
+                'stroke-width'  : ns.sn( 'stroke-width', lineConf, 2 ),
                 caption         : caption,
             }
         );

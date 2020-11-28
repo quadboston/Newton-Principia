@@ -32,13 +32,18 @@
         //Optional parameter. Defaults defined from the following line.
         var surface0attachee = thisSlider.surface = arg.drawSurfaceDomEl || draggee.parentNode;
 
-        // //\\ callbacks
+        //**************************************
+        // //\\ from slider to app,
+        //      callbacks
+        //**************************************
         //      data exchanges go via unitless parameter, "absFraction"
         //.callback which will supply data from the slider to parent application during mouse/touch move
         var dataInMove       = arg.dataInMove || (function() {});
         //.callback which will supply data from the slider to parent application at mouse/touch completion
         var dataInArrival    = arg.dataInArrival  || (function() {});
-        // \\// callbacks
+        //**************************************
+        // \\// from slider to app,
+        //**************************************
 
         //:accepts range-limits or sets their defaults
         var lowLimit         = arg.lowLimit || 0;

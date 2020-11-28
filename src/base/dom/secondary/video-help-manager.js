@@ -136,7 +136,7 @@
                     .div()
                     .cls('video-icon-img-container')
                     .html( '<img class="video-help-button" width="25"' +
-                           'src="images/camera-lightbulb.png" ' +
+                           'src="' + fconf.pathToStem + 'images/camera-lightbulb.png" ' +
                            '>' +
                            ( vConf.caption ?
                              ' <span style="vertical-align:middle;">' +

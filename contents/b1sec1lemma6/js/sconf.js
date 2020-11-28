@@ -53,7 +53,7 @@
         var hidden  = [0,     0,   0,      0];
 
 
-        var fixedColorsDef =
+        var predefinedTopics =
         {
             //:basic topics
             proof,
@@ -253,7 +253,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || fixedColorsDef[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -373,7 +373,7 @@
 
         ns.paste( sconf, {
             givenCurve_pivots_inModel,
-            fixedColorsDef,
+            predefinedTopics,
             originalPoints,
             linesArray,
             //lines,

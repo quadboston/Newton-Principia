@@ -48,17 +48,6 @@
             Object.assign( dr,
             {
                 svgSeg          : studyMods[ SUB_MODEL ].mmedia$(),
-
-                polylineCurve   : document.getElementById( 'polylineCurve' ),
-                figureInternalArea : document.getElementById( 'figureInternalArea' ),
-
-                //tod? right: 
-                baseAxis        : document.getElementById( 'baseAxis' ),
-                //baseAxis        : document.getElementById( 'base' ),
-
-                wallL           : document.getElementById( 'wallL' ),
-                wallR           : document.getElementById( 'wallR' ),
-
                 basePts         : {offset:1, visOffset:0, list:[]},
                 curvPts         : {offset:1, visOffset:0, list:[]},
                 leftPts         : {offset:0, visOffset:0, list:[]},

@@ -1,6 +1,16 @@
 *::*claim|latin
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Latin",
+  "fixed-colors" :
+  {
+    "given"                     : [0,    100,  0 ],
+    "curve"                     : [0,    100,  0 ],
+    "figure"                    : [0,    100,  0 ],
+    "figure-area"               : [100,  0,  0 ],
+    "circumscribed-rectangles"  : [0,  50, 100 ],
+    "widthest-rectangular"      : [0,  0, 100 ],
+    "inscribed-rectangles"      : [100,  0, 100 ]
+  }
 }
 *..*
 
@@ -67,7 +77,7 @@
 *..*
 
 
-        Consider any ¦figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦wall¦side¦¦. 
+        Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦wall¦side¦¦. 
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
         for ¦inscribed-rectangles¦inscribed rectangles¦¦ and ¦circumscribed-rectangles¦circumscribed rectangles¦¦. 
         If we increase the number of these rectangles indefinitely, 

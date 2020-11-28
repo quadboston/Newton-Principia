@@ -1,22 +1,26 @@
 ( function() {
     var {
         ns, sn, $$, cssp,
-        haz,
+        nspaste, haz,
         sconf,
         rg,
         sDomN,
         ssD,
         sDomF,
+        ssF,
         exegs,
-        references,
         topics,
+        normId2topic,
+        id2tplink,
+        ix2tplink,
         amode,
         eachprop,
     } = window.b$l.apptree({
+        ssFExportList :
+        {
+            frags__2__dom_css_mjax_tpanchors,
+        },
     });
-
-
-    var oneTimeUse_globalCSS = '';
 
     //---------------------------------------------
     // //\\ topic engine variables
@@ -24,11 +28,7 @@
     var tplinkCount = 0;
 
     //: lemma-wise constructs
-    var topicsCount = 0; //indexes shapes lemma-wise
-    var id2topic    = topics.id2topic = {};
-
-    var id2tplink   = topics.id2tplink = {};
-    var ix2tplink   = topics.ix2tplink = [];
+    //var topicsCount = 0; //indexes shapes lemma-wise
 
     var SPACE_reg = /\s+/;
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -46,10 +46,6 @@
     //---------------------------------------------
     // \\// topic engine variables
     //---------------------------------------------
-
-    sDomF.frags__2__dom_css_mjax_tpanchors = frags__2__dom_css_mjax_tpanchors;
-    sDomF.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
-    sDomF.colorArray_2_rgba = colorArray_2_rgba;
     return;
 
 
@@ -77,54 +73,53 @@
     ///
     function frags__2__dom_css_mjax_tpanchors()
     {
+        //recall: normId2topic is created before from lemma's-js before,
+        //        following sub will add more topics and colors
         exegs__2__dom_indexedLinks_indexedTopics();
-        topics__2__topicsColorModel();
-        exegs__2__tpAn8dom8mjax();
 
-        //this is moved into MathJax callback:
-        //setTimeout( sDomF.tpanch2mjax, 3000 );
+        ssF.topics__2__topicsColorModel();
+        var activeFrags_styles = exegs__2__tpAn8dom8css8mjax();
 
-        //todo ... this pollutes the code ... set in separate css for topics
-        oneTimeUse_globalCSS += `
-            .${cssp}-text-widget .exeg-frag {
-                display : none;
-            }
-            .${cssp}-text-widget .active-static {
-                display : inline;
-            }
-            .${cssp}-text-widget .delayed-far,
-            .${cssp}-text-widget .delayed-anchor {
-                display : none;
-            }
-        `;
-        ns.globalCss.update( oneTimeUse_globalCSS );
-        sDomF.tpAnchors_2_anchors8media_css();
+        //-----------------------------------------------------------
+        // //\\ styles
+        //-----------------------------------------------------------
+        var styleStr                    = ssF.css_4_hidden8frag8active8delayed();
+        var { styleAnchors, tplinks }   = ssF.topics_anchor_css();
+        var styleMedia                  = ssF.topics_media_css( tplinks );
+        // //\\ inserts tp-highlight-machinery css into html-document
+        var style = document.createElement( 'style' );
+        document.head.appendChild( style );
+        style.innerHTML = styleStr + activeFrags_styles + styleMedia + styleAnchors;
+        // \\// inserts tp-highlight-machinery css into html-document
+        //-----------------------------------------------------------
+        // \\// styles
+        //-----------------------------------------------------------
+
         sDomN.topicModelInitialized = true;
-    };
+    }
 
 
 
 
     ///builds
     ///         subexeg.subessayCaption
-    ///         subexeg.domTogglerEl$
+    ///         subexeg.subessayMenuItem$
     ///         subexeg.domEl$
     ///collects fragment__2__indexed_links8topics
-
     function exegs__2__dom_indexedLinks_indexedTopics()
     {
         eachprop( exegs, ( theorionAspects, mcat_id ) => {
             eachprop( theorionAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     //====================================================
-                    // //\\ creates text and toggler elements
+                    // //\\ creates subessay's doms for text and menuItem
                     //====================================================
                     if( exAspect.subexegs.length > 1) {
                         subexeg.subessayCaption =
                                 haz( subexeg.essayHeader, 'subessayCaption' ) ||
                                 haz( subexeg.essayHeader, 'menuCaption' ) ||
                                 subexeg.essayHeader.subessay;
-                        subexeg.domTogglerEl$ = $$
+                        subexeg.subessayMenuItem$ = $$
                           .c('div')
                           .html( subexeg.subessayCaption )
                           .cls( 'subessay-toggler highlight-text-disabled' )
@@ -140,19 +135,19 @@
                       ;
                     subexeg.domEl = subexeg.domEl$();
                     //====================================================
-                    // \\// creates text and toggler elements
+                    // \\// creates subessay's doms for text and menuItem
                     //====================================================
 
                     ///collecting |...|..|| anchor-topics
-                    subexeg.activeFrags.forEach( function( activeFrag, tix ) {
-                        if( typeof( activeFrag ) === 'object' ) {
-                            eachprop( activeFrag, (avalue) => {
-                                fragment__2__indexed_links8topics( avalue );
+                    subexeg.activeFrags.forEach( function( rawActiveFrag, tix ) {
+                        if( typeof( rawActiveFrag ) === 'object' ) {
+                            eachprop( rawActiveFrag, (rawActFrValue) => {
+                                fragment__2__indexed_links8topics( rawActFrValue );
                             });
                         } else {
                             //.strange why TOP_ANCH_REG_gu (with flag "g") works
                             //.and TOP_ANCH_REG_u does not
-                            fragment__2__indexed_links8topics( activeFrag );
+                            fragment__2__indexed_links8topics( rawActiveFrag );
                         }
                     });
                 });
@@ -171,7 +166,7 @@
                         .to( sDomN.essaionsRoot$ )
                         ;
                     exAspect.subexegs.forEach( ( subexeg, exegId ) => {
-                        subexeg.domTogglerEl$.to( subessayMenuContainer$ );
+                        subexeg.subessayMenuItem$.to( subessayMenuContainer$ );
                         $$.c('span').html('<br>').to( subessayMenuContainer$ );
                     });
                 }
@@ -192,49 +187,58 @@
 
 
 
-    ///Converts these stubs, exeg.activeFrags, to
-    ///     1. exeg.builtAFrags ( depending on app mode )
-    ///     2. creates dom-placeholders for essaion's fragments which not yet created
-    ///     3. and makes final fragments parsing: BodyMathJax_2_HTML( domComponents[ fix ] )
+    ///not sure what this comment means:
+    /// This function visualizes the texts upon the mode
+    /// at late run-time event, this function is, for example,
+    /// used in lemma-2-3::gui-visibility.js::refreshSVG_master()
     ///
-
-    ///This function visualizes the texts upon the mode
-    ///at late run-time event, this function is, for example,
-    ///used in lemma-2-3::gui-visibility.js::refreshSVG_master()
-    ///
-    function exegs__2__tpAn8dom8mjax()
+    function exegs__2__tpAn8dom8css8mjax()
     {
+        var activeFrags_styles = '';
         eachprop( exegs, ( theorionAspects, mcat_id ) => {
             eachprop( theorionAspects, ( exAspect, scat_id ) => {
-                exAspect.subexegs.forEach( ( exeg, exegId ) => {
-                    //if( exegId === 0 ) {
-                        exeg.builtAFrags = [];
-                        anchConfigs_2_anchors( exeg );
-                        //as further-processed-fragments-of-exeg
-                        exeg.builtAFrags.forEach( function( bFrag, fix ) {
-                            eachprop( bFrag.activeFrags, (afrag,fid) => {
-                                afrag_2_dom8mj( exeg, afrag, fid );
-                            });
+                exAspect.subexegs.forEach( ( subexeg ) => {
+                    subexeg.built_act8stat_fragments = [];
+
+                    ///essay is comprised of fragments; active fragments
+                    ///will get css-class which makes them visitble when
+                    ///in some application state this class is assigned to top html-parent
+                    normalizes___active8static_fragments( subexeg );
+                    //**********************************************
+
+                    subexeg.built_act8stat_fragments.forEach( function( bFrag, fix ) {
+                        eachprop( bFrag.normFragsRacks, ( normFragRack,fid) => {
+                            builtFrags_2_dom8mj( subexeg, normFragRack, fid );
+                            //**********************************************
                         });
-                    //}
+                    });
                 });
             });
         });
-        return;
+        return activeFrags_styles;
 
-        function afrag_2_dom8mj( exeg, bFrag, fid )
+        function builtFrags_2_dom8mj( exeg, bFrag, fid )
         {
             //*******************************************************
             //.here page content injects into html for the first time
             //*******************************************************
             bFrag.dom$ = $$.c('div').to( exeg.domEl );
+
+            //-------------------------------------------------------
+            // //\\ sets css-machinery for reverse-action
+            //      ===from-media---to---text
+            //-------------------------------------------------------
             bFrag.dom$.cls( 'active-'+fid + ' exeg-frag');
-            oneTimeUse_globalCSS += `
+            activeFrags_styles += `
                 .${cssp}-text-widget.active-${fid} .active-${fid} {
                     display : inline;
                 }
             `;
-            bFrag.dom$.html( bFrag.activeFrag );
+            //-------------------------------------------------------
+            // \\// sets css-machinery for reverse-action
+            //-------------------------------------------------------
+
+            bFrag.dom$.html( bFrag.fragBody );
             //-----------------------------------------------------------------------
             // //\\ inserts book-references in DOM
             //      by html-attribute "book-reference-id"
@@ -252,37 +256,45 @@
             //-----------------------------------------------------------------------
 
             BodyMathJax_2_HTML( bFrag.dom$() );
+
+            return activeFrags_styles;
         }
     }
 
 
 
-    //===========================================================
-    // normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
-    //===========================================================
+    //======================================================================
+    // 1) normalizes active and static fragments and
+    // 2) replaces scriptedAnchors with real anchors <a ... tl-NNNNN dix ...
+    //======================================================================
     ///Input:   exeg.activeFrags
-    ///Output:  exeg.builtAFrags
-    ///         format is: exeg.builtAFrags[ index_in_exeg.activeFrags ] =
-    ///                    { activeFrags : newfrags }
-    ///                    newfrags[ akey ] =
-    ///                              { activeFrag : afrag-body }
-    ///                        akey = 'static', ...
-    function anchConfigs_2_anchors( exeg )
+    ///Output:  exeg.built_act8stat_fragments
+    ///         format is: exeg.built_act8stat_fragments[ index_in_exeg.activeFrags ] = ..
+    ///         see at (*) below ...
+    function normalizes___active8static_fragments( subexeg )
     {
-        exeg.activeFrags.forEach( function( activeFrag, tix ) {
-            if( typeof( activeFrag ) !== 'object' ) {
-                ////normalizes activeFrag to form { prop:value } for non active fragment;
-                ////for active fragments, there can be any string for the "prop" and
-                ////any number of props;
-                activeFrag = { 'static' : activeFrag };
+        subexeg.activeFrags.forEach( function( rawActiveFrag, tix ) {
+            if( typeof( rawActiveFrag ) === 'object' ) {
+                ////we have active fragments:
+                ////     { name1 : fragment1,
+                ////       name2 : fragment2,
+                ////       ....
+                var normalizedActiveFrag = nspaste( {}, rawActiveFrag );
+            } else {
+                ////normalizes rawActiveFrag string to comply with active fragments format:
+                var normalizedActiveFrag = { 'static' : rawActiveFrag };
             }
-            var newfrags = {};
-            eachprop( activeFrag, ( afrag, akey ) => {
-                ////normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
-                newfrags[ akey ] =
-                    { activeFrag : afrag.replace( TOP_ANCH_REG_gu, replWithAnchor ) }
+            var norFrRack = {};
+            eachprop( normalizedActiveFrag, ( afrag, akey ) => {
+                norFrRack[ akey ] = {
+                    //(*) format:
+                    fragBody    : afrag.replace( TOP_ANCH_REG_gu, replWithAnchor ),
+                                  //normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
+                    dom$        : 'to be defined later',
+                    //...       : ...
+                };
             });
-            exeg.builtAFrags[ tix ] = { activeFrags : newfrags };
+            subexeg.built_act8stat_fragments[ tix ] = { normFragsRacks : norFrRack };
         });
         return;
 
@@ -294,31 +306,31 @@
 
         function replWithAnchor(
             match,          //total match:      ¦anchor config¦anchor caption¦¦
-            skey,           //¦anchor config
+            anchorConfig,    //¦anchor config
             scaption,       //anchor caption
             cflag,          //close flag ¦
             farFlag,        //far flag   ¦
             remainder       //not sure what is this
         ){
 
-            ///we must do skey preporcessing again, for time 2 out of 2:
-            ///do handle strip==='' or generate skey
-            if( skey === '' ) {
-                skey = scaption;
+            ///we must do anchorConfig preporcessing again, for time 2 out of 2:
+            ///do handle strip==='' or generate anchorConfig
+            if( anchorConfig === '' ) {
+                anchorConfig = scaption;
             } else {
-                skey = skey.substring( 1, skey.length );
-                //ccc( 'link=', match[0], skey );
+                anchorConfig = anchorConfig.substring( 1, anchorConfig.length );
+                //ccc( 'link=', match[0], anchorConfig );
             }
 
-            var rack = topics.id2tplink[ skey ];
+            var rack = topics.id2tplink[ anchorConfig ];
             if( !rack ) return;
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
             
-            //.we cannot use skey because spaces inside of it, so
+            //.we cannot use anchorConfig because spaces inside of it, so
             //.we use tplink_ix_str
             //.todm ... this is a real bug: tplink_ix does not count all links with
-            //          the same config, same skey. So, different targets will be "killed", and
+            //          the same config, same anchorConfig. So, different targets will be "killed", and
             //          there will be only one target.
             var repl = '<a class="tl-' + rack.tplink_ix + dix + '">'+ scaption +
                        '</a>' + (remainder || '' );
@@ -330,100 +342,14 @@
     }
 
 
-    function topics__2__topicsColorModel()
-    {
-        var SATUR   = sconf.DEFAULT_TP_SATUR;
-        var LIGHT   = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
-        var OPACITY = sconf.DEFAULT_TP_OPACITY;
-
-        var colorsCount = ix2tplink.length;
-        eachprop( ssD.topics.id2topic, ( topi_c, scount ) => {
-            var fc = topi_c['fixed-color'];
-            if( fc ) {
-                /*
-                if( topi_c.tpid === '_sc' ) {
-                     ccc(  'tpid after conversion: ' +
-                            'fc=',fc,
-                            // 'lh=', lh
-                     );
-                }
-                */
-                var lh = colorArray_2_rgba( fc )
-
-            } else {
-                var sc = topi_c.topicsCount;
-                var rem = sc%2;
-                var zebra = rem ? (sc-rem)/2 : sc/2 + Math.floor( topicsCount / 2 );
-                var hue = 359 / topicsCount * zebra;
-                var lh = hslo_2_low8high( hue, SATUR, LIGHT, OPACITY );
-            }
-            Object.assign( topi_c, lh );
-        });
-    }
-
-    function hslo_2_low8high( hue, sat, light, op )
-    {
-        var corRack     = ns.pars2colors( hue, sat, light, op );
-        rgba_low        = corRack.rgba;
-        rgbaCSS         = corRack.rgbaCSS;
-        var corRack     = ns.pars2colors( hue, sat, light, 1 );
-        rgba_high       = corRack.rgba;
-        return { rgba_low, rgba_high }; 
-    }
-
-    ///color low    goes to supplied-color or default,
-    ///color height goes to opacity = 1
-    function colorArray_2_rgba( colorArray )
-    {
-        var SATUR = sconf.DEFAULT_TP_SATUR;
-        var LIGHT = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
-
-        //.apparently does job as said: color to color
-        var overridden = ns.rgba2hsla( colorArray );
-        hue = overridden[ 0 ];
-        var opacity = overridden[ 3 ] || overridden[ 3 ] === 0 ?
-                        overridden[ 3 ] :
-                        sconf.DEFAULT_TP_OPACITY;
-        //.for grey or black color: we set satur to 0 manually
-        var satur = overridden[1] === 0 ? 0 : SATUR;
-        //.apparently does the color as is, but for high, opacity is set to 1
-        return hslo_2_low8high( hue, satur, LIGHT, opacity );
-    }
-
-
-    function BodyMathJax_2_HTML( domEl )
-    {
-        mathJax_2_HTML();
-        ///===============================================
-        /// waits for MathJax and fires it up over domEl
-        ///===============================================
-        function mathJax_2_HTML()
-        {
-            if( !window.MathJax ) {
-                //c cc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
-                //.no way to avoid this ... mj doc does not help:
-                setTimeout( mathJax_2_HTML, 100 );
-                return;
-            }
-            //c cc( 'MathJax is loaded. ' + Date.now() );
-
-            //MathJax.Hub.Typeset() 
-            //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
-            //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
-            //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [sDomF.tpanch2mjax,domEl]);
-        }
-    }
-
-
 
     ///*************************************************************
     ///collects |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///does loop via all possible active fragments;
     ///*************************************************************
-    function fragment__2__indexed_links8topics( activeFrag )
+    function fragment__2__indexed_links8topics( rawActFrValue )
     {
-        var topicPreAnchors = activeFrag.match( TOP_ANCH_REG_gu );
+        var topicPreAnchors = rawActFrValue.match( TOP_ANCH_REG_gu );
 
         if( topicPreAnchors ) {
             topicPreAnchors.forEach( link => {
@@ -490,19 +416,19 @@
 
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
                 /// loops via separate topic IDs
-                tplink.raw_tpIDs.forEach( tpid_ => {
+                tplink.raw_tpIDs.forEach( tpid_user => {
                     //..........................................................
                     // //\\ checks for reserved topic categories
                     //      like '*anch-color', ...
                     //..........................................................
-                    if( 'cssbold' === tpid_ ) {
+                    if( 'cssbold' === tpid_user ) {
                         tplink.anchorIsBold = true;
                         return;
-                    } else if( '*anch-color' === tpid_ ) {
+                    } else if( '*anch-color' === tpid_user ) {
                         tplink.cssNoColorToShapes = true;
                         return;
-                    } else if( tpid_.match( ANCH_COLOR_CAT_rg ) ) {
-                        var ww = tplink.colorCateg = tpid_.match( ANCH_COLOR_CAT_rg );
+                    } else if( tpid_user.match( ANCH_COLOR_CAT_rg ) ) {
+                        var ww = tplink.colorCateg = tpid_user.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
                         tplink[ 'fixed-color' ] = haz( ssD['fixed-colors'], ww[1] );
                         return;
@@ -512,26 +438,11 @@
                     //..........................................................
 
 
-                    var tpid = topicIdUpperCase_2_underscore( tpid_ );
+                    var tpid_norm = sDomF.topicIdUpperCase_2_underscore( tpid_user );
                     //tplink has collection of topics,
                     //here is how this collection is populated:
-                    tplink.tpid2true[ tpid ] = true;
-
-                    ///recall: ssD.topics.id2topic,
-                    ///if tpid is not yet ready added
-                    if( !id2topic.hasOwnProperty( tpid ) ) {
-                        id2topic[ tpid ] = {
-                            tplinkConf      : tplinkConf,   //all other links are "lost" here
-                            //.fixed color added to topic
-                            'fixed-color'   : haz( ssD['fixed-colors'], tpid ),  //flag
-                            tplink_ix       : tplink_ix,    //all other links are "lost" here
-                            topicsCount     : topicsCount,  //implicit index
-                            tpid            : tpid,         //just a self-reference
-                        }
-                        //further, id2topic[ tpid ] colors converted here:
-                        //topics__2__topicsColorModel()
-                        topicsCount++;
-                    }
+                    tplink.tpid2true[ tpid_norm ] = true;
+                    sn( tpid_norm, normId2topic );
                 });
                 //=========================================
                 // \\// indexes topics locally and globally
@@ -540,14 +451,30 @@
         }
     }
 
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( topicId )
-    {
-        return topicId.replace( /([A-Z,])/g,
-            ( match, key1 ) => ( key1 === ',' ? '_-' : '_' + key1.toLowerCase() )
-        );
-    }
 
+    function BodyMathJax_2_HTML( domEl )
+    {
+        mathJax_2_HTML();
+        ///===============================================
+        /// waits for MathJax and fires it up over domEl
+        ///===============================================
+        function mathJax_2_HTML()
+        {
+            if( !window.MathJax ) {
+                //c cc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
+                //.no way to avoid this ... mj doc does not help:
+                setTimeout( mathJax_2_HTML, 100 );
+                return;
+            }
+            //c cc( 'MathJax is loaded. ' + Date.now() );
+
+            //MathJax.Hub.Typeset() 
+            //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
+            //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
+            //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,domEl], [ssF.tpanch2mjax,domEl]);
+        }
+    }
 
 }) ();
 

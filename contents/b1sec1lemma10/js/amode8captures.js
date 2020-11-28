@@ -1,0 +1,83 @@
+( function() {
+    var {
+        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            amode2rgstate,
+        },
+    });
+    setCapture();
+    return;
+
+
+
+
+
+
+    function setCapture()
+    {
+        paste( capture,
+        {
+        });
+    }
+
+
+    function amode2rgstate( captured )
+    {
+        var { theorion, aspect, submodel, subessay } = amode;
+
+        //hides all proof material, proof is already done in lemma 9
+        [
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'Ae',
+            'Ab',
+            'Ac',
+            'Ad',
+            'db',
+            'ec',
+            //'df',
+            //'eg',
+            'remoteCurve',
+
+            "Abd",
+            "Ace",
+            "area-Abd",
+            "area-Ace",
+            //:linear areas
+            "Afd",
+            "Age",
+
+        ].forEach( gname => { rg[ gname ].undisplay = true; });
+
+        rg.pivotPoint1.pcolor = sDomF.getFixedColor( 'given' )
+        rg.Ag.pcolor = sDomF.getFixedColor( 'given' )
+
+        if(
+            theorion === 'proof'
+        ) {
+            rg.tiltRatio = { value : 1.3 };
+            [
+                'Ae',
+                'e',
+            ].forEach( gname => { rg[ gname ].undisplay = false; });
+        }
+
+        if(
+            aspect === 'addendum'
+        ) {
+            sDomF.detected_user_interaction_effect( !'doUndetected' );
+        }
+        rg.Ae.pcolor = sDomF.getFixedColor( 'given' )
+        rg.e.pcolor = sDomF.getFixedColor( 'given' )
+
+        return captured;
+    }
+
+}) ();
+

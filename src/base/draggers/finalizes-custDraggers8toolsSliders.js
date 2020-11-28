@@ -9,7 +9,8 @@
         stdMod,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
-        setModule });
+        setModule
+    });
     return;
 
 
@@ -115,10 +116,6 @@
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;
 
-            //ns.d('\npoint finder=' +
-            //        ' pname=' + dragPoint.pname
-            //);
-
             if( ns.haz( dragPoint, 'unfound' ) ) {
                 unfoundDragger = dragWrap;
                 return;
@@ -127,15 +124,6 @@
             var tdX         = Math.abs( testMediaX - dragPoint.medpos[0] );
             var tdY         = Math.abs( testMediaY - dragPoint.medpos[1] );
             var td          = Math.max( tdX, tdY );
-
-            /*
-            ns.d('\ntest dist=' + td.toFixed(3) +
-                 '\ndx=' + testMediaX.toFixed(3) + 
-                 '\ndy=' + testMediaY.toFixed(3) + 
-                 '\npname=' + dragPoint.pname
-            );
-            */
-
             if( td <= DRAGGEE_HALF_SIZE ) {
                 if( !closestDragWrap || closestTd > td ||
                     (dragPoint.dragPriority || 0 ) > closestDragPriority ) {

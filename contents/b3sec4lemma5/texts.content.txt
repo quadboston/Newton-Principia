@@ -18,6 +18,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -99,7 +100,6 @@ values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known.
 
 *::*proof|model
 {
-  "default" : "1",
   "xxx  studylab" : true
 }
 *..*
@@ -127,7 +127,7 @@ satisfying all points
 
 S t e p  2.
 
-For polinomial ¦given¦y<sup>n</sup>¦¦, we can
+For polynomial ¦given¦y<sup>n</sup>¦¦, we can
 find out that divided difference ¦approximator¦P<sub>n</sub>¦¦ = ¦given¦a<sub>n</sub>¦¦.
 
 <br><br>
@@ -195,8 +195,12 @@ Moving other point L closer to H
 makes picture even worse.
 </span>
 
+<div book-reference-id="kvk"></div>
 
-<br><br><span style="font-size:9px">This essay is written by Konstantin Kirillov.</span><br>
+
+
+
+
 
 
 *:::*:::*

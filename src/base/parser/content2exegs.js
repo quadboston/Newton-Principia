@@ -1,32 +1,30 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-
-    var rootvm      = sn('rootvm');
-    var cssp        = ns.CSS_PREFIX;
-    var nsmethods   = sn('methods');
-
-    var fapp        = sn('fapp' ); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var amode       = sn('mode',sapp);
-    var studyMods   = sn('studyMods', sapp);
-                      sn( 'capture', ssD );
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var bgImages    = sn('bgImages',ssD);
-    var fixedColors = sn('fixed-colors',ssD);
-
-    var references  = sn('references', ssD);
-    var exegs       = sn('exegs', ssD);
-    sDomF.loads_scenarioList8refs8conf__2__essaions_2_exegs = 
-          loads_scenarioList8refs8conf__2__essaions_2_exegs;
+    var {
+        ns,
+        $$,
+        sn,
+        nsmethods,
+        fapp,
+        fconf,
+        sconf,
+        sapp,
+        sDomF,
+        sDomN,
+        amode,
+        studyMods,
+        capture,
+        ssD,
+        topics,
+        bgImages,
+        fixedColors,
+        references,
+        exegs,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs,
+        },
+    });
     sDomF.getFixedColor = getFixedColor;
     return;
 
@@ -40,7 +38,7 @@
     ///==========================================
     ///creates html for text pane
     ///==========================================
-    function loads_scenarioList8refs8conf__2__essaions_2_exegs( continueAppInit_cb )
+    function loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs( continueAppInit_cb )
     {
         var allEssaionsStr = "";
         var lemmaConfig = fconf.sappModulesList[ fconf.sappId ];
@@ -62,7 +60,7 @@
                     if( !listItem.match( /^\s*$/ ) ) {
                         lbf_forAjax.push({
                               id: listItem,
-                              link:'contents/' + fconf.sappId + '/' + listItem
+                              link : fconf.pathToStem + 'contents/' + fconf.sappId + '/' + listItem
                         });
                     }
                 });
@@ -99,7 +97,6 @@
 
             if( loadedFilesById['content-config'] ) {
                 var tmRack = JSON.parse(loadedFilesById['content-config'].text);
-                var topics = sn('topics', ssD);
                 sconf.contentConfig = tmRack;
             }
             var txt = allEssaionsStr;
@@ -218,15 +215,15 @@
                         var captureTxt = wPreText.substring(
                             capturePos + CAPTURE_POSITION_INDICATOR.length );
                         wPreText = wPreText.substring( 0, capturePos );
-                        ssD.capture = ns.paste( JSON.parse( captureTxt ) );
+                        ns.paste( capture, JSON.parse( captureTxt ) );
                     }
                     //---------------------------------------------------------
                     // //\\ digesting app-mode to lemma conditions
                     //---------------------------------------------------------
-                    var wwCond = ns.haz( ssD.capture, "__amode2rgstate" );
+                    var wwCond = ns.haz( capture, "__amode2rgstate" );
                     if( wwCond ) {
                         ssD.__amode2rgstate = wwCond;
-                        delete ssD.capture.__amode2rgstate;
+                        delete capture.__amode2rgstate;
                     } else {
                         ssD.__amode2rgstate = [];
                     }
@@ -257,10 +254,11 @@
             });
 
             //===========================================================
-            /// collectBgImg, setMenu, decPoint_parentClasses
+            /// collect BgImg, set Menu, dec Point_parentClasses
             ///     continues to spawn exegs after all exegs placeholders
             ///     have been established from parser
             //===========================================================
+            sn( 'asp8theor_menus', sconf );
             ns.eachprop( exegs, ( exAspects, theorion_id ) => {
                 ns.eachprop( exAspects, ( exAspect, aspect_id ) => {
                     exAspect.subexegs.forEach( ( exeg, exegId ) => {
@@ -268,9 +266,10 @@
                         if( exegId === 0 ) {
                             collectBgImg( essayHeader, exeg );
 
-                            sn( 'asp8theor_menus', sconf );
-                            setMenu( theorion_id, 'theorion', aspect_id, essayHeader );
-                            setMenu( aspect_id, 'aspect', null, essayHeader );
+                            //.not elegant: should be in "theorion" loop, not in child loop,
+                            setMenu( theorion_id, 'theorion', essayHeader );
+
+                            setMenu( aspect_id, 'aspect', essayHeader );
                             //******************************************************************
                             // //\\ collects decPoint_parentClasses for d8d_p.createFramework
                             //      media-drag-decoration-enabled-aspect
@@ -312,7 +311,7 @@
             //=======================================
             // //\\ parses and sets menu
             //=======================================
-            function setMenu( leafId, mcat_id, childCatId, essayHeader )
+            function setMenu( leafId, mcat_id, essayHeader )
             {
                 //=======================================
                 // //\\ how submenu built
@@ -347,11 +346,10 @@
                      {  list : [],
                         //.will be overriden if aspect-default is preset in script
                         "default" : leafId,
-                        duplicates : {}
+                        duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
                 //ccc( 'checing dup ' + leafId + ' ' + mcat_id  + ' men=', men); 
                 if( !men.duplicates[ leafId ] ) {
-                    //var menuItem = { id:aspect, caption:essayHeader.menuCaption } 
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;
                     men.list.push( menuItem );
@@ -382,10 +380,12 @@
                 //------------------------------------------------------------
 
 
-                if( essayHeader.menuCaption && mcat_id === 'aspect' ) {
+                ///at least one caption should exist among twin aspects
+                if( ns.haz( essayHeader, 'menuCaption' ) && mcat_id === 'aspect' ) {
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                     men.duplicates[ leafId ].studylab = essayHeader.studylab;
                 }
+
                 if( essayHeader.theorionCaption && mcat_id === 'theorion' ) {
                     men.duplicates[ leafId ].caption = essayHeader.theorionCaption;
                 }
@@ -429,8 +429,8 @@
                     {
                         cssId : cssId,
                         src: imgId === 'empty' ?
-                             'images/empty.png' :
-                             'contents/' + fconf.sappId + '/img/' +
+                             fconf.pathToStem + 'images/empty.png' :
+                             fconf.pathToStem + 'contents/' + fconf.sappId + '/img/' +
                                 ( imgId === 'common' ?
                                     //it turns out that "common" means "from conf" //*c*
                                     bgImg : imgId

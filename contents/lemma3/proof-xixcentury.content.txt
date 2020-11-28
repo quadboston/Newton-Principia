@@ -5,10 +5,10 @@
   "dataLegend":"0"
 }
 *..*
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 
 <b>Context</b><br><br>
-
 
 In context of XIX century notations, we will study a bounded function defined on closed interval ¦curve¦\( [a,b] \overset f \to \mathbb{R}. \)¦¦<br><br>
 
@@ -45,7 +45,7 @@ figure is defined as a function:
     \phi^i_\text{inter} = f(x) \text{ at arbitray } x \in \Delta_i
 \]
 
-(In some textbooks, the construct like figure \( \Phi_{type} \) is called "tagged partition".)
+(In some textbooks, the construct similar to figure \( \Phi_{type} \) is called "tagged partition".)
 
 <br>
 \(  \)

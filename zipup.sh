@@ -15,6 +15,6 @@
 #**************************************************
 
 cd ..
-np/deploy/zipify.php np
+ver/deploy/zipify.php ver
 
 

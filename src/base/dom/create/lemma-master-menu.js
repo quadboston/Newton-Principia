@@ -191,7 +191,6 @@
         // \\// fluid-html part
         //--------------------------
 
-        var mItemCaption$;
         var li$ = leafRk.li$ = $$
             .dct( 'shape litem', teaf$ )
             .e('click', function( event ) {
@@ -199,11 +198,11 @@
             })
             .ch([
                 fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ),
-                mItemCaption$ = $$
+                $$
                     .dc( 'caption' )
                     .ch( 
                         [   videoPlaceholder$,
-                            $$.span().html( caption )
+                            leafRk.mItemCaptionHtml$ = $$.span().html( caption )
                         ]
                     )
             ]);
@@ -247,7 +246,7 @@
         }
         exAspect.subexegs.forEach( subexeg => {
             $$.removeClass( 'chosen', subexeg.domEl );
-            ( exAspect.subexegs.length > 1 ) && subexeg.domTogglerEl$.removeClass( 'chosen' );
+            ( exAspect.subexegs.length > 1 ) && subexeg.subessayMenuItem$.removeClass( 'chosen' );
         });
 
 
@@ -279,18 +278,26 @@
         if( exAspect.subexegs.length > 1) {
             exAspect.subessayMenuContainer$.addClass( 'chosen' );
             exAspect.subexegs.forEach( subexeg => {
-                subexeg.domTogglerEl$.addClass( 'chosen' );
+                subexeg.subessayMenuItem$.addClass( 'chosen' );
             });
         } else {
             $$.addClass( 'chosen', subexeg0.domEl );
         }
 
-
         //flag to menu
         leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag
         //flag to shuttle
         decorOfShuttle$.a('class','shape shuttle shuttle-'+leafRk.ix);
-
+        if( mcat_id === 'theorion' ) {
+            ns.eachprop( exegs[ amode.theorion ], ( exegAsp, aspId ) => {
+                //updates left menu caption for theorions with omitted aspect texts
+                var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
+                menItem.leafRk.mItemCaptionHtml$.html(
+                    exegAsp.subexegs[ 0 ].essayHeader.menuCaption ||
+                    menItem.caption
+                );
+            });
+        }
 
         //==================================================
         // updates app and ...
@@ -357,12 +364,12 @@
         exAspect.subexegs.forEach( subexeg => {
             subexeg.domEl$.removeClass( 'chosen' );
             if( exAspect.subexegs.length > 1) {
-                subexeg.domTogglerEl$.removeClass( 'subexeg-toggler-chosen' );
+                subexeg.subessayMenuItem$.removeClass( 'subexeg-toggler-chosen' );
             }
         });
         subexeg.domEl$.addClass( 'chosen' );
         if( exAspect.subexegs.length > 1) {
-            subexeg.domTogglerEl$.addClass( 'subexeg-toggler-chosen' );
+            subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }
 

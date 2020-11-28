@@ -1,24 +1,20 @@
 // //\\// Main entrance into sub-application.
 
 (function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;    
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomF       = sn('dfunctions', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss', fapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        sn, eachprop, haff,
+        sapp, ss, ssF,
+        studyMods,
+    } = window.b$l.apptree({
+        setModule,
+    });
+    var study       = sn('study', ss );
+    var gui         = sn('gui', ss );
+    var guicon      = sn('guiConstruct', gui );
+    var dr          = sn('datareg', ss );
     return;
+
+
 
 
 
@@ -32,17 +28,33 @@
 
     function init_sapp()
     {
-        var l23         = ss;
-        var study       = sn('study', l23 );
-        var gui         = sn('gui', l23 );
-        var guicon      = sn('guiConstruct', gui );
+        ss.presetData();
 
-        l23.presetData();
+        //-------------------------------------------------------
+        // //\\ dom z-order patch
+        //-------------------------------------------------------
+        haff( ssF, 'continue_create_8_prepopulate_svg' );
+
+        //tod? right: 
+        dr.baseAxis = document.getElementById( 'baseAxis' );
+        //baseAxis        : document.getElementById( 'base' ),
+
+        dr.wallL = document.getElementById( 'wallL' );
+        dr.wallR = document.getElementById( 'wallR' );
+        //ccc( 'dr.baseAxis', dr.baseAxis );
+        //-------------------------------------------------------
+        // \\// dom z-order patch
+        //-------------------------------------------------------
+
         gui.constructWidthestRectangular();
         guicon.constructFigure();
-        
+        ssF.convergenceResultArea(); //do on top of ancestors
+        guicon.buildPoints();
+        dr.figureInternalArea = document.getElementById( 'figureInternalArea' );
+        guicon.buildControlPoints();
+
         study.eventHandlers.toggleChangeFigure();
-        ns.eachprop( studyMods, ( stdMod, modName ) => {
+        eachprop( studyMods, ( stdMod ) => {
             stdMod.model8media_upcreate();
         });
         gui.buildSlider();
@@ -50,9 +62,6 @@
 
     function finish_sapp_UI()
     {
-        var l23         = ss;
-        var gui         = sn('gui', l23 );
-        var study       = sn('study', l23 );
         gui.createDragModel();
         study.setupEvents();
     }

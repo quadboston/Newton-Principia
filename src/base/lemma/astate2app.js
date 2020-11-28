@@ -1,57 +1,15 @@
 
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;
-
-    var rootvm      = sn('rootvm');
-    var html        = sn('html');
-
-    var fapp        = sn('fapp' );
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp');
-
-    //.study models
-    //.one of possible of them is SUB_MODEL = 'common'
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
-
-
-
-
-
-    //========================================================
-    // srg = ? sub-application registry
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'astate2sapp';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //========================================================
-
-
     var {
-        ns, sn, $$,
-        sconf, fconf,
-        fapp, sapp, ss,
-        fmethods,
+        ns,
+        sconf,
+        sapp,
         ssF,
-        sDomF, sDomN, amode,
-        studyMods,
+        rg,
         amode,
-        wrkwin,
-        exegs,
+        studyMods,
     } = window.b$l.apptree({
+        setModule,
     });
     return;
 
@@ -86,7 +44,7 @@
                 ns.haff( stdMod, 'media_upcreate' );
             }
 
-            function astate_2_rg8model( astate, astateKey )
+            function astate_2_rg8model( astate, astateKey, dontRun_model_upcreate )
             {
                 if( astate ) {
                     ns.paste( rg, astate );
@@ -109,7 +67,7 @@
                         amode.subessay = subessay;
                     }
                 }
-                ns.haff( stdMod, 'model_upcreate' );
+                !dontRun_model_upcreate && ns.haff( stdMod, 'model_upcreate' );
             }
         });
     }    

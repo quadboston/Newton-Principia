@@ -86,7 +86,7 @@
             //alternatevely returns umbrella-object, rg[ id ]
             ();
             //alternatively returns a specific property
-            (mykey4); //returns myval4
+            ('mykey4'); //returns myval4
     */
     function toreg( id )
     {

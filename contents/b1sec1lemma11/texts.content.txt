@@ -13,6 +13,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -39,7 +40,6 @@ duplicate ratio of the ¦AB¦subtense¦¦ of the ¦arc-AB¦conterminous arc¦¦.
 
 *::*proof|english
 {
-    "default" : "1"
 }
 *..*
 
@@ -246,10 +246,19 @@ AD, Ad, as of the chords and arcs AB, AB.
 
 
 
+
+
+
+
+
+
+
+
 *::*proof|model
 {
-  "default"     : "1",
-  "menuCaption" : "Addendum"
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Proofs",
+  "subessay" : "proofs"
 }
 *..*
 
@@ -305,7 +314,7 @@ AD, Ad, as of the chords and arcs AB, AB.
             ( ¦bd¦a<sub>b</sub>¦¦ / ¦BD¦a<sub>B</sub>¦¦ )
     </div>
     Notably, this does not require ( ¦Ab¦e<sub>b</sub>¦¦<sup>2</sup> / ¦AB¦e<sub>B</sub>¦¦<sup>2</sup> )
-    to converge at all, "b" and "B" can be "independent on each other processes".
+    to converge at all, "b" and "B" can be "independent processes".
 
 
 
@@ -401,9 +410,63 @@ AD, Ad, as of the chords and arcs AB, AB.
 
 
 
+
+
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Second derivative",
+  "subessay" : "second-derivative"
+}
+*..*
+
+    <b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a>
+    </b><br>
+    Newton's ultimate ratio defines second derivatives:
+
+    <br><br>
+    For curve ¦curve-AB¦<b>r</b>(t)¦¦,
+        <div style="text-align:center">
+            [<b>v</b><b>r</b>''] = v<sup>3</sup><b>κ</b>.
+        </div>
+    where  <b>v</b> = d<b>r</b>/dt.
+
+    For t = x and taking axis x along the tangent, we have v=1 and
+
+        <div style="text-align:center">
+            ¦BD¦a¦¦ / ¦AB¦e¦¦<sup>2</sup> -&gt; κ/2 = y''/ 2 <br>
+            e -&gt; 0
+        </div>
+        <br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 *::*corollary|model
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "---"
 }
 *..*
 
@@ -458,8 +521,7 @@ AD, Ad, as of the chords and arcs AB, AB.
                      "d"        : { "undisplay" : true },
                      "G"        : { "undisplay" : true },
                      "BG"       : { "undisplay" : true }
-                },
-                "action" : "sDomF.detected_user_interaction_effect()"
+                }
             }
         ],
         [
@@ -467,8 +529,7 @@ AD, Ad, as of the chords and arcs AB, AB.
             {
                 "rg" :
                 {
-                },
-                "action" : "sDomF.detected_user_interaction_effect()"
+                }
             }
         ],
         [
@@ -482,21 +543,28 @@ AD, Ad, as of the chords and arcs AB, AB.
                      "c" : { "undisplay" : true },
 
 
-                     "Ab"       : { "undisplay" : true },
                      "Ag"       : { "undisplay" : true },
                      "Ad"       : { "undisplay" : true },
                      "arc-Ab"   : { "undisplay" : true },
                      "bg"       : { "undisplay" : true },
-                     "g"        : { "undisplay" : true },
-                     "bd"       : { "undisplay" : true },
-                     "b"        : { "undisplay" : true },
-                     "d"        : { "undisplay" : true }
-                },
-                "action" : "sDomF.detected_user_interaction_effect( 'doUndetected' )"
+                     "g"        : { "undisplay" : true }
+                }
             }
         ],
         [
-            "theorion === 'corollary' && aspect !== 'model'",
+            "aspect === 'model' && theorion === 'proof' && subessay === 'second-derivative'",
+            {
+                "rg" :
+                {
+                     "Ab"       : { "undisplay" : true },
+                     "bd"       : { "undisplay" : true },
+                     "b"        : { "undisplay" : true },
+                     "d"        : { "undisplay" : true }
+                }
+            }
+        ],
+        [
+            "theorion === 'corollary' || aspect === 'model'",
             {
                 "rg" :
                 {

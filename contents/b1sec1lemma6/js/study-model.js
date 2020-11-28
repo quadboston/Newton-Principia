@@ -28,8 +28,6 @@
 
 
 
-
-
     ///****************************************************
     /// model initiation
     ///****************************************************
@@ -124,35 +122,39 @@
     ///****************************************************
     function model_upcreate()
     {
+        var dropLine = ssF.dropLine;
+        var dropPoint = ssF.dropPoint;
+        var dropPerpend = ssF.dropPerpend;
+
 
         if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ){
             //=====================================================
             // //\\ builds axes x,y, and origin 0, and their decors
             //=====================================================
             //finds [ 'axis-y_X_rd' ] === intersection of  axis-y and rd
-            ns.paste( rg[ 'axis-y_X_rd' ].pos, mat.dropPerpendicular( rg.ytop.pos, rg.r.pos, rg.d.pos ) );
+            dropPerpend( 'axis-y_X_rd=ytop,r,d' );
 
             //below axis-y_X_rd, sets origin O, of axes-y and -x
-            ns.paste( rg.O.pos, mat.dropLine( 1.3, rg[ 'ytop' ].pos, rg[ 'axis-y_X_rd' ].pos ), );
+            dropLine( 'O=1.3,ytop,axis-y_X_rd' );
 
             //builds axis-x
             rg[ 'xtop' ].pos = mat.pointPlusTVector( 1.5,
                                      rg[ 'axis-y_X_rd' ].pos, rg.d.pos, rg.O.pos )
 
             //beautifies axis Y by extending it to point i
-            ns.paste( rg[ "ylow" ].pos, mat.dropLine( 1.1, rg[ 'ytop' ].pos, rg.O.pos ), );
+            dropLine( 'ylow=1.1,ytop,O' );
 
             //beautifies axis-x by extending to point 'xlow'
             ns.paste( rg[ 'xlow' ].pos, mat.pointPlusTVector( 1.2, rg[ 'xtop' ].pos, rg.O.pos ) );
 
             //beautifies microscope-base line: shortens line rd
-            ns.paste( rg[ 'dr-decorpoint' ].pos, mat.dropLine( 0.25, rg.r.pos, rg.d.pos ) );
+            dropLine( 'dr-decorpoint=0.25,r,d' );
 
             // //\\ N-microscope
             //drops perpendicular from A to line rd where "drop" denoted as X0
-            ns.paste( rg.X0.pos, mat.dropPerpendicular( rg.A.pos, rg.r.pos, rg.d.pos ) );
+            dropPerpend( 'X0=A,r,d' );
             //X0 and Y do coinside in N-microscope
-            ns.paste( rg.Y.pos, rg.X0.pos );
+            dropPoint( "Y=X0" );
             //but for X we need to find b whic done below
             // \\// N-microscope
             //=====================================================
@@ -168,7 +170,7 @@
             }
 
         } else if( amode.subessay === 'sin(x)/x' ){
-            ns.paste( rg.L.pos, rg.d.pos );
+            dropPoint( "L=d" );
             ssF.line2abs( 'Ar' );
             ///establishes curve as a circle with raius R = Ar
             ssD.repoConf[ ssD.repoConf.customFunction ].updateParams({
@@ -200,7 +202,7 @@
 
 
         //=================================================
-        // //\\ buils Newton microscope
+        // //\\ builds Newton microscope
         //=================================================
         var Bx = rg.B.pos[0];
         var bpos = rayAXTangent__2__XOn_Base_rd( rg.B.pos[1] / Bx );
@@ -208,7 +210,7 @@
         //calculating magnitude
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' );
         //=================================================
-        // \\// buils Newton microscope
+        // \\// builds Newton microscope
         //=================================================
 
 
@@ -250,15 +252,17 @@
             // //\\ projects points to axes y and x
             //-----------------------------------------
             //y0,y,x0,x
-            ns.paste( rg.y0.pos, mat.dropPerpendicular( rg.A.pos, rg[ 'ytop' ].pos, rg.O.pos ) );
-            ns.paste( rg.y.pos, mat.dropPerpendicular( rg.B.pos, rg[ 'ytop' ].pos, rg.O.pos ) );
-            ns.paste( rg.x0.pos, mat.dropPerpendicular( rg.A.pos, rg[ 'xtop' ].pos, rg.O.pos ) );
-            ns.paste( rg.x.pos, mat.dropPerpendicular( rg.B.pos, rg[ 'xtop' ].pos, rg.O.pos ) );
+            dropPerpend( 'y0=A,ytop,O' );
+            dropPerpend( 'y=B,ytop,O' );
+            dropPerpend( 'x0=A,xtop,O' );
+            dropPerpend( 'x=B,xtop,O' );
+
             //-----------------------------------------
             // \\// projects points to axes y and x
             //-----------------------------------------
             //X = magnified point x
-            paste( rg.X.pos, rg.b.pos );
+            dropPoint( "X=b" );
+
 
             if( amode.subessay === 'sine derivative' ){
                 //extends tangent, AL
@@ -271,7 +275,6 @@
                 var wwJump = dX/rg[ 'X0,d' ].abs;
                 //finally builds point L based on curve's derivative
                 ns.paste( rg.L.pos, mat.dropLine( wwJump, rg.X0.pos, rg.d.pos ), );
-
             }
 
             //-------------------------------------------------------
@@ -283,8 +286,7 @@
             ns.paste( rg[ 'line-AL-end' ].pos, mat.pointPlusTVector( 1.3, rg.A.pos, rg.L.pos ) );
 
             //extends rd to show an angle
-            ns.paste( rg[ 'line-dr-start' ].pos,
-                      mat.dropLine( 1.3, rg.r.pos, rg.L.pos ) );
+            dropLine( 'line-dr-start=1.3,r,L' );
             //-------------------------------------------------------
             // \\// decorations block
             //-------------------------------------------------------

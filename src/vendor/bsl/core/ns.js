@@ -683,7 +683,7 @@
     {
         var keys = Object.keys( obj );
         keys.forEach( function( key, kix ) {
-            callBack( obj[ key ], key, kix );
+            callBack( obj[ key ], key, kix, keys.length );
         });
         return keys;
     };

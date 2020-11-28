@@ -30,6 +30,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -50,7 +51,7 @@ to be entered
 
 *::*claim|model
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "---"
 }
 *..*
 
@@ -58,11 +59,11 @@ to be entered
 
 *::*proof|model
 {
-  "default" : "1"
+  "menuCaption" : "Addendum"
 }
 *..*
 
-
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 

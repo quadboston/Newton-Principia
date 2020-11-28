@@ -229,8 +229,12 @@
     ///returns:             svg-element
     nssvg.curve = function( arg )
     {
-        var { stepsCount, start, step, curve, xOFy } = arg;
+        var {
+            addToStepCount, //this parameter added later to draw function graph on the end point
+            stepsCount, start, step, curve, xOFy
+        } = arg;
 
+        stepsCount += (addToStepCount || 0);
         var polyline = arg.pivots = [];
         for( var ii = 0; ii < stepsCount; ii++ ) {
             var curv = curve( start + step * ii );

@@ -125,12 +125,12 @@
 
 
 
-
-
-
         ///defines landing animation
-        function doSet_childOpeningAnimation( startX, endX, dur )
-        {
+        function doSet_childOpeningAnimation(
+            startX,     //initial application data  
+            endX,       //final application data
+            dur         //duration of animation
+        ){
             var aframes = ns.aframes;
             var slider  = return_slider.slider;
             var rangeX  = endX - startX;
@@ -143,7 +143,17 @@
             {
                 slider.d8d_emulateAbsFractionX( endX, 'up' );
             };
-            animInProgressHashStr = aframes.add8complete( emulatesMove, dur, completesMove );
+
+            ///adds runners to collection of acting animation runners
+            aframes.add8complete(
+                //api ----------------
+                    //pushes data by timestamp
+                    emulatesMove, //fun,        //fun for one of runners
+
+                    dur,          //duration,   //dur for one of runners  
+                    completesMove //funComplete //for one of runners
+                //--------------------
+            );
         }
 
     };

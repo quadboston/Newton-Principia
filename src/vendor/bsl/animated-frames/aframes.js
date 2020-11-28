@@ -94,13 +94,22 @@
 
     /// adds callbacks to "dispatcher"
     /// see callback signature above
-    aframes.add = function( fun, duration, funComplete ) {
+    aframes.add = function(
+            fun,        //fun for one of runners
+            duration,   //dur for one of runners
+            funComplete //for one of runners
+        ) {
         var hashStr = '' + hash++;
         runners[ hashStr ] = { ownStart:Date.now(), fun:fun, duration:duration, funComplete:funComplete };
         return hashStr;
     };
 
-    aframes.add8complete = function( fun, duration, funComplete ) {
+    ///adds runners to collection of acting animation runners
+    aframes.add8complete = function(
+            fun,        //fun for one of runners
+            duration,   //dur for one of runners
+            funComplete //for one of runners
+    ) {
         if( !aframes_start ) aframes.start();
         return aframes.add( fun, duration, funComplete );
     };

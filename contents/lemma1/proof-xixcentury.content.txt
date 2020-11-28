@@ -9,9 +9,8 @@
 }
 *..*
 
-Here we interpret English translation of the proof in XIX century notations.
-Latin interpretation is out of scope of this page.<br><br>
 
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
 
 Newton's proof is done in style "reductio ad absurdum":<br><br>
 

@@ -125,7 +125,9 @@
 	        var yy = ff( fb.maxX );
 	        curveMicroPts.push([fb.maxX,yy]);
             dr.figureArea = figureArea + ((fb.maxX-xx+delta)*(fb.baseY-(yy+oldY)/2));
-	        dr.polylineCurve.setAttribute( "points",curveMicroPts.join(" ") );
+
+            var wwPL = document.getElementById( 'polylineCurve' );
+	        wwPL.setAttribute( "points",curveMicroPts.join(" ") );
             //:paints axes
 	        var yy = fb.baseY;
 	        var x1 = fb.minX;

@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns, sn,
+        ns, sn, haz,
         sconf, fconf,
         fixedColors,
         ssF, sDomF,
@@ -28,7 +28,7 @@
     function doExpandConfig() 
     {
         var {
-            fixedColorsDef,
+            predefinedTopics,
             originalPoints,
             lines,
             linesArray,
@@ -38,7 +38,7 @@
             pictureHeight,
             mod2inn_scale,
         } = sconf;
-
+        lines = lines || [];
         originalPoints = originalPoints || {};
         var pname2point = {};
 
@@ -64,6 +64,13 @@
         //---------------------------------------------------------------------------
         //appar. as by I.N.: difference between two first x-points:
         var inn2mod_scale = 1/mod2inn_scale;
+
+
+        ///adds point's color from predefinedTopics if missed
+        ns.eachprop( originalPoints, (point,pname) => {
+            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+        });
+
 
 
         ///it is vital to set these pars now ...
@@ -108,15 +115,42 @@
         var toreg = ssF.toreg;
         (function() {
 
-            ///expands fixedColorsDef placeholders
-            Object.keys( fixedColorsDef ).forEach( topicKey => {
+            ///expands predefinedTopics placeholders
+            Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey ); //declares for astate management
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                fixedColors[ tk ] = fixedColorsDef[ topicKey ];
+                fixedColors[ tk ] = predefinedTopics[ topicKey ];
             });
 
-            ///expands originalPoints placeholders
+            //--------------------------------------------------
+            // //\\ expands originalPoints placeholders
+            //--------------------------------------------------
             ns.eachprop( originalPoints, ( op, pname ) => {
+                if( Array.isArray( op ) ) {
+                    ////handles array of originalPoints
+                    var doPaintPname = ns.h( op, 'doPaintPname' ) ? op.doPaintPname : true;
+                    var draggableX   = haz( op, 'draggableX' );
+                    var draggableY   = haz( op, 'draggableY' );
+                    op.forEach( ( opInArr, inIx ) => {
+                        opInArr.draggableX = ns.h( opInArr, 'draggableX' ) ?
+                                             opInArr.draggableX : draggableX;
+                        opInArr.draggableY = ns.h( opInArr, 'draggableY' ) ?
+                                             opInArr.draggableY : draggableY;
+                        opInArr.doPaintPname = ns.h( opInArr, 'doPaintPname' ) ?
+                                             opInArr.doPaintPname : doPaintPname;
+                        expandsOrPoints( opInArr, pname + '-' + inIx );
+                    });
+                } else {
+                    ////handles single originalPoint
+                    expandsOrPoints( op, pname );
+                }
+            });
+            //--------------------------------------------------
+            // \\// expands originalPoints placeholders
+            //--------------------------------------------------
+
+            function expandsOrPoints( op, pname )
+            {
                 op.own = ns.own;
                 var pictureP    = op.own( 'pos' );
                 var modelP      = op.own( 'mpos' );
@@ -124,6 +158,8 @@
                 //at the moment for missing flag, doPaintPname === true,
                 var doPaintPname= ns.h( op, 'doPaintPname' ) ?
                                   op.doPaintPname : true;
+                var draggableX = ns.h( op, 'draggableX' ) ? op.draggableX : false;
+                var draggableY = ns.h( op, 'draggableX' ) ? op.draggableY : false;
 
                 var pos = pname2point[ pname ] = !pictureP ?
                             [0,0] :
@@ -132,6 +168,8 @@
                             ];
 
                 var rgX = ssF.declareGeomtric({ pname, pos, caption:ns.haz( op, 'caption' ) });
+                rgX.draggableX = draggableX;
+                rgX.draggableY = draggableY;
                 rgX.doPaintPname = doPaintPname;
                 if( ns.h( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
@@ -172,7 +210,7 @@
                 //----------------------------------------------------------
                 // \\// sets up point letters
                 //----------------------------------------------------------
-            });
+            }
 
             //----------------------------------
             // //\\ expands lines placeholders
