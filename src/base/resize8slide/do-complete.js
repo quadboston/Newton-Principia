@@ -20,7 +20,7 @@
     var ssD         = sn('ssData',ss);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var dividorFractions = sn('dividorFractions', wrkwin, []);
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
 
     //:spatial adjustments
@@ -83,7 +83,6 @@
             ns.haff( stdMod, 'model8media_upcreate' );
             return;
         }
-
 
 
         //========================================
@@ -207,6 +206,7 @@
             var legendMargin    = LEGEND_MIN_HOR_MARGIN;
             var mediaMargin     = Math.max( 0, ( medSupW - medW - 20 ) / 2 );
             var medAddonright   = Math.max( 0, proposed_rightW - medSupW );
+            //ccc( 'wide screen: legendMargin =' + legendMargin );
 
         } else {
             ////narrow screen
@@ -231,6 +231,7 @@
                 ( ( medSupW - medW 
                 - 20    //todm:
                 ) ) / 2 );
+            //ccc( 'narrow screen: legendMargin =' + legendMargin );
         }
 
         margin2svgPlayArea({ mediaMargin, medW, medAddonright });

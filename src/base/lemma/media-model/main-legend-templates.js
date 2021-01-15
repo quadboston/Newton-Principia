@@ -25,6 +25,8 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
+        noEqualSign,
+        alignCaptionToRight,
     }){
         var ds              = legendScriptParsed[ rowIx ][ clusterIx ];
         var indices         = '' + clusterIx;
@@ -37,8 +39,9 @@
             tpCssName,
             clusterKey          : id,
             clusterCaption      : ds[1].replace( /_/g, ' ' ) || ' ',
-            noEqualSign         : true,
+            noEqualSign         : typeof noEqualSign === 'undefined' ? true : noEqualSign,
             fillerAfterValue    : '&nbsp;&nbsp;&nbsp;&nbsp;',
+            alignCaptionToRight,
         };
     }
 
@@ -46,14 +49,17 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
+        noEqualSignInNumber,
     }){
         var clusterCellIx = 1;
 
         var ds      = legendScriptParsed[ rowIx ][ clusterIx ];
         var res     = eval( ds[2] );
-        var equal   = typeof res === 'number'? '=' : '';
-        res         = typeof res === 'number'? res.toFixed(3) : res;
 
+        var equalSignInNumb = typeof noEqualSignInNumber === 'undefined' ? '=' :
+                        (noEqualSignInNumber ? '' : '=');
+        var equal   = typeof res === 'number'? equalSignInNumb : '';
+        res         = typeof res === 'number'? res.toFixed(3) : ( res || '' );
         htmlbody = equal + res;
         return { clusterCellIx, htmlbody, };
     }

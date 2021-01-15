@@ -75,7 +75,7 @@
         //---------------------------------------------------
         //interface for B
         //---------------------------------------------------
-        sDomF.modelPointDragger({
+        sDomF.params__2__rgX8dragwrap_gen_list({
             pname : 'B',
             acceptPos : B2params,
             orientation : 'rotate',
@@ -84,7 +84,7 @@
         //---------------------------------------------------
         //interface for V (for force)
         //---------------------------------------------------
-        sDomF.modelPointDragger({
+        sDomF.params__2__rgX8dragwrap_gen_list({
             pname : 'V',
             acceptPos : V2forceParams,
         });
@@ -100,7 +100,7 @@
         //---------------------------------------------------
         ///remember medpos still has to be created and updated,
         ///this does not create medpos:
-        sDomF.modelPointDragger({
+        sDomF.params__2__rgX8dragwrap_gen_list({
             pname : 'A',
             acceptPos : A2distanceToS,
         });

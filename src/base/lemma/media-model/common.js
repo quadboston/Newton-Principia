@@ -10,7 +10,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            declareWhirl,
+            upcreate__pars2rgShape,
             declareGeomtric,
         },
         sDomNExportList :
@@ -31,7 +31,7 @@
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
     ///which is GUI-geometrical shape - visula representation thing;
-    function declareWhirl({ pname, pos, wtype, })
+    function upcreate__pars2rgShape({ pname, pos, wtype, })
     {
         var rgX = null;
         switch ( wtype )

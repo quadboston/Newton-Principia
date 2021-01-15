@@ -1,22 +1,21 @@
+// For application, creates and exports namespace tree
+// variables ("placeholders") and useful functions.
+
 ( function() {
-    var ns          = window.b$l;
+    var nsvars = window.b$l.nstree();
+    var {
+        ns,
+        sn,
+        fapp,
+        fmethods,
+    } = nsvars;
+
     ns.app          = apptree;
     ns.apptree      = apptree;
-
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-    var cssp        = ns.CSS_PREFIX;
     var cssmods     = sn('cssModules');
-    var nsmethods   = sn('methods');
-    var html        = sn('html');
-    var bezier      = sn('bezier');
-    var mat         = sn('mat');
-    var sv          = sn('svg');
-    var nssvg       = sn( 'svg' ); //todm rid
 
     var fapp        = sn('fapp' ); 
     var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point',fmethods);
 
     var fconf       = sn('fconf',fapp);
     var sconf       = sn('sconf',fconf);
@@ -45,6 +44,9 @@
     var amode       = sn('mode',sapp);
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
+    var sData       = sn('sappDat',sapp);
+
+    var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     var tr          = ssF.tr;
     var tp          = ssF.tp;
@@ -88,7 +90,11 @@
         }
 
         srg_modules[ modName + mCount.count ] = () => {
-            setModule && setModule();
+
+            if( setModule ) {
+                //ccc( '... running setModule() for ' + mCount.count );
+                setModule();
+            }
             if( stdModExportList ) {
 
                 ///adds media_upcreate if createMedia0updateMediaAUX is in the list;
@@ -100,6 +106,7 @@
                 }
 
                 Object.keys( stdModExportList ).forEach( fname => {
+                    //ccc( '... setting list for module ' + mCount.count + '; function = ' + fname );
                     stdMod[ fname ] = stdModExportList[ fname ];
                 });
 
@@ -142,34 +149,10 @@
         //-------------------------------------------------------------
         // //\\ output
         //-------------------------------------------------------------
-        var ret =
+        Object.assign( nsvars,
         {
-            ns,
-
-            //:frequent functions
-            sn,
-            own : ns.own,
-            haz : ns.haz,
-            has : ns.h,
-            haf : ns.haf,
-            haff : ns.haff,
-            url2conf : ns.url2conf,
-            eachprop : ns.eachprop,
-            paste : ns.paste,           //todm: remove
-            nspaste : ns.paste,
-
-
-            $$,
-            cssp,
             cssmods,
             cssmod,
-            nsmethods,
-            html,
-            bezier,
-            mat,
-            d8d_p,
-            sv,
-            nssvg, //todm rid
 
             fapp,
             fmethods,
@@ -191,6 +174,9 @@
             amode,
             sDomN,
             sDomF,
+            sData,
+
+            dividorFractions,
 
             tr,
             tp,
@@ -204,11 +190,12 @@
             SUB_MODEL,
             modName,
             stdMod,
-        };
+        });
         //-------------------------------------------------------------
         // \\// output
         //-------------------------------------------------------------
-        return ret;
+
+        return nsvars;
     }
 
     //=========================================================

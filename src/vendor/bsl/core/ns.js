@@ -69,6 +69,7 @@
             ns.haz = haz; //returns own prop if any
             ns.h = has;
             ns.ha = ha; //has or adds new
+            ns.han = ha; //has or adds new
 
             //very very misleading:
             //ns.has = function( prop ) { return has( ns, prop ); };
@@ -77,7 +78,8 @@
 
         ///Returns own property if property does exist. Otherwise, returns defaultProperty.
         function ha( obj, property, defaultProperty ) {
-            return shortcutInClosure_for_speed.call( obj, property ) ?
+            return shortcutInClosure_for_speed.call( obj, property ) &&
+                   typeof obj[ property ] !== 'undefined'  ?
                    obj[ property ] : defaultProperty;
         };
 
@@ -93,8 +95,9 @@
         ///on this this property.
         ///Otherwise, returns empty function.
         function hae( obj, property ) {
-            return shortcutInClosure_for_speed.call( obj, property ) ?
-                   ( fun ) => { fun( obj[ property ] ) } : () => {};
+            return shortcutInClosure_for_speed.call( obj, property ) &&
+                    typeof obj[ property ] !== 'undefined' ?
+                    ( fun ) => { fun( obj[ property ] ) } : () => {};
         };
 
         ///Returns object's property if property does exist. Otherwise, returns empty function.
@@ -124,29 +127,31 @@
         ///if property does not exist, returns empty object;
         //    otherwise, returns property which is intended to be object
         function hob( obj, property ) {
-            return shortcutInClosure_for_speed.call( obj, property ) ?
-                   obj[ property ] : {};
+            return shortcutInClosure_for_speed.call( obj, property ) &&
+                    typeof obj[ property ] !== 'undefined' ?
+                    obj[ property ] : {};
         };
 
         ///Returns parent object only if own property exists. Otherwise, returns false.
         function has( obj, property ) {
             if( !obj ) return false;
-            return shortcutInClosure_for_speed.call( obj, property ) ? obj : false;
+            return shortcutInClosure_for_speed.call( obj, property ) &&
+                   typeof obj[ property ] !== 'undefined' ? obj : false;
         };
-
 
         ///In plain words: makes-sure object-property exists and returns it.
         ///Input: optional emptyTemplate provides ability set {} or []
         function sn( subname, parentNS, emptyTemplate )
         {
             parentNS = parentNS || ns;
-            //if( has( parentNS, subname ) && typeof parentNS[ subname ] === 'object' ) {
-            if( has( parentNS, subname ) ) {
+            if( parentNS &&
+                shortcutInClosure_for_speed.call( parentNS, subname ) &&
+                typeof parentNS[ subname ] !== 'undefined'
+            ){
                 return parentNS[ subname ];
             }
             var sns = parentNS[ subname ] = typeof emptyTemplate !== 'undefined' ?
                                             emptyTemplate : {};
-
             //collide with Object.keys forEach
             //sns.owned = returnOwnPropertyIfExist();
             /*
@@ -154,7 +159,6 @@
                 fun.prototype = { own : returnOwnPropertyIfExist() };
                 sns = new fun();
             */
-
             return sns;
 
             /*
@@ -317,6 +321,7 @@
                                                             },
                     e:      function( type, callback, obj ) { ctxEl = obj || ctxEl;  ctxEl.addEventListener( type, callback ); },
                     css:    function( name, value, obj )    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
+                    csst:   function( value, obj )          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
                     html:   function( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
 
 
@@ -545,7 +550,6 @@
             debWind.value +='\n' + text;
             debWind.scrollTop = debWind.scrollHeight;
         };
-
         var debWind=null;
         ///------------------------------------------------------------
         // //\\ uncomment this debug-block to enable textarea for debug
@@ -561,8 +565,10 @@
                 document.body.appendChild( debWind );
                 debWind.style.cssText = 
                         //'height:18%; width:30%; z-index:1111111;' +
-                        'height:250px; width:350px; z-index:1111111;' +
-                        'position:absolute; top:60%; left:200px; font-size:12px;';
+                        //'height:250px; width:350px; z-index:1111111;' +
+                        'display:none;' +
+                        'height:350px; width:600px; z-index:1111111;' +
+                        'position:absolute; top:40%; left:100px; font-size:12px;';
                 ns.dd = debWind; //usage: ns.dd.value +='\n' + text;
             }
         }
@@ -625,10 +631,12 @@
             urlConf.forEach( function( opt ) {
                 var cc = opt.split('=');
                 if( cc[1] ) {
+                    ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
                     cc[1] = cc[1] === "yes" ? true : ( cc[1] === "no" ? false : cc[1] );
                 } else {
-                    ////missed parameter p in x=p is ignored
+                    ////parameter x does not exists after sign "=" in expression p=x
+                    ////this parameter x is ignored
                     return;
                 }
                 ns.dots2object( cc[0], cc[1], conf )
@@ -822,7 +830,7 @@
     ///clones array-tree or tree
     ns.clonetree = function ( paper )
     {
-        return ns.paste( {}, paper );
+        return ns.paste( Array.isArray( paper ) ? [] : {}, paper );
     };
 }) ();
 
@@ -969,7 +977,8 @@
 (function () {
     var ns = window.b$l;
     ns.conf = ns.url2conf( {} );
-    window.addEventListener( 'load', () => { ns.createDebugger(); } );
+    //window.addEventListener( 'load', () => { ns.createDebugger(); } );
+    document.addEventListener( "DOMContentLoaded", () => { ns.createDebugger(); } );
 }) ();
 
 

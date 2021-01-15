@@ -35,7 +35,7 @@
     ///****************************************************
     function init_model_parameters()
     {
-        sDomF.modelPointDraggerX( 'B' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'B' )
             .acceptPos = function( newPos ) {
                 ///restricts point B
                 if( newPos[0] < 0.00001 ) {
@@ -69,7 +69,7 @@
 
                 return true; //true means: do accept new pos
             };
-        sDomF.modelPointDraggerX( 'D' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'D' )
             .acceptPos = function( newPos ) {
                 ///restricts point D
                 if( newPos[0] < 0.00001 ) {
@@ -89,7 +89,7 @@
                 newPos[1] = rg.D.pos[1];
                 return true; //true means: do accept new pos
             };
-        sDomF.modelPointDraggerX( 'b' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'b' )
             .acceptPos = function( newPos ) {
                 ///restricts point b
                 if( newPos[0] < 0.000001 ) {

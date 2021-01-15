@@ -207,10 +207,11 @@
                         <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
                     </div>
                     <span class="number">
-                        <span class="tp-figure-area tocolor tobold figAmt"
+                        <!-- class="tp-figure-area -->
+                        <span class="tp-figure tp-figure-area tocolor tobold figAmt"
                               id="figAmt">100.0</span>
                     </span>
-                    <span class="tp-figure tocolor tobold figAmt">figure</span>
+                    <span class="tp-figure tp-figure-area tocolor tobold figAmt">figure</span>
                 </div>
                 <!--END figure-->
 

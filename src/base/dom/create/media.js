@@ -67,6 +67,11 @@
         //https://stackoverflow.com/questions/16438416/cross-browser-svg-preserveaspectratio
         mmedia.setAttributeNS( null, 'preserveAspectRatio', "xMidYMid meet" );
 
+
+        //todm .. setting 'draggable', "false" is not centralized which makes a spagetty settings
+        //for batch of images and svg elements
+        mmedia.setAttributeNS( null, 'draggable', "false" );
+
         //depricated in svg:
         //mmedia.setAttributeNS( null, 'baseProfile', "full" );
 

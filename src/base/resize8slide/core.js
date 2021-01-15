@@ -20,7 +20,7 @@
     var ssD         = sn('ssData',ss);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var dividorFractions = sn('dividorFractions', wrkwin, []);
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     wrkwin.createDividorResizer = createDividorResizer;
     return;
@@ -105,7 +105,8 @@
                     wrkwin.dividor.achieved.achieved = ns.paste( [], dividorFractions );
                     break;
                 case 'move':
-                    ns.d('mv: res and sl');
+                    //vital-for-mobile
+                    //ns.d('mv: res and sl');
                     wrkwin.finish_Media8Ess8Legend_resize__upcreate( arg.surfMove[0] );
                     break;
             }

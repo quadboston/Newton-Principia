@@ -7,7 +7,7 @@
     var dpdec       = ns.sn('drag-point-decorator');
     var fapp        = ns.sn('fapp' );
     var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);

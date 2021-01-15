@@ -19,6 +19,8 @@
                 { src:'media-upcreate.js' },
                 { src:'main-legend.js' },
                 { src:'amode8captures.js' },
+
+                { src:'lib.js' },
             ],
             "contents-list" :
             [

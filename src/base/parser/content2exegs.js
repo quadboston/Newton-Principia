@@ -385,7 +385,6 @@
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                     men.duplicates[ leafId ].studylab = essayHeader.studylab;
                 }
-
                 if( essayHeader.theorionCaption && mcat_id === 'theorion' ) {
                     men.duplicates[ leafId ].caption = essayHeader.theorionCaption;
                 }
@@ -420,6 +419,8 @@
                           //if null in head., then set to keyword "empty"
                           ( imgId === null ? 'empty' : imgId );
                 if( !ns.h( pr, imgId ) ) {
+
+                    //what is this "bgImgCount" ... how does it mapt to essay?
                     var cssId = 'bg'+bgImages.bgImgCount;
 
 
@@ -438,7 +439,17 @@
                     };
                     bgImages.bgImgCount++;
                 }
+
+
+                //***************************************************
+                //apparently, here is how bg image finds its way
+                //            to media:
+                //              1) by imgId === path in img-folder
+                //              2) by pr === bgImages.path2rk
+                //***************************************************
                 exeg.imgRk = pr[ imgId ];
+
+
             }
             // \\// bg images
         }
@@ -455,16 +466,16 @@
     ///               if array, converted as array to color
     ///returns fixed color or black,
     ///todm: call as tptype2fixedColor_rgba
-    function getFixedColor( ptype )
+    function getFixedColor( ptype0colorArray )
     {
-        if( typeof ptype === 'string' ) {
-            //returns blank, ' ' if ptype is falsy
-            var cleared = sDomF.topicIdUpperCase_2_underscore( ptype || ' ' );
+        if( typeof ptype0colorArray === 'string' ) {
+            //returns blank, ' ' if ptype0colorArray is falsy
+            var cleared = sDomF.topicIdUpperCase_2_underscore( ptype0colorArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
             var colorArray = ns.haz( ssD[ 'fixed-colors' ], cleared );
         } else {
-            var colorArray = ptype;
+            var colorArray = ptype0colorArray;
         }
         ///returns "rgba('0,0,0,1')" if color is falsy
         return ns.arr2rgba( colorArray );

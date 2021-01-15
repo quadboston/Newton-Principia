@@ -24,7 +24,7 @@
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
 
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
@@ -108,7 +108,10 @@
                  ach.achieved = [ p.pos[0], p.pos[1] ];
                  break;
             case 'move':
-                ns.d('mv: l5 point p');
+
+                //vital-for-mobile
+                //ns.d('mv: l5 point p');
+
                 sDomF.detected_user_interaction_effect();
                 p.pos2value([
                     ach.achieved[0] + arg.surfMove[0] *

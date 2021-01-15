@@ -67,7 +67,8 @@
     //===============================
     // //\\ inn2outparent and inverse
     //===============================
-    ///converts pos-in-media-scope to pos-in-dom-scope-related-to-media-dom-offset
+    ///wrong?: converts pos-in-media-scope to pos-in-dom-scope-related-to-media-dom-offset
+    ///right?                              ....                        to-media-parent-dom-offset
     function inn2outparent()
     {
         var off     = sconf.mediaOffset;

@@ -1,29 +1,35 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-    var cssmods     = sn('cssModules');
-    var rootvm      = sn('rootvm');
+    var {
+        ns,
+        $$,
+        haz,
+        cssp,
+        sn,
+        fmethods,
+        fconf,
+        sDomN,
+        wrkwin,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+        },
+    });
 
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
+    wrkwin.doBuildMobile            = doBuildMobile;
+    wrkwin.doesBuildNonMobileCss    = doesBuildNonMobileCss;
 
-    var sapp        = sn('sapp' ); 
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
 
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var wrkwin      = sn('wrkwin',ssD); //work window
-    var dividorFractions = sn('dividorFractions', wrkwin, []);
-    var d8d_p       = sn('d8d-point',fmethods);
-
-    wrkwin.doBuildMobile = doBuildMobile;
-    wrkwin.doesBuildNonMobileCss = doesBuildNonMobileCss;
+    /// chain-dispatches callback "resizeHappened"
+    ( function() {
+        var hazR = haz( fmethods, 'resizeHappened' );
+        fmethods.resizeHappened  = hazR ?
+                ({ mediaWidth, mediaAspectRatio, }) => {
+                    hazR({ mediaWidth, mediaAspectRatio, }); 
+                }
+            :
+                ()=>{}
+            ;
+    })();
     return;
 
 
@@ -94,6 +100,7 @@
         //setting filler image height for sliders gap
         filler$.css( 'height', ( mediaAspectRatio - bgImgAsp ) * winW + 'px' );
 
+        fmethods.resizeHappened({ mediaWidth : winW, mediaAspectRatio, }); 
         //------------------------------------------------------------------
         // //\\ do css
         //------------------------------------------------------------------
@@ -193,6 +200,8 @@
 
         var medW_str = medW.toFixed()+'px';
 
+
+        fmethods.resizeHappened({ mediaWidth : medW, mediaAspectRatio, }); 
         common_mob8des_css({
             essW_str,
             essH_str,
@@ -231,6 +240,7 @@
 
         //:setting filler image height for sliders gap
         filler$.css( 'height', ( mediaAspectRatio - bgImgAsp ) * medW + 'px' );
+
 
         //--------------------
         // //\\ video

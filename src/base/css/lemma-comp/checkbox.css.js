@@ -81,14 +81,6 @@ var ret = `
 /* \\\\// this block creates nice fancy checkboxes in data-legend */    
 
 
-
-/*~~~~~~~~~~~~~~~~~~~~
-Styles for the mobile tabs
-~~~~~~~~~~~~~~~~~~~~*/
-
-
-
-
 `;
 // \\// css /////////////////////////////////////////
 

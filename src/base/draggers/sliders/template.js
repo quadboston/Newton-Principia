@@ -54,19 +54,17 @@
     }
 
     function sliderTemplate({
-        magnit,
+        magnit,             //=pname of magnit_api = rg[ magnit ];
         sliderCaption,
         cssClsKey,
         max_magnit,
         min_magnit,
-        range_magnit,
         SUGGESTED_COLOR,
         magnitude2app,
     }) {
-        var range_magnit      = max_magnit - min_magnit;
-
-        var toolsSliders = ns.sn( 'toolsSliders',stdMod, [] );
-        var sliderIx = toolsSliders.length;
+        var range_magnit    = max_magnit - min_magnit;
+        var toolsSliders    = ns.sn( 'toolsSliders',stdMod, [] );
+        var sliderIx        = toolsSliders.length;
         toolsSliders.push( magnit );
 
         //----------------------------------------------------------------------------
@@ -101,19 +99,26 @@
         ssF.tp( 'sliderStart_' + magnit, startPos );
         ssF.tp( 'sliderEnd_' + magnit, endPos );
 
-        var sliderStart = pos2pointy( 'sliderStart_' + magnit,
+        var sliderStart_rg = pos2pointy( 'sliderStart_' + magnit,
             { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', } );
-        var sliderEnd = pos2pointy( 'sliderEnd_' + magnit,
+        var sliderEnd_rg = pos2pointy( 'sliderEnd_' + magnit,
             { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', } );
         ///draws rails
-        var slider = pointies2line(
+        var slider_rg = pointies2line(
              'slider-' + magnit,
-             [sliderStart, sliderEnd],
-             {stroke:SUGGESTED_COLOR, 'stroke-width':3, tpclass:magnit,
-                                cssClass : 'tofill tostroke', }
+             [sliderStart_rg, sliderEnd_rg],
+             {
+                stroke:SUGGESTED_COLOR,
+                'stroke-width':3,
+                tpclass:magnit,
+                cssClass : 'tofill tostroke',
+             }
         );
-        $$.$(slider.svgel).cls( 'tp-' + magnit );
+        $$.$( slider_rg.svgel ).cls( 'tp-' + magnit );
         // \\// slider object
+
+
+
 
         var magnit_api = rg[ magnit ];
         var handleXpos  = ( magnit_api.value - min_magnit ) /
@@ -180,10 +185,12 @@
         magnit_api.move_2_updates = move_2_updates;
         magnit_api.modPos_2_GUI = stdMod.modPos_2_GUI;
         magnit_api.modPos_2_GUI();
-        return;
-
-
     }
+
+
+
+
+
 
     function modPos_2_GUI()
     {

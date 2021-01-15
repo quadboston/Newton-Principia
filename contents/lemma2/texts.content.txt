@@ -4,9 +4,13 @@
   "fixed-colors" :
   {
     "given"                     : [0,    100,  0 ],
+    "base"                      : [0,    100,  0 ],
+    "wall"                      : [0,    100,  0 ],
     "curve"                     : [0,    100,  0 ],
+
     "figure"                    : [0,    100,  0 ],
-    "figure-area"               : [100,  0,  0 ],
+    "figure-area"               : [0,    100,  0 ],
+
     "circumscribed-rectangles"  : [0,  50, 100 ],
     "widthest-rectangular"      : [0,  0, 100 ],
     "inscribed-rectangles"      : [100,  0, 100 ]
@@ -42,7 +46,7 @@
 
 
         If in any figure ¦figure¦AacE¦¦, 
-        comprehended by the straight lines ¦wall¦Aa¦¦ and ¦base¦Ae¦¦ and the ¦curve¦curve acE¦¦, 
+        comprehended by the straight lines ¦wall¦Aa¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve acE¦¦, 
         any number of parallelograms ¦inscribed-rectangles¦Ab, Bc, Cd¦¦, ... 
         are inscribed upon equal bases AB, BC, CD, ...
 
@@ -81,9 +85,9 @@
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
         for ¦inscribed-rectangles¦inscribed rectangles¦¦ and ¦circumscribed-rectangles¦circumscribed rectangles¦¦. 
         If we increase the number of these rectangles indefinitely, 
-        then the areas of the ¦figure-area¦figure¦¦, the ¦inscribed-rectangles¦inscribed rectangles¦¦, and the
-        ¦circumscribed-rectangles¦circumscribed rectangles¦¦ all converge to the same value.
-
+        then the areas of the ¦figure¦¦, the ¦inscribed-rectangles¦inscribed rectangles¦¦, and the
+        ¦circumscribed-rectangles¦circumscribed rectangles¦¦ all converge to the
+        ¦figure-area¦same value¦¦.
 
 
 *::*proof|latin
@@ -117,7 +121,7 @@
 
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle. 
             Therefore (by lem. 1) the ¦inscribed-rectangles¦inscribed figure¦¦ and the ¦circumscribed-rectangles¦circumscribed figure¦¦ and, 
-            all the more, the intermediate ¦figure¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
+            all the more, the intermediate ¦figure-area¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
 
 <br><br>
 <div book-reference-id="Bernard-Cohen"></div>

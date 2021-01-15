@@ -5,14 +5,14 @@
         rg,
         ssF, ssD,
         sDomF, amode,
-        studyMods, stdMod,
+        studyMods,
         tr, tp, toreg,
         exegs,
     } = window.b$l.apptree({
         setModule,
         ssFExportList :
         {
-            media_upcreate_basic,
+            media_upcreate_generic,
         },
     });
 
@@ -44,9 +44,11 @@
     // //\\ updater helper
     //=========================================================
     ///overrides lemma's stdMod.media_upcreate if missed
-    function media_upcreate_basic()
+    function media_upcreate_generic()
     {
         var stdMod = studyMods[ amode.submodel ];
+
+        haff( stdMod, 'media_upcreate___before_basic' );
         /*
         if( !ssF.mediaModelInitialized ) {
             stdMod.declaresMediaDecorationElements();
@@ -82,15 +84,24 @@
         //=============================================
         // //\\ upcreates lines
         var linesArray = ns.haz( sconf, 'linesArray' );
+
+        ///*********************************************
+        ///don't do both lines and linesArray in config
+        ///if this is done, lines will be ignored
+        ///*********************************************
         if( linesArray ) {
             linesArray.forEach( (lineConf) => {
-                var lname = Object.keys( lineConf )[0];
-                line = lineConf[ lname ];
-                ssF.str2line( lname, null, line );
+                    var lname   = Object.keys( lineConf )[0];
+                    line        = lineConf[ lname ];
+                    if( !line.zOrderAfter ) {
+                        ssF.str2line( lname, null, line );
+                    }
             });
         } else {
             ns.eachprop( sconf.lines, (line,lname) => {
-                ssF.str2line( lname, null, line );
+                if( !line.zOrderAfter ) {
+                    ssF.str2line( lname, null, line );
+                }
             });
         }
         // \\// upcreates lines
@@ -98,13 +109,34 @@
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
         ssF.doPaintPoints();
-        if( !ssF.mediaModelInitialized ) {
-            haff( stdMod, 'create_digital_legend' );
-        }
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
 
+        //=============================================
+        // //\\ upcreates lines after points
+        if( linesArray ) {
+            linesArray.forEach( (lineConf) => {
+                var lname   = Object.keys( lineConf )[0];
+                line        = lineConf[ lname ];
+                if( line.zOrderAfter ) {
+                    ssF.str2line( lname, null, line );
+                }
+            });
+        } else {
+            ns.eachprop( sconf.lines, (line,lname) => {
+                if( line.zOrderAfter ) {
+                    ssF.str2line( lname, null, line );
+                }
+            });
+        }
+        // \\// upcreates lines after points
+        //=============================================
+
+
+        if( !ssF.mediaModelInitialized ) {
+            haff( stdMod, 'create_digital_legend' );
+        }
         if( ns.h( stdMod, 'create_digital_legend' ) ) {
             var tlegend = ns.haz( rg[ 'main-legend' ], amode.theorion );
             if( ns.h( stdMod, 'upcreate_mainLegend' ) ){
@@ -117,8 +149,9 @@
                 ns.haf( ssF, 'upcreate_mainLegend' );
             }
         }
-        ssF.mediaModelInitialized = true;
 
+        haff( stdMod, 'media_upcreate___after_basic' );
+        ssF.mediaModelInitialized = true;
     }
     //=========================================================
     // \\// updater helper

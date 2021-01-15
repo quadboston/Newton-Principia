@@ -255,7 +255,6 @@
                     //.addClass('eq-sign')
                     ;
                 cells$.push( c$ );
-                ccc( 'noEqualSign=', noEqualSign );
             }
             //========================================================
             // \\// cell = equality tocken

@@ -18,13 +18,13 @@
 
     function setModule()
     {
-        stdMod.rgX2dragger_asCustomSlider = rgX2dragger_asCustomSlider;
+        stdMod.rgXSlider__2__dragwrap_gen_list = rgXSlider__2__dragwrap_gen_list;
     }
 
     //==========================================
     // //\\ attemt to unify dragger for point
     //==========================================
-    function rgX2dragger_asCustomSlider({
+    function rgXSlider__2__dragwrap_gen_list({
         rgX,
         orientation,
         nospinner,
@@ -33,7 +33,7 @@
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
                 rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
-                sDomF.rgX2dragger({
+                sDomF.rgX_2_dragWrap({
                     medD8D,
                     rgX,
                     orientation,

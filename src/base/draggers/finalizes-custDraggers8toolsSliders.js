@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn,
+        ns, sn, haz,
         sconf,
         fconf,
         ssF,
@@ -24,21 +24,21 @@
     function setModule()
     {
         //todm: must be loop via stMods
-        stdMod.finalizes_custDraggers8toolsSliders_on_ownFramwk =          
-               finalizes_custDraggers8toolsSliders_on_ownFramwk;
+        stdMod.createsFW__8__executes_dragWr_gens_list =          
+               createsFW__8__executes_dragWr_gens_list;
     }
 
 
     //==========================================
     // //\\ inits drag model
     //==========================================
-    function finalizes_custDraggers8toolsSliders_on_ownFramwk()
+    function createsFW__8__executes_dragWr_gens_list()
     {
         ///creates tools for the first time and only once
         if( sconf.enableTools ) {
             stdMod.createSliderPlaceholder_media_scale();
             stdMod.createSliderPlaceholder_thickness();
-        } 
+        }
 
         //must be loop via stdMods: not only for this single-common
         ///****************************************************************
@@ -60,8 +60,9 @@
         //  processDownEvent
         //  processUpEvent
         //todm: do this by adding class "grab" to medRoot
-        sDomN.medRoot.style.cursor = 'grab';
-
+        if( !haz( sconf, 'mediaMoverPointDisabled' ) ){
+            sDomN.medRoot.style.cursor = 'grab';
+        }
         //==========================================
         //: sets drag points
         //==========================================
@@ -93,6 +94,7 @@
     function findDraggee( point_on_dragSurf, dragWraps ) //, dragSurface )
     {
         /*
+        //vital-for-mobile
         ns.d('findDraggee in launcher: fw=' +
             ( dragWraps[0] && dragWraps[0].createdFramework.frameworkId )
         );
@@ -120,18 +122,29 @@
                 unfoundDragger = dragWrap;
                 return;
             }
-            if( dragPoint.hideD8Dpoint ) return;
-            var tdX         = Math.abs( testMediaX - dragPoint.medpos[0] );
-            var tdY         = Math.abs( testMediaY - dragPoint.medpos[1] );
-            var td          = Math.max( tdX, tdY );
-            if( td <= DRAGGEE_HALF_SIZE ) {
+            //if( dragPoint.pname === 'loose1' ) {
+            //    ccc( dragPoint.pname, dragPoint );
+            //}
+            if( haz( dragPoint, 'hideD8Dpoint' ) ||
+                haz( dragPoint, 'd8d_find_is_LOCKED' )  ) {
+                return;
+            }
+
+            var tdX = Math.abs( testMediaX - dragPoint.medpos[0] );
+            var tdY = Math.abs( testMediaY - dragPoint.medpos[1] );
+            var td  = Math.max( tdX, tdY );
+
+            var distLim = haz( dragPoint, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
+            if( td <= distLim ) {
                 if( !closestDragWrap || closestTd > td ||
                     (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
-                    ns.d('closest=' + dragPoint.pname +
-                         ' fw' + dragWrap.createdFramework.frameworkId );
+
+                    //vital-for-mobile
+                    //ns.d('closest=' + dragPoint.pname +
+                    //     ' fw' + dragWrap.createdFramework.frameworkId );
                }
             }
         });

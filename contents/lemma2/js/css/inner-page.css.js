@@ -61,6 +61,7 @@
                 xxxmargin:auto;
                 margin-top:20px;
                 width:200px;
+                z-index     : 1000;
             }
 
             /*---------------------*/

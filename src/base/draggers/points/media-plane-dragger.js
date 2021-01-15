@@ -21,25 +21,25 @@
 
     function setModule()
     {
-        sDomF.mediaMoverPoint       = mediaMoverPoint;
+        sDomF.creates_mediaMover_in_rgX8dragWrapGenList       = creates_mediaMover_in_rgX8dragWrapGenList;
     }
 
 
     //===================================================
     //interface for media-mover
     //===================================================
-    function mediaMoverPoint()
+    function creates_mediaMover_in_rgX8dragWrapGenList()
     {
         var pname = 'media-mover';
         var pos = [ -11111, -11111 ]; //fake
-        var rgX = sDomF.modelPointDragger({
+        var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
             pname,
             pos, 
             acceptPos : () => true,
             orientation : 'rotate',
             nospinner : true,
         });
-        rgX.achieved            =
+        rgX.achieved =
         {
             achieved :
             [
@@ -48,13 +48,11 @@
             ]
         };
 
-        rgX.mediaMover = true;
+        rgX.mediaMover  = true;
+        rgX.undisplay   = true;
+        rgX.unfound     = true;
+        rgX.pcolor      = 'transparent';
 
-        rgX.undisplay = true;
-        rgX.unfound = true;
-
-        rgX.pcolor = 'transparent';
-        // //\\ creates point I to slide
         ssF.pos2pointy(
             'media-mover',
             {

@@ -41,7 +41,6 @@
 
 *::*claim|english
 {
-  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -50,9 +49,9 @@ If in two figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦,
 there be inscribed ¦left-bars right-bars¦two series of paralellograms¦¦ (as before),
 and if the number of the two be the same, and if, where the
 ¦right-bars-breadths left-bars-breadths¦breadths¦¦ are diminished in
-infinitum, the ultimate ratios of the individual paralellograms in one figure to the
+infinitum, the ultimate ¦barsRatio¦ratios¦¦ of the individual paralellograms in one figure to the
 [corresponding] individual paralellograms in the other, be the same, I say that the two
-figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that same ratio.
+figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that same ¦figuresRatio¦ratio¦¦.
 
 <br><br>
 
@@ -66,8 +65,9 @@ figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that
 *..*
 
 For as ¦left-bar-1¦individual paralellogram¦¦ is to ¦right-bar-1¦individual paralellogram¦¦,
-so, componendo, would the sum of them
-all be to the sum of them all, and thus the ¦acE Aa AE¦figure¦¦ to the ¦prT Pp PT¦figure¦¦: because
+so, componendo, would the ¦leftBarsArea left-bars¦sum of them all¦¦
+be ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of them all¦¦,
+and thus the ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦figure¦¦: because
 by Lemma 3, the former figure stands to the former sum and the latter figure to the latter sum,
 in the ratio of equality.
 
@@ -96,5 +96,83 @@ parallelograms, and consequently, where the number of the parts and of the
 parallelograms be increased and the size to be decreased in infinitum, [the sums of the parts
 will be] in the ulitmate ratio of parallelogram to paralellogram, that is
 (by the hypothesis) in the ultimate ratio of part to part.
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "default" : "1",
+
+  "menuCaption" : "Addendum"
+}
+*..*
+
+
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
+
+The area element depends on vector product,
+<b>i</b>*<b>j</b>,
+
+ of basis vectors <b>i</b>, <b>j</b>: 
+    <div style="text-align:center">
+        dS = dxdy |<b>i</b>*<b>j</b>|.
+    </div>
+
+One of the simplest ways to construct the example for Lemma 4 is using a linear transformation of
+basises:
+
+        \[
+            \begin{pmatrix}
+                \mathbf{i}' \\
+                \mathbf{j}' \\
+            \end{pmatrix}
+            = \text{T} 
+            \begin{pmatrix}
+                \mathbf{i} \\
+                \mathbf{j} \\
+            \end{pmatrix}
+        \]
+
+    and <br>
+    <div style="text-align:center">
+        dS' = |<b>i'</b>*<b>j'</b>| dS <br><br>
+    </div>
+We have chosen original basis <b>i</b>, <b>j</b> orthonormal.
+
+Without generality loss, we can assume the base vectors for axis x are collinear,
+
+    <div style="text-align:center">
+        <b>i'</b> = α<b>i</b>
+    </div>
+
+which makes T look like
+
+    <div style="text-align:center">
+            α,0<br>
+            β,γ
+    </div>
+
+and the areas S' and S' are proportional:
+
+    <div style="text-align:center">
+            S' = αγS
+    </div>
+(which at this version is coded in program for diagram.)
+<br>
+For uniform scaling, γ=α, β = 0 and S' = ααS
+
+*::*corollary|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
 
 

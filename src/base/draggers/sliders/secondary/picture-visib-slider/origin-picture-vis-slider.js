@@ -13,7 +13,7 @@
     var sDomN       = sn('dnative', sapp);
     var sDomF       = sn('dfunctions', sapp);
 
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);

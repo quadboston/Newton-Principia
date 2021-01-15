@@ -1,7 +1,7 @@
 //todm: apparently vital to merge this module with proper submodel
 ( function() {
     var {
-        ns, $$, sn, sconf, fconf,
+        ns, $$, sn, haz, sconf, fconf,
         sDomF,
     } = window.b$l.apptree({
         setModule,
@@ -21,12 +21,12 @@
     function setModule()
     {
         //todm: must be loop via stMods
-        sDomF.rgX2dragger  = rgX2dragger;
-        sDomF.doProcess_rgX         = doProcess_rgX;
+        sDomF.rgX_2_dragWrap   = rgX_2_dragWrap;
+        sDomF.doProcess_rgX = doProcess_rgX;
     }
 
 
-    function rgX2dragger({
+    function rgX_2_dragWrap({
             medD8D,
             rgX,
             orientation,
@@ -34,7 +34,7 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' + rgX.pname + '-slider';
-        pointWrap.dragDecorColor    = rgX.pcolor;
+        pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;
         var argc =
         {
             pointWrap           : rgX,
@@ -42,6 +42,9 @@
             orientation         : orientation,
             nospinner           : nospinner,
         };
+        //if( rgX.pname === 'fret-0-0' ) {
+        //    ccc( 'starting pointWrap_2_dragWrap for ' + rgX.pname );
+        //}
         medD8D.pointWrap_2_dragWrap( argc );
     }
 

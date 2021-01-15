@@ -3,15 +3,13 @@
 //        The active point is elected by "findDraggee" function
 //        which is supplied at initialization time.
 ( function() {
-    var ns          = window.b$l;
-    var dpdec       = ns.sn('drag-point-decorator');
-    var sn          = ns.sn;    
-    var fapp        = ns.sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point',fmethods);
-    var ccc = console.log; ccc && ( ccc = console.log );
+    var {
+        ns,
+        haz,
+        d8d_p,
+        dpdec,
+    } = window.b$l.nstree();
     d8d_p.createFramework = createFramework;
-
     var createdFrameworks = [];
     return;
 
@@ -29,6 +27,8 @@
             findDraggee, //function which finds draggeePoint 
             dragSurface,
 
+            inn2outparent, //only? for spinner ... optional if nospinner is not set?
+
             //the rest is optional
 
             //fires this function at down event and only at this event
@@ -42,7 +42,6 @@
             //  spinner((update_decPoint_default))
             handle2dragsurf_pos,
 
-            inn2outparent, //only for spinner
     }) {
 
         var DRAGGEE_HALF_SIZE = 40;
@@ -126,7 +125,6 @@
             var spinnerClsId         = pointWrap.spinnerClsId;
             var dragDecorColor       = pointWrap.dragDecorColor;
             var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
-
             var update_decPoint      = api.update_decPoint;
             var nospinner            = api.nospinner;
             var orientation          = api.orientation;
@@ -136,7 +134,6 @@
             //---------------------------------------------
             // \\// AAA PPP III
             //---------------------------------------------
-
 
             //==============================================
             // //\\ api.achieved is an optional parameter
@@ -204,6 +201,11 @@
                 createdFramework,
             }
             dragWraps.push( dragWrap );
+
+
+            //if( pointWrap.pname === 'fret-0-0' ) {
+            //    ccc( 'dragWrap is created for ' + pointWrap.pname );
+            //}
 
             //todo ... needed?
             update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
@@ -289,10 +291,12 @@
         function d8d_app( surfMove, down_move_up, point_on_dragSurf, event, moveIncrement )
         {
             var fw = createdFramework;
+            //vital-for-mobile
             //ns.d('fram/w: case="' + down_move_up + '"');
             switch( down_move_up )
             {
                 case 'down': 
+                    //vital-for-mobile
                     //ns.d('down: fw=' + fw.frameworkId );
 
                     if( selectedElement_flag ) {
@@ -345,9 +349,12 @@
         ///         then dragWrap is not "considered" for drag
         function findDraggee_default( point_on_dragSurf, dragWraps )
         {
+            ///vital
+            /*
             ns.d('findDraggee in bsl: fw' +
                  ( dragWraps[0] && dragWraps[0].createdFramework.frameworkId )
             );
+            */
             var testMediaX = point_on_dragSurf[0];
             var testMediaY = point_on_dragSurf[1];
 
@@ -361,21 +368,36 @@
             var closestDragPriority = 0;
             dragWraps.forEach( function( dragWrap, dix ) {
                 var pointWrap   = dragWrap.pointWrap;
-                if( pointWrap.hideD8Dpoint ) return;
+
+                //if( pointWrap.pname === 'fret-0-0' ) {
+                //    ccc( 'findDraggee_default', pointWrap.pname, pointWrap );
+                //}
+
+                if( haz( pointWrap, 'hideD8Dpoint' ) ||
+                    haz( pointWrap, 'd8d_find_is_LOCKED' )  ) {
+                    return;
+                }
                 var dompos      = handle2dragsurf_pos(  dragWrap, dragSurface );
                 var tdX         = Math.abs( testMediaX - dompos[0] );
                 var tdY         = Math.abs( testMediaY - dompos[1] );
                 var td          = Math.max( tdX, tdY );
+
+
+                var distLim = haz( pointWrap, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
+
                 //.td is a "rect-metric" for distance between
                 //.point_on_dragSurf and drag-point-candidate
-                if( td <= DRAGGEE_HALF_SIZE ) {
+                if( td <= distLim ) {
                     if( !closestDragWrap || closestTd > td ||
                         (pointWrap.dragPriority || 0 ) > closestDragPriority ) {
                         closestDragWrap = dragWrap;
                         closestTd = td;
                         closestDragPriority = pointWrap.dragPriority || 0;
-                        ns.d('closest=' + pointWrap.pname +
-                             ' fw' + dragWrap.createdFramework.frameworkId );
+
+
+                        //vital-for-mobile
+                        //ns.d('closest=' + pointWrap.pname +
+                        //     ' fw' + dragWrap.createdFramework.frameworkId );
                    }
                 }
             });

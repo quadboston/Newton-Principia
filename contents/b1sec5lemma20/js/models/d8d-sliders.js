@@ -24,7 +24,7 @@
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
 
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);

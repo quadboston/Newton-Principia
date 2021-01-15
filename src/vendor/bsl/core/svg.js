@@ -1,10 +1,11 @@
 ( function() {
-	var ns	    = window.b$l;
-    var nssvg   = ns.sn( 'svg' );
-    var mat     = ns.sn( 'mat' );
-    var svgNS   = "http://www.w3.org/2000/svg";
-
-
+	const ns	  = window.b$l;
+    const nssvg   = ns.sn( 'svg' );
+    const mat     = ns.sn( 'mat' );
+    const svgNS   = "http://www.w3.org/2000/svg";
+    const has     = ns.h;
+    const haz     = ns.haz;
+    const $$      = ns.$$;
 
 
 
@@ -18,12 +19,20 @@
     ///Returns new or updated svgel - svg element
 	nssvg.u = function( arg )
     {
-        if( !arg.svgel ) {
+        var svgel = haz( arg, 'svgel' );
+        ///protects from repeating construction
+        if( !svgel ) {
             var svgel = document.createElementNS( svgNS, arg.type );
-            //protects from duplicate attachment
-            if( arg.parent ) arg.parent.appendChild( svgel );
-        } else {
-            var svgel = arg.svgel;
+            ///enables freedom of attachment
+            if( has( arg, 'parent' ) ) {
+                arg.parent.appendChild( svgel );
+            }
+            ///if registry placeholder, rgX, is provided to store svgel,
+            ///then do it
+            if( haz( arg, 'rgX' ) ) {
+                arg.rgX.svgel = svgel;
+                arg.rgX.svgel$ = $$.$( svgel );
+            }
         }
 
         Object.keys( arg ).forEach( function( key ) {
@@ -34,7 +43,8 @@
             //      and leaves the loop
             //--------------------------------------
             //.ignores these properties
-            if( key === 'parent' || key === 'type' || key === 'text' ) return;
+            if( key === 'parent' || key === 'type' ||
+                key === 'text' || key === 'rgX' ) return;
             //--------------------------------------
             // \\// ignores 'parent' and 'type'
             //--------------------------------------
@@ -92,16 +102,23 @@
             },
             ''
         );
+
+        ///todm
+        /// 1. first paste
+        /// 2. then extend like arg.XXX = arg.XXXX || .... 
+        ///this thing must paste arg into arg, not to manually
+        ///reassign props., misleading and error prone,
         return nssvg.u({
-            svgel : arg.svgel,
-            parent : arg.parent,
-            type : 'polyline',
-            points : pivotsStr,
-            style : arg.style,
-            stroke : arg.stroke || 'rgba( 0,0,0, 1 )', 
+            rgX     : arg.rgX,
+            svgel   : arg.svgel,
+            parent  : arg.parent,
+            type    : 'polyline',
+            points  : pivotsStr,
+            style   : arg.style,
+            stroke  : arg.stroke || 'rgba( 0,0,0, 1 )', 
                 //must be transparent bs stroke or fill are often exclusive
 
-            fill : arg.fill || 'transparent',
+            fill    : arg.fill || 'transparent',
             'stroke-width' : arg[ 'stroke-width' ] || 1
         });
     };
@@ -184,13 +201,19 @@
             x0,
             y0,
             rotationRads,
-            t0, //start angle
-            t1, //end angle
+            t0,                 //start angle
+            t1,                 //end angle
+            drawExternalSector, //sets to draw a complimentary sector
         } = arg;
         var polyline = arg.pivots = [];
         if( !t0 && t0 !== 0 ) {
             t0 = 0;
             t1 = Math.PI*2;
+        }
+        if( drawExternalSector ) {
+            ////sets to draw a complimentary sector
+            var dt = t1 - t0;
+            t1 = dt >= 0 ? t0 - Math.PI*2 + dt : t0 + Math.PI*2 + dt;
         }
         stepsCount = stepsCount || 100;
         a = a || 1;
@@ -229,35 +252,34 @@
     ///returns:             svg-element
     nssvg.curve = function( arg )
     {
-        var {
-            addToStepCount, //this parameter added later to draw function graph on the end point
+        const {
+            dontClose,
+
+            //integer type parameter, how many add beyond "normal" last point,
+            //this parameter added later to draw function graph on the end point,
+            //it is similar of adding "=" in loop limit aka inxex <= addToStepCount,
+            addToStepCount,
+
             stepsCount, start, step, curve, xOFy
         } = arg;
 
-        stepsCount += (addToStepCount || 0);
-        var polyline = arg.pivots = [];
-        for( var ii = 0; ii < stepsCount; ii++ ) {
+        var stepsLim    = stepsCount + (addToStepCount || 0);
+        var polyline    = arg.pivots = [];
+        const notArr    = !Array.isArray( curve( start ) );
+        for( var ii = 0; ii < stepsLim; ii++ ) {
             var curv = curve( start + step * ii );
-            if( Array.isArray( curv ) ) {
-                var xx = curv[0];
-                var yy = curv[1];
-            } else {
-                var xx = curv.x;
-                var yy = curv.y;
-                //todm make
-                //var curv = [ curv.x, curv.y ];
+            if( notArr ) {
+                var curv = [ curv.x, curv.y ];
             }
             if( xOFy ) {
                 ////swaps x and y if we draw graph x(y)
-                var ww = xx;
-                var xx = yy;
-                var yy = ww;
+                curv = [ curv[1], curv[0] ];
             }
-            polyline.push( [ xx, yy ] );
+            polyline.push( curv );
         }
-        polyline.push( [ xx, yy ] );
+        polyline.push( curv ); //todm why repeating last el?
         //makes curve closed:
-        if( !arg.dontClose ) {
+        if( !dontClose ) {
             polyline.push( polyline[0] );
         }
         return nssvg.polyline( arg ); 

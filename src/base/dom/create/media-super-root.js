@@ -199,7 +199,7 @@
             ;
         sDomN.idleHelpButton$ = $$
             .c('img')
-            .addClass( "model-help" )
+            .addClass( "model-help" ) //todm ... non-elegant ... spread of CSS
             .a( 'src', fconf.pathToStem + "images/lightbulb.svg" )
             .a( 'alt', "Hover over the diagram to interact" )
             .to( wwHelpOnTop$() )
@@ -207,6 +207,7 @@
         if( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ){
             sDomN.idleHelpButton$.a( 'title', fconf.appDecor.idleHelpButtonTooltip );
         }
+
         sDomN.helpBoxText$ = $$
             .c('span')
             .addClass( "help-box__text" )
@@ -222,7 +223,7 @@
         //..........................
         var medRoot$ = $$
             .c( 'div' )
-            .addClass( cssp + '-media-root' )
+            .addClass( cssp + '-media-root highlight-text-disabled' )
             .addClass( 'model' )
             .to( sDomN.medSuperroot$ )
             ;
@@ -236,26 +237,6 @@
         // \\// media root
         //..........................
 
-
-
-        //..........................
-        // //\\ change mode button
-        //..........................
-        sDomN.changeModeButton$ = $$
-            .c( 'div' )
-            .addClass( cssp + '-change-mode-button' )
-            .html( "Submit" )
-            .to( sDomN.medRoot )
-            .css( 'display', 'none' ) //todo
-            .e( 'click', () => {
-                alert( 'this feature is in progress ... ' );
-                //rg.mode.value = rg.mode.value === 'solving' ? 'showing' : 'solving';
-                //ns.haf( ssF, 'model8media_upcreate' )();
-            })
-            ;
-        //..........................
-        // \\// change mode button
-        //..........................
 
         //..........................
         // //\\ video help
@@ -368,10 +349,12 @@
                             };
                             imgRk.dom$
                                 .a( 'src', imgRk.src )
+                                .a( 'draggable', 'false' )
                                 .to( sDomN.medRoot )
                                 ;
 
                             imgRk.filler$ = $$.img()
+                                .a( 'draggable', 'false' )
                                 .addClass( imgCss + '-toolsliders-extender' )
                                 .css( 'width', '100%' )
                                 .css( 'height', sconf.SLIDERS_LEGEND_HEIGHT + 'px' )
@@ -420,6 +403,7 @@
 
         ///abandoned code
         ///this should be moved into lab/tools/sliders
+        ///this "if" always set to "false" as of Dec, 2020.
         if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
             sDomF.create_original_picture_vis_slider();
         }

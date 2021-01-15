@@ -4,9 +4,12 @@
         ns, sn, haz, haff, eachprop,
         sconf,
         fconf,
+        ss,
         ssF, rg,
-        sapp, sDomF,
+        sapp,
+        sDomF,
         d8d_p,
+        exegs,
         amode,
         studyMods,
     } = window.b$l.apptree({
@@ -43,19 +46,36 @@
     function init_sapp() 
     {
         ns.eachprop( studyMods, ( stdMod, modName ) => {
+
             stdMod.mmedia$.cls( 'submodel-' + modName );
 
-            !haz( sconf, 'mediaMoverPointDisabled' ) && sDomF.mediaMoverPoint();
-
-            //todm patch
+            //======================================================
+            // //\\ definitions
+            //======================================================
+            !haz( sconf, 'mediaMoverPointDisabled' ) &&
+                  sDomF.creates_mediaMover_in_rgX8dragWrapGenList();
+            //------------------------------------------------------------------
+            // //\\ rerouts name "media_upcreate_generic"
+            //------------------------------------------------------------------
+            //      to           "media_upcreate" 
+            //      todm patch
             //makes importan choice:
             //      media_upcreate          -       for non-standard, past lemmas
-            //      media_upcreate_basic    -       for modern, half-automated lemmas    
+            //      media_upcreate_generic    -     for modern, half-automated lemmas    
             stdMod.media_upcreate = ns.haz( stdMod, 'media_upcreate' ) ||
-                                    ssF.media_upcreate_basic;
+                                    ssF.media_upcreate_generic;
+            //------------------------------------------------------------------
+            // \\// rerouts name "media_upcreate_generic"
+            //------------------------------------------------------------------
             haff( stdMod, 'createsModelFunctions_before___init_model_parameters' );
-            addsDeclaredDraggablePoints();
+            rgDict__2__dragWrap_gen_list();
+            //======================================================
+            // \\// definitions
+            //======================================================
+
+
             stdMod.init_model_parameters();
+            //todm: rename with "dragWrapGenList":
             haff( stdMod, 'populates__cust_draggers_list' );
 
             //------------------------------------------------------------------------------
@@ -71,32 +91,73 @@
             // \\// patch: missed bg-image
             //------------------------------------------------------------------------------
 
-            ns.haff( stdMod, 'setsUpTopicScenarios' );
-            ssF.parsesTopicScenarios();
+            ( function() {
+                ////for "sites" which have user-guiding-scenarios
+                var ts = haz( ss, 'activityScenario' );
+                if( ts ) {
+                    var activityScenarios = haz( ts, 'activityScenarios' );
+                    var parsesTopicScenarios = haz( ssF, 'parsesTopicScenarios' );
+                    if( activityScenarios && parsesTopicScenarios ) {
+                        activityScenarios.forEach( as => { as(); } );
+                        ns.haff( ssF, 'parsesTopicScenarios' );
+                        ns.haff( ssF, 'doInitTopicScenarioCss' );
+                    }
+                }
+            }) ();
 
-            ssF.amode2lemma();
+            ssF.in_subessay_launch____amode2lemma();
             ns.haf( stdMod, 'sliders_value2pos' )();
             stdMod.media_upcreate(); //todm apparently needed for
-                                     //finalizes_custDraggers8toolsSliders_on_ownFramwk
+                                     //createsFW__8__executes_dragWr_gens_list
+
+            ns.haff( stdMod, 'createsFW__8__executes_dragWr_gens_list' );
+
+            //=========================================================================
+            // //\\ executes topic scenario from start-event
+            //=========================================================================
+            eachprop( exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg,
+                      (subessayRack, sname) => {
+                if( haz( subessayRack, 'stateId2state' ) ) {
+                    subessayRack.scenario_stateId = 'start';
+                    //user activity in every subessay becomes aware about
+                    //beginning of the lesson
+                    ssF.executesTopicScenario( 'lesson-start', sname );
+                }
+            });
+            //=========================================================================
+            // \\// executes topic scenario from start-event
+            //=========================================================================
+
             if( ns.h( stdMod, 'model8media_upcreate' ) ) {
                 ////to=200 feels choppy,
                 ////to=100 helps,
                 stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 20 );
             }
-            ns.haf( stdMod, 'finalizes_custDraggers8toolsSliders_on_ownFramwk' )();
         });
     }
 
 
     ///adds plain point dragger if eigher draggableX, ...Y is defined
-    function addsDeclaredDraggablePoints()
+    function rgDict__2__dragWrap_gen_list()
     {
         eachprop( rg, (shape,pname) => {
             var drX = haz( shape, 'draggableX' );
             var drY = haz( shape, 'draggableY' );
             if( !drX && !drY ) return;
-            sDomF.modelPointDragger({
+
+            //if( shape.pname === 'fret-0-0' ) {
+            //  ccc( 'automatically ads drag-ability for ' + shape.pname + ' ' +
+            //        ' nospinner=' + haz( shape, 'nospinner' ) );
+            //}
+
+            sDomF.params__2__rgX8dragwrap_gen_list({
                 pname,
+                nospinner : haz( shape, 'nospinner' ),
+
+                //todm 
+                //orientation : drY&drX ? 'rotate' : ( drX ? 'axis-x' : 'axis-y' ),
+
+                //pos,
                 acceptPos : newPos =>
                 {
                     if( drX ) {

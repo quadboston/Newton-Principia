@@ -12,7 +12,7 @@
     var fmethods    = sn('methods',fapp);
     var fconf       = sn('fconf',fapp);
     var sconf       = sn('sconf',fconf);
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var sapp        = sn('sapp');
     var srg_modules = sn('srg_modules', sapp);

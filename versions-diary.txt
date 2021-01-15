@@ -1,0 +1,45 @@
+
+
+ver 0.5691
+In lemma4, original curve polynomial representation changed from Taylor to divided differences.
+
+
+5694
+...l4 needs really inscribed bars ... not the broken one ...
+.... l4 in progress ... still needs proofcheck, cleanup ... and
+zebra-colors, swap bars to make them "approaching a ratio" instead of having it
+...l4 needs a legend "set forth" upon discussion
+
+perhaps implementing non-similarity
+
+
+5699
+   bsl
+   function ns.sn and ns.has corrected for some shady situations with x.prop = undefined
+
+
+
+//---------------------------
+// //\\ grand proofcheck plan
+//---------------------------
+from .... 4688 to  4761 to Oct 28 4761
+
+too big interval: from Oct 28 4761 to Jan13, 2021, ver 5802
+    missed
+    lemma 10
+    4
+    lemma 11 addendum very changed
+    lemma 7 changed
+
+from Oct 28 4761 to 5302 Dec14, 2020
+
+from 5302 Dec14, 2020 to Jan13, 2021, ver 5802
+    There is no (even with small significance) text changes
+//---------------------------
+// \\// grand proofcheck plan
+//---------------------------
+
+
+
+
+

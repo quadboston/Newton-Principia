@@ -46,7 +46,8 @@
             if( dragDecorColor ) {
                 dpdec.creates_spinnerOwnCss(
                     spinnerClsId,
-                    dragDecorColor,
+                    dragDecorColor, //?? for disk only ??
+                                    //?? for ${dclass} .${spinnerClsId}.brc-slider-draggee:hover:after
                     parent_classes
                 );
             }

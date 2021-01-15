@@ -53,6 +53,10 @@ Dynamic LaTeX, ELM, parsing, Mini Latex Live
 
 http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking
 
+//// these work:
+
+normal font of html: \mathbf{i}
+MathJax fancy: \boldsymbol{i}
 
 ///////////////////////// these chars have not dice
 

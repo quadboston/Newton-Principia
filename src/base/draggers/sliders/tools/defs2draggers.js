@@ -25,7 +25,7 @@
     var ssF         = sn('ssFunctions',ss);
     var rg          = sn('registry',ssD);
 
-    var d8d_p       = sn('d8d-point',fmethods);
+    var d8d_p       = sn('d8d-point');
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
@@ -99,7 +99,10 @@
                  ach.achieved = [ pointWrap.pos[0], pointWrap.pos[1] ];
                  break;
             case 'move':
-                ns.d('mv: comm-tools');
+
+                //vital-for-mobile
+                //ns.d('mv: comm-tools');
+
                 sDomF.detected_user_interaction_effect();
                 var mscale = sDomF.out2inn() / sconf.originalMod2inn_scale;
                 var move_in_model = [ //move in model units

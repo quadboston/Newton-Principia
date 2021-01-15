@@ -9,17 +9,16 @@
 
 
     cssmods[THIS_MODULE] = function( cssp, fconf ) {
-        var ccs = fconf.css;
-        var colorMain = ccs['color-main'];
-        var colorWhite = ccs['color-white'];
+        var ccs             = fconf.css;
+        var colorMain       = ccs['color-main'];
+        var colorWhite      = ccs['color-white'];
         var colorMediumGrey = ccs['color-medium-grey']; 
-        var colorLightGrey = ccs['color-light-grey']; 
-        var colorPaleBlue = ccs['color-pale-blue']; 
-        var colorStoneBlue = ccs['color-stone-blue']; 
-        var colorLight = ccs['color-light']; 
-        var borderRadius = ccs['border-radius']; 
-
-
+        var colorLightGrey  = ccs['color-light-grey']; 
+        var colorPaleBlue   = ccs['color-pale-blue']; 
+        var colorStoneBlue  = ccs['color-stone-blue']; 
+        var colorLight      = ccs['color-light']; 
+        var borderRadius    = ccs['border-radius']; 
+        var helpBoxOpacity  = fconf.appDecor.helpBox_opacity0 ? 0 : 1;
 
 
 
@@ -125,14 +124,15 @@ var ret = `
         //|| Hover over the diagram to interact
       --------------------------------------------*/
     .help-box {
-        float:left;
-        margin-top:8px;
-        color: ${colorMediumGrey};
-        font-size: 12px;
-        padding: 0 16px;
-        border-radius: ${borderRadius};
-        display: flex;
-        align-items: center;
+        float           : left;
+        margin-top      : 8px;
+        color           : ${colorMediumGrey};
+        font-size       : 12px;
+        padding         : 0 16px;
+        border-radius   : ${borderRadius};
+        display         : flex;
+        align-items     : center;
+        opacity         : ${helpBoxOpacity};
     }
     .help-box img {
         margin-right: 8px;

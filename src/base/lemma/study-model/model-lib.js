@@ -1,6 +1,7 @@
 ( function() {
     var {
-        ns, sn, nspaste, mat, has, haz,
+        ns, sn,
+        nspaste, mat, has, haz,
         fconf, sconf,
         rg, toreg,
         ssF, ssD,
@@ -11,8 +12,8 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            amode2lemma,
             line2abs,
+            linePoints2abs,
             circumscribeCircleOverChordAndBothNormals_XY,
             dropPerpend,
             dropLine,
@@ -27,81 +28,23 @@
 
 
 
-    ///=================================================
-    /// app-mode to lemma states and actions
-    ///=================================================
-    function amode2lemma()
-    {
-        //------------------------------------------------
-        // //\\ sets "undefined" flag
-        //      for registry rg members with defined pname,
-        //      uses sconf.rgShapesVisible if defined in lemma,
-        //      if not, uses existing sconf.rgShapesVisible.
-        //------------------------------------------------
-        ns.eachprop( rg, (prop,propname) => {
-            if( haz( prop, 'pname' ) ) {
-                var globalVis = fconf.rgShapesVisible;
-                prop.undisplay = !(
-                                        ns.h( sconf, 'rgShapesVisible' ) ?
-                                        sconf.rgShapesVisible :
-                                        globalVis
-                                 );
-            }
-        });
-        //------------------------------------------------
-        // \\// sets "undefined" flag
-        //------------------------------------------------
-
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod  = studyMods[ submodel ];
-        var captured = null;
-        ssD.__amode2rgstate.forEach( (cblock,ix) => {
-            ///aka: "true", or "( theorion === 'claim' || ...
-            var cond = cblock[0];
-            if( eval( cond ) ) {
-                var instr = cblock[ 1 ];
-
-                ///latter "captured" in array overrides previous "captured"
-                captured = ns.haz( instr, "captured" ) || captured;
-
-                ///core of condition: sets registry immediately
-                nspaste( rg, ns.haz( instr, "rg" )||{} );
-
-                if( ns.h( instr, 'action' ) ) {
-                    ////aka: sDomF.detected_user_interaction_effect()
-                    eval( instr.action );
-                }
-            }
-        });
-        if( ns.haz( ssF, 'amode2rgstate' ) ){
-            captured = ssF.amode2rgstate( captured );
-        }
 
 
-        amode.scenarioState = 'start';
-        var subessayRack = exegs[ theorion ][ aspect ].subessay2subexeg[ subessay ];
-        var executesTopicScenario = haz( subessayRack, 'stateId2state' );
 
 
-        ///for past-lemmas: lemma 1, lemma 2, ...
-        //haf( stdMod, 'astate_2_rg8model' )(
-        //todm ... no need to put extra "captured" ... do fix this:
-        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], captured,
-                                  !!executesTopicScenario );
 
-        //executes topic scenario from start-event
-        if( executesTopicScenario ) {
-            ssF.executesTopicScenario( 'start' );
-        }
-    }
 
 
     ///input:       lineName aka 'AB'
     ///acts:        takes rg-points aka rg.A and rg.B
     ///             and adds to line segment AB values
     ///             abs, abs2, dx, dy
-    function line2abs( lineName )
-    {
+    ///todm         reduce this to "linePoints2abs"
+    function line2abs(
+        lineName,
+        dropPointParam,
+        dropPointParam_t, //unitless parameter counted from point A
+    ){
         var splitToken = lineName.indexOf( ',' ) > -1 ? ',' : '';
         var points = lineName.split( splitToken );
         var AB = toreg( lineName )();
@@ -115,6 +58,49 @@
         AB.abs2 = d2;
         AB.x = dx;
         AB.y = dy;
+        if( Math.abs(d) > 1E-100 ) {
+            AB.unitX = dx/d;
+            AB.unitY = dy/d;
+        } else {
+            AB.unitX = 0;
+            AB.unitY = 0;
+        }
+        dropPointParam = dropPointParam_t ?
+                            dropPointParam_t * d :
+                            (dropPointParam || 0);
+        AB.dropX = A[0] + AB.unitX * dropPointParam;
+        AB.dropY = A[1] + AB.unitY * dropPointParam;
+
+        AB.angle = Math.atan2( dy, dx );
+        return AB;
+    }
+
+    function linePoints2abs(
+        posA,
+        posB,
+        dropPointParam, //=t, adds point p=u*t along the line, u is unit vector
+                        //    applied to point posA.
+    ) {
+        var AB = {};
+        var dx = posB[0]-posA[0];
+        var dy = posB[1]-posA[1];
+        var d2 = dx*dx + dy*dy;
+        var d = Math.sqrt( d2 );
+        AB.abs = d;
+        AB.abs2 = d2;
+        AB.x = dx;
+        AB.y = dy;
+        if( Math.abs(d) > 1E-100 ) {
+            AB.unitX = dx/d;
+            AB.unitY = dy/d;
+        } else {
+            AB.unitX = 0;
+            AB.unitY = 0;
+        }
+        dropPointParam = dropPointParam || 0;
+        AB.dropX = posA[0] + AB.unitX * dropPointParam;
+        AB.dropY = posA[1] + AB.unitY * dropPointParam;
+
         AB.angle = Math.atan2( dy, dx );
         return AB;
     }

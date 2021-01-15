@@ -10,6 +10,8 @@
         sn,
         eachprop,
         haff,
+        has,
+        haz,
         cssmods,
         html,
 
@@ -60,7 +62,7 @@
 
     //******************************************************
     //main application entry
-    document.addEventListener( "DOMContentLoaded", main );
+    document.addEventListener( "DOMContentLoaded", app_main );
     //******************************************************
 
     return;
@@ -75,7 +77,7 @@
     //***********************************************
     // //\\ begins establish home and lemmas
     //***********************************************
-    function main() 
+    function app_main() 
     {
         //=========================
         // //\\ home8lemmas
@@ -108,9 +110,12 @@
         if( fconf.sappId === 'home-pane' ) {
             //// home. apparently does not do any modules landing-load
             landingFlag_8_nextLemmaButtons();
-            sDomN.homeButton$().click();
+                sDomN.homeButton$().click();
             ns.doScrollToHash();
         } else {
+            if( !haz( fconf, 'lemmaHasHomeButton' ) ) {
+                sDomN.homeButton$.css( 'display', 'none' );
+            }
             //// lemma
             main_lemma( lemmaConfig );
         }
@@ -203,6 +208,8 @@
             ssF.runExpandConfig = !lemmaConfig.dontRun_ExpandConfig;
             nsmethods.loadScripts(
                 codesList,
+
+                ///this function is called when all modules are loaded
                 function()
                 {
                     //----------------------------------------------------------
@@ -211,19 +218,14 @@
                     ///here right below
                     ///
                     ///executes loaded modules from modules registry
-                    ///after all scripts have been loaded
+                    ///after all lemma-code-modules have been loaded
                     ///does second round of executing setModule for modules
-                    eachprop( srg_modules, function( setModule ) {
+                    eachprop( srg_modules, function( setModule, wwProp ) {
+                        //ccc( 'running lemma-code-setModule() for module ' + wwProp );
                         setModule();
                     });
                     //----------------------------------------------------------
  
-                    ///fills gaps with defaults ... todm move to auxil. lib.
-                    eachprop( studyMods, stdMod => {
-                        ns.sn( 'amode2lemma', stdMod, ssF.amode2lemma );
-                    });
-
-
                     ssF.init_conf(); //todo must be before contributor scripts 
                     //optional new app feature:
                     //must be right after ssF.init_conf:
@@ -241,9 +243,9 @@
                         //the best to establish initial topics
                         //then additional topics will be extracted from exegs
                         var wwCase = sDomF.topicIdUpperCase_2_underscore;
-                        eachprop( ssD['fixed-colors'], ( topi_c, topicId_ ) => {
+                        eachprop( ssD['fixed-colors'], ( colorArray, topicId_ ) => {
                             normId2topic[ wwCase( topicId_ ) ] = {
-                                'fixed-color' : topi_c,
+                                'fixed-color' : colorArray,
                             }
                         });
 
@@ -295,17 +297,11 @@
         //this works for outdated-lemmas ... l9, l2, (l3) l21, l20,
         //new lemmas may use stdMod ns,
         //note, here, legend is created too early, before model,
-        //ssF.create_digital_legend && ssF.create_digital_legend();
         ns.haff( ssF, 'create_digital_legend' );
-
-        ///this is too early
-        //ns.eachprop( studyMods, ( stdMod, modName ) => {
-        //    sDomF.mediaMoverPoint();
-        //});
 
         sapp.init_sapp();
         sDomF.populateMenu();
-        ns.haf( sapp, 'finish_sapp_UI' )(); 
+        ns.haff( sapp, 'finish_sapp_UI' ); 
         sapp.isInitialized = true;
         fmethods.setupEvents();
 

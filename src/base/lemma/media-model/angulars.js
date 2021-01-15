@@ -46,9 +46,18 @@
     }
 
 
-    function drawAngleFrom_rayAB2rayCD_at_medpos({ AB, CD, rgSample, ANGLE_SIZE, caption })
-    {
-        var medPosPivotsAB = [
+    function drawAngleFrom_rayAB2rayCD_at_medpos({
+        AB,         //=[ pivotA, pivotB ]
+        CD,
+        rgSample,   // provides angle's vertex: x0 : rgSample.medpos[0], y0 : rgSample.medpos[1],
+        ANGLE_SIZE,
+        caption,
+        fill,
+        drawExternalSector,
+        tpclassName,
+        stepsCount,
+    }){
+        var medPosPivotsAB = [  //=[ medposA, medposB ]
             [ AB[0].medpos[0], AB[0].medpos[1] ],
             [ AB[1].medpos[0], AB[1].medpos[1] ],
         ];
@@ -56,27 +65,30 @@
             [ CD[0].medpos[0], CD[0].medpos[1] ],
             [ CD[1].medpos[0], CD[1].medpos[1] ],
         ];
-        var angleStart = segmentAngle( medPosPivotsAB )*sconf.MONITOR_Y_FLIP;
-        var angleEnd = segmentAngle( medPosPivotsCD )*sconf.MONITOR_Y_FLIP;
-        var pname = 'rays-angle-' + rgSample.pname;
-        var rgAngle = toreg( pname )();
-        rgAngle.pname = pname;
-        rgAngle.medpos = rgSample.medpos;
-        rgAngle.pcolor = rgSample.pcolor;
-        rgAngle.undisplay = rgSample.undisplay;
+        var angleStart      = segmentAngle( medPosPivotsAB )*sconf.MONITOR_Y_FLIP;
+        var angleEnd        = segmentAngle( medPosPivotsCD )*sconf.MONITOR_Y_FLIP;
+        var pname           = 'rays-angle-' + rgSample.pname;
+        var rgAngle         = toreg( pname )();
+        rgAngle.pname       = pname;
+        rgAngle.medpos      = rgSample.medpos;
+        rgAngle.pcolor      = rgSample.pcolor;
+        rgAngle.undisplay   = rgSample.undisplay;
 
-        ssF.drawAngle({
+        return ssF.drawAngle({
             angleStart,
             angleEnd,
             ANGLE_SIZE      : ANGLE_SIZE || 1,
-            tpClassName     : sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
-            fill            : rgAngle.pcolor,
+            tpClassName     : tpclassName === '' ? '' :
+                              tpclassName || sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
+            fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
             //stroke          : rgAngle.pcolor,
 
             rgX             : rgAngle,
             caption         : caption,
+            drawExternalSector,
+            stepsCount,
         });
     }
 
@@ -97,6 +109,8 @@
         //rgX.svgel,    //optional, aka: rg.beta.angleSvg
         caption,
         fontSize,
+        drawExternalSector,
+        stepsCount,
     }){
         ANGLE_SIZE = ANGLE_SIZE || 0.1;
         ///"manually" created polyline which formes ellipse's sector,
@@ -105,11 +119,13 @@
 
         var angleStart = angleStart * sconf.MONITOR_Y_FLIP;
         var angleEnd = angleEnd * sconf.MONITOR_Y_FLIP;
-
         rgX.svgel = sv.ellipseSector({
             //// signature
-            //// var { stepsCount, a, b, x0, y0, rotationRads, t0, t1 } = arg;
-            stepsCount : 20,
+            //// var { stepsCount, a, b, x0, y0,
+            ////        rotationRads - apparently rotation fig. as whole
+            //// ,t0, t1 } = arg;
+            //// see: function ellipse( args )
+            stepsCount : stepsCount || 20, //todm: too granular .. fix but don't make slow
 
 
             // //\\ todm ... mod2inn_scale must be incapsulated in model
@@ -133,6 +149,7 @@
             fill : fill || 'transparent',
             stroke : stroke || 'transparent',
             'stroke-width' : 1,
+            drawExternalSector,
         });
 
         var svgel$ = rgX.svgel$ = haz( rgX, 'svgel$' ) || $$.$( rgX.svgel );

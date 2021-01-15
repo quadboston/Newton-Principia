@@ -1,23 +1,13 @@
 ( function () {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-
-    var ss          = sn('ss',fapp);
-    
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        ns, sn, $$,
+        sconf,
+        ss,
+        sDomN,
+        stdMod,
+    } = window.b$l.apptree({
+        setModule,
+    });
     return;
 
 
@@ -60,7 +50,7 @@
 
 
             // //\\ copy-pasted from gui-art
-            studyMods[ SUB_MODEL ].mmedia$
+            stdMod.mmedia$
                 .e( "mouseenter", doToggleHelp )
                 .e( "mouseleave", doToggleHelp )
                 ;
@@ -128,12 +118,26 @@
         }
 
         ///toggles mode for curve-shape is-draggable/non-draggable
+        ///this function is "hidden" in its wrapper:
+        ///     function doToggleHelp() {
+        ///     ...
+        ///     .e( "mouseleave", doToggleHelp )
         function toggleChangeFigure(){
+
+            //work of this statement is based on a trick:
+            //mouse in: it is on, mouse out: it is off:
+            //the trick does assume that mouse in and mouse out always match each other;
             var cvis = sdata.curveDragHandlesVisible = !sdata.curveDragHandlesVisible;
+
 	        for (var i=0, len = dr.ctrlPts.length; i < len; i++) {
                 //.as of version 91, used in mouse-down point-detection
                 dr.ctrlPts[i].visible = !!cvis; 
-		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility", cvis ? "visible":"hidden");
+                if( sconf.dragPointVisibilityToggling ) {                
+    		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility", cvis ? "visible":"hidden");
+    	        } else {
+                    //here we disable dragPointVisibilityToggling
+    		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility", "visible");
+    	        }
 	        }
         }
         //======================================

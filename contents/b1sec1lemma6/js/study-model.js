@@ -36,7 +36,7 @@
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
-        sDomF.modelPointDragger({
+        sDomF.params__2__rgX8dragwrap_gen_list({
             //pname, acceptPos, orientation, pos, nospinner,
             pname : 'L',
             acceptPos : ( newPos ) =>
@@ -70,7 +70,7 @@
         // //\\ dragger B
         //-------------------------------------------------
         rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
-        sDomF.modelPointDragger({
+        sDomF.params__2__rgX8dragwrap_gen_list({
             //pname, acceptPos, orientation, pos, nospinner,
             pname : 'B',
             acceptPos : ( newPos ) =>

@@ -10,12 +10,8 @@
 //                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
 //***************************************************************************************************
 ( function () {
-    var ns          = window.b$l        = window.b$l        || {};
-    var ccc = console.log; ccc && ( ccc = console.log );
-
-
+    var ns = window.b$l;
     var eventId = 0;
-
 
 
 
@@ -109,7 +105,10 @@
         {
             eventId++;
             var forbidden;
-            ns.d('\ndown: fw' + frameworkId + ' eid' + eventId);
+
+            //vital:
+            //ns.d('\ndown: fw' + frameworkId + ' eid' + eventId);
+
             if( skipD8D( ev ) ) return;
 
             ///touch-down
@@ -123,9 +122,11 @@
                     att.addEventListener( 'touchmove',   touchMove);
                     att.addEventListener( 'touchend',    touchEnd);
                     att.addEventListener( 'touchcancel', touchEnd);
-                    ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' owes drag');
+                    //vital-for-mobile
+                    //ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 } else {
-                    ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' skips drag');
+                    //vital-for-mobile
+                    //ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
             ///mouse-down
             } else {
@@ -137,9 +138,12 @@
                     //.todm suspicion: this approach seems not reliable ...
                     // fires right after the mouseDown ...
                     att.addEventListener( 'mouseleave',  mouseEnd);
-                    ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
-                } else {
-                    ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
+
+                    //vital
+                    //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
+                //} else {
+                    //vital
+                    //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
             }
         }
@@ -160,7 +164,8 @@
             var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
 
             if( !point_on_dragSurf ) {
-                ns.d('\nfw' + frameworkId + ' eid' + eventId + ' point is out dsurf');
+                //vital-for-mobile
+                //ns.d('\nfw' + frameworkId + ' eid' + eventId + ' point is out dsurf');
                 return true;
             }
 
@@ -204,7 +209,8 @@
             } 
             var surfPoint = eventPos_2_surfacePos( childEvent );
             if(!surfPoint) { 
-                ns.d('\nmouseMove: media point failed');
+                //vital-for-mobile
+                //ns.d('\nmouseMove: media point failed');
                 return;
             }
             var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];

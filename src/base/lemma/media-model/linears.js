@@ -1,6 +1,8 @@
 ( function() {
     var {
         ns, sn, $$, sv,
+        han,
+        haz,
         sconf,
         rg,
         ssF, ssD,
@@ -64,7 +66,7 @@
     {
         var attr        = attr || {};
         var line        = ssF.toreg( pName )();
-        var strokeWidth = ns.ha( attr, 'stroke-width', 1 );
+        var strokeWidth = han( attr, 'stroke-width', 1 );
         var pivotsMedPos= [ pivots[0].medpos, pivots[1].medpos ];
 
         ///this property helps to optimize svg painting
@@ -75,11 +77,13 @@
                           ( ns.haz( attr, 'tpclass' ) ) || pName
             );
             var ww          = ns.haz( line, 'pcolor' ) || sDomF.getFixedColor( tpclass );
-            var stroke      = ns.ha( attr, 'stroke', ww );
+            var stroke      = han( attr, 'stroke', ww );
             var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
 
+
             //adds params to line:
-            line.finalCssClass = cssClass + 'tp-' + tpclass;
+            var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
+            line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname      = pName;
             line.pivotNames = [ pivots[0].pname, pivots[1].pname ];
             line.svgel = sv.polyline({
@@ -211,10 +215,13 @@
 
 
 
-    function pnames2poly( pNames, cssClass )
-    {
+    function pnames2poly(
+        pNames,
+        cssClass,
+        correctJoin, //fix all lemmas and remove this par. then
+    ){
         var CLOSED_POLYLINE = true;
-        var pName = pNames.join('');
+        var pName = pNames.join( correctJoin ? '--' : '');
         var pivots = pNames.map( pname => rg[ pname ].medpos );
 
         if( CLOSED_POLYLINE ) {
@@ -231,16 +238,14 @@
                       ( ns.haz( attr, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
-        var stroke      = ns.ha( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
-        var fill ='red';
-        var strokeWidth = ns.ha( attr, 'stroke-width', 1 );
+        var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
+        var strokeWidth = han( attr, 'stroke-width', 1 );
         var poly        = ssF.toreg( pName )();
         poly.pname      = pName;
         poly.pivotNames = pNames.concat();
         poly.svgel = sv.polyline({
             svgel   : ns.haz( poly, 'svgel' ),
             stroke,
-            //fill,
             parent  : stdMod.mmedia,
             pivots,
             'stroke-width' : strokeWidth * sconf.thickness, 

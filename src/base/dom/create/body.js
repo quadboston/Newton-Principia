@@ -1,18 +1,14 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var cssp        = ns.CSS_PREFIX;
-    var html        = sn('html');
-    var rootvm      = sn('rootvm');
-
-    var sapp        = sn('sapp' ); 
-    var sDomN       = sn('dnative', sapp);
-
-    var fapp        = ns.sn('fapp' ); 
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
+    var {
+        ns,
+        $$,
+        haz,
+        fapp,
+        sDomN,
+        html,
+        fconf,
+    } = window.b$l.apptree({
+    });
     html.builds_body_4_home8lemma = builds_body_4_home8lemma;
     return;
 
@@ -83,15 +79,19 @@
         var ww = fconf.sappModulesList[ fconf.sappId ];
         var caption = ww.book + '. ' + ww.caption + '.';
 
+
         var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
             .to( fapp.fappRoot$ )
-            //==================================================
-            // //\\ builds home button
-            //==================================================
+            ;
+
+        //==================================================
+        // //\\ builds home button
+        //==================================================
+        navBar$
             .ch(    
                 sDomN.homeButton$ = $$
                 .dc( "master-pagination-btn home-button is-hidden" )
-                .html("Contents")
+                .html( fconf.homeButtonName )
                 .e( 'click', function() {
                       if( fapp.homePage$().className.indexOf( 'is-hidden' ) > -1 ) {
                             ns.globalCss.update('','home');
@@ -109,7 +109,7 @@
                             ns.globalCss.clearStyleTag( 'home' );
                             fapp.homePage$.addClass( 'is-hidden' );
                             sDomN.homeButton$
-                                .html( 'Contents' )
+                                .html( fconf.homeButtonName )
                                 .addClass( 'is-hidden' )
                                 ;
                             document.body.style.overflow = 'hidden';
@@ -118,10 +118,11 @@
                       return false;
                 })
             )
-            //==================================================
-            // \\// builds home button
-            //==================================================
+        //==================================================
+        // \\// builds home button
+        //==================================================
 
+        navBar$
             .ch( sDomN.middleNavBar$ = $$.dc( 'middle-subnav-bar' )
                 //==================================================
                 // //\\ builds lemmas' navigator

@@ -5,18 +5,110 @@
 }
 *..*
 
+
+<b>Euclid Magnitudes</b>.
+
+Let M be commutative, operation-wise totally ordered, positive semigroup. In other words:
+<br><br>
+
+                                            <table><tr><td>
+    there exist operation "+" on M
+    for which
+                                            <br></td></tr><tr><td>
+
+    m'+m'' is in M
+                                            </td><td>
+                                            (closed)
+                                            <br></td></tr><tr><td> 
+
+    (m'+m'')+m''' = m'+(m''+m''')
+                                            </td><td>
+                                            (associative)
+                                            <br></td></tr><tr><td> 
+
+                                            </td><td>
+                                            (above three mean "semigroup")
+                                            <br></td></tr><tr><td> 
+
+
+    m'+m'' = m'' + m'
+                                            </td><td>
+                                            (commutative)
+                                            <br></td></tr><tr><td> 
+
+    for all m',m'' of non equal elements
+                                            </td><td>
+                                            (totally)
+                                            </td></tr><tr><td> 
+    there defined a relation "&gt;"
+    for which
+                                            <br></td></tr><tr><td> 
+    m' &gt; m'' and m'' &gt; m''' =&gt; m' &gt; m'''
+                                            </td><td>
+                                            (transitive)
+                                            <br></td></tr><tr><td> 
+
+    m' &gt; m'' =&gt; !m'' &gt; m''
+                                            </td><td>
+                                            (antisymmetirc)
+                                            <br></td></tr><tr><td> 
+
+                                            </td><td>
+                                            (above two mean "ordered")
+                                            <br></td></tr><tr><td> 
+
+    operation preserves order:
+                                            <br></td></tr><tr><td> 
+    m' &gt; m''    =&gt;   m'+m &gt; m''+m
+                                            </td><td>
+                                            (operation-wise)
+                                            <br></td></tr><tr><td> 
+
+    m + m' &gt; m'
+                                            </td><td>
+                                            (positive)
+                                            <br></td></tr><tr><td> 
+
+                                            <tr><td> 
+                                            </td></tr></table>
+<br><br>
+Example of M would be natural numbers N = { 1,2,3, ... },
+arithmetic progression of form { m, m2, m3, ... }, positive real numbers |R,
+set of non-zero areas of squares in two-dimensional plane.
+<br><br>
+
+
+
+<b>Immediate consequences</b> of above axioms are:
+<br><br>
+
+M does not contains zero.
+<br>
+"+" and "&gt;" are cancellable:
+<br>
+m'+m = m'' + m =&gt; m' = m''
+<br>
+m'+m &gt; m'' + m =&gt; m' &gt; m''
+<br>
+Order preserves ownself:
+<br>
+m' &gt; m'' and 'm &gt; ''m  =&gt; m'+ 'm &gt; m'' + ''m.
+<br><br>
+
+Relation "&gt;=" defined as
+m' "&gt;=" m''  &lt;=df=&gt; m'=m'' or m' "&gt;" m''
+<br><br>
+is transitive and reflexively-antisymmetric:
+<br>
+m' "&gt;=" m'' and m'' "&gt;=" m' =&gt; m' = m''
+<br><br>
+<br><br>
+
+
+
 <pre>
-<b>Ratios Algebraic Structure</b>
-
-We will logically extend "Euclid Ratios" algebraic structure following plan outlined below.
-
-
-1. M - cancellable, commutative, ordered semigroup.
-       Order preserves operation on M.
-       M corresponds to Euclid's and Newton "Magnitudes".
-       For example, line segments, volumes, time intervals.
-   N - non-zero and non-negative integers (which also an example of M)
-   We call (M,N) semigroup module.
+1.
+   We call (M,|N) semigroup module.
 
 
 2. We define action N on M: the operation "." as

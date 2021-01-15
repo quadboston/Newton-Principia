@@ -1,21 +1,13 @@
 ( function () {
-    var ns          = window.b$l;
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        fconf,
+        sconf,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            init_conf,
+        },
+    });
     return;
 
 
@@ -24,10 +16,6 @@
 
 
 
-    function setModule()
-    {
-        ssF.init_conf = init_conf;
-    }
 
     function init_conf()
     {
@@ -104,6 +92,9 @@
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
+
+            default_tp_stroke_width : 8,
+            dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
 
         //=====================================

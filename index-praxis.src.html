@@ -3,7 +3,7 @@
   <head>
     <title>Exploring Newton Lemmas</title>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="stems/praxis/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="sites/praxis/images/favicon.ico" type="image/x-icon">
 
     <meta name="viewport" 
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -35,6 +35,7 @@
 
     <!-- //\\ order of these first scrips is vital -->
     <script src="src/vendor/bsl/core/ns.js"></script>
+    <script src="src/vendor/bsl/ns-tree.js"></script>
     <script src="src/base/lemma/registry.js"></script>
     <script src="src/base/app-tree.js"></script>
     <!-- \\// order of these first scrips is vital -->
@@ -55,7 +56,6 @@
     <script src="src/vendor/bsl/mat/approximation.js"></script>
     <script src="src/vendor/bsl/mat/geom-shapes.js"></script>
     <script src="src/vendor/bsl/mat/functions.js"></script>
-
     <script src="src/vendor/bsl/core/bsl-throttle.js"></script>
     <script src="src/vendor/bsl/core/keyboard-keys.js"></script>
     <script src="src/vendor/bsl/core/colors.js"></script>
@@ -72,8 +72,6 @@
     <script src="src/base/css/fapp.css.js"></script>
     <script src="src/base/css/base/base.css.js"></script>
     <script src="src/base/css/base/typography.css.js"></script>
-    <script src="src/base/css/pages/home-pane.css.js"></script>
-    <script src="src/base/css/pages/homepage-basics.css.js"></script>
     <script src="src/base/css/pages/inner-page.css.js"></script>
 
 
@@ -90,21 +88,24 @@
 
 
     <!-- //\\ core html -->
-    <script src="src/base/dom/create/body.js"></script>
     <script src="src/base/dom/create/lemma.js"></script>
     <script src="src/base/dom/create/media-super-root.js"></script>
     <script src="src/base/dom/create/lemma-master-menu.js"></script>
+    <script src="src/base/dom/create/lemma-master-menu-lib.js"></script>
     <script src="src/base/dom/create/media.js"></script>
     <script src="src/base/dom/create/capture-window.js"></script>
+    <script src="src/base/dom/create/body.js"></script>
     <script src="src/base/dom/events/events.js"></script>
     <script src="src/base/dom/secondary/video-help-manager.js"></script>
     <script src="src/base/dom/lib/mobile-tester.js"></script>
+    <script src="src/base/dom/lib.js"></script>
 
     <script src="src/base/resize8slide/core.js"></script>
     <script src="src/base/resize8slide/do-complete.js"></script>
     <script src="src/base/resize8slide/complete-css.js"></script>
 
     <script src="src/base/parser/frags-2-dom8topiccss.js"></script>
+    <script src="src/base/parser/frags-2-dom8topiccss-core.js"></script>
     <script src="src/base/parser/content2exegs.js"></script>
     <script src="src/base/parser/exegs2frags.js"></script>
     <script src="src/base/parser/tpanch2mjax.js"></script>
@@ -132,8 +133,7 @@
     <script src="src/base/lemma/media-model/main-legend-templates.js"></script>
     <script src="src/base/lemma/media-model/dom2model-scales.js"></script>
     <script src="src/base/lemma/study-model/model-lib.js"></script>
-    <script src="src/base/lemma/parses-topic-scenario.js"></script>
-    <script src="src/base/lemma/executes-topic-scenario.js"></script>
+    <script src="src/base/lemma/study-model/subessay-amode-2-lemma.js"></script>
 
     <script src="src/base/draggers/sliders/tools/def-scale.js"></script>
     <script src="src/base/draggers/sliders/tools/def-thickness.js"></script>
@@ -145,8 +145,10 @@
     <script src="src/base/draggers/points/createsDragger4pointRgX.js"></script>
     <script src="src/base/draggers/finalizes-custDraggers8toolsSliders.js"></script>
 
-
-
+    <!-- //\\ plugins -->
+    <script src="src/plugins/topic-scenario/parses-topic-scenario.js"></script>
+    <script src="src/plugins/topic-scenario/executes-topic-scenario.js"></script>
+    <!-- \\// plugins -->
 
 
     <!-- //\\ abandoned -->
@@ -158,22 +160,36 @@
     <!-- \\// abandoned -->
 
 
-    <script src="src/base/lemma/main.js"></script>
+    <script src="src/base/lemma/init-sapp.js"></script>
     <script src="src/base/lemma/astate2app.js"></script>
     <script src="src/base/lemma/expands-conf.js"></script>
 
-    <script src="src/main-main.js"></script>
+    <script src="src/app-main.js"></script>
+    <script src="src/app.conf.js"></script>
     <!-- \\// core -->
 
-    <script src="stems/praxis/conf/css-conf.js"></script>
-    <script src="stems/praxis/conf/conf.js"></script>
-    <script src="stems/praxis/conf/lemma.conf.js"></script>
-    <script src="stems/praxis/conf/home-page-conf.html.js"></script>
+
+    <!-- //\\ site-specific config and home page -->
+    <script src="sites/praxis/conf/conf.js"></script>
+    <script src="sites/praxis/conf/site.css.js"></script>
+    <script src="sites/praxis/conf/css-conf.js"></script>
+    <script src="sites/praxis/conf/lemma.conf.js"></script>
+    <script src="sites/praxis/conf/home-page-conf.html.js"></script>
+
+    <script src="sites/praxis/conf/pages/home-pane.css.js"></script>
+    <script src="sites/praxis/conf/pages/homepage-basics.css.js"></script>
+
+    <script src="src/vendor/bsl/mat/matrix.js"></script>
+    <script src="src/vendor/bsl/3dcss/model-matrix-css.js"></script>
+    <script src="src/vendor/bsl/3dcss/matrix-lib.js"></script>
+    <script src="src/vendor/bsl/gui/select-box.js"></script>
+    <script src="src/vendor/bsl/core/lib.js"></script>
+    <!-- \\// site-specific config and home page  -->
 
 
     <!-- //\\ full app config -->
-    <script src="stems/praxis/contents/book-references.js"></script>
-    <script src="stems/praxis/contents/content-list.js"></script>
+    <script src="sites/praxis/contents/book-references.js"></script>
+    <script src="sites/praxis/contents/content-list.js"></script>
     <!-- \\// full app config -->
     <!-- \\// replace with prod script -->
 

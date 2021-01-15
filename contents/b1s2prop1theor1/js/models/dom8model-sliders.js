@@ -183,7 +183,7 @@
 
         var rgX = api; //rg.slider_sltime;
         ///this sub is defined in full-app/lib/custom-slider.js module
-        stdMod.rgX2dragger_asCustomSlider({
+        stdMod.rgXSlider__2__dragwrap_gen_list({
             rgX,
             orientation         : 'axis-x',
         });

@@ -15,6 +15,9 @@
     //====================================================
     to_fconf =
     {
+        lemmaHasHomeButton          : true,
+        homeButtonName              : 'Contents',
+        theorionTab_nonClickable    : false,
 
         //:data
         svgNS :  "http://www.w3.org/2000/svg",
@@ -79,12 +82,15 @@
         //app decorations
         appDecor :
         {
-            backButtonCaption : 'Back to the Lemmas',
-            landingImage : 'landing-img.jpg',
-            homePageCaption : 'Interactive Illustrations<br>' +
-                              'for Newton’s <span>Principia</span>',
-            helpButtonCaption : 'Hover over the diagram to interact',
-            idleHelpButtonTooltip : '',
+            backButtonCaption       : 'Back to the Lemmas',
+            landingImage            : 'landing-img.jpg',
+            homePageCaption         : 'Interactive Illustrations<br>' +
+                                      'for Newton’s <span>Principia</span>',
+            helpButtonCaption       : 'Hover over the diagram to interact',
+
+            //todm: this disables functionality ... not only CSS:
+            helpBox_opacity0        : false,
+            idleHelpButtonTooltip   : 'Get Help',
         },
 
     };

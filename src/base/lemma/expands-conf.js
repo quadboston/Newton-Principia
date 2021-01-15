@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns, sn, haz,
+        ns, sn, haz, has,
         sconf, fconf,
         fixedColors,
         ssF, sDomF,
@@ -151,15 +151,20 @@
 
             function expandsOrPoints( op, pname )
             {
-                op.own = ns.own;
+                //todo ... non-readable: it tranfers properties from ??original points to here,
+                //      this must be clearly written in code,
+                op.own          = ns.own;
                 var pictureP    = op.own( 'pos' );
                 var modelP      = op.own( 'mpos' );
 
                 //at the moment for missing flag, doPaintPname === true,
+
+                // //\\ todm: automate property transfer
                 var doPaintPname= ns.h( op, 'doPaintPname' ) ?
                                   op.doPaintPname : true;
                 var draggableX = ns.h( op, 'draggableX' ) ? op.draggableX : false;
-                var draggableY = ns.h( op, 'draggableX' ) ? op.draggableY : false;
+                var draggableY = ns.h( op, 'draggableY' ) ? op.draggableY : false;
+                // \\// todm: automate property transfer
 
                 var pos = pname2point[ pname ] = !pictureP ?
                             [0,0] :
@@ -167,10 +172,76 @@
                               ( pictureP[1] - originY_onPicture ) * factor,
                             ];
 
-                var rgX = ssF.declareGeomtric({ pname, pos, caption:ns.haz( op, 'caption' ) });
+                //creates rgX or reuses existing one
+                var rgX = op.rgX = ssF.declareGeomtric({
+                    pname, pos, caption : ns.haz( op, 'caption' )
+                });
+
+                // //\\ todm: automate property transfer
+
+                //------------------------------------------------------
+                // //\\ dragging
+                //------------------------------------------------------
+                if( has( op, 'hideD8Dpoint' ) ) {
+                    //completely disables dragging
+                    rgX.hideD8Dpoint = op.hideD8Dpoint;
+                }
+                if( has( op, 'nospinner' ) ) {
+                    //keeps dragging but hides spinning drag overlay
+                    rgX.nospinner = op.nospinner;
+                }
+                if( has( op, 'DRAGGEE_HALF_SIZE' ) ) {
+                    rgX.DRAGGEE_HALF_SIZE = op.DRAGGEE_HALF_SIZE;
+                }
+                if( has( op, 'dragDecorColor' ) ) {
+                    rgX.dragDecorColor = op.dragDecorColor;
+                }
                 rgX.draggableX = draggableX;
                 rgX.draggableY = draggableY;
+
+
+                //dragging?:
+                if( has( op, 'noKernel' ) ) {
+                    rgX.noKernel = op.noKernel;
+                }
+
+                /*
+                if( has( op, 'ignore_hideD8Dpoint_for_CSS' ) ) {
+                    rgX.ignore_hideD8Dpoint_for_CSS = op.ignore_hideD8Dpoint_for_CSS;
+                }
+                //?? must be global?
+                //dragging?:
+                if( has( op, 'makeCentralDiskInvisible' ) ) {
+                    rgX.makeCentralDiskInvisible = op.makeCentralDiskInvisible;
+                }
+                */
+                //------------------------------------------------------
+                // \\// dragging
+                //------------------------------------------------------
+
+
+                if( has( op, 'notp' ) ) {
+                    rgX.notp = op.notp;
+                }
+                if( has( op, 'undisplayAlways' ) ) {
+                    rgX.undisplayAlways = op.undisplayAlways;
+                }
+                if( has( op, 'classmark' ) ) {
+                    rgX.classmark = op.classmark;
+                }
+                if( has( op, 'displayAlways' ) ) {
+                    rgX.displayAlways = op.displayAlways;
+                }
+
+                if( has( op, 'initialR' ) ) {
+                    rgX.initialR = op.initialR;
+                }
                 rgX.doPaintPname = doPaintPname;
+                // \\// todm: automate property transfer
+
+
+
+
                 if( ns.h( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = op.pcolor;
@@ -179,7 +250,6 @@
                     rgX.pcolor = sDomF.getFixedColor( pname );
                 }
                 rgX.undisplay = ns.h( op, 'undisplay' ) ? op.undisplay : false;
-
 
                 //todm ... make it a stand-alone function to facilitate
                 //         dynamic points creation ... to avoid extra declaration
@@ -191,13 +261,27 @@
                 var fontSize        = estimatesSizeScale * ( ns.h( op, 'fontSize' ) ?
                                       op.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
 
-                var letterAngle     = ns.h( op, 'letterAngle' ) ? op.letterAngle : 0;
-                var rad             = letterAngle / 180 * Math.PI;
-                rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
-                                      fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
-                rgX.letterOffsetY   = letterOffset * Math.sin( rad ) -
-                                      fontSize*LETTER_CENTER_Y_PER_FONT_SIZE;;
+                var letterShift     = haz( op, 'letterShift' );
+                if( letterShift ) {
+                    rgX.letterOffsetX = letterShift[0];
+                    rgX.letterOffsetY = letterShift[1];
+                } else {
+                    var letterAngle     = ns.h( op, 'letterAngle' ) ? op.letterAngle : 0;
+                    var rad             = letterAngle / 180 * Math.PI;
+                    rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
+                                          fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
+                    rgX.letterOffsetY   = letterOffset * Math.sin( rad ) -
+                                          fontSize*LETTER_CENTER_Y_PER_FONT_SIZE;
+                }
                 rgX.letterOffsetY   *= -1; //for screen y-direction
+
+                var letterColor = haz( op, 'letterColor' ); 
+                if( letterColor ) {
+                    //todm ... 
+                    //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor; 
+                    rgX.letterColor = sDomF.getFixedColor( letterColor );
+                }
+
                 /*
                 ccc(
                     pname,
@@ -224,14 +308,27 @@
                 });
             }
             ns.eachprop( lines, ( gshape, pname ) => {
-                var rgX = toreg( pname )( 'pname', pname );
+                var rgX = toreg( pname )( 'pname', pname )();
                 if( ns.h( gshape, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = gshape.pcolor;
                 }
+
+                //---------------------------------------------------------
+                // //\\ transfers properties from line-options to rg-lines:
+                //      todo ... we stumbled upon this 100 times ...
+                //               property transfer must automate ...
+                //               every time we forget to transfer new
+                //               property, we lose hours ...
+                //---------------------------------------------------------
                 if( ns.h( gshape, 'undisplay' ) ) {
                     rgX.undisplay = gshape.undisplay;
                 }
+                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
+                rgX.notp        = haz( gshape, 'notp' );
+                //---------------------------------------------------------
+                // \\// transfers properties from line-options to rg-lines:
+                //---------------------------------------------------------
             });
             //----------------------------------
             // \\// expands lines placeholders
@@ -263,10 +360,8 @@
             //----------------------------------
             // //\\ scenario
             //----------------------------------
-            enableStudylab                  : true,
             hideProofSlider                 : true, //false,
             enableCapture                   : true,
-            enableTools                     : true,
             enableDataFunctionsRepository   : false,
             //----------------------------------
             // \\// scenario
@@ -277,6 +372,16 @@
             default_tp_lightness        : 40, //50 is full lightness
             defaultLineWidth            : 2,
         });
+        if( !has( sconf, 'enableStudylab' ) ) {
+            ////this way, the legacy lemmas are preserved,
+            ////new lemmas must set this in own "sconf",
+            sconf.enableStudylab = true;
+        }
+        if( !has( sconf, 'enableTools' ) ) {
+            ////this way, the legacy lemmas are preserved,
+            ////new lemmas must set this in own "sconf",
+            sconf.enableTools = true;
+        }
         //----------------------------------
         // \\// prepares sconf data holder
         //----------------------------------------------------

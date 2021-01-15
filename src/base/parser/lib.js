@@ -60,6 +60,7 @@
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
+                //// todm: don in colors.js ... do replace this ...
                 ////***********************************************
                 ////with DEFAULT_TP_OPACITY
                 var rem = tcount%2;
@@ -78,6 +79,7 @@
         });
     }
 
+    //todo remove, now in bsl: = ns.hslo_2_low8high
     ///argument theOpacity goes to rgba_low,
     ///opacity 1           goes to rgba_high,
     function hslo_2_low8high( hue, sat, light, theOpacity )

@@ -18,7 +18,11 @@
 
     function init_siteWideLemmaCSS(cssp, fconf) 
     {
+        //does break app if do it conventional way
+        //            site-sapp
+
         //data-entry: put module names here in order
+
         `
             nav-bar-and-drawer
             checkbox
@@ -33,8 +37,12 @@
         .forEach( function( modname ) {
             modname = modname.replace(/\s+/g,'');
             if( modname ) {
+                ////this list is prone to manual-errors, commas, etc
+                ////this is why this debug-style-coding
+                var wwFun = cssmods[ modname ];
+                var ww = wwFun( cssp, fconf );
                 ns.globalCss.addText(
-                    decorateText( cssmods[ modname ]( cssp, fconf ), modname )
+                    decorateText( ww, modname )
                 );
             }
         });

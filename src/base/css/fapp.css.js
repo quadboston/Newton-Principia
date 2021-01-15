@@ -124,13 +124,23 @@
         opacity:1;
         z-index:10;
     }
+    `;
 
-    .bsl-bg-image {
-        width:100%;
-        left:0;
-        top:0;
-        z-index:9;
-    }
+
+
+    /*
+        moved to separate module for "site":
+        .bsl-bg-image {
+            width:100%;
+            left:0;
+            top:0;
+            z-index:9;
+        }
+    */
+
+
+    ret += `
+
 
     /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
     /* this really solved firefox problem of "shadow-dragging-object"
@@ -179,6 +189,14 @@
     //====================================
     // \\// display/unsisplay
     //====================================
+
+
+    ///useful for point-d8d
+    ret +=`
+        .bsl-media-superroot .grab {
+            cursor : grab;
+        }
+    `;
 
 
     /*---------------------------*/
@@ -485,6 +503,16 @@ ret +=`
         opacity:1;
     }
     `;
+
+    ///todm ... non-elegant
+    if( fconf.appDecor.helpBox_opacity0 ) {
+        ret +=`
+            .video-help-button,
+            .model-help {
+                cursor: auto;
+            }
+        `;
+    }
     //==================================
     // \\// model help
     //==================================

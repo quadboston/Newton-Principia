@@ -69,10 +69,15 @@
 
 
         //subessay-toggler
+        //it shifts itself from the left menu by own margin 20px;
+        //but essaying text shifts itself by of a parent padding 20px;
+        //this is why "+50px" here:
         ret += `
             .subessay-menu-container {
+                width           : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH+50}px);
                 margin-top      : 13px;
                 padding         : 5px;
+                margin-left     : 20px;
                 border-radius   : 10px;
                 border          : 1px solid #aaaaaa;
                 background-color: #fefefe;

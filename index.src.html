@@ -34,6 +34,7 @@
 
     <!-- //\\ order of these first scrips is vital -->
     <script src="src/vendor/bsl/core/ns.js"></script>
+    <script src="src/vendor/bsl/ns-tree.js"></script>
     <script src="src/base/lemma/registry.js"></script>
     <script src="src/base/app-tree.js"></script>
     <!-- \\// order of these first scrips is vital -->
@@ -71,8 +72,6 @@
     <script src="src/base/css/fapp.css.js"></script>
     <script src="src/base/css/base/base.css.js"></script>
     <script src="src/base/css/base/typography.css.js"></script>
-    <script src="src/base/css/pages/home-pane.css.js"></script>
-    <script src="src/base/css/pages/homepage-basics.css.js"></script>
     <script src="src/base/css/pages/inner-page.css.js"></script>
 
 
@@ -89,12 +88,13 @@
 
 
     <!-- //\\ core html -->
-    <script src="src/base/dom/create/body.js"></script>
     <script src="src/base/dom/create/lemma.js"></script>
     <script src="src/base/dom/create/media-super-root.js"></script>
     <script src="src/base/dom/create/lemma-master-menu.js"></script>
+    <script src="src/base/dom/create/lemma-master-menu-lib.js"></script>
     <script src="src/base/dom/create/media.js"></script>
     <script src="src/base/dom/create/capture-window.js"></script>
+    <script src="src/base/dom/create/body.js"></script>
     <script src="src/base/dom/events/events.js"></script>
     <script src="src/base/dom/secondary/video-help-manager.js"></script>
     <script src="src/base/dom/lib/mobile-tester.js"></script>
@@ -104,6 +104,7 @@
     <script src="src/base/resize8slide/complete-css.js"></script>
 
     <script src="src/base/parser/frags-2-dom8topiccss.js"></script>
+    <script src="src/base/parser/frags-2-dom8topiccss-core.js"></script>
     <script src="src/base/parser/content2exegs.js"></script>
     <script src="src/base/parser/exegs2frags.js"></script>
     <script src="src/base/parser/tpanch2mjax.js"></script>
@@ -131,8 +132,7 @@
     <script src="src/base/lemma/media-model/main-legend-templates.js"></script>
     <script src="src/base/lemma/media-model/dom2model-scales.js"></script>
     <script src="src/base/lemma/study-model/model-lib.js"></script>
-    <script src="src/base/lemma/parses-topic-scenario.js"></script>
-    <script src="src/base/lemma/executes-topic-scenario.js"></script>
+    <script src="src/base/lemma/study-model/subessay-amode-2-lemma.js"></script>
 
     <script src="src/base/draggers/sliders/tools/def-scale.js"></script>
     <script src="src/base/draggers/sliders/tools/def-thickness.js"></script>
@@ -157,17 +157,26 @@
     <!-- \\// abandoned -->
 
 
-    <script src="src/base/lemma/main.js"></script>
+    <script src="src/base/lemma/init-sapp.js"></script>
     <script src="src/base/lemma/astate2app.js"></script>
     <script src="src/base/lemma/expands-conf.js"></script>
 
-    <script src="src/main-main.js"></script>
+    <script src="src/app-main.js"></script>
+    <script src="src/app.conf.js"></script>
     <!-- \\// core -->
 
-    <script src="conf/css-conf.js"></script>
+
+    <!-- //\\ site-specific config and home page -->
     <script src="conf/conf.js"></script>
+    <script src="conf/site.css.js"></script>
+    <script src="conf/css-conf.js"></script>
     <script src="conf/lemma.conf.js"></script>
     <script src="conf/home-page-conf.html.js"></script>
+
+    <script src="conf/pages/home-pane.css.js"></script>
+    <script src="conf/pages/homepage-basics.css.js"></script>
+    <!-- \\// site-specific config and home page  -->
+
 
 
     <!-- //\\ full app config -->

@@ -1,9 +1,13 @@
 ( function() {
     var {
-        mat, ssD, rg,
+        mat,
+        ssD,
+        rg,
+        stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
             createsModelFunctions_before___init_model_parameters,
+            //baseFunction,
         }
     });
     return;
@@ -18,28 +22,6 @@
 
 
 
-    ///the same function is used for left and right part of the Lemma diagram
-    function baseFunction( x )
-    {
-        return mat.poly
-        (
-            x,
-            [
-                0,
-                -0.29,
-                -0.56,
-                -0.08,
-                 0,
-                 0,
-                 0.04,
-                 0.15,
-                -0.09,
-                -0.55,
-                 0,
-                -0.15,
-            ],
-        ) + rg.a.pos[1];
-    }
 
 
 
@@ -57,7 +39,7 @@
                 fun : x => {
                     return [
                         x,
-                        baseFunction( x )
+                        stdMod.baseFunction( x )
                     ];
                 },
                 //fname : "Curve acE",
@@ -67,11 +49,14 @@
 
             {
                 fun : x => {
-                    var xFromP = (x-rg.P.pos[0]);
-
+                    var xFromP = x-rg.P.pos[0];
+                    var argX = xFromP / rg.ptransform.val[0][0];
+                    var argY = stdMod.baseFunction( argX );
+                    var newX = x + rg.ptransform.val[1][0] * argY;
+                    var newY = rg.ptransform.val[1][1] * argY + rg.P.pos[1]-rg.A.pos[1];
                     return [
-                        x,
-                        rg.magnitudeY.val * baseFunction( xFromP / rg.magnitudeX.val )
+                        newX,
+                        newY,
                     ];
                 },
             },

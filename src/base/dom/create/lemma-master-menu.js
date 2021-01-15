@@ -12,11 +12,12 @@
 ( function() {
     var {
         ns, sn, $$, haff,
+        eachprop, haz,
         sconf, fconf,
         fapp, sapp, ss,
         fmethods,
         ssF,
-        sDomF, sDomN, amode,
+        sDomF, sDomN,
         studyMods,
         amode,
         wrkwin,
@@ -27,6 +28,7 @@
     sDomF.menu2lemma                        = menu2lemma;
     sDomF.state2subessayMenu                = state2subessayMenu;
     sDomF.build_menu_top_leafs_placeholders = build_menu_top_leafs_placeholders;
+    sDomF.tellActivityEngine_that_userStartedSubessay = tellActivityEngine_that_userStartedSubessay;
     return;
 
 
@@ -54,7 +56,7 @@
 
         //this does extra work ... skip this:
         //var submItem = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ];
-        //do_select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
+        //do_ select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
 
         //:sets up aspect menu
         var submItem = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ];
@@ -86,6 +88,10 @@
                     sDomN.menu
             );
         });
+
+        if( haz( fconf, 'theorionTab_nonClickable' ) ){
+            sDomF.makes_theorionTab_nonClickable();
+        }
     }
 
 
@@ -191,10 +197,15 @@
         // \\// fluid-html part
         //--------------------------
 
+        //-------------------------------------------------------------------
+        // //\\ builds clickable dom element to toggle essay-texts-menu-items
+        //-------------------------------------------------------------------
         var li$ = leafRk.li$ = $$
             .dct( 'shape litem', teaf$ )
             .e('click', function( event ) {
-                do_select_leaf__localfun( leafRk, !!'amodel2app_8_extraWork' );
+                if( mcat_id !== 'theorion' || !fconf.theorionTab_nonClickable ) {
+                    do_select_leaf__localfun( leafRk, !!'amodel2app_8_extraWork' );
+                }
             })
             .ch([
                 fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ),
@@ -206,6 +217,10 @@
                         ]
                     )
             ]);
+        //-------------------------------------------------------------------
+        // \\// builds clickable dom element to toggle essay-texts-menu-items
+        //-------------------------------------------------------------------
+
         if( studylab && mcat_id === 'aspect' ) {
             li$.addClass( 'studylab' );
         }
@@ -228,6 +243,7 @@
         var scat_id         = leafRk.scat_id;
         var mcat_id         = leafRk.mcat_id;
         var decorOfShuttle$ = leafRk.decorOfShuttle$;
+        var exAspect        = exegs[ amode.theorion ][ amode.aspect ];
 
         //todm: with this lemma 2 looks bad ... why? ... missed resize?
         //if( amode[ mcat_id ] === scat_id ) return; //click is idempotent
@@ -240,7 +256,6 @@
         //sets fappRoot flags
         fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
         //sets content-text visibility
-        var exAspect = exegs[ amode.theorion ][ amode.aspect ];
         if( exAspect.subexegs.length > 1 ) {
             exAspect.subessayMenuContainer$.removeClass( 'chosen' );
         }
@@ -253,7 +268,9 @@
 
 
         //**************************************************************
+        //**************************************************************
         // //\\ makes model change
+        //**************************************************************
         //**************************************************************
         amode[ mcat_id ]    = scat_id;
         var exAspect        = exegs[ amode.theorion ][ amode.aspect ];
@@ -263,7 +280,9 @@
         amode.subessay      = subexeg.essayHeader.subessay;
         amode.submodel      = subexeg.essayHeader.submodel;
         //**************************************************************
+        //**************************************************************
         // \\// makes model change
+        //**************************************************************
         //**************************************************************
 
 
@@ -303,7 +322,10 @@
         // updates app and ...
         //==================================================
         if( amodel2app_8_extraWork ) {
-            //.menu work for special subapp
+            ////menu work for special subapp
+            ////this happens only on 2 click events(ver Dec10,2020)
+            ////one click is for top-text-menu?,
+            ////second click is for submenu,
             ns.haf( ss, 'menuExtraWork' )( mcat_id, scat_id );
         }
 
@@ -313,7 +335,7 @@
         //      as prescribed in essaion
         //      if its menu item exist and is already constructed
         //==================================================
-        fmethods.spawnVideoList && fmethods.spawnVideoList();
+        fmethods.spawnVideoList && fmethods.spawnVideoList(); //todon what?
         sDomN.bgImage$ = subexeg0.imgRk.dom$;
         if( subexeg.essayHeader.dataLegend === "0" ) {
             $$.$(sDomN.medRoot).addClass('main-legend-disabled');
@@ -329,6 +351,8 @@
         /// establishes amodel state if lemma is ready for it
         ///=========================================================
         if( amodel2app_8_extraWork ) {
+            ////this happens only on 1 click events(ver Dec10,2020)
+            ////one click is for top-text-menu?,
             menu2lemma();
         }
         //==================================================
@@ -340,6 +364,10 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 
 
+
+    ///this happens only on 2 click events(ver Dec10,2020)
+    ///one click is for top-text-menu?,
+    ///second click is for submenu,
     function menu2lemma()
     {
         //we need to run "media" updater because we need to update
@@ -349,13 +377,25 @@
         var stdMod = studyMods[ amode.submodel ];
 
         //possibly for lemmas from the past: lemma1, l2, ...
-        haff( stdMod, 'amode2lemma' );
+        ssF.in_subessay_launch____amode2lemma();
 
         haff( stdMod, 'sliders_value2pos' );
 
         //.todm code proliferation ... model runs twice?
-        wrkwin.finish_Media8Ess8Legend_resize__upcreate(
-            null, !!'doDividorSynch');
+        var resize8more = wrkwin.finish_Media8Ess8Legend_resize__upcreate;
+        resize8more( null, !!'doDividorSynch');
+
+        //**********************************************************************************
+        //todo patch: this is a vital patch, without it to appear legend needs
+        //second resize event,
+        //the reason for the bug is unknown,
+        setTimeout(
+            function() {
+                resize8more( null, !!'doDividorSynch' );
+            },
+            100
+        );
+        //**********************************************************************************
     }
 
 
@@ -372,6 +412,37 @@
             subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }
+
+
+    function tellActivityEngine_that_userStartedSubessay()
+    {
+        ////real human acted on app,
+        ////because of this, human activity state-machines are being
+        ////informed in this block,
+        eachprop( exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg,
+                  (subessayRack, sname) => {
+
+            ///this is flag of presense of activity-script for this subessay
+            if( haz( subessayRack, 'stateId2state' ) ) {
+
+                if( amode.subessay === sname ) {
+                    return;
+                }
+                //sibling activities begin aware that current activity is started
+                ssF.executesTopicScenario( 'sibling-activity-start', sname );
+            }
+        });
+
+        var subessayRack =
+            exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg[ amode.subessay ];
+        if( haz( subessayRack, 'stateId2state' ) ) {
+            ////adds state "start" to avoid entering the state machine in ambiguous state
+            ////in plain words, every "user click" is "start over"
+            subessayRack.scenario_stateId = 'start';
+            ssF.executesTopicScenario( 'start' );
+        }
+    }
+
 
 
 }) ();

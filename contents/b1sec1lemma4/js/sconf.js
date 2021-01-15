@@ -25,6 +25,14 @@
     {
         sconf.rgShapesVisible = true;
 
+        //gives bar full range of opacity for tp machine
+        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
+
+        //makes idle bars brighter
+        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
+
+
+
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
@@ -52,6 +60,10 @@
 
 
 
+        //count n slider parameters
+        var sliderNStart    = [ A[0], E[1]+60 ];
+        var sliderNEnd      = [ T[0], sliderNStart[1] ];
+
         //-----------------------------------
         // //\\ topic group colors,
         //      todm: possibly proliferation
@@ -60,7 +72,9 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
+        var context = [0,     0,   0,      1];
 
+        sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA = 1;
 
         var predefinedTopics =
         {
@@ -68,24 +82,72 @@
             proof,
             result,
             hidden,
+            context,
             'acE'  : given,
             'prT'  : given,
             'right-bars' : proof,
             'left-bars' : proof,
             'right-bars-breadths' : proof,
             'left-bars-breadths' : proof,
-
-            //optional GUI sugar
-            //matching bars:
-            'left-bar-1' : [0,50,100],
-            'right-bar-1' : [0,50,100],
+            'leftBarsArea' : proof,
+            'rightBarsArea' : proof,
+            'barsRatio' : result,
+            'figuresRatio' : result,
+            'ratio' : result,
         };
+
+        //optional GUI sugar
+        //matching bars:
+        //patch which manually matches generated random zebra6-color for bar 1
+        //when total bars max = 200:
+        predefinedTopics[ 'left-bar-' +
+            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [254, 254, 1];
+        predefinedTopics[ 'right-bar-' +
+            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [254, 254, 1];
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
+        //---------------------------------------------------
+        // //\\ points to approximate and draw original curve
+        //---------------------------------------------------
+        var curvePivots =
+        [
+            a,
+            [ 108, 58 ],
+            [ 156, 84 ],
+            c,
+            [ 283, 210 ],
+            [ 305, 251 ],
+            E,
+        ];
+        curvePivots = curvePivots.map( pivot => ({
+            pos         : pivot,
+            pcolor      : given,
+            letterAngle : 45,
+            draggableX  : true,
+            draggableY  : true,
+        }));
         var originalPoints =
         {
+            curvePivots,
+        };
+        //merging with original points
+        curvePivots[0].caption = 'a';
+        curvePivots[3].caption = 'c';
+        curvePivots[1].doPaintPname = false;
+        curvePivots[2].doPaintPname = false;
+        curvePivots[4].doPaintPname = false;
+        curvePivots[5].doPaintPname = false;
+        curvePivots[6].doPaintPname = false;
+        curvePivots[ 0 ].draggableX = false;
+        curvePivots[ curvePivots.length - 1 ].draggableX = false;
+        //---------------------------------------------------
+        // \\// points to approximate and draw original curve
+        //---------------------------------------------------
+
+
+        Object.assign( originalPoints, {
             A : { 
                 pos: A,
                 pcolor : given,
@@ -96,12 +158,18 @@
                 pos: a,
                 pcolor : given,
                 letterAngle : 90,
+                //avoids caption duplication for original points merfed with controls' points
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
             c : {
                 pos: c,
                 pcolor : given,
                 letterAngle : 45,
+                //avoids caption duplication for original points merfed with controls' points
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
             E : {
@@ -120,6 +188,8 @@
                 pos: p,
                 pcolor : given,
                 letterAngle : 90,
+                draggableX  : true,
+                draggableY  : true,
             },
 
             r : {
@@ -134,12 +204,45 @@
                 pcolor : given,
                 letterAngle : -90,
             },
-        };
 
+            //---------------------------------------
+            // //\\ slider
+            //---------------------------------------
+            countNSlider : {
+                caption     : 'n',
+                pos         : sliderNStart,
+                pcolor      : context,
+                doPaintPname: true,
+                letterAngle : -90,
+                draggableX  : true,
+                sliderNStart,
+                sliderNEnd,
+                displayAlways : true,
+            },
+
+            sliderNStart : {
+                caption     : '',
+                pos         : sliderNStart,
+                pcolor      : hidden,
+                undisplayAlways : true,
+            },
+
+            sliderNEnd : {
+                caption     : '',
+                pos         : sliderNEnd,
+                pcolor      : hidden,
+                undisplayAlways : true,
+            },
+            //---------------------------------------
+            // \\// slider
+            //---------------------------------------
+        });
 
         //-----------------------------------
         // //\\ sets bars base points array
         //-----------------------------------
+        var BARS_NUMBER_MAX     = sconf.BARS_NUMBER_MAX = 200;
+        var BARS_NUMBER_CURRENT = sconf.BARS_NUMBER_CURRENT = 3;
         originalPoints.bars =
         [
             {
@@ -147,12 +250,15 @@
                 pos: [145,A[1]],
                 pcolor : given,
                 letterAngle : 45,
+                draggableX : true,
             },
             {
                 //pos: [210,122],
                 pos: [210,A[1]],
                 pcolor : given,
                 letterAngle : 45,
+                draggableX : true,
+                //classmark : 'tp-individual-bar',
             },
 
             {
@@ -160,11 +266,19 @@
                 pos: [272,A[1]],
                 pcolor : given,
                 letterAngle : 45,
+                draggableX : true,
             },
         ]
         //for more options, see expands-conf.js
         originalPoints.bars.doPaintPname = false;
-        originalPoints.bars.draggableX = true;
+        for( wwix = 3; wwix<BARS_NUMBER_MAX; wwix++ )
+        {
+            originalPoints.bars.push({
+                pos: [100,A[1]], //fake
+                pcolor : result,
+                undisplayAlways : true,
+            });
+        }
         //-----------------------------------
         // \\// sets bars base points array
         //-----------------------------------
@@ -180,6 +294,7 @@
             { 'AE' : { pcolor : given }, },
             { 'Pp' : { pcolor : given }, },
             { 'PT' : { pcolor : given }, },
+            { 'sliderNStart,sliderNEnd' : { pcolor : context }, },
         ];
 
         //making size to better fit lemma's diagram

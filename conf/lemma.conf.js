@@ -51,10 +51,24 @@
         SLIDERS_LENGTH_X : 0.70, //in respect to background-image-width
 
         dragHidesPictures : true,  //vital for show/hide letters machinery
+
+        ///for default points (and draggers???)
+        ///in module points.js
+        handleRadius : 5,
+    };
+
+    to_sconf.pointDecoration =
+    {
+        cssClass        : 'tostroke tofill thickable',
+        'stroke-width'  : 2,
+        r               : to_sconf.handleRadius,
     };
     //====================================================
     // \\// optionally overriden by url-query-config
     //====================================================
+
+
+
 
     //adds to_sconf to commong sconf
     Object.keys( to_sconf ).forEach( function( key ) {
