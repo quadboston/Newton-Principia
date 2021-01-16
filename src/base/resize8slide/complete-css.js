@@ -7,6 +7,7 @@
         sn,
         fmethods,
         fconf,
+        sconf,
         sDomN,
         wrkwin,
     } = window.b$l.apptree({
@@ -51,10 +52,6 @@
             .css( 'height',  essH_str )
             ;
 
-        //todm: perhaps excessive for mobile
-        sDomN.medRoot$
-            .css( 'width',  medW_str );
-
         // //\\ legend
         sDomN.legendRoot$
             .css( 'text-align', 'center' )
@@ -66,7 +63,14 @@
 
 
 
-
+    //================================================
+    //todo ... cleanup mobile ... apparently
+    //      mobile does not need all these settings ...
+    //      mobile was not elaborated enough ...
+    //
+    //      the GUI is so simple ... why to struggle
+    //      here?
+    //================================================
     function doBuildMobile({
         winW,
         mediaAspectRatio,
@@ -104,11 +108,34 @@
         //------------------------------------------------------------------
         // //\\ do css
         //------------------------------------------------------------------
+
+        //do we need this at all?
         common_mob8des_css({
             essW_str,
             essH_str,
             medW_str,
         });
+
+
+        //---------------------------------------
+        // //\\ fixes things which were broken by
+        //      margin to spatials desktop updates
+        //---------------------------------------
+        sDomN.medRoot$
+            .css( 'width',  '100%'
+        );
+        sDomN.mmedia.setAttributeNS(
+            null,
+            'viewBox', '0 0 ' +
+            sconf.innerMediaWidth + ' ' +
+            sconf.innerMediaHeight
+        );
+        sDomN.mmedia.style.width = 'auto';
+        sDomN.mmedia.style.left = '0px';
+        //---------------------------------------
+        // \\// fixes things which were broken by
+        //---------------------------------------
+
 
         var videoW_mobile_px = (0.94*winW).toFixed(2) + 'px';
         var videoH_mobile_px = (0.94*winW*10/16).toFixed(2) + 'px';
@@ -207,6 +234,8 @@
             essH_str,
             medW_str,
         })
+        sDomN.medRoot$
+            .css( 'width',  medW_str );
 
         sDomN.medSuperroot$
             .css( 'width',  'auto' ); //todm must be in global css by is-mobile css-class

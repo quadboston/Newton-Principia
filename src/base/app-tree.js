@@ -6,8 +6,6 @@
     var {
         ns,
         sn,
-        fapp,
-        fmethods,
     } = nsvars;
 
     ns.app          = apptree;

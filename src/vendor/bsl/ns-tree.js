@@ -12,6 +12,7 @@
     var bezier      = sn('bezier');
     var mat         = sn('mat');
     var sv          = sn('svg');
+    var nssvg       = sn('svg');
     var dpdec       = sn('drag-point-decorator');
     var d8d_p       = sn('d8d-point');
     return;
@@ -49,6 +50,7 @@
             mat,
             dpdec,
             sv,
+            nssvg,
             d8d_p,
         };
         return ret;

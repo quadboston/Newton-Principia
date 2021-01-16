@@ -3,7 +3,7 @@
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version =  5831; //application version
+    fapp.version =  5844; //application version
     // \\// updated automatically. Don't edit these strings.
 
 }) ();

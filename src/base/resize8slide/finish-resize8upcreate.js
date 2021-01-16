@@ -234,7 +234,7 @@
             //ccc( 'narrow screen: legendMargin =' + legendMargin );
         }
 
-        margin2svgPlayArea({ mediaMargin, medW, medAddonright });
+        margin_2_svg_Inner8OuterSpatials({ mediaMargin, medW, medAddonright });
         wrkwin.doesBuildNonMobileCss({
             legendMargin,
             mediaMargin,
@@ -259,8 +259,9 @@
 
     ///=============================================================================
     /// expands media playable area to margins
+    /// be aware: this can damage shrink to mobile: do cleanup in mobile,
     ///=============================================================================
-    function margin2svgPlayArea({ mediaMargin, medW, medAddonright })
+    function margin_2_svg_Inner8OuterSpatials({ mediaMargin, medW, medAddonright })
     {
         sDomN.mediaLeftMargin   = mediaMargin;
         sDomN.mediaWidth        = medW; // mediaPrimaryWidth
@@ -270,10 +271,17 @@
         var innMargin           = mediaMargin * innerScale;
         var visibleInnW         = sconf.innerMediaWidth + 2*innMargin +
                                   medAddonright * innerScale;
+
+        //compares with initial landing config:
         var svgvb =
+             //landing: ...'viewBox', '0 0 ' +
              (-innMargin).toFixed(4) + ' 0 ' + 
+
+             //landing: sconf.innerMediaWidth + ' ' +
+             //landing: sconf.innerMediaHeight );
              visibleInnW.toFixed(4) + ' ' +
              sconf.innerMediaHeight;
+
         sDomN.mmedia.setAttributeNS( null, 'viewBox', svgvb );
         sDomN.mmedia.style.width = visibleOuterW.toFixed(4) + 'px';
         sDomN.mmedia.style.left = (-mediaMargin.toFixed(4)) + 'px';
