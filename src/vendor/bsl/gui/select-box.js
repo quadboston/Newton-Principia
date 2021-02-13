@@ -39,6 +39,7 @@
         selectBoxClassId,   //for domEl-css
 
         optionIsChanged_cb, //callback
+        selectonIsReset_cb,
         sbStyle,
         defaultPrompt,
 
@@ -47,13 +48,20 @@
 
         if( listText ) {
             var plines = nsmethods.splitText_2_purgedLines( listText );
-            iarrays = purgedLines_2_itemArrays( plines );
+            iarrays = sboxRack.iarrays = purgedLines_2_itemArrays( plines );
         }
 
         var sbox$ = sboxRack.sbox$ = $$.c( 'select' )
+                      //otherwise left positions move at scale transform
+                      .css( 'transform-origin', '0px 0px' )
+
                       .e( 'change', function( event ) {
                             var ix = sbox$().selectedIndex;
                             ix -= defaultPrompt ? 1 : 0;
+                            if( ix < 0 ) {
+                                selectonIsReset_cb();
+                                return;
+                            }
                             optionIsChanged_cb({
                                 selectedIndex : ix,
                                 selectedCaption : iarrays[ix][0],
@@ -93,13 +101,22 @@
         if( sbStyle && selectBoxClassId ) {
             globalCss.update( sbStyle, selectBoxClassId, );
         }
+        sboxRack.restart = restart;
         return sboxRack;
+
+
+        function restart()
+        {
+            //ccc( 'sb restart called' );
+            sbox$().value = defaultPrompt ? 'default' : 'i0';
+            selectonIsReset_cb && selectonIsReset_cb();
+        }
     }
 
 
     function purgedLines_2_itemArrays( plines )
     {
-        const SPLIT_COLUMNS = /\s+\||\|\s+/;
+        const SPLIT_COLUMNS = /\s+\|\s*|\s*\|\s+/;
         var iarrays = plines.map( (pline,lix) =>
             pline.split( SPLIT_COLUMNS )
         );

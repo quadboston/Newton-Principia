@@ -20,17 +20,26 @@
     ///converts model-function to media-function
     ///returns "inner-media function" and 
     function modFun2innFun(
-        fun,
-        magnitude, //scales graph [x,f(x)]
+        fun,        //returns either y(x) or point [x,y(x)]
+        magnitude,  //scales graph [x,f(x)]
     ) {
         magnitude = magnitude || 1;
-        //var fun = ssD.repoConf[0].fun;
+        //var fun = aka ssD.repoConf[0].fun; or simple 
+        //          one argument returning function,
         return function( x ) {
-            var [xx,yy] = fun( x );
+            var point = fun( x );
+            if( typeof point === 'object' ) {
+                var [xx,yy] = point;
+            } else {
+                var xx = x;
+                var yy = point;
+            }
             var res = ssF.mod2inn([ xx*magnitude, yy*magnitude ]);
             return res;
         }
     }
+
+
 
     ///converts model-function to media-function
     ///returns "inner-media function" and 

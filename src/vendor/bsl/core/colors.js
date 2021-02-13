@@ -26,14 +26,14 @@
     // \\// some proofreading 
 
     //api:arg = [r,g,b,a ]
-    ns.rgba2hsla = function( arg ) {
+    ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
         return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3] ];
     };
 
     ///not tested
     ns.rgba2colors = function( arg ) {
-        var hsl = ns.rgba2hsla( arg );
+        var hsl = ns.rgbaArr2hsla( arg );
         return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3] );
     }
 

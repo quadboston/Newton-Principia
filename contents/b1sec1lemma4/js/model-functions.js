@@ -1,15 +1,17 @@
 ( function() {
     var {
         mat,
-        ssD,
+        sconf,
         rg,
         stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
-            createsModelFunctions_before___init_model_parameters,
-            //baseFunction,
-        }
+        stdModExportList :
+        {
+            updates__draggers2toFunctions,
+            rightFun_2_rightFigure,
+        },
     });
+    rg.rightFun_2_rightFigure = rightFun_2_rightFigure;
     return;
 
 
@@ -21,50 +23,32 @@
 
 
 
-
-
-
-
-
-    //=================================================
-    // //\\ template functions repo
-    //=================================================
-    function createsModelFunctions_before___init_model_parameters()
+    function rightFun_2_rightFigure( x )
     {
-        ssD.repoConf =
-        [
-            {
-                rgName : "acE",
-                pointsName : 'aE', //not the best
-                fun : x => {
-                    return [
-                        x,
-                        stdMod.baseFunction( x )
-                    ];
-                },
-                //fname : "Curve acE",
-                //pointA      : rg.a,
-                //pointB      : rg.E,
-            },
-
-            {
-                fun : x => {
-                    var xFromP = x-rg.P.pos[0];
-                    var argX = xFromP / rg.ptransform.val[0][0];
-                    var argY = stdMod.baseFunction( argX );
-                    var newX = x + rg.ptransform.val[1][0] * argY;
-                    var newY = rg.ptransform.val[1][1] * argY + rg.P.pos[1]-rg.A.pos[1];
-                    return [
-                        newX,
-                        newY,
-                    ];
-                },
-            },
-        ];
+        var y = rg.rightFunction.dividedDifferences
+                  .calculate_polynomial( x );
+        return stdMod.xy_2_Txy( [x,y] );
     }
-    //=================================================
-    // \\// template functions repo
-    //=================================================
+
+    function updates__draggers2toFunctions()
+    {
+        //left function
+        rg.leftFunction.dividedDifferences = mat.calculate_divided_differences(
+            sconf.originalPoints.curvePivots.map( pivot => (
+                [ pivot.rgX.pos[0], pivot.rgX.pos[1] ]
+            )
+        ));
+
+        //right function
+        //normalized: (non-normalized should be decorational and obtained by
+        //            direct transform.
+        rg.rightFunction.dividedDifferences = mat.calculate_divided_differences(
+            sconf.originalPoints.rightCurvePivots_normalized.map( rpivot =>
+                [ rpivot.rgX.pos[0], rpivot.rgX.pos[1] ]
+            )
+        );
+    }
+
 
 
 }) ();

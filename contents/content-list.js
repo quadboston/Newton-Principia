@@ -101,13 +101,11 @@
             annotation : "Comments to the Book",
         },
 
-        /*
         {   sappId : 'addendum-preliminaries',
             book : 'Addendum',
             caption : 'Preliminaries (in progress)',
             annotation : "Comments to the Book",
         },
-        */
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

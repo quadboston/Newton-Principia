@@ -101,7 +101,7 @@
         var LIGHT = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
 
         //.apparently does job as said: color to color
-        var overridden = ns.rgba2hsla( colorArray );
+        var overridden = ns.rgbaArr2hsla( colorArray );
         hue = overridden[ 0 ];
         var opacity = overridden[ 3 ] || overridden[ 3 ] === 0 ?
                         overridden[ 3 ] :

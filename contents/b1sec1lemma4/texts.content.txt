@@ -106,11 +106,158 @@ will be] in the ulitmate ratio of parallelogram to paralellogram, that is
 *..*
 
 
+
+
+
+
 *::*proof|addendum
 {
   "default" : "1",
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves",
+  "subessay" : "non-similar-curves"
+}
+*..*
 
-  "menuCaption" : "Addendum"
+Algorithm in this addendum was offered by John Scott.
+<br><br>
+Suppose we have two positive continuous functions with equal areas
+<br><br>
+    <div style="text-align:center">
+        f : [0,1] → ℝ and g : [0,1] → ℝ,         <br>
+        S = <sub>0</sub>∫<sup>1</sup> fdt = <sub>0</sub>∫<sup>1</sup> gdt, 
+    </div>
+<br>
+which makes their their minimums on [0,1] positive:
+<br><br>
+    <div style="text-align:center">
+        f<sub>Min</sub> &gt; 0, g<sub>Min</sub> &gt; 0, 
+    </div>
+<br><br>
+
+In plain words, for every parition P<sub>f</sub>([0,1]) we are going to build partion P<sub>g</sub>([0,z(1)]) such that area elements of corresponding partitions will be equal.
+<br><br>
+
+For this purpose, construct the function z(x) that
+<br><br>
+    <div style="text-align:center">
+        <sub>0</sub>∫<sup>x</sup> f(t)dt = <sub>0</sub>∫<sup>z(x)</sup> g(t)dt.
+    </div>
+<br><br>
+
+This function exists because for G(z) = <sub>0</sub>∫<sup>z(x)</sup>g(t)dt is continuos and achieves each value in [0,H] including F(x) = <sub>0</sub>∫<sup>x</sup>f(t)dt for some x in [0,1].
+<br><br>
+
+Function Z : α ↦ β maps subintervals α = [x,x+d], β = [z(x),z(x+d)] in a way that
+their "figures have the same area":
+<br><br>
+    <div style="text-align:center">
+        A = F(x+d) - F(x) = G(z(x)) - G(z(x+d)).
+    </div>
+<br><br>
+
+Areas of inscribed parallograms based on these intervals α, β will be denoted as a and b:
+<br><br>
+    <div style="text-align:center">
+        a = f<sub>min</sub>d and b = g<sub>min</sub>h, where <br>
+        h = z(x+d) - z(x), <br>
+        f<sub>min</sub> = inf f on α,  g<sub>min</sub> = inf g on β
+    </div>
+<br><br><br>
+
+
+<b>Sublemma. {b/a} → 1 when d → 0.</b>
+<br><br>
+    <div style="text-align:center">
+        { b/a } \( \; \overset{df} = \; \)
+            { b/a | x ∊ [0,1), d &gt; 0, a = f<sub>min</sub>d,  b = g<sub>min</sub>h },  
+    </div>
+<br>
+(This limit is defined in <a href="&#63;conf=sappId=lemma1#definition-of-limit" target="_blank">in limit addendum </a> as "uniform" convergence of a set.)
+<br><br><i>Proof.</i>
+<br>
+
+g(z(x)) is a continuos function and is uniformly continuos as f does. This implies when d → 0:
+<br><br>
+
+    <div style="text-align:center">
+        { f/f<sub>min</sub> } → 1         <br>
+        { g/g<sub>min</sub> } → 1
+    </div>
+<br><br>
+
+where following notation defined similarly to {b/a}:
+<br><br>
+    <div style="text-align:center">
+        { f/f<sub>min</sub> } \( \; \overset{df} = \; \)
+                { f(x)/f<sub>min</sub> | x ∊ [0,1), f<sub>min</sub>=inf( f<sub>min</sub> ) on α } <br>
+        { g/g<sub>min</sub> } \( \; \overset{df} = \; \)
+                { g(z(x))/g<sub>min</sub> | x ∊ [0,1), g<sub>min</sub>=inf( f<sub>min</sub> ) on β }
+    </div>
+
+<br><br>
+Applying mean value theorem for integrals like <sub>x</sub>∫<sup>x+d</sup> fdt, we obtain when d → 0:
+<br><br>
+
+    <div style="text-align:center">
+        { A/a } → 1         <br>
+        { A/b } → 1         <br>
+        and                 <br>
+        { b/a } → 1
+    </div>
+⯀
+
+
+<br><br>
+Uniform convergence of {b/a} implies that
+<br><br>
+    <div style="text-align:center">
+        {b} = { (1+eps<sub>x,d</sub>)a } where <br>
+        sup{eps<sub>x,d</sub>} → 0 when d→0
+     </div>
+<br>
+which implies that sums of parallelograms for partitions P<sub>f</sub> and P<sub>g</sub> are:
+<br>
+    <div style="text-align:center">
+        ∑(P<sub>f</sub>) = ∑(P<sub>g</sub>) + ∑{ eps<sub>x,d</sub>a }    <br>
+        |∑{ eps<sub>x,d</sub>a }| ⩽ A sup{eps<sub>x,d</sub> } → 0 when d → 0.
+    </div>
+In plain words inscribed areas converge to each other when d → 0.
+<br><br>
+
+
+If functions G and F are defined on arbitraty intervals [r',r''] and [q',q''] and if ratio γ of area of G to area of F is not 1, then the proof remains similar and brings following conclustions when d → 0
+<br>
+    <div style="text-align:center">
+        {b/a} → γ  and  <br>
+        ∑(P<sub>g</sub>) / ∑(P<sub>f</sub>)  → γ.
+    </div>
+which proves by defining function z as <sub>r'</sub>∫<sup>x</sup> γf(t)dt = <sub>q'</sub>∫<sup>z(x)</sup> g(t)dt.
+
+
+
+
+
+<div>
+        <br>
+            <span style="font-size:9px">This model created by
+                <a href="https://github.com/quadboston/Newton-Principia" target="_blank">Jonh Scott</a> and
+                <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank"
+                >Konstantin Kirillov</a>
+            </span>
+        <br>
+</div>
+
+
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "modelling proportionality",
+  "subessay" : "modelling-proportionality"
 }
 *..*
 
@@ -167,6 +314,29 @@ and the areas S' and S' are proportional:
 (which at this version is coded in program for diagram.)
 <br>
 For uniform scaling, γ=α, β = 0 and S' = ααS
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "bar to bar ratio convergence",
+  "subessay" : "proportionality-convergence"
+}
+*..*
+
+In this section model, when number of bases n grows, the l/r = left_bar / right_bar ratio converges to given ratio g.
+The graph shows l/r/g for each individually colored pair of bars with asymptote y(n) = 1
+<br><br>
+The convergence modelled by decreasing and increasing of left and right bars breadths by the value d(n). The even bar on the left figure has smaller breadth than corresponing bar on the right, odd bars have bigger breadths. The decrease and increase chosen as d(n) ~ b/n where b is a breadth of odd bar in original lemma model with constant bar to bar ratio.
+
+
+
+
+
+
+
 
 *::*corollary|addendum
 {

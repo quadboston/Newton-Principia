@@ -1,3 +1,10 @@
+/*
+    commands legend:
+        "::#" - stack messages: add message and only if it does not repeat previous message
+*/
+
+
+
 
 ( function() {
     var {
@@ -51,7 +58,6 @@
                     var orderedStates = []; //allocates states to build user emulator
                     var stateId2state = {}; //allocates states index
                     var previousEventBlock_forAutopilot = {};
-
                     stateTexts.forEach( stateScript => {
                         var stateScript = stateScript.replace( EMPTY, '' );
                         if( !stateScript ) return; //discards empty space
@@ -62,6 +68,15 @@
                         var stateId = eventScripts[0].replace( EMPTY, '' );
                         //eventScripts is an array of event-blocks
                         eventScripts.splice( 0, 1 );
+
+                        if( !eventScripts.length ) {
+                            alert( 
+                                'State "' + stateId +
+                                '" has no events declared and ' +
+                                'removed from scenario.'
+                            );
+                            return;
+                        }
 
                         var orderedEvents = [];
                         var eventId2eventBlock = {};

@@ -46,25 +46,14 @@
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
         ///-------------------------------------------------
-        /// paints right side curve
+        /// paints x-scaled curve
         ///-------------------------------------------------
         ssF.paintsCurve({
                 mmedia          : stdMod.mmedia,
-                fun             : rg.rightFun_2_rightFigure,
+                fun             : ssD.repoConf[1].fun,
                 rgName          : 'prT',
-                pointA          : rg.A,
-                pointB          : rg.E,
-                addToStepCount  : 1,
-        });
-
-        ///-------------------------------------------------
-        /// paints left side curve
-        ///-------------------------------------------------
-        ssF.paintsCurve({
-                mmedia          : stdMod.mmedia,
-                fun             : rg.leftFunction.dividedDifferences.calculate_polynomial,
-                pointsName      : 'aE',
-                rgName          : 'acE',
+                pointA          : rg.P,
+                pointB          : rg.T,
                 addToStepCount  : 1,
         });
 
@@ -91,47 +80,39 @@
         left0right,
         leftBarsAreas
     ){
+        if( amode.theorion === 'proof' && amode.aspect === 'addendum' ) {
+            var BAR_RATIO_CONVERGES = true;
+        }
+
         var ordBars = rg.orderedBars.val;
-        const BCOUNT = ordBars.length;
-        const BCOUNT_1 = BCOUNT-1;
+        const BCOUNT = ordBars.length-1;
         var transformVolume = rg.ptransform.val[0][0] * rg.ptransform.val[1][1];
 
-        if(
-            amode.subessay === 'proportionality-convergence'
-        ) {
-            ////demonstrates that bar to bar ratio can converge
-            var MIDDLE_BAR_SHIFT_ALGO = true;
-            var distortion = 5 / BCOUNT;
+        if( amode.subessay === 'proportionality-convergence' ) {
+            var doBar2BarStats = true;  //-1 to disable
+            if( ordBars.length === 5 ) {
+                //starts bar sequence over
+                graphArray = [];
+            }
+            graphArray[ BCOUNT ] = {
+                x : BCOUNT,
+                y : [],
+            };
+            var graphArrayY = graphArray[ BCOUNT ].y;
+        } else {
+            var doBar2BarStats = false;
+            rg.convergenceGraphFW.fw.removeFromDom();
+        }
+
+        if( BAR_RATIO_CONVERGES ) {
+            var distortion = 5 / ordBars.length;
             distortion = 0.9 * distortion; // * distortion;
             //ccc( 'ratio convergence: (current-ratio)/(limit-ratio)=' +
             //    ((1-distortion)*100).toFixed(3) + '%'
             //);
-        }
-        if(
-            amode.subessay === 'proportionality-convergence' ||
-            amode.subessay === 'non-similar-curves'
-        ) {
-            var doBar2BarStats = true;  //-1 to disable
             var barRatioMax = null;
             var barRatioMin = null;
-
-            if( BCOUNT === 5 ) {
-                //starts bar sequence over
-                graphArray = [];
-            }
-            graphArray[ BCOUNT_1 ] = {
-                x : BCOUNT_1,
-                y : [],
-            };
-            var graphArrayY = graphArray[ BCOUNT_1 ].y;
-            var zebraColArr = ssD.zebraCols.multicolor;
-
-        } else {
-            var doBar2BarStats = false;
-            rg.convergenceGraphFW.fw.removeFromDom();
-            var zebraColArr = ssD.zebraCols.monocolor;
         }
-
 
         //preparing for cleanup
         var barStack = barsStack[ left0right ].arr;
@@ -142,42 +123,32 @@
 
         var barsArea = 0;
         var funArea = 0;    //function area
-
-        //======================================================================
-        var base_fun = left0right === 'left' ?
-                       rg.leftFunction.dividedDifferences.calculate_polynomial :
-                       rg.rightFunction.dividedDifferences.calculate_polynomial
-                       ;
-        //======================================================================
-
-
+        if( amode.subessay === 'proportionality-convergence' ) {
+            var zebraColArr = ssD.zebraCols.multicolor;
+        } else {
+            var zebraColArr = ssD.zebraCols.monocolor;
+        }
 
         ordBars.forEach( (bar, bix) => {
-            if( bix === BCOUNT_1 ) return; //last point has no bar
+            if( bix === ordBars.length - 1 ) return; //last point has no bar
 
             //:calculates bar vertices
-            if( MIDDLE_BAR_SHIFT_ALGO || left0right === 'left' ) {
-                var p1X         = bar.pos[0];                //left-bar side coordinate x
-                var p2X         = ordBars[ bix+1 ].pos[0];   //right-bar side coordinate x
-            } else {
-                p1X = bar.gX;
-                p2X = ordBars[ bix+1 ].gX;
-            }
+            var p1X         = bar.pos[0];                //left-bar side coordinate x
+            var p2X         = ordBars[ bix+1 ].pos[0];   //right-bar side coordinate x
             var p2minus1    = p2X - p1X;
 
 
-            if( !MIDDLE_BAR_SHIFT_ALGO ) {
+            if( !BAR_RATIO_CONVERGES ) {
                 //this correction is too complex with convergence,
                 //empty bars are better to skip
                 //this works: if( p2minus1 < 0.001 ) {
                 if( p2minus1 < 0.00001 ) {
-                    //todo ... better algo of partition generation
                     //ccc( 'skipped bix', bix )
                     return;
                 }
             }
 
-            if( MIDDLE_BAR_SHIFT_ALGO ) {
+            if( BAR_RATIO_CONVERGES ) {
                 if( left0right !== 'left' ) {
                     ////this is manually made scenario of bars area converging to
                     ////given ratio: equal color bars do converge to each other ...
@@ -185,35 +156,22 @@
                     ////the distortion is "applied" to right figure bars,
                     ////odd bars are shortened along x, even increased,
                     if( !(bix%2) ) {
-                        if( bix < BCOUNT - 3 ) {
+                        if( bix < ordBars.length - 3 ) {
                             p2X -= p2minus1 * distortion;
                         }
-                    } else if( bix < BCOUNT - 2 ) {
+                    } else if( bix < ordBars.length - 2 ) {
                         p1X -= (p1X - ordBars[bix-1].pos[0]) * distortion;
                     }
                 }
             }
 
+            var leftFun     = ssD.repoConf[0].fun( p1X )[1];        
+            var rightFun    = ssD.repoConf[0].fun( p2X )[1];        
 
-
-            //=======================================================
-            // calculates function values
-            var leftFun     = base_fun( p1X );        
-            var rightFun    = base_fun( p2X );
-            //=======================================================
-
-
-
-            //=======================================================
-            // //\\ builds stats in loop
-            //      for areas and ratios
-            //=======================================================
             //this is a correct method for monotonic functions
             //var min = Math.min( leftFun, rightFun );
             //but we need more elaborated calculation of minimum
-            var [ barLeadLevel, fSum, barArea ] = calculatesInscribedLevel(
-                p1X, p2X, base_fun
-            );
+            var [ barLeadLevel, fSum, barArea ] = calculatesInscribedLevel( p1X, p2X );
             funArea += fSum;
             barsArea += barArea;
             if( left0right === 'left' ) {
@@ -230,15 +188,7 @@
                     graphArrayY.push( barRatio );
                 }
             }
-            //=======================================================
-            // \\// builds stats in loop
-            //=======================================================
 
-
-
-            //=======================================================
-            // //\\ does GUI
-            //=======================================================
             //:establishes names for bar vertices
             var ltName      = left0right + 'bar-'+bix+'-left-top';
             var rtName      = left0right + 'bar-'+bix+'-right-top';
@@ -256,9 +206,6 @@
                 var cssClass = 'tp-proof tp-left-bars tp-left-bar-' + bix;
                 var breadthClass = 'tp-left-bars-breadths';
             } else {
-                ////transforms normalized coordinates to "squed coordinates"
-                ////very ineffective as code and as performance:
-                ////to transform them back again when calculating a function,
                 var p1X = p1X * rg.ptransform.val[0][0] + rg.P.pos[0];
                 var p2X = p2X * rg.ptransform.val[0][0] + rg.P.pos[0];
                 var p1Xtop = p1X + barLeadLevel*rg.ptransform.val[1][0];
@@ -324,19 +271,13 @@
             }
             //-------------------------------------------------------
             // \\// drawing bars edges
-            // \\// does GUI
-            //=======================================================
+            //-------------------------------------------------------
         });
 
 
-
-        //=======================================================
-        // //\\ builds stats
-        //      for areas and ratios
-        //=======================================================
         toreg( 'barRatioMax' );
         toreg( 'barRatioMin' );
-        if( MIDDLE_BAR_SHIFT_ALGO ) {
+        if( BAR_RATIO_CONVERGES ) {
             ////for legend
             rg.barRatioMax.val = barRatioMax ?
                     ( barRatioMax / transformVolume ).toFixed(3) : '';
@@ -353,22 +294,16 @@
         } else {
             toreg( 'rightBarsArea' )( 'value', barsArea * transformVolume );
             rg.leftFunction.rigthArea = funArea * transformVolume;
-            rg.rightFunction.funArea = funArea; //todo
         }
 
         if(
             doBar2BarStats &&
             left0right !== 'left'
         ) {
-            rg.convergenceGraphFW.drawConvGraph({
+            rg.convergenceGraphFW.callPHGraph({
                 graphArray,
-                axisYy : 1,
             })
         }
-        //=======================================================
-        // \\// builds stats
-        //      for areas and ratios
-        //=======================================================
     }
     //=========================================================
     // \\// calculates figure, bars areas
@@ -376,11 +311,8 @@
 
 
 
-    //=========================================================
-    /// on this base p1X, p2X, calculates:
-    ///             leading-level-of-inscribed-bar
-    ///             integral I f(x)dx
-    ///
+
+    /// calculates leading-level-of-inscribed-bar
     /// todm ... shoulbe in model and not be executed
     ///          for transforms of left side and for
     ///          operations which do not change
@@ -388,22 +320,19 @@
     function calculatesInscribedLevel(
         p1X,         //left-bar side coordinate x
         p2X,         //right-bar side coordinate x
-        base_fun,
     ){
         var STEPS_MIN = 2;
         var baseL   = p2X - p1X;
         var STEPS   = Math.max( STEPS_MIN, Math.ceil( baseL / ssD.integrationStep ) );
         var step    = baseL / STEPS;
-        var funct   = base_fun;
-                      // ssD.repoConf[0].fun;
-
-        var leftFun = funct( p1X );
+        var funct   = ssD.repoConf[0].fun;
+        var leftFun = funct( p1X )[1];
         var posX    = p1X;
         var level   = leftFun;
-        var fSum    = 0;
 
+        var fSum    = 0;
         for( var i = 0; i <= STEPS; i++ ) {
-            var fun = funct( posX );        
+            var fun = funct( posX )[1];        
 
             if( i < STEPS ) {
                 fSum += fun * step;

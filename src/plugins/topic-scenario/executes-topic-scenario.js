@@ -16,6 +16,7 @@
             executesTopicScenario,
             doDebugMessage,
             doInitTopicScenarioCss,
+            executesMessageAction,
         },
     });
     var ts = sn( 'activityScenario', ss );
@@ -72,7 +73,8 @@
     ){
 
         if( eventFlow_locked ) {
-            ccc( '--- skipped: ' + eventId );
+            //basic-console-output  //bbbbbbbbbbbbbb
+            //ccc( '--- skipped: ' + eventId );
             return;
         }
 
@@ -80,10 +82,21 @@
         if( runOnSubessay ) {
             subessay = runOnSubessay;
         }
-        var stdMod          = studyMods[ submodel ];
         var subessayRack    = exegs[ theorion ][ aspect ].subessay2subexeg[ subessay ];
         var stateId2state   = subessayRack.stateId2state;
-        var scenarioState   = stateId2state[ subessayRack.scenario_stateId ];
+        var scenarioState   = haz( stateId2state, subessayRack.scenario_stateId );
+        var stdMod          = studyMods[ submodel ];
+        if( !scenarioState ) {
+            ////todm: this is better run in parser after all states are parsed
+            executesMessageAction(
+                'State "' + subessayRack.scenario_stateId +
+                '" is not declared in activities script.' +
+                " Scenario flow is frozen.",
+                '::'
+            );
+            return;
+        }
+        var pullsEvent      = haz( scenarioState, 'eventId2eventBlock' );
         var eventBlock      = haz( scenarioState.eventId2eventBlock, eventId );
         ///undeclared event is simply ignored:
         if( !eventBlock )   return false;
@@ -91,11 +104,14 @@
         var newState        = null;
         var timeOutFired    = false;
 
+        /*
+        //basic-console-output  //bbbbbbbbbbbbbb
         ccc(
             "** " + subessay.substring( 0, 10 ) + '..\n||' + //don't show entire subessay name
             subessayRack.scenario_stateId + ' +' +
             eventId
         );
+        */
 
         eventBlock.statements.forEach( statemen => {
             var ctype = statemen.commandType;
@@ -107,7 +123,7 @@
             */
             if( ctype.indexOf(':') === 0 ) {
                 ////message scheduled for user
-                executesMessageAction( statemen.command, eventId, scenarioState.stateId, ctype ) ;
+                executesMessageAction( statemen.command, ctype );
             } else if( ctype === '->' ) {
                 newState = statemen.command;
             } else if( ctype === '^' ) {
@@ -122,20 +138,28 @@
                 timeOutFired = true;
             } else if(
                 statemen.command.indexOf( 'stdMod.' ) === 0 ||
-                statemen.command.indexOf( 'rg.' ) === 0
+                statemen.command.indexOf( 'stdMod[' ) === 0 ||
+                statemen.command.indexOf( 'rg.' ) === 0 ||
+                statemen.command.indexOf( 'rg[' ) === 0
             ){
                 ////executes direct reference to code
                 eval( statemen.command );
+            } else if(
+                statemen.command.indexOf( 'eval.' ) === 0
+            ){
+                ////executes direct reference to code
+                eval( statemen.command.substring( 5 ) );
             } else {
                 //ccc( '      ' + ctype + ' ' + statemen.command );
                 var actionItem = haz( actionsList_coded, statemen.command  ) ||
                                       actionsList_default[ statemen.command ];
-                actionItem( scenarioState.stateId, eventId );
+                actionItem( scenarioState.stateId, eventId, runOnSubessay );
             }
         });
         if ( newState ) {
             subessayRack.scenario_stateId = newState;
-            ccc( '-> ' + newState );
+            //basic-console-output  //bbbbbbbbbbbbbb
+            //ccc( '-> ' + newState );
             //tries to run state-establishment-event "start"
             var executable = executesTopicScenario( 'start' );
             if( executable ) return;
@@ -163,7 +187,8 @@
                     autopilotInterval
                 );
             } else {
-                ccc( '*** Autopilot is finished ***\n' );
+                //basic-console-output  //bbbbbbbbbbbbbb
+                //ccc( '*** Autopilot is finished ***\n' );
             }
         }
         //------------------------------------------------------------------------------
@@ -184,7 +209,7 @@
 
 
 
-    function executesMessageAction( ecommand, eventId, eventScenarioState, ctype )
+    function executesMessageAction( ecommand, ctype )
     {
         doDebugMessage( 'p r o m p t   ' + ecommand );
         if( ctype === '::#' && ecommand === previousMessage ) return;

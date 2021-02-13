@@ -19,7 +19,7 @@
                 { src:'media-upcreate.js' },
                 { src:'main-legend.js' },
                 { src:'amode8captures.js' },
-
+                { src:'convergence-graph-framework.js' },
                 { src:'lib.js' },
             ],
             "contents-list" :

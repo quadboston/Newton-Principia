@@ -112,14 +112,6 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
         var curvePivots =
         [
             a,
@@ -137,6 +129,10 @@
             draggableX  : true,
             draggableY  : true,
         }));
+        var originalPoints =
+        {
+            curvePivots,
+        };
         //merging with original points
         curvePivots[0].caption = 'a';
         curvePivots[3].caption = 'c';
@@ -147,73 +143,6 @@
         curvePivots[6].doPaintPname = false;
         curvePivots[ 0 ].draggableX = false;
         curvePivots[ curvePivots.length - 1 ].draggableX = false;
-        //---------------------------------------------------
-        var originalPoints =
-        {
-            curvePivots,
-        };
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
-
-
-
-
-        //---------------------------------------------------
-        // //\\ points to draw righ side curve
-        //      coordinates are fake here,
-        //      initially, they will be transformed
-        //---------------------------------------------------
-        var rightCurvePivots =
-        [
-            a,
-            [ 108, 58 ],
-            [ 156, 84 ],
-            c,
-            [ 283, 210 ],
-            [ 305, 251 ],
-            E,
-        ];
-        rightCurvePivots = rightCurvePivots.map( pivot => ({
-            pos         : pivot,
-            pcolor      : given,
-            letterAngle : 45,
-            draggableX  : true,
-            draggableY  : true,
-            doPaintPname: false,
-        }));
-        rightCurvePivots[ 0 ].draggableX = false;
-        rightCurvePivots[ rightCurvePivots.length - 1 ].draggableX = false;
-        Object.assign( originalPoints, {
-            rightCurvePivots
-        });
-        //---------------------------------------------------
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
-
-        //---------------------------------------------------
-        // //\\ points to draw righ side curve
-        //      coordinates are only for model here,
-        //      points are invisible on GUI
-        //---------------------------------------------------
-        var rightCurvePivots_normalized =
-        [
-            a,
-            [ 108, 58 ],
-            [ 156, 84 ],
-            c,
-            [ 283, 210 ],
-            [ 305, 251 ],
-            E,
-        ];
-        rightCurvePivots_normalized = rightCurvePivots_normalized.map( pivot => ({
-            pos             : pivot,
-            undisplayAlways : true,
-            doPaintPname    : false,
-            //caption         : '',
-        }));
-        Object.assign( originalPoints, {
-            rightCurvePivots_normalized
-        });
         //---------------------------------------------------
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
@@ -313,11 +242,10 @@
         //-----------------------------------
         // //\\ sets bars base points array
         //-----------------------------------
-        var BARS_NUMBER_MAX     = sconf.BARS_NUMBER_MAX = 10; //200;
+        var BARS_NUMBER_MAX     = sconf.BARS_NUMBER_MAX = 200;
         var BARS_NUMBER_CURRENT = sconf.BARS_NUMBER_CURRENT = 3;
         originalPoints.bars =
         [
-            ////point A is not included
             {
                 //pos: [145,77],
                 pos: [145,A[1]],

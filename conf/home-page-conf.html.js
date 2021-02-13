@@ -148,6 +148,8 @@
                         <span style="display:inlilne-block; float:right; right:10px;">
                             Version 0.${fapp.version}
                         </span>
+                        <!-- todm fix these <br> by css not by markup -->
+                        <br><br><br><br>
                     </p>
                 </div>
         `;

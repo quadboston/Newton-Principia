@@ -104,6 +104,9 @@
                             fapp.fappRoot$.css( 'overflow', 'visible' );
                             document.body.style.overflow = 'visible';
                             $$.$( document.body ).addClass( 'contents' );
+                            //todm patch
+                            haz( sDomN , 'medSuperroot$' ) &&
+                                sDomN.medSuperroot$.css( 'display', 'none' );
 
                       } else {
                             ns.globalCss.clearStyleTag( 'home' );
@@ -114,6 +117,8 @@
                                 ;
                             document.body.style.overflow = 'hidden';
                             $$.$( document.body ).removeClass( 'contents' );
+                            //todm patch
+                            sDomN.medSuperroot$.css( 'display', 'inline-block' );
                       }
                       return false;
                 })

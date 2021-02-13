@@ -30,7 +30,8 @@
         // //\\ view
         //--------------------
 
-        ESSAY_FRACTION_IN_WORKPANE : 0.33,
+        //works well:
+        ESSAY_FRACTION_IN_WORKPANE : 0.4, //0.33,
 
         //.below this value, JS considers the device as a mobile
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 800,

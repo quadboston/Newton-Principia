@@ -43,7 +43,7 @@ where
          \Gamma, G_\gamma \ne \varnothing
   \).<br><br>
 
-
+<a name="definition-of-limit"></a>
 <!-- //\\ limit ***************************************************************** -->
 <b>Definition of limit:</b><br><br>
 

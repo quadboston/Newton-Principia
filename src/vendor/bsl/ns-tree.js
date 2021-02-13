@@ -33,6 +33,7 @@
             $$,
             own         : ns.own,
             haz         : ns.haz,
+            ha          : ns.ha,
             has         : ns.h,
             haf         : ns.haf,
             haff        : ns.haff,
@@ -42,6 +43,7 @@
             eachprop    : ns.eachprop,
             paste       : ns.paste,           //todm: remove
             nspaste     : ns.paste,
+            svgNS       : ns.svgNS,
 
             cssp,
             nsmethods,

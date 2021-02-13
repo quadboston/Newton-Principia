@@ -52,6 +52,9 @@
                 "opacity :0; \n" +
             "} \n" +
             "html body { \n" +
+
+            //duplicate with css file ... base.css.js
+            //"    height : 100vh \n" +
             "    opacity :1; \n" +
             "    transition  :opacity 1s ease-in-out; \n" +
             "} \n"

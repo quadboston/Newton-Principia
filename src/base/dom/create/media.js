@@ -49,7 +49,8 @@
         ////makes svg-draw-area
 
         sDomN.mmedia$ = //todo: patch: sets this to most recent called media creator:
-        stdMod.mmedia$ = $$.$( document.createElementNS( fconf.svgNS, 'svg' ) );
+                        //$$.$( document.createElementNS( fconf.svgNS, 'svg' ) );
+        stdMod.mmedia$ = $$.svg();
 
         var mmedia =
             sDomN.mmedia //todm bug ... media belongs to submodel not to app

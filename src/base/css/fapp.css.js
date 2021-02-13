@@ -10,7 +10,8 @@
 
 
 
-    ///application-wide helper
+    ///??? application-wide helper
+    ///no ... only for lemmas
     cssmods['main-sapp'] = function( cssp, conf ) {
         var colorLight = conf.css['color-light']; 
 
@@ -48,15 +49,6 @@
     /******************************************/
     /* //|| page primary sections             */
     /******************************************/
-    .bsl-approot {
-        position    : relative;
-        width       : 100%;
-        margin      : 0;
-        padding     : 0;
-        /* overflow    : auto;  todo */
-        overflow    : hidden; /* todo why needed for shift-up-bug-making-hidden? */
-    }
-
     .bsl-approot svg text {
         font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
     }

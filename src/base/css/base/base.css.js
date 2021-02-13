@@ -18,45 +18,51 @@
 
 
 // //\\ css /////////////////////////////////////////
+//core css for /sites and /main-site
 var ret = `
 
-    /******************************************/
-    /* //\\\\ html, body                      */
-    /******************************************/
     html, body
     { 
-        /* //\\ added for lemma9 */
-        width:100%;
-        height:100%;
-        padding:0;
-        margin:0;
+        /* //\\\\ added for lemma9 */
+        width   :   100%;
+        height  :   100vh;
+        padding :   0;
+        margin  :   0;
         border:none;
-        /* \\// added for lemma9 */
+        /* \\\\// added for lemma9 */
 
         background-color:${ccs['color-light']};
         font-size:15px; /*this defines what 1rem is */
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 
-    /* //\\ added for lemma9 */
+    /* added for lemma9 */
     body
     { 
         ${body_DesktopOverflow}
     }
+
+    .bsl-approot {
+        position    : relative;
+        width       : 100%;
+        height      : 100vh;
+        margin      : 0;
+        padding     : 0;
+        /* overflow    : auto;  todo */
+        overflow    : hidden; /* todo why needed for shift-up-bug-making-hidden? */
+    }
+
+
     @media only screen and (max-width:${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
-        body
+        html,
+        body,
+        .bsl-approot
         { 
+            height  : auto;
             overflow-y:auto;
-            overflow-x:hidden;
         }
     }
-    /* \\// added for lemma9 */
-
-    
-
-
-    /******************************************/
-    /* \\// html, body                        */
-    /******************************************/
 
 
     a:link{
@@ -75,7 +81,7 @@ var ret = `
     }
 
 `;
-// \\// css /////////////////////////////////////////
+// \\\\// css /////////////////////////////////////////
 
 
 

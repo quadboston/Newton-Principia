@@ -290,7 +290,7 @@
 
                     // \\// information providers 
 
-
+                    svg:    function()                      { ctxEl =                document.createElementNS( ns.svgNS, 'svg' ); },
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
                     a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
 
@@ -739,7 +739,7 @@
 	//							
 	//	Input:			All args are optional.
 	//					skip_undefined	- omitting it allows copying "wall <- paper.undefined".
-	//					recdepth		- stops recursion at level > recdepth
+	//					recdepth		- stops recursion at level > recdepth: nothing copied if level > recdepth
 
 	//	Results in:		changed wall properties.
 	//	Returns:		combined clone of paper to wall.
@@ -832,6 +832,7 @@
     {
         return ns.paste( Array.isArray( paper ) ? [] : {}, paper );
     };
+
 }) ();
 
 

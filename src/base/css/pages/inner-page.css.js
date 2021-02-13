@@ -100,7 +100,7 @@ var ret = `
         font-weight         : bold;
         color               : white;
         background-color    : #303946;
-        z-index             : 1011;
+        z-index             : 1000000006;
     }
 
     .home-button:hover {

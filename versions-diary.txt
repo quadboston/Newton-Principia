@@ -39,7 +39,14 @@ from 5302 Dec14, 2020 to Jan13, 2021, ver 5802
 // \\// grand proofcheck plan
 //---------------------------
 
+5983 last with two chem activities
 
 
+6034 is last one which has fake pH generator
+6161 static flask shape is removed, making dynamic with Bezier
 
+6208 Feb12
+    preserved model of middle boundary shift in l4 in
+    /contents/b1sec1lemma4/b1sec1lemma4-middle-bar-shift-model
+    which was live on ver 5879-ver-bar-to-bar-convergence-graph/index.prod.html?conf=sappId=b1sec1lemma4
 

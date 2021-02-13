@@ -294,8 +294,12 @@
         //flag to root
         fapp.fappRoot$.addClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
         //flag to content-text-components
-        if( exAspect.subexegs.length > 1) {
+        if( exAspect.subexegs.length > 1 || fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
+
+            //vital: makes an entire subessays-menu visible ...
+            //       misleading wording "chosen"
             exAspect.subessayMenuContainer$.addClass( 'chosen' );
+
             exAspect.subexegs.forEach( subexeg => {
                 subexeg.subessayMenuItem$.addClass( 'chosen' );
             });

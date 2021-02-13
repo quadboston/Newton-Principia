@@ -6,9 +6,12 @@
 *..*
 
 
+Here we follow the article of [Salomon Ofman].
+<br><br><br>
+
 <b>Euclid Magnitudes</b>.
 
-Let M be commutative, operation-wise totally ordered, positive semigroup. In other words:
+Let M be commutative, operation-wise totally ordered, positive non-empty semigroup. In other words:
 <br><br>
 
                                             <table><tr><td>
@@ -36,19 +39,19 @@ Let M be commutative, operation-wise totally ordered, positive semigroup. In oth
                                             (commutative)
                                             <br></td></tr><tr><td> 
 
-    for all m',m'' of non equal elements
+    for all non-equal m',m''
                                             </td><td>
                                             (totally)
                                             </td></tr><tr><td> 
-    there defined a relation "&gt;"
+    there is defined relation "&gt;"
     for which
                                             <br></td></tr><tr><td> 
-    m' &gt; m'' and m'' &gt; m''' =&gt; m' &gt; m'''
+    m' &gt; m'' and m'' &gt; m''' \( \; \Rightarrow \; \) m' &gt; m'''
                                             </td><td>
                                             (transitive)
                                             <br></td></tr><tr><td> 
 
-    m' &gt; m'' =&gt; !m'' &gt; m''
+    m' &gt; m'' \( \; \Rightarrow \; \) !m'' &gt; m''
                                             </td><td>
                                             (antisymmetirc)
                                             <br></td></tr><tr><td> 
@@ -59,7 +62,7 @@ Let M be commutative, operation-wise totally ordered, positive semigroup. In oth
 
     operation preserves order:
                                             <br></td></tr><tr><td> 
-    m' &gt; m''    =&gt;   m'+m &gt; m''+m
+    m' &gt; m''    \( \; \Rightarrow \; \)   m'+m &gt; m''+m
                                             </td><td>
                                             (operation-wise)
                                             <br></td></tr><tr><td> 
@@ -69,11 +72,13 @@ Let M be commutative, operation-wise totally ordered, positive semigroup. In oth
                                             (positive)
                                             <br></td></tr><tr><td> 
 
-                                            <tr><td> 
                                             </td></tr></table>
+
+
+
 <br><br>
 Example of M would be natural numbers N = { 1,2,3, ... },
-arithmetic progression of form { m, m2, m3, ... }, positive real numbers |R,
+arithmetic progression of form { m, m2, m3, ... }, positive real numbers ℝ<sup>+</sup>,
 set of non-zero areas of squares in two-dimensional plane.
 <br><br>
 
@@ -86,158 +91,363 @@ M does not contains zero.
 <br>
 "+" and "&gt;" are cancellable:
 <br>
-m'+m = m'' + m =&gt; m' = m''
+m'+m = m'' + m \( \; \Rightarrow \; \) m' = m''
 <br>
-m'+m &gt; m'' + m =&gt; m' &gt; m''
+m'+m &gt; m'' + m \( \; \Rightarrow \; \) m' &gt; m''
 <br>
 Order preserves ownself:
 <br>
-m' &gt; m'' and 'm &gt; ''m  =&gt; m'+ 'm &gt; m'' + ''m.
+m' &gt; m'' and 'm &gt; ''m  \( \; \Rightarrow \; \) m'+ 'm &gt; m'' + ''m.
 <br><br>
 
-Relation "&gt;=" defined as
-m' "&gt;=" m''  &lt;=df=&gt; m'=m'' or m' "&gt;" m''
+Relation "⩾" defined as
+m' ⩾  m''  \( \; \overset{df} \iff \; \) m'=m'' or m' &gt; m''
 <br><br>
 is transitive and reflexively-antisymmetric:
 <br>
-m' "&gt;=" m'' and m'' "&gt;=" m' =&gt; m' = m''
+m' ⩾ m'' and m'' ⩾ m' \( \; \Rightarrow \; \) m' = m''
 <br><br>
 <br><br>
+
+
+<b>Action ℕ on M.</b>
+<br>
+Operation "+" repeated n-times will be defined as <br>
+nm \( \; \overset{df} = \; \) mn \( \; \overset{df} = \; \) m + m + ... + m
+<br><br>
+
+Immediate consequences of this definition are:
+
+                                            <table><tr><td>
+    1m = m
+                                            </td><td>
+                                            <br></td></tr><tr><td> 
+    (n'n'')m = n'(n''m)
+                                            </td><td>
+                                            (associativity)
+                                            <br></td></tr><tr><td> 
+    (n'+n'')m = n'm + n''m
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                            (". preserves + in ℕ")
+                                            <br></td></tr><tr><td> 
+    n(m'+m'') = n'm + n''m
+                                            </td><td>
+                                            (". preserves + in M")
+                                            <br></td></tr><tr><td> 
+
+
+    nm' = nm'' \( \; \Rightarrow \; \) m' = m''
+                                            </td><td>
+                                            (n-cancellability)
+                                            <br></td></tr><tr><td> 
+
+    n'm = n''m \( \; \Rightarrow \; \) n' = n''
+                                            </td><td>
+                                            (m-cancellability)
+                                            <br></td></tr><tr><td> 
+                                            <br>
+    four of above also holds for &gt;
+                                            </td><td>
+                                            <br></td></tr><tr><td> 
+    n' &gt; n'' \( \; \Rightarrow \; \)  n'm &gt; n''m
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                            (". preserves > in ℕ")
+                                            <br></td></tr><tr><td> 
+
+    m' &gt; m'' \( \; \Rightarrow \; \)  nm' &gt; nm''
+                                            </td><td>
+                                            (". preserves > in M")
+                                            <br></td></tr><tr><td> 
+
+    nm' &gt; nm'' \( \; \Rightarrow \; \) m' &gt; m''
+                                            </td><td>
+                                            (n-cancellability)
+                                            <br></td></tr><tr><td> 
+
+    n'm &gt; n''m \( \; \Rightarrow \; \) n' &gt; n''
+                                            </td><td>
+                                            (m-cancellability)
+                                            <br></td></tr><tr><td> 
+
+                                            </td></tr></table>
+<br><br><br>
+
+
+<b>Ratios</b>
+<br>
+
+A ratio is an ordered pair (m, <i>m</i>) of two equal or different elements m, <i>m</i> in M. We denote ratio as: <br><br>
+
+m / <i>m</i>
+
+<br><br>
+
+Ratios of integers from ℕ will be denoted as Q. We call them "quotas".
+<br>
+Q \( \; \overset{df} = \; \) { n / <i>n</i> }
+<br><br>
+
+We can immediately commutatively extend operation "." between ratio r and quota q:
+<br><br>
+
+rq \( \; \overset{df} = \; \) qr \( \; \overset{df} = \; \) (m / <i>m</i>) . (n / <i>n</i>) \( \; \overset{df} = \; \) (mn) / (<i>mn</i>)
+<br><br>
+It is associative: (q'q'')r = q'(q''r).
+<br><br><br>
+
+<b>Comparision with quotas</b>
+<br><br>
+
+Equivalence in resprect to quotas:
+<br><br>
+
+m / <i>m</i> ~ n / <i>n</i> \( \; \overset{df} \iff \; \) m<i>n</i> = <i>m</i>n  &nbsp;&nbsp;&nbsp; (~)
+
+<br><br>
+Similarily, we can define an order in respect to quotas:
+<br><br>
+
+m / <i>m</i> &gt; n / <i>n</i> \( \; \overset{df} \iff \; \) m<i>n</i> &gt; <i>m</i>n
+
+&nbsp;&nbsp;&nbsp; (&gt;)
+
+<br><br>
+
+
+<b>Lemma T</b>
+If we have three ratios at least two of them are quotas: r', r'', r'', then 
+for two relations #, @ which denote either &gt; and ~, we have:
+<br><br>
+r'#r'' & r''@r'' \( \; \Rightarrow \; \)  r'&gt;r''' if at least one of #,@ is &gt;
+        &nbsp;&nbsp;&nbsp;&nbsp; (transitivity &gt;)
+<br>
+r'#r'' & r''@r'' \( \; \Rightarrow \; \)  r'~r'''  if both of #,@ are ~
+        &nbsp;&nbsp;&nbsp;&nbsp; (transitivity ~)
+<br><br>
+For example, for relation &gt; suppose 
+<br>
+r' &gt; r''  &  r'' &gt; r'''
+<br><br>
+
+This means:
+<br>
+
+m'<i>m''</i> &gt; <i>m''</i>m' & m''<i>m'''</i> &gt; <i>m''</i>m'''
+<br><br>
+Multiplying first and right inequality with <i>m'''</i> and <i>m'</i> correspondingly,
+we obtain:
+<br><br>
+
+m'<i>m''</i><i>m'''</i> &gt; <i>m''</i>m'<i>m'''</i> =
+m''<i>m'''</i><i>m'</i> &gt; <i>m''</i>m'''<i>m'</i>   &nbsp;&nbsp;&nbsp;&nbsp;(cross denomination)
+<br><br>
+and
+<br>
+m'<i>m'''</i> &gt; m'''<i>m'</i> &nbsp;&nbsp; ⬜
+<br><br>
+
+Proofs for cases (transitivity &gt;) and (transitivity ~) are literally the same.
+<br>⯀
+<br><br><br>
+
+<b>Lemma T implications</b>:
+<br>
+r' &gt; q''  &  q'' ~ q''' \( \; \Rightarrow \; \) r' &gt; q'''
+<br>
+r' ~ q''  &  q'' &gt; q''' \( \; \Rightarrow \; \) r' &gt; q'''
+<br><br>
+
+which means the &gt; is "invariant" in respect to relation ~ .
+<br><br><br><br>
+
+
+
+<b>Rational numbers</b>
+<br><br>
+On set Q, relation ~  is symmetric and reflexive. It can be proved, that classes of equivalency of this relation comprise the set of positive rational numbers ℚ<sup>+</sup>.
+<br><br>
+
+Conveniently, the definition of equivalence
+<br><br>
+r ~ q
+<br><br>
+can be extended to equivalence with rational number represented by the right part
+of definition:
+<br><br>
+
+r ~ <b>q</b> \( \; \overset{df} \iff \; \) ∃ q in <b>q</b> r ~ q
+<br><br>
+
+This extension is well defined: if to take another representative q',
+then by transitivity it will be still equivalent to r. And any representative of another rational number will be non equivalent to r if to apply this transitivity property.
+<br><br>
+
+Similarily, the relation
+
+r &gt; <b>q</b>
+
+if well difined. When it holds for quota q representing a rational number <b>q</b>, then by invarinace &gt; in respect to ~, any other representative q' will hold this inequality. This
+extends order &gt; to order between ratios and rational numbers.
+
+By the similar invariance, <b>Lemma T implications</b> will hold for rational 
+numbers <b>q</b>
+<br>
+r' ~ <b>q</b>''  &  <b>q</b>'' &gt; <b>q</b>''' \( \; \Rightarrow \; \) r' &gt; <b>q</b>'''
+<br>
+r' ~ <b>q</b>''  &  <b>q</b>'' = <b>q</b>''' \( \; \Rightarrow \; \) r' ~ <b>q</b>'''
+
+We call ratio r rational when it is equivalent to some rational number, Otherwise r is called non-rational. Going outside of our logical thread, we point out that there are exists irrational  ratios, for example ratio √2/1 from ℝ.
+<br><br>
+Every M is "enough rich to contain" all rational numbers. Precisely, for any arithmetical progression { m, 2m, 3m, ..., } in M, any rational number n/<i>n</i> is equivalent to
+ratio (mn)/(m<i>n</i>).
+
+<br><br><br><br>
+
+
+
+
+<b>Cuts</b>
+<br><br>
+
+If we have an ordered set S, we call cut as an ordered partition to two non-empty branches:
+<br><br>
+
+C   \(\;\overset{df}=\;\)   (B1,B2) where
+<br><br>
+B1 &lt; B2 where B1 &lt; B2 \( \quad \overset{df} \iff \quad \) ∀ s1,s2 | s1 ∊ B1 and s2 ∊ B2 s1 &lt; s2
+<br><br>
+
+ℚ<sup>+</sup> has only three types of cuts: strict where B+,B- do not have sup and inf elements.
+and non-strict when either B+ or B- but not both have inf or sup elements.
+<br><br>
+
+Each rational ratio r equivalent to q produces two non strict cuts: either (0,q),[q',oo) or (0,q],(q,oo). We chose the right branch to map it to q:
+<br><br>
+
+Cr \(\;\overset{df}=\;\) (0,q)[q,oo)
+
+<br><br>
+If non-rational ratio r, produces the strict cut B-,B+, we call this r irrational and map it to the r:
+<br><br>
+
+Cr \(\;\overset{df}=\;\) (B-,B+).
+
+<br><br>
+If non-rational ratio r, produces the non-strict cut B-,B+, we call this r "near-rational" and  ignore it. We also ignore ratios which lay below or above ℚ<sup>+</sup>. (Perhaps they would "become 0 and oo non-cancellable numbers" if we consider their cuts). For clarity, we call both rational and irrational ratios as "distinct".
+<br><br>
+
+
+<br>
+If two distinct ratios have rational number separating them, then 1) one of them is greater than the other and 2) they are not equal.
+If there is no separating rational, then we see no means to compare them at the moment.
+<br><br>
+<b>Cut Lemma</b>. Unseparated distinct ratios produce the same cut.
+Proof can be done in reductio ad absurdum.⯀
+<br><br>
+
+From now on we will study only distinct ratios and omit word "distinct".
+<br><br>
+
+Following Euclid, we will declare unseparated ratios "equal" in following defintions.
+<br><br><br><br>
+
+<b>Ratios Equality Definition</b>
+<br>
+
+Ratios r' and r'' are equivalent iff they produce the same cut:
+<br><br>
+r' <b>~</b> r'' \( \; \overset{df} \iff \; \) Cr' = Cr''
+<br><br><br>
+
+( This defnition is compatible with previous definition of "~". Indeed, when cuts are non-strict, then r', r'' are proportional to the same rational number, when cuts are strict, then ratios are irrational and ~ was not defined previously for them, so there is no conflict. )
+<br><br><br>
+
+
+<b>Explicit Equality Definition</b>
+
+If r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In more explicit form:
+<br><br>
+
+m'/<i>m'</i> <b>~</b> m''/<i>m''</i> \( \; \overset{df} \iff \; \) 
+<br><br>
+
+     ∀ n/<i>n</i> one and only one of following is true:
+<br><br>
+      i) m'<i>n</i> < n<i>m'</i> & m''<i>n</i> < n<i>m''</i>
+<br>
+      ii) m'<i>n</i> = n<i>m'</i> & m''<i>n</i> = n<i>m''</i>
+<br>
+      iii) m'<i>n</i> > n<i>m'</i> & m''<i>n</i> > n<i>m''</i>
+<br><br><br>
+
+Based on other [Richard Fitzpatrick] translations and other reseach [Salomon Ofman], we think that this is the "Euclid. Book 5. Definition 5."
+<br><br><br>
+
+
+Equality Definition gives a method to compare two ratios. But as it "was dicovered
+2000 years late by Dedekind", cuts comprise a numeric system ℝ<sup>+</sup> which if being exteded to negative numbers is an ordered field of real numbers ℝ.
+<br><br>
+Further we will analyze a relation betwen M and ℝ. For this purpose, we choose an arbitrary
+element <i>u</i> in M which we will call "unit" and denote ratios m/<i>u</i> as v.
+<br><br><br>
+
+We assume that ℝ<sup>+</sup> is already constructed. The proof scheme is described in the number of books, for example in "Rudin analysis for Graduate studens".
+A summary of this proof is:
+<br><br><br>
+
+1. cuts are ordered by the order, as ordered ratios r', r'': r'&lt;q&lt;r''   <br>
+2. operation + is defined as C' + C'' = ( B-' + B-'', B+' + B+'')  <br>
+3. operation * is defined as C' * C'' = ( B-' * B-'', B+' * B+'')  <br>
+4. + and * are associative, commutative, ... <br>
+3. + and * do preserve order <br>
+...  <br>
+in plain words, ℝ<sup>+</sup> posessed all the properties of odered field except which do
+involve 0 and negative numbers.
+<br><br>
+ℝ<sup>+</sup> is Archimedian and supports inf and sup principle.
+<br><br>
+
+For m', m'', consider the cut of (m''')/u where m''' = m' + m''. Consider its upper branch B+. <br>
+For any rational n/<i>n</i> from B+, <br>
+m'''<i>n</i> ⩽ n<i>u</i>  <br><br>
+or
+(m'+m'')<i>n</i> ⩽ n(<i>u</i>)  <br><br>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <pre>
-1.
-   We call (M,|N) semigroup module.
-
-
-2. We define action N on M: the operation "." as
-       nm = m + m + ... + m where addition is done n - times.
-
-   We can prove:
-        "modular-properties":
-            (n1+n2)m = n1m + n2m
-            n(m1+m2) = nm1 + mm2
-            n1(n2m)  = (n1n2)m
-            1 m      = m
-
-        order:
-            operation "." preserves order on m
-
-
-3. In order to better compare magnitudes, we define their ratios set R<sub>M</sub>
-        ratio m1/m2 is an ordered pair (m1,m2) with following definitions attached:
-
-            order on R<sub>M</sub>
-            m1/m2 &gt;= n1/n2  &lt;=df=&gt; m1 n2 &gt;= m2 n1       (O)
-            where m1,m2 can be taken from N also,
-
-            equivalence to rational ratio:
-            m1/m2 ~ n1/n2  &lt;=df=&gt; m1 n2 &gt;= m2 n1 && m2 n1 &gt;= m1 n2
-
-            Q<sub>M</sub> =df= is subset rational ratios in R<sub>M</sub>
-
-            equivalence to the same rational ratio is equivalence relation which preserves
-            the order on ratios:
-            m1/m2 ~ m1'/m2'  &lt;=df=&gt; there exists n1/n2 m1/m2 ~ n1/n2 and m1'/m2' ~ n1/n2 (Q)
-
-            To cover remaining non-rational ratios
-                I<sub>M U N</sub> = R<sub>M U N</sub> - Q<sub>M U N</sub>,
-            the definition of equality is:
-                r' ~ r'' there is no rational ratio between r1 and r2    (D)
-            It is equivalent to following two definitions (O) and (E).
-
-            In explicit form:
-                a'/b' ~ a''/b'' &lt;=df=&gt;
-                for any n1/n2
-                   a'n2 &gt; b'n1 =&gt; a''n2 &gt; b''n1 and
-                   a'n2 &lt; b'n1 =&gt; a''n2 &lt; b''n1                 (O)
-
-            In Euclid's form:
-                a'/b' ~ a''/b'' &lt;=df=&gt;
-                for any n1/n2, one and only one of i,ii,iii holds        (E)
-                   i.   a'n2 &gt; b'n1  and  a''n2 &gt; b''n1,
-                   ii.  a'n2 = b'n1  and  a''n2 = b''n1,
-                   iii. a'n2 &lt; b'n1 =&gt; a''n2 &lt; b''n1
-
-            The definition (D) is equivalence relation on entire R<sub>M</sub>, and we call its
-            equivalence classes as IM = R<sub>M</sub> / D.
-
-            If M enough rich to be a subset of IR, then each class in IM contains exactly 
-            one irrational number or one rational number.
-
-            We don't know at the moment can be M more complex and have other numbers in the class
-            containing irrationals.
-                        
-
-1,2,3 is what we need from Euclid. Now we will extend our algebraic structure and then
-rematch it back with the rest of Euclid definitions.
-
-
-
-4. We extend M to group and N to real numbers IR.
-
-    For M:
-        M' =df= { (m1-m2 ) }. (m1-m2) denotes an ordered pair (m1,m2).
-        (m1-m2) + ( m1'-m2' ) =df= (m1+m1')-(m2+m2')        
-
-        rebase operation defined as b+(m1-m2) =df= (m1+b)-(m2+b)
-        m' and m'' are equivalent if they can be equirebased that b'+m' = b''+m''
-
-        + on M' preserves this equivalence, so is well defined on equivalence classes
-        and from now we consider "+" as running on these classes
-        and (m1-m2) now represents its class
-
-        a. (m,m) is a neutral element
-        b. (m2-m1) is an inverse to given (m1-m2)
-        c. (m1-m2) &gt;df&gt; (m1'-m2') &lt;=df=&gt; when rebased m1+b &gt;df&gt; m1'+b'
-           &gt;df&gt; is well defined and compatible with "+".
-        d. M' is an extension of M, of operations on M, operations properties.
-        e. "modular-properties" are preserved when N acts on M'  
-        
-    For IR
-        the path is similar:
-        we extend N to a group N' the same way as M,
-        we extend N' to ordered field of rationals Q by defining
-            (n1/n2) by the same method as for (m1-m2)    
-        we update action . of N' over M'
-        now (M',N') is a module M' over Q with order still preserved by ".".
-
-        now we use Dedekind's method of cuts to extend Q to real numbers.
-        Each real number will represent just one Euclid ratio for this number, but even only if
-        such ratio exists for this number.
-
-        And if set M is "more rich" than IR, then the set N is insufficiently simple 
-        to study M's properties. For example, perhaps when M is a set of rational fractions, Euclid's
-        method should use more complex N to operate on M.
-
-    The constructed toolset has one flaw. We cannot operate with elements of M directly.
-        ma/m'a and m/m' are the same ratios and represented with the same real number.
-        We have to chose a unit. In given context of article or theory, one selects non zero
-        element u of M and do not change it. Then M begins isomorphic to ratios { m/u, m in M } in IM.
-
-    Certain properties must be proven for units.
-        "Independency on unit choice".
-        Operation between units.
-
-
-5. Expressing Euclid's notation as algebraic operations.
-        Compound ratios:
-            comp r,r' = r*r' =  a/b * a'/b' as product of real numbers which these ratios represent.
-                                            if M is not complex than IR.
-        Duplicate ratios:
-            dup r = r*r
 
 
 Sublemma: equirebasing and crossproducting are equivalent.
 
         Given: ratios a/c are  A/C are equirebase equivalent.
-        =&gt; there exist x,X that
+        \( \; \Rightarrow \; \) there exist x,X that
         ax/cx = AX/CX.
 
         a xc C/cCcx = A XC c/cCCX.
 
-        aC = Ac =&gt;  a/c  A/C are crossproduct equivalent []
+        aC = Ac \( \; \Rightarrow \; \)  a/c  A/C are crossproduct equivalent []
 
 </pre>
 
@@ -252,6 +462,23 @@ Ref: <br><br>
 
 <br><br>
 <div book-reference-id="kvk"></div>
+
+<pre>
+Salomon Ofman "Theory of Ratios in Euclid’s Elements Book V revisited"
+<br>
+Euclid-theory-of-ratio.pdf
+https://webusers.imj-prg.fr/~salomon.ofman/Euclid-theory-of-ratio.pdf
+
+Euclid. Translation:
+Richard Fitzpatrick’s ([Euclid2007]).
+
+Euclid. Book 5. Definition 5. Magnitudes are said to be in the same ratio (‘ jEn tw/' aujtw/' lo vgw/’), the first to
+the second and the third to the fourth, when, if any equimultiples whatever be taken of the first
+and third, and any equimultiples whatever of the second and fourth, the former equimultiples
+alike exceed, are alike equal to, or alike fall short of, the latter equimultiples respectively
+taken in corresponding order
+</pre>
+
 
 
 

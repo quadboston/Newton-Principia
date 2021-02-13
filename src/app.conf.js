@@ -11,6 +11,7 @@
     to_fconf =
     {
         hideSingleItemContentMenus : true,
+        SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
     }
 
     Object.keys( to_fconf ).forEach( function( key ) {

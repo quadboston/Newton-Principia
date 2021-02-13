@@ -4,6 +4,7 @@
         nspaste, haz,
         globalCss,
         sconf,
+        fconf,
         rg,
         sDomN,
         ssD,
@@ -132,7 +133,7 @@
                     //====================================================
                     // //\\ creates subessay's doms for text and menuItem
                     //====================================================
-                    if( exAspect.subexegs.length > 1) {
+                    if( exAspect.subexegs.length > 1 || fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
                         subexeg.subessayCaption =
                                 haz( subexeg.essayHeader, 'subessayCaption' ) ||
                                 haz( subexeg.essayHeader, 'menuCaption' ) ||
@@ -140,6 +141,7 @@
                         subexeg.subessayMenuItem$ = $$
                           .c('div')
                           .html( subexeg.subessayCaption )
+                          //... wrong wording ... not "toggler" but "subessay-selector" === "menu-item"
                           .cls( 'subessay-toggler highlight-text-disabled' )
                           .e( 'click', () => {
                                 amode.subessay = subexeg.essayHeader.subessay;
@@ -178,7 +180,7 @@
                 //      this visibility,
                 //************************************************************
                 ///puts togglers on top
-                if( exAspect.subexegs.length > 1 ) {
+                if( exAspect.subexegs.length > 1 || fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
                     var subessayMenuContainer$ = exAspect.subessayMenuContainer$ = $$
                         .c( 'div' )
                         .cls( 'subessay-menu-container highlight-text-disabled' )

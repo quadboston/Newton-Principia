@@ -15,7 +15,8 @@
 
 
 
-
+    ///no not site wide ... not for home page
+    ///only for lemmas/lessons
     function init_siteWideLemmaCSS(cssp, fconf) 
     {
         //does break app if do it conventional way

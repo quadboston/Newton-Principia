@@ -16,6 +16,7 @@
         {
             init_model_parameters,
             model_upcreate,
+            baseFunction,
         },
     });
     return;
@@ -25,8 +26,25 @@
 
 
 
-
-
+    ///the same function is used for left and right part of the Lemma diagram,
+    ///recreates initial curve as approximatee
+    function baseFunction( x ) {
+        var x = x + rg.a.pos[0];
+        return rg.leftFunction.dividedDifferences.calculate_polynomial( x );
+    };
+    function updateLeftCurve()
+    {
+        var xy = [];
+        var cPivots = sconf.originalPoints.curvePivots;
+        cPivots.forEach( (pivot, pix) => {
+            xy[ pix ] = [ pivot.rgX.pos[0], pivot.rgX.pos[1] ];
+        });
+        rg.leftFunction.dividedDifferences = mat.calculate_divided_differences( xy );
+        sconf.originalPoints.curvePivots.forEach( (pivot, pix) => {
+            xy[ pix ] = [ pivot.rgX.pos[0], pivot.rgX.pos[1] ];
+        });
+        rg.leftFunction.dividedDifferences = mat.calculate_divided_differences( xy );
+    }
 
 
 
@@ -46,79 +64,26 @@
         ssD.AREA_CALCULATION_STEPS = Math.pow( 10, ssD.AREA_CALCULATION_ACCURACY_DIGITS );
 
         toreg( 'leftFunction' );
-        toreg( 'rightFunction' );
 
-        //merges model points a, c with controls points
+        //merges selected points with controls points
         var cPivots = sconf.originalPoints.curvePivots;
         //merges positions to help d8d
         rg.a.pos = cPivots[0].rgX.pos;
         rg.c.pos = cPivots[2].rgX.pos;
 
         //--------------------------------------------------------------------------------------
-        // //\\ shift transform T
-        //      , reseves space and sets initials
-        //      
+        // //\\ point p transform
         //--------------------------------------------------------------------------------------
         //      transform driven by point "p"
-        stdMod.recalculates_rg_ptransform();
+        toreg( 'ptransform' )( 'val', [[1,0],[0,1]] );
+        rg.ptransform.val[0][0] = ( rg.T.pos[0] - rg.P.pos[0] ) / ( rg.E.pos[0] - rg.A.pos[0] );
+        rg.ptransform.val[1][1] = ( rg.p.pos[1] - rg.P.pos[1] ) / ( rg.a.pos[1] - rg.A.pos[1] );
         //--------------------------------------------------------------------------------------
-        // \\// shift transform T
+        // \\// point p transform
         //--------------------------------------------------------------------------------------
-
-        //-----------------------------------------------------------
-        // //\\ establishes right curve points
-        //      normalized and mediaable
-        //-----------------------------------------------------------
-        ///mediaable
-        var rightCurvePivots = sconf.originalPoints.rightCurvePivots;
-        var T                = rg.ptransform.val;
-        cPivots.forEach( (pivot,pix) => {
-            var pos     = pivot.rgX.pos;
-            var x       = pos[0];
-            var y       = pos[1];
-            var rX      = rightCurvePivots[pix].rgX;
-            var rPos    = rX.pos;
-            rPos[0]     = x * T[0][0] + T[1][0] * y + rg.P.pos[0];
-            rPos[1]     =               T[1][1] * y + rg.P.pos[1];
-        });
-        //merges positions to help d8d
-        //rightCurvePivots[0].rgX.pos = rg.p.pos;
-        //.memorizes fraction of point r on interval PT
-        rg.r.r2T = ( rg.r.pos[0]-rg.P.pos[0] ) / ( rg.T.pos[0]-rg.P.pos[0] );
-
-        ///normalized
-        var rpNorm = sconf.originalPoints.rightCurvePivots_normalized;
-        rpNorm.forEach( (rpivot,pix) => {
-            var pos         = cPivots[ pix ].rgX.pos;
-            rpivot.rgX.pos  = [ pos[0], pos[1] ];
-        });
-
-        rightCurvePivots.forEach( (rpivot,pix) => {
-            var rgDragger = rpivot.rgX;
-            rgDragger.acceptPos = newPos =>
-            {
-                var normPos = sconf.originalPoints.rightCurvePivots_normalized[ pix ].rgX.pos;
-                var normPosX = normPos[0]; //stashed to block hor. move,
-
-                rgDragger.pos[1] = newPos[1];
-                rgDragger.pos[0] = newPos[0];
-                stdMod.draggable__allTxy_2_allxy();
-                if( !haz( rgDragger, 'draggableX' ) ) {
-                    ////blocks horizontal move: this method is a trick,
-                    ////todm: it must be set in the d8d API
-                    normPos[0] = normPosX;
-                    stdMod.draggable__allxy_2_allTxy();
-                    newPos[0] = rgDragger.pos[0];
-                }
-                return true;
-            };
-        });
-        //-----------------------------------------------------------
-        // \\// establishes right curve points
-        //-----------------------------------------------------------
 
         //--------------------------------------------------------------------------------------
-        // //\\ T transform draggers p, T
+        // //\\ point T transform
         //--------------------------------------------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             pname : 'T',
@@ -126,20 +91,22 @@
             {
                 rg.T.pos[0] = newPos[0];
                 newPos[1]   = rg.T.pos[1]; //blocks vertical movement
-                stdMod.recalculates_rg_ptransform();
+                getTransform();
                 return true;
             }
         });
         rg.p.acceptPos = ( newPos ) => {
             rg.p.pos[0] = newPos[0];
             rg.p.pos[1] = newPos[1];
-            stdMod.recalculates_rg_ptransform();
+            getTransform();
             return true;
         };
         //--------------------------------------------------------------------------------------
-        // \\// T transform draggers p, T
+        // \\// point T transform
         //--------------------------------------------------------------------------------------
 
+        //.memorizes fraction of point r on interval PT
+        rg.r.r2T = ( rg.r.pos[0]-rg.P.pos[0] ) / ( rg.T.pos[0]-rg.P.pos[0] );
 
 
         ( function () {
@@ -149,8 +116,8 @@
             var originalBars    = sconf.originalPoints.bars;
             var A0              = rg.A.pos[0];
             var baseLen         = ( rg.E.pos[0] - A0 ) * 0.99;
-            var bDefault        = sconf.BARS_NUMBER_CURRENT; //=3 at start as of this ver
-            toreg( 'bars' )( 'count', bDefault );
+            var bDef            = sconf.BARS_NUMBER_CURRENT;
+            toreg( 'bars' )( 'count', bDef );
 
             var orBarsLen = originalBars.length;
             var { floatGrid } =
@@ -165,8 +132,10 @@
             originalBars.forEach( (bar,bix) => {
                 ////HERE IS AN INVISIBLE TRICK: grid[0] which is 0 is
                 ////skipped avoiding "zero-bar"
-                if( bix < bDefault ) return; 
-                bar.rgX.pos[0] = floatGrid[ bix ] * baseLen + A0;
+                if( bix < bDef ) return; 
+                var bpName = 'bars-'+bix;
+                var bp = rg[ bpName ];
+                bp.pos[0] = floatGrid[ bix ] * baseLen + A0;
             });
 
 
@@ -248,7 +217,15 @@
 
 
 
-
+    function getTransform()
+    {
+        rg.ptransform.val[0][0] = ( rg.T.pos[0] - rg.P.pos[0] )
+                                / ( rg.E.pos[0] - rg.A.pos[0] );
+        rg.ptransform.val[1][1] = ( rg.p.pos[1] - rg.P.pos[1] )
+                                / ( rg.a.pos[1] - rg.A.pos[1] );
+        rg.ptransform.val[1][0] = ( rg.p.pos[0] - rg.P.pos[0] )
+                                / ( rg.a.pos[1] - rg.A.pos[1] );
+    }
 
 
     ///****************************************************
@@ -260,40 +237,32 @@
 
         ssD.integrationStep = ( rg.E.pos[0] - rg.A.pos[0] ) / ssD.AREA_CALCULATION_STEPS;
 
-        //stdMod.recalculates_rg_ptransform();
-        stdMod.updates__draggers2toFunctions();
-        stdMod.draggable__allxy_2_allTxy(); //decorational-draggable
+        updateLeftCurve();
+        getTransform();
 
         //-------------------------------------------------
         // //\\ this is breadth-points d8d limitator,
         //      if coder is not lazy, this limitator
-        //      should be coded for sDomF.params__2__rgX8dragwrap_gen_list
-        //      todm: why more than 3 points checked every time? They are constants.
+        //      should be coded for sDomF.params__2__rgX8dragwrap_gen_list 
         //-------------------------------------------------
         //rg.countNSlider.caption = 'n = ' + ( rg.bars.count+1 );
         rg.countNSlider.caption = ( rg.bars.count+1 ) + ' bases';
 
         sconf.originalPoints.bars.forEach( (bar, bix) =>  {
             if( rg.bars.count <= bix ) return;
-
             var moPos = rg[ 'bars-'+bix ].pos;
-            //this must work
-            //var moPos = bar.rgX.pos;
-
             moPos[0] = Math.min( Math.max( moPos[0], rg.A.pos[0] ), rg.E.pos[0] );
         });
         //-------------------------------------------------
         // \\// this is breadth-points d8d limitator,
         //-------------------------------------------------
 
-        //todo: must be recalculated
         //:moves point r proportionally
         nspaste(
             rg.r.pos,
-            stdMod.rightFun_2_rightFigure( rg.r.r2T )
-            //ssD.repoConf[1].fun( rg.r.r2T * ( rg.T.pos[0]-rg.P.pos[0] ) + rg.P.pos[0] )
+            ssD.repoConf[1].fun( rg.r.r2T * ( rg.T.pos[0]-rg.P.pos[0] ) + rg.P.pos[0] )
         );
-        
+
 
         //=============================================================================
         // //\\ removes and recreates ordered bars
@@ -307,38 +276,24 @@
             //already done in sconf:... undisplayAlways : true,
             //if( bix > 4 ) bar.rgX.undisplay = true; //false;
 
-            //var origBar = rg[ 'bars-'+bix ];
-            ordBars.push( bar.rgX );
+            var origBar = rg[ 'bars-'+bix ];
+            ordBars.push( origBar );
         });
         // inserts point B
         ordBars.push( rg.E );
 
         ordBars.sort( (barA, barB) => ( barA.pos[0] - barB.pos[0] ) );
 
-
-        if(
-            amode.subessay === 'non-similar-curves'
-        ) {
-            // todo fix the bug first:
-            // 0 x=0.0000 z=1.0731 ... must be monotonic
-            mat.integral.equalizeAreas({
-                fun         : rg.leftFunction.dividedDifferences.calculate_polynomial,
-                partition   : ordBars, //sconf.originalPoints.bars,
-                startFX     : rg.A.pos[0],
-                endFX       : rg.E.pos[0],
-
-                funG        : rg.rightFunction.dividedDifferences.calculate_polynomial,
-                startGX     : rg.A.pos[0],
-                endGX       : rg.E.pos[0],
-            })
+        if( amode.theorion === 'proof' && amode.aspect === 'addendum' ) {
+            var convergentOrderedBars = toreg( 'convergentOrderedBars' );
+            convergentOrderedBars.val = ordBars.map( (ob,bix) => ({
+                pos : [ ob.pos[0],  ob.pos[1] ]
+            }));
         }
         //=============================================================================
         // \\// removes and recreates ordered bars
         //=============================================================================
     }
-
-
-
 
 }) ();
 
