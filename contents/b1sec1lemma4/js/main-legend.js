@@ -69,8 +69,8 @@
 
              //third table row
             'none,,"figure:"  acE,,rg.leftFunction.funArea  ' +
-            'prT,,rg.leftFunction.rigthArea  ' +
-            'figuresRatio,,rg.leftFunction.funArea/rg.leftFunction.rigthArea',
+            'prT,,rg.rightFunction.funArea  ' +
+            'figuresRatio,,rg.leftFunction.funArea/rg.rightFunction.funArea',
         ];
 
         ///spawns configuration

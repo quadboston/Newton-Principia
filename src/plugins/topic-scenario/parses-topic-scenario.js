@@ -47,10 +47,17 @@
         var TIMEOUT = /^(\d+)\s*(.*)$/;
         var PURGE_EVENT = /^>\s/;
 
+                           "exersise"
         eachprop( exegs, ( theorionAspects, theorion_id ) => {
+                                         "subtopics"
             eachprop( theorionAspects, ( exAspect, aspect_id ) => {
+                                             "subessay2subexeg"
+                                                      "measure-equival-point"
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+
                     var scenarioScript = haz( subexeg, 'scenarioScript' );
+                    //example: exersise.subtopics.subessay2subexeg[
+                    //         'measure-equival-point' ].scenarioScript
                     if( !scenarioScript ) return;
 
                     //gets array of state-blocks in form of text for each block

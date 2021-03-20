@@ -97,15 +97,17 @@
 
         {   sappId : 'addendum-frameworks',
             book : 'Addendum',
-            caption : 'Introduction (in progress)',
+            caption : 'Logical frameworks',
             annotation : "Comments to the Book",
         },
 
+        /*        
         {   sappId : 'addendum-preliminaries',
             book : 'Addendum',
-            caption : 'Preliminaries (in progress)',
+            caption : 'Preliminaries',
             annotation : "Comments to the Book",
         },
+        */
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

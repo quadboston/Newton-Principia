@@ -12,6 +12,9 @@
     ssF.tr = tr;
     ssF.tp = tp;
     ssF.toreg = toreg;
+    ssF.inRg = inRg;
+
+    var hasOp = Object.prototype.hasOwnProperty;
 
     //test
     /*
@@ -110,6 +113,14 @@
     ///================================================
     /// \\// does registry initiation or overriding job.
     ///================================================
+
+
+    function inRg( propName, template )
+    {
+        if( hasOp.call( rg, propName ) ) return rg[ propName ];
+        return ( rg[ propName ] = template || {} );
+    }
+
 
 }) ();
 

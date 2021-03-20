@@ -85,12 +85,12 @@
         var this_d8d = ns.d8d(
         {
 	        surface : surface0attachee,
-	        d8d_app  : d8d_app,
+	        d8d_cb_middle2lowest  : d8d_cb_middle2lowest,
             skipD8D  : skipD8D
         });
 
         thisSlider.doSet                   = doSet;
-        thisSlider.d8d_app                 = d8d_app;
+        thisSlider.d8d_cb_middle2lowest                 = d8d_cb_middle2lowest;
         thisSlider.d8d_emulateAbsFractionX = d8d_emulateAbsFractionX;
         thisSlider.removeEvents            = this_d8d.removeEvents;
         thisSlider.slideeX                 = function() { return absFracDone; };
@@ -117,7 +117,7 @@
 
 
         ///d8d application
-        function d8d_app( move, mouseUpOrDown )
+        function d8d_cb_middle2lowest( move, mouseUpOrDown )
         {
             if( mouseUpOrDown === 'down' ) {
                 return;
@@ -151,7 +151,7 @@
             var relMove = ( absFraction - absFracDone ) * len;
             //ccc( 'emulation-layer in engine: len=' + len + ' absFracDone=' +
             //absFracDone + ' absFraction=' + absFraction + ' relMove=' + relMove );
-            return d8d_app( [ relMove, 0 ], mouseUpOrDown );
+            return d8d_cb_middle2lowest( [ relMove, 0 ], mouseUpOrDown );
         }
 
 

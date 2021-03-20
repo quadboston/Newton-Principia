@@ -45,12 +45,16 @@
         font-size: smaller;
     }
 
+    `;
+
 
     /******************************************/
     /* //|| page primary sections             */
     /******************************************/
-    .bsl-approot svg text {
-        font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
+
+    ret += `
+        .bsl-text-widget svg text {
+            font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
     }
 
     /* vital */
@@ -117,7 +121,6 @@
         z-index:10;
     }
     `;
-
 
 
     /*
@@ -285,13 +288,12 @@
             margin-bottom: 20px;
         }
     }
+    `;
+
     /*========================================*/
     /* ||// mobile                            */
     /* ||// page primary sections             */
     /******************************************/
-    `;
-
-
 
 
 
@@ -595,7 +597,21 @@ ret +=`
 // \\// css /////////////////////////////////////////
 
 
-
+    ///default lemma svg settings,
+    ///to be overridedn by lemma-css-policy or inline-css,
+    ///todm: should be in sapp module, not "full app" module,
+    ns.globalCss.update( `
+            .bsl-media-root svg text {
+                font-size       : 12px;
+                font-style      : normal;
+                stroke-width    : 0.1;
+                font-family     : helvetica, arial, san-serif;
+                stroke          : black;
+                fill            : black;
+            }
+        `,
+        'svg-text-special'
+    );
 
 
 return ret;

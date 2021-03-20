@@ -28,9 +28,11 @@
     // \\// configures dimensions
     //---------------------------------------
 
-    var globalCssCreated_flag = false;
+    var globalCssCreated_flag   = false;
+    var decorCount_debug        = 0;
+
     dpdec.creates_spinnerOwnCss = creates_spinnerOwnCss;
-    dpdec.createGlobal = createGlobal;
+    dpdec.createGlobal          = createGlobal;
     return;
 
 
@@ -41,10 +43,13 @@
 
 
     ///creates spinner own global CSS
+    ///appar. overrides spinner's-default CSS by means of
+    ///parent_classes
     function creates_spinnerOwnCss(
         spinnerClsId,   //"upward-css-callback"
         individual_color,
-        parent_classes  //"downward-css-callback", optional
+        parent_classes,  //"downward-css-callback", optional
+        individual_zindex,
     ) {
         parent_classes = parent_classes || [''];
         var ret = '';
@@ -55,8 +60,17 @@
             ////if dclass exists, apparently it constrains css to ownself
             dclass = dclass ? '.' + dclass : '';
 
+            var zIndex = individual_zindex ?
+                'z-index : ' + individual_zindex + ';\n' :
+                ''
+                ;
+
             ret +=
             `
+
+            ${dclass} .${spinnerClsId}.brc-slider-draggee {
+                ${zIndex}
+            }
 
             /*=============================*/
             /* //\\ parent after           */
@@ -82,11 +96,14 @@
             /* \\// animates slider arrows */
             /*=============================*/
             `
+            //ccc( dclass + ' .' + spinnerClsId + ' o v e r r i d e s  ' +
+            //     ' .brc-slider-draggee-right '
+            //);
         });
         // \\// css /////////////////////////////////////////
         
         //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
-        ns.globalCss.update( ret );
+        ns.globalCss.update( ret, spinnerClsId );
     }
 
 
@@ -267,7 +284,7 @@
         // \\// css /////////////////////////////////////////
         //ns.globalCss.addText( ret );
         //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
-        ns.globalCss.update( ret );
+        ns.globalCss.update( ret, 'decor-count-' + decorCount_debug ++ );
         globalCssCreated_flag = true;
     };
 })();

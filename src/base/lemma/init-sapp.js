@@ -98,7 +98,13 @@
                     var activityScenarios = haz( ts, 'activityScenarios' );
                     var parsesTopicScenarios = haz( ssF, 'parsesTopicScenarios' );
                     if( activityScenarios && parsesTopicScenarios ) {
+
+                        //apparently, this completes assembling of scripts among
+                        //them own: pieces are merged to be later parsed with
+                        //parsesTopicScenarios()
                         activityScenarios.forEach( as => { as(); } );
+
+                        //apparently, pieces are parsed now
                         ns.haff( ssF, 'parsesTopicScenarios' );
                         ns.haff( ssF, 'doInitTopicScenarioCss' );
                     }

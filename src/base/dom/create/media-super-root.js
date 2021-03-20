@@ -117,7 +117,6 @@
                         // //\\ do wrap into capture-method or refactor
                         //------------------------------------------------
                         var ast = {};
-
                         ///non-rg property: media center:
                         ///todm: legalize;
                         var mcenter = ns.haz( rg, 'media-mover' );

@@ -31,6 +31,20 @@
         //makes idle bars brighter
         sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
 
+        sconf.DONT_PAINT_BARS_MORE_THAN = 200;
+
+        sconf.ZEBRA_COLORS = 6;
+        sconf.BARS_NUMBER_TO_PLOT = sconf.ZEBRA_COLORS;
+
+        //after assigning, test app; because of
+        //algo is repeatable, all next runs will do the same work,
+        var BARS_NUMBER_MAX = sconf.BARS_NUMBER_MAX = 500; //850;
+
+        var BARS_NUMBER_INITIAL = sconf.BARS_NUMBER_INITIAL = 4;
+
+        //prevents collision of points p,T with orts j,i tips
+        sconf.ORT_J_SHIFT = 0.1;
+        sconf.ORT_I_SHIFT = 0.1;
 
 
         //--------------------------------------
@@ -218,7 +232,6 @@
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
 
-
         Object.assign( originalPoints, {
             A : { 
                 pos: A,
@@ -259,9 +272,29 @@
             p : {
                 pos: p,
                 pcolor : given,
+                letterRotRadius : 20,
+                letterAngle : 180,
+            },
+
+            ortJ : {
+                pos: [p[0], p[1] - ( P[1] - p[1] ) * sconf.ORT_J_SHIFT],
+                caption : 'j',
+                fontSize : Math.floor( fconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
+                pcolor : [0,0,0,1],
                 letterAngle : 90,
+                letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
+            },
+
+            ortI : {
+                pos: [ P[0] + ( T[0]-P[0] ) * ( 1 + sconf.ORT_I_SHIFT ), T[1] ],
+                caption : 'i',
+                fontSize : Math.floor( fconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
+                pcolor : [0,0,0,1],
+                letterRotRadius : 20,
+                letterAngle : 0,
+                draggableX  : true,
             },
 
             r : {
@@ -313,11 +346,14 @@
         //-----------------------------------
         // //\\ sets bars base points array
         //-----------------------------------
-        var BARS_NUMBER_MAX     = sconf.BARS_NUMBER_MAX = 10; //200;
-        var BARS_NUMBER_CURRENT = sconf.BARS_NUMBER_CURRENT = 3;
         originalPoints.bars =
         [
-            ////point A is not included
+            ///will coinside with point A
+            {
+                pos: [A[0],A[1]],
+                doPaintPname : false,
+                undisplayAlways : true,
+            },
             {
                 //pos: [145,77],
                 pos: [145,A[1]],
@@ -341,10 +377,16 @@
                 letterAngle : 45,
                 draggableX : true,
             },
+            ///will coinside with point E
+            {
+                pos: [E[0],E[1]],
+                doPaintPname : false,
+                undisplayAlways : true,
+            },
         ]
         //for more options, see expands-conf.js
         originalPoints.bars.doPaintPname = false;
-        for( wwix = 3; wwix<BARS_NUMBER_MAX; wwix++ )
+        for( wwix = BARS_NUMBER_INITIAL+1; wwix<BARS_NUMBER_MAX; wwix++ )
         {
             originalPoints.bars.push({
                 pos: [100,A[1]], //fake

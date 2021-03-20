@@ -4,18 +4,26 @@
     var integral    = sn( 'integral', mat );
 
 
-
-    ///calculates integral from 0 to x of dx^3+ax^2+bx+c
-    integral.polynomial = function( d, a, b, c, x )
+    /*
+    //----------------------------------------------------
+    // //\\ test
+    //----------------------------------------------------
+    function testFun( x )
     {
-        return ( ( ( d/4*x + a/3 ) * x + b/2 ) * x + c ) * x;
+        return 2*x;
     }
+    function testFunG( x )
+    {
+        return 3*x*x;
+    }
+    ccc( integral.polynomial( 0, 1, 1, 1, 1 ) ); //11/6 = 1.8333...
+    ccc( integral.polynomial( 1, 1, 1, 1, 1 ) ); //2.0833...
+    //----------------------------------------------------
+    // \\// test
+    //----------------------------------------------------
+    */
 
-    //:test
-    //ccc( integral.polynomial( 0, 1, 1, 1, 1 ) ); //11/6 = 1.8333...
-    //ccc( integral.polynomial( 1, 1, 1, 1, 1 ) ); //2.0833...
-
-
+    integral.polynomial = polynomial;
     integral.simpleIntegration = simpleIntegration;
     integral.equalizeAreas = equalizeAreas;
     return;
@@ -23,16 +31,29 @@
 
 
 
-    function simpleIntegration( fun, baseArray, returnAll )
+
+
+
+
+    ///calculates integral from 0 to x of dx^3+ax^2+bx+c
+    function polynomial( d, a, b, c, x )
     {
+        return ( ( ( d/4*x + a/3 ) * x + b/2 ) * x + c ) * x;
+    }
+
+
+    function simpleIntegration({
+        fun,
+        baseArray, //two start and end points
+        returnAll,
+        INTEGRATION_POINTS_LIM,
+    }){
         //API
         var startX = baseArray[0];
         var endX = baseArray[1];
 
-        var INTEGRATION_POINTS = 1000;
-
         var rangeX  = endX - startX;
-        var stepX   = rangeX / INTEGRATION_POINTS; 
+        var stepX   = rangeX / INTEGRATION_POINTS_LIM; 
         var fun1    = fun( startX );
         var x1      = startX;
         var sum     = 0;
@@ -41,9 +62,11 @@
             resultX = [ x1 ];
             resultF = [ fun1 ];
             integrals = [ 0 ];
+            var fmin = fun1;
+            var fmax = fun1;
         }
 
-        for( var ix=0; ix<INTEGRATION_POINTS; ix++ ){
+        for( var ix=0; ix<INTEGRATION_POINTS_LIM; ix++ ){
             var x2 = (ix+1)*stepX;
             var fun2 = fun( x2 );
             sum += (fun1 + fun2) * 0.5 * stepX;
@@ -52,6 +75,12 @@
                 resultX.push( x2 );
                 resultF.push( fun2 );
                 integrals.push( sum );
+                if( fmin > fun2 ) {
+                    fmin = fun2;
+                }
+                if( fmax < fun2 ) {
+                    fmax = fun2;
+                }
             }
         }
         if( returnAll ) {
@@ -61,69 +90,44 @@
                 resultF,
                 integrals,
                 rangeX,
-                INTEGRATION_POINTS,
+                INTEGRATION_POINTS_LIM,
                 stepX,
+                fmin,
+                fmax,
             };
         } else {
             return sum;
         }
     }
 
-
-    function testFun( x )
-    {
-        return 2*x;
-    }
-
-
-    function testFunG( x )
-    {
-        return 3*x*x;
-    }
-
-
-
+    ///note, this function is based on integer arithmetics, so 
+    ///this function can be done in integer arithmetics, so
+    ///"drastically" speed up performance,
     function equalizeAreas({
         fun,
+
+        //x-partition for function F (on "left" side)
+        //this parameter implicitly returns partition[ ix ].rgX.gX
+        //which is an z mapped to x,
         partition,
-        startFX,
-        endFX,
-        startFY,
-        endFY,
+
+        startFX,   //first point in partition
+        endFX,     //last point in partition
 
         funG,
-        startGX,
+        startGX,   //first point in partition for departure-domain-of-G
         endGX,
     }) {
-        var INTEGRATION_POINTS = 100;
+        var INTEGRATION_POINTS_LIM = 10000;
 
-        //test
-        //funG    = testFunG;
-        //fun     = testFun;
-
-        /*
-        startFX = 0;
-        endFX   = 1;
-        startGX = 0;
-        endGX   = 1;
-        partition = [
-            { pos : [0,0], },
-            { pos : [0.25,0], },
-            { pos : [0.5,0], },
-            { pos : [0.75,0], },
-            { pos : [0.9,0], },
-            { pos : [1,0], },
-        ];
-        */
-
-        var origin = simpleIntegration(
-                fun,
-                [ startFX, endFX ],
-                !!'returnAll'
-        );
-        //ccc( origin );
-        var rangeX = origin.rangeX;
-        var oStepX = origin.stepX;
+        var origin = simpleIntegration({
+            fun,
+            baseArray : [ startFX, endFX ],
+            returnAll : true,
+            INTEGRATION_POINTS_LIM,
+        });
+        var { rangeX, resultF, resultX, stepX } = origin;
+        var f0g = 'f';
 
         partition.forEach( point => {
 
@@ -137,61 +141,75 @@
             //ccc( rgX)
             //***********************************
 
-            var posX = rgX.pos[0];
-            var argX = origin.INTEGRATION_POINTS * posX / rangeX;
-            var gIx = Math.floor( argX );
-            if( gIx >= origin.INTEGRATION_POINTS ) {
-                rgX.area = origin.integral;
+            var posX    = rgX.pos[0];
+            var argX    = INTEGRATION_POINTS_LIM * posX / rangeX;
+            var iIx     = Math.floor( argX );
+            rgX.integ   = { f:{}, g:{} };
+            var integF  = rgX.integ.f;
+            integF.ix   = iIx;
+            integF.x    = posX;
+            if( iIx >= INTEGRATION_POINTS_LIM ) {
+                integF.area = origin.integral;
+                integF.fun = resultF[ resultF.length-1 ];
             } else {
                 var grals = origin.integrals;
-                rgX.area  = grals[ gIx ] +
-                    ( grals[ gIx + 1 ] - grals[ gIx ] ) *
-                    ( posX - origin.resultX[ gIx ] ) / oStepX
+                integF.area  = grals[ iIx ] +
+                    ( grals[ iIx + 1 ] - grals[ iIx ] ) *
+                    ( posX - origin.resultX[ iIx ] ) / stepX
+                    ;
+                integF.fun = resultF[ iIx ] +
+                    ( resultF[ iIx + 1 ] - resultF[ iIx ] ) *
+                    ( posX - resultX[ iIx ] ) / stepX
                     ;
             }
         });
-        //ccc( partition )
 
 
-        var originG = simpleIntegration(
-                funG,
-                [ startGX, endGX ],
-                !!'returnAll'
-        );
+
+        var originG = simpleIntegration({
+            fun         : funG,
+            baseArray   : [ startGX, endGX ],
+            returnAll   : true,
+            INTEGRATION_POINTS_LIM,
+        });
 
         var z           = startGX;
-        var gXindex     = 1;
-        var ratioGF     = originG.integral / origin.integral;
-        var GPOINTS     = originG.INTEGRATION_POINTS;
-        var resultGX    = originG.resultX;
-        var integralsG  = originG.integrals;
         var gStartIx    = 1;
-        //ccc( 'originG=', originG );
-
+        var ratioGF     = originG.integral / origin.integral;
+        var resultGX    = originG.resultX;
+        var resultGY    = originG.resultF;
+        var integralsG  = originG.integrals;
 
         partition.forEach( ( point, pixDeb ) => {
-            //var rgX = point.rgX;
             var rgX = point;
+            var integG = rgX.integ.g;
 
-            var searchAreaG = rgX.area * ratioGF;
-            for( var gix=gStartIx; gix<=GPOINTS; gix++ ) {
+            var searchAreaG = rgX.integ.f.area * ratioGF;
+            integG.area = searchAreaG; 
+            for( var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++ ) {
                 var currentArea = integralsG[ gix ];
                 var formerArea = integralsG[ gix-1 ];
-                if( gix === GPOINTS ) {
-                    rgX.gX = resultGX[ gix ];
-                    //ccc( 'found at the end: gix=', gix + ' app:z=' + rgX.gX.toFixed(4) );
+                if( gix === INTEGRATION_POINTS_LIM ) {
+                    integG.ix = gix;
+                    integG.x = resultGX[ gix ];
+                    integG.fun = resultGY[ gix ];
                     gStartIx = gix;
                 } else if( currentArea >= searchAreaG ) {
+                    integG.ix = gix;
                     ////map z-point found for rgX.pos
-                    rgX.gX = resultGX[ gix-1 ] +
+                    integG.x = resultGX[ gix-1 ] +
                                 (searchAreaG - formerArea) *
                                 ( resultGX[ gix ] - resultGX[ gix-1 ] )
                                 / (currentArea - formerArea)
                                 ;
+                    integG.fun = resultGY[ gix-1 ] +
+                        ( resultGY[ gix ] - resultGY[ gix-1 ] ) *
+                        ( integG.x - resultGX[ gix-1 ] ) / stepX
+                        ;
 
                     // //\\ debug
                     /*
-                    var posGX_d = gix/originG.INTEGRATION_POINTS;
+                    var posGX_d = gix/originG.INTEGRATION_POINTS_LIM;
                     ccc( '\n\n' + gix, 'z=posGX='+resultGX[ gix ]+ '(===)' + posGX_d );
 
                     var posFx_d = pixDeb / 4;
@@ -209,14 +227,51 @@
                     */
                     // \\// debug
 
-                    //rgX.gX = resultGX[ gix ];
-                    //ccc( pixDeb + ' x='+rgX.pos[0].toFixed(4) + ' z=' + rgX.gX.toFixed(4) );
+                    //ccc( pixDeb + ' x='+rgX.integ.f.x.toFixed(4) +
+                    //              ' z=' + rgX.integ.g.x.toFixed(4) );
                     gStartIx = gix;
                     break;
                 }
             }
         });
-        //ccc( 'partition array with full results for z: ', partition );
+
+        findsMinOnIntervals( 'f' )
+        findsMinOnIntervals( 'g' )
+        return { originF : origin, originG, };
+
+
+
+        function findsMinOnIntervals( f0g )
+        {
+            //finding fmin
+            partition.forEach( (point,pix) => {
+                var integX = point.integ[ f0g ];
+                if( pix === partition.length - 1 ) {
+                    integX.min = integX.fun;
+                    return;
+                }
+                var point1 = partition[ pix+1 ];
+                var integX1 = point1.integ[ f0g ];
+
+                var startIx = integX.ix;
+                var lim     = integX1.ix;
+                var min    = integX.fun;
+                for( var ix=startIx; ix<lim; ix++ ) {
+                    var currF = f0g === 'f' ? resultF[ ix ] : resultGY[ ix ];
+                    if( min > currF ) {
+                        min = currF;
+                    }
+                }
+                var lastF = integX1.min;
+                if( min > lastF ) {
+                    min = lastF;
+                }
+
+                integX.min = min;
+                integX.barArea = min * ( integX1.x - integX.x );
+                integX.figArea = integX1.area - integX.area;
+            });
+        }
     }
 
 

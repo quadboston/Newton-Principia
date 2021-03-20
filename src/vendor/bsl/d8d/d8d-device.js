@@ -2,7 +2,7 @@
 // //\\//   "device-level" (lowest browser possible level) drag and drop processor;
 //          ns.d8d - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
-//                  - submits results to app-processor, d8d_app
+//                  - submits results to app-processor, d8d_cb_middle2lowest
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
 //          Copyright (c) 2018-2019 Konstantin Kirillov. License MIT.
 //
@@ -25,7 +25,7 @@
         //------------------------------------------
         //:application-level-handler
         // see function-call-signature in code below
-		var d8d_app  = arg.d8d_app;
+		var d8d_cb_middle2lowest  = arg.d8d_cb_middle2lowest;
 
         //:	where to draw:
         //  final destination of mouse-point-coordinates detection;
@@ -142,6 +142,7 @@
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 //} else {
+                //    ccc( 'other clicks are permitted in raw d8d' );
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
@@ -170,7 +171,7 @@
             }
 
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_app( [0,0], 'down', point_on_dragSurf, childEvent, [0,0] );
+			var forbidden = d8d_cb_middle2lowest( [0,0], 'down', point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
                 return true;
@@ -228,7 +229,7 @@
 				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
             ///api: 
-            d8d_app(
+            d8d_cb_middle2lowest(
                 surfMove, //total move which begins from down event
                 'move',
                 surfPoint,
@@ -277,7 +278,7 @@
             var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
             if( startPoint ) {
                 stopsAftershocks( rootEvent || childEvent );
-                //.programmer may want to make d8d_app throttable:
+                //.programmer may want to make d8d_cb_middle2lowest throttable:
                 //.this is why it is importan to provide "up" with surfPoint
                 //.in case the "move" event will be erased by "up"
                 //var surf_point = surfPoint || lastPoint;
@@ -287,9 +288,9 @@
                 if( surfPoint ) {
                     var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
                     var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
-                 	d8d_app( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
+                 	d8d_cb_middle2lowest( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
                 } else {
-                 	d8d_app( null, 'up', null, childEvent );
+                 	d8d_cb_middle2lowest( null, 'up', null, childEvent );
                 }
 	            startPoint = null;
                 //ns.d('end fw' + frameworkId + ' eid' + eventId + ' startPoint cleared');

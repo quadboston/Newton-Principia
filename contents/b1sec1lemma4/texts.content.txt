@@ -46,11 +46,11 @@
 *..*
 
 If in two figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦,
-there be inscribed ¦left-bars right-bars¦two series of paralellograms¦¦ (as before),
+there be inscribed ¦left-bars right-bars¦two series of parallelograms¦¦ (as before),
 and if the number of the two be the same, and if, where the
 ¦right-bars-breadths left-bars-breadths¦breadths¦¦ are diminished in
-infinitum, the ultimate ¦barsRatio¦ratios¦¦ of the individual paralellograms in one figure to the
-[corresponding] individual paralellograms in the other, be the same, I say that the two
+infinitum, the ultimate ¦barsRatio¦ratios¦¦ of the individual parallelograms in one figure to the
+[corresponding] individual parallelograms in the other, be the same, I say that the two
 figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that same ¦figuresRatio¦ratio¦¦.
 
 <br><br>
@@ -61,10 +61,11 @@ figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that
 
 *::*proof|english
 {
+  "default" : "1"
 }
 *..*
 
-For as ¦left-bar-1¦individual paralellogram¦¦ is to ¦right-bar-1¦individual paralellogram¦¦,
+For as ¦left-bar-1¦individual parallelogram¦¦ is to ¦right-bar-1¦individual parallelogram¦¦,
 so, componendo, would the ¦leftBarsArea left-bars¦sum of them all¦¦
 be ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of them all¦¦,
 and thus the ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦figure¦¦: because
@@ -94,7 +95,7 @@ For if in the figures of this lemma the parallelograms be taken to be to
 each other as the parts, the sums of the parts will always be as the sums of the
 parallelograms, and consequently, where the number of the parts and of the
 parallelograms be increased and the size to be decreased in infinitum, [the sums of the parts
-will be] in the ulitmate ratio of parallelogram to paralellogram, that is
+will be] in the ulitmate ratio of parallelogram to parallelogram, that is
 (by the hypothesis) in the ultimate ratio of part to part.
 
 
@@ -112,14 +113,14 @@ will be] in the ulitmate ratio of parallelogram to paralellogram, that is
 
 *::*proof|addendum
 {
-  "default" : "1",
   "menuCaption" : "Addendum",
   "subessayCaption" : "model for non-similar curves",
   "subessay" : "non-similar-curves"
 }
 *..*
-
-Algorithm in this addendum was offered by John Scott.
+<b>Construction of uniformely converging ratio of partition parallelograms for non-similar curves</b>
+<br><br>
+This algorithm was offered by John Scott.
 <br><br>
 Suppose we have two positive continuous functions with equal areas
 <br><br>
@@ -128,7 +129,7 @@ Suppose we have two positive continuous functions with equal areas
         S = <sub>0</sub>∫<sup>1</sup> fdt = <sub>0</sub>∫<sup>1</sup> gdt, 
     </div>
 <br>
-which makes their their minimums on [0,1] positive:
+Hence, their minimums on [0,1] are positive:
 <br><br>
     <div style="text-align:center">
         f<sub>Min</sub> &gt; 0, g<sub>Min</sub> &gt; 0, 
@@ -145,7 +146,7 @@ For this purpose, construct the function z(x) that
     </div>
 <br><br>
 
-This function exists because for G(z) = <sub>0</sub>∫<sup>z(x)</sup>g(t)dt is continuos and achieves each value in [0,H] including F(x) = <sub>0</sub>∫<sup>x</sup>f(t)dt for some x in [0,1].
+This function exists because for G(z) = <sub>0</sub>∫<sup>z</sup>g(t)dt is continuos and achieves each value in [0,S] including F(x) = <sub>0</sub>∫<sup>x</sup>f(t)dt for some x in [0,1].
 <br><br>
 
 Function Z : α ↦ β maps subintervals α = [x,x+d], β = [z(x),z(x+d)] in a way that
@@ -173,7 +174,7 @@ Areas of inscribed parallograms based on these intervals α, β will be denoted 
             { b/a | x ∊ [0,1), d &gt; 0, a = f<sub>min</sub>d,  b = g<sub>min</sub>h },  
     </div>
 <br>
-(This limit is defined in <a href="&#63;conf=sappId=lemma1#definition-of-limit" target="_blank">in limit addendum </a> as "uniform" convergence of a set.)
+(This limit is defined in <a href="&#63;conf=sappId=lemma1#definition-of-limit" target="_blank"> limit addendum </a> as "uniform" convergence of a set.)
 <br><br><i>Proof.</i>
 <br>
 
@@ -190,9 +191,9 @@ where following notation defined similarly to {b/a}:
 <br><br>
     <div style="text-align:center">
         { f/f<sub>min</sub> } \( \; \overset{df} = \; \)
-                { f(x)/f<sub>min</sub> | x ∊ [0,1), f<sub>min</sub>=inf( f<sub>min</sub> ) on α } <br>
+                { f(x)/f<sub>min</sub> | x ∊ [0,1), f<sub>min</sub> = inf( f ) on α } <br>
         { g/g<sub>min</sub> } \( \; \overset{df} = \; \)
-                { g(z(x))/g<sub>min</sub> | x ∊ [0,1), g<sub>min</sub>=inf( f<sub>min</sub> ) on β }
+                { g(z(x))/g<sub>min</sub> | x ∊ [0,1), g<sub>min</sub> = inf( g ) on β }
     </div>
 
 <br><br>
@@ -212,15 +213,15 @@ Applying mean value theorem for integrals like <sub>x</sub>∫<sup>x+d</sup> fdt
 Uniform convergence of {b/a} implies that
 <br><br>
     <div style="text-align:center">
-        {b} = { (1+eps<sub>x,d</sub>)a } where <br>
-        sup{eps<sub>x,d</sub>} → 0 when d→0
+        {b} = { (1+ε<sub>x,d</sub>)a } where <br>
+        sup{ε<sub>x,d</sub>} → 0 when d→0
      </div>
 <br>
 which implies that sums of parallelograms for partitions P<sub>f</sub> and P<sub>g</sub> are:
 <br>
     <div style="text-align:center">
-        ∑(P<sub>f</sub>) = ∑(P<sub>g</sub>) + ∑{ eps<sub>x,d</sub>a }    <br>
-        |∑{ eps<sub>x,d</sub>a }| ⩽ A sup{eps<sub>x,d</sub> } → 0 when d → 0.
+        ∑(P<sub>f</sub>) = ∑(P<sub>g</sub>) + ∑{ ε<sub>x,d</sub>a }    <br>
+        |∑{ ε<sub>x,d</sub>a }| ⩽ A sup{ε<sub>x,d</sub> } → 0 when d → 0.
     </div>
 In plain words inscribed areas converge to each other when d → 0.
 <br><br>
@@ -235,6 +236,9 @@ If functions G and F are defined on arbitraty intervals [r',r''] and [q',q''] an
 which proves by defining function z as <sub>r'</sub>∫<sup>x</sup> γf(t)dt = <sub>q'</sub>∫<sup>z(x)</sup> g(t)dt.
 
 
+In this section model, when number of bases n grows, the l/r = left_bar / right_bar ratio converges to given ratio 1/γ.
+The graph shows γl/r for each individually colored pair of bars with asymptote y(n) = 1
+<br><br>
 
 
 
@@ -256,7 +260,7 @@ which proves by defining function z as <sub>r'</sub>∫<sup>x</sup> γf(t)dt = <
 *::*proof|addendum
 {
   "menuCaption" : "Addendum",
-  "subessayCaption" : "modelling proportionality",
+  "subessayCaption" : "model for basis transformation",
   "subessay" : "modelling-proportionality"
 }
 *..*
@@ -313,25 +317,25 @@ and the areas S' and S' are proportional:
     </div>
 (which at this version is coded in program for diagram.)
 <br>
-For uniform scaling, γ=α, β = 0 and S' = ααS
-
-
-
-
-*::*proof|addendum
-{
-  "menuCaption" : "Addendum",
-  "subessayCaption" : "bar to bar ratio convergence",
-  "subessay" : "proportionality-convergence"
-}
-*..*
-
-In this section model, when number of bases n grows, the l/r = left_bar / right_bar ratio converges to given ratio g.
-The graph shows l/r/g for each individually colored pair of bars with asymptote y(n) = 1
+For uniform scaling, γ=α, β = 0 and S' = α²S
 <br><br>
-The convergence modelled by decreasing and increasing of left and right bars breadths by the value d(n). The even bar on the left figure has smaller breadth than corresponing bar on the right, odd bars have bigger breadths. The decrease and increase chosen as d(n) ~ b/n where b is a breadth of odd bar in original lemma model with constant bar to bar ratio.
+For programming, explicit coordinates are:
 
+        \[
+            \mathbf{r} = x\mathbf{i}' + y\mathbf{j}' =
+               (( x, y )\text{T}) 
+   
+            \begin{pmatrix}
+                \mathbf{i} \\
+                \mathbf{j} \\
+            \end{pmatrix}
+        \]
 
+        <div style="text-align:center">
+            x' = x T<sub>0,0</sub> + yT<sub>1,0</sub> <br>
+            y' =                     yT<sub>1,1</sub> <br>
+        </div>
+<br>
 
 
 

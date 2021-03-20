@@ -45,8 +45,24 @@ from 5302 Dec14, 2020 to Jan13, 2021, ver 5802
 6034 is last one which has fake pH generator
 6161 static flask shape is removed, making dynamic with Bezier
 
-6208 Feb12
+6209 Feb12
+    pushed,
     preserved model of middle boundary shift in l4 in
     /contents/b1sec1lemma4/b1sec1lemma4-middle-bar-shift-model
     which was live on ver 5879-ver-bar-to-bar-convergence-graph/index.prod.html?conf=sappId=b1sec1lemma4
+
+6245 burette drops-and-stream animation
+6246 doing titrant flask rotation by Bezier: draft from:
+    /var/www/html/fbwork/SVG-CAN-VID/canvas/rocketbrash-related/background-sprites/steps/now/index.html
+6249 titrant flask deplenishes
+6273 l4 model refactored: not all bars are painted
+6287 static-drop-color-transition at "bifurcation" point
+    6301 l4 better validation function's positivity
+
+6331 l4 left/right bar ratio uniform convergence stops on interval:
+    no-convergence-in-interval-800-2500-bases.mp4
+6439 graphs annotations are added -educational-graphs-added
+
+
+
 

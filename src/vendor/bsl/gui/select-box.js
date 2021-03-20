@@ -59,6 +59,8 @@
                             var ix = sbox$().selectedIndex;
                             ix -= defaultPrompt ? 1 : 0;
                             if( ix < 0 ) {
+                                //todm: bug, fix?:
+                                //selectonIsReset_cb && selectonIsReset_cb();
                                 selectonIsReset_cb();
                                 return;
                             }

@@ -20,9 +20,6 @@
         left  : { arr :[], count : 0 },
         right : { arr :[], count : 0 },
     };
-
-
-    var graphArray = [];
     return;
 
 
@@ -42,6 +39,26 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        //-------------------------------------------------
+        // //\\ corrects sliderN caption 
+        //-------------------------------------------------
+        var processedBarsCount = rg.orderedPartPoints.val.length - 1;
+        rg.countNSlider.caption = processedBarsCount + ' bases';
+        var wwL = sconf.DONT_PAINT_BARS_MORE_THAN;
+        if( processedBarsCount > wwL ) {
+            rg.countNSlider.caption += ' ( ' + wwL + ' shown )';
+        }
+        //-------------------------------------------------
+        // \\// corrects sliderN caption 
+        //-------------------------------------------------
+
+        //establishes svg place for these points before
+        //drag-points establish the place for their own,
+        //this sets "z-order" for draggers to override T, p, ...  view,
+        ssF.pos2pointy( 'T' );
+        ssF.pos2pointy( 'p' );
+        ssF.pos2pointy( 'E' );
+
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
@@ -49,29 +66,36 @@
         /// paints right side curve
         ///-------------------------------------------------
         ssF.paintsCurve({
-                mmedia          : stdMod.mmedia,
-                fun             : rg.rightFun_2_rightFigure,
-                rgName          : 'prT',
-                pointA          : rg.A,
-                pointB          : rg.E,
-                addToStepCount  : 1,
+            mmedia          : stdMod.mmedia,
+            fun             : rg.rightFun_2_rightFigure,
+            rgName          : 'prT',
+            pointA          : rg.A,
+            pointB          : rg.E,
+            addToStepCount  : 1,
         });
 
         ///-------------------------------------------------
         /// paints left side curve
         ///-------------------------------------------------
         ssF.paintsCurve({
-                mmedia          : stdMod.mmedia,
-                fun             : rg.leftFunction.dividedDifferences.calculate_polynomial,
-                pointsName      : 'aE',
-                rgName          : 'acE',
-                addToStepCount  : 1,
+            mmedia          : stdMod.mmedia,
+            fun             : rg.leftFunction.dividedDifferences.calculate_polynomial,
+            pointsName      : 'aE',
+            rgName          : 'acE',
+            addToStepCount  : 1,
         });
 
-        var leftBarsAreas = []; //store it here, bs not in displayBars scope ...
+        displayBars( 'left' );
+        displayBars( 'right' );
 
-        displayBars( 'left', leftBarsAreas );
-        displayBars( 'right', leftBarsAreas );
+
+        if(
+            amode.subessay === 'non-similar-curves'
+        ) {
+            rg.convergenceGraphFW.callPHGraph({});
+        } else {
+            rg.convergenceGraphFW.fw.nonefyDom();
+        }
     }
     //=========================================================
     // \\// lemma custom addons
@@ -89,156 +113,52 @@
     //=========================================================
     function displayBars(
         left0right,
-        leftBarsAreas
     ){
-        var ordBars = rg.orderedBars.val;
-        const BCOUNT = ordBars.length;
-        const BCOUNT_1 = BCOUNT-1;
-        var transformVolume = rg.ptransform.val[0][0] * rg.ptransform.val[1][1];
+        var ordPP         = rg.orderedPartPoints.val;
+        const BCOUNT        = ordPP.length;
+        const BCOUNT_1      = BCOUNT-1;
 
+        var T               = rg.ptransform.val;
+        var T00             = T[0][0];
+        var T10             = T[1][0];
+        var T11             = T[1][1];
+        var transformVolume = T00 * T11;
         if(
-            amode.subessay === 'proportionality-convergence'
-        ) {
-            ////demonstrates that bar to bar ratio can converge
-            var MIDDLE_BAR_SHIFT_ALGO = true;
-            var distortion = 5 / BCOUNT;
-            distortion = 0.9 * distortion; // * distortion;
-            //ccc( 'ratio convergence: (current-ratio)/(limit-ratio)=' +
-            //    ((1-distortion)*100).toFixed(3) + '%'
-            //);
-        }
-        if(
-            amode.subessay === 'proportionality-convergence' ||
             amode.subessay === 'non-similar-curves'
         ) {
-            var doBar2BarStats = true;  //-1 to disable
-            var barRatioMax = null;
-            var barRatioMin = null;
-
-            if( BCOUNT === 5 ) {
-                //starts bar sequence over
-                graphArray = [];
-            }
-            graphArray[ BCOUNT_1 ] = {
-                x : BCOUNT_1,
-                y : [],
-            };
-            var graphArrayY = graphArray[ BCOUNT_1 ].y;
             var zebraColArr = ssD.zebraCols.multicolor;
-
         } else {
-            var doBar2BarStats = false;
-            rg.convergenceGraphFW.fw.removeFromDom();
             var zebraColArr = ssD.zebraCols.monocolor;
         }
 
-
         //preparing for cleanup
-        var barStack = barsStack[ left0right ].arr;
-        var bsCount = barsStack[ left0right ].count;
+        var barStack    = barsStack[ left0right ].arr;
+        var bsCount     = barsStack[ left0right ].count;
+        ///does a soft cleanup: does not remove svg el from dom, but
+        ///just makes display === none,
         barStack.forEach( lin => {
-            lin.svgel.style.display = 'none'; //cleanup
+            lin.svgel.style.display = 'none';
         })
 
-        var barsArea = 0;
-        var funArea = 0;    //function area
+        //localizers for speed
+        var inRg = ssF.inRg;
+        var mod2inn = ssF.mod2inn;
 
-        //======================================================================
-        var base_fun = left0right === 'left' ?
-                       rg.leftFunction.dividedDifferences.calculate_polynomial :
-                       rg.rightFunction.dividedDifferences.calculate_polynomial
-                       ;
-        //======================================================================
-
-
-
-        ordBars.forEach( (bar, bix) => {
+        ordPP.forEach( (bar, bix) => {
             if( bix === BCOUNT_1 ) return; //last point has no bar
+            if( bix >= rg.mediaBars.val.length ) return;
 
             //:calculates bar vertices
-            if( MIDDLE_BAR_SHIFT_ALGO || left0right === 'left' ) {
-                var p1X         = bar.pos[0];                //left-bar side coordinate x
-                var p2X         = ordBars[ bix+1 ].pos[0];   //right-bar side coordinate x
-            } else {
-                p1X = bar.gX;
-                p2X = ordBars[ bix+1 ].gX;
-            }
+            var mBar        = rg.mediaBars.val[ bix ][ left0right ];
+            var fmin4bar    = mBar.fmin4bar;
+            var p1X         = mBar.p1X;
+            var p2X         = mBar.p2X;
             var p2minus1    = p2X - p1X;
-
-
-            if( !MIDDLE_BAR_SHIFT_ALGO ) {
-                //this correction is too complex with convergence,
-                //empty bars are better to skip
-                //this works: if( p2minus1 < 0.001 ) {
-                if( p2minus1 < 0.00001 ) {
-                    //todo ... better algo of partition generation
-                    //ccc( 'skipped bix', bix )
-                    return;
-                }
-            }
-
-            if( MIDDLE_BAR_SHIFT_ALGO ) {
-                if( left0right !== 'left' ) {
-                    ////this is manually made scenario of bars area converging to
-                    ////given ratio: equal color bars do converge to each other ...
-
-                    ////the distortion is "applied" to right figure bars,
-                    ////odd bars are shortened along x, even increased,
-                    if( !(bix%2) ) {
-                        if( bix < BCOUNT - 3 ) {
-                            p2X -= p2minus1 * distortion;
-                        }
-                    } else if( bix < BCOUNT - 2 ) {
-                        p1X -= (p1X - ordBars[bix-1].pos[0]) * distortion;
-                    }
-                }
-            }
-
-
-
-            //=======================================================
-            // calculates function values
-            var leftFun     = base_fun( p1X );        
-            var rightFun    = base_fun( p2X );
-            //=======================================================
-
-
-
-            //=======================================================
-            // //\\ builds stats in loop
-            //      for areas and ratios
-            //=======================================================
-            //this is a correct method for monotonic functions
-            //var min = Math.min( leftFun, rightFun );
-            //but we need more elaborated calculation of minimum
-            var [ barLeadLevel, fSum, barArea ] = calculatesInscribedLevel(
-                p1X, p2X, base_fun
-            );
-            funArea += fSum;
-            barsArea += barArea;
-            if( left0right === 'left' ) {
-                leftBarsAreas[ bix ] = barArea;
-            } else if( barArea !== 0 && leftBarsAreas[ bix ] !== 0) {
-                //ccc( bix, barArea )
-                var barRatio = Math.abs( leftBarsAreas[ bix ] / barArea );
-                barRatioMax = barRatioMax === null ||
-                              barRatioMax < barRatio ? barRatio : barRatioMax;
-                barRatioMin = barRatioMin === null ||
-                              barRatioMin > barRatio ? barRatio : barRatioMin;
-
-                if( doBar2BarStats ) {
-                    graphArrayY.push( barRatio );
-                }
-            }
-            //=======================================================
-            // \\// builds stats in loop
-            //=======================================================
-
-
 
             //=======================================================
             // //\\ does GUI
             //=======================================================
+
             //:establishes names for bar vertices
             var ltName      = left0right + 'bar-'+bix+'-left-top';
             var rtName      = left0right + 'bar-'+bix+'-right-top';
@@ -249,24 +169,22 @@
             // //\\ calculates vertices for left and right
             //-------------------------------------------------------
             if( left0right === 'left' ) {
-                var p1Xtop = p1X;
-                var p2Xtop = p2X;
-                var p1Y = barLeadLevel;
-                var ymin = rg.A.pos[1];
-                var cssClass = 'tp-proof tp-left-bars tp-left-bar-' + bix;
-                var breadthClass = 'tp-left-bars-breadths';
+                var p1Xtop      = p1X;
+                var p2Xtop      = p2X;
+                var p1Y         = fmin4bar;
+                var ymin        = rg.A.pos[1];
+                var cssClass    = 'tp-proof tp-left-bars tp-left-bar-' + bix;
+                var breadthClass= 'tp-left-bars-breadths';
             } else {
                 ////transforms normalized coordinates to "squed coordinates"
-                ////very ineffective as code and as performance:
-                ////to transform them back again when calculating a function,
-                var p1X = p1X * rg.ptransform.val[0][0] + rg.P.pos[0];
-                var p2X = p2X * rg.ptransform.val[0][0] + rg.P.pos[0];
-                var p1Xtop = p1X + barLeadLevel*rg.ptransform.val[1][0];
-                var p2Xtop = p2X + barLeadLevel*rg.ptransform.val[1][0]; 
-                var p1Y = barLeadLevel * rg.ptransform.val[1][1] + rg.P.pos[1]-rg.A.pos[1];
-                var ymin = rg.P.pos[1];
-                var cssClass = 'tp-proof tp-right-bars tp-right-bar-' + bix;
-                var breadthClass = 'tp-right-bars-breadths';
+                var p1X         = p1X * T00 + rg.P.pos[0];
+                var p2X         = p2X * T00 + rg.P.pos[0];
+                var p1Xtop      = p1X + fmin4bar*T10;
+                var p2Xtop      = p2X + fmin4bar*T10; 
+                var p1Y         = fmin4bar * T11 + rg.P.pos[1]; //-rg.A.pos[1];
+                var ymin        = rg.P.pos[1];
+                var cssClass    = 'tp-proof tp-right-bars tp-right-bar-' + bix;
+                var breadthClass= 'tp-right-bars-breadths';
             }
             //-------------------------------------------------------
             // \\// calculates vertices for left and right
@@ -275,10 +193,10 @@
             //-------------------------------------------------------
             // //\\ establishes registry for bar vertices
             //-------------------------------------------------------
-            var leftTop     = toreg( ltName )( 'pos', [ p1Xtop, p1Y ] )();
-            var rightTop    = toreg( rtName )( 'pos', [ p2Xtop, p1Y ] )();
-            var leftBottom  = toreg( ltBName )( 'pos', [ p1X, ymin ] )();
-            var rightBottom = toreg( rtBName )( 'pos', [ p2X, ymin ] )();
+            var leftTop     = inRg( ltName );   leftTop.pos     = [ p1Xtop, p1Y ];
+            var rightTop    = inRg( rtName );   rightTop.pos    = [ p2Xtop, p1Y ];
+            var leftBottom  = inRg( ltBName );  leftBottom.pos  = [ p1X, ymin ];
+            var rightBottom = inRg( rtBName );  rightBottom.pos = [ p2X, ymin ];
             //-------------------------------------------------------
             // \\// establishes registry for bar vertices
             //-------------------------------------------------------
@@ -288,10 +206,10 @@
             // //\\ drawing bars edges
             //-------------------------------------------------------
             //:converts var vertices from model to media
-            leftTop.medpos      = ssF.mod2inn( leftTop.pos );
-            rightTop.medpos     = ssF.mod2inn( rightTop.pos );
-            leftBottom.medpos   = ssF.mod2inn( leftBottom.pos );
-            rightBottom.medpos  = ssF.mod2inn( rightBottom.pos );
+            leftTop.medpos      = mod2inn( leftTop.pos );
+            rightTop.medpos     = mod2inn( rightTop.pos );
+            leftBottom.medpos   = mod2inn( leftBottom.pos );
+            rightBottom.medpos  = mod2inn( rightBottom.pos );
 
             var zebraColor = zebraColArr[ bix ].rgba_high;
 
@@ -327,104 +245,10 @@
             // \\// does GUI
             //=======================================================
         });
-
-
-
-        //=======================================================
-        // //\\ builds stats
-        //      for areas and ratios
-        //=======================================================
-        toreg( 'barRatioMax' );
-        toreg( 'barRatioMin' );
-        if( MIDDLE_BAR_SHIFT_ALGO ) {
-            ////for legend
-            rg.barRatioMax.val = barRatioMax ?
-                    ( barRatioMax / transformVolume ).toFixed(3) : '';
-            rg.barRatioMin.val = barRatioMin ?
-                    ( barRatioMin / transformVolume ).toFixed(3) : '';
-        } else {
-            rg.barRatioMax.val = ( 1 / transformVolume ).toFixed(3);
-            rg.barRatioMin.val = ( 1 / transformVolume ).toFixed(3);
-        }
-
-        rg.leftFunction.funArea = funArea;
-        if( left0right === 'left' ) {
-            toreg( 'leftBarsArea' )( 'value', barsArea );
-        } else {
-            toreg( 'rightBarsArea' )( 'value', barsArea * transformVolume );
-            rg.leftFunction.rigthArea = funArea * transformVolume;
-            rg.rightFunction.funArea = funArea; //todo
-        }
-
-        if(
-            doBar2BarStats &&
-            left0right !== 'left'
-        ) {
-            rg.convergenceGraphFW.drawConvGraph({
-                graphArray,
-                axisYy : 1,
-            })
-        }
-        //=======================================================
-        // \\// builds stats
-        //      for areas and ratios
-        //=======================================================
     }
     //=========================================================
     // \\// calculates figure, bars areas
     //=========================================================
-
-
-
-    //=========================================================
-    /// on this base p1X, p2X, calculates:
-    ///             leading-level-of-inscribed-bar
-    ///             integral I f(x)dx
-    ///
-    /// todm ... shoulbe in model and not be executed
-    ///          for transforms of left side and for
-    ///          operations which do not change
-    ///          left-side-figure and its bar-partition,
-    function calculatesInscribedLevel(
-        p1X,         //left-bar side coordinate x
-        p2X,         //right-bar side coordinate x
-        base_fun,
-    ){
-        var STEPS_MIN = 2;
-        var baseL   = p2X - p1X;
-        var STEPS   = Math.max( STEPS_MIN, Math.ceil( baseL / ssD.integrationStep ) );
-        var step    = baseL / STEPS;
-        var funct   = base_fun;
-                      // ssD.repoConf[0].fun;
-
-        var leftFun = funct( p1X );
-        var posX    = p1X;
-        var level   = leftFun;
-        var fSum    = 0;
-
-        for( var i = 0; i <= STEPS; i++ ) {
-            var fun = funct( posX );        
-
-            if( i < STEPS ) {
-                fSum += fun * step;
-            }
-            ///if function crosses axis x or touches it,
-            ///then leading-level-of-inscribed-bar is set to 0,
-            if( leftFun*fun <= 0 ) {
-                var level = 0;
-            }
-            if( Math.abs( level ) > Math.abs( fun ) ) {
-                level = fun;
-            }
-            posX += step;
-        }
-        return [
-            level,
-            fSum,        //fun area
-            level*baseL, //bar area
-        ];
-    }
-
 
 }) ();
 

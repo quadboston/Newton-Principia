@@ -54,10 +54,10 @@
                 }
             }
         });
+        sapp.updatesLemmaCss();
         //======================================
         // \\// inits model and it's view
         //======================================
-        
     }
 
     function finish_sapp_UI() 

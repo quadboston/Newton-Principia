@@ -1,49 +1,77 @@
 
-Terms
-=====
+Authoring own content
+=====================
 
-Essay is a scenario text. Each Book's lemma has multiple essays.
+Contributor can modify or add own lemmmas. To add own-lemma, contributor must add a folder
 
-(Occasionally in app code, "essay" can meen set of all essays belonging to single lemma.
-This is an artifact from the past.)
+ver/contents folder/own-lemma
 
+and in file ver/contents/content-list.js
 
+add an entry like
+        {   sappId : 'b1sec1lemma11',
+            book : 'Book 1',
+            caption : 'Sec. I. Lemma XI',
+            annotation : "",
+        },
+
+The simplest way to add own lemma is to copy/paste existging simple lemma,
+(as of today 'b1sec1lemma11') and modify its name, code, and contents.
+
+Throughout, lemma's commenting-text is called "essay".
 
 
 
 Essays structure
 ================
 
-    In program, essay is called "exegesis", or "exeg".
+    Essays are classified with their role in logic: claim, proof, corollary, ...
+    These categories are called called "theorions" and are arranged horizontally
+    in essay menu.
 
-    Essays differ with their purpose: claim, proof, in-English, Model, ...
+    Any other classification categories called "aspects". They are arranged vertically
+    in essay menu. For example: English, Latin, Addendum, ...
 
-    Math-category of exeg is called "theorion". It can have values: claim, proof, ...
-    Writing-category of exeg is called "aspect". It can have values: English, Latin, Model, ...
-
-    Each essay is indexed with pair of categories: math-category/writing-category.
+    Hence, each essay is indexed with pair aspect/theoreon categories.
     For example, claim/English or proof/lite.
 
-    In content script, exegs separated with characters:
+    (The semantic "theorion" and "aspect" is insignificant, the only hard-coded part
+     is a GUI structure with two menus: vertical and horizontal.)
+
+    In essay-script, essays are separated with characters:
         *::*
         <optional exeg header> 
         *..*
         <exegesis body>
 
-    The <exegesis body> is comprised of activity-areas called fragments or active-fragments.
+    with these two elements described below.
 
-    Activity areas contain either activity-json or exeg's content.
 
-    Activity areas are separated with character "¿".
+<exegesis body>
+===============
+    There is one more level of complexity in essay structure due the application feature
+    that allows to change essay text when application-model state changes.
+    Specifically, model-states are indexed with special words, "state-keys".
+    Consequently, the essay is split to fragments and each fragment is mapped to
+    a "state-key". At single moment only fragment which is mapped to active application
+    state is visible. Other fragment are hidden.
+
+    Hence, these essay fragments are called "active-fragments" in program code.
+
+    In essay-script, active fragments are represented as JSON text with object-properties
+    equal to state-keys.
+
+    In essay-script, activity areas are separated with character "¿".
 
     If activity-area begins with character "?", then it is "activity-json which
     is writtne in JSON format.
     If no character "?" is present at the beginning of activity-area, then
-    it is a exeg's content.
+    it active fragmen is a plain text.
 
-    Exegs's content is comprised with topic-anchors, and content-text between them.
+    Next level of essay structure is presence of topic-anchors and
+    content-text between them.
 
-    Character "¦" separates topic-anchors. This is not ASCII "|" char.
+    Character "¦" separates topic-anchors. THIS IS NOT an ASCII "|" char.
     
     The content-text is a mix of LaTeX text and HTML.
     Between HTML tags, there is an ordinary text which can have any characters except,
@@ -53,18 +81,45 @@ Essays structure
 
     The contributor can use any HTML tags.
 
+
+
+
+More details if active-fragment implementation is of interest.
+==============================================================
     Example of activity-json:
         ...
         For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
         ¿?
         {
-            "left" : "left",
-            "right" : "right"
+            "left" : "fragment body 1",
+            "right" : "fragment body 2"
         }
         ¿
         ...
     Active area is simply a JSON key/value text where effect of key must be defined in JavaScript code.
         The key 'static' is reserved ( for non-JSON content ).
+    For above example, the active area in final text in running program has class like:
+    "active-right exeg-frag".
+    Example in app source code: frags-2-dom8topiccss-core.js::builtFrags_2_dom8mj()
+        //-------------------------------------------------------
+        // //\\ sets css-machinery for reverse-action
+        //      ===from-media---to---text
+        //-------------------------------------------------------
+        bFrag.dom$.cls( 'active-'+fid + ' exeg-frag');
+        activeFrags_styles += `
+            .${cssp}-text-widget.active-${fid} .active-${fid} {
+                display : inline;
+            }
+        `;
+        //-------------------------------------------------------
+        // \\// sets css-machinery for reverse-action
+        //-------------------------------------------------------
+        So, when app sets a class "flag" .${cssp}-text-widget.active-${fid} to
+        essay, then active fragment with fid becomes visible.
+        Like this:
+            in gui-update.js::calculate8paintCurve_8_paintAxes()
+                sDomN.essaionsRoot$.removeClass( 'active-left' );
+                sDomN.essaionsRoot$.addClass( 'active-right' );
 
 
 references.html,
@@ -76,9 +131,11 @@ references.html,
 
 
 
-<optional exeg header>
+<optional exeg header> 
 ======================
+this contains another JSON, not a JSON for active fragments
     sample
+    ------
         *::*claim|xixcentury
         {
           "dataLegend":"0",
@@ -92,12 +149,16 @@ references.html,
         }
         *..*
 
+
+
+    description of above JSON
+    -------------------------    
+        "default" : "1",                        - makes this essay default at site-landing,
         "mediaBgImage" : null,                  - loads empty image,
         "mediaBgImage" : 'my-bg-image.png',     - loads contents/.../img/my-bg-image.png,
         missed "mediaBgImage" :                 - loads common image,
 
         "submodel" : "limit-definition",        - loads this submodel for given essay,
-        "default" : "1",                        - makes this essay default at site-landing,
 
         "studylab" : true                       - makes this essay hidden if "lab" is not on
                                                   note: incompatible with "default",

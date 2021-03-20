@@ -3,6 +3,7 @@
     var {
         ns, sn, $$,
         haz, haf, haff,
+        eachprop,
         globalCss,
         fconf,
         sconf,
@@ -17,6 +18,7 @@
             doDebugMessage,
             doInitTopicScenarioCss,
             executesMessageAction,
+            restylifyUserConsole,
         },
     });
     var ts = sn( 'activityScenario', ss );
@@ -104,14 +106,12 @@
         var newState        = null;
         var timeOutFired    = false;
 
-        /*
         //basic-console-output  //bbbbbbbbbbbbbb
-        ccc(
-            "** " + subessay.substring( 0, 10 ) + '..\n||' + //don't show entire subessay name
-            subessayRack.scenario_stateId + ' +' +
-            eventId
-        );
-        */
+        //ccc(
+        //    "** " + subessay.substring( 0, 10 ) + '..\n||' + //don't show entire subessay name
+        //    subessayRack.scenario_stateId + ' +' +
+        //    eventId
+        //);
 
         eventBlock.statements.forEach( statemen => {
             var ctype = statemen.commandType;
@@ -237,6 +237,28 @@
             newMessage_dom, 'no_domEl_pretransformation',
             doScroll,
         );
+    }
+
+
+    ///overrides user console global-css style,
+    ///     for example for { subessay } = amode;
+    function restylifyUserConsole({
+        subessay,
+        style,
+        theorion,   //optional, if missed taken from state
+        aspect,     //optional, if missed taken from state
+    }){
+        theorion = theorion || amode.theorion;
+        aspect = aspect || amode.aspect;
+        cssPath = '.original-text' +
+                  '.' + theorion +
+                  '.' + aspect +
+                  '.subessay-' + subessay +
+                  ' .model-user-feedback';
+        var fbFrame_dom = document.querySelector( cssPath );
+        eachprop( style, (prop,propname) => {
+            fbFrame_dom.style[ propname ] = prop;
+        });
     }
 
 

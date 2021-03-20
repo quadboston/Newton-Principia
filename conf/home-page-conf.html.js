@@ -87,30 +87,35 @@
         //==================================================
         // //\\ how-to
         //==================================================
+        //former image: switch.svg before aspect-menu-buttons.png
+        //              <img src="${fconf.pathToStem}images/resize.svg">
+        //                             src="${fconf.pathToStem}images/aspect-menu-buttons.png">
+        //                        <img style="width:55%" src="${fconf.pathToStem}images/magnify.png">
         coreText = `
             <div class="hp-section-wrap">
                 <h2>Usage Guide</h2>
                 <div class=" how-to-grid">
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
-                        <img src="${fconf.pathToStem}images/switch.svg">
+                        <img style="width:35%; border:1px solid #555555; border-radius:6px;"
+                             src="${fconf.pathToStem}images/empty.png">
                     </div>
-                    <h4>Translate</h4>
-                    <p>Switch between Newton’s description and an informal translation</p>
+                    <h4>Interpreted</h4>
+                    <p>Read Newton’s or other comments or add your own.</p>
                 </div><!--END cell-->
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
                         <img src="${fconf.pathToStem}images/model.svg">
                     </div>
-                    <h4>Interact</h4>
-                    <p>Interact with the model to see the theory in practice.</p>
+                    <h4>Interactable</h4>
+                    <p>Interact and modify the model to see the theory in practice.</p>
                 </div><!--END cell-->
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
-                        <img src="${fconf.pathToStem}images/resize.svg">
+                        <img style="width:55%" src="${fconf.pathToStem}images/empty.png">
                     </div>
-                    <h4>Resizable</h4>
-                    <p>Click and drag to resize the area of you’d like.</p>
+                    <h4>Focusable</h4>
+                    <p>Resize, zoom, move, focus on diagram areas. </p>
                 </div><!--END cell-->
                 </div>
             </div>

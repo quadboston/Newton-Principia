@@ -15,6 +15,8 @@
             [
                 { src:'sconf.js' },
                 { src:'main.js' },
+                { src:'main.css.js' },
+
                 { src:"core/limit-demos.js" },
 
                 { src:"models/study-model-limit-definition.js" },

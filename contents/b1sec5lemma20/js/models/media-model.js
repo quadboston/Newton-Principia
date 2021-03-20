@@ -98,7 +98,7 @@
         var baseColor       = arr2rgba( wwfc[ "base-figure" ] )  || '#0000dd'; 
         var statGenColor    = arr2rgba( wwfc[ "static-generator" ] ) || '#eeaa00';
         var generatingColor = arr2rgba( wwfc[ "generators" ] ) || '#00aaee'; 
-        var givenParallels  = arr2rgba( wwfc[ "given-paralellogram" ] ) || '#ff00ff';
+        var givenParallels  = arr2rgba( wwfc[ "given-parallelogram" ] ) || '#ff00ff';
         var lwidth          = sconf.defaultLineWidth;
 
         ///-------------------------------------------------
@@ -216,7 +216,7 @@
 
 
         //-------------------------
-        // //\\ given paralellogram
+        // //\\ given parallelogram
         //-------------------------
         pointies2line(
             'rQ',
@@ -225,7 +225,7 @@
                 cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : givenParallels,
-                tpclass : 'given-paralellogram',
+                tpclass : 'given-parallelogram',
             }
         );
         pointies2line(
@@ -235,11 +235,11 @@
                 cssClass: plCls,
                 'stroke-width':lwidth,
                 stroke  : givenParallels,
-                tpclass : 'given-paralellogram',
+                tpclass : 'given-parallelogram',
             }
         );
         //-------------------------
-        // \\// given paralellogram
+        // \\// given parallelogram
         //-------------------------
 
 

@@ -100,7 +100,7 @@
         var baseColor       = arr2rgba( wwfc[ "base-figure" ] )  || '#0000dd'; 
         var statGenColor    = arr2rgba( wwfc[ "static-generator" ] ) || '#eeaa00';
         var generatingColor = arr2rgba( wwfc[ "generators" ] ) || '#00aaee'; 
-        var givenParallels  = arr2rgba( wwfc[ "given-paralellogram" ] ) || '#ff00ff';
+        var givenParallels  = arr2rgba( wwfc[ "given-parallelogram" ] ) || '#ff00ff';
         var lwidth          = sconf.defaultLineWidth;
 
 

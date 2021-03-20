@@ -6,7 +6,6 @@
 
 
 
-
     //bezier.zbezier2integralY = zbezier2integralY;
     bezier.zbezier2areas = zbezier2areas;
     

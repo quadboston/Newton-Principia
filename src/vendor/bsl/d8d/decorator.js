@@ -3,6 +3,7 @@
 (function() {
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
+    var haz    = ns.haz;
 
     dpdec.adds_decorSpinner = adds_decorSpinner;
     return;
@@ -32,7 +33,8 @@
             tooltip,
         } = (opt||{});
 
-        var { spinnerClsId, dragDecorColor } = ( addFeaturesToDecPoint || {} );
+        var { spinnerClsId, dragDecorColor, individual_zindex } =
+            ( addFeaturesToDecPoint || {} );
         //----------------------------------------------
         // \\// api
         //----------------------------------------------
@@ -46,9 +48,9 @@
             if( dragDecorColor ) {
                 dpdec.creates_spinnerOwnCss(
                     spinnerClsId,
-                    dragDecorColor, //?? for disk only ??
-                                    //?? for ${dclass} .${spinnerClsId}.brc-slider-draggee:hover:after
-                    parent_classes
+                    dragDecorColor, //individual_color for arrows, and disk
+                    parent_classes,
+                    individual_zindex,
                 );
             }
             cls += ' ' + spinnerClsId;
@@ -67,6 +69,19 @@
         //----------------------------------------------
         var decPoint = document.createElement( 'div' );
         spinner_domParent.appendChild( decPoint );
+        var mouseoverCb = haz( addFeaturesToDecPoint, 'mouseoverCb' );
+        if( mouseoverCb ) {
+            decPoint.addEventListener( 'mouseover', (ev) => {
+                mouseoverCb( ev, decPoint );
+            });
+        }
+        var mouseleaveCb = haz( addFeaturesToDecPoint, 'mouseleaveCb' );
+        if( mouseleaveCb ) {
+            decPoint.addEventListener( 'mouseleave', (ev) => {
+                mouseleaveCb( ev, decPoint );
+            });
+        }
+
         decPoint.setAttribute( 'class', cls );
         if( tooltip ) {
             decPoint.setAttribute( 'title', tooltip );

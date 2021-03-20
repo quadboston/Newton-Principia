@@ -30,7 +30,7 @@
     {
         //=====================================================
         // //\\ animated slider
-        //      slides point C by changing Beizier parameter tC
+        //      slides point C by changing Bezier parameter tC
         //      At page load time, animates to value sconf.tC.
         //      Based on ns.sliderControl which is based on,
         //      as of version 1072,

@@ -43,6 +43,7 @@
             eachprop    : ns.eachprop,
             paste       : ns.paste,           //todm: remove
             nspaste     : ns.paste,
+            clonetree   : ns.clonetree,
             svgNS       : ns.svgNS,
 
             cssp,

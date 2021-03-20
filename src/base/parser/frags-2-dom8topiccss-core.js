@@ -211,19 +211,22 @@
     {
         if( typeof( rawActiveFrag ) === 'object' ) {
             ////we have active fragments:
-            ////     { name1 : fragment1,
-            ////       name2 : fragment2,
+            ////     { name1 : fragBody_raw1,
+            ////       name2 : fragBody_raw2,
             ////       ....
             var normalizedActiveFrag = nspaste( {}, rawActiveFrag );
         } else {
             ////normalizes rawActiveFrag string to comply with active fragments format:
+            ////     { static : fragBody_raw,
+            ////     }
+            ////       ....
             var normalizedActiveFrag = { 'static' : rawActiveFrag };
         }
         var norFrRack = {};
-        eachprop( normalizedActiveFrag, ( afrag, akey ) => {
+        eachprop( normalizedActiveFrag, ( fragBody_raw, akey ) => {
             norFrRack[ akey ] = {
                 //(*) format:
-                fragBody    : afrag.replace( TOP_ANCH_REG_gu, replWithAnchor ),
+                fragBody    : fragBody_raw.replace( TOP_ANCH_REG_gu, replWithAnchor ),
                               //normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 dom$        : 'to be defined later',
                 //...       : ...
@@ -276,7 +279,7 @@
     }
 
 
-    function builtFrags_2_dom8mj( exeg, bFrag, fid, activeFrags_styles )
+    function builtFrags_2_dom8mj( exeg, bFrag, fid, )
     {
         //*******************************************************
         //.here page content injects into html for the first time
@@ -288,7 +291,7 @@
         //      ===from-media---to---text
         //-------------------------------------------------------
         bFrag.dom$.cls( 'active-'+fid + ' exeg-frag');
-        activeFrags_styles += `
+        activeFrags_styles = `
             .${cssp}-text-widget.active-${fid} .active-${fid} {
                 display : inline;
             }

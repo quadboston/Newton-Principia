@@ -74,6 +74,9 @@
             }
         });
         if( ns.haz( ssF, 'amode2rgstate' ) ){
+            //appar. can do this
+            //ssF.amode2rgstate();
+            //and remove " captured " fully
             captured = ssF.amode2rgstate( captured );
         }
 

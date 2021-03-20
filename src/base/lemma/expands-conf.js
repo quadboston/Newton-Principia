@@ -196,11 +196,17 @@
                 if( has( op, 'dragDecorColor' ) ) {
                     rgX.dragDecorColor = op.dragDecorColor;
                 }
+
+                if( has( op, 'individual_zindex' ) ) {
+                    rgX.individual_zindex = op.individual_zindex;
+                }
+
                 rgX.draggableX = draggableX;
                 rgX.draggableY = draggableY;
 
 
-                //dragging?:
+                //rgX.noKernel === true does remove "the bonus",
+                //the bouns is an extra "fake" disk over dragger,
                 if( has( op, 'noKernel' ) ) {
                     rgX.noKernel = op.noKernel;
                 }
@@ -209,12 +215,13 @@
                 if( has( op, 'ignore_hideD8Dpoint_for_CSS' ) ) {
                     rgX.ignore_hideD8Dpoint_for_CSS = op.ignore_hideD8Dpoint_for_CSS;
                 }
-                //?? must be global?
-                //dragging?:
+                */
+
+                //todm why was it disabled?
+                //for d8d machinery overlay
                 if( has( op, 'makeCentralDiskInvisible' ) ) {
                     rgX.makeCentralDiskInvisible = op.makeCentralDiskInvisible;
                 }
-                */
                 //------------------------------------------------------
                 // \\// dragging
                 //------------------------------------------------------
@@ -233,6 +240,8 @@
                     rgX.displayAlways = op.displayAlways;
                 }
 
+                //initialR is simply a point-disk radius
+                //before multiplication by initialR * sconf.thickness,
                 if( has( op, 'initialR' ) ) {
                     rgX.initialR = op.initialR;
                 }

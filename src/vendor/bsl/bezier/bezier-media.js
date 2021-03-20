@@ -1,25 +1,48 @@
 ( function() {
-	var ns	    = window.b$l;
-    var bezier  = ns.sn( 'bezier' );
-    var svg     = ns.sn( 'svg' );
-    
+    var {
+        sn,
+        bezier,
+        nssvg,
+    } = window.b$l.nstree();
+    bezier.mediafy = mediafy;
+    return;
 
 
 
 
-    ///does paint bezier curve and optionally related shapes: pivots, tangents, and points on curve
-    bezier.mediafy = function( arg )
-    {
-        //:args
-        var parent_svg = arg.svg
-        var pivots  = arg.pivots;
+
+
+    ///==============================================================
+    ///does paint bezier curve and optionally related shapes: pivots,
+    ///tangents, and points on curve
+    ///==============================================================
+    ///API
+    /*
+        rgX             //example of parent rack
+          .pegDragRack  //example of parent rack
+
+            .mediael //returned API with properties on following strings
+
+               .paintedCurve = svgel
+               .points[ pix ] = { ix: , point:resultBPoints_model[ pix ], svgel: }
+               .points_model[ pix ] = { ix: , point:resultBPoints_model[ pix ] }
+
+    */
+    function mediafy({
+        parentSVG,
+        pivots, //appar. for lines, not for the curve
+
         //:optional args for data and styles
-        var paintPivots  = arg.paintPivots;
-        var blines  = arg.blines;
-        var bcurve  = arg.bcurve || {};
-        var bpoints = arg.bpoints;
-        var mediael = arg.mediael || {};
+        modelPivots,
+        paintPivots, //appar logicall array of flags to show/hide pivots
+        blines,
+        bpoints,
 
+        bcurve,
+        mediael, //framwork container to be returned
+    }){
+        bcurve      = bcurve || {};
+        mediael     = mediael || {};
         //:local
         var plen    = pivots.length;
 
@@ -28,7 +51,9 @@
         // //\\ prepares string-parameter for pivot-lines
         //--------------------------------------------------------
         var pivotsStr = pivots.reduce( function( acc, point ) {
-                if( acc ) { acc += ' '; }
+                if( acc ) {
+                    acc += ' '; //provides space after points
+                }
                 return acc += point[0] + ',' + point[1];
             },
             ''
@@ -41,9 +66,9 @@
         // //\\ paints bezier-pivot-lines
         //--------------------------------------------------------
         if( blines ) {
-            mediael.paintedLines = svg.u({
+            mediael.paintedLines = nssvg.u({
                 svgel : mediael.paintedLines,
-                parent : parent_svg,
+                parent : parentSVG,
                 type : 'polyline',
                 points : '' + pivotsStr,
                 style : blines.style,
@@ -62,23 +87,28 @@
         //--------------------------------------------------------
         if( bcurve ) {
             if( plen === 3 ) {
-                var bcontr = 'Q';
+                var bcontr = 'Q'; //Quadratic Bezier curve
             } else {
-                var bcontr = 'C';
+                var bcontr = 'C'; //Cubic Bezier curve
             }
             var bezierStr = pivots.reduce( function( acc, point ) {
-                    if( acc ) { 
+                    if( acc ) {
+                        //// adds 2 points for Quadratic B. curve and
+                        //// 3 points for cubic
                         acc += ' ' + point[0] + ' ' + point[1];
-                    } else { 
+                    } else {
+                        ////begins full control string by adding control "M" and
+                        ////then adds first point for C or Q curves and
+                        ////Bezier contro letter after them:
                        acc = 'M' + point[0] + ' ' + point[1] + ' ' + bcontr;
                     } 
                     return acc; 
                 },
                 ''
             );
-            mediael.paintedCurve = svg.u({
+            mediael.paintedCurve = nssvg.u({
                 svgel : mediael.paintedCurve,
-                parent : parent_svg,
+                parent : parentSVG,
                 type : 'path',
                 fill : bcurve.fill || 'transparent',
                 stroke : bcurve.stroke || 'rgba( 0,255,0, 1 )',
@@ -95,32 +125,42 @@
         //--------------------------------------------------------
         // //\\ paints points on bezier curve
         //--------------------------------------------------------
-        if( arg.bpoints ) {
-            mediael.points = mediael.points || [];
+        if( bpoints ) {
+            sn( 'points', mediael, [] );
+            sn( 'points_model', mediael, [] );
             //--------------------------------------------------------
             // //\\ calculates points
             //--------------------------------------------------------
-            var resultBPoints = bezier.points2bezier( arg.bpoints.points, pivots );
+            var resultBPoints = bezier.points2bezier( bpoints.points, pivots );
+            var resultBPoints_model = bezier.points2bezier( bpoints.points, modelPivots );
             //--------------------------------------------------------
             // \\// calculates points
             //--------------------------------------------------------
-            arg.bpoints.points.forEach( function( paramT, pix ) {
+            bpoints.points.forEach( function( paramT, pix ) {
                 //--------------------------------------------------------
                 // //\\ paints point on bezier curve
                 //--------------------------------------------------------
                 var attrs = bpoints.attrs || {};
                 var point = resultBPoints[ pix ];
-                mediael.points[ pix ] = mediael.points[ pix ] || { ix:pix, point:point };
+
+                //in the same space as pivots: if mod then mod, if in media, than med:
+                var mp      = mediael.points[ pix ] = mediael.points[ pix ] || {};
+                mp.ix       = pix;
+                mp.point    = point;
+                //stashes model-twin of media point
+                var mpm     = mediael.points_model[ pix ] = {};
+                mpm.ix      = pix;
+                mpm.point   = resultBPoints_model[ pix ];
                 mediael.points[ pix ].svgel =
-                    svg.u({
-                        svgel : mediael.points[ pix ].svgel,                         
-                        parent : parent_svg,
-                        type : 'circle',
-                        fill : attrs.fill || 'rgba(255,0,0,1)',
-                        cx : point[0],
-                        cy : point[1],
-                        r : attrs.r || 4,
-                        style : attrs.style
+                    nssvg.u({
+                        svgel   : mp.svgel,                         
+                        parent  : parentSVG,
+                        type    : 'circle',
+                        fill    : attrs.fill || 'rgba(255,0,0,1)',
+                        cx      : point[0],
+                        cy      : point[1],
+                        r       : attrs.r || 4,
+                        style   : attrs.style
                     });
                 //--------------------------------------------------------
                 // \\// paints point on bezier curve
@@ -136,12 +176,13 @@
                 // //\\ paints pivot of bezier curve
                 //--------------------------------------------------------
                 var attrs = paintPivots.attrs || {};
-                mediael.pivotPoints[ pix ] = mediael.pivotPoints[ pix ] || { ix:pix, medpos:point };
+                mediael.pivotPoints[ pix ] = mediael.pivotPoints[ pix ] ||
+                                             { ix:pix, medpos:point };
                 mediael.pivotPoints[ pix ].medpos = point;
                 mediael.pivotPoints[ pix ].svgel =
-                    svg.u({
+                    nssvg.u({
                         svgel : mediael.pivotPoints[ pix ].svgel,                         
-                        parent : parent_svg,
+                        parent : parentSVG,
                         type : 'circle',
                         fill : attrs.fill || 'transparent',
                         stroke : attrs.stroke || 'rgba(255,0,0,1)',

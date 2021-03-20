@@ -17,26 +17,41 @@ often used:
     \( \; \overset{df} = \; \)
     ∫   \({\int_{0}^{1}} \)
 
-UTF Math Symbols
-vital codes:
+UTF Math Symbols, vital codes:
     generic: https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
     https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
-        ∀ ∂	∃ ∅ ∆ ∇	∈ ∉	∊ ∋	∌ ∍	∎ ⋂ ⋃ ⊂ ⊃ ⊄	⊅ ⊆ ⊇  ∑
+        ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	∎ ⋂ ⋃ ⊂ ⊃ ⊄	⊅
+        ‹ › ⩽ ⩾ ≂ ≃ ≄ 
+        ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
         ∫ 
-                ⩽ ⩾ ≁ ≂ ≃ ≄
-
-        ℝ 
+        ∴
+        ℝ ℚ⁺ ℝ⁺
 arrows:
     https://en.wikipedia.org/wiki/Arrows_(Unicode_block)
     hard to use: http://garsia.math.yorku.ca/MPWP/LATEXmath/node9.html
-     ↤ ↦ 
+     ↤ ↦
+    ⇐ 	⇑ 	⇒ 	⇓ 	⇔ 	⇕ 	⇖ 	⇗ 	⇘ 	⇙ 	⇚ 	⇛ 	⇜ 	⇝ 	⇞ 	⇟ 
 
 
 UTF subscripts:
     https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts#Superscripts_and_subscripts_block
+    x²	x³
     x₀ 	x₁ 	x₂ 	x₃ 	x₄ 	x₅ 	x₆ 	x₇ 	x₈ 	x₉ 	x₊ 	x₋ 	x₌ 	x₍ 	x₎
     x⁰ 	xⁱ 	x⁴ 	x⁵ 	x⁶ 	x⁷ 	x⁸ 	x⁹ 	x⁺ 	x⁻ 	x⁼ 	x⁽ 	x⁾ 	xⁿ 
 
+
+https://stackoverflow.com/questions/8608847/superscripting-any-letter-number
+    in html use as: &#x00B2;
+    \u2070 is superscript 0
+    \u00B9 is superscript 1
+ x² \u00B2 is superscript 2
+    \u00B3 is superscript 3
+    \u2074 is superscript 4
+    \u2075 is superscript 5
+    \u2076 is superscript 6
+    \u2077 is superscript 7
+    \u2078 is superscript 8
+    \u2079 is superscript 9
 
 
 
@@ -71,6 +86,30 @@ font:
                 χ 	&‌#967; 	&‌#x03C7 	&‌chi;
                 ψ 	&‌#968; 	&‌#x03C8 	&‌psi;
                 ω 	&‌#969; 	&‌#x03C9 	&‌omega;
+                 ALPHA 	Α 	&‌#913; 	&‌#x0391 	&‌Alpha;
+                 BETA 	Β 	&‌#914; 	&‌#x0392 	&‌Beta;
+                 GAMMA 	Γ 	&‌#915; 	&‌#x0393 	&‌Gamma;
+                 DELTA 	Δ 	&‌#916; 	&‌#x0394 	&‌Delta;
+                 EPSILON 	Ε 	&‌#917; 	&‌#x0395 	&‌Epsilon;
+                 ZETA 	Ζ 	&‌#918; 	&‌#x0396 	&‌Zeta;
+                 ETA 	Η 	&‌#919; 	&‌#x0397 	&‌Eta;
+                 THETA 	Θ 	&‌#920; 	&‌#x0398 	&‌Theta;
+                 IOTA 	Ι 	&‌#921; 	&‌#x0399 	&‌Iota;
+                 KAPPA 	Κ 	&‌#922; 	&‌#x039A 	&‌Kappa;
+                 LAM(B)DA 	Λ 	&‌#923; 	&‌#x039B 	&‌Lambda;
+                 MU 	Μ 	&‌#924; 	&‌#x039C 	&‌Mu;
+                 NU 	Ν 	&‌#925; 	&‌#x039D 	&‌Nu;
+                 XI 	Ξ 	&‌#926; 	&‌#x039E 	&‌Xi;
+                 OMICRON 	Ο 	&‌#927; 	&‌#x039F 	&‌Omicron;
+                 PI 	Π 	&‌#928; 	&‌#x03A0 	&‌Pi;
+                 RHO 	Ρ 	&‌#929; 	&‌#x03A1 	&‌Rho;
+                 SIGMA 	Σ 	&‌#931; 	&‌#x03A3 	&‌Sigma;
+                 TAU 	Τ 	&‌#932; 	&‌#x03A4 	&‌Tau;
+                 UPSILON 	Υ 	&‌#933; 	&‌#x03A5 	&‌Upsilon;
+                 PHI 	Φ 	&‌#934; 	&‌#x03A6 	&‌Phi;
+                 CHI 	Χ 	&‌#935; 	&‌#x03A7 	&‌Chi;
+                 PSI 	Ψ 	&‌#936; 	&‌#x03A8 	&‌Psi;
+                 OMEGA 	Ω 	&‌#937; 	&‌#x03A9 	&‌Omega;
 
     over top of my head:
         https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available

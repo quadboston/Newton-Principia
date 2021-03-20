@@ -61,9 +61,52 @@
 
 
         if( theorion === 'proof' ){
-            rg.media_scale.value = 0.7;
+
+            //todo ... why was it 0.7? and not 1?
+            //         this made problems with bars number > DONT_PAINT_BARS_MORE_THAN
+            rg.media_scale.value = 1; //0.7;
+
             ssF.scaleValue2app( rg.media_scale.value );
             sDomF.detected_user_interaction_effect( !'doUndetected' );
+
+                /*
+
+                var cPivots = sconf.originalPoints.curvePivots;
+                var cpPoints = [];
+                cPivots.forEach( (pivot,pix) => {
+                    var rgX     = pivot.rgX;
+                    var pos     = rgX.pos;
+                    var x       = pos[0];
+                    var y       = pos[1];
+                    cpPoints.push( [x,y] );
+                });
+
+                var rPivots = sconf.originalPoints.rightCurvePivots_normalized;
+                var rpPoints = [];
+                rPivots.forEach( (pivot,pix) => {
+                    var rgX     = pivot.rgX;
+                    var pos     = rgX.pos;
+                    var x       = pos[0];
+                    var y       = pos[1];
+                    rpPoints.push( [x,y] );
+                });
+
+                fapp.captureState(
+                    ns.paste(
+                        {
+                            curvePivots_points : cpPoints,
+                            curveRightPivots_points : rpPoints,
+                        },
+                        ast
+                    )
+                );
+                ccc( captured )
+                */
+
+
+
+
+
         } else {
             rg.media_scale.value = 1;
             ssF.scaleValue2app( rg.media_scale.value );

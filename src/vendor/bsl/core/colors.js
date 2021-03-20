@@ -1,7 +1,26 @@
 ( function() {
 	var ns	= window.b$l;
 
+    //reg. ex for string aka rgba(4,4,4,0.1) to array
+    var rgba2arr_re = new RegExp( 
+        '^rgba\\(\\s*' +
+        '(\\d+)\\s*,\\s*' +
+        '(\\d+)\\s*,\\s*' +
+        '(\\d+)\\s*,\\s*' +
+        '((?:\\d|\\.)+)\\s*\\)',
+        'i'
+    );
 
+
+    ns.rgba2arr = function( rgbastr )
+    {
+        var cmatch = rgbastr.match( rgba2arr_re );
+        var rr = parseInt(cmatch[1]);
+        var gg = parseInt(cmatch[2]);
+        var bb = parseInt(cmatch[3]);
+        var aa = parseFloat(cmatch[4]);
+        return [ rr,gg,bb,aa ];
+    };
 
 
     // //\\ some proofreading 
@@ -183,6 +202,33 @@
         var op = op.toFixed(4);
         return 'rgba('+r+','+g+','+b+','+op+')';
     }
+
+
+    ///converts arguments to rgb or rgba string
+    ///depending on presence of fourth, opacity argument,
+    ///validates and corrects color values,
+    ns.arr2rgb_a = function ( color1r, color1g, color1b, color1a )
+    {
+        color1r = Math.max( Math.min( 255, color1r ), 0 ).toFixed();
+        color1g = Math.max( Math.min( 255, color1g ), 0 ).toFixed();
+        color1b = Math.max( Math.min( 255, color1b ), 0 ).toFixed();
+
+        var str = color1r + ',' + color1g + ',' + color1b;
+        if( color1a || color1a === 0 ) {
+            color1a = Math.max( Math.min( 255, color1a ), 0 ).toFixed(4);
+            str = 'rgba(' + str + ',' + color1a + ')';
+        } else {
+            str = 'rgb(' + str + ')';
+        }
+        return str;
+    }
+
+
+
+
+
+
+
 
     ns.builds_zebraNColors_array = builds_zebraNColors_array;
     ns.hslo_2_low8high = hslo_2_low8high;

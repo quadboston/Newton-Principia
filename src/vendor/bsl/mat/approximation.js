@@ -10,8 +10,9 @@
 
 
     ///constructs Newton's polynomial
-    function calculate_divided_differences( pointsXY )
-    {
+    function calculate_divided_differences(
+        pointsXY, //array function y(x) points in format: [ [x1,y1], [x2,y2], ... ]
+    ){
         var n = pointsXY.length;
 
         //Newton's divided differences indexed by levels:
@@ -20,11 +21,17 @@
         //  initial level = 
         //  F[0    ][i    ]=[ xi, yi ]
         var F = [];
+        //created for performance speed
+            var z = [ pointsXY[0][0] ]; 
+            var P = [ pointsXY[0][1] ];
         F[0] = pointsXY.concat( [] );
 
         ///constructs levels-above-initial interactively
         for( var level=1; level<n; level++ ) {
-            F[ level ] = Flow_2_Ftop( F[ level-1 ] );
+            var [ Ftop_arr, xx, PP ] = Flow_2_Ftop( F[ level-1 ] );
+            F[ level ]  = Ftop_arr;
+            z[ level ]  = xx;
+            P[ level ]  = PP;
         }
         return { coefficients:F, calculate_polynomial, derivativeAtZero }; 
 
@@ -47,13 +54,27 @@
                 //where j is a low-level;
                 Ftop[ i ] = [ x2, dd ];
             }
-            return Ftop;
+            return [ Ftop, Ftop[0][0], Ftop[0][1], ];
         }
 
         //calculates Newton's polynomial at point x
         function calculate_polynomial( x )
         {
-            var x0 = F[0][0][0];
+            var nn      = n;
+            var zz      = z;
+            var PP      = P;
+            var poly    = P[0];
+            var factors = 1;
+            for( var i=1; i<nn; i++ ) {
+                factors *= ( x - zz[i-1] );
+                poly += PP[i]*factors;
+            }
+            return poly;
+        }
+        //was:
+        /*
+        function calculate_polynomial( x )
+        {
             var factors = 1;
             var poly = F[0][0][1];
             for( var i=1; i<n; i++ ) {
@@ -62,6 +83,9 @@
             }
             return poly;
         }
+        */
+
+
         //checks the job;
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
         //var Sx = sconf.pname2point.S.pos[0];

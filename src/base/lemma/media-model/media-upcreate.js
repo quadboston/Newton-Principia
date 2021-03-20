@@ -47,6 +47,7 @@
     function media_upcreate_generic()
     {
         var stdMod = studyMods[ amode.submodel ];
+        if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
 
         haff( stdMod, 'media_upcreate___before_basic' );
         /*

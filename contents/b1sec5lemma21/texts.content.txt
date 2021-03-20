@@ -18,7 +18,7 @@
     "static-generator"      : [255,   0, 255, 1],
     "ellipse"               : [0,   150, 0, 1],
     "tangent"               : [0,   150, 0, 1],
-    "given-paralellogram"   : [0,   200, 255, 1],
+    "given-parallelogram"   : [0,   200, 255, 1],
     "generators"            : [0,   0,   255, 1]
   }
 }

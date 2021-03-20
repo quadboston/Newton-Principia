@@ -234,7 +234,7 @@
 
                     subexeg.built_act8stat_fragments.forEach( function( bFrag, fix ) {
                         eachprop( bFrag.normFragsRacks, ( normFragRack,fid ) => {
-                            ssF.builtFrags_2_dom8mj(
+                            activeFrags_styles += ssF.builtFrags_2_dom8mj(
                                 subexeg, normFragRack, fid, activeFrags_styles );
                         });
                     });

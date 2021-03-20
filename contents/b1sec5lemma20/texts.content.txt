@@ -13,7 +13,7 @@
     "static-generator"      : [255,   0, 255, 1],
     "ellipse"               : [0,   150, 0, 1],
     "tangent"               : [0,   150, 0, 1],
-    "given-paralellogram"   : [0,   200, 255, 1],
+    "given-parallelogram"   : [0,   200, 255, 1],
     "generators"            : [200, 150, 0, 1]
   }
 }
@@ -89,7 +89,7 @@ Book I Section V.<br>
 a cone at the points A and P ; and with the sides of one of the angles AQ and AS
 produced indefinitely, meeting the same section of the cone at B and C ; moreover from
 the meeting points B and C to some fifth point D of the conic section, the two right lines
-BD and CD are drawn meeting the other two sides of the parallelogram ¦given-paralellogram¦PS¦¦ and ¦given-paralellogram¦PQ¦¦
+BD and CD are drawn meeting the other two sides of the parallelogram ¦given-parallelogram¦PS¦¦ and ¦given-parallelogram¦PQ¦¦
 produced indefinitely at T &amp; R: the parts ¦key-triangle¦PR¦¦ and ¦key-triangle¦PT¦¦ of the sides [ of the parallelogram]
 will always be cut in turn in a given ratio. And conversely, if these cut parts are in turn in
 a given ratio, the point D touches the section of the cone passing through the four points
@@ -193,7 +193,7 @@ For ¦ellipse¦ellipse¦¦ and points P,A,B,C on it's circumference, the ratio
 <br><br>
 
 Where ¦tangent¦Bt¦¦ is a tangent erected to the ¦ellipse¦ellipse¦¦ and points ¦key-triangle¦R¦¦ and ¦key-triangle¦T¦¦ obtained by
-lines ¦generators¦BD¦¦ and ¦generators¦BC¦¦ corresponding crossing with lines ¦given-paralellogram¦PS¦¦ and ¦given-paralellogram¦PQ¦¦
+lines ¦generators¦BD¦¦ and ¦generators¦BC¦¦ corresponding crossing with lines ¦given-parallelogram¦PS¦¦ and ¦given-parallelogram¦PQ¦¦
 which are chosen parallel to
 ¦base-figure¦AB¦¦ and ¦base-figure¦AC¦¦ correspondingly.
 <br><br>

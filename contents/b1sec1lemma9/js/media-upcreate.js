@@ -107,7 +107,7 @@
         var mainCurve = tr( 'mainCurve' );
         mainCurve.mediael = bezier.mediafy({
             mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
-            svg : stdMod.mmedia,
+            parentSVG : stdMod.mmedia,
             pivots : medCurvPivots,
             bcurve :
             {
@@ -149,7 +149,7 @@
         var remoteCurve = tr( 'remoteCurve' );
         remoteCurve.mediael = bezier.mediafy({
             mediael : remoteCurve.mediael,
-            svg : stdMod.mmedia,
+            parentSVG : stdMod.mmedia,
             pivots : medRemoteCurPivots,
             bcurve :
             {

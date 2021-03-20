@@ -66,34 +66,55 @@
 
 
 
-
-    //fills grid randomly
-    //flaw: repeated cells can be generated when algo did not
-    //      fill all the cells
-
+    //===================================================================
+    ///randomly fills grid of size GRID_LENGTH nodes,
+    ///performance slows down and possibly can miss required number nodes
+    ///as loop advances;
+    //
     //https://en.wikipedia.org/wiki/16,807
     //next = previous * INCR % MODULE
-    //      22605091*19*5 ?= 2147483647
-    //      var MODULE = 2147483647;    //=2^31-1
-    //      var INCR = 16807;           //=7^5
     //https://www.firstpr.com.au/dsp/rand31/p1192-park.pdf
+    //===================================================================
     function randomGridGenerator({ GRID_LENGTH, SEED })
     {
-        var MODULE = 2147483647;
-        var INCR = 16807;
+        //----------------------------------------------------
+        // //\\ fundamental parameters
+        //----------------------------------------------------
+        //ccc( Math.pow( 7, 5 ), Math.pow( 2, 31 ) );
+        //how above function works?
+        //apparently gives exact number for integers ... why?
+        var MODULE = 2147483647;    //=2^31-1
+        //----------------------------------------------------
+        // \\// fundamental parameters
+        //----------------------------------------------------
+        var INCR = 16807;           //=7^5
+
+
+        //----------------------------------------------------
+        // //\\ prepares work
+        //----------------------------------------------------
+        //to secure:
         var COMPLETION_ATTEMPTS_OVERHEAD = GRID_LENGTH * 20;
 
         var flag = ( new Array( GRID_LENGTH ) ).fill(0);
         var grid = flag.map( (fl,ix) => ix );
-        //ccc( Math.pow( 7, 5 ), Math.pow( 2, 31 ) );
         var count = 0;
         var safeCount = 0;
-
         var current = SEED;
+        //----------------------------------------------------
+        // \\// prepares work
+        //----------------------------------------------------
+
+
+        //----------------------------------------------------
+        // //\\ does the job
+        //----------------------------------------------------
+        var startTime = Date.now();
         while( count < GRID_LENGTH ||
                safeCount > COMPLETION_ATTEMPTS_OVERHEAD
         ){
-            var cell = Math.floor( current * GRID_LENGTH / MODULE );
+            //var cell = Math.floor( current * GRID_LENGTH / MODULE );
+            var cell = current % GRID_LENGTH;
             if( flag[ cell ] === 0 ) {
                 flag[ cell ] = count+1;
                 grid[ count ] = cell;
@@ -107,24 +128,51 @@
             current = ( current * INCR ) % MODULE;
             safeCount++;
         }
-        //ccc( 'fill fraction=' + (count/GRID_LENGTH) + 
-        //     ' effectivity fraction=' + ( count/ safeCount )
-        //);
-
+        endTime = Date.now();
         var floatGrid = grid.map( cell => cell / GRID_LENGTH );
-        //ccc( floatGrid );
-        return { grid, floatGrid };
+        //----------------------------------------------------
+        // \\// does the job
+        //----------------------------------------------------
+
+
+        //----------------------------------------------------
+        // //\\ returns results
+        //----------------------------------------------------
+        /*
+        ccc( 'found=' + count + ' GRID_LENGTH='+GRID_LENGTH +
+             ' fill fraction=' + (count/GRID_LENGTH) + 
+             ' effectivity fraction=' + ( count/ safeCount )
+        );
+        ccc( 'grid=', grid, 'floatGrid=',floatGrid );
+        */
+        var results = {
+            grid,
+            floatGrid,
+            performanceEffectivity : count/ safeCount,
+            builtCells : count,
+            missedCells : GRID_LENGTH - count, 
+            missedPerRequested : ( GRID_LENGTH - count) / GRID_LENGTH,
+            timeSpentMs : endTime - startTime,
+        };
+        //ccc( 'requested NODES NUMBER=' + GRID_LENGTH, results ); 
+        return results;
+        //----------------------------------------------------
+        // \\// returns results
+        //----------------------------------------------------
     }
 
 
     function recalculates_rg_ptransform()
     {
         //* is xL to xR
-        var T00 = ( rg.T.pos[0] - rg.P.pos[0] ) / ( rg.E.pos[0] - rg.A.pos[0] );
+        var T00 = ( rg.ortI.pos[0] - rg.P.pos[0] ) / ( rg.E.pos[0] - rg.A.pos[0] )
+                  / (1 + sconf.ORT_I_SHIFT);
         //* is yL to xR
-        var T10 = ( rg.p.pos[0] - rg.P.pos[0] ) / ( rg.a.pos[1] - rg.A.pos[1] );
+        var T10 = ( rg.ortJ.pos[0] - rg.P.pos[0] ) / (1 + sconf.ORT_J_SHIFT)
+                  / ( rg.a.initialPos[1] - rg.A.pos[1] );
         //* is yL to yR:
-        var T11 = ( rg.p.pos[1] - rg.P.pos[1] ) / ( rg.a.pos[1] - rg.A.pos[1] );
+        var T11 = ( rg.ortJ.pos[1] - rg.P.pos[1] ) / (1 + sconf.ORT_J_SHIFT)
+                  / ( rg.a.initialPos[1] - rg.A.pos[1] );
         var T   = rg.ptransform.val;
         T[0][0] = T00;
         T[1][1] = T11;

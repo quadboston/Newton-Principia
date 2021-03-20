@@ -56,7 +56,7 @@
         ///sets single lower-level handler for framework draggees
         ns.d8d({
             surface : dragSurface,
-            d8d_app : d8d_app, //common handler
+            d8d_cb_middle2lowest : d8d_cb_middle2lowest, //common handler
 
             frameworkId,
         });
@@ -124,6 +124,7 @@
             //:optional
             var spinnerClsId         = pointWrap.spinnerClsId;
             var dragDecorColor       = pointWrap.dragDecorColor;
+            var individual_zindex    = haz( pointWrap, 'individual_zindex' );
             var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
             var update_decPoint      = api.update_decPoint;
             var nospinner            = api.nospinner;
@@ -131,6 +132,7 @@
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
             var tooltip              = api.tooltip;
+            var addFeaturesToDecPoint= haz( pointWrap, 'addFeaturesToDecPoint');
             //---------------------------------------------
             // \\// AAA PPP III
             //---------------------------------------------
@@ -155,24 +157,30 @@
                 update_decPoint = !update_decPoint ?
                     update_decPoint_inn2outparent :
                     ( update_decPoint === 'update_decPoint_default' ?
-                        update_decPoint_default : update_decPoint );
+                           update_decPoint_default :
+                           update_decPoint
+                    );
 
-                var addFeaturesToDecPoint = null;
                 if( spinnerClsId ) {
+
 
                     //don't do this here: not a d8d concern:
                     //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore( spinnerClsId );
                     var cssIdLowCase = spinnerClsId;
 
-                    addFeaturesToDecPoint =
-                    {
-                        dragDecorColor : dragDecorColor,
-                        spinnerClsId : cssIdLowCase,
-                    };
+                    addFeaturesToDecPoint = Object.assign(
+                            addFeaturesToDecPoint || {},
+                            {
+                                dragDecorColor      : dragDecorColor,
+                                spinnerClsId        : cssIdLowCase,
+                                individual_zindex   : individual_zindex,
+                            }
+                    );
                 }
                 decPoint = dpdec.adds_decorSpinner({
-                        spinner_domParent : dragSurface,
-                        opt : {
+                    spinner_domParent : dragSurface,
+                    opt :
+                    {
                         tooltip,
                         addFeaturesToDecPoint,
                             orientation     : orientation,
@@ -212,7 +220,8 @@
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
-            return;
+            return; // dragWrap; //todm consider adding this
+                    //to pointWrap
 
 
 
@@ -288,7 +297,7 @@
         ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
 		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
-        function d8d_app( surfMove, down_move_up, point_on_dragSurf, event, moveIncrement )
+        function d8d_cb_middle2lowest( surfMove, down_move_up, point_on_dragSurf, event, moveIncrement )
         {
             var fw = createdFramework;
             //vital-for-mobile
@@ -311,9 +320,13 @@
                             dragSurface
                     );
                     if( !selectedElement_flag ) return true;
+
                     detected_user_interaction_effect && detected_user_interaction_effect();
                     processMouseDown && processMouseDown( selectedElement_flag.pointWrap );
 
+                    //todM: let it to return !!'forbid drag'
+                    //      which will add a "sugar" "just-a-clcik" and
+                    //      even click behind screening surface
                     selectedElement_flag.doProcessWrap({
                         down_move_up    : down_move_up,
                         surfMove        : surfMove,
@@ -381,7 +394,6 @@
                 var tdX         = Math.abs( testMediaX - dompos[0] );
                 var tdY         = Math.abs( testMediaY - dompos[1] );
                 var td          = Math.max( tdX, tdY );
-
 
                 var distLim = haz( pointWrap, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
 

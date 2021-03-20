@@ -18,6 +18,7 @@
     var fconf       = sn('fconf',fapp);
     var sconf       = sn('sconf',fconf);
 
+    //lemma-independent lemma-subapplication (aka lemma-class-functions in Java)
     var ss          = sn('ss', fapp);
     var cssmod      = sn('ssCssModules',ss);
     var ssF         = sn('ssFunctions',ss);
@@ -37,6 +38,7 @@
     var id2tplink   = sn('id2tplink', topics);
     var ix2tplink   = sn('ix2tplink', topics, []);
 
+    //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
     var studyMods   = sn('studyMods', sapp);
     var amode       = sn('mode',sapp);

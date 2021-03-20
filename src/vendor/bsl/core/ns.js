@@ -144,7 +144,7 @@
         function sn( subname, parentNS, emptyTemplate )
         {
             parentNS = parentNS || ns;
-            if( parentNS &&
+            if(
                 shortcutInClosure_for_speed.call( parentNS, subname ) &&
                 typeof parentNS[ subname ] !== 'undefined'
             ){
@@ -267,10 +267,46 @@
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.style[ prop ];
                                                             },
+
+                    //does update css-value only if it is different
+                    css_:   function( name, value, obj )    {
+                                                               ctxEl = obj || ctxEl;
+                                                               if( !ctxEl ) return;  
+                                                               var cssProp = ctxEl.style[ name ];
+                                                               if( cssProp !== value ) {
+                                                                    ctxEl.style[ name ] = value;
+                                                               }
+                                                            },
+
+
                     _a:     function( prop, obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute( prop );
                                                             },
+
+                    // //\\ not tested
+                    //does update attr only if it is different
+                    a_:    function( prop, value, obj )     { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              if( !ctxEl ) return ctxEl;  
+                                                              var attr = ctxEl.getAttribute( prop );
+                                                              if( prop !== attr ) {  
+                                                                setAttribute( prop, value );
+                                                              }
+                                                            },
+
+                    //does update for prefixless attributes of svg-elements (null is used for name s.)
+                    aNS_:  function( prop, value, obj )     { obj = obj || null;
+                                                              ctxEl = obj || ctxEl;
+                                                              if( !ctxEl ) return ctxEl;  
+                                                              var attr = ctxEl.getAttributeNS( null, prop );
+                                                              if( prop !== attr ) {  
+                                                                ctxEl.setAttributeNS( null, prop, value );
+                                                              }
+                                                            },
+                    // \\// not tested
+
+
                     _cls:   function( obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute( 'class' );
@@ -298,7 +334,6 @@
                     //for consistency ...(null, ... whys is this "consistency" ... ? the must be a cowpath ...
                     //https://stackoverflow.com/questions/35057909/difference-between-setattribute-and-setattributensnull
                     //it seems does not matter at all how to write setAttribute: as setAttribute or setAttributeNS:
-                    //      https://stackoverflow.com/questions/21361570/simpler-way-to-set-attributes-with-svg
                     aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
 
                     to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },

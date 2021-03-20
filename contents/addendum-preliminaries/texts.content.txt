@@ -1,7 +1,9 @@
 
 *::*proof|algebraic-extension
 {
-  "menuCaption" : "Ratios"
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Euclid Magnitudes",
+  "subessay" : "euclid-magnitudes"
 }
 *..*
 
@@ -11,10 +13,11 @@ Here we follow the article of [Salomon Ofman].
 
 <b>Euclid Magnitudes</b>.
 
-Let M be commutative, operation-wise totally ordered, positive non-empty semigroup. In other words:
+Let M be a positive semigroup (p.s.) which is commutative, operation-wise totally ordered, positive non-empty semigroup. In other words:
 <br><br>
-
-                                            <table><tr><td>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left"">
+                                            <tr><td>
     there exist operation "+" on M
     for which
                                             <br></td></tr><tr><td>
@@ -67,13 +70,13 @@ Let M be commutative, operation-wise totally ordered, positive non-empty semigro
                                             (operation-wise)
                                             <br></td></tr><tr><td> 
 
-    m + m' &gt; m'
+    m + m &gt; m
                                             </td><td>
                                             (positive)
                                             <br></td></tr><tr><td> 
 
                                             </td></tr></table>
-
+                                            </div>
 
 
 <br><br>
@@ -87,38 +90,60 @@ set of non-zero areas of squares in two-dimensional plane.
 <b>Immediate consequences</b> of above axioms are:
 <br><br>
 
-M does not contains zero.
-<br>
-"+" and "&gt;" are cancellable:
-<br>
-m'+m = m'' + m \( \; \Rightarrow \; \) m' = m''
-<br>
-m'+m &gt; m'' + m \( \; \Rightarrow \; \) m' &gt; m''
-<br>
-Order preserves ownself:
-<br>
-m' &gt; m'' and 'm &gt; ''m  \( \; \Rightarrow \; \) m'+ 'm &gt; m'' + ''m.
-<br><br>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left"">
+                                            <tr><td>
+        m' + m'' &gt; m'
+        <br>
+        M does not contains zero.
+        <br>
+        "+" and "&gt;" are cancellable:
+        <br>
+        m'+m = m'' + m \( \; \Rightarrow \; \) m' = m''
+        <br>
+        m'+m &gt; m'' + m \( \; \Rightarrow \; \) m' &gt; m''
+        <br>
+        order self-preservation:
+        <br>
+        m' &gt; m'' and 'm &gt; ''m  \( \; \Rightarrow \; \) m'+ 'm &gt; m'' + ''m.
+        <br><br>
+                                            </td></tr></table>
+                                            </div>
 
 Relation "⩾" defined as
-m' ⩾  m''  \( \; \overset{df} \iff \; \) m'=m'' or m' &gt; m''
-<br><br>
+      <div style="text-align:center;">
+            m' ⩾  m''  \( \; \overset{df} \iff \; \) m'=m'' or m' &gt; m''
+      </div>
+<br>
 is transitive and reflexively-antisymmetric:
 <br>
 m' ⩾ m'' and m'' ⩾ m' \( \; \Rightarrow \; \) m' = m''
+                                                                                            
+
 <br><br>
 <br><br>
 
 
-<b>Action ℕ on M.</b>
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Action ℕ on M",
+  "subessay" : "action-n-on-m"
+}
+*..*
+
+<b>Action ℕ on M</b>
 <br>
 Operation "+" repeated n-times will be defined as <br>
-nm \( \; \overset{df} = \; \) mn \( \; \overset{df} = \; \) m + m + ... + m
-<br><br>
+    <div style="text-align:center">
+        nm \( \; \overset{df} = \; \) mn \( \; \overset{df} = \; \) m + m + ... + m
+    </div>
+<br>
 
 Immediate consequences of this definition are:
-
-                                            <table><tr><td>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left""><tr><td>
     1m = m
                                             </td><td>
                                             <br></td></tr><tr><td> 
@@ -172,8 +197,18 @@ Immediate consequences of this definition are:
                                             <br></td></tr><tr><td> 
 
                                             </td></tr></table>
+                                            </div>
 <br><br><br>
 
+
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Ratios",
+  "subessay" : "ratios"
+}
+*..*
 
 <b>Ratios</b>
 <br>
@@ -260,28 +295,46 @@ r' ~ q''  &  q'' &gt; q''' \( \; \Rightarrow \; \) r' &gt; q'''
 <br><br>
 
 which means the &gt; is "invariant" in respect to relation ~ .
-<br><br><br><br>
+<br><br>
 
 
+<b>Compatibility with product</b>. Relations ~ and &gt; are compatible with product with fraction.
+<br>
+
+        <div style="text-align:center;">
+            ∀r',r'',q  r' ~ r'' ⇒  r'q ~ r''q <br>
+            ∀r',r'',q  r' ‹ r'' ⇒  r'q ‹ r''q <br>
+        </div>
+
+<br><br>
+
+
+
+
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Rational numbers",
+  "subessay" : "rational-numbers"
+}
+*..*
 
 <b>Rational numbers</b>
 <br><br>
 On set Q, relation ~  is symmetric and reflexive. It can be proved, that classes of equivalency of this relation comprise the set of positive rational numbers ℚ<sup>+</sup>.
 <br><br>
 
-Conveniently, the definition of equivalence
-<br><br>
-r ~ q
-<br><br>
-can be extended to equivalence with rational number represented by the right part
+Conveniently, the definition of equivalence r ~ q can be extended to equivalence with rational number <b>q</b> represented by the right part
 of definition:
 <br><br>
-
-r ~ <b>q</b> \( \; \overset{df} \iff \; \) ∃ q in <b>q</b> r ~ q
-<br><br>
+        <div style="text-align:center;">
+            r ~ <b>q</b> \( \; \overset{df} \iff \; \) ∃ q in <b>q</b> r ~ q
+        </div>
+<br>
 
 This extension is well defined: if to take another representative q',
-then by transitivity it will be still equivalent to r. And any representative of another rational number will be non equivalent to r if to apply this transitivity property.
+then by transitivity it will be still equivalent to r. And any representative of another rational number will be non-equivalent to r if to apply this transitivity property.
 <br><br>
 
 Similarily, the relation
@@ -294,9 +347,14 @@ extends order &gt; to order between ratios and rational numbers.
 By the similar invariance, <b>Lemma T implications</b> will hold for rational 
 numbers <b>q</b>
 <br>
-r' ~ <b>q</b>''  &  <b>q</b>'' &gt; <b>q</b>''' \( \; \Rightarrow \; \) r' &gt; <b>q</b>'''
-<br>
-r' ~ <b>q</b>''  &  <b>q</b>'' = <b>q</b>''' \( \; \Rightarrow \; \) r' ~ <b>q</b>'''
+
+    <div style="text-align:center;">
+        r' ~ <b>q</b>''  &  <b>q</b>'' &gt; <b>q</b>''' \( \; \Rightarrow \; \) r' &gt; <b>q</b>'''
+        <br>
+        r' ~ <b>q</b>''  &  <b>q</b>'' = <b>q</b>''' \( \; \Rightarrow \; \) r' ~ <b>q</b>'''
+        <br>
+    </div>
+
 
 We call ratio r rational when it is equivalent to some rational number, Otherwise r is called non-rational. Going outside of our logical thread, we point out that there are exists irrational  ratios, for example ratio √2/1 from ℝ.
 <br><br>
@@ -308,106 +366,161 @@ ratio (mn)/(m<i>n</i>).
 
 
 
+
+
+
+
+
+*::*proof|algebraic-extension
+{
+  "default" : "1",
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Cuts",
+  "subessay" : "cuts"
+}
+*..*
+
 <b>Cuts</b>
-<br><br>
-
-If we have an ordered set S, we call cut as an ordered partition to two non-empty branches:
-<br><br>
-
-C   \(\;\overset{df}=\;\)   (B1,B2) where
-<br><br>
-B1 &lt; B2 where B1 &lt; B2 \( \quad \overset{df} \iff \quad \) ∀ s1,s2 | s1 ∊ B1 and s2 ∊ B2 s1 &lt; s2
-<br><br>
-
-ℚ<sup>+</sup> has only three types of cuts: strict where B+,B- do not have sup and inf elements.
-and non-strict when either B+ or B- but not both have inf or sup elements.
-<br><br>
-
-Each rational ratio r equivalent to q produces two non strict cuts: either (0,q),[q',oo) or (0,q],(q,oo). We chose the right branch to map it to q:
-<br><br>
-
-Cr \(\;\overset{df}=\;\) (0,q)[q,oo)
-
-<br><br>
-If non-rational ratio r, produces the strict cut B-,B+, we call this r irrational and map it to the r:
-<br><br>
-
-Cr \(\;\overset{df}=\;\) (B-,B+).
-
-<br><br>
-If non-rational ratio r, produces the non-strict cut B-,B+, we call this r "near-rational" and  ignore it. We also ignore ratios which lay below or above ℚ<sup>+</sup>. (Perhaps they would "become 0 and oo non-cancellable numbers" if we consider their cuts). For clarity, we call both rational and irrational ratios as "distinct".
-<br><br>
-
-
 <br>
-If two distinct ratios have rational number separating them, then 1) one of them is greater than the other and 2) they are not equal.
-If there is no separating rational, then we see no means to compare them at the moment.
-<br><br>
-<b>Cut Lemma</b>. Unseparated distinct ratios produce the same cut.
-Proof can be done in reductio ad absurdum.⯀
-<br><br>
-
-From now on we will study only distinct ratios and omit word "distinct".
-<br><br>
-
-Following Euclid, we will declare unseparated ratios "equal" in following defintions.
-<br><br><br><br>
-
-<b>Ratios Equality Definition</b>
+    <div style="text-align:center">
+        Cut C \(\;\overset{df}=\;\) (B⁻,B⁺), <br>
+        where
+        B⁻⋃B⁺ = ℚ⁺, B⁻ ‹ B⁺, where <br>
+        B⁻ ‹ B⁺ \(\;\overset{df}\iff\;\)
+            ∀<b>q'</b>∊B⁻,∀<b>q''</b>∊B⁺ \( \; \Rightarrow \; \)
+            <b>q'</b> ‹ <b>q''</b>
+    </div>
 <br>
+<b>Cut sublemma</b> Any ratio r produces a cut C<sub>r</sub> in rational numbers:
+
+    <div style="text-align:center">
+        C<sub>r</sub> \(\;\overset{df}=\;\) (B⁻,B⁺) and C<sub>r</sub> is a cut,
+    </div>
+
+where B⁻ = { q | q &lt; r } and B⁺ = { q | r &lt; q }. <i>Proof:</i> Relation ‹ is defined
+for all pairs r,q ⬜.
+Both "branches" B⁻,B⁺ cannot be empty at the same time.
+<br><br>
+
+
+<b>Ratios Equality Definition I.</b>
 
 Ratios r' and r'' are equivalent iff they produce the same cut:
+<br>
+    <div style="text-align:center">
+        r' <b>~</b> r'' \( \; \overset{df} \iff \; \) C<sub>r'</sub> = C<sub>r''</sub>
+    </div>
+<br>
+
+This defnition is compatible with former definition of "~".
+For example, when r ~<sub>former</sub> q, then C<sub>q</sub> = C<sub>r</sub>. When none of r',r'' is rational, then former ~ is not defined and creates no conflict.
 <br><br>
-r' <b>~</b> r'' \( \; \overset{df} \iff \; \) Cr' = Cr''
-<br><br><br>
+Given definition is equivalent to following definitions II and III:
+<br><br>
 
-( This defnition is compatible with previous definition of "~". Indeed, when cuts are non-strict, then r', r'' are proportional to the same rational number, when cuts are strict, then ratios are irrational and ~ was not defined previously for them, so there is no conflict. )
-<br><br><br>
+<b>Ratios Equality Definition II.</b> r' <b>~</b> r'' iff there is no rational number sepating them:
+<br>
+    <div style="text-align:center">
+        r' <b>~</b> r'' \( \; \overset{df} \iff \; \) ∄ rational number q,
+        r' < q < r''
+    </div>
+<br><br>
 
 
-<b>Explicit Equality Definition</b>
+<b>Ratios Equality Definition III.</b>
 
-If r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In more explicit form:
+Iff r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In explicit form (<a href="#euclid"><b>Euclid V.5</b></a>):
 <br><br>
 
 m'/<i>m'</i> <b>~</b> m''/<i>m''</i> \( \; \overset{df} \iff \; \) 
-<br><br>
-
-     ∀ n/<i>n</i> one and only one of following is true:
-<br><br>
-      i) m'<i>n</i> < n<i>m'</i> & m''<i>n</i> < n<i>m''</i>
 <br>
-      ii) m'<i>n</i> = n<i>m'</i> & m''<i>n</i> = n<i>m''</i>
+    <div style="text-align:center;">
+         ∀ n/<i>n</i> one and only one of following is true:
+    <br>
+          i) m'<i>n</i> < n<i>m'</i> & m''<i>n</i> < n<i>m''</i>
+    <br>
+          ii) m'<i>n</i> = n<i>m'</i> & m''<i>n</i> = n<i>m''</i>
+    <br>
+          iii) m'<i>n</i> > n<i>m'</i> & m''<i>n</i> > n<i>m''</i>
+    </div>
+    <br>
+
+
+<a name="euclid" id="euclid">
 <br>
-      iii) m'<i>n</i> > n<i>m'</i> & m''<i>n</i> > n<i>m''</i>
-<br><br><br>
-
-Based on other [Richard Fitzpatrick] translations and other reseach [Salomon Ofman], we think that this is the "Euclid. Book 5. Definition 5."
-<br><br><br>
-
+<b>Euclid V.5.</b>
+We cannot say our translation of Euclid V.5. is accurate. We just give credit to the idea. We borrowed insight of this idea from articles by [Richard Fitzpatrick], [Salomon Ofman].
+<br><br>
 
 Equality Definition gives a method to compare two ratios. But as it "was dicovered
-2000 years late by Dedekind", cuts comprise a numeric system ℝ<sup>+</sup> which if being exteded to negative numbers is an ordered field of real numbers ℝ.
+2000 years later" (Dedekind 1863-1872), cuts comprise more than a method of comparing ratios, cuts do form numeric system ℝ<sup>+</sup> and when being extended to negative numbers, do form an ordered field of real numbers ℝ.
 <br><br>
-Further we will analyze a relation betwen M and ℝ. For this purpose, we choose an arbitrary
-element <i>u</i> in M which we will call "unit" and denote ratios m/<i>u</i> as v.
+
+Further we will analyze a relation betwen M and ℝ.
 <br><br><br>
 
-We assume that ℝ<sup>+</sup> is already constructed. The proof scheme is described in the number of books, for example in "Rudin analysis for Graduate studens".
-A summary of this proof is:
+
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Ratios as Real numbers",
+  "subessay" : "ratios-as-reals"
+}
+*..*
+
+Relation retween ratios r', r'', C<sub>r'</sub> = C<sub>r''</sub>,
+is transitive, symmetric, and reflexive. Classes of eqivalence
+of this relation will be denoted with bold font as <b>r</b> and will be called
+ratios as well. We exclude ratios which contain empty branches B-, B+.
+<br><br>
+
+There is a bijection between these equivalency classes and real numbers in R⁺.
+
+Here we assume that ℝ<sup>+</sup> is already constructed. The construction is described in the number of books, for example in "Rudin analysis for Graduate studens".
+A summary of this construction is:
 <br><br><br>
 
-1. cuts are ordered by the order, as ordered ratios r', r'': r'&lt;q&lt;r''   <br>
+1. cuts order is defined by C<sub>r'</sub> < C<sub>r''</sub> \( \; \overset{df} \iff \; \)
+    B⁺<sub>r'</sub> ⊃ B⁺<sub>r''</sub>. This order preserves order of rationals
+q' &lt; q'' \( \; \iff \; \) C<sub>q'</sub> &lt; C<sub>q''</sub>
+<br>
+
 2. operation + is defined as C' + C'' = ( B-' + B-'', B+' + B+'')  <br>
 3. operation * is defined as C' * C'' = ( B-' * B-'', B+' * B+'')  <br>
-4. + and * are associative, commutative, ... <br>
-3. + and * do preserve order <br>
-...  <br>
-in plain words, ℝ<sup>+</sup> posessed all the properties of odered field except which do
+4. ℝ<sup>+</sup> is a p.s. in respect to "+",                      <br>
+5. ℝ<sup>+</sup> is totally-operation-wise-ordered group in respect to ".", <br>
+6. some ring properties ... <br>
+
+7. bijection <b>q</b> |-> (Bq-, Bq+) preseves order in |Q, "+", ".": in plain words,
+   |R+ algebraically extends |Q+ <br>
+
+In plain words, ℝ<sup>+</sup> posessed all the properties of odered field except which do
 involve 0 and negative numbers.
 <br><br>
-ℝ<sup>+</sup> is Archimedian and supports inf and sup principle.
+
+8. ℝ<sup>+</sup> is Archimedian and supports inf and sup principle.
 <br><br>
+
+
+//start here
+<br><br>
+
+Now we will analyze a relation betwen M and ℝ. For this purpose, we choose an arbitrary
+element <i>u</i> in M which we will call "unit" and denote ratios m/<i>u</i> as v.
+
+<br><br>
+draft:
+
+C(m'/u) + C(m''/u) ?
+m'/u < q'
+m''/u < q''
+m'/u p' < 1 m''/u p'' < 1
+m'/u k''/k'' < q'k''/k'' = n'k''/ k'k''
+m''/u k'/k' < q''k'/k' = n''k' / k'k''
+
+
+
 
 For m', m'', consider the cut of (m''')/u where m''' = m' + m''. Consider its upper branch B+. <br>
 For any rational n/<i>n</i> from B+, <br>
@@ -419,6 +532,13 @@ or
 
 
 
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Magnitudes beyond Real numbers",
+  "subessay" : "magnitudes-beyond-reals"
+}
+*..*
 
  
 
@@ -481,9 +601,18 @@ taken in corresponding order
 
 
 
+Stetigkeit und irrationale zahlen.
+Author: 	Richard Dedekind
+Publisher: 	Braunschweig, F. Vieweg und Sohn, 1872.
+    https://www.worldcat.org/title/stetigkeit-und-irrationale-zahlen/oclc/562474606
+Essays on the theory of numbers, I. Continuity and irrational numbers, II. The nature and meaning of numbers
+    https://archive.org/details/cu31924001586282
 
-
-
+"Stetigkeit und irrationale Zahlen" ("Continuity and irrational numbers");[2]
+ Ewald, William B., ed. (1996) "Continuity and irrational numbers", p. 766 in From Kant to Hilbert: A Source Book in the Foundations of Mathematics, 2 vols. Oxford University Press. full text
+Ded. Clear text:
+    https://www.gutenberg.org/files/21016/21016-pdf.pdf
+        CREATION OF IRRATIONAL NUMBERS
 
 <!--
 <a name="Eframework"></a>
@@ -491,5 +620,8 @@ taken in corresponding order
 A/B \( \overset{u} \sim \; \) C/D. In E-framework this means ratios A/B and C/D are "ulitmately the same".
 -->
 
+Perhaps it has more focus on p.s.:
+    ORDERED SEMIGROUPSPAUL  CONRAD
+        https://projecteuclid.org/journals/nagoya-mathematical-journal/volume-16/issue-none/Ordered-semigroups/nmj/1118800358.full
 
 
