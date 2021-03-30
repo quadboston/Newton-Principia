@@ -25,7 +25,7 @@ UTF Math Symbols, vital codes:
         ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
         ∫ 
         ∴
-        ℝ ℚ⁺ ℝ⁺
+        ℝ ℚ⁺ ℝ⁺ 𝕀  https://en.wikipedia.org/wiki/Blackboard_bold
 arrows:
     https://en.wikipedia.org/wiki/Arrows_(Unicode_block)
     hard to use: http://garsia.math.yorku.ca/MPWP/LATEXmath/node9.html
@@ -113,6 +113,7 @@ font:
 
     over top of my head:
         https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available
+
 
 **************************************************************************************************
 

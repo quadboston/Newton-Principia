@@ -60,7 +60,8 @@
                     if( !listItem.match( /^\s*$/ ) ) {
                         lbf_forAjax.push({
                               id: listItem,
-                              link : fconf.pathToStem + 'contents/' + fconf.sappId + '/' + listItem
+                              link : fconf.pathToContentSite + 'contents/' +
+                                     fconf.sappId + '/' + listItem
                         });
                     }
                 });
@@ -430,8 +431,9 @@
                     {
                         cssId : cssId,
                         src: imgId === 'empty' ?
-                             fconf.pathToStem + 'images/empty.png' :
-                             fconf.pathToStem + 'contents/' + fconf.sappId + '/img/' +
+                             fconf.engineImg + '/empty.png' :
+                             fconf.pathToContentSite + 'contents/' +
+                                fconf.sappId + '/img/' +
                                 ( imgId === 'common' ?
                                     //it turns out that "common" means "from conf" //*c*
                                     bgImg : imgId

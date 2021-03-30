@@ -1,39 +1,23 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
-    var rgtools     = sn('tools',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-
+    var {
+        sn,
+        $$,
+        has,
+        haz,
+        sv,
+        sconf,
+        ssF,
+        rg,
+        rgtools,
+        stdMod,
+    } = window.b$l.apptree({
+        modName : 'mediaModel_create',
+        setModule,
+        //ssFExportList : { scaleValue2app },
+    });
 
     var pos2pointy;
     var pointies2line;
-    var stdMod;
     return;
 
 
@@ -45,9 +29,9 @@
 
     function setModule()
     {
-        stdMod = sn(SUB_MODEL, studyMods);
         stdMod.modPos_2_GUI         = modPos_2_GUI;
-        stdMod.toogle_detectablilitySliderPoints4Tools  = toogle_detectablilitySliderPoints4Tools;
+        stdMod.toogle_detectablilitySliderPoints4Tools  =
+                toogle_detectablilitySliderPoints4Tools;
         ssF.sliderTemplate = sliderTemplate;
         pos2pointy      = ssF.pos2pointy;
         pointies2line   = ssF.pointies2line;
@@ -63,14 +47,14 @@
         magnitude2app,
     }) {
         var range_magnit    = max_magnit - min_magnit;
-        var toolsSliders    = ns.sn( 'toolsSliders',stdMod, [] );
+        var toolsSliders    = sn( 'toolsSliders',stdMod, [] );
         var sliderIx        = toolsSliders.length;
         toolsSliders.push( magnit );
 
         //----------------------------------------------------------------------------
         // //\\ in model units and reference system
         //----------------------------------------------------------------------------
-        customSlidersAbove    = ns.haz( stdMod, 'railsCustomSlidersCount' ) || 0;
+        customSlidersAbove    = haz( stdMod, 'railsCustomSlidersCount' ) || 0;
         var startX            = ( -sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
@@ -94,7 +78,9 @@
         // \\// in model units and reference system
         //----------------------------------------------------------------------------
 
+        //----------------------------------------------------------------------------
         // //\\ slider object
+        //----------------------------------------------------------------------------
         //sets registry
         ssF.tp( 'sliderStart_' + magnit, startPos );
         ssF.tp( 'sliderEnd_' + magnit, endPos );
@@ -115,59 +101,89 @@
              }
         );
         $$.$( slider_rg.svgel ).cls( 'tp-' + magnit );
+        //----------------------------------------------------------------------------
         // \\// slider object
+        //----------------------------------------------------------------------------
 
 
 
-
-        var magnit_api = rg[ magnit ];
-        var handleXpos  = ( magnit_api.value - min_magnit ) /
-                            range_magnit * railsLength + startX;
-        magnit_api.pos           = [ handleXpos, startY ];
-        magnit_api.startX        = startX;
-        magnit_api.endX          = endX;
-        magnit_api.railsLength   = railsLength;
+        //----------------------------------------------------------------------------
+        // //\\ slider api
+        //----------------------------------------------------------------------------
+        var magnit_api                  = rg[ magnit ];
+        magnit_api.startX               = startX;
+        magnit_api.endX                 = endX;
+        magnit_api.railsLength          = railsLength;
         magnit_api.ignore_hideD8Dpoint_for_CSS = true;
+
+        //-------------------------------------------------
+        // //\\ pos to pointy
+        //-------------------------------------------------
+        value2validate2pos( magnit_api.value );
         pos2pointy(
             magnit,
             {
-                cssClass : 'tostroke' + cssClsKey,
-                stroke : SUGGESTED_COLOR,
-                'stroke-width' : 2,
-                fill : 'white',
-                r : 5,
-                tpclass : magnit,
+                cssClass        : 'tostroke' + cssClsKey,
+                stroke          : SUGGESTED_COLOR,
+                'stroke-width'  : 2,
+                fill            : 'white',
+                r               : 5,
+                tpclass         : magnit,
             }
         );
+        //-------------------------------------------------
+        // \\// pos to pointy
+        //-------------------------------------------------
 
+        //-------------------------------------------------
+        // //\\ text_svg
+        //-------------------------------------------------
         magnit_api.text_svg = sv.printText({
-            parent : studyMods[ SUB_MODEL ].mmedia,
-            text :sliderCaption,
-            style : { 'font-size' : sconf.GENERIC_SLIDERS_FONT_SIZE +'px' },
-           'stroke-width' : 1,
-            stroke  : SUGGESTED_COLOR,
-            fill  : SUGGESTED_COLOR,
+            parent          : stdMod.mmedia,
+            text            : sliderCaption,
+            style           : { 'font-size' : sconf.GENERIC_SLIDERS_FONT_SIZE +'px' },
+           'stroke-width'   : 1,
+            stroke          : SUGGESTED_COLOR,
+            fill            : SUGGESTED_COLOR,
         });
         $$.$(magnit_api.text_svg).cls( 'tp-' + magnit );
+        //-------------------------------------------------
+        // \\// text_svg
+        // \\// slider api
+        //----------------------------------------------------------------------------
 
+
+        modPos_2_GUI( magnit_api );
+
+
+        //----------------------------------------------------------------------------
+        // //\\ slider methods api
+        //----------------------------------------------------------------------------
         ///this function restricts itself to SUB_MODEL === 'common',
         ///not very obvious design
-        magnit_api.model8media_upcreate = function() {
-            studyMods[ SUB_MODEL ].model8media_upcreate();
+        magnit_api.model8media_upcreate = stdMod_model8media_upcreate;
+
+        ///for slider
+        magnit_api.pos2value__8__m8m_upcreate   = pos2value__8__m8m_upcreate;
+        magnit_api.move_2_updates               = move_2_updates;
+        magnit_api.value2validate2pos           = value2validate2pos;
+        magnit_api.modPos_2_GUI                 = stdMod.modPos_2_GUI;
+        //----------------------------------------------------------------------------
+        // \\// slider methods api
+        //----------------------------------------------------------------------------
+        return;
+
+
+
+
+
+
+
+        function stdMod_model8media_upcreate() {
+            stdMod.model8media_upcreate();
         }
 
-        ///move_2_val8gui8cb
-        function move_2_updates( achieved, move_in_model )
-        {
-            var new_modelPos = [
-                    achieved[0] + move_in_model[0],
-                    achieved[1] + move_in_model[1],
-                ];
-            //sets the rest:
-            magnit_api.pos2value__8__m8m_upcreate( new_modelPos );
-        }
-        ///for slider
-        magnit_api.pos2value__8__m8m_upcreate = function( new_modelPos )
+        function pos2value__8__m8m_upcreate( new_modelPos )
         {
             var newValue = ( max_magnit - min_magnit ) * ( new_modelPos[0] - startX ) /
                              railsLength + min_magnit;
@@ -182,19 +198,36 @@
             return true;
         }
 
-        magnit_api.move_2_updates = move_2_updates;
-        magnit_api.modPos_2_GUI = stdMod.modPos_2_GUI;
-        magnit_api.modPos_2_GUI();
+
+        function value2validate2pos( val )
+        {
+            if( val < min_magnit || val > max_magnit ) return;
+            var handleXpos  = ( val - min_magnit ) /
+                                range_magnit * railsLength + startX;
+            magnit_api.pos  = [ handleXpos, startY ];
+            return true; //true === validated
+        }
+
+        ///move_2_val8gui8cb
+        function move_2_updates( achieved, move_in_model )
+        {
+            var new_modelPos = [
+                    achieved[0] + move_in_model[0],
+                    achieved[1] + move_in_model[1],
+                ];
+            //sets the rest:
+            magnit_api.pos2value__8__m8m_upcreate( new_modelPos );
+        }
     }
 
 
 
 
 
-
-    function modPos_2_GUI()
+    ///needs arg or "this"
+    function modPos_2_GUI( api )
     {
-        var api = this;
+        api = api || this;
         api.medpos = ssF.mod2inn_original( api.pos );
         sv.u({
             svgel   : api.svgel,
@@ -208,7 +241,7 @@
              sconf.GENERIC_SLIDER_HEIGHT_Y * 0.8
         );
 
-        if( ns.h( api, 'slCaption' ) ) {
+        if( has( api, 'slCaption' ) ) {
             ///updates GUI caption
             //api.text_svg.textContent = slCaption + '=' + (value_current-2).toFixed(0);
             api.text_svg.textContent = api.slCaption;
@@ -219,10 +252,10 @@
     ///fixes slider pointer detectibility upon mode
     function toogle_detectablilitySliderPoints4Tools()
     {
-        var toolsSliders = ns.sn( 'toolsSliders',stdMod, [] );
+        var toolsSliders = sn( 'toolsSliders',stdMod, [] );
         toolsSliders.forEach( slname => {
             var sl = rg[ slname ];
-            sl.hideD8Dpoint = ns.haz( rgtools, 'value' ) === 'on' ? false : true;
+            sl.hideD8Dpoint = haz( rgtools, 'value' ) === 'on' ? false : true;
         })
     }
 

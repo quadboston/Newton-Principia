@@ -27,6 +27,7 @@
             //optional
             referencesForAllLemmaEssays :
             `
+            <div style="font-size:11px;">
                 <br><br>
                 Sources:
                 <br>
@@ -41,6 +42,7 @@
                 <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102">
                     Text. Latin, 3rd Edition.
                 </a>
+            </div>
             `,
         };
     }

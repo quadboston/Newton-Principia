@@ -67,6 +67,13 @@
         var attr        = attr || {};
         var line        = ssF.toreg( pName )();
         var strokeWidth = han( attr, 'stroke-width', 1 );
+
+        if( haz( pivots[0], 'unscalable' ) ) {
+            pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos );
+        }
+        if( haz( pivots[1], 'unscalable' ) ) {
+            pivots[1].medpos = ssF.mod2inn_original( pivots[1].pos );
+        }
         var pivotsMedPos= [ pivots[0].medpos, pivots[1].medpos ];
 
         ///this property helps to optimize svg painting

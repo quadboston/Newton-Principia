@@ -59,21 +59,18 @@
     //=====================================================
     // //\\ does gets zippee name from cmd
     //=====================================================
-    $add_git_repo = false;
-    if( count($argv) < 2 )
+    if( count($argv) < 3 )
     {
         //too risky: $path_to_dir = '../../../vendor';
-        exit( "missed path to zippee ... terminating\n" );
+        exit( "missed version-project-folder and subsite ... terminating\n" );
     } else {
         $path_to_dir = $argv[1];
         if( !is_dir( $path_to_dir ) )
         {
             exit( 'file ' . $path_to_dir . " does not exist\n" );
         }
-        if( count($argv) > 2 )
-        {
-            $add_git_repo = $argv[2] == 'addgit';
-        }
+        ////narrow zipping down the site/subProject
+        $subProjectSource = $argv[2];
     }
     //=====================================================
     // \\// does gets zippee name from cmd
@@ -220,11 +217,19 @@
     chdir( '..' );
     $name_of_copy = "$version-$folder_to_zip$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
-    cli( "cp -R $folder_to_zip $name_of_copy",
-         "cloning the zippee to new name" );
+    cli( "mkdir $name_of_copy", "creating placeholder" );
+
+    cli( "cp -R $folder_to_zip/src $name_of_copy", "cloning.." );
+    cli( "cp -R $folder_to_zip/deploy $name_of_copy", "cloning.." );
+    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning.." );
+    cli( "cp -R $folder_to_zip/version.js $name_of_copy", "cloning.." );
+    cli( "cp -R $folder_to_zip/LICENSE $name_of_copy", "cloning.." );
+    cli( "mkdir $name_of_copy/sites", "creating placeholder" );
+    cli( "cp -R $folder_to_zip/sites/$subProjectSource $name_of_copy/sites", "cloning.." );
+
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
-    //.excludes .git from zip if requested
-    $command .= $add_git_repo ? '' : ' -x *.git* ';
+    //.excludes .git from zip
+    $command .= ' -x *.git* ';
 
     cli( $command, 'zipping up the copy' );
     cli( "rm -rf $name_of_copy", "removing zippee copy" );

@@ -34,6 +34,12 @@
                 font-size: 1rem;
                 line-height: 1.75;
             }
+
+            /* home page::user-guide-paragraphs */
+            .how-to__cell p {
+                line-height: 1.2;
+            }
+
             b {
                 font-weight : bold;
             }

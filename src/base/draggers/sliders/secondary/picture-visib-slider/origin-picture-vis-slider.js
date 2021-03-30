@@ -34,7 +34,7 @@
     {
 
         sDomN.visib_right_image$ = $$.c('img')
-          .a('src', fconf.pathToStem + 'images/mouse-icon.png')
+          .a('src', fconf.engineImg + '/mouse-icon--outdated-slider.png')
           .css('width','26px')
           .css('float','right')
           .css('position','relative')
@@ -69,7 +69,7 @@
                                 }
         });
         sDomN.visib_left_image$ = $$.c('img')
-          .a('src', fconf.pathToStem + 'images/scroll-icon.png')
+          .a('src', fconf.engineImg + '/scroll-icon.png')
           .css('width','19px')
           .css('float','right')
           .css('position','relative')

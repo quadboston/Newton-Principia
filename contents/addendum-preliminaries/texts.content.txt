@@ -1,6 +1,7 @@
 
 *::*proof|algebraic-extension
 {
+  "default" : "1",
   "menuCaption" : "Ratios",
   "subessayCaption" : "Euclid Magnitudes",
   "subessay" : "euclid-magnitudes"
@@ -8,8 +9,14 @@
 *..*
 
 
-Here we follow the article of [Salomon Ofman].
+Here we follow the articles of
+<a href="#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a>
+and
+<a href="#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
 <br><br><br>
+
+
+
 
 <b>Euclid Magnitudes</b>.
 
@@ -121,7 +128,7 @@ m' ⩾ m'' and m'' ⩾ m' \( \; \Rightarrow \; \) m' = m''
                                                                                             
 
 <br><br>
-<br><br>
+<br>
 
 
 
@@ -233,8 +240,7 @@ It is associative: (q'q'')r = q'(q''r).
 <br><br><br>
 
 <b>Comparision with quotas</b>
-<br><br>
-
+<br>
 Equivalence in resprect to quotas:
 <br><br>
 
@@ -247,7 +253,14 @@ Similarily, we can define an order in respect to quotas:
 m / <i>m</i> &gt; n / <i>n</i> \( \; \overset{df} \iff \; \) m<i>n</i> &gt; <i>m</i>n
 
 &nbsp;&nbsp;&nbsp; (&gt;)
+<br><br>
 
+<b>Rational Invertendo</b>
+<br>
+Because of correspondingly in/equality in (&gt;)/(~) is a/symmetric, then <br>
+m / <i>m</i> ~ n / <i>n</i> \( \; \iff \; \) <i>m</i> / m ~ <i>n</i> / n
+<br>
+m / <i>m</i> &gt; n / <i>n</i> \( \; \iff \; \) <i>m</i> / m &lt; <i>n</i> / n
 <br><br>
 
 
@@ -322,7 +335,7 @@ which means the &gt; is "invariant" in respect to relation ~ .
 
 <b>Rational numbers</b>
 <br><br>
-On set Q, relation ~  is symmetric and reflexive. It can be proved, that classes of equivalency of this relation comprise the set of positive rational numbers ℚ<sup>+</sup>.
+On set Q, relation ~  is symmetric and reflexive. It can be proved, that classes of equivalency of this relation comprise the set of positive rational numbers ℚ⁺.
 <br><br>
 
 Conveniently, the definition of equivalence r ~ q can be extended to equivalence with rational number <b>q</b> represented by the right part
@@ -373,7 +386,6 @@ ratio (mn)/(m<i>n</i>).
 
 *::*proof|algebraic-extension
 {
-  "default" : "1",
   "menuCaption" : "Ratios",
   "subessayCaption" : "Cuts",
   "subessay" : "cuts"
@@ -385,7 +397,8 @@ ratio (mn)/(m<i>n</i>).
     <div style="text-align:center">
         Cut C \(\;\overset{df}=\;\) (B⁻,B⁺), <br>
         where
-        B⁻⋃B⁺ = ℚ⁺, B⁻ ‹ B⁺, where <br>
+        ∀<b>q',q''</b> ∊ (ℚ⁺-(B⁻⋃B⁺)) \( \; \Rightarrow \; \) <b>q'</b>=<b>q''</b>, <br>
+        B⁻ ‹ B⁺, where <br>
         B⁻ ‹ B⁺ \(\;\overset{df}\iff\;\)
             ∀<b>q'</b>∊B⁻,∀<b>q''</b>∊B⁺ \( \; \Rightarrow \; \)
             <b>q'</b> ‹ <b>q''</b>
@@ -394,11 +407,12 @@ ratio (mn)/(m<i>n</i>).
 <b>Cut sublemma</b> Any ratio r produces a cut C<sub>r</sub> in rational numbers:
 
     <div style="text-align:center">
-        C<sub>r</sub> \(\;\overset{df}=\;\) (B⁻,B⁺) and C<sub>r</sub> is a cut,
+        C<sub>r</sub> \(\;\overset{df}=\;\) (B⁻,B⁺),
     </div>
 
-where B⁻ = { q | q &lt; r } and B⁺ = { q | r &lt; q }. <i>Proof:</i> Relation ‹ is defined
-for all pairs r,q ⬜.
+where B⁻ = { q | q &lt; r } and B⁺ = { q | r &lt; q } and C<sub>r</sub> is a cut.
+<i>Proof:</i> Relation ‹ is defined
+for all pairs r,<b>q</b>, and there is at most one <b>q</b> ~ r. ⬜ 
 Both "branches" B⁻,B⁺ cannot be empty at the same time.
 <br><br>
 
@@ -429,7 +443,7 @@ Given definition is equivalent to following definitions II and III:
 
 <b>Ratios Equality Definition III.</b>
 
-Iff r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In explicit form (<a href="#euclid"><b>Euclid V.5</b></a>):
+Iff r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In explicit form (<a href="#ctxt-euclid"><b>Euclid V.5</b></a>):
 <br><br>
 
 m'/<i>m'</i> <b>~</b> m''/<i>m''</i> \( \; \overset{df} \iff \; \) 
@@ -446,10 +460,12 @@ m'/<i>m'</i> <b>~</b> m''/<i>m''</i> \( \; \overset{df} \iff \; \)
     <br>
 
 
-<a name="euclid" id="euclid">
+<a name="ctxt-euclid" id="euclid">
 <br>
 <b>Euclid V.5.</b>
-We cannot say our translation of Euclid V.5. is accurate. We just give credit to the idea. We borrowed insight of this idea from articles by [Richard Fitzpatrick], [Salomon Ofman].
+We cannot say our translation of Euclid V.5. is accurate. We just give credit to the idea. We borrowed insight of this idea from articles by
+<a href="#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a> and
+<a href="#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
 <br><br>
 
 Equality Definition gives a method to compare two ratios. But as it "was dicovered
@@ -464,12 +480,12 @@ Further we will analyze a relation betwen M and ℝ.
 *::*proof|algebraic-extension
 {
   "menuCaption" : "Ratios",
-  "subessayCaption" : "Ratios as Real numbers",
-  "subessay" : "ratios-as-reals"
+  "subessayCaption" : "Cuts as Real numbers",
+  "subessay" : "cuts-as-reals"
 }
 *..*
 
-Relation retween ratios r', r'', C<sub>r'</sub> = C<sub>r''</sub>,
+Relation between ratios r', r'', C<sub>r'</sub> = C<sub>r''</sub>,
 is transitive, symmetric, and reflexive. Classes of eqivalence
 of this relation will be denoted with bold font as <b>r</b> and will be called
 ratios as well. We exclude ratios which contain empty branches B-, B+.
@@ -492,8 +508,8 @@ q' &lt; q'' \( \; \iff \; \) C<sub>q'</sub> &lt; C<sub>q''</sub>
 5. ℝ<sup>+</sup> is totally-operation-wise-ordered group in respect to ".", <br>
 6. some ring properties ... <br>
 
-7. bijection <b>q</b> |-> (Bq-, Bq+) preseves order in |Q, "+", ".": in plain words,
-   |R+ algebraically extends |Q+ <br>
+7. bijection <b>q</b> ↦ (Bq-, Bq+) preseves order in ℚ⁺, "+", ".": in plain words,
+   |R+ algebraically extends ℚ⁺ <br>
 
 In plain words, ℝ<sup>+</sup> posessed all the properties of odered field except which do
 involve 0 and negative numbers.
@@ -503,47 +519,238 @@ involve 0 and negative numbers.
 <br><br>
 
 
-//start here
-<br><br>
-
-Now we will analyze a relation betwen M and ℝ. For this purpose, we choose an arbitrary
-element <i>u</i> in M which we will call "unit" and denote ratios m/<i>u</i> as v.
-
-<br><br>
-draft:
-
-C(m'/u) + C(m''/u) ?
-m'/u < q'
-m''/u < q''
-m'/u p' < 1 m''/u p'' < 1
-m'/u k''/k'' < q'k''/k'' = n'k''/ k'k''
-m''/u k'/k' < q''k'/k' = n''k' / k'k''
-
-
-
-
-For m', m'', consider the cut of (m''')/u where m''' = m' + m''. Consider its upper branch B+. <br>
-For any rational n/<i>n</i> from B+, <br>
-m'''<i>n</i> ⩽ n<i>u</i>  <br><br>
-or
-(m'+m'')<i>n</i> ⩽ n(<i>u</i>)  <br><br>
-
-
-
-
 
 *::*proof|algebraic-extension
 {
   "menuCaption" : "Ratios",
-  "subessayCaption" : "Magnitudes beyond Real numbers",
-  "subessay" : "magnitudes-beyond-reals"
+  "subessayCaption" : "Legacy proportions",
+  "subessay" : "legacy-proportions"
 }
 *..*
-
- 
-
+<br><br>
 
 
+    This definition does not define operations on M, it is just a shortcut for a real number. Note the bold "<b>/</b>" vs normal "/".
+    <br>
+    <div style="text-align:center">
+        m' <b>/</b> m" \( \; \overset{df} = \; \) C<sub>m'/m"</sub>
+    </div>
+
+Due to Rational invertendo: <br>
+    <div style="text-align:center">
+        m <b>/</b> <i>m</i> = 1 / (<i>m</i> <b>/</b> m)
+        &nbsp;&nbsp;&nbsp;&nbsp; (//)
+    </div>
+
+Cancellation rule:
+<br>
+    <div style="text-align:center">
+        m' <b>/</b> m" = (m'<b>/</b>m)(m<b>/</b>m") = (m'<b>/</b>m) / (m"<b>/</b>m)
+        &nbsp;&nbsp;&nbsp;&nbsp; (cr)
+    </div>
+
+<br>
+<i>Proof. </i>
+Consider
+r' = m' / m, r" = m / m",
+r' &lt; q' = n'/k', and
+r" &lt; q" = n"/k".
+<br>
+m'k'k" &lt; mn'k"
+<br>
+mn'k" &lt; n"m"n' =&gt;
+<br>
+m'/m'' &lt; n'n" / k'k" = q'q". Similarily if q',q" correspondingly smaller than r',r", then
+m'/m'' &gt; q'q".
+⬜
+<br><br>
+
+
+Real numbers do preserve operation + on M:
+    <div style="text-align:center">
+       ( m' + m" ) <b>/</b> m = m'<b>/</b>m + m"<b>/</b>m
+        &nbsp;&nbsp;&nbsp;&nbsp; (++)
+    </div>
+
+In case difference m' - m" exist for some m', m", then it is preserved also because
+    <div style="text-align:center">
+       ( m" + ( m' - m" ) ) <b>/</b> m = m"<b>/</b>m + (m' - m")<b>/</b>m  and <br>
+        m'<b>/</b>m  - m"<b>/</b>m  = (m' - m")<b>/</b>m <br>
+    </div>
+<br><br>
+
+
+
+
+<b>Unitless proportions</b>
+    <a name="ctxt-invertendo"></a>
+    <a name="ctxt-componendo"></a>
+    <a name="ctxt-separando"></a>
+    <a name="ctxt-convertendo"></a>
+    <div style="text-align:center">
+
+        (//) implies:<br>
+        m' <b>/</b> <i>m'</i> = m" <b>/</b> <i>m"</i> \( \iff \)
+        <i>m'</i> <b>/</b> m' = <i>m"</i> <b>/</b> m" 
+        &nbsp;&nbsp;&nbsp;&nbsp; (invertendo) <br>
+
+
+       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \( \Rightarrow \)
+            (m'+<i>m'</i>) <b>/</b> <i>m'</i>  =  (m"+<i>m"</i>) <b>/</b> <i>m"</i>
+            &nbsp;&nbsp;&nbsp;&nbsp; (componendo) <br>
+
+       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \( \Rightarrow \)
+            (m'- <i>m'</i>) <b>/</b> <i>m'</i> = (m"-<i>m"</i>) <b>/</b> <i>m"</i>
+            &nbsp;&nbsp;&nbsp;&nbsp; (separando)
+    </div>
+and being combined with (invertendo):
+    <div style="text-align:center">
+       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \(\Rightarrow\)
+            m' <b>/</b> ( m' - <i>m'</i> )  =
+            m" <b>/</b> ( m" - <i>m"</i> )
+            &nbsp;&nbsp;&nbsp;&nbsp; (convertendo)
+    </div>
+<br>
+<br><br>
+
+
+
+
+<b>Unitness proportions</b>
+<br>
+Let us choose an arbitrary element u in M which we will call "unit" and denote following cut in bold as
+
+    <div style="text-align:center">
+         <b>m</b> \( \; \overset{df} = \; \) C<sub>m/u</sub>.  </b>
+    </div>
+
+
+Map m ↦ <b>m</b> preserves operation + on M because of (++): <br>
+    <div style="text-align:center">
+        (m'+m'') <b>/</b> u = <b>m'</b>+<b>m''</b>
+    </div>
+
+
+U n i t  &nbsp;&nbsp; c a n c e l l a t i o n &nbsp;&nbsp; r u l e &nbsp;</b>.
+Taking m = u in (cr) we obtain
+    <div style="text-align:center">
+        m' <b>/</b> m" = <b>m'</b> / <b>m"</b>  &nbsp;&nbsp;&nbsp;&nbsp; (ucr) <br>
+    </div>
+<br>
+
+
+U n i t l e s s &nbsp;&nbsp; A l t e r n a n d o
+    <a name="ctxt-alternando"></a>
+    <div style="text-align:center">
+        m' <b>/</b> <i>m'</i> = m" <b>/</b> <i>m"</i> \( \; \Rightarrow \; \)
+        m' <b>/</b> m" = <i>m'</i> <b>/</b> <i>m"</i> (alternando)
+    </div>
+
+<i>Proof</i>.
+<b>m'</b>/<b><i>m'</i></b> \( \; \overset{(ucr)} = \; \) <b>m"</b>/<b><i>m"</i></b>,
+hence
+<b>m'</b>/<b>m"</b>\( \; \overset{(reals \; rules)} = \; \) <b><i>m'</i></b>/<b><i>m"</i></b> ⬜
+
+<br><br>
+<br>
+
+
+
+
+
+
+<a name="ctxt-compound-ratio"></a>
+C o m p o u n d &nbsp;&nbsp; r a t i o   &nbsp; is
+    <div style="text-align:center">
+        <b>r</b> = <b>m</b><sub>1</sub><b>m</b><sub>2</sub>...<b>m</b><sub>k</sub>
+        /(<b><i>m</i></b><sub>1</sub><b><i>m</i></b><sub>2</sub>...<b><i>m</i></b><sub>p</sub>)
+        &nbsp;&nbsp;&nbsp;&nbsp; (./)
+    </div>
+<br>
+
+Compound ratios 1) extend ability to express properties of M, 2) allow compare magnituedes M<sub>1</sub>, M<sub>2</sub>, ... of different kind, 3) they possibly always need a unit. For example,
+
+    <div style="text-align:center">
+         <b>F</b> = <b>mass</b> * <b>a</b>,
+    </div>
+where <b>mass</b> * <b>a</b> is a compound ratio.
+<br><br>
+
+The force F is taken from M<sub>F</sub> magnitudes, mass from 
+M<sub>mass</sub> magnitudes, and a M<sub>a</sub> magnitudes.
+<br>There is no known for us way to express this law without taking a unit.
+Even if Newton says separtely that F ~ a and F ~ mass, there is still a requirement of "fixed"
+magnitudes u<sub>F</sub> and u<sub>a</sub> to express proportion
+F/u<sub>F</sub> ~ a/u<sub>a</sub>.
+<br><br>
+
+U n i t  &nbsp;&nbsp; c h a n g e &nbsp;&nbsp; r u l e.
+Consider compound ratio (./) <b>r</b>.
+If instead of unit u we take unit v, multiply the nominator with
+(u <b>/</b> v) <sup>k-p</sup>, and denote ratios as
+<b>m'</b><sub>i</sub> = m<sub>i</sub> <b>/</b> v, then by (cr)
+<br>
+    <div style="text-align:center">
+        <b>r</b>' = <b>r</b>(u <b>/</b> v)<sup>k-p</sup>
+    </div>
+<br><br><br>
+
+
+
+
+
+<br>
+<div book-reference-id="kvk"></div>
+<br><br>
+
+
+
+
+<a name="ctxt-salomon-ofman-euclid-theory-of-ratio"></a>
+<br>
+<a target="_blank" href="https://webusers.imj-prg.fr/~salomon.ofman/Euclid-theory-of-ratio.pdf">
+Salomon Ofman "Theory of Ratios in Euclid’s Elements Book V revisited"
+</a>
+<br>
+file: Euclid-theory-of-ratio.pdf
+<br><br>
+
+
+
+<a name="ctxt-howard-stein-eudoxos-and-dedekind"></a>
+Howard Stein
+<br>
+<a target="_blank" href="http://strangebeautiful.com/other-texts/stein-eudoxos-dedekind.pdf">
+EUDOXOS AND DEDEKIND: ON THE
+ANCIENT GREEK THEORY OF
+RATIOS AND ITS RELATION
+TO MODERN MATHEMATICS
+</a>
+<br>
+Synthese 84: 163-211, 1990.
+© 1990 Kluwer Academic Publishers. Printed in the Netherlands.
+<br><br><br>
+
+
+
+<a target="_blank" href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">en.wikipedia.org/wiki/Euclid%27s_Elements</a>
+<br>
+<a target="_blank" href="http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf">farside.ph.utexas.edu/Books/Euclid/Elements.pdf</a>
+<br><br>
+
+
+<a name="ctxt-richard-fitzpatrick-euclid-translation"></a>
+Richard Fitzpatrick’s ([Euclid2007]).
+<br>
+Translation of Euclid. Book 5.
+<br>
+<a name="ctxt-euclid-book-5-definition-5"></a>
+Book 5. Definition 5. Magnitudes are said to be in the same ratio (‘ jEn tw/' aujtw/' lo vgw/’), the first to
+the second and the third to the fourth, when, if any equimultiples whatever be taken of the first
+and third, and any equimultiples whatever of the second and fourth, the former equimultiples
+alike exceed, are alike equal to, or alike fall short of, the latter equimultiples respectively
+taken in corresponding order
+<br><br>
 
 
 
@@ -551,14 +758,69 @@ or
 
 
 
+<a name="ctxt-dedekind-irrationale-zahlen"></a>
+
+Richard Dedekind <br>
+<a target="_blank" href="https://www.worldcat.org/title/stetigkeit-und-irrationale-zahlen/oclc/562474606">
+Stetigkeit und irrationale zahlen.</a>
+
+<br>
+Publisher: 	Braunschweig, F. Vieweg und Sohn, 1872.
+<br>
+<a target="_blank" href="https://archive.org/details/cu31924001586282">
+Essays on the theory of numbers, I. Continuity and irrational numbers, II. The nature and meaning of numbers
+</a>
+<br><br><br>
 
 
 
+"Stetigkeit und irrationale Zahlen" ("Continuity and irrational numbers");[2]
+ Ewald, William B., ed. (1996) "Continuity and irrational numbers", p. 766 in From Kant to Hilbert: A Source Book in the Foundations of Mathematics, 2 vols. Oxford University Press. full text
+<br>
+Dedekind? Clear text:
+<br>
+<a target="_blank" href="https://www.gutenberg.org/files/21016/21016-pdf.pdf">
+CREATION OF IRRATIONAL NUMBERS</a>
+<br><br><br>
 
 
+<a name="ctxt-conrad-ordered-semigroups"></a>
+<br>
+<a target="_blank" href="https://projecteuclid.org/journals/nagoya-mathematical-journal/volume-16/issue-none/Ordered-semigroups/nmj/1118800358.full">
+Paul Conrad
+<br>
+ORDERED SEMIGROUPS
+</a>
+<br>
+Nagoya Math. J. 16(none): 51-64 (1960).
+<br>
+Perhaps it has more focus on p.s.
+<br><br>
+
+
+
+<a name="ctxt-krylov-principia-translation"></a>
+<br>
+<a target="_blank" href="http://shaping.ru/download/pdffile/newton.pdf">
+Исаак Ньютон. Математические начала натуральной философии.
+<br>
+Перевод с латинского А.Н. Крылова.
+</a>
+<br>
+Изд. Наука. 1989.
+<br>
+Mathematical Principles of Natural Philosophy.
+<br>
+Translation by A.N. Krylov.
+<br>
+(... separando and other properties ... Krylov, page 63]
+<br><br>
+
+
+
+<!--
+draft
 <pre>
-
-
 Sublemma: equirebasing and crossproducting are equivalent.
 
         Given: ratios a/c are  A/C are equirebase equivalent.
@@ -570,58 +832,6 @@ Sublemma: equirebasing and crossproducting are equivalent.
         aC = Ac \( \; \Rightarrow \; \)  a/c  A/C are crossproduct equivalent []
 
 </pre>
-
-
-
-
-Ref: <br><br>
-<a href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">https://en.wikipedia.org/wiki/Euclid%27s_Elements</a>
-<br><br>
-<a href="http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf">http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf</a>
-
-
-<br><br>
-<div book-reference-id="kvk"></div>
-
-<pre>
-Salomon Ofman "Theory of Ratios in Euclid’s Elements Book V revisited"
-<br>
-Euclid-theory-of-ratio.pdf
-https://webusers.imj-prg.fr/~salomon.ofman/Euclid-theory-of-ratio.pdf
-
-Euclid. Translation:
-Richard Fitzpatrick’s ([Euclid2007]).
-
-Euclid. Book 5. Definition 5. Magnitudes are said to be in the same ratio (‘ jEn tw/' aujtw/' lo vgw/’), the first to
-the second and the third to the fourth, when, if any equimultiples whatever be taken of the first
-and third, and any equimultiples whatever of the second and fourth, the former equimultiples
-alike exceed, are alike equal to, or alike fall short of, the latter equimultiples respectively
-taken in corresponding order
-</pre>
-
-
-
-Stetigkeit und irrationale zahlen.
-Author: 	Richard Dedekind
-Publisher: 	Braunschweig, F. Vieweg und Sohn, 1872.
-    https://www.worldcat.org/title/stetigkeit-und-irrationale-zahlen/oclc/562474606
-Essays on the theory of numbers, I. Continuity and irrational numbers, II. The nature and meaning of numbers
-    https://archive.org/details/cu31924001586282
-
-"Stetigkeit und irrationale Zahlen" ("Continuity and irrational numbers");[2]
- Ewald, William B., ed. (1996) "Continuity and irrational numbers", p. 766 in From Kant to Hilbert: A Source Book in the Foundations of Mathematics, 2 vols. Oxford University Press. full text
-Ded. Clear text:
-    https://www.gutenberg.org/files/21016/21016-pdf.pdf
-        CREATION OF IRRATIONAL NUMBERS
-
-<!--
-<a name="Eframework"></a>
-<b>"E-framework" - "Euclid Framework".</b> Geometry and Ratios in "Euclid's Elements".
-A/B \( \overset{u} \sim \; \) C/D. In E-framework this means ratios A/B and C/D are "ulitmately the same".
 -->
-
-Perhaps it has more focus on p.s.:
-    ORDERED SEMIGROUPSPAUL  CONRAD
-        https://projecteuclid.org/journals/nagoya-mathematical-journal/volume-16/issue-none/Ordered-semigroups/nmj/1118800358.full
 
 

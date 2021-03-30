@@ -186,7 +186,7 @@
             .c('img')
             .addClass( "video-help-button" )
             .css('width','35px')
-            .a( 'src', fconf.pathToStem + "images/camera-lightbulb.png" )
+            .a( 'src', fconf.engineImg + "/camera-lightbulb.png" )
             .a( 'alt', "Watch videohelp" )
             .a( 'title', "Watch videohelp" )
             /*
@@ -199,7 +199,7 @@
         sDomN.idleHelpButton$ = $$
             .c('img')
             .addClass( "model-help" ) //todm ... non-elegant ... spread of CSS
-            .a( 'src', fconf.pathToStem + "images/lightbulb.svg" )
+            .a( 'src', fconf.engineImg + "/lightbulb.svg" )
             .a( 'alt', "Hover over the diagram to interact" )
             .to( wwHelpOnTop$() )
             ;

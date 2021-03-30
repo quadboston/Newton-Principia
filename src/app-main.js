@@ -87,7 +87,8 @@
         // //\\ sets ids and titles
         //===============================
         ns.url2conf( fconf );
-        fconf.pathToStem        = fconf.pathToStem ? fconf.pathToStem + '/' : '';
+        fconf.pathToContentSite = fconf.pathToContentSite ?
+                                  fconf.pathToContentSite + '/' : '';
         fconf.sappId            = fconf.sappId || 'home-pane';
 
         //pulls content-list.js::sappModulesArray
@@ -167,7 +168,8 @@
         var codesList;
         nsmethods.loadScripts(
             [
-                { src : fconf.pathToStem + "contents/" + lemmaConfig.sappId + "/lemma-conf.js"
+                { src : fconf.pathToContentSite + "contents/" +
+                        lemmaConfig.sappId + "/lemma-conf.js"
                 }
             ],
             function() {
@@ -178,7 +180,7 @@
                     lemmaSourcePath = lemmaConfig.sappCodeReference;
                     nsmethods.loadScripts(
                         [
-                            { src : fconf.pathToStem + "contents/" +
+                            { src : fconf.pathToContentSite + "contents/" +
                                     lemmaSourcePath + "/lemma-conf.js"
                             }
                         ],
@@ -205,7 +207,7 @@
         function loadLemmaJSCodes( lemmaConfig )
         {
             codesList.forEach( function( codeItem ) {
-                codeItem.src = fconf.pathToStem + "contents/" +
+                codeItem.src = fconf.pathToContentSite + "contents/" +
                                lemmaSourcePath + "/js/" + codeItem.src;
             });
             ssF.runExpandConfig = !lemmaConfig.dontRun_ExpandConfig;

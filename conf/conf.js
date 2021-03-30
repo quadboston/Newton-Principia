@@ -6,9 +6,10 @@
     var sconf   = ns.sn('sconf',fconf);
 
 
-
-
-
+    //will be it better to explicitly set './'?
+    fconf.pathToContentSite     = '';
+    fconf.pathToContentSiteImg  = 'contents/img';
+    fconf.engineImg             = 'engine-img';
 
     //====================================================
     // //\\ put configuration parameters here
@@ -22,7 +23,6 @@
         //:data
         svgNS :  "http://www.w3.org/2000/svg",
 
-        pathToStem : '', // not sure about './',
 
         //--------------------
         // //\\ page-wide

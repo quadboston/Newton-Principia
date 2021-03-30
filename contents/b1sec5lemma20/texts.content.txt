@@ -185,7 +185,7 @@ Book I Section V.
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a></b><br><br>
 
 For ¦ellipse¦ellipse¦¦ and points P,A,B,C on it's circumference, the ratio
 ¦key-triangle¦PR/PT¦¦ will be constant when the point ¦generators¦D¦¦ moves along this circumference.
@@ -211,7 +211,7 @@ will move points T and ¦key-triangle¦R¦¦.
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 

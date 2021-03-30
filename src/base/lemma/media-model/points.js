@@ -44,7 +44,12 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
-        pt.medpos = ssF.mod2inn( pt.pos );
+
+        //if points are flagged as 'unscalable', then
+        //they are immune to scaling when user scales diagram with mouse
+        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos ) :
+                                              ssF.mod2inn( pt.pos );
+
         var dressed = ownProp.call( pt, 'pointIsAlreadyDressed' );
         if( !dressed ) {
             ////long, initial version of pos2pointy
@@ -204,6 +209,10 @@
                     ( 'pos', [ wp[0], wp[1] ]  )
                     ( 'undisplay', undisplay  )
                     ;
+
+                if( haz( rg[pname], 'unscalable' ) ) {
+                    rgXX().unscalable = rg[pname].unscalable;
+                }
                 pos2pointy(
                     fakeName,
                     {

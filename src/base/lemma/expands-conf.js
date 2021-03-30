@@ -246,6 +246,10 @@
                     rgX.initialR = op.initialR;
                 }
                 rgX.doPaintPname = doPaintPname;
+
+                if( has( op, 'unscalable' ) ) {
+                    rgX.unscalable = op.unscalable;
+                }
                 // \\// todm: automate property transfer
 
 

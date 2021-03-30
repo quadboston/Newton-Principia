@@ -20,8 +20,9 @@
 
     function builds_homePane()
     {
-        var coreText = '';
         var landingPath = window.location.pathname;
+        var subsiteImg  = fconf.pathToContentSiteImg;
+        var coreText    = '';
 
         //==================================================
         // //\\ header
@@ -36,7 +37,8 @@
                     -->
                 </div>
             </div>
-            <img class="newton-img" src="${fconf.pathToStem}images/${fconf.appDecor.landingImage}">
+            <img class="newton-img"
+                 src="${subsiteImg}/${fconf.appDecor.landingImage}">
         `);
         //==================================================
         // \\// header
@@ -87,35 +89,36 @@
         //==================================================
         // //\\ how-to
         //==================================================
-        //former image: switch.svg before aspect-menu-buttons.png
-        //              <img src="${fconf.pathToStem}images/resize.svg">
-        //                             src="${fconf.pathToStem}images/aspect-menu-buttons.png">
-        //                        <img style="width:55%" src="${fconf.pathToStem}images/magnify.png">
         coreText = `
             <div class="hp-section-wrap">
                 <h2>Usage Guide</h2>
                 <div class=" how-to-grid">
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
-                        <img style="width:35%; border:1px solid #555555; border-radius:6px;"
-                             src="${fconf.pathToStem}images/empty.png">
+                        <img style="width:150px; height:150px;"
+                             src="${subsiteImg}/menu-buttons.mkv.gif">
                     </div>
-                    <h4>Interpreted</h4>
-                    <p>Read Newton’s or other comments or add your own.</p>
+
+                    <h4>Text</h4>
+                    <p>Click on the tab corresponding to the text you want to view.</p>
                 </div><!--END cell-->
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
-                        <img src="${fconf.pathToStem}images/model.svg">
+                        <img style="width:221px; height:150px;"
+                             src="${subsiteImg}/draggable-model.mkv.gif">
                     </div>
-                    <h4>Interactable</h4>
-                    <p>Interact and modify the model to see the theory in practice.</p>
+                    <h4>Model</h4>
+                    <p>Drag sliders and hollow points to interact with the mode.</p>
                 </div><!--END cell-->
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
-                        <img style="width:55%" src="${fconf.pathToStem}images/empty.png">
+                            <!-- apparently flex allows both % and px here for this image -->
+                            <img style="width:260px; height:150px;"
+                             src="${subsiteImg}/text-model2.mkv.gif">
                     </div>
-                    <h4>Focusable</h4>
-                    <p>Resize, zoom, move, focus on diagram areas. </p>
+                    <h4>Text-Model Interaction</h4>
+                    <p>Hover over colored text to easily find the corresponding
+                       item in the model.</p>
                 </div><!--END cell-->
                 </div>
             </div>

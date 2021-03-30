@@ -63,6 +63,8 @@ from 5302 Dec14, 2020 to Jan13, 2021, ver 5802
     no-convergence-in-interval-800-2500-bases.mp4
 6439 graphs annotations are added -educational-graphs-added
 
-
+6660 engine/content-site relation is more flexible
+        images separated to engine and content,
+        zoom by mouse wheel added
 
 

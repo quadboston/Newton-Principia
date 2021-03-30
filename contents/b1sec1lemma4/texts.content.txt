@@ -266,7 +266,7 @@ The graph shows γl/r for each individually colored pair of bars with asymptote 
 *..*
 
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a></b><br><br>
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a></b><br><br>
 
 The area element depends on vector product,
 <b>i</b>*<b>j</b>,

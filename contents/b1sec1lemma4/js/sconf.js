@@ -323,6 +323,7 @@
                 sliderNStart,
                 sliderNEnd,
                 displayAlways : true,
+                unscalable  : true,
             },
 
             sliderNStart : {
@@ -330,6 +331,7 @@
                 pos         : sliderNStart,
                 pcolor      : hidden,
                 undisplayAlways : true,
+                unscalable  : true,
             },
 
             sliderNEnd : {
@@ -337,6 +339,7 @@
                 pos         : sliderNEnd,
                 pcolor      : hidden,
                 undisplayAlways : true,
+                unscalable  : true,
             },
             //---------------------------------------
             // \\// slider

@@ -139,7 +139,7 @@ But perhaps as lack of nails made Kizhi stronger, the lack of numbers made Princ
 
 <br><br><br><br>
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">Calculus-framework</a>:</b><br>
+<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a>:</b><br>
 <br>
 Taking radius ¦Ar¦¦ = 1 and applying Lemma 6 method we have
 

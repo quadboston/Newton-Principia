@@ -10,7 +10,6 @@
         setModule,
         ssFExportList : { scaleValue2app },
     });
-
     var pointies2line;
     return;
 
@@ -45,8 +44,8 @@
             magnit,
             sliderCaption   : 'scale',
             cssClsKey       : ' ' + magnit,
-            max_magnit      : 3,
-            min_magnit      : 0.3,
+            max_magnit      : 100,
+            min_magnit      : 0.2,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
         });
@@ -57,8 +56,10 @@
         // //\\ todm: fullLength patch,
         //            to fit CB in window
         //            todm: what is "CB"? why do we have "fullLength" here?
-        var fullLength = 1;
-        magnit_api.value = newValue * fullLength;
+        //var fullLength = 1;
+        //magnit_api.value = newValue * fullLength;
+
+        magnit_api.value = newValue;
         scaleValue2app( magnit_api.value );
         // \\// todm: fullLength patch
     }

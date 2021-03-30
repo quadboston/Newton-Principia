@@ -3,6 +3,7 @@
         ns, sn, haz,
         sconf,
         fconf,
+        fmethods,
         ssF,
         sapp, sDomN, sDomF,
         d8d_p,
@@ -38,6 +39,9 @@
         if( sconf.enableTools ) {
             stdMod.createSliderPlaceholder_media_scale();
             stdMod.createSliderPlaceholder_thickness();
+            fmethods.attachWeelToDomEl(
+                stdMod.mmedia$,
+            );
         }
 
         //must be loop via stdMods: not only for this single-common

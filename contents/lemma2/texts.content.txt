@@ -70,7 +70,7 @@
 *::*claim|hypertext
 {
   "default" : "1",
-  "menuCaption" : "Lite",
+  "menuCaption" : "Elucidation",
   "video" :
   {
     "annotation" : "Video Help on Claim",

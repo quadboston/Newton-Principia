@@ -1,17 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-    //*****************************************************
-    //zips up all except git files
-    //development helper: not a part of deployer
-    //advances NNNN.version
-    //for intermediate backup between git commits
-    //
-    //dependency: PHP
-    //*****************************************************
-
-
-
     //=====================================================
     // //\\ makes helpers
     //=====================================================
@@ -26,14 +15,14 @@
             exit;
         } else {
             //.uncomment for verbose output
-            //echo "$command";
+            echo "$command";
 
           	if( $do_print_output ) {
                 echo "output=";
                 print_r( $res );
             }
             //.uncomment for verbose output
-            //echo "\n";
+            echo "\n";
 
             if( $get_output ) {
                 return $res;
@@ -164,6 +153,9 @@
     {
         exit( 'invalid version "' . $matches[1] . "\"\n" );
     }
+
+    /*
+    //no need to update version, it should be the same as master pack.
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
     $versionPattern = "\n    fapp.version =  $next_version; //application version";
@@ -173,6 +165,7 @@
             $js_text
     );
     //echo $new_content;
+    */
     //=====================================================
     // \\// gets version
     //=====================================================
@@ -212,30 +205,34 @@
     //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 
     //=====================================================
-    // //\\ zips up
+    // //\\ creates prod folder and populates it
     //=====================================================
     chdir( '..' );
+
     $name_of_copy = "$version-$folder_to_zip$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
+
+    cli( "rm -rf $name_of_copy", "removing former copy is exists" );
     cli( "mkdir $name_of_copy", "creating placeholder" );
 
-    cli( "cp -R $folder_to_zip/src $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/deploy $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/images $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/index-$subProjectSource.src.html $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/version.js $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/LICENSE $name_of_copy", "cloning.." );
+    cli( "mv $folder_to_zip/index.prod.html $name_of_copy", "cloning.." );
+    cli( "cp $folder_to_zip/sites/$subProjectSource/favicon.ico $name_of_copy", "cloning.." );
+    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning.." );
+    cli( "mv $folder_to_zip/prod $name_of_copy", "cloning.." );
     cli( "mkdir $name_of_copy/sites", "creating placeholder" );
-    cli( "cp -R $folder_to_zip/sites/$subProjectSource $name_of_copy/sites", "cloning.." );
+    cli( "mkdir $name_of_copy/sites/$subProjectSource", "creating placeholder" );
+    cli( "cp -R $folder_to_zip/sites/$subProjectSource/contents $name_of_copy/sites/$subProjectSource", "cloning.." );
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
-    //.excludes .git from zip
-    $command .= ' -x *.git* ';
+
+    //already excluded,
+    //excludes .git from zip,
+    //$command .= ' -x *.git* ';
 
     cli( $command, 'zipping up the copy' );
-    cli( "rm -rf $name_of_copy", "removing zippee copy" );
+    //cli( "rm -rf $name_of_copy", "removing zippee copy" );
     //=====================================================
-    // \\// zips up
+    // \\// creates prod folder and populates it
     //=====================================================
 
 
@@ -247,10 +244,12 @@
     // //\\ updates version-container file
     //=====================================================
     chdir( $folder_to_zip );
+    /*
     $success = file_put_contents( $path_to_version_file, $new_content );
     if( $success === FALSE ) {
         exit( "\n\nerror updating version-container file '$path_to_version_file'\n\n" );
     }
+    */
     //=====================================================
     // \\// updates version-container file
     //=====================================================
@@ -261,8 +260,8 @@
     // //\\ waits for user attention
     //=====================================================
     printf( "\nversion $version of $zippee_full_path\nzipped\n" );
-    printf( "new version = $next_version\n" );
-    $w = readline( '... bye ... press any key to leave the task ... ' );
+    //printf( "new version = $next_version\n" );
+    $w = readline( 'bye ... press key ...' );
     //echo "OK\n";
     //=====================================================
     // \\// waits for user attention

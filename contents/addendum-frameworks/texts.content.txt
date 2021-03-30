@@ -6,54 +6,37 @@
 *..*
 
 <br>
-Axiomatic frameworks
+Axiomatic frameworks used in Addendum
 <br><br>
 
 <a name="Eframework"></a>
-<b>"Euclid Framework".</b> Geometry and Ratios in "Euclid's Elements".
-Rational numbers are build partially. Real numbers are not built explicitly and used in limited capability in form of ratios.
-
-Apparently, existence of ratio limits and Calculus rely on Geometrical intuition.
+<b>"Euclid Framework".</b> Geometry and
+<a href="?conf=sappId=addendum-preliminaries">
+Ratios
+</a>
+in "Euclid's Elements". Logical gaps in Ratios theory were filled by Dedekind 200 years after Newton by building numerical system of Real numbers which "embeds" Ratios.
 <br><br>
 
-Logical foundation is: Geometry and Ratios --&gt; Calculus --&gt; Physics
+Like in Euclid and in Newton time, properties of Ratios are inferred and applied from and to Geometrical models and suggested to other phenomenas like time or forces. Calculus and existence of ratio limits do rely on Geometrical intuition.
 <br><br>
 
-Magnitudes are not necessary numbers. In application to Phisics, we don't know what they are and don't make the dogma that they are numbers. They participate in relationship which is called "ratio".
-<br><br>
-F=ma is a heresy because m and a are ratios and multiplication is not defined for them,
-geometirical reasoning as "area of m*a" called into help and, most important, m and a
-have different nature and cannot be multiplied anyway.
-<br><br>
+Logical sequence of theory: Axioums of Geometry and Ratios --&gt; Calculus --&gt;
+Physics --&gt; Magnitudes ratios --&gt; mathematical reasoning
+<br><br><br>
+
+
 
 
 <a name="Cframework"></a>
-<b>"Calculus Framework"</b> which is build in XIX-XX centuries.
-Logical foundation is: Axioms of set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; Calculus --&gt; Functional Analysysis --&gt; ... --&gt; Physics
+<b>"CalculusXX"</b> Calculus which is built in XIX-XX centuries.
 <br><br>
 
-In particular, limits defined in Bolzano-Weierstrass</b> epsion-delta language (first part of XIX century).
-<br><br>
-
-Magnitudes are measured as numbers. In Physics, we apply a dogma that everything can be represented with real numbers or their functions.
-<br><br>
-
-In Physics, we assume that some kinds of magnitudes have a unit in respect to which every
-specie of the kind can be measured. Like time in time units, charge in charge units.
-<br><br>
-
-
-Ref: <br><br>
-<a href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">https://en.wikipedia.org/wiki/Euclid%27s_Elements</a>
-<br><br>
-<a href="http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf">http://farside.ph.utexas.edu/Books/Euclid/Elements.pdf</a>
-
-
-
+Logical sequence of theory: Axioms of Set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; the rest, Calculus, Functional Analysysis, ... --&gt; Physics --&gt;
+Magnitude ratios interpreted directly as real numbers as iniversal dogm
+--&gt; mathematical reasoning
 
 <br><br>
 <div book-reference-id="kvk"></div>
-
 
 
 

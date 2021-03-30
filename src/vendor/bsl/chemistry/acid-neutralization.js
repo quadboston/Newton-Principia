@@ -6,7 +6,8 @@
     nsmethods.calculates_virtualReactantNeutralizationEvolution =
               calculates_virtualReactantNeutralizationEvolution;
 
-    var ZERO_PROTECTOR = 1e-100;
+    //var ZERO_PROTECTOR = 1e-100;
+    var ZERO_PROTECTOR = 1e-140;
     return;
 
 
@@ -37,6 +38,12 @@
 
         var Xmin        = W/a/RANGE_SAFETY_INCREASE;
         var Xmax        = a * RANGE_SAFETY_INCREASE;
+                              /*
+                              * 10000000    //adding this big constant
+                                            //solves the gap for H2SO4
+                                            //near x = Xmax
+                              */
+                          ;
         var lXmin       = Math.log10( Xmin );
         var lXmax       = Math.log10( Xmax );
         var evolStep    = ( lXmax - lXmin ) / CALCULATION_STEPS;
@@ -76,10 +83,10 @@
             if( bq < 0 ) {
                 ////unclarified place in algo
                 if( evolution.length && evolution.length < 3 ) {
-                    ccc( '**** non-inversible function? st=' + eIx + ' aq ' + 
-                         'acidEv.aq.toFixed(5) ' + ' < d=' +
+                    ccc( '**** non-inversible function? st=' + eIx + ' aq=' + 
+                         acidEv.aq.toFixed(5) + ' < (x-y)=' +
                          delta.toFixed(5) +
-                         '=(x-y)=' + x.toFixed(5) + '-' + y.toFixed(5) +
+                         '=' + x.toFixed(5) + '-' + y.toFixed(5) +
                          ' bq = ' + bq
                     );
                 }
@@ -152,7 +159,7 @@
             evolution,
             initialY,
         };
-        //ccc( ret );
+        //ccc( ret.evolution );
         return ret;
     }
 
@@ -164,7 +171,6 @@
         x,      //hydrogen iones given concentration,
         A,      //reactantDissociationConstants, //[]
         a,      //reactant moles, imagine acid
-        n,      //"valency, proticy"
     }){
         var n           = A.length;
         var a0_2_ai     = 1;
