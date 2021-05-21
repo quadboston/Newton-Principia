@@ -70,7 +70,7 @@
             exit( 'file ' . $path_to_dir . " does not exist\n" );
         }
         ////narrow zipping down the site/subProject
-        $subProjectSource = $argv[2];
+        $siteid = $argv[2];
     }
     //=====================================================
     // \\// does gets zippee name from cmd
@@ -83,16 +83,14 @@
     //=====================================================
     // //\\ validates path to zippee
     //=====================================================
-    $parsed = parse_re( '#^(([^/]+/)*)([^/]+)$#', $path_to_dir );
+    $parsed = parse_re( '#^(|/)(([^/]+/)*)([^/]+)$#', $path_to_dir );
     //print_r( $parsed );
     if( !$parsed )
     {
-        exit( "\nproblems with path to target folder:\npath=$path_to_dir\n" );
+        exit( "\nproblems with target folder, path to it=\n$path_to_dir\n" );
     }
-    //$path_to_parent = $parsed[ 1 ];
-    $folder_to_zip = $parsed[ 3 ];
-    //print_r( "path_to_parent = $path_to_parent\n" );
-    //print_r( "folder_to_zip = $folder_to_zip\n" );
+    $folder_to_zip = $parsed[ 4 ];
+    print_r( "zipping folder\n$folder_to_zip\n" );
     //=====================================================
     // \\// validates path to zippee
     //=====================================================
@@ -105,21 +103,19 @@
 
 
 
-
-    //=====================================================
-    // //\\ goes to zippee
-    //=====================================================
-    //$path_to_dir = '../../../ssfafasf';
-
+    //***********************************************************
+    // //\\ goes inside zippee
+    //      not necessarily insed the site
+    //***********************************************************
     $ww = chdir( $path_to_dir );
     if( $ww === FALSE ) {
         exit( "\nCannot change directory to " . $path_to_dir . " ... Job aborted.\n" );
     }
     $zippee_full_path = exec( 'pwd' );
     //printf( "\ncurrent dir = $zippee_full_path\n" );
-    //=====================================================
-    // \\// goes to zippee
-    //=====================================================
+    //***********************************************************
+    // \\// goes inside zippee
+    //***********************************************************
 
 
 
@@ -214,8 +210,12 @@
     //=====================================================
     // //\\ zips up
     //=====================================================
-    chdir( '..' );
-    $name_of_copy = "$version-$folder_to_zip$archive_postfix";
+
+    //***********************************************************
+    chdir( '..' ); //goes one level above the target=zippee
+    //***********************************************************
+
+    $name_of_copy = "$version-$siteid-src$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
     cli( "mkdir $name_of_copy", "creating placeholder" );
 
@@ -225,7 +225,7 @@
     cli( "cp -R $folder_to_zip/version.js $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/LICENSE $name_of_copy", "cloning.." );
     cli( "mkdir $name_of_copy/sites", "creating placeholder" );
-    cli( "cp -R $folder_to_zip/sites/$subProjectSource $name_of_copy/sites", "cloning.." );
+    cli( "cp -R $folder_to_zip/sites/$siteid $name_of_copy/sites", "cloning.." );
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
     //.excludes .git from zip
@@ -259,12 +259,12 @@
     //=====================================================
     // //\\ waits for user attention
     //=====================================================
-    printf( "\nsite = $zippee_full_path" );
+    printf( "\nsite\n$zippee_full_path" );
     printf( "\nzipped ver. = $version" );
     printf( "\nnew    ver. = $next_version\n" );
 
-    $w = readline( 'bye ... press key ' );
-    //echo "OK\n";
+    $w = readline( 'done, press key ' );
+    echo "n";
     //=====================================================
     // \\// waits for user attention
     //=====================================================

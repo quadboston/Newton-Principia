@@ -42,6 +42,11 @@
             //  spinner((update_decPoint_default))
             handle2dragsurf_pos,
 
+            dontStopDownAfteshocks,
+            dontStopMoveAfteshocks,
+            dontStopEndAfteshocks,
+            attachee,
+            doGiveClickEvent,
     }) {
 
         var DRAGGEE_HALF_SIZE = 40;
@@ -54,11 +59,16 @@
         var selectedElement_flag;
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
-        ns.d8d({
+        var { givenClickEvent } = ns.d8d({
             surface : dragSurface,
             d8d_cb_middle2lowest : d8d_cb_middle2lowest, //common handler
 
             frameworkId,
+            dontStopDownAfteshocks,
+            dontStopMoveAfteshocks,
+            dontStopEndAfteshocks,
+            attachee,
+            doGiveClickEvent,
         });
 
         var createdFramework = 
@@ -66,9 +76,10 @@
             frameworkId,
             dragSurface,
             decPoint_parentClasses,
+            givenClickEvent,
         };
         createdFrameworks.push( createdFramework );
-        return { pointWrap_2_dragWrap, updateAllDecPoints, };
+        return { pointWrap_2_dragWrap, updateAllDecPoints, givenClickEvent };
 
 
 
@@ -233,7 +244,13 @@
                 //logical bonus: pointWrap may be missed in
                 //doProcess closure ...
                 arg.pointWrap = pointWrap; 
-                doProcess( arg );
+                var appFeedback = doProcess( arg );
+                if( 'do disappear d8d' === appFeedback ) {
+                    selectedElement_flag = null;
+                    //ccc( 'doProcessWrap: appFeedback=', appFeedback );
+                    return appFeedback;
+                }
+                //ccc( 'doProcessWrap: allowed' );
                 update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
                 if( arg.down_move_up === 'up' ) {
                     ////this cleans up drag and drop lifecycle
@@ -327,14 +344,14 @@
                     //todM: let it to return !!'forbid drag'
                     //      which will add a "sugar" "just-a-clcik" and
                     //      even click behind screening surface
-                    selectedElement_flag.doProcessWrap({
+                    var appFeedback = selectedElement_flag.doProcessWrap({
                         down_move_up    : down_move_up,
                         surfMove        : surfMove,
                         moveIncrement   : 0,
                         dragWrap        : selectedElement_flag,
                         point_on_dragSurf,
                     });
-
+                    return appFeedback === 'do disappear d8d';
                 break;
                 case 'move': 
                 case 'up':
@@ -399,7 +416,10 @@
 
                 //.td is a "rect-metric" for distance between
                 //.point_on_dragSurf and drag-point-candidate
-                if( td <= distLim ) {
+                if(
+                    td <= distLim ||
+                    distLim < 0 //finds the first existing dragWrap
+                ) {
                     if( !closestDragWrap || closestTd > td ||
                         (pointWrap.dragPriority || 0 ) > closestDragPriority ) {
                         closestDragWrap = dragWrap;

@@ -36,11 +36,20 @@
         var B = [323, 156];
 
         var D = [474, originY_onPicture];
+        var Dleft = [A[0] -0.3*(D[0]-A[0]), originY_onPicture];
         var d = [778, originY_onPicture];
         var b = [514, 254];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
         var ytop = [-151, 50];
+
+        // //\\ lemma 7
+        //fixes direction of line BE as constant
+        //can be any number from -oo to +oo
+        sconf.BXBE_per_BY = 0.5;
+        //todm ... bug: when decreasing then ratio begins worse:
+        sconf.NON_ZERO_A_PREVENTOR = 0.01;
+        // \\// lemma 7
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -63,6 +72,7 @@
 
             //:given
             "curve-AB"      : given,
+            "left-curve-AB" : given, //patch for left branch
             "arc-AB"        : given,
 
             //proof
@@ -73,6 +83,8 @@
             "phi0"          : given,
             "deltaphi"      : given,
             "tangentPhi"    : result,
+            'angleBAD'      : given,
+            'conterminousRatio' : proof,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -104,6 +116,7 @@
                 letterAngle     : 130,
                 caption         : 'axis x',
                 letterRotRadius : 40,
+                //pcolor : given,
             },
             "xlow" : {
                 letterAngle : 90,
@@ -126,7 +139,7 @@
             },
 
             "y0" : {
-                caption     : 'yo',
+                caption     : 'yₒ',
                 letterAngle : 225,
                 pcolor      : given,
             },
@@ -144,7 +157,7 @@
             },
             //Bx
             x0 : {
-                caption     : 'x0',
+                caption     : 'xₒ',
                 letterAngle : 135,
                 pcolor      : given,
             },
@@ -152,7 +165,7 @@
             // //\\ magnified points
             'Y0' : {
                 pos             : A,
-                caption         : 'Yo',
+                caption         : 'Yₒ',
                 letterAngle     : 210,
                 letterRotRadius : 50,
                 pcolor          : proof,
@@ -166,7 +179,7 @@
             },
             //AX0
             'X0' : {
-                caption         : 'Xo',
+                caption         : 'Xₒ',
                 letterAngle     : -90,
                 pcolor          : proof,
             },
@@ -203,6 +216,11 @@
             },
             D : {
                 pos: D,
+                letterAngle : 90,
+                pcolor      : given,
+            },
+            Dleft : {
+                pos: Dleft,
                 letterAngle : 90,
                 pcolor      : given,
             },
@@ -275,6 +293,7 @@
             { 'BF' : { pcolor : given } },
             { 'AF' : { pcolor : given } },
             { 'AG' : { pcolor : given } },
+            { 'AE' : { pcolor : given } },
             { 'BG' : { pcolor : given } },
             { 'be' : { pcolor : proof } },
 
@@ -324,6 +343,7 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
+            { 'A,Dleft' : { pcolor : given } },
         ]
 
         //----------------------------------
@@ -331,6 +351,17 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
+
+        var minusX1 = 148 - originX_onPicture;
+        var minusX2 = 161 - originX_onPicture;
+        var minusX3 = 202 - originX_onPicture;
+        var minusX4 = 259 - originX_onPicture;
+        var minusX5 = 305 - originX_onPicture;
+        var minusX6 = B[0] - originX_onPicture;
+        var minusX7 = 353 - originX_onPicture;
+        var minusX8 = 360.5 - originX_onPicture;
+
+
         var givenCurve_pivots =
         [
             //extending the curve to the left is quite a work bs

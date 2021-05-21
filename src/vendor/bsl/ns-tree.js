@@ -7,7 +7,9 @@
     var $$          = ns.$$;
     var sn          = ns.sn;
     var cssp        = ns.CSS_PREFIX;
+    var nsheap      = sn('heap');
     var nsmethods   = sn('methods');
+    var plugins     = sn('plugins');
     var html        = sn('html');
     var bezier      = sn('bezier');
     var mat         = sn('mat');
@@ -27,6 +29,7 @@
         var ret =
         {
             ns,
+            nsd : ns.d,
 
             //:frequent functions
             sn,
@@ -37,6 +40,7 @@
             has         : ns.h,
             haf         : ns.haf,
             haff        : ns.haff,
+            hafb        : ns.hafb,
             han         : ns.han,
             globalCss   : ns.globalCss,
             url2conf    : ns.url2conf,
@@ -47,6 +51,7 @@
             svgNS       : ns.svgNS,
 
             cssp,
+            nsheap,
             nsmethods,
             html,
             bezier,
@@ -55,6 +60,7 @@
             sv,
             nssvg,
             d8d_p,
+            plugins,
         };
         return ret;
     }

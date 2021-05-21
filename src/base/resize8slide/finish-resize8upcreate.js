@@ -1,39 +1,46 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-    var cssmods     = sn('cssModules');
-    var rootvm      = sn('rootvm');
-
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var wrkwin      = sn('wrkwin',ssD); //work window
-    var dividorFractions = sn('dividorFractions', wrkwin, []);
-    var d8d_p       = sn('d8d-point');
+    var {
+        ns,
+        $$,
+        fmethods,
+        haff,
+        haz,
+        nspaste,
+        fconf,
+        sconf,
+        amode,
+        ssD,
+        sDomN,
+        studyMods,
+        wrkwin,
+        dividorFractions,
+    } = window.b$l.apptree({
+    });
 
 
     //:spatial adjustments
-    var VERTICAL_SAFE_HEIGHT_1 = 20;
-    var VERTICAL_SAFE_HEIGHT_2 = 20;
-    var HORIZONTAL_SAFE_WIDTH = 30; //=spare space for possible scroll bars or misfits ...
-    var ESS_MIN_WIDTH = 370;
-    var MODEL_MIN_WIDTH = 300; //when dragging
-    var LEGEND_MIN_HOR_MARGIN = 15;
-
+    var VERTICAL_SAFE_HEIGHT_1  = 20;
+    var VERTICAL_SAFE_HEIGHT_2  = 20;
+    var HORIZONTAL_SAFE_WIDTH   = 30; //=spare space for possible scroll bars or misfits ...
+    var ESS_MIN_WIDTH           = 370;
+    var MODEL_MIN_WIDTH         = 300; //when dragging
+    var LEGEND_MIN_HOR_MARGIN   = 15;
 
     wrkwin.finish_Media8Ess8Legend_resize__upcreate =
            finish_Media8Ess8Legend_resize__upcreate;
+
+
+    /// chain-dispatches callback "resizeHappened"
+    ( function() {
+        var hazR = haz( fmethods, 'resizeHappened' );
+        fmethods.resizeHappened  = hazR ?
+                ({ mediaWidth, mediaAspectRatio, }) => {
+                    hazR({ mediaWidth, mediaAspectRatio, }); 
+                }
+            :
+                ()=>{}
+            ;
+    })();
     return;
 
 
@@ -80,13 +87,13 @@
                 bgImgAsp,
                 filler$,
             });
-            ns.haff( stdMod, 'model8media_upcreate' );
+            haff( stdMod, 'model8media_upcreate' );
             return;
         }
 
 
         //========================================
-        // //\\ detects parameters
+        // //\\ phase 1. detects parameters
         //========================================
         //todm use? clientWidth ...without scrollbar: javascript.info)
         var winW        = window.innerWidth - HORIZONTAL_SAFE_WIDTH;
@@ -99,7 +106,7 @@
         ///-------------------------------------------
         var sliderGroupH = 0;
         if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
-            var sliderGroup$ = ns.$$.q( '.slider-group' );
+            var sliderGroup$ = $$.q( '.slider-group' );
             var sliderGroupH = sliderGroup$() ? sliderGroup$.box().height : 0;
         }
 
@@ -141,14 +148,14 @@
         // \\// calculates legend
         //-------------------------------------------
         //========================================
-        // \\// detects parameters
+        // \\// phase 1. detects parameters
         //========================================
 
 
 
-        //=============================
-        // //\\ calculates new values
-        //=============================
+        //========================================
+        // //\\ phase 2. calculates new values
+        //========================================
         //// here we distribute the widths
         if( !draggerMove && draggerMove !== 0 ) {
             var frac = dividorFractions;
@@ -168,20 +175,31 @@
         ////here we try to fullfill this requirement
         var essayWidth = Math.max( ESS_MIN_WIDTH, winW - proposed_rightW );
         proposed_rightW = winW - essayWidth;
+        //========================================
+        // \\// phase 2. calculates new values
+        //========================================
+
+
+        //==========================================================
+        // //\\ phase 3. synchs results with dividor-slider states
+        //==========================================================
         dividorFractions[0] = essayWidth/winW;
         dividorFractions[1] = (winW-essayWidth)/winW;
-        //===============================================
-        // //\\ synchs results with dividor-slider states
-        //===============================================
         if( doDividorSynch ) {
-            wrkwin.dividor.achieved.achieved = ns.paste( [], dividorFractions )
+            wrkwin.dividor.achieved.achieved = nspaste( [], dividorFractions )
             fmethods.panesD8D.updateAllDecPoints();
         }
-        //===============================================
-        // \\// synchs results with dividor-slider states
-        //===============================================
+        //==========================================================
+        // \\// phase 3. synchs results with dividor-slider states
+        //==========================================================
 
 
+
+
+
+        //===============================================
+        // //\\ phase 4. allocates widths and heights
+        //===============================================
         ////we have enough width for both: essay and media
         //var essayWidth
         //proposed_rightW
@@ -197,7 +215,7 @@
             sconf.main_horizontal_dividor_width_px < proposed_rightW
         ) {
             ////wide screen
-            var wideScreen      = true;
+            var wideScreen_flag      = true;
             medSupW             = proposed_rightW - consideredLegendWidth;
             //now we calculate H-restriction again
             var medW            = medSupW - sconf.main_horizontal_dividor_width_px-10;
@@ -211,7 +229,10 @@
         } else {
             ////narrow screen
             var medAddonright = 0;
-            var wideScreen = false;
+            var wideScreen_flag = false;
+
+            //apparently, this is a final media-height which is synch with
+            //medH_L and mediaAspectRatio,
             var medW_H = medH_L / mediaAspectRatio;
             //-------------------------------------------------
             //does set media width
@@ -233,8 +254,39 @@
                 ) ) / 2 );
             //ccc( 'narrow screen: legendMargin =' + legendMargin );
         }
+        //===============================================
+        // \\// phase 4. allocates widths and heights
+        //===============================================
 
+
+
+
+        //===============================================
+        // //\\ phase 5. finalizes widths and heights
+        //===============================================
         margin_2_svg_Inner8OuterSpatials({ mediaMargin, medW, medAddonright });
+
+        //--------------------------------------------------------------------
+        // //\\ for additional added elements in media root
+        //--------------------------------------------------------------------
+            //apparently, this is a final media-height which is synch with
+            //medH_L and mediaAspectRatio,
+            //  sDomN.mediaVisibleOuterHeight = medH_L,
+            //  medW_H = medH_L / mediaAspectRatio,
+            //    medW = Math.min( medW_H, medW ) =
+            //          sDomN.mediaOuterWidth = mediaWidth( goes to resize function chain )
+            //  
+        sDomN.mediaVisibleOuterHeight   = medH_L;
+
+        sDomN.mediaOuterWidth           = medW;
+        sDomN.mediaVisibleOuterWidth    = mediaMargin*2 + medW + medAddonright;
+        sDomN.mediaMargin               = mediaMargin;
+        sDomN.medAddonright             = medAddonright;
+        //--------------------------------------------------------------------
+        // \\// for additional added elements in media root
+        //--------------------------------------------------------------------
+
+
         wrkwin.doesBuildNonMobileCss({
             legendMargin,
             mediaMargin,
@@ -244,18 +296,21 @@
             mediaAspectRatio,
             bgImgAsp,
             filler$,
-            wideScreen,
+            wideScreen_flag,
             legendHeight,
         });
-        ns.haff( stdMod, 'model8media_upcreate' );
+        //===============================================
+        // \\// phase 5. finalizes widths and heights
+        //===============================================
+
+        haff( stdMod, 'model8media_upcreate' );
         return medSupW; //in particular, goes to dividor-slider stashed-update
-        //=============================
-        // \\// calculates new values
-        //=============================
     }
     ///=============================================================================
     /// \\// restricts and sets super root and text pane sizes
     ///=============================================================================
+
+
 
     ///=============================================================================
     /// expands media playable area to margins
@@ -265,9 +320,11 @@
     {
         sDomN.mediaLeftMargin   = mediaMargin;
         sDomN.mediaWidth        = medW; // mediaPrimaryWidth
+
         medAddonright           = medAddonright || 0;
         var innerScale          = sconf.innerMediaWidth / medW;
-        var visibleOuterW       = mediaMargin*2 + medW + medAddonright
+        var visibleOuterW       = mediaMargin*2 + medW + medAddonright;
+
         var innMargin           = mediaMargin * innerScale;
         var visibleInnW         = sconf.innerMediaWidth + 2*innMargin +
                                   medAddonright * innerScale;

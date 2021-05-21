@@ -118,6 +118,9 @@
         //*****************************************************
 
         if( has( pt, 'undisplayAlways' ) ){
+            //good but may be corrupts legacy lemmas
+            //pt.undisplay = true; //fixes hiding of letters
+
             pt.svgel$.tgcls( 'undisplay', pt.undisplayAlways );
         } else {
             pt.svgel$.tgcls( 'undisplay',
@@ -232,15 +235,18 @@
         }
 
         if( rgX.doPaintPname && rgX.caption !== '' ) {
-
             var lpos = rgX.medpos.concat([]);
             var lposX = rgX.letterOffsetX + rgX.medpos[0];
             var lposY = rgX.letterOffsetY + rgX.medpos[1];
+
+            var strokeCol   = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
+            var fillCol     = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
+
             rgX.pnameLabelsvg = ns.svg.printText({
                 tpclass         : '',
                 text            : rgX.caption || pname,
-                stroke          : haz( rgX, 'letterColor' ) || rgX.pcolor || 'black',
-                fill            : haz( rgX, 'letterColor' ) || rgX.pcolor || 'black',
+                //stroke          : strokeCol,
+                //fill            : fillCol,
                 "stroke-width"  : 1,
                 svgel           : rgX.pnameLabelsvg,
                 parent          : stdMod.mmedia,
@@ -249,13 +255,32 @@
                 style           : {
                     'font-size' : rgX.fontSize.toFixed() + 'px',
                     'line-height' : '1',
+                    stroke        : strokeCol, //fix
+                    fill          : fillCol,
                 },
             });
             $$.$( rgX.pnameLabelsvg ).tgcls(
-                    'undisplay',
+                'undisplay',
+                rgX.hideCaption ||
+                (
                     !ns.haz( rgX, 'displayAlways' ) &&
                     ( ns.haz( rg, 'allLettersAreHidden' ) || ns.haz( rgX, 'undisplay' ) )
+                )
             );
+
+            /*
+            fails:
+            if( has( rgX, 'hideCaption' ) ) {
+                var undisp = rgX.hideCaption;
+            } else {
+                var undisp =
+                (
+                    !ns.haz( rgX, 'displayAlways' ) &&
+                    ( ns.haz( rg, 'allLettersAreHidden' ) || ns.haz( rgX, 'undisplay' ) )
+                )
+            }
+            */
+
         }
 
     }

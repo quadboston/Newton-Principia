@@ -1,27 +1,18 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-    var cssmods     = sn('cssModules');
-    var rootvm      = sn('rootvm');
-
-    var fapp        = sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var wrkwin      = sn('wrkwin',ssD); //work window
-    var dividorFractions = sn('dividorFractions', wrkwin, []);
-    var d8d_p       = sn('d8d-point');
-
+    var {
+        //nsd, //vital-for-mobile
+        $$,
+        nspaste,
+        cssp,
+        fapp,
+        fmethods,
+        fconf,
+        sDomN,
+        wrkwin,
+        dividorFractions,
+        d8d_p,
+    } = window.b$l.apptree({
+    });
     wrkwin.createDividorResizer = createDividorResizer;
     return;
 
@@ -34,11 +25,12 @@
 
     //=========================================================
     /// creates DividorResizer
+    /// called in lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot
     //=========================================================
     function createDividorResizer()
     {
         var ww = fconf.ESSAY_FRACTION_IN_WORKPANE;
-        ns.paste( dividorFractions,[ ww, 1-ww ] );
+        nspaste( dividorFractions,[ ww, 1-ww ] );
         wrkwin.dividor = {};
 
         //---------------------------
@@ -68,9 +60,9 @@
         //.........................................
         // creates lower-layer framework
         //.........................................
-        var frameworkD8D = fmethods.panesD8D = d8d_p.createFramework({
+        var D8D_fw = fmethods.panesD8D = d8d_p.createFramework({
             dragSurface : fapp.fappRoot$(),
-            //todo : do this:
+            //todM : do this:
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
         });
 
@@ -80,7 +72,7 @@
         ///============================================================
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
-        frameworkD8D.pointWrap_2_dragWrap({
+        D8D_fw.pointWrap_2_dragWrap({
             pointWrap           : wrkwin.dividor,
             update_decPoint     : 'update_decPoint_default',
             doProcess           : doProcess,
@@ -102,11 +94,11 @@
         {
             switch( arg.down_move_up ) {
                 case 'down':
-                    wrkwin.dividor.achieved.achieved = ns.paste( [], dividorFractions );
+                    wrkwin.dividor.achieved.achieved = nspaste( [], dividorFractions );
                     break;
                 case 'move':
                     //vital-for-mobile
-                    //ns.d('mv: res and sl');
+                    //nsd('mv: res and sl');
                     wrkwin.finish_Media8Ess8Legend_resize__upcreate( arg.surfMove[0] );
                     break;
             }

@@ -269,6 +269,7 @@
                 //----------------------------------------------------------
                 // //\\ sets up point letters
                 //----------------------------------------------------------
+                rgX.hideCaption     = haz( op, 'hideCaption' );
                 var letterOffset    = estimatesSizeScale * ( ns.h( op, 'letterRotRadius' ) ?
                                       op.letterRotRadius : LETTER_ROTATION_RADIUS_PER_1000 );
                 var fontSize        = estimatesSizeScale * ( ns.h( op, 'fontSize' ) ?

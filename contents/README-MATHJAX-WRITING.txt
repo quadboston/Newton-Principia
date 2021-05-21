@@ -1,3 +1,39 @@
+--------------------------------------------
+//\\ useful tokens:
+--------------------------------------------
+    αβγδεζηθικλμνξοπρςστυφχψω
+    ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
+    ‹ › ⩽ ⩾ ≂ ≃ ≄ 
+    ←↑→↓↔↕↖↗↘↙ ↚ ↛ 	↜ 	↝  ↞
+    ⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚ ⇛
+
+    ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	⋂ ⋃ ⊂ ⊃ ⊄	⊅
+    ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
+    ∎ ▲ ⏶
+    ∫ 
+    ∴
+        https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
+    ℝ ℚ⁺ ℝ⁺ 𝕀
+        https://en.wikipedia.org/wiki/Blackboard_bold
+
+    x⁰ 	xⁱ 	x⁴ 	x⁵ 	x⁶ 	x⁷ 	x⁸ 	x⁹ 	x⁺ 	x⁻ 	x⁼
+ 	x⁽ 	x⁾ 	xⁿ 
+    x₀ 	x₁ 	x₂ 	x₃ 	x₄ 	x₅ 	x₆ 	x₇ 	x₈ 	x₉ 	x₊
+    x₊ 	x₋ 	x₌ 	x₍ 	x₎
+    xₐ 	xₑ 	xₒ 	xₓ 	xₔ 	xₕ 	xₖ 	xₗ 	xₘ 	xₙ 	xₚ 	xₛ 	xₜ
+
+    xᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ   ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ 
+    Xᴬ ᴮ C ᴰ ᴱ F ᴳ ᴴ ᴵ ᴶ ᴷ ᴸ ᴹ ᴺ ᴼ ᴾ Q ᴿ S ᵀ ᵁ ⱽ ᵂ X Y Z
+    xₐ ₑ           ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ   ᵣ ₛ ₜ ᵤ ᵥ   ₓ
+
+    Xᵅ ᵝ ᵞ ᵟ ᵋ ᶿ ᶥ ᶲ ᵠ ᵡ ᵦ ᵧ ᵨ ᵩ ᵪ
+
+    \( \; \overset{df} \iff \; \)
+    \( \; \overset{df} = \; \)
+    ∫   \({\int_{0}^{1}} \)
+--------------------------------------------
+\\// useful tokens:
+--------------------------------------------
 
 **************************************************************************************************
 best tutorial and dictionary:
@@ -14,31 +50,27 @@ best tutorial and dictionary:
         \pmb for boldfaced italics
 
 often used:
-    \( \; \overset{df} = \; \)
-    ∫   \({\int_{0}^{1}} \)
 
 UTF Math Symbols, vital codes:
     generic: https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
-    https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
-        ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	∎ ⋂ ⋃ ⊂ ⊃ ⊄	⊅
-        ‹ › ⩽ ⩾ ≂ ≃ ≄ 
-        ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
-        ∫ 
-        ∴
-        ℝ ℚ⁺ ℝ⁺ 𝕀  https://en.wikipedia.org/wiki/Blackboard_bold
 arrows:
     https://en.wikipedia.org/wiki/Arrows_(Unicode_block)
+        ← 	↑ 	→ 	↓ 	↔ 	↕ 	↖ 	↗ 	↘ 	↙ 	↚ 	↛ 	↜ 	↝ 	↞ 	↟
+
     hard to use: http://garsia.math.yorku.ca/MPWP/LATEXmath/node9.html
      ↤ ↦
     ⇐ 	⇑ 	⇒ 	⇓ 	⇔ 	⇕ 	⇖ 	⇗ 	⇘ 	⇙ 	⇚ 	⇛ 	⇜ 	⇝ 	⇞ 	⇟ 
 
+    thick arrows:
+    https://www.compart.com/en/unicode/block/U+1F800
+
 
 UTF subscripts:
     https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts#Superscripts_and_subscripts_block
+    https://stackoverflow.com/questions/17908593/how-to-find-the-unicode-of-the-subscript-alphabet
+    in SVG: https://stackoverflow.com/questions/56996276/add-superscript-and-subscript-exactly-at-the-same-x-axis-in-svg
     x²	x³
-    x₀ 	x₁ 	x₂ 	x₃ 	x₄ 	x₅ 	x₆ 	x₇ 	x₈ 	x₉ 	x₊ 	x₋ 	x₌ 	x₍ 	x₎
-    x⁰ 	xⁱ 	x⁴ 	x⁵ 	x⁶ 	x⁷ 	x⁸ 	x⁹ 	x⁺ 	x⁻ 	x⁼ 	x⁽ 	x⁾ 	xⁿ 
-
+    ....
 
 https://stackoverflow.com/questions/8608847/superscripting-any-letter-number
     in html use as: &#x00B2;
@@ -61,6 +93,10 @@ font:
     https://www.checkmyworking.com/cm-web-fonts/
     Greeks for svg:
         https://sites.psu.edu/symbolcodes/languages/ancient/greek/greekchart/#greekcap
+
+αβγδεζηθικλμνξοπρςστυφχψω
+ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
+
              	α 	&‌#945; 	&‌#x03B1 	&‌alpha;
                 β 	&‌#946; 	&‌#x03B2 	&‌beta;
                 γ 	&‌#947; 	&‌#x03B3 	&‌gamma;
@@ -156,9 +192,6 @@ Dynamic LaTeX, ELM, parsing, Mini Latex Live
 
 http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking
 
-raw codes:
-
-▲, ⏶
 /////////////////////////////////////////////////////////
 
 sibling areas:

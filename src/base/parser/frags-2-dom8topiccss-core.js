@@ -34,6 +34,8 @@
     //var topicsCount = 0; //indexes shapes lemma-wise
 
     var SPACE_reg = /\s+/;
+
+    //todo: these regexes do proliferate in two files
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     var TOP_ANCH_REG = 
         '(¦[^¦]+|)¦' +  //catches tplinkConf
@@ -45,6 +47,8 @@
     //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
     var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
     //.adding flag "g" ruins the job ... why?
+    //.perhaps: "The g flag with match will only return multiple whole matches, not multiple sub-matches"
+    //          https://stackoverflow.com/questions/19913667/javascript-regex-global-match-groups
     var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
     //---------------------------------------------
     // \\// topic engine variables

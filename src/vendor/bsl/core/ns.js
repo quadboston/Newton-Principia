@@ -664,15 +664,30 @@
         if( urlConf ) {
             urlConf = urlConf[1].split(',');
             urlConf.forEach( function( opt ) {
+                //reserved chars: !#$%&'()*+,/:;=?@[]
+                //but no need to escape if char has no reserved purpose
+                //https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters
                 var cc = opt.split('=');
                 if( cc[1] ) {
                     ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
                     cc[1] = cc[1] === "yes" ? true : ( cc[1] === "no" ? false : cc[1] );
+
                 } else {
-                    ////parameter x does not exists after sign "=" in expression p=x
-                    ////this parameter x is ignored
-                    return;
+                    ////*****************************
+                    //// syntax: ...,x~floatValue,...
+                    ////*****************************
+                    var cc = opt.split('~');
+                    if( cc[1] ) {
+                        ////parameter x exists after sign "~" in expression p~x
+                        ////and has float semantic
+                        cc[1] = parseFloat( cc[1] );
+                    } else {
+                        ////parameter x does not exists
+                        ////in expressions p=x or p~x,
+                        ////this parameter x is ignored
+                        return;
+                    }
                 }
                 ns.dots2object( cc[0], cc[1], conf )
                 //conf.urlConf[cc[0]]=cc[1];

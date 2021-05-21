@@ -234,7 +234,16 @@ If functions G and F are defined on arbitraty intervals [r',r''] and [q',q''] an
         ∑(P<sub>g</sub>) / ∑(P<sub>f</sub>)  → γ.
     </div>
 which proves by defining function z as <sub>r'</sub>∫<sup>x</sup> γf(t)dt = <sub>q'</sub>∫<sup>z(x)</sup> g(t)dt.
+<br><br>
 
+
+<a href="contents/b1sec1lemma4/img/uniformity-necessary.jpg" target="_blank">
+Uniformity is a necessary condition in this addendum. Proof sketch.</a>
+<br><br>
+
+<a href="contents/b1sec1lemma4/img/function-zx-in-simple-words.jpg" target="_blank">
+Addendum in simple words</a>
+<br><br>
 
 In this section model, when number of bases n grows, the l/r = left_bar / right_bar ratio converges to given ratio 1/γ.
 The graph shows γl/r for each individually colored pair of bars with asymptote y(n) = 1
@@ -266,7 +275,7 @@ The graph shows γl/r for each individually colored pair of bars with asymptote 
 *..*
 
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a></b><br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
 
 The area element depends on vector product,
 <b>i</b>*<b>j</b>,

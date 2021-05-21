@@ -24,7 +24,7 @@ and in any point
 
  <span class="captured-reference id-meet">and meet</span>,
 
-I say, ¦AB AD *anch-color*given¦the angle BAD¦¦, contained between,
+I say, ¦angleBAD AB AD *anch-color*given¦the angle BAD¦¦, contained between,
 the chord and the tangent, will be diminished in infinitum, and ultimately will vanish.
 
 <br><br>
@@ -44,13 +44,14 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 
 *::*proof|english
 
-    For if that angle does not vanish, 
+    For if ¦angleBAD AB AD *anch-color*given¦that angle¦¦ does not vanish, 
 
     the arc ¦arc-AB¦ACB¦¦ will contain with the
 
-    tangent ¦AD¦AD¦¦ an angle equal to a ¦AL Ad¦rectilinear angle¦¦; and
+    tangent ¦AD¦AD¦¦ an angle equal to a ¦AL Ad L¦rectilinear angle¦¦; and
     therefore the curvature at the point ¦A¦A¦¦ will not be continued,
-    which is against the supposition.
+    <span class="captured-reference id-L-equal-d">which is against the supposition</span>.
+
 
 
 <br><br>
@@ -63,73 +64,65 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 }
 *..*
 
+<b>Draft beginning.</b>
+<br><br>
+A supposition of lemma 6 is that curve has continuous curvature. This can mean two different things.
+<br><br>
+1. Curve has no "corner". In other words, 
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Eframework">Euclid-framework</a></b><br><br>
+<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
+left and right Eucledian tangets are on the same line.
+</a>
+ 
+However, lemma 6 is
 
-We call right-side line ¦Ad¦Ad¦¦ "Euclidian-tangent".<br>
-Line ¦AL¦AL¦¦, which will be is a limit of chords, is called "Converged-tangent".<br><br>
+<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=continuous-if-curve#cif-breaks-l6">incorrect in this case.</a>
 
-
-Euclid and Newton axioms, definitions, and assumptions for Euclidian-tangent are<br>
-
-<ol>
-<li>
-    definition: tangent has only one point with the curve
-</li>
-<li>
-   assumption: when curve's curvature at point ¦A¦A¦¦ is continuous, then
-   there is no non-zero rightlinear angle between tangent and and the curve.
-   <br><br>
-
-   Requirement "continuous curvature"
-   ( in modern sense, as a derivative of tangent direction )
-   is excessive for the purpose of lemma, and should instead mean
-   "continous tangnent direction" and probably
-   means this in the original text
-   <br><br>
-
-   This assumption is proven for circle (EI.16) and may be proven for conics by using this
-   schema: <br><br>
-   for projection of circle into conic cut:<br><br>
-    <ul>
-        <li>rightline goes to rightline,</li>
-        <li>line crosses point goes to line crosses,</li>
-        <li>sequence of points on lines is preserved,</li>
-        <li>betweenness is preserved,</li>
-        <li>which completes the proof,</li>
-    </ul><br><br>
-
-   We don't know is this assumption proven for non-conics in the Book, and it may be
-   considered as a starting axiom, depending on chosen Geometry framwork.
-
-</li>
-</ol>
+Even when curve is continous.
 <br><br>
 
-<b>Newton axioms, definitions, and assumptions for "Converged-tangent" are:</b>
+2. Second meaning can be that curve has left and right curvature and both curvatures are equal by value and center. In this case Lemma 6 is also incorrect. It becomes correct, however, if to add  either one of the following suppositions: either a) curve is continuous at point A, or b) curve has a length
+in neighbourhood of A.
 <br><br>
 
-<ol>
-<li>
-   Assumption: <br>
-   chords do converge <br>
-   (at least for curves considered in the Book)
-</li>
-
-
-<li>
-   lemma is itself a Converged-tangent definition ( or construction of such ),
-   and is informal attempt to prove it is equal to Euclidian-tangent. <br><br>
-
-   For "monotonic chords", (monotonic sequence of points b for
-   some neighbourhood of point A) existence of
-   ¦L¦limit L¦¦ is equivalent to Dedekind/Cantor continuity axiom for Geometry.
-</li>
+But if to take the supposition a) or b), the lemma 6 becomes a logical redundancy. Because in 
+process of proving existance of curvature, the conclusion of lemma 6 becomes already proven.
 <br><br>
 
 
-<b>In other words, the lemma claims that
-<span class="captured-reference id-L-equal-d"> ¦L¦L¦¦ = ¦d¦d¦¦ </span>.</b>
+3. What can be the most natural choice of Lemma 6 suppositions? Because of final conclusion is that chord's angle has limit zero, then chord's angle has a limit. Taken a latter one gives minimal supposition set:
+<br><br>
+
+(i) curve has one-side Euclidean tangent,
+<br>
+(ii) this-side chords angle has a limit when chord's length approaches 0.
+<br><br>
+
+Then Lemma 6 can be formulated as:<br>
+
+    <div style="text-align:center">
+        (i) and (ii) ⇒ (j)
+    </div>
+
+where (j) means:
+<br>
+(j) angle between Euclidean tangent and chord is ultimately 0.
+<br><br><br>
+
+
+4. Apparently real point of lemma 6 is actually not the proof of that E-tangent and differential tangent are equal. Lemma 6 subposition (ii) constructs conceptually different definition of the tangent: differential tangent, tangent as a limiting position of decreasing chords.
+<br><br>
+
+(ii) automatically extends definition of tangent to non-Euclidean tangents, for example for
+non-convex functions in neighbouhood of point A, like x²sin(1/x) at A=(0,0). 
+<br><br>
+
+Moreover, in CalculusXX, this definition becomes logical backbone of the Calculus instead of Euclidean tangent.
+<br><br>
+
+<b>Draft end.</b>
+<br><br><br><br>
+
 
 
 <br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
@@ -147,9 +140,16 @@ Euclid and Newton axioms, definitions, and assumptions for Euclidian-tangent are
 *..*
 
 
-This addendum attmepts to reconstruct logical steps of Newton's proof. This attempt does not look successful unless to assume the case of convex curve or curve with monotonic sequence of points "¦b¦¦" approaching their upper bound ¦L¦¦.<br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a></b><br><br>
 
-<b>"Proof"</b><br><br>
+<b>Draft1 start</b>
+<br><br>
+
+<b>Claim.</b> (i)&(ii) → (j).
+<br><br>
+<b>Proof 1</b><br><br>
+
+  This is not a general proof. This is a proof for convex curve, with monotonic sequence of points "¦b¦¦" approaching their upper bound ¦L¦¦.<br><br>
 
   Take an arbitrary point ¦d¦d¦¦ that ¦D¦D¦¦ is between ¦d¦d¦¦ and ¦A¦A¦¦.
   Draw the line ¦rd¦line rd¦¦ through an arbitrary point ¦r¦r¦¦
@@ -165,20 +165,19 @@ This addendum attmepts to reconstruct logical steps of Newton's proof. This atte
 
   when points ¦B¦B¦¦ move closer to point ¦A¦A¦¦,
   the points ¦b¦b¦¦ have upper bound
-  ¦L¦L¦¦ on ¦rd¦line rd¦¦.
+  ¦L¦L¦¦ on ¦rd¦line rd¦¦ (which is equivalent to Dedekind/Cantor continuity axiom for Geometry.)
   <br><br>
 
   But when point ¦B¦B¦¦ moves
 
     <span class="captured-reference id-closer">closer</span>
 
-    to ¦A¦A¦¦, the ¦arc-Ab¦arc Ab¦¦ becomes (flatten and)
+    to ¦A¦A¦¦, ( the ¦arc-Ab¦arc Ab¦¦ becomes (flatten and)
 
     <span class="captured-reference id-more-closer">closer</span>
 
-    to ¦Ab¦Ab¦¦ and ultimately cannot lie above any line above ¦AL¦AL¦¦.
+    to ¦Ab¦Ab¦¦ and ultimately cannot lie above any line above ¦AL¦AL¦¦. )
     <br>
-    This is actually an assumption based on intuition and cannot be considered as a rigid proof.
     <br><br>
 
     Therefore any rectilinear angle alpha between ¦AL¦AL¦¦ and
@@ -188,7 +187,19 @@ This addendum attmepts to reconstruct logical steps of Newton's proof. This atte
     <br><br>
 
 
-</ol>
 <br><br>
 
+
+For "monotonic chords", (monotonic sequence of points b for
+some neighbourhood of point A) existence of
+¦L¦limit L¦¦ 
+
+<br><br>
+
+
+<b>In other words, the lemma claims that
+<span class="captured-reference id-L-equal-d"> ¦L¦L¦¦ = ¦d¦d¦¦ </span>.</b>
+
+<br><br>
+<b>Draft1 end</b>
 

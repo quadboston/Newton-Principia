@@ -37,13 +37,14 @@
 
     ///input:       lineName aka 'AB'
     ///acts:        takes rg-points aka rg.A and rg.B
-    ///             and adds to line segment AB values
-    ///             abs, abs2, dx, dy
+    ///             and adds to line segment AB values .. ..
+    ///returns      .. .. abs, abs2, dx, dy,
+    ///             angle = Math.atan2( dy, dx );
     ///todm         reduce this to "linePoints2abs"
     function line2abs(
         lineName,
-        dropPointParam,
-        dropPointParam_t, //unitless parameter counted from point A
+        dropPointParam,     //optional
+        dropPointParam_t,   //optional, unitless parameter counted from point A
     ){
         var splitToken = lineName.indexOf( ',' ) > -1 ? ',' : '';
         var points = lineName.split( splitToken );
@@ -111,8 +112,10 @@
 
     ///given a string XY and registry of points, 
     ///returns function which calculates circum... on points in the string XY,
-    function circumscribeCircleOverChordAndBothNormals_XY( rg, XY )
-    {
+    function circumscribeCircleOverChordAndBothNormals_XY(
+        rg, //registry which holds shape of keyName XY,
+        XY, //string which names line segment aka "AB" or "pointA,pointB",
+    ){
         var splitToken = XY.indexOf( ',' ) > -1 ? ',' : '';
         var points = XY.split( splitToken );
         var points = XY.split('');

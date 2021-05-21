@@ -1,6 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, mat,
+        haz,
         sconf, rg, toreg,
         ssF, ssD,
         sDomF,
@@ -30,6 +31,23 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        //=================================================
+        // //\\ manages legend CSS-visibility
+        //      by essay-state
+        //=================================================
+        var rgMainLegend = haz( rg, 'main-legend' );
+        if( rgMainLegend ) {
+            var rgTeoTab = rgMainLegend[ amode.theorion ];
+            if( amode.theorion === 'corollary' && amode.aspect === 'model' ) {
+                $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
+            } else {
+                $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );
+            }
+        }
+        //=================================================
+        // \\// manages legend CSS-visibility
+        //=================================================
+
         //vital for letters/picture conflict
         //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
@@ -42,11 +60,28 @@
         //-------------------------------------------------
         // //\\ original arc and curve
         //-------------------------------------------------
+
+        //must be in synch with rotation of AL
+        //pointB      : rg.B,
+
+
         ssF.paintsCurve({
                 //rgName    : will become 'arc-AB',
                 fun         : cfun.fun,
                 pointA      : rg.A,
                 pointB      : rg.B,
+
+                //-----------------------------------------
+                // //\\ apparently this fixes
+                //-----------------------------------------
+                //      arc out of synch with B
+                start       : rg.A.pos[0],
+                step        : (rg.B.unrotatedParameterX - rg.A.pos[0] ) / 20,
+                stepsCount  : 20,
+                //-----------------------------------------
+                // \\// apparently this fixes
+                //-----------------------------------------
+
                 mmedia      : stdMod.mmedia,
                 addToStepCount : 1,
         });
@@ -54,11 +89,30 @@
         ssF.paintsCurve({
                 rgName      : 'curve-AB',
                 fun         : cfun.fun,
-                pointA      : rg.curveStart,
+
+                //this makes curve's beginning tail going up - not good
+                //pointA      : rg.curveStart,
+                //so, we truncate it, but need to draw it separately later on,
+                pointA      : rg.A,
+
                 pointB      : rg.curveEnd,
                 mmedia      : stdMod.mmedia,
                 addToStepCount : 1,
         });
+
+        ///left branch of original curve is a reflection against axis y
+        ssF.paintsCurve({
+                rgName      : 'left-curve-AB',
+                fun         : ssD.repoConf[2].fun,
+
+                pointA      : rg.A,
+                pointB      : rg.curveEnd,
+                mmedia      : stdMod.mmedia,
+                addToStepCount : 1,
+        });
+
+
+
         //-------------------------------------------------
         // \\// original arc and curve
         //-------------------------------------------------
@@ -87,7 +141,10 @@
         //-------------------------------------------------
 
         ///draws tangentPhi
-        var angleName = amode.subessay === 'derivative' ? 'ψ' : 'φo';
+        var angleName =
+            ( amode.subessay === 'derivative' ||
+              amode.subessay === 'vector-derivative'
+            ) ? 'ψ' : 'φₒ';
         var wwRg = toreg( 'tangentPhi' )( 'pname', 'tangentPhi' )
                         ( 'pos', rg.L.pos )( 'pcolor', rg.L.pcolor )();
         wwRg.medpos = ssF.mod2inn( rg.tangentPhi.pos );
@@ -131,7 +188,10 @@
         }) ();
         ssF.angleVisib({ pname : 'deltaphi' });
 
-        if( amode.subessay === 'sine derivative' || amode.subessay === 'derivative' ){
+        if( amode.subessay === 'sine derivative' ||
+            amode.subessay === 'derivative' ||
+            amode.subessay === 'vector-derivative'
+        ){
             ///draws phi
             ///adds an extra point at rg.O to comply angle-api
             var wwRg = toreg( 'phi0' )( 'pname', 'phi0' )( 'pos', rg.O.pos )
@@ -142,7 +202,7 @@
                 CD          : [ rg.AO.pivots[1], rg.AO.pivots[0] ],
                 rgSample    : wwRg,
                 ANGLE_SIZE  : 1.5,
-                caption     : 'φo',
+                caption     : 'φₒ',
             })
         }
         ssF.angleVisib({ pname : 'phi0' });

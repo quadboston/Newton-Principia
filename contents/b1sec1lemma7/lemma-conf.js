@@ -10,7 +10,7 @@
     {
         return {
             sappCodeReference : 'b1sec1lemma6',
-            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded.png",
+            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             "contents-list" :
             [
                 'texts.content.txt',

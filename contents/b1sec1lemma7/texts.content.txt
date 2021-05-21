@@ -18,7 +18,7 @@
 *..*
 
 
-The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦, and ¦AD¦tangent¦¦, any one to any other, is the ratio of equality.
+The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦, and ¦AD¦tangent¦¦, ¦conterminousRatio¦any one to any other¦¦, is the ratio of equality.
 <br><br>
 
 
@@ -80,7 +80,7 @@ and the intermediate ¦arc-AB¦arc ACB¦¦ (which are always proportional to the
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Eframework">Euclid-framework</a>:</b><br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 When curve is a circle with radius ¦Ar¦¦, lemma 7, corollary 2 infers:
 <br>
@@ -139,7 +139,7 @@ But perhaps as lack of nails made Kizhi stronger, the lack of numbers made Princ
 
 <br><br><br><br>
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Cframework">CalculusXX-framework</a>:</b><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br>
 <br>
 Taking radius ¦Ar¦¦ = 1 and applying Lemma 6 method we have
 
@@ -169,7 +169,7 @@ and (*) is written as <br>
 *..*
 
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Eframework">Euclid-framework</a>:</b><br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 Lemma 6 infers existence of derivative:
 <br><br>
@@ -193,6 +193,32 @@ where ¦tangent_phi¦ψ¦¦ is angle from axis x to tangent ¦AL¦¦,
 
 
 
+*::*proof|model
+{
+  "subessayCaption" : "<b>r'</b>(l)",
+  "subessay" : "vector-derivative"
+}
+*..*
+
+
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
+
+Lemma 7 infers existence of vector derivative:
+<br><br>
+
+Let initially chose point d as Ad = 1. Proof's sketch:
+    <div style="text-align:center">
+        ¦AB¦Δ<b>r</b>¦¦ <i>❚</i> ¦arc-AB¦Δl¦¦ = ¦Ab¦<b>Ab</b>¦¦ <i>❚</i> ¦arc-Ab¦Ac'b¦¦ \( \overset{u} = \; \) ¦Ad¦<b>Ad</b>¦¦ <i>❚</i> 1
+    </div>
+In other words, when independent variable chosen as curve length, the vector speed is equal to
+unit tangent vector ¦Ad¦<b>Ad</b>¦¦.
+<br>
+
+
+
+
+
+
 
 
 
@@ -204,19 +230,19 @@ where ¦tangent_phi¦ψ¦¦ is angle from axis x to tangent ¦AL¦¦,
 *..*
 
 
-<b>In <a href="&#63;conf=sappId=addendum-frameworks#Eframework">Euclid-framework</a>:</b><br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 
 Lemma 6 gives the method to prove existence and formula for function derivative.
 For unit cicrle, <br><br>
 
-    ¦x0,x¦Δsin(φ)¦¦ = ¦x0,x¦x-x<sub>o</sub>¦¦ and
+    ¦x0,x¦Δsin(φ)¦¦ = ¦x0,x¦x-xₒ¦¦ and
     ¦deltaphi¦Δφ¦¦ = ¦arc-AB¦ \( \overset{\frown} {AB} \; \) ¦¦
 <br><br>
-    ¦x0,x¦Δsin(φ)¦¦ / ¦deltaphi¦Δφ¦¦ ~ ¦X0,X¦X-X<sub>o</sub>¦¦ /
-    ¦arc-Ab¦ \( \overset{\frown} {Ab} \; \) ¦¦
+    ¦x0,x¦Δsin(φ)¦¦ / ¦deltaphi¦Δφ¦¦ ~ ¦X0,X¦X-Xₒ¦¦ /
+    ¦arc-Ab¦ \( \overset{\frown} {Ax} \; \) ¦¦
     \( \overset{u} \sim \; \)
-    cos(¦tangent_phi phi0¦φo¦¦)
+    cos(¦tangent_phi phi0¦φₒ¦¦)
 <br><br>
 <br><br>
 
@@ -252,7 +278,7 @@ And if through ¦B¦¦ and ¦A¦¦ more right lines are drawn, as ¦BE¦¦,
 its parallel ¦BF¦¦ : the ultimate
 ratio of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦,
 ¦BG¦¦, and of ¦AB¦the chord¦¦ and ¦arc-AB¦arc AB¦¦,
-any one to any other, will be the ratio of equality.
+¦conterminousRatio¦any one to any other¦¦, will be the ratio of equality.
 <br><br>
 
 COR. 3. And therefore in all our reasoning about ultimate ratios, we

@@ -18,19 +18,6 @@
 
     wrkwin.doBuildMobile            = doBuildMobile;
     wrkwin.doesBuildNonMobileCss    = doesBuildNonMobileCss;
-
-
-    /// chain-dispatches callback "resizeHappened"
-    ( function() {
-        var hazR = haz( fmethods, 'resizeHappened' );
-        fmethods.resizeHappened  = hazR ?
-                ({ mediaWidth, mediaAspectRatio, }) => {
-                    hazR({ mediaWidth, mediaAspectRatio, }); 
-                }
-            :
-                ()=>{}
-            ;
-    })();
     return;
 
 
@@ -93,6 +80,19 @@
                 maxHeight = wHeight;
             }
         });
+
+        //--------------------------------------------------------------------
+        // //\\ for additional added elements in media root
+        //--------------------------------------------------------------------
+        sDomN.mediaOuterWidth        = winW;
+        //sDomN.mediaVisibleOuterWidth = mediaMargin*2 + medW + medAddonright;
+        sDomN.mediaVisibleOuterWidth = winW;
+        sDomN.mediaMargin            = 0;
+        sDomN.medAddonright          = 0;
+        //--------------------------------------------------------------------
+        // \\// for additional added elements in media root
+        //--------------------------------------------------------------------
+
         //------------------------------------------------------------------
         // \\// very tedious way to get the necessary height of visible text
         //------------------------------------------------------------------
@@ -179,7 +179,7 @@
         mediaAspectRatio,
         bgImgAsp,
         filler$,
-        wideScreen,
+        wideScreen_flag,
         legendHeight,
     }) {
 
@@ -246,7 +246,7 @@
             .css( 'float',   'left' )
             .css( 'margin-left',  legM_str )
             .css( 'margin-right', legM_str );
-        if( wideScreen ) {
+        if( wideScreen_flag ) {
             var ww =  fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ? 20 : 0;
             sDomN.legendRoot$
                 .css( 'position', 'relative' )

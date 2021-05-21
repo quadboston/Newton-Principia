@@ -11,6 +11,7 @@
 //***************************************************************************************************
 ( function () {
     var ns = window.b$l;
+    var haz = ns.haz;
     var eventId = 0;
 
 
@@ -41,6 +42,11 @@
         var skipD8D = arg.skipD8D || default_skip;
 
         var frameworkId = arg.frameworkId; //piggyback id
+
+        var dontStopDownAfteshocks = haz( arg, 'dontStopDownAfteshocks' );
+        var dontStopMoveAfteshocks = haz( arg, 'dontStopMoveAfteshocks' );
+        var dontStopEndAfteshocks = haz( arg, 'dontStopEndAfteshocks' );
+        var doGiveClickEvent = haz( arg, 'doGiveClickEvent' );
         //------------------------------------------
         // \\// input arguments
         //------------------------------------------
@@ -58,17 +64,31 @@
         //------------------------------------------
         // \\// locals
         //------------------------------------------
-        addEvents();
-        return { removeEvents : removeEvents }; //exports d8d-object of this module
+        !doGiveClickEvent && addEvents();
+
+        var returned = {
+            removeEvents,
+            givenClickEvent : doGiveClickEvent && givenClickEvent,
+        }
+        return returned; //exports d8d-object of this module
 
 
 
 
 
 
-
-
-
+        //******************************************************************
+		// //\\ passes down-event from application
+        //      instead of "statically" establish event to drag-surface,
+        //      this function used in case of parameter
+        //      "doGiveClickEvent===true",
+        //******************************************************************
+        function givenClickEvent( ev ) {
+            doStartDown( ev );
+        }
+        //******************************************************************
+		// \\// passes down-event from application
+        //******************************************************************
 
 
 
@@ -118,7 +138,7 @@
                 //seems wrong: event.preventDefault(); //trying for mobiles
                 forbidden = do_complete_down( event, ev );
                 if( !forbidden ) {
-                    stopsAftershocks ( ev );
+                    !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'touchmove',   touchMove);
                     att.addEventListener( 'touchend',    touchEnd);
                     att.addEventListener( 'touchcancel', touchEnd);
@@ -132,7 +152,7 @@
             } else {
                 forbidden = do_complete_down( ev );
                 if( !forbidden ) { 
-                    stopsAftershocks ( ev );
+                    !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'mousemove', mouseMove);
                     att.addEventListener( 'mouseup',   mouseEnd);
                     //.todm suspicion: this approach seems not reliable ...
@@ -171,9 +191,11 @@
             }
 
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_cb_middle2lowest( [0,0], 'down', point_on_dragSurf, childEvent, [0,0] );
+			var forbidden = d8d_cb_middle2lowest( [0,0], 'down',
+                            point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
+                //ccc( 'down annihilated at lower level, fwId=' + frameworkId );
                 return true;
             }
 			startPoint = point_on_dragSurf;
@@ -203,7 +225,7 @@
         function mouseMove( childEvent, rootEvent )
         {
             eventId++;
-            stopsAftershocks ( rootEvent || childEvent );
+            !dontStopMoveAfteshocks && stopsAftershocks ( rootEvent || childEvent );
             if( !startPoint ) {
                 //ns.d('mouseMove: no start point exist');
                 return;
@@ -277,7 +299,7 @@
                              [ childEvent.clientX , childEvent.clientY ];
             var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
             if( startPoint ) {
-                stopsAftershocks( rootEvent || childEvent );
+                !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
                 //.programmer may want to make d8d_cb_middle2lowest throttable:
                 //.this is why it is importan to provide "up" with surfPoint
                 //.in case the "move" event will be erased by "up"
@@ -360,6 +382,7 @@
         //==============================================================
         function stopsAftershocks( rootEvent )
         {
+            //ccc( 'aftershocks stopping' );
             rootEvent.preventDefault();
             //very good:
             //  javascript.info/bubbling-and-capturing

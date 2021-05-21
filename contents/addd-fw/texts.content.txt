@@ -1,0 +1,130 @@
+
+*::*frameworks|introduction
+{
+  "menuCaption" : "Introduction",
+  "subessayCaption" : "Logical Frameworks",
+  "subessay" : "logical-frameworks"
+}
+*..*
+
+
+
+<br>
+
+
+In these Addendums, whe treat theory as it is which may be not what Isaac Newton or Euclid meant. "As it is" is a content which is implied from logic of propositions or logic of usage in the Books. It is irrelevant if impiled content is unknown to Euclid or Newton at their times. Nuances of translation should be insignificant. What Euclid or Isaac Newton thought is left to Historians.
+<br><br>
+
+
+We use two axiomatic frameworks, "Euclid" and "CalculusXX".
+<br><br>
+
+<a name="Eframework"></a>
+<b>"Euclid Framework"</b> derives Geometrical and Ratio
+properties from "Euclid's Elements".
+
+<a target="_blank" href="?conf=sappId=addd-prel">
+Real numbers do logically exist, apparently logically follow from E.V.5, and Euclid ratios are
+"embedded" into them.
+</a>
+<br><br>
+
+In Newton times, however, this "embedding" and its features (developed in Dedekind's theory of cuts),
+seems unknown. Newton and his contemporaries support this features by intuitively inferring them
+from Geometrical models. They further hypothesize this support for magnitudes of time and force.
+Development of Calculus and existence of ratio limits still relies on Geometrical intuition.
+<br><br><br>
+
+
+
+
+<a name="Cframework"></a>
+<b>"CalculusXX"</b>. Calculus which is built in XIX-XX centuries.
+<br><br>
+
+Fundamental logical sequence: Axioms of Set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; the rest, Calculus, Analytic Geometry, ... --&gt; Physics
+<br><br>
+
+The difference from "Euclid" framwork is that "Fundamental logical sequence" is more effective, Geometry is based on Number theory, and
+
+<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
+Legacy proportions</a>
+
+are ignored in favour of concise Real number operations.
+<br><br>
+
+
+
+*::*frameworks|introduction
+{
+  "menuCaption" : "Introduction",
+  "subessayCaption" : "Notations",
+  "subessay" : "notations"
+}
+*..*
+
+
+
+
+<br>
+                                            <div style="text-align:center;">
+                                            <table class="essay-normal">
+
+
+                                            <tr><!-- begin -->
+                                            <td colspan="10" style="text-align:center">
+Notations adopted in Addendums
+                                            </td>
+                                            </tr>
+
+
+                                            <tr><!-- begin -->
+                                            <td>
+Bold Notation
+                                            </td>
+                                            <td>
+Logical meaning
+                                            </td>
+                                            <td>
+Comment
+                                            </td>
+                                            </tr>
+
+                                            <tr><!-- begin -->
+                                            <td> 
+<b>=</b>
+                                            </td>
+                                            <td>
+\( \; \overset{df} = \; \)
+                                            </td>
+                                            <td>
+equal by definition
+                                            </td>
+                                            </tr>
+
+
+                                            <tr><!-- begin -->
+                                            <td> 
+<b>⇔</b>
+                                            </td>
+                                            <td>
+\( \; \overset{df} \iff \; \)
+                                            </td>
+                                            <td>
+equivalent by definition
+                                            </td>
+                                            </tr>
+
+
+                                            </tr></table>
+                                            </div>
+
+
+
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+

@@ -15,9 +15,15 @@
 
 
     //===============================================================================
-    // //\\ microAPI to load list of scripts
+    // //\\ microAPI to load list of contents for html-element-scripts
     //
     //      Loads scripts from list and calls callbacks per
+            //****************************************************
+            // "scripts" mean html-tag
+            //      <script ...
+            // not text of authoring engine script ... and
+            // not any kind of text written in custom-language ...
+            //****************************************************
     //      scripts and per list-completion
     //
     //      Every time this function is called it manages new scripts list separately
@@ -59,7 +65,7 @@
         }
     }
     //===============================================================================
-    // \\// microAPI to load list of images.
+    // \\// microAPI to load list of contents for html-element-scripts
     //===============================================================================
 
 }) ();

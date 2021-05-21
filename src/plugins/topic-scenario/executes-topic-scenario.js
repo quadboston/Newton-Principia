@@ -8,7 +8,7 @@
         fconf,
         sconf,
         ss, exegs,
-        ssF, amode,
+        ssF, ssD, amode,
         rg,
         studyMods,
     } = window.b$l.apptree({
@@ -64,7 +64,11 @@
                 color           : #222222;
                 background-color: #cccccc;
             }
-        `);
+            `,
+            //todo this corrupts css ... possibly two css
+            //interact: in study-model and here:
+            //'user-feedback-style-tag'
+        );
     }
 
 
@@ -207,8 +211,11 @@
     }
 
 
-
-
+    //api
+    //:, :-     - do start over
+    //:-        - no scroll
+    //::-       - do scroll
+    //::#       - do condence message to equal previous message
     function executesMessageAction( ecommand, ctype )
     {
         doDebugMessage( 'p r o m p t   ' + ecommand );

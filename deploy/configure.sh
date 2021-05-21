@@ -46,8 +46,8 @@ fi
 cmd="php $PHP_DEPLOYER_PATH_ABS $PROJECT_FILE_PATH_ABS $UGLIFY"
 eval $cmd #works but not without "node fix" for uglifying
 
-read -p "bye ... press key ..." -n1 -s #-n1 : one char; -s : no echo
-printf "\n"
+read -p "done, press key ..." -n1 -s #-n1 : one char; -s : no echo
+printf "\n\n"
 
 
 

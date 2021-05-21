@@ -4,8 +4,12 @@
     //=====================================================
     // //\\ makes helpers
     //=====================================================
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
-    {
+    function cli ( $command,
+                   $action_descr,
+                   $do_print_output = FALSE,
+                   $get_output = FALSE,
+                   $do_not_print_command = FALSE
+    ) {
     	$res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
@@ -14,15 +18,17 @@
             printf( "\n" );
             exit;
         } else {
-            //.uncomment for verbose output
-            echo "$command";
 
+            if( !$do_not_print_command ) {
+                echo "$command";
+            }
           	if( $do_print_output ) {
                 echo "output=";
                 print_r( $res );
             }
-            //.uncomment for verbose output
-            echo "\n";
+            if( !$do_not_print_command ) {
+                echo "\n";
+            }
 
             if( $get_output ) {
                 return $res;
@@ -32,7 +38,11 @@
     function parse_re( $re, $parsee )
     {
         $parts = array();
+
+        //this is pcre regular expression =
+        //perl-compatible regular expression
         $result = preg_match( $re, $parsee, $parts );
+
         return $result ? $parts : false;
     }
     //=====================================================
@@ -59,7 +69,7 @@
             exit( 'file ' . $path_to_dir . " does not exist\n" );
         }
         ////narrow zipping down the site/subProject
-        $subProjectSource = $argv[2];
+        $siteid = $argv[2];
     }
     //=====================================================
     // \\// does gets zippee name from cmd
@@ -72,16 +82,13 @@
     //=====================================================
     // //\\ validates path to zippee
     //=====================================================
-    $parsed = parse_re( '#^(([^/]+/)*)([^/]+)$#', $path_to_dir );
-    //print_r( $parsed );
+    $parsed = parse_re( '#^(|/)(([^/]+/)*)([^/]+)$#', $path_to_dir );
     if( !$parsed )
     {
-        exit( "\nproblems with path to target folder:\npath=$path_to_dir\n" );
+        exit( "\nproblems with target folder, path to it=\n$path_to_dir\n" );
     }
-    //$path_to_parent = $parsed[ 1 ];
-    $folder_to_zip = $parsed[ 3 ];
-    //print_r( "path_to_parent = $path_to_parent\n" );
-    //print_r( "folder_to_zip = $folder_to_zip\n" );
+    $folder_to_zip = $parsed[ 4 ];
+    print_r( "zipping folder\n$folder_to_zip\n" );
     //=====================================================
     // \\// validates path to zippee
     //=====================================================
@@ -95,20 +102,19 @@
 
 
 
-    //=====================================================
-    // //\\ goes to zippee
-    //=====================================================
-    //$path_to_dir = '../../../ssfafasf';
-
+    //***********************************************************
+    // //\\ goes inside zippee
+    //      not necessarily insed the site
+    //***********************************************************
     $ww = chdir( $path_to_dir );
     if( $ww === FALSE ) {
         exit( "\nCannot change directory to " . $path_to_dir . " ... Job aborted.\n" );
     }
     $zippee_full_path = exec( 'pwd' );
     //printf( "\ncurrent dir = $zippee_full_path\n" );
-    //=====================================================
-    // \\// goes to zippee
-    //=====================================================
+    //***********************************************************
+    // \\// goes inside zippee
+    //***********************************************************
 
 
 
@@ -209,19 +215,31 @@
     //=====================================================
     chdir( '..' );
 
-    $name_of_copy = "$version-$folder_to_zip$archive_postfix";
+    //$name_of_copy = "$version-$folder_to_zip$archive_postfix";
+    $name_of_copy = "$version-$siteid-prod$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
 
-    cli( "rm -rf $name_of_copy", "removing former copy is exists" );
-    cli( "mkdir $name_of_copy", "creating placeholder" );
+    cli( "rm -rf $name_of_copy", "removing former copy is exists", FALSE, FALSE, TRUE );
+    cli( "mkdir $name_of_copy", "creating placeholder", FALSE, FALSE, TRUE );
 
-    cli( "mv $folder_to_zip/index.prod.html $name_of_copy", "cloning.." );
-    cli( "cp $folder_to_zip/sites/$subProjectSource/favicon.ico $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning.." );
-    cli( "mv $folder_to_zip/prod $name_of_copy", "cloning.." );
-    cli( "mkdir $name_of_copy/sites", "creating placeholder" );
-    cli( "mkdir $name_of_copy/sites/$subProjectSource", "creating placeholder" );
-    cli( "cp -R $folder_to_zip/sites/$subProjectSource/contents $name_of_copy/sites/$subProjectSource", "cloning.." );
+    cli( "mv $folder_to_zip/index.prod.html $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "cp $folder_to_zip/sites/$siteid/favicon.ico $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "mv $folder_to_zip/prod $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "mkdir $name_of_copy/sites", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "mkdir $name_of_copy/sites/$siteid", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "cp -R $folder_to_zip/sites/$siteid/contents $name_of_copy/sites/$siteid", "cloning..", FALSE, FALSE, TRUE );
+
+
+    //--------------------------------------------------------------
+    // //\\ plugins can be redundant, so in the future,
+    //--------------------------------------------------------------
+    // create "mechanizm" to selectively clone their children
+    cli( "mkdir $name_of_copy/src", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "cp -R $folder_to_zip/src/plugins $name_of_copy/src", "cloning..", FALSE, FALSE, TRUE );
+    //--------------------------------------------------------------
+    // \\// plugins can be redundant, so in the future,
+    //--------------------------------------------------------------
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
 
@@ -259,10 +277,10 @@
     //=====================================================
     // //\\ waits for user attention
     //=====================================================
-    printf( "\nversion $version of $zippee_full_path\nzipped\n" );
+    printf( "\nversion $version of\n$zippee_full_path\n" );
     //printf( "new version = $next_version\n" );
-    $w = readline( 'bye ... press key ...' );
-    //echo "OK\n";
+    $w = readline( 'zipped, press key ...' );
+    echo "\n";
     //=====================================================
     // \\// waits for user attention
     //=====================================================

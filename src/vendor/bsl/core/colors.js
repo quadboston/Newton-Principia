@@ -44,6 +44,34 @@
     };
     // \\// some proofreading 
 
+    ///decreases or increases LIGHTNESS
+    ///Input: darknessFactor: the smaller, the darker
+    ns.darkefyColor = function( hsl, darknessFactor )
+    {
+        var darkefied = Math.min( 100, hsl[2]*darknessFactor);
+        return [ hsl[0], hsl[1], darkefied ];
+    };
+
+
+
+    //Input: based256 - optional: means input is in 1-255 range
+    ns.rgb2str8norm = function( rgbArray, based256 )
+    {
+        var colors = { string:'#', normalized:[] };
+        rgbArray.forEach( function( co, ix ) {
+            var co256 = based256 ? co : Math.min( 255, Math.floor(co*256) );
+            var coNorm = based256 ? co/256 : co;
+            //c cc( 'input ' + co + ' co256=' + co256 + ' coNorm=' + coNorm  );
+            colors.normalized[ix] = coNorm;
+            var extra = '00' + co256.toString(16);
+            var extra = extra.substring(extra.length-2,extra.length);
+            //c cc( 'extra ' + extra )
+            colors.string += extra;
+        });
+        return colors;
+    };
+
+
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );

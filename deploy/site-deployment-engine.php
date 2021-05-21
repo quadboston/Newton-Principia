@@ -40,30 +40,31 @@
         echo $arg . "\n";
     }
 
-    if( count($argv) < 2 )
+    if( count($argv) < 3 )
     {
-        echo 'missed project file: usage: ' .  $argv[0] . " file-path\n";
+        echo 'missed project file: usage: ' .  $argv[0] . " file-path siteid\n";
         exit(1);
     }
 
     $tpl_landing_file = $argv[1];
+    $siteid = $argv[2];
+    ech( "\nsiteid=$siteid, spawning\n" . $tpl_landing_file );
     if( !is_file( $tpl_landing_file ) )
     {
         ech( 'file ' . $tpl_landing_file . ' does not exist' );
         exit(1);
     }
-    ech( "\nspawning: " . $tpl_landing_file );
 
-    $prj_folder = dirname( $tpl_landing_file );
-    //ech( "project folder = " . $prj_folder );
+    $landing_root = dirname( $tpl_landing_file );
+    //ech( "project folder = " . $landing_root );
 
-    if( !is_dir( $prj_folder ) )
+    if( !is_dir( $landing_root ) )
     {
-        ech( 'path ' . $prj_folder . ' is not a directory' );
+        ech( 'path ' . $landing_root . ' is not a directory' );
         exit(1);
     }
 
-    $do_uglify = count($argv) > 2 && $argv[2] === 'uglify';
+    $do_uglify = count($argv) > 3 && $argv[3] === 'uglify';
     //=====================================================
     // \\// validatates command line
     //=====================================================
@@ -76,9 +77,9 @@
     //=====================================================
     // //\\ does position in project folder
     //=====================================================
-    $ww = chdir( $prj_folder ); //note: ?? this does not change __DIR__
+    $ww = chdir( $landing_root ); //note: ?? this does not change __DIR__
     if( $ww === FALSE ) {
-        ech( "\nCannot change directory to " . $prj_folder .
+        ech( "\nCannot change directory to " . $landing_root .
              ".\nSpawn did not start.");
         exit(1);
     }
@@ -375,6 +376,6 @@
     // \\// makes index.prod.html and saves it
     //========================================
 
-    echo "spawning done\n";
+    //echo "spawning done\n";
 
 

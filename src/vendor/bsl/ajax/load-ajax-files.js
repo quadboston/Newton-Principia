@@ -1,12 +1,10 @@
 ( function() {
     var ns          = window.b$l;
-    var sn          = ns.sn;    
-    var nsmethods     = sn('methods');
-
+    var sn          = ns.sn;
+    var has         = ns.h;
+    var nsmethods   = sn('methods');
     nsmethods.loadAjaxFiles = loadAjaxFiles;
-    //000000000000000000000000000000
     return;
-    //000000000000000000000000000000
 
 
 
@@ -17,25 +15,62 @@
     //===============================================================================
     // //\\ microAPI to load list of files
     //===============================================================================
-    function loadAjaxFiles( filesList, lastCb )
-    {
-        var completionCount = 0;
-        var loadedFiles = [];
+    function loadAjaxFiles(
+
+        //API
+        //
+        //Input:
+        //      filesList = [ f[0], f[1], .... ]
+        //          f[ i ].link
+        //          f[ i ].responseType  //optional, 'text' is a default
+        //          f[ i ].id            //optional
+        //          f[ i ].cb = function( loadedItem ) //optional
+        //      lastCb - full-success-callback //optional
+        //
+        //Output:
+        // loadedFiles = [ r[0], r[1], .... ];
+        //      r = {
+        //              text        : xml.responseText,
+        //              fileItem    : fileItem,
+        //      };
+        // loadedFilesById[ fileItem.id ] = r[ id ];
+        //
+        //Executed if all successful:
+        // lastCb( loadedFilesById, loadedFiles )
+        filesList,
+        lastCb,     //fires up at the moment all files loaded
+
+
+    ) {
+        var loadedFiles     = [];
         var loadedFilesById = {};
+        var completionCount = 0;
 
         filesList.forEach( function( fileItem, ix ) {
 
             var xml = new XMLHttpRequest();
 			try{ 
-				xml.open( 'GET', fileItem.link, true );  
-				xml.send( null );
-			    xml.onreadystatechange = processIfGood;
-			}catch ( e ) {	//	TODM
+                xml.responseType = ns.haz( fileItem, 'responseType' ) || 'text';
+				xml.open( 'GET', fileItem.link, true );
+
+                ///todom perhaps we can merge both conditions in one "case"  
+                if( fileItem.responseType === 'arraybuffer' ) {
+    				xml.send();
+			        xml.onload = fileOnLoad;
+                } else {
+    				xml.send( null );
+                    //sets primary callback
+			        xml.onreadystatechange = process_by_good_readystate;
+                }
+
+
+			} catch ( e ) {	//	TODM
 				//Give up.
                 completionCount++;
                 checkCompletion( fileItem );
 			}
-            function processIfGood()
+
+            function process_by_good_readystate()
             {
 				if ( xml.readyState === 4 ) 
 				{
@@ -54,10 +89,14 @@
 
             function fileOnLoad()
             {
-                var loadedItem = { text:xml.responseText, fileItem:fileItem };
+                var loadedItem = {
+                    text : fileItem.responseType === 'arraybuffer' ?
+                           xml.response : xml.responseText,
+                    fileItem : fileItem,
+                };
                 //ccc( 'success: ', loadedItem );
                 loadedFiles.push( loadedItem );
-                if( fileItem.id ) {
+                if( has( fileItem, 'id' ) ) {
                     loadedFilesById[ fileItem.id ] = loadedItem;
                 }
                 completionCount++;
@@ -66,7 +105,13 @@
                 checkCompletion( fileItem );
             }
         });
-        return; //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+        return;
+
+
+
+
+
+
 
         function checkCompletion( fileItem )
         {

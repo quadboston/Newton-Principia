@@ -195,34 +195,57 @@
         //*****************************************************************************
         if( fconf.sappId === "b1sec1lemma6" ) {
             captured = "reset-to-origin";
+            if( theorion === 'claim' ) {
+                 captured = 'L-equal-d';
+            }
             ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
             [
                 'curve-AB',
+                'left-curve-AB',
                 'arc-AB',
                 'AD',
                 'D',
+                'A,Dleft',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
             if(
-                theorion === 'proof' ||
-                theorion === 'claim' && aspect === 'model'
+                theorion === 'proof' || theorion === 'claim' 
             ) {
                 sDomF.detected_user_interaction_effect( 'doUndetected' );
                 [
                     'curve-AB',
+                    'AD',
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+                rg.L.hideD8Dpoint   = false;
+            }
+
+            //below we do add points and lines which are absent in N. proof
+            if(
+                theorion === 'proof'
+            ) {
+                rg.L.hideCaption = true;
+                [
+                    'AL',
+                    'Ad',
+                    'L',
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+            }
+
+            if(
+                ( theorion === 'proof' || theorion === 'claim' ) && aspect === 'model'
+            ) {
+                rg.L.hideCaption = false;
+                [
+                    'L',
                     'arc-Ab',
                     'Ab',
                     'b',
                     'd',
                     'Ad',
-                    'AD',
                     'r',
                     'rd',
                     'dr',
-                    'AL',
-                    'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
-                rg.L.hideD8Dpoint   = false;
             }
         }
         //*****************************************************************************
@@ -243,7 +266,11 @@
         // //\\ lemma 7
         //*****************************************************************************
         if( fconf.sappId === "b1sec1lemma7" ) {
-            if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ){
+            if(
+                amode.subessay === 'derivative' ||
+                amode.subessay === 'sine derivative' ||
+                amode.subessay === 'vector-derivative'
+            ){
                 //sDomF.detected_user_interaction_effect();
                 captured = "analytic-derivative";
                 //=================================================
@@ -371,7 +398,20 @@
                     'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
-            if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ){
+            if(
+                amode.subessay === 'vector-derivative'
+            ){
+                [
+                    'arc-Ab',
+                    'Ad',
+                    'b',
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+            }
+
+            if( amode.subessay === 'derivative' ||
+                amode.subessay === 'sine derivative' ||
+                amode.subessay === 'vector-derivative'
+            ){
                 rg.media_scale.value = 0.45;
                 ssF.scaleValue2app( rg.media_scale.value );
             } else if( amode.subessay === 'sin(x)/x' ) {
@@ -403,7 +443,7 @@
                     sDomF.detected_user_interaction_effect( 'doUndetected' );
                     [
                         'd',
-                        'r',
+                        //'r',
                         'Ad',
                         'rd',
                         'bd',
@@ -412,8 +452,8 @@
                         'Ab',
                         'arc-Ab',
 
-                        'AL',
-                        'L',
+                        //'AL',
+                        //'L',
                     ].forEach( gname => { rg[ gname ].undisplay = false; });
                     rg.L.hideD8Dpoint   = false;
                 }

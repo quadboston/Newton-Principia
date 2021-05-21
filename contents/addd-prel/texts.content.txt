@@ -10,9 +10,13 @@
 
 
 Here we follow the articles of
-<a href="#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a>
+
+<a target="_blank" href="?conf=sappId=addd-prel,theorionId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a>
+
 and
-<a href="#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
+
+<a target="_blank" href="?conf=sappId=addd-prel,theorionId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
+
 <br><br><br>
 
 
@@ -493,7 +497,13 @@ ratios as well. We exclude ratios which contain empty branches B-, B+.
 
 There is a bijection between these equivalency classes and real numbers in R⁺.
 
-Here we assume that ℝ<sup>+</sup> is already constructed. The construction is described in the number of books, for example in "Rudin analysis for Graduate studens".
+Here we assume that ℝ<sup>+</sup> is already constructed. The construction is described
+ in the number of books, for example in
+
+<a target="_blank" href="#ctxt-rudin-principles">
+Walter Rudin "Principles of Mathematical Analysis".
+</a>
+
 A summary of this construction is:
 <br><br><br>
 
@@ -529,53 +539,56 @@ involve 0 and negative numbers.
 *..*
 <br><br>
 
+    <a name="ctxt-legacy-proportions"></a>
 
-    This definition does not define operations on M, it is just a shortcut for a real number. Note the bold "<b>/</b>" vs normal "/".
+    This definition does not define operations on M, it is just a shortcut for a real number.
     <br>
     <div style="text-align:center">
-        m' <b>/</b> m" \( \; \overset{df} = \; \) C<sub>m'/m"</sub>
+        m' <i>❚</i> m" \( \; \overset{df} = \; \) C<sub>m'/m"</sub>
     </div>
 
 Due to Rational invertendo: <br>
     <div style="text-align:center">
-        m <b>/</b> <i>m</i> = 1 / (<i>m</i> <b>/</b> m)
-        &nbsp;&nbsp;&nbsp;&nbsp; (//)
+        m <i>❚</i> <i>m</i> = 1 / (<i>m</i> <i>❚</i> m)
+        &nbsp;&nbsp;&nbsp;&nbsp; (<i>❚</i>)
     </div>
 
 Cancellation rule:
 <br>
     <div style="text-align:center">
-        m' <b>/</b> m" = (m'<b>/</b>m)(m<b>/</b>m") = (m'<b>/</b>m) / (m"<b>/</b>m)
+        m' <i>❚</i> m" = (m'<i>❚</i>m)(m<i>❚</i>m") = (m'<i>❚</i>m) / (m"<i>❚</i>m)
         &nbsp;&nbsp;&nbsp;&nbsp; (cr)
     </div>
 
 <br>
 <i>Proof. </i>
 Consider
-r' = m' / m, r" = m / m",
-r' &lt; q' = n'/k', and
-r" &lt; q" = n"/k".
+        r' = m' / m, r" = m / m",
+        r' &lt; q' = n'/k', and
+        r" &lt; q" = n"/k".
 <br>
-m'k'k" &lt; mn'k"
-<br>
-mn'k" &lt; n"m"n' =&gt;
-<br>
-m'/m'' &lt; n'n" / k'k" = q'q". Similarily if q',q" correspondingly smaller than r',r", then
-m'/m'' &gt; q'q".
-⬜
+    <div style="text-align:center">
+        m'k'k" &lt; mn'k"
+        <br>
+        mn'k" &lt; n"m"n' =&gt;
+        <br>
+        m'/m'' &lt; n'n" / k'k" = q'q".
+    </div>
+Similarily if q',q" correspondingly smaller than r',r", then
+    m'/m'' &gt; q'q".
+    ⬜
 <br><br>
-
 
 Real numbers do preserve operation + on M:
     <div style="text-align:center">
-       ( m' + m" ) <b>/</b> m = m'<b>/</b>m + m"<b>/</b>m
+       ( m' + m" ) <i>❚</i> m = m'<i>❚</i>m + m"<i>❚</i>m
         &nbsp;&nbsp;&nbsp;&nbsp; (++)
     </div>
 
 In case difference m' - m" exist for some m', m", then it is preserved also because
     <div style="text-align:center">
-       ( m" + ( m' - m" ) ) <b>/</b> m = m"<b>/</b>m + (m' - m")<b>/</b>m  and <br>
-        m'<b>/</b>m  - m"<b>/</b>m  = (m' - m")<b>/</b>m <br>
+       ( m" + ( m' - m" ) ) <i>❚</i> m = m"<i>❚</i>m + (m' - m")<i>❚</i>m  and <br>
+        m'<i>❚</i>m  - m"<i>❚</i>m  = (m' - m")<i>❚</i>m <br>
     </div>
 <br><br>
 
@@ -587,30 +600,71 @@ In case difference m' - m" exist for some m', m", then it is preserved also beca
     <a name="ctxt-componendo"></a>
     <a name="ctxt-separando"></a>
     <a name="ctxt-convertendo"></a>
-    <div style="text-align:center">
 
-        (//) implies:<br>
-        m' <b>/</b> <i>m'</i> = m" <b>/</b> <i>m"</i> \( \iff \)
-        <i>m'</i> <b>/</b> m' = <i>m"</i> <b>/</b> m" 
-        &nbsp;&nbsp;&nbsp;&nbsp; (invertendo) <br>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left""><tr><td>
+        (<i>❚</i>) implies:
+
+                                            </td></tr><tr><td> 
+        m' <i>❚</i> <i>m'</i> = m" <i>❚</i> <i>m"</i>
+                                            </td><td>
+                \(\iff\)
+                                            </td><td>
+                        <i>m'</i> <i>❚</i> m' = <i>m"</i> <i>❚</i> m" 
+                                            </td><td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                (invertendo)
 
 
-       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \( \Rightarrow \)
-            (m'+<i>m'</i>) <b>/</b> <i>m'</i>  =  (m"+<i>m"</i>) <b>/</b> <i>m"</i>
-            &nbsp;&nbsp;&nbsp;&nbsp; (componendo) <br>
+                                            </td></tr><tr><td> 
+                            &nbsp;
+                                            </td></tr><tr><td> 
+        m' <i>❚</i> <i>m'</i>  = m' <i>❚</i> <i>m"</i>
+                                            </td><td>
+                \(\Rightarrow\)
+                                            </td><td>
+                    (m'+<i>m'</i>) <i>❚</i> <i>m'</i>  =  (m"+<i>m"</i>) <i>❚</i> <i>m"</i>
+                                            </td><td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                (componendo)
 
-       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \( \Rightarrow \)
-            (m'- <i>m'</i>) <b>/</b> <i>m'</i> = (m"-<i>m"</i>) <b>/</b> <i>m"</i>
-            &nbsp;&nbsp;&nbsp;&nbsp; (separando)
-    </div>
-and being combined with (invertendo):
-    <div style="text-align:center">
-       m' <b>/</b> <i>m'</i>  = m' <b>/</b> <i>m"</i> \(\Rightarrow\)
-            m' <b>/</b> ( m' - <i>m'</i> )  =
-            m" <b>/</b> ( m" - <i>m"</i> )
-            &nbsp;&nbsp;&nbsp;&nbsp; (convertendo)
-    </div>
-<br>
+
+
+
+                                            </td></tr><tr><td> 
+        m' <i>❚</i> <i>m'</i>  = m' <i>❚</i> <i>m"</i>
+                                            </td><td>
+                \(\Rightarrow\)
+                                            </td><td>
+                    (m'- <i>m'</i>) <i>❚</i> <i>m'</i> = (m"-<i>m"</i>) <i>❚</i> <i>m"</i>
+                                            </td><td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                (separando)
+
+
+
+                                            </td></tr><tr><td> 
+        and being combined with<br>
+        (invertendo):
+                                            </td></tr><tr><td> 
+        m' <i>❚</i> <i>m'</i>  = m' <i>❚</i> <i>m"</i>
+                                            </td><td>
+                \(\Rightarrow\)
+                                            </td><td>
+                    m' <i>❚</i> ( m' - <i>m'</i> )  =
+                    m" <i>❚</i> ( m" - <i>m"</i> )
+                                            </td><td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td><td>
+                                (convertendo)
+
+
+
+                                            </td></tr></table>
+                                            </div>
 <br><br>
 
 
@@ -621,20 +675,20 @@ and being combined with (invertendo):
 Let us choose an arbitrary element u in M which we will call "unit" and denote following cut in bold as
 
     <div style="text-align:center">
-         <b>m</b> \( \; \overset{df} = \; \) C<sub>m/u</sub>.  </b>
+         <b>m</b> \( \; \overset{df} = \; \) m<i>❚</i>u.  </b>
     </div>
 
 
 Map m ↦ <b>m</b> preserves operation + on M because of (++): <br>
     <div style="text-align:center">
-        (m'+m'') <b>/</b> u = <b>m'</b>+<b>m''</b>
+        (m'+m'') <i>❚</i> u = <b>m'</b>+<b>m''</b>
     </div>
 
 
 U n i t  &nbsp;&nbsp; c a n c e l l a t i o n &nbsp;&nbsp; r u l e &nbsp;</b>.
 Taking m = u in (cr) we obtain
     <div style="text-align:center">
-        m' <b>/</b> m" = <b>m'</b> / <b>m"</b>  &nbsp;&nbsp;&nbsp;&nbsp; (ucr) <br>
+        m' <i>❚</i> m" = <b>m'</b> / <b>m"</b>  &nbsp;&nbsp;&nbsp;&nbsp; (ucr) <br>
     </div>
 <br>
 
@@ -642,8 +696,8 @@ Taking m = u in (cr) we obtain
 U n i t l e s s &nbsp;&nbsp; A l t e r n a n d o
     <a name="ctxt-alternando"></a>
     <div style="text-align:center">
-        m' <b>/</b> <i>m'</i> = m" <b>/</b> <i>m"</i> \( \; \Rightarrow \; \)
-        m' <b>/</b> m" = <i>m'</i> <b>/</b> <i>m"</i> (alternando)
+        m' <i>❚</i> <i>m'</i> = m" <i>❚</i> <i>m"</i> \( \; \Rightarrow \; \)
+        m' <i>❚</i> m" = <i>m'</i> <i>❚</i> <i>m"</i> (alternando)
     </div>
 
 <i>Proof</i>.
@@ -677,7 +731,7 @@ where <b>mass</b> * <b>a</b> is a compound ratio.
 <br><br>
 
 The force F is taken from M<sub>F</sub> magnitudes, mass from 
-M<sub>mass</sub> magnitudes, and a M<sub>a</sub> magnitudes.
+M<sub>mass</sub> magnitudes, and a from M<sub>a</sub> magnitudes.
 <br>There is no known for us way to express this law without taking a unit.
 Even if Newton says separtely that F ~ a and F ~ mass, there is still a requirement of "fixed"
 magnitudes u<sub>F</sub> and u<sub>a</sub> to express proportion
@@ -687,11 +741,11 @@ F/u<sub>F</sub> ~ a/u<sub>a</sub>.
 U n i t  &nbsp;&nbsp; c h a n g e &nbsp;&nbsp; r u l e.
 Consider compound ratio (./) <b>r</b>.
 If instead of unit u we take unit v, multiply the nominator with
-(u <b>/</b> v) <sup>k-p</sup>, and denote ratios as
-<b>m'</b><sub>i</sub> = m<sub>i</sub> <b>/</b> v, then by (cr)
+(u <i>❚</i> v) <sup>k-p</sup>, and denote ratios as
+<b>m'</b><sub>i</sub> = m<sub>i</sub> <i>❚</i> v, then by (cr)
 <br>
     <div style="text-align:center">
-        <b>r</b>' = <b>r</b>(u <b>/</b> v)<sup>k-p</sup>
+        <b>r</b>' = <b>r</b>(u <i>❚</i> v)<sup>k-p</sup>
     </div>
 <br><br><br>
 
@@ -699,10 +753,142 @@ If instead of unit u we take unit v, multiply the nominator with
 
 
 
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Prereal Magnitudes",
+  "subessay" : "prereal-magnitudes"
+}
+*..*
+<br><br>
+
+The construction of Magnitudes is still too poor. Rich theory needs more features.
+We call magnitude pre-real if it comply three following axioms.
+<br><br>
+
+<b>M is called fractional</b> if each magnitude can be divided:
+<br>
+    <div style="text-align:center">
+        ∀ n,m ∃ m' = m/n where m'n = m
+    </div>
+<br><br>
+
+<b>M is called subtractable</b> iff
+<br>
+    <div style="text-align:center">
+        ∀ m'‹ m" ∃ m"-m', where (m"-m') + m' = m"
+    </div>
+<br><br>
+
+<b>M is called Archimedian</b> iff
+<br>
+    <div style="text-align:center">
+        ∀ m',m" ∃ n, m" ‹ nm'
+    </div>
+<br><br>
+
+
+<b>Technical details. Sketch.</b>
+<br>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left">
+
+                                            <tr><td>
+        
+                                            </td>
+                                            <td>
+        division m/n is both operands cancellable
+                                            <br>
+                                            </td>
+                                            </tr>
+
+                                            <tr><td> 
+
+                                            </td>
+                                            <td>
+        division m/n is first-operand distributive
+                                            </td>
+                                            </tr>
+
+                                            <tr><td> 
+                                            </td>
+                                            <td>
+        division m/n is commutative and asscociative
+                                            </td>
+                                            </tr>
+        
+
+                                            <tr><td> 
+                                            </td>
+                                            <td>
+        product m * <b>q</b> is well defined,
+        cancellable,
+        both operands distributive,
+        accociative, commutative,
+        oreder-preserving,
+                                            </td>
+                                            </tr>
+        ratio m/<i>m</i> preserves product * <b>q</b>
+
+
+
+                                            </tr></table>
+                                            </div>
+<br><br>
+
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "Real Magnitudes",
+  "subessay" : "real-magnitudes"
+}
+*..*
+<br><br>
+
+
+<b>Sketch.</b>
+
+Magnitude called real if it permits production with real positive number.
+
+<br>
+    <div style="text-align:center">
+        Real magnitude =df= Vm,<b>r</b> E Vm<b>r</b>
+        <br>
+        and this product complies with both operands cancellabitily,
+        associativity, commutativity, both side distributiivity,
+        preserves order
+    </div>
+
+
+    <div style="text-align:center">
+        Real magnitude =df= Vm,<b>r</b> E Vm<b>r</b>
+        <br>
+        and this product complies with both operands cancellabitily,
+        associativity, commutativity, both operands distributiivity,
+        preserves order
+    </div>
+
+Theorem: ratio preserves * <b>r</b> product
+    <div style="text-align:center">
+        (m<b>r</b>)<i>❚</i>m</i> = (m<i>❚</i><i>m</i>)<b>r</b>
+    </div>
+
+<br><br>
+
+
+
+*::*proof|algebraic-extension
+{
+  "menuCaption" : "Ratios",
+  "subessayCaption" : "References",
+  "subessay" : "references"
+}
+*..*
 <br>
 <div book-reference-id="kvk"></div>
 <br><br>
-
 
 
 
@@ -815,6 +1001,22 @@ Translation by A.N. Krylov.
 <br>
 (... separando and other properties ... Krylov, page 63]
 <br><br>
+
+
+
+
+
+<a name="ctxt-rudin-principles"></a>
+<br>
+Walter Rudin
+<br>
+"Principles of Mathematical Analysis".
+<br>
+3rd edition
+<br>
+http://fulviofrisone.com/attachments/article/453/Principles%20Of%20Mathematical%20Analysis%20-%20W.Rudin.pdf
+
+
 
 
 

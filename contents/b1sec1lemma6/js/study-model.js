@@ -38,6 +38,7 @@
 
         sDomF.params__2__rgX8dragwrap_gen_list({
             //pname, acceptPos, orientation, pos, nospinner,
+            orientation : 'axis-y',
             pname : 'L',
             acceptPos : ( newPos ) =>
             {
@@ -47,7 +48,11 @@
                 if( fullAngle > 0.001 ) {
                     fullAngle = 0;
                 }
-                if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ) {
+                if(
+                    amode.subessay === 'derivative' ||
+                    amode.subessay === 'sine derivative' ||
+                    amode.subessay === 'vector-derivative'
+                ) {
                     if( fullAngle < -0.2 ) {
                         ///this is lowest allowed L-position on the screen
                         ////otherwise, function y(x) is not well-defined
@@ -69,7 +74,18 @@
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
+
+        //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+        //apparently this is a vitual master parameter of B along x,
+        //the parctical position of B obtains by rotation of line AL,
+        //by angle = rg.curveRotationAngle.angle =
+        //           fullAngle - rg.originalGapTangent.angle;
+        //apparently, this is an original-unrotated-parameter-X mapped to
+        //rg.originalGapTangent.angle which is not 0 and mapped to
+        //rotational angle = 0,
         rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
+        //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
         sDomF.params__2__rgX8dragwrap_gen_list({
             //pname, acceptPos, orientation, pos, nospinner,
             pname : 'B',
@@ -77,10 +93,14 @@
             {
                 var ach = rg.B.achieved;
                 var  new_unrotatedParameterX = newPos[0];
+
                 ///we need to put some constraint here, to
                 ///prevent chord vanishing
-                if( new_unrotatedParameterX < 0.001 ) {
-                    new_unrotatedParameterX = 0.001;
+                if(
+                    //new_unrotatedParameterX < 0.001 ) {
+                    //new_unrotatedParameterX = 0.001;
+                    new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
+                    new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
                 }
                 //.prevents user from playing with too big curves
                 if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
@@ -126,8 +146,11 @@
         var dropPoint = ssF.dropPoint;
         var dropPerpend = ssF.dropPerpend;
 
-
-        if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ){
+        if(
+            amode.subessay === 'derivative' ||
+            amode.subessay === 'sine derivative' ||
+            amode.subessay === 'vector-derivative'
+        ){
             //=====================================================
             // //\\ builds axes x,y, and origin 0, and their decors
             //=====================================================
@@ -201,6 +224,20 @@
         //=================================================
 
 
+
+        //=================================================
+        // //\\ getting "main" angle ABD for data legend
+        //      in lemma6
+        //=================================================
+        ssF.line2abs( 'AB' );
+        rg.AB.angleGrad = rg.AB.angle * 180 / Math.PI;
+        //=================================================
+        // \\// getting "main" angle ABD for data legend
+        //=================================================
+
+
+
+
         //=================================================
         // //\\ builds Newton microscope
         //=================================================
@@ -223,6 +260,10 @@
             //makes line DB proportionally move
             rg.D.pos[0] = rg.d.pos[0] / magn;
         }
+        if( amode.subessay !== 'sin(x)/x' ){
+            rg.E.pos[1] = rg.D.pos[1];
+            rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
+        }
         rg.G.pos[1] = rg.B.pos[1];
         rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
         rg.F.pos[1] = rg.B.pos[1];
@@ -236,9 +277,6 @@
             rg.E.pos[0] = rg.B.pos[0];
             rg.e.pos[1] = rg.A.pos[1];
             rg.e.pos[0] = rg.E.pos[0]*magn;
-        } else {
-            rg.E.pos[1] = rg.D.pos[1];
-            rg.E.pos[0] = rg.D.pos[0]*0.5;
         }
 
 
@@ -247,7 +285,11 @@
         // //\\ bridge to analytical theory
         //=================================================
         //now we need to refactor the curve for case of studies
-        if( amode.subessay === 'derivative' ||  amode.subessay === 'sine derivative' ){
+        if(
+            amode.subessay === 'derivative' ||
+            amode.subessay === 'sine derivative' ||
+            amode.subessay === 'vector-derivative'
+        ){
             //-----------------------------------------
             // //\\ projects points to axes y and x
             //-----------------------------------------
@@ -294,6 +336,30 @@
         //-------------------------------------------------------
         // \\// bridge to analytical theory
         //-------------------------------------------------------
+
+        //=================================================
+        // //\\ intervals for legend in lemma7
+        //=================================================
+        ssF.line2abs( 'BG' );
+        ssF.line2abs( 'AD' );
+        ssF.line2abs( 'AE' );
+        ssF.line2abs( 'BF' );
+        //=================================================
+        // \\// intervals for legend in lemma7
+        //=================================================
+
+
+        if( fconf.sappId === "b1sec1lemma7" ) {
+            rg.AB.arcLen = mat.integral.curveLength({
+                fun             : ssD.repoConf[0].fun,
+                curveStartParam : rg.A.pos[0],
+                curveEndParam   : rg.B.pos[0],
+                funIsAVector    : true,
+                calculationAccuracy : 1e-4*rg.AB.abs,
+            });
+            //ccc( 'rg.AB.arcLen', rg.AB.arcLen , 'rg.AB.abs',rg.AB.abs );
+        }
+
     }
 
 

@@ -4,6 +4,7 @@
         $$,
         sn,
         nsmethods,
+        haz,
         fapp,
         fconf,
         sconf,
@@ -26,6 +27,8 @@
         },
     });
     sDomF.getFixedColor = getFixedColor;
+    var dataFiles = sn( 'dataFiles', ssD, [] );
+    var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
     return;
 
 
@@ -56,10 +59,18 @@
                 // //\\  making the list
                 //------------------------------------
                 var lbf_forAjax = [];
+
+                ///does two things: sets responseType and
+                ///                 later on extracts "data-id"=match[1]
+                var matchRe = /^data\/([^\.]+)./;
+                var res_matchRe = /\/resources\/([^\/]+)$/;  // ends with /resources/<file-name>
                 lemma_bookfiles_list.forEach( function( listItem ) {
                     if( !listItem.match( /^\s*$/ ) ) {
+                        var match = listItem.match( matchRe );
+                        var responseType = match ? 'arraybuffer' : 'text';
                         lbf_forAjax.push({
                               id: listItem,
+                              responseType,
                               link : fconf.pathToContentSite + 'contents/' +
                                      fconf.sappId + '/' + listItem
                         });
@@ -74,7 +85,20 @@
                 //------------------------------------
                 nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
                         lbf_forAjax.forEach( function( listItem ) {
-                            allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
+
+                            //do collect resources somewhere elese, like for PIXI plugin ...
+                            if( listItem.id.match( res_matchRe ) ) return;
+                            //patch
+                            //todm ... does double job, load resources only once ...
+
+                            var match = listItem.id.match( matchRe );
+                            if( match ) {
+                                dataFiles.push( loadedFilesById_II[ listItem.id ] );
+                                dataFiles_id2content[ match[1] ] =
+                                    loadedFilesById_II[ listItem.id ];
+                            } else {
+                                allEssaionsStr += loadedFilesById_II[ listItem.id ].text;
+                            }
                         });
                         essaions2exegs( conf_files_list );
                     }
@@ -109,7 +133,11 @@
             bgImages.path2rk = {};
             bgImages.bgImgCount = 0;
 
-            ///essayons are raw atomic essays
+            //=========================================================
+            // //\\ splits text to essays
+            //      and prebuilds esssay-placeholders and indexes them
+            //      essayons are raw atomic essays
+            //=========================================================
             essayons.forEach( function( essayon ) {
 
                 //.removes empty essayons
@@ -133,40 +161,49 @@
                 //ess_instructions[3] is text itself
                 if( ess_instructions && ess_instructions[3] ) {
                     var theorion_id = ess_instructions[1];
-                    var aspect_id = ess_instructions[2];
-                    var wPreText = ess_instructions[3];
-                    var wIx = wPreText.indexOf("*..*");
+                    var aspect_id   = ess_instructions[2];
+                    var wPreText    = ess_instructions[3];
+                    var wIx         = wPreText.indexOf("*..*");
                     if( wIx > -1 ) {
                         var wHeader = wPreText.substring(0, wIx-1);
                         wPreText = wPreText.substring( wIx+4 );
                     }
-                    //.converts essayion's-header-script to header-js-object
-                    //.assumes if wHeader exists, it must be valid JSON
+
+                    //converts essayion's-header-script to header-js-object,
+                    //will be attached to essay-section only at the very end of this loop,
+                    //assumes if wHeader exists, it must be valid JSON,
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    //:sets defaults
+                    //---------------------------------------------------------------
+                    // //\\ validates submodel
                     essayHeader.submodel = ns.haz( essayHeader, 'submodel' ) || 'common';
                     if( !ns.h( studyMods, essayHeader.submodel ) ) {
                         alert( 'Wrong submodel "' + essayHeader.submodel +
                                '" prescipted in essay ' + theorion_id + '/' + aspect_id +
                                " This submodel does not exist in lemma`s modules."
                         );
-                        //todm ... why this return crashes app?
+                        //todm ... why this return crashes app? ...
+                        //         this return just skips bad essay,
                         return;
                     }
+                    // \\// validates submodel
+                    //---------------------------------------------------------------
 
                     //===============================================================
                     // //\\ sets initial amode
                     //===============================================================
                     //.todm: patch: missed submodel property does default to 'common'
                     //              empty string denotes absence of submodel
-                    essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
-                                           essayHeader.submodel :
-                                           'common';
+
+                    // already done ... code prolifiration
+                    //essayHeader.submodel = ns.h( essayHeader, 'submodel' ) ?
+                    //                       essayHeader.submodel :
+                    //                       'common';
+
                     sn( theorion_id, exegs );
-                    var aspExeg = sn( aspect_id, exegs[ theorion_id ] );
-                    var subexegs = ns.sn( 'subexegs', aspExeg, [] );
-                    var subexegsIx = subexegs.length;
+                    var aspExeg     = sn( aspect_id, exegs[ theorion_id ] );
+                    var subexegs    = ns.sn( 'subexegs', aspExeg, [] );
+                    var subexegsIx  = subexegs.length;
                     //normalizes subessay id:
                     ns.sn( 'subessay', essayHeader, subexegsIx + '' );
 
@@ -177,14 +214,55 @@
                     if( ns.haz( essayHeader, "default" ) === "1" ||
                         !ns.haz( sapp, 'amodel_initial' )
                     ) {
-                        sapp.amodel_initial =
-                        {
-                            theorion    : theorion_id,
-                            aspect      : aspect_id,
-                            submodel    : essayHeader.submodel,
-                            subessay    : essayHeader.subessay,
-                        };
-                        Object.assign( amode, sapp.amodel_initial );
+                        var ami = haz( sapp, 'amodel_initial' );
+                        if( !ami ) {
+                            var ami = sn( 'amodel_initial', sapp, {
+                                posOverriden : false
+                            });
+                            var theorionId  = haz( fconf, 'theorionId' );
+                            var aspectId    = haz( fconf, 'aspectId' );
+                            if( theorionId && aspectId ) {
+                                var subessayId  = haz( fconf, 'subessayId' );
+                                if( !subessayId ) {
+                                    ////default subessayId is set to 0,
+                                    ////to enable missed subessayId in URL-query-config
+                                    subessayId = '0';
+                                }
+                                ami.theorion = theorionId;
+                                ami.aspect = aspectId;
+                                ami.subessay = subessayId;
+                                ami.posOverriden = {
+                                    theorion : theorionId,
+                                    aspect : aspectId,
+                                    subessay : subessayId,
+                                };
+                            }
+                        }
+
+                        if( !ami.posOverriden ) {
+                            ami.theorion = theorion_id;
+                            ami.aspect = aspect_id;
+                            ami.subessay = essayHeader.subessay;
+                            //sets 'default' for case it will be missed in all text
+                            essayHeader[ 'default' ] = '1';
+                        }
+                        ami.submodel = essayHeader.submodel;
+                        Object.assign( amode, ami );
+                    }
+
+                    var ao = sapp.amodel_initial.posOverriden;
+                    if( ao ) {
+                        ///these conditions preserve legacy structure of
+                        ///essayHeader in case if default are supplied from URLquery
+                        if(
+                            theorion_id          !== ao.theorion ||
+                            aspect_id            !== ao.aspect ||
+                            essayHeader.subessay !== ao.subessay
+                        ){
+                            essayHeader[ 'default' ] = '0';
+                        } else {
+                            essayHeader[ 'default' ] = '1';
+                        }
                     }
                     //----------------------------------------------------------------
                     // \\// sets sapp.amodel_initial
@@ -192,8 +270,12 @@
                     // \\// sets initial amode
                     //===============================================================
 
-                    // //\\ establishes unescaped fixed
-                    //      topic cats lemma-wise
+
+                    //---------------------------------------------------------------
+                    // //\\ adds topic-categories from
+                    //---------------------------------------------------------------
+                    //      essayHeader, 'fixed-colors' to fixedColors 
+                    //      for entire lemma
                     var wwfc = ns.haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
@@ -201,14 +283,15 @@
                             fixedColors[ tk ] = wwfc[ topicKey ];
                         });
                     }
-                    // \\// establishes unescaped fixed
-
+                    //---------------------------------------------------------------
+                    // \\// adds topic-categories from
+                    //---------------------------------------------------------------
 
                     //---------------------------------------------------------
                     // //\\ captured states
+                    //      we are ready to take body of text ...
+                    //      but, before this, we extract captured states
                     //---------------------------------------------------------
-                    //we are ready to take body of text ...
-                    //but, before this, we extract captured states
                     var CAPTURE_POSITION_INDICATOR = '*:::*:::*';
                     var capturePos = wPreText.indexOf( CAPTURE_POSITION_INDICATOR );
                     if( capturePos > -1 ) {
@@ -253,6 +336,12 @@
                 // \\// splits the essayon ...
                 //--------------------------------------
             });
+            //=========================================================
+            // \\// splits text to essays
+            //=========================================================
+
+
+
 
             //===========================================================
             /// collect BgImg, set Menu, dec Point_parentClasses
@@ -277,11 +366,12 @@
                             //      todm: looks like useless artifact.
                             //******************************************************************
                             //      currently unlocks all aspects in content for
-                            //      being able to have dragged points and other elements in model,
-
+                            //      being able to have dragged points and other
+                            //      elements in model,
+                            //
                             //      apparent side effect is increasing a specifity for
                             //      some CSS in "decorator.css.js"
-
+                            //
                             //used in: d8d_p.createFramework({
                             //         decPoint_parentClasses : fconf.dragPointDecoratorClasses,
                             var wDecArr = sn( 'dragPointDecoratorClasses', fconf, [] );
@@ -294,14 +384,27 @@
                             // \\// collects decPoint_parentClasses for d8d_p.createFramework
                             //******************************************************************
                         }
+
+                        ///for some reason, essay-section memorizes parent-header if
+                        ///parent is an effective default
                         ///remembers default for easy access
-                        if( ns.h( essayHeader, "default" ) ){
+                        if( ns.haz( essayHeader, "default" ) === '1' ){
+                            //this is an alternative "if" which must work too
+                            //if(
+                            //    sapp.amodel_initial.theorion === theorion_id &&
+                            //    sapp.amodel_initial.aspect === aspect_id
+                            //){
+                            //todm ... name "default" is very unlucky, do change it ...
                             exAspect[ "default" ] = exeg;
                         }
                     });
                 });
             });
             continueAppInit_cb();
+            //todo do resolve this construct in CSS ... it may be make
+            //extra specifity and removing this set will change this specifity and
+            //damage the application
+            //ccc( fconf.dragPointDecoratorClasses );
             return;
 
 

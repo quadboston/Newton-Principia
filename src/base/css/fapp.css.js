@@ -598,7 +598,19 @@ ret +=`
 
 
     ///default lemma svg settings,
-    ///to be overridedn by lemma-css-policy or inline-css,
+    ///to be overridedn by lemma-css-policy
+
+    // (remember, in-line attributes are still suppressed)
+    // or inline-css,
+
+    // this fixes some pages, but probably makes default
+    // color dependent on browser
+    //            xxxxstroke          : black;
+    //            xxxxfill            : black;
+
+
+
+    //
     ///todm: should be in sapp module, not "full app" module,
     ns.globalCss.update( `
             .bsl-media-root svg text {

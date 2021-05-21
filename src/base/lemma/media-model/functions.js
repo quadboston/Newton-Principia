@@ -18,9 +18,10 @@
 
 
     ///converts model-function to media-function
-    ///returns "inner-media function" and 
+    ///returns not a primitive value but
+    ///"function: model-var-x |-> media-inner-point [x,y]"
     function modFun2innFun(
-        fun,        //returns either y(x) or point [x,y(x)]
+        fun,        //model function: returns either value y(x) or point [x,y(x)]
         magnitude,  //scales graph [x,f(x)]
     ) {
         magnitude = magnitude || 1;
@@ -40,20 +41,18 @@
     }
 
 
-
+    ///todm ... is it ever used?
     ///converts model-function to media-function
     ///returns "inner-media function" and 
     function modFun2scaledXY({
-        fun,
+        fun,        //must return array [x,y]
         magnitudeX, //scales x
         magnitudeY, //scales y
     }) {
         //var fun = ssD.repoConf[0].fun;
         return function( x ) {
             var [xx,yy] = fun( x );
-ccc( 'x must be naked x='+xx );
             var res = ssF.mod2inn([ xx*magnitudeX, yy*magnitudeY ]);
-ccc( 'x must be P+naked x='+res[0] );
             return res;
         }
     }

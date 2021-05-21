@@ -56,6 +56,7 @@
                                 upcreate_mainLegend,
                             }
             );
+        var rgTeoTab = rg[ 'main-legend' ][ theorion ];
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
@@ -73,6 +74,12 @@
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
+
+        rgTeoTab.tableDom = tb;
+        return;
+
+
+
 
 
 

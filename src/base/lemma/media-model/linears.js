@@ -125,7 +125,8 @@
         //=================================================
         // //\\ draws line caption
         //=================================================
-        var caption = ns.haz( attr, 'caption' );
+        var caption = ns.haz( attr, 'caption' ); //todo bad name: too generic
+                                                 //hard to package-search
 
         if( caption ) {
             var fontSize = ns.haz( attr, 'fontSize' ) || 20;

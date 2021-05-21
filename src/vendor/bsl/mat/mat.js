@@ -2,6 +2,17 @@
 	var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
+    ( function() {
+        //todm: need a generic math module, put this
+        //there:
+        var p = 1;
+        var powersOf2 = [p];
+        for( var i=1; i<61; i++ ) {
+            p *= 2;
+            powersOf2[i] = p;
+        }
+        mat.powersOf2 = powersOf2;
+    })();
 
 
 

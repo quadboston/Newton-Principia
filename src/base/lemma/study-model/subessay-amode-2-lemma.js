@@ -2,7 +2,7 @@
     var {
         ns, sn, $$,
         nspaste, eachprop,
-        mat, has, haz,
+        mat, has, haz, haff,
         fconf, sconf,
         rg, toreg,
         ssF, ssD,
@@ -87,6 +87,10 @@
         //todm ... no need to put extra "captured" ... do fix this:
 
         stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], captured );
+
+        //patch-function,
+        //todom: must be ported to normal app-launch-subessay scenario
+        haff( stdMod, 'subessayLaunch_definedInLemma_after_model_upcreate' );
     }
 
 

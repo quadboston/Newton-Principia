@@ -25,11 +25,14 @@
 
         //------------------------------
         //alternatives listText or iarrays
-            listText,
-
+            listText, 
             //api:
-            // iarrays[ix][0] - caption
-            // iarrays[ix][1] - value
+            //    methane     | CH₄    | 4*C-H         | CH₄ + 2O₂     -> CO₂ + 2H₂0     | 4*C-H,  2*O=O  -> 2*C=O, 4*H-O    | 1 |
+            //    ethane      | C₂H₆   | 1*C-C, 6*C-H  | 2C₂H₆ + 7O₂   -> 4CO₂ + 6H₂0    | 12*C-H, 7*O=O  -> 8*C=O, 12*H-O   | 2 |
+            //      item = iarrays[ix]
+            //      itemarray = iarrays[ix][ array ]
+            //          iarrays[ix][0] - caption
+            //          iarrays[ix][1] - value
             iarrays, //itemArrays
         //------------------------------
 

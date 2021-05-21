@@ -44,7 +44,10 @@
             //--------------------------------------
             //.ignores these properties
             if( key === 'parent' || key === 'type' ||
-                key === 'text' || key === 'rgX' ) return;
+                key === 'text' || key === 'rgX' ||
+                key === 'svgel' || //bug fixed, May 5, 2021
+                key === 'tpclass' //bug patch, May 5, 2021 ... todm wrong design
+            ) return;
             //--------------------------------------
             // \\// ignores 'parent' and 'type'
             //--------------------------------------
@@ -257,10 +260,16 @@
 
             //integer type parameter, how many add beyond "normal" last point,
             //this parameter added later to draw function graph on the end point,
-            //it is similar of adding "=" in loop limit aka inxex <= addToStepCount,
+            //it is similar of adding "=" in loop limit aka index <= addToStepCount,
             addToStepCount,
 
-            stepsCount, start, step, curve, xOFy
+            stepsCount,
+            start,  //of independent variable t in model space,
+            step,   //of independent variable t in model space,
+            curve,  //a    function( t ) : t |-> [x,y],
+                    //  or function( t ) : t |-> { x:..., y:... },
+                    //x,y are in media inner space ready for svg,
+            xOFy    //if true, then swaps curve coordinates x and y,
         } = arg;
 
         var stepsLim    = stepsCount + (addToStepCount || 0);

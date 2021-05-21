@@ -50,6 +50,9 @@
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
         DRAGGEE_HALF_SIZE : 40, //px
+
+        //setting this to "false" does hide slider
+        //decoration spinning arrows
         NAVIGATION_DECORATIONS_ALWAYS_VISIBLE : false,
 
         //since ver 1931 was automated from contents

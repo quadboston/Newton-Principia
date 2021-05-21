@@ -95,17 +95,24 @@
             annotation : "",
         },
 
-        {   sappId : 'addendum-frameworks',
+        {   sappId : 'addd-fw',
             book : 'Addendum',
             caption : 'Logical frameworks',
             annotation : "Comments to the Book",
         },
 
-        {   sappId : 'addendum-preliminaries',
+        {   sappId : 'addd-prel',
             book : 'Addendum',
             caption : 'Preliminaries. Euclid-Dedekind Ratios.',
             annotation : "Comments to the Book",
         },
+
+        {   sappId : 'addd-prel-curve',
+            book : 'Addendum',
+            caption : 'Preliminaries. Curves.',
+            annotation : "Comments to the Book",
+        },
+
     ];
 
     ///spawns modules array into modules list and fills incompleted properties

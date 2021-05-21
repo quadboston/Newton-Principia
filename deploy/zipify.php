@@ -254,12 +254,12 @@
     //=====================================================
     // //\\ waits for user attention
     //=====================================================
-    printf( "\nsite = $zippee_full_path" );
+    printf( "\nsite\n$zippee_full_path" );
     printf( "\nzipped ver. = $version" );
     printf( "\nnew    ver. = $next_version\n" );
 
-    $w = readline( 'bye ... press key ' );
-    //echo "OK\n";
+    $w = readline( 'done, press key ' );
+    echo "\n";
     //=====================================================
     // \\// waits for user attention
     //=====================================================

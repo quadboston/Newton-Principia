@@ -20,8 +20,6 @@
         var borderRadius    = ccs['border-radius']; 
         var helpBoxOpacity  = fconf.appDecor.helpBox_opacity0 ? 0 : 1;
 
-
-
 var ret = `
 
     /*

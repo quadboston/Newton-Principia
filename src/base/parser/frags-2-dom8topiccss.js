@@ -41,9 +41,12 @@
         '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
         '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
+    //flags: https://javascript.info/regexp-introduction
     //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
     var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
     //.adding flag "g" ruins the job ... why?
+    //.perhaps: "The g flag with match will only return multiple whole matches, not multiple sub-matches"
+    //          https://stackoverflow.com/questions/19913667/javascript-regex-global-match-groups
     var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
     //---------------------------------------------
     // \\// topic engine variables

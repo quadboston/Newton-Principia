@@ -78,12 +78,38 @@
                     this.R = R;
                     this.branch = 1;
                 },
+                ///draws branches of a circle of radius RR, one branch at the time,
                 fun : function(x) {
                         var R = this.R;
                         var xx = x-this.x0;
                         return [ x, this.y0+this.branch*Math.sqrt( R*R -xx*xx ) ];
                 },
             },
+
+            {
+                fname : "Original left branch",
+                fun : function(x) {
+
+                        //curvature break is too seen
+                        //var sin = 0; //rg.curveRotationAngle.sin;
+                        //var cos = 1; //rg.curveRotationAngle.cos;
+
+                        //can do for better obscurity
+                        //var sin = Math.sin( -rg.originalGapTangent.angle/2 );
+                        var sin = Math.sin( -rg.originalGapTangent.angle );
+
+                        var cos = Math.cos( rg.originalGapTangent.angle );
+
+                        var y = originalFun( x );
+                        var xx = cos * x - sin * y;
+                        var yy = sin * x + cos * y;
+                        return [ -xx, yy ];
+                },
+            },
+
+
+
+
         ]);
         ssD.repoConf.forEach( fun => {
             fun.fun = fun.fun.bind( fun );

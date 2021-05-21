@@ -4,4 +4,7 @@
 /prod
 /sites
 /sort-out-plans-todo.txt
+src/plugins/balls3d
+src/plugins/flame
+src/plugins/particles
 
