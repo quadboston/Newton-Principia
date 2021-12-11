@@ -21,11 +21,6 @@
 
 
     function setModule() {
-
-        //var cssmods = sn('cssModules');
-        //var THIS_MODULE = 'model-l23';
-        //cssmods[THIS_MODULE] = function( cssp, fconf ) {
-
         cssmod[ cssName ] = function( cssp, fconf ) {
             var ccs = fconf.css;
             var colorMain = ccs['color-main'];

@@ -9,14 +9,16 @@
     function lemmaConfig()
     {
         return {
-            mediaBgImage : "main-picture.png",
             codesList :
             [
                 //todm: automate this list
                 { src:'sconf.js' },
                 { src:'study-model.js' },
-                { src:'model-functions.js' },
+                { src:'defines-model-functions.js' },
+                { src:'does-paint-model-functions.js' },
                 { src:'media-upcreate.js' },
+                { src:'amode8captures.js' },
+                { src:'media-paint-all-curves.js' },
             ],
             "contents-list" :
             [

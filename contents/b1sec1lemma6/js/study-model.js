@@ -1,13 +1,8 @@
 ( function() {
     var {
         ns, sn, paste, mat,
-        sconf, fconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp, toreg,
-
+        sconf, fconf, ssF, ssD, sDomF, sData,
+        amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -37,7 +32,7 @@
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
         sDomF.params__2__rgX8dragwrap_gen_list({
-            //pname, acceptPos, orientation, pos, nospinner,
+            stdMod,
             orientation : 'axis-y',
             pname : 'L',
             acceptPos : ( newPos ) =>
@@ -59,9 +54,10 @@
                         fullAngle = -0.2;
                     }
                 } else {
-                    if( fullAngle < -0.5 ) {
+                    //if( fullAngle < -0.5 ) {
+                    if( fullAngle < -0.15 ) {
                         ///this is lowest allowed L-position on the screen
-                        fullAngle = -0.5;
+                        fullAngle = -0.15;
                     }
                 }
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
@@ -87,12 +83,14 @@
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
         sDomF.params__2__rgX8dragwrap_gen_list({
-            //pname, acceptPos, orientation, pos, nospinner,
+            stdMod,
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
                 var ach = rg.B.achieved;
-                var  new_unrotatedParameterX = newPos[0];
+                var new_unrotatedParameterX = newPos[0];
+                var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
+                var cpos = cfun( new_unrotatedParameterX );
 
                 ///we need to put some constraint here, to
                 ///prevent chord vanishing
@@ -102,6 +100,40 @@
                     new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
                     new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
                 }
+
+                ////implements team agreed feature of preventing point B
+                ////entering area above line AL for core essays
+                if( fconf.sappId === "b1sec1lemma6" &&
+                    //core essays:
+                    ( amode.aspect === 'english' && amode.theorion === 'proof' ) && 
+                    mat.angleBetweenLines([
+                        [rg.A.pos, cpos ],
+                        [rg.A.pos, rg.L.pos],
+                    ]).angle < 0
+                ){
+                    (function() {
+                        var lpos = rg.L.pos;
+                        var apos = rg.A.pos;
+                        var kk = ( lpos[1] - apos[1] ) / ( lpos[0] - apos[0] );
+                        ///calculates point when moving back point B will cross
+                        ///line AL
+                        for( var ix=0; ix<200; ix++ ) {
+                            cpar = new_unrotatedParameterX+ix*0.005;
+                            var pos = cfun( cpar );
+                            var lineY = pos[0] * kk;
+                            if( lineY > pos[1] ) {
+                                ////B crossed line AL
+                                new_unrotatedParameterX = cpar;
+                                //ccc( lineY.toFixed(3) + ' ' + pos[1].toFixed(3) );
+                                break;
+                            }
+                        }
+
+                    })();
+                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
+                }
+
+
                 //.prevents user from playing with too big curves
                 if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
@@ -127,12 +159,40 @@
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
+
+
+
+        //todo: must work in media ... look for call backs and
+        //      find which does once at the media creation
+        var wwId = 'proof-pop-up';
+        ssF.createButton({
+            caption                 :
+                'AB cannot be diminished further while ' +
+                'containing the rectilinear angle.<br><br>Close.',
+            buttonUniversalId       : wwId,
+            //scenarioEventOnClick    : 'graph-is-plotted',
+            clickCallback           : () => {
+                sData[ wwId ].dom$.css( 'display', 'none' );
+            },
+            noTopicScenario         : true,
+            cssText                 : `
+                position            : absolute;
+                width               : 250px;
+                height              : 130px;
+                top                 : 55%;
+                padding             : 10px;
+                left                : 70%;
+                border-radius       : 20%;
+                border              : 5px outset #cccccc;
+                font-size           : 18px;
+                text-align          : center;
+                background-color    : #dddddd;
+                cursor              : pointer;
+                z-index             : 111111111;
+            `,
+        });
+
     }
-
-
-
-
-
 
 
 

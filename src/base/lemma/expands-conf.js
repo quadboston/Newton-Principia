@@ -1,11 +1,8 @@
 
 ( function() {
     var {
-        ns, sn, haz, has,
-        sconf, fconf,
-        fixedColors,
-        ssF, sDomF,
-        rg,
+        sn, haz, has, eachprop, own,
+        fconf, ssF, sDomF, fixedColors,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -16,6 +13,7 @@
     var LETTER_ROTATION_RADIUS_PER_1000 = 30;
     var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
     var LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
+    var super_default_highlight_tp_stroke_width = 10;
     return;
 
 
@@ -24,23 +22,50 @@
 
 
     ///==============================================
+    /// only for common stdMod:
+    ///                     1. expands sconf and
+    //                      2. expnds sconf into rg
     ///==============================================
-    function doExpandConfig() 
+    function doExpandConfig( stdMod ) 
     {
+        var toreg = stdMod.toreg;
+        var sconf = stdMod.sconf;
         var {
             predefinedTopics,
             originalPoints,
             lines,
             linesArray,
+
+            //required, part of sconf api,
+            //done in picture-system y-coord:
+            //(pic.bottom-y=+picHeight)
+            modorInPicX,
+            modorInPicY,
+
+            //the same as above, but depricated:
             originX_onPicture,
             originY_onPicture,
+
+
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-        } = sconf;
-        lines = lines || [];
-        originalPoints = originalPoints || {};
-        var pname2point = {};
+        } = stdMod.sconf;
+
+        originX_onPicture = typeof modorInPicX === 'undefined' ?
+                            originX_onPicture : modorInPicX;
+        originY_onPicture = typeof modorInPicY === 'undefined' ?
+                            originY_onPicture : modorInPicY;
+
+        modorInPicX = originX_onPicture;
+        modorInPicY = originY_onPicture;
+
+        //allocates missed placeholders
+        lines = lines || sn( 'lines', sconf, [] );
+        originalPoints = originalPoints || sn( 'originalPoints', sconf );
+
+        //todo: this thing also gets more members from "dragger engine": poor job,
+        var pname2point = sn( 'pname2point', sconf );
 
         //----------------------------------
         // //\\ MONITOR Y FLIP
@@ -62,15 +87,13 @@
         //---------------------------------------------------------------------------
         // //\\ derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
-        //appar. as by I.N.: difference between two first x-points:
         var inn2mod_scale = 1/mod2inn_scale;
 
 
         ///adds point's color from predefinedTopics if missed
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+        eachprop( originalPoints, (point,pname) => {
+            point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
-
 
 
         ///it is vital to set these pars now ...
@@ -84,19 +107,20 @@
             mod2inn_scale,
             inn2mod_scale,
 
-            //todm: ?slider:
-            originalMod2inn_scale   : mod2inn_scale,
-
             mod2inn_scale_initial : mod2inn_scale,
             inn2mod_scale_initial : inn2mod_scale,
 
+            //do use:
+            modorInPicX,
+            modorInPicY,
+            //.......................................
+            //do rid:
             //todm: too long to fix everywhere ...
-            activeAreaOffsetX   : originX_onPicture,
-            activeAreaOffsetY   : originY_onPicture,
+            originX_onPicture : modorInPicX,
+            originY_onPicture : modorInPicY,
+            //.......................................
 
-            //todm check is this safe to disable this
-            //centerOnPicture_X   : originX_onPicture,
-            //centerOnPicture_Y   : originY_onPicture,
+
 
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
@@ -106,18 +130,19 @@
         });
 
         var estimatedPictureSize = Math.max(
-                pictureWidth,
-                pictureHeight,
+            pictureWidth,
+            pictureHeight,
         );
         var estimatesSizeScale = estimatedPictureSize/1000;
 
         var factor = MONITOR_Y_FLIP * inn2mod_scale;
-        var toreg = ssF.toreg;
         (function() {
 
-            ///expands predefinedTopics placeholders
+            //--------------------------------------------------
+            ///expands predefinedTopic colors into rg
+            //--------------------------------------------------
             Object.keys( predefinedTopics ).forEach( topicKey => {
-                toreg( topicKey )( 'pname', topicKey ); //declares for astate management
+                toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
                 fixedColors[ tk ] = predefinedTopics[ topicKey ];
             });
@@ -125,18 +150,18 @@
             //--------------------------------------------------
             // //\\ expands originalPoints placeholders
             //--------------------------------------------------
-            ns.eachprop( originalPoints, ( op, pname ) => {
+            eachprop( originalPoints, ( op, pname ) => {
                 if( Array.isArray( op ) ) {
                     ////handles array of originalPoints
-                    var doPaintPname = ns.h( op, 'doPaintPname' ) ? op.doPaintPname : true;
+                    var doPaintPname = has( op, 'doPaintPname' ) ? op.doPaintPname : true;
                     var draggableX   = haz( op, 'draggableX' );
                     var draggableY   = haz( op, 'draggableY' );
                     op.forEach( ( opInArr, inIx ) => {
-                        opInArr.draggableX = ns.h( opInArr, 'draggableX' ) ?
+                        opInArr.draggableX = has( opInArr, 'draggableX' ) ?
                                              opInArr.draggableX : draggableX;
-                        opInArr.draggableY = ns.h( opInArr, 'draggableY' ) ?
+                        opInArr.draggableY = has( opInArr, 'draggableY' ) ?
                                              opInArr.draggableY : draggableY;
-                        opInArr.doPaintPname = ns.h( opInArr, 'doPaintPname' ) ?
+                        opInArr.doPaintPname = has( opInArr, 'doPaintPname' ) ?
                                              opInArr.doPaintPname : doPaintPname;
                         expandsOrPoints( opInArr, pname + '-' + inIx );
                     });
@@ -153,17 +178,17 @@
             {
                 //todo ... non-readable: it tranfers properties from ??original points to here,
                 //      this must be clearly written in code,
-                op.own          = ns.own;
+                op.own          = own;
                 var pictureP    = op.own( 'pos' );
                 var modelP      = op.own( 'mpos' );
 
                 //at the moment for missing flag, doPaintPname === true,
 
                 // //\\ todm: automate property transfer
-                var doPaintPname= ns.h( op, 'doPaintPname' ) ?
+                var doPaintPname= has( op, 'doPaintPname' ) ?
                                   op.doPaintPname : true;
-                var draggableX = ns.h( op, 'draggableX' ) ? op.draggableX : false;
-                var draggableY = ns.h( op, 'draggableY' ) ? op.draggableY : false;
+                var draggableX = has( op, 'draggableX' ) ? op.draggableX : false;
+                var draggableY = has( op, 'draggableY' ) ? op.draggableY : false;
                 // \\// todm: automate property transfer
 
                 var pos = pname2point[ pname ] = !pictureP ?
@@ -171,14 +196,14 @@
                             [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
                               ( pictureP[1] - originY_onPicture ) * factor,
                             ];
-
                 //creates rgX or reuses existing one
                 var rgX = op.rgX = ssF.declareGeomtric({
-                    pname, pos, caption : ns.haz( op, 'caption' )
+                    pname, pos, caption : haz( op, 'caption' ),
+                    //stdMod, //don't supply ... bs converters pick up
+                    //coefficients from engine-level stdMod
                 });
 
                 // //\\ todm: automate property transfer
-
                 //------------------------------------------------------
                 // //\\ dragging
                 //------------------------------------------------------
@@ -254,15 +279,16 @@
 
 
 
-
-                if( ns.h( op, 'pcolor' ) ) {
+                if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = op.pcolor;
                     rgX.pcolor = sDomF.getFixedColor( op.pcolor );
+                    rgX.opaqueColor = sDomF.getFixedColor( op.pcolor, !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.getFixedColor( pname );
+                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
                 }
-                rgX.undisplay = ns.h( op, 'undisplay' ) ? op.undisplay : false;
+                rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
 
                 //todm ... make it a stand-alone function to facilitate
                 //         dynamic points creation ... to avoid extra declaration
@@ -270,17 +296,18 @@
                 // //\\ sets up point letters
                 //----------------------------------------------------------
                 rgX.hideCaption     = haz( op, 'hideCaption' );
-                var letterOffset    = estimatesSizeScale * ( ns.h( op, 'letterRotRadius' ) ?
+                var letterOffset    = estimatesSizeScale * ( has( op, 'letterRotRadius' ) ?
                                       op.letterRotRadius : LETTER_ROTATION_RADIUS_PER_1000 );
-                var fontSize        = estimatesSizeScale * ( ns.h( op, 'fontSize' ) ?
+                var fontSize        = estimatesSizeScale * ( has( op, 'fontSize' ) ?
                                       op.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
 
+                rgX.textLineTurn  = haz( op, 'textLineTurn' );
                 var letterShift     = haz( op, 'letterShift' );
                 if( letterShift ) {
                     rgX.letterOffsetX = letterShift[0];
                     rgX.letterOffsetY = letterShift[1];
                 } else {
-                    var letterAngle     = ns.h( op, 'letterAngle' ) ? op.letterAngle : 0;
+                    var letterAngle     = has( op, 'letterAngle' ) ? op.letterAngle : 0;
                     var rad             = letterAngle / 180 * Math.PI;
                     rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
                                           fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
@@ -313,7 +340,7 @@
             //----------------------------------
             // //\\ expands lines placeholders
             //----------------------------------
-            linesArray = ns.haz( sconf, 'linesArray' );
+            linesArray = haz( sconf, 'linesArray' );
             if( linesArray ) {
                 lines = {};
                 linesArray.forEach( (lineConf) => {
@@ -321,9 +348,11 @@
                     lines[ lname ] = lineConf[ lname ];
                 });
             }
-            ns.eachprop( lines, ( gshape, pname ) => {
+
+
+            eachprop( lines, ( gshape, pname ) => {
                 var rgX = toreg( pname )( 'pname', pname )();
-                if( ns.h( gshape, 'pcolor' ) ) {
+                if( has( gshape, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = gshape.pcolor;
                 }
@@ -335,11 +364,15 @@
                 //               every time we forget to transfer new
                 //               property, we lose hours ...
                 //---------------------------------------------------------
-                if( ns.h( gshape, 'undisplay' ) ) {
+                if( has( gshape, 'undisplay' ) ) {
                     rgX.undisplay = gshape.undisplay;
                 }
+
+                //start here: add tp classes, tp shadows for rules and slider handles ...
+
                 rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
                 rgX.notp        = haz( gshape, 'notp' );
+                rgX.cssClass    = haz( gshape, 'cssClass' );
                 //---------------------------------------------------------
                 // \\// transfers properties from line-options to rg-lines:
                 //---------------------------------------------------------
@@ -358,11 +391,6 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         Object.assign( sconf, {
-
-            pname2point,
-            originalPoints,
-            lines,
-
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -381,11 +409,21 @@
             // \\// scenario
             //----------------------------------
 
-            default_tp_stroke_opacity   : 2,
-            default_tp_stroke_width     : ns.haz( sconf, 'default_tp_stroke_width' ) || 10,
+            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+            default_tp_stroke_width     : haz( sconf, 'default_tp_stroke_width' ) ||
+                                          super_default_highlight_tp_stroke_width,
             default_tp_lightness        : 40, //50 is full lightness
             defaultLineWidth            : 2,
         });
+        sn( 'hover_width', sconf,
+            Math.max( 1,  sconf.default_tp_stroke_width ) );
+        sn( 'text_hover_width', sconf,
+            Math.max( 1,  sconf.hover_width ) );
+        sn( 'nonhover_width', sconf,
+            Math.max( 1,  sconf.hover_width/2 ) );
+        sn( 'text_nonhover_width', sconf,
+            Math.max( 1,  sconf.text_hover_width/2 ) );
+
         if( !has( sconf, 'enableStudylab' ) ) {
             ////this way, the legacy lemmas are preserved,
             ////new lemmas must set this in own "sconf",
@@ -400,5 +438,6 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
     }
+
 }) ();
 

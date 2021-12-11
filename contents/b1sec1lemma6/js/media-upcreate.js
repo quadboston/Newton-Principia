@@ -208,7 +208,9 @@
         ssF.angleVisib({ pname : 'phi0' });
 
         if( amode.subessay === 'sine derivative' ) {
-            ssF.str2line( 'x0,x', 'tp-debug', sconf.lines[ 'x0,x' ], 'Δsin(φ)' );
+            var wwLine = ssF.str2line( 'x0,x', 'tp-debug', sconf.lines[ 'x0,x' ], 'Δsin(φ)' );
+            //patch: overrides wide-lemma settings for tp-width for svg-text element
+            wwLine.pnameLabelsvg$.addClass( 'hover-width' );
         } else {
             ////todo patch ... overrides caption by rewriting the line
             ssF.str2line( 'x0,x', 'tp-debug', sconf.lines[ 'x0,x' ], ' ' );

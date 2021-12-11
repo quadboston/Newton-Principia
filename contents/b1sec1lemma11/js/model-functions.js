@@ -1,13 +1,7 @@
 ( function() {
     var {
-        ns, sn, mat,
-        sconf, fconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp, toreg,
-
+        mat,
+        ssD,
     } = window.b$l.apptree({
         setModule,
     });

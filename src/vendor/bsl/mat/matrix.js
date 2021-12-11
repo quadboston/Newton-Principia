@@ -9,8 +9,9 @@
     var mat     = ns.mat         = ns.mat         || {};
 
 
-	///	calculates: c = a*b;    (a*b)[y][z] = SUM_VIA_x(  a[y][x] * b[x][z]  );
-    ///             [y][z]      is conventional JS-indexation of arrays;    
+	///	calculates: c = a*b, where
+    ///             (a*b)[y][z] = SUM_VIA_x(  a[y][x] * b[x][z]  );
+    ///             a[y][x], b[x][z] is conventional JS-indexation of arrays;    
 	///	input:		aa is m x n; y=0,...,m; bb is n x k;
 	//				m is outer index ( number of rows in a ),
     //              k is outer index ( number of columns in b )

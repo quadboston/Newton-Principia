@@ -144,7 +144,7 @@ Q.E.D.
 *::*corollary|latin
 
 
-<img src="contents/b1s2prop1theor1/img/p1-latin.png" style="width:100%">
+<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
 
 
 <br><br>
@@ -224,7 +224,8 @@ AD, Ad, as of the chords and arcs AB, AB.
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br><br>
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br><br>
 
     <div style="text-align:center">
         ¦AB¦e¦¦<sup>2</sup> / ¦BD¦a¦¦ -&gt; ¦AJ¦2R¦¦ <br>
@@ -424,7 +425,8 @@ AD, Ad, as of the chords and arcs AB, AB.
 }
 *..*
 
-    <b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>
+    <b>In <a target="_blank"
+             href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>
     </b><br>
     Newton's ultimate ratio defines second derivatives:
 

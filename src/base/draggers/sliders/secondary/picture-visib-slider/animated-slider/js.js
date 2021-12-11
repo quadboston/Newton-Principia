@@ -1,5 +1,9 @@
 // //\\//
 (function() {
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
 	var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -14,12 +18,9 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
 
     ssF.animatedSlider = animatedSlider;
-    //0000000000000000000000000000000000
     return;
-    //0000000000000000000000000000000000
 
 
 

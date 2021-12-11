@@ -1,4 +1,8 @@
 ( function () {
+    var {
+        stdMod,
+    } = window.b$l.apptree({
+    });
     var ns          = window.b$l;
     var sn          = ns.sn;    
 	var bsl	        = ns;
@@ -86,9 +90,7 @@
 		        sliderEvent( newB-dr.bases, newB, dr.basePts );
 		        dr.bases = newB;
 		        showBasesNumberInGui( sliderOutput, baseLabel );
-                ns.eachprop( studyMods, ( stdMod, modName ) => {
-                    stdMod.model8media_upcreate();
-                });
+                stdMod.model8media_upcreate();
           	}
 
             function sliderEvent(bd, newBases, basePts) {

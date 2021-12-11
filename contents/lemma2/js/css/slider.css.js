@@ -24,8 +24,6 @@
 
         cssmod[ cssName ] = function( cssp, fconf ) {
 
-            //var cssmods = sn('cssModules');
-            //var THIS_MODULE = 'slider';
             var ccs = fconf.css;
             var colorMain = ccs['color-main'];
             var colorWhite = ccs['color-white'];
@@ -47,9 +45,9 @@
 Styles for the model slider range
 ~~~~~~~~~~~~~~~~~~~~*/
 .slider-group {
-  display: flex;
-  flex-direction: column;
-  height: 24px; }
+  height: 24px;
+  padding-top : 10px;
+}
 
 input[type=range] {
   -webkit-appearance: none;
@@ -169,7 +167,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 #mySlider {
   z-index: 1;
-  margin-bottom: 8px; }
+  margin-bottom: 8px;
+}
 
 .slider-label {
   text-align: center;

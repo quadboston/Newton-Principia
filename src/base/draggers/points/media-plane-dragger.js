@@ -3,7 +3,6 @@
     var {
         ns, $$, sn, ssF, sconf, fconf,
         sDomF, sDomN,
-        stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -21,18 +20,20 @@
 
     function setModule()
     {
-        sDomF.creates_mediaMover_in_rgX8dragWrapGenList       = creates_mediaMover_in_rgX8dragWrapGenList;
+        sDomF.creates_mediaMover_in_rgX8dragWrapGenList =
+            creates_mediaMover_in_rgX8dragWrapGenList;
     }
 
 
     //===================================================
     //interface for media-mover
     //===================================================
-    function creates_mediaMover_in_rgX8dragWrapGenList()
+    function creates_mediaMover_in_rgX8dragWrapGenList( stdMod )
     {
         var pname = 'media-mover';
         var pos = [ -11111, -11111 ]; //fake
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
             pname,
             pos, 
             acceptPos : () => true,
@@ -43,8 +44,8 @@
         {
             achieved :
             [
-                sconf.activeAreaOffsetX,
-                sconf.activeAreaOffsetY,
+                stdMod.sconf.modorInPicX,
+                stdMod.sconf.modorInPicY,
             ]
         };
 
@@ -60,7 +61,8 @@
                 'stroke' : 'transparent',
                 'stroke-width' : 3,
                 r : 6,
-            }
+            },
+            stdMod,
         );
     }
 

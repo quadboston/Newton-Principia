@@ -1,7 +1,8 @@
 ( function() {
-
-    //apparently vital to merge this module with proper submodel
-    var SUB_MODEL   = 'common'; 
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
 
     var ns          = window.b$l;
     var $$          = ns.$$;
@@ -22,7 +23,6 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
 
     var d8d_p       = sn('d8d-point');
 
@@ -34,7 +34,6 @@
     var modName     = 'dragModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-    var stdMod;
     return;
 
 
@@ -47,7 +46,6 @@
 
     function setModule()
     {
-        stdMod = sn( SUB_MODEL, studyMods );
         stdMod.populates__cust_draggers_list = populates__cust_draggers_list;
     }
 
@@ -162,7 +160,7 @@
                 sDomF.detected_user_interaction_effect();
                 var new_m = [
                         ach.achieved[0] + arg.surfMove[0] *
-                            (1/sconf.originalMod2inn_scale) *
+                            ( 1 / stdMod.sconf.originalMod2inn_scale ) *
                             sDomF.out2inn(),
                         ach.achieved[1] //unchanged => only abscissa move
                     ];

@@ -46,14 +46,21 @@
     ///appar. overrides spinner's-default CSS by means of
     ///parent_classes
     function creates_spinnerOwnCss(
+
+        //appar. can be point's rgId decapitalized
         spinnerClsId,   //"upward-css-callback"
+
+        //appar. can be point's topic-color
         individual_color,
+
+        //appar. can be essayId
         parent_classes,  //"downward-css-callback", optional
+
+        //optional
         individual_zindex,
     ) {
         parent_classes = parent_classes || [''];
         var ret = '';
-
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
 

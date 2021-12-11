@@ -160,6 +160,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
+            mediaBgImage : "l11-diagram-3rded.jpg",
             predefinedTopics,
             originalPoints,
             linesArray,

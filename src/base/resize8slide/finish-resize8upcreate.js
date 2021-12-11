@@ -1,46 +1,41 @@
 ( function() {
     var {
-        ns,
-        $$,
-        fmethods,
-        haff,
-        haz,
-        nspaste,
-        fconf,
-        sconf,
-        amode,
-        ssD,
-        sDomN,
-        studyMods,
+        ns, $$, fmethods, haff, haz, has, nspaste, eachprop,
         wrkwin,
-        dividorFractions,
+        fconf, sconf, ssD, sDomN, dividorFractions,
+        studyMods, amode,
     } = window.b$l.apptree({
+        sDomNExportList :
+        {
+            bgImgOffset : 0,    //fake initial value before resize ran
+            bgImgW : 1000,      //fake initial value before resize ran
+        },
     });
 
-
     //:spatial adjustments
-    var VERTICAL_SAFE_HEIGHT_1  = 20;
-    var VERTICAL_SAFE_HEIGHT_2  = 20;
-    var HORIZONTAL_SAFE_WIDTH   = 30; //=spare space for possible scroll bars or misfits ...
+    var LEGEND_MIN_HOR_MARGIN   = 15;
+    var VERTICAL_SAFE_HEIGHT_1  = 2; //0;
+    var VERTICAL_SAFE_HEIGHT_2  = 2; //0;
+    var HORIZONTAL_SAFE_WIDTH   = 1; //30;
+                                  //=spare space for possible scroll bars or misfits ...
+    //ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
     var ESS_MIN_WIDTH           = 370;
     var MODEL_MIN_WIDTH         = 300; //when dragging
-    var LEGEND_MIN_HOR_MARGIN   = 15;
-
-    wrkwin.finish_Media8Ess8Legend_resize__upcreate =
-           finish_Media8Ess8Legend_resize__upcreate;
-
 
     /// chain-dispatches callback "resizeHappened"
     ( function() {
         var hazR = haz( fmethods, 'resizeHappened' );
         fmethods.resizeHappened  = hazR ?
-                ({ mediaWidth, mediaAspectRatio, }) => {
-                    hazR({ mediaWidth, mediaAspectRatio, }); 
+                () => {
+                    hazR(); 
                 }
             :
                 ()=>{}
             ;
     })();
+
+    wrkwin.start8finish_media8Ess8Legend_resize__upcreate =
+           start8finish_media8Ess8Legend_resize__upcreate;
     return;
 
 
@@ -49,86 +44,94 @@
 
 
 
+
+
     ///=============================================================================
-    /// //\\ restricts and sets super root and text pane sizes
+    /// //\\ restricts and sets super root and text pane sizes,
+    //       main resize engine manager,
     ///      used in resize and in master-dividor-slider
     ///=============================================================================
-    function finish_Media8Ess8Legend_resize__upcreate(
-             draggerMove, doDividorSynch
+    function start8finish_media8Ess8Legend_resize__upcreate(
+             draggerMove,
+             doDividorSynch,
     ) {
-        //========================================
-        // //\\ gets established parameters
-        //========================================
-        var theorion = amode.theorion;
-        var aspect   = amode.aspect;
-        var submodel = amode.submodel;
-        var stdMod   = studyMods[ submodel ];
-        var isMobile = ns.widthThresholds
-                       [ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]();
-        var imgRk    = ssD.exegs[ theorion ][ aspect ].subexegs[0].imgRk;
-        var filler$  = imgRk.filler$;
-        var bgImg    = imgRk.dom$();
-        var bgImgAsp = bgImg.naturalHeight / bgImg.naturalWidth;
-        var mediaAspectRatio = sconf.innerMediaHeight / sconf.innerMediaWidth;
-        //========================================
-        // \\// gets established parameters
-        //========================================
+        var stdMod      = studyMods[ amode.submodel ];
 
+        var bgImg       = stdMod.imgRk.dom$();
 
+        //-------------------------------------------------------------
+        // asp
+        //     NOTE: stdMod.bgImgAsp thing is irrelevant to maintaining
+        //           veritcal offsets hierarchy,
+        //           the hierarchy id defined by "inner..." or
+        //           "picture..." dims,
+        stdMod.bgImgAsp = haz( stdMod.sconf, 'bgImgAsp' ) ||
+                          bgImg.naturalHeight / bgImg.naturalWidth;
+        //-------------------------------------------------------------
 
-        ///========================================
-        /// does mobile and leaves
-        ///========================================
-        if( isMobile ) {
-            sDomN.mediaWidth = window.innerWidth;
-            wrkwin.doBuildMobile({
-                winW : window.innerWidth,
-                mediaAspectRatio,
-                bgImgAsp,
-                filler$,
+        if(
+            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]() //isMobile
+        ) {
+            preparesMobile();
+        } else {
+            preparesDesktop({
+                draggerMove,
+                doDividorSynch,
             });
-            haff( stdMod, 'model8media_upcreate' );
-            return;
         }
+        fmethods.resizeHappened(); 
+        haff( stdMod, 'model8media_upcreate' );
+    }
+    ///=============================================================================
+    /// \\// restricts and sets super root and text pane sizes,
+    ///=============================================================================
 
 
+
+
+
+
+
+
+
+    function preparesDesktop({
+        draggerMove,
+        doDividorSynch,
+    }){
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
-        //todm use? clientWidth ...without scrollbar: javascript.info)
+        var stdMod      = studyMods[ amode.submodel ];
         var winW        = window.innerWidth - HORIZONTAL_SAFE_WIDTH;
-        var navHeight   = sDomN.navBar$.box().height;
-        var winH        = window.innerHeight - navHeight - VERTICAL_SAFE_HEIGHT_1;
-        var appRootAsp  = winH / winW;
+        var SSceneH     = window.innerHeight - VERTICAL_SAFE_HEIGHT_1 -
+                          sDomN.pageNavTopBar$.box().height;
 
         ///-------------------------------------------
         ///slider group patch for lemmas 2 and 3
         ///-------------------------------------------
-        var sliderGroupH = 0;
+        var lemma2_slidersH = 0;
         if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
-            var sliderGroup$ = $$.q( '.slider-group' );
-            var sliderGroupH = sliderGroup$() ? sliderGroup$.box().height : 0;
+            var sliderGroup$ = sDomN.sliderGroup$;
+            var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
+            lemma2_slidersH +=10; //nicer
+            ccc( lemma2_slidersH );
+            sDomN.sliderGroup$
+                .css( 'position', 'absolute' )
+                ;
         }
-
-        var helpBoxHeight   = sDomN.helpBoxAboveMedia$.box().height;
 
         //-------------------------------------------
         // //\\ calculates legend
         //-------------------------------------------
         var legendWidth = 0;
         var legendHeight = 0;
-        /*
-        //var lbox = sDomN.legendRoot$.box();
-        the alternative way: pull html-element explicitly
-            rg[ 'main-legend' ].tb.proof
-            rg[ 'main-legend' ].tb.claim
-            ...
-            and get its dimensions
-        */
-        sDomN.legendRoot$.children( child => {
+        //measures container legend box children
+        stdMod.legendRoot$.children( child => {
             var box = child.getBoundingClientRect();
             var wWidth = box.width;
             var wHeight = box.height;
+            //ccc( 'box.width = ' + box.width.toFixed() +
+            //     'box.height = ' + box.height.toFixed() );
             if( legendWidth < wWidth ) {
                 legendWidth = wWidth;
             }
@@ -136,6 +139,23 @@
                 legendHeight = wHeight;
             }
         });
+        //measures container legend box itself
+        var wLegBox = stdMod.legendRoot$().getBoundingClientRect();
+        var wWidth = wLegBox.width;
+        if( legendWidth < wWidth ) {
+            legendWidth = wWidth;
+        }
+        legendHeight += 20; //todm: patch: adds gap at bottom page
+        if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
+            legendHeight += 20; //todm: patch: adds gap at bottom page
+        }
+        var wHeight = wLegBox.height;
+        if( legendHeight < wHeight ) {
+            legendHeight = wHeight;
+        }
+        //ccc( 'lbox.width = ' + wWidth.toFixed() +
+        //     'lbox.height = ' + wHeight.toFixed() );
+
         legendWidth += 2*LEGEND_MIN_HOR_MARGIN;
         if( legendWidth + ESS_MIN_WIDTH > winW ) {
             //ccc( 'Legend width = ' + legendWidth + ' and is too big for ' +
@@ -146,11 +166,8 @@
         }
         //-------------------------------------------
         // \\// calculates legend
-        //-------------------------------------------
-        //========================================
         // \\// phase 1. detects parameters
         //========================================
-
 
 
         //========================================
@@ -172,7 +189,8 @@
             proposed_rightW
         );
 
-        ////here we try to fullfill this requirement
+        ////here we try to fullfill this requirement,
+        ////ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
         var essayWidth = Math.max( ESS_MIN_WIDTH, winW - proposed_rightW );
         proposed_rightW = winW - essayWidth;
         //========================================
@@ -184,7 +202,7 @@
         // //\\ phase 3. synchs results with dividor-slider states
         //==========================================================
         dividorFractions[0] = essayWidth/winW;
-        dividorFractions[1] = (winW-essayWidth)/winW;
+        dividorFractions[1] = (winW - essayWidth) / winW;
         if( doDividorSynch ) {
             wrkwin.dividor.achieved.achieved = nspaste( [], dividorFractions )
             fmethods.panesD8D.updateAllDecPoints();
@@ -194,65 +212,83 @@
         //==========================================================
 
 
-
-
-
         //===============================================
         // //\\ phase 4. allocates widths and heights
         //===============================================
-        ////we have enough width for both: essay and media
-        //var essayWidth
-        //proposed_rightW
-        var medH_H = winH
-             - sliderGroupH
-             - helpBoxHeight
+        var simSceneH = SSceneH
+             - lemma2_slidersH
+             - sDomN.helpBoxAboveMedia$.box().height //=helpBoxHeight
              - VERTICAL_SAFE_HEIGHT_2;
-        var medW_H = medH_H / mediaAspectRatio;
-        var medH_L = medH_H - legendHeight;
-        var medW_L = medH_L / mediaAspectRatio;
+        var svgW_H = simSceneH / stdMod.simSceSvg_narrowestAsp;
+        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
 
-        if( medW_L + consideredLegendWidth +
-            sconf.main_horizontal_dividor_width_px < proposed_rightW
+        //but, really available width can be less:
+        var svgW_min = Math.min(
+                            proposed_rightW - sconf.main_horizontal_dividor_width_px,
+                            svgW_Leg );
+        var svgH_min = svgW_min * stdMod.simSceSvg_narrowestAsp;
+
+        //-------------------------------------------------------------
+        // //\\ wide screen,
+        //      legend stays on the right from model
+        //-------------------------------------------------------------
+        if( svgW_Leg + consideredLegendWidth < proposed_rightW &&
+            //if legend aspect ratio is too small, then
+            //doesn't give right side space to legend: will look silly,
+            simSceneH/proposed_rightW < 3*legendHeight/consideredLegendWidth
         ) {
             ////wide screen
-            var wideScreen_flag      = true;
-            medSupW             = proposed_rightW - consideredLegendWidth;
+            var wideScreen_flag = true;
             //now we calculate H-restriction again
-            var medW            = medSupW - sconf.main_horizontal_dividor_width_px-10;
-            medW                = Math.min( medW_H, medW );
-
+            var svgW            = proposed_rightW
+                                    - sconf.main_horizontal_dividor_width_px
+                                    - consideredLegendWidth
+                                    - 10;
+            var bgImgW          = Math.min( svgW_H, svgW );
             var legendMargin    = LEGEND_MIN_HOR_MARGIN;
-            var mediaMargin     = Math.max( 0, ( medSupW - medW - 20 ) / 2 );
-            var medAddonright   = Math.max( 0, proposed_rightW - medSupW );
-            //ccc( 'wide screen: legendMargin =' + legendMargin );
+            var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
+            var simSceneW       = bgImgOffset * 2 +
+                                  bgImgW; // + Math.max( 0, proposed_rightW - medSupW );
+            var svgSceneW       = svgW; //proposed_rightW - legendWidth;
+            var svgSceneH       = simSceneH;
+        //-------------------------------------------------------------
+        // \\// wide screen,
+        //-------------------------------------------------------------
 
         } else {
             ////narrow screen
-            var medAddonright = 0;
             var wideScreen_flag = false;
 
             //apparently, this is a final media-height which is synch with
-            //medH_L and mediaAspectRatio,
-            var medW_H = medH_L / mediaAspectRatio;
+            var svgSceneH = svgH_min;
+
             //-------------------------------------------------
             //does set media width
             //-------------------------------------------------
-            medSupW = Math.min( proposed_rightW, medW_H );
-            var medW = medSupW - sconf.main_horizontal_dividor_width_px;
-            var medW   = Math.min( medW_H, medW );
-            var medSupW = proposed_rightW;
+            var bgImgW = svgW_min;
             //-------------------------------------------------
             //:does set setting legendMarginr
             //-------------------------------------------------
             //does centering legend below the media
             var legendMargin = Math.max( LEGEND_MIN_HOR_MARGIN,
-                ( ( proposed_rightW - consideredLegendWidth - 2*LEGEND_MIN_HOR_MARGIN
+                //note: consideredLegendWidth includes 2*LEGEND_MIN_HOR_MARGIN:
+                ( ( proposed_rightW - consideredLegendWidth + 2*LEGEND_MIN_HOR_MARGIN
                 ) ) / 2 );
-            var mediaMargin = Math.max( 0,
-                ( ( medSupW - medW 
+            var bgImgOffset = Math.max( 0,
+                ( ( proposed_rightW - bgImgW 
                 - 20    //todm:
                 ) ) / 2 );
-            //ccc( 'narrow screen: legendMargin =' + legendMargin );
+            var simSceneW = bgImgOffset * 2 + bgImgW;
+            var svgSceneW = simSceneW;
+        }
+
+        if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
+            sliderGroup$
+                .css( 'top', svgSceneH.toFixed() + 'px' )
+                .css( 'width', '300px' ) //todm patch
+                .css( 'left', (( simSceneW - 300 ) / 2 ).toFixed() + 'px' )
+                ;
+            ccc( sliderGroup$() );
         }
         //===============================================
         // \\// phase 4. allocates widths and heights
@@ -261,50 +297,54 @@
 
 
 
+
+        //--------------------------------------------------------------------
+        // //\\ exports sizes
+        //--------------------------------------------------------------------
+        stdMod.simSceneW    = simSceneW;
+        stdMod.simSceneH    = simSceneH;
+        stdMod.svgSceneW    = svgSceneW;
+        stdMod.svgSceneH    = svgSceneH;
+
+        stdMod.bgImgOffset  = bgImgOffset;
+        stdMod.bgImgW       = bgImgW;
+        stdMod.bgImgH       = bgImgW * stdMod.bgImgAsp;
+
+        var pic2svgvb       = sconf.innerMediaWidth / stdMod.bgImgW;
+        //apparently "basic svg width( bgPictureWidth ) + margins(due widening screen)
+        stdMod.svgVB_W      = stdMod.svgSceneW * pic2svgvb;
+        stdMod.svgVB_H      = sconf.innerMediaHeight;
+        stdMod.svgVB_offsX  = -stdMod.bgImgOffset * pic2svgvb;
+        //--------------------------------------------------------------------
+        // \\// exports sizes
+        //--------------------------------------------------------------------
+
+
         //===============================================
         // //\\ phase 5. finalizes widths and heights
         //===============================================
-        margin_2_svg_Inner8OuterSpatials({ mediaMargin, medW, medAddonright });
+        makes_svgViewBox();
 
-        //--------------------------------------------------------------------
-        // //\\ for additional added elements in media root
-        //--------------------------------------------------------------------
-            //apparently, this is a final media-height which is synch with
-            //medH_L and mediaAspectRatio,
-            //  sDomN.mediaVisibleOuterHeight = medH_L,
-            //  medW_H = medH_L / mediaAspectRatio,
-            //    medW = Math.min( medW_H, medW ) =
-            //          sDomN.mediaOuterWidth = mediaWidth( goes to resize function chain )
-            //  
-        sDomN.mediaVisibleOuterHeight   = medH_L;
-
-        sDomN.mediaOuterWidth           = medW;
-        sDomN.mediaVisibleOuterWidth    = mediaMargin*2 + medW + medAddonright;
-        sDomN.mediaMargin               = mediaMargin;
-        sDomN.medAddonright             = medAddonright;
-        //--------------------------------------------------------------------
-        // \\// for additional added elements in media root
-        //--------------------------------------------------------------------
-
-
-        wrkwin.doesBuildNonMobileCss({
-            legendMargin,
-            mediaMargin,
-            essayWidth,
-            winH,
-            medW,
-            mediaAspectRatio,
-            bgImgAsp,
-            filler$,
+        wrkwin.buildsNonMobile({
+            stdMod,
             wideScreen_flag,
+            SSceneH,
+            essayWidth,
+
+            bgImgW,
+            bgImgOffset,
+
+            svgSceneH,
+            svgSceneW,
+
+            legendWidth,
             legendHeight,
+            legendMargin,
+            lemma2_slidersH,
         });
         //===============================================
         // \\// phase 5. finalizes widths and heights
         //===============================================
-
-        haff( stdMod, 'model8media_upcreate' );
-        return medSupW; //in particular, goes to dividor-slider stashed-update
     }
     ///=============================================================================
     /// \\// restricts and sets super root and text pane sizes
@@ -312,38 +352,61 @@
 
 
 
+    ///========================================
+    ///
+    ///========================================
+    function preparesMobile()
+    {
+        var stdMod          = studyMods[ amode.submodel ];
+        var wid             = window.innerWidth;
+        stdMod.bgImgW       = wid;
+        stdMod.bgImgH       = wid * stdMod.bgImgAsp;
+        stdMod.bgImgOffset  = 0;
+
+        stdMod.simSceneW    = wid;
+        stdMod.simSceneH    = wid * stdMod.simSceSvg_narrowestAsp;
+        stdMod.svgSceneW    = stdMod.svgSceneW;
+        stdMod.svgSceneH    = stdMod.simSceneH; //useless?
+
+        stdMod.svgVB_W      = sconf.innerMediaWidth;
+        stdMod.svgVB_H      = sconf.innerMediaHeight;
+        stdMod.svgVB_offsX  = 0;
+
+        if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
+            sDomN.sliderGroup$
+                .css( 'display', 'inline-block' )
+                .css( 'position', 'static' )
+                ;
+        }
+        makes_svgViewBox();
+
+        wrkwin.buildsMobile({
+            stdMod,
+        });
+    }
+
+
+
     ///=============================================================================
     /// expands media playable area to margins
     /// be aware: this can damage shrink to mobile: do cleanup in mobile,
     ///=============================================================================
-    function margin_2_svg_Inner8OuterSpatials({ mediaMargin, medW, medAddonright })
+    function makes_svgViewBox()
     {
-        sDomN.mediaLeftMargin   = mediaMargin;
-        sDomN.mediaWidth        = medW; // mediaPrimaryWidth
+        var stdMod          = studyMods[ amode.submodel ];
+        stdMod.mmedia.setAttributeNS(
+            null,
+            'viewBox',
+            //landing: ...'viewBox', '0 0 ' +
+            stdMod.svgVB_offsX.toFixed(4) + ' 0 ' + 
 
-        medAddonright           = medAddonright || 0;
-        var innerScale          = sconf.innerMediaWidth / medW;
-        var visibleOuterW       = mediaMargin*2 + medW + medAddonright;
+            //landing: sconf.innerMediaWidth + ' ' +
+            stdMod.svgVB_W.toFixed(4) + ' ' +
 
-        var innMargin           = mediaMargin * innerScale;
-        var visibleInnW         = sconf.innerMediaWidth + 2*innMargin +
-                                  medAddonright * innerScale;
-
-        //compares with initial landing config:
-        var svgvb =
-             //landing: ...'viewBox', '0 0 ' +
-             (-innMargin).toFixed(4) + ' 0 ' + 
-
-             //landing: sconf.innerMediaWidth + ' ' +
-             //landing: sconf.innerMediaHeight );
-             visibleInnW.toFixed(4) + ' ' +
-             sconf.innerMediaHeight;
-
-        sDomN.mmedia.setAttributeNS( null, 'viewBox', svgvb );
-        sDomN.mmedia.style.width = visibleOuterW.toFixed(4) + 'px';
-        sDomN.mmedia.style.left = (-mediaMargin.toFixed(4)) + 'px';
+            //landing: sconf.innerMediaHeight );
+            stdMod.svgVB_H.toFixed(4)
+        );
     }
-
 
 }) ();
 

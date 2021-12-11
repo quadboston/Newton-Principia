@@ -46,8 +46,18 @@
 
                 if( !wait || elapsed > wait || doCallNow ) {
                     //c cc( throttleDebCount + ' fired by elapsed =' + elapsed );
+
+                    //this must be here,
+                    //if( timeout !== null ) clearTimeout( timeout );
+                    //timeout = null;
+                    //timeStart = null;
+                    //before fun( arg ) call
+                   
                     fun( arg );
+
+                    //this must be above fun( arg )
                     if( timeout !== null ) clearTimeout( timeout );
+
                     timeout = null;
                     timeStart = null;
                     return;

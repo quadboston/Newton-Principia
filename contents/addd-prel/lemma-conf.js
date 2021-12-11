@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            mediaBgImage : "main-picture.png",
             codesList :
             [
                 //todm: automate this list
@@ -19,6 +18,7 @@
             "contents-list" :
             [
                 'texts.content.txt',
+                'texts.content-non-euclid.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

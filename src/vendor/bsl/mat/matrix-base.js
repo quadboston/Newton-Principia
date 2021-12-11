@@ -13,11 +13,14 @@
     /*
         Title:      summ of vectors with weights a,b
         Action:     returns vectors linear combination aA+bB
+        Condition:  for 2 dimensional vectors by default,
+                    if A.length === 3, then A,B treatead as 3 dimensional.
         Input:
-            A,B     - sum of A,B
-            a,A     - product aA
-            A,b,B   - comb A+bB
-            a,A,b,B - comb aA+bB
+            arguments signature options:
+                A,B     - sum of A,B
+                a,A     - product aA
+                A,b,B   - comb A+bB
+                a,A,b,B - comb aA+bB
     */
     mat.sm = function( arg )
     {
@@ -39,10 +42,14 @@
                 B = ar[1];
             }
         }
-        return [
+        var ret = [
                     a*A[0]+b*B[0],
                     a*A[1]+b*B[1]
                ];
+        if( A.length === 3 ) {
+            ret.push( a*A[2]+b*B[2], );
+        }
+        return ret;
     }
 
     /*
@@ -51,6 +58,7 @@
     */
 
     mat.unitVector          = unitVector;
+    mat.vector2normalOrts   = vector2normalOrts;
     mat.p1_to_p2            = p1_to_p2;
     mat.linesCross          = linesCross;
     mat.dropPerpendicular   = dropPerpendicular;
@@ -59,20 +67,103 @@
     mat.lineSegmentsCross   = lineSegmentsCross;
     mat.angleBetweenLines   = angleBetweenLines;
     mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
+    mat.sm3                 = sm3;
     return;
 
 
 
+    ///Output: lin. comb. of two 3d vect.
+    function sm3( a1, v1, a2, v2 )
+    {
+        return [
+            a1 * v1[0] + a2 * v2[0],
+            a1 * v1[1] + a2 * v2[1],
+            a1 * v1[2] + a2 * v2[2],
+        ];
+    }
+
+
     ///gets vector's abs value and its direction:
+    ///for 2d and 3d vectors
     function unitVector( vector )
     {
+        var is3d = vector.length === 3;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
-        var v = Math.sqrt( v2 );
+        if( is3d ) {
+            v2 += vector[2]*vector[2];
+        }
+        var abs = Math.sqrt( v2 );
+        if( is3d ) {
+            var unitVec = abs < 1e-40 ? [0,0,0] :
+                [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
+        } else {
+            var unitVec = abs < 1e-40 ? [0,0] : [ vector[0]/abs, vector[1]/abs ];
+        }
         return {
-            abs     : v,
-            unitVec : v < 1e-40 ? [0,0] : [ vector[0]/v, vector[1]/v ]
+            abs,
+            unitVec,
         };
     }
+
+
+
+    ///Given 2d-vector in input, returns unit normal to it.
+    ///Normal = anticlockwise PI/2-turned given vector.
+    ///
+    ///3d functionality is not enough tested:
+    ///Given 3d-vector in input, returns two unit normals to it.
+    ///     which both normals are orhtogonal.
+    function vector2normalOrts( vector )
+    {
+        var is2d = vector.length == 2;
+        var v2 = vector[0]*vector[0] + vector[1]*vector[1];
+        if( !is2d ) {
+            v2 += vector[2]*vector[2];
+        }
+        var abs = Math.sqrt( v2 );
+        if( abs < 1e-100 ) {
+            var norm = is2d ? [1,0] : [1,0,0];
+        }
+        var unit = [ vector[0]/abs, vector[1]/abs, ];
+        if( is2d ) {
+            var norm = [ -unit[1], unit[0] ];
+            var ret = { abs, norm, };
+        } else {
+            unit.push( vector[2]/abs );
+            var normSeed = [];
+            for( var mIx=0; mIx<3; mIx++ ) {
+                var uCur = Math.abs( unit[ mIx ] );
+                if( uCur < uMin || mIx === 0 ) {
+                    if( mIx > 0 ) {
+                        normSeed[ minIx ] = 0;
+                    }
+                    var minIx = mIx;
+                    var uMin = uCur;
+                    normSeed[ mIx ] = 1;
+                } else {
+                    normSeed[ mIx ] = 0;
+                }
+            }
+            //ccc( 'minIx=' + minIx + ' uMin=' + uMin );
+            var norm1 = [
+                unit[1]*normSeed[2] - unit[2]*normSeed[1],
+                -unit[0]*normSeed[2] - unit[2]*normSeed[0],
+                unit[0]*normSeed[1] - unit[1]*normSeed[0],
+            ];
+            norm1 = unitVector( norm1 ).unitVec;
+            var norm2 = [
+                unit[1]*norm1[2] - unit[2]*norm1[1],
+                -unit[0]*norm1[2] - unit[2]*norm1[0],
+                unit[0]*norm1[1] - unit[1]*norm1[0],
+            ];
+            var ret = { abs, orts : [ norm1, norm2, ] };
+            //ccc( 'ret=', ret );
+        }
+        return ret;
+    }
+
+
+
 
 
     ///gets vector's abs value and it's direction from

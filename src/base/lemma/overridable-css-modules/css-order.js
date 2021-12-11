@@ -15,7 +15,8 @@
 
 
 
-
+    ///this sub creates the list, which can be overridden by
+    ///sub "setModule" in specific lemma module loaded after index.html-engine-modules
     function setModule()
     {
         ssCssOrder.list =

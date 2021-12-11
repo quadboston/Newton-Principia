@@ -58,8 +58,6 @@
         var centerX_onPicture = 384;
         var centerY_onPicture = 551;
         var centerY_onPicture = 553;
-        //var activeAreaOffsetX = centerX_onPicture;
-        //var activeAreaOffsetY = centerY_onPicture;
 
         var mod2inn_scale;
 
@@ -160,6 +158,8 @@
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
         Object.assign( to_sconf, {
+            mediaBgImage : "diagram.png",
+            dontRun_ExpandConfig : true,
             initialPoints : pointsOnPicture,
 
             //CBAng   : CBAng,
@@ -174,15 +174,12 @@
             // //\\ model-view parameters
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            originalMod2inn_scale : mod2inn_scale,
 
-            activeAreaOffsetX   : masterCenterX,
-            activeAreaOffsetY   : masterCenterY,
+            modorInPicY         : masterCenterY,
             originX_onPicture   : masterCenterX, //needed for common sliders
             originY_onPicture   : masterCenterY, //needed for common sliders
 
-            centerOnPicture_X   : masterCenterX,
-            centerOnPicture_Y   : masterCenterY,
+            modorInPicX         : masterCenterX,
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
@@ -201,7 +198,7 @@
             // \\// scenario
             //----------------------------------
 
-            default_tp_stroke_opacity : 2,
+            default_tp_stroke_opacity : 0.5,
             default_tp_stroke_width : 10,
             //default_tp_lightness : 50, //50 is full lightness
             default_tp_lightness : 40, //50 is full lightness
@@ -225,10 +222,6 @@
                 mod2inn_scale;
 
             to_sconf.inn2mod_scale_initial = inn2mod_scale;
-
-            //todo proliferation in each lemma:
-            //for tool sliders:
-            to_sconf.originalMod2inn_scale = to_sconf.mod2inn_scale;
         })();
         //----------------------------------
         // \\// spawns to_conf

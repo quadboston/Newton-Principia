@@ -1,9 +1,7 @@
 ( function () {
     var {
-        ns, sn, $$,
-        sconf,
-        ss,
-        sDomN,
+        ns, sn, $$, haz,
+        sconf, ss, fmethods, sDomN,
         stdMod,
     } = window.b$l.apptree({
         setModule,
@@ -91,6 +89,30 @@
                 }
             }
             // \\// copy-pasted from gui-art
+
+
+
+            //--------------------------------------------------------
+            // //\\ attaches ownself to resize manager
+            //--------------------------------------------------------
+            var hazR = haz( fmethods, 'resizeHappened' );
+            fmethods.resizeHappened  = hazR ?
+                    () => {
+                        hazR();
+                        doFitScene();
+                    }
+                :
+                    doFitScene
+                ;
+            //--------------------------------------------------------
+            // \\// attaches ownself to resize manager
+            //--------------------------------------------------------
+            return;
+
+            function doFitScene()
+            {
+                sDomN.sliderGroup$.css( 'top', stdMod.bgImgH.toFixed() + 'px' );
+            }
         };
 
 

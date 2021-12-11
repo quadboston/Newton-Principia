@@ -2,9 +2,9 @@
     var ns  = window.b$l;
     var sn  = ns.sn;
 
-    var cssmods = sn('cssModules');
+    var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'nav-bar-and-drawer';
-    cssmods[THIS_MODULE] = function( cssp, fconf ) {
+    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ccs             = fconf.css;
         var colorMain       = ccs['color-main'];
         var colorWhite      = ccs['color-white'];
@@ -22,7 +22,7 @@
         // //\\ css /////////////////////////////////////////
         var ret = `
 
-            .nav-bar {
+            .page-top-nav-bar {
                 background:     transparent;
                 display:        flex;
                 align-items:    flex-start;

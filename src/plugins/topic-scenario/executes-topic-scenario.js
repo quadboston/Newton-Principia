@@ -65,9 +65,7 @@
                 background-color: #cccccc;
             }
             `,
-            //todo this corrupts css ... possibly two css
-            //interact: in study-model and here:
-            //'user-feedback-style-tag'
+            'user-feedback-style-tag'
         );
     }
 
@@ -214,9 +212,9 @@
     //api
     //:, :-     - do start over
     //:-        - no scroll
-    //::-       - do scroll
+    //::-       - no scroll
     //::#       - do condence message to equal previous message
-    function executesMessageAction( ecommand, ctype )
+    function executesMessageAction( ecommand, ctype, noMathJax )
     {
         doDebugMessage( 'p r o m p t   ' + ecommand );
         if( ctype === '::#' && ecommand === previousMessage ) return;
@@ -236,12 +234,17 @@
 
         //adds ecommand to feedback frame 
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
-        var newMessage_dom  = $$.c('div').html( ecommand )();
-        $$.$( fbFrame_dom ).ch( newMessage_dom ); 
+        var newMessage_dom  = $$.c('div')();
+        $$.$( fbFrame_dom ).ch( newMessage_dom );
+
+        //todm: why there are two MathJax flags? here and below,
+        ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand, !!'dontDoMathJax' );
+        if( noMathJax ) return;
 
         ///we put new message in MathJax queue:
         ssF.BodyMathJax_2_HTML(
-            newMessage_dom, 'no_domEl_pretransformation',
+            newMessage_dom,
+            !!'no_domEl_pretransformation',
             doScroll,
         );
     }

@@ -2,14 +2,14 @@
 	const ns	  = window.b$l;
     const nssvg   = ns.sn( 'svg' );
     const mat     = ns.sn( 'mat' );
-    const svgNS   = "http://www.w3.org/2000/svg";
+    const svgNS   = ns.svgNS;
     const has     = ns.h;
     const haz     = ns.haz;
     const $$      = ns.$$;
 
 
-
-    ///Updates svg-shape. Svg-shape creates before update if missed in arg.
+    ///Updates svg-shape. Svg-shape creates before update if arg.svgel
+    ///is missed in arg.
     ///Optional Input:
     ///     arg.svgel - element to be updated
     ///     arg.parent

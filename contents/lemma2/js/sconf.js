@@ -1,7 +1,7 @@
 ( function () {
     var {
-        fconf,
-        sconf,
+        nspaste,
+        fconf, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -24,10 +24,10 @@
         //----------------------------------
         var pictureWidth = 282;
         var pictureHeight = 290;
-        var activeAreaOffsetX = 31.5;
-        var activeAreaOffsetY = 29;
+        var modorInPicX = 31.5;
+        var modorInPicY = 29;
         //.set it from graph editor
-        var pictureActiveArea = 259 - activeAreaOffsetY;
+        var pictureActiveArea = 259 - modorInPicY;
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
@@ -47,6 +47,7 @@
         //=====================================
         Object.assign( sconf,
         {
+            dontRun_ExpandConfig : true,
 
             //----------------------------------
             // //\\ model-view parameters
@@ -60,7 +61,7 @@
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             innerMediaHeight    : pictureHeight + SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
-            activeAreaOffsetY   : activeAreaOffsetY,
+            modorInPicY,
             pictureActiveArea   : pictureActiveArea,
             //----------------------------------
             // \\// model-view parameters
@@ -71,7 +72,7 @@
             baseMax         : 500,
             ctrlPtXYs_js    :
             [
-                {x:activeAreaOffsetX,             y: activeAreaOffsetY},
+                {x:modorInPicX,             y: modorInPicY},
                 {x:85,          y: 51.5},
                 {x:139,         y: 89.0},
                 {x:193,         y: 148.5 },
@@ -100,6 +101,47 @@
         //=====================================
         // \\// configures application engine
         //=====================================
+
+
+
+        /*
+        //see ///modern approach ... abandoned
+        //=====================================
+        // //\\ patch for quick slider creation
+        //=====================================
+        var originX_onPicture = modorInPicX;
+        var originY_onPicture = modorInPicY + pictureActiveArea;
+        var originalPoints =
+        {
+            baseSlider : { 
+                pos         : [0,0.1],
+                letterAngle : 90,
+                draggableX  : true,
+            },
+        };
+        var predefinedTopics =
+        {
+            baseSlider : [0,0,100],
+        };
+
+        var mod2inn_scale = 1; //todo
+
+        nspaste( sconf, {
+            predefinedTopics,
+            originalPoints,
+            //linesArray,
+            //lines,
+            originX_onPicture,
+            originY_onPicture,
+            pictureWidth,
+            pictureHeight,
+            mod2inn_scale,
+            //default_tp_stroke_width : 12,
+        });
+        //=====================================
+        // \\// patch for quick slider creation
+        //=====================================
+        */
     };
 
 

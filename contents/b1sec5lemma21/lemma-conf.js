@@ -9,8 +9,6 @@
     function lemmaConfig()
     {
         return {
-            dontRun_ExpandConfig : true,
-            mediaBgImage : "diagram.png",
             codesList :
             [
                 { src:'sconf.js' },

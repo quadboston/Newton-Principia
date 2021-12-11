@@ -1,5 +1,9 @@
 ( function () {
-    var SUB_MODEL   = 'common';
+    var {
+        SUB_MODEL, stdMod, rg,
+    } = window.b$l.apptree({
+    });
+
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -50,7 +54,7 @@
         //======================================
         // //\\ exports module
         //======================================
-        sn(SUB_MODEL, studyMods ).model8media_upcreate = refreshSVG_master;
+        stdMod.model8media_upcreate = refreshSVG_master;
 
         Object.assign( l23, {
 	        //refreshSVG_master               : refreshSVG_master,
@@ -71,12 +75,12 @@
         // //\\ view top-manager
         //======================================
         function refreshSVG_master() {
-            studyMods[ SUB_MODEL ].mmedia$.cls( 'submodel-' + SUB_MODEL );
+            stdMod.mmedia$.cls( 'submodel-' + SUB_MODEL );
 	        guiup.updateFigureBasicsJS();
 	        show_LPR();
 	        guiup.calculate8paintCurve_8_paintAxes();
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
-            var ww = studyMods[ SUB_MODEL ].medD8D;
+            var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
             //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax(); //todo toggle ???active
         }

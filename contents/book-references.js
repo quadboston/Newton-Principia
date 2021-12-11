@@ -12,66 +12,80 @@
         ////no unescaped $, "\", ...
 
         latin : `
-            <span style="font-size:10px;">
-                <br><br>
-                Source:
                 <br>
+                <i>Source</i>: <br>
                 <a href="https://www.e-rara.ch/zut/wihibe/content/structure/338026"
                      target="_blank">
                      3rd Edition: https://www.e-rara.ch/zut/wihibe/content/structure/338026
                      License: public domain.
                 </a>
-            </span>
+        `,
+        'latin---inline-style' : `
+            font-size: 11px;
         `,
 
         Donahue : `
-            <br>
-            <div style="font-size:10px;">
-                Source: <br>
+                <br>
+                <i>Source</i>: <br>
                 William H Donahue cited <br>
                 in the book "Newton Principia. The Central Argument." <br>
                 by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
                 We did not find year and name for book by William H Donahue.
-            </div>
-
         `,
+        'Donahue---inline-style' : `
+            font-size: 11px;
+        `,
+
 
         'Motte-3rd' : `
             <br>
+            <i>Source</i>:<br>
             The Mathematical Principles of
             Natural Philosophy, by Sir Isaac Newton;<br>
             Translated into English by Andrew Motte.<br>
             First American Edition, Carefully Revised and corrected. New York. Published By Daniel
             Adee, 45 Liberty Street.<br>
-            Year is possibly 1846.<br><br>
+            Year is possibly 1846.<br>
+        `,
+        'Motte-3rd---inline-style' : `
+            font-size: 11px;
         `,
 
         'Bernard-Cohen' : `
-        Source:
         <br>
+        <i>Source</i>:<br>
         <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
             3rd Edition English translation by I. Bernard Cohen.
         </a>
         <br>
         `,
+        'Bernard-Cohen---inline-style' : `
+            font-size: 11px;
+        `,
 
 
-        'Latin-diagram' : `
-        Source:
+        'latin-diagram' : `
         <br>
+        <i>Source</i>:<br>
         <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102"  target="_blank">
             Diagram. Latin, 3rd Edition.
         </a>
         `,
+        'latin-diagram---inline-style' : `
+            font-size: 11px;
+        `,
 
         'IanBruce' : `
-        Source:
         <br>
+        <i>Source</i>:<br>
         Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.<br>
         Translated and annotated by Ian Bruce<br>
         <a href="http://www.17centurymaths.com/contents/newtoncontents.html">
         http://www.17centurymaths.com/contents/newtoncontents.html</a>
         <br>
+        `,
+        'IanBruce---inline-style' : `
+            font-size: 11px;
         `,
 
 

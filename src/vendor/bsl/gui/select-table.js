@@ -85,10 +85,11 @@
         iarrays.forEach( (iarray,iix) => {
             var wwRow$;
             sboxTable$.ch( wwRow$ = $$.c( 'tr' )
-                        .html( '<td>' +
+                        .ch( $$.c( 'td' )
+                                .html(
                                     iarray[0] +
                                     ( addValueToCaption ? ', ' + iarray[1] : '' )
-                               + '</td>'
+                               )
                         )
                         .e( 'mousedown', function( event ) {
                             var ix = iix;
@@ -111,6 +112,7 @@
             }
         });
 
+
         if( sbStyle && selectBoxClassId ) {
             globalCss.update( sbStyle, selectBoxClassId, );
         }
@@ -126,7 +128,7 @@
         }
     }
 
-
+    ///todm ... migrate to nsmethods.purgedLines_2_itemArrays
     function purgedLines_2_itemArrays( plines )
     {
         const SPLIT_COLUMNS = /\s+\|\s*|\s*\|\s+/;

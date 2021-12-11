@@ -1,6 +1,8 @@
 ( function() {
     const {
-        ns, sn, haz, $$, sconf, ssF, sDomF, rg,
+        ns, sn, haz, $$,
+        sconf, ssF, sDomF,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -57,18 +59,17 @@
         addToStepCount,     //see descr. in nssvg.curve
         annotationConfig,   //to annotate curve with "point interface"
 
-        start,      //existence is a flag
-        step,
-
         stepsCount, //optional
-
+        start,      //existence is a flag
+            step,
         parentUndisplayCollector, //to hidecleanup children when parent is cleaned
         //--------------------------------------------------------------------------
         // \\// optional args
         //--------------------------------------------------------------------------
     }) {
 
-
+        if( start === 222 ) 
+            ccc( 'bad start' );
         //-----------------------------------------------------------------
         // //\\ model-function to media-function conversion
         //-----------------------------------------------------------------
@@ -88,6 +89,7 @@
         //-----------------------------------------------------------------
         // //\\ rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
+        var rg = stdMod.rg;
         stepsCount = stepsCount || 85;
         if( pointA && pointB ) {
             rgName              = rgName || 'arc-' + pointA.pname + pointB.pname;
@@ -123,6 +125,7 @@
         //====================================================
         //this curve registry item
         var rgX = sn( rgName, rg );
+        //rgX.rgName = rgName;
         rgX.svg = //no need in this assignment,
                   //todm: get rid of this assignment and test,
                   //because of rgX is provided and svg element will be
@@ -190,6 +193,7 @@
                             caption : captionFunct({
                                 pointParam, pointIndex : aix, pointPos : pos
                             }),
+                            stdMod,
                 });
                 rgAnn.undisplay = haz( rgX, 'undisplay' );
                 letterPars && Object.assign( rgAnn, letterPars );

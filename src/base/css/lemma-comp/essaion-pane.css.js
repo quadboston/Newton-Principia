@@ -1,10 +1,10 @@
 (function() {
     var ns  = window.b$l;
     var sn  = ns.sn;
-    var cssmods = sn('cssModules');
+    var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'essaion-pane';
 
-    cssmods[THIS_MODULE] = function( cssp, fconf ) {
+    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ret = `
 
             /* original text */
@@ -93,22 +93,47 @@
                 padding         : 3px 8px;
                 margin-bottom   : 2px;
                 border-radius   : 10px;
-                color           : #888888;
-                background-color: white;
                 cursor          : pointer;
             }
 
-            .subessay-toggler.subexeg-toggler-chosen:hover,
-            .subessay-toggler.subexeg-toggler-chosen {
-                color           : black;
-                background-color: #dddddd;
-            }
 
+
+            .subessay-toggler {
+                color           : #888888;
+                background-color: white;
+            }
+            .subessay-toggler.subexeg-toggler-chosen,
+            .subessay-toggler.user-untouched:hover,
             .subessay-toggler:hover {
                 color           : #444444;
-                background-color: #bbbbbb;
+                background-color: #cccccc;
+            }
+            .subessay-toggler.user-untouched {
+                color           : #888888;
+                background-color: white;
+            }
+
+        `;
+
+
+        ///from "essaion-pane.css.js"
+        ///relates to activity-scenario,
+        ///keeps some divs hidden until user clicks on activity,
+        ///
+        ///.subessay-had-user-clicked is a state of subessay,
+        ///
+        ///problem is that at least one activity is defined by default,
+        ///which is non-permitted for some tutorials,
+        ///
+        ret += `
+            .user-clicked-sensitive {
+                display : none;
+            }
+            .subessay-had-user-clicked .user-clicked-sensitive {
+                display : inline-block;
             }
         `;
+
         return ret;
     }
 })();

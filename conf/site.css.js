@@ -1,29 +1,14 @@
 (function() {
     var ns          = window.b$l;
 
-    /*
-    var cssmods     = sn('cssModules');
-    cssmods['site-sapp'] = function( cssp, conf ) {
-            return `
-                .where-is-this-css,
-                .bsl-bg-image {
-                    width:100%;
-                    left:0;
-                    top:0;
-                    z-index:9;
-                }
-            `;
-        };
-    */
-
     var st = ns.$$.c( 'style' )
         .html( `
-
             .bsl-bg-image {
-                width:100%;
-                left:0;
-                top:0;
-                z-index:9;
+                position : absolute;
+                width   : 100%;
+                left    : 0;
+                top     : 0;
+                z-index : 9;
             }
 
             table.essay-normal {
@@ -44,10 +29,21 @@
                 border          : none;
             }
             table.essay-no-border td {
-                padding : 5px;
+                padding         : 5px;
                 border          : none;
             }
 
+            table.matrix-determinant {
+                border          : none;
+                border-left     : 2px solid #626D7E;
+                border-right    : 2px solid #626D7E;
+            }
+            table.matrix-determinant td {
+                text-align      : center;
+                border-collapse : collapse;
+                border          : none;
+                padding         : 0px;
+            }
 
         `)
         .to( document.head )

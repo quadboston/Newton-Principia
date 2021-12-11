@@ -1,4 +1,12 @@
 
+Handy help
+==========
+
+example: makes self-reference in content-script
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#scholium">
+
+
+
 Authoring own content
 =====================
 

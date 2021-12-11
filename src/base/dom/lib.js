@@ -26,14 +26,15 @@
         scenarioEventOnClick,   //aka 'graph-is-plotted'
         clickCallback,
         cssText,
+        noTopicScenario,
     }){
         var butt = sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
             .addClass( buttonUniversalId )
             .csst( cssText )
-            .to( sDomN.medSuperroot$ )
+            .to( sDomN.simSScene$ )
             .e( 'click', () => {
                 clickCallback && clickCallback();
-                ssF.executesTopicScenario( scenarioEventOnClick );
+                !noTopicScenario && ssF.executesTopicScenario( scenarioEventOnClick );
             })
             .ch( $$.c( 'div' )
                    .css( 'position', 'relative' )

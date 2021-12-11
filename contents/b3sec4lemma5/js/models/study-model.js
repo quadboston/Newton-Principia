@@ -1,13 +1,6 @@
 ( function() {
-    var {
-        ns, sn,
-        mat,
-        sconf,
-        ssF,
-        rg, tp, tr, 
-        stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
+    var at = window.b$l.apptree({
+        expoMod :
         {
             model_upcreate,
             init_model_parameters,
@@ -89,40 +82,42 @@
     //===================================================
     function init_model_parameters()
     {
-        tr = ssF.tr;
-        tp = ssF.tp;
-        tr( 'chosenExperimentalFunction', 'value', 0 );
+        var toreg = at.toreg;
+        var rg = at.rg;
+        toreg( 'chosenExperimentalFunction' )( 'value', 0 );
 
         //:primary params
-        tr( 'O', 'pos', [0,0] );
+        toreg( 'O' )( 'pos', [0,0] );
 
-        var n = sconf.basePairs.length-1;
-        tr( 'n', 'value', n );
-        tr( 'm', 'value', n );
-        tr( 'experimental' );
+        var n = at.sconf.basePairs.length-1;
+        toreg( 'n' )( 'value', n );
+        toreg( 'm' )( 'value', n );
+        toreg( 'experimental' );
 
         //.spawns original experimental function data from book;
         addBookFunction();
 
         ///does indexing of pname2point related constructs;
         ///does this for all repo functions at once;
-        Object.keys( sconf.pname2point ).forEach( pname => {
-            tr( pname, 'pos', sconf.pname2point[ pname ].pos ); //in sync by reference
+        Object.keys( at.sconf.pname2point ).forEach( pname => {
+            toreg( pname )( 'pos', at.sconf.pname2point[ pname ].pos ); //in sync by reference
             rg[ pname ].pname   = pname;
-            var opoint          = sconf.pname2point[ pname ];
+            var opoint          = at.sconf.pname2point[ pname ];
             opoint.pointWrap    = rg[ pname ];
             opoint.ptype        = opoint.pname === "S" ?
                                   'approximator' : 'experimental';
         });
         rg.chosenExperimentalFunction.value = -1;
-        stdMod.toggleData( !!"don't run model yet" );
+        at.stdMod.toggleData( !!"don't run model yet" );
     }
 
 
     function model_upcreate()
     {
+        var rg = at.rg;
+
         updateExperimentalFunction();
-        //above rebuilds sconf.basePairs[ i ][0/1].pos
+        //above rebuilds at.sconf.basePairs[ i ][0/1].pos
         //which changes rg.approximator_curve in body of current function;
 
         //----------------------------------------------------------
@@ -131,15 +126,15 @@
         var xy = [];
         var m = rg.m.value;
         for( i=0; i<m; i++ ) {
-            xy[ i ] = [ sconf.basePairs[ i ][0].pos[0], sconf.basePairs[ i ][1].pos[1] ];
+            xy[ i ] = [ at.sconf.basePairs[ i ][0].pos[0], at.sconf.basePairs[ i ][1].pos[1] ];
         }
-        tr( 'approximator_curve', 'value', xy );
+        at.toreg( 'approximator_curve' )( 'value', xy );
         //sets the function:
-        rg.approximator_curve.dividedDifferences = mat.calculate_divided_differences( xy );
+        rg.approximator_curve.dividedDifferences = at.mat.calculate_divided_differences( xy );
 
         //takes care about single poit (S,R) which approximeates curve at abscissa S
         //.gets point of approximation R
-        var pointApproxim = sconf.basePairs[ sconf.basePairs.length-1 ][1];
+        var pointApproxim = at.sconf.basePairs[ at.sconf.basePairs.length-1 ][1];
         //.calculates ordinate of R by supplying abscissa of R
         pointApproxim.pos[1] = rg.approximator_curve
             .dividedDifferences
@@ -159,25 +154,26 @@
 
     function toggleExperimentalFunction( dontRunModel )
     {
-        rg.chosenExperimentalFunction.value =
-            ( rg.chosenExperimentalFunction.value + 1 ) % repoConf.length;
-        !dontRunModel && stdMod.model8media_upcreate();
+        at.rg.chosenExperimentalFunction.value =
+            ( at.rg.chosenExperimentalFunction.value + 1 ) % repoConf.length;
+        !dontRunModel && at.stdMod.model8media_upcreate();
     }
 
     function updateExperimentalFunction()
     {
+        var rg = at.rg;
         var chosen = repoConf[ rg.chosenExperimentalFunction.value ];
         var fun = chosen.fun;
-        var n = sconf.basePairs.length-1;
+        var n = at.sconf.basePairs.length-1;
         for( i=0; i<n; i++ ) {
             //// this context does:
             //// the master data points are in
             //// sconf.pname2point[ pname ].pos;
             //// do change them and this will change an experimental data points;
 
-            var rp = sconf.basePairs[ i ];
+            var rp = at.sconf.basePairs[ i ];
             var xx = rp[0].pos[0];
-            rp[1].pos[1] = fun( xx ) ;
+            rp[1].pos[1] = fun( xx );
         }
         rg.experimental.expFunction = chosen.fun;
         rg.experimental.fname = chosen.fname;
@@ -194,9 +190,9 @@
     {
         var xy = [];
         //... n = length - 1 because of stripping last element which is "(S,R)";
-        var n = sconf.basePairs.length-1;
+        var n = at.sconf.basePairs.length-1;
         for( i=0; i<n; i++ ) {
-            var rp = sconf.basePairs[ i ];
+            var rp = at.sconf.basePairs[ i ];
             var xx = rp[0].pos[0];
             var yy = rp[1].pos[1];
             xy[ i ] = [ xx, yy ];
@@ -210,7 +206,7 @@
         repoConf[0] =
         {
             fname : "Original lemma function",
-            fun : mat.calculate_divided_differences( xy ).calculate_polynomial,
+            fun : at.mat.calculate_divided_differences( xy ).calculate_polynomial,
         };
         //checks the job;
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;

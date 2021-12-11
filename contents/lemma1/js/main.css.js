@@ -1,4 +1,3 @@
-//\\// Application Entry
 ( function() {
     var {
         globalCss,
@@ -21,7 +20,7 @@
     function updatesLemmaCss() 
     {
         globalCss.update( `
-            .bsl-approot .bsl-media-root svg text {
+            .bsl-approot .bsl-simscene svg text {
                 font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
             }
         `,

@@ -4,8 +4,7 @@
     var {
         ns, $$, sn, haz, haff,
         ssF, sconf, fconf,
-        sDomF, sDomN,
-        stdMod,
+        sDomF, sDomN, studyMods, amode,
     } = window.b$l.apptree({
         setModule,
     });
@@ -23,7 +22,6 @@
 
     function setModule()
     {
-        //todm: must be loop via stMods
         sDomF.move_2_updates        = move_2_updates;
         sDomF.processDownEvent      = processDownEvent;
         sDomF.processUpEvent        = processUpEvent;
@@ -48,15 +46,15 @@
     ///         (rgX = this)
     ///
     ///===================================================
-    function pname__2__rgX8dragwrap_gen_list( pname )
+    function pname__2__rgX8dragwrap_gen_list( pname,  stdMod )
     { 
-        return params__2__rgX8dragwrap_gen_list({ pname });
+        return params__2__rgX8dragwrap_gen_list({ pname, stdMod });
     }
     function params__2__rgX8dragwrap_gen_list({
-        pname, acceptPos, orientation, pos, nospinner,
+        pname, acceptPos, orientation, pos, nospinner, stdMod,
     }) {
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
-        var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos })
+        var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, stdMod })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
         rgX.processDownEvent    = sDomF.processDownEvent;
@@ -95,14 +93,15 @@
 
     function move_2_updates( dragMove, mouseOnSurf )
     {
+        var stdMod = studyMods[ amode.submodel ];
         if( haz( sconf, 'dragHidesPictures' ) ){
             sDomF.detected_user_interaction_effect();
         }
         if( ns.h( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             //// dragging media as a whole 
-            sconf.activeAreaOffsetX = this.achieved.achieved[0] + dragMove[0];
-            sconf.activeAreaOffsetY = this.achieved.achieved[1] + dragMove[1];
+            stdMod.sconf.modorInPicX = this.achieved.achieved[0] + dragMove[0];
+            stdMod.sconf.modorInPicY = this.achieved.achieved[1] + dragMove[1];
             this.medpos[0] = mouseOnSurf[0];
             this.medpos[1] = mouseOnSurf[1];
             this.svgel.setAttributeNS( null, 'cx', this.medpos[0] );
@@ -112,7 +111,7 @@
         }
 
         //// ordinary case
-        //// draggin ordinary model point
+        //// dragging ordinary model point
         var newPos = [
             this.achieved.achieved[0] + dragMove[0],
             this.achieved.achieved[1] - dragMove[1],
@@ -127,6 +126,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
+        var stdMod = studyMods[ amode.submodel ];
         if( ns.haz( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
@@ -141,7 +141,7 @@
                     .css( 'display', 'block' )
                     ;
             }
-            sDomN.medRoot.style.cursor = 'grabbing';
+            stdMod.simScene.style.cursor = 'grabbing';
         } else {
             //// ordinary case
             //// DOES A SURPRISE: changes the type of
@@ -158,10 +158,12 @@
 
     function processUpEvent( arg )
     {
+        var stdMod = studyMods[ amode.submodel ];
         if( ns.haz( this, 'mediaMover' ) ) {
 
-            this.achieved.achieved[ 0 ] = sconf.activeAreaOffsetX; 
-            this.achieved.achieved[ 1 ] = sconf.activeAreaOffsetY; 
+            var stdMod = studyMods[ amode.submodel ];
+            this.achieved.achieved[ 0 ] = stdMod.sconf.modorInPicX; 
+            this.achieved.achieved[ 1 ] = stdMod.sconf.modorInPicY; 
 
             //// non-ordinary case:
             this.undisplay = true;
@@ -171,7 +173,7 @@
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
             }
-            sDomN.medRoot.style.cursor = 'grab';
+            stdMod.simScene.style.cursor = 'grab';
         }
         $$.$( this.svgel ).removeClass( 'grabbing' ); //seems redundant
         if( ns.haz( arg.dragWrap, 'decPoint' )) {

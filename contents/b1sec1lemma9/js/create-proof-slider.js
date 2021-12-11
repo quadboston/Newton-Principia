@@ -10,6 +10,7 @@
         ssD,
         ssF,
         rg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -42,7 +43,7 @@
         sDomF.proofSlider = ssF.animatedSlider({
             //parent            :sDomN.menu,
             //.adds slider usually below numbers' table
-            parent              :sDomN.medRoot,
+            parent              :stdMod.simScene,
             cssp                :'bsl',
             hideProofSlider     :sconf.hideProofSlider,
             sliderClassId       :'simple',
@@ -56,9 +57,7 @@
 
                                     //.todm wrong: belongs to subapp instance
                                     ssD.tC = dataArg;
-                                    eachprop( studyMods, ( stdMod, modName ) => {
-                                        stdMod.model8media_upcreate();
-                                    });
+                                    stdMod.model8media_upcreate();
                                     //appar. this is an internal business: nothing with app
                                     setCaption( sDomF.proofSlider.slider );
                                 },

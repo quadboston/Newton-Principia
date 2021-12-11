@@ -2,7 +2,7 @@
 ( function() {
     var {
         sn, $$,
-        has, haz, haf,
+        has, haz, haf, hafa,
         sapp, fapp,
         fconf,
         fmethods,
@@ -38,18 +38,10 @@
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
             link.setAttribute( 'title', 'click to go to episode' );
             link.addEventListener( 'click', function() {
-
-                ////prevents code-crash if subapp does not define "appState__2..."
-                var stdMod = haz( studyMods, amode.submodel );
                 sDomF.detected_user_interaction_effect();
                 //match[1] is astateKey
-                if( has( stdMod, 'astate_2_rg8model8media' ) ) {
-                    haf( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ match[1] ], match[1] );
-                } else {
-                    ////remove this later
-                    haf( ssF, 'astate_2_rg8model8media' )( ssD.capture[ match[1] ], match[1] );
-                }
-
+                //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
+                hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ match[1] ] );
             });
         });
     };
@@ -69,7 +61,7 @@
             //.after resize
         //!!'doDividorSynch'
         ///this statement is inside of this routine: sapp.up-create();
-        haf( wrkwin, "finish_Media8Ess8Legend_resize__upcreate" )(
+        haf( wrkwin, "start8finish_media8Ess8Legend_resize__upcreate" )(
             null, !!'doDividorSynch'
         );
     }
@@ -79,15 +71,15 @@
     {
         var pager$ = direction === 'right' ? sDomN.rightButton$ : sDomN.leftButton$;
 
-        var mList = fconf.sappModulesList[ fconf.sappId ];
+        var mList = fconf.sappId2lemmaDef[ fconf.sappId ];
         sapp.ix = mList.ix;
         var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
-        if( next >= fconf.sappModulesArray.length || next < 0 ||
-            fconf.sappModulesArray[ next ].sappId === 'home-pane'
+        if( next >= fconf.ix2lemmaDef.length || next < 0 ||
+            fconf.ix2lemmaDef[ next ].sappId === 'home-pane'
         ) {
             pager$.addClass( 'non-displayed' );
         } else {
-            var nextSapp = fconf.sappModulesArray[ next ];
+            var nextSapp = fconf.ix2lemmaDef[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption + '.';
             var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
             pager$.html( direction === 'right' ?
@@ -105,7 +97,7 @@
     }
     
 
-    function attachWeelToDomEl( domel$ )
+    function attachWeelToDomEl( domel$, stdMod )
     {
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
         domel$.e( 'wheel', wheelHandler );
@@ -133,7 +125,8 @@
             var validated = rg.media_scale.value2validate2pos( newScale );
             if( !validated ) return;
             rg.media_scale.value = newScale;
-            ssF.scaleValue2app( newScale ); //resets applic. state to new scale
+            rg.media_scale.stdMod = stdMod;
+            ssF.scaleValue2app( newScale, stdMod ); //resets applic. state to new scale
             rg.media_scale.modPos_2_GUI();
             stdMod.model8media_upcreate();
         };

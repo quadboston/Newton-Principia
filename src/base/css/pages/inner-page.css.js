@@ -1,14 +1,14 @@
 (function() {
     var ns  = window.b$l;
     var sn  = ns.sn;
-    var cssmods = sn('cssModules');
+    var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'inner-page';
 
 
 
 
 
-    cssmods[THIS_MODULE] = function( cssp, fconf ) {
+    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ccs             = fconf.css;
         var colorMain       = ccs['color-main'];
         var colorWhite      = ccs['color-white'];
@@ -21,13 +21,6 @@
         var helpBoxOpacity  = fconf.appDecor.helpBox_opacity0 ? 0 : 1;
 
 var ret = `
-
-    /*
-    .${cssp}-media-root {
-      width: calc(100% - 90px) ;
-    }
-    */
-
 
     .top-media-controls {
         position : relative;

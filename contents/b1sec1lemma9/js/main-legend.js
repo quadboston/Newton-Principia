@@ -1,12 +1,8 @@
 ( function() {
     var {
         $$,
-        sconf,
-        sDomF,
-        sDomN,
-        ssD,
-        ssF,
-        rg,
+        sconf, sDomF, sDomN, ssD, ssF,
+        stdMod, rg, toreg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -34,7 +30,7 @@
 
     function create_digital_legend()
     {
-        var mlegend = ssF.tr( 'main-legend' );
+        var mlegend = toreg( 'main-legend' )();
         doCreateTable_claim( mlegend );
         doCreateTable_proof( mlegend );
     }
@@ -113,10 +109,8 @@
         var tb = mlegend.tb.proof = $$
             .c('table')
             .cls( 'main-legend proof' )
-            .to( sDomN.legendRoot$ )
-            //sDomN.medRoot)
+            .to( stdMod.legendRoot$ )
             ();
-        var tr = ssF.tr;
 
         //=====================================================
         // //\\ idle first row to format table for fixed-layout
@@ -254,9 +248,8 @@
         var tb = mlegend.tb.claim = $$
             .c('table')
             .cls( 'main-legend claim' )
-            .to( sDomN.legendRoot$ )
+            .to( stdMod.legendRoot$ )
             ();
-        var tr = ssF.tr;
 
 
 
@@ -337,7 +330,6 @@
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
     {
-        var tr = ssF.tr;
         var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
         var c$ = $$.c('td')
                    .html( mcaption||mname )
@@ -364,13 +356,9 @@
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
         if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        //var updateeCell = tr( 'td-'+mname, 'domel', c$() );
         if( claim0proof === 'claim' ) {
-            //var updateeCell = tr( 'claim-number-'+mname, 'domel', c$() );
-            //clustersToUpdate_claim[mname] = updateeCell;
             clustersToUpdate_claim[mname] = c$();
         } else {
-            //var updateeCell = tr( 'number-'+mname, 'domel', c$() );
             clustersToUpdate[mname] = c$(); //updateeCell;
         }
         return c$;

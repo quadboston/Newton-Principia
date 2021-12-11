@@ -1,12 +1,8 @@
 ( function() {
     var {
         ns, sn, $$, sv, haz,
-        sconf,
-        rg, toreg,
-        ssF, ssD,
-        sDomF, sDomN, amode,
-        stdMod,
-
+        sconf, ssF, ssD, sDomF, sDomN, rg, toreg,
+        amode, studyMods,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -112,6 +108,8 @@
         drawExternalSector,
         stepsCount,
     }){
+        var stdMod = studyMods[ amode.submodel ];
+
         ANGLE_SIZE = ANGLE_SIZE || 0.1;
         ///"manually" created polyline which formes ellipse's sector,
         ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;

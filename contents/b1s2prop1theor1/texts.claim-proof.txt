@@ -1,0 +1,427 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin",
+
+  "fixed-colors" :
+  {
+    "path"              : [0,   0,  100],
+    "path-change"       : [0,   0,  100, 1],
+    "kepler-triangle"   : [50,  50, 100],
+    "SABCD"             : [0,   0,  100],
+    "SABCDEF"           : [0,   0,  100],
+
+    "SAB"               : [0,   0,  100],
+
+    "SBC"               : [0,   0,  100],
+    "SCD"               : [0,   0,  100],
+    "SDE"               : [0,   0,  100],
+    "SEF"               : [0,   0,  100],
+    "SBc"               : [0, 100,  0],
+
+    "A"                 : [0,   0,  100],
+    "B"                 : [0,   0,  100],
+    "C"                 : [0,   0,  100],
+    "D"                 : [0,   0,  100],
+    "E"                 : [0,   0,  100],
+    "F"                 : [0,   0,  100],
+
+    "AB"                : [0,   0,  100, 0],
+    "BC"                : [0,   0,  100],
+    "CD"                : [0,   0,  100],
+    "DE"                : [0,   0,  100],
+    "EF"                : [0,   0,  100],
+
+    "comment neutral colors"
+                        : [100,   0,  100],
+    "ABCV"              : [100,   0,  100],
+    "DEFZ"              : [100,   0,  100],
+    "SA"                : [100,   0,  100],
+
+    "Sb"                : [100,   0,  100],
+    "Sc"                : [100,   0,  100],
+    "Sd"                : [100,   0,  100],
+    "Se"                : [100,   0,  100],
+    "Sf"                : [100,   0,  100],
+
+    "Cc"                : [100,   0,  100],
+    "Dd"                : [100,   0,  100],
+    "Ee"                : [100,   0,  100],
+    "Ff"                : [100,   0,  100],
+
+
+    "field"             : [255,   0,  0, 0.5],
+    "force-center"      : [255,   0,  0, 0.5],
+    "S"                 : [255,   0,  0, 0.5],
+    "SB"                : [255,   0,  0, 0.3],
+    "SC"                : [255,   0,  0, 0.3],
+    "SD"                : [255,   0,  0, 0.3],
+    "SE"                : [255,   0,  0, 0.3],
+    "SF"                : [255,   0,  0, 0.3],
+
+    "BU"                : [255,   0,  0, 0.7],
+    "EW"                : [255,   0,  0, 0.7],
+    "AC"                : [0,   0,  100],
+    "DF"                : [0,   0,  100],
+
+
+    "force"             : [255,   0, 0, 1],
+    "Z"                 : [255, 100, 0, 1],
+    "V"                 : [255, 100, 0, 1],
+    "BV"                : [255, 100, 0, 1],
+    "EZ"                : [255, 100, 0, 1],
+    "SP"                : [200, 100, 0, 1],
+    "P"                 : [200, 100, 0, 1],
+    "T"                 : [200, 100, 0, 1],
+    "TP"                : [200, 100, 0, 1],
+
+    "free-path"         : [0,100,0],
+    "c"                 : [0,100,0],
+    "h"                 : [0,100,0],
+    "d"                 : [0,100,0],
+    "e"                 : [0,100,0],
+    "f"                 : [0,100,0],
+    "g"                 : [0,100,0],
+
+    "Bc"                : [0,100,0],
+    "Bh"                : [0,100,0],
+    "Ch"                : [255, 100, 0],
+
+    "Cd"                : [0,100,0],
+    "De"                : [0,100,0],
+
+    "Ef"                : [0,100,0],
+    "Eg"                : [0,100,0],
+    "Fg"                : [255, 100, 0],
+
+    "free-triangle"     : [0,100,0],
+    "speed-change"      : [0,100,0,1],
+
+    "time"              : [0,100,100,1]
+  }
+}
+*..*
+
+<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of ¦force¦forces¦¦, are contained in immobile planes and are proportional to the times.
+
+<br><br>
+
+
+<div book-reference-id="Donahue">Page 123.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*proof|latin
+
+<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*proof|english
+{
+}
+*..*
+
+<span class="captured-reference id-1-0">Let the time be divided into equal parts</span>
+, and 
+in the first part of the time let the body,
+by its inherent force, describe the straight line ¦AB¦AB¦¦.
+<br><br>
+
+
+<span class="captured-reference id-1-1">In the second part of the time</span>,
+the same body, if nothing there to impede it, would pass on by means of a straight line
+to ¦c¦c¦¦ (by Law 1), describing the line ¦Bc¦Bc¦¦ equal to ¦AB¦AB¦¦, with the result that,
+radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the areas ¦SAB¦ASB¦¦,
+
+¦SBc¦BSc¦¦ would come out equal.
+<br><br>
+
+
+<span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>, 
+let the centripetal force act with an ¦BV¦impulse¦¦
+that is single but great, and let it have the effect of making the body depart from the
+straight line ¦Bc¦Bc¦¦
+
+
+<span class="captured-reference id-1-3">
+and continue in the straight line ¦BC¦BC¦¦.
+</span>
+<br><br>
+
+
+
+Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦,
+meeting ¦BC¦BC¦¦ at ¦C¦C¦¦; and,
+the second part of the time being completed, the body (by Corollary 1 of the Laws) will
+be located at ¦C¦C¦¦, in the same plane as the triangle ¦SA SB AB¦ASB¦¦.
+<br><br><br>
+
+Connect ¦SC¦SC¦¦, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
+triangle ¦SBC¦¦ will be equal to
+triangle ¦SBc¦¦, and
+<span class="captured-reference id-1-4">
+therefore also to triangle ¦SAB¦¦.</span>
+<br><br>
+
+
+
+By a similar argument,
+if the centripetal force should act successively at
+
+<span class="captured-reference id-force-at-C">¦C¦C¦¦</span>,
+
+<span class="captured-reference id-force-at-D">¦D¦D¦¦</span>,
+
+<span class="captured-reference id-force-at-E">¦E¦E¦¦</span>,
+
+and so on,
+
+<span class="captured-reference id-motion-F">making the body describe</span>,
+the individual straight lines ¦CD¦CD¦¦, ¦DE¦DE¦¦, ¦EF¦EF¦¦, and so on,
+in the individual particles of the time,
+
+all these will lie in the same plane, and the triangle ¦SCD¦¦ will be equal
+to triangle
+¦SBC¦¦, and ¦SDE¦¦ to ¦SCD¦¦, and
+¦SEF¦¦ to ¦SDE¦¦.
+<br><br>
+
+Therefore, in equal times equal areas are described in a motionless plane; and
+componendo, any sums whatever of areas ¦SABCD¦SADS¦¦,
+¦SABCDEF¦SAFS¦¦
+are to one another as the times of description.
+<br><br>
+
+
+<span class="captured-reference id-more-triangles">Now let the number</span>,
+
+of the triangles be increased and their breadth decreased
+in infinitum, and their ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦
+(by Corollary Four of Lemma Three)
+will be a curved line:
+
+and therefore the centripetal force, by with the body is perpetually drawn back from the
+tangent of this curve, will act without ceasing,
+
+while any described areas whatever ¦SABCD¦SADS¦¦,
+¦SABCDEF¦SAFS¦¦,
+always proportional to the times of
+description, will be proportional to those times in this case.
+<br><br><br><br>
+
+<div book-reference-id="Donahue"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*claim|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
+
+        <div style="text-align:center;">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#area-speed">
+                <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
+            </a>
+
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+                <b>r</b>||<b>a</b> ⇒ S˙ = const
+            </a>
+        </div>
+<br>
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+
+¦field¦force :¦¦¦¦
+¦time¦time step :¦¦¦¦
+
+
+¦field cssbold¦f¦¦¦¦
+¦force cssbold¦p¦¦¦¦
+
+¦time¦t¦¦¦¦
+
+¦speed-change cssbold¦v¦¦¦¦
+¦speed-change¦initial speed :¦¦¦¦
+
+¦path-change BC path cssbold¦r¦¦¦¦
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
+
+        <div style="text-align:center;">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#area-speed">
+                <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
+            </a>
+
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+                <b>r</b>||<b>a</b> ⇒ S˙ = const
+            </a>
+        </div>
+<br>
+
+
+<b>Calculational Model</b><br><br>
+
+    The model used in web simulation, follows Newton's proof exactly.
+
+    <span class="captured-reference id-1-0">When body arrives from point A to point B</span>,
+
+    it circumscribes a ¦kepler-triangle¦"kepler-triangle-area"¦¦. <br><br> 
+
+    Logical steps describing motion ¦BC¦BC¦¦ are:<br><br>
+
+        <span class="captured-reference id-1-1">proof step 1. </span>
+
+        if speed would not change, then 
+           body would move ¦free-path¦freely¦¦ from point B to point c,
+           making motion \(r_{Bc} = v_{AB} \Delta t \).
+
+           The area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
+           to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
+
+
+        <span class="captured-reference id-1-2">proof step 2</span>.
+        the force \(f\) adds an impulse
+                \(p = f \Delta t\) to the speed:<br><br>
+
+                \[  v_{BC} = v_{AB} + p \]
+                or 
+                \[ \Delta v = f\Delta t \;\;\;  (*) \]
+            <br><br>
+
+            <span class="captured-reference id-1-3">proof step 3.</span>
+            because of speed change ¦BC¦motion¦¦ becomes
+            \[
+               \Delta r = v \Delta t \;\; \;\; (**) \\
+               \Delta r = r_{BC} = v_{BC} \Delta t  = \\
+               v_{Bc} \Delta t + p \Delta t  = \\
+               r_{Bc} + r_{cC}
+            \]
+
+            ¦free-triangle¦"free-movement-triangle-area"¦¦
+            is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
+            <br><br>
+
+
+        <span class="captured-reference id-1-4">proof step 4.</span>
+        previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+
+
+        Each of next motions, CD, DE, ... repeats steps 1, 2, 3, 4.<br><br><br>
+
+
+        Formulas (*) and (**) are the only ones
+        used in calculational model. We estimated the default parameters
+        which fit Newton's original diagram:
+
+
+        \[ \\
+        \text{force :}          \; f = 3.9 / r^2 , \\
+        \text{time step :}      \; \Delta t = 1 ,\\
+        \text{initial speed :}  \; v_{0} = 1.
+        \]
+
+        Newton's computer brand was not estimated.
+
+        Point B dragger changes direction of initial speed and \( \Delta t\).
+
+<br>
+
+<div book-reference-id="kvk"></div>
+
+
+

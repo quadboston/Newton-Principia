@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            dontRun_ExpandConfig : true,
             codesList :
             [
                 { src:'sconf.js' },
@@ -35,7 +34,6 @@
             [
                 "texts.content.txt",
             ],
-            mediaBgImage : "lemma-23-3rd-ed.png",
         };
     }
 

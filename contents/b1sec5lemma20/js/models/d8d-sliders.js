@@ -1,7 +1,8 @@
 ( function() {
-
-    //apparently vital to merge this module with proper submodel
-    var SUB_MODEL   = 'common'; 
+    var {
+        SUB_MODEL, stdMod, rg,
+    } = window.b$l.apptree({
+    });
 
     var ns          = window.b$l;
     var $$          = ns.$$;
@@ -22,7 +23,6 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
 
     var d8d_p       = sn('d8d-point');
 
@@ -34,7 +34,6 @@
     var modName     = 'dragModel_2_ss';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
 
-    var stdMod;
     return;
 
 
@@ -150,7 +149,7 @@
                             ach.achieved[0] + arg.surfMove[0] *
                             //sconf.inn2mod_scale * sDomF.out2inn(),
 
-                            (1/sconf.originalMod2inn_scale) *
+                            (1/stdMod.sconf.originalMod2inn_scale) *
                             sDomF.out2inn(),
 
                             ach.achieved[1]

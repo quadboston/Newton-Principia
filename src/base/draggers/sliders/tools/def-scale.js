@@ -1,14 +1,14 @@
 ( function() {
     var {
-        ns, haz,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
+        haz,
+        sconf, ssF,
+        studyMods, amode,
     } = window.b$l.apptree({
-        modName:'studyModel_2_ss',
         setModule,
-        ssFExportList : { scaleValue2app },
+        ssFExportList : {
+            scaleValue2app,
+            createSliderPlaceholder_media_scale,
+        },
     });
     var pointies2line;
     return;
@@ -25,7 +25,6 @@
 
     function setModule()
     {
-        stdMod.createSliderPlaceholder_media_scale = createSliderPlaceholder_media_scale;
         pointies2line   = ssF.pointies2line;
     }
 
@@ -34,11 +33,11 @@
     /// creates slider only once per
     /// app model creation;
     ///----------------------------------------
-    function createSliderPlaceholder_media_scale()
+    function createSliderPlaceholder_media_scale( stdMod, )
     {
         var magnit = 'media_scale';
-        var media_scale_value = haz( rg[ magnit ], 'value' ) || 1;
-        ssF.toreg( magnit )( 'value', media_scale_value );
+        var media_scale_value = haz( stdMod.rg[ magnit ], 'value' ) || 1;
+        stdMod.toreg( magnit )( 'value', media_scale_value );
 
         ssF.sliderTemplate({
             magnit,
@@ -48,10 +47,11 @@
             min_magnit      : 0.2,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
+            stdMod,
         });
     }
 
-    function magnitude2app( magnit_api, newValue )
+    function magnitude2app( magnit_api, newValue, stdMod )
     {
         // //\\ todm: fullLength patch,
         //            to fit CB in window
@@ -60,14 +60,15 @@
         //magnit_api.value = newValue * fullLength;
 
         magnit_api.value = newValue;
-        scaleValue2app( magnit_api.value );
+        scaleValue2app( magnit_api.value, stdMod );
         // \\// todm: fullLength patch
     }
 
 
-    function scaleValue2app( svalue ) {
-        sconf.mod2inn_scale = sconf.originalMod2inn_scale * svalue;
-        sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
+    function scaleValue2app( svalue, stdMod ) {
+        var sc = stdMod.sconf;
+        sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
+        sc.inn2mod_scale = 1 / sc.mod2inn_scale;
     }
 
 

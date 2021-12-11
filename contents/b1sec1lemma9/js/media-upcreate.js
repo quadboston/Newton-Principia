@@ -1,19 +1,8 @@
 ( function() {
     var {
-        ns,
-        $$,
-        sn,
-        paste,
-        mat,
-        bezier,
-        sv,
-        sconf,
-        sDomF,
-        ssD,
-        ssF,
-        rg,
-        toreg,
-        stdMod,
+        sn, $$, paste, haz, mat, bezier, nssvg,
+        sconf, sDomF, ssD, ssF,
+        stdMod, rg, toreg,
     } = window.b$l.apptree({
         setModule,
     });
@@ -44,7 +33,6 @@
         //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
-        var tr              = ssF.tr;
         //:study-pars
         var modCurvPivots   = ssD.curvePivots;    //curve params
         var tC              = ssD.tC;             //point C curve param = vanish param
@@ -55,8 +43,14 @@
 
 
 
-        var medCurvPivots      = modCurvPivots.map( mod2innCustom );
-        var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
+        //var medCurvPivots      = modCurvPivots.map( mod2innCustom );
+        //var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
+        var medCurvPivots      = modCurvPivots.map( pos => {
+            return ssF.mod2inn( pos, stdMod );
+        });
+        var medRemoteCurPivots = ssD.modRemoteCurPivots.map( pos => {
+            return ssF.mod2inn( pos, stdMod );
+        });
 
         var pointA     = pos2pointy4lemma9( 'A',  null
                                       , 'skipSVG'
@@ -104,7 +98,7 @@
 
 
         // //\\ paints curve with two pivot points
-        var mainCurve = tr( 'mainCurve' );
+        var mainCurve = toreg( 'mainCurve' )();
         mainCurve.mediael = bezier.mediafy({
             mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
             parentSVG : stdMod.mmedia,
@@ -146,7 +140,7 @@
         // \\// helps to draw hollow dragee-points on diagram
         //--------------------------------------------------------------
 
-        var remoteCurve = tr( 'remoteCurve' );
+        var remoteCurve = toreg( 'remoteCurve' )();
         remoteCurve.mediael = bezier.mediafy({
             mediael : remoteCurve.mediael,
             parentSVG : stdMod.mmedia,
@@ -159,7 +153,7 @@
         });
         $$.$( remoteCurve.mediael.paintedCurve )
             .addClass( 'tostroke tp-_abc' )
-            .tgcls( 'undisplay', ns.haz( remoteCurve, 'undisplay' ) )
+            .tgcls( 'undisplay', haz( remoteCurve, 'undisplay' ) )
             ;
         // \\// paints curve with two pivot points
 
@@ -244,7 +238,7 @@
                         area.endPoint[0] + ' ' +
                         area.endPoint[1] + ' ';
 
-            area.mediael = sv.u({
+            area.mediael = nssvg.u({
                 svgel : area.mediael,
                 type : 'path',
                 d:dd,
@@ -255,7 +249,7 @@
 
             $$.$(area.mediael)
                 .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .tgcls( 'undisplay', ns.haz( area, 'undisplay' ) )
+                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================
@@ -272,15 +266,17 @@
         function paintLikeAGE( areaId, fullMode, topicGroup_decapitalized, stroke0fill )
         {
             var area = rg[ areaId ];
-            var vertices = area.vertices.map( mod2innCustom );
-            area.mediael = sv.polyline({
+            var vertices = area.vertices.map( pos => {
+                return ssF.mod2inn( pos, stdMod );
+            });
+            area.mediael = nssvg.polyline({
                 pivots : vertices,
                 svgel : area.mediael,
                 parent : stdMod.mmedia
             });
             var ww$ = $$.$( area.mediael )
                         .addClass( 'tp-' + topicGroup_decapitalized )
-                        .tgcls( 'undisplay', ns.haz( area, 'undisplay' ) )
+                        .tgcls( 'undisplay', haz( area, 'undisplay' ) )
                         ;
             stroke0fill && ww$.addClass( stroke0fill );
             fullMode && ww$.addClass( fullMode );
@@ -294,31 +290,20 @@
         //==========================================
         // //\\ paint helpers
         //==========================================
-        // //\\ pos to pos
-        ///transforms model-coordinates to media-coordinates
-        function mod2innCustom( pos )
-        {
-            if( !pos ) { pos = this; }
-            return [ pos[0] * sconf.mod2inn_scale + sconf.activeAreaOffsetX,
-                     pos[1] * sconf.mod2inn_scale * sconf.MONITOR_Y_FLIP +
-                     sconf.activeAreaOffsetY ];
-        }
-        // \\// pos to pos
-
 
         ///converts model-pos and attributes to pointy
         function pos2pointy4lemma9( pName, attrs, skipSVG, customSWidth, medPosKnown )
         {
-            var pt              = tr( pName );
+            var pt              = toreg( pName )();
             pt.pname            = pName;
             if( !medPosKnown ) {
                 var pos         = rg[ pName ].pos;
                 pt.pos          = pos;
-                pt.medpos       = mod2innCustom( pt.pos );
+                pt.medpos       = ssF.mod2inn( pt.pos );
             }
             if( skipSVG ) return pt;
 
-            pt.svgel = sv.u({
+            pt.svgel = nssvg.u({
                 svgel   : pt.svgel,
                 parent  : stdMod.mmedia,
                 type    : 'circle',

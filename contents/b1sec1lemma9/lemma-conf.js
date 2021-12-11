@@ -1,10 +1,6 @@
 ( function() {
     window.b$l.sn('fapp' ).lemmaConfig = function() { return {
 
-
-
-
-        mediaBgImage : "lemma9-original.png",
         codesList :
         [
             { src:'sconf.js' },

@@ -1,37 +1,16 @@
 ( function() {
-    var SUB_MODEL   = 'proof-xix';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var bezier      = sn('bezier');
-
-    var fapp        = ns.sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
-
-    var d8d_p       = sn('d8d-point');
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'dragModel_2_ss';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+    var {
+        sn, $$, d8d_p, globalCss, eachprop,
+        fconf, sconf, sDomF, rg, ssD,
+        stdMod,
+    } = window.b$l.apptree({
+        SUB_MODEL : 'proof-xix',
+        stdModExportList :
+        {
+            initDragModel,
+        },
+    });
     return;
-    //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 
 
 
@@ -40,10 +19,6 @@
 
 
 
-    function setModule()
-    {
-        sn( SUB_MODEL, studyMods ).initDragModel = initDragModel;
-    }
 
 
     //==========================================
@@ -55,10 +30,10 @@
         ///======================================
         /// sets framework of draggee-points
         ///======================================
-        var medD8D = sn( SUB_MODEL, studyMods ).medD8D =
+        var medD8D = stdMod.medD8D =
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
-            dragSurface                         : sDomN.medRoot,
+            dragSurface                         : stdMod.simScene,
             //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
             detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
@@ -70,7 +45,7 @@
         //: sets drag points
         //==========================================
         createDragger();
-        ns.globalCss.update(); //for decorator
+        globalCss.update(); //for decorator
         return;
 
 
@@ -87,9 +62,7 @@
                         var newEy = ach.achieved -
                                  arg.surfMove[1] * sconf.inn2mod_scale * sDomF.out2inn();
                         ssD.EPSILON = Math.max( Math.min( newEy, 0.4 ), 0.05 );
-                        ns.eachprop( studyMods, ( stdMod, modName ) => {
-                            stdMod.model8media_upcreate();
-                        });
+                        stdMod.model8media_upcreate();
                      break;
             }
         }

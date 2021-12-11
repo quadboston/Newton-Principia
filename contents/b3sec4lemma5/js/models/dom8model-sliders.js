@@ -1,5 +1,9 @@
 ( function() {
-    var SUB_MODEL   = 'common';
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
+
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -18,7 +22,6 @@
     var ss          = sn('ss',fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
 
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
@@ -31,7 +34,6 @@
     var pos2pointy;
     var pointies2line;
 
-    var stdMod;
     return;
 
 
@@ -43,7 +45,6 @@
 
     function setModule()
     {
-        stdMod = sn( SUB_MODEL, studyMods );
         ssF.createSliderPlaceholder_m = createSliderPlaceholder_m;
         pos2pointy      = ssF.pos2pointy;
         pointies2line   = ssF.pointies2line;
@@ -79,7 +80,7 @@
         //----------------------------------------------------------------------------
         // //\\ in model units and reference system
         //----------------------------------------------------------------------------
-        var startX            = ( -sconf.centerOnPicture_X +
+        var startX            = ( -sconf.modorInPicX +
                                  sconf.innerMediaWidth * sconf.SLIDERS_OFFSET_X
                                 ) *
                                 sconf.inn2mod_scale;
@@ -105,8 +106,8 @@
 
         // //\\ slider object
         //sets registry
-        ssF.tp( 'sliderStart_' + sliderId, startPos );
-        ssF.tp( 'sliderEnd_' + sliderId, endPos );
+        stdMod.topos( 'sliderStart_' + sliderId, startPos );
+        stdMod.topos( 'sliderEnd_' + sliderId, endPos );
 
         var sliderStart = pos2pointy( 'sliderStart_' + sliderId,
             { fill : '#9999dd', tpclass:sliderId, cssClass : 'tofill tostroke', } );
@@ -157,7 +158,7 @@
 
         function updateSliderHandlePos()
         {
-            m.medpos = ssF.mod2inn_original( m.pos );
+            m.medpos = ssF.mod2inn_original( m.pos, stdMod );
             sv.u({
                 svgel   : m.svgel,
                 parent  : stdMod.mmedia,

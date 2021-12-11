@@ -1,7 +1,10 @@
 // //\\// App config
 
 ( function () {
-    var SUB_MODEL   = 'common';
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
     var ns          = window.b$l;
     var $$          = ns.$$;    
     var sn          = ns.sn;    
@@ -47,7 +50,7 @@
             //=====================================
             Object.assign( dr,
             {
-                svgSeg          : studyMods[ SUB_MODEL ].mmedia$(),
+                svgSeg          : stdMod.mmedia$(),
                 basePts         : {offset:1, visOffset:0, list:[]},
                 curvPts         : {offset:1, visOffset:0, list:[]},
                 leftPts         : {offset:0, visOffset:0, list:[]},

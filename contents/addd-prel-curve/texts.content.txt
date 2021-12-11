@@ -21,10 +21,10 @@
                                             <table style="display:inline-block; text-align:left;">
 
                                             <tr><td style="vertical-align:top;">
-        ¦curveCircle¦Curve¦¦ is a map: ¦curveCircle¦<b>r</b> : τ → <b>P</b>¦¦ 
+        ¦curveCircle¦Curve¦¦ is a map: ¦curveCircle¦<b>r</b> : 𝗧 → 𝗣¦¦ 
                                             </td><td style="vertical-align:top;">
-        where τ is an ordered set and
-        <br><b>P</b> is set of points<br>
+        where 𝗧 is an ordered set and
+        <br>𝗣 is set of points<br>
         "Ordered" means for all non-equal
         <br>t', t" ∃ relation ‹ 
         <br>which is transitive and antisymmetric.
@@ -66,7 +66,7 @@ By our definition, side is a half-plane which does not include own boundary.
 
 A ray ¦AT¦¦ is one-side Euclidean tangent iff
 
-for any other ¦AX¦ray AX¦¦ with X on side s₁
+for any other ¦AX¦ray AX¦¦ with X on side s₁,
 
 there is a point <b>r</b><sub>c</sub> between ¦AX¦¦ and ¦AT¦¦.
 <br><br>
@@ -101,10 +101,20 @@ Examples:
 
 
 
+
+
+
+
+
+
+
+
+
+
 *::*proof|curve
 {
   "menuCaption" : "Curve",
-  "subessayCaption" : "Infinite frequency curve",
+  "subessayCaption" : "Infinite frequency (IF) curve",
   "subessay" : "if-curve"
 }
 *..*
@@ -203,10 +213,14 @@ where t<sub>max</sub> and t<sub>min</sub> are abscissas of max and min points of
 
 
 
+
+
+
+
 *::*proof|curve
 {
   "menuCaption" : "Curve",
-  "subessayCaption" : "Continuous infinite frequency curve",
+  "subessayCaption" : "Continuous and IF ...",
   "subessay" : "continuous-if-curve"
 }
 *..*
@@ -308,39 +322,195 @@ At point ¦A¦¦, this curve has ¦A,Tleft AT¦Euclidean tangent¦¦ and is cont
 <br><br>
 
 
+
+
+
+
+
+
+
+
+
 *::*proof|curve
 {
-  "default" : "1",
   "menuCaption" : "Curve",
-  "subessayCaption" : "Circle-based curvature",
+  "subessayCaption" : "CircleScribed curvature",
   "subessay" : "circle-based-curvature"
 }
 *..*
 
-<b>* Circle-based curvature definitions</b>.
+<a name="circlescribed-curvature-anchor"></a>
+
+<b>Definition</b>
+<br>
+One-side CircleScribed curvature center R<sub>c</sub> \( \; \overset{df} = \; \)
+lim R when t → a. 
 <br><br>
 
-Consider curve's branch ¦curveRightCircle¦<b>r</b><sub>t</sub>, a ⩽ t ⩽ b¦¦, and
-line AN, A = <b>r</b><sub>a</sub>.
-Consider a circle inscribed via chord AB and
-line AN as a diameter. Let R be a center of this circle.
+where we consider <br>
+curve's branch ¦curveParabola¦<b>r</b><sub>t</sub>, a ⩽ t ⩽ b¦¦, <br>
+¦AN¦line AN¦¦, ¦A¦¦ = <b>r</b><sub>a</sub>, and <br>
+circumscribed over ¦AB¦chord AB¦¦ ¦curvatureCircle¦circle¦¦ with center R on AN.
 <br><br>
 
-One-side curvature center Rc <b>=</b> lim R when B → A.
-<br><br><br>
+The circle with center in ¦Rc¦R<sub>c</sub>¦¦ with radius ¦A,Rc¦AR<sub>c</sub>¦¦ is called circle of
+CircleScribed curvature.
+<br><br>
+
+We call CircleScribed curvature continuous in point A if left and right CircleScribed curvature circles do coinside.
+
+
+
 
 
 *::*proof|curve
 {
-  "default" : "1",
   "menuCaption" : "Curve",
-  "subessayCaption" : "Continous circle-curvature",
-  "subessay" : "continous-circle-curvature"
+  "subessayCaption" : "CircleScribed and IF ...",
+  "subessay" : "infinite-frequency-circle-based-curvature"
 }
 *..*
 
-<b>* Continuous circle-based-curvature in ¦A¦point A¦¦ breakes L6.</b>.
+<a name="if-circlescribed-curve"></a>
+
+<b>Lemma IFC. 
+
+Curve defined below has continuous CircleScribed curvature in point A ( left and right curvature circles are equal ), but fails conclusion of Lemma 6: chord-tangent angle does not approach 0.</b>
 <br><br>
+
+This curve is not continuous in point A.<br>
+
+
+                                            <div style="text-align:center;">
+                                            <table class="essay-no-border">
+
+                                            <tr><td>
+        ¦curveIFC curveIFCleft¦<b>r</b><sub>t</sub> = ρ( sin(φ), cos(φ) )¦¦
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+        (IFC)
+                                            </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+        where -oo ‹ t ‹ oo,  ε = C<sub>ε</sub>|t|, <br>
+        φ(t) = ε + C<sub>φ</sub>( 1 + sin(1/t) ),  <br>
+        ρ(t) = 1 - δ, <br>
+        δ = C<sub>δ</sub>ε<sup>λ</sup>, <br>
+        λ = 6. ( perhaps λ > 2 works too. ) <br>
+                                            </td>
+                                            </tr>
+                                            </table>
+                                            </div>
+<br>
+Transition from ρ,φ is:
+    <div style="text-align:center">
+        x = ρsin(φ); <br>
+        y = ρcos(φ) - 1;
+    </div>
+<br>
+Coordinates of point A = (0,0).
+<br><br>
+        Constants 0 ‹ C<sub>φ</sub> ‹ 1/4, C<sub>ε</sub> › 0, and
+        C<sub>δ</sub> › 0. On the diagram, they are adjusted for decorational purposes to emphasize
+        curve features. 
+<br><br>
+
+
+<br><br>
+<b>Proof</b>
+<br><br>
+
+For point B = <b>r</b><sub>t</sub>, consider
+¦curvatureCircle¦circle circumscribed over¦¦ the
+¦AB¦chord AB¦¦ with diameter ¦AD¦¦ on ¦A,axisX¦axis x¦¦.
+<br><br>
+Coordinate of diameter
+    <div style="text-align:center">
+        y<sub>D</sub> = (x²+y²)/y = <br>
+        ( ρ² + 1 - 2ρcos(φ) ) / ( ρcos(φ) - 1 ) = <br>
+        -2 + d, where <br>
+        d = ( 1 - ρ² ) / ( 1 - ρcos(φ) )
+    </div>
+<br><br>
+We are going to prove d → 0 when t → 0.
+<br><br>
+Consider range of t where already δ ‹ 1 and ε ‹ 1/2.
+<br><br>
+
+    <div style="text-align:center">
+        ⇒ <br>
+        0 ‹ d ‹ δ / (1 - (1-δ)|cos(φ)|) ‹ <br>
+        δ / ( ( ψ²/2 - ψ⁴/4!) + ( ψ⁶/6! - ψ⁸/8!) + ... ), where <br>
+        ψ in above fragment of Tailor expansion for cos(φ) is  <br>
+        ψ = min φ on interval t in [ t<sub>n+1</sub>, t<sub>n</sub> ], <br>
+        t<sub>i</sub> = 1/π(2i+1) <br>
+        ⇒ <br>
+        ψ = ε<sub>n+1</sub>
+    </div>
+
+    <div style="text-align:center">
+        ⇒ <br>
+        d ‹ δ<sub>n</sub> / ( ψ²/2 - ψ⁴/4! ) ‹ <br>
+        δ<sub>n</sub> / ( ψ²/2 11/12 ) ‹ <br>
+        C<sub>δ</sub>ε<sub>n</sub><sup>λ</sup> / ( 6/11 (ε<sub>n+1</sub>)² ) ‹ <br>
+    </div>
+<br>
+
+In last step, note that ε<sub>n+1</sub>/ε<sub>n</sub> = 1 - 2/2n+3. <br>
+0.99 ‹ ε<sub>n+1</sub> / ε<sub>n</sub> ‹ 1 for n ⩾ 100 ;
+therfore,
+<br><br>
+
+    <div style="text-align:center">
+        0 ‹ d ‹ const ε<sub>n</sub><sup>λ-2</sup> → 0 when ε → 0.
+    </div>
+<br><br>
+
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "CircleScribed and continuous ...",
+  "subessay" : "continous-circle-curvature"
+}
+*..*
+<br><br>
+
+
+
+When curve is continuous in point A, and R<sub>c</sub> exists, and AT<sub>right</sub> is normal to AR, then AT<sub>right</sub>
+<br><br>
+(i) has only one touching point, point A, with the curve in some neighborhood of A,<br>
+(ii) angle BAT<sub>right</sub> → 0 when B → A,<br>
+(iii) AT<sub>right</sub> is one-side Euclidean tangent to the curve,<br>
+<br><br>
+
+
+Instead of requiring continuity in point A, we may
+restate definition of curvature, by replacing condition "when t → a" with
+"when B → A", and require A to be a "condensing" point of the curve.
+Then (i),(ii),(iii) will hold too.
+<br><br>
+
+
+
+
+
+
+<b>Following is a draft</b>
 
 <a name="cont-circle-curv">
 <b>* Continuous curve</b>. If a curve is once side continuous in point ¦A¦¦ and has the same side curvature, then lemma 6 is true for point ¦A¦¦.
@@ -409,79 +579,5 @@ and a function l: t ↦ l<sub>t</sub>, where l<sub>t</sub> ∈ L.
 
                                             </tr></table>
                                             </div>
-<br>
-
-
-
 <br><br><br>
 
-*::*proof|curve
-{
-  "menuCaption" : "Curve",
-  "subessayCaption" : "CalculusXX curves",
-  "subessay" : "calculus-xx"
-}
-*..*
-
-<b>Sketch</b>
-
-
-<br>
-                                            <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left">
-
-                                            <tr><td>
-Def: Curve is a map from<br>
-open real interval to |R<sup>n</sup>
-                                            </td>
-                                            <td>
-<b>r</b> <b>=</b> (a,b) |-> |R<sup>n</sup>
-                                            </td>
-
-                                            </tr>
-
-                                            <tr><td> 
-Instant speed or derivative is a limit of average speed:
-
-<b>r'</b><sub>t</sub> <b>=</b> lim Δ<b>r</b>/Δt, Δt -> 0.
-
-                                            </td>
-                                            <td>
-                                            </td>
-
-                                            </tr>
-
-
-                                            <tr><td> 
-Unit tangent vector is <b>r'</b><sub>l</sub>
-                                            </td>
-                                            <td>
-                                            </td>
-
-                                            </tr>
-
-
-
-
-                                            </tr></table>
-                                            </div>
-
-
-
-
-<!--
-
-We can use more ipressive function with t<sup>γ</sup> added
-        |t|<sup>α</sup>( t<sup>β</sup> + t<sup>γ</sup> + λ( 1+sin(1/|t|) ),
-        α,β,γ,λ are constants,<br>
-        0 ‹ α ‹ 1, 1 - α ⩽ β ⩽ γ, λ › 0
-    but this is redundant.
-
-useful tokens:
-    \( \; \overset{df} \iff \; \)
-    αβγδεζηθικλμνξοπρςστυφχψω
-    ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
-    ‹ › ⩽ ⩾ ≂ ≃ ≄ 
-    ←↑→↓↔↕↖↗↘↙ ↚ ↛ 	↜ 	↝  ↞
-    ⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚ ⇛
--->

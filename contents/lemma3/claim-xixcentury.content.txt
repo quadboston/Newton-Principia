@@ -5,7 +5,8 @@
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
 
 In XIX century notations, for any monotonic and bounded function ¦curve¦\( [A,E] \overset f \to \mathbb{R} \)¦¦,
 

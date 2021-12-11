@@ -1,9 +1,9 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    var fconf   = ns.sn('fconf',fapp);
-    var sconf   = ns.sn('sconf',fconf);
+    var {
+        fapp, fconf, sconf,
+    } = window.b$l.apptree({
+    });
 
 
 
@@ -13,7 +13,6 @@
     //====================================================
     // //\\ optionally overriden by url-query-config
     //====================================================
-
     var GENERIC_SLIDERS_FONT_SIZE = 15;
     var GENERIC_SLIDER_HEIGHT_Y = 25;
     var GENERIC_SLIDERS_COUNT = 2; //todm ... not automated
@@ -22,18 +21,23 @@
 
     to_sconf =
     {
-        mediaOffset : [ 0, 0 ],                 //in respect to media-root
-        main_horizontal_dividor_width_px : 21,
+        mediaOffset : [ 0, 0 ],                 //in respect to simscene
 
         //topics:
         DEFAULT_TP_SATUR : 99,
-        DEFAULT_TP_OPACITY : 0.6,
+
+        //own color, not the parent opacity at topic focus or unfocus,
+        //possibly good for anchor too,
+        OWN_SHAPE_OPACITY : 0.6, //not used at current version
+        OWN_SHAPE_OPACITY_HIGH : 1,
 
         //this settings play role in tp/opacity/mouseover scenario
-        TOPIC_FILL_OPACITY_NOT_IN_FOCUS : 0.3,
-        TOPIC_FILL_OPACITY_IN_FOCUS : 0.7, //controls mutual visibility overlapped areas,
+        TOPIC_FILL_OPACITY_NOT_IN_FOCUS : 0.6,
+        TOPIC_FILL_OPACITY_IN_FOCUS : 0.9, //controls mutual visibility overlapped areas,
                                            //apparently, 1.0 is for bully overlapping
 
+        ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
+        ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
 
         //:this solution is not good:
         //:some lemmas need bright red, but
@@ -77,6 +81,10 @@
 
     fapp.normalizeSliders = normalizeSliders;
     return;
+
+
+
+
 
 
     //fapp

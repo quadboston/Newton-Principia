@@ -19,14 +19,15 @@
     function captureAState_generic( ast )
     {
         var clone = {};
-        eachprop( rg, (prop, propname) => {
-            if( typeof prop !== 'function' &&
-                propname !== 'main-legend' &&               //todm ?bug
-                propname !== 'videoicon-placeholder' &&     //todm ?bug
-                true
+        eachprop( rg, (rgX, kname) => {
+            if( typeof rgX !== 'function' &&
+                kname !== 'main-legend' &&               //todm ?bug
+                kname !== 'videoicon-placeholder' &&     //todm ?bug
+                kname !== 'rgId' &&
+                kname !== 'stdModName' &&
+                true //for "&&" at the end of line
             ) {
-                nspaste( clone, { [propname] : prop } );
-                //if( !has( prop, 'pname' ) )ccc( propname, prop );
+                nspaste( clone, { [kname] : rgX } );
             }
         });
         fapp.captureState( clone );

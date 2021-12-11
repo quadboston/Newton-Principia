@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            dontRun_ExpandConfig : true,
             sappCodeReference : 'lemma2',
             "contents-list" :
             [
@@ -22,7 +21,6 @@
                 "proof-xix-century-II.svg.txt",
                 "proof-xix-century-III.content.txt",
             ],
-            mediaBgImage : "../../lemma2/img/lemma-23-3rd-ed.png",
 
             //optional
             referencesForAllLemmaEssays :

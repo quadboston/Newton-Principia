@@ -1,14 +1,8 @@
 ( function() {
     var {
-        ns, sn, $$, sv,
-        han,
-        haz,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, sDomN, amode,
-        stdMod,
-
+        ns, sn, $$, sv, han, haz,
+        sconf, ssF, ssD, sDomF, sDomN,
+        amode, studyMods,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -18,11 +12,7 @@
             str2line,
             pnames2poly,
             paintTriangle,
-        },
-        sDomNExportList :
-        {
-            mediaLeftMargin : 0,   //fake initial value before resize ran
-            mediaWidth : 1000,     //fake initial value before resize ran
+            poly_2_updatedPolyPos8undisplay,
         },
     });
     var ownProp = Object.prototype.hasOwnProperty;
@@ -47,32 +37,38 @@
     ///     line.svgel
     /// Input:
     ///     required:
-    ///         pName - name of line,
-    ///         pivots[0].medpos, pivots[1].medpos
+    ///         pName - kname of line in rg,
+    ///         pivots - as in args or in rg[ pName ], specifically:
+    ///                     pivots[0].medpos, pivots[1].medpos
     ///
     ///     optional:
-    ///         line as ssF.tr( pName )
-    ///         attr.stroke
-    ///         attr[ 'stroke-width' ]
-    ///         attr.cssClass
-    ///         attr.tpclass
+    ///         line as toreg( pName )
+    ///         lineAttr.stroke
+    ///         lineAttr[ 'stroke-width' ]
+    ///         lineAttr.cssClass
+    ///         lineAttr.tpclass
     ///
     ///     used external:
     ///         sconf.thickness
-    ///         stdMod.mmedia
+    ///         amode.submodel.mmedia
     ///
     /// Output: adds pivots-media-positions to line
-    function pointies2line( pName, pivots, attr )
+    function pointies2line( pName, pivots, lineAttr, stdMod )
     {
-        var attr        = attr || {};
-        var line        = ssF.toreg( pName )();
-        var strokeWidth = han( attr, 'stroke-width', 1 );
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
+        var lineAttr    = lineAttr || {};
+        var line        = toreg( pName )();
+        pivots          = pivots || haz( line, 'pivots' );
+
+        var strokeWidth = han( lineAttr, 'stroke-width', 1 );
 
         if( haz( pivots[0], 'unscalable' ) ) {
-            pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos );
+            pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos, stdMod );
         }
         if( haz( pivots[1], 'unscalable' ) ) {
-            pivots[1].medpos = ssF.mod2inn_original( pivots[1].pos );
+            pivots[1].medpos = ssF.mod2inn_original( pivots[1].pos, stdMod );
         }
         var pivotsMedPos= [ pivots[0].medpos, pivots[1].medpos ];
 
@@ -81,18 +77,18 @@
         if( !dressed ) {
             ////longer part of optimization: creates svg
             var tpclass = sDomF.topicIdUpperCase_2_underscore(
-                          ( ns.haz( attr, 'tpclass' ) ) || pName
+                          ( ns.haz( lineAttr, 'tpclass' ) ) || pName
             );
             var ww          = ns.haz( line, 'pcolor' ) || sDomF.getFixedColor( tpclass );
-            var stroke      = han( attr, 'stroke', ww );
-            var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
+            var stroke      = han( lineAttr, 'stroke', ww );
+            var cssClass    = ns.h( lineAttr, 'cssClass' ) ? lineAttr['cssClass'] + ' ' :  '';
 
 
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
-            line.pname      = pName;
-            line.pivotNames = [ pivots[0].pname, pivots[1].pname ];
+            line.pname          = pName;
+            line.pivotNames     = [ pivots[0].pname, pivots[1].pname ];
             line.svgel = sv.polyline({
                 svgel   : ns.haz( line, 'svgel' ),
                 stroke,
@@ -125,11 +121,11 @@
         //=================================================
         // //\\ draws line caption
         //=================================================
-        var caption = ns.haz( attr, 'caption' ); //todo bad name: too generic
+        var caption = ns.haz( lineAttr, 'caption' ); //todo bad name: too generic
                                                  //hard to package-search
 
         if( caption ) {
-            var fontSize = ns.haz( attr, 'fontSize' ) || 20;
+            var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
             var lposXSugar = 1.5;
             var pvs = pivotsMedPos,
@@ -156,11 +152,11 @@
                     'line-height' : '1',
                 },
             });
-            var ww$ = $$.$( line.pnameLabelsvg );
-            ww$.cls( line.finalCssClass );
-            ww$.addClass( 'tobold' );
-            $$.$( line.pnameLabelsvg )
-                .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) );
+            line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
+                .cls( line.finalCssClass )
+                .addClass( 'tobold' )
+                .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+                ;
         }
         //=================================================
         // \\// draws line caption
@@ -170,8 +166,11 @@
 
     ///a bit of proliferation
     ///adds "sugar" to pointies2line: point names
-    function pointnames2line( name1, name2, cssClass )
+    function pointnames2line( name1, name2, cssClass, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
         //line_rg =
         return pointies2line(
             'line-' + name1 + name2,
@@ -187,8 +186,11 @@
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function pnames2line( name1, name2, cssClass )
+    function pnames2line( name1, name2, cssClass, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
         return pointies2line(
             name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],
@@ -196,25 +198,35 @@
                 cssClass        : 'tostroke thickable' +
                                    ( cssClass ? ' ' + cssClass : '' ),
                 'stroke-width'  : 2,
-            }
+            },
+            stdMod,
         );
     }
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function str2line( str, cssClass, lineConf, caption )
+    function str2line( str, cssClass, lineAttr, caption, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
         var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
         var lpoints = str.split( splitToken );
+        cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
         return pointies2line(
             str,
             [ rg[ lpoints[0] ], rg[ lpoints[1] ] ],
+
+            //"lineAttr" - line "attributes"
             {
                 cssClass        : 'tostroke thickable' +
                                    ( cssClass ? ' ' + cssClass : '' ),
-                'stroke-width'  : ns.sn( 'stroke-width', lineConf, 2 ),
-                caption         : caption,
-            }
+                'stroke-width'  : ns.sn( 'stroke-width', lineAttr, 2 ),
+                stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
+                //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
+                //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
+                caption,
+             }
         );
     }
     //==============================================
@@ -227,8 +239,15 @@
         pNames,
         cssClass,
         correctJoin, //fix all lemmas and remove this par. then
+        undisplay,   //optional
+        tostroke,
+        stdMod,
     ){
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
         var CLOSED_POLYLINE = true;
+
         var pName = pNames.join( correctJoin ? '--' : '');
         var pivots = pNames.map( pname => rg[ pname ].medpos );
 
@@ -236,10 +255,15 @@
             pivots.push( pivots[0] );
         }
 
+        //todm ... this is so complex bs. we have to modify legacy code
+        tostroke = typeof tostroke === 'undefined' ?
+                        'tostroke ' : (
+                            tostroke ? 'tostroke ' : ''
+                        );
         var attr =
         {
-            cssClass        : 'tostroke thickable' +
-                               ( cssClass ? ' ' + cssClass : '' ),
+            cssClass        : tostroke + 'thickable' +
+                              ( cssClass ? ' ' + cssClass : '' ),
            'stroke-width'  : 2,
         };
         var tpclass = sDomF.topicIdUpperCase_2_underscore(
@@ -248,9 +272,15 @@
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
         var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
         var strokeWidth = han( attr, 'stroke-width', 1 );
-        var poly        = ssF.toreg( pName )();
+        var poly        = toreg( pName )();
+        if( typeof undisplay !== 'undisplay' ) {
+            poly.undisplay = undisplay;
+        }
         poly.pname      = pName;
-        poly.pivotNames = pNames.concat();
+        poly.pivotNames = pNames.concat(); //clones array
+        poly.pNames     = pNames;
+        poly.poly_2_updatedPolyPos8undisplay = poly_2_updatedPolyPos8undisplay;
+        poly.finalCssClass = cssClass + 'tp-' + tpclass;
         poly.svgel = sv.polyline({
             svgel   : ns.haz( poly, 'svgel' ),
             stroke,
@@ -258,19 +288,35 @@
             pivots,
             'stroke-width' : strokeWidth * sconf.thickness, 
         });
-        var svgel$ = $$.$(poly.svgel);
-        svgel$.tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) );
-        svgel$.cls( cssClass + 'tp-' + tpclass );
-        //if( pName === 'ABS' ) ccc( pName, poly );
+        poly.svgel$ = $$.$(poly.svgel)
+            .tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) )
+            .cls( poly.finalCssClass )
+            ;
         return poly;
     }
     //==============================================
     // \\// Adds DOM and decorations to pointRack
     //==============================================
 
+    ///api: if poly is not supplied, then it must be "this",
+    ///does update "undisplay",
+    function poly_2_updatedPolyPos8undisplay( poly, stdMod ) {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
 
-
-
+        poly = poly || this;
+        var CLOSED_POLYLINE = true;
+        var pivots = poly.pNames.map( pname => rg[ pname ].medpos );
+        if( CLOSED_POLYLINE ) {
+            pivots.push( pivots[0] );
+        }
+        poly.svgel = sv.polyline({
+            svgel   : poly.svgel,
+            pivots,
+        });
+        poly.svgel$.tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) );
+    }
 
     //==========================================
     // //\\ paints svg triangles
@@ -278,12 +324,16 @@
     ///Input:   triang = rg[ triangleId ]
     ///         triang.vertices
     ///         cssCls can be for 'theorion--proof'
-    function paintTriangle( triangleId, cssCls, tpclass, defaultFill )
+    function paintTriangle( triangleId, cssCls, tpclass, defaultFill, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
         var triang = rg[ triangleId ];
         var mod2inn = ssF.mod2inn;
-        var vertices = triang.vertices.map( mod2inn );
-
+        var vertices = triang.vertices.map( pos => {
+            return mod2inn( pos, stdMod );
+        });
         var dressed = ownProp.call( triang, 'shapeIsAlreadyDressed' );
         if( !dressed ) {
             triang.mmedia = stdMod.mmedia;
@@ -299,6 +349,7 @@
             //important: use triang.svgel = ...
             //           not like triang.mediael = ...
             triang.svgel = sv.polyline( svgarg );
+            triang.svgel$ = $$.$( triang.svgel );
 
             var tpclass = sDomF.topicIdUpperCase_2_underscore( tpclass || triangleId );
             cssCls = cssCls ? ' ' + cssCls : '';
@@ -314,6 +365,7 @@
             });
         }
         triang.shapeIsAlreadyDressed = true;
+        triang.svgel$.tgcls( 'undisplay', ns.haz( triang, 'undisplay' ) );
     }
     //==========================================
     // \\// paints svg triangles

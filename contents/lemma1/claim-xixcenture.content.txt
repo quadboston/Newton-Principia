@@ -9,8 +9,8 @@
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
-
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
 <br>
 
 This is an interpretation of Newton's definition of limit in context of beginning XIX century (Bolzano).<br><br>
@@ -141,7 +141,7 @@ Two functions or sequences are Cauchy-equivalent "in neighbourhoods of point c" 
 
 The Book does not specify what type of convergence is: "nighbourhood-wise" or "pointwise". "Neighbourhood-wise" Lemma 1 is invalid for rational numbers.<br><br>
 
-For "pointwise" Claim, the Book' Claim implicitly supposes existance of limiit at least for one of the functions. Otherwise Lemma 1 is invalid.<br><br>
+For "pointwise" Claim, the Book' Claim implicitly supposes existence of limiit at least for one of the functions. Otherwise Lemma 1 is invalid.<br><br>
 
 <br><br>
 

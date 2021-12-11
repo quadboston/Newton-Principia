@@ -1,13 +1,16 @@
 // //\\// site-wide conf
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    var fconf   = ns.sn('fconf',fapp);
-    var sconf   = ns.sn('sconf',fconf);
+    var {
+        ns,
+        fconf,
+    } = window.b$l.apptree({
+    });
 
-
+    //apparently, we can do '.' because "contents" is moved levels up
+    //when move-to-prod-folder.php builds production package folders,
     //will be it better to explicitly set './'?
-    fconf.pathToContentSite     = '';
+    fconf.pathToContentSite     = '.';
+
     fconf.pathToContentSiteImg  = 'contents/img';
     fconf.engineImg             = 'engine-img';
 
@@ -21,7 +24,7 @@
         theorionTab_nonClickable    : false,
 
         //:data
-        svgNS :  "http://www.w3.org/2000/svg",
+        svgNS : ns.svgNS,
 
 
         //--------------------
@@ -45,8 +48,6 @@
         LEFT_SIDE_MENU_WIDTH : 40, //px
         LEFT_SIDE_MENU_OFFSET_X : 20, //px
         LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
-        DATA_LEGEND_WIDTH : 300, //px //todo must be per table-column to achive respon.
-        //ESSAY_PANE_MAX_HEIGHT :400, //px
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
         DRAGGEE_HALF_SIZE : 40, //px
@@ -71,7 +72,14 @@
         //approvalGranted: {},
         //fconf.approvalGranted[ 'area-fragments-manager-to-link-with-app' ] = true;
 
+        ///abandoned code
+        ///this should be moved into lab/tools/sliders
+        ///this "if" always set to "false" as of Dec, 2020.
+        // //if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
+        // //    sDomF.create_original_picture_vis_slider();
+        // //}
         ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED : false,
+
         ORIGINAL_FIGURE_VISIBILITY : 0.6,
         ORIGINAL_FIGURE_VISIBILITY_ANIMATION_DURATION_MS : 3000,
         //--------------------
@@ -101,6 +109,8 @@
     };
 
 
+    /*
+    //inactive
     if( to_fconf.MODEL_MIN_WIDTH + to_fconf.ESS_MIN_WIDTH  >
         to_fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD - 100 ) {
         alert( 'wrong config settings: ' +
@@ -110,19 +120,15 @@
             ////"one column" solution
             //return; //isMobile = true;
     }
+    */
     //====================================================
     // \\// put configuration parameters here
     //====================================================
 
 
 
-
-
-
     ///spawns config to its final place
-    Object.keys( to_fconf ).forEach( function( key ) {
-        fconf[ key ] = to_fconf[ key ];
-    });
+    Object.assign( fconf, to_fconf );
 
 }) ();
 

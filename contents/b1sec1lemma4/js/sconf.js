@@ -23,6 +23,11 @@
     //====================================================
     function init_conf()
     {
+
+        //todm: strangerly, this fixes big and ubly
+        //border of drag-handle:
+        sconf.default_tp_stroke_width = 3;
+
         sconf.rgShapesVisible = true;
 
         //gives bar full range of opacity for tp machine
@@ -419,6 +424,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
+            mediaBgImage : "l4-diagram.png",
             predefinedTopics,
             originalPoints,
             linesArray,

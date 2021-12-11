@@ -37,8 +37,8 @@
         var legendScript =
         [
              ////legendScript-format: 'topic,caption,JS-expression-of-value-in-local-JS-context <space> next-token ... '
-            'bd,bd,rg.bd.abs        BD,BD,rg.BD.abs     bd-BD,r1=bd/BD,rg.bd.abs/rg.BD.abs                                  limitRatio,(bx/BX)<sup>2</sup>,(rg.b.pos[0]/rg.B.pos[0])*(rg.b.pos[0]/rg.B.pos[0])',
-            'Ab,Ab,rg.Ab.abs        AB,AB,rg.AB.abs     Ab2-AB2,r2=Ab<sup>2</sup>/AB<sup>2</sup>,rg.Ab.abs2/rg.AB.abs2      ,,""',  
+            'bd,bd,rg.bd.abs        BD,BD,rg.BD.abs     bd-BD,r1=bd/BD,rg.bd.abs/rg.BD.abs                                  limitRatio,(bx/BX)²,(rg.b.pos[0]/rg.B.pos[0])*(rg.b.pos[0]/rg.B.pos[0])',
+            'Ab,Ab,rg.Ab.abs        AB,AB,rg.AB.abs     Ab2-AB2,r2=Ab²/AB²,rg.Ab.abs2/rg.AB.abs2      ,,""',  
             ',,""                   ,,""                claimRatio,r1/r2,rg.bd.abs/rg.BD.abs/(rg.Ab.abs2/rg.AB.abs2)        ,,""',
         ];
 

@@ -1,13 +1,9 @@
 
 ( function() {
     var {
-        ns,
-        sconf,
-        sapp,
-        ssF,
-        rg,
-        amode,
-        studyMods,
+        nspaste, eachprop, haff, haz,
+        sconf, sapp, ssF,
+        studyModsActivated, amode,
     } = window.b$l.apptree({
         setModule,
     });
@@ -28,46 +24,47 @@
     ///inits effective or empty astate_2_.... functions
     function init_astate2sapp()
     {
-        ///todm: we assume all the studyMods are already created as
-        ///part of "setModule()::stdMod = sn(SUB_MODEL, studyMods).... "
+        ///todm: we assume all the studyModsActivated are already created
+        ///after parsing professor scripts,
         ///and we add astate_2_rg8model8media to each study model ...
-        ns.eachprop( studyMods, ( stdMod, modName ) => {
+        studyModsActivated.forEach( stdMod => {
             stdMod.astate_2_rg8model8media  = astate_2_rg8model8media;
             stdMod.astate_2_rg8model        = astate_2_rg8model;
             return;
 
-            function astate_2_rg8model8media( astate, astateKey )
+            function astate_2_rg8model8media( astate4rg, )
             {
-                astate_2_rg8model( astate, astateKey );
-                ns.haff( stdMod, 'sliders_value2pos' );
+                astate_2_rg8model( astate4rg, );
+                haff( stdMod, 'sliders_value2pos' );
                 //haff is for lemmas from the past: l1, l2, ...
-                ns.haff( stdMod, 'media_upcreate' );
+                haff( stdMod, 'media_upcreate' );
             }
 
-            function astate_2_rg8model( astate, astateKey, dontRun_model_upcreate )
+            function astate_2_rg8model( astate, dontRun_model_upcreate )
             {
                 if( astate ) {
-                    ns.paste( rg, astate );
-                    rg.astateKey = astateKey;
+                    nspaste( stdMod.rg, astate );
+                    delete stdMod.rg.subessay; //should not be there
+
                     ///patch: changes non-rg property: media center:
                     ///todm: legalize;
-                    var mcenter = ns.haz( astate, 'media-mover' );
+                    var mcenter = haz( astate, 'media-mover' );
                     if( mcenter ) {
-                        var mcenterA = ns.haz( mcenter, 'achieved' );
+                        var mcenterA = haz( mcenter, 'achieved' );
                         if( mcenterA ) {
-                            var mcenterAA = ns.haz( mcenterA, 'achieved' );
+                            var mcenterAA = haz( mcenterA, 'achieved' );
                             if( mcenterAA ) {
-                                sconf.activeAreaOffsetX = mcenterAA[0];
-                                sconf.activeAreaOffsetY = mcenterAA[1];
+                                stdMod.sconf.modorInPicX = mcenterAA[0];
+                                stdMod.sconf.modorInPicY = mcenterAA[1];
                             }
                         }
                     }
-                    var subessay = ns.haz( astate, 'subessay' );
+                    var subessay = haz( astate, 'subessay' );
                     if( subessay ) {
                         amode.subessay = subessay;
                     }
                 }
-                !dontRun_model_upcreate && ns.haff( stdMod, 'model_upcreate' );
+                !dontRun_model_upcreate && haff( stdMod, 'model_upcreate' );
             }
         });
     }    

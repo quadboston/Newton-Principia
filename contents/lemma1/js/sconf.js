@@ -1,24 +1,10 @@
-// //\\// widget config
 ( function() {
-    var ns      = window.b$l;
-    var sn      = ns.sn;
-
-    var fapp    = sn('fapp' ); 
-    var fconf   = sn('fconf',fapp);
-    var sconf   = sn('sconf',fconf);
-    var sapp    = sn('sapp'); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'load_conf';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //0000000000000000000000000000000000000000000
+    var {
+        sconf, ssF,
+    } = window.b$l.apptree({
+        setModule,
+    });
     return;
-    //0000000000000000000000000000000000000000000
 
 
 
@@ -33,9 +19,9 @@
     }
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
+    ///====================================================
+    /// inits and sets config pars
+    ///====================================================
     function init_conf()
     {
         var MONITOR_Y_FLIP = -1;
@@ -46,6 +32,7 @@
         //----------------------------------------------------
         to_sconf =
         {
+            dontRun_ExpandConfig : true,
             EPSILON : 0.36,
             DELTA_FRACTION : 0.7,
 
@@ -54,7 +41,6 @@
             //----------------------------------
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
             innerMediaWidth     : innerMediaWidth,
-            //innerMediaHeight    : innerMediaWidth+100,
             innerMediaHeight    : innerMediaWidth + sconf.SLIDERS_LEGEND_HEIGHT,
 
             mod2inn_scale       : innerMediaWidth,
@@ -71,25 +57,6 @@
 
 
 
-        //----------------------------------
-        // //\\ spawns to_conf
-        //----------------------------------
-        /*
-        to_sconf.tfamilyColor =
-        {
-            generic         : to_sconf.GENERIC_COLOR,
-            claim           : to_sconf.CORE_AREA_COLOR,
-            proof           : to_sconf.REMOTE_AREA_COLOR,
-            'primary-curve' : to_sconf.CORE_CURVE_COLOR
-        };
-        */
-        //----------------------------------
-        // \\// spawns to_conf
-        // \\// prepares sconf data holder
-        //----------------------------------------------------
-
-
-
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
@@ -99,11 +66,7 @@
         //----------------------------------------------------
         // \\// copy-pastes to sconf
         //----------------------------------------------------
-
     };
-    //====================================================
-    // \\// inits and sets config pars
-    //====================================================
 
 }) ();
 

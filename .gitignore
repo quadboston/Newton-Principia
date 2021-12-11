@@ -7,4 +7,9 @@
 src/plugins/balls3d
 src/plugins/flame
 src/plugins/particles
+src/plugins/chem-equilib
+src/plugins/gas-particles
+src/plugins/phys-ideal-gas
+src/plugins/dynoribbon
+src/plugins/vend
 

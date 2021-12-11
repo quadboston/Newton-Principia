@@ -1,13 +1,13 @@
 ( function() {
     var {
-        ns,
-        sconf,
-        ssF,
-        stdMod,
+        globalCss,
+        sconf, ssF,
     } = window.b$l.apptree({
-        modName:'studyModel_2_ss',
-        setModule });
-
+        setModule,
+        ssFExportList : {
+            createSliderPlaceholder_thickness,
+        },
+    });
     var pointies2line;
     return;
 
@@ -20,16 +20,15 @@
 
     function setModule()
     {
-        stdMod.createSliderPlaceholder_thickness = createSliderPlaceholder_thickness;
         pointies2line   = ssF.pointies2line;
     }
 
 
 
-    function createSliderPlaceholder_thickness()
+    function createSliderPlaceholder_thickness( stdMod, )
     {
         var magnit = 'thickness';
-        ssF.toreg( magnit )( 'value', 2 );
+        stdMod.toreg( magnit )( 'value', 2 );
 
         ssF.sliderTemplate({
             magnit,
@@ -39,6 +38,7 @@
             min_magnit      : 1,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
+            stdMod,
         });
     }
 
@@ -54,7 +54,7 @@
         //todm ... this pollutes css by stacking the same keys
         //         on top of each other: (the last-one takes an effect) and
         //         interferes with other slieder css
-        ns.globalCss.update(`
+        globalCss.update(`
             .tofill.tostroke.thickable,
             .thickable.tostroke {
                 stroke-width : ${newValue.toFixed()};

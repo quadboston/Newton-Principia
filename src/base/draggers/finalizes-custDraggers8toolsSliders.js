@@ -1,17 +1,19 @@
 ( function() {
     var {
-        ns, sn, haz,
+        ns, sn, has, haz, eachprop,
         sconf,
         fconf,
         fmethods,
         ssF,
         sapp, sDomN, sDomF,
         d8d_p,
-        stdMod,
+        amode, studyMods,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
         setModule
     });
+    sDomF.createsFW__8__executes_dragWr_gens_list =
+          createsFW__8__executes_dragWr_gens_list;
     return;
 
 
@@ -24,23 +26,20 @@
 
     function setModule()
     {
-        //todm: must be loop via stMods
-        stdMod.createsFW__8__executes_dragWr_gens_list =          
-               createsFW__8__executes_dragWr_gens_list;
     }
 
 
     //==========================================
     // //\\ inits drag model
     //==========================================
-    function createsFW__8__executes_dragWr_gens_list()
+    function createsFW__8__executes_dragWr_gens_list( stdMod )
     {
         ///creates tools for the first time and only once
         if( sconf.enableTools ) {
-            stdMod.createSliderPlaceholder_media_scale();
-            stdMod.createSliderPlaceholder_thickness();
+            ssF.createSliderPlaceholder_media_scale( stdMod, );
+            ssF.createSliderPlaceholder_thickness( stdMod, );
             fmethods.attachWeelToDomEl(
-                stdMod.mmedia$,
+                stdMod.svgScen$, stdMod,
             );
         }
 
@@ -53,7 +52,7 @@
         var medD8D = stdMod.medD8D =
         d8d_p.createFramework({
             findDraggee                         : findDraggee,
-            dragSurface                         : sDomN.medRoot,
+            dragSurface                         : stdMod.simScene,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
             inn2outparent                       : sDomF.inn2outparent,
         });
@@ -65,7 +64,7 @@
         //  processUpEvent
         //todm: do this by adding class "grab" to medRoot
         if( !haz( sconf, 'mediaMoverPointDisabled' ) ){
-            sDomN.medRoot.style.cursor = 'grab';
+            stdMod.simScene.style.cursor = 'grab';
         }
         //==========================================
         //: sets drag points
@@ -76,7 +75,7 @@
         var ww = 'customDraggers_list';
         ns.h( stdMod, ww ) &&
             stdMod[ ww ].forEach( dcreator => { dcreator( medD8D ); });
-        stdMod.inits_tools_sliders( medD8D )
+        ssF.inits_tools_sliders( medD8D, stdMod );
         ///***********************************************************************
         ns.globalCss.update(); //for decorator
     }; 
@@ -121,6 +120,14 @@
         var unfoundDragger = null;
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;
+
+            if( has( dragPoint, 'stdModName' ) &&
+                dragPoint.stdModName !== amode.submodel ) {
+                //ccc( dragPoint, dragPoint.rgId, 'amode.submodel='+amode.submodel +
+                //        ' stdModName='+dragPoint.stdModName
+                //);
+                return;
+            }
 
             if( ns.haz( dragPoint, 'unfound' ) ) {
                 unfoundDragger = dragWrap;

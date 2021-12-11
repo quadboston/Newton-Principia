@@ -1,14 +1,8 @@
 ( function() {
     var {
-        ns, sn, nspaste, haz, mat,
-        sconf, fconf,
-        rg,
-        ssF, ssD,
-        sDomF,
-        amode,
-        stdMod,
-        tr, tp, toreg,
-
+        sn, nspaste, mat,
+        sconf, ssD, sDomF,
+        stdMod, toreg, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {

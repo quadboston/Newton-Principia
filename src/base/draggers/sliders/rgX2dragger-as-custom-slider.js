@@ -1,11 +1,12 @@
 ( function() {
     var {
-        ns,
+        sn, has,
         sDomF,
-        stdMod,
     } = window.b$l.apptree({
-        modName:'custom-slider',
-        setModule });
+        ssFExportList : {
+            rgXSlider__2__dragwrap_gen_list,
+        },
+    });
     return;
 
 
@@ -16,11 +17,6 @@
 
 
 
-    function setModule()
-    {
-        stdMod.rgXSlider__2__dragwrap_gen_list = rgXSlider__2__dragwrap_gen_list;
-    }
-
     //==========================================
     // //\\ attemt to unify dragger for point
     //==========================================
@@ -28,8 +24,9 @@
         rgX,
         orientation,
         nospinner,
+        stdMod,
     }) {
-        ns.sn( 'customDraggers_list', stdMod, [] );
+        sn( 'customDraggers_list', stdMod, [] );
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
                 rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
@@ -42,7 +39,7 @@
             })
         );
         //todm ... do automate
-        stdMod.railsCustomSlidersCount = ns.h( stdMod, 'railsCustomSlidersCount' ) ?
+        stdMod.railsCustomSlidersCount = has( stdMod, 'railsCustomSlidersCount' ) ?
             stdMod.railsCustomSlidersCount + 1 : 1; 
     }
 

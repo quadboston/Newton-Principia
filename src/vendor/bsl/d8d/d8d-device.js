@@ -1,10 +1,10 @@
 //***************************************************************************************************
-// //\\//   "device-level" (lowest browser possible level) drag and drop processor;
+// //\\//   "maximally closes to device" level drag and drop processor;
 //          ns.d8d - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
 //                  - submits results to app-processor, d8d_cb_middle2lowest
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
-//          Copyright (c) 2018-2019 Konstantin Kirillov. License MIT.
+//          Copyright (c) 2018-2021 Konstantin Kirillov. License MIT.
 //
 //          file history: /var/www/html/bwork/CANV-SVG-VIDEO-CSS/canvas/
 //                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
@@ -47,6 +47,10 @@
         var dontStopMoveAfteshocks = haz( arg, 'dontStopMoveAfteshocks' );
         var dontStopEndAfteshocks = haz( arg, 'dontStopEndAfteshocks' );
         var doGiveClickEvent = haz( arg, 'doGiveClickEvent' );
+
+        //hopes to be useful when dragging narrow scrollbar and
+        //user's hand cannot keep strict direction down
+        var dontCancelAtMouseleave = haz( arg, 'dontCancelAtMouseleave' );
         //------------------------------------------
         // \\// input arguments
         //------------------------------------------
@@ -155,10 +159,12 @@
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'mousemove', mouseMove);
                     att.addEventListener( 'mouseup',   mouseEnd);
-                    //.todm suspicion: this approach seems not reliable ...
-                    // fires right after the mouseDown ...
-                    att.addEventListener( 'mouseleave',  mouseEnd);
 
+                    if( !dontCancelAtMouseleave ) {
+                        //.todm suspicion: this approach seems not reliable ...
+                        // fires right after the mouseDown ...
+                        att.addEventListener( 'mouseleave',  mouseEnd);
+                    }
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 //} else {
@@ -252,6 +258,7 @@
 			];
             ///api: 
             d8d_cb_middle2lowest(
+                //todo: do name? it (drag?)SurfaceAccomulatedMove
                 surfMove, //total move which begins from down event
                 'move',
                 surfPoint,

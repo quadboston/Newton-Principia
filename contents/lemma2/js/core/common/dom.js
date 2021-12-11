@@ -1,5 +1,9 @@
 ( function() {
-    var SUB_MODEL   = 'common';
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
+
     var ns          = window.b$l;
     var cssp        = ns.CSS_PREFIX;
     var $$          = ns.$$;
@@ -13,7 +17,6 @@
     var ss          = sn('ss',fapp);
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
-    var rg          = sn('registry',ssD);
     
     var sapp        = sn('sapp'); 
     var amode       = sn('mode',sapp);
@@ -37,14 +40,13 @@
     function setModule()
     {
         ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
-        ssF.sliderGroupLemma2                   = sliderGroupLemma2;
         ssF.convergenceResultArea               = convergenceResultArea;
         ssF.create_digital_legend               = create_digital_legend;
-        ss.menuExtraWork                        = menuExtraWork;
+        ss.state8css_for_l2_l3                  = state8css_for_l2_l3;
     }
 
 
-    function menuExtraWork( mcat_id, scat_id )
+    function state8css_for_l2_l3( mcat_id, scat_id )
     {
 
         if( mcat_id !== 'aspect' || (fconf.sappId !== 'lemma2' && fconf.sappId !== 'lemma3') ) {
@@ -82,7 +84,7 @@
 
     function convergenceResultArea()
     {
-        var svg = studyMods[ SUB_MODEL ].mmedia$.aNS( 'id', 'illus' )();
+        var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         $$.cNS( 'polyline' )
             .aNS( 'id', 'polylineCurve' )
             .aNS( 'class', "tp-figure tp-curve figure outline tostroke" )
@@ -98,7 +100,7 @@
 
     function continue_create_8_prepopulate_svg()
     {
-        var svg = studyMods[ SUB_MODEL ].mmedia$.aNS( 'id', 'illus' )();
+        var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
 
         //====================================================================
         // //\\ paints preliminary elements
@@ -142,20 +144,6 @@
     }
 
 
-    function sliderGroupLemma2()
-    {
-        $$.c('div')
-            .addClass("slider-group")
-            .to( sDomN.medRoot )
-            .html(`
-                <input class="slider" type="range" id="mySlider">
-                <span class="slider-label" style="width:99px">
-                    <span id="baseSpan" class="number"></span>
-                    <span id="baseLabelSpan"></span>
-                </span>
-            `);
-    }
-
 
 
     ///====================================================================
@@ -170,7 +158,7 @@
         sDomN.digitalLegend$ = $$.dict(
             "areadesk",
             "areas dull desc default-content main-legend",
-            sDomN.legendRoot$ )
+            stdMod.legendRoot$ )
             .html(`
 
                 <div class="line"></div>

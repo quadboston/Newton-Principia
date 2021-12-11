@@ -69,11 +69,13 @@
     <!-- \\// vendor -->
 
 
+
+
     <!-- //\\ core -->
     <!-- //\\ core css -->
     <script src="src/base/css/reset.css.js"></script>
-    <script src="src/base/css/fapp.css.js"></script>
-    <script src="src/base/css/base/base.css.js"></script>
+    <script src="src/base/css/dom-roots/roots.css.js"></script>
+    <script src="src/base/css/dom-roots/subroots.css.js"></script>
     <script src="src/base/css/base/typography.css.js"></script>
     <script src="src/base/css/pages/inner-page.css.js"></script>
 
@@ -84,36 +86,41 @@
     <script src="src/base/css/lemma-comp/menu-on-top.css.js"></script>
     <script src="src/base/css/lemma-comp/menu-on-left.css.js"></script>
     <script src="src/base/css/lemma-comp/essaion-pane.css.js"></script>
-    <script src="src/base/css/dispatch-css.js"></script>
+    <script src="src/base/css/dispatch-lemma-css.js"></script>
     <script src="src/base/css/dispatch-home-css.js"></script>
     <!-- \\// core css -->
 
 
 
     <!-- //\\ core html -->
-    <script src="src/base/dom/create/lemma.js"></script>
-    <script src="src/base/dom/create/media-super-root.js"></script>
+    <script src="src/base/dom/create/top-dom-roots.js"></script>
+    <script src="src/base/dom/create/populates-media-super-root.js"></script>
     <script src="src/base/dom/create/lemma-master-menu.js"></script>
     <script src="src/base/dom/create/lemma-master-menu-lib.js"></script>
-    <script src="src/base/dom/create/media.js"></script>
+    <script src="src/base/dom/create/simscene-svg-l2slider-legend.js"></script>
     <script src="src/base/dom/create/capture-window.js"></script>
     <script src="src/base/dom/create/body.js"></script>
     <script src="src/base/dom/events/events.js"></script>
     <script src="src/base/dom/secondary/video-help-manager.js"></script>
     <script src="src/base/dom/lib/mobile-tester.js"></script>
+    <script src="src/base/dom/lib.js"></script>
 
     <script src="src/base/resize8slide/workplace-dividor.js"></script>
     <script src="src/base/resize8slide/finish-resize8upcreate.js"></script>
     <script src="src/base/resize8slide/complete-css.js"></script>
 
-    <script src="src/base/parser/frags-2-dom8topiccss.js"></script>
-    <script src="src/base/parser/frags-2-dom8topiccss-core.js"></script>
-    <script src="src/base/parser/content2exegs.js"></script>
-    <script src="src/base/parser/exegs2frags.js"></script>
-    <script src="src/base/parser/tpanch2mjax.js"></script>
-    <script src="src/base/parser/topics-media-css.js"></script>
-    <script src="src/base/parser/topics-anchor-css.js"></script>
-    <script src="src/base/parser/lib.js"></script>
+    <script src="src/base/parser/LANDING-VI-fr-2-dom8css---backbone.js"></script>
+    <script src="src/base/parser/LANDING-V-content2subexegs.js"></script>
+    <script src="src/base/parser/LANDING-VI-exegs2frags.js"></script>
+
+    <script src="src/base/parser/FR-I-indexed-links8topics.js"></script>
+    <script src="src/base/parser/FR-II-III-dom8css8mjax.js"></script>
+    <script src="src/base/parser/FR-II-dom8css---lib.js"></script>
+
+    <script src="src/base/parser/FR-II-finalizes-delayed-anchors---lib.js"></script>
+    <script src="src/base/parser/topics-media-glocss.js"></script>
+    <script src="src/base/parser/topics-anchor-glocss.js"></script>
+    <script src="src/base/parser/colors-lib.js"></script>
     <!-- \\// core html -->
 
 
@@ -136,6 +143,7 @@
     <script src="src/base/lemma/media-model/dom2model-scales.js"></script>
     <script src="src/base/lemma/study-model/model-lib.js"></script>
     <script src="src/base/lemma/study-model/subessay-amode-2-lemma.js"></script>
+    <script src="src/base/lemma/spawns-lemma-definition-list.js"></script>
 
     <script src="src/base/draggers/sliders/tools/def-scale.js"></script>
     <script src="src/base/draggers/sliders/tools/def-thickness.js"></script>
@@ -151,29 +159,26 @@
 
 
 
+    <script src="src/vendor/bsl/animated-frames/time-frames.js"></script>
     <!-- //\\ abandoned -->
     <script src="src/vendor/bsl/animated-frames/aframes.js"></script>
-    <script src="src/base/draggers/sliders/secondary/picture-visib-slider/origin-picture-vis-slider.js">
-    </script>
     <script src="src/base/draggers/sliders/secondary/picture-visib-slider/animated-slider/js.js"></script>
     <script src="src/base/draggers/sliders/secondary/picture-visib-slider/animated-slider/css.js"></script>
     <!-- \\// abandoned -->
 
-
     <script src="src/base/lemma/init-sapp.js"></script>
     <script src="src/base/lemma/astate2app.js"></script>
     <script src="src/base/lemma/expands-conf.js"></script>
-
-    <script src="src/app-main.js"></script>
-    <script src="src/app.conf.js"></script>
+    <script src="src/base/app-main.js"></script>
+    <script src="src/base/app.conf.js"></script>
     <!-- \\// core -->
 
 
     <!-- //\\ site-specific config and home page -->
     <script src="conf/conf.js"></script>
+    <script src="conf/lemma.conf.js"></script>
     <script src="conf/site.css.js"></script>
     <script src="conf/css-conf.js"></script>
-    <script src="conf/lemma.conf.js"></script>
     <script src="conf/home-page-conf.html.js"></script>
 
     <script src="conf/pages/home-pane.css.js"></script>
@@ -190,6 +195,8 @@
 
     <!--
             <script src="src/base/dom/dom-exegesis-tabs.js"></script>
+            <script src="src/base/draggers/sliders/secondary/picture-visib-slider/origin-picture-vis-slider.js">
+            </script>
     -->
 
   </head>

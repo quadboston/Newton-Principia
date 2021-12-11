@@ -54,11 +54,11 @@
                 cursor: pointer;
             }
 
-
-            /* sub data-legend html-element */
+            /* sub data-legend html-element,
+               display:inline-block; is vital for position,
+            */
             #areadesk {
-                display:block;
-                xxxmargin:auto;
+                display:inline-block;
                 margin-top:20px;
                 width:200px;
                 z-index     : 1000;

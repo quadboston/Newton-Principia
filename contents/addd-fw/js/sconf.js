@@ -101,6 +101,7 @@
         };
 
         ns.paste( sconf, {
+            mediaBgImage : "main-picture.png",
             predefinedTopics,
             originalPoints,
             lines,

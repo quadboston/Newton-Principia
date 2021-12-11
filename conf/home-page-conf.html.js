@@ -56,7 +56,7 @@
         `;
 
         var book = null;
-        fconf.sappModulesArray.forEach( function( sappItem ) {
+        fconf.ix2lemmaDef.forEach( function( sappItem ) {
             if( sappItem.sappId === 'home-pane' ) return;
             if( book === null || book !== sappItem.book ) {
                 book = sappItem.book;

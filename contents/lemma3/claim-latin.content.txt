@@ -3,6 +3,7 @@
 *::*claim|latin
 {
   "menuCaption" : "Latin",
+  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
   "fixed-colors" :
   {
     "given"                     : [0,    100,  0 ],

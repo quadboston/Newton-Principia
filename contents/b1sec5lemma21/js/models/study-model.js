@@ -1,11 +1,8 @@
 ( function() {
     var {
-        ns, sn, mat,
-        sconf,
-        ssD, ssF, rg,
-        sapp, amode,
-        stdMod,
-        tr,
+        sn, mat,
+        sconf, ssD, ssF, sapp,
+        amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
         setModule,
         stdModExportList :
@@ -24,7 +21,7 @@
 
     function setModule()
     {
-        ns.sn( 'customDraggers_list', stdMod, [] ); //todm: fake
+        sn( 'customDraggers_list', stdMod, [] ); //todm: fake
     }
 
     //===================================================
@@ -33,28 +30,27 @@
     function init_model_parameters()
     {
         //:primary params
-        var a = tr( 'a', 'value', sconf.a );
-        tr( 'alpha', 'value', sconf.alpha );
-        tr( 'beta', 'value', sconf.beta );
-        tr( 'gamma', 'value', sconf.gamma );
-        tr( 'O', 'pos', [0,0] );
-        tr( 'H', 'pos', [0,0] );
+        var a = toreg( 'a' )( 'value', sconf.a )( 'value' );
+        toreg( 'alpha' )( 'value', sconf.alpha );
+        toreg( 'beta' )( 'value', sconf.beta );
+        toreg( 'gamma' )( 'value', sconf.gamma );
+        toreg( 'O' )( 'pos', [0,0] );
+        toreg( 'H' )( 'pos', [0,0] );
 
         //dependent parameters
-        tr( 'nB', 'value', [ 1, 0 ] );
-        tr( 'nA', 'value', [ -1, 0 ] );
+        toreg( 'nB' )( 'value', [ 1, 0 ] );
+        toreg( 'nA' )( 'value', [ -1, 0 ] );
 
         //variable parameter
-        tr( 'g', 'value', sconf.initial_g );
-        //tr( 'g', 'value', 0.4 );
+        toreg( 'g' )( 'value', sconf.initial_g );
 
         //decorations:
-        tr( 'gN', 'value', sconf.initial_gN );
+        toreg( 'gN' )( 'value', sconf.initial_gN );
 
         setRgPoint( 'A', [ -rg.a.value, 0 ] )
         setRgPoint( 'B', [ 1-rg.a.value, 0 ] )
 
-        var b = tr( 'b' );
+        toreg( 'b' );
         baseParams_2_extendedParams();
         //dev tool:
         //ellipsePar_create8paint( 1.50 )
@@ -157,7 +153,7 @@
 
     function setRgPoint( nameP, pos, tangent )
     {
-        //we cannot do P = tr( nameP, 'pos', [x, y] );
+        //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
         var P = sn( nameP, rg );
         var Ppos = sn( 'pos', P, [] );

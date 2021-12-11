@@ -23,7 +23,6 @@
     //****************************************************
     function model8media_upcreate()
     {
-        //model_upcreate();
         stdMod.media_upcreate();
     }
 }) ();

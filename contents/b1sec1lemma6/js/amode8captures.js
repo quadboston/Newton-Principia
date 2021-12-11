@@ -1,12 +1,33 @@
 ( function() {
     var {
-        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf,
+        ns, sn, paste, capture,
+        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
+        studyMods, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
             amode2rgstate,
         },
     });
+
+    ///diff and Euclid tangents are equal
+    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    {
+        "angle": 0.10579977792284677,
+        "sin": 0.10560250842053673,
+        "cos": 0.9944084222367038
+    };
+
+    //this is Books origin, authentic N. drawing,
+    //curveRotationAngle = 0,
+    var ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
+    {
+        "angle": 0,
+        "sin": 0,
+        "cos": 1
+    };
+
+
     setCapture();
     return;
 
@@ -19,12 +40,8 @@
     {
         paste( capture,
         {
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
+            "reset-to-origin" : {
+                    curveRotationAngle : Object.assign( ANGLE_AUTH ),
                     "media-mover": {
                         "achieved": {
                             "achieved": [
@@ -39,34 +56,22 @@
             },
 
 
-            "L-equal-d": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
+            "L-equal-d" :  {
+                    curveRotationAngle : Object.assign( ANGLE_EQUALS ),
                     "B": {
                            "unrotatedParameterX": 0.7745228215767634
                     }
             },
 
             "closer": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
+                    "curveRotationAngle": Object.assign( ANGLE_AUTH ),
                     "B": {
                            "unrotatedParameterX": 0.5658328716632559
                     }
             },
 
             "more-closer": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
+                    "curveRotationAngle": Object.assign( ANGLE_AUTH ),
                     "B": {
                            "unrotatedParameterX": 0.10102343776498918
                     }
@@ -167,6 +172,8 @@
     function amode2rgstate( captured )
     {
         var { theorion, aspect, submodel, subessay } = amode;
+        var stdMod = studyMods[ submodel ];
+
         //----------------------------------
         // //\\ common values
         //----------------------------------
@@ -179,14 +186,13 @@
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
 
-        var media_scale = ssF.toreg( 'media_scale' )();
+        var media_scale = toreg( 'media_scale' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
 
 
-
-
+        sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
 
 
@@ -194,6 +200,7 @@
         // //\\ lemma 6
         //*****************************************************************************
         if( fconf.sappId === "b1sec1lemma6" ) {
+            rg.L.doPaintPname = false;
             captured = "reset-to-origin";
             if( theorion === 'claim' ) {
                  captured = 'L-equal-d';
@@ -229,14 +236,20 @@
                     'Ad',
                     'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
+                ///hides differential tangent row in data table
+                globalCss.update( `
+                    .main-legend.proof tr:nth-child(4)
+                    {
+                        display : none;
+                    }`,
+                    'table-patch',
+                );
             }
 
             if(
                 ( theorion === 'proof' || theorion === 'claim' ) && aspect === 'model'
             ) {
-                rg.L.hideCaption = false;
                 [
-                    'L',
                     'arc-Ab',
                     'Ab',
                     'b',
@@ -246,6 +259,30 @@
                     'rd',
                     'dr',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
+
+                ///this still needs user action to replace Book's letters with
+                ///pop up app. letters
+                if( theorion === 'proof' ) {
+                    rg.curveRotationAngle.angle = ANGLE_AUTH;
+                    sDomF.detected_user_interaction_effect( !'doUndetected' );
+                    rg.L.undisplay = false;
+                    rg.L.hideCaption = false;
+                    rg.L.doPaintPname = true;
+
+                    ///shows differential tangent row in data table
+                    globalCss.update( `
+                        .main-legend.proof tr:nth-child(4)
+                        {
+                            display : table-row;
+                        }`,
+                        'table-patch',
+                    );
+
+                } else {
+                    rg.L.undisplay = true;
+                    rg.L.hideCaption = true;
+                    rg.L.doPaintPname = false;
+                }
             }
         }
         //*****************************************************************************
@@ -413,10 +450,10 @@
                 amode.subessay === 'vector-derivative'
             ){
                 rg.media_scale.value = 0.45;
-                ssF.scaleValue2app( rg.media_scale.value );
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
             } else if( amode.subessay === 'sin(x)/x' ) {
                 rg.media_scale.value = 0.8;
-                ssF.scaleValue2app( rg.media_scale.value );
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
             }
 
 
@@ -428,7 +465,7 @@
                 sDomF.detected_user_interaction_effect( 'doUndetected' );
                 captured = "L-equal-d";
                 rg.media_scale.value = 1;
-                ssF.scaleValue2app( rg.media_scale.value );
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
                 ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
                 ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );

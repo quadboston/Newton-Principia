@@ -6,11 +6,12 @@
     var {
         ns,
         sn,
+        haz,
     } = nsvars;
 
     ns.app          = apptree;
     ns.apptree      = apptree;
-    var cssmods     = sn('cssModules');
+    var engCssMs    = sn('engCssMs');
 
     var fapp        = sn('fapp' ); 
     var fmethods    = sn('methods',fapp);
@@ -21,12 +22,10 @@
     //lemma-independent lemma-subapplication (aka lemma-class-functions in Java)
     var ss          = sn('ss', fapp);
     var cssmod      = sn('ssCssModules',ss);
+    var ssCssOrder  = sn('ssCssOrder',ss);
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
-    var bgImages    = sn('bgImages', ssD);
 
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
     var rgtools     = sn('tools',ssD);
     var fixedColors = sn('fixed-colors',ssD);
     var wrkwin      = sn('wrkwin',ssD); //work window
@@ -34,26 +33,26 @@
     var references  = sn('references', ssD);
     var capture     = sn( 'capture', ssD );
     var topics      = sn('topics', ssD);
-    var normId2topic= sn('normId2topic', topics);
+    var lcaseId2allLemTopics= sn('lcaseId2allLemTopics', topics);
     var id2tplink   = sn('id2tplink', topics);
     var ix2tplink   = sn('ix2tplink', topics, []);
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
     var sData       = sn('sappDat',sapp);
+    var studyMods   = sn('studyMods', sapp);
+    var studyModsActivated = sn('studyModsActivated', sapp, [] );
+    var amode       = sapp.mode = {};
 
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-    var toreg       = ssF.toreg;
-
+    //non-consistent: srg should be under fapp or sapp, not both:
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
+
+    setsEngineDefaults();
     return;
 
 
@@ -61,33 +60,74 @@
 
 
 
+
+
+
+
+    function setsEngineDefaults()
+    {
+        ssD.DEFAULT_STUDY_MODEL_NAME = 'common';
+        //these are pre-professorscripts values: at engine level
+        amode.theorion = '';
+        amode.aspect = '';
+        amode.subessay = '';
+        //todm: poor? name: to be "amode.stdmod" //study model
+        amode.submodel = ssD.DEFAULT_STUDY_MODEL_NAME;
+    }
+
+
     function apptree({
         //optional variables
         modName,   //default: ''+mCount.count
         setModule,
-        SUB_MODEL, //default: SUB_MODEL : 'common',
+        SUB_MODEL,
         stdModExportList,
-        ssFExportList,
+        ssFExportList,   //removes need to import var ssF into calling module
         sDomFExportList,
         sDomNExportList,
+        expoMod,
+        expoFun,
     }) {
+
+        ssFExportList && Object.assign( ssF, ssFExportList );
+
+        expoMod = expoMod || stdModExportList,
+        expoFun = expoFun || ssFExportList,
+        stdModExportList = expoMod;
+        expoFun = ssFExportList;
 
         //-------------------------------------------------------------
         // //\\ module and submodel sugar
         //-------------------------------------------------------------
         //:binds to submodel for case there is a need for this
-        SUB_MODEL = SUB_MODEL || 'common';
-        var stdMod = sn( SUB_MODEL, studyMods );
+        SUB_MODEL           = SUB_MODEL || ssD.DEFAULT_STUDY_MODEL_NAME;
+        var stdMod          = sn( SUB_MODEL, studyMods );
+        stdMod.SUB_MODEL    = SUB_MODEL;
+
+
+        ///synchronizes sconf, not transfers its contents,
+        ///as of this version, transfer is done in app-main.js after
+        ///lemma-js-modules are loaded,
+        if( !haz( stdMod, 'toreg' ) ) {
+            stdMod.rg       = {};
+            stdMod.sconf    = {};
+            stdMod.toreg    = ssF.toregUnbound.bind( stdMod.rg );
+            if( SUB_MODEL === ssD.DEFAULT_STUDY_MODEL_NAME ) {
+                //obsolete
+                ssF.rg    = stdMod.rg;
+                ssF.toreg = stdMod.toreg;
+                ssF.rg.detected_user_interaction_effect_DONE = false;
+                stdMod.sconf = sconf;
+            }
+            stdMod.rg.stdModName= SUB_MODEL;
+            // legacy specific case of property "pos":
+            stdMod.topos        = ssF.makes_toreg4pos( stdMod );
+        }
 
         //:advances modules registry
         var mCount      = sn('modulesCount', sapp);
-        mCount.count = mCount.count ? mCount.count + 1 : 1;
-        modName = ( modName && modName + '-' ) || '';
-        if( ssFExportList ) {
-            Object.keys( ssFExportList ).forEach( fname => {
-                ssF[ fname ] = ssFExportList[ fname ];
-            });
-        }
+        mCount.count    = mCount.count ? mCount.count + 1 : 1;
+        modName         = ( modName && modName + '-' ) || '';
 
         srg_modules[ modName + mCount.count ] = () => {
 
@@ -95,20 +135,20 @@
                 //ccc( '... running setModule() for ' + mCount.count );
                 setModule();
             }
+
+            //todm: why this code is delayes to srg_modules?
             if( stdModExportList ) {
 
-                ///adds media_upcreate if createMedia0updateMediaAUX is in the list;
-                ///removes createMedia0updateMediaAUX then;
-                if( ns.h( stdModExportList, 'createMedia0updateMediaAUX' ) ) {
-                    stdModExportList.media_upcreate = create_media_upcreate(
+                ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
+                ///removes createMedia0updateMediaAUX then,
+                var mediaUpcreate = haz( stdModExportList, 'createMedia0updateMediaAUX' );
+                if( mediaUpcreate ) {
+                    stdMod.media_upcreate = create_media_upcreate(
                         ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
                     delete stdModExportList.createMedia0updateMediaAUX;
                 }
 
-                Object.keys( stdModExportList ).forEach( fname => {
-                    //ccc( '... setting list for module ' + mCount.count + '; function = ' + fname );
-                    stdMod[ fname ] = stdModExportList[ fname ];
-                });
+                Object.assign( stdMod, stdModExportList );
 
                 ///if "model_upcreate" does exist in the list, but
                 ///"model8media_upcreate" does not, then latter is created
@@ -124,20 +164,15 @@
                     stdMod.model8media_upcreate = () => {
                         stdMod.model_upcreate();
                         ns.haff( stdMod, 'media_upcreate' );
-                    }
+                  }
                 }
             }
-
-            if( sDomNExportList ) {
-                Object.keys( sDomNExportList ).forEach( fname => {
-                    sDomN[ fname ] = sDomNExportList[ fname ];
-                });
-            }
-            if( sDomFExportList ) {
-                Object.keys( sDomFExportList ).forEach( fname => {
-                    sDomF[ fname ] = sDomFExportList[ fname ];
-                });
-            }
+            //==========================================================
+            //the minor advantage of these is that client-modules do not
+            //have to import an extra vars sDomN, sDomF,
+            sDomNExportList && Object.assign( sDomN, sDomNExportList );
+            sDomFExportList && Object.assign( sDomF, sDomFExportList );
+            //==========================================================
         };
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
@@ -151,21 +186,31 @@
         //-------------------------------------------------------------
         Object.assign( nsvars,
         {
-            cssmods,
+            engCssMs,
+
             cssmod,
+            ssCssOrder,
 
             fapp,
             fmethods,
             fconf,
-            sconf,
+            sconf   : stdMod.sconf, //===fconf.sconf for default, 
+            commonsconf : sconf,
 
             ss,
             ssF,
-            ssD, fixedColors, rg, rgtools, wrkwin, exegs, references,
-            bgImages,
+            ssD, fixedColors,
+
+            rg    : stdMod.rg,
+            topos : stdMod.topos,
+            toreg : stdMod.toreg,
+
+            rgtools, wrkwin, exegs, references,
+
+            studyModsActivated,
             capture,
             topics,
-            normId2topic,
+            lcaseId2allLemTopics,
             id2tplink,
             ix2tplink,
 
@@ -177,10 +222,6 @@
             sData,
 
             dividorFractions,
-
-            tr,
-            tp,
-            toreg,
 
             srg,
             srg_modules,
@@ -213,7 +254,7 @@
             }
             */
             //refreshes detectability
-            stdMod.toogle_detectablilitySliderPoints4Tools();
+            ssF.toogle_detectablilitySliderPoints4Tools( stdMod,);
             createMedia0updateMediaAUX();
             if( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();

@@ -1,37 +1,18 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-    var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-
-
+    var {
+        $$, nssvg, has, haz, mat,
+        sconf, sDomF, sDomN, ssD, ssF,
+        rg, toreg, stdMod,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+        },
+        stdModExportList :
+        {
+            media_upcreate,
+        },
+        setModule,
+    });
     var pointies2line;
     var pos2pointy;
     var paintTriangle;
@@ -48,7 +29,6 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
         pointies2line   = ssF.pointies2line;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
@@ -60,10 +40,9 @@
     //=========================================================
     function media_upcreate()
     {
-        var studmod = studyMods[SUB_MODEL];
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            studmod.medD8D && studmod.medD8D.updateAllDecPoints();
+            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
         ssF.mediaModelInitialized = true;
@@ -80,7 +59,7 @@
         ///===================================================
         //var P = rg.P.pos;
 
-        var wwfc            = ns.haz( ssD, 'fixed-colors' );
+        var wwfc            = haz( ssD, 'fixed-colors' );
         function arr2rgba( arr ) {
             if( !arr ) return null;
             var r=Math.floor( arr[0] );
@@ -107,8 +86,8 @@
         ///-------------------------------------------------
         ///makes conic first to put point over it later
         ///-------------------------------------------------
-        var calculateConicPoint_algo = studyMods[SUB_MODEL].calculateConicPoint_algo;
-        var curve = tr( 'curve' );
+        var calculateConicPoint_algo = stdMod.calculateConicPoint_algo;
+        var curve = toreg( 'curve' )();
         (function () {
             var stepsCount = 400;
             //var start_g = - 1.5;
@@ -117,7 +96,7 @@
             var end_g = 5;
             var range_g = end_g - start_g;
             var step = range_g / stepsCount;
-            curve.svgel = sv.curve({
+            curve.svgel = nssvg.curve({
                 svgel:curve.svgel,
                 stepsCount,
                 start:start_g,
@@ -127,7 +106,7 @@
                     var med = ssF.mod2inn( D );
                     return { x:med[0], y:med[1] };
                 },
-                parent : studyMods[ SUB_MODEL ].mmedia,
+                parent : stdMod.mmedia,
                 'stroke-width':1,
                 stroke  : ellipseColor,
                 dontClose : true,
@@ -280,7 +259,7 @@
         //---------------------------------------
         var ANGLE_SIZE = 0.1;
         //var B_AA = mat.p1_to_p2(rg.B.pos, rg.AA.pos );
-        rg.beta.angleSvg = sv.ellipseSector({
+        rg.beta.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             // //\\ todm ... mod2inn_scale must be incapsulated in model
             //instead we are converting from model to media manually here 
@@ -296,7 +275,7 @@
 
             t1 : Math.PI,
             svgel : rg.beta.angleSvg,
-            parent : studyMods[ SUB_MODEL ].mmedia,
+            parent : stdMod.mmedia,
             //fill : 'rgba( 255, 0, 0, 0.1 )',
             fill : 'transparent',
             'stroke-width':1,
@@ -309,8 +288,8 @@
         // //\\ working alternative
         //      needs prooftest
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        ns.sn( 'medpos', rg.beta, [] );
-        ns.paste( rg.beta.medpos, rg.B.medpos );
+        sn( 'medpos', rg.beta, [] );
+        paste( rg.beta.medpos, rg.B.medpos );
         rg.beta.svgel = rg.beta.angleSvg;
         ssF.drawAngle({
             angleStart  : rg.beta.value * sconf.MONITOR_Y_FLIP - Math.PI,
@@ -329,7 +308,7 @@
         */
 
         var A_AA = mat.p1_to_p2(rg.A.pos, rg.AA.pos );
-        rg.alpha.angleSvg = sv.ellipseSector({
+        rg.alpha.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.A.medpos[0],
             y0 : rg.A.medpos[1],
@@ -338,7 +317,7 @@
             t0 : 0,
             t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.angleSvg,
-            parent : studyMods[ SUB_MODEL ].mmedia,
+            parent : stdMod.mmedia,
             fill : 'transparent',
             'stroke-width':1,
         });
@@ -349,7 +328,7 @@
         var AG = mat.p1_to_p2(rg.A.pos, rg.G.pos );
         var cosAlphaS = AG.unitVec[0];
         var alphaS = Math.acos( cosAlphaS ) * ( AG.unitVec[1] < 0 ? -1 : 1 );
-        rg.alpha.appliedAngleSvg = sv.ellipseSector({
+        rg.alpha.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.A.medpos[0],
             y0 : rg.A.medpos[1],
@@ -360,7 +339,7 @@
             t0 : alphaS*sconf.MONITOR_Y_FLIP,
             t1 : (alphaS + rg.alpha.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.appliedAngleSvg,
-            parent : studyMods[ SUB_MODEL ].mmedia,
+            parent : stdMod.mmedia,
             fill : 'rgba( 155, 155, 0, 0.3 )',
             stroke: 'transparent',
             'stroke-width':1,
@@ -371,7 +350,7 @@
         var BG = mat.p1_to_p2(rg.B.pos, rg.G.pos );
         var cosBetaS = BG.unitVec[0];
         var betaS = Math.acos( cosBetaS ) * ( BG.unitVec[1] < 0 ? -1 : 1 );
-        rg.beta.appliedAngleSvg = sv.ellipseSector({
+        rg.beta.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
@@ -380,7 +359,7 @@
             t0 : betaS*sconf.MONITOR_Y_FLIP,
             t1 : (betaS - rg.beta.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.beta.appliedAngleSvg,
-            parent : studyMods[ SUB_MODEL ].mmedia,
+            parent : stdMod.mmedia,
             fill : 'rgba( 155, 155, 0, 0.3 )',
             stroke: 'transparent',
             'stroke-width':1,
@@ -557,14 +536,14 @@
         //-----------------------------------------------
         ///attaches updater right to the point G to ease
         ///this function lookup right from dragger-of-G
-        if( !ns.h( rg.G, 'model8media_upcreate' )) {
+        if( !has( rg.G, 'model8media_upcreate' )) {
             ////cannot use this function till this subroutine is not
             ////ran ... and till init is done;
             ////used in drag ... so drag must wait:
             ////this is OK because drag8drop sliders created after
             ////model8media_upcreate;
             rg.G.model8media_upcreate = function() {
-                studyMods[ SUB_MODEL ].model8media_upcreate();
+                stdMod.model8media_upcreate();
             }
 
             ///for slider
@@ -597,9 +576,9 @@
         //-----------------------------------------------
         ///attaches updater right to the point G to ease
         ///this function lookup right from dragger-of-G
-        if( !ns.h( rg.AA, 'model8media_upcreate' )) {
+        if( !has( rg.AA, 'model8media_upcreate' )) {
             rg.AA.model8media_upcreate = function() {
-                studyMods[ SUB_MODEL ].model8media_upcreate();
+                stdMod.model8media_upcreate();
             }
 
             ///for slider
@@ -633,9 +612,9 @@
         //-----------------------------------------------
         ///attaches updater right to the point G to ease
         ///this function lookup right from dragger-of-G
-        if( !ns.h( rg.H, 'model8media_upcreate' )) {
+        if( !has( rg.H, 'model8media_upcreate' )) {
             rg.H.model8media_upcreate = function() {
-                studyMods[ SUB_MODEL ].model8media_upcreate();
+                stdMod.model8media_upcreate();
             }
             ///for slider
             rg.H.pos2value = function( newPos )

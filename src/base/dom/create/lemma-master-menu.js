@@ -22,13 +22,17 @@
         amode,
         wrkwin,
         exegs,
+        toreg,
     } = window.b$l.apptree({
     });
-    sDomF.populateMenu                      = populateMenu;
-    sDomF.menu2lemma                        = menu2lemma;
-    sDomF.state2subessayMenu                = state2subessayMenu;
-    sDomF.build_menu_top_leafs_placeholders = build_menu_top_leafs_placeholders;
-    sDomF.tellActivityEngine_that_userStartedSubessay = tellActivityEngine_that_userStartedSubessay;
+    sDomF.populateMenu  = populateMenu;
+    sDomF.menu2lemma    = menu2lemma;
+    sDomF.addsChosenCSSCls_to_subessay8menuSubitem =
+          addsChosenCSSCls_to_subessay8menuSubitem;
+    sDomF.build_menu_top_leafs_placeholders =
+          build_menu_top_leafs_placeholders;
+    sDomF.tellActivityEngine_that_userStartedSubessay =
+          tellActivityEngine_that_userStartedSubessay;
     return;
 
 
@@ -49,7 +53,6 @@
             build_teaf__localfun( mcat_id, subcatsMenu,
             );
         });
-
         //:sets up a state and theorion-menu
         var submItem = sconf.asp8theor_menus.theorion.duplicates[ amode.theorion ];
         do_select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
@@ -131,7 +134,7 @@
                 decorOfShuttle$ : decorOfShuttle$,
                 decorationsContainer$ : decorationsContainer$,
             };
-            make_menu_leaf__localfun( leafRk );
+            make_menu_leaf__onceLocFun( leafRk );
         });
     }
     //====================================
@@ -147,7 +150,7 @@
     /// for single leafRk indexed with pair (mcat_id, scat_id),
     /// builds its togglable-menu-tab;
     /// makes tab's components shadow and button;
-    function make_menu_leaf__localfun( leafRk )
+    function make_menu_leaf__onceLocFun( leafRk )
     {
         var scat_id     = leafRk.scat_id;
         var mcat_id     = leafRk.mcat_id;
@@ -178,7 +181,7 @@
         //------------------------------
         if( mcat_id === 'theorion' ) {
             var iconClass = 'videoicon-placeholder';
-            var videoPlaceholder$ = ssF.tr( iconClass, scat_id,
+            var videoPlaceholder$ = toreg( iconClass )( scat_id,
                 $$
                 .div()
                 .cls( iconClass )
@@ -190,7 +193,7 @@
                 .css( 'padding-right', '4%' )
                 .css( 'padding-left', '0%' )
                 .css( 'height', '10px' )
-            );
+            )( scat_id );
         }
         //------------------------------
         // \\// video-button placeholder
@@ -254,14 +257,16 @@
         //sets menu flag
         leafRk.li$.removeClass( 'chosen' );
         //sets fappRoot flags
-        fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
+        fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion +
+            ' aspect--' + amode.aspect );
         //sets content-text visibility
         if( exAspect.subexegs.length > 1 ) {
             exAspect.subessayMenuContainer$.removeClass( 'chosen' );
         }
         exAspect.subexegs.forEach( subexeg => {
             $$.removeClass( 'chosen', subexeg.domEl );
-            ( exAspect.subexegs.length > 1 ) && subexeg.subessayMenuItem$.removeClass( 'chosen' );
+            ( exAspect.subexegs.length > 1 ) &&
+              subexeg.subessayMenuItem$.removeClass( 'chosen' );
         });
 
 
@@ -292,7 +297,11 @@
         // //\\ spawns changes
         //==================================================
         //flag to root
-        fapp.fappRoot$.addClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
+        fapp.fappRoot$.addClass(
+            'theorion--' + amode.theorion + ' aspect--' + amode.aspect
+        );
+        //ccc( 'new cls: ' + amode.submodel + ' rootCls=' + fapp.fappRoot$._cls() );
+
         //flag to content-text-components
         if( exAspect.subexegs.length > 1 || fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
 
@@ -330,7 +339,7 @@
             ////this happens only on 2 click events(ver Dec10,2020)
             ////one click is for top-text-menu?,
             ////second click is for submenu,
-            ns.haf( ss, 'menuExtraWork' )( mcat_id, scat_id );
+            ns.haf( ss, 'state8css_for_l2_l3' )( mcat_id, scat_id );
         }
 
 
@@ -340,12 +349,6 @@
         //      if its menu item exist and is already constructed
         //==================================================
         fmethods.spawnVideoList && fmethods.spawnVideoList(); //todon what?
-        sDomN.bgImage$ = subexeg0.imgRk.dom$;
-        if( subexeg.essayHeader.dataLegend === "0" ) {
-            $$.$(sDomN.medRoot).addClass('main-legend-disabled');
-        } else if( subexeg.essayHeader.dataLegend === "1" ) {
-            $$.$(sDomN.medRoot).removeClass('main-legend-disabled');
-        }
         //==================================================
         // \\// amodel and image and legend
         //==================================================
@@ -354,11 +357,7 @@
         ///=========================================================
         /// establishes amodel state if lemma is ready for it
         ///=========================================================
-        if( amodel2app_8_extraWork ) {
-            ////this happens only on 1 click events(ver Dec10,2020)
-            ////one click is for top-text-menu?,
-            menu2lemma();
-        }
+        menu2lemma( amodel2app_8_extraWork );
         //==================================================
         // \\// spawns changes
         //==================================================
@@ -372,8 +371,9 @@
     ///this happens only on 2 click events(ver Dec10,2020)
     ///one click is for top-text-menu?,
     ///second click is for submenu,
-    function menu2lemma()
+    function menu2lemma( amodel2app_8_extraWork )
     {
+
         //we need to run "media" updater because we need to update
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
@@ -381,29 +381,31 @@
         var stdMod = studyMods[ amode.submodel ];
 
         //possibly for lemmas from the past: lemma1, l2, ...
-        ssF.in_subessay_launch____amode2lemma();
+        ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
 
-        haff( stdMod, 'sliders_value2pos' );
+        if( amodel2app_8_extraWork ) {
+            haff( stdMod, 'sliders_value2pos' );
 
-        //.todm code proliferation ... model runs twice?
-        var resize8more = wrkwin.finish_Media8Ess8Legend_resize__upcreate;
-        resize8more( null, !!'doDividorSynch');
+            //.todm code proliferation ... model runs twice?
+            var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
+            res( null, !!'doDividorSynch');
 
-        //**********************************************************************************
-        //todo patch: this is a vital patch, without it to appear legend needs
-        //second resize event,
-        //the reason for the bug is unknown,
-        setTimeout(
-            function() {
-                resize8more( null, !!'doDividorSynch' );
-            },
-            100
-        );
-        //**********************************************************************************
+            //**********************************************************************************
+            //todo patch: this is a vital patch, without it to appear legend needs
+            //second resize event,
+            //the reason for the bug is unknown,
+            setTimeout(
+                function() {
+                    res( null, !!'doDividorSynch' );
+                },
+                100
+            );
+            //**********************************************************************************
+        }
     }
 
-
-    function state2subessayMenu({ exAspect, subexeg, })
+    //reveals subessay in menu and in text
+    function addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg, })
     {
         exAspect.subexegs.forEach( subexeg => {
             subexeg.domEl$.removeClass( 'chosen' );
@@ -446,8 +448,6 @@
             ssF.executesTopicScenario( 'start' );
         }
     }
-
-
 
 }) ();
 

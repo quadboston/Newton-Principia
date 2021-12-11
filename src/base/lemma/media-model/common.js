@@ -1,22 +1,13 @@
 ( function() {
     var {
-        ns, sn,
-        sconf,
-        rg,
-        ssF,
-        sDomF, sDomN, amode,
-        stdMod,
-
+        sn, haz,
+        sconf, ssF, sDomF, sDomN, 
+        studyMods, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
             upcreate__pars2rgShape,
             declareGeomtric,
-        },
-        sDomNExportList :
-        {
-            mediaLeftMargin : 0,   //fake initial value before resize ran
-            mediaWidth : 1000,     //fake initial value before resize ran
         },
     });
     return;
@@ -31,15 +22,18 @@
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
     ///which is GUI-geometrical shape - visula representation thing;
-    function upcreate__pars2rgShape({ pname, pos, wtype, })
+    function upcreate__pars2rgShape({ pname, pos, wtype, stdMod })
     {
         var rgX = null;
+        stdMod = stdMod || studyMods[ amode.submodel ];
+        var sconf = stdMod.sconf;
+        var toreg = stdMod.toreg;
         switch ( wtype )
         {
             default:
             case 'point':
                 sn( 'pname2point', sconf );
-                rgX = ssF.toreg( pname )
+                rgX = toreg( pname )
                     ( 'pname', pname )
                     ( 'pos', pos )
                     //( 'pcolor' : sDomF.getFixedColor( pname ) ),
@@ -55,13 +49,14 @@
                         }
                     )
                     ();
-                sconf.pname2point[ pname ] = pos; //todm ... programming unwanted surprises
+                //todm ... programming unwanted surprises
+                sconf.pname2point[ pname ] = pos;
                 //too much?: rgX.medpos = ssF.mod2inn( pt.pos );
 
             break;
             /*
             case 'line':
-                rgX = ssF.toreg( pname );
+                rgX = toreg( pname );
                     //( 'pname', pname )
                     //( 'pos', pos )
                     ();
@@ -83,42 +78,47 @@
         wtype,          //optional, default is a point
         pos,            //optional
         caption,        //optional
+        stdMod,
     }){
-        var rgX = null;
+        var stdMod = stdMod || studyMods[ amode.submodel ];
+        var rg    = stdMod.rg;
+        var toreg = stdMod.toreg;
+        var sconf = stdMod.sconf;
+        var rgX   = null;
         switch ( wtype )
         {
             default:
             case 'point':
-                var rgX = ns.haz( rg, pname );
+                var rgX = haz( rg, pname );
                 if( rgX ) {
-                    //(todm: possibly astray) rgX does exist
-                    var rgpos = ns.haz( rgX, 'pos' );
+                    ////rgX does already exist
+                    var rgpos = haz( rgX, 'pos' );
                     if( rgpos && pos) {
                         rgX.pos[0] = pos[0];
                         rgX.pos[1] = pos[1];
                     }
                 }
 
+                //.................................
+                //preserves pos reference if exists
                 pos = rgpos || pos || [0,0];
-                rgX = ssF.toreg( pname )
+                //.................................
+                rgX = toreg( pname )
                     ( 'pname', pname )
                     ( 'pos', pos )
                     ();
                 sn( 'pname2point', sconf );
-                sconf.pname2point[ pname ] = pos; //todm ... programming unwanted surprises
-                //too much?: 
-                rgX.medpos = ssF.mod2inn( pos );
+                //preserves pos reference if exists
+                sconf.pname2point[ pname ] = pos;
+                rgX.medpos = ssF.mod2inn( pos, stdMod );
                 rgX.caption = caption;
 
             break;
             /*
             case 'line':
-                rgX = ssF.toreg( pname );
-                    //( 'pname', pname )
-                    //( 'pos', pos )
-                    ();
-                //sconf.pname2point[ pname ] = pos; //todm ... programming unwanted surprises
-            break;
+                rgX = toreg( pname )
+                      ( 'pname', pname )
+                ...
             */
         }
         return rgX;

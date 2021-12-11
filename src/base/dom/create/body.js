@@ -25,7 +25,7 @@
         var fappRoot$ =
             fapp.fappRoot$ = $$
               .div()
-              .cls( 'bsl-approot' )
+              .cls( 'bsl-approot appid-' + fconf.sappIdUnCamel )
               .to( document.body );
         //===================================
         // \\// creates application root
@@ -76,11 +76,13 @@
         //==================================================
         // //\\ page master menu
         //==================================================
-        var ww = fconf.sappModulesList[ fconf.sappId ];
+        var ww = fconf.sappId2lemmaDef[ fconf.sappId ];
         var caption = ww.book + '. ' + ww.caption + '.';
 
-
-        var navBar$ = sDomN.navBar$ = $$.dc( 'nav-bar' )
+        //pageNavTopBar
+        var navBar$ =
+            sDomN.pageNavTopBar$ =
+            $$.dc( 'page-top-nav-bar' )
             .to( fapp.fappRoot$ )
             ;
 
@@ -105,8 +107,8 @@
                             document.body.style.overflow = 'visible';
                             $$.$( document.body ).addClass( 'contents' );
                             //todm patch
-                            haz( sDomN , 'medSuperroot$' ) &&
-                                sDomN.medSuperroot$.css( 'display', 'none' );
+                            haz( sDomN , 'simSScene$' ) &&
+                                sDomN.simSScene$.css( 'display', 'none' );
 
                       } else {
                             ns.globalCss.clearStyleTag( 'home' );
@@ -118,7 +120,7 @@
                             document.body.style.overflow = 'hidden';
                             $$.$( document.body ).removeClass( 'contents' );
                             //todm patch
-                            sDomN.medSuperroot$.css( 'display', 'inline-block' );
+                            sDomN.simSScene$.css( 'display', 'inline-block' );
                       }
                       return false;
                 })
@@ -130,23 +132,26 @@
         navBar$
             .ch( sDomN.middleNavBar$ = $$.dc( 'middle-subnav-bar' )
                 //==================================================
-                // //\\ builds lemmas' navigator
+                // //\\ site menu: builds lemmas' navigator
                 //==================================================
                 .ch(    
                     sDomN.leftButton$ = $$
                     .dc( "master-pagination-btn" )
+                    .a( 'title', 'Previous item of site content.' )
                 )
                 .ch(
                     sDomN.midddleButton$ = $$
                     .dc( "master-pagination-btn current-lemma" )
+                    .a( 'title', 'Currently chosen item of site content.' )
                     .html( caption )
                 )
                 .ch(    
                     sDomN.rightButton$ = $$
                     .dc( "master-pagination-btn" )
+                    .a( 'title', 'Next item of site content.' )
                 )
                 //==================================================
-                // \\// builds lemmas' navigator
+                // \\// site menu: builds lemmas' navigator
                 //==================================================
             );
         //==================================================
@@ -158,7 +163,7 @@
         // //\\ application version label
         //==================================================
         $$  .div()
-            .to( document.body )
+            .to( fapp.fappRoot$ ) //document.body )
             .cls('test-version')
             .css('position', 'absolute')
             .css('bottom', '10px')

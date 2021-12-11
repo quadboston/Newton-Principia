@@ -1,20 +1,18 @@
 ( function() {
     var {
-        ns, sn, $$, sv, haz, has, han,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, sDomN,
-        stdMod,
-
+        sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
+        sconf, sDomF, sDomN, ssF, ssD,
+        studyMods, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
             pos2pointy,
-            setsPointsMedPos,
             doPaintPoints,
+            doPaintLetter8kernel,
         },
     });
+    var ix2origPoint = sn( 'ix2origPoint', sconf, [] );
+    ssF.rgPos2rgMedia = pos2pointy; //more sensible alias
     var ownProp = Object.prototype.hasOwnProperty;
     return;
 
@@ -29,35 +27,40 @@
     //==============================================
     ///Input:
     ///       required
-    ///         pName - name of namespace rack
-    ///         pos - point in rack must have these coordinates
+    ///         pName - name of rg-namespace-rack
+    ///         rg[ pName ].pos - must exist
     ///       optional:
     ///         attrs, 'tpclass',
-    ///         ns.haz( pt, 'svgel' )
+    ///         haz( pt, 'svgel' )
     ///         attrs: see below: //optional attrs 
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = //mod 2 inn//
     ///Twins: doPaintLetter8kernel( pname )
     ///       which does more work for this function
-    function pos2pointy( pName, attrs )
+    ///Returns: rg[ pName ]
+    function pos2pointy( pName, attrs, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
+
         attrs = attrs || {};
         var pt = rg[ pName ];
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
-        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos ) :
-                                              ssF.mod2inn( pt.pos );
-
+        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos, stdMod ) :
+                                              ssF.mod2inn( pt.pos, stdMod );
         var dressed = ownProp.call( pt, 'pointIsAlreadyDressed' );
         if( !dressed ) {
+
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = sDomF.topicIdUpperCase_2_underscore(
-                          ( ns.haz( attrs, 'tpclass' ) ) || pName
+            var tpclass = nsmethods.topicIdUpperCase_2_underscore(
+                          ( haz( attrs, 'tpclass' ) ) || pName
             );
-            var cssClass = ns.h( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
+            var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
             if( has( pt, 'classmark' ) ){
                 cssClass += pt.classmark + ' ';
             }
@@ -70,7 +73,7 @@
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;
             pt.svgel                = null;
-            pt.svgel = sv.u({
+            pt.svgel = nssvg.u({
                 svgel   : pt.svgel,
                 parent  : pt.media,
                 type    : 'circle',
@@ -113,7 +116,7 @@
         // lemmas do stop using  pt.pointWrap
         //       possibly only one offender left: theorem1,
         //
-        var pointWrap = ns.haz( pt, 'pointWrap' );
+        var pointWrap = haz( pt, 'pointWrap' );
         pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
 
@@ -124,7 +127,7 @@
             pt.svgel$.tgcls( 'undisplay', pt.undisplayAlways );
         } else {
             pt.svgel$.tgcls( 'undisplay',
-                             !ns.haz( pt, 'displayAlways' ) && ns.haz( pt, 'undisplay' )
+                             !haz( pt, 'displayAlways' ) && haz( pt, 'undisplay' )
             );
         }
 
@@ -150,37 +153,18 @@
 
 
 
-    function setsPointsMedPos()
-    {
-        ns.eachprop( sconf.pname2point, (point,pname) => {
-            var pointRg = rg[ pname ];
-            pointRg.medpos = ssF.mod2inn( pointRg.pos );
-        });
-    }
-
-
-    //-------------------------------------------------
-    // //\\ adds to points their media position
-    //      and sets point's color
-    //-------------------------------------------------
-    function doPaintPoints()
-    {
-        if( !haz( sconf, 'pname2point' ) ) return;
-        Object.keys( sconf.pname2point ).forEach( pname => {
-            pos2pointy( pname, sconf.pointDecoration, );
-            doPaintLetter8kernel( pname );
-        });
-    }
-    //-------------------------------------------------
-    // \\// adds to points their media position
-    //-------------------------------------------------
 
 
     ///-----------------------------------------------
     /// paints latin letters for points
     ///-----------------------------------------------
-    function doPaintLetter8kernel( pname )
+    function doPaintLetter8kernel( pname, stdMod )
     {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var toreg       = stdMod.toreg;
+        var rg          = stdMod.rg;
+
+        var stdMod = studyMods[ amode.submodel ];
         var rgX = rg[ pname ];
 
         ///adds fake points over draggable points to
@@ -203,34 +187,43 @@
             var rgXX = rg[ fakeName ];
 
             //removes kernel visully if requested
-            var undisplay = ns.haz( rg[pname], 'hideD8Dpoint' ) ||
-                            ns.haz( rg[pname], 'undisplay' );
+            var undisplay = haz( rg[pname], 'hideD8Dpoint' ) ||
+                            haz( rg[pname], 'undisplay' );
 
-            if( !ns.h( rg, fakeName ) ) {
+            if( !has( rg, fakeName ) || !has( rg[fakeName], 'pos' ) ) {
                 ////...decorates for the first time and updates
-                var rgXX = ssF.toreg( fakeName )
+                var rgXX = toreg( fakeName )
                     ( 'pos', [ wp[0], wp[1] ]  )
                     ( 'undisplay', undisplay  )
-                    ;
+                    ();
 
                 if( haz( rg[pname], 'unscalable' ) ) {
-                    rgXX().unscalable = rg[pname].unscalable;
+                    rgXX.unscalable = rg[pname].unscalable;
                 }
                 pos2pointy(
                     fakeName,
                     {
+                        //planned feature
+                        //'stroke'        : han( rgX, 'kernelStroke' , rgX.pcolor, ),
+
                         'stroke'        : rgX.pcolor,
+
                         'fill'          : 'white',
-                        'stroke-width'  : 2,
+                        //'stroke-width'  : 2,
                         r               : han( rgX, 'initialR' , sconf.handleRadius ),
-                    }
+                        tpclass         :
+                                          pname +
+                                          ' tp-' + fakeName + //possibly new feature
+                                          ' tostroke hover-width'
+                    },
+                    stdMod,
                 );
             } else {
                 ////...updates
                 rgXX.pos[0] = wp[0];
                 rgXX.pos[1] = wp[1];
                 rgXX.undisplay = undisplay;
-                pos2pointy( fakeName ); //updates
+                pos2pointy( fakeName, null, stdMod ); //updates
             }
         }
 
@@ -242,7 +235,16 @@
             var strokeCol   = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
             var fillCol     = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
 
-            rgX.pnameLabelsvg = ns.svg.printText({
+
+            var txtstyle = {
+                    'font-size' : rgX.fontSize.toFixed() + 'px',
+                    'line-height' : '1',
+                    stroke        : strokeCol, //fix
+                    fill          : fillCol,
+            };
+            var lposX_rounded = lposX.toFixed();
+            var lposY_rounded = lposY.toFixed();
+            rgX.pnameLabelsvg = nssvg.printText({
                 tpclass         : '',
                 text            : rgX.caption || pname,
                 //stroke          : strokeCol,
@@ -250,21 +252,32 @@
                 "stroke-width"  : 1,
                 svgel           : rgX.pnameLabelsvg,
                 parent          : stdMod.mmedia,
-                x               : lposX.toFixed()+'px',
-                y               : lposY.toFixed()+'px',
-                style           : {
-                    'font-size' : rgX.fontSize.toFixed() + 'px',
-                    'line-height' : '1',
-                    stroke        : strokeCol, //fix
-                    fill          : fillCol,
-                },
+                x               : lposX_rounded + 'px',
+                y               : lposY_rounded + 'px',
+                style           : txtstyle,
             });
+
+            //--------------------------------------------------------------------------
+            // //\\ textLineTurn can be applied ...
+            //      https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
+            //--------------------------------------------------------------------------
+            var textLineTurn = haz( rgX, 'textLineTurn' );
+            if( textLineTurn ) {
+                rgX.pnameLabelsvg.setAttribute( 'transform', 'rotate(' +
+                     textLineTurn + ',' + lposX_rounded + ',' + lposY_rounded + ' )'
+                );
+            }
+            //--------------------------------------------------------------------------
+            // \\// textLineTurn can be applied ...
+            //--------------------------------------------------------------------------
+
+
             $$.$( rgX.pnameLabelsvg ).tgcls(
                 'undisplay',
                 rgX.hideCaption ||
                 (
-                    !ns.haz( rgX, 'displayAlways' ) &&
-                    ( ns.haz( rg, 'allLettersAreHidden' ) || ns.haz( rgX, 'undisplay' ) )
+                    !haz( rgX, 'displayAlways' ) &&
+                    ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
                 )
             );
 
@@ -275,15 +288,57 @@
             } else {
                 var undisp =
                 (
-                    !ns.haz( rgX, 'displayAlways' ) &&
-                    ( ns.haz( rg, 'allLettersAreHidden' ) || ns.haz( rgX, 'undisplay' ) )
+                    !haz( rgX, 'displayAlways' ) &&
+                    ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
                 )
             }
             */
 
+        } else {
+            ////bug fix: June 3, 2021
+            var wwSvg = haz( rgX, 'pnameLabelsvg' );
+            $$.$( wwSvg ).tgcls( 'undisplay', true );
+            /*
+            rgX.hideCaption ||
+            (
+                !haz( rgX, 'displayAlways' ) &&
+                ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
+            )
+            */
         }
-
     }
+
+
+
+    //-------------------------------------------------
+    // //\\ adds to points their media position
+    //      and sets point's color
+    //-------------------------------------------------
+    function doPaintPoints( stdMod )
+    {
+        stdMod  = stdMod || studyMods[ amode.submodel ];
+        var p2p = haz( sconf, 'pname2point' );
+        if( !p2p ) return;
+        if( ix2origPoint.length ) {
+            ////makes svg-z-order
+            ix2origPoint.forEach( op => {
+                var pname = haz( op, 'kName' );
+                if( !pname ) return;
+                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, stdMod, );
+                doPaintLetter8kernel( pname, stdMod, );
+            });
+        } else {
+            ////legacy paint with no svg-z-order,
+            ////legacy preserves legacy projects,
+            Object.keys( p2p ).forEach( pname => {
+                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, stdMod, );
+                doPaintLetter8kernel( pname, stdMod, );
+            });
+        }
+    }
+    //-------------------------------------------------
+    // \\// adds to points their media position
+    //-------------------------------------------------
 
 }) ();
 

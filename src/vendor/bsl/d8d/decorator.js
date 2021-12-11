@@ -26,7 +26,12 @@
         // //\\ api
         //----------------------------------------------
         var {
+            //addFeaturesToDecPoint and addFeaturesToDecPoint.dragDecorColor
+            //are flags,
+            //addFeaturesToDecPoint.dragDecorColor is a condition to
+            //run creates_spinnerOwnCss()
             addFeaturesToDecPoint,
+
             parent_classes,
             makeCentralDiskInvisible,
             orientation,

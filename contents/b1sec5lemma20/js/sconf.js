@@ -44,12 +44,10 @@
         var pictureWidth = 2000;
         var pictureHeight = 1660;
 
-        var centerX_onPicture = 821;
-        var centerY_onPicture = 906;
+        var modorInPicX = 821;
+        var modorInPicY = 906;
 
         var pictureActiveArea;
-        var activeAreaOffsetX = centerX_onPicture;
-        var activeAreaOffsetY = centerY_onPicture;
 
         var pointsOnPicture =
         {
@@ -57,7 +55,7 @@
             A : [623, 1232],
             B : [1497, 1230],
             C : [509,383],
-            O : [centerX_onPicture, centerY_onPicture],
+            O : [modorInPicX, modorInPicY],
 
             //derived points, should not be used in model
             Q : [1077, 1231],
@@ -101,13 +99,13 @@
         //  application coordinate Y
         //  -1 if it goes in opposite-to-screen
         //      direction starting from
-        //      centerY_onPicture
+        //      modorInPicY
         //  1  codirectional with the screen
         //     which means from screen-top to
         //      screen bottom
         var MONITOR_Y_FLIP = -1;
         var mod2inn_scale = pictureActiveArea;
-        var activeAreaOffsetOnPictureY = centerY_onPicture;
+        var activeAreaOffsetOnPictureY = modorInPicY;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -120,6 +118,8 @@
         fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
         to_sconf =
         {
+            mediaBgImage : "l20.jpg",
+            dontRun_ExpandConfig : true,
             initialPoints : pointsOnPicture,
 
             a : 2.03,
@@ -145,13 +145,10 @@
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
 
             pictureActiveArea   : pictureActiveArea,
-            activeAreaOffsetX   : activeAreaOffsetX,
-            activeAreaOffsetY   : centerY_onPicture,
+            originY_onPicture   : modorInPicY,
 
-            centerOnPicture_Y   : centerY_onPicture, //todm proliferation of code
-            originY_onPicture   : centerY_onPicture,
-
-            centerOnPicture_X   : centerX_onPicture,
+            modorInPicX,
+            modorInPicY,
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
@@ -170,15 +167,15 @@
             // \\// scenario
             //----------------------------------
 
-            default_tp_stroke_opacity : 1,
+            default_tp_stroke_opacity : 0.5,
             default_tp_stroke_width : 20,
             //default_tp_lightness : 50, //50 is full lightness
             default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 3,
 
             //:for tools sliders: todo proliferation
-            originX_onPicture : activeAreaOffsetX, //0,
-            originY_onPicture : activeAreaOffsetY, //0,
+            originX_onPicture : modorInPicX, //0,
+            originY_onPicture : modorInPicY, //0,
         };
 
 
@@ -195,10 +192,6 @@
             to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
             to_sconf.mod2inn_scale = mod2inn_scale;
             to_sconf.inn2mod_scale = inn2mod_scale;
-
-            //todo proliferation in each lemma:
-            //for tool sliders:
-           to_sconf.originalMod2inn_scale = to_sconf.mod2inn_scale;
         })();
         //----------------------------------
         // \\// spawns to_conf

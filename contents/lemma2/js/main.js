@@ -3,8 +3,8 @@
 (function() {
     var {
         sn, eachprop, haff,
-        sapp, ss, ssF,
-        studyMods,
+        sapp, ss, ssF, sDomF,
+        studyModsActivated, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -53,12 +53,52 @@
         dr.figureInternalArea = document.getElementById( 'figureInternalArea' );
         guicon.buildControlPoints();
 
+        //see:     ///modern approach ... abandoned
+        //createsBaseSlider();
+
         study.eventHandlers.toggleChangeFigure();
-        eachprop( studyMods, ( stdMod ) => {
+
+        //---------------------------------------
+        //overwork??
+        studyModsActivated.forEach( stdMod => {
+        //---------------------------------------
+
             stdMod.model8media_upcreate();
         });
+
         gui.buildSlider();
     }
+
+    /*
+    ///modern approach ... abandoned
+    ///unrem this: //todm remove: experiment:
+    function createsBaseSlider()
+    {
+        //====================================
+        // //\\ slider
+        //====================================
+        var pname = 'baseSlider';
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname,
+            orientation : 'axis-x',
+            acceptPos : newPos =>
+            {
+                var drX = stdMod.rg[ pname ];
+                drX.pos[0] = newPos[0];
+                newPos[1] = drX.pos[1];
+                return !!'move permitted';
+            },
+        });
+        ccc( rg.baseSlider );
+        sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
+        //====================================
+        // \\// slider
+        //====================================
+    }
+    */
+
+
 
     function finish_sapp_UI()
     {

@@ -1,10 +1,7 @@
 ( function() {
     var {
         eachprop,
-        sconf,
-        sapp,
-        studyMods,
-        ssF,
+        sconf, sapp, ssF,
         stdMod,
     } = window.b$l.apptree({
         setModule,
@@ -26,12 +23,8 @@
     function finish_sapp_UI() 
     {
         stdMod.initDragModel( stdMod.medD8D ); //todm: patch
-        eachprop( studyMods, ( stdMod, modName ) => {
-            if( !sconf.hideProofSliderCompletely ) {
-                ssF.create_proofSlider();
-            }
-            ssF.mediaModelInitialized = true;
-        });
+        !sconf.hideProofSliderCompletely && ssF.create_proofSlider();
+        ssF.mediaModelInitialized = true;
     }
 
 

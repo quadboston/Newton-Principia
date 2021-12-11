@@ -1,33 +1,15 @@
 ( function() {
-    var ns      = window.b$l;
-    var $$      = ns.$$;
-    var sn      = ns.sn;    
-    var bezier  = sn('bezier');
-    var sv      = sn('svg');
-
-    var fapp    = sn('fapp'); 
-    var fconf   = sn('fconf',fapp);
-    var sconf   = sn('sconf',fconf);
-
-    var sapp    = sn('sapp'); 
-    var sDomF   = sn('dfunctions',sapp);
-    var sDomN   = sn('dnative',sapp);
-
-    var ss      = sn('ss',fapp);
-    var ssD     = sn('ssData',ss);
-    var ssF     = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mainLegend_2_ss';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-
-
+    var {
+        $$, mat,
+        sconf, sDomF, sDomN, ssD, ssF,
+        stdMod, rg, toreg,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            upcreate_mainLegend,
+            create_digital_legend,
+        },
+    });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
     return;
@@ -39,19 +21,13 @@
 
 
 
-    function setModule()
-    {
-        ssF.upcreate_mainLegend = upcreate_mainLegend;
-        //.uncomment this to ad a legend
-        ssF.create_digital_legend = create_digital_legend;
-    }
 
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend()
     {
         //ccc( 'starts create_digital_legend' );
-        var mlegend = ssF.tr( 'main-legend' );
+        var mlegend = toreg( 'main-legend' )();
         doCreateTable_proof( mlegend );
     }
 
@@ -97,10 +73,8 @@
         var tb = mlegend.tb.proof = $$
             .c('table')
             .cls( 'main-legend proof' )
-            .to( sDomN.legendRoot$ )
-            //sDomN.medRoot)
+            .to( stdMod.legendRoot$ )
             ();
-        var tr = ssF.tr;
 
 
         //=====================================================
@@ -196,7 +170,6 @@
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
                          alignCaptionToRight, claim0proof, noEqualSign, cssName )
     {
-        var tr = ssF.tr;
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
         cssName = sDomF.topicIdUpperCase_2_underscore( cssName || mname );

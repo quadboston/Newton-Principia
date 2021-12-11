@@ -54,7 +54,10 @@
 
 
 
-    //Input: based256 - optional: means input is in 1-255 range
+    ///Input:
+    ///         rgbArray - is normalized (aka [ 1, 0.3, 0 ]) or based256 (aka [255,75,0]),
+    ///         based256 - optional
+    ///Output:  { string:'#...', normalized:[...] };
     ns.rgb2str8norm = function( rgbArray, based256 )
     {
         var colors = { string:'#', normalized:[] };
@@ -70,18 +73,18 @@
         });
         return colors;
     };
-
+    ns.rgb_2_str8norm = ns.rgb2str8norm;
 
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
-        return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3] ];
+        return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4] ];
     };
 
     ///not tested
     ns.rgba2colors = function( arg ) {
         var hsl = ns.rgbaArr2hsla( arg );
-        return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3] );
+        return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3], arg[4] );
     }
 
     //was: function getRandomColor()
@@ -323,21 +326,20 @@
         return zCols;
     }
 
-
-    ///creates twin-colors: one with full opacity and other one for
-    ///shaded,
-    ///argument nonFullOpacity goes to rgba_low,
-    ///opacity 1           goes to rgba_high,
-    function hslo_2_low8high( hue, sat, light, nonFullOpacity )
+    ///creates twin-colors: argument lowOpacity goes to rgba_low,
+    ///        highOpacity goes to rgba_high,
+    function hslo_2_low8high( hue, sat, light, lowOpacity, highOpacity )
     {
+        highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
         //ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
-        var corRack     = ns.pars2colors( hue, sat, light, nonFullOpacity );
+        var corRack     = ns.pars2colors( hue, sat, light, lowOpacity );
         rgba_low        = corRack.rgba;
         rgbaCSS         = corRack.rgbaCSS;
-        var corRack     = ns.pars2colors( hue, sat, light, 1 );
+        var corRack     = ns.pars2colors( hue, sat, light, highOpacity );
         rgba_high       = corRack.rgba;
-        return { rgba_low, rgba_high }; 
+        return { rgba_low, rgba_high, lowOpacity, highOpacity }; 
     }
+
 
 
 }) ();

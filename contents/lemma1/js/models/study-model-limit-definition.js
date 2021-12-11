@@ -1,10 +1,8 @@
 ( function() {
     var {
         ns, sn, mat,
-        sconf,
-        ssD,
-        tr, tp,
-        stdMod,
+        sconf, ssD,
+        stdMod,  toreg,
     } = window.b$l.apptree({
         SUB_MODEL : 'limit-definition',
         stdModExportList :
@@ -52,20 +50,20 @@
             modelPaths = limDemo.instance.model_2_media(
                 stdMod.mmedia
             );
-            tr( 'modelPaths', 'modelPaths', modelPaths );
+            toreg( 'modelPaths' )( 'modelPaths', modelPaths );
         }
         var lim = limDemo.dataSamples.beats_sample.lim;
-        var modE = tp( 'point-E', [-0.06,lim + EPSILON] );
+        var modE = toreg( 'point-E' )( 'pos', [-0.06,lim + EPSILON] )( 'pos' );
         //ccc('upcr: modE.posY=' + rg['point-E']['pos'][1] );
         ///full interval of epsilon range
-        tr( 'eps_Neighb', 'eps_Neighb',
+        toreg( 'eps_Neighb' )( 'eps_Neighb',
             [
                 [ modE[0], 2*lim - modE[1] ],
                 [ modE[0], modE[1] ]
             ]
         );
         ///upper half of epsilon strip
-        tr( 'eps_NeighbUp', 'eps_NeighbUp',
+        toreg( 'eps_NeighbUp' )( 'eps_NeighbUp',
             [
                 [ modE[0], lim ],
                 [ modE[0], EPSILON + lim ]
@@ -92,12 +90,12 @@
                 neighbIxChosen = ix;
             }
         });
-        tr('neighbIxChosen', 'neighbIxChosen', neighbIxChosen);
+        toreg( 'neighbIxChosen' )( 'neighbIxChosen', neighbIxChosen );
 
         //ccc( neighbIx, xNeighb, yNeighb );
-        var modD = tp( 'point-D', [delta_fraction * xNeighb, 0] );
+        var modD = toreg( 'point-D' )( 'pos', [delta_fraction * xNeighb, 0] )( 'pos' );
 
-        tr( 'yNeighbUpper', 'yNeighbUpper',
+        toreg( 'yNeighbUpper' )( 'yNeighbUpper',
             {
                 upperLine :
                 [
@@ -111,21 +109,21 @@
                 ]
             }
         );
-        tr( 'neighbVertical', 'neighbVertical',
+        toreg( 'neighbVertical' )( 'neighbVertical',
             [
                 [ xNeighb,  lim+yNeighb ],
                 [ xNeighb,  0 ]
             ]
         );
         ///permitted delta range:
-        tr( 'neighbHor', 'neighbHor',
+        toreg( 'neighbHor' )( 'neighbHor',
             [
                 [ 0,        0 ],
                 [ xNeighb,  0 ]
             ]
         );
         ///permitted delta range:
-        tr( 'chosenDelta', 'chosenDelta',
+        toreg( 'chosenDelta' )( 'chosenDelta',
             [
                 [ 0,        0 ],
                 [ modD[0],  modD[1] ]

@@ -1,6 +1,7 @@
 *::*claim|latin
 {
   "menuCaption" : "Latin",
+  "mediaBgImage" : "lemma-23-3rd-ed.png",
   "fixed-colors" :
   {
     "given"                     : [0,    100,  0 ],
@@ -34,7 +35,7 @@
         sunt rationes æqualitatis.
 
 <br><br>
-<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin-diagram"></div>
 <div book-reference-id="latin"></div>
 
 
@@ -62,7 +63,7 @@
 
 <br><br>
 <div book-reference-id="Bernard-Cohen"></div>
-<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin-diagram"></div>
 
 
 
@@ -106,7 +107,7 @@
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q. E. D.
 
 <br><br>
-<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin-diagram"></div>
 <div book-reference-id="latin"></div>
 
 
@@ -125,7 +126,7 @@
 
 <br><br>
 <div book-reference-id="Bernard-Cohen"></div>
-<div book-reference-id="Latin-diagram"></div>
+<div book-reference-id="latin-diagram"></div>
 
 
 

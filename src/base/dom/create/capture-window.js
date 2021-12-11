@@ -1,8 +1,8 @@
 ( function() {
     var {
-        ns, $$,
+        ns, $$, hafa,
         ssF, sDomN, fapp,
-        studyMods, amode,
+        stdMod, amode,
     } = window.b$l.apptree({
         sDomFExportList :
         {
@@ -58,20 +58,11 @@
                             ///changes the state by click on bookmark
                             ///*******************************************
                             .e( 'click', ()=> {
-                                //ccc( 'bm=' + pix, cap.captured[ pix ] )
-
                                 ////prevents code-crash if subapp does
                                 //// not define "appState__2..."
-                                var stdMod = ns.haz( studyMods, amode.submodel );
-                                if( ns.h( stdMod, 'astate_2_rg8model8media' ) ) {
-                                    ns.haf( stdMod, 'astate_2_rg8model8media' )(
-                                        cap.captured[ pix ], ''+pix );
-                                } else {
-                                    ////remove this later
-                                    ns.haf( ssF, 'astate_2_rg8model8media' )(
-                                        cap.captured[ pix ], ''+pix );
-                                }
-                            })
+                                hafa( stdMod, 'astate_2_rg8model8media' )(
+                                        cap.captured[ pix ], );
+                                })
                             .html( pix + ' ' )
                             ;
                         etext.appendChild( capturedEl$() );

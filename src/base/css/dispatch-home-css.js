@@ -3,10 +3,10 @@
     var $$          = ns.$$;
     var cssp        = ns.CSS_PREFIX;
     var sn          = ns.sn;
-    var cssmods     = sn('cssModules');
+    var engCssMs    = sn('engCssMs');
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
-    cssmods.adds_home8lemma_baseCss = adds_home8lemma_baseCss;
+    engCssMs.dispatchesHome8LemmaCss = dispatchesHome8LemmaCss;
     return;
 
 
@@ -16,13 +16,13 @@
 
 
 
-    function adds_home8lemma_baseCss() 
+    function dispatchesHome8LemmaCss() 
     {
 
         //data-entry: put module names here in order
         `
             reset
-            base
+            dom-roots
             typography
             homepage-basics
             home-pane
@@ -41,7 +41,7 @@
                 //      css-precedence than "home";
                 //-----------------------------------------------------------
                 var styleTag =
-                    modname === 'base' ||
+                    modname === 'dom-roots' ||
                     modname === 'typography' ||
                     modname === 'homepage-basics' ||
                     //modname === 'home-pane' ||
@@ -52,9 +52,14 @@
                 // \\// this places reset and home-pane into 'home' styleTag;
                 //-----------------------------------------------------------
 
-
+                /*
                 ns.globalCss.addText(
-                    decorateText( cssmods[ modname ]( cssp, fconf ), modname ),
+                    decorateText( engCssMs[ modname ]( cssp, fconf ), modname ),
+                    styleTag
+                );
+                */
+                ns.globalCss.update(
+                    decorateText( engCssMs[ modname ]( cssp, fconf ), modname ),
                     styleTag
                 );
             }

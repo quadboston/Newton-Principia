@@ -4,9 +4,8 @@
         sconf,
         rg,
         ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp,
+        sDomF,
+        amode, stdMod, toreg,
     } = window.b$l.apptree({
         setModule,
         stdModExportList :
@@ -71,7 +70,7 @@
     //=========================================================
     function createMedia0updateMediaAUX()
     {
-        stdMod.toogle_detectablilitySliderPoints4Tools(); //todm ... generalize in one spot
+        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, ); //todm ... generalize in one spot
 
         var pictureLeft = rg.detected_user_interaction_effect_DONE;
         //-------------------------------------------------
@@ -98,7 +97,7 @@
         //-------------------------------------------------
         ( function () {
             var mod2med = ssF.mod2inn;
-            tr( "abscissa" );
+            toreg( "abscissa" );
             rg.abscissa.svgel = sv.polyline({
                 svgel   : rg.abscissa.svgel,
                 stroke  : 'black',                    

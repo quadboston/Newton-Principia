@@ -1,3 +1,4 @@
+//registry is used for study-model-elements or media-model-elements
 ( function() {
     var ns          = window.b$l;
     var sn          = ns.sn;
@@ -6,15 +7,9 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    //.registry is used for study-model-elements or media-model-elements
-    var rg          = sn('registry',ssD);
 
-    ssF.tr = tr;
-    ssF.tp = tp;
-    ssF.toreg = toreg;
-    ssF.inRg = inRg;
-
-    var hasOp = Object.prototype.hasOwnProperty;
+    ssF.toregUnbound    = toreg;
+    ssF.makes_toreg4pos = makes_toreg4pos;
 
     //test
     /*
@@ -53,27 +48,28 @@
 
 
     ///================================================
-    /// //\\ does registry initiation or overriding job.
+    /// //\\ creates or updates registry rg entry
     ///================================================
-    /// Purpose: to prevent unit's duplication.
-    /// If no rg[id] exists, then creates empty rg[id].
-    /// Then
-    ///     If no key is supplied.
-    ///         Returns rg[id].
-    ///     If key is supplied:
-    ///         Sets rg[ id ][ key ] = val
-    ///         Returns val.
-    function tr( id, key, val )
-    {
-        rg[ id ] = rg.hasOwnProperty( id ) ? rg[ id ] : {};
-        if( key ) { rg[ id ][ key ] = val; }
-        return key ? val : rg[ id ];
+    ///constructed function
+    ///     generates/reuses rg[ kname ],
+    ///     assigns val to rg[ kname ].pos,
+    ///     returns val
+    function makes_toreg4pos( stdMod )
+    { return (
+                function( kname, val ) {
+                    var rg = this;
+                    rg[ kname ] = rg.hasOwnProperty( kname ) ?
+                        rg[ kname ] :
+                        {
+                            rgId : kname,
+                            stdModName : rg.stdModName,
+                        }
+                    ;
+                    return ( rg[ kname ].pos = val );
+                }
+             ).bind( stdMod.rg );
     }
 
-    ///To position
-    ///Sets rg[ id ][pos] = val
-    ///If rg[ id ] does not exist, then creates it.
-    function tp( id, val ) { return tr( id, 'pos', val ); }
 
     ///creates or updates registered umbrella-object rg[id] and its properties
     ///hopefully more useful: allows chained assignments
@@ -93,7 +89,11 @@
     */
     function toreg( id )
     {
-        rg[ id ] = rg.hasOwnProperty( id ) ? rg[ id ] : {};
+        rg = this;
+        rg[ id ] = rg.hasOwnProperty( id ) ?
+            rg[ id ] : { rgId : id, stdModName : rg.stdModName };
+        return updateMe;
+
         function updateMe( key, val ) {
             switch( arguments.length ) {
                 case 0: return rg[ id ];
@@ -108,18 +108,10 @@
                 default:
             }
         };
-        return updateMe;
     }
     ///================================================
-    /// \\// does registry initiation or overriding job.
+    /// \\// creates or updates registry rg entry
     ///================================================
-
-
-    function inRg( propName, template )
-    {
-        if( hasOp.call( rg, propName ) ) return rg[ propName ];
-        return ( rg[ propName ] = template || {} );
-    }
 
 
 }) ();

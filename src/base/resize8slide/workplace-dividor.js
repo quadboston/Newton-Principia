@@ -1,16 +1,8 @@
 ( function() {
     var {
         //nsd, //vital-for-mobile
-        $$,
-        nspaste,
-        cssp,
-        fapp,
-        fmethods,
-        fconf,
-        sDomN,
-        wrkwin,
-        dividorFractions,
-        d8d_p,
+        $$, nspaste, cssp, d8d_p,
+        fapp, fmethods, fconf, sDomN, wrkwin, dividorFractions,
     } = window.b$l.apptree({
     });
     wrkwin.createDividorResizer = createDividorResizer;
@@ -25,7 +17,6 @@
 
     //=========================================================
     /// creates DividorResizer
-    /// called in lemmaDom___ess8med8leg_roots_8_menuPH_8_dividor_8_medSRoot
     //=========================================================
     function createDividorResizer()
     {
@@ -41,7 +32,7 @@
             .c( 'div' )
             .a( 'class', cssp +'-resizable-handle' )
             .a( 'id', cssp +'-resizable-handle' )
-            .to( sDomN.medSuperroot$ )
+            .to( sDomN.simSScene$ )
             ();
         var mediaHorizontalHandler = $$
             .c( 'img' )
@@ -99,7 +90,7 @@
                 case 'move':
                     //vital-for-mobile
                     //nsd('mv: res and sl');
-                    wrkwin.finish_Media8Ess8Legend_resize__upcreate( arg.surfMove[0] );
+                    wrkwin.start8finish_media8Ess8Legend_resize__upcreate( arg.surfMove[0] );
                     break;
             }
         }

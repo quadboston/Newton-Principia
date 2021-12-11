@@ -1,4 +1,3 @@
-//todm: apparently vital to merge this module with proper submodel
 ( function() {
     var {
         ns, $$, sn, haz, sconf, fconf,
@@ -25,26 +24,31 @@
         sDomF.doProcess_rgX = doProcess_rgX;
     }
 
-
+    ///===========================================================
+    /// api
+    ///
+    ///===========================================================
     function rgX_2_dragWrap({
             medD8D,
-            rgX,
+            rgX,            //===pointWrap
+                            //must have rgX.pname: for spinner
+                            //see ** below
             orientation,
             nospinner,
     }) {
         var pointWrap               = rgX;
-        pointWrap.spinnerClsId      = 'point-' + rgX.pname + '-slider';
+        pointWrap.spinnerClsId      = 'point-' +
+            sDomF.topicIdUpperCase_2_underscore( rgX.pname ) +
+            '-slider';
+        //**rgX must have dragDecorColor' ) || pcolor:
         pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;
         var argc =
         {
             pointWrap           : rgX,
-            doProcess           : sDomF.doProcess_rgX, //todm: doProcess_rgX,
+            doProcess           : doProcess_rgX, //todm: doProcess_rgX,
             orientation         : orientation,
             nospinner           : nospinner,
         };
-        //if( rgX.pname === 'fret-0-0' ) {
-        //    ccc( 'starting pointWrap_2_dragWrap for ' + rgX.pname );
-        //}
         medD8D.pointWrap_2_dragWrap( argc );
     }
 
@@ -54,12 +58,16 @@
         var pWrap = arg.pointWrap; 
         switch( arg.down_move_up ) {
             case 'down':
+                //**rgX optionally can have processDownEvent method:
                 ns.hafb( pWrap, 'processDownEvent' )( arg );
                 break;
             case 'up' :
+                //**rgX optionally can have processUpEvent method:
                 ns.hafb( pWrap, 'processUpEvent' )(arg);
                 break;
             case 'move':
+
+                //**rgX can be media mover engine
                 if( ns.haz( pWrap, 'mediaMover' ) ) {
                     var mscale = sDomF.out2inn();
                     var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
@@ -72,7 +80,10 @@
                     arg.surfMove[0] * mscale,
                     arg.surfMove[1] * mscale,
                 ];
-                //this sub. basically creates newPos from move
+                //**rgX must have move_2_updates,
+                //  for some rgX, move_2_updates is added when composing
+                //  from draggable point set in ?sconf,
+                //  this sub. basically creates newPos from move
                 pWrap.move_2_updates(
                     scaledMove, //is in model units except for media-mover(-as-a-whole)
                     mouseOnSurf,

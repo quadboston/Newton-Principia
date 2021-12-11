@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            mediaBgImage : "l11-diagram-3rded.jpg",
             codesList :
             [
                 //todm: automate this list

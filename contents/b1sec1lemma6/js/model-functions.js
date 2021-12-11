@@ -1,13 +1,8 @@
 ( function() {
     var {
         ns, sn, mat,
-        sconf, fconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp, toreg,
-
+        sconf, fconf, ssF, ssD, sDomF,
+        amode, stdMod, rg,
     } = window.b$l.apptree({
         //setModule,
         stdModExportList :
@@ -54,8 +49,20 @@
             {
                 fname : "Rotated curve",
                 fun : function(x) {
-                        var sin = rg.curveRotationAngle.sin;
-                        var cos = rg.curveRotationAngle.cos;
+                        //patch:
+                        if( fconf.sappId === "b1sec1lemma6" &&
+                            amode.aspect === 'model' && amode.theorion === 'proof'
+                        ) {
+                            var anRack = rg.curveRotationAngle;
+                        } else {
+                            ////per team agreement, we block curve positions
+                            ////depicting "ad absurdum" proof and position
+                            ////the curve in lemma claim position,
+                            var anRack = ssD[ "L-equal-d curveRotationAngle" ];
+                        }
+
+                        var sin = anRack.sin;
+                        var cos = anRack.cos;
                         var y = originalFun( x );
                         var xx = cos * x - sin * y;
                         var yy = sin * x + cos * y;

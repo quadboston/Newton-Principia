@@ -141,7 +141,6 @@
         })
 
         //localizers for speed
-        var inRg = ssF.inRg;
         var mod2inn = ssF.mod2inn;
 
         ordPP.forEach( (bar, bix) => {
@@ -193,10 +192,10 @@
             //-------------------------------------------------------
             // //\\ establishes registry for bar vertices
             //-------------------------------------------------------
-            var leftTop     = inRg( ltName );   leftTop.pos     = [ p1Xtop, p1Y ];
-            var rightTop    = inRg( rtName );   rightTop.pos    = [ p2Xtop, p1Y ];
-            var leftBottom  = inRg( ltBName );  leftBottom.pos  = [ p1X, ymin ];
-            var rightBottom = inRg( rtBName );  rightBottom.pos = [ p2X, ymin ];
+            var leftTop     = toreg( ltName )();   leftTop.pos     = [ p1Xtop, p1Y ];
+            var rightTop    = toreg( rtName )();   rightTop.pos    = [ p2Xtop, p1Y ];
+            var leftBottom  = toreg( ltBName )();  leftBottom.pos  = [ p1X, ymin ];
+            var rightBottom = toreg( rtBName )();  rightBottom.pos = [ p2X, ymin ];
             //-------------------------------------------------------
             // \\// establishes registry for bar vertices
             //-------------------------------------------------------

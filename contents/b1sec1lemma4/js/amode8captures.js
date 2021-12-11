@@ -1,6 +1,7 @@
 ( function() {
     var {
-        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf,
+        ns, sn, paste, capture, amode, toreg,
+        studyMods, rg, sDomF, ssD, ssF, fconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -46,6 +47,7 @@
     function amode2rgstate( captured )
     {
         var { theorion, aspect, submodel, subessay } = amode;
+        var stdMod = studyMods[ submodel ];
         //----------------------------------
         // //\\ common values
         //----------------------------------
@@ -54,7 +56,7 @@
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
         ssD.repoConf.customFunction = 0;
         */
-        var media_scale = ssF.toreg( 'media_scale' )();
+        var media_scale = toreg( 'media_scale' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -66,7 +68,7 @@
             //         this made problems with bars number > DONT_PAINT_BARS_MORE_THAN
             rg.media_scale.value = 1; //0.7;
 
-            ssF.scaleValue2app( rg.media_scale.value );
+            ssF.scaleValue2app( rg.media_scale.value, stdMod );
             sDomF.detected_user_interaction_effect( !'doUndetected' );
 
                 /*
@@ -109,7 +111,7 @@
 
         } else {
             rg.media_scale.value = 1;
-            ssF.scaleValue2app( rg.media_scale.value );
+            ssF.scaleValue2app( rg.media_scale.value, stdMod );
         }
         //*****************************************************************************
         // \\// lemma 7

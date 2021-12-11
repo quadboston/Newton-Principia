@@ -120,7 +120,7 @@ set of non-zero areas of squares in two-dimensional plane.
         <br><br>
                                             </td></tr></table>
                                             </div>
-
+<!--
 Relation "⩾" defined as
       <div style="text-align:center;">
             m' ⩾  m''  \( \; \overset{df} \iff \; \) m'=m'' or m' &gt; m''
@@ -129,7 +129,8 @@ Relation "⩾" defined as
 is transitive and reflexively-antisymmetric:
 <br>
 m' ⩾ m'' and m'' ⩾ m' \( \; \Rightarrow \; \) m' = m''
-                                                                                            
+                                                                                           
+-->
 
 <br><br>
 <br>
@@ -763,8 +764,9 @@ If instead of unit u we take unit v, multiply the nominator with
 *..*
 <br><br>
 
-The construction of Magnitudes is still too poor. Rich theory needs more features.
-We call magnitude pre-real if it comply three following axioms.
+Apparently, Euclidean Geometry utilizes more features of Magnitudes, that were defined above.
+Below we add more features as axioms for Magnituedes.
+We call Magnitudes pre-real if they comply three following axioms.
 <br><br>
 
 <b>M is called fractional</b> if each magnitude can be divided:

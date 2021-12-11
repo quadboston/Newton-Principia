@@ -1,12 +1,11 @@
 ( function() {
     var {
-        ns, sn, haz, haff, $$,
+        ns, sn, haz, haff, $$, eachprop,
         sconf,
         rg,
         ssF, ssD,
         sDomF, amode,
-        studyMods,
-        tr, tp, toreg,
+        studyMods, toreg,
         exegs,
     } = window.b$l.apptree({
         setModule,
@@ -17,7 +16,6 @@
     });
 
     var pointies2line;
-    var pos2pointy;
     return;
 
 
@@ -34,7 +32,6 @@
     function setModule()
     {
         pointies2line   = ssF.pointies2line;
-        pos2pointy      = ssF.pos2pointy;
     }
 
 
@@ -58,12 +55,12 @@
         //:updates subessay menu
         var exAspect = exegs[ amode.theorion ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
-        sDomF.state2subessayMenu({ exAspect, subexeg })
+        sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
-        stdMod.toogle_detectablilitySliderPoints4Tools();
+        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );
         //preliminary setting for painting lines,
         //no points painting at this moment,
-        ssF.setsPointsMedPos();
+        setsPointsMedPos();
 
         ///paints default curve if no custom exists
         if(
@@ -93,15 +90,15 @@
         if( linesArray ) {
             linesArray.forEach( (lineConf) => {
                     var lname   = Object.keys( lineConf )[0];
-                    line        = lineConf[ lname ];
-                    if( !line.zOrderAfter ) {
-                        ssF.str2line( lname, null, line );
+                    lineAttr    = lineConf[ lname ];
+                    if( !lineAttr.zOrderAfter ) {
+                        ssF.str2line( lname, null, lineAttr );
                     }
             });
         } else {
-            ns.eachprop( sconf.lines, (line,lname) => {
-                if( !line.zOrderAfter ) {
-                    ssF.str2line( lname, null, line );
+            ns.eachprop( sconf.lines, (lineAttr,lname) => {
+                if( !lineAttr.zOrderAfter ) {
+                    ssF.str2line( lname, null, lineAttr );
                 }
             });
         }
@@ -109,7 +106,7 @@
         //=============================================
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
-        ssF.doPaintPoints();
+        ssF.doPaintPoints(); //appar. for preemptive svg-position. and z-order,
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
@@ -119,15 +116,15 @@
         if( linesArray ) {
             linesArray.forEach( (lineConf) => {
                 var lname   = Object.keys( lineConf )[0];
-                line        = lineConf[ lname ];
-                if( line.zOrderAfter ) {
-                    ssF.str2line( lname, null, line );
+                lineAttr    = lineConf[ lname ];
+                if( lineAttr.zOrderAfter ) {
+                    ssF.str2line( lname, null, lineAttr );
                 }
             });
         } else {
-            ns.eachprop( sconf.lines, (line,lname) => {
-                if( line.zOrderAfter ) {
-                    ssF.str2line( lname, null, line );
+            ns.eachprop( sconf.lines, (lineAttr,lname) => {
+                if( lineAttr.zOrderAfter ) {
+                    ssF.str2line( lname, null, lineAttr );
                 }
             });
         }
@@ -157,6 +154,21 @@
     //=========================================================
     // \\// updater helper
     //=========================================================
+
+
+
+
+    function setsPointsMedPos( stdMod )
+    {
+        stdMod          = stdMod || studyMods[ amode.submodel ];
+        var rg          = stdMod.rg;
+        eachprop( sconf.pname2point, (point,pname) => {
+            var pointRg = rg[ pname ];
+            pointRg.medpos = ssF.mod2inn( pointRg.pos, stdMod );
+        });
+    }
+
+
 
 }) ();
 

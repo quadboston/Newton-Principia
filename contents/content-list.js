@@ -1,11 +1,6 @@
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    var fconf   = ns.sn('fconf',fapp);
-    fconf.sappModulesList = {};
-
-
-    var sappModulesArray = fconf.sappModulesArray =
+    var { fconf, ssF, } = window.b$l.apptree({});
+    fconf.ix2lemmaDef =
     [
         {
             sappId : 'home-pane',
@@ -76,6 +71,11 @@
             annotation : "",
         },
 
+        {   sappId : 'b1s2prop2theor2',
+            book : 'Book 1',
+            caption : 'Sec. II. Proposition II. Theorem II',
+            annotation : "",
+        },
 
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
@@ -103,23 +103,21 @@
 
         {   sappId : 'addd-prel',
             book : 'Addendum',
-            caption : 'Preliminaries. Euclid-Dedekind Ratios.',
+            caption : 'Euclid-Dedekind Ratios.',
             annotation : "Comments to the Book",
         },
 
         {   sappId : 'addd-prel-curve',
             book : 'Addendum',
-            caption : 'Preliminaries. Curves.',
+            caption : 'Euclid. Curves.',
             annotation : "Comments to the Book",
         },
-
+        {   sappId : 'addd-prel-curveXX',
+            book : 'Addendum',
+            caption : 'Calculus XX. Curves.',
+            annotation : "Comments to the Book",
+        },
     ];
-
-    ///spawns modules array into modules list and fills incompleted properties
-    sappModulesArray.forEach( function( moduleItem, moduleIx ) {
-        moduleItem.ix = moduleIx;
-        fconf.sappModulesList[ moduleItem.sappId ] = moduleItem;
-    });
 
 }) ();
 

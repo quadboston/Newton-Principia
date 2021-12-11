@@ -29,13 +29,12 @@
             dimX,   //svg inner width in svg-ViewBox
             dimY,   //svg inner height in svg-ViewBox
     }){
-        var graphFM_self = { gmedia$ : null };
+        var graphFM_self = { gmedia$ : null, gridIsPainted : false };
         creates_svgDomEl();
 
         //todm: way to go to speed up graphs
-        //var polylinesSVGs$ = [];
         //var polylinesLablesSVGs$ = [];
-
+        var plotIx2plotSvg = graphFM_self.plotIx2plotSvg = [];
         graphFM_self.drawGraph              = drawGraph;
         graphFM_self.nonefyDom              = nonefyDom;
         graphFM_self.changesInnerDimensions = changesInnerDimensions;
@@ -51,11 +50,18 @@
                 graphArray,
                 colorThreadArray,
                 style,
+
+
+                //optional, if not set will be found,
+                //does not find yMin, yMax for each single function y(x), finds
+                //only for an entire population of functions y(x),
                 xMin,
                 xMax,
                 yMin,
                 yMax,
-                xRangeFilter,
+
+                xRangeFilter,   //optional, restricts data arrays: ignores abscissas out of
+                                //prescribed range
                 drawDecimalY,
                 drawDecimalX,
                 doSideAxes,
@@ -66,16 +72,20 @@
                 axisXLegend,
                 title,
                 drawAllAxes,
-                plotsNumber,
+                plotsCount_overrider,
                 plotsPars,
+                doTruncateOutOfRangeY,
+                doPaintGridOnlyOnce,
         }){
             style = style || {};
-
             //nonefyDom();
-            //creates_svgDomEl(); //perhaps too expensive ...
+            //creates_svgDomEl();
+            //perhaps too expensive ... we already do reattach plots later, but not
+            //preserve grid yet .. but grid is a hell expesive ... plot is nothing,
             graphFM_self.gmedia$.css( 'display', 'block' );
-            graphFM_self.gmedia$.html( '' );
-
+            if( !doPaintGridOnlyOnce || !graphFM_self.gridIsPainted ) {
+                graphFM_self.gmedia$.html( '' );
+            }
             var polylines = [];
             var rangeX;
             var find_xMin = typeof xMin === 'undefined';
@@ -84,8 +94,6 @@
             var find_yMax = typeof yMax === 'undefined';
             var find_y    = find_yMin || find_yMax;
             var doFind    = find_xMin || find_xMax || find_y;
-
-
             //----------------------------------------------
             // //\\ finds number of polylines
             //      plotsScaffold - format definition
@@ -104,7 +112,7 @@
             });
             var plotsCount = plotsScaffold.length;
             //}
-            plotsCount = plotsNumber || plotsCount;
+            plotsCount = plotsCount_overrider || plotsCount;
             var plotCurvesCount = plotsCount;
             //----------------------------------------------
             // \\// finds number of polylines
@@ -141,7 +149,7 @@
                         }
                     }
                     if( find_xMin && xMin > points.x ) {
-                        yMin = points.x;
+                        xMin = points.x;
                     }
                     if( find_xMax && xMax < points.x ) {
                         xMax = points.x;
@@ -160,10 +168,18 @@
                 });
             }
             if( typeof yMin === 'undefined' ) return; //bs of empty array
-
             //todm patch
-            var rangeX = Math.max( 0.0000001, xMax - xMin );
-            var rangeY = Math.max( 0.0000001, yMax - yMin );
+            var rangeX = xMax - xMin;
+            var rangeY = yMax - yMin;
+            var SMALLNESS = 1e-150;
+            if( Math.abs( rangeX ) < SMALLNESS ) {
+                rangeX =  rangeX < 0 ? -SMALLNESS : SMALLNESS;
+                xMax = xMin + rangeX;
+            }
+            if( Math.abs( rangeY ) < SMALLNESS ) {
+                rangeY =  rangeY < 0 ? -SMALLNESS : SMALLNESS;
+                yMax = yMin + rangeY;
+            }
             //----------------------------------------
             // \\// autosets x and y ranges preventing
             //----------------------------------------
@@ -212,6 +228,9 @@
                 }
                 points.y.forEach( (pointY,yix) => {
                     if( plotCurvesCount <= yix ) return;
+                    if( doTruncateOutOfRangeY && ( pointY < yMin || pointY > yMax ) ) {
+                        return;
+                    }
                     var mediaY = marginY + dimY_withMarg -
                                  ( pointY - yMin ) / rangeY * dimY_withMarg;
                     polylines[ yix ] = polylines[ yix ] || [];
@@ -219,39 +238,41 @@
                 });
             });
 
+            if( !graphFM_self.gridIsPainted ) {
+                nsmethods.drawGrid8Axes({
+                    graphFM_self,
+                    colorThreadArray,
+                    marginX,
+                    marginY,
+                    printAxisDigits,
+                    drawDecimalX,
+                    drawDecimalY,
+                    rangeY,
+                    rangeX,
+                    axisX,
+                    axisY,
+                    yMax,
+                    yMin,
+                    xMax,
+                    xMin,
+                    dimX_withMarg,
+                    dimY_withMarg,
 
-            nsmethods.drawGrid8Axes({
-                graphFM_self,
-                colorThreadArray,
-                marginX,
-                marginY,
-                printAxisDigits,
-                drawDecimalX,
-                drawDecimalY,
-                rangeY,
-                rangeX,
-                axisX,
-                axisY,
-                yMax,
-                yMin,
-                xMax,
-                xMin,
-                dimX_withMarg,
-                dimY_withMarg,
-
-                drawAllAxes,    //flag and its params
-                    plotsScaffold, //optional flag to draw extra Y-axes
-                    plotsCount,
-            });
-            nsmethods.drawGraphLegend({
-                graphFM_self,
-                axisXLegend,
-                axisYLegend,
-                dimX_withMarg,
-                marginX,
-                dimY_withMarg,
-                marginY,
-            });
+                    drawAllAxes,    //flag and its params
+                        plotsScaffold, //optional flag to draw extra Y-axes
+                        plotsCount,
+                });
+                nsmethods.drawGraphLegend({
+                    graphFM_self,
+                    axisXLegend,
+                    axisYLegend,
+                    dimX_withMarg,
+                    marginX,
+                    dimY_withMarg,
+                    marginY,
+                });
+                graphFM_self.gridIsPainted = true;
+            }
 
             //======================================================
             // //\\ draws plots
@@ -263,8 +284,12 @@
                 if( plotStyle ) {
                     Object.assign( effStyle, plotStyle );
                 }
-                nssvg.polyline({
-                    //svgel : polylinesSVGs$[ plix ],
+                if( plotIx2plotSvg[ plix ] ) {
+                    ////adding plot created at the previous graph call
+                    graphFM_self.gmedia$().appendChild( plotIx2plotSvg[ plix ] );
+                }
+                plotIx2plotSvg[ plix ] = nssvg.polyline({
+                    svgel : plotIx2plotSvg[ plix ],
                     pivots  : pl,
                     parent  : graphFM_self.gmedia$(),
                     style   : effStyle,
@@ -278,6 +303,11 @@
             if( plotsPars ) {
                 plotsPars.forEach( (pp,pix) => {
                     var ownPolyline = polylines[ pix ];
+
+                    //occasionally and conveniently there can be more labels,
+                    //just skip them:
+                    if( typeof ownPolyline === 'undefined' ) return;
+
                     var xIndex = Math.floor( ( ownPolyline.length - 0.001 ) * pp.fraqX );
                     xIndex = Math.min( ownPolyline.length-1, xIndex );
                     var [ mediaX, mediaY ] = ownPolyline[ xIndex ];

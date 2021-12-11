@@ -1,16 +1,7 @@
 ( function() {
     var {
-        ns, sn, nspaste, eachprop, haz, mat,
-        globalCss,
-        getFixedColor,
-        sconf, fconf,
+        sconf,
         rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp, toreg,
-        fixedColors,
-
     } = window.b$l.apptree({
         stdModExportList :
         {

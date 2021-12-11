@@ -46,12 +46,12 @@
         var pictureHeight = 1200;
 
         var originX_onPicture = 400;
-        var originY_onPicture = 260;
+        var originY_onPicture = 150;
 
         var A       = [originX_onPicture, originY_onPicture];
         var B       = [originX_onPicture+400, originY_onPicture];
         var axisX   = [originX_onPicture, 1100];
-        var axisY   = [1300, originY_onPicture, 1100];
+        var axisY   = [1300, originY_onPicture];
         var T       = [1000, originY_onPicture];
         var Tleft   = [originX_onPicture-350, originY_onPicture];
         var X       = [1000, originY_onPicture+100];
@@ -75,10 +75,13 @@
             hidden,
             curveIF             : given,
             curveCIF            : given,
+            curveIFC            : given,
+            curveIFCleft        : given,
             curveCircle         : given,
             curveLeftCircle     : given,
             curveRightCircle    : given,
             curveParabola       : given,
+            curvatureCircle     : result,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -114,7 +117,7 @@
             R : { 
                 pos         : A,
                 letterAngle : 0,
-                pcolor      : proof,
+                pcolor      : result,
             },
             //curvature center
             Rc : { 
@@ -123,6 +126,13 @@
                 letterRotRadius : 50,
                 pcolor      : result,
             },
+            N : { 
+                pos         : [ A[0], 1100*0.9 ],
+                letterAngle : 180,
+                letterRotRadius : 50,
+                pcolor      : proof,
+            },
+
             //---------------------------------------
             // \\// curvature related
             //---------------------------------------
@@ -191,7 +201,8 @@
             { 'AD'      : { pcolor : proof,  },}, // zOrderAfter:true } },
             { 'BR'      : { pcolor : result,  },}, // zOrderAfter:true } },
             { 'BD'      : { pcolor : proof,  },}, // zOrderAfter:true } },
-
+            { 'AN'      : { pcolor : proof,  },}, // zOrderAfter:true } },
+            { 'A,Rc'    : { pcolor : result, },}, // zOrderAfter:true } },
             //{ 'H1,H2'   : { pcolor : context } },
         ];
 
@@ -202,6 +213,7 @@
         ///*********************************************
         ///var lines = {};
         ns.paste( sconf, {
+            mediaBgImage : "main-picture.png",
             predefinedTopics,
             originalPoints,
             linesArray,

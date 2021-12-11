@@ -3,7 +3,7 @@
         ns, sn,
         mat, bezier,
         sconf,
-        rg, toreg, tp, tr, ssF, ssD,
+        rg, toreg, topos, ssF, ssD,
         stdMod,
     } = window.b$l.apptree({
         ssFExportList :
@@ -60,14 +60,14 @@
                           rg.A.pos = [ 0, 0 ];
         var mod_e       = rg.e.pos = [ 0, yRange ];
 
-        var modC        = tp( 'C', bezier.parT2point( tC, modCurvPivots ) );
-        //var test      = tp( 'point_TEST', bezier.parT2point( 0.79, modCurvPivots ) );
+        var modC        = topos( 'C', bezier.parT2point( tC, modCurvPivots ) );
+        //var test      = topos( 'point_TEST', bezier.parT2point( 0.79, modCurvPivots ) );
 
         var Ey          = tiltRatio * modC[1];
         var Dy          = claimRatio * Ey;
 
-        var modD        = tp( 'D', [ 0, Dy ] );
-        var modE        = tp( 'E', [ 0, Ey ] );
+        var modD        = topos( 'D', [ 0, Dy ] );
+        var modE        = topos( 'E', [ 0, Ey ] );
 
         var remoteRatio = ssD.remoteRatio = mod_e[1] / modE[1];
 
@@ -80,27 +80,27 @@
                             modCurvPivots[1],
                             modCurvPivots[2]
         )[0];
-        var modB        = tp( 'B', bezier.parT2point( tB, modCurvPivots ) );
+        var modB        = topos( 'B', bezier.parT2point( tB, modCurvPivots ) );
         // \\// looking for pointB
 
-        var mod_b       = tp( 'b', mat.sm( remoteRatio, modB ) );
-        var mod_c       = tp( 'c', mat.sm( remoteRatio, modC ) );
-        var mod_d       = tp( 'd', mat.sm( remoteRatio, modD ) );
+        var mod_b       = topos( 'b', mat.sm( remoteRatio, modB ) );
+        var mod_c       = topos( 'c', mat.sm( remoteRatio, modC ) );
+        var mod_d       = topos( 'd', mat.sm( remoteRatio, modD ) );
 
         // //\\ making areas
-        tr( 'AGE', 'vertices', make_points_AGE( modC, modE, tanA ) );
-        tr( 'AFD', 'vertices', make_points_AGE( modB, modD, tanA ) );
-        tr( 'Age', 'vertices', make_points_AGE( mod_c, mod_e, tanA ) );
-        tr( 'Afd', 'vertices', make_points_AGE( mod_b, mod_d, tanA ) );
+        toreg( 'AGE' )( 'vertices', make_points_AGE( modC, modE, tanA ) );
+        toreg( 'AFD' )( 'vertices', make_points_AGE( modB, modD, tanA ) );
+        toreg( 'Age' )( 'vertices', make_points_AGE( mod_c, mod_e, tanA ) );
+        toreg( 'Afd' )( 'vertices', make_points_AGE( mod_b, mod_d, tanA ) );
         // \\// making areas
 
 
         ns.paste( rg.G.pos, rg.AGE.vertices[1] );
         ns.paste( rg.F.pos, rg.AFD.vertices[1] );
         var mod_g = rg[ 'Age' ].vertices[1];
-        tp( 'g', mod_g );
+        topos( 'g', mod_g );
         var mod_f = mat.sm( claimRatio, mod_g );
-        tp( 'f', mod_f );
+        topos( 'f', mod_f );
 
 
 
@@ -114,7 +114,8 @@
         var claimRatio_2 = 1 / claimRatio / claimRatio;
         var remote = ssD.modRemoteCurPivots = const2positions( ssD.remoteRatio, modCurvPivots );
         var tiltEC = ( modC[1] - Ey ) / modC[0];
-        var areas = bezier.zbezier2areas( [remote[1], remote[2]], tC, tiltEC, mod_g, sconf.areaScale );
+        var areas = bezier.zbezier2areas(
+                    [remote[1], remote[2]], tC, tiltEC, mod_g, sconf.areaScale );
 
         //proof biggest linear
         var areas = calcAreas[ 'Age' ] = 
@@ -131,7 +132,8 @@
             base      : areas.base * rr_2,
             delta     : areas.delta * rr_2
         };
-        var areas = bezier.zbezier2areas( [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale );
+        var areas = bezier.zbezier2areas(
+                    [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale );
 
         //proof smalles curved
         var areas = calcAreas[ 'Afd' ] = 

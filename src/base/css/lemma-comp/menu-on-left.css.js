@@ -23,9 +23,9 @@
     var sDomN       = sn('dnative', sapp);
 
 
-    var cssmods = sn('cssModules');
+    var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'menu-on-left';
-    cssmods[THIS_MODULE] = function( cssp, fconf ) {
+    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var theorionChildWidth = (100 / sDomN.theorionMenuMembersCount).toFixed();
         var aspectionChildWidth = (100 / sDomN.aspectionMenuMembersCount).toFixed();
         var leftTopLeafLength =

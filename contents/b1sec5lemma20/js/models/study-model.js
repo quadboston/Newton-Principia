@@ -1,11 +1,9 @@
 ( function() {
     var {
         ns, sn, mat,
-        sconf,
-        ssD, ssF, rg,
+        sconf, ssD, ssF,
         sapp, amode,
-        stdMod,
-        tr,
+        stdMod, rg, toreg, 
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -29,9 +27,9 @@
     function init_model_parameters()
     {
         //:primary params
-        tr( 'a', 'value', sconf.a );
-        tr( 'b', 'value', sconf.b );
-        tr( 'O', 'pos', [0,0] );
+        toreg( 'a' )( 'value', sconf.a );
+        toreg( 'b' )( 'value', sconf.b );
+        toreg( 'O' )( 'pos', [0,0] );
         deriveParameters( 'do set T' );
 
         /*
@@ -51,7 +49,7 @@
                     t0:0,
                     rotationRads:-sconf.rotationRads,
                 });
-                tr( 'e'+ii, 'pos', [ell.x, ell.y] );
+                t r( 'e'+ii, 'pos', [ell.x, ell.y] );
                 ssF.pos2pointy(
                     'e'+ii,
                     { 
@@ -226,7 +224,7 @@
 
     function setRgPoint( nameP, pos, tangent )
     {
-        //we cannot do P = tr( nameP, 'pos', [x, y] );
+        //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
         var P = sn( nameP, rg );
         var Ppos = sn( 'pos', P, [] );

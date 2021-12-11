@@ -44,36 +44,38 @@
         //--------------------------------------
         var pictureWidth = 1340;
         var pictureHeight = 864;
-        var originX_onPicture = 98.0;
-        var originY_onPicture = 474;
+
+        var modorInPicX = 98.0;
+        var modorInPicY = 474;
+
 
         var basePairs =
         [
             [
-                { H : [originX_onPicture, originY_onPicture] }, //abscissa
+                { H : [modorInPicX, modorInPicY] }, //abscissa
                 { A : [0, 159] },                               //ordinate
             ],
             [
-                { I : [329, originY_onPicture] },
+                { I : [329, modorInPicY] },
                 { B : [0, 96] },
             ],
             [
-                { K : [563, originY_onPicture] },
+                { K : [563, modorInPicY] },
                 //C : [561, 157],
                 { C : [0, 157] },
             ],
             [
-                { L : [781, originY_onPicture] },
+                { L : [781, modorInPicY] },
                 //D : [783, 345],
                 { D : [0, 345] },
             ],
             [
-                { M : [1005, originY_onPicture] },
+                { M : [1005, modorInPicY] },
                 //E : [1008, 588],
                 { E : [0, 588] },
             ],
             [
-                { N : [1236, originY_onPicture] },
+                { N : [1236, modorInPicY] },
                 //F : [1239, 774],
                 { F : [0, 774] },
             ],
@@ -81,7 +83,7 @@
 
             ///the last one is an approximatee
             [
-                { S : [485, originY_onPicture] },
+                { S : [485, modorInPicY] },
                 { R : [0, 119] },
             ],
         ];
@@ -163,7 +165,7 @@
                 bpair.forEach( point => {
                     var pp = point.picturepos;
                     var pname = point.pname;
-                    var pos = [ pp[0] - originX_onPicture, pp[1] - originY_onPicture ];
+                    var pos = [ pp[0] - modorInPicX, pp[1] - modorInPicY ];
                     point.pos = [ pos[0]*inn2mod_scale, pos[1]*factor ];
                     pname2point[pname] = point;
                 });
@@ -212,6 +214,8 @@
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
         Object.assign( sconf, {
+            mediaBgImage : "diagram.png",
+            dontRun_ExpandConfig : true,
 
             MONITOR_Y_FLIP : MONITOR_Y_FLIP,
             //SLIDERS_LEGEND_HEIGHT,
@@ -223,15 +227,12 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
-            originalMod2inn_scale : mod2inn_scale,
-            activeAreaOffsetX   : originX_onPicture,
-            activeAreaOffsetY   : originY_onPicture,
-            originX_onPicture   : originX_onPicture,
-            originY_onPicture   : originY_onPicture,
+            modorInPicX,
+            modorInPicY,
 
-            //todm do refactor
-            centerOnPicture_X   : originX_onPicture,
-            centerOnPicture_Y   : originY_onPicture,
+            originX_onPicture   : modorInPicX,
+            originY_onPicture   : modorInPicY,
+
 
 
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,

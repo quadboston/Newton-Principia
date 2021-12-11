@@ -1,19 +1,10 @@
 
 ( function() {
     var {
-        ns, sn, haz, haff, eachprop,
-        sconf,
-        fconf,
-        ss,
-        ssF, rg,
-        sapp,
-        sDomF,
-        d8d_p,
-        exegs,
-        amode,
-        studyMods,
+        ns, sn, has, haz, haff, eachprop, d8d_p,
+        ss, sapp, fapp, sconf, fconf, ssF, sDomF, sDomN, ssD, exegs,
+        studyModsActivated, studyMods, amode, rg,
     } = window.b$l.apptree({
-        modName:'load_init_sapp',
         setModule
     });
     return;
@@ -45,15 +36,12 @@
     ///=========================================================
     function init_sapp() 
     {
-        ns.eachprop( studyMods, ( stdMod, modName ) => {
-
-            stdMod.mmedia$.cls( 'submodel-' + modName );
-
+        studyModsActivated.forEach( stdMod => {
             //======================================================
             // //\\ definitions
             //======================================================
             !haz( sconf, 'mediaMoverPointDisabled' ) &&
-                  sDomF.creates_mediaMover_in_rgX8dragWrapGenList();
+                  sDomF.creates_mediaMover_in_rgX8dragWrapGenList( stdMod );
             //------------------------------------------------------------------
             // //\\ rerouts name "media_upcreate_generic"
             //------------------------------------------------------------------
@@ -62,34 +50,39 @@
             //makes importan choice:
             //      media_upcreate          -       for non-standard, past lemmas
             //      media_upcreate_generic    -     for modern, half-automated lemmas    
-            stdMod.media_upcreate = ns.haz( stdMod, 'media_upcreate' ) ||
+            stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
                                     ssF.media_upcreate_generic;
             //------------------------------------------------------------------
             // \\// rerouts name "media_upcreate_generic"
             //------------------------------------------------------------------
             haff( stdMod, 'createsModelFunctions_before___init_model_parameters' );
-            rgDict__2__dragWrap_gen_list();
+            rgDict__2__dragWrap_gen_list( stdMod );
             //======================================================
             // \\// definitions
             //======================================================
 
 
+            //==============================================================
+            // //\\ shifted-landing-frames-fix-patch
+            //==============================================================
+            //todm
+            //apparently, severe, possibly year old bug of corrupt
+            //scroll/or/missed header/or unknown origin
+            //this is a partial fix: (full for Chrome, partial for FF)
+            //sDomN.simSScene$$().offsetTop=500;
+            //sDomN.medRoot$().offsetTop=550;
+            //fapp.homePage$().offsetTop=0;
+            sDomN.midddleButton$.a( 'tabindex', '0');
+            sDomN.midddleButton$().focus();
+            //==============================================================
+            // \\// shifted-landing-frames-fix-patch
+            //==============================================================
+
+
             stdMod.init_model_parameters();
             //todm: rename with "dragWrapGenList":
+            //on Dec 4, 2021, this is only for lem. 20,21,5
             haff( stdMod, 'populates__cust_draggers_list' );
-
-            //------------------------------------------------------------------------------
-            // //\\ patch: missed bg-image
-            //      because it is set in menu
-            //      design flaw: menu-state must be done before creating GUI menu;
-            //      todm: do fix this;
-            //------------------------------------------------------------------------------
-            ns.sapp.dnative.bgImage$ =
-                ns.fapp.ss.ssData.exegs[ amode['theorion'] ][ amode['aspect'] ]
-                    .subexegs[0].imgRk.dom$;
-            //------------------------------------------------------------------------------
-            // \\// patch: missed bg-image
-            //------------------------------------------------------------------------------
 
             ( function() {
                 ////for "sites" which have user-guiding-scenarios
@@ -105,22 +98,25 @@
                         activityScenarios.forEach( as => { as(); } );
 
                         //apparently, pieces are parsed now
-                        ns.haff( ssF, 'parsesTopicScenarios' );
-                        ns.haff( ssF, 'doInitTopicScenarioCss' );
+                        haff( ssF, 'parsesTopicScenarios' );
+                        haff( ssF, 'doInitTopicScenarioCss' );
                     }
                 }
             }) ();
 
             ssF.in_subessay_launch____amode2lemma();
-            ns.haf( stdMod, 'sliders_value2pos' )();
-            stdMod.media_upcreate(); //todm apparently needed for
-                                     //createsFW__8__executes_dragWr_gens_list
+            haff( stdMod, 'sliders_value2pos' );
+            if( stdMod.SUB_MODEL !== ssD.DEFAULT_STUDY_MODEL_NAME ) {
+                haff( stdMod, 'model8media_upcreate' );
+            } else {
+                stdMod.media_upcreate(); //todm apparently needed for
+                //                       //createsFW__8__executes_dragWr_gens_list
+            }
+            sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
 
-            ns.haff( stdMod, 'createsFW__8__executes_dragWr_gens_list' );
-
-            //=========================================================================
-            // //\\ executes topic scenario from start-event
-            //=========================================================================
+            //=======================================================
+            // //\\ executes "lesson-guide-scenario" from start-event
+            //=======================================================
             eachprop( exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg,
                       (subessayRack, sname) => {
                 if( haz( subessayRack, 'stateId2state' ) ) {
@@ -130,11 +126,11 @@
                     ssF.executesTopicScenario( 'lesson-start', sname );
                 }
             });
-            //=========================================================================
-            // \\// executes topic scenario from start-event
-            //=========================================================================
+            //=======================================================
+            // \\// executes "lesson-guide-scenario" from start-event
+            //=======================================================
 
-            if( ns.h( stdMod, 'model8media_upcreate' ) ) {
+            if( has( stdMod, 'model8media_upcreate' ) ) {
                 ////to=200 feels choppy,
                 ////to=100 helps,
                 stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 20 );
@@ -143,10 +139,12 @@
     }
 
 
-    ///adds plain point dragger if eigher draggableX, ...Y is defined
-    function rgDict__2__dragWrap_gen_list()
-    {
+    ///adds plain point dragger if either draggableX, ...Y is defined
+    function rgDict__2__dragWrap_gen_list(
+        stdMod,
+    ){
         eachprop( rg, (shape,pname) => {
+
             var drX = haz( shape, 'draggableX' );
             var drY = haz( shape, 'draggableY' );
             if( !drX && !drY ) return;
@@ -157,6 +155,7 @@
             //}
 
             sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
                 pname,
                 nospinner : haz( shape, 'nospinner' ),
 

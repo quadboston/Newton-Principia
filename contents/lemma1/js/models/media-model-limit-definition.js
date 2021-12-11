@@ -1,12 +1,9 @@
 ( function() {
     var {
         SUB_MODEL,
-        ns, sn, $$, mat, sv,
-        nssvg,  //todm rid
-        sconf,
-        rg, tp, tr,
-        ssF, ssD,
-        stdMod,
+        ns, sn, $$, mat, nssvg,
+        sconf, ssF, ssD,
+        stdMod, rg, toreg,
     } = window.b$l.apptree({
         SUB_MODEL : 'limit-definition',
         stdModExportList :
@@ -133,7 +130,8 @@
             neighbHor,
             points2media( nLine ),
             { style : { 'stroke' : 'grey', 'stroke-width' : 6 }
-            }
+            },
+            stdMod,
         );
 
         //===============================================
@@ -233,7 +231,7 @@
     ///makes line
     function interval2media( svgEl, interval, attr )
     {
-        svgEl = sv.polyline({
+        svgEl = nssvg.polyline({
             svgel   : svgEl,
             parent  : stdMod.mmedia$(),
             pivots  : interval,
@@ -270,13 +268,13 @@
     ///converts model-pos and attributes to pointy
     function pos2pointy4lemma1( pName, attrs )
     {
-        var pt              = tr( pName );
+        var pt              = toreg( pName )();
         var pos             = pt.pos;
         pt.spinnerClsId       = pName;
         pt.pos              = pos;
         pt.dragDecorColor   = attrs.dragDecorColor || pt.dragDecorColor;
         pt.medpos           = limDemo.instance.xy2mediaArr( pt.pos[0], pt.pos[1] );
-        pt.svgel = sv.u({
+        pt.svgel = nssvg.u({
             svgel   : pt.svgel,
             parent  : stdMod.mmedia$(),
             type    : 'circle',

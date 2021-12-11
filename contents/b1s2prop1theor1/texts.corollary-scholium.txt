@@ -1,0 +1,527 @@
+
+*::*corollary|latin
+
+
+<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "1,2,3,4",
+  "subessay" : "cor-1234"
+}
+*..*
+
+
+<span class="captured-reference id-initial-state">T.1. Corollary 1.</span>
+
+The velocity of a body attracted to an ¦S¦immobile centre¦¦ in
+nonresisting spaces is inversely as the ¦SP¦perpendicular¦¦ dropped from that center to
+the ¦TP¦rectilinear tangent¦¦ of the orbit. For in those places ¦A¦¦, ¦B¦¦, ¦C¦¦,
+¦D¦¦, ¦E¦¦, the
+velocity is as the bases of the equal triangles ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, and
+these bases are inversely as the perpendiculars dropped to them.
+<br><br><br>
+
+
+
+
+<span class="captured-reference id-corollary-2">T.1. Corollary 2.</span>
+
+If the chords, ¦AB¦AB¦¦, ¦BC¦BC¦¦ of two arcs described successively in equal
+times by the same body
+in nonresisting spaces be completed into a parallelogram ¦ABCV¦ABCV¦¦,
+and its ¦BV¦diagonal¦¦, in that
+position which it ultimately has when those arcs are diminished in infinitum,
+be produced in both directions, it will ¦SB¦pass through¦¦ the ¦S¦center of forces¦¦.
+<br><br><br>
+
+
+
+<span class="captured-reference id-initial-state">T.1. Corollary 3.</span>
+
+If the chords ¦AB¦AB¦¦, ¦BC¦BC¦¦, and ¦DE¦DE¦¦, ¦EF¦EF¦¦,
+of arcs described in equal times, in
+nonresisting spaces be completed into parallelograms ¦ABCV¦ABCV¦¦, ¦DEFZ¦DEFZ¦¦, the
+¦BV EZ¦forces¦¦ at B and E are to each other in the ultimate ratio of the
+diagonals ¦BV¦BV¦¦, ¦EZ¦EZ¦¦,
+where these arcs are diminished in infinitum.
+<br><br>
+
+For the motions ¦BC¦BC¦¦ and ¦EF¦EF¦¦ of the body are (by Corollary 1 of the Laws)
+composed of the motions
+¦Bh¦Bc¦¦, ¦BV¦BV¦¦, and ¦Eg¦Ef¦¦, ¦EZ¦EZ¦¦, equal to ¦Ch¦Cc¦¦ and ¦Fg¦Ff¦¦, were in the
+demonstration of this proposition generated
+by the ¦BV EZ¦impulses¦¦ of the centripetal force at B and E, and therefore are proportional to 
+these ¦BV EZ¦impulses¦¦.
+<br><br><br>
+
+
+<span class="captured-reference id-corollary-4">T.1. Corollary 4.</span>
+The ¦BV EZ¦forces¦¦ by which any bodies in nonresisting spaces are drawn back from rectilinear motions and are deflected into curved orbits are to one another as those
+¦BU EW¦sagittae¦¦ of arcs described
+in equal times which converge to the ¦S¦center of forces¦¦ and bisect ¦AC DF¦the chords¦¦, when
+those arcs are diminished in infinitum. For these ¦BU EW¦sagittae¦¦ are
+the halves of the ¦BV EZ¦diagonals¦¦ with which we have been concerned in Corollary 3.
+<br><br><br>
+
+
+<div book-reference-id="Donahue"></div>
+Pages 123 - 141.
+
+
+<!-- cor 5 needs different diagram, P. does not provide it
+
+* : : *corollary|english
+{
+  "submodel" : "projectile_model",
+  "subessayCaption" : "Corollary 5",
+  "subessay" : "cor-5"
+}
+* . . *
+
+T.1. Corollary 5.
+Therefore, the same forces are to the force of gravity [gravitas] as these sagittae are to
+the sagittae, perpendicular to the horizon, of parabolic arcs which projectiles describe in the
+same time.
+<br><br><br>
+
+<div book-reference-id="Donahue"></div>
+Pages 123 - 141.
+
+-->
+
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 6",
+  "subessay" : "cor-6"
+}
+*..*
+
+
+
+
+
+T.1. Corollary 6.
+All the same things pertain, by Corollary 5 of the Laws, where the planes in which the
+bodies move, along with the centres of forces located in them, are not at rest, but move
+uniformely in a straight line.
+<br><br><br>
+
+<div book-reference-id="Donahue"></div>
+Pages 123 - 141.
+
+<br><br>
+
+
+
+
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank" title="go to description"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+
+<span class="captured-reference id-corollary-1">T.1. Corollary 1. </span>
+        ¦SP¦r<sub>⟂</sub>¦¦v = const. <a target="_blank"  title="go to content"
+                href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#area-speed-vp">
+            Proof.
+            </a>
+<br><br>
+
+
+
+<span class="captured-reference id-corollary-2">T.1. Corollary 2. </span>
+     
+<a target="_blank"  title="go to content"
+   href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
+From Taylor expansion at t₀ = ¦B¦¦ and ∆t = δ:
+</a>
+<br><br>
+    <div style="text-align:center;">
+            ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + ... , <br>
+            ¦AB¦𝝙⁻¦¦ = ¦AB¦𝗿(t₀-δ) - 𝗿(t₀)¦¦. <br>
+   </div>
+Sagittae and subtense diagonals are
+    <div style="text-align:center;">
+        ¦BV¦𝗱¦¦ = ¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦ =
+                𝗮₀δ² + 𝝰*<sub>₀,δ</sub>δ², <br>
+
+         ¦AC¦𝗗¦¦ = ¦BC¦𝝙⁺¦¦ - ¦AB¦𝝙⁻¦¦,
+    </div>
+
+and
+
+    <div style="text-align:center;">
+        ¦BV¦𝗱¦¦ / δ² → 𝗮₀, &nbsp; &nbsp; &nbsp; (sagg)  <br>
+        ¦BV¦d¦¦ / ¦AC¦D²¦¦ → a₀/4v₀², <br>
+        when δ → 0.
+    </div>
+<br><br>
+
+
+
+
+
+
+<span class="captured-reference id-corollary-3">T.1. Corollary 3. </span>
+     
+From (sagg):
+<br><br>
+    <div style="text-align:center;">
+        ¦EZ¦d<sub>e</sub>¦¦ / ¦BV¦d<sub>b</sub>¦¦ =
+            ( ¦BV¦d<sub>e</sub>¦¦ / δ² ) / ( ¦BV¦d<sub>b</sub>¦¦ / δ² ) →
+            a<sub>e</sub>/a<sub>b</sub>, <br>
+        when δ → 0.
+   </div>
+<br><br>
+
+
+
+*:::*:::*
+
+{
+    "1-0": {
+        "timeStep": {
+            "t": 1
+        },
+        "speeds": {
+            "pos": [
+                [
+                    0.2618140190615299,
+                    0.9651183447758357
+                ]
+            ]
+        },
+        "B": {
+            "pos": [
+                2.7464803960376174,
+                0.9548511283420502
+            ]
+        },
+
+        "V": {
+            "pos": [
+                2.310789220415451,
+                0.8033771869107924
+            ]
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        },
+
+        "spatialStepsMax": {
+            "pos": 7
+        },
+
+        "slider_sltime": {
+            "t": 1.75000001
+        }
+
+    },
+
+    "1-1": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 2.099161816013016
+        }
+    },
+
+
+    "1-2": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 2.448323622026032
+        }
+    },
+    "1-3": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 2.5752915514853103
+        }
+    },
+    "1-4": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 2.765743445674228
+        }
+    },
+    "force-at-C": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 3.3370991282409808
+        }
+    },
+    "force-at-D": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 4.352842563915209
+        }
+    },
+    "force-at-E": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 5.3685859995894365
+        }
+    },
+
+    "motion-F": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "slider_sltime": {
+            "t": 5.9081996997913695
+        }
+    },
+    "more-triangles": {
+        "spatialStepsMax": {
+            "pos": 18
+        },
+        "timeStep": {
+            "t": 0.3699612716262433
+        },
+        "speeds": {
+            "pos": [
+                [
+                    0.15653007129470273,
+                    0.9876731933086345
+                ]
+            ]
+        },
+        "B": {
+            "pos": [
+                2.5425764412000222,
+                0.3551336141138294
+            ]
+        },
+
+        "slider_sltime": {
+            "t": 8.610802769710297
+        }
+    },
+    "initial-state" : {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "B": {
+            "pos": [
+                2.7464803960376174,
+                0.9548511283420502
+            ]
+        },
+
+        "V": {
+            "pos": [
+                2.310789220415451,
+                0.8033771869107924
+            ]
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        },
+        "slider_sltime": {
+            "t": 5.995
+        }
+    },
+
+    "corollary-1": {
+        "media-mover": {
+            "achieved": {
+                "achieved": [
+                    47,
+                    611
+                ]
+            }
+        },
+
+        "slider_sltime": {
+            "t": 8.713627479397166
+        },
+        "B": {
+            "pos": [
+                2.621072695309088,
+                0.19237230791259372
+            ]
+        },
+        "V": {
+            "pos": [
+                2.5575312223617006,
+                0.18770871356783134
+            ]
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        }
+
+    },
+    "corollary-2": {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "timeStep": {
+            "t": 1
+        },
+        "speeds": {
+            "pos": [
+                [
+                    0.2618140190615299,
+                    0.9651183447758357
+                ]
+            ]
+        },
+        "B": {
+            "pos": [
+                2.7464803960376174,
+                0.9548511283420502
+            ]
+        },
+
+        "slider_sltime": {
+            "t": 2.9897076114077104
+        }
+    },
+    "corollary-4" : {
+        "spatialStepsMax": {
+            "pos": 8
+        },
+        "timeStep": {
+            "t": 0.8438037286237602
+        },
+        "speeds": {
+            "pos": [
+                [
+                    0.29155658394042205,
+                    0.9565535836329252
+                ]
+            ]
+        },
+        "B": {
+            "pos": [
+                2.730682909609822,
+                0.7968762640640966
+            ]
+        },
+
+        "slider_sltime": {
+            "t": 6.961644376899696
+        }
+    },
+
+
+    "corollary-3" : {
+        "spatialStepsMax": {
+            "pos": 7
+        },
+        "timeStep": {
+            "t": 1
+        },
+        "speeds": {
+            "pos": [
+                [
+                    0.2618140190615299,
+                    0.9651183447758357
+                ]
+            ]
+        },
+        "B": {
+            "pos": [
+                2.7464803960376174,
+                0.9548511283420502
+            ]
+        },
+
+
+        "slider_sltime": {
+            "t": 5.995
+        }
+    },
+
+
+
+
+    "__amode2rgstate" :
+    [
+        [
+            "!ssF.mediaModelInitialized",
+            {
+                "captured" : "initial-state",
+                "rg" :
+                {
+                }
+            }
+        ],
+        [
+            "( theorion === 'proof' )",
+            {
+                "captured" : "1-0",
+                "rg" :
+                {
+                }
+            }
+        ],
+
+        [
+            "( theorion === 'claim' && aspect !== 'model' )",
+            {
+                "captured" : "initial-state",
+                "rg" :
+                {
+                }
+            }
+        ],
+
+
+        [
+            "( theorion === 'corollary' && submodel === 'common' )",
+            {
+                "captured" : "initial-state",
+                "rg" :
+                {
+                }
+            }
+        ]
+
+    ]
+}
+
+

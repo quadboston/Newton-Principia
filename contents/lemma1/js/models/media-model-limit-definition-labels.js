@@ -1,36 +1,14 @@
 ( function() {
-    var SUB_MODEL   = 'limit-definition';
-    var ns          = window.b$l;
-    var nssvg       = ns.sn( 'svg' );
-    var cssp        = ns.CSS_PREFIX;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var rg          = sn('registry',ssD);
-    var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_2_ss';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        $$, nssvg, cssp,
+        stdMod, rg,
+    } = window.b$l.apptree({
+        SUB_MODEL : 'limit-definition',
+        stdModExportList :
+        {
+            upcreateMediaLables
+        },
+    });
 
     var gammaAxisSvg = null;
     var gAxisSvg = null;
@@ -54,10 +32,6 @@
 
 
 
-    function setModule()
-    {
-        sn(SUB_MODEL, studyMods ).upcreateMediaLables = upcreateMediaLables;
-    }
 
     //=========================================================
     // //\\ updates and creates media
@@ -67,7 +41,7 @@
         var limDemo = pwork.limDemo;
         var points2media = pwork.points2media;
 
-        var mmedia = studyMods[ SUB_MODEL ].mmedia$();
+        var mmedia = stdMod.mmedia$();
         var nLine = rg[ 'neighbHor' ][ 'neighbHor' ];
         var nLineChosen = rg[ 'chosenDelta' ][ 'chosenDelta' ];
 
@@ -90,7 +64,7 @@
         var fontFam = 'MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw,sans-serif';
         var fontSize = '40px';
 
-        xNeighbMark = sv.printText({
+        xNeighbMark = nssvg.printText({
             svgel   : xNeighbMark,
             parent  : mmedia,
             type    : 'text',
@@ -101,10 +75,10 @@
             y : xDelta[1]
         });
 
-        var ww = points2media( nLineChosen );
+        var ww = points2media( nLineChosen, null, stdMod );
         ww = ww[1];
         ///mark of delta finally chosen in proof for given epsilon
-        xChosenMark = sv.printText({
+        xChosenMark = nssvg.printText({
             svgel   : xChosenMark,
             parent  : mmedia,
             type    : 'text',
@@ -115,7 +89,7 @@
         });
         $$.$(xChosenMark).cls( 'tp-neighborhood tofill' );
 
-        xNm = sv.printText({
+        xNm = nssvg.printText({
             svgel   : xNm,
             parent  : mmedia,
             type    : 'text',
@@ -127,7 +101,7 @@
         $$.$(xNm).cls( 'tp-neighborhood tofill' );
 
 
-        xNdm = sv.printText({
+        xNdm = nssvg.printText({
             svgel   : xNdm,
             parent  : mmedia,
             type    : 'text',
@@ -147,7 +121,7 @@
         var epsPoint = rg[ 'eps_Neighb' ][ 'eps_Neighb' ][1];
         var lim = limDemo.dataSamples.beats_sample.lim;
         epsP = xy2m( epsPoint[0]+EPS_X, (epsPoint[1]-lim)/2 + lim );
-        epsLab = sv.printText({
+        epsLab = nssvg.printText({
             svgel   : epsLab,
             parent  : mmedia,
             type    : 'text',
@@ -159,7 +133,7 @@
         $$.$( epsLab ).cls( 'tp-epsilon tofill' );
 
         var limP = xy2m( -0.045, lim );
-        limSvg = sv.printText({
+        limSvg = nssvg.printText({
             svgel   : limSvg,
             parent  : mmedia,
             type    : 'text',
@@ -181,7 +155,7 @@
         // //\\ gamma axis
         //----------------
         var gammaAxisP = xy2m( limDemo.dataSamples.beats_sample.xRange + 0.01, 0 );
-        gammaAxisSvg = sv.printText({
+        gammaAxisSvg = nssvg.printText({
             svgel   : gammaAxisSvg,
             parent  : mmedia,
             type    : 'text',
@@ -199,7 +173,7 @@
         // //\\ g axis
         //----------------
         var gAxisP = xy2m( -0.01, 1.015 );
-        gAxisSvg = sv.printText({
+        gAxisSvg = nssvg.printText({
             svgel   : gAxisSvg,
             parent  : mmedia,
             type    : 'text',
@@ -222,7 +196,7 @@
         // //\\ point c
         //----------------
         var cP = xy2m( -0.01, -0.08 );
-        cPSvg = sv.printText({
+        cPSvg = nssvg.printText({
             svgel   : cPSvg,
             parent  : mmedia,
             type    : 'text',
@@ -244,7 +218,7 @@
         // //\\ point a
         //----------------
         var aP = xy2m( -0.01, -0.04 );
-        aPSvg = sv.printText({
+        aPSvg = nssvg.printText({
             svgel   : aPSvg,
             parent  : mmedia,
             type    : 'text',
@@ -267,7 +241,7 @@
         // //\\ point b
         //----------------
         var bP = xy2m( 0.99, -0.04 );
-        bPSvg = sv.printText({
+        bPSvg = nssvg.printText({
             svgel   : bPSvg,
             parent  : mmedia,
             type    : 'text',
@@ -292,7 +266,7 @@
         // //\\ legend
         //----------------
         var legendP = xy2m( 0.4, -0.12 );
-        legendSvg = sv.printText({
+        legendSvg = nssvg.printText({
             svgel   : legendSvg,
             parent  : mmedia,
             type    : 'text',

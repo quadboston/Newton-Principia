@@ -1,4 +1,9 @@
 ( function() {
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
+
     var ns          = window.b$l;
     var $$          = ns.$$;
     var cssp        = ns.CSS_PREFIX;
@@ -19,13 +24,10 @@
     var ss          = sn('ss', fapp);
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
-    var rg          = sn('registry',ssD);
     var exegs    = sn('exegs', ssD);
 
     fmethods.create_video_help_manager = create_video_help_manager;
-    //000000000000000000000000000000000000000
     return;
-    //000000000000000000000000000000000000000
 
 
 
@@ -42,7 +44,7 @@
     {
         var videoListPopup_onModelPane$;
         //.this dom el. is to be created when descendants of
-        //.sDomN.medSuperroot$ created in media-super-root.js
+        //.sDomN.simSScene$
         sDomN.videoListPopup_button_onModelPane$.e( 'click', function() {
             videoListPopup_onModelPane$.css( 'display','block' );
         });
@@ -84,8 +86,8 @@
             ///cleans up video icon placeholders in exegesis-tabs
             var iconClass = 'videoicon-placeholder';
             ns.eachprop( rg[ iconClass ], function( iconRg$, iid ) {
+                if( iid === 'rgId' || iid === 'stdModName' ) return;
                 iconRg$.html('');
-                //c cc( iid + ' must become empty=',iconRg$() );
             });
             var vConf = exegs[ amode['theorion'] ][ amode['aspect'] ].subexegs[0]
                         .essayHeader.video;
@@ -220,7 +222,7 @@
                 .css('top', '50px')
                 .css('background-color', 'white')
                 .css('z-index','111111111')
-                .to(sDomN.medSuperroot$)
+                .to(sDomN.simSScene$)
                 ;
         }
         function addPopupCloseButton()

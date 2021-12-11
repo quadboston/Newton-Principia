@@ -1,13 +1,8 @@
 ( function() {
     var {
-        ns, sn, mat,
-        sconf, fconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod,
-        tr, tp, toreg,
-
+        sn, mat,
+        sconf, ssF, ssD, sDomF, 
+        amode, stdMod, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -35,7 +30,7 @@
     ///****************************************************
     function init_model_parameters()
     {
-        sDomF.pname__2__rgX8dragwrap_gen_list( 'B' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'B', stdMod )
             .acceptPos = function( newPos ) {
                 ///restricts point B
                 if( newPos[0] < 0.00001 ) {
@@ -69,7 +64,7 @@
 
                 return true; //true means: do accept new pos
             };
-        sDomF.pname__2__rgX8dragwrap_gen_list( 'D' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'D', stdMod )
             .acceptPos = function( newPos ) {
                 ///restricts point D
                 if( newPos[0] < 0.00001 ) {
@@ -89,7 +84,7 @@
                 newPos[1] = rg.D.pos[1];
                 return true; //true means: do accept new pos
             };
-        sDomF.pname__2__rgX8dragwrap_gen_list( 'b' )
+        sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
             .acceptPos = function( newPos ) {
                 ///restricts point b
                 if( newPos[0] < 0.000001 ) {

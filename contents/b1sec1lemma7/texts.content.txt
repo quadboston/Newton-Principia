@@ -139,7 +139,8 @@ But perhaps as lack of nails made Kizhi stronger, the lack of numbers made Princ
 
 <br><br><br><br>
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br>
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br>
 <br>
 Taking radius ¦Ar¦¦ = 1 and applying Lemma 6 method we have
 
@@ -150,8 +151,8 @@ Taking radius ¦Ar¦¦ = 1 and applying Lemma 6 method we have
 and (*) is written as <br>
 
     <div style="text-align:center">
-        ¦AE¦sin(φ)¦¦/¦deltaphi¦φ¦¦ -&gt 1 <br>
-        ¦deltaphi¦φ¦¦-&gt 0.
+        ¦AE¦sin(φ)¦¦/¦deltaphi¦φ¦¦ 🠆 1 <br>
+        ¦deltaphi¦φ¦¦ 🠆 0.
     </div>
 <br><br><br>
 
@@ -233,7 +234,7 @@ unit tangent vector ¦Ad¦<b>Ad</b>¦¦.
 <b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 
-Lemma 6 gives the method to prove existence and formula for function derivative.
+Lemma 6 naturally gives formula of derivative of sin(x).
 For unit cicrle, <br><br>
 
     ¦x0,x¦Δsin(φ)¦¦ = ¦x0,x¦x-xₒ¦¦ and

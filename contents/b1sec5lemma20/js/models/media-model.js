@@ -1,37 +1,18 @@
 ( function() {
-    var SUB_MODEL   = 'common';
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var tr          = ssF.tr;
-    var tp          = ssF.tp;
-    var rg          = sn('registry',ssD);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
-
-
+    var {
+        $$, nssvg, has, haz,
+        sconf, sDomF, sDomN, ssD, ssF,
+        rg, toreg, stdMod,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+        },
+        stdModExportList :
+        {
+            media_upcreate,
+        },
+        setModule,
+    });
     var mod2inn;
     var pointies2line;
     var pos2pointy;
@@ -48,8 +29,7 @@
 
     function setModule()
     {
-        sn(SUB_MODEL, studyMods).media_upcreate = media_upcreate;
-        mod2inn       = ssF.mod2inn;
+        mod2inn         = ssF.mod2inn;
         pointies2line   = ssF.pointies2line;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
@@ -61,10 +41,9 @@
     //=========================================================
     function media_upcreate()
     {
-        var studmod = studyMods[SUB_MODEL];
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            studmod.medD8D && studmod.medD8D.updateAllDecPoints();
+            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
         ssF.mediaModelInitialized = true;
@@ -81,7 +60,7 @@
         ///===================================================
         var P = rg.P.pos;
 
-        var wwfc            = ns.haz( ssD, 'fixed-colors' );
+        var wwfc            = haz( ssD, 'fixed-colors' );
         function arr2rgba( arr ) {
             if( !arr ) return null;
             var r=Math.floor( arr[0] );
@@ -117,8 +96,8 @@
         ///-------------------------------------------------
         ///makes ellipse first to put point over it later
         ///-------------------------------------------------
-        var ellipse = tr( 'ellipse' );
-        ellipse.svgel = sv.ellipse({
+        var ellipse = toreg( 'ellipse' )();
+        ellipse.svgel = nssvg.ellipse({
             stepsCount      : 100,
             a               : rg.a.value*sconf.mod2inn_scale,
             b               : rg.b.value*sconf.mod2inn_scale,
@@ -126,7 +105,7 @@
             y0              : rg.O.medpos[1],
             rotationRads    : sconf.rotationRads,
             svgel           : ellipse.svgel,
-            parent          : studyMods[ SUB_MODEL ].mmedia,
+            parent          : stdMod.mmedia,
 
             'stroke-width':5,
             stroke  : ellipseColor,
@@ -561,14 +540,14 @@
         //-----------------------------------------------
         ///attaches updater right to the point T to ease
         ///this function lookup right from dragger-of-T
-        if( !ns.h( rg.T, 'model8media_upcreate' )) {
+        if( !has( rg.T, 'model8media_upcreate' )) {
             ////cannot use this function till this subroutine is not
             ////ran ... and till init is done;
             ////used in drag ... so drag must wait:
             ////this is OK because drag8drop sliders created after
             ////model8media_upcreate;
             rg.T.model8media_upcreate = function() {
-                studyMods[ SUB_MODEL ].model8media_upcreate();
+                stdMod.model8media_upcreate();
             }
 
             ///for slider
@@ -589,7 +568,7 @@
         //-----------------------------------------------
 
 
-        if( !ns.h( rg.a, 'model8media_upcreate' ) ) {
+        if( !has( rg.a, 'model8media_upcreate' ) ) {
             ////if slider is not already created ...
             createSliderPlaceholder_a();
         }
@@ -623,7 +602,7 @@
             //----------------------------------------------------------------------------
             // //\\ in model units and reference system
             //----------------------------------------------------------------------------
-            var startX            = ( -sconf.centerOnPicture_X +
+            var startX            = ( -sconf.modorInPicX +
                                      sconf.innerMediaWidth * sconf.SLIDERS_OFFSET_X
                                     ) *
                                     sconf.inn2mod_scale;
@@ -647,8 +626,8 @@
 
             // //\\ slider object
             //sets registry
-            tp( 'sliderStart', startPos );
-            tp( 'sliderEnd', endPos );
+            toreg( 'sliderStart' )( 'pos', startPos );
+            toreg( 'sliderEnd' )( 'pos', endPos );
 
             var sliderStart = pos2pointy( 'sliderStart',
                               { fill : '#9999dd', tpclass:'ellipse', cssClass : 'tofill tostroke', } );
@@ -681,8 +660,8 @@
                 }
             );
 
-            a.text_svg = sv.printText({
-                parent : studyMods[ SUB_MODEL ].mmedia,
+            a.text_svg = nssvg.printText({
+                parent : stdMod.mmedia,
                 text :'a',
                 x : rg.a.medpos[0]-15,
                 y : rg.a.medpos[1]+80,
@@ -692,7 +671,7 @@
             });
 
             rg.a.model8media_upcreate = function() {
-                studyMods[ SUB_MODEL ].model8media_upcreate();
+                stdMod.model8media_upcreate();
             }
 
             ///for slider
@@ -717,10 +696,10 @@
                 //var sliderXpos = (a.value - min_a ) / range_a * railsLength + startX;
                 //a.pos[0] = sliderXpos;
                 //a.medpos = mod2inn( a.pos );
-                a.medpos = ssF.mod2inn_original( a.pos );
-                sv.u({
+                a.medpos = ssF.mod2inn_original( a.pos, stdMod );
+                nssvg.u({
                     svgel   : a.svgel,
-                    parent  : studyMods[ SUB_MODEL ].mmedia,
+                    parent  : stdMod.mmedia,
                     cx : a.medpos[0],
                     cy : a.medpos[1],
                 });

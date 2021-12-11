@@ -1,6 +1,5 @@
 ( function() {
-    var ns = window.b$l;
-    var fapp = ns.sn('fapp' ); 
+    var { fapp, } = window.b$l.apptree({});
     fapp.lemmaConfig = lemmaConfig;    
     return;
 
@@ -9,24 +8,38 @@
     function lemmaConfig()
     {
         return {
-            dontRun_ExpandConfig : true,
-            mediaBgImage : "b1s2p1t1.png",
             codesList :
             [
-                { src : 'sconf.js' },
-                { src : 'models/study-model.js' },
-                { src : 'models/media-model.js' },
-                { src : 'models/main-legend.js' },
-                { src : 'models/dom8model-sliders.js' },
-                { src : 'models/state-capturer.js' },
-                { src : 'models/media-model-draw-evol.js' },
-                { src : 'models/media-model-clear-scenario.js' },
-                { src : 'models/media-model-setup-show-scenario.js' },
-                { src : 'models/media-model-declare-decorations.js' },
+                { src : '../common/sconf.js' },
+                { src : '../common/global-css-overrider.js' },
+                { src : '../common/study-model.js' },
+                { src : '../common/model-of-ABV-sliders.js' },
+                { src : '../common/solves-trajectory-math.js' },
+                { src : '../common/time-2-pos8media.js' },
+                { src : '../common/traj-2-trshapes.js' },
+                { src : '../common/traj-2-decs.js' },
+
+                { src : '../common/media-model.js' },
+                { src : '../common/path-2-media.js' },
+                { src : '../common/dec-2-media.js' },
+                { src : '../common/main-legend.js' },
+                { src : '../common/dom8model-sliders.js' },
+                { src : '../common/state-capturer.js' },
+                { src : '../common/unmasks-visib.js' },
+                { src : '../common/masks-visib.js' },
+                { src : '../common/model-groupify-steps.js' },
+                { src : '../common/decor-conf.js' },
+                { src : '../common/finalizes-subessay-relaunch.js' },
+
+
+                { src : '../projectile-model/sconf.js' },
+                { src : '../projectile-model/study-model.js' },
+                { src : '../projectile-model/media-model.js' },
             ],
             "contents-list" :
             [
-                'texts.content.txt',
+                'texts.claim-proof.txt',
+                'texts.corollary-scholium.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : ``,

@@ -11,13 +11,17 @@
     return;
 
 
-
+    ///this is overriddent only by lemma2 which
+    ///replaces this module, 'proof-vs-claim-visib', with lemma2
+    ///own modules list
+ 
+    ///todo: why it relies on "visibility" and not on display:none?
+    ///      seems wrong and obsolete,
 
     ///this is a basic essay-CSS-visibility setup
     ///for proof and claim essays,
 
-    ///it can be overridden by "modName" in lemma sources loaded later on
-
+    ///it can be overridden by "modName" in lemma sources loaded later on,
     ///if final (possibly overridden list) does not have this modName, then
     ///this mod is inffectevie,
     function setModule()

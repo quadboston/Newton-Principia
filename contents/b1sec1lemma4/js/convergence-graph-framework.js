@@ -1,22 +1,12 @@
 ( function() {
     var {
-        ns,
-        sn,
-        nsmethods,
-        haz,
-        globalCss,
-        $$,
-        sconf,
-        rg,
-        ssD,
-        sDomN,
+        ns, sn, nsmethods, haz, globalCss, $$,
+        sconf, rg, ssD, sDomN,
         stdMod,
-        
     } = window.b$l.apptree({
         stdModExportList :
         {
             createsPHGraphFW,
-            //showPHGraph,
         },
     });
     return;
@@ -79,7 +69,7 @@
             //===========================================
             pHGraph_self.container$ = $$.div()
                 .addClass( 'ph-graph-container' )
-                .to( sDomN.medRoot )
+                .to( stdMod.simScene )
                 ;
             //===========================================
             // \\// creates fw-dom-container

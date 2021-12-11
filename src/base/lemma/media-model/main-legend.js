@@ -9,13 +9,8 @@
 ( function() {
     var {
         ns, sn, $$, mat,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, sDomN, amode,
-        stdMod,
-        tr, toreg,
-
+        sconf, ssF, ssD, sDomF, sDomN,
+        amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -90,7 +85,7 @@
         {
             tb = $$
                 .c('table')
-                .to( sDomN.legendRoot$ )
+                .to( stdMod.legendRoot$ )
                 .cls( 'main-legend ' + theorion )
 
                 //removes set of .main-legend.]theorion[ {

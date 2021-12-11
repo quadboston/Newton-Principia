@@ -39,6 +39,9 @@
 
         //optionals:
         addValueToCaption,
+            removeCommaBetweenValueAndCaption,
+        useValueAsCaption,
+
         selectBoxClassId,   //for domEl-css
 
         optionIsChanged_cb, //callback
@@ -58,7 +61,7 @@
                       //otherwise left positions move at scale transform
                       .css( 'transform-origin', '0px 0px' )
 
-                      .e( 'change', function( event ) {
+                      .e( 'change', function( ev ) {
                             var ix = sbox$().selectedIndex;
                             ix -= defaultPrompt ? 1 : 0;
                             if( ix < 0 ) {
@@ -71,7 +74,9 @@
                                 selectedIndex : ix,
                                 selectedCaption : iarrays[ix][0],
                                 selectedValue : iarrays[ix][1],
-                                sbox$,               
+                                sbox$,
+                                iarrays, //added later in ver7817
+                                ev,      //added later in ver7817
                             });
                             //https://javascript.info/bubbling-and-capturing
                             //if we attach by addEventListener, then
@@ -93,13 +98,21 @@
         }
 
         iarrays.forEach( (iarray,iix) => {
+
+            if( useValueAsCaption ) {
+                var capt = iarray[1] + '';
+            } else {
+                var capt = iarray[0];
+                if( addValueToCaption ) {
+                    capt +=
+                            ( removeCommaBetweenValueAndCaption ? '' : ', ' ) +
+                            iarray[1];
+                }
+            }
             sbox$.ch( $$.c( 'option' )
                         .a( 'name', 'i'+iix )
                         .a( 'value', 'i'+iix )
-                        .html(
-                            iarray[0] +
-                            ( addValueToCaption ? ', ' + iarray[1] : '' )
-                        )
+                        .html( capt )
             );
         });
 

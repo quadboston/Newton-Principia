@@ -63,7 +63,8 @@ to be entered
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 

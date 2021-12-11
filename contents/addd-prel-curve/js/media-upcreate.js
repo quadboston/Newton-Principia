@@ -64,8 +64,11 @@
         rg[ 'BD' ].undisplay = true;
         rg[ 'D' ].undisplay = true;
         rg[ 'R' ].undisplay = true;
+        rg[ 'N' ].undisplay = true;
         rg[ 'Rc' ].undisplay = true;
         rg[ 'BR' ].undisplay = true;
+        rg[ 'AN' ].undisplay = true;
+        rg[ 'A,Rc' ].undisplay = true;
 
         switch( amode.subessay )
         {
@@ -79,7 +82,7 @@
                 break;
 
             case 'circle-based-curvature' :
-                var keyName = 'curveRightCircle';
+                //var keyName = 'curveRightCircle';
                 rg.axisX.undisplay = true;
                 rg.axisY.undisplay = true;
                 rg[ 'A,axisX' ].undisplay = true;
@@ -87,18 +90,41 @@
 
                 rg[ 'AT' ].undisplay = true;
                 rg[ 'A,Tleft' ].undisplay = true;
-                rg[ 'T' ].undisplay = true;
+                rg[ 'T' ].undisplay = false;
                 rg[ 'Tleft' ].undisplay = true;
+                rg[ 'AT' ].undisplay = false;
 
+                rg[ 'N' ].undisplay = false;
                 rg[ 'B' ].undisplay = false;
-                rg[ 'AB' ].undisplay = true;
+                rg[ 'AB' ].undisplay = false;
                 rg[ 'BD' ].undisplay = false;
                 rg[ 'D' ].undisplay = false;
                 rg[ 'AD' ].undisplay = false;
                 rg[ 'R' ].undisplay = false;
                 rg[ 'BR' ].undisplay = false;
                 rg[ 'Rc' ].undisplay = false;
+                rg[ 'AN' ].undisplay = false;
+                rg[ 'A,Rc' ].undisplay = false;
                 break;
+
+            case 'infinite-frequency-circle-based-curvature' :
+                //var keyName = 'curveRightCircle';
+                rg.axisX.undisplay = false;
+                rg.axisY.undisplay = false;
+
+                rg[ 'B' ].undisplay = false;
+                rg[ 'AB' ].undisplay = false;
+                rg[ 'R' ].undisplay = false;
+                rg[ 'BR' ].undisplay = false;
+                rg[ 'Rc' ].undisplay = false;
+
+                rg[ 'BD' ].undisplay = false;
+                rg[ 'D' ].undisplay = false;
+                rg[ 'AD' ].undisplay = false;
+                rg[ 'A,Rc' ].undisplay = false;
+
+                break;
+
         }
         //----------------------------------------------------
         // \\// manages shapes visibility for different amodes
@@ -108,7 +134,12 @@
 
         rg[ 'curveIF' ].svgel$.css( 'display', 'none' );
         rg[ 'curveCIF' ].svgel$.css( 'display', 'none' );
+
+        rg[ 'curveIFC' ].svgel$.css( 'display', 'none' );
+        rg[ 'curveIFCleft' ].svgel$.css( 'display', 'none' );
+
         rg[ 'curveCircle' ].svgel$.css( 'display', 'none' );
+        rg[ 'curvatureCircle' ].svgel$.css( 'display', 'none' );
         rg.curveLeftCircle.svgel$.css( 'display', 'none' );
         rg.curveRightCircle.svgel$.css( 'display', 'none' );
         rg.curveParabola.svgel$.css( 'display', 'none' );
@@ -116,6 +147,7 @@
         //rg[ 'H1,H2' ].svgel$.css( 'display', 'none' );
         //rg[ 'H2' ].undisplay = true;
 
+        var funArgs = {};
         switch( amode.subessay )
         {
             case 'if-curve':
@@ -134,6 +166,24 @@
 
             case 'circle-based-curvature' :
                 var keyName = 'curveParabola';
+                rg[ 'curvatureCircle' ].svgel$.css( 'display', 'block' );
+                stdMod.doesPaintCurve( 'curvatureCircle', {
+                    R : Math.abs( rg.R.pos[1] ),
+                    center : rg.R.pos,
+                } );
+                break;
+
+            case 'infinite-frequency-circle-based-curvature' :
+                var keyName = 'curveIFC';
+                rg[ keyName+'left' ].svgel$.css( 'display', 'block' );
+                stdMod.doesPaintCurve( keyName+'left', funArgs );
+
+                rg[ 'curvatureCircle' ].svgel$.css( 'display', 'block' );
+                stdMod.doesPaintCurve( 'curvatureCircle', {
+                    R : Math.abs( rg.R.pos[1] ),
+                    center : rg.R.pos,
+                } );
+
                 break;
 
             default:
@@ -141,7 +191,7 @@
                 break;
         }
         rg[ keyName ].svgel$.css( 'display', 'block' );
-        stdMod.doesPaintCurve( keyName );
+        stdMod.doesPaintCurve( keyName, funArgs );
     }
 
 

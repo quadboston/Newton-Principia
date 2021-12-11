@@ -12,7 +12,18 @@
 <br>
 
 
-In these Addendums, whe treat theory as it is which may be not what Isaac Newton or Euclid meant. "As it is" is a content which is implied from logic of propositions or logic of usage in the Books. It is irrelevant if impiled content is unknown to Euclid or Newton at their times. Nuances of translation should be insignificant. What Euclid or Isaac Newton thought is left to Historians.
+In these Addendums, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements. We present mathematical "facts" as they are. Their mapping to these books is up to readers. The mapping to what Euclid or Isaac Newton thought and nuances of translation are left to historians.
+
+It is irrelevant if impiled content is unknown to Euclid or Newton at their times.
+When we suggest the mapping, we can put source Lemma in parenthesises like
+
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
+
+maps to
+
+<a target="_blank" href="?conf=sappId=b1s2prop2theor2,theorionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
+
+ 
 <br><br>
 
 

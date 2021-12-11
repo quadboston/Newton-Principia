@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            mediaBgImage : "main-picture.png",
             codesList :
             [
                 //todm: automate this list

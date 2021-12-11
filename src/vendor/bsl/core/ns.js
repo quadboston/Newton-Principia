@@ -31,12 +31,17 @@
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
         var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
+        var undef = (function( und ) { return und; } )();
 
+        ///if prop does not exist, returns primitive-value of undefined type,
+        ///if exists, returns this prop,
+        ///this funct. will be attached to object-like JS-entity,
         function returnOwnPropertyIfExist()
         {
             var wwHas = shortcutInClosure_for_speed;
+            var und = undef;
             return ( function(pname) {
-                return ( wwHas.call( this, pname ) && this[ pname ] );
+                return wwHas.call( this, pname ) ? this[ pname ] : und;
             });
         }
 
@@ -63,13 +68,16 @@
             //:more good goodies
             ns.hae = hae;
             ns.haf = haf;
+            ns.hafa = hafa;
             ns.hafb = hafb;
             ns.haff = haff;
+            ns.hafff = hafff;
             ns.hob = hob;
             ns.haz = haz; //returns own prop if any
+            ns.hazz = hazz;
             ns.h = has;
             ns.ha = ha; //has or adds new
-            ns.han = ha; //has or adds new
+            ns.han = ha; //returns "existent" or default if missed
 
             //very very misleading:
             //ns.has = function( prop ) { return has( ns, prop ); };
@@ -77,6 +85,7 @@
         }
 
         ///Returns own property if property does exist. Otherwise, returns defaultProperty.
+        ///The difference from "sn" is that ha does not create missed property.
         function ha( obj, property, defaultProperty ) {
             return shortcutInClosure_for_speed.call( obj, property ) &&
                    typeof obj[ property ] !== 'undefined'  ?
@@ -84,12 +93,24 @@
         };
 
 
-        ///Returns own property if property does exist. Otherwise, returns false.
+        ///Returns own property if property does exist.
+        ///Otherwise, returns object of type "undefined".
         function haz( obj, property ) {
-            if( !obj ) return false;
+            if( !obj ) return undef;
             return shortcutInClosure_for_speed.call( obj, property ) ?
-                   obj[ property ] : false;
+                   obj[ property ] : undef;
         };
+
+        ///Returns own property if property does exist. Otherwise, returns undef.
+        ///Protects obj from being non-object-like.
+        function hazz( obj, property ) {
+            return ( typeof obj === 'object' || typeof obj === 'function' ) &&
+                   shortcutInClosure_for_speed.call( obj, property )
+                   ?
+                   obj[ property ] : undef;
+        };
+
+
 
         ///If property exists, returns function which takes callback to be executed
         ///on this this property.
@@ -105,6 +126,16 @@
             return shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : ()=>{};
         };
+
+
+        ///Returns object's property if property does exist. Otherwise, returns empty function.
+        ///"Property" is supposed to be of function type.
+        ///todm this function should replace haf,
+        function hafa( obj, property ) {
+            return obj && shortcutInClosure_for_speed.call( obj, property ) ?
+                   obj[ property ] : ()=>{};
+        };
+
 
         ///Returns function bound to object
         function hafb( obj, property ) {
@@ -124,6 +155,22 @@
             }
         }
 
+        ///todm: use this fun. to replace haff,
+        ///calls object property with empty args,
+        ///If call to prop succedes, then returns a result of this call.
+        ///Otherwise, returns null.
+        function hafff( obj, property ) {
+            var ret = null;
+            if( obj && typeof obj === 'object' ) {
+                if( shortcutInClosure_for_speed.call( obj, property ) ) {
+                    if( typeof obj[ property ] === 'function' ) {
+                        ret = obj[ property ]();
+                    }
+                }
+            }
+            return ret;
+        }
+
         ///if property does not exist, returns empty object;
         //    otherwise, returns property which is intended to be object
         function hob( obj, property ) {
@@ -140,9 +187,13 @@
         };
 
         ///In plain words: makes-sure object-property exists and returns it.
-        ///Input: optional emptyTemplate provides ability set {} or []
-        function sn( subname, parentNS, emptyTemplate )
-        {
+        ///Input: optional emptyTemplate is assigned to parentNS if
+        ///       "subname" is missed
+        function sn(
+            subname,
+            parentNS,
+            emptyTemplate, //any value: 1, '', null, {}, [], ...
+        ){
             parentNS = parentNS || ns;
             if(
                 shortcutInClosure_for_speed.call( parentNS, subname ) &&
@@ -286,24 +337,30 @@
 
                     // //\\ not tested
                     //does update attr only if it is different
+                    /*
                     a_:    function( prop, value, obj )     { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               if( !ctxEl ) return ctxEl;  
                                                               var attr = ctxEl.getAttribute( prop );
-                                                              if( prop !== attr ) {  
+                                                              //was this bug: if( prop !== attr ) {  
+                                                              if( value !== attr ) {  
                                                                 setAttribute( prop, value );
                                                               }
                                                             },
 
+                    */
+                    /*
                     //does update for prefixless attributes of svg-elements (null is used for name s.)
                     aNS_:  function( prop, value, obj )     { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               if( !ctxEl ) return ctxEl;  
                                                               var attr = ctxEl.getAttributeNS( null, prop );
-                                                              if( prop !== attr ) {  
+                                                              //was this bug: if( prop !== attr ) {  
+                                                              if( value !== attr ) {  
                                                                 ctxEl.setAttributeNS( null, prop, value );
                                                               }
                                                             },
+                    */
                     // \\// not tested
 
 
@@ -746,14 +803,18 @@
         return keys;
     };
 
+    ///maps props of object:
+    ///creates new object and copies first level proper props to it,
     ///generalizes Array.map() to Object.map()
-    ns.eachmap = function( obj, callBack )
+    ns.mapp = function( obj, callBack )
     {
-        var objReturn = {};
-        Object.keys( obj ).forEach( function( key ) {
-            objReturn[ key ] = callBack( obj[ key ], key );
-        });
-        return objReturn;
+        var map = {};
+        if( obj ) {
+            Object.keys( obj ).forEach( ( key, kix ) => {
+                map[ key ] = callBack( obj[ key ], key, kix, obj, map );
+            });
+        }
+        return map;
     };
 
 
@@ -896,17 +957,24 @@
     var DEFAULT_KEY         = 'default';
  	var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
+    var nsmethods           = ns.sn('methods');
 
     //repo is a set of style-apartments handled separately,
     //style-apartment is called "rack",
     var repo                = {};
 
     //:methods
-    globalCss.update        = update;       
+    globalCss.update               = update;       
+    globalCss.add8update           = update;
+    globalCss.updateIfDifferent    = updateIfDifferent;
+    globalCss.updateIfKeyDifferent = updateIfKeyDifferent;
     globalCss.upqueue       = upqueue;
     globalCss.addText       = addText;
     globalCss.getText       = getText;
     globalCss.clearStyleTag = clearStyleTag;
+    globalCss.replace       = replace;
+    nsmethods.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    nsmethods.camelName2cssName = camelName2cssName;
     return;
 
 
@@ -928,7 +996,7 @@
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
-                    .cls( htmlkey )
+                    .cls( topicIdUpperCase_2_underscore( htmlkey ) )
                     .to( document.head )
                     ,    
                 queueHandle : null, //timeout handle
@@ -966,6 +1034,31 @@
         if( moreText ) { rack.cssText += moreText; }
         rack.cssDom$.html( rack.cssText );
     };
+    ///replaces CSS-text in rack and updates it immediately
+    function replace( rtext, htmlkey )
+    {
+        var rack = key2rack( htmlkey );
+        rack.cssText = rtext;
+        rack.cssDom$.html( rack.cssText );
+    };
+    ///replaces and updates if CSS-text is different
+    function updateIfDifferent( rtext, htmlkey )
+    {
+        var rack = key2rack( htmlkey );
+        if( rack.cssText === rtext ) return;
+        rack.cssText = rtext;
+        rack.cssDom$.html( rack.cssText );
+    };
+    ///updates if htmlkey is not found
+    function updateIfKeyDifferent( rtext, htmlkey )
+    {
+        htmlkey = htmlkey || DEFAULT_KEY;
+        var rack = ns.h( repo, htmlkey );
+        if( rack ) return;
+        var rack = key2rack( htmlkey );
+        rack.cssText = rtext;
+        rack.cssDom$.html( rack.cssText );
+    };
     ///adds text without changing html-tag
     function addText( text, htmlkey )
     {
@@ -985,6 +1078,20 @@
         var rack = key2rack( htmlkey );
         rack.cssDom$.html( '\n.dummy-style { .dummy-class : dummy-value; }\n ' );
     };
+
+    ///converts "A" -> "_a",  ... and "," to "_-"
+    function topicIdUpperCase_2_underscore( topicId )
+    {
+        return camelName2cssName( topicId );
+    }
+
+    ///converts "A" -> "_a",  ... and "," to "_-"
+    function camelName2cssName( topicId )
+    {
+        return topicId.replace( /([A-Z,])/g,
+            ( match, key1 ) => ( key1 === ',' ? '_-' : '_' + key1.toLowerCase() )
+        );
+    }
 
 
 })();

@@ -18,6 +18,13 @@
     function init_conf()
     {
         sconf.rgShapesVisible = false;
+        sconf.default_tp_stroke_width = 8;
+        sconf.text_nonhover_width = 1;
+        sconf.text_hover_width = 2; //needs hover-width cls at svg-text-el,
+                                    //aka for: Δsin(φ),
+        //sconf.nonhover_width = 4;
+        //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
+                                    //aka for: Δsin(φ),
 
         //--------------------------------------
         // //\\ geometics parameters
@@ -27,17 +34,30 @@
         var pictureWidth = 839;
         var pictureHeight = 563;
 
-        var originX_onPicture = 140;
-        var originY_onPicture = 61;
 
-        var A = [originX_onPicture, originY_onPicture];
-        var r = [originX_onPicture, 531];
-        var R = [originX_onPicture, 302];
+        //================================================================
+        // //\\ we need good names ...
+        //================================================================
+        //var modOrigin_inPictureSystem_x;
+        //var modorInPicX;
+        //var modelOriginInPictureLayoutCoordinates_x = 140;
+        //var originX_onPicture = modelOriginInPictureLayoutCoordinates_x;
+        //var originY_onPicture = 61;
+        var modorInPicX = 140;
+        var modorInPicY = 61;
+        //================================================================
+        // \\// we need good names ...
+        //================================================================
+
+
+        var A = [modorInPicX, modorInPicY];
+        var r = [modorInPicX, 531];
+        var R = [modorInPicX, 302];
         var B = [323, 156];
 
-        var D = [474, originY_onPicture];
-        var Dleft = [A[0] -0.3*(D[0]-A[0]), originY_onPicture];
-        var d = [778, originY_onPicture];
+        var D = [474, modorInPicY];
+        var Dleft = [A[0] -0.3*(D[0]-A[0]), modorInPicY];
+        var d = [778, modorInPicY];
         var b = [514, 254];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
@@ -55,10 +75,10 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var context = [0,     0,   0,      1];
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
+        var context = [0,     0,   0,      0.6];
+        var given   = [0,     150, 0,      0.6];
+        var proof   = [0,     0,   255,    0.6];
+        var result  = [200,   40,  0,      0.6];
         var hidden  = [0,     0,   0,      0];
 
 
@@ -214,6 +234,11 @@
                 letterAngle : 0,
                 pcolor      : given,
             },
+            /*
+            'B-kernelx' : {
+               cssClass : 'hover-width',
+            },
+            */
             D : {
                 pos: D,
                 letterAngle : 90,
@@ -352,14 +377,14 @@
         //      differences interpolation
         //----------------------------------
 
-        var minusX1 = 148 - originX_onPicture;
-        var minusX2 = 161 - originX_onPicture;
-        var minusX3 = 202 - originX_onPicture;
-        var minusX4 = 259 - originX_onPicture;
-        var minusX5 = 305 - originX_onPicture;
-        var minusX6 = B[0] - originX_onPicture;
-        var minusX7 = 353 - originX_onPicture;
-        var minusX8 = 360.5 - originX_onPicture;
+        var minusX1 = 148 - modorInPicX;
+        var minusX2 = 161 - modorInPicX;
+        var minusX3 = 202 - modorInPicX;
+        var minusX4 = 259 - modorInPicX;
+        var minusX5 = 305 - modorInPicX;
+        var minusX6 = B[0] - modorInPicX;
+        var minusX7 = 353 - modorInPicX;
+        var minusX8 = 360.5 - modorInPicX;
 
 
         var givenCurve_pivots =
@@ -384,11 +409,11 @@
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
         var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] - originX_onPicture ) * ww_inn2mod_scale,
-              ( opoint[1] - originY_onPicture +
+            [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
+              ( opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
-                originY_onPicture - 61.0858
+                modorInPicY - 61.0858
 
               ) * ww_factor,
             ]
@@ -401,20 +426,19 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-
         ns.paste( sconf, {
+            //double back step ../../ is to reuse this path in code for lemma7
+            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
             predefinedTopics,
             originalPoints,
             linesArray,
             //lines,
-            originX_onPicture,
-            originY_onPicture,
+            modorInPicX,
+            modorInPicY,
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-            
-            default_tp_stroke_width : 12,
         });
         //--------------------------------------
         // \\// geometics parameters

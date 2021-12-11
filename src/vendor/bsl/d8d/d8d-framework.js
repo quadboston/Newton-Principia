@@ -10,6 +10,7 @@
         dpdec,
     } = window.b$l.nstree();
     d8d_p.createFramework = createFramework;
+    d8d_p.throttles_eventMove = throttles_eventMove;
     var createdFrameworks = [];
     return;
 
@@ -133,8 +134,21 @@
             var pointWrap            = api.pointWrap || {};
             var doProcess            = api.doProcess; //to be set at point-def.
             //:optional
+
+            ////////////////////////////////////////////////////////////////////
+            // //\\ the combination of these switches is too convoluted and
+            //      needs thought:
+            //==================================================================
+            var addFeaturesToDecPoint= haz( pointWrap, 'addFeaturesToDecPoint');
+            //thes two ignite
+            //addFeaturesToDecPoint.dragDecorColor as a condition to
+            //run creates_spinnerOwnCss()
             var spinnerClsId         = pointWrap.spinnerClsId;
             var dragDecorColor       = pointWrap.dragDecorColor;
+            //==================================================================
+            // \\// the combination of these switches is too convoluted and
+            ////////////////////////////////////////////////////////////////////
+
             var individual_zindex    = haz( pointWrap, 'individual_zindex' );
             var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
             var update_decPoint      = api.update_decPoint;
@@ -143,7 +157,6 @@
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
             var tooltip              = api.tooltip;
-            var addFeaturesToDecPoint= haz( pointWrap, 'addFeaturesToDecPoint');
             //---------------------------------------------
             // \\// AAA PPP III
             //---------------------------------------------
@@ -213,6 +226,7 @@
                 pointWrap       : pointWrap,
                 doProcessWrap   : doProcessWrap,
                 update_decPoint : update_decPoint,
+                //recall: decPoint = document.createElement( 'div' )
                 decPoint        : decPoint,
                 orientation     : orientation,
                 dragHandleDOM   : dragHandleDOM,
@@ -220,6 +234,12 @@
                 createdFramework,
             }
             dragWraps.push( dragWrap );
+            //**********************************************
+            //not yet implemented, but planned:
+            // app engine change since ver 9239,
+            // allows to get decPoint at run time, f.e.
+            //pointWrap.dragWrap = dragWrap;
+            //**********************************************
 
 
             //if( pointWrap.pname === 'fret-0-0' ) {
@@ -265,7 +285,7 @@
             ///uses already existing-on-drag-surface handle to synch with it;
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
-            ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
+            ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss
             function update_decPoint_default( decPoint, dragSurface, pointWrap )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
@@ -282,22 +302,27 @@
             //      pointWrap_2_dragWrap( api )
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
-            ///        bsl/d8d/decorator.css.js::creates_spinnerOwnCss
+            ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss
             ///does position spinner by converting
             ///inner-media-position to dom-position
             ///and setting spinner ot this dom-position
             function update_decPoint_inn2outparent()
             {
                 var dompos          = inn2outparent.call( pointWrap );
+                //ccc( pointWrap.rgId, pointWrap.pos, dompos );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top  = dompos[1] + 'px';
                 if( !pointWrap.ignore_hideD8Dpoint_for_CSS ) {
                     if( pointWrap.hideD8Dpoint ) {
                         decPoint.style.display = 'none';
+                        //if( pointWrap.pname === 'M' )
+                        //    ccc( pointWrap.rgId +
+                        //         ' none: left=' + decPoint.style.left, decPoint );
                     } else {
                         decPoint.style.display = 'block';
                         //if( pointWrap.pname === 'media-mover' )
-                        //    ccc( 'dp updated: left=' + decPoint.style.left, decPoint );
+                        //    ccc( pointWrap.rgId +
+                        //         ' block: left=' + decPoint.style.left, decPoint );
                     }
                 }
             }
@@ -446,60 +471,85 @@
     /// \\// inits common framework for the set of  point-draggees
     ///============================================================
 
+
+
+
+
+    ///Note:     1. this is a throttler not bouncer,
+    ///          2. the "return" value of throttle is lost, this is
+    ///          a "cons" of this throttler,
+    ///Does:     throttles event handler of type "moving",
+    ///Inputs:   WAIT         optional, how much to wait till call
+    ///                       the most recent function-curry,
+    ///                       Ultimately fires if called at elapsed >= WAIT.
+    ///                       If not called this way, then 
+    ///                       times out to WAIT, since last call.
+    ///          fun          throttlee,
+    ///Returns:  throttled fun with signature signature:
+    ///             arg       ordinary arguments' object,
+    ///             dragType  "move" or other type,
+    function throttles_eventMove( fun, WAIT )
+    {
+        var timeout = null;
+        var timeStart = null;
+        var arg_closured;
+        var dragType_closured;
+        return throttledFunction;
+
+
+
+        function throttledFunction( arg, dragType )
+        {
+            //ccc( Date.now() + ' inner drag: dragType=' + dragType );
+            if( dragType !== 'moving' ) {
+                ///runs stashed version of "move" function if any
+                if( timeout !== null ) {
+                    clear8run( !!'doClearTimeout' );
+                }
+                ///immediately runs called non-"move" function
+                fun( arg, dragType );
+                return;
+            }
+
+            ///initiates or renews "move" type function
+            arg_closured = arg; //updates arg at every call
+            dragType_closured = dragType;
+            var time     = Date.now();
+            timeStart    = timeStart === null ? time : timeStart;
+            var elapsed  = time - timeStart;
+
+            if( elapsed > WAIT ) {
+                clear8run( !!'doClearTimeout' )
+                return;
+            }
+
+            ///initiates or renews "move" type function
+            if( timeout !== null ) {
+                clearTimeout( timeout );
+            }
+            timeout = setTimeout( 
+                function() {
+                    clear8run();
+                },
+                WAIT
+            );
+
+            //would bounce and not throttle
+            //timeStart = time;
+        };
+
+        function clear8run( doClearTimeout )
+        {
+            //ccc( Date.now() + ' clears and runs' );
+            doClearTimeout && clearTimeout( timeout );
+            timeout = null;
+            timeStart = null;
+            fun( arg_closured, dragType_closured );
+        }
+    }
+
+
 }) ();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//---------------------------------------------
-// //\\ abandoned throttler
-//---------------------------------------------
-//.the throttle is abandoned since v1960
-//.abandoned because it is hard to remember and explain to other developer
-//.the complexity which arised with throttle: the complexity is
-//.that event "move" can be overriden with "up" and developer must always
-//.remember this in do Process() function
-//var do DragUpdate = ns.throttle( 
-//        ....
-//        DRAG_POINTS_THROTTLE_TIME || 0
-//);
-//.if one needs to throttle the drag, do throttle "do Process()"
-//.explicitly in specific lemma
-//---------------------------------------------
-// \\// abandoned throttler
-//---------------------------------------------
-
-//==============================================
-// //\\ api.achieved is an optional parameter
-//==============================================
-// if it is falsy and not 0, then it is not used
-// otherwise, it is placed into 
-//
-//      pointWrap.achieved = { achieved : api.achieved }
-//
-// this approach creates functions' side effects:
-// here we are modifying important input-parameter, pointWrap
-//
-//      todm side effects can be fixed by indexing points and
-//      making registry here ... still an extra construct
-//      adds members to pointWrap
-//
-//--------------------------------------------
-//pointWrap.achieved = ( achieved || achieved === 0 ) ?
-//                     { achieved : achieved } : { achieved : {} };
-//==============================================
-// \\// api.achieved is an optional parameter
-//==============================================
 
 

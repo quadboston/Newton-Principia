@@ -9,7 +9,6 @@
     function lemmaConfig()
     {
         return {
-            mediaBgImage : "b1s1l6-diagram-3rded-b.png",
             codesList :
             [
                 //todm: automate this list
@@ -24,6 +23,7 @@
             "contents-list" :
             [
                 'texts.content.txt',
+                'addendum-comment.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

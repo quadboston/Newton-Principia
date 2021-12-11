@@ -1,4 +1,15 @@
 ( function () {
+    var {
+        has,
+        ssF,
+        stdMod,
+    } = window.b$l.apptree({
+        stdModExportList :
+        {
+        },
+    });
+
+
     var ns          = window.b$l;
     var sn          = ns.sn;    
 	var bsl	        = ns;
@@ -209,6 +220,9 @@
 		        dr.curvLabels.visOffset = 1;
 		        dr.curvLabels.offset = 1;
 	        }
+
+            //todm remove: experiment:
+            //has( stdMod.rg, 'baseSlider' ) && ssF.pos2pointy( 'baseSlider' );
         }
 
         function updateLeft(i,width,x,y,nextX,nextY)

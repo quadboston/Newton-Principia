@@ -40,10 +40,10 @@
         var pointA          = [ 28, 456 ];
         var pointe          = [ 28, 46 ];
 
-        var activeAreaOffsetX = pointA[0];
-        var activeAreaOffsetY = 46; 
+        var modorInPicX = pointA[0];
+        var modorInPicY = pointA[1]; 
         //.set it from graph editor
-        var pictureActiveArea = pointA[1] - activeAreaOffsetY;
+        var pictureActiveArea = pointA[1] - 46;
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
@@ -62,10 +62,10 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var hidden  = [0,     0,   0,      0];
+        var given   = [0,     150, 0,      ]; //0.5];
+        var proof   = [0,     0,   255,    ]; //0.5];
+        var result  = [200,   40,  0,      ]; //0.5];
+        var hidden  = [0,     0,   0,      ]; //0];
 
 
         var predefinedTopics =
@@ -275,8 +275,8 @@
             //100; //display in "percents" of Ae
             LEGEND_NUMERICAL_SCALE : 100,
 
-            activeAreaOffsetX   : activeAreaOffsetX,
-            activeAreaOffsetY   : activeAreaOffsetY + pictureActiveArea,
+            modorInPicX,
+            modorInPicY,
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
@@ -301,6 +301,9 @@
         paste( sconf,
             paste( to_sconf,
             {
+                //double back step ../../ is to reuse this path in code for twin-lemma
+                mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
+
                 linesArray,
                 predefinedTopics,
                 originalPoints,

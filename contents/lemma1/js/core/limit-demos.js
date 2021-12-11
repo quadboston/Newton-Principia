@@ -1,10 +1,12 @@
 // //\\// limit definition demo framework
 
 ( function() {
-	var ns	        = window.b$l;
-    var nssvg       = ns.sn( 'svg' );
-	var mat	        = ns.mat        = ns.mat || {};
-	var limDemo     = mat.limDemo   = mat.limDemo || {};
+    var {
+        sn, nssvg, mat,
+    } = window.b$l.apptree({
+    });
+	var limDemo = sn( 'limDemo', mat );
+
 
     limDemo.setDemo = setDemo;
     limDemo.dataSamples =
@@ -29,9 +31,7 @@
             functionSample  : 'beats_sample'
         }
     };  
-    //00000000000000000000000000000000000000000000
     return;
-    //00000000000000000000000000000000000000000000
 
 
 

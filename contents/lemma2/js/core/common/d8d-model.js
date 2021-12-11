@@ -1,6 +1,10 @@
 // //\\// application-level d8d module
 ( function () {
-    var SUB_MODEL   = 'common';
+    var {
+        stdMod, rg,
+    } = window.b$l.apptree({
+    });
+
     var ns          = window.b$l;
     var $$          = ns.$$;
     var sn          = ns.sn;    
@@ -26,7 +30,7 @@
     mCount.count    = mCount.count ? mCount.count + 1 : 1;
     var modName     = '';
     srg_modules[ modName + '-' + mCount.count ] = setModule;
-    return; //0000000000000000
+    return;
 
 
 
@@ -49,12 +53,12 @@
         var medD8D;
 
         gui.createDragModel = createDragModel;
-        return; //mmmmmmmmmm
+        return;
 
 
 
         function createDragModel() {
-            medD8D = sn(SUB_MODEL, studyMods ).medD8D =
+            medD8D = stdMod.medD8D =
                 d8d_p.createFramework ({
                     findDraggee                         : findDraggee,
                     dragSurface                         : sDomN.medRoot,
@@ -183,7 +187,7 @@
                 return closest;
             }
             //.already in sync
-            //sacf.activeAreaOffsetY + sacf.pictureActiveArea - mousePoint[1];
+            //sacf.modorInPicY + sacf.pictureActiveArea - mousePoint[1];
 
             var tdX = Math.abs( mousePoint[0] - pointWrap.x );
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );

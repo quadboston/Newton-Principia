@@ -1,11 +1,14 @@
-// //\\// file where to set plugin main configuration
 ( function() {
-    var sn      = window.b$l.sn;
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
+    var {
+        sn, fconf,
+    } = window.b$l.apptree({
+    });
 
 
 
+
+    ///these settings take precedence because css-modules are executed later,
+    ///after all modules in header of *.html index are loaded,
     fconf.css =
     {
         //=======================
@@ -23,7 +26,7 @@
         //.interacts with original-source figure picture, so should be white ...
         'color-light'       : 'white',      //'#FBFCFC',
  
-       //:UI
+        //:UI
         'border-radius'     : '5px',
         //=======================
         // \\// legacy CSS params
