@@ -43,8 +43,11 @@
         sbStyle,
         defaultPrompt,
         tableRowTitle,
+        itemCaptionPostfix,
 
     }) {
+        itemCaptionPostfix = itemCaptionPostfix || '';
+
         var sboxRack = {};
 
         if( listText ) {
@@ -89,6 +92,7 @@
                                 .html(
                                     iarray[0] +
                                     ( addValueToCaption ? ', ' + iarray[1] : '' )
+                                    + itemCaptionPostfix
                                )
                         )
                         .e( 'mousedown', function( event ) {

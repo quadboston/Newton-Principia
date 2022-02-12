@@ -48,8 +48,11 @@
         selectonIsReset_cb,
         sbStyle,
         defaultPrompt,
+        itemCaptionPostfix,
 
     }) {
+        itemCaptionPostfix = itemCaptionPostfix || '';
+
         var sboxRack = {};
 
         if( listText ) {
@@ -109,6 +112,7 @@
                             iarray[1];
                 }
             }
+            capt += itemCaptionPostfix;
             sbox$.ch( $$.c( 'option' )
                         .a( 'name', 'i'+iix )
                         .a( 'value', 'i'+iix )

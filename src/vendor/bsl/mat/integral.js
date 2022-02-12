@@ -1,7 +1,9 @@
 ( function() {
-	var sn	        = window.b$l.sn;
-    var mat         = sn( 'mat' );
-    var integral    = sn( 'integral', mat );
+    var {
+        sn, mat,
+        haz,
+    } = window.b$l.nstree();
+    var integral = sn( 'integral', mat );
 
 
     /*
@@ -25,6 +27,8 @@
 
     integral.polynomial = polynomial;
     integral.simpleIntegration = simpleIntegration;
+    //integral.integral_f_of_x_dx = simpleIntegration;
+
     integral.equalizeAreas = equalizeAreas;
     return;
 
@@ -119,7 +123,6 @@
         endGX,
     }) {
         var INTEGRATION_POINTS_LIM = 10000;
-
         var origin = simpleIntegration({
             fun,
             baseArray : [ startFX, endFX ],

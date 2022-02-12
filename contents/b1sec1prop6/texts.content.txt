@@ -1,0 +1,313 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+
+<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+
+<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+
+<div book-reference-id="latin"></div>
+
+
+*::*corollary|latin
+
+
+<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+
+
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English",
+  "default" : "1"
+}
+*..*
+
+If a ¦P¦body¦¦ revolve in any ¦orbit¦¦ whatever about an inmobile center ¦S¦¦
+in a non-resisting space, and describe any ¦timearc¦arc¦¦ you please just now nanscent, in the
+least possible time, and the ¦P,saggita¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus¦the chord¦¦ and being produced ¦SP¦passes through¦¦ ¦S¦the center of forces¦¦, the centripetal force in the middle of the ¦timearc¦arc¦¦ will be as
+¦P,saggita¦the sagitta¦¦ directly and the time twice inversely [i.e in the duplicate
+ratio of the time].
+<br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+
+*::*proof|english
+{
+}
+*..*
+
+For the ¦P,saggita¦the sagitta¦¦ in the given time is as the force
+
+(<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=english,subessayId=cor-1234">by Proposition 1 Corollary 4</a>),
+
+and by increasing the time in any ratio you please, because ¦timearc¦the arc¦¦
+increases in the same ratio, the ¦P,saggita¦the sagitta¦¦ is increased in the
+duplicate of that ratio
+
+(<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
+
+Therefore, it is as the force once and the time twice. Let the duplicate ratio of
+the time be removed on both sides, and the force comes out to be as the sagitta
+directly and the time twice inversely.
+<br><br>
+Q.E.D.
+<br><br>
+The same thing is also easily demonstrated
+
+(<a target="_blank" href="?conf=sappId=b1sec1lemma10,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
+
+<br><br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+<br><br>
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+
+If a ¦P¦body P¦¦ in revolving about ¦S¦center S¦¦ describe the ¦APQ¦curved line APQ¦¦,
+while the ¦PZ PR¦straight line ZPR¦¦ touch ¦APQ¦that curve¦¦ at any point you please
+¦P¦¦, and from any other point on the curve you please ¦Q¦¦ there be drawn ¦QR¦¦ to
+the ¦PZ PR¦tangent¦¦ parallel to the distance ¦SP¦¦, and ¦QT¦¦ be dropped perpendicular
+to that distance ¦SP¦¦, the centripetal force will be inversely as the solid
+sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦, provided that the quantity of that solid always be taken
+which it has ultimately, when the points ¦P¦¦ and ¦Q¦¦ come
+together. For ¦QR¦¦ is equal to the ¦P,saggita¦sagitta¦¦ of
+¦timearc¦double the arc QP¦¦ at whose
+middle ¦P¦¦ is; and twice the triangle ¦SQ QP SP¦SQP¦¦, or ¦SP¦¦x¦QT¦¦, is propotional
+to the time in which that ¦timearc¦double arc¦¦ is described; and therefore may be
+used to represent the time.
+
+
+<div book-reference-id="Donahue"></div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+If the ¦orbit¦¦ is either a circle, or touches or cuts a ¦curvatureCircle¦circle¦¦ concentrically, that is, contains with a circle the least angle of contact or section, having the same curvature and the same ¦PC¦radius of curvature¦¦ at the point ¦P¦¦; and if ¦PV¦¦ be a chord of this ¦curvatureCircle¦circle¦¦, drawn from the ¦P¦body¦¦ through the ¦S¦centre of force¦¦; the centripetal force will be reciprocally as the solid '¦SY¦¦'² x '¦PV¦¦'. For '¦PV¦¦' is '¦QP¦¦'² / '¦QR¦¦'.
+
+<br><br>
+<div book-reference-id="Motte-3rd">Page 111.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 5",
+  "subessay" : "corollary5"
+}
+*..*
+
+Hence if any ¦orbit¦curvilinear figure APQ¦¦, be given, and in it be given also the point ¦S¦¦
+to which the centripetal force is ¦SP¦always directed¦¦,
+the law of centripetal force may be found by which ¦P¦any body you please P¦¦,
+perpetually drawn back from a ¦PY¦rectilinear course¦¦, will be confined to
+the ¦orbit¦perimeter of that figure¦¦, and will trace it out by revolving.
+
+That is, one computes the solid sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦ ... [that is] inversely proportional to this force.
+We shall give example of this procedure in the following problems.
+
+
+
+<div book-reference-id="Donahue"></div>
+
+
+
+
+
+
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework</b>
+<br><br>
+
+Force = acceleration 𝗮 which is
+<br><br>
+
+    <div style="text-align:center;">
+             𝗮 = 𝗿˙˙ = ¦P,saggita¦𝕻¦¦˙˙ = <br>
+        2lim(¦P,saggita¦𝕻¦¦/δ²) <br>
+        δ → 0.
+    </div>
+
+where ¦P,saggita¦sagitta 𝕻 ¦¦
+
+<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#saggitae">
+is defined here</a>,
+<br>
+
+
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework.</b>
+<br><br>
+
+Force = acceleration 𝗮 which is
+<br><br>
+
+    <div style="text-align:center;">
+             𝗮 = 𝗿˙˙ = K² d²¦P,saggita¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
+    </div>
+<br>
+
+where ¦P,saggita¦sagitta 𝕻 ¦¦
+
+<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#saggitae">
+is defined here</a>,
+
+K is "Kepler constant" of constant sectorial speed:
+<br><br>
+
+    <div style="text-align:center;">
+        S˙ = K = 1/2[<b>rₒvₒ</b>]<sub>𝗸</sub>, <br>
+        where 𝗸 = <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx">[𝗶𝗷].</a>
+    </div>
+<br>
+
+
+<b><i>In Book's context:</i></b>
+<br><br>
+
+From (*):
+    <div style="text-align:center;">
+             𝗮 = 2K² lim ¦P,saggita¦𝕻¦¦/Δ²<sub>S</sub><br>
+        Δ<sub>S</sub> 🠆 0.
+    </div>
+
+where Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, and
+    <div style="text-align:center;">
+        Δ<sub>S</sub> = ΔS + o(δ³)
+    </div>
+where δ = Δt.
+
+¦QR¦Saggtta QR¦¦ differs from ¦P,saggita¦sagitta 𝔓¦¦ with o(δ²), but this difference
+is irrelevant in our ultimate expressions.
+<br><br>
+
+Hence, returning to Books notations, we add only specific coefficient 2K² to solution :
+    <div style="text-align:center;">
+         a = 2K² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦)² ) at δ 🠆 0 <br>
+    </div>
+<br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+<b>CalculusXX <a target="_blank" href="?conf=sappId=addd-kepler-task">solution</a></b> adds numeric coefficient 8K² to Book's solution:
+<br><br>
+
+    <div style="text-align:center;">
+        (k') ⇒ v² = 4K²/ 'SY'² <br>
+        (f') ⇒ 𝛺¦PC C¦ R<sub>c</sub>¦¦𝗯<sub>𝗸</sub>f<sub>e</sub> = v² = 4K²/ '¦SY¦¦'², <br>
+                      𝛺 ¦PC C¦ R<sub>c</sub>¦¦𝗯<sub>𝗸</sub> = 1/2 cos(θ)2¦PC C¦ R<sub>c</sub>¦¦ = '¦PV¦¦'/2 <br>
+        For case of attracting force, f = f<sub>e</sub>, and <br>
+        f = 8K² / ('¦SY¦¦'² '¦PV¦¦') <br>
+    </div>
+<br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 5",
+  "subessay" : "corollary5"
+}
+*..*
+
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework</b>
+<br><br>
+
+alternative solution is <a target="_blank" href="?conf=sappId=addd-kepler-task">here.</a>
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+

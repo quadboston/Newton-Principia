@@ -111,7 +111,9 @@
 
             function doFitScene()
             {
-                sDomN.sliderGroup$.css( 'top', stdMod.bgImgH.toFixed() + 'px' );
+                sDomN.sliderGroup$.css( 'top',
+                    ( stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp ).toFixed() + 'px'
+                );
             }
         };
 

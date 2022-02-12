@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, d8d_p, globalCss, eachprop,
+        sn, $$, globalCss, eachprop, d8dp,
         fconf, sconf, sDomF, rg, ssD,
         stdMod,
     } = window.b$l.apptree({
@@ -31,7 +31,7 @@
         /// sets framework of draggee-points
         ///======================================
         var medD8D = stdMod.medD8D =
-        d8d_p.createFramework({
+        d8dp.crePointFW_BSLd8d1CHAMBER({
             findDraggee                         : findDraggee,
             dragSurface                         : stdMod.simScene,
             //DRAG_POINTS_THROTTLE_TIME           : fconf.DRAG_POINTS_THROTTLE_TIME,
@@ -79,7 +79,7 @@
                 doProcess           : doProcessE,
                 orientation         : 'axis-y',
             };
-            medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         }
     }; 
     //==========================================

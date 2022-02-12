@@ -60,6 +60,7 @@
     // //\\ does gets zippee name from cmd
     //=====================================================
     $add_git_repo = false;
+    $skips_images = false;
     if( count($argv) < 2 )
     {
         //too risky: $path_to_dir = '../../../vendor';
@@ -70,9 +71,13 @@
         {
             exit( 'file ' . $path_to_dir . " does not exist\n" );
         }
-        if( count($argv) > 2 )
+        if( count($argv) > 2 and $argv[2] === 'addgit' )
         {
             $add_git_repo = $argv[2] == 'addgit';
+        }
+        if( count($argv) > 3 and $argv[3] == 'skipimgages' )
+        {
+            $skips_images = true;
         }
     }
     //=====================================================
@@ -223,8 +228,19 @@
     cli( "cp -R $folder_to_zip $name_of_copy",
          "cloning the zippee to new name" );
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
-    //.excludes .git from zip if requested
-    $command .= $add_git_repo ? '' : ' -x *.git* ';
+
+    $skipper = '';
+    if( $skips_images ) {
+        //.excludes images from zip if requested
+        $skipper = ' *.png *.svg *.jpeg *.jpg *.gif ';
+    }
+    if( !$add_git_repo ) {
+        //.excludes .git from zip if requested
+        $skipper .= ' *.git/* ';
+    }
+    if( $skipper ) {
+        $command .= ' -x ' . $skipper;
+    }
 
     cli( $command, 'zipping up the copy' );
     cli( "rm -rf $name_of_copy", "removing zippee copy" );

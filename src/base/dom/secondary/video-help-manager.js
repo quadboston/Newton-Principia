@@ -14,7 +14,6 @@
     var fconf       = sn('fconf',fapp);
     var sconf       = sn('sconf',fconf);
     var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point');
 
     var sapp        = sn('sapp'); 
     var sDomF       = sn('dfunctions', sapp);

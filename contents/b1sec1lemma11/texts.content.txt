@@ -233,7 +233,7 @@ AD, Ad, as of the chords and arcs AB, AB.
     </div>
     <br>
     where R is a curvature radius,
-    saggitae a=¦BD¦¦,
+    sagittae a=¦BD¦¦,
     chord e=¦AB¦¦
     <br><br>
     The same holds for arc ¦arc-AB¦  \( \overset{\frown} {AB} \; \) ¦¦ 
@@ -346,7 +346,7 @@ AD, Ad, as of the chords and arcs AB, AB.
     <br>
 
         <div style="text-align:center">
-            saggitae ¦BD¦a¦¦ = <b>nr</b> = κs<sup>2</sup>/2 + ...<br>
+            sagitta ¦BD¦a¦¦ = <b>nr</b> = κs<sup>2</sup>/2 + ...<br>
         </div>
         <div style="text-align:center">
            for chord, ¦AB¦e¦¦<sup>2</sup> = (<b>τr</b>)<sup>2</sup> +

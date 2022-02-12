@@ -35,7 +35,22 @@
         //------------------------------
         //alternatives listText or iarrays
         listText, 
-        iarrays, //itemArrays
+        iarrays, //itemArrays, api=
+        /*
+            [
+                [
+                    dummy-non-used,
+                    'caption',
+                    //optionals:
+                    default,
+
+                    //not implemented yet, easy
+                    //to do,
+                    'caption for false'
+                ],
+                ...
+            ]
+        */
         //------------------------------
 
         //optionals:
@@ -47,6 +62,8 @@
 
         optionIsChanged_cb, //callback
         ogStyle,
+        truthBackgroundColors, //array of two colors: [for true, for false]
+        trueChoiceIndex,
     }) {
 
         var ogRack                  = {};
@@ -97,6 +114,9 @@
                 bosize,
                 ogRack,
                 optionIsChanged_cb,
+
+                truthBackgroundColors,
+                trueChoiceIndex,
             })
         });
         enables0disables( enable0disable );
@@ -155,12 +175,15 @@
         //optionals args are below this line:
         ocls,       //string
         ostate,
+        truthBackgroundColors,
+        trueChoiceIndex,
     }){
+        // **api-opt-group-click-cb-othis
         var othis = {
             ocaption,
             ocls,
             oid,
-            ix,
+            ix,  //appar. item index in items-array
             optionIsChanged_cb,
             ostate,
         };
@@ -205,10 +228,24 @@
 
         function ostate2gui( ostate )
         {
+            var dom$ = othis.dom$;
             if( ostate ) {
-                othis.dom$.addClass( 'oselected' );
+                dom$.addClass( 'oselected' );
+                if( truthBackgroundColors ) {
+                    dom$.css( 'background-color',
+                        trueChoiceIndex === ix ?
+                            truthBackgroundColors[ 0 ] :
+                            truthBackgroundColors[ 1 ]
+                    );    
+                }
             } else {
-                othis.dom$.removeClass( 'oselected' );
+                dom$.removeClass( 'oselected' );
+                var placeHolderStyle = dom$().style.cssText;
+                if( truthBackgroundColors && placeHolderStyle ) {
+                    var newStyle = placeHolderStyle.replace( /\s*background-color\s*:[^;]+(;|$)/, '' );
+                    //ccc( 'former='+placeHolderStyle + ' new='+newStyle );
+                    dom$().style.cssText = newStyle;
+                }
             }
         }
     }

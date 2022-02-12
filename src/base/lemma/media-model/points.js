@@ -64,7 +64,6 @@
             if( has( pt, 'classmark' ) ){
                 cssClass += pt.classmark + ' ';
             }
-
             pt.pname                = pName;
             //optional attrs
             pt.stroke               = han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
@@ -96,6 +95,15 @@
             //if( pName === 'fret-0-0' ) {
             //    ccc( 'makes point ' + pName + ' cssclass=' + wwClass );
             //}
+
+            ///this thing is static yet
+            /*
+            //fails
+            if( has( pt, 'title' ) ) {;
+                svgel$.ch( $$.c( 'title' ).html( pt.title ) );
+                //svgel$.e( 'mouseover', 
+            }
+            */
 
         } else {
             ////optimized, updating version of pos2pointy

@@ -47,11 +47,20 @@
                 //      which we don't provide as this "argc" prop;
         };
         //ccc( 'does create ' + pointWrap.spinnerClsId + ' ' + pointWrap.pname);
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 
-        function doProcess( arg )
-        {
+        function doProcess(
+            //see: **api-doProcessWrap
+            /*
+                down_move_up    : down_move_up,
+                surfMove        : surfMove,
+                moveIncrement   : moveIncrement,
+                dragWrap        : selectedElement_flag,
+                point_on_dragSurf,
+            */
+            arg
+        ){
             var pointWrap = arg.pointWrap;
             var ach = pointWrap.achieved;
             switch( arg.down_move_up ) {

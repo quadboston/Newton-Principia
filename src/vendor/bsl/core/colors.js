@@ -263,6 +263,7 @@
 
     ns.builds_zebraNColors_array = builds_zebraNColors_array;
     ns.hslo_2_low8high = hslo_2_low8high;
+    ns.rgbStr2digitsArray = rgbStr2digitsArray;
     return;
 
 
@@ -340,7 +341,22 @@
         return { rgba_low, rgba_high, lowOpacity, highOpacity }; 
     }
 
-
+    ///Inputs:      rgbStr, aka #FFFFFF or FFFFFF,
+    ///         optionals:
+    ///             normalize, if truthy, then r,g,b are divided to 255,  
+    function rgbStr2digitsArray( rgbStr, normalize )
+    {
+        rgbStr = rgbStr.replace('#','');
+        var r = parseInt( rgbStr.substring(0,2), 16 );
+        var g = parseInt( rgbStr.substring(2,4), 16 );
+        var b = parseInt( rgbStr.substring(4,6), 16 );
+        if( normalize ) {
+            r = Math.min( r/255, 1 );
+            g = Math.min( g/255, 1 );
+            b = Math.min( b/255, 1 );
+        }
+        return [ r, g, b ];
+    }
 
 }) ();
 

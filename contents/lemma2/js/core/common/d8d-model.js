@@ -1,6 +1,7 @@
 // //\\// application-level d8d module
 ( function () {
     var {
+        d8dp,
         stdMod, rg,
     } = window.b$l.apptree({
     });
@@ -11,7 +12,6 @@
     var dpdec       = ns.sn('drag-point-decorator');
     var fapp        = ns.sn('fapp' );
     var fmethods    = sn('methods',fapp);
-    var d8d_p       = sn('d8d-point');
 
     var fconf       = ns.sn('fconf',fapp);
     var sconf       = ns.sn('sconf',fconf);
@@ -59,7 +59,7 @@
 
         function createDragModel() {
             medD8D = stdMod.medD8D =
-                d8d_p.createFramework ({
+                d8dp.crePointFW_BSLd8d1CHAMBER ({
                     findDraggee                         : findDraggee,
                     dragSurface                         : sDomN.medRoot,
                     //DRAG_POINTS_THROTTLE_TIME           : false,
@@ -109,7 +109,7 @@
             //if( pointWrap.spinnerClsId === "base-2" ) {
             //    ccc('assigned achieved', achieved, " point wrap", pointWrap);
             //}
-            medD8D.pointWrap_2_dragWrap({
+            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
                 pointWrap       : pointWrap,
                 doProcess       : doProcess,
                 //-------------------------

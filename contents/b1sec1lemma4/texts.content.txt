@@ -118,6 +118,13 @@ will be] in the ulitmate ratio of parallelogram to parallelogram, that is
   "subessay" : "non-similar-curves"
 }
 *..*
+
+<b>Motivation</b>
+<br><br>
+For two 3 dimenstional bodies f and g, there is Bonaventura Cavalieri principle proposing equalitity of their volumes. Applied for one-dimensional ordinates y for functions y=f(x) and y=g(x), the principle requires equality of these functions. The principle still holds a proportion of their areas, F=kG, if functions are proportional: f=kg. But what if functions are not
+proportional? It turns out if to find Darboux sums sequence for f and for g that correstponding bars of each sum are proportional or ultimately proportional, then areas F and G are also proportional. Do such sums exist? Yes, "nearly" always.
+<br><br>
+
 <b>Construction of uniformely converging ratio of partition parallelograms for non-similar curves</b>
 <br><br>
 This algorithm was offered by John Scott.

@@ -46,11 +46,32 @@
             originX_onPicture,
             originY_onPicture,
 
-
-            pictureWidth,
+            pictureWidth,   //todm: do phase out ... to svgModel_width
             pictureHeight,
+            svgModel_width,
+            svgModel_height,
+
             mod2inn_scale,
         } = stdMod.sconf;
+
+
+        //-----------------------------------------------------------
+        // //\\ transition from poor name in legacy code
+        //      , removing "pictureWidth", ...
+        //-----------------------------------------------------------
+        pictureWidth = ( svgModel_width || svgModel_width === 0 ) ?
+                         svgModel_width : pictureWidth;
+        sconf.pictureWidth = pictureWidth;
+        sconf.svgModel_width = pictureWidth;
+
+        pictureHeight = ( svgModel_height || svgModel_height === 0 ) ?
+                          svgModel_height : pictureHeight;
+        sconf.pictureHeight = pictureHeight;
+        sconf.svgModel_height = pictureHeight;
+        //-----------------------------------------------------------
+        // \\// transition from poor name in legacy code
+        //-----------------------------------------------------------
+
 
         originX_onPicture = typeof modorInPicX === 'undefined' ?
                             originX_onPicture : modorInPicX;
@@ -121,7 +142,7 @@
             //.......................................
 
 
-
+            // **api innerMediaHeight
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
             //----------------------------------
@@ -153,9 +174,12 @@
             eachprop( originalPoints, ( op, pname ) => {
                 if( Array.isArray( op ) ) {
                     ////handles array of originalPoints
+
+                    //allows set this props without setting them to each point in orig. def.
                     var doPaintPname = has( op, 'doPaintPname' ) ? op.doPaintPname : true;
                     var draggableX   = haz( op, 'draggableX' );
                     var draggableY   = haz( op, 'draggableY' );
+
                     op.forEach( ( opInArr, inIx ) => {
                         opInArr.draggableX = has( opInArr, 'draggableX' ) ?
                                              opInArr.draggableX : draggableX;
@@ -295,6 +319,8 @@
                 //----------------------------------------------------------
                 // //\\ sets up point letters
                 //----------------------------------------------------------
+                rgX.caption         = haz( op, 'caption' );
+                rgX.title           = haz( op, 'title' );
                 rgX.hideCaption     = haz( op, 'hideCaption' );
                 var letterOffset    = estimatesSizeScale * ( has( op, 'letterRotRadius' ) ?
                                       op.letterRotRadius : LETTER_ROTATION_RADIUS_PER_1000 );

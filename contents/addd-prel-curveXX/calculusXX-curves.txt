@@ -21,6 +21,9 @@
         italic <i>a</i> is a scalar coordinate of <b>a</b>: <br>
         
         <b>a</b> = <i>a</i><b>b</b>                         <br>
+        <br>Special unit vectors:                           <br>
+            𝘂 = 𝘃 / v,                                           <br>
+            𝗲 = 𝗿 / r,
     </div>
 <br><br>
 

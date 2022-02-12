@@ -77,6 +77,12 @@
             annotation : "",
         },
 
+        {   sappId : 'b1sec1prop6',
+            book : 'Book 1',
+            caption : 'Sec. II. Proposition VI. Theorem V',
+            annotation : "",
+        },
+
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
             caption : 'Sec. V. Lemma XX',
@@ -117,6 +123,16 @@
             caption : 'Calculus XX. Curves.',
             annotation : "Comments to the Book",
         },
+
+        {   sappId : 'addd-kepler-task',
+            book : 'Addendum',
+            caption : 'Kepler Task',
+            annotation : "Kepler task",
+        },
+
+
+
+
     ];
 
 }) ();

@@ -12,7 +12,6 @@
         ssD,
         ssF,
         rg,
-        d8d_p,
         stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -279,7 +278,7 @@
                 });
                 argc.orientation = orientation;
             }
-            medD8D.pointWrap_2_dragWrap( argc );
+            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         }
     }; 
     //==========================================

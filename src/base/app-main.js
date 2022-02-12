@@ -418,6 +418,7 @@
             //======================================================
 
             //================================================================
+            // **api simSceSvg_narrowestAsp
             //Asp when scene svg is shrinked to minimal possible value,
             //when svg-width fits bg image width:
             //todo rename with simSceSvg_narrowestAsp

@@ -24,7 +24,7 @@ and
 
 <b>Euclid Magnitudes</b>.
 
-Let M be a positive semigroup (p.s.) which is commutative, operation-wise totally ordered, positive non-empty semigroup. In other words:
+Let M be a positive semigroup (p.s.) which is commutative, operation-wise totally ordered, positive, non-empty, semigroup. In other words:
 <br><br>
                                             <div style="text-align:center;">
                                             <table style="display:inline-block; text-align:left"">
@@ -448,7 +448,7 @@ Given definition is equivalent to following definitions II and III:
 
 <b>Ratios Equality Definition III.</b>
 
-Iff r' ~ r'', then for every q it is either greater both of them, smaller both of them, or equal to both of them. In explicit form (<a href="#ctxt-euclid"><b>Euclid V.5</b></a>):
+Iff r' ~ r'', then for every q, it is either greater both of them, smaller both of them, or equal to both of them. In explicit form (<a href="#ctxt-euclid"><b>Euclid V.5</b></a>):
 <br><br>
 
 m'/<i>m'</i> <b>~</b> m''/<i>m''</i> \( \; \overset{df} \iff \; \) 

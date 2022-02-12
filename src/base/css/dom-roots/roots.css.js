@@ -67,6 +67,7 @@
                 overflow    : visible;
                 padding     : 0;
                 margin      : 0;
+                box-sizing  : border-box;
             }
             /* browser-controlled height ends here: next components
                may take absolute positioning
@@ -75,6 +76,7 @@
                 position    : absolute;
                 left        : 0;
                 top         : 0;
+                box-sizing  : border-box;
             }
             .bsl-legend-root {
                 position    : absolute;

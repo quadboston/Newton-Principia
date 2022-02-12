@@ -14,9 +14,7 @@
         var colorStoneBlue  = ccs['color-stone-blue']; 
         var colorLight      = ccs['color-light']; 
         var borderRadius    = ccs['border-radius']; 
-
-
-
+        var cssDisplay      = fconf.doDisplayPageTopNavigatMenu ? 'flex' : 'none';
 
 
         // //\\ css /////////////////////////////////////////
@@ -24,7 +22,7 @@
 
             .page-top-nav-bar {
                 background:     transparent;
-                display:        flex;
+                display:        ${cssDisplay};
                 align-items:    flex-start;
                 width:          100%;
                 padding-top:    20px;

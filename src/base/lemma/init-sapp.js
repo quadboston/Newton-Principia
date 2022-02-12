@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns, sn, has, haz, haff, eachprop, d8d_p,
+        ns, sn, has, haz, haff, eachprop,
         ss, sapp, fapp, sconf, fconf, ssF, sDomF, sDomN, ssD, exegs,
         studyModsActivated, studyMods, amode, rg,
     } = window.b$l.apptree({

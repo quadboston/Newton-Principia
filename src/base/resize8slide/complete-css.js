@@ -62,7 +62,7 @@
         //----------------------------------------------------------------
         stdMod.svgScene.style.width = '100%';
         //amends desktop setting
-        sDomN.simSScene$.css( 'height', 'auto' );
+        //sDomN.simSScene$.css( 'height', 'auto' );
         var imgDom$ = haz( stdMod.imgRk, 'dom$' );
         imgDom$ && imgDom$  //if image exists
             .css( 'width', '100%' )
@@ -195,6 +195,7 @@
 
         //---------------------------------------------------------
         // //\\ legend css
+        //      note: for STATIC_LEGEND, legend dom is ignored
         //---------------------------------------------------------
         if( wideScreen_flag ) {
             //todo ???

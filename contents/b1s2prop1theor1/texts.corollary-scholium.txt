@@ -152,26 +152,27 @@ Pages 123 - 141.
      
 <a target="_blank"  title="go to content"
    href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
-From Taylor expansion at t₀ = ¦B¦¦ and ∆t = δ:
+From polynomial expansion at t₀ = ¦B¦¦ and ∆t = δ:
 </a>
 <br><br>
     <div style="text-align:center;">
-            ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + ... , <br>
+            ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + 𝗼(δ²), <br>
             ¦AB¦𝝙⁻¦¦ = ¦AB¦𝗿(t₀-δ) - 𝗿(t₀)¦¦. <br>
    </div>
-Sagittae and subtense diagonals are
+<a name="saggitae" id="saggitae"></a>
+Sagitta 𝕻  bisecting "main" diagonal 𝕯  are correspondingly:
     <div style="text-align:center;">
-        ¦BV¦𝗱¦¦ = ¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦ =
-                𝗮₀δ² + 𝝰*<sub>₀,δ</sub>δ², <br>
+        ¦BU¦𝕻¦¦ = (¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦)/2 =
+                𝗮₀/2δ² + 𝗼<sub>2</sub>(δ²), <br>
 
-         ¦AC¦𝗗¦¦ = ¦BC¦𝝙⁺¦¦ - ¦AB¦𝝙⁻¦¦,
+         ¦AC¦𝕯¦¦ = ¦BC¦𝝙⁺¦¦ - ¦AB¦𝝙⁻¦¦,
     </div>
 
 and
 
     <div style="text-align:center;">
-        ¦BV¦𝗱¦¦ / δ² → 𝗮₀, &nbsp; &nbsp; &nbsp; (sagg)  <br>
-        ¦BV¦d¦¦ / ¦AC¦D²¦¦ → a₀/4v₀², <br>
+        ¦BU¦𝕻¦¦ / δ² → 𝗮₀/2, &nbsp; &nbsp; &nbsp; (sagg)  <br>
+        ¦BU¦𝔓¦¦ / ¦AC¦𝔇²¦¦ → a₀/8v₀², <br>
         when δ → 0.
     </div>
 <br><br>
@@ -186,8 +187,8 @@ and
 From (sagg):
 <br><br>
     <div style="text-align:center;">
-        ¦EZ¦d<sub>e</sub>¦¦ / ¦BV¦d<sub>b</sub>¦¦ =
-            ( ¦BV¦d<sub>e</sub>¦¦ / δ² ) / ( ¦BV¦d<sub>b</sub>¦¦ / δ² ) →
+        ¦EW¦𝔓<sub>e</sub>¦¦ / ¦BU¦𝔓<sub>b</sub>¦¦ =
+            ( ¦EW¦𝔓<sub>e</sub>¦¦ / δ² ) / ( ¦BU¦𝔓<sub>b</sub>¦¦ / δ² ) →
             a<sub>e</sub>/a<sub>b</sub>, <br>
         when δ → 0.
    </div>

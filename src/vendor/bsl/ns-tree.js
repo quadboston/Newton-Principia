@@ -7,19 +7,19 @@
     var $$          = ns.$$;
     var sn          = ns.sn;
     var cssp        = ns.CSS_PREFIX;
-    //won't work: if forgotten to place in
-    //essential part: var d8d         = ns.d8d;
     var nsheap      = sn('heap');
     var nsmethods   = sn('methods');
     var plugins     = sn('plugins');
     var html        = sn('html');
     var bezier      = sn('bezier');
     var mat         = sn('mat');
+    var mcurve      = sn( 'mcurve', mat );
+    var integral    = sn( 'integral', mat );
     var chemistry   = sn('chemistry');
     var sv          = sn('svg');
     var nssvg       = sn('svg');
     var dpdec       = sn('drag-point-decorator');
-    var d8d_p       = sn('d8d-point');
+    var d8dp        = sn( 'd8dp' );
     var tframes     = sn('tframes');
     return;
 
@@ -66,11 +66,13 @@
             html,
             bezier,
             mat,
+            mcurve,
+            integral,
             chemistry,
             dpdec,
             sv,
             nssvg,
-            d8d_p,
+            d8dp,
             plugins,
             tframes,
         };

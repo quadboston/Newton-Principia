@@ -24,8 +24,6 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
 
-    var d8d_p       = sn('d8d-point');
-
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
 
@@ -92,7 +90,7 @@
             pointWrap           : pointWrap,
             doProcess           : doProcess_slider_point,
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
     }
 
 
@@ -141,7 +139,7 @@
         pointWrap.spinnerClsId    = 'tp-m';
         //todm ... not straight
         pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-        medD8D.pointWrap_2_dragWrap({
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
             doProcess           : doProcess_slider_m,
             pointWrap           : rg.m,
             tooltip             : "Selects Newton Polynomial of degree m",

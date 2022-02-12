@@ -1,12 +1,11 @@
 ( function() {
     var {
-        ns, sn, has, haz, eachprop,
+        ns, sn, has, haz, eachprop, d8dp,
         sconf,
         fconf,
         fmethods,
         ssF,
         sapp, sDomN, sDomF,
-        d8d_p,
         amode, studyMods,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
@@ -50,7 +49,7 @@
         /// lemma modules
         ///****************************************************************
         var medD8D = stdMod.medD8D =
-        d8d_p.createFramework({
+        d8dp.crePointFW_BSLd8d1CHAMBER({
             findDraggee                         : findDraggee,
             dragSurface                         : stdMod.simScene,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,

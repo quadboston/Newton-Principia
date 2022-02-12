@@ -29,7 +29,7 @@
     ///==========================================
     /// creates dom select box
     ///==========================================
-    function cre__optgroup({
+    function cre__optgroup({  //abandoned
 
         //api: see ...test.js
         //------------------------------

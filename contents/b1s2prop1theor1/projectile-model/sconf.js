@@ -25,9 +25,6 @@
 
     function init_conf()
     {
-        //nspaste( sconf, commonsconf );
-        //sconf.bgImgAsp = 0.5;
-
         //------------------------------------
         // //\\ original model parameters
         //------------------------------------

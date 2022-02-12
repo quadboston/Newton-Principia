@@ -33,6 +33,7 @@
             z[ level ]  = xx;
             P[ level ]  = PP;
         }
+        // **api-outputs---divided-diff
         return { coefficients:F, calculate_polynomial, derivativeAtZero }; 
 
 
@@ -57,7 +58,8 @@
             return [ Ftop, Ftop[0][0], Ftop[0][1], ];
         }
 
-        //calculates Newton's polynomial at point x
+        //calculates Newton's polynomial at point x:
+        // f : x |-> p(x), p(x) in |R
         function calculate_polynomial( x )
         {
             var nn      = n;

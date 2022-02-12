@@ -360,7 +360,7 @@
 
                             setMenu( aspect_id, 'aspect', essayHeader );
                             //******************************************************************
-                            // //\\ collects decPoint_parentClasses for d8d_p.createFramework
+                            // //\\ collects decPoint_parentClasses for d8dp.createFramework
                             //      media-drag-decoration-enabled-aspect
                             //      todm: looks like useless artifact.
                             //******************************************************************
@@ -372,7 +372,7 @@
                             //      apparent side effect is increasing a specifity for
                             //      some CSS in "decorator.css.js"
                             //
-                            //used in: d8d_p.createFramework({
+                            //used in: d8dp.createFramework({
                             //         decPoint_parentClasses : fconf.dragPointDecoratorClasses,
                             var wDecArr = sn( 'dragPointDecoratorClasses', fconf, [] );
 
@@ -381,7 +381,7 @@
                                 wDecArr.push( wDecorAspect );
                             }
                             //******************************************************************
-                            // \\// collects decPoint_parentClasses for d8d_p.createFramework
+                            // \\// collects decPoint_parentClasses for d8dp.createFramework
                             //******************************************************************
                         }
 

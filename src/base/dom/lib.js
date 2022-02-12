@@ -23,17 +23,17 @@
     function createButton({
         caption,
         buttonUniversalId,      //must be safe for JavaScript and CSS
-        scenarioEventOnClick,   //aka 'graph-is-plotted'
-        clickCallback,
+        clickCallback,          //real callback
         cssText,
         noTopicScenario,
+            scenarioEventOnClick,   //aka 'graph-is-plotted'
     }){
         var butt = sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
             .addClass( buttonUniversalId )
             .csst( cssText )
             .to( sDomN.simSScene$ )
-            .e( 'click', () => {
-                clickCallback && clickCallback();
+            .e( 'click', ( ev ) => {
+                clickCallback && clickCallback( ev );
                 !noTopicScenario && ssF.executesTopicScenario( scenarioEventOnClick );
             })
             .ch( $$.c( 'div' )
@@ -49,6 +49,7 @@
         {
             butt.dom$.css( 'display', doUnlock ? 'block' : 'none' );                        
         }
+        return butt;
     }
 
 

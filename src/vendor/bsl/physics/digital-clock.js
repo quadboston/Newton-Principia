@@ -11,16 +11,20 @@
 
 
 
-
-
+    //Inputs: **api-input---digital-screen-clockRack
+    //Returns: see **api-return---digital-screen-clockRack...
     function initsDigitalClock({
 
         //below are optional parameters
         parentDom,
 
-        //'float seconds' === SSSS.MMMM
+        //'float seconds' causes this format: SSSS.MMMM
         //or
-        //'0123' === 'hours, mins, secs, ms'
+        //  (misleading instruction? : '0123' === 'hours, mins, secs, ms' )
+
+        // apparently: '01' means hours and minutes,
+        //             '02' means hours, minutes and seconds
+
         //  exampe:
         //      'float seconds' means 'sssss.mmm'
         //      '12'            means 'mins:secs'
@@ -64,6 +68,8 @@
 
 
         var clcokRack = {};
+
+        // **api-return---digital-screen-clockRack1
         var domStore = clcokRack.domStore = {};
         clcokRack.durationScale = 1;
         clcokRack.clockLoop_cb = clockLoop_cb;
@@ -112,6 +118,7 @@
 
             var seconds         = (liveT - milliseconds) / 1000;
             secondsRem          = (seconds % 60);
+            //prepends 0 before seconds if seconds do take only one decimal position
             var secondsRemStr   = secondsRem  < 10 ? '0' : '';
             secondsRemStr       = secondsRemStr + secondsRem;
 
@@ -150,6 +157,7 @@
 
         function buildHtml()
         {
+            // **api-return---digital-screen-clockRack2
             clcokRack.clockTable$ = domStore.clockTable$ = $$.c( 'table' )
                 .to( parentDom )
                 .addClass( clockId + '-table' )
@@ -188,6 +196,7 @@
 
         function setsDurationScale( durationScale )
         {
+            // **api-return---digital-screen-clockRack3
             clcokRack.durationScale = durationScale;
         }
 

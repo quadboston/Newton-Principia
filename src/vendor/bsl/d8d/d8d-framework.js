@@ -4,13 +4,12 @@
 //        which is supplied at initialization time.
 ( function() {
     var {
-        ns,
-        haz,
-        d8d_p,
+        ns, d8dp, haz,
         dpdec,
     } = window.b$l.nstree();
-    d8d_p.createFramework = createFramework;
-    d8d_p.throttles_eventMove = throttles_eventMove;
+    d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
+
+    d8dp.throttles_eventMove = throttles_eventMove;
     var createdFrameworks = [];
     return;
 
@@ -23,7 +22,7 @@
     /// //\\ inits common framework for the set of  point-draggees
     ///      There can be as many frameworks as one wishes.
     ///===========================================================
-    function createFramework({
+    function crePointFW_BSLd8d1CHAMBER({
             //// api
             findDraggee, //function which finds draggeePoint 
             dragSurface,
@@ -60,9 +59,25 @@
         var selectedElement_flag;
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
-        var { givenClickEvent } = ns.d8d({
+        var { givenClickEvent } = d8dp.creFW_BSLd8d1BASE({
             surface : dragSurface,
-            d8d_cb_middle2lowest : d8d_cb_middle2lowest, //common handler
+
+
+            //most basic handler between basic-d8d-constructor and app.,
+            //receives data from low-level "driver", receives moves and
+            //       surface points, processes "doProcess"-like calls,
+            //       on detected drag-lements: calls aka:
+            //       selectedElement_flag.doProcessWrap()
+            //          which has interface:
+            /*
+                            * *api-doProcessWrap 
+                            down_move_up    : down_move_up, //flag, string
+                            surfMove        : surfMove,     //possibly = move from start to current,
+                            moveIncrement   : moveIncrement,
+                            dragWrap        : selectedElement_flag,
+                            point_on_dragSurf,
+            */
+            d8d_cb_middle2lowest,
 
             frameworkId,
             dontStopDownAfteshocks,
@@ -80,7 +95,11 @@
             givenClickEvent,
         };
         createdFrameworks.push( createdFramework );
-        return { pointWrap_2_dragWrap, updateAllDecPoints, givenClickEvent };
+        return {
+            pointWrap_2_dragWrap_BSLd8d2PIPE : pointWrap_2_dragWrap,
+            updateAllDecPoints,
+            givenClickEvent,
+        };
 
 
 
@@ -126,6 +145,7 @@
 
         ///Creates drag handler for each specific point-draggee.
         ///Usually called when each model point is created to be dragged.
+        // **api-pointWrap_2_dragWrap
         function pointWrap_2_dragWrap( api )
         {
             //---------------------------------------------
@@ -259,12 +279,32 @@
             //=====================================================
             // //\\ tiny wrap around doProcess
             //=====================================================
-            function doProcessWrap( arg )
-            {
+            function doProcessWrap(
+                //see: **api-doProcessWrap
+                //see: **supplied-to-api
+                /*
+                    down_move_up    : down_move_up,
+                    surfMove        : surfMove,
+                    moveIncrement   : moveIncrement,
+                    dragWrap        : selectedElement_flag,
+                    point_on_dragSurf,
+                */
+                arg
+            ){
                 //logical bonus: pointWrap may be missed in
                 //doProcess closure ...
                 arg.pointWrap = pointWrap; 
-                var appFeedback = doProcess( arg );
+                var appFeedback = doProcess(
+                    //see: **api-doProcessWrap
+                    /*
+                        down_move_up    : down_move_up,
+                        surfMove        : surfMove,
+                        moveIncrement   : moveIncrement,
+                        dragWrap        : selectedElement_flag,
+                        point_on_dragSurf,
+                    */
+                    arg
+                );
                 if( 'do disappear d8d' === appFeedback ) {
                     selectedElement_flag = null;
                     //ccc( 'doProcessWrap: appFeedback=', appFeedback );
@@ -339,8 +379,9 @@
         ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
 		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
-        function d8d_cb_middle2lowest( surfMove, down_move_up, point_on_dragSurf, event, moveIncrement )
-        {
+        function d8d_cb_middle2lowest(
+            surfMove, down_move_up, point_on_dragSurf, event, moveIncrement
+        ){
             var fw = createdFramework;
             //vital-for-mobile
             //ns.d('fram/w: case="' + down_move_up + '"');
@@ -370,6 +411,7 @@
                     //      which will add a "sugar" "just-a-clcik" and
                     //      even click behind screening surface
                     var appFeedback = selectedElement_flag.doProcessWrap({
+                        //// **supplied-to-api
                         down_move_up    : down_move_up,
                         surfMove        : surfMove,
                         moveIncrement   : 0,
@@ -382,8 +424,9 @@
                 case 'up':
                     //.is throttled: does condence move and up events
                     selectedElement_flag.doProcessWrap({
-                        down_move_up    : down_move_up,
-                        surfMove        : surfMove,
+                        //// **api-doProcessWrap 
+                        down_move_up    : down_move_up, //flag, string
+                        surfMove        : surfMove,     //possibly = move from start to current,
                         moveIncrement   : moveIncrement,
                         dragWrap        : selectedElement_flag,
                         point_on_dragSurf,

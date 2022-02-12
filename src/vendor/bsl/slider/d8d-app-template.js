@@ -1,7 +1,9 @@
 // //\\// Creates an object which encapsulates slider functionality.
 (function() {
-	var ns	= window.b$l;
-
+    var {
+        ns, d8dp,
+    } = window.b$l.apptree({
+    });
 
 
 
@@ -82,7 +84,7 @@
         doSet( default_absFrac, 'doSetDoneValue' );
 
         ///calls low-level drag-and-drop-MicroAPI
-        var this_d8d = ns.d8d(
+        var this_d8d = d8dp.creFW_BSLd8d1BASE(
         {
 	        surface : surface0attachee,
 	        d8d_cb_middle2lowest  : d8d_cb_middle2lowest,

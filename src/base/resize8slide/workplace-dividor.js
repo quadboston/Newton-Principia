@@ -1,7 +1,7 @@
 ( function() {
     var {
         //nsd, //vital-for-mobile
-        $$, nspaste, cssp, d8d_p,
+        $$, nspaste, cssp, d8dp,
         fapp, fmethods, fconf, sDomN, wrkwin, dividorFractions,
     } = window.b$l.apptree({
     });
@@ -51,7 +51,7 @@
         //.........................................
         // creates lower-layer framework
         //.........................................
-        var D8D_fw = fmethods.panesD8D = d8d_p.createFramework({
+        var D8D_fw = fmethods.panesD8D = d8dp.crePointFW_BSLd8d1CHAMBER({
             dragSurface : fapp.fappRoot$(),
             //todM : do this:
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
@@ -63,7 +63,7 @@
         ///============================================================
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
-        D8D_fw.pointWrap_2_dragWrap({
+        D8D_fw.pointWrap_2_dragWrap_BSLd8d2PIPE({
             pointWrap           : wrkwin.dividor,
             update_decPoint     : 'update_decPoint_default',
             doProcess           : doProcess,

@@ -24,8 +24,6 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
 
-    var d8d_p       = sn('d8d-point');
-
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
 
@@ -95,7 +93,7 @@
             pointWrap           : rg.T,
             doProcess           : doProcess_sliderT,
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 
         function doProcess_sliderT( arg )
@@ -132,7 +130,7 @@
             pointWrap           : rg.a,
             doProcess           : doProcess_slider_a,
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 
         function doProcess_slider_a( arg )

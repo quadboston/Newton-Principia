@@ -19,6 +19,7 @@
     //====================================================
     to_fconf =
     {
+        doDisplayPageTopNavigatMenu : true,
         lemmaHasHomeButton          : true,
         homeButtonName              : 'Contents',
         theorionTab_nonClickable    : false,

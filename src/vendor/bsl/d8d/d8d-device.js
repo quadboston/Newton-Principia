@@ -1,6 +1,7 @@
 //***************************************************************************************************
 // //\\//   "maximally closes to device" level drag and drop processor;
-//          ns.d8d - a method of the layer between mouse/touch events and application
+//          ns.d8dp.creFW_BSLd8d1BASE 
+//              - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
 //                  - submits results to app-processor, d8d_cb_middle2lowest
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
@@ -13,13 +14,16 @@
     var ns = window.b$l;
     var haz = ns.haz;
     var eventId = 0;
+    var d8dp = ns.sn( 'd8dp' ); //d8d platform framework
 
 
 
     ///****************************************************************
 	/// d8d object constructor
+    //  this is most basic d8d constructor sitting on the "bottom" of
+    //  all d8d constructs of the application,
     ///****************************************************************
-	ns.d8d = function ( arg )
+	ns.d8d = d8dp.creFW_BSLd8d1BASE = function ( arg )
 	{
         //------------------------------------------
         // //\\ input arguments
@@ -72,7 +76,8 @@
 
         var returned = {
             removeEvents,
-            givenClickEvent : doGiveClickEvent && givenClickEvent,
+            //givenClickEvent : doGiveClickEvent && givenClickEvent,
+            givenClickEvent, //feature added: always give option of giving event,
         }
         return returned; //exports d8d-object of this module
 

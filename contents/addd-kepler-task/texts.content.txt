@@ -1,0 +1,109 @@
+
+
+*::*proof|addendum
+{
+  "mediaBgImage" : null,
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "definition"
+}
+*..*
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework.</b>
+<br><br>
+
+<b>Kepler Task</b>
+<br><br>
+
+For given ¦orbit¦¦ and point ¦S¦¦, find force which is directed to point ¦S¦¦ and makes ¦P¦body¦¦
+moving along this ¦orbit¦¦. Body's mass is 1.
+<br><br>
+
+<b><i>Analysis for arbitrary speed</i></b>
+<br><br>
+Consider "roller-coaster" bound to ¦orbit¦¦ without friction. For arbitrary twice differetiable speed function v(s), one can always find force 𝗳(s) which makes body moving along this ¦orbit¦¦ with this speed. "s" is orbit's length parameter.
+<br><br>
+
+<i>Proof sketch.</i>
+Tangent acceleration must be
+    <div style="text-align:center;">
+        aᵤ = v˙ = v'ₛs˙ = v'ₛv. &nbsp;&nbsp;&nbsp;&nbsp; (*)
+    </div>
+
+If to establish this acceleration along the path s and if to use starting
+value of speed v(s(tₒ)) at time tₒ, then calculated speed will be equal to v(t).
+In other words, applied tangent force aᵤ will cause coaster to
+move along orbit with given speed.
+<br><br>
+
+Normal acceleration will be aₙ = κv².
+Full force acting on the body will be
+    <div style="text-align:center;">
+             𝗳(s) = 𝗮 = aᵤ𝘂 + aₙ𝗻.
+    </div>
+<br><br>
+
+<b><i>I. Analysis for constant sector speed</i></b>
+<br><br>
+<b><i>I.1. Context.</i></b>
+
+Now instead of arbitrary speed, take speed v which makes sector speed constant.
+
+    <div style="text-align:center;">
+        1/2[𝗿𝘃]𝗸 = 1/2 vr[<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx">𝗲𝘂</a>]<sub>𝗸</sub> = K = const,
+
+        &nbsp;&nbsp;&nbsp;&nbsp;(k)<br>
+    </div>
+<br>
+
+We may use following notations:<br>
+Angles:<br>
+  &nbsp;&nbsp;&nbsp; ω is angle from 𝗲 to 𝘂. 𝛺 =ᵈᶠ sin(ω) = [𝗲𝘂]𝗸, <br>
+  &nbsp;&nbsp;&nbsp; θ is angle from 𝗻 to 𝗲. 𝛳 =ᵈᶠ cos(θ) = -𝗲𝗻 = 𝛺 𝗯<sub>𝗸</sub>, <br>
+  when recalling that 𝗯 = [𝘂𝗻] is a binormal and 𝗯𝗸 = 𝗯<sub>𝗸</sub> is either 1 or -1. <br>
+<br>
+
+<b><i>I.2. Solution.</i></b>
+By differentiating (k), we find [𝗿𝗮] = 0 and 𝗳 // 𝗲. Hence our two starting equations are:
+<br>
+    <div style="text-align:center;">
+             𝗳 = -𝗲f<sub>e</sub>, &nbsp;&nbsp;&nbsp; (f) <br>
+        rv𝛺 = 2K. &nbsp;&nbsp;&nbsp;&nbsp; (k')<br>
+     </div>
+<br>
+
+We project force (f) on to curvature's norm 𝗻
+    <div style="text-align:center;">
+        -𝗲𝗻f<sub>e</sub> = κv², or
+                    𝛺 𝗯<sub>𝗸</sub>f<sub>e</sub> = κv², &nbsp;&nbsp;&nbsp; (f') <br>
+     </div>
+<br>
+
+and, excluding v by substituting (k') into (f'), we obtain solution for
+f<sub>e</sub> dependent only on shape of the orbit:
+    <div style="text-align:center;">
+        r²𝛺³𝗯<sub>𝗸</sub>f<sub>e</sub> = κ4K², &nbsp;&nbsp;&nbsp; (s) <br>
+     </div>
+<br>
+All magnitudes in (s) are functions of curve's length parameter s. All functions except f<sub>e</sub> are known.
+<br><br>
+
+We restrict domain of definition of solution 𝗳(s) on pieces of orbit
+[s₋ + ε, s₊ - ε] where s₋, s₊ are the points where 𝗿 // 𝘃. At these points, sector
+speed must be 0, so Kepler's law would be broken. Preserving Kepler's law
+in neighbourhoods like (s₋, s₋ + ε) would require "infinite" force which is
+out of scope in our essay.
+<br><br>
+
+<i><b>Expansion 𝗳(</b>s<b>) to 𝗳(𝗿)</b></i>
+<br><br>
+
+
+
+
+<br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+

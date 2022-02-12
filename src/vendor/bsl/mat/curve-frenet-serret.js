@@ -35,6 +35,7 @@
 
 
     ///object which calculates f.s. orts triplet along the curve
+    ///misses a lot of things, curvature vector and value, ...
     function creFrenetSerret({
 
         //2d/3d curve function
@@ -74,7 +75,7 @@
             //speed = first derivative
             var dr_dt = [ dxdt, dydt, dzdt ];
             var drdt_unit = mat.unitVector( dr_dt );
-            var vv = drdt_unit.unitVec;
+            var uu = drdt_unit.unitVec;
 
             //second derivative point before
             var t_A = t-D2_ST_HALF;
@@ -104,11 +105,11 @@
 
             var binorm = [
                 //t*dr2dt2
-                vv[1]*nn[2] - vv[2]*nn[1],
-                -vv[0]*nn[2] + vv[2]*nn[0],
-                vv[0]*nn[1] - vv[1]*nn[0],
+                uu[1]*nn[2] - uu[2]*nn[1],
+                -uu[0]*nn[2] + uu[2]*nn[0],
+                uu[0]*nn[1] - uu[1]*nn[0],
             ];
-            //ccc( vv, nn, binorm );
+            //ccc( uu, nn, binorm );
 
             return {
                 rt,

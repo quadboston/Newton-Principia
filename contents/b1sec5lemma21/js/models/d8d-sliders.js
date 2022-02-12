@@ -24,8 +24,6 @@
     var ssD         = sn('ssData',ss);
     var ssF         = sn('ssFunctions',ss);
 
-    var d8d_p       = sn('d8d-point');
-
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
 
@@ -92,7 +90,7 @@
             doProcess           : doProcess_sliderG,
             orientation         : 'axis-y',
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 
         function doProcess_sliderG( arg )
@@ -129,7 +127,7 @@
             doProcess           : doProcess_sliderAA,
             orientation         : 'rotate',
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 
         function doProcess_sliderAA( arg )
@@ -164,7 +162,7 @@
             pointWrap           : rg.H,
             doProcess           : doProcess_sliderH,
         };
-        medD8D.pointWrap_2_dragWrap( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
 
         function doProcess_sliderH( arg )
         {

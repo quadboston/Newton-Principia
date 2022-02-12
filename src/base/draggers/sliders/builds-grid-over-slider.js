@@ -35,7 +35,12 @@
         rgTopPoint,     //only must have medpos ready
         svgParent,      //f.e., stdMod.svgScen
         mod2inn_scale,  //f.e. sconf.mod2inn_scale
+        gridColor,
+        gridStrokeWidth,
     }){
+
+        gridColor = gridColor || 'black';
+        gridStrokeWidth = gridStrokeWidth || '1';
         //--------------------------------------------------------
         // //\\ builds grid over the slider
         //--------------------------------------------------------
@@ -47,7 +52,9 @@
             pivots  : gridPivots,
             parent  : svgParent,
             style   : {
-                opacity : 0.5,
+                opacity : 0.5+'',
+                stroke : gridColor+'',
+                'stroke-width' : gridStrokeWidth+'',
             },
         });
 
@@ -101,8 +108,9 @@
                         pivots  : gridPivots,
                         parent  : svgParent,
                         style   : {
-                            opacity : 1,
-                            'stroke-width' : 1,
+                            opacity : 1+'',
+                            stroke : gridColor+'',
+                            'stroke-width' : gridStrokeWidth+'',
                         },
                     });
                 }
@@ -139,9 +147,10 @@
                 pivots  : gridPivots,
                 parent  : svgParent,
                 style   : {
-                    opacity : 1,
+                    opacity : '1',
                     //for thick grades, width is bigger than from thin grades:
-                    'stroke-width' : 2,
+                    'stroke-width' : '2',
+                    stroke : gridColor+'',
                 },
             });
 
@@ -165,9 +174,9 @@
                     'font-size'     : 10,
                     'font-weight'   : 'normal',
                     'stroke-width'  : '1',
-                    'stroke'        : '1',
-                    'fill'          : 'black',
-                    'opacity'       : 0.5,
+                     fill           : gridColor+'',
+                     stroke         : gridColor+'',
+                     opacity        : '0.5',
                 },
             });
             //----------------------------------------------------------  

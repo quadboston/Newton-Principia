@@ -90,9 +90,14 @@
         return rgX;
     }
 
+    function move_2_updates(
+        //see: pWrap.move_2_updates(
+        //"fullMoveInsideMathModel",
+        //is in model units except for media-mover(-as-a-whole)
+        dragMove,
 
-    function move_2_updates( dragMove, mouseOnSurf )
-    {
+        mouseOnSurf
+    ){
         var stdMod = studyMods[ amode.submodel ];
         if( haz( sconf, 'dragHidesPictures' ) ){
             sDomF.detected_user_interaction_effect();
@@ -113,7 +118,7 @@
         //// ordinary case
         //// dragging ordinary model point
         var newPos = [
-            this.achieved.achieved[0] + dragMove[0],
+            this.achieved.achieved[0] + dragMove[0], //"fullMoveInsideMathModel"
             this.achieved.achieved[1] - dragMove[1],
         ];
         var accepted = this.acceptPos( newPos, dragMove );

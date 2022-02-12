@@ -2,7 +2,7 @@
     var {
         ns, $$, fmethods, haff, haz, has, nspaste, eachprop,
         wrkwin,
-        fconf, sconf, ssD, sDomN, dividorFractions,
+        fconf, sconf, ssD, ssF, sDomN, dividorFractions,
         studyMods, amode,
     } = window.b$l.apptree({
         sDomNExportList :
@@ -11,16 +11,14 @@
             bgImgW : 1000,      //fake initial value before resize ran
         },
     });
+    //allowed to be overriden
+    ssF.gets_LEGEND_FIXED_FRACTION = gets_LEGEND_FIXED_FRACTION;
 
     //:spatial adjustments
-    var LEGEND_MIN_HOR_MARGIN   = 15;
-    var VERTICAL_SAFE_HEIGHT_1  = 2; //0;
-    var VERTICAL_SAFE_HEIGHT_2  = 2; //0;
-    var HORIZONTAL_SAFE_WIDTH   = 1; //30;
-                                  //=spare space for possible scroll bars or misfits ...
     //ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
     var ESS_MIN_WIDTH           = 370;
     var MODEL_MIN_WIDTH         = 300; //when dragging
+    var RIGHT_WORKAREA_MARGIN   = 0.015; //fraction
 
     /// chain-dispatches callback "resizeHappened"
     ( function() {
@@ -57,16 +55,17 @@
     ) {
         var stdMod      = studyMods[ amode.submodel ];
 
-        var bgImg       = stdMod.imgRk.dom$();
-
         //-------------------------------------------------------------
+        // todm: do we ever need this?
         // asp
         //     NOTE: stdMod.bgImgAsp thing is irrelevant to maintaining
         //           veritcal offsets hierarchy,
         //           the hierarchy id defined by "inner..." or
         //           "picture..." dims,
-        stdMod.bgImgAsp = haz( stdMod.sconf, 'bgImgAsp' ) ||
-                          bgImg.naturalHeight / bgImg.naturalWidth;
+        //           ??? see // **api innerMediaHeight
+        //var bgImg       = stdMod.imgRk.dom$();
+        //stdMod.bgImgAsp = haz( stdMod.sconf, 'bgImgAsp' ) ||
+        //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
 
         if(
@@ -102,10 +101,11 @@
         // //\\ phase 1. detects parameters
         //========================================
         var stdMod      = studyMods[ amode.submodel ];
-        var winW        = window.innerWidth - HORIZONTAL_SAFE_WIDTH;
-        var SSceneH     = window.innerHeight - VERTICAL_SAFE_HEIGHT_1 -
-                          sDomN.pageNavTopBar$.box().height;
-
+        var winW        = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
+        var SSceneH     = window.innerHeight -
+                          ( fconf.doDisplayPageTopNavigatMenu ?
+                            sDomN.pageNavTopBar$.box().height : 0
+                          );
         ///-------------------------------------------
         ///slider group patch for lemmas 2 and 3
         ///-------------------------------------------
@@ -114,7 +114,6 @@
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH +=10; //nicer
-            ccc( lemma2_slidersH );
             sDomN.sliderGroup$
                 .css( 'position', 'absolute' )
                 ;
@@ -123,40 +122,47 @@
         //-------------------------------------------
         // //\\ calculates legend
         //-------------------------------------------
-        var legendWidth = 0;
-        var legendHeight = 0;
-        //measures container legend box children
-        stdMod.legendRoot$.children( child => {
-            var box = child.getBoundingClientRect();
-            var wWidth = box.width;
-            var wHeight = box.height;
-            //ccc( 'box.width = ' + box.width.toFixed() +
-            //     'box.height = ' + box.height.toFixed() );
+        const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
+        if( STATIC_LEGEND ) {
+            ////makes synch with babylon and custom svg easier,
+            ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
+            var legendHeight = SSceneH * STATIC_LEGEND;
+            //for start, simply takes remainder from txt
+            var legendWidth = winW - ESS_MIN_WIDTH;
+        } else {
+            var legendWidth = 0;
+            var legendHeight = 0;
+            //measures container legend box children
+            stdMod.legendRoot$.children( child => {
+                var box = child.getBoundingClientRect();
+                var wWidth = box.width;
+                var wHeight = box.height;
+                //ccc( 'box.width = ' + box.width.toFixed() +
+                //     'box.height = ' + box.height.toFixed() );
+                if( legendWidth < wWidth ) {
+                    legendWidth = wWidth;
+                }
+                if( legendHeight < wHeight ) {
+                    legendHeight = wHeight;
+                }
+            });
+            //measures container legend box itself
+            var wLegBox = stdMod.legendRoot$().getBoundingClientRect();
+            var wWidth = wLegBox.width;
             if( legendWidth < wWidth ) {
                 legendWidth = wWidth;
             }
+            legendHeight += 20; //todm: patch: adds gap at bottom page
+            if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
+                legendHeight += 20; //todm: patch: adds gap at bottom page
+            }
+            var wHeight = wLegBox.height;
             if( legendHeight < wHeight ) {
                 legendHeight = wHeight;
             }
-        });
-        //measures container legend box itself
-        var wLegBox = stdMod.legendRoot$().getBoundingClientRect();
-        var wWidth = wLegBox.width;
-        if( legendWidth < wWidth ) {
-            legendWidth = wWidth;
+            //ccc( 'lbox.width = ' + wWidth.toFixed() +
+            //     'lbox.height = ' + wHeight.toFixed() );
         }
-        legendHeight += 20; //todm: patch: adds gap at bottom page
-        if( fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3' ) {
-            legendHeight += 20; //todm: patch: adds gap at bottom page
-        }
-        var wHeight = wLegBox.height;
-        if( legendHeight < wHeight ) {
-            legendHeight = wHeight;
-        }
-        //ccc( 'lbox.width = ' + wWidth.toFixed() +
-        //     'lbox.height = ' + wHeight.toFixed() );
-
-        legendWidth += 2*LEGEND_MIN_HOR_MARGIN;
         if( legendWidth + ESS_MIN_WIDTH > winW ) {
             //ccc( 'Legend width = ' + legendWidth + ' and is too big for ' +
             //     'screen width = ' + winW );
@@ -184,7 +190,7 @@
                     - draggerMove;
         }
         proposed_rightW = Math.max(
-            consideredLegendWidth,
+            STATIC_LEGEND ? 0 : consideredLegendWidth,
             MODEL_MIN_WIDTH,
             proposed_rightW
         );
@@ -204,6 +210,7 @@
         dividorFractions[0] = essayWidth/winW;
         dividorFractions[1] = (winW - essayWidth) / winW;
         if( doDividorSynch ) {
+            //todm get rid of this: use down event for dividor to set this:
             wrkwin.dividor.achieved.achieved = nspaste( [], dividorFractions )
             fmethods.panesD8D.updateAllDecPoints();
         }
@@ -216,26 +223,37 @@
         // //\\ phase 4. allocates widths and heights
         //===============================================
         var simSceneH = SSceneH
-             - lemma2_slidersH
-             - sDomN.helpBoxAboveMedia$.box().height //=helpBoxHeight
-             - VERTICAL_SAFE_HEIGHT_2;
-        var svgW_H = simSceneH / stdMod.simSceSvg_narrowestAsp;
-        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
+            - lemma2_slidersH
 
-        //but, really available width can be less:
+            //todo make variable via fconf....
+            - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
+
+        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
+        //but, really available width can be smaller:
+
+        //***************************************************************************
+        //svgW_min and svgH_min are narrowestASP-synched narrowest dimensions
         var svgW_min = Math.min(
                             proposed_rightW - sconf.main_horizontal_dividor_width_px,
                             svgW_Leg );
         var svgH_min = svgW_min * stdMod.simSceSvg_narrowestAsp;
+        //***************************************************************************
 
         //-------------------------------------------------------------
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if( svgW_Leg + consideredLegendWidth < proposed_rightW &&
-            //if legend aspect ratio is too small, then
-            //doesn't give right side space to legend: will look silly,
-            simSceneH/proposed_rightW < 3*legendHeight/consideredLegendWidth
+        if( 
+            //never wide if ...FIXED...
+            !STATIC_LEGEND
+            &&
+            (
+                svgW_Leg + consideredLegendWidth < proposed_rightW &&
+                ////narrow screen,
+                //if legend aspect ratio is too small, then
+                //doesn't give right side space to legend: will look silly,
+                simSceneH/proposed_rightW < 3*legendHeight/consideredLegendWidth
+            )
         ) {
             ////wide screen
             var wideScreen_flag = true;
@@ -243,10 +261,13 @@
             var svgW            = proposed_rightW
                                     - sconf.main_horizontal_dividor_width_px
                                     - consideredLegendWidth
-                                    - 10;
-            var bgImgW          = Math.min( svgW_H, svgW );
-            var legendMargin    = LEGEND_MIN_HOR_MARGIN;
-            var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
+                                    - 10; //given gap before legend
+            var bgImgW          = Math.min(
+                                    simSceneH / stdMod.simSceSvg_narrowestAsp,
+                                    svgW );
+            var legendMargin    = 0;
+            //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
+            var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
             var simSceneW       = bgImgOffset * 2 +
                                   bgImgW; // + Math.max( 0, proposed_rightW - medSupW );
             var svgSceneW       = svgW; //proposed_rightW - legendWidth;
@@ -270,15 +291,19 @@
             //:does set setting legendMarginr
             //-------------------------------------------------
             //does centering legend below the media
-            var legendMargin = Math.max( LEGEND_MIN_HOR_MARGIN,
-                //note: consideredLegendWidth includes 2*LEGEND_MIN_HOR_MARGIN:
-                ( ( proposed_rightW - consideredLegendWidth + 2*LEGEND_MIN_HOR_MARGIN
-                ) ) / 2 );
+            if( STATIC_LEGEND ) {
+                ////for STATIC_LEGEND, legend dom is ignored
+                var legendMargin = 0;
+            } else {
+                var legendMargin = Math.max( 0,
+                    ( ( proposed_rightW - consideredLegendWidth
+                    ) ) / 2 );
+            }
             var bgImgOffset = Math.max( 0,
                 ( ( proposed_rightW - bgImgW 
-                - 20    //todm:
+                //- 20    //todm:
                 ) ) / 2 );
-            var simSceneW = bgImgOffset * 2 + bgImgW;
+            var simSceneW = proposed_rightW; // bgImgOffset * 2 + bgImgW;
             var svgSceneW = simSceneW;
         }
 
@@ -288,7 +313,6 @@
                 .css( 'width', '300px' ) //todm patch
                 .css( 'left', (( simSceneW - 300 ) / 2 ).toFixed() + 'px' )
                 ;
-            ccc( sliderGroup$() );
         }
         //===============================================
         // \\// phase 4. allocates widths and heights
@@ -302,19 +326,26 @@
         // //\\ exports sizes
         //--------------------------------------------------------------------
         stdMod.simSceneW    = simSceneW;
-        stdMod.simSceneH    = simSceneH;
-        stdMod.svgSceneW    = svgSceneW;
-        stdMod.svgSceneH    = svgSceneH;
+        stdMod.simSceneH    = simSceneH; //contains legend for narrow screens
+        stdMod.svgSceneW    = svgSceneW; //common width: =simSceneW
+        stdMod.svgSceneH    = svgSceneH; //no leg.
 
-        stdMod.bgImgOffset  = bgImgOffset;
-        stdMod.bgImgW       = bgImgW;
-        stdMod.bgImgH       = bgImgW * stdMod.bgImgAsp;
+        //-------------------------------------------------------
+        //these 3 things carry
+        //  place-reserved-to-fit-bg-image === minimal-place-for-svg
+        //  in CSS-model
+        stdMod.bgImgOffset  = bgImgOffset; //positive or 0
+        stdMod.bgImgW       = bgImgW;      //svgSceneW - offsets
+        //used only in lemma2:
+        //stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;   
+        //-------------------------------------------------------
 
-        var pic2svgvb       = sconf.innerMediaWidth / stdMod.bgImgW;
+        //see **api innerMediaHeight
+        var picCSS_2_svgmodel = sconf.innerMediaWidth / stdMod.bgImgW;
         //apparently "basic svg width( bgPictureWidth ) + margins(due widening screen)
-        stdMod.svgVB_W      = stdMod.svgSceneW * pic2svgvb;
-        stdMod.svgVB_H      = sconf.innerMediaHeight;
-        stdMod.svgVB_offsX  = -stdMod.bgImgOffset * pic2svgvb;
+        stdMod.svgVB_W        = stdMod.svgSceneW * picCSS_2_svgmodel;
+        stdMod.svgVB_H        = stdMod.svgSceneH * picCSS_2_svgmodel;//sconf.innerMediaHeight;
+        stdMod.svgVB_offsX    = -stdMod.bgImgOffset * picCSS_2_svgmodel;
         //--------------------------------------------------------------------
         // \\// exports sizes
         //--------------------------------------------------------------------
@@ -324,6 +355,7 @@
         // //\\ phase 5. finalizes widths and heights
         //===============================================
         makes_svgViewBox();
+        doesTopContainersSizing( stdMod );
 
         wrkwin.buildsNonMobile({
             stdMod,
@@ -358,14 +390,15 @@
     function preparesMobile()
     {
         var stdMod          = studyMods[ amode.submodel ];
-        var wid             = window.innerWidth;
+        var wid             = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
+
         stdMod.bgImgW       = wid;
-        stdMod.bgImgH       = wid * stdMod.bgImgAsp;
+        //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;
 
         stdMod.simSceneW    = wid;
         stdMod.simSceneH    = wid * stdMod.simSceSvg_narrowestAsp;
-        stdMod.svgSceneW    = stdMod.svgSceneW;
+        stdMod.svgSceneW    = stdMod.simSceneW;
         stdMod.svgSceneH    = stdMod.simSceneH; //useless?
 
         stdMod.svgVB_W      = sconf.innerMediaWidth;
@@ -379,10 +412,23 @@
                 ;
         }
         makes_svgViewBox();
-
+        doesTopContainersSizing( stdMod );
         wrkwin.buildsMobile({
             stdMod,
         });
+    }
+
+
+    function doesTopContainersSizing( stdMod )
+    {
+        sDomN.simSScene$
+            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            ;
+        stdMod.simScene$
+            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            ;
     }
 
 
@@ -393,20 +439,28 @@
     ///=============================================================================
     function makes_svgViewBox()
     {
-        var stdMod          = studyMods[ amode.submodel ];
+        var stdMod      = studyMods[ amode.submodel ];
+        var offset_x    = stdMod.svgVB_offsX.toFixed(4);
+        var offset_y    = '0';
+        var width       = stdMod.svgVB_W.toFixed(4);
+        var height      = stdMod.svgVB_H.toFixed(4);
+        // **api svg viewable area horizontal legend
+        // |x=offset_x < 0 ------------------- |x=0---------------x=width-1|
+        // |<-------------- offset_x -------- >|<----narrow width -------->|
+        // |<--------------------- width --------------------------------->|
+        // |<---beginning-of-view-----------------------------end-of-view->| 
+
+        var viewBox = 
+            offset_x + ' ' + offset_y + ' ' +
+            width +    ' ' + height;
         stdMod.mmedia.setAttributeNS(
-            null,
-            'viewBox',
-            //landing: ...'viewBox', '0 0 ' +
-            stdMod.svgVB_offsX.toFixed(4) + ' 0 ' + 
-
-            //landing: sconf.innerMediaWidth + ' ' +
-            stdMod.svgVB_W.toFixed(4) + ' ' +
-
-            //landing: sconf.innerMediaHeight );
-            stdMod.svgVB_H.toFixed(4)
+            null, 'viewBox', viewBox,
         );
     }
 
+    function gets_LEGEND_FIXED_FRACTION()
+    {
+        return false;
+    }
 }) ();
 

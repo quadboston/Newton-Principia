@@ -104,10 +104,12 @@
         ///Returns own property if property does exist. Otherwise, returns undef.
         ///Protects obj from being non-object-like.
         function hazz( obj, property ) {
-            return ( typeof obj === 'object' || typeof obj === 'function' ) &&
-                   shortcutInClosure_for_speed.call( obj, property )
-                   ?
-                   obj[ property ] : undef;
+            return ( ( typeof obj === 'object' && obj !== null ) ||
+                     typeof obj === 'function' ) &&
+                     shortcutInClosure_for_speed.call( obj, property
+                   ) ?
+                     obj[ property ] :
+                     undef;
         };
 
 
@@ -973,6 +975,8 @@
     globalCss.getText       = getText;
     globalCss.clearStyleTag = clearStyleTag;
     globalCss.replace       = replace;
+    globalCss.replaceNow    = replace;
+
     nsmethods.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
     nsmethods.camelName2cssName = camelName2cssName;
     return;

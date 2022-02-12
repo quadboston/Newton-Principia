@@ -146,6 +146,8 @@ Version 0.9887
     2) theor2, coroll. is done:
        http://localhost/np/prj/ver/index.src.html?conf=sappId=b1s2prop2theor2
 
+9947
+    intermediate zips can be done without images
 
 
 

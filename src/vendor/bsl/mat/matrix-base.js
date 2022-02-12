@@ -10,8 +10,31 @@
 
 
 
+
     /*
-        Title:      summ of vectors with weights a,b
+    //subtracts vectors
+    function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
+    */
+
+    mat.unitVector          = unitVector;
+    mat.vector2normalOrts   = vector2normalOrts;
+    mat.p1_to_p2            = p1_to_p2;
+    mat.linesCross          = linesCross;
+    mat.dropPerpendicular   = dropPerpendicular;
+    mat.dropLine            = dropLine;
+    mat.pointPlusTVector    = dropLine;
+    mat.lineSegmentsCross   = lineSegmentsCross;
+    mat.angleBetweenLines   = angleBetweenLines;
+    mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
+    mat.sm                  = sm;
+    mat.sm3                 = sm3;
+    return;
+
+
+
+
+    /*
+        Purpose:    to get aA+bB,  combination of vectors A and B,
         Action:     returns vectors linear combination aA+bB
         Condition:  for 2 dimensional vectors by default,
                     if A.length === 3, then A,B treatead as 3 dimensional.
@@ -22,7 +45,7 @@
                 A,b,B   - comb A+bB
                 a,A,b,B - comb aA+bB
     */
-    mat.sm = function( arg )
+    function sm( arg )
     {
         var a = 1;
         var b = 1;
@@ -52,23 +75,8 @@
         return ret;
     }
 
-    /*
-    //subtracts vectors
-    function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
-    */
 
-    mat.unitVector          = unitVector;
-    mat.vector2normalOrts   = vector2normalOrts;
-    mat.p1_to_p2            = p1_to_p2;
-    mat.linesCross          = linesCross;
-    mat.dropPerpendicular   = dropPerpendicular;
-    mat.dropLine            = dropLine;
-    mat.pointPlusTVector    = dropLine;
-    mat.lineSegmentsCross   = lineSegmentsCross;
-    mat.angleBetweenLines   = angleBetweenLines;
-    mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
-    mat.sm3                 = sm3;
-    return;
+
 
 
 
@@ -108,7 +116,7 @@
 
 
     ///Given 2d-vector in input, returns unit normal to it.
-    ///Normal = anticlockwise PI/2-turned given vector.
+    ///Normal = anticlockwise-PI/2-turned-given-vector.
     ///
     ///3d functionality is not enough tested:
     ///Given 3d-vector in input, returns two unit normals to it.
