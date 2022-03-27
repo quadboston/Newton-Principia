@@ -53,6 +53,7 @@
         //----------------------------------
         // //\\ common values
         //----------------------------------
+        rg[ 'sagitta' ].undisplay = true;
         rg.curvatureCircle.undisplay = false;
         var media_scale = toreg( 'media_scale' )();
 
@@ -80,8 +81,8 @@
             rg.Z.undisplay = true;
             rg.V.undisplay = true;
             rg.PV.undisplay = true;
-            rg[ 'P,saggita' ].undisplay = true;
-            rg[ 'saggita' ].undisplay = true;
+            rg[ 'P,sagitta' ].undisplay = true;
+            //rg[ 'sagitta' ].undisplay = true;
 
             rg.Y.undisplay = true;
             rg.SY.undisplay = true;
@@ -173,30 +174,37 @@
             rg.PC.undisplay = true;
             rg[ 'Q,rrminus' ].undisplay = false;
             rg[ 'rrminus' ].undisplay = false;
-            rg.saggita.undisplay = false;
-            rg[ 'P,saggita' ].undisplay = false;
+            //rg.sagitta.undisplay = false;
+            rg[ 'P,sagitta' ].undisplay = false;
             rg[ 'P,rrminus' ].undisplay = false;
 
-        } else if( theorion === 'corollary' && subessay === 'corollary3' &&
-                   aspect === 'addendum'
+        } else if( theorion === 'corollary' && subessay === 'corollary3'
         ){
-            rg.Q.hideD8Dpoint = true;
-            rg.Q.d8d_find_is_LOCKED = true;
+            if( aspect === 'addendum' ) {
+                rg.Q.hideD8Dpoint = true;
+                rg.Q.d8d_find_is_LOCKED = true;
+                rg.Q.undisplay = true;
+                rg.QP.undisplay = true;
+                rg.QR.undisplay = true;
+                rg.R.undisplay = true;
+            } else {
+                rg.Q.hideD8Dpoint = false;
+                rg.Q.d8d_find_is_LOCKED = false;
+                rg.Q.undisplay = false;
+                rg.QP.undisplay = false;
+                rg.QR.undisplay = false;
+                rg.R.undisplay = false;
+            }
 
             rg.APQ.undisplay = true;
-            rg.Q.undisplay = true;
-            rg.R.undisplay = true;
             rg.Z.undisplay = true;
             rg.V.undisplay = false;
             rg.PV.undisplay = false;
-            rg[ 'P,saggita' ].undisplay = true;
-            rg[ 'saggita' ].undisplay = true;
+            rg[ 'P,sagitta' ].undisplay = true;
+            //rg[ 'sagitta' ].undisplay = true;
 
             rg.Y.undisplay = false;
             rg.SY.undisplay = false;
-            rg.R.undisplay = true;
-            rg.QR.undisplay = true;
-            rg.QP.undisplay = true;
             rg.SQ.undisplay = true;
             rg.T.undisplay = true;
             rg.QT.undisplay = true;
@@ -216,8 +224,8 @@
             rg.V.undisplay = true;
             rg.PV.undisplay = true;
             rg.SQ.undisplay = true;
-            rg.saggita.undisplay = true;
-            rg[ 'P,saggita' ].undisplay = true;
+            //rg.sagitta.undisplay = true;
+            rg[ 'P,sagitta' ].undisplay = true;
             rg.PZ.undisplay = true;
             rg.Z.undisplay = true;
 

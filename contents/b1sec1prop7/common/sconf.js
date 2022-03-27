@@ -22,9 +22,21 @@
     //====================================================
     function init_conf()
     {
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.enableStudylab            = false;
+        sconf.enableTools               = true;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
+
+
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
+        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+
         sconf.rgShapesVisible = true;
 
         //todm: strangerly, this fixes big and ubly
@@ -52,23 +64,35 @@
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 630;
-        var pictureHeight = 400;
+        var pictureWidth = 892; //630;  //892, 1.4158
+        var pictureHeight = 840; //400; //840, 2.1
 
-        var originX_onPicture = 117; //for model's axis x
-        var originY_onPicture = 322; //for model's axis y
 
 
         //=============================================
         // //\\ points reused in config
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var Q = [346, 134];
-        var Y = [263,66];
-        //var A = [540, 338];
-        var A = [555, 338];
-        //var A = [560, 338];
-        //var A = [555, 338];
+        //=============================================
+        var A = [785, 441];
+        var V = [64, 462 ];
+        var ww1 = A[0]-V[0];
+        var RR = ww1*ww1;
+        var ww2 = A[1]-V[1];
+        RR += ww2*ww2;
+        RR = Math.sqrt( RR ) / 2;
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = RR;
+        var C = [ V[0] + ww1/2, V[1] + ww2/2, ];
+
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+
+        var S = [207, 403];
+        var P = [693, 213];
+        var Q = [646.0, 168.0 ];
+
+        sconf.prop7R = 1;
+        sconf.prop7Center = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -115,47 +139,9 @@
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
         */
-        var curvePivots =
-        [
-            A,
-            //[ 538,306 ],
-            //[ 537,300 ],
-            //[ 533,285 ],
-            //[ 519,251 ],
-
-            [ 517,248 ],
-            [ 485,203 ],
-            //[ 484,203 ],
-            //P,
-            [ 396, 148 ],
-
-            //[346, 134], //near Q
-            [300, 130], //near Q
-
-            [217,132],
-            [102,184],
-            [51,238 ],
-
-            //[58,228],
-            //[24,317],
-        ];
-        curvePivots = curvePivots.map( pivot => ({
-            pos         : pivot,
-            pcolor      : given,
-            letterAngle : 45,
-            draggableX  : true,
-            draggableY  : true,
-            doPaintPname : false,
-        }));
-
-
-        //---------------------------------------------------
         var originalPoints =
         {
-            curvePivots,
         };
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
 
         Object.assign( originalPoints, {
             A : {
@@ -165,6 +151,7 @@
                 //undisplayAlways : true,
                 //doPaintPname : false,
             },
+
 
             S : {
                 pos: S,
@@ -189,29 +176,40 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
+                draggableY  : fconf.sappId === 'b1sec1prop7',
             },
 
             T : {
-                pos: [0,0],
                 pcolor : proof,
                 letterAngle : 180,
             },
 
+            K : {
+                pcolor : proof,
+                letterAngle : -90,
+            },
+
             R : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 45,
             },
 
             Z : {
-                pos: [111111,111111],
                 pcolor : body,
                 letterAngle : 45,
             },
 
+
+            Zminus : {
+                pcolor : body,
+                letterAngle : 45,
+                //undisplay : true,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
             rrminus : {
                 caption : 'Q-',
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
@@ -219,7 +217,6 @@
 
             sagitta : {
                 caption : 'I',
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 270,
                 letterRotRadius : 35,
@@ -231,70 +228,86 @@
             Y : {
                 pos: Q,
                 pcolor : proof,
-                letterAngle : 80,
+                letterAngle : -90,
             },
 
             V : {
-                pos: S,
+                pos: V,
                 pcolor : curvature,
                 letterAngle : -45,
             },
 
+            L : {
+                pcolor : curvature,
+                letterAngle : -45,
+            },
 
             //center of instant curvature circle
             C : {
-                pos: [0,0], //will be calculated
+                pos : C,
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
             },
 
-            nonSolvablePoint : {
-                pos: [0,0], //will be calculated
 
-                //caption : '!',
-                caption : 'Centrepetal force does not exist ' +
-                          'for neighborhood of this point.',
-                fontSize : '20',
-
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
-                pcolor : invalid,
-                letterAngle : 90,
-
-                //already toggled by amode8captures
-                //undisplay : true,
-            }
+            //col2
+            Tcol2 : {
+                caption : 'T',
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+            Rcol2 : {
+                caption : 'R',
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+            Gcol2 : {
+                caption : 'G',
+                pcolor : curvature,
+                letterAngle : -45,
+            },
 
         });
 
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
 
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature }, },
-            //{ 'SA' : { pcolor : context }, },
+            { 'PV' : { pcolor : proof }, },
+            { 'AV' : { pcolor : proof }, },
             { 'SP' : { pcolor : result }, },
+            { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
+            { 'ZR' : { pcolor : body }, },
+
             { 'PR' : { pcolor : body }, },
+            { 'ZQ' : { pcolor : body }, },
+            { 'PK' : { pcolor : proof }, },
+
+
+            { 'RL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
+            { 'PT' : { pcolor : proof }, },
+
             { 'PC' : { pcolor : curvature }, },
-            { 'Q,rrminus' : { pcolor : proof }, },
             { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : proof, vectorTipIx : 1 } },
-            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            { 'Q,rrminus' : { pcolor : proof }, },
+
+            //col2
+            { 'Rcol2,P' : { pcolor : proof }, },
+            { 'Rcol2,Tcol2' : { pcolor : proof }, },
+            { 'Tcol2,V' : { pcolor : proof }, },
+            { 'Gcol2,S' : { pcolor : proof }, },
+            { 'Gcol2,P' : { pcolor : proof }, },
         ];
 
         ns.paste( sconf, {

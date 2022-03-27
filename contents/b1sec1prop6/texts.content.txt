@@ -46,10 +46,10 @@
 }
 *..*
 
-If a ¦P¦body¦¦ revolve in any ¦orbit¦¦ whatever about an inmobile center ¦S¦¦
+If a ¦P body¦body¦¦ revolve in any ¦orbit¦¦ whatever about an inmobile center ¦S¦¦
 in a non-resisting space, and describe any ¦timearc¦arc¦¦ you please just now nanscent, in the
-least possible time, and the ¦P,saggita¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus¦the chord¦¦ and being produced ¦SP¦passes through¦¦ ¦S¦the center of forces¦¦, the centripetal force in the middle of the ¦timearc¦arc¦¦ will be as
-¦P,saggita¦the sagitta¦¦ directly and the time twice inversely [i.e in the duplicate
+least possible time, and the ¦P,sagitta¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus¦the chord¦¦ and being produced ¦SP¦passes through¦¦ ¦S¦the center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦ will be as
+¦P,sagitta¦the sagitta¦¦ directly and the time twice inversely [i.e in the duplicate
 ratio of the time].
 <br><br>
 
@@ -62,12 +62,12 @@ ratio of the time].
 }
 *..*
 
-For the ¦P,saggita¦the sagitta¦¦ in the given time is as the force
+For the ¦P,sagitta¦the sagitta¦¦ in the given time is as the force
 
 (<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=english,subessayId=cor-1234">by Proposition 1 Corollary 4</a>),
 
 and by increasing the time in any ratio you please, because ¦timearc¦the arc¦¦
-increases in the same ratio, the ¦P,saggita¦the sagitta¦¦ is increased in the
+increases in the same ratio, the ¦P,sagitta¦the sagitta¦¦ is increased in the
 duplicate of that ratio
 
 (<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
@@ -102,10 +102,10 @@ If a ¦P¦body P¦¦ in revolving about ¦S¦center S¦¦ describe the ¦APQ¦cu
 while the ¦PZ PR¦straight line ZPR¦¦ touch ¦APQ¦that curve¦¦ at any point you please
 ¦P¦¦, and from any other point on the curve you please ¦Q¦¦ there be drawn ¦QR¦¦ to
 the ¦PZ PR¦tangent¦¦ parallel to the distance ¦SP¦¦, and ¦QT¦¦ be dropped perpendicular
-to that distance ¦SP¦¦, the centripetal force will be inversely as the solid
+to that distance ¦SP¦¦, the ¦force¦centripetal force¦¦ will be inversely as the solid
 sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦, provided that the quantity of that solid always be taken
 which it has ultimately, when the points ¦P¦¦ and ¦Q¦¦ come
-together. For ¦QR¦¦ is equal to the ¦P,saggita¦sagitta¦¦ of
+together. For ¦QR¦¦ is equal to the ¦P,sagitta¦sagitta¦¦ of
 ¦timearc¦double the arc QP¦¦ at whose
 middle ¦P¦¦ is; and twice the triangle ¦SQ QP SP¦SQP¦¦, or ¦SP¦¦x¦QT¦¦, is propotional
 to the time in which that ¦timearc¦double arc¦¦ is described; and therefore may be
@@ -184,14 +184,14 @@ Force = acceleration 𝗮 which is
 <br><br>
 
     <div style="text-align:center;">
-             𝗮 = 𝗿˙˙ = ¦P,saggita¦𝕻¦¦˙˙ = <br>
-        2lim(¦P,saggita¦𝕻¦¦/δ²) <br>
+             𝗮 = 𝗿˙˙ = ¦P,sagitta¦𝕻¦¦˙˙ = <br>
+        2lim(¦P,sagitta¦𝕻¦¦/δ²) <br>
         δ → 0.
     </div>
 
-where ¦P,saggita¦sagitta 𝕻 ¦¦
+where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#saggitae">
+<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 <br>
 
@@ -217,13 +217,13 @@ Force = acceleration 𝗮 which is
 <br><br>
 
     <div style="text-align:center;">
-             𝗮 = 𝗿˙˙ = K² d²¦P,saggita¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
+             𝗮 = 𝗿˙˙ = K² d²¦P,sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
     </div>
 <br>
 
-where ¦P,saggita¦sagitta 𝕻 ¦¦
+where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#saggitae">
+<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 
 K is "Kepler constant" of constant sectorial speed:
@@ -241,24 +241,20 @@ K is "Kepler constant" of constant sectorial speed:
 
 From (*):
     <div style="text-align:center;">
-             𝗮 = 2K² lim ¦P,saggita¦𝕻¦¦/Δ²<sub>S</sub><br>
-        Δ<sub>S</sub> 🠆 0.
+             𝗮 = 2K² lim( ¦P,sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> 🠆 0,<br>
+        a = 8K² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )² ) at δ 🠆 0, &nbsp;&nbsp;&nbsp;(**)<br>
     </div>
 
-where Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, and
+where
     <div style="text-align:center;">
-        Δ<sub>S</sub> = ΔS + o(δ³)
+        Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, Δ<sub>S</sub> =
+            (¦SP¦¦ x ¦QT¦¦²) / 2, <br>
+        Δ<sub>S</sub> = ΔS + ~o(δ³), where δ = Δt, <br>
+        ¦QR¦saggtta QR¦¦ = ¦P,sagitta¦𝔓¦¦ + o(δ²).
     </div>
-where δ = Δt.
-
-¦QR¦Saggtta QR¦¦ differs from ¦P,saggita¦sagitta 𝔓¦¦ with o(δ²), but this difference
-is irrelevant in our ultimate expressions.
 <br><br>
 
-Hence, returning to Books notations, we add only specific coefficient 2K² to solution :
-    <div style="text-align:center;">
-         a = 2K² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦)² ) at δ 🠆 0 <br>
-    </div>
+Hence in Book notations for (**), the specific coefficient is 8K².
 <br>
 <div book-reference-id="kvk"></div>
 

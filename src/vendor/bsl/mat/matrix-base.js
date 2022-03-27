@@ -21,6 +21,7 @@
     mat.p1_to_p2            = p1_to_p2;
     mat.linesCross          = linesCross;
     mat.dropPerpendicular   = dropPerpendicular;
+    mat.dropPerpendicularDetails = dropPerpendicularDetails;
     mat.dropLine            = dropLine;
     mat.pointPlusTVector    = dropLine;
     mat.lineSegmentsCross   = lineSegmentsCross;
@@ -134,9 +135,11 @@
         }
         var unit = [ vector[0]/abs, vector[1]/abs, ];
         if( is2d ) {
+            //vector in plane
             var norm = [ -unit[1], unit[0] ];
-            var ret = { abs, norm, };
+            var ret = { abs, norm, unit };
         } else {
+            //vector in 3d space
             unit.push( vector[2]/abs );
             var normSeed = [];
             for( var mIx=0; mIx<3; mIx++ ) {
@@ -164,7 +167,7 @@
                 -unit[0]*norm1[2] - unit[2]*norm1[0],
                 unit[0]*norm1[1] - unit[1]*norm1[0],
             ];
-            var ret = { abs, orts : [ norm1, norm2, ] };
+            var ret = { abs, orts : [ norm1, norm2, ], unit };
             //ccc( 'ret=', ret );
         }
         return ret;
@@ -253,6 +256,34 @@
 
         return linesCross( u,v,us,vs );
     }
+    //start here:
+    function dropPerpendicularDetails( S, A, B )
+    {
+        //direction of line AB = line segment from start point A to end point B
+        var lineForPerp = [ B[0] - A[0], B[1] - A[1] ];
+        var lAbs = lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1];
+        lAbs = Math.max( lAbs, 1.e-150 );
+        var unitLine = [ lineForPerp[0]/lAbs, lineForPerp[1]/lAbs, ]
+
+        //start point of line AB
+        var v = [        A[0],        A[1] ];
+
+        //direction of the perpendicular to line AB
+        var us = [ lineForPerp[1], -lineForPerp[0] ];             
+        //start point of the perpendicular
+        var vs = S;
+        var crossPoint = linesCross( lineForPerp,v,us,vs );
+        var hx = crossPoint[0] - S[0];
+        var hy = crossPoint[1] - S[1];
+        var perpAbs = Math.sqrt( hx*hx + hy*hy );
+        return {
+            crossPoint,
+            perp : [ hx, hy ],
+            perpAbs,
+            lineForPerp,
+            unitLine,
+        };
+    }
 
     ///adds t*(vector-AB) to point start
     ///inputs:    A,B,start - 2-dim. vectors,
@@ -263,9 +294,10 @@
         A,
         B,
         start, //optional
+        direction, //optional instead of A, B
     ){
         start = start || A;
-        var u = [ B[0] - A[0], B[1] - A[1] ];
+        var u = direction || [ B[0] - A[0], B[1] - A[1] ];
         return [ start[0] + u[0]*t, start[1] + u[1]*t ];
     }
 

@@ -47,6 +47,14 @@
         //      if not, uses existing sconf.rgShapesVisible.
         //------------------------------------------------
         eachprop( rg, (prop,propname) => {
+
+            //we don't implement this now because of
+            //damage to other legacy lemmas,
+            //general solution should be
+            //if( hazz( prop, 'pname' ) && !has( prop, propname ) ) {
+            //,or in case of 'undisplay'
+            //if( hazz( prop, 'pname' ) && !has( prop, 'undisplay' ) ) {
+
             if( hazz( prop, 'pname' ) ) {
                 prop.undisplay = !(
                     has( sconf, 'rgShapesVisible' ) ?

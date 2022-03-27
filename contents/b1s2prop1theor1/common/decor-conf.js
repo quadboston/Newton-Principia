@@ -156,7 +156,7 @@
                     cssClass : 'theor1corollary',
                     //undisplay : true,
                   },
-            //sagittae ABC=middle saggitae in sagittae-parallelogram
+            //sagittae ABC=middle sagitta in sagittae-parallelogram
             U   : {
                     decStart : finalSteps_conf.C.decStart,
                     decEnd : finalSteps_conf.C.decEnd,
@@ -164,7 +164,7 @@
                     pointWrap : { doPaintPname : false },
                     cssClass : 'theor1corollary',
             },
-            //sagittae DEF=middle saggitae in sagittae-parallelogram
+            //sagittae DEF=middle sagitta in sagittae-parallelogram
             W   : {
                     decStart : finalSteps_conf.F.decStart,
                     decEnd : finalSteps_conf.D.decEnd,

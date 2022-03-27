@@ -302,7 +302,6 @@
                 // \\// todm: automate property transfer
 
 
-
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = op.pcolor;
@@ -383,6 +382,11 @@
                     fixedColors[ tk ] = gshape.pcolor;
                 }
 
+                ///todm: this code is extremely non-automated:
+                if( has( gshape, 'captionShiftY' ) ) {
+                    rgX.captionShiftY = gshape.captionShiftY;
+                }
+
                 //---------------------------------------------------------
                 // //\\ transfers properties from line-options to rg-lines:
                 //      todo ... we stumbled upon this 100 times ...
@@ -399,6 +403,9 @@
                 rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
                 rgX.notp        = haz( gshape, 'notp' );
                 rgX.cssClass    = haz( gshape, 'cssClass' );
+                if( has( gshape, 'vectorTipIx' ) ) {
+                    rgX.vectorTipIx = gshape.vectorTipIx;
+                }
                 //---------------------------------------------------------
                 // \\// transfers properties from line-options to rg-lines:
                 //---------------------------------------------------------

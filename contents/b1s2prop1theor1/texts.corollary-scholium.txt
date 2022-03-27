@@ -159,7 +159,7 @@ From polynomial expansion at t₀ = ¦B¦¦ and ∆t = δ:
             ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + 𝗼(δ²), <br>
             ¦AB¦𝝙⁻¦¦ = ¦AB¦𝗿(t₀-δ) - 𝗿(t₀)¦¦. <br>
    </div>
-<a name="saggitae" id="saggitae"></a>
+<a name="sagitta" id="sagitta"></a>
 Sagitta 𝕻  bisecting "main" diagonal 𝕯  are correspondingly:
     <div style="text-align:center;">
         ¦BU¦𝕻¦¦ = (¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦)/2 =

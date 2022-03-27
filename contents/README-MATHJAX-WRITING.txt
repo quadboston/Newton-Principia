@@ -1,6 +1,21 @@
+
+QEI: Quod Erat Inveniendum
+which was to be found
+https://proofwiki.org/wiki/Definition:QEI
+
+QED: quod erat demonstrandum
+
+https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviations_other_than/
+    QEI : Quod Erat Inveniendum (which was to be found)
+    QEA : Quod Est Absurdum (which is absurd)
+    QEF : Quod Erat Faciendum (which was to be done)
+
+
 --------------------------------------------
 //\\ useful tokens:
 --------------------------------------------
+    ⟂
+
     diagonal    𝔇𝕯  sagitta 𝔓𝕻
 
 

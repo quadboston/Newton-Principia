@@ -54,6 +54,9 @@
         fsRack.getsTangnetAndNormal = getsTangnetAndNormal;
 
         //assuming JS mantissa has 15 digits
+        //frankly, conscise info on JS mantissa does not exist,
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Precision_range
+        //if was: Number.EPSILON = 2.220446049250313e-16 for Cr.
         D_ST  = D_ST || 1e-10;
         D2_ST = D2_ST || 1e-8;
 

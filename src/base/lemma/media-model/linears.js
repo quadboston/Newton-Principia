@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, sv, han, haz,
+        ns, sn, $$, sv, han, haz, has, mat,
         sconf, ssF, ssD, sDomF, sDomN,
         amode, studyMods,
     } = window.b$l.apptree({
@@ -61,6 +61,7 @@
         var lineAttr    = lineAttr || {};
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
+        var vectorTipIx = haz( line, 'vectorTipIx' );
 
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
 
@@ -111,6 +112,10 @@
                 'stroke-width' : strokeWidth * sconf.thickness, 
             });
         }
+        if( vectorTipIx || vectorTipIx === 0 ) {
+            paintsVectorTips({ vectorTipIx, pivots, line, stdMod });
+        }
+
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
         line.pivots = [ pivots[0], pivots[1] ];
@@ -134,7 +139,7 @@
             var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
             var segAngle = Math.atan( dir[1], dir[0] );
             var leftNormAngle = segAngle + Math.PI/2;
-            var SHIFT_ABS = 60;
+            var SHIFT_ABS = has( lineAttr, 'captionShiftY' ) ? lineAttr.captionShiftY : 60;
             var finalPosX = lposX + SHIFT_ABS*Math.cos( leftNormAngle ) - fontSize * lposXSugar;
             var finalPosY = lposY + SHIFT_ABS*Math.sin( leftNormAngle ) - fontSize * 0.2;
 
@@ -163,6 +168,38 @@
         //=================================================
         return line;
     }
+
+
+    function paintsVectorTips({ vectorTipIx, pivots, line, stdMod })
+    {
+        var TIP_FRACTION = 0.2;
+        var ARROW_TANGENT = 0.2;
+        var vectEnd = pivots[ vectorTipIx ].medpos;
+        var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
+        var { abs, norm, unit } = mat.vector2normalOrts( [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
+        var tipLength = TIP_FRACTION * abs;
+        var tipStart = (1-TIP_FRACTION) * abs;
+        var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
+        var tipHeight = Math.max( sconf.thickness*3, tipLength * ARROW_TANGENT );
+        var pivots = [
+                [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
+                [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
+                vectEnd,
+                //this point closes poly.
+                [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
+        ];
+        line.vectorArrowSvg = sv.polyline({
+            svgel   : ns.haz( line, 'vectorArrowSvg' ),
+            parent  : stdMod.mmedia,
+            pivots,
+            //'stroke-width' : strokeWidth * sconf.thickness, 
+        });
+        line.vectorArrowSvg$ = $$.$(line.vectorArrowSvg)
+            .tgcls( 'undisplay', ns.haz( line, 'undisplay' ) )
+            .cls( line.finalCssClass + ' tofill' )
+            ;
+    }
+
 
     ///a bit of proliferation
     ///adds "sugar" to pointies2line: point names
@@ -213,20 +250,24 @@
         var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
         var lpoints = str.split( splitToken );
         cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
+        var lineAttrPassed =
+        {
+            cssClass        : 'tostroke thickable' +
+                               ( cssClass ? ' ' + cssClass : '' ),
+            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, 2 ),
+            stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
+            //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
+            //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
+            caption         : caption || haz( lineAttr, 'caption' ),
+         };
+        ///todm: this code is extremely non-automated:
+        if( has( lineAttr, 'captionShiftY' ) ) {
+            lineAttrPassed.captionShiftY = lineAttr.captionShiftY;
+        }
         return pointies2line(
             str,
             [ rg[ lpoints[0] ], rg[ lpoints[1] ] ],
-
-            //"lineAttr" - line "attributes"
-            {
-                cssClass        : 'tostroke thickable' +
-                                   ( cssClass ? ' ' + cssClass : '' ),
-                'stroke-width'  : ns.sn( 'stroke-width', lineAttr, 2 ),
-                stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
-                //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
-                //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
-                caption,
-             }
+            lineAttrPassed,
         );
     }
     //==============================================

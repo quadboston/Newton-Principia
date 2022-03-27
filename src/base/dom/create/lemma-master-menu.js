@@ -326,7 +326,9 @@
                 var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
                 menItem.leafRk.mItemCaptionHtml$.html(
                     exegAsp.subexegs[ 0 ].essayHeader.menuCaption ||
-                    menItem.caption
+                    menItem.caption //where this came from?
+                                    // ... where theoreon caption comes?
+                                    // ... theoreonCaption ?
                 );
             });
         }

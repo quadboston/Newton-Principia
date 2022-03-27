@@ -9,7 +9,7 @@
 
 <br>
 
-<b>Notations summary</b>
+<b>Notations</b>
 <br>
     <div style="text-align:center;">
         <b>v</b> = <b>r˙</b>, speed             <br> 
@@ -23,7 +23,7 @@
         <b>a</b> = <i>a</i><b>b</b>                         <br>
         <br>Special unit vectors:                           <br>
             𝘂 = 𝘃 / v,                                           <br>
-            𝗲 = 𝗿 / r,
+            𝗲 = 𝗿 / r, <br>
     </div>
 <br><br>
 
@@ -247,14 +247,24 @@ find curve's derivatives <b>r˙</b>, <b>r˙˙</b>, etc. We try then to express c
 
     <div style="text-align:center;">
             𝘃𝗮 = vv˙, <br>
-       [𝘃𝗮] = v³κ𝗯,  <br>
+       [𝘃𝗮] = [𝘃𝗮<sub>⟂</sub>] = κv³[𝘂𝗻] = v³κ𝗯,  <br>
        [[𝘃𝗮]𝘃] = v³κ[𝗯𝘃] = v⁴𝝹.  <br> 
     </div>
 <br>
 
+For planar vectors 𝗮 = (x,y,0),
+their "product as complex numbers 𝗮<sup>*</sup>₁*𝗮₂" is  <br>
+    <div style="text-align:center;">
+                𝗮₁|𝗮₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗮₁𝗮₂, [𝗮₁𝗮₂]𝗸 ), <br>
+            ( which are 𝗮₂ components in coordinate system 𝗶 = 𝗮₁/a₁, [𝗸𝗶] ).
+    </div>
+    were 𝗸 - is a unit vertical ort.
+<br>
+<br>
+
 For curve 𝗿(t) belonging to plane xy:
 
-        <div style="text-align:center;">
+    <div style="text-align:center;">
         [𝘃𝗮] = <br>
         <table class="matrix-determinant" style=" display:inline-block;">
 
@@ -264,10 +274,65 @@ For curve 𝗿(t) belonging to plane xy:
          
         </table> <br>
         = 𝗸(x˙y˙˙- x˙˙y˙) = v³κ𝗸. <br>
-        v³κ = x˙y˙˙- x˙˙y. <br>
+        v³κ = x˙y˙˙- x˙˙y. <br><br>
+
+             𝘃|𝗮 = ( 𝘃𝗮<sub>//</sub>, [𝘃𝗮<sub>⟂</sub>]𝗸 ) =
+              ( vv˙, κv³[𝘂𝗻]𝗸 ) =
+              ( vv˙, v³κb<sub>𝗸</sub> ).<br>
+
+        <!--
+        possibly useless: <br>
+        (𝘃|𝗮)|𝘃 = ( vv˙x˙ + κv³[𝘂𝗻]𝗸y˙, vv˙y˙ - κv³[𝘂𝗻]𝗸x˙  )
+        <br>
+        -->
+    </div>
+<br>
+
+    <div style="text-align:center;">
         Further, if parameter t = x, then
         v³κ = y˙˙. <br>
-        </div>
+    </div>
+<br><br>
 
+
+<a name="polar-coordinates">
+<b>Polar coordinates</b>
 <br>
+    <div style="text-align:center;">
+            𝗿 = ρe<sup><i>iφ</i></sup>,
+    </div>
+where ρ and φ are functions of t.
+<br><br>
+
+
+    <div style="text-align:center;">
+            𝘃 = ( ρ˙+ <i>i</i>ρφ˙) e<sup><i>iφ</i></sup>, &nbsp; v² = ρ˙² + ρ²φ˙², <br>
+            𝗮 = ( ρ˙˙+ 2ρ˙<i>i</i>φ˙ + <i>i</i>ρφ˙˙ - ρφ˙² ) e<sup><i>iφ</i></sup>
+         = ( ρ˙˙ - ρφ˙² + <i>i</i>( 2ρ˙φ˙ + ρφ˙˙ ) ) e<sup><i>iφ</i></sup> <br>
+
+           𝘃|𝗮 = ( ρ˙ρ˙˙ - ρ˙ρφ˙² +  ρφ˙(2ρ˙φ˙ + ρφ˙˙), ρφ˙(-ρ˙˙ + ρφ˙²) + ρ˙( 2ρ˙φ˙ + ρφ˙˙ ) )
+             = <br>
+            ( ρ˙ρ˙˙ + ρρ˙φ˙² +  ρ²φ˙φ˙˙, -ρρ˙˙φ˙ + ρ²φ˙³ + 2ρ˙²φ˙ + ρρ˙φ˙˙ )
+    </div>
+
+<br><br>
+
+For t = ρ:
+
+    <div style="text-align:center;">
+           𝘃|𝗮 = ( ρφ˙² +  ρ²φ˙φ˙˙, ρ²φ˙³ + 2φ˙ + ρφ˙˙ ), <br>
+       v² = 1 + ρ²φ˙², <br>
+       vv˙ = ρφ˙² +  ρ²φ˙φ˙˙,  <br>
+       v³κb<sub>𝗸</sub> = ρ²φ˙³ + 2φ˙ + ρφ˙˙, <br>
+    </div>
+
+For t = φ:
+
+    <div style="text-align:center;">
+           𝘃|𝗮 = ( ρ˙ρ˙˙ + ρρ˙, -ρρ˙˙ + ρ² + 2ρ˙² ), <br>
+       v² = ρ˙² + ρ², <br>
+       vv˙ = ρ˙ρ˙˙ + ρρ˙,  <br>
+       v³κb<sub>𝗸</sub> = -ρρ˙˙ + ρ² + 2ρ˙², <br>
+    </div>
+
 

@@ -166,15 +166,18 @@
                 colorThreadArray,
         }){
             var style = {};
-            var decUnitlog = Math.log10( rangeA );
-            decUnitlog     = Math.floor( decUnitlog );
 
+            var decUnitlog     = Math.max(
+                Math.floor( Math.log10( rangeA ) ),
+                Math.floor( Math.log10( Math.abs( minA ) ) - 13 ),
+            );
             var decUnit    = Math.pow( 10, decUnitlog );
             decUnit        = decUnit > rangeA * 0.5 ? decUnit * 0.1 : decUnit;
             style.stroke = 'rgba( 0,0,0, 1 )';
             drawGrid8Axes_aux({ prnAxisDigits : printAxisDigits });
             if( subDecimal ) {
                 var decUnit  = decUnit * 0.1;
+
                 style.stroke = 'rgba( 0,0,0, 0.2 )';
                 drawGrid8Axes_aux({ drawSubdecimal : true });
             }

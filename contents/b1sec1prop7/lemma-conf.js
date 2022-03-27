@@ -23,6 +23,8 @@
                 { src: sm + 'state-capturer.js' },
                 { src: sm + 'graph-fw.js' },
                 { src: sm + 'lib.js' },
+
+                { src: sm + 'lib-prop7.js' },
             ],
             "contents-list" :
             [

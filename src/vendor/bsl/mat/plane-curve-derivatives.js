@@ -107,7 +107,7 @@
 
 
         //:angle between norm n and radius vector rrr
-        var cosOmega = -( ee[0]*nn[0] + ee[1]*nn[1] );
+        var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] );
 
         //: gets chord second point V, which
         // is a point V in Newton's Prop6, Theor 5,
@@ -142,10 +142,13 @@
 
         return {
             // **api-output---plane-curve-derivatives
-            rr,
+            rr, //body pos in respect to coord system origin
+
+            //in respect to chosen polar center rrc, if rrc presented
             r2,
             r,
             ee,
+
             vv,
             v2,
             v,
@@ -162,8 +165,10 @@
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
             staticSectorialSpeed_rrrOnUU,
+
             //angle between norm n and radius vector rrr
-            cosOmega,
+            sinOmega,
+            //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }
 

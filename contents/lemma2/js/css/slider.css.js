@@ -47,6 +47,7 @@ Styles for the model slider range
 .slider-group {
   height: 24px;
   padding-top : 10px;
+  z-index : 100;
 }
 
 input[type=range] {
@@ -124,8 +125,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: ${colorMain}; }
 
 input[type=range]::-moz-range-track {
-  width: 40%;
-  height: 0px;
+  width: 90%;
+  height: 2px;
   cursor: pointer;
   background: ${colorMain};
   border-radius: 1.3px;
@@ -133,7 +134,7 @@ input[type=range]::-moz-range-track {
 
 input[type=range]::-ms-track {
   width: 40%;
-  height: 0px;
+  height: 2px;
   cursor: pointer;
   background: ${colorMain};
   border-radius: 1.3px;

@@ -41,11 +41,16 @@
 
             cp.rgX.processOwnDownEvent = () => {
                 stashedPos = [ pos1[0], pos1[1] ];
+                //ccc( 'down: ' + stashedPos[0].toFixed(3) + ', ' +
+                //     stashedPos[1].toFixed(3) );
             };
 
             cp.rgX.processOwnUpEvent = () => {
                 pos1[0] = stashedPos[0];
                 pos1[1] = stashedPos[1];
+                //ccc( cpix + ' up: ' + stashedPos[0].toFixed(3) + ', ' +
+                //     stashedPos[1].toFixed(3) );
+
                 stdMod.pointsArr_2_singleDividedDifferences();
                 nsp.undisplay = true;
                 nsl.undisplay = true;
@@ -87,6 +92,9 @@
                     var { solvable, rr } = stdMod.curveIsSolvable();
                     if( solvable ) {
                         stashedPos = [ pos1[0], pos1[1] ];
+                        //ccc( 'new: ' + stashedPos[0].toFixed(3) + ', ' +
+                        //     stashedPos[1].toFixed(3) );
+
                         //corrects y-position of point P on new curve
                         //rg.P.pos[1] = rg[ 'approximated-curve' ].x2xy( rg.P.pos[0] )[1];
                         nsp.undisplay = true;
@@ -94,12 +102,14 @@
                     } else {
                         //pos1[0] = stashedPos[0];
                         //pos1[1] = stashedPos[1];
-                        stdMod.pointsArr_2_singleDividedDifferences();
+                        //stdMod.pointsArr_2_singleDividedDifferences();
                         nsp.pos[0] = rr[0];
                         nsp.pos[1] = rr[1];
                         nsp.undisplay = false;
                         nsl.undisplay = false;
                         //stdMod.model8media_upcreate();
+                        //ccc( 'keeps former: ' + stashedPos[0].toFixed(3) + ', ' +
+                        //     stashedPos[1].toFixed(3) );
                     }
                     //returnValue = solvable;
                 }
@@ -159,8 +169,8 @@
 
             //because deltaX may already changed, resets scale for delta X,
             //this is a decorational constant for mouse drag,
-            sData.deltaX2deltaT = rg.tForSaggitae.val / (rg.P.pos[0]-rg.Q.pos[0]);
-            sData.tForSaggitae0 = rg.tForSaggitae.val;
+            sData.deltaX2deltaT = rg.tForSagitta.val / (rg.P.pos[0]-rg.Q.pos[0]);
+            sData.tForSagitta0 = rg.tForSagitta.val;
             sData.Qpos0 = rg.Q.pos[0];
         };
 
@@ -199,9 +209,9 @@
             //--------------------------------------------------------------------
             //this is main parameter which updates math-model,
             //this is a time interval to build a chord for suggitae,
-            //rg.tForSaggitae.val = Math.abs( deltaX ) * sData.deltaX2deltaT;
+            //rg.tForSagitta.val = Math.abs( deltaX ) * sData.deltaX2deltaT;
 
-            rg.tForSaggitae.val = Math.max( 0, sData.tForSaggitae0 +
+            rg.tForSagitta.val = Math.max( 0, sData.tForSagitta0 +
                     0.5 * //smaller values improve mouse precision
                     (sData.Qpos0-newPos[0]) * sData.deltaX2deltaT
             );

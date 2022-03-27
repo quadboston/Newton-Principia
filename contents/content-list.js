@@ -83,6 +83,12 @@
             annotation : "",
         },
 
+        {   sappId : 'b1sec1prop7',
+            book : 'Book 1',
+            caption : 'Sec. II. Proposition VII. Problem II',
+            annotation : "",
+        },
+
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
             caption : 'Sec. V. Lemma XX',

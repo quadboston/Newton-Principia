@@ -3,6 +3,7 @@
     var mat     = ns.sn( 'mat' );
 
     mat.circumscribeCircleOverChordAndBothNormals = circumscribeCircleOverChordAndBothNormals;
+    mat.pos2angle = pos2angle;
     return;
 
 
@@ -27,6 +28,19 @@
         var G = norm2[1]*l + chord[1];
         return [ 0, G ];
     }
+
+
+    ///converts atan2 from interval [-PI,PI] to interval [0,2PI),
+    ///when atan2 < 0 returns angle from [0,2PI).
+    function pos2angle( pos )
+    {
+        var t = Math.atan2( pos[1], pos[0] );
+        if( t < 0 ) {
+            t = 2*Math.PI + t;
+        }
+        return t;
+    }
+
 
 }) ();
 

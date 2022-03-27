@@ -271,7 +271,9 @@
                     dimY_withMarg,
                     marginY,
                 });
-                graphFM_self.gridIsPainted = true;
+                if( doPaintGridOnlyOnce ) {
+                    graphFM_self.gridIsPainted = true;
+                }
             }
 
             //======================================================
@@ -312,7 +314,8 @@
                     xIndex = Math.min( ownPolyline.length-1, xIndex );
                     var [ mediaX, mediaY ] = ownPolyline[ xIndex ];
                     //polylinesLablesSVGs$[ pix ] = 
-                    nssvg.printText({
+                    pp.svgTextEl = nssvg.printText({
+                        svgel   : !doPaintGridOnlyOnce ? null : haz( pp, 'svgTextEl' ),
                         text    : pp.pcaption,
                         x       : mediaX + pp.fontShiftX,
                         y       : mediaY + pp.fontShiftY,

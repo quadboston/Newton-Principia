@@ -51,6 +51,35 @@
             font-size: 11px;
         `,
 
+
+
+        'Bernard-Cohen-Anne-Whitman' : `
+        <br><br>
+        <div style="font-size:12px;">
+            <i>Source:</i><br><br>
+            ISAAC NEWTON, THE PRINCIPIA
+                    <br>
+            Mathematical Principles of Natural Philosophy
+            <br>
+            A New Translation
+            by I. Bernard Cohen and Anne Whitman
+            assisted by Julia Budenz
+            <br><br>
+            UNIVERSIT Y OF CALIFORNI A PRESS
+            <br>
+            Berkeley Los Angeles London
+            <br><br>
+            <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
+                3rd Edition English translation by I. Bernard Cohen.
+            </a>
+
+        </div>
+        `,
+
+
+
+
+        //so far used only in lemma2
         'Bernard-Cohen' : `
         <br>
         <i>Source</i>:<br>
@@ -59,10 +88,12 @@
         </a>
         <br>
         `,
+
+        /*
         'Bernard-Cohen---inline-style' : `
             font-size: 11px;
         `,
-
+        */
 
         'latin-diagram' : `
         <br>
@@ -94,6 +125,27 @@
             <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
         `,
 
+
+
+        'Krylov' : `
+            <br>
+            <i>Source</i>:<br>
+            <a target="_blank" href="http://shaping.ru/download/pdffile/newton.pdf">
+            Исаак Ньютон. Математические начала натуральной философии.
+            <br>
+            Перевод с латинского А.Н. Крылова.
+            </a>
+            <br>
+            Изд. Наука. 1989.
+            <br>
+            Mathematical Principles of Natural Philosophy.
+            <br>
+            Translation by A.N. Krylov.
+        `,
+
+        /*
+            Binet Jacqes Phillipe Marie 1786 1856, cited at Krylov p83, p84
+        */
 
     }
 
