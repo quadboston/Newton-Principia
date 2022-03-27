@@ -64,7 +64,7 @@
 
         rg.Q.acceptPos = ( newPos, dragMove ) => {
             var newPos0 = dragMove[0] + sData.Qpos0;
-            var newPos1 = dragMove[1] + sData.Qpos1;
+            var newPos1 = -dragMove[1] + sData.Qpos1;
 
             //--------------------------------------------------------------------
             // //\\ to separate dragging pivots and moving body,
