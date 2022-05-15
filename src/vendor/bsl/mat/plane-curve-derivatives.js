@@ -31,21 +31,21 @@
     function planeCurveDerivatives({
         // **api-input---plane-curve-derivatives
 
-        //2d curve function: t|-> rr,
-        //  inputs: parameter t
+        //2d curve function: q|-> rr,
+        //  inputs: parameter q
         //  outputs: position = 2d-vector = rr
-        //requirement: drr/dt = vv != 0 (whne t is a time, then
+        //requirement: drr/dt = vv != 0 (whne q is a time, then
         //  speed cannot be 0 )
         fun,
 
-        //param t
-        t,
+        //param q
+        q,
 
         //optional: chosen point of reference for polar system of coodinates
         //by default rcenter = [0,0]
         rrc,
 
-        //optional: "delta t", numerical differentiation step
+        //optional: "delta q", numerical differentiation step
         DDD,
     }){
         DDD         = DDD || 0.0001;
@@ -57,9 +57,10 @@
         var DDD1    = 1/DDD;
         var DDD2    = 0.5 * DDD1;
         //radius-vector in respect to coord. syst. origin:
-        var rr      = fun( t );
-        var rplus   = fun( t + DDD );
-        var rminus  = fun( t - DDD );
+        var rr      = fun( q );
+        var rplus   = fun( q + DDD );
+        var rminus  = fun( q - DDD );
+        //speed along q
         var vv      = [ (rplus[0] - rminus[0])*DDD2, (rplus[1] - rminus[1])*DDD2, ];
         var v2      = vv[0]*vv[0] + vv[1]*vv[1];
         var v       = Math.sqrt( v2 );
@@ -79,10 +80,10 @@
 
         //normal vector,
         //if vector product is along kk, then curvature is
-        //rotated clockwise from uu:
+        //rotated counter-clockwise from uu:
         var nn = cv3 < 0 ?
-            [ uu[1], -uu[0], ] :
-            [ -uu[1], uu[0], ]; //clockwise
+            [ uu[1], -uu[0], ] : //clockwise
+            [ -uu[1], uu[0], ];  //counter-clockwise;
         //curvature vector
         var cc = [nn[0]*c, nn[1]*c];
         var R = c < INFINITY_PROTECTOR ? 1/INFINITY_PROTECTOR : 1/c;
@@ -141,6 +142,7 @@
         //------------------------------------------------
 
         return {
+            q,
             // **api-output---plane-curve-derivatives
             rr, //body pos in respect to coord system origin
 

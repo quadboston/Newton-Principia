@@ -1,12 +1,9 @@
 ( function() {
     var {
-        ns,
-        nsmethods,
-        haz,
-        nssvg,
-        $$,
+        ns, sn, nsmethods, haz, nssvg, $$,
     } = window.b$l.nstree();
     nsmethods.drawGrid8Axes = drawGrid8Axes;
+    nsmethods.drawToolline = drawToolline;
     return;
 
 
@@ -303,6 +300,100 @@
                 }
             }
         }
+    }
+
+
+
+
+    ///======================================================
+    /// generic: draws x or y grid and axes
+    ///======================================================
+    function drawToolline({
+        graphFM_self,
+        graphArray,
+        abscissaIxValue,
+
+        colorThreadArray,
+        marginX,
+        marginY,
+
+        rangeY,
+        rangeX,
+
+        yMax,
+        yMin,
+        xMax,
+        xMin,
+
+        dimB,
+        dimA,
+        toollineStyle,
+        numberMarks, //see //number Marks api
+    }){
+        toollineStyle = toollineStyle || {};
+        sn( 'stroke', toollineStyle, 'rgba( 0,0,0, 1 )' );
+        var graphElement = graphArray[ Math.floor( abscissaIxValue ) ];
+        var svgParent = graphFM_self.gmedia$();
+
+        var l_media = marginX + ( graphElement.x - xMin ) / rangeX * dimA;
+        var pivots = [ [ l_media, marginY ], [ l_media, marginY + dimB ], ];
+
+        //======================================================
+        // //\\ prints toolline
+        //======================================================
+        nssvg.polyline({
+            pivots,
+            parent  : graphFM_self.gmedia$(),
+            style : toollineStyle,
+        });
+        //======================================================
+        // \\// prints toolline
+        //======================================================
+
+
+
+        //======================================================
+        // //\\ prints numerical labels
+        //======================================================
+        if( numberMarks ) {
+            if( !Array.isArray( numberMarks ) ) {
+                numberMarks = graphElement.y.map( (yEl,yix) => (
+                    //number Marks api
+                    {
+                        graphIx : yix,
+                        decimalDigits : 2,
+                        fontSize : 22,
+                        fontFill : colorThreadArray[ yix ],
+                        fontWeight : 'normal',
+                        strokeWidth : 0.1,
+                    }
+                ));
+            }
+            numberMarks.forEach( nm => {
+                var gix = nm.graphIx;
+                var decimalDigits = nm.decimalDigits;
+                var nmVal = graphElement.y[ gix ];
+                var x = l_media;
+                var y = marginY + dimB - ( nmVal - yMin ) / rangeY * dimB;
+
+                nssvg.printText({
+                    text : nmVal.toFixed( decimalDigits ),
+                    x,
+                    y,
+                    parent  : graphFM_self.gmedia$(),
+                    style   : {
+                                'font-size'     : nm.fontSize,
+                                'font-weight'   : nm.fontWeight,
+                                'stroke-width'  : nm.strokeWidth,
+                                'stroke'        : nm.fontFill,
+                                'fill'          : nm.fontFill,
+                    },
+                });
+            });
+        }
+        //======================================================
+        // \\// prints numerical labels
+        //======================================================
     }
 
 }) ();

@@ -109,7 +109,13 @@
             sv.updatePolyline({
                 pivots      : pivotsMedPos,
                 svgel       : line.svgel,
-                'stroke-width' : strokeWidth * sconf.thickness, 
+
+                //todm apparent bug: rid of this line
+                //'stroke-width' : strokeWidth * sconf.thickness,
+
+                //todm: this line is added to fix a bug: do
+                //proofcheck does it break the legacy code:
+                strokeWidth :  strokeWidth * sconf.thickness,
             });
         }
         if( vectorTipIx || vectorTipIx === 0 ) {
@@ -127,7 +133,7 @@
         // //\\ draws line caption
         //=================================================
         var caption = ns.haz( lineAttr, 'caption' ); //todo bad name: too generic
-                                                 //hard to package-search
+                                                     //hard to package-search
 
         if( caption ) {
             var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
@@ -176,9 +182,12 @@
         var ARROW_TANGENT = 0.2;
         var vectEnd = pivots[ vectorTipIx ].medpos;
         var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
-        var { abs, norm, unit } = mat.vector2normalOrts( [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
-        var tipLength = TIP_FRACTION * abs;
-        var tipStart = (1-TIP_FRACTION) * abs;
+        var { abs, norm, unit } = mat.vector2normalOrts(
+                [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
+        var tipLength =
+                Math.min( //min is a patch sensetive to diagram scale; better tune needed;
+                10, TIP_FRACTION * abs );
+        var tipStart = abs-tipLength;
         var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
         var tipHeight = Math.max( sconf.thickness*3, tipLength * ARROW_TANGENT );
         var pivots = [

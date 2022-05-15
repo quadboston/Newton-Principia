@@ -144,6 +144,7 @@
         }
         svgel.setAttributeNS( null, 'points', pivotsStr );
         fill && svgel.setAttributeNS( null, 'fill', fill );
+                //if( key === 'points' && val.indexOf( 'NaN' ) > -1 ) {
         strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
     }
 

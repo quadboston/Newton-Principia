@@ -1,10 +1,10 @@
 ( function() {
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, eachprop,
-        sconf, sDomN, ssD, sDomF, ssF, exegs, topics,
+        fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
         lcaseId2allLemTopics,
         id2tplink, ix2tplink,
-        amode, rg,
+        amode, sconf, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -12,7 +12,6 @@
             fragment__2__indexed_links8topics,
             normalizes___active8static_fragments,
             builtFrags_2_dom8mj,
-            normalizes___active8static_fragments,
         },
     });
 
@@ -37,6 +36,9 @@
 
     //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
     var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
+    //flag "g": With this flag the search looks for all matches,
+    //          without it – only the first match is returned.
+    //          https://javascript.info/regexp-introduction
     //.adding flag "g" ruins the job ... why?
     //.perhaps: "The g flag with match will only return multiple whole
     //          matches, not multiple sub-matches"
@@ -245,6 +247,20 @@
         }
         var norFrRack = {};
         eachprop( normalizedActiveFrag, ( fragBody_raw, akey ) => {
+
+
+            //***************************************************
+            // //\\ Macros filter
+            //      Raw html-script-text is fragBody_raw.
+            //      Main place to add more fragBody_raw
+            //      preconversions before
+            //      convertion fragBody_raw to tp-anchor-scripts.
+            //***************************************************
+            fragBody_raw = doesInsertSiteHTMLMacros( fragBody_raw );
+            //***************************************************
+            // \\// Macros filter
+            //***************************************************
+
             norFrRack[ akey ] = {
                 //(*) format:
                 //text ready to be injected into html dom$
@@ -373,6 +389,17 @@
         !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
     }
 
+    function doesInsertSiteHTMLMacros( rawActFrValue )
+    {
+        const HTMLMacroKey = fconf.HTMLMacroKey;
+        if( rawActFrValue.indexOf( HTMLMacroKey ) > -1 ) {
+            eachprop( fconf.textScriptMacros, (macro, prname) => {
+                var reg = new RegExp( fconf.HTMLMacroKey + prname, 'gu' );
+                rawActFrValue = rawActFrValue.replace( reg, macro );
+            });
+        }
+        return rawActFrValue;
+    }
 
 
 }) ();

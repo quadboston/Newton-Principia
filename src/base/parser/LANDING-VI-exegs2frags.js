@@ -57,8 +57,9 @@
                     //-----------------------------------------------------
                     var bodySplit = subexeg.bodyscript.split( ACTION_SPLITTER );
 
-                    //atomic fragments which are either text or
-                    //JSON object which sets action
+                    //Creates subexeg.activeFrags.
+                    //They are atomic fragments which are either text or
+                    //JSON object which sets digram2text-action.
                     //The action defines what fragment displays:
                     //the action looks for application state and by this state
                     //displays fragment's content.
@@ -74,10 +75,12 @@
                     //-----------------------------------------------------
 
                     if( references.text ) {
+                        ////todm: why adding ref. text is not controlled by fragment itself, but
+                        ////happens for each frag?
                         ////references to essay-sources to be cited or to be the base of essay
                         activeFrags.push( references.text );
                     }
-                    //array of unJSONed-objects or strings of active Fragment text units
+                    //array of JS-objects or strings of active Fragment text units
                     subexeg.activeFrags = activeFrags; //obtained by ACTION_SPLITTER = /¿/
                 });
             });

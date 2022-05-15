@@ -1,8 +1,8 @@
 ( function() {
     var {
         sn,
-        sconf, sDomF,
-        studyMods, amode,
+        fconf, sDomF,
+        studyMods, amode, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -29,11 +29,11 @@
     function mod2inn( pos, stdMod )
     {
         pos = pos || this;
-        var effconf = ( stdMod && stdMod.sconf ) || sconf;
         return [
-            pos[0] * effconf.mod2inn_scale + effconf.modorInPicX,
-            pos[1] * effconf.mod2inn_scale * effconf.MONITOR_Y_FLIP +
-                                           effconf.modorInPicY,
+            pos[0] * sconf.mod2inn_scale + sconf.modorInPicX,
+            pos[1] * sconf.mod2inn_scale *
+                    sconf.MONITOR_Y_FLIP +
+                    sconf.modorInPicY,
         ];
     }
     ///purpose: use for controls undependent on model scale and origin
@@ -44,7 +44,9 @@
         return [
             pos[0] * stdMod.sconf.originalMod2inn_scale +
             sconf.originX_onPicture,
-            pos[1] * stdMod.sconf.originalMod2inn_scale * sconf.MONITOR_Y_FLIP +
+            pos[1] *
+                stdMod.sconf.originalMod2inn_scale *
+                sconf.MONITOR_Y_FLIP +
             sconf.originY_onPicture,
         ];
     }

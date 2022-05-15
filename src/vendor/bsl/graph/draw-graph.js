@@ -76,7 +76,9 @@
                 plotsPars,
                 doTruncateOutOfRangeY,
                 doPaintGridOnlyOnce,
+                doDrawToolline,
         }){
+
             style = style || {};
             //nonefyDom();
             //creates_svgDomEl();
@@ -333,8 +335,34 @@
             //======================================================
             // \\// draws plotsLegends
             //======================================================
+
+            if( doDrawToolline ) {
+                nsmethods.drawToolline({
+                    graphFM_self,
+                    graphArray,
+
+                    colorThreadArray,
+                    marginX,
+                    marginY,
+
+                    rangeY,
+                    rangeX,
+
+                    yMax,
+                    yMin,
+                    xMax,
+                    xMin,
+
+                    dimB : dimY_withMarg,
+                    dimA : dimX_withMarg,
+                    toollineStyle : doDrawToolline.toollineStyle,
+                    abscissaIxValue : doDrawToolline.abscissaIxValue,
+                    numberMarks : doDrawToolline.numberMarks,
+                });
+            }
             return;
         }
+
 
 
         //==================================================

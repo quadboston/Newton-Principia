@@ -118,6 +118,8 @@
 
     ///Given 2d-vector in input, returns unit normal to it.
     ///Normal = anticlockwise-PI/2-turned-given-vector.
+    ///If abs < 1e-100, then norm and unit are constructed arbitrarily,
+    ///
     ///
     ///3d functionality is not enough tested:
     ///Given 3d-vector in input, returns two unit normals to it.
@@ -131,15 +133,18 @@
         }
         var abs = Math.sqrt( v2 );
         if( abs < 1e-100 ) {
-            var norm = is2d ? [1,0] : [1,0,0];
+            var unit = [1,0];
+            vector[2] = 0;
+        } else {
+            var unit = [ vector[0]/abs, vector[1]/abs, ];
         }
-        var unit = [ vector[0]/abs, vector[1]/abs, ];
         if( is2d ) {
             //vector in plane
             var norm = [ -unit[1], unit[0] ];
             var ret = { abs, norm, unit };
         } else {
             //vector in 3d space
+            abs = abs < 1e-100 ? 1e-100 : abs;
             unit.push( vector[2]/abs );
             var normSeed = [];
             for( var mIx=0; mIx<3; mIx++ ) {
@@ -285,7 +290,7 @@
         };
     }
 
-    ///adds t*(vector-AB) to point start
+    ///adds t*vector to point start
     ///inputs:    A,B,start - 2-dim. vectors,
     ///           t - distance parameter,
     ///returns:   u = start + (B-A)*t
@@ -294,7 +299,7 @@
         A,
         B,
         start, //optional
-        direction, //optional instead of A, B
+        direction, //direction with scale instead of A, B
     ){
         start = start || A;
         var u = direction || [ B[0] - A[0], B[1] - A[1] ];

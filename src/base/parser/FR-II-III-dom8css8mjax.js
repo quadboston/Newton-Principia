@@ -15,7 +15,7 @@
 
 
 
-    ///Includes:
+    ///Includes step II and III:
     ///Frag. step II. Norm. and anchor-texts and
     ///Frag. step III. Html and global-css-visib-of-active-category.
     function exegs__2__tpAn8dom8css8mjax()

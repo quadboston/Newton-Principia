@@ -98,7 +98,7 @@
         //  1  codirectional with the screen
         //     which means from screen-top to
         //      screen bottom
-        var MONITOR_Y_FLIP = -1;
+        var MONITOR_Y_FLIP = -1 * fconf.mod2inn_scaleY;
         //----------------------------------
         // \\// MONITOR Y FLIP
         //----------------------------------

@@ -239,7 +239,7 @@
 
                         //expansion patch: todm: make function for this:
                         stdMod.sconf.originalMod2inn_scale = stdMod.sconf.mod2inn_scale;
-
+                        //can add this here: doesImproveSconf();
                         !haz( stdMod.sconf, 'dontRun_ExpandConfig' ) &&
                                 ssF.doExpandConfig( stdMod );
                         ns.url2conf( stdMod.sconf );
@@ -432,8 +432,6 @@
             //================================================================
         });
     }
-
-
 
 }) ();
 

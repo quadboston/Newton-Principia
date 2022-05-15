@@ -56,11 +56,24 @@
     // //\\ this makes effect of fading-out
     //      the original picture
     //===================================================================
-    function detected_user_interaction_effect( doUndetected )
+    function detected_user_interaction_effect( doShowDiagram )
     {
-        rg.detected_user_interaction_effect_DONE = !doUndetected;
+        doesShowDiagram( doShowDiagram );
+        if( fconf.timeToShowOriginalDiagram > 0 && doShowDiagram ) {
+            setTimeout(
+                () => {
+                    doesShowDiagram( false ),
+                    studyMods[ amode.submodel ].media_upcreate();
+                },
+                fconf.timeToShowOriginalDiagram
+            );
+        }
+    }
+    function doesShowDiagram( doShowDiagram ) { 
+        rg.detected_user_interaction_effect_DONE = !doShowDiagram;
         studyMods[ amode.submodel ].imgRk.dom$
-           [ doUndetected ? 'removeClass' : 'addClass' ]( 'in-study' );
+           [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
+        rg.allLettersAreHidden = doShowDiagram;
     }
     //===================================================================
     // \\// this makes effect of fading-out
