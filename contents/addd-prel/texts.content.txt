@@ -733,10 +733,6 @@ where <b>mass</b> * <b>a</b> is a compound ratio.
 
 The force F is taken from M<sub>F</sub> magnitudes, mass from 
 M<sub>mass</sub> magnitudes, and a from M<sub>a</sub> magnitudes.
-<br>There is no known for us way to express this law without taking a unit.
-Even if Newton says separtely that F ~ a and F ~ mass, there is still a requirement of "fixed"
-magnitudes u<sub>F</sub> and u<sub>a</sub> to express proportion
-F/u<sub>F</sub> ~ a/u<sub>a</sub>.
 <br><br>
 
 U n i t  &nbsp;&nbsp; c h a n g e &nbsp;&nbsp; r u l e.

@@ -27,15 +27,20 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
            🠪 🠆
 
     ×?
-
+    ≠ https://en.wikipedia.org/wiki/Equals_sign#Not_equal
     ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	⋂ ⋃ ⊂ ⊃ ⊄	⊅
     ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
-    ∎ ▲ ⏶    //https://en.wikipedia.org/wiki/List_of_Unicode_characters#Geometric_Shapes
+    ∎ ▲ ⏶   https://en.wikipedia.org/wiki/List_of_Unicode_characters#Geometric_Shapes
+          https://en.wikipedia.org/wiki/Geometric_Shapes_Extended
     ∫ √  ∛ ∜
     ∴
         https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
-    ℝ ℚ⁺ ℝ⁺ 𝕀
+    ℝ ℚ⁺ ℝ⁺ 𝕀 ∙ ⦁
         https://en.wikipedia.org/wiki/Blackboard_bold
+
+    (• - legal? https://altcodeunicode.com/alt-codes-bullet-point-symbols/
+             🞄  - in wiki
+    )
 
     x˙⁺⁻⁼  ²³⁰ⁱ⁴⁵⁶⁷⁸⁹ *
  	x⁽ 	x⁾ 	xⁿ 

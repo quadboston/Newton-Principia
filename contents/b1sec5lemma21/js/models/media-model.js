@@ -500,7 +500,7 @@
                 stroke          : GParamColor,
                 'fill'          : 'white',
                 'stroke-width'  : 2,
-                r               : 6,
+                r               : sconf.handleRadius, //6,
             }
         );
         pos2pointy(
@@ -520,7 +520,7 @@
                 stroke          : GParamColor,
                 'fill'          : 'white',
                 'stroke-width'  : 2,
-                r               : 7,
+                r               : sconf.handleRadius, //7,
             }
         );
         //-------------------------------------------------

@@ -1,0 +1,137 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+<img src="contents/b1sec1prop9/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1prop9/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+
+Let a ¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all its radii ¦SP¦SP¦¦,
+¦SQ¦¦, ... , at a
+given angle; it is required to find the law of the centripetal force tending toward
+the ¦S¦center of the spiral¦¦.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 458.
+
+
+*::*proof|english
+{
+  "default" : "1"
+}
+*..*
+
+
+Let the indefinitely small angle ¦SP SQ¦PSQ¦¦ be given, and because all the angles
+are given, the species [i.e., the ratio of all the parts] of the figure ¦SP SQ QR QT¦SPRQT¦¦
+will be given.
+
+Therefore, the ratio ¦QT¦¦/¦QR¦¦ is given, and ¦QT¦¦²/¦QR¦¦ is as ¦QT¦¦, that is
+(because the species of the figure is given), as ¦SP¦¦. Now change the angle ¦SP SQ¦PSQ¦¦
+in any way, and the straight line ¦QR¦¦ subtending the angle of contact ¦QP PR¦QPR¦¦
+
+will be changed (by lem. 11) as the square of ¦PR¦¦ or ¦QT¦¦. Therefore,
+¦QT¦¦²/¦QR¦¦
+will remain the same as before, that is, as ¦SP¦¦. And therefore ¦QT¦¦² x ¦SP¦¦² / ¦QR¦¦
+is as ¦SP¦¦³, and thus
+
+<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">
+(by prop. 6, corols. 1 and 5)
+</a>,
+
+the centripetal force is inversely
+as the cube of the distance ¦SP¦¦. Q.E.I.
+<br><br>
+
+<i>Another solution</i>
+<br><br>
+
+The perpendicular ¦SY¦¦ dropped to the tangent, and the chord ¦PV¦¦ of the
+¦curvatureCircle¦circle cutting the spiral concentrically¦¦,
+are to the distance ¦SP¦¦ in given ratios;
+and thus ¦SP¦¦³ is as ¦SY¦¦² x ¦PV¦¦,
+that is
+
+<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary3">
+(by prop. 6, corols. 3 and 5)
+</a>,
+
+inversely as the centripetal force.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 458.
+
+
+
+
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+<b><><>CXX2E:</b><br><br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#logarithmic-spiral-motion">Logarithmic spiral motion</a>
+gives
+
+        <div style="text-align:center;">
+            f<sub>e</sub> = r²ₒv²ₒ¦SP¦r¦¦⁻³.
+        </div>
+<br><br>
+
+In simple words, since curve will be "rotation-similar", then curvature κ ~ ¦SP¦r¦¦⁻<sup>1</sup>,
+𝛺 = const,
+v²~ M²¦SP¦r¦¦⁻²𝛺⁻², then
+        <div style="text-align:center;">
+            f<sub>e</sub> ~ ¦SP¦r¦¦⁻³.
+        </div>
+
+
+<div book-reference-id="kvk"></div>
+
+

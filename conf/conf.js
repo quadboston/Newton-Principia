@@ -19,6 +19,15 @@
     //====================================================
     to_fconf =
     {
+
+        timeToShowOriginalDiagram  : 5000, //ms
+
+        //we adopt strategy when svg x-scale is unchanged and set as
+        //sconf.mod2inn_scale, but y-scale can have additional factor,
+        //mod2inn_scaleY, to be overriden in lemma's conf.js
+        //but only for lemmas where dontRun_ExpandConfig is not true
+        mod2inn_scaleY              : 1,
+
         doDisplayPageTopNavigatMenu : true,
         lemmaHasHomeButton          : true,
         homeButtonName              : 'Contents',
@@ -107,6 +116,24 @@
             idleHelpButtonTooltip   : 'Get Help',
         },
 
+        //------------------------------------------------------
+        // //\\ macros
+        //      , keyNames must not include RegEx special chars.
+        //------------------------------------------------------
+        HTMLMacroKey : '<><>',
+        textScriptMacros : {
+            CXX2E :
+                `From <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>
+                to
+                <a target="_blank" href="?conf=sappId=addd-fw#Eframework">Euclid</a> framwork`
+            ,
+            CXX :
+                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework`
+            ,
+        },
+        //------------------------------------------------------
+        // \\// macros
+        //------------------------------------------------------
     };
 
 

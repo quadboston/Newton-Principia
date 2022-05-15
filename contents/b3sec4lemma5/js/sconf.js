@@ -1,25 +1,11 @@
-// //\\// widget config
 ( function() {
-    var ns      = window.b$l;
-    var mat     = ns.sn( 'mat' );
-    var sn      = ns.sn;
-
-    var fapp    = sn('fapp' ); 
-    var fconf   = sn('fconf',fapp);
-    var sconf   = sn('sconf',fconf);
-    var sapp    = sn('sapp'); 
-
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'load_conf';
-    //var ccc         = console.log; ccc && ( ccc = console.log );
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var { //import from apptree
+        sn,
+        fconf, fapp,
+        sconf,
+    } = window.b$l.apptree({ //export to apptree
+        ssFExportList : { init_conf }
+    });
     return;
 
 
@@ -28,12 +14,6 @@
 
 
 
-
-
-    function setModule()
-    {
-        ssF.init_conf = init_conf;
-    }
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
@@ -44,6 +24,10 @@
         //--------------------------------------
         var pictureWidth = 1340;
         var pictureHeight = 864;
+
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
 
         var modorInPicX = 98.0;
         var modorInPicY = 474;
@@ -98,36 +82,6 @@
             pair[1].picturepos = y[ pair[1].pname ];       //makes in synch with pos
             pair[1].picturepos[0] = pair[0].picturepos[0]; // = abscissa
         });
-        //result is like this: basePairs =
-        /*
-        [
-            [
-                {
-                    "H": [  //abscissa
-                        98,
-                        474
-                    ],
-                    "pname": "H",
-                    "picturepos": [
-                        98,
-                        474
-                    ]
-                },
-                {
-                    "A": [  //ordinate
-                        98,
-                        159
-                    ],
-                    "pname": "A",
-                    "picturepos": [
-                        98,
-                        159
-                    ]
-                }
-            ],
-            ....
-        ]
-        */
         //--------------------------------------
         // \\// original-book picture parameters
         //--------------------------------------
@@ -173,35 +127,9 @@
         })();
 
 
-        //================================================================
-        //ccc( 'pname2point', JSON.stringify( pname2point, null, '    ' ) );
-        //ccc( 'basePairs', JSON.stringify( basePairs, null, '    ' ) );
-        /*
-        //In both pname2point and basePairs at this moment, the leaf-element,
-        //the point has following format:
-        sconf.pname2point[pname] = sconf.basePairs[NN][MM] =
-        {
-            "H": [
-                98,
-                474
-            ],
-            "pname": "H",
-            "picturepos": [
-                98,
-                474
-            ],
-            "pos": [ //in model units and model-plane-space ...
-                0,
-                0
-            ]
-        },
-        */
-        //================================================================
-
 
         //adds model's origin
         pname2point.O = { pos:[0,0], pname : 'O' };
-        //ccc( basePairs );
         //---------------------------------------------------------------------------
         // \\// derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
@@ -255,15 +183,18 @@
             //----------------------------------
 
             default_tp_stroke_opacity : 2,
-            default_tp_stroke_width : 10,
             default_tp_lightness : 40, //50 is full lightness
-            defaultLineWidth : 2,
+
+            default_tp_stroke_width : Math.floor( 10 * controlsScale ),
+            defaultLineWidth : Math.floor( 2 * controlsScale ),
+            handleRadius : Math.floor( 8 * controlsScale ),
 
             mod2inn_scale : mod2inn_scale,
             inn2mod_scale : inn2mod_scale,
             mod2inn_scale_initial : mod2inn_scale,
             inn2mod_scale_initial : inn2mod_scale,
         });
+        sconf.pointDecoration.r = sconf.handleRadius;
         //----------------------------------
         // \\// prepares sconf data holder
         //----------------------------------------------------

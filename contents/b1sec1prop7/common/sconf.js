@@ -31,6 +31,20 @@
         // \\// subapp regim switches
         //====================================================
 
+        //***************************************************************
+        // //\\ geometical scales
+        //***************************************************************
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var pictureWidth = 892; //630;  //892, 1.4158
+        var pictureHeight = 840; //400; //840, 2.1
+
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+        //***************************************************************
+        // \\// geometical scales
+        //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
@@ -38,10 +52,6 @@
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
         sconf.rgShapesVisible = true;
-
-        //todm: strangerly, this fixes big and ubly
-        //border of drag-handle:
-        sconf.default_tp_stroke_width = 5;
 
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
@@ -53,6 +63,31 @@
 
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
+
+
+
+        //--------------------------------------
+        // //\\ do override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
+        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
+        defaultLineWidth        = Math.floor( 1 * controlsScale ),
+        handleRadius            = Math.floor( 5 * controlsScale ),
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+        //this makes hanle's border nicely thin
+        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+
+        //make effect apparently only for line-captions,
+        //not for point-captions bs
+        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        sconf.text_nonhover_width   = 1000;
+        sconf.text_hover_width      = 2000;
+        // \\// principal tp-css pars
+        //--------------------------------------
+        // \\// do override engine defaults,
+        //--------------------------------------
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
@@ -62,13 +97,6 @@
         //***************************************************************
         // //\\ geometics parameters
         //***************************************************************
-        //for real picture if diagram's picture is supplied or
-        //for graphical-media work-area if not supplied:
-        var pictureWidth = 892; //630;  //892, 1.4158
-        var pictureHeight = 840; //400; //840, 2.1
-
-
-
         //=============================================
         // //\\ points reused in config
         //=============================================
@@ -159,7 +187,7 @@
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
-                initialR    : 5,
+                //initialR    : 5 * controlsScale,
             },
 
             P : {
@@ -167,7 +195,6 @@
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
-                initialR    : 5,
             },
 
             Q : {
@@ -320,7 +347,12 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
+
+            default_tp_stroke_width,
+            defaultLineWidth,
+            handleRadius,
         });
+        sconf.pointDecoration.r = sconf.handleRadius;
         //***************************************************************
         // \\// geometics parameters
         //***************************************************************

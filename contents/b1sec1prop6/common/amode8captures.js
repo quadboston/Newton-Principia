@@ -66,6 +66,9 @@
 
         rg[ 'Q,rrminus' ].undisplay = true;
         rg[ 'P,rrminus' ].undisplay = true;
+        rg.APQ.undisplay = false;
+
+        //rg.VQ.undisplay = true;
         rg.Q.hideD8Dpoint = false;
         rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
@@ -108,7 +111,6 @@
             rg.media_scale.value = 1;
 
             ssF.scaleValue2app( rg.media_scale.value, stdMod );
-            //sDomF.detected_user_interaction_effect( !'doUndetected' );
 
             rg.A.undisplay = true;
             rg.T.undisplay = true;
@@ -214,10 +216,6 @@
 
 
         } else if( theorion === 'corollary' && subessay === 'corollary5' ){
-            //if( aspect === 'addendum' ) {
-                rg.APQ.undisplay = true;
-            //} 
-
             rg.SY.undisplay = true;
             rg.Y.undisplay = true;
             rg.PY.undisplay = false;
@@ -236,11 +234,26 @@
             rg[ 'Q,rrminus' ].undisplay = true;
             rg[ 'QP' ].undisplay = true;
             rg[ 'P,rrminus' ].undisplay = true;
+            rg.APQ.undisplay = true;
+
+            /*
+            if( aspect === 'addendum' ) {
+                rg.VQ.undisplay = false;
+                rg.SY.undisplay = true;
+                rg.Y.undisplay = true;
+                rg.PY.undisplay = false;
+                rg.QP.undisplay = false;
+                rg.V.undisplay = false;
+                rg.PV.undisplay = false;
+                rg.curvatureCircle.undisplay = false;
+            } 
+            */
 
         } else {
             rg.media_scale.value = 1;
             ssF.scaleValue2app( rg.media_scale.value, stdMod );
         }
+        sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
 

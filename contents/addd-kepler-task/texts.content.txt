@@ -7,7 +7,7 @@
   "subessayCaption" : "definition"
 }
 *..*
-<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework.</b>
+<b>In <><>CXX.</b>
 <br><br>
 
 <b>Kepler Task</b>
@@ -48,17 +48,17 @@ Full force acting on the body will be
 Now instead of arbitrary speed, take speed v which makes sector speed constant.
 
     <div style="text-align:center;">
-        1/2[𝗿𝘃]𝗸 = 1/2 vr[<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx">𝗲𝘂</a>]<sub>𝗸</sub> = K = const,
+        1/2[𝗿𝘃]𝗸 = 1/2 vr[<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx">𝗲𝘂</a>]<sub>𝗸</sub> = M/2 = const,
 
         &nbsp;&nbsp;&nbsp;&nbsp;(k)<br>
-        2K is also an orbital momentum which we call M = 2K <br>
+        M is called orbital momentum.<br>
     </div>
 <br>
 
 We may use following notations:<br>
 Angles:<br>
   &nbsp;&nbsp;&nbsp; ω is angle from 𝗲 to 𝘂. 𝛺 =ᵈᶠ sin(ω) = [𝗲𝘂]𝗸, <br>
-  &nbsp;&nbsp;&nbsp; θ is angle from 𝗻 to 𝗲. cos(θ) = -𝗲𝗻 = 𝛺 b<sub>𝗸</sub>, <br>
+  &nbsp;&nbsp;&nbsp; for angle from 𝗻 to -𝗲: -𝗲𝗻 = 𝛺 b<sub>𝗸</sub>, <br>
   when recalling that 𝗯 = [𝘂𝗻] is a binormal and 𝗯𝗸 = 𝗯<sub>𝗸</sub> = b<sub>𝗸</sub> is either 1 or -1. <br>
 <br>
 
@@ -74,17 +74,18 @@ By differentiating (k), we find [𝗿𝗮] = 0 and 𝗳 // 𝗲. Hence our two s
 We project force (f) on to curvature's norm 𝗻
     <div style="text-align:center;">
         -𝗲𝗻f<sub>e</sub> = κv², or
-                    𝛺 b<sub>𝗸</sub>f<sub>e</sub> = κv², &nbsp;&nbsp;&nbsp; (f') <br>
+        f<sub>e</sub> = κ<sub>𝗸</sub>v²/𝛺, &nbsp;&nbsp;&nbsp; (f') <br>
+        where κ<sub>𝗸</sub> = κb<sub>𝗸</sub>.
      </div>
 <br>
 
 and, excluding v by substituting (k') into (f'), we obtain solution for
 f<sub>e</sub> dependent only on shape of the orbit:
     <div style="text-align:center;">
-        r²𝛺³b<sub>𝗸</sub>f<sub>e</sub> = κM², &nbsp;&nbsp;&nbsp; (s) <br>
+        f<sub>e</sub> = κ<sub>𝗸</sub>M²/(r²𝛺³), &nbsp;&nbsp;&nbsp; (s) <br>
      </div>
 <br>
-All magnitudes in (s) are functions of curve's length parameter s. All functions except f<sub>e</sub> are known.
+All magnitudes in right side (s) are known functions of curve's length parameter s.
 <br><br>
 
 We restrict domain of definition of solution 𝗳(s) on pieces of orbit
@@ -93,82 +94,140 @@ speed must be 0, so Kepler's law would be broken. Preserving Kepler's law
 in neighbourhoods like (s₋, s₋ + ε) would require "infinite" force which is
 out of scope in our essay.
 <br><br>
+In other words, (s) holds for convex center of forces, i.e. each ray from it does not cross curve twice and not tangent to it.
 
-
-
-
-<i><b>Expansion 𝗳(</b>s<b>) to 𝗳(𝗿) in polar coordinates with free variable φ</i></b>
 <br><br>
-        <br>
-        All derivatives in this section are via φ: v˙ = v˙<sub>φ</sub>.<br>
-        We have v˙𝛺 = ρ. From (s) in context of
-        <a target="_blank" href="?conf=sappId=addd-prel-curveXX#polar-coordinates">Polar coordinates</a>
-        for convext center of forces
-        (each ray from it does not cross curve twice and not tangent to it ), we have:
-        <br>
 
+
+
+<i><b>II. Expansion </b> 𝗳(s) to force filed 𝗳(𝗿), 𝗿  ∈ ℝ².</i>
+<br><br>
+
+    Consider curve's equation in polar coordinates 𝗿<sub>c</sub> = ρe<sup>iφ</sup> <br>
+
+    Body's orbit is
         <div style="text-align:center;">
-            ρ²𝛺³b<sub>𝗸</sub>f<sub>e</sub> = κM², <br>
-            v³<sub>φ</sub>κb<sub>𝗸</sub> = -ρρ˙˙ + ρ² + 2ρ˙². <br>
+                𝗿 = re<sup>i𝛙</sup> =
+                𝗿<sub>c</sub> + 𝗵, &nbsp;&nbsp;&nbsp;&nbsp; (O)  <br>
+          where 𝗵 is a center of force.
         </div>
-After substitutions:
+
+        All derivatives in "Expansion..." section are via φ like:
+             𝗿˙ = 𝗿'<sub>φ</sub> = 𝘃<sub>φ</sub>.<br>
+        We denote: 𝛺<sub>𝛙</sub>=𝛺  and note ρ = v<sub>φ</sub>𝛺<sub>φ</sub>. <br>   
+
+    <!--
+    v<sub>φ</sub>𝛺<sub>𝛙</sub> = r𝛙˙,
+    And generic formula is:
+    f<sub>e</sub> = M²r⁻² (ρ/(𝛙˙r))³ ( η + η˙˙ ), &nbsp;&nbsp;&nbsp;&nbsp; (G) <br>
+    -->
+
+    We rewrite (s):
         <div style="text-align:center;">
-            ρ⁵f<sub>e</sub> = M²( -ρρ˙˙ + ρ² + 2ρ˙² ).  <br>
+            f<sub>e</sub> = v³<sub>φ</sub>κ<sub>𝗸</sub>ρ⁻³(M/r)²(𝛺<sub>φ</sub>/𝛺<sub>𝛙</sub>)³
+            <br>
+        </div>
+
+    Recalling that in
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX#polar-coordinates">
+        polar coordinates</a>:
+        <br>
+        <div style="text-align:center;">
+            v³<sub>φ</sub>κ<sub>𝗸</sub> = -ρρ˙˙ + ρ² + 2ρ˙². <br>
         </div>
 
 Defining new variable η = 1/ρ:
         <div style="text-align:center;">
             ρ˙ = -η⁻²η˙, ρ˙˙ = -2η⁻³η˙² - η⁻²η˙˙,<br>
-            f<sub>e</sub> = M²( η + η˙˙ )η²,  <br>
+            ρ⁻³( -ρρ˙˙ + ρ² + 2ρ˙² ) = η + η˙˙, <br>
+        </div>
+<br>
+we express force in terms of force's center and curve's shape:
+        <div style="text-align:center;">
+            f<sub>e</sub> = M²r⁻² (𝛺<sub>φ</sub>/𝛺<sub>𝛙</sub>)³ ( η + η˙˙ ).
+            &nbsp;&nbsp;&nbsp;&nbsp; (G)
+        </div>
+<br>
+
+When center of force is in curve coordinates' origin, then 𝗵 = 0, 𝛙 = φ, r = ρ, and we have 
+<a target="_blank" href="https://en.wikipedia.org/wiki/Binet_equation">Binet formula:</a>
+
+        <div style="text-align:center;">
+            f<sub>e</sub> = (Mη)² (η + η˙˙).  &nbsp;&nbsp;&nbsp;&nbsp; (B)  <br>
         </div>
 
-which is Binet formula [1]<br>
+
+
+<a name="excentric-circular-motion"></a>
 <br><br>
-
-
-
-
 <i><b>Excentric circular motion</b></i>
 <br>
-    Consider circular motion with center shifted with h along axis x:
+        <div style="text-align:center;">
+                𝗿 = ρe<sup><i>iφ</i></sup> + h <br>
+        </div>
+    where radius ρ = const and h = const.
+    <br><br>
 
+    We find 𝛺<sub>𝛙</sub> from cosine theorem for triangle (0,0),(Px,Py),(h,0):<br>
         <div style="text-align:center;">
-                𝗿 = ρe<sup><i>iφ</i></sup> = e<sup><i>iψ</i></sup> + h <br>
+            h² = r²+ρ²-2rρ𝛺<sub>𝛙</sub>.
         </div>
-    From cosine theorem for triangle (0,0),(Px,Py),(h,0), we can write:<br>
+    From (G) and noting 𝛺<sub>φ</sub> = 1 and η + η˙˙ = 1/ρ:
         <div style="text-align:center;">
-            h² = ρ²+1-2ρ𝛺.
+            f<sub>e</sub> = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. &nbsp;&nbsp;&nbsp;&nbsp; (EC)
         </div>
-    From (s) and noting κ = 1:
-        <div style="text-align:center;">
-            f<sub>e</sub> = 8M²ρ(ρ²+1-h²)⁻³,
-        </div>
+
+
     Above formula holds for arc of the circle which is convex in respect to center (0,0):
-    if h ⩽ 1 for an entire circle and for h›1 insde an angle between two tangents drawn from
+    if h ⩽ ρ for an entire circle and for h › ρ insde an angle between two tangents drawn from
     (0,0).
-    <br>
-    When h=1, force center is on the circle, and f<sub>e</sub> = 8M²ρ⁻⁵,
+    <br><br>
+    When h=ρ, force center is on the circle, and f<sub>e</sub> = 8M²ρ²r⁻⁵.  <br>
+    When h=0, force center is circle's center, and f<sub>e</sub> = v²ₒ/ρ.
 <br><br>
 
 
-<i><b>Conic motion</b></i>
+<i><b>Conic motion with force origin in conic's focus.</b></i>
 <br>
+      𝗵 = 0, and φ = 𝛙, and formula (B) holds. <br>
     Equation of conic is ρ<sub>⟂</sub>η = 1 - <i>e</i>cos(φ). <br>
      <i>e</i> < 1 for ellipse, = 1 for parabola, > 1 for hyperbola. <br>
     (<i>e</i> is not |𝗲|, this is a coincidence), <br>
-    ρ<sub>⟂</sub> is conic's width approached at "middle angle" φ = π/2. <br><br> 
+    constant ρ<sub>⟂</sub> is conic's width approached at "middle angle" φ = π/2. <br><br> 
 
     We have η + η˙˙ = 1/ρ<sub>⟂</sub> and force law is: <br>
+
+    for force center in coordinate's origin as in (B)
     <div style="text-align:center;">
       f<sub>e</sub> = M²ρ⁻²/ρ<sub>⟂</sub>, <br>
       or in vector form: <br>
-         𝗳 = -M²ρ⁻²/ρ<sub>⟂</sub>𝗲
+         𝗳 = -f<sub>e</sub>𝗲.
     </div>
-
-
 <br><br>
-[1] https://en.wikipedia.org/wiki/Binet_equation
 
+
+<i><b>Conic motion with force origin in conic's center.</b></i>
+<br>
+      𝗵 = 0 and φ = 𝛙, and formula (B) holds. <br>
+    Equation of conic is x²/a² + y²/b² = 1, hence <br>
+    ρ⁻² = 𝛂²cos²(φ) + 𝛃²sin²(φ), where 𝛂  = 1/a and 𝛃 = 1/b.<br>
+<br>
+To find η˙˙, write:
+    η² = 𝛂² + Dsin²(φ) = 𝛃² - Dcos²(φ), where D = 𝛃² - 𝛂², <br>
+    2η² = T - Dcos(2φ), T = 𝛂²+𝛃².<br>
+
+    <div style="text-align:center;">
+        ηη˙ = -𝛂²sin(φ)cos(φ) + 𝛃²sin(φ)cos(φ) = Dsin(φ)cos(φ), <br>
+        η²η˙² = Dsin²(φ) Dcos²(φ) = ( η² - 𝛂² ) ( 𝛃² - η² ), <br>
+        η˙² + ηη˙˙ = 1/2 Dsin˙(2φ) = Dcos(2φ) = T - 2η². <br>
+        ( η² - 𝛂² ) ( 𝛃² - η² ) + η²η˙˙ = Tη² - 2η⁴,<br>
+        Tη² - 𝛂²𝛃² + η³η˙˙ = Tη² - η⁴,<br>
+        η˙˙ + η = 𝛂²𝛃²η⁻³.<br>
+    </div>
+and
+    <div style="text-align:center;">
+      f<sub>e</sub> = M²𝛂²𝛃²ρ. <br>
+    </div>
 
 <!--
 Binet Jacqes Phillipe Marie 1786-1856, cited at Krylov p83, p84
@@ -179,6 +238,39 @@ Ptolemy's model
 https://www.mathpages.com/home/kmath639/kmath639.htm
 
 -->
+<a name="logarithmic-spiral-motion"></a>
+<br><br>
+
+<i><b>Logarithmic spiral motion</b></i>
+<br>
+    Equation of Logarithmic spiral is: ρ = ρₒe<sup>Aφ</sup>     <br>
+    where A and ρₒ are constants, -oo ‹ A ‹ oo.
+<br><br>
+
+    This equation is equivalent to condition ω = const. <br>
+    Hence A = ctg(ω), 𝛺  = const, and<br>
+       𝗿 = ρₒe<sup>(i+A)φ</sup>, 𝘃<sub>φ</sub> = (A+i)𝗿, 𝗮<sub>φ</sub> = (A+i)²𝗿, <br>
+
+    v<sub>φ</sub>² = (A²+1)ρ², A²+1 = 1/𝛺², v<sub>φ</sub> = ρ/𝛺.   <br>
+
+       𝘃<sub>φ</sub>|𝗮 = (A-i)(A+i)²ρ² = (A²+1)(A+i)ρ², and <br>
+        b<sub>𝗸</sub> = 1, v<sub>φ</sub>³κ = Img 𝘃<sub>φ</sub>|𝗮 = (A²+1)ρ² = v<sub>φ</sub>²,
+        κ = 𝛺/ρ.
+    <br><br>
+
+    From (f'),(k' ): f<sub>e</sub> = κv²/𝛺, v = ρₒvₒ/ρ.
+    <div style="text-align:center;">
+        f<sub>e</sub> = r²ₒv²ₒ/r³, <br>
+          or in vector form: <br>
+             𝗳 = -f<sub>e</sub>𝗲.
+    </div>
+<br>
+If ω = 90ᵒ, then ρ = const = ρₒ, body's orbit is a circle, and f<sub>e</sub> = v²ₒ/ρₒ.
+
+
+<br><br>
+<a target="_blank" href="https://en.wikipedia.org/wiki/Logarithmic_spiral">Logarithmic spiral</a> <br>
+<a target="_blank" href="https://en.wikipedia.org/wiki/Cotes%27s_spiral">Roger Cotes spirals</a>
 
 
 <br>

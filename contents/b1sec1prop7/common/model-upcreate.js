@@ -40,7 +40,7 @@
         // **api-input---plane-curve-derivatives
         var diff = mcurve.planeCurveDerivatives({
             fun,
-            t : stdMod.pos2t( rr0 ),
+            q : stdMod.pos2t( rr0 ), //=angle
             rrc,
         });
         var {
@@ -159,8 +159,8 @@
         // //\\ graph
         //------------------------------------------------
         ///for initial launch only
-        stdMod.builds_forceGraphArray();
-        stdMod.graphFW.doPaint();
+        stdMod.buildsforceGraphArray();
+        stdMod.graphFW.drawGraph_wrap();
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
@@ -171,7 +171,7 @@
         //------------------------------------------------
         var diff = mcurve.planeCurveDerivatives({
             fun,
-            t : stdMod.pos2t( rr0 ),
+            q : stdMod.pos2t( rr0 ),
             rrc : rg.Rcol2.pos,
         });
         var {
@@ -263,7 +263,7 @@
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
                 fun,
-                t : s,
+                q : s,
                 rrc,
             });
         var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU
@@ -286,7 +286,7 @@
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
                 fun,
-                t : s,
+                q : s,
                 rrc,
             });
             var vt = sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;

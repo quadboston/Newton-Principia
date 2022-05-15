@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns,
+        ns, eachprop,
         fconf,
         sconf,
     } =
@@ -24,9 +24,61 @@
     function init_conf()
     {
 
-        //todm: strangerly, this fixes big and ubly
-        //border of drag-handle:
-        sconf.default_tp_stroke_width = 3;
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.enableStudylab            = false;
+        sconf.enableTools               = true;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
+
+
+        //***************************************************************
+        // //\\ geometical scales
+        //***************************************************************
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var pictureWidth = 699;
+        var pictureHeight = 375;
+        var originX_onPicture = 80; //for model's axis x
+        var originY_onPicture = 329; //for model's axis y
+
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+
+
+        //--------------------------------------
+        // //\\ do override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
+        default_tp_stroke_width = Math.floor( 3 * controlsScale ),
+        defaultLineWidth        = Math.floor( 1 * controlsScale ),
+        handleRadius            = Math.floor( 4 * controlsScale ),
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+        //this makes hanle's border nicely thin if it has CSS hover-width:
+        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        //this makes curve's border nicely thin if it has CSS hover-width:
+        sconf.hover_width       = Math.max( 1, Math.floor( 10*controlsScale/1.6 ) );
+
+        //make effect apparently only for line-captions,
+        //not for point-captions bs
+        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        sconf.text_nonhover_width   = 1000;
+        sconf.text_hover_width      = 2000;
+        sconf.thickness = 0.1; //sconf.nonhover_width;
+        // \\// principal tp-css pars
+        //--------------------------------------
+        // \\// do override engine defaults,
+        //--------------------------------------
+        //***************************************************************
+        // \\// geometical scales
+        //***************************************************************
+
+
+
 
         sconf.rgShapesVisible = true;
 
@@ -55,14 +107,6 @@
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
-        //for real picture if diagram's picture is supplied or
-        //for graphical-media work-area if not supplied:
-        var pictureWidth = 699;
-        var pictureHeight = 375;
-
-        var originX_onPicture = 80; //for model's axis x
-        var originY_onPicture = 329; //for model's axis y
-
         var A = [originX_onPicture, originY_onPicture];
 
         var a = [A[0], 48.5];
@@ -155,6 +199,7 @@
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
+            initialR : handleRadius,
         }));
         //merging with original points
         curvePivots[0].caption = 'a';
@@ -199,6 +244,7 @@
             draggableX  : true,
             draggableY  : true,
             doPaintPname: false,
+            initialR : handleRadius,
         }));
         rightCurvePivots[ 0 ].draggableX = false;
         rightCurvePivots[ rightCurvePivots.length - 1 ].draggableX = false;
@@ -350,6 +396,9 @@
             // \\// slider
             //---------------------------------------
         });
+        eachprop( originalPoints, op => {
+            op.initialR = handleRadius;
+        });
 
         //-----------------------------------
         // //\\ sets bars base points array
@@ -368,6 +417,7 @@
                 pcolor : given,
                 letterAngle : 45,
                 draggableX : true,
+                initialR : handleRadius,
             },
             {
                 //pos: [210,122],
@@ -376,6 +426,7 @@
                 letterAngle : 45,
                 draggableX : true,
                 //classmark : 'tp-individual-bar',
+                initialR : handleRadius,
             },
 
             {
@@ -384,6 +435,7 @@
                 pcolor : given,
                 letterAngle : 45,
                 draggableX : true,
+                initialR : handleRadius,
             },
             ///will coinside with point E
             {
@@ -424,6 +476,10 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
+            default_tp_stroke_width,
+            defaultLineWidth,
+            handleRadius,
+
             mediaBgImage : "l4-diagram.png",
             predefinedTopics,
             originalPoints,

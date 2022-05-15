@@ -252,11 +252,11 @@ find curve's derivatives <b>r˙</b>, <b>r˙˙</b>, etc. We try then to express c
     </div>
 <br>
 
-For planar vectors 𝗮 = (x,y,0),
-their "product as complex numbers 𝗮<sup>*</sup>₁*𝗮₂" is  <br>
+For planar vectors of type 𝗰 = (x,y,0),
+their "product as complex numbers 𝗰<sup>*</sup>₁*𝗰₂" is  <br>
     <div style="text-align:center;">
-                𝗮₁|𝗮₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗮₁𝗮₂, [𝗮₁𝗮₂]𝗸 ), <br>
-            ( which are 𝗮₂ components in coordinate system 𝗶 = 𝗮₁/a₁, [𝗸𝗶] ).
+                𝗰₁|𝗰₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗰₁𝗰₂, [𝗰₁𝗰₂]𝗸 ), <br>
+            ( which are 𝗰₂ components in coordinate system 𝗶 = 𝗰₁/c₁, [𝗸𝗶] ).
     </div>
     were 𝗸 - is a unit vertical ort.
 <br>

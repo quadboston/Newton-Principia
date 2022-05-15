@@ -11,23 +11,39 @@
 
 <br>
 
+<b><i>Relation to Originals</i></b>
+<br>
 
-In these Addendums, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements. We present mathematical "facts" as they are. Their mapping to these books is up to readers. The mapping to what Euclid or Isaac Newton thought and nuances of translation are left to historians.
+In this Preliminaries, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
+<br><br>
 
-It is irrelevant if impiled content is unknown to Euclid or Newton at their times.
-When we suggest the mapping, we can put source Lemma in parenthesises like
+
+⦁  We present mathematical facts as they are.
+<br><br>
+
+⦁  We don't assume were or were not these facts known to Newton or Euclid. It is irrelevant to
+these Preliminaies.
+<br><br>
+
+⦁  We do not do any claims these facts represent Newton's or Euclid's writings. We do not insist what Newton or Euclid said or were intended to say. We reserved the place to do such suggestions or interpretations in Addendums under original Lemma or Proposition.
+<br><br>
+
+⦁  To point to original text which may use the "fact", we put reference to the text
+in parenthesises. For example,
 
 <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
 
-maps to
+refers to
 
 <a target="_blank" href="?conf=sappId=b1s2prop2theor2,theorionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
 
  
-<br><br>
+<br><br><br><br>
 
 
-We use two axiomatic frameworks, "Euclid" and "CalculusXX".
+<b><i>Used axiomatic frameworks</i></b>
+<br>
+We use two frameworks, "Euclid" and "CalculusXX".
 <br><br>
 
 <a name="Eframework"></a>

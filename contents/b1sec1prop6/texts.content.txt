@@ -180,11 +180,11 @@ We shall give example of this procedure in the following problems.
 <b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework</b>
 <br><br>
 
-Force = acceleration 𝗮 which is
+Force
 <br><br>
 
     <div style="text-align:center;">
-             𝗮 = 𝗿˙˙ = ¦P,sagitta¦𝕻¦¦˙˙ = <br>
+             𝗿˙˙ = ¦P,sagitta¦𝕻¦¦˙˙ = <br>
         2lim(¦P,sagitta¦𝕻¦¦/δ²) <br>
         δ → 0.
     </div>
@@ -213,48 +213,43 @@ is defined here</a>,
 <b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework.</b>
 <br><br>
 
-Force = acceleration 𝗮 which is
-<br><br>
-
+Force
     <div style="text-align:center;">
-             𝗮 = 𝗿˙˙ = K² d²¦P,sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
+             𝗮 = 𝗿˙˙ = M²/4 d²¦P,sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
     </div>
-<br>
 
 where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
 <a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 
-K is "Kepler constant" of constant sectorial speed:
-<br><br>
-
+M/2 is "Kepler constant" for constant sectorial speed:
     <div style="text-align:center;">
-        S˙ = K = 1/2[<b>rₒvₒ</b>]<sub>𝗸</sub>, <br>
+        S˙ = 1/2[<b>rₒvₒ</b>]<sub>𝗸</sub> = M/2, <br>
         where 𝗸 = <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx">[𝗶𝗷].</a>
     </div>
-<br>
+<br><br><br>
 
 
-<b><i>In Book's context:</i></b>
+<b><><>CXX2E</b>
 <br><br>
 
-From (*):
+(*) gives:
     <div style="text-align:center;">
-             𝗮 = 2K² lim( ¦P,sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> 🠆 0,<br>
-        a = 8K² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )² ) at δ 🠆 0, &nbsp;&nbsp;&nbsp;(**)<br>
+             𝗮 = M²/2 lim( ¦P,sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> 🠆 0,<br>
+        a = 2M² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )² ) at δ 🠆 0, &nbsp;&nbsp;&nbsp;(**)<br>
     </div>
 
 where
     <div style="text-align:center;">
         Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, Δ<sub>S</sub> =
             (¦SP¦¦ x ¦QT¦¦²) / 2, <br>
-        Δ<sub>S</sub> = ΔS + ~o(δ³), where δ = Δt, <br>
+        Δ<sub>S</sub> = ΔS + o(δ³), where δ = Δt, <br>
         ¦QR¦saggtta QR¦¦ = ¦P,sagitta¦𝔓¦¦ + o(δ²).
     </div>
 <br><br>
 
-Hence in Book notations for (**), the specific coefficient is 8K².
+Hence in Book notations for (**), the specific coefficient is 2M².
 <br>
 <div book-reference-id="kvk"></div>
 
@@ -271,15 +266,19 @@ Hence in Book notations for (**), the specific coefficient is 8K².
 }
 *..*
 
-<b>CalculusXX <a target="_blank" href="?conf=sappId=addd-kepler-task">solution</a></b> adds numeric coefficient 8K² to Book's solution:
-<br><br>
+<b><><>CXX2E:</b><br><br>
 
+For counter-clockwise curvature orientation b<sub>𝗸</sub> = 1,
+<a target="_blank" href="?conf=sappId=addd-kepler-task">recalling (f') and (k')</a>
+correspondingly:
     <div style="text-align:center;">
-        (k') ⇒ v² = 4K²/ 'SY'² <br>
-        (f') ⇒ 𝛺¦PC C¦ R<sub>c</sub>¦¦𝗯<sub>𝗸</sub>f<sub>e</sub> = v² = 4K²/ '¦SY¦¦'², <br>
-                      𝛺 ¦PC C¦ R<sub>c</sub>¦¦𝗯<sub>𝗸</sub> = 1/2 cos(θ)2¦PC C¦ R<sub>c</sub>¦¦ = '¦PV¦¦'/2 <br>
-        For case of attracting force, f = f<sub>e</sub>, and <br>
-        f = 8K² / ('¦SY¦¦'² '¦PV¦¦') <br>
+        f<sub>e</sub> = v² κ/𝛺,<br>
+        v² = M² / (¦SP¦r¦¦²sin²(ω)) =   M² / ¦SY¦¦² <br>
+        <br><br>
+
+        κ/𝛺 = 2 / (2¦PC¦R¦¦ sin(ω) ) = 2 / ¦PV¦¦, <br>
+        f<sub>e</sub> = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+            𝗳 = -𝗲f<sub>e</sub> <br>
     </div>
 <br>
 <div book-reference-id="kvk"></div>
@@ -297,10 +296,37 @@ Hence in Book notations for (**), the specific coefficient is 8K².
 }
 *..*
 
-<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework</b>
-<br><br>
+This Corollary paraphrases Corollary 1.
 
-alternative solution is <a target="_blank" href="?conf=sappId=addd-kepler-task">here.</a>
+<!-- 
+
+<b>Proof from corollary 3</b>
+<br>
+    In corollary 3:
+    <div style="text-align:center;">
+       f<sub>e</sub> = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+    </div>
+<br>
+
+We can replace ¦PV¦¦ in above formulae from similarity of triangles
+¦PV QP VQ¦VPQ¦¦ to ¦QP QR PR¦QRP¦¦ :
+
+    <div style="text-align:center;">
+       PV / QP = QP / QR
+    </div>
+
+But QP is ultimately proportional to QT:
+
+    <div style="text-align:center;">
+        QP/QT =ᵘ 1 / sin( ¦SP QP¦SPQ¦¦ ). <br>
+        hence <br>
+        PV =ᵘ QT² / sin²(..) / QR <br>
+        f<sub>e</sub> =ᵘ 2M² / (¦SY¦¦²/sin²(...) ¦QT¦¦ / QR) <br>
+        f<sub>e</sub> =ᵘ 2M² / (¦SP¦¦² ¦QT¦¦² / ¦QR¦¦) <br>
+    </div>
+∎
+
+-->
 
 
 <br><br>

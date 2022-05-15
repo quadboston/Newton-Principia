@@ -71,44 +71,6 @@
             ssF.scaleValue2app( rg.media_scale.value, stdMod );
             sDomF.detected_user_interaction_effect( !'doUndetected' );
 
-                /*
-
-                var cPivots = sconf.originalPoints.curvePivots;
-                var cpPoints = [];
-                cPivots.forEach( (pivot,pix) => {
-                    var rgX     = pivot.rgX;
-                    var pos     = rgX.pos;
-                    var x       = pos[0];
-                    var y       = pos[1];
-                    cpPoints.push( [x,y] );
-                });
-
-                var rPivots = sconf.originalPoints.rightCurvePivots_normalized;
-                var rpPoints = [];
-                rPivots.forEach( (pivot,pix) => {
-                    var rgX     = pivot.rgX;
-                    var pos     = rgX.pos;
-                    var x       = pos[0];
-                    var y       = pos[1];
-                    rpPoints.push( [x,y] );
-                });
-
-                fapp.captureState(
-                    ns.paste(
-                        {
-                            curvePivots_points : cpPoints,
-                            curveRightPivots_points : rpPoints,
-                        },
-                        ast
-                    )
-                );
-                ccc( captured )
-                */
-
-
-
-
-
         } else {
             rg.media_scale.value = 1;
             ssF.scaleValue2app( rg.media_scale.value, stdMod );

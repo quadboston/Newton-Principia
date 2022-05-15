@@ -58,13 +58,14 @@
 
         ///for default points (and draggers???)
         ///in module points.js
-        handleRadius : 5,
+        handleRadius : 8,
+        standardSvgSize : 1000,
     };
 
     to_sconf.pointDecoration =
     {
         cssClass        : 'tostroke tofill thickable',
-        'stroke-width'  : 2,
+        'stroke-width'  : 3,
         r               : to_sconf.handleRadius,
     };
     //====================================================

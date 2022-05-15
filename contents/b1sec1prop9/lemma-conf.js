@@ -21,9 +21,9 @@
                 { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
-                { src: sm + 'lib-prop7.js' },
                 { src: sm + 'graph-array.js' },
                 { src: sm + 'graph-fw-lib.js' },
+                { src: sm + 'makes-orbit.js' },
             ],
             "contents-list" :
             [

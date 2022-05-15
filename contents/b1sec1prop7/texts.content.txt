@@ -150,7 +150,7 @@ from the ¦S¦first center of forces S¦¦ to the
 
 For by the construction of this proposition the first force is
 to the second force as RP² x PT³ to SP² x PV³,
-that is, as SP x RP² to SP³ x PV³,
+that is, as SP x RP² to SP³ x PV³ / PT³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
 
@@ -207,6 +207,17 @@ Page 456.
 *..*
 
 
+<b><><>CXX2E</b>
+<br><br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
+    "Excentric circular motion", (EC)</a> gives: 
+<br>
+        f<sub>e</sub> = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. <br>
+        Leg / hypotenuse = ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
+        ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦. Hence <br><br>
+        f<sub>e</sub> = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
+<br><br>
 
 
 
@@ -219,31 +230,33 @@ Page 456.
 }
 *..*
 
-<div book-reference-id="kvk"></div>
 
+<b>In <><>CXX.</b>
+<br><br>
 
+For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
+    "Excentric circular motion"</a> gives: 
+<br>
 
+ f<sub>e</sub> = 8M²ρ²r⁻⁵.
 
 
 
 *::*corollary|addendum
 {
-  "menuCaption" : "Addendum",
+  "menuCaption" : "---",
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2"
 }
 *..*
 
-<div book-reference-id="kvk"></div>
-
-
 
 
 
 
 *::*corollary|addendum
 {
-  "menuCaption" : "Addendum",
+  "menuCaption" : "---",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
 }

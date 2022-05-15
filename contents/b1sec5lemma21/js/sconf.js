@@ -50,6 +50,10 @@
         var pictureWidth = 1856;
         var pictureHeight = 1700;
 
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = ( pictureWidth + pictureHeight ) / 6;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+
         var masterCenterX = 850;
         var masterCenterX = 853;
         var masterCenterY = 976;
@@ -199,11 +203,13 @@
             //----------------------------------
 
             default_tp_stroke_opacity : 0.5,
-            default_tp_stroke_width : 10,
-            //default_tp_lightness : 50, //50 is full lightness
             default_tp_lightness : 40, //50 is full lightness
-            defaultLineWidth : 2,
+
+            default_tp_stroke_width : Math.floor( 10 * controlsScale ),
+            defaultLineWidth : Math.floor( 2 * controlsScale ),
+            handleRadius : Math.floor( 25 * controlsScale ),
         });
+        sconf.pointDecoration.r = sconf.handleRadius;
 
 
         //----------------------------------

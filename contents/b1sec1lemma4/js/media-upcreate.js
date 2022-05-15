@@ -73,21 +73,30 @@
             pointB          : rg.E,
             addToStepCount  : 1,
         });
+        rg.prT.svgel$.addClass( 'hover-width' ); //possibly extra feature for tp CSS
 
         ///-------------------------------------------------
         /// paints left side curve
         ///-------------------------------------------------
         ssF.paintsCurve({
+            //addedCssClass   : 'tp-ac_e hover-width',
             mmedia          : stdMod.mmedia,
             fun             : rg.leftFunction.dividedDifferences.calculate_polynomial,
             pointsName      : 'aE',
             rgName          : 'acE',
             addToStepCount  : 1,
         });
+        rg.acE.svgel$.addClass( 'hover-width' ); //possibly extra feature for tp CSS
+
+        // //\\ sets dynamic tp width for x/y axes
+        rg.AE.svgel$.addClass( 'hover-width' ); //possibly extra feature for tp CSS
+        rg.PT.svgel$.addClass( 'hover-width' );
+        rg.Pp.svgel$.addClass( 'hover-width' );
+        rg.Aa.svgel$.addClass( 'hover-width' );
+        // \\// sets dynamic tp width for x/y axes 
 
         displayBars( 'left' );
         displayBars( 'right' );
-
 
         if(
             amode.subessay === 'non-similar-curves'

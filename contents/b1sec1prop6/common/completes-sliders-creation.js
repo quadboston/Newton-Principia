@@ -96,7 +96,7 @@
                         //     stashedPos[1].toFixed(3) );
 
                         //corrects y-position of point P on new curve
-                        //rg.P.pos[1] = rg[ 'approximated-curve' ].x2xy( rg.P.pos[0] )[1];
+                        //rg.P.pos[1] = rg[ 'approximated-curve' ].t2xy( rg.P.pos[0] )[1];
                         nsp.undisplay = true;
                         nsl.undisplay = true;
                     } else {
@@ -150,7 +150,7 @@
             //--------------------------------------------------------------------
 
             //calculates new ordinate y(x)
-            newPos[1] = rg[ 'approximated-curve' ].x2xy( newPos[0] )[1];
+            newPos[1] = rg[ 'approximated-curve' ].t2xy( newPos[0] )[1];
             return true;
         }
         //=========================================================================

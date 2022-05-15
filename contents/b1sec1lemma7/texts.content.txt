@@ -225,7 +225,7 @@ unit tangent vector ¦Ad¦<b>Ad</b>¦¦.
 
 *::*proof|model
 {
-  "subessayCaption" : "sin'(x)",
+  "subessayCaption" : "sin'(φ)",
   "subessay" : "sine derivative"
 }
 *..*
@@ -234,21 +234,24 @@ unit tangent vector ¦Ad¦<b>Ad</b>¦¦.
 <b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 
-Lemma 6 naturally gives formula of derivative of sin(x).
+Lemma 6 naturally gives formula of derivative dsin(φ)/dφ:
 For unit cicrle, <br><br>
 
-    ¦x0,x¦Δsin(φ)¦¦ = ¦x0,x¦x-xₒ¦¦ and
-    ¦deltaphi¦Δφ¦¦ = ¦arc-AB¦ \( \overset{\frown} {AB} \; \) ¦¦
-<br><br>
-    ¦x0,x¦Δsin(φ)¦¦ / ¦deltaphi¦Δφ¦¦ ~ ¦X0,X¦X-Xₒ¦¦ /
-    ¦arc-Ab¦ \( \overset{\frown} {Ax} \; \) ¦¦
-    \( \overset{u} \sim \; \)
-    cos(¦tangent_phi phi0¦φₒ¦¦)
-<br><br>
-<br><br>
+    <div style="text-align:center;">
+        ¦x0,x¦Δsin(φ)¦¦ / ¦arc-AB¦Δφ¦¦ ~ ¦X0,X¦X-Xₒ¦¦ /
+        ¦arc-Ab¦ \( \overset{\frown} {Ax} \; \) ¦¦
+        \( \overset{u} \sim \; \)
+        cos(¦tangent_phi phi0¦φₒ¦¦),
+    </div>
 
 
-
+<br><br>
+where <br>
+    <div style="text-align:center;">
+        ¦x0,x¦Δsin(φ)¦¦ = ¦x0,x¦x-xₒ¦¦ and
+        ¦deltaphi arc-AB¦Δφ¦¦ = ¦deltaphi arc-AB¦ \( \overset{\frown} {AB} \; \) ¦¦
+    </div>
+<br><br>
 
 
 

@@ -10,6 +10,7 @@
             pos2t,
         },
     });
+
     return;
 
 
@@ -28,6 +29,10 @@
     //function pointsArr_2_singleDividedDifferences()
     function creates_orbitRack()
     {
+        const ro0   = sconf.ro0;
+        const A     = sconf.curveParA;
+        const fi0   = sconf.curveParFi0;
+
         var curveName = 'orbit';
         var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
         var rgX = rg[ 'approximated-curve' ];
@@ -38,7 +43,6 @@
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
                 trange2points,
-                ownrange2points,
                 poly2svg,
         };
         Object.assign( rgX, result );
@@ -49,11 +53,13 @@
         ///param t to [x,y]
         function t2xy( t )
         {
+            t += fi0;
             var R = sconf.prop7R;
-            var center = sconf.prop7Center;
+            var center = sconf.diagramOrigin;
+            var ro = ro0*Math.exp( A*t );
             return [
-                R*Math.cos( t ) + center[0],
-                R*Math.sin( t ) + center[1],
+                ro * Math.cos( t ) + center[0],
+                ro * Math.sin( t ) + center[1],
             ];
         }
 
@@ -72,14 +78,14 @@
             return newpoints;
         }
 
-        ///draws full circle for t in [0,2PI)
-        //returns closed curve with end point = first point exactly
+        ///draws full orbit for t in [0,2PI)
+        //returns unclosed curve with end point =/= first point exactly
         function ownrange2points({ stepsCount })
         {
             var tStart = 0;
-            var tEnd = Math.PI*2;
+            var tEnd = sconf.curveParFiMax;
             var points = trange2points({ tStart, tEnd, stepsCount });
-            points[ points.length - 1 ] = points[ 0 ]; //does close the poly.
+            //points[ points.length - 1 ] = points[ 0 ]; //does close the poly.
             return points;
         }
 
@@ -114,8 +120,8 @@
     function pos2t( newPos )
     {
         return mat.pos2angle([
-            newPos[0] - sconf.prop7Center[0],
-            newPos[1] - sconf.prop7Center[1],
+            newPos[0] - sconf.diagramOrigin[0],
+            newPos[1] - sconf.diagramOrigin[1],
         ]);
     }
 

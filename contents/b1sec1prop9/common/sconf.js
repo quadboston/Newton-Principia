@@ -22,6 +22,20 @@
     //====================================================
     function init_conf()
     {
+        //***************************************************************
+        // //\\ geometical scales
+        //***************************************************************
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var pictureWidth = 1000;
+        var pictureHeight = 600;
+
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+        //***************************************************************
+        // \\// geometical scales
+        //***************************************************************
 
         //====================================================
         // //\\ subapp regim switches
@@ -32,29 +46,12 @@
         // \\// subapp regim switches
         //====================================================
 
-        //***************************************************************
-        // //\\ geometical scales
-        //***************************************************************
-        //for real picture if diagram's picture is supplied or
-        //for graphical-media work-area if not supplied:
-        var pictureWidth = 630;
-        var pictureHeight = 400;
-
-        var originX_onPicture = 117; //for model's axis x
-        var originY_onPicture = 322; //for model's axis y
-
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
-        //***************************************************************
-        // \\// geometical scales
-        //***************************************************************
-
-
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
+        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+
         sconf.rgShapesVisible = true;
 
         //gives bar full range of opacity for tp machine
@@ -67,7 +64,6 @@
 
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
-
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -100,17 +96,37 @@
         //***************************************************************
         // //\\ geometics parameters
         //***************************************************************
-
         //=============================================
         // //\\ points reused in config
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var Q = [346, 134];
-        var Y = [263,66];
-        //var A = [540, 338];
-        var A = [555, 338];
-        //var A = [560, 338];
-        //var A = [555, 338];
+        //=============================================
+        var V = [64, 462 ];
+
+        RR = 360; //Math.sqrt( RR ) / 2;
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+
+        var mod2inn_scale = 360; //RR;
+        var C           = [510, 311 ]; //455]; //[ V[0] + ww1/2, V[1] + ww2/2, ];
+        var ro0         = 1.17; //spiral's ro0
+
+        var PparT       = 0;
+        var curveParA   = -0.64;
+        var curveParFi0 = -0.0 * Math.PI;
+        var curveParFiMax = 1.3 * Math.PI;
+
+        //interval of t to construct an arc for
+        //Newton's sagitta
+        var sForSagitta_valQ = 0.25;
+
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+
+        var S = C; //[0, 0 ]; //not set in amode8captures
+        var P = [0, 0 ]; //set in amode8captures
+        var Q = [0, 0 ]; //set in amode8captures
+
+        sconf.prop7R = 1;
+        sconf.diagramOrigin = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -135,10 +151,9 @@
             hidden,
             context,
             curvature,
+            curvatureCircle : curvature,
             body,
             orbit   : given,
-            timearc : proof,
-            APQ     : given,
             force   : result,
         };
         //-----------------------------------
@@ -157,64 +172,23 @@
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
         */
-        var curvePivots =
-        [
-            A,
-            //[ 538,306 ],
-            //[ 537,300 ],
-            //[ 533,285 ],
-            //[ 519,251 ],
-
-            [ 517,248 ],
-            [ 485,203 ],
-            //[ 484,203 ],
-            //P,
-            [ 396, 148 ],
-
-            //[346, 134], //near Q
-            [300, 130], //near Q
-
-            [217,132],
-            [102,184],
-            [51,238 ],
-
-            //[58,228],
-            //[24,317],
-        ];
-        curvePivots = curvePivots.map( pivot => ({
-            pos         : pivot,
-            pcolor      : given,
-            letterAngle : 45,
-            draggableX  : true,
-            draggableY  : true,
-            doPaintPname : false,
-        }));
-
-
-        //---------------------------------------------------
         var originalPoints =
         {
-            curvePivots,
         };
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
 
         Object.assign( originalPoints, {
-            A : {
-                pos: A,
-                pcolor : given,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
+            Or : {
+                doPaintPname : false,
+                pos: C,
             },
 
             S : {
                 pos: S,
                 pcolor : given,
                 letterAngle : -90,
-                draggableX  : true,
-                draggableY  : true,
-                initialR    : 5,
+                //draggableX  : true,
+                //draggableY  : true,
+                //initialR    : 5 * controlsScale,
             },
 
             P : {
@@ -222,7 +196,17 @@
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
-                initialR    : 5,
+            },
+
+
+            T : {
+                pcolor : proof,
+                letterAngle : 180,
+            },
+
+            R : {
+                pcolor : proof,
+                letterAngle : 45,
             },
 
             Q : {
@@ -231,116 +215,78 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
-            },
-
-            T : {
-                pos: [0,0],
-                pcolor : proof,
-                letterAngle : 180,
-            },
-
-            R : {
-                pos: Q,
-                pcolor : proof,
-                letterAngle : 45,
+                draggableY  : fconf.sappId === 'b1sec1prop7',
             },
 
             Z : {
-                pos: [111111,111111],
                 pcolor : body,
                 letterAngle : 45,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
-            rrminus : {
-                caption : 'Q-',
-                pos: Q,
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-            },
 
-            sagitta : {
-                caption : 'I',
-                pos: Q,
-                pcolor : proof,
-                letterAngle : 270,
-                letterRotRadius : 35,
-                //initial setting does not work well bs poor code design
+            Zminus : {
+                pcolor : body,
+                letterAngle : 45,
                 //undisplay : true,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
-
 
             Y : {
                 pos: Q,
                 pcolor : proof,
-                letterAngle : 80,
+                letterAngle : -90,
             },
 
             V : {
-                pos: S,
+                pos: V,
                 pcolor : curvature,
                 letterAngle : -45,
             },
 
-
             //center of instant curvature circle
             C : {
-                pos: [0,0], //will be calculated
+                pos : C,
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
-            nonSolvablePoint : {
-                pos: [0,0], //will be calculated
-
-                //caption : '!',
-                caption : 'Centrepetal force does not exist ' +
-                          'for neighborhood of this point.',
-                fontSize : '20',
-
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
-                pcolor : invalid,
-                letterAngle : 90,
-
-                //already toggled by amode8captures
-                //undisplay : true,
-            }
-
         });
 
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
 
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature }, },
-            //{ 'SA' : { pcolor : context }, },
+            { 'PV' : { pcolor : proof }, },
+            { 'CV' : { pcolor : curvature }, },
+
             { 'SP' : { pcolor : result }, },
 
             { 'PY' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body }, },
+            { 'ZR' : { pcolor : body }, },
 
+            { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
             { 'QP' : { pcolor : proof }, },
-            //{ 'VQ' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
+            { 'PT' : { pcolor : proof }, },
+
             { 'PC' : { pcolor : curvature }, },
-            { 'Q,rrminus' : { pcolor : proof }, },
-            { 'P,rrminus' : { pcolor : proof }, },
-            { 'P,sagitta' : { pcolor : proof, vectorTipIx : 1 } },
-            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
         ns.paste( sconf, {
+            ro0,
+            PparT,
+            curveParA,
+            curveParFi0,
+            curveParFiMax,
+            sForSagitta_valQ,
+
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,
