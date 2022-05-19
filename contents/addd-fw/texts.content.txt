@@ -28,8 +28,8 @@ these Preliminaies.
 ⦁  We do not do any claims these facts represent Newton's or Euclid's writings. We do not insist what Newton or Euclid said or were intended to say. We reserved the place to do such suggestions or interpretations in Addendums under original Lemma or Proposition.
 <br><br>
 
-⦁  To point to original text which may use the "fact", we put reference to the text
-in parenthesises. For example,
+⦁  References to original text lemma are in parenthesises.
+For example,
 
 <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
 
@@ -47,26 +47,30 @@ We use two frameworks, "Euclid" and "CalculusXX".
 <br><br>
 
 <a name="Eframework"></a>
-<b>"Euclid Framework"</b> derives Geometrical and Ratio
+<b>"Euclid"</b> framework derives Geometrical and Ratio
 properties from "Euclid's Elements".
 
 <a target="_blank" href="?conf=sappId=addd-prel">
-Real numbers do logically exist, apparently logically follow from E.V.5, and Euclid ratios are
-"embedded" into them.
-</a>
+Real numbers apparently logically follow from E.V.5</a>
+and imply
+<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
+"Legacy proportions and ratios"</a>.
 <br><br>
 
-In Newton times, however, this "embedding" and its features (developed in Dedekind's theory of cuts),
-seems unknown. Newton and his contemporaries support this features by intuitively inferring them
-from Geometrical models. They further hypothesize this support for magnitudes of time and force.
-Development of Calculus and existence of ratio limits still relies on Geometrical intuition.
+In Newton times, complete properties of real number apparently unknown and
+<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
+"Legacy proportions and ratios"</a> have to be proven for geometrical objects or assumed
+as axioms for other objects like time or force.
+<br><br>
+
+Development of Calculus and existence of ratio limits still relies on geometrical intuition.
 <br><br><br>
 
 
 
 
 <a name="Cframework"></a>
-<b>"CalculusXX"</b>. Calculus which is built in XIX-XX centuries.
+<b>"CalculusXX"</b> framework is Calculus which is built in XIX-XX centuries.
 <br><br>
 
 Fundamental logical sequence: Axioms of Set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; the rest, Calculus, Analytic Geometry, ... --&gt; Physics

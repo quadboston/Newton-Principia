@@ -36,9 +36,9 @@
 *..*
 
 
-Let a ¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all its radii ¦SP¦SP¦¦,
+Let a ¦body P¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all its radii ¦SP¦SP¦¦,
 ¦SQ¦¦, ... , at a
-given angle; it is required to find the law of the centripetal force tending toward
+given angle; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
 the ¦S¦center of the spiral¦¦.
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
@@ -69,7 +69,7 @@ is as ¦SP¦¦³, and thus
 (by prop. 6, corols. 1 and 5)
 </a>,
 
-the centripetal force is inversely
+the ¦force¦centripetal force¦¦ is inversely
 as the cube of the distance ¦SP¦¦. Q.E.I.
 <br><br>
 
@@ -86,7 +86,7 @@ that is
 (by prop. 6, corols. 3 and 5)
 </a>,
 
-inversely as the centripetal force.
+inversely as the ¦force¦centripetal force¦¦.
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 458.
@@ -120,7 +120,7 @@ Page 458.
 gives
 
         <div style="text-align:center;">
-            f<sub>e</sub> = r²ₒv²ₒ¦SP¦r¦¦⁻³.
+            ¦force¦f<sub>e</sub>¦¦ = r²ₒv²ₒ¦SP¦r¦¦⁻³.
         </div>
 <br><br>
 
@@ -128,7 +128,7 @@ In simple words, since curve will be "rotation-similar", then curvature κ ~ ¦S
 𝛺 = const,
 v²~ M²¦SP¦r¦¦⁻²𝛺⁻², then
         <div style="text-align:center;">
-            f<sub>e</sub> ~ ¦SP¦r¦¦⁻³.
+            ¦force¦f<sub>e</sub>¦¦ ~ ¦SP¦r¦¦⁻³.
         </div>
 
 

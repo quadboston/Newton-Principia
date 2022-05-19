@@ -210,7 +210,7 @@
 
             S : {
                 pos: S,
-                pcolor : given,
+                pcolor : result,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,

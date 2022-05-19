@@ -7,7 +7,7 @@
             toggleData : toggleExperimentalFunction,
         },
     });
-
+    var sDomF = at.sDomF;
 
     //=================================================
     // //\\ configures repo of "experimental" functions
@@ -109,6 +109,7 @@
         });
         rg.chosenExperimentalFunction.value = -1;
         at.stdMod.toggleData( !!"don't run model yet" );
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
 
 

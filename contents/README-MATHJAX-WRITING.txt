@@ -26,7 +26,7 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
     ⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚ ⇛
            🠪 🠆
 
-    ×?
+    ×? x
     ≠ https://en.wikipedia.org/wiki/Equals_sign#Not_equal
     ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	⋂ ⋃ ⊂ ⊃ ⊄	⊅
     ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
@@ -60,6 +60,15 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
 --------------------------------------------
 \\// useful tokens:
 --------------------------------------------
+
+Italics:
+    𝑣
+         https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
+             https://www.compart.com/en/unicode/block/U+1D400
+             Unicode Block “Mathematical Alphanumeric Symbols”
+
+    
+
 
 complex signs too:
 https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks

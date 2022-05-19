@@ -159,8 +159,8 @@
             a2,
             a,
             c,
-            nn,
-            cc,
+            nn, //unit curvature vector
+            cc, //curvature vector
             R,  //curvature radius
             RR,
             RC,

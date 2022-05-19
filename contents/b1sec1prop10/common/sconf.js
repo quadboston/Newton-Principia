@@ -27,8 +27,8 @@
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 1000;
-        var pictureHeight = 600;
+        var pictureWidth = 922;
+        var pictureHeight = 705;
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
@@ -69,14 +69,14 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
+        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 5 * controlsScale ),
+        handleRadius            = Math.floor( 3 * controlsScale ),
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -99,33 +99,27 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var V = [64, 462 ];
-
-        RR = 360; //Math.sqrt( RR ) / 2;
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
+        var mod2inn_scale = 360;
 
-        var mod2inn_scale = 360; //RR;
-        var C           = [510, 311 ]; //455]; //[ V[0] + ww1/2, V[1] + ww2/2, ];
-        var ro0         = 1.17; //spiral's ro0
-
-        var PparT       = 0;
-        var curveParA   = -0.64;
-        var curveParFi0 = -0.0 * Math.PI;
-        var curveParFiMax = 1.3 * Math.PI;
-
-        //interval of t to construct an arc for
-        //Newton's sagitta
-        var sForSagitta_valQ = 0.25;
-
+        var C = [443, 375 ];
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
 
-        var S = C; //[0, 0 ]; //not set in amode8captures
-        var P = [0, 0 ]; //set in amode8captures
+        sconf.ellipseA  = 1.03;
+        sconf.ellipseB  = 0.86;
+        var PparT       = 0.255 * Math.PI;
+        var curveParA   = -0.64;
+        var curveParFi0 = 0.0 * Math.PI;
+        var curveParFiMax = 2 * Math.PI;
+        //interval of t to construct an arc for Newton's sagitta
+        var sForSagitta_valQ = 0.36;
+
+        var S = C;
+        var P = [0, 0 ]; //set bu sconf.PparT
         var Q = [0, 0 ]; //set in amode8captures
 
-        sconf.prop7R = 1;
         sconf.diagramOrigin = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
@@ -151,10 +145,11 @@
             hidden,
             context,
             curvature,
-            curvatureCircle : curvature,
             body,
             orbit   : given,
             force   : result,
+            tangentCircle : curvature,
+            //curvatureCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -177,31 +172,57 @@
         };
 
         Object.assign( originalPoints, {
-            Or : {
-                doPaintPname : false,
+            O : {
+                pcolor : context,
+                caption : 'C',
                 pos: C,
+                letterAngle : 120,
+                letterRotRadius : 35,
             },
 
-            S : {
-                pos: S,
-                pcolor : result,
-                letterAngle : -90,
-                //draggableX  : true,
-                //draggableY  : true,
-                //initialR    : 5 * controlsScale,
+            B : {
+                pcolor : proof,
+                letterAngle : 90,
             },
 
-            P : {
-                pos: P,
-                pcolor : body,
+            BB : {
+                letterAngle : 90,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
+
+            A : {
+                pcolor : proof,
+            },
+
+            AA : {
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
+
+            D : {
+                pcolor : proof,
                 letterAngle : 70,
-                draggableX  : true,
+            },
+
+            K : {
+                pcolor : proof,
+                letterAngle : 70,
+            },
+
+            G : {
+                pcolor : proof,
+                letterAngle : 90,
+                letterRotRadius : 25,
             },
 
 
             T : {
                 pcolor : proof,
                 letterAngle : 180,
+                letterRotRadius : 15,
             },
 
             R : {
@@ -209,14 +230,6 @@
                 letterAngle : 45,
             },
 
-            Q : {
-                pos: Q,
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-                draggableX  : true,
-                draggableY  : fconf.sappId === 'b1sec1prop7',
-            },
 
             Z : {
                 pcolor : body,
@@ -234,17 +247,31 @@
                 doPaintPname : false,
             },
 
-            Y : {
-                pos: Q,
-                pcolor : proof,
-                letterAngle : -90,
-            },
-
+            /*
             V : {
-                pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
+            */
+
+            v : {
+                caption : '𝑣',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+            },
+
+            F : {
+                pcolor : proof,
+                letterAngle : -135,
+            },
+
+            VV : {
+                caption : 'V',
+                pcolor : proof,
+                letterAngle : -45,
+            },
+
 
             //center of instant curvature circle
             C : {
@@ -252,35 +279,105 @@
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
+
+
+            //Book's "another solution"
+            u : {
+                caption : '𝑢',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+            },
+
+            tCircleCenter : {
+                pos : C,
+                caption : "C'",
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+
+
+            //---------------------------------------
+            // //\\ draggable points
+            //---------------------------------------
+            S : {
+                pos: S,
+                pcolor : result,
+                letterAngle : -115,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+            },
+
+            P : {
+                pos: P,
+                pcolor : body,
+                letterAngle : 70,
+                draggableX  : true,
+                draggableY  : true,
+            },
+
+            Q : {
+                pos: Q,
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+            },
+            //---------------------------------------
+            // \\// draggable points
+            //---------------------------------------
         });
 
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
-            { 'CV' : { pcolor : curvature }, },
+            //{ 'CV' : { pcolor : curvature }, },
+            { 'PC' : { pcolor : proof }, },
 
             { 'SP' : { pcolor : result }, },
 
-            { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
             { 'PR' : { pcolor : body }, },
-            { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
-            { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
-            { 'PC' : { pcolor : curvature }, },
+            { DK : { pcolor : proof }, },
+            { GP : { pcolor : proof }, },
+            { Qv : { pcolor : proof }, },
+            { Pv : { pcolor : proof }, },
+            { Tv : { pcolor : proof }, },
+
+            { vG : { pcolor : proof }, },
+            { PF : { pcolor : proof }, },
+            { 'A,AA' : { pcolor : proof }, },
+            { 'B,BB' : { pcolor : proof }, },
+            { AO : { pcolor : proof }, },
+            { DO : { pcolor : proof }, },
+            { BO : { pcolor : proof }, },
+            { PO : { pcolor : proof }, },
+            { GO : { pcolor : proof }, },
+            { FO : { pcolor : proof }, },
+
+            //Book's "another solution"
+            { Tu : { pcolor : proof }, },
+            { 'u,VV' : { pcolor : proof }, },
+            { uP : { pcolor : proof }, },
+            { PQ : { pcolor : proof }, },
+            { 'P,VV' : { pcolor : proof }, },
+            { 'P,tCircleCenter' : { pcolor : curvature }, },
         ];
 
         ns.paste( sconf, {
-            ro0,
             PparT,
             curveParA,
             curveParFi0,

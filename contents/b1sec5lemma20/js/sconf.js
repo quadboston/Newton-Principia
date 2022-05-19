@@ -161,7 +161,7 @@
             // //\\ scenario
             //----------------------------------
             hideProofSlider : true, //false,
-            enableStudylab : true,
+            enableStudylab : false,
             enableTools : true,
             //----------------------------------
             // \\// scenario

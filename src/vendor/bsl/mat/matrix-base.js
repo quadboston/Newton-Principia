@@ -110,6 +110,7 @@
         }
         return {
             abs,
+            v2, //square of vector
             unitVec,
         };
     }
@@ -207,6 +208,11 @@
         var c = u[1];
         var d = -us[1];
         var det = a*d - c*b;
+        if( det === 0 ) {
+            //clumsy way to handle parallel lines,
+            det = 1e+150;
+            //alternative way is to provide message,
+        }
         //ccc( 'a,b,c,d=', a,b,c,d );
         //builds inverse matrix
         var A = d/det;

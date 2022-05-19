@@ -138,10 +138,10 @@
             //----------------------------------
             // //\\ scenario
             //----------------------------------
-            enableStudylab : true,
+            enableStudylab : false,
             //hideProofSlider : true, //false,
             enableCapture : true,
-            enableTools : true,
+            enableTools : false,
             //enableDataFunctionsRepository : true,
             //----------------------------------
             // \\// scenario

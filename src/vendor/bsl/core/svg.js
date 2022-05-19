@@ -86,6 +86,13 @@
                 }
                 // \\// adds a piece of sugar into CSS
                 //// val is not '' and not undefined
+
+                ///good way to catch problems in app model logic
+                //if( typeof( val ) === 'string' && val.indexOf( 'NaN' ) > 0 ) {
+                //    ccc( val );
+                //    throw( new Error() );
+                //}
+
                 svgel.setAttributeNS( null, key, val );
             }
             //-------------------------------------

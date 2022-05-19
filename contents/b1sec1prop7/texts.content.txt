@@ -46,7 +46,7 @@
 *..*
 
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
-of the centripetal force tending toward any ¦S¦given point¦¦.
+of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 455.
 
@@ -58,7 +58,7 @@ Page 455.
 
 
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
-point toward which the force
+point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
 revolving in the circumference, ¦Q¦the place¦¦ to which it will move
 next, and ¦PR PZ P,Zminus¦PRZ the tangent¦¦ of
@@ -83,7 +83,7 @@ Multiply these equals by SP²/QR and, the points P and Q coming together, write 
 
 Thus SP² x PV³ / AV² will become equal to SP² x QT² / QR.
 
-Therefore (by prop. 6, corols. 1 and 5), the centripetal force is inversely as
+Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is inversely as
 
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / AV², that is (because AV² is given), inversely as the square of the
 distance or altitude ¦SP¦¦ and the cube of the chord jointly. Q.E.I.
@@ -101,7 +101,7 @@ are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
 SP x PV / AV will be equal to ¦SY¦¦, and
 SP² x PV³ / AV² will be equal to SY² x PV.
 
-And therefore (by prop. 6, corols. 3 and 5), the centripetal force is inversely
+And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
 as SP² x PV³ / AV², that is, because ¦AV¦¦ is given, inversely as
 
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. Q.E.I.
@@ -120,9 +120,9 @@ Page 455.
 *..*
 
 
-Hence, if the given point ¦S¦¦ to which the centripetal force
+Hence, if the given point ¦S¦¦ to which the ¦force¦centripetal force¦¦
 always tends is located in the circumference of this circle, say at ¦V¦¦, the
-centripetal force will be inversely as the fifth power of the altitude ¦SP¦¦.
+¦force¦centripetal force¦¦ will be inversely as the fifth power of the altitude ¦SP¦¦.
 
 
 <br><br>
@@ -137,7 +137,7 @@ Page 456.
 }
 *..*
 
-The force by which body
+The ¦force¦force¦¦ by which body
 ¦P¦¦ revolves in the circle ¦orbit¦APTV¦¦ around the
 ¦S¦center of forces S¦¦ is to the force by which the
 ¦P¦same body P¦¦ can revolve in the same circle
@@ -148,7 +148,7 @@ RP² x SP to the cube of the
 from the ¦S¦first center of forces S¦¦ to the
 ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
 
-For by the construction of this proposition the first force is
+For by the construction of this proposition the ¦force¦first force¦¦ is
 to the second force as RP² x PT³ to SP² x PV³,
 that is, as SP x RP² to SP³ x PV³ / PT³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
@@ -169,7 +169,7 @@ Page 456.
 }
 *..*
 
-The force by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
+The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
 the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
 in the same orbit and in the same periodic time around any other
 ¦Rcol2¦center of forces R¦¦ as the solid SP x RP²—contained under ¦SP¦the distance of the body¦¦
@@ -213,10 +213,10 @@ Page 456.
 <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
     "Excentric circular motion", (EC)</a> gives: 
 <br>
-        f<sub>e</sub> = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. <br>
-        Leg / hypotenuse = ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
+        ¦force¦f<sub>e</sub>¦¦ = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. <br>
+        ¦PV¦Leg¦¦ / ¦AV¦hypotenuse¦¦ = ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
         ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦. Hence <br><br>
-        f<sub>e</sub> = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
+        ¦force¦f<sub>e</sub>¦¦ = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
 <br><br>
 
 
@@ -238,7 +238,7 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
     "Excentric circular motion"</a> gives: 
 <br>
 
- f<sub>e</sub> = 8M²ρ²r⁻⁵.
+ ¦force¦f<sub>e</sub>¦¦ = 8M²ρ²r⁻⁵.
 
 
 

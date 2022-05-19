@@ -184,6 +184,7 @@ When center of force is in curve coordinates' origin, then 𝗵 = 0, 𝛙 = φ, 
     <br><br>
     When h=ρ, force center is on the circle, and f<sub>e</sub> = 8M²ρ²r⁻⁵.  <br>
     When h=0, force center is circle's center, and f<sub>e</sub> = v²ₒ/ρ.
+<a name="in-focus-of-conic"></a>
 <br><br>
 
 
@@ -203,12 +204,13 @@ When center of force is in curve coordinates' origin, then 𝗵 = 0, 𝛙 = φ, 
       or in vector form: <br>
          𝗳 = -f<sub>e</sub>𝗲.
     </div>
+<a name="in-center-of-conic"></a>
 <br><br>
 
 
 <i><b>Conic motion with force origin in conic's center.</b></i>
 <br>
-      𝗵 = 0 and φ = 𝛙, and formula (B) holds. <br>
+      𝗵 = 0, φ = 𝛙, and r = ρ and formula (B) holds. <br>
     Equation of conic is x²/a² + y²/b² = 1, hence <br>
     ρ⁻² = 𝛂²cos²(φ) + 𝛃²sin²(φ), where 𝛂  = 1/a and 𝛃 = 1/b.<br>
 <br>
@@ -226,7 +228,7 @@ To find η˙˙, write:
     </div>
 and
     <div style="text-align:center;">
-      f<sub>e</sub> = M²𝛂²𝛃²ρ. <br>
+      f<sub>e</sub> = M²𝛂²𝛃²r. <br>
     </div>
 
 <!--
