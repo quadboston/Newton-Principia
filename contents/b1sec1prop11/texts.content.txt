@@ -4,7 +4,7 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec1prop11/img/latin.png" style="width:100%">
 <br>
 <div book-reference-id="latin"></div>
 
@@ -15,31 +15,9 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec1prop11/img/latin.png" style="width:100%">
 <br>
 <div book-reference-id="latin"></div>
-
-
-
-*::*corollary|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
-<div book-reference-id="latin"></div>
-
-
-*::*scholium|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
-<div book-reference-id="latin"></div>
-
 
 
 
@@ -72,84 +50,61 @@ Page 462.
 
 
 Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦DK¦¦
-of the ellipse in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in x, and complete the parallelogram
-QorPR. It is evident that EP is equal to the semiaxis major AC because when
-line HI is drawn parallel to EC from the other focus H of the ellipse, ES
-and El are equal because CS and CH are equal; so that EP is the half-sum
-of PS and PI, that is (because HI and PR are parallel and angles IPR and
-HPZ are equal), the half-sum of PS and PH (which taken together equal
-the whole axis 2AC). Drop QT perpendicular to SP, and if L denotes the
-/ 2BC2
-\
-principal latus rectum of the ellipse I or 1, L x QR will be to L x Pv
-\ AC /
-as QR to Pv, that is, as PE or AC to PC; and L x Pv will be to Gv x vP as
+of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
+¦Qx PR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AO¦AC¦¦ because when
+line ¦HI¦¦ is drawn parallel to ¦EO¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
+and ¦EI¦¦ are equal because ¦OS¦CS¦¦ and ¦OH¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
+of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
+¦PH P,Zminus¦HPZ¦¦ are equal), the half-sum of ¦PS¦¦ and ¦PH¦¦ (which taken together equal
+the whole axis 2¦AO¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if L denotes the
 
+principal latus rectum of the ellipse ( or 2¦BO¦BC¦¦² / ¦AO¦AC¦¦ ), L x ¦QR¦¦ will
+be to L x ¦Pv¦P𝑣¦¦
 
-a. For a gloss on this proposition see the Guide, §10.9.
+as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AO¦AC¦¦ to ¦PO¦PC¦¦; and
+L x ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ x ¦Pv¦𝑣P¦¦ as
+<br><br>
 
+a. For a gloss on this proposition see <i>Source</i>, the Guide, §10.9.
+<br><br>
 
-L to Gv, andb
- Gv x vP will be to Qv2
- as PC2
- to CD2
-; and (by lem. 7, corol.
-2) the ratio of Qv2
- to Q*2
-, with the points Q and P coming together, is the
-ratio of equality; and Q*2 or Qz/2 is to QT2 as EP2 to PF2, that is, as CA2 to
-PF2 or (by lem. 12) as CD2 to CB2. And when all these ratios are combined, L x QR will be to QT2
- as AC x L x PC2
- x CD2
-, or as 2CB2
- x PC2
- x CD2
-to PC x Gv x CD2
- x CB2
-, or as 2PC to Gv. But with the points Q and P
-coming together, 2PC and Gv are equal. Therefore, L x QR and QT2
+L to ¦vG¦G𝑣¦¦; and<sup>b</sup>
+ ¦vG¦G𝑣¦¦ x ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
+ as PC² to CD²; and
+(<a target="_blank" href="?conf=sappId=b1sec1lemma7,theorionId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
+
+the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
+with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
+ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦EP¦¦² to ¦PF¦¦²,
+that is, as ¦AO¦CA¦¦² to
+¦PF¦¦² or (by lem. 12) as ¦DO¦CD¦¦² to ¦BO¦CB¦¦².
+And when all these ratios are combined, L x ¦QR¦¦ will be to ¦QT¦¦²
+ as ¦AO¦AC¦¦ x L x ¦PO¦PC¦¦²
+ x ¦DO¦CD¦¦²
+, or as 2¦BO¦CB¦¦²
+ x ¦PO¦PC¦¦²
+ x ¦DO¦CD¦¦²
+to ¦PO¦PC¦¦ x ¦vG¦G𝑣¦¦ x ¦DO¦CD¦¦²
+ x ¦BO¦CB¦¦²
+, or as 2¦PO¦PC¦¦ to ¦vG¦G𝑣¦¦. But with the points ¦Q¦¦ and ¦P¦¦
+coming together, 2¦PO¦PC¦¦ and ¦vG¦G𝑣¦¦ are equal. Therefore, L x ¦QR¦¦ and ¦QT¦¦²
 , which
-SP2
+¦SP¦¦²
 are proportional to these, are also equal. Multiply these equals by , and
-SP2
- x QT2
-L x SP2
- will become equal to . Therefore (by prop. 6, corols. 1
-QR
-and 5) the centripetal force is inversely as L x SP2
+¦SP¦¦²
+ x ¦QT¦¦²
+L x ¦SP¦¦²
+ will become equal to . Therefore
+
+(<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
+</a>)
+
+
+ the ¦force¦centripetal force¦¦ is inversely as L x ¦SP¦¦²
 , that is, inversely as the
-square of the distance SP. Q.E.I.
+square of the distance ¦SP¦¦. Q.E.I.
 
-
-////material:
-
-
-Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, ¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conicsᵃ) be to ¦Qv¦Q𝑣¦¦²
-
-as ¦PO¦PC¦¦² to ¦DO¦CD¦¦², and
-
-(because
-triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PO FO PF¦PCF¦¦ are similar)
-¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PO¦PC¦¦² to ¦PF¦¦², and,
-
-when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ is to QT² as ¦PO¦PC¦¦² to
-¦DO¦CD¦¦² and ¦PO¦PC¦¦² to ¦PF¦¦²; that is, ¦vG¦𝑣G¦¦ is
-to ¦QT¦¦²/¦Pv¦P𝑣¦¦ as ¦PO¦PC¦¦² to ¦DO¦CD¦¦² x ¦PF¦¦² / ¦PO¦PC¦¦².
-<br><br>
-
-Write
-¦QR¦¦ for ¦Pv¦P𝑣¦¦  and (by lem. 12) ¦BO¦BC¦¦ x ¦AO¦CA¦¦ for ¦DO¦CD¦¦ x ¦PF¦¦, and also (points ¦P¦¦
-and ¦Q¦¦ coming together) 2¦PO¦PC¦¦ for ¦vG¦𝑣G¦¦, and, multiplying the extremes and
-means together, ¦QT¦¦² x ¦PO¦PC¦¦² / ¦QR¦¦ will become equal to 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦. Therefore
-
-(<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), the centripetal ¦force¦¦ is as 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦ inversely, that
-
-is (because 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² is given), as 1/¦PO¦PC¦¦ inversely, that is, as the distance ¦PO¦PC¦¦
-directly. Q.E.I.
-
-
-<br><br>
-a. Concerning this reference to "the Conics" see the <i>Source</i>, Guide, §10.10.
+<br><br><br>
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 462.
@@ -166,51 +121,34 @@ Page 462.
 *..*
 
 
-The force which tends toward the center of the ellipse, and by which
-body P can revolve in that ellipse, is (by prop. 10, corol. 1) as the distance CP
-of the body from the center C of the ellipse; hence, if CE is drawn parallel to
-the tangent PR of the ellipse and if CE and PS meet at E, then the force by
-which the same body P can revolve around any other point S of the ellipse
-PE3
-will (by prop. 7, corol. 3) be as —-; that is, if point S is a focus of the ellipse,
-ol
-and therefore PE is given, this force will be inversely as SP2
+The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦orbit¦the ellipse¦¦, and by which
+¦P¦body P¦¦ can revolve in ¦orbit¦that ellipse¦¦, is
+
+(<a target="_blank" href="?conf=sappId=b1sec1prop10,theorionId=corollary,aspectId=english">(by prop. 10, corol. 1)</a>)
+
+as the distance ¦PO¦CP¦¦
+of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
+the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
+which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
+will
+ 
+(<a target="_blank" href="?conf=sappId=b1sec1prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
+(by prop. 7, corol. 3)</a>)
+
+
+be as ¦EP¦PE¦¦³/¦SP¦¦²; that is, if point ¦S¦¦² is a focus of the ellipse,
+
+and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦²
 . Q.E.I.
+<br><br>
+
 This solution could be extended to the parabola and the hyperbola as
 concisely as in prop. 10, but because of the importance of this problem and
 its use in what follows, it will not be too troublesome to confirm each of
-these other cases by a separate demonstration
+these other cases by a separate demonstration.
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 463.
-
-
-/////////////// material:
-
-
-On the straight line ¦GP¦PG¦¦ take a point ¦u¦𝑢¦¦ on the other side of point ¦T¦¦,
-so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦u,VV¦𝑢V¦¦ such that it is to ¦vG¦𝑣G¦¦ as
-¦DO¦DC¦¦² is to
-¦PO¦PC¦¦². And since (from the Conics) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ as
-¦DO¦DC¦¦² to ¦PO¦PC¦¦², ¦Qv¦Q𝑣¦¦²
-will be equal to ¦Pv¦P𝑣¦¦ X ¦u,VV¦𝑢V¦¦. Add the rectangle ¦uP¦𝑢P¦¦ x ¦Pv¦P𝑣¦¦ to both sides, and the
-
-square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦P,VV¦VP¦¦ x ¦Pv¦P𝑣¦¦;
-and therefore ¦tangentCircle¦a circle¦¦ that touches
-the conic section at ¦P¦¦ and passes through
-point ¦Q¦¦ will also pass through point ¦VV¦V¦¦. Let points ¦P¦¦ and ¦Q¦¦ come together,
-and the ratio of ¦u,VV¦𝑢V¦¦ to ¦vG¦𝑣G¦¦, which is the same as the ratio of ¦DO¦DC¦¦² to ¦PO¦PC¦¦²,
-
-will become the ratio of ¦P,VV¦PV¦¦ to ¦GP¦PG¦¦ or ¦P,VV¦PV¦¦ to 2¦PO¦PC¦¦;
-and therefore ¦P,VV¦PV¦¦ will
-be equal to 2¦DO¦DC¦¦²/¦PO¦PC¦¦. Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
-revolves in the ellipse will (<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) be as 2¦DO¦DC¦¦² / ¦PO¦PC¦¦ x ¦PF¦¦² inversely,
-that is (because 2¦DO¦DC¦¦² x ¦PF¦¦² is given), as ¦PO¦PC¦¦ directly. Q.E.I.
-
-
-
-
-
 
 
 
@@ -238,6 +176,40 @@ that is (because 2¦DO¦DC¦¦² x ¦PF¦¦² is given), as ¦PO¦PC¦¦ directl
     <div style="text-align:center;">
         f<sub>e</sub> = M²r⁻²/ρ<sub>⟂</sub>. <br>
     </div>
+<br><br><br>
+
+
+
+
+<b><i>Another Solution. Draft.</i></b>
+<br><br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+    Transitional formula (ft)</a> gives: 
+<br>
+
+    <div style="text-align:center;">
+        f<sub>𝛙e</sub> / f<sub>φe</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² ρ<sub>//</sub>³   &nbsp;&nbsp;&nbsp;  (ft)
+    </div>
+<br>
+
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">Beginning from solution for ellipse center:</a>
+
+    <div style="text-align:center;">
+      f<sub>φe</sub> = M²α²β²ρ<sub>φ</sub>. <br>
+    </div>
+and recalling ellipse property ρ<sub>//</sub> = a, we obtain the inverse square law again:
+
+    <div style="text-align:center;">
+      f<sub>e</sub> = M²α²β²a³ ρ<sub>𝛙</sub>⁻²  <br>
+    </div>
+<br><br>
+
+
+
+
 
 
 <div book-reference-id="kvk"></div>

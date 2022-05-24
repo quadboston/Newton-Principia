@@ -242,17 +242,6 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
 
 
 
-*::*corollary|addendum
-{
-  "menuCaption" : "---",
-  "subessayCaption" : "Corollary 2",
-  "subessay" : "corollary2"
-}
-*..*
-
-
-
-
 
 *::*corollary|addendum
 {
@@ -262,6 +251,24 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
 }
 *..*
 
+
+<b>In <><>CXX2E.</b>
+<br><br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+    "Two force fields ... ", (ft)</a> gives: 
+<br>
+
+    <div style="text-align:center;">
+        f<sub>𝛙e</sub> / f<sub>φe</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² ρ<sub>//</sub>³   &nbsp;&nbsp;&nbsp;  (ft)
+    </div>
+Replacing linear intervals correspondingly we obtain Newton's formulae:
+
+    <div style="text-align:center;">
+        f<sub>𝛙e</sub> / f<sub>φe</sub> =
+            ¦SP¦¦⁻<sup>1</sup> ¦Rcol2,P¦RP¦¦⁻² ¦Gcol2,S¦SG¦¦³
+    </div>
 
 <br><br>
 <div book-reference-id="kvk"></div>

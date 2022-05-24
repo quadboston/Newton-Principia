@@ -100,13 +100,12 @@
             caption : 'Sec. II. Proposition X. Problem V',
             annotation : "",
         },
-        /*
+
         {   sappId : 'b1sec1prop11',
             book : 'Book 1',
             caption : 'Sec. III. Proposition XI. Problem VI',
             annotation : "",
         },
-        */
 
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',

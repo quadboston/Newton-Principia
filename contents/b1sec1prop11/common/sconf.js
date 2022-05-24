@@ -27,8 +27,8 @@
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 922;
-        var pictureHeight = 705;
+        var pictureWidth = 841;
+        var pictureHeight = 728;
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
@@ -103,13 +103,13 @@
         //vital to set to non-0 value
         var mod2inn_scale = 360;
 
-        var C = [443, 375 ];
+        var C = [409, 408 ];
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
 
-        sconf.ellipseA  = 1.03;
+        sconf.ellipseA  = 1.07;
         sconf.ellipseB  = 0.86;
-        var PparT       = 0.255 * Math.PI;
+        var PparT       = 0.250 * Math.PI;
         var curveParA   = -0.64;
         var curveParFi0 = 0.0 * Math.PI;
         var curveParFiMax = 2 * Math.PI;
@@ -126,7 +126,6 @@
         //interval of t to construct an arc for Newton's sagitta
         var sForSagitta_valQ = 0.36;
 
-        var S = C;
         var P = [0, 0 ]; //set bu sconf.PparT
         var Q = [0, 0 ]; //set in amode8captures
 
@@ -190,6 +189,27 @@
                 letterRotRadius : 35,
             },
 
+            //-----------------------------------------
+            // //\\ Book's prop. 11
+            //-----------------------------------------
+            E : {
+                pcolor : proof,
+                letterAngle : 90,
+            },
+            H : {
+                pcolor : proof,
+                letterAngle : -90,
+            },
+            I : {
+                pcolor : proof,
+                letterAngle : 90,
+            },
+            //-----------------------------------------
+            // \\// Book's prop. 11
+            //-----------------------------------------
+
+
+
             B : {
                 pcolor : proof,
                 letterAngle : 90,
@@ -248,11 +268,10 @@
 
 
             Zminus : {
+                caption : 'Z',
                 pcolor : body,
                 letterAngle : 45,
                 //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
             },
 
             /*
@@ -291,8 +310,9 @@
                 doPaintPname : false,
             },
 
-
-            //Book's "another solution"
+            //----------------------------------------
+            // //\\ Prop. 10 Book's "another solution"
+            //----------------------------------------
             u : {
                 caption : '𝑢',
                 pcolor : proof,
@@ -306,13 +326,30 @@
                 pcolor : curvature,
                 letterAngle : -45,
             },
+            //----------------------------------------
+            // \\// Prop. 10 Book's "another solution"
+            //----------------------------------------
+
+
+
+            //----------------------------------------
+            // //\\ Prop. 11
+            //----------------------------------------
+            x : {
+                caption : "𝑥",
+                pcolor : proof,
+                letterAngle : 100,
+                letterRotRadius : 20,
+            },
+            //----------------------------------------
+            // \\// Prop. 11
+            //----------------------------------------
 
 
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pos: S,
                 pcolor : result,
                 letterAngle : -115,
                 letterRotRadius : 35,
@@ -344,6 +381,23 @@
 
         var linesArray =
         [
+            //-----------------------------------------
+            // //\\ Book's prop. 11
+            //-----------------------------------------
+            { Qx : { pcolor : proof }, },
+            { EP : { pcolor : proof }, },
+            { ES : { pcolor : proof }, },
+            { EI : { pcolor : proof }, },
+            { EO : { pcolor : proof }, },
+            { PH : { pcolor : proof }, },
+            { HI : { pcolor : proof }, },
+            { OS : { pcolor : proof }, },
+            { OH : { pcolor : proof }, },
+            { PI : { pcolor : proof }, },
+            //-----------------------------------------
+            // \\// Book's prop. 11
+            //-----------------------------------------
+
             //{ 'CV' : { pcolor : curvature }, },
             { 'PC' : { pcolor : proof }, },
 
@@ -383,6 +437,7 @@
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
             { 'P,tCircleCenter' : { pcolor : curvature }, },
+
         ];
 
         ns.paste( sconf, {

@@ -243,7 +243,7 @@ from the center.
 <a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">"Conic motion with force origin in conic's center":</a>
 
     <div style="text-align:center;">
-        f<sub>e</sub> = M²𝛂²𝛃²r. <br>
+        f<sub>e</sub> = M²α²β²r. <br>
     </div>
 
 

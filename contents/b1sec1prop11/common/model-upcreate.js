@@ -230,6 +230,33 @@
         //=============================================================
         // \\// tan. cir.
         //=============================================================
+
+
+        //=============================================================
+        // //\\ for prop. 11
+        //=============================================================
+        if( fconf.sappId = 'b1sec1prop11' ) {
+            //point x
+            nspaste( rg.x.pos, mat.lineSegmentsCross(
+                rg.T.pos, rg.P.pos,
+                rg.Q.pos, rg.v.pos,
+            ));
+            //point E
+            nspaste( rg.E.pos, mat.lineSegmentsCross(
+                rg.D.pos, rg.K.pos,
+                rg.S.pos, rg.P.pos,
+            ));
+            //point I
+            nspaste( rg.I.pos, mat.linesCross(
+                mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
+                mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
+            ));
+
+        }
+        //=============================================================
+        // \\// for prop. 11
+        //=============================================================
+
     }
 
 
