@@ -89,8 +89,14 @@
 
                 ///good way to catch problems in app model logic
                 //if( typeof( val ) === 'string' && val.indexOf( 'NaN' ) > 0 ) {
-                //    ccc( val );
-                //    throw( new Error() );
+                //if( typeof( val ) === 'string' && key === 'points' ) {
+                    //ccc( Number.MIN_VALUE, Number.MAX_VALUE  );
+                    //5e-324 1.7976931348623157e+308
+                    //if( haz( arg, 'rgX' ) ) {
+                    //    var wwPname = rgX.pname;
+                    //}
+                    //ccc( wwPname, key, val );
+                    //throw 'err. ' + key;
                 //}
 
                 svgel.setAttributeNS( null, key, val );
@@ -106,9 +112,27 @@
     ///Input: arg.pivots are pivot points
     nssvg.polyline = function( arg )
     {
+        var regExp = /(\d)0+$/; //removes trailing zeros from numbers for svg
         var pivotsStr = arg.pivots.reduce( function( acc, point ) {
                 if( acc ) { acc += ' '; }
-                return acc += point[0].toFixed(2) + ',' + point[1].toFixed(2);
+
+                var p1 = point[0];
+                var m1 = Math.abs( p1 );
+                //removes exponential JS notation from svg
+                if( m1 < 0.00000000000001 ) p1 = 0;
+                if( m1 > 10000000000000 ) p1 = 10000000000000;
+                //todm: very crude zero-remover, do fine work:
+                p1 = p1.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+                //why fails?
+                //p1 = p1.toFixed( 3 ).replace( regExp, '$2' );
+
+                var p2 = point[1];
+                var m2 = Math.abs( p2 );
+                if( m2 < 0.00000000000001 ) p2 = 0;
+                if( m2 > 10000000000000 ) p2 = 10000000000000;
+                p2 = p2.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+
+                return acc += p1 + ',' + p2;
             },
             ''
         );
@@ -131,6 +155,10 @@
             fill    : arg.fill || 'transparent',
             'stroke-width' : arg[ 'stroke-width' ] || 1
         });
+
+        function rep( match1, match2 ) {
+            return match2;
+        }
     };
 
     ///this sub should work slightly faster than nssvg.polyline

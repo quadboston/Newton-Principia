@@ -14,7 +14,7 @@
 <b><i>Relation to Originals</i></b>
 <br>
 
-In this Preliminaries, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
+In this Appendix, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
 <br><br>
 
 

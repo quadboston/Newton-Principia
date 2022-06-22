@@ -42,14 +42,15 @@
         xMin,
         dimX_withMarg,
         dimY_withMarg,
-
+        brightenGrid,   //how much to brighten, 1 and 'undefined' for non-brighting
+                        //from 0 to 1, 0 for hiding,
         //:optionals
         drawAllAxes,    //flag and its params
             plotsScaffold, //optional flag to draw extra Y-axes
             plotsCount,
             extraAxisY,
     }){
-
+        brightenGrid = typeof brightenGrid === 'undefined' ? 1 : brightenGrid;
         //======================================================
         // //\\ axisX, axisY API
         //      todo NEED function in bsl
@@ -170,12 +171,12 @@
             );
             var decUnit    = Math.pow( 10, decUnitlog );
             decUnit        = decUnit > rangeA * 0.5 ? decUnit * 0.1 : decUnit;
-            style.stroke = 'rgba( 0,0,0, 1 )';
+            style.stroke = 'rgba( 0,0,0, ' + ( brightenGrid.toFixed(3) ) + ')';
             drawGrid8Axes_aux({ prnAxisDigits : printAxisDigits });
             if( subDecimal ) {
                 var decUnit  = decUnit * 0.1;
 
-                style.stroke = 'rgba( 0,0,0, 0.2 )';
+                style.stroke = 'rgba( 0,0,0, ' + ( 0.2*brightenGrid.toFixed(3) ) + ')';
                 drawGrid8Axes_aux({ drawSubdecimal : true });
             }
             return;

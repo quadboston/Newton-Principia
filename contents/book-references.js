@@ -121,8 +121,8 @@
 
 
         'kvk' : `
-            <br><span style="font-size:9px">This addendum is written by
-            <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
+            <br><span style="font-size:9px">
+            <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Addendum (c) Konstantin Kirillov</a>.</span><br>
         `,
 
 

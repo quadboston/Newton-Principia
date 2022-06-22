@@ -80,7 +80,7 @@
             pager$.addClass( 'non-displayed' );
         } else {
             var nextSapp = fconf.ix2lemmaDef[ next ];
-            var fullCaption = nextSapp.book + '. ' + nextSapp.caption + '.';
+            var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
             pager$.html( direction === 'right' ?
                 '<img src="' + fconf.engineImg + '/right-page-triangle.svg"> ' +

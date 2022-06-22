@@ -1,0 +1,207 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+
+Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
+¦centripetal force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 463.
+
+
+
+
+
+*::*proof|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "subessayCaption" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+  "subessay" : "solution"
+}
+*..*
+Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦hyperbola¦¦, ¦GP¦PG¦¦ and ¦DK¦KD¦¦ other
+conjugate diameters, ¦PF¦¦ a perpendicular to the diameter KD, and ¦Qv¦Q𝑣¦¦ an
+ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter DK in ¦E¦¦ and ordinate ¦Qv¦Q𝑣¦¦ in 𝑥, and complete the parallelogram ¦QR PR Px Qx¦QRP𝑥¦¦. It is evident that ¦EP¦¦ is
+<br><br>
+
+b. This result is given in <i>Source</i>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
+[<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum#in-focus">
+and in CalculusXX, (A)</a>
+]
+<br><br>
+
+equal to the transverse semiaxis ¦CA¦AC¦¦, because when line ¦HI¦¦ is drawn parallel
+to ¦EC¦¦ 
+<br><br>
+
+from the other ¦H¦focus H¦¦ of the hyperbola, ¦ES¦¦ and ¦EI¦¦ are equal because
+¦CS¦¦ and ¦CH¦¦ are equal;
+
+<br><br>
+
+so that ¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PI¦¦, that
+is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PI¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
+of ¦SP¦PS¦¦ and ¦PH¦¦, the difference of which equals the whole axis 2¦CA¦AC¦¦. Drop
+¦QT¦¦ perpendicular to ¦SP¦¦. Then, if L denotes the principal latus rectum of
+the hyperbola ( or 2BC² / ¦CA¦AC¦¦ ), L x ¦QR¦¦ will be to L x ¦Pv¦P𝑣¦¦ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, or ¦Px¦P𝑥¦¦
+
+to ¦Pv¦P𝑣¦¦, that is (because the triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦EP EC PC¦PEC¦¦ are similar), as ¦PE¦¦ to ¦PC¦¦,
+or ¦CA¦AC¦¦ to ¦PC¦¦. L x ¦Pv¦P𝑣¦¦ will also be to ¦Gv¦G𝑣¦¦ x ¦Pv¦P𝑣¦¦ as L to ¦Gv¦G𝑣¦¦; and (from the
+
+nature of conics) the rectangle ¦Gv¦G𝑣¦¦ x ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
+(
+<a target="_blank" href="?conf=sappId=b1sec1lemma7,theorionId=corollary,aspectId=english">
+by lem. 7, corol. 2</a>
+)
+the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦², the points ¦Q¦¦ and ¦P¦¦ coming
+together, comes to be the ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦AT¦¦² as ¦EP¦¦²
+
+to ¦PF¦¦², that is, as ¦CA¦¦² to ¦PF¦¦², or (by lem. 12) as ¦CD¦¦² to ¦CB¦¦²; and if all these
+ratios are combined, L x ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦ x L x ¦PC¦¦² x ¦CD¦¦² or
+2¦CB¦¦² x ¦PC¦¦² x ¦CD¦¦² to ¦PC¦¦ x ¦Gv¦G𝑣¦¦ x ¦CD¦¦² x ¦CB¦¦², or as 2¦PC¦¦ to ¦Gv¦G𝑣¦¦. But, the points
+
+¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦Gv¦G𝑣¦¦ are equal. Therefore, L x ¦QR¦¦ and
+¦QT¦¦², which are proportional to these, are also equal. Multiply these equals by
+¦SP¦¦²/¦QR¦¦, and L x ¦SP¦¦² will become equal to ¦SP¦¦² x ¦QT¦¦² / ¦QR¦¦. Therefore (by prop. 6,
+
+corols. 1 and 5), the centripetal force is inversely as L x ¦SP¦¦², that is, inversely
+as the square of the distance ¦SP¦¦. Q.E.I.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 465.
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "English",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution"
+}
+*..*
+
+
+Find the force that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
+come out proportional to the distance ¦PC¦CP¦¦. And hence
+(
+<a target="_blank" href="?conf=sappId=b1sec1prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
+by prop. 7, corol. 3</a>
+)
+the force tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is
+
+given, inversely as ¦SP¦¦² . Q.E.I.
+
+It is shown in the same way that if this centripetal force is turned into a
+centrifugal force, a body will move in the opposite branch of the hyperbola.
+
+
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 465.
+
+
+
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+<b>In <><>CXX:</b><br><br>
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">"Conic motion with force origin in conic's focus":</a>
+
+    <div style="text-align:center;">
+                𝑓 = M²r⁻²/ρ<sub>⟂</sub>. <br>
+    </div>
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+<b><i>Another Solution</i></b>
+<br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+    Transitional formula (ft)</a> gives: 
+<br>
+
+    <div style="text-align:center;">
+        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² 𝘨³   &nbsp;&nbsp;&nbsp;  (ft)
+    </div>
+
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">Taking solution for hyperbola center, (C)</a>
+
+    <div style="text-align:center;">
+                     𝑓<sub>φ</sub> = 𝑠M²α²β²ρ<sub>φ</sub>. <br>
+    </div>
+
+and recalling ellipse property 𝘨  = 𝜎𝑠a,
+<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum#ellipse">
+from "Interval between conjugate parallels", (A),
+</a>
+
+we obtain the inverse square law again: 𝑓  = 𝑓 <sub>𝛙</sub> and
+
+    <div style="text-align:center;">
+                    𝑓 = 𝜎M²α²β²a³ ρ<sub>𝛙</sub>⁻²  <br>
+    </div>
+<br><br>
+
+
+
+
+
+
+<div book-reference-id="kvk"></div>
+
+

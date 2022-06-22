@@ -58,6 +58,7 @@
         var DDD2    = 0.5 * DDD1;
         //radius-vector in respect to coord. syst. origin:
         var rr      = fun( q );
+        var rOrAbs  = Math.sqrt( rr[0]*rr[0] + rr[1]*rr[1] );
         var rplus   = fun( q + DDD );
         var rminus  = fun( q - DDD );
         //speed along q
@@ -145,8 +146,10 @@
             q,
             // **api-output---plane-curve-derivatives
             rr, //body pos in respect to coord system origin
+            rOrAbs,
 
             //in respect to chosen polar center rrc, if rrc presented
+            rrr,
             r2,
             r,
             ee,

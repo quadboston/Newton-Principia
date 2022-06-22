@@ -240,10 +240,10 @@ from the center.
 
 
 <b>In <><>CXX:</b><br><br>
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">"Conic motion with force origin in conic's center":</a>
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">"... conic's center",(C):</a>
 
     <div style="text-align:center;">
-        f<sub>e</sub> = M²α²β²r. <br>
+                𝑓  = M²α²β²r. <br>
     </div>
 
 

@@ -120,7 +120,7 @@ Page 458.
 gives
 
         <div style="text-align:center;">
-            ¦force¦f<sub>e</sub>¦¦ = r²ₒv²ₒ¦SP¦r¦¦⁻³.
+            ¦force¦𝑓¦¦ = r²ₒv²ₒ¦SP¦r¦¦⁻³.
         </div>
 <br><br>
 
@@ -128,7 +128,7 @@ In simple words, since curve will be "rotation-similar", then curvature κ ~ ¦S
 𝛺 = const,
 v²~ M²¦SP¦r¦¦⁻²𝛺⁻², then
         <div style="text-align:center;">
-            ¦force¦f<sub>e</sub>¦¦ ~ ¦SP¦r¦¦⁻³.
+            ¦force¦𝑓¦¦ ~ ¦SP¦r¦¦⁻³.
         </div>
 
 

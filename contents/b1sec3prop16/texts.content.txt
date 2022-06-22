@@ -1,0 +1,313 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+Under the same suppositions as in prop. 15, if straight lines are drawn to the bodies
+Theorem 8 in such a way as to touch the orbits in the places where the bodies are located,
+and if perpendiculars are dropped from the common focus to these tangents, I say
+that the velocities of the bodies are inversely as the perpendiculars and directly as
+the square roots of the principal latera recta.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+
+
+
+*::*proof|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "subessayCaption" : "<i>[Solution</i>]",
+  "subessay" : "solution"
+}
+*..*
+
+From focus S to tangent PR drop perpendicular SY, and the velocity of body P
+SY2
+will be inversely as the square root of .
+.L
+For this velocity is as the minimally small
+arc PQ described in a given particle of time,
+that is (by lem. 7), as the tangent PR, that
+is—because the proportion of PR to QT is
+as SP to SY—as or as SY inversely and SP x QT directly; and
+SPxQT
+SY '
+SP X QT is as the area described in the given time, that is (by prop. 14), as
+the square root of the latus rectum. Q.E.D.
+
+
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+
+
+
+
+*::*corollary|latin
+{
+}
+*..*
+
+*::*corollary|addendum
+{
+}
+*..*
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+
+The principal latera recta are as the squares of the perpendiculars and as the squares of the velocities
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+
+The velocities of bodies at their greatest and least distances from the common focus are inversely as the distances and directly as
+the square roots of the principal latera recta. For the perpendiculars are now
+the distances themselves.
+
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+
+And thus the velocity in a conic, at the greatest or least
+distance from the focus, is to the velocity with which the body would move
+in a circle, at the same distance from the center, as the square root of the
+principal latus rectum is to the square root of twice that distance.
+
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 4",
+  "subessay" : "corollary4"
+}
+*..*
+
+
+The velocities of bodies revolving in ellipses are, at their
+mean distances from the common focus, the same as those of bodies revolving
+in circles at the same distances, that is (by prop. 4, corol. 6), inversely as the
+square roots of the distances. For the perpendiculars now coincide with the
+semiaxes minor, and these are as mean proportionals between the distances
+and the latera recta. Compound this ratio [of the semiaxes] inversely with
+the square root of the ratio of the latera recta directly, and it will become the
+square root of the ratio of the distances inversely.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 5",
+  "subessay" : "corollary5"
+}
+*..*
+In the same figure, or even in different figures whose
+principal latera recta are equal, the velocity of a body is inversely as the
+perpendicular dropped from the focus to the tangent.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 6",
+  "subessay" : "corollary6"
+}
+*..*
+
+In a parabola the velocity is inversely as the square root
+of the distance of the body from the focus of the figure; in an ellipse the
+velocity varies in a ratio that is greater than this, and in a hyperbola in a
+ratio that is less. For (by lem. 14, corol. 2) the perpendicular dropped from
+the focus to the tangent of a parabola is as the square root of that distance.
+In a hyperbola the perpendicular is smaller, and in an ellipse greater, than in
+this ratio.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 7",
+  "subessay" : "corollary7"
+}
+*..*
+
+In a parabola the velocity of a body at any distance from
+the focus is to the velocity of a body revolving in a circle at the same distance
+from the center as the square root of the ratio of 2 to 1; in an ellipse it is
+smaller and in a hyperbola greater than in this ratio. For by corol. 2 of this
+proposition the velocity in the vertex of a parabola is in this ratio, and—by
+corol. 6 of this proposition and by prop. 4, corol. 6—the same proportion is
+kept at all distances. Hence, also, in a parabola the velocity everywhere is
+equal to the velocity of a body revolving in a circle at half the distance; in
+an ellipse it is smaller and in a hyperbola greater.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 8",
+  "subessay" : "corollary8"
+}
+*..*
+
+The velocity of a body revolving in any conic is to the
+velocity of a body revolving in a circle at a distance of half the principal latus
+rectum of the conic as that distance is to the perpendicular dropped from the
+focus to the tangent of the conic. This is evident by corol. 5.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 469.
+
+
+
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 9",
+  "subessay" : "corollary9"
+}
+*..*
+
+Hence, since (by prop. 4, corol. 6) the velocity of a body
+revolving in this circle is to the velocity of a body revolving in any other circle
+inversely in the ratio of the square roots of the distances, it follows from the
+equality of the ratios [or ex aequo] that the velocity of a body revolving in a
+conic will have the same ratio to the velocity of a body revolving in a circle
+at the same distance that a mean proportional between that common distance
+and half of the principal latus rectum of the conic has to the perpendicular
+dropped from the common focus to the tangent of the conic.
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 470.
+
+
+
+
+
+
+
+
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+
+<div book-reference-id="kvk"></div>
+
+

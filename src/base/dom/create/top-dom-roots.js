@@ -59,7 +59,8 @@
     function detected_user_interaction_effect( doShowDiagram )
     {
         doesShowDiagram( doShowDiagram );
-        if( fconf.timeToShowOriginalDiagram > 0 && doShowDiagram ) {
+        if( typeof fconf.timeToShowOriginalDiagram === 'number' &&
+            fconf.timeToShowOriginalDiagram > 0 && doShowDiagram ) {
             setTimeout(
                 () => {
                     doesShowDiagram( false ),

@@ -172,9 +172,9 @@ Page 456.
 The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
 the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
 in the same orbit and in the same periodic time around any other
-¦Rcol2¦center of forces R¦¦ as the solid SP x RP²—contained under ¦SP¦the distance of the body¦¦
+¦Rcol2¦center of forces R¦¦ as the solid SP x RP² - contained under ¦SP¦the distance of the body¦¦
 from the first ¦S¦center of forces S¦¦ and the square of ¦Rcol2,P¦its distance from the second
-center of forces R¦¦—to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
+center of forces R¦¦ - to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
 the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to
 the ¦Rcol2,P¦distance RP¦¦ of the body from the second center of forces. For the forces
 in this orbit at any ¦P¦point of it P¦¦ are the same as in a circle of the same
@@ -212,11 +212,13 @@ Page 456.
 
 <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
     "Excentric circular motion", (EC)</a> gives: 
-<br>
-        ¦force¦f<sub>e</sub>¦¦ = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. <br>
+<br><br>
+        ¦force¦𝑓¦¦ = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ.
+<br><br>
+
         ¦PV¦Leg¦¦ / ¦AV¦hypotenuse¦¦ = ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
         ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦. Hence <br><br>
-        ¦force¦f<sub>e</sub>¦¦ = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
+        ¦force¦𝑓¦¦ = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
 <br><br>
 
 
@@ -238,7 +240,7 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
     "Excentric circular motion"</a> gives: 
 <br>
 
- ¦force¦f<sub>e</sub>¦¦ = 8M²ρ²r⁻⁵.
+ ¦force¦𝑓¦¦ = 8M²ρ²r⁻⁵.
 
 
 
@@ -260,13 +262,13 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
 <br>
 
     <div style="text-align:center;">
-        f<sub>𝛙e</sub> / f<sub>φe</sub> =
-            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² ρ<sub>//</sub>³   &nbsp;&nbsp;&nbsp;  (ft)
+        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² 𝘨³   &nbsp;&nbsp;&nbsp;  (ft)
     </div>
 Replacing linear intervals correspondingly we obtain Newton's formulae:
 
     <div style="text-align:center;">
-        f<sub>𝛙e</sub> / f<sub>φe</sub> =
+        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
             ¦SP¦¦⁻<sup>1</sup> ¦Rcol2,P¦RP¦¦⁻² ¦Gcol2,S¦SG¦¦³
     </div>
 

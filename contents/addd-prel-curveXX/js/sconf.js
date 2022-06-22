@@ -18,6 +18,7 @@
     function init_conf()
     {
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.7;
+        fconf.timeToShowOriginalDiagram  = null;
 
         sconf.rgShapesVisible = true;
 

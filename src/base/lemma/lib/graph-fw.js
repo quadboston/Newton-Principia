@@ -72,7 +72,7 @@
                 graphArray,
                 colorThreadArray,
                 style : {
-                   //'stroke-width' : 4,
+                   //'stroke-width' : 2, //destroys tp-machine
                 },
                 axisX : hafa( stdMod, 'graphAxisX' )( xColor ) || {
                     'font-size'     : '18px',
@@ -109,6 +109,7 @@
                     abscissaIxValue : stdMod.pos2qix(),
                     numberMarks : true, 
                 },
+                brightenGrid : 0.3,
             });
             graphFW__self.fw.gmedia$.addClass( 'ph-graph' );
             //==================================================

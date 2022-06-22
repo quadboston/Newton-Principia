@@ -1,0 +1,162 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+Let a body move in the perimeter of a parabola; it is required to find the law of
+the centripetal force tending toward a focus of the figure.
+
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 466.
+
+
+
+
+
+*::*proof|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "subessayCaption" : "<i>[Solution</i>]",
+  "subessay" : "solution"
+}
+*..*
+Let the construction be the same as in lem. 14, and let P be the body in
+the perimeter of the parabola; from the place Q into which the body moves
+next, draw QR parallel and QT perpendicular to SP and draw Qv parallel
+to the tangent and meeting both the diameter PG in v and the distance SP
+in x. Now, because triangles Pxv and SPM are similar and the sides SM
+and SP of the one are equal, the sides Px or QR and Pv of the other are
+equal. But from the Conies the square of the ordinate Qv is equal to the
+rectangle contained by the latus rectum and the segment Pv of the diameter,
+that is (by lem. 13), equal to the rectangle 4PS x Pv, or 4PS x QR, and, the
+points P and Q coming together, the ratio of Qz/ to Qx (by lem. 7, corol.
+2) becomes the ratio of equality. Therefore, in this case Qx2
+ is equal to the
+rectangle 4PS x QR. Moreover (because triangles QxT and SPN are similar),
+Q*2
+ is to QT2
+ as PS2
+ to SN2
+, that is (by lem. 14, corol. 1), as PS to SA,
+that is, as 4PS x QR to 4SA x QR, and hence (by Euclid's Elements, book
+SP2
+5, prop. 9) QT2
+ and 4SA x QR are equal. Multiply these equals by ,
+QR
+SP2
+ x QT2
+and will become equal to SP2
+ x 4SA; and therefore (by prop.
+QR
+6, corols. 1 and 5) the centripetal force is inversely as SP2
+ x 4SA, that is,
+because 4SA is given, inversely as the square of the distance SP. Q.E.I.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 466.
+
+
+
+
+*::*corollary|latin
+{
+}
+*..*
+
+*::*corollary|addendum
+{
+}
+*..*
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+From the last three propositions it follows that if any
+body P departs from the place P along any straight line PR with any velocity
+whatever and is at the same time acted upon by a centripetal force that is
+inversely proportional to the square of the distance of places from the center,
+this body will move in some one of the conies having a focus in the center
+of forces; and conversely. For if the focus and the point of contact and the
+position of the tangent are given, a conic can be described that will have
+a given curvature at that point. But the curvature is given from the given
+centripetal force and velocity of the body; and two different orbits touching
+each other cannot be described with the same centripetal force and the same
+velocity
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 467.
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+If the velocity with which the body departs from its place
+P is such that the line-element PR can be described by it in some minimally
+small particle of time, and if the centripetal force is able to move the same
+body through space QR in that same time, this body will move in some
+QT2
+conic whose principal latus rectum is the quantity which ultimately
+QR
+results when the line-elements PR and QR are diminished indefinitely. In
+these corollaries I include the circle along with the ellipse, but not for the
+case where the body descends straight down to a center.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 467.
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+
+<div book-reference-id="kvk"></div>
+
+

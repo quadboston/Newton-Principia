@@ -1,0 +1,112 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop15/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop15/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+Under the same suppositions as in prop. 14, I say that the squares of the periodic
+Theorem 7 times in ellipses are as the cubes of the major axes.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+
+
+
+*::*proof|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "subessayCaption" : "<i>[Solution</i>]",
+  "subessay" : "solution"
+}
+*..*
+For the minor axis is a mean proportional between the major axis and the
+latus rectum, and thus the rectangle contained by the axes is as the square
+root of the latus rectum and as the
+ 3/2 power of the major axis. But this
+rectangle (by prop. 14, corol.) is as the square root of the latus rectum and
+as the periodic time. Take away from both sides [i.e., divide through by] the
+square root of the latus rectum, and the result will be that the squares of the
+periodic times are as the cubes of the major axes. Q.E.D.
+
+<br><br><br>
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 463.
+
+
+
+
+
+
+*::*corollary|latin
+{
+}
+*..*
+
+*::*corollary|addendum
+{
+}
+*..*
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+Therefore the periodic times in ellipses are the same as in
+circles whose diameters are equal to the major axes of the ellipses
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 463.
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+
+<div book-reference-id="kvk"></div>
+
+

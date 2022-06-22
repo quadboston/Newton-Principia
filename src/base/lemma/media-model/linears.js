@@ -80,10 +80,9 @@
             var tpclass = sDomF.topicIdUpperCase_2_underscore(
                           ( ns.haz( lineAttr, 'tpclass' ) ) || pName
             );
-            var ww          = ns.haz( line, 'pcolor' ) || sDomF.getFixedColor( tpclass );
-            var stroke      = han( lineAttr, 'stroke', ww );
+            var ww          = sDomF.getFixedColor( tpclass );
+            var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
             var cssClass    = ns.h( lineAttr, 'cssClass' ) ? lineAttr['cssClass'] + ' ' :  '';
-
 
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
@@ -125,7 +124,6 @@
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
         line.pivots = [ pivots[0], pivots[1] ];
-        line.pointIsAlreadyDressed = true;
 
 
 
@@ -138,36 +136,50 @@
         if( caption ) {
             var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
-            var lposXSugar = 1.5;
+            var lposXSugar = 0.5;
+            var lposYSugar = -0.3; //1.5;
             var pvs = pivotsMedPos,
             lposX = ( pvs[0][0] + pvs[1][0] ) / 2;
             lposY = ( pvs[0][1] + pvs[1][1] ) / 2;
             var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
-            var segAngle = Math.atan( dir[1], dir[0] );
+            var segAngle = Math.atan2(
+                    dir[1] * sconf.MONITOR_Y_FLIP, //y, screen to model angle
+                    dir[0]
+            );
             var leftNormAngle = segAngle + Math.PI/2;
-            var SHIFT_ABS = has( lineAttr, 'captionShiftY' ) ? lineAttr.captionShiftY : 60;
-            var finalPosX = lposX + SHIFT_ABS*Math.cos( leftNormAngle ) - fontSize * lposXSugar;
-            var finalPosY = lposY + SHIFT_ABS*Math.sin( leftNormAngle ) - fontSize * 0.2;
+            var SHIFT = has( lineAttr, 'captionShiftNorm' ) ? lineAttr.captionShiftNorm : 18;
 
-            line.pnameLabelsvg = ns.svg.printText({
-                text            : caption,
-                stroke          : line.pcolor,
-                //fill            : line.pcolor,
-                "stroke-width"  : 1,
-                svgel           : line.pnameLabelsvg,
-                parent          : stdMod.mmedia,
-                x               : finalPosX.toFixed()+'px',
-                y               : finalPosY.toFixed()+'px',
-                style           : {
-                    'font-size' : fontSize.toFixed() + 'px',
-                    'line-height' : '1',
-                },
-            });
-            line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
-                .cls( line.finalCssClass )
-                .addClass( 'tobold' )
+            var finalPosX = lposX + SHIFT * Math.cos( leftNormAngle )
+                            - fontSize * lposXSugar;
+            var finalPosY = lposY
+                            //eye to screen view
+                            + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin( leftNormAngle )
+                            - fontSize * lposYSugar;
+            if( !line.pointIsAlreadyDressed ) {
+                line.pnameLabelsvg = ns.svg.printText({
+                    text            : caption,
+                    stroke          : stroke, //line.pcolor,
+                    fill            : stroke, //line.pcolor,
+                    "stroke-width"  : 1,
+                    svgel           : line.pnameLabelsvg,
+                    parent          : stdMod.mmedia,
+                    style           : {
+                        'font-size' : fontSize.toFixed() + 'px',
+                        'line-height' : '1',
+                        'font-size' : line.fontSize + 'px',
+                    },
+                });
+                line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
+                    .cls( line.finalCssClass )
+                    .addClass( 'tofill hover-width' )
+                    ;
+            }
+            line.pnameLabelsvg$
+                .aNS( 'x', finalPosX.toFixed()+'px' )
+                .aNS( 'y', finalPosY.toFixed()+'px' )
                 .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
                 ;
+            line.pointIsAlreadyDressed = true;
         }
         //=================================================
         // \\// draws line caption
@@ -179,14 +191,15 @@
     function paintsVectorTips({ vectorTipIx, pivots, line, stdMod })
     {
         var TIP_FRACTION = 0.2;
-        var ARROW_TANGENT = 0.2;
+        var ARROW_TANGENT = 0.15;
         var vectEnd = pivots[ vectorTipIx ].medpos;
         var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
         var { abs, norm, unit } = mat.vector2normalOrts(
                 [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
         var tipLength =
-                Math.min( //min is a patch sensetive to diagram scale; better tune needed;
-                10, TIP_FRACTION * abs );
+                Math.min(
+                10 * sconf.pictureWidth * 0.0025, //min is sensetive to diagram scale
+                TIP_FRACTION * abs );
         var tipStart = abs-tipLength;
         var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
         var tipHeight = Math.max( sconf.thickness*3, tipLength * ARROW_TANGENT );
@@ -268,10 +281,10 @@
             //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
             //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
             caption         : caption || haz( lineAttr, 'caption' ),
-         };
+        };
         ///todm: this code is extremely non-automated:
-        if( has( lineAttr, 'captionShiftY' ) ) {
-            lineAttrPassed.captionShiftY = lineAttr.captionShiftY;
+        if( has( lineAttr, 'captionShiftNorm' ) ) {
+            lineAttrPassed.captionShiftNorm = lineAttr.captionShiftNorm;
         }
         return pointies2line(
             str,

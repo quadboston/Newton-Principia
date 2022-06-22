@@ -23,7 +23,31 @@
         <b>a</b> = <i>a</i><b>b</b>                         <br>
         <br>Special unit vectors:                           <br>
             𝘂 = 𝘃 / v,                                           <br>
-            𝗲 = 𝗿 / r, <br>
+            𝗲 = 𝗿 / r, <br><br>
+
+        [𝗮𝗯] - vector product of 𝗮  and	𝗯. <br>
+
+        <div style="text-align:center;">
+            [𝗮𝗯] = <br>
+            <table class="matrix-determinant" style=" display:inline-block;">
+
+            <tr><td>𝗶</td> <td>𝗷</td> <td>𝗸</td> </tr>
+            <tr><td>a<sub>x</sub></td>  <td>a<sub>y</sub></td>  <td>a<sub>z</sub></td> </tr>
+            <tr><td>b<sub>x</sub></td>  <td>b<sub>y</sub></td>  <td>a<sub>z</sub></td> </tr>
+            </table>. <br>
+
+                𝗮⊺𝗯 = [𝗮𝗯]𝗸 = a<sub>x</sub>b<sub>y</sub> - a<sub>y</sub>b<sub>x</sub> <br>
+        </div>
+
+        For planar vectors of type 𝗰 = (x,y,0),
+        their "product as complex numbers 𝗰<sup>*</sup>₁*𝗰₂" is  <br>
+            <div style="text-align:center;">
+                        𝗰₁|𝗰₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗰₁𝗰₂, 𝗰₁⊺𝗰₂ ), <br>
+                    ( which are 𝗰₂ components in coordinate system 𝗶 = 𝗰₁/c₁, [𝗸𝗶] ).
+            </div>
+            were 𝗸 - is a unit vertical ort.
+        <br>
+
     </div>
 <br><br>
 
@@ -241,45 +265,34 @@ Above is rewritten as Frenet-Serret formulas:
 }
 *..*
 
-<b>Motivation.</b> Suppose for given curve parametrization, Cartesian, polar, etc., it is easy to
+<b>Motivation.</b> Suppose for given curve parametrization with parameter q,
+Cartesian, polar, etc., it is easy to
 find curve's derivatives <b>r˙</b>, <b>r˙˙</b>, etc. We try then to express curvature
 𝝹 in respect to these derivatives.
 
     <div style="text-align:center;">
             𝘃𝗮 = vv˙, <br>
-       [𝘃𝗮] = [𝘃𝗮<sub>⟂</sub>] = κv³[𝘂𝗻] = v³κ𝗯,  <br>
-       [[𝘃𝗮]𝘃] = v³κ[𝗯𝘃] = v⁴𝝹.  <br> 
+       [𝘃𝗮] = [𝘃𝗮<sub>⟂</sub>] = κv³[𝘂𝗻] = v³κ𝗯, <br>
+       [[𝘃𝗮]𝘃] = v³κ[𝗯𝘃] = v⁴𝝹 = v²𝗮 - (𝘃𝗮)𝘃.  <br> 
     </div>
 <br>
 
-For planar vectors of type 𝗰 = (x,y,0),
-their "product as complex numbers 𝗰<sup>*</sup>₁*𝗰₂" is  <br>
-    <div style="text-align:center;">
-                𝗰₁|𝗰₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗰₁𝗰₂, [𝗰₁𝗰₂]𝗸 ), <br>
-            ( which are 𝗰₂ components in coordinate system 𝗶 = 𝗰₁/c₁, [𝗸𝗶] ).
-    </div>
-    were 𝗸 - is a unit vertical ort.
-<br>
 <br>
 
-For curve 𝗿(t) belonging to plane xy:
+For curve 𝗿(t) belonging to plane xy, so 𝗯 = b<sub>𝗸</sub>𝗸, b<sub>𝗸</sub> is 1 or -1:
 
     <div style="text-align:center;">
-        [𝘃𝗮] = <br>
-        <table class="matrix-determinant" style=" display:inline-block;">
+                      𝜅  =<sup>df</sup> = κb<sub>𝗸</sub>, &nbsp;&nbsp;&nbsp; (K)<br>
+        if curvature 𝝹 directed to the left when moving along 𝘃  and <br>
+        viewing from tip 𝗸, then 𝜅 › 0; othewise,
+                     𝜅  ⩽ 0.
+        <br><br>
 
-        <tr><td>𝗶</td> <td>𝗷</td> <td>𝗸</td> </tr>
-        <tr><td>x˙</td>  <td>y˙</td>  <td>0</td> </tr>
-        <tr><td>x˙˙</td> <td>y˙˙</td> <td>0</td> </tr>
-         
-        </table> <br>
-        = 𝗸(x˙y˙˙- x˙˙y˙) = v³κ𝗸. <br>
-        v³κ = x˙y˙˙- x˙˙y. <br><br>
+        v³𝜅 𝗸 = [𝘃𝗮] = (𝘃⊺𝗮)𝗸.   <br>
+        v³𝜅  = 𝘃⊺𝗮 = x˙y˙˙- x˙˙y˙. <br>
+        <br>
 
-             𝘃|𝗮 = ( 𝘃𝗮<sub>//</sub>, [𝘃𝗮<sub>⟂</sub>]𝗸 ) =
-              ( vv˙, κv³[𝘂𝗻]𝗸 ) =
-              ( vv˙, v³κb<sub>𝗸</sub> ).<br>
-
+             𝘃|𝗮 = ( 𝘃𝗮<sub>//</sub>, 𝘃⊺𝗮<sub>⟂</sub> ) = ( vv˙, v³𝜅  ). <br>
         <!--
         possibly useless: <br>
         (𝘃|𝗮)|𝘃 = ( vv˙x˙ + κv³[𝘂𝗻]𝗸y˙, vv˙y˙ - κv³[𝘂𝗻]𝗸x˙  )
@@ -288,9 +301,13 @@ For curve 𝗿(t) belonging to plane xy:
     </div>
 <br>
 
+
+<a name="cartesian-coordinates">
+<b>Cartesian coordinates</b>
+<br>
     <div style="text-align:center;">
-        Further, if parameter t = x, then
-        v³κ = y˙˙. <br>
+        If parameter q = x, then
+        v³𝜅  = y˙˙. <br>
     </div>
 <br><br>
 
@@ -301,7 +318,7 @@ For curve 𝗿(t) belonging to plane xy:
     <div style="text-align:center;">
             𝗿 = ρe<sup><i>iφ</i></sup>,
     </div>
-where ρ and φ are functions of t.
+where ρ and φ are functions of q.
 <br><br>
 
 
@@ -317,22 +334,22 @@ where ρ and φ are functions of t.
 
 <br><br>
 
-For t = ρ:
+For q = ρ:
 
     <div style="text-align:center;">
            𝘃|𝗮 = ( ρφ˙² +  ρ²φ˙φ˙˙, ρ²φ˙³ + 2φ˙ + ρφ˙˙ ), <br>
        v² = 1 + ρ²φ˙², <br>
        vv˙ = ρφ˙² +  ρ²φ˙φ˙˙,  <br>
-       v³κb<sub>𝗸</sub> = ρ²φ˙³ + 2φ˙ + ρφ˙˙, <br>
+       v³𝜅  = ρ²φ˙³ + 2φ˙ + ρφ˙˙, <br>
     </div>
 
-For t = φ:
+For q = φ:
 
     <div style="text-align:center;">
            𝘃|𝗮 = ( ρ˙ρ˙˙ + ρρ˙, -ρρ˙˙ + ρ² + 2ρ˙² ), <br>
        v² = ρ˙² + ρ², <br>
        vv˙ = ρ˙ρ˙˙ + ρρ˙,  <br>
-       v³κb<sub>𝗸</sub> = -ρρ˙˙ + ρ² + 2ρ˙², <br>
+       v³𝜅  = -ρρ˙˙ + ρ² + 2ρ˙², <br>
     </div>
 
 

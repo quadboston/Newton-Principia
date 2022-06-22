@@ -77,6 +77,7 @@
                 doTruncateOutOfRangeY,
                 doPaintGridOnlyOnce,
                 doDrawToolline,
+                brightenGrid,
         }){
 
             style = style || {};
@@ -263,6 +264,7 @@
                     drawAllAxes,    //flag and its params
                         plotsScaffold, //optional flag to draw extra Y-axes
                         plotsCount,
+                    brightenGrid,
                 });
                 nsmethods.drawGraphLegend({
                     graphFM_self,

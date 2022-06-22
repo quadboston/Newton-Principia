@@ -272,13 +272,13 @@ For counter-clockwise curvature orientation b<sub>𝗸</sub> = 1,
 <a target="_blank" href="?conf=sappId=addd-kepler-task">recalling (f') and (k')</a>
 correspondingly:
     <div style="text-align:center;">
-        ¦force¦f<sub>e</sub>¦¦ = v² κ/𝛺,<br>
+        ¦force¦𝑓¦¦ = v² κ/𝛺,<br>
         v² = M² / (¦SP¦r¦¦²sin²(ω)) =   M² / ¦SY¦¦² <br>
         <br><br>
 
         κ/𝛺 = 2 / (2¦PC¦R¦¦ sin(ω) ) = 2 / ¦PV¦¦, <br>
-        ¦force¦f<sub>e</sub>¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
-        ¦force¦𝗳 = -𝗲f<sub>e</sub>¦¦ <br>
+        ¦force¦𝑓¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+        ¦force¦𝗳 = -𝗲𝑓¦¦ <br>
     </div>
 <br>
 <div book-reference-id="kvk"></div>
@@ -304,7 +304,7 @@ This Corollary paraphrases Corollary 1.
 <br>
     In corollary 3:
     <div style="text-align:center;">
-       ¦force¦f<sub>e</sub>¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+       ¦force¦𝑓¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
     </div>
 <br>
 
@@ -321,8 +321,8 @@ But QP is ultimately proportional to QT:
         QP/QT =ᵘ 1 / sin( ¦SP QP¦SPQ¦¦ ). <br>
         hence <br>
         PV =ᵘ QT² / sin²(..) / QR <br>
-        ¦force¦f<sub>e</sub>¦¦ =ᵘ 2M² / (¦SY¦¦²/sin²(...) ¦QT¦¦ / QR) <br>
-        ¦force¦f<sub>e</sub>¦¦ =ᵘ 2M² / (¦SP¦¦² ¦QT¦¦² / ¦QR¦¦) <br>
+        ¦force¦𝑓¦¦ =ᵘ 2M² / (¦SY¦¦²/sin²(...) ¦QT¦¦ / QR) <br>
+        ¦force¦𝑓¦¦ =ᵘ 2M² / (¦SP¦¦² ¦QT¦¦² / ¦QR¦¦) <br>
     </div>
 ∎
 

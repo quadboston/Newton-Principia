@@ -1,0 +1,116 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop14/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop14/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "English"
+}
+*..*
+
+If several bodies revolve about a common center and the centripetal force is in-
+versely as the square of the distance of places from the center, I say that the
+principal latera recta of the orbits are as the squares of the areas which the bodies
+describe in the same time by radii drawn to the center.
+
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 467.
+
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "English",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution"
+}
+*..*
+
+
+For (by prop. 13, corol. 2) the latus rectum L is equal to the quanQT2
+tity that results ultimately when points
+QR
+P and Q come together. But the minimally
+small line QR is in a given time as the generating centripetal force, that is (by hypothQT2
+esis), inversely as SP . Therefore, is as
+QR
+QT2
+ x SP2
+, that is, the latus rectum L is as
+the square of the area QT x SP. Q.E.D.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 467.
+
+
+
+*::*corollary|latin
+{
+}
+*..*
+
+*::*corollary|addendum
+{
+}
+*..*
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+Hence the total area of the ellipse and, proportional to it,
+the rectangle contained by the axes is as the square root of the latus rectum
+and as the periodic time. For the total area is as the area QT x SP, which is
+described in a given time, multiplied by the periodic time.
+
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 468.
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+
+<div book-reference-id="kvk"></div>
+
+

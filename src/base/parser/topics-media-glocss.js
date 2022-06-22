@@ -151,6 +151,7 @@
                     .${cssp}-approot.tp-${tplink_ix} svg .tp-${tpid}.tostroke.hover-width {
                         stroke-width:${ sconf.hover_width }px;
                     }
+
                     .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid}.tostroke.hover-width {
                         stroke-width:${ sconf.text_hover_width }px;
                     }

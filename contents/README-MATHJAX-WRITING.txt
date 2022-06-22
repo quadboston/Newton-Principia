@@ -14,7 +14,7 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
 --------------------------------------------
 //\\ useful tokens:
 --------------------------------------------
-    ⟂
+    ⟂∤ ⫾ upperscores:𝗴&#773;𝘂&#773;
 
     diagonal    𝔇𝕯  sagitta 𝔓𝕻
 
@@ -51,9 +51,7 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
     xᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ   ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ 
     Xᴬ ᴮ C ᴰ ᴱ F ᴳ ᴴ ᴵ ᴶ ᴷ ᴸ ᴹ ᴺ ᴼ ᴾ Q ᴿ S ᵀ ᵁ ⱽ ᵂ X Y Z
     xₐ ₑ           ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ   ᵣ ₛ ₜ ᵤ ᵥ   ₓ
-
     Xᵅ ᵝ ᵞ ᵟ ᵋ ᶿ ᶥ ᶲ ᵠ ᵡ ᵦ ᵧ ᵨ ᵩ ᵪ
-
     \( \; \overset{df} \iff \; \)
     \( \; \overset{df} = \; \)
     ∫   \({\int_{0}^{1}} \)
@@ -62,7 +60,8 @@ https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviation
 --------------------------------------------
 
 Italics:
-    𝑣
+    𝑣𝑓𝑠
+    𝑥𝑦𝑧   serif
          https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
              https://www.compart.com/en/unicode/block/U+1D400
              Unicode Block “Mathematical Alphanumeric Symbols”

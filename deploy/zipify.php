@@ -232,7 +232,7 @@
     $skipper = '';
     if( $skips_images ) {
         //.excludes images from zip if requested
-        $skipper = ' *.png *.svg *.jpeg *.jpg *.gif ';
+        $skipper = ' *.png *.jpeg *.jpg *.gif ';
     }
     if( !$add_git_repo ) {
         //.excludes .git from zip if requested
