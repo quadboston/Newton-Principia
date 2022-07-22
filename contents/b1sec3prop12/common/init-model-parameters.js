@@ -28,31 +28,10 @@
     ///****************************************************
     function init_model_parameters()
     {
-        //=================================================
-        // //\\ model parameters,
-        //      these are independent parameters,
-        //      to be varied by sliders
-        //=================================================
-        //curve //varied by pivots
-        //      //pivot 'P' is attached to initial spped V,
-        //      it is already in registry,
-
-        //projection of speed to static tangent vector uu
-        //at all points P used for differentiation,
-        //body moves backward on x,
-        toreg( 'vt' )( 'val', 1 );
-        //=================================================
-        // \\// model parameters,
-        //=================================================
-
         toreg( 'approximated-curve' );
         stdMod.creates_orbitRack();
-
-        //var t =  stdMod.pos2t( rt.P.pos );
-        //var newP = rg[ 'approximated-curve' ].t2xy( t );
-
-        stdMod.completesSlidersCreation();
-
+        stdMod.completesSlidersCreation();      //in-diagram sliders
+        stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
         //creates placeholder
         //toreg( 'curvatureCircle' );
         toreg( 'tangentCircle' );
@@ -81,7 +60,9 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        if( fconf.sappId !== "b1sec3prop14" ) {
+            stdMod.createsGraphFW( stdMod.legendRoot$ );
+        }
         //==================================================
         // \\// decoration graph 
         //==================================================

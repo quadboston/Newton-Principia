@@ -500,6 +500,112 @@
         // \\// lemma 7
         //*****************************************************************************
 
+
+
+
+        //*****************************************************************************
+        // //\\ lemma 8
+        //*****************************************************************************
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            if(
+                amode.subessay === 'who-knows'
+            ){
+                //sDomF.detected_user_interaction_effect();
+                captured = "analytic-derivative";
+                //=================================================
+                // //\\ visibility
+                //=================================================
+                [
+                    //addendum axes
+                    'O',
+                    'ytop',
+                    'xtop',
+                    'ylow,ytop',
+                    'xlow,xtop',
+
+                    //addendum axes points
+                    'x',
+                    'y',
+                    'x0',
+                    'y0',
+                    //addendum axes points projection lines
+                    'A,y0',
+                    'By',
+                    'A,x0',
+                    'Bx',
+                    //addendum axes increment projections
+                    'x0,x',
+                    'y0,y',
+
+                    //microscope
+                    'Ab',
+
+                    //microscope axes points projections
+                    'X',
+                    'X0',
+                    'Y',
+                    'Y0',
+                    //microscope axes increment projections
+                    'X0,X',
+                    'A,Y',
+
+                    //tangent's angle
+                    'tangentPhi',
+                    'AL',
+                    'L',
+                    'd',
+
+                    //decorations
+                    'line-dr-start,dr-decorpoint',
+                    'dr-decorpoint',
+                    'A,line-AL-end',
+
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+            }
+
+            if(
+                aspect !== 'model'
+            ) {
+                sDomF.detected_user_interaction_effect( 'doUndetected' );
+                captured = "L-equal-d";
+                rg.media_scale.value = 1;
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+
+                ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
+                ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+                [
+                    'D',
+                    'R',
+                    'BD',
+                    //'RD',
+                    'AD',
+                    'curve-AB',
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+
+                if( theorion === 'proof' ) {
+                    sDomF.detected_user_interaction_effect( 'doUndetected' );
+                    [
+                        'd',
+                        'r',
+                        'Ad',
+                        'rd',
+                        'bd',
+
+                        'b',
+                        'Ab',
+                        'arc-Ab',
+
+                        //'AL',
+                        //'L',
+                    ].forEach( gname => { rg[ gname ].undisplay = false; });
+                    rg.L.hideD8Dpoint   = false;
+                }
+            }
+        }
+        //*****************************************************************************
+        // \\// lemma 8
+        //*****************************************************************************
+
         return captured;
     }
 

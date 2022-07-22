@@ -3,7 +3,7 @@
     var { //import from apptree
         ns,
         fconf,
-        sconf, rg,
+        sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
@@ -22,21 +22,6 @@
     //====================================================
     function init_conf()
     {
-        //***************************************************************
-        // //\\ geometical scales
-        //***************************************************************
-        //for real picture if diagram's picture is supplied or
-        //for graphical-media work-area if not supplied:
-        var pictureWidth = 690; //841;
-        var pictureHeight = 836; //728;
-
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
-        //***************************************************************
-        // \\// geometical scales
-        //***************************************************************
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -48,10 +33,55 @@
         // \\// subapp regim switches
         //====================================================
 
+        var op = sconf.orbitParameters = {};
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = 145;
+        op.mainAxisAngle_initial = 0;
+        op.mainAxisAngle = op.mainAxisAngle_initial;
+        switch ( fconf.sappId ) {
+            case "b1sec3prop14" :
+                    op.initialEccentricity = 0.68;   //ellipse
+                    sconf.insertDelayedBatch = true;
+                    //for real picture if diagram's picture is supplied or
+                    //for graphical-media work-area if not supplied:
+                    var pictureWidth = 884;
+                    var pictureHeight = 733; //728;
+                    var mod2inn_scale = 260;
+                    var F = [ 160, 410 ];
+                    op.latusInitial = 0.83;
+                    var PparQ = 0.07 * Math.PI;
+                    op.sagittaDelta_q_initial = 0.19;
+                  break;
+            case "b1sec3prop13" :
+                    op.initialEccentricity = 1; //parabola
+                    var pictureWidth = 938;
+                    var pictureHeight = 611;
+                    var F = [ 560, 554 ];
+                    op.latusInitial = 2.10;
+                    var PparQ = 0.386 * Math.PI;
+                    op.sagittaDelta_q_initial = 0.39;
+                  break;
+            case "b1sec3prop12" :
+                    op.initialEccentricity = 1.365; //hyperbola
+                    var pictureWidth = 690;
+                    var pictureHeight = 836; //728;
+                    var F = [ 492, 565 ];
+                    op.latusInitial = 0.90;
+                    var PparQ = 0.49 * Math.PI;
+                    op.sagittaDelta_q_initial = 1;
+                  break;
+        }
+        op.latus = op.latusInitial;
+        stdMod.establishesEccentricity( op.initialEccentricity );
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
         //gives bar full range of opacity for tp machine
@@ -81,8 +111,8 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        sconf.text_nonhover_width   = 1000;
-        sconf.text_hover_width      = 2000;
+        sconf.text_nonhover_width   = 1;
+        sconf.text_hover_width      = 2;
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
@@ -93,73 +123,15 @@
 
 
 
-        //***************************************************************
-        // //\\ geometics parameters
-        //***************************************************************
         //=============================================
         // //\\ points reused in config
         //=============================================
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = 145;
-
-        var F = [ 492, 565 ]; //[487, 565 ]; //[490, 565 ];
         var S = F;
+        var P = [0, 0 ]; //set bu sconf.PparQ
+        var Q = [0, 0 ]; //set in amode8captures
+        sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
         var originY_onPicture = F[1]; //for model's axis y
-
-
-        //=============================================
-        // //\\ orbit parameters
-        //=============================================
-        {
-            var op          = sconf.orbitParameters = {};
-            op.eccentricity = 1.365; //1.35; //1.38; //1.37; //1.41;  //0.59498295;
-            op.lambda2      = Math.abs( 1 - op.eccentricity*op.eccentricity );
-            op.lambda       = Math.sqrt( op.lambda2 );
-            op.latus        = 0.90; //0.83;
-            op.B            = op.latus / op.lambda; //0.86;
-            op.A            = op.B / op.lambda;
-            //op.A   = 0.93; //0.92; //0.91;
-            op.ellipseType  = Math.sign( 1 - op.eccentricity );
-            if( 1 === op.eccentricity ) {
-                op.ellipseType = 1; //1 for ellipse and parabola, -1 for hyperbola
-            }
-            op.C            = op.ellipseType * op.eccentricity * op.A;
-            //op.ellipseC   = op.A*op.A - op.ellipseType * op.B * op.B;
-
-            // gets ellipse parameters
-            let ellB2       = op.B*op.B;
-            let ellA2       = op.A*op.A;
-            //op.ellipseFocus = Math.sqrt( ellA2 - ellB2 * op.ellipseType ); //=c
-            op.ellipseFocus = op.C;
-
-            if( op.ellipseType < 1 ) {
-                op.ANGLE_BOUNDARY = 1e-15;
-                op.SINGULARITY_ANGLE = Math.acos(1/op.eccentricity);
-                op.LOW_BOUNDARY = op.SINGULARITY_ANGLE - op.ANGLE_BOUNDARY;
-                op.UPPER_BOUNDARY = op.SINGULARITY_ANGLE + op.ANGLE_BOUNDARY;
-            }
-        }
-        var curveParFi0 = 0.0 * Math.PI;
-        var curveParFiMax = 2 * Math.PI;
-        //=============================================
-        // \\// orbit parameters
-        //=============================================
-
-
-
-
-        var PparT       = 0.250 * Math.PI;
-        var PparT       = Math.PI - 0.51 * Math.PI;
-
-        //interval of t to construct an arc for Newton's sagitta
-        var sForSagitta_valQ = 0.6;
-
-        var P = [0, 0 ]; //set bu sconf.PparT
-        var Q = [0, 0 ]; //set in amode8captures
-
-        sconf.diagramOrigin = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -255,6 +227,16 @@
                 doPaintPname : false,
             },
 
+            L : {
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
+
+            LL : {
+                doPaintPname : false,
+            },
+
 
             A : {
                 pcolor : proof,
@@ -280,6 +262,17 @@
                 letterAngle : -45,
             },
 
+            M : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -45,
+            },
+
+            N : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -45,
+            },
             G : {
                 pcolor : proof,
                 letterRotRadius : 20,
@@ -313,7 +306,7 @@
                 pcolor : body,
                 letterAngle : 145,
                 letterRotRadius : 20,
-                //undisplay : true,
+                doPaintPname : "b1sec3prop13" !== fconf.sappId,
             },
 
             /*
@@ -391,13 +384,22 @@
                 pcolor : result,
                 letterAngle : -115,
                 letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
+                draggableX  : fconf.sappId !== "b1sec3prop14",
+                draggableY  : fconf.sappId !== "b1sec3prop14",
             },
 
             P : {
                 pos: P,
                 pcolor : body,
+                letterAngle : 120,
+                //draggableX  : true,
+                //draggableY  : true,
+            },
+
+
+            Fi : {
+                caption : "φ",
+                pcolor : shadow, //body,
                 letterAngle : 120,
                 draggableX  : true,
                 draggableY  : true,
@@ -411,6 +413,47 @@
                 draggableX  : true,
                 draggableY  : true,
             },
+
+
+            // //\\ eccentricity slider
+            Zeta : {
+                caption : 'eccentricity, e',
+                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                letterAngle : 90,
+                letterRotRadius : 20,
+                draggableX  : 'b1sec3prop13' !== fconf.sappId,
+                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
+                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                unscalable  : true,
+            },
+
+            ZetaCaption : {
+                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                letterAngle : 90,
+                letterRotRadius : 20,
+                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                unscalable  : true,
+            },
+
+            ZetaStart : {
+                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+
+            ZetaEnd : {
+                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+            // \\// eccentricity slider
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -424,7 +467,9 @@
             //-----------------------------------------
             { Qx : { pcolor : proof }, },
             { Px : { pcolor : proof }, },
+            //todm: proliferation
             { EP : { pcolor : proof }, },
+            { PE : { pcolor : proof }, },
             { ES : { pcolor : proof }, },
             { EI : { pcolor : proof }, },
             { EO : { pcolor : proof }, },
@@ -440,6 +485,7 @@
 
             //{ 'CV' : { pcolor : curvature }, },
             { 'PC' : { pcolor : proof }, },
+            { 'O,Fi' : { pcolor : shadow }, },
 
             { 'SP' : { pcolor : result }, },
             { 'CS' : { pcolor : proof }, },
@@ -456,11 +502,20 @@
             { 'PT' : { pcolor : proof }, },
 
             { DK : { pcolor : proof }, },
+            { PM : { pcolor : body }, },
+            { SM : { pcolor : body }, },
+            { OM : { pcolor : proof }, },
+            { ON : { pcolor : proof }, },
+            { NS : { pcolor : proof }, },
+            { SA : { pcolor : proof }, },
+            { NP : { pcolor : proof }, },
+
             { GP : { pcolor : proof }, },
             { Qv : { pcolor : proof }, },
             { Pv : { pcolor : proof }, },
             { Tv : { pcolor : proof }, },
             { xv : { pcolor : proof }, },
+            { Tx : { pcolor : proof }, },
 
             { Gv : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
@@ -473,10 +528,12 @@
             { DO : { pcolor : proof }, },
             { BO : { pcolor : proof }, },
             { CB : { pcolor : proof }, },
+            //{ 'L,LL' : { pcolor : proof, caption : 'L/2',
+            //             captionShiftNorm : -18, fontSize : 20, }, },
+            { 'L,LL' : { pcolor : proof, }, },
             { CD : { pcolor : proof }, },
 
             { PO : { pcolor : proof }, },
-            { PE : { pcolor : proof }, },
             { GO : { pcolor : proof }, },
             { FO : { pcolor : proof }, },
 
@@ -487,14 +544,12 @@
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
             { 'P,tCircleCenter' : { pcolor : curvature }, },
-
+            { 'ZetaStart,ZetaEnd' : { pcolor : orbit }, },
         ];
 
+        //stdMod.init_sliders_conf();
         ns.paste( sconf, {
-            PparT,
-            curveParFi0,
-            curveParFiMax,
-            sForSagitta_valQ,
+            PparQ,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,

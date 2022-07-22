@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, cssp, nsmethods, globalCss, nspaste, haz, eachprop,
+        sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
         lcaseId2allLemTopics,
         id2tplink, ix2tplink,
@@ -9,11 +9,13 @@
         ssFExportList :
         {
             BodyMathJax_2_HTML,
-            fragment__2__indexed_links8topics,
-            normalizes___active8static_fragments,
+            fragment__collectsRawTpLinks,
+            rawFragments2htmlText,
             builtFrags_2_dom8mj,
         },
     });
+    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
+
 
     //---------------------------------------------
     // //\\ topic engine variables
@@ -23,7 +25,7 @@
     //: lemma-wise constructs
     //var topicsCount = 0; //indexes shapes lemma-wise
 
-    var SPACE_reg = /\s+/;
+    var SPACE_reg = /(\s|\/)+/; //todo needs global test because "/" is added to space divider
 
     //todo: these regexes do proliferate in two files
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -55,18 +57,18 @@
 
 
 
-    //Frag. step I. Adds hollow placeholders to links and topics.
-    //Part of the loop via subexeg.activeFrags.
     ///*************************************************************
+    ///Used: in landing parser and in user-console-messages.
     ///Inputs: text string, rawActFrValue
+    ///Does nothing to change acriveFrag, its text, or its HTML.
     ///Collects
-    //      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
+    ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
     ///     tplink.tpid2true                 [ tpid_lowcase ] = true;
     ///     lcaseId2allLemTopics[ tpid_lowcase ]
     ///Returns: collectedTpLinks
     ///*************************************************************
-    function fragment__2__indexed_links8topics(
+    function fragment__collectsRawTpLinks(
         ///rawActFrValue are obtained from Book
         ///with help by ACTION_SPLITTER = /¿/
         rawActFrValue
@@ -84,6 +86,16 @@
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
+                if(  parsedLink[4] ) {
+                    collectedDelayedLinks[ parsedLink[2] ] = {
+                        //total match = string aka  ¦anchor config¦anchor caption¦¦
+                        //note: trailing ¦¦ are stripped,
+                        match : parsedLink[0].substring( 0, parsedLink[0].length-2 ),
+
+                        anchorConfig : parsedLink[1],
+                        replaceeKey : parsedLink[2],  //anchor caption
+                    };
+                }
 
                 //=========================================
                 //tplinkConf is a set of raw_tpIDs;
@@ -180,7 +192,7 @@
                 //=========================================
             });
         }
-        return collectedTpLinks;
+        //return { collectedTpLinks, collectedDelayedLinks };
     }
 
 
@@ -221,15 +233,16 @@
 
     //Frag. step II. Norm. and anchor-texts.
     //======================================================================
-    // 1) wraps into object active and static fragment texts and
+    // 1) wraps active and static fragment texts into object and
     // 2) replaces scriptedAnchors with real anchors text
     //    <a ... tl-NNNNN dix ...
     //======================================================================
     ///Input:   rawActiveFrag - string or dictionary of strings,
-    ///         f.e. subexeg.activeFrags[ ...IX... ]
+    ///         string = subexeg.activeFrags[ ...ix-of-fragment... ],
+    ///         each string is a plain text, pre-ready for final-HTML-text,
     ///Output:  ready for html act8stat_fragments_texts rack,
     ///         see format at (*) in code below ...
-    function normalizes___active8static_fragments(
+    function rawFragments2htmlText(
         rawActiveFrag,
     ){
         if( typeof( rawActiveFrag ) === 'object' ) {
@@ -246,17 +259,38 @@
             var normalizedActiveFrag = { 'static' : rawActiveFrag };
         }
         var norFrRack = {};
-        eachprop( normalizedActiveFrag, ( fragBody_raw, akey ) => {
+        eachprop( normalizedActiveFrag, (
+            fragBody_raw,   //this is a plain text,
+                            //pre-ready for final-HTML-text,
+                            //it will be modified few times here without
+                            //affecting originally supplied rawActiveFrag argument.
+            akey
+        ) => {
 
 
             //***************************************************
             // //\\ Macros filter
+            //      (Macros are not "tp-anchor-scripts", macros
+            //      are "undivided text bricks".)
             //      Raw html-script-text is fragBody_raw.
             //      Main place to add more fragBody_raw
             //      preconversions before
             //      convertion fragBody_raw to tp-anchor-scripts.
             //***************************************************
             fragBody_raw = doesInsertSiteHTMLMacros( fragBody_raw );
+
+            //----------------------------------------------------
+            // //\\ processes tp-batch-controllers
+            //      by replacing marks with tp-script-clauses
+            //      
+            //----------------------------------------------------
+            if( has( sconf, 'insertDelayedBatch' ) ) {
+                fragBody_raw = insertDelayedBatch( fragBody_raw );
+            }
+            //----------------------------------------------------
+            // \\// processes tp-batch-controllers
+            //----------------------------------------------------
+
             //***************************************************
             // \\// Macros filter
             //***************************************************
@@ -293,8 +327,8 @@
             if( anchorConfig === '' ) {
                 anchorConfig = scaption;
             } else {
+                //strips "¦" from the lead of anchorConfig:
                 anchorConfig = anchorConfig.substring( 1, anchorConfig.length );
-                //ccc( 'link=', match[0], anchorConfig );
             }
 
             var rack = topics.id2tplink[ anchorConfig ];
@@ -387,6 +421,7 @@
 
         //does delayed anchors
         !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
+        //do later: ssF.puts_delayed_tp_anch_in_syblings( bFrag.dom$() );
     }
 
     function doesInsertSiteHTMLMacros( rawActFrValue )
@@ -401,6 +436,31 @@
         return rawActFrValue;
     }
 
+
+
+
+    function insertDelayedBatch( fragBody_raw ) {
+        if( Object.keys( collectedDelayedLinks ).length ) {
+            var regEx = '';
+            eachprop( collectedDelayedLinks, (lnk,keyName) => {
+                //todo: '[ \ ^ $ . | ? * + ( )' must be escaped in replaceeKey:
+                regEx += (regEx ? '|' : '') + lnk.replaceeKey;
+            });
+            regEx = new RegExp ('(\\s|\\n|\\r)+(' + regEx + ')(\\s|\\n|\\r)+', 'ug' );
+            fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
+                //ccc( collectedDelayedLinks[ arguments[2] ].match );
+                //match,          //total match:      ¦anchor config¦anchor caption¦¦
+                //\s
+                //key
+                //\s
+                return arguments[1] + //leading spacer
+                       collectedDelayedLinks[ arguments[2] ].match + //replacer
+                       arguments[3];  //trailing spacer
+            });
+            //ccc( ssD.collectedDelayedLinks, fragBody_raw );
+        }
+        return fragBody_raw;
+    }
 
 }) ();
 

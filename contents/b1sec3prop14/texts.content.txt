@@ -34,36 +34,40 @@ principal latera recta of the orbits are as the squares of the areas which the b
 describe in the same time by radii drawn to the center.
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 467.
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 113.
 
 
 
 
 *::*proof|english
 {
+    "default" : "1",
   "menuCaption" : "English",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution"
 }
 *..*
 
+¦body¦P¦¦¦¦
+¦QT¦¦¦¦
+¦QT¦QT²¦¦¦¦
+¦SP¦¦¦¦
+¦SP¦SP²¦¦¦¦
+¦QR¦¦¦¦
+¦P¦¦¦¦
+¦Q¦¦¦¦
+¦L,LL¦latus rectum L¦¦¦¦
 
-For (by prop. 13, corol. 2) the latus rectum L is equal to the quanQT2
-tity that results ultimately when points
-QR
-P and Q come together. But the minimally
-small line QR is in a given time as the generating centripetal force, that is (by hypothQT2
-esis), inversely as SP . Therefore, is as
-QR
-QT2
- x SP2
-, that is, the latus rectum L is as
-the square of the area QT x SP. Q.E.D.
+For (by prop. 13, corol. 2) the latus rectum L is equal to the quantity QT² / QR
+that results ultimately when points P and Q come together. But the minimally
+small line QR is in a given time as the generating centripetal force, that is (by
+hypothesis), inversely as ¦SP¦SP²¦¦. Therefore, QT² / QR is as
+QT² x ¦SP¦SP²¦¦, that is, the latus rectum L is as
+the square of the area QT x ¦SP¦¦. Q.E.D.
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 467.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 113.
 
 
 
@@ -91,8 +95,8 @@ and as the periodic time. For the total area is as the area QT x SP, which is
 described in a given time, multiplied by the periodic time.
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 113.
 
 
 *::*claim|addendum

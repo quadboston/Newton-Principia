@@ -14,15 +14,19 @@
 
     function buildsforceGraphArray()
     {
-        var xStart   = 0.;
-        var xEnd     = sconf.curveParFiMax;
-        var rrc      = rg.S.pos;
-        var fun      = rg[ 'approximated-curve' ].t2xy;
+        var op      = sconf.orbitParameters;
+        var qStart  = op.qStart;
+        var qEnd    = op.qEnd;
+        var rrc     = rg.S.pos;
+        var fun     = rg[ 'approximated-curve' ].t2xy;
         var forceGraphArray = [];
         var FORCE_ARRAY_LEN = 400;
         for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
         {
-            var q = xStart + forceArrayIx * ( xEnd - xStart ) / FORCE_ARRAY_LEN;
+            var q = qStart + forceArrayIx * ( qEnd - qStart ) / FORCE_ARRAY_LEN;
+            if( 1 !== op.conicSignum ) {
+                q = stdMod.protectedQ( q );
+            }
             var {
                 rr,
                 r, //from chosen rrc
@@ -99,11 +103,13 @@
     }
 
 
+    ///to be used in slow code
     function pos2qix( pos )
     {
-        var q = stdMod.pos2t( rg.P.pos );
+        var q = rg.P.q;
         var qixMax = stdMod.graphArray.length-1;
-        var qix = Math.floor(   qixMax * q / Math.PI / 2   ); //=angle Ix,
+        var qix = Math.floor(   qixMax * (q-sconf.orbitParameters.qStart)
+                  / (2*Math.PI) ); //=angle Ix,
         return Math.max( 0, Math.min( qixMax, qix ) );
     }
 

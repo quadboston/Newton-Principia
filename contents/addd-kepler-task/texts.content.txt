@@ -260,18 +260,29 @@ https://www.mathpages.com/home/kmath639/kmath639.htm
             𝜎  = 1 for ellipse and parabola and both 𝜎  = 1 and -1 for hyperbola <br>
     <br><br>
 
-    Constant ρ<sub>⟂</sub> is "conic's width" approached at angle φ = π/2. <br><br> 
+    "Latus rectum" constant 2ρ<sub>⟂</sub> is "conic's width"
+    approached at angle φ = π/2. <br><br> 
     We have η + η˙˙ = 𝜎  /ρ<sub>⟂</sub> and force law as in (B) is: <br>
     
     <div style="text-align:center;">
-                𝑓 = 𝜎 M²ρ⁻²/ρ<sub>⟂</sub>, <br>
-      or in vector form: <br>
-         𝗳 = -𝑓𝗲.
+        <div style="text-align:center; border:1px solid #aaaaaa;
+                    display:inline-block; padding:5px;">
+                        𝑓 = 𝜎 (M/ρ)²/ρ<sub>⟂</sub>, <br>
+                 𝗳 = -𝑓𝗲.
+        </div>
+        &nbsp; (F)<br>
     </div>
 <br>
 
 For ellipse, parabola, and hyperbola with 𝜎  = 1, the force will be centripetal.
 However for hyperbola for the branch with 𝜎  = -1, the force will be centrifugal.
+<br><br>
+When expressed via instant speed v and instant angle 𝛺, the force is
+
+    <div style="text-align:center;">
+                𝑓 = 𝜎 v²𝛺² / ρ<sub>⟂</sub>. &nbsp;&nbsp;&nbsp;(F')<br>
+    </div>
+<br><br>
 
 <a name="logarithmic-spiral-motion"></a>
 <br><br>

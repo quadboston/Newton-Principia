@@ -34,7 +34,7 @@
                             //text ready to be inserted in html with anchor-sripts
                             //converted to anchor text,
                             htmlReadyFragText_racks :
-                                ssF.normalizes___active8static_fragments(
+                                ssF.rawFragments2htmlText(
                                     rawActiveFrag
                                 )
                         };

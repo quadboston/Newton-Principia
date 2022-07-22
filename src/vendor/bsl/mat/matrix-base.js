@@ -306,9 +306,15 @@
         B,
         start, //optional
         direction, //direction with scale instead of A, B
+        directionLength, //superceedes t, "direction" and "B-A": sets distance
+                         //from point A
     ){
         start = start || A;
         var u = direction || [ B[0] - A[0], B[1] - A[1] ];
+        if( directionLength ) {
+            u = unitVector( u ).unitVec;
+            t = directionLength;
+        }
         return [ start[0] + u[0]*t, start[1] + u[1]*t ];
     }
 

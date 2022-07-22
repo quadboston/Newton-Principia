@@ -72,7 +72,8 @@
     {
         //Frag. step I.
         //collects and adds more entries into lcaseId2allLemTopics,
-        var collectedTpLinks = ssF.fragment__2__indexed_links8topics( singleMessageText );
+        //var collectedTpLinks = 
+        ssF.fragment__collectsRawTpLinks( singleMessageText );
         //  link = {
         //                tplink_ix : tplink_ix,
         //                tpid2true : {
@@ -93,7 +94,7 @@
         //Output:  format = { 'static' : { fragBody, } },
         //Frag. step II. Norm. and anchor-texts and
         var ready_for_html_act8stat_fragments_texts_rack =
-            ssF.normalizes___active8static_fragments(
+            ssF.rawFragments2htmlText(
                 singleMessageText,
             );
         //Frag. step III. Html and global-css-visib-of-active-category.

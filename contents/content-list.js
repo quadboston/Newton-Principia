@@ -46,6 +46,11 @@
             annotation : "",
         },
 
+        {   sappId : 'b1sec1lemma8',
+            book : 'Book 1',
+            caption : 'Sec. I. Lemma VIII.',
+            annotation : "",
+        },
 
         {   sappId : 'b1sec1lemma9',
             book : 'Book 1',
@@ -126,7 +131,7 @@
             caption : 'Sec. III. Lemma XIV.',
             annotation : "",
         },
-
+        */
 
         {   sappId : 'b1sec3prop13',
             book : 'Book 1',
@@ -139,6 +144,8 @@
             caption : 'Sec. III. Proposition XIV. Theorem VI.',
             annotation : "",
         },
+
+        /*
 
         {   sappId : 'b1sec3prop15',
             book : 'Book 1',

@@ -5,6 +5,7 @@
         ssFExportList :
         {
             finalizes_delayed_anchors,
+            //do later: puts_delayed_tp_anch_in_syblings,
         },
     });
     return;
@@ -15,7 +16,9 @@
 
 
 
-
+    ///as of June, 2022, used only in MathJax routines,
+    ///apparently designed only inside double-nested-MathJax html-elements,
+    ///     substitution insde one-level-nested-elem makes mess,
     function finalizes_delayed_anchors( domEl )
     {
         var setsAnchor_mouseHighlightEvents = ssF.setsAnchor_mouseHighlightEvents;
@@ -24,7 +27,6 @@
         ///duplicate substitutions
         var delayedAns = domEl.querySelectorAll( ".delayed-anchor" );
         if( !delayedAns.length ) return;
-
         delayedAns.forEach( an => {
             var cls = an.className;
             var match = cls.match( /\btl-(\S*)\b/ );
@@ -85,7 +87,6 @@
             //an.parentNode.removeChild( an ); //child.remove() for moderns
         });
     }
-
 
 })();
 

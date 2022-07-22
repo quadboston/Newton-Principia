@@ -12,6 +12,7 @@
         },
     });
     ssD.subessayClickDisabled = false;
+    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD, [] );
     return;
 
 
@@ -21,7 +22,7 @@
     ///         subexeg.subessayCaption
     ///         subexeg.subessayMenuItem$
     ///         subexeg.domEl$
-    ///collects fragment__2__indexed_links8topics
+    ///collects fragment__collectsRawTpLinks
     ///contains //Frag. step I.
     /*
         todm: dom and menu are messed with links and topics
@@ -79,7 +80,8 @@
                     //===========================================================
                     // //\\ does nothing for html-body
                     //===========================================================
-                    ///collecting |...|..|| anchor-topics
+                    ///collecting |...|..|| anchor-topics and
+                    //      sn( 'collectedDelayedLinks', ssD, [] ),
                     ///subexeg.activeFrags are obtained by ACTION_SPLITTER = /¿/
                     ///   they are non-unJSONED-active Fragment text units
                     ///rawActiveFrag and rawActFrValue are obtained from Book
@@ -87,12 +89,12 @@
                     subexeg.activeFrags.forEach( function( rawActiveFrag, tix ) {
                         if( typeof( rawActiveFrag ) === 'object' ) {
                             eachprop( rawActiveFrag, (rawActFrValue) => {
-                                ssF.fragment__2__indexed_links8topics( rawActFrValue );
+                                ssF.fragment__collectsRawTpLinks( rawActFrValue );
                             });
                         } else {
                             //.strange why TOP_ANCH_REG_gu (with flag "g") works
                             //.and TOP_ANCH_REG_u does not
-                            ssF.fragment__2__indexed_links8topics( rawActiveFrag );
+                            ssF.fragment__collectsRawTpLinks( rawActiveFrag );
                         }
                     });
                     //===========================================================
@@ -102,6 +104,7 @@
 
                 //************************************************************
                 // //\\ here page content place holder do inject into html,
+                //      NO HTML-content yet created and injected,
                 //      this does not mangage their visibility,
                 //      lemma-master-menu and toggler click do manage
                 //      this visibility,

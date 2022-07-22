@@ -1,0 +1,82 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+<img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+*::*proof|latin
+
+<img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+
+KK: the meaning of this lemma seems subtle: one can fix point R and point r and then "ulitmate" "magnified" triangles become infinite and dgenerate to two parallel lines rA and RA - this looks awkward. 2) One can fix line rd and keep RD // rd - most sane case. 3) changing line rd looks meaningless - one should keep the "microscope" fixed. 
+<br><br>
+
+In any case, the meaning of Lemma 8 must clarify in how it is used in later text. I will watch out and illustrate Lemma 8 later.
+
+
+<!-- 
+The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦, and ¦AD¦tangent¦¦, ¦conterminousRatio¦any one to any other¦¦, is the ratio of equality.
+<br><br>
+-->
+
+
+*::*claim|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+
+*::*proof|english
+{
+}
+*..*
+
+
+
+*::*proof|model
+{
+}
+*..*
+
+
+
+*::*corollary|latin
+*..*
+
+
+*::*corollary|english
+{
+}
+*..*
+
+
+*::*corollary|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
