@@ -82,9 +82,17 @@
             var nextSapp = fconf.ix2lemmaDef[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
+
+            if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
+                var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
+            } else {
+                var wwFullCaption = '';
+            } 
             pager$.html( direction === 'right' ?
-                '<img src="' + fconf.engineImg + '/right-page-triangle.svg"> ' :
-                '<img src="' + fconf.engineImg + '/back-arrow-link.svg">' );
+                '<img src="' + fconf.engineImg + '/right-page-triangle.svg"> ' +
+                wwFullCaption :
+                wwFullCaption + '<img src="' + fconf.engineImg + '/back-arrow-link.svg">' );
+
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better

@@ -114,6 +114,8 @@
             //todm: this disables functionality ... not only CSS:
             helpBox_opacity0        : false,
             idleHelpButtonTooltip   : 'Get Help',
+
+            putTextDescriptionIntoTopNavigationArrows : false,
         },
 
         //------------------------------------------------------
