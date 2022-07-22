@@ -5,7 +5,7 @@
         {
             sappId : 'home-pane',
             book : '',
-            caption : 'An Interactive Exploration of Newton’s Lemmas',
+            caption : 'Newton’s Principia',
             annotation : "Home Page and Contents",
         },
 

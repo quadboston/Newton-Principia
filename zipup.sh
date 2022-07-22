@@ -10,7 +10,7 @@
 # sometimes two groups of files must be backed up
 #   
 #   1. non-versioned files
-#   2. non-commited and non-scheduled changes
+#   2. non-committed and non-scheduled changes
 #
 #**************************************************
 

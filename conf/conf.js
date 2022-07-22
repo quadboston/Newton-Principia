@@ -107,8 +107,8 @@
         {
             backButtonCaption       : 'Back to the Lemmas',
             landingImage            : 'landing-img.jpg',
-            homePageCaption         : 'Interactive Illustrations<br>' +
-                                      'for Newton’s <span>Principia</span>',
+            homePageCaption         : 'Interact with<br>' +
+                                      'Newton’s <span>Principia</span>',
             helpButtonCaption       : 'Hover over the diagram to interact',
 
             //todm: this disables functionality ... not only CSS:
