@@ -125,14 +125,13 @@
         //updates pivots in line:
         line.pivots = [ pivots[0], pivots[1] ];
 
-
-
         //=================================================
         // //\\ draws line caption
         //=================================================
-        var caption = ns.haz( lineAttr, 'caption' ); //todo bad name: too generic
-                                                     //hard to package-search
-
+        //todm bad name: too generic
+        //hard to package-search
+        var caption = ns.haz( lineAttr, 'caption' ) ||
+                      ns.haz( line, 'caption' );
         if( caption ) {
             var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
@@ -157,10 +156,10 @@
                             - fontSize * lposYSugar;
             if( !line.pointIsAlreadyDressed ) {
                 line.pnameLabelsvg = ns.svg.printText({
-                    text            : caption,
+                    //text            : caption,
                     stroke          : stroke, //line.pcolor,
                     fill            : stroke, //line.pcolor,
-                    "stroke-width"  : 1,
+                    "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
                     svgel           : line.pnameLabelsvg,
                     parent          : stdMod.mmedia,
                     style           : {
@@ -179,6 +178,15 @@
                 .aNS( 'y', finalPosY.toFixed()+'px' )
                 .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
                 ;
+            line.pnameLabelsvg$.tgcls(
+                'undisplay',
+                haz( line, 'hideCaption' ) ||
+                (
+                    !haz( line, 'displayAlways' ) &&
+                    ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
+                )
+            );
+            line.pnameLabelsvg.textContent = caption;
             line.pointIsAlreadyDressed = true;
         }
         //=================================================
@@ -415,8 +423,8 @@
             triang.svgel$ = $$.$( triang.svgel );
 
             var tpclass = sDomF.topicIdUpperCase_2_underscore( tpclass || triangleId );
-            cssCls = cssCls ? ' ' + cssCls : '';
-            $$.$( triang.svgel ).cls( 'tofill' + cssCls + ' tp-' + tpclass );
+            cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
+            $$.$( triang.svgel ).cls( 'tofill' + cssCls + 'tp-' + tpclass );
 
 
         } else {

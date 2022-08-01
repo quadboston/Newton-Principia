@@ -41,10 +41,11 @@
         pnameLabelsvg$      && pnameLabelsvg$.tgcls(    'undisplay', doUndisplay );
     }
 
-
+    ///paints angle from "start" to "end" by placing result in the range (-PI,+PI) counting
+    ///from start ray
     function drawAngleFrom_rayAB2rayCD_at_medpos({
-        AB,         //=[ pivotA, pivotB ]
-        CD,
+        AB,         //starting angle ray = [ pivotA, pivotB ]
+        CD,         //ending angle ray = [ pivotC, pivotD ]
         rgSample,   // provides angle's vertex: x0 : rgSample.medpos[0], y0 : rgSample.medpos[1],
         ANGLE_SIZE,
         caption,
@@ -63,6 +64,13 @@
         ];
         var angleStart      = segmentAngle( medPosPivotsAB )*sconf.MONITOR_Y_FLIP;
         var angleEnd        = segmentAngle( medPosPivotsCD )*sconf.MONITOR_Y_FLIP;
+
+        var angleDelta      = ( angleEnd - angleStart + Math.PI*4 ) % (Math.PI*2);
+        if( angleDelta > Math.PI ) {
+            angleDelta -= Math.PI*2;
+        }
+        angleEnd = angleStart + angleDelta;
+
         var pname           = 'rays-angle-' + rgSample.pname;
         var rgAngle         = toreg( pname )();
         rgAngle.pname       = pname;

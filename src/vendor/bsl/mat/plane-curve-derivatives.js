@@ -154,10 +154,10 @@
             r,
             ee,
 
-            vv,
-            v2,
-            v,
-            uu,
+            vv, //vector = dr/dq
+            v2, //square of above
+            v,  //abs of above
+            uu, //direction of above
             aa,
             a2,
             a,
@@ -169,7 +169,7 @@
             RC,
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
-            staticSectorialSpeed_rrrOnUU,
+            staticSectorialSpeed_rrrOnUU, //=sectorialSpeedDividedByArcSpeed
 
             //angle between norm n and radius vector rrr
             sinOmega,

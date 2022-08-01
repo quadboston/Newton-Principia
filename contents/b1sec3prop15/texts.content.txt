@@ -29,10 +29,10 @@
 *..*
 
 Under the same suppositions as in prop. 14, I say that the squares of the periodic
-Theorem 7 times in ellipses are as the cubes of the major axes.
+times in ellipses are as the cubes of the ¦A,AA¦major axes¦¦.
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -41,24 +41,23 @@ Page 468.
 *::*proof|english
 {
   "default" : "1",
-  "menuCaption" : "English",
-  "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution"
+  "menuCaption" : "English"
 }
 *..*
-For the minor axis is a mean proportional between the major axis and the
-latus rectum, and thus the rectangle contained by the axes is as the square
-root of the latus rectum and as the
- 3/2 power of the major axis. But this
-rectangle (by prop. 14, corol.) is as the square root of the latus rectum and
+
+For the ¦B,BB¦minor axis¦¦ is a mean proportional between the ¦A,AA¦major axis¦¦ and the
+¦L,LL¦latus rectum¦¦, and thus the rectangle contained by the axes is as the square
+root of the ¦L,LL¦latus rectum¦¦ and as the
+ 3/2 power of the ¦A,AA¦major axis¦¦. But this
+rectangle (by prop. 14, corol.) is as the square root of the ¦L,LL¦latus rectum¦¦ and
 as the periodic time. Take away from both sides [i.e., divide through by] the
 square root of the latus rectum, and the result will be that the squares of the
-periodic times are as the cubes of the major axes. Q.E.D.
+periodic times are as the cubes of the ¦A,AA¦major axes¦¦. Q.E.D.
 
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 463.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -72,23 +71,20 @@ Page 463.
 
 *::*corollary|addendum
 {
+    "menuCaption" : "---"
 }
 *..*
-
-
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
 }
 *..*
-Therefore the periodic times in ellipses are the same as in
-circles whose diameters are equal to the major axes of the ellipses
+Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in
+circles whose diameters are equal to the ¦A,AA¦major axes¦¦ of the ellipses.
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 463.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 *::*claim|addendum
@@ -104,7 +100,25 @@ Page 463.
   "subessayCaption" : "model for non-similar curves"
 }
 *..*
+<b>In <><>CXX:</b><br>
 
+From "physics"
+<a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
+ assuming 𝜂 is the same for all orbits, (S)
+</a>
+
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4/𝜂  S˙², <br>
+    </div>
+From geometry:
+    <div style="text-align:center;">
+        S² = (π¦A,AA¦a¦¦<!-- s -->¦B,BB¦b¦¦)² = π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦ <br>
+    </div>
+From "both":
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦T² = 4/𝜂  S˙²T² = 4/𝜂  S² = 4/𝜂  π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦, <br>
+        T² = 4π²/𝜂  ¦A,AA¦a¦¦³ <br>
+    </div>
 
 
 <div book-reference-id="kvk"></div>

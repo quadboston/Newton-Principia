@@ -29,6 +29,8 @@
     function init_model_parameters()
     {
         toreg( 'approximated-curve' );
+        toreg( 'orbitarea' );
+        toreg( 'instanttriangle' );
         stdMod.creates_orbitRack();
         stdMod.completesSlidersCreation();      //in-diagram sliders
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
@@ -60,7 +62,7 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        if( fconf.sappId !== "b1sec3prop14" ) {
+        if( fconf.effId !== "b1sec3prop14" ) {
             stdMod.createsGraphFW( stdMod.legendRoot$ );
         }
         //==================================================

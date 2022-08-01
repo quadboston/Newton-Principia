@@ -24,18 +24,20 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
 
-Under the same suppositions as in prop. 15, if straight lines are drawn to the bodies
-Theorem 8 in such a way as to touch the orbits in the places where the bodies are located,
-and if perpendiculars are dropped from the common focus to these tangents, I say
-that the velocities of the bodies are inversely as the perpendiculars and directly as
-the square roots of the principal latera recta.
+Under the same suppositions as in prop. 15, if ¦PR P,Zminus PZ¦straight lines¦¦
+ are drawn to the ¦P¦bodies¦¦
+in such a way as to touch the ¦orbit¦orbits¦¦ in the ¦P¦places where the bodies are located¦¦,
+and if ¦SY¦perpendiculars¦¦ are dropped from the ¦S¦common focus¦¦ to these tangents, I say
+that the ¦PR¦velocities¦¦ of the bodies are inversely as ¦SY¦the perpendiculars¦¦ and directly as
+the square roots of the ¦L,LL¦principal latera recta¦¦.
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -43,32 +45,26 @@ Page 468.
 
 *::*proof|english
 {
-  "default" : "1",
-  "menuCaption" : "English",
-  "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution"
+  "menuCaption" : "English"
 }
 *..*
 
 From focus S to tangent PR drop perpendicular SY, and the velocity of body P
-SY2
-will be inversely as the square root of .
-.L
+will be inversely as the square root of SY²/L.
+
 For this velocity is as the minimally small
 arc PQ described in a given particle of time,
 that is (by lem. 7), as the tangent PR, that
-is—because the proportion of PR to QT is
-as SP to SY—as or as SY inversely and SP x QT directly; and
-SPxQT
-SY '
-SP X QT is as the area described in the given time, that is (by prop. 14), as
+is — because the proportion of PR to QT is
+as SP to SY — as SP x QT / SY or as SY inversely and SP x QT directly; and
+SP x QT is as the area described in the given time, that is (by prop. 14), as
 the square root of the latus rectum. Q.E.D.
 
 
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -99,8 +95,8 @@ Page 468.
 The principal latera recta are as the squares of the perpendiculars and as the squares of the velocities
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -120,8 +116,8 @@ the distances themselves.
 
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 468.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
 
 
 
@@ -142,8 +138,8 @@ principal latus rectum is to the square root of twice that distance.
 
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -167,8 +163,8 @@ the square root of the ratio of the latera recta directly, and it will become th
 square root of the ratio of the distances inversely.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -186,8 +182,8 @@ principal latera recta are equal, the velocity of a body is inversely as the
 perpendicular dropped from the focus to the tangent.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -209,8 +205,8 @@ In a hyperbola the perpendicular is smaller, and in an ellipse greater, than in
 this ratio.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -226,15 +222,15 @@ In a parabola the velocity of a body at any distance from
 the focus is to the velocity of a body revolving in a circle at the same distance
 from the center as the square root of the ratio of 2 to 1; in an ellipse it is
 smaller and in a hyperbola greater than in this ratio. For by corol. 2 of this
-proposition the velocity in the vertex of a parabola is in this ratio, and—by
-corol. 6 of this proposition and by prop. 4, corol. 6—the same proportion is
+proposition the velocity in the vertex of a parabola is in this ratio, and — by
+corol. 6 of this proposition and by prop. 4, corol. 6 — the same proportion is
 kept at all distances. Hence, also, in a parabola the velocity everywhere is
 equal to the velocity of a body revolving in a circle at half the distance; in
 an ellipse it is smaller and in a hyperbola greater.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -253,8 +249,8 @@ rectum of the conic as that distance is to the perpendicular dropped from the
 focus to the tangent of the conic. This is evident by corol. 5.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 469.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 115.
 
 
 
@@ -279,8 +275,8 @@ and half of the principal latus rectum of the conic has to the perpendicular
 dropped from the common focus to the tangent of the conic.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 470.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 116.
 
 
 

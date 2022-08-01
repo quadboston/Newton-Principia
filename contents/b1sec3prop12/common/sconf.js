@@ -39,19 +39,33 @@
         var mod2inn_scale = 145;
         op.mainAxisAngle_initial = 0;
         op.mainAxisAngle = op.mainAxisAngle_initial;
-        switch ( fconf.sappId ) {
-            case "b1sec3prop14" :
-                    op.initialEccentricity = 0.68;   //ellipse
+        fconf.effId =
+            fconf.sappId === 'b1sec3prop14' ||
+            fconf.sappId === 'b1sec3prop15' ||
+            fconf.sappId === 'b1sec3prop16'
+                ? 'b1sec3prop14' : fconf.sappId;
+        switch ( fconf.effId ) {
+            case 'b1sec3prop14' :
+                    op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
                     sconf.insertDelayedBatch = true;
                     //for real picture if diagram's picture is supplied or
                     //for graphical-media work-area if not supplied:
                     var pictureWidth = 884;
                     var pictureHeight = 733; //728;
                     var mod2inn_scale = 260;
-                    var F = [ 160, 410 ];
-                    op.latusInitial = 0.83;
-                    var PparQ = 0.07 * Math.PI;
-                    op.sagittaDelta_q_initial = 0.19;
+                    var F = [ fconf.sappId === 'b1sec3prop16' ? 170 : 160,
+                              fconf.sappId === 'b1sec3prop16' ? 440 : 410
+                            ];
+                    op.latusInitial = fconf.sappId === 'b1sec3prop16' ? 0.83 : 0.83;
+                    var PparQ = ( fconf.sappId === 'b1sec3prop16' ? 0.14 : 0.07 ) * Math.PI;
+                    var ww_sagittaDelta_q_initial = fconf.sappId === 'b1sec3prop16' ? 0.2 : 0.19;
+
+                    //in this prop, using delta_t instead of delta_q
+                    op.delta_t_initial = ww_sagittaDelta_q_initial * 2.5;
+                    op.delta_t = op.delta_t_initial;
+                    op.delta_t_LIMIT = op.delta_t_initial * 1.5;
+                    op.arcSpeed_initial = 1;
+                    sconf.Fi_distance = 1.8;
                   break;
             case "b1sec3prop13" :
                     op.initialEccentricity = 1; //parabola
@@ -61,6 +75,7 @@
                     op.latusInitial = 2.10;
                     var PparQ = 0.386 * Math.PI;
                     op.sagittaDelta_q_initial = 0.39;
+                    sconf.Fi_distance = 3.7;
                   break;
             case "b1sec3prop12" :
                     op.initialEccentricity = 1.365; //hyperbola
@@ -70,6 +85,7 @@
                     op.latusInitial = 0.90;
                     var PparQ = 0.49 * Math.PI;
                     op.sagittaDelta_q_initial = 1;
+                    sconf.Fi_distance = 3;
                   break;
         }
         op.latus = op.latusInitial;
@@ -111,8 +127,8 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        sconf.text_nonhover_width   = 1;
-        sconf.text_hover_width      = 2;
+        sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
+        sconf.text_hover_width      = 1.5;
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
@@ -142,7 +158,11 @@
         //-----------------------------------
         var given   = [0,     150, 0,      1];
         var orbit   = given;
+        var orbitarea = [0,     150, 0,    fconf.effId === "b1sec3prop14" ? 0.1 : 0.001, 0.5];
+        var instanttriangle = [0, 150, 200,
+                               fconf.effId === "b1sec3prop14" ? 0.2 : 0.001, 0.5 ];
         var proof   = [0,     0,   255,    1];
+
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
         var body    = [0,     150,  200,   1];
@@ -160,9 +180,11 @@
             curvature,
             body,
             orbit,
+            orbitarea,
             shadow,
             force   : result,
             tangentCircle : curvature,
+            instanttriangle,
             //curvatureCircle : curvature,
         };
         //-----------------------------------
@@ -218,7 +240,7 @@
 
             B : {
                 letterRotRadius : 20,
-                pcolor : proof,
+                pcolor : orbit,
             },
 
             BB : {
@@ -228,18 +250,20 @@
             },
 
             L : {
-                pcolor : proof,
+                //no need: will be dynamic: caption : 'mmm',
+                pcolor : orbit,
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
 
             LL : {
+                pcolor : orbit,
                 doPaintPname : false,
             },
 
 
             A : {
-                pcolor : proof,
+                pcolor : orbit,
                 letterRotRadius : 20,
                 letterAngle : -90,
             },
@@ -292,6 +316,10 @@
                 letterRotRadius : 20,
             },
 
+            Y : {
+                pcolor : proof,
+                letterAngle : 45,
+            },
 
             Z : {
                 pcolor : body,
@@ -384,14 +412,14 @@
                 pcolor : result,
                 letterAngle : -115,
                 letterRotRadius : 20,
-                draggableX  : fconf.sappId !== "b1sec3prop14",
-                draggableY  : fconf.sappId !== "b1sec3prop14",
+                draggableX  : fconf.effId !== "b1sec3prop14",
+                draggableY  : fconf.effId !== "b1sec3prop14",
             },
 
             P : {
                 pos: P,
                 pcolor : body,
-                letterAngle : 120,
+                letterAngle : fconf.sappId === 'b1sec3prop16' ? -90 : 120,
                 //draggableX  : true,
                 //draggableY  : true,
             },
@@ -487,7 +515,10 @@
             { 'PC' : { pcolor : proof }, },
             { 'O,Fi' : { pcolor : shadow }, },
 
+            { ST : { pcolor : proof, }, },
             { 'SP' : { pcolor : result }, },
+            { 'SY' : { pcolor : proof }, },
+            { 'PY' : { pcolor : body }, },
             { 'CS' : { pcolor : proof }, },
             { 'CH' : { pcolor : proof }, },
 
@@ -495,7 +526,7 @@
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
-            { 'PR' : { pcolor : body }, },
+            { 'PR' : { pcolor : body, 'stroke-width' : 0.1 }, },
             { 'QR' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
@@ -504,6 +535,7 @@
             { DK : { pcolor : proof }, },
             { PM : { pcolor : body }, },
             { SM : { pcolor : body }, },
+
             { OM : { pcolor : proof }, },
             { ON : { pcolor : proof }, },
             { NS : { pcolor : proof }, },
@@ -519,9 +551,9 @@
 
             { Gv : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : proof }, },
-            { 'B,BB' : { pcolor : proof }, },
-            { AO : { pcolor : proof }, },
+            { 'A,AA' : { pcolor : orbit }, },
+            { 'B,BB' : { pcolor : orbit }, },
+            { AO : { pcolor : orbit }, },
             { AT : { pcolor : proof }, },
             { CA : { pcolor : proof }, },
 
@@ -530,7 +562,8 @@
             { CB : { pcolor : proof }, },
             //{ 'L,LL' : { pcolor : proof, caption : 'L/2',
             //             captionShiftNorm : -18, fontSize : 20, }, },
-            { 'L,LL' : { pcolor : proof, }, },
+            { 'L,LL' : { pcolor : orbit, }, },
+            { SL : { pcolor : orbit, }, },
             { CD : { pcolor : proof }, },
 
             { PO : { pcolor : proof }, },

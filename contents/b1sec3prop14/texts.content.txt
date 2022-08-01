@@ -24,14 +24,16 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
 
-If several bodies revolve about a common center and the centripetal force is in-
-versely as the square of the distance of places from the center, I say that the
-principal latera recta of the orbits are as the squares of the areas which the bodies
-describe in the same time by radii drawn to the center.
+If several bodies revolve about a ¦S¦common center¦¦ and the centripetal force is in-
+versely as the square of ¦SP¦the distance of places¦¦ from ¦S¦the center¦¦, I say that the
+¦L,LL¦principal latera recta¦¦ of ¦orbit¦the orbits¦¦ are as the squares of
+the areas which ¦P¦the bodies¦¦
+describe in the same time by ¦SP¦radii¦¦ drawn to the ¦S¦center¦¦.
 
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
@@ -42,10 +44,7 @@ Page 113.
 
 *::*proof|english
 {
-    "default" : "1",
-  "menuCaption" : "English",
-  "subessayCaption" : "<i>Another solution</i>",
-  "subessay" : "another-solution"
+  "menuCaption" : "English"
 }
 *..*
 
@@ -59,12 +58,18 @@ Page 113.
 ¦Q¦¦¦¦
 ¦L,LL¦latus rectum L¦¦¦¦
 
-For (by prop. 13, corol. 2) the latus rectum L is equal to the quantity QT² / QR
+For
+
+<a target="_blank" href="?conf=sappId=b1sec3prop13,theorionId=corollary,aspectId=english,subessayId=corollary2">
+(by prop. 13, corol. 2)
+</a>
+
+the latus rectum L is equal to the quantity QT² / QR
 that results ultimately when points P and Q come together. But the minimally
 small line QR is in a given time as the generating centripetal force, that is (by
 hypothesis), inversely as ¦SP¦SP²¦¦. Therefore, QT² / QR is as
 QT² x ¦SP¦SP²¦¦, that is, the latus rectum L is as
-the square of the area QT x ¦SP¦¦. Q.E.D.
+the square of ¦instanttriangle¦the area¦¦ QT x ¦SP¦¦. Q.E.D.
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
@@ -82,6 +87,34 @@ Page 113.
 *..*
 
 
+<b>In <><>CXX:</b><br>
+<a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
+From proof addendum (S):
+</a>
+
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4𝜎/𝜂 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
+    </div>
+Threfore, the ¦orbitarea¦full area¦¦
+    <div style="text-align:center;">
+        ¦orbitarea¦A¦¦ = ¦instanttriangle¦S˙¦¦T = ( 𝜂/𝜎/4 ¦SL¦ρ<sub>⟂</sub>¦¦ )<sup>½</sup>  T.
+    </div>
+
+Returning to the Book, for fixed interval time dt,
+
+    <div style="text-align:center;">
+        ¦instanttriangle¦S˙¦¦ =<sup>u</sup>¦QT¦¦² ¦SP¦¦² / dt, <br>
+        ¦orbitarea¦A¦¦ =<sup>u</sup> ¦QT¦¦² ¦SP¦¦²/dt T ~ ¦QT¦¦² ¦SP¦¦² T.
+    </div>
+
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
@@ -89,11 +122,17 @@ Page 113.
 }
 *..*
 
-Hence the total area of the ellipse and, proportional to it,
-the rectangle contained by the axes is as the square root of the latus rectum
-and as the periodic time. For the total area is as the area QT x SP, which is
+Hence the ¦orbitarea¦total area¦¦ of the ¦orbit¦ellipse¦¦ and, proportional to it,
+the rectangle contained by the axes is as the square root of the ¦L,LL¦latus rectum¦¦
+and as the periodic time. For the ¦orbitarea¦total area¦¦ is as
+¦instanttriangle¦the area¦¦ ¦QT¦¦ x ¦SP¦¦, which is
 described in a given time, multiplied by the periodic time.
 
+<!-- Apparently, Krylov's translation is incorrect here:
+Должно быть: Следовательно площадь эллипса и пропорциональная ей прямоугольника на осях, пропорциональна квадратному корню ...
+вместо
+Так как площадь эллипса ...
+-->
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
@@ -113,6 +152,29 @@ Page 113.
 }
 *..*
 
+<b>In <><>CXX:</b><br>
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
+
+    <div style="text-align:center;">
+        f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
+    </div>
+Given:
+    <div style="text-align:center;">
+        f = 𝜂/¦SP¦r¦¦², 𝜂 = const, assuming 𝜂 is the same for all orbits.
+    </div>
+Therefore:
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝜂 M² = 4𝜎/𝜂 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
+    </div>
+Returning to the Book, for fixed interval time dt,
+    <div style="text-align:center;">
+        ¦QT¦¦ =<sup>u</sup> QP * sin(ω) =<sup>u</sup> PR * sin(ω) =<sup>u</sup> v * dt * sin(ω) <br>
+        ¦SP¦¦ = ¦SP¦r¦¦ <br>
+        ¦QT¦¦² ¦SP¦¦² =<sup>u</sup> ¦instanttriangle¦( vrsin(ω)dt )¦¦ =
+                       ¦instanttriangle¦(S˙dt)¦¦  <br>
+        ¦QT¦¦² ¦SP¦¦² ~ ¦L,LL¦2ρ<sub>⟂</sub>¦¦. <br>
+    </div>
+<br>
 
 
 <div book-reference-id="kvk"></div>

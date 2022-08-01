@@ -1,16 +1,17 @@
 ( function() {
     var {
-        ss, $$, nssvg, has, haz, mat, rg,
-        sDomF, ssF,
+        ss, $$, nssvg, has, haz, mat, mcurve,
+        fconf, sDomF, ssF,
         stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
             creates_orbitRack,
-            posQ2t,
+            posQ_2_andgleInPIandMinusPI,
             protectedQ,
             establishesEccentricity,
             eccentricity2pos,
+            doAdjustEta,
         },
     });
     return;
@@ -34,6 +35,7 @@
         const fi0   = sconf.orbitParameters.qStart;
 
         var curveName = 'orbit';
+        var areaName = 'orbitarea';
         var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
         var rgX = rg[ 'approximated-curve' ];
         //prevents leaks polylineSvg from js-prototype
@@ -65,6 +67,14 @@
                 den = 1e-20;
             }
             var signedRo = op.latus / den;
+            if( fconf.effId === "b1sec3prop14" ) {
+                if( op.conicSignum === -1 && Math.abs( rg.P.q ) < op.SINGULARITY_ANGLE ) {
+                    ////in this proposition, we keep position P = constant, so
+                    ////do invert signedRo for opposite branch of hyperbola,
+                    ////alternatively: signedRo = Math.abs( signedRo );
+                    signedRo = -signedRo;
+                }
+            }
             var x = signedRo * Math.cos( q + op.mainAxisAngle );
             var y = signedRo * Math.sin( q + op.mainAxisAngle );
             return [ x, y ];
@@ -100,7 +110,7 @@
 
         function poly2svg(arg)
         {
-            var curvePoints = ownrange2points({ stepsCount:200 });
+            var curvePoints = ownrange2points({ stepsCount:800 });
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints, 
@@ -114,20 +124,34 @@
             });
             //##tp-machine
             $$.$( polylineSvg ).addClass( 'tostroke thickable tp-'+lowname );
-
             /*
             var strokeWidth = haz( arg, 'stroke-width' );
             if( strokeWidth ) {
                 polylineSvg.setAttribute( 'stroke-width', strokeWidth );
             }
             */
+
+            var rgArea = rg[ areaName ];
+            var areaSvg = rgArea.areaSvg = nssvg.polyline({
+                pivots  : medpoints,
+                svgel   : rgArea.areaSvg,
+                parent  : stdMod.svgScene,
+
+                //should be overridden by ##tp-machine
+                //stroke           : haz( arg, 'stroke' ),
+                //'stroke-width'   : haz( arg, 'stroke-width' ),
+                //fill             : haz( arg, 'fill' ),
+            });
+            $$.$( areaSvg )
+                .addClass( 'tofill tp-'+areaName )
+                .tgcls( 'undisplay', rgArea.undisplay );
         }
     }
 
 
 
     ///converts position of Q-handle to Q-angle
-    function posQ2t( newPos )
+    function posQ_2_andgleInPIandMinusPI( newPos )
     {
         var op = sconf.orbitParameters;
         var sing = op.SINGULARITY_ANGLE;
@@ -135,16 +159,6 @@
         //normalizes
         probe = ( probe + Math.PI*6 ) % ( Math.PI*2 );
         probe > Math.PI ? probe - 2*Math.PI : probe;
-
-        /*
-        if( Math.abs( rg.P.q ) < sing ) {
-            if( Math.abs( probe ) > sing ) {
-                probe = probe + Math.PI*( probe > 0 ? -1 : 1 );
-                ccc( 'corrector: 2PI sag = ' + probe.toFixed(3) );
-            }
-        }
-        ccc( "corrector: sag=" + probe.toFixed(3) + ' q=' + rg.P.q.toFixed(3) );
-        */
         return probe;
     }
 
@@ -159,16 +173,20 @@
     }
 
 
-    function establishesEccentricity( eccentricity )
+    function establishesEccentricity( eccentricity, doAdjustLatus )
     {
         var op = sconf.orbitParameters;
         var SAFE_VALUE = 1e-8;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
         if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
-            eccentricity = 1-2*SAFE_VALUE;
+            eccentricity = 1-1.2*SAFE_VALUE;
             op.conicSignum === 0;
         } else {
             op.conicSignum = eccentricity >= 1 ? -1 : 1;
+        }
+        if( doAdjustLatus ) {
+            op.latus = Math.abs( rg.P.abs *
+                ( 1 - eccentricity * Math.cos( rg.P.q ) ) );
         }
         op.eccentricity = eccentricity;
         {
@@ -208,6 +226,19 @@
         rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
         rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
     }
+
+    function doAdjustEta( q, focusPos)
+    {
+        var op = sconf.orbitParameters;
+        var { sinOmega, r, } = mcurve.planeCurveDerivatives({
+            fun : rg[ 'approximated-curve' ].t2xy,
+            q,
+            rrc : focusPos,
+        });
+        var M = r * sinOmega;
+        op.eta = M*M / op.latus;
+    }
+
 
 }) ();
 

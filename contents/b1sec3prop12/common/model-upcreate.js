@@ -75,33 +75,52 @@
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-        var sagittaDelta_q = op.sagittaDelta_q;
-        {
-            //--------------------------------------------
-            // //\\ validates sagitta q
-            //--------------------------------------------
-            if( op.conicSignum === -1 ) {
+        if( fconf.effId === "b1sec3prop14" ) {
+            var {
+                rr,
+                //side,
+                sagittaDeltaQ,
+            }
+            = deltaT_2_arc({
+                P_q : q,
+                rgPpos : rg.P.pos,
+                sagittaDeltaT : op.delta_t
+            });
+            rg.Q.pos[0] = rr[0];
+            rg.Q.pos[1] = rr[1];
+            var sagittaDelta_q = op.sagittaDelta_q = sagittaDeltaQ;
+            rg.PR.caption = fconf.sappId === "b1sec3prop15" ?
+                '' :
+                (fconf.sappId === 'b1sec3prop16' ? 'v = ' : 'Δt = ') +
+                (op.delta_t / op.delta_t_initial).toFixed(3);
+        } else {
+            var sagittaDelta_q = op.sagittaDelta_q;
+            {
+                //--------------------------------------------
+                // //\\ validates sagitta q
+                //--------------------------------------------
+                if( op.conicSignum === -1 ) {
 
-                //-pi,+pi locating is irrelevant for move
-                let move = Math.abs( sagittaDelta_q + q );
+                    //-pi,+pi locating is irrelevant for move
+                    let move = Math.abs( sagittaDelta_q + q );
 
-                let absParP = Math.abs( q );
-                ////keeps hyperbola's saggita in the same branch as hyperbola branch
-                let sing = op.SINGULARITY_ANGLE;
-                if( ( move - sing ) * ( absParP - sing ) <= 0 ){
-                    sagittaDelta_q = Math.abs( sing - absParP )
-                                 / 3; //this factor is random
-                    if( ( q < 0 && absParP < sing ) || ( absParP > sing && q > 0 ) ){
-                        sagittaDelta_q = -sagittaDelta_q;
+                    let absParP = Math.abs( q );
+                    ////keeps hyperbola's saggita in the same branch as hyperbola branch
+                    let sing = op.SINGULARITY_ANGLE;
+                    if( ( move - sing ) * ( absParP - sing ) <= 0 ){
+                        sagittaDelta_q = Math.abs( sing - absParP )
+                                     / 3; //this factor is random
+                        if( ( q < 0 && absParP < sing ) || ( absParP > sing && q > 0 ) ){
+                            sagittaDelta_q = -sagittaDelta_q;
+                        }
                     }
                 }
+                //--------------------------------------------
+                // \\// validates sagitta q
+                //--------------------------------------------
             }
-            //--------------------------------------------
-            // \\// validates sagitta q
-            //--------------------------------------------
+            nspaste( rg.Q.pos, fun( q + sagittaDelta_q ) );
         }
-        nspaste( rg.Q.pos, fun( q + sagittaDelta_q ) );
-
 
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
@@ -138,6 +157,8 @@
         //================================================
         var RCmedpos = ssF.mod2inn( RC, stdMod );
         var RRmedpos = sconf.mod2inn_scale * Rc;
+        rg.Y.pos[0] = projectionOfCenterOnTangent[0];
+        rg.Y.pos[1] = projectionOfCenterOnTangent[1];
         //================================================
         // \\// curvature circle
         //================================================
@@ -147,7 +168,7 @@
         // //\\ graph
         //------------------------------------------------
         ///for initial launch only
-        if( fconf.sappId !== "b1sec3prop14" ) {
+        if( fconf.effId !== "b1sec3prop14" ) {
             stdMod.buildsforceGraphArray();
             stdMod.graphFW.drawGraph_wrap();
         }
@@ -249,10 +270,97 @@
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
+        rg.L.caption = 'L=' + (2*op.latus).toFixed(3);
         //=============================================================
         // \\//
         //=============================================================
+
+
+        //=============================================================
+        // //\\ instant triangle
+        //=============================================================
+        {
+            let pkey = 'instanttriangle';
+            rg[ pkey ].vertices = [ rg.S.pos, rg.P.pos, rg.Q.pos ];
+            ssF.paintTriangle(
+                pkey,                       //triangleId,
+                'tofill',                   //cssCls,
+            );
+        }
+        //=============================================================
+        // \\// instant triangle
+        //=============================================================
+
     }
+
+
+
+    ///calculates arc's delta q depending on delta_t by
+    ///integrating delta_q and reaching delta_t,
+    function deltaT_2_arc({
+        rgPpos,
+        P_q,
+        speedDirection,     //was? rg.sForSagitta.val
+        sagittaDeltaT,
+    }){
+        const INTEGRATION_STEPS = 1000;
+
+        op              = sconf.orbitParameters;
+        speedDirection  = speedDirection || 1;
+        const STEP      = 2 * sagittaDeltaT / INTEGRATION_STEPS;
+        const rrc       = rg.S.pos;
+        const fun       = rg[ 'approximated-curve' ].t2xy;
+
+        //integration starting values
+        //var s = P_q; //stdMod.pos2t( rgPpos );
+        //var s0 = s;
+        var {
+                staticSectorialSpeed_rrrOnUU,
+                uu,
+            } = mcurve.planeCurveDerivatives({
+                fun,
+                q : P_q,
+                rrc,
+            });
+        rg.P.uu = uu;
+        var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU * speedDirection; 
+        var intervalT = 0;
+        var q = P_q;
+        var deltaT_isReached = false;
+        for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
+            var rr = fun( q );
+            var {
+                staticSectorialSpeed_rrrOnUU,
+                v,
+            } = mcurve.planeCurveDerivatives({
+                fun,
+                q,
+                rrc,
+            });
+            //assumes central force, i.e. constant sectorial speed
+            //v_per_v0 = v(q+dq)/v(q), v(q) = v0
+            var v_per_v0 = op.arcSpeed_initial * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
+            intervalT += STEP * v / Math.abs( v_per_v0 );
+            if( Math.abs( sagittaDeltaT ) <= Math.abs( intervalT ) ) {
+                deltaT_isReached = true;
+                break;
+            }
+            q = STEP*ix + P_q;
+        }
+
+
+        if( !deltaT_isReached ) {
+            ////decreases delta to match delta_q
+            op.delta_t = intervalT;
+        }
+        //var side = [ rr[0] - rgPpos[0], rr[1] - rgPpos[1] ];
+        return {
+            rr,
+            sagittaDeltaQ : q - P_q,
+            intervalT, //"purified"
+        };
+    }
+
 
 }) ();
 

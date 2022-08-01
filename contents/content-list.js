@@ -145,14 +145,12 @@
             annotation : "",
         },
 
-        /*
-
         {   sappId : 'b1sec3prop15',
             book : 'Book 1',
             caption : 'Sec. III. Proposition XV. Theorem VII.',
             annotation : "",
         },
-
+        /*
         {   sappId : 'b1sec3prop16',
             book : 'Book 1',
             caption : 'Sec. III. Proposition XVI. Theorem VIII.',

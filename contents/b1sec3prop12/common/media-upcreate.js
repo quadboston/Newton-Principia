@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, nsmethods, nssvg,
-        ssF, ssD,
+        fconf, ssF, ssD,
         amode, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -31,6 +31,30 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        {
+            if( fconf.sappId !== "b1sec3prop15" ) {
+                ///draws phi
+                ///adds an extra point, rgPhi, at rg.O to comply angle-api
+                var rgPhi = toreg( 'phi' )( 'pname', 'phi' )( 'pos', rg.O.pos )
+                    ( 'pcolor', 'rgba(0,0,0,0.1)' ) //rg.Fi.pcolor
+                    ();
+                rgPhi.medpos = ssF.mod2inn( rgPhi.pos );
+                ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
+                    AB          : "b1sec3prop14" === fconf.effId ?
+                                      rg[ 'O,Fi' ].pivots :
+                                      [ rgPhi,
+                                        { medpos : [ rgPhi.medpos[0]+100,rgPhi.medpos[1] ] }, 
+                                      ],
+                    CD          : "b1sec3prop14" === fconf.effId ?
+                                      [ rg.PO.pivots[1], rg.PO.pivots[0] ]
+                                      :
+                                      rg[ 'O,Fi' ].pivots,
+                    rgSample    : rgPhi,
+                    ANGLE_SIZE  : 1.5,
+                    caption     : 'φ',
+                })
+            }
+        }
         //enables curve move when dragging an entire diagram
         rg[ 'approximated-curve' ].poly2svg({});
 

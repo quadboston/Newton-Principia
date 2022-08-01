@@ -81,32 +81,36 @@
         var op = sconf.orbitParameters;
         op.mainAxisAngle = op.mainAxisAngle_initial;
         op.latus = op.latusInitial;
-
         stdMod.establishesEccentricity( op.initialEccentricity )
 
         rg.P.q      = sconf.PparQ;
+        rg.S.pos[0] = 0;
+        rg.S.pos[1] = 0;
+        stdMod.doAdjustEta( rg.P.q, rg.S.pos);
+
         nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparQ ));
-        if( fconf.sappId === "b1sec3prop14" ) {
+        if( fconf.effId === "b1sec3prop14" ) {
+            op.delta_t = op.delta_t_initial;
+            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+            rg.instanttriangle.undisplay = fconf.sappId === "b1sec3prop15" ? true : false;
             nspaste( rg.Fi.pos, [
-                0.3 * Math.cos( op.mainAxisAngle ),
-                0.3 * Math.sin( op.mainAxisAngle ),
-             ]);
-             rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+                sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
+                sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
+            ]);
         } else {
-            nspaste( rg.Fi.pos, [ rg.P.pos[0] / 2, rg.P.pos[1] / 2, ] );
+            //nspaste( rg.Fi.pos, [ rg.P.pos[0] * 1.2, rg.P.pos[1] * 1.2, ] );
+            rg.instanttriangle.undisplay = true;
+            op.sagittaDelta_q = op.sagittaDelta_q_initial;
+            nspaste( rg.Fi.pos, [
+                sconf.Fi_distance * Math.cos( rg.P.q ),
+                sconf.Fi_distance * Math.sin( rg.P.q ),
+            ]);
         }
-        op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
 
-        rg.S.pos[0] = 0;
-        rg.S.pos[1] = 0;
-        //rg.H.pos[0] = op.secondFocus;
-        //rg.H.pos[1] = 0;
-        //rg.C.pos[0] = op.secondFocus/2;
-        //rg.C.pos[1] = 0;
 
         var isAdden = aspect === 'addendum';
 
@@ -121,6 +125,11 @@
         rg.Tv.undisplay = true;
         rg.FO.undisplay = true;
         rg.PQ.undisplay = true;
+        rg.SL.undisplay = true;
+        rg.SY.undisplay = true;
+        rg.PY.undisplay = true;
+        rg.Y.undisplay = true;
+        rg.orbitarea.undisplay = false;
 
         rg.Tu.undisplay = true;
         rg[ 'u,VV' ].undisplay = true;
@@ -128,7 +137,7 @@
         // \\// hiding
 
         var un0display = false;
-        if( fconf.sappId === "b1sec3prop14" ) {
+        if( fconf.effId === "b1sec3prop14" ) {
             var un0display = true;
         }
 
@@ -214,7 +223,7 @@
             rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
         }
 
-        if( fconf.sappId === "b1sec3prop14" || "b1sec3prop13" === fconf.sappId ) {
+        if( fconf.effId === "b1sec3prop14" || "b1sec3prop13" === fconf.sappId ) {
             rg.G.undisplay = true;
             rg.AT.undisplay = true;
             rg.AA.undisplay = true;
@@ -244,7 +253,8 @@
             rg.Zminus.undisplay = true;
         }
 
-        if( fconf.sappId === "b1sec3prop14" ) {
+        if( fconf.effId === "b1sec3prop14" ) {
+            rg.SL.undisplay = false;
             rg.C.undisplay = false;
             rg.R.undisplay = false;
             rg.Q.undisplay = false;
@@ -268,6 +278,41 @@
             rg.xv.undisplay = true;
             rg.M.undisplay = true;
             rg.O.undisplay = true;
+        }
+
+        if( fconf.sappId === "b1sec3prop15" ) {
+            rg.SP.undisplay = true;
+            rg.QT.undisplay = true;
+            rg.QR.undisplay = true;
+            rg.PQ.undisplay = true;
+            rg.ST.undisplay = true;
+            rg.ST.undisplay = true;
+            rg['P,Zminus'].undisplay = true;
+            rg.Z.undisplay = true;
+            rg.Zminus.undisplay = true;
+            rg.R.undisplay = true;
+            rg.Q.undisplay = true;
+            rg.P.undisplay = true;
+            rg.Fi.undisplay = true;
+            rg.T.undisplay = true;
+            rg.Px.undisplay = true;
+            rg.PZ.undisplay = true;
+            rg.ZR.undisplay = true;
+
+            rg.A.undisplay = false;
+            rg.AA.undisplay = false;
+            rg.B.undisplay = false;
+            rg.BB.undisplay = false;
+            rg[ 'A,AA' ].undisplay = false;
+            rg[ 'B,BB' ].undisplay = false;
+        }
+
+
+        if( fconf.sappId === 'b1sec3prop16' ) {
+            rg.SY.undisplay = false;
+            rg.PY.undisplay = false;
+            rg.Y.undisplay = false;
+            rg.orbitarea.undisplay = true;
         }
 
         //comment out to remove Book's diagram after timeout
