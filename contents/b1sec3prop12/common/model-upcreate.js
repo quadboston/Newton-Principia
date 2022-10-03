@@ -63,36 +63,32 @@
             uu,
             nn,
             rr,
+            sinOmega,
             //staticSectorialSpeed_rrrOnUU,
         } = diff;
         //rr0[1] = rr[1]; //=fun( rr0[0] )[1];
         var Rc = R; //curvature radius
-
-
-
-
+        rg.P.sinOmega = sinOmega;
+        rg.P.uu = uu;
 
         //================================================
         // //\\ arc, sagittae and related
         //================================================
         if( fconf.effId === "b1sec3prop14" ) {
             var {
-                rr,
-                //side,
+                rr, //for pos for Q
                 sagittaDeltaQ,
-            }
-            = deltaT_2_arc({
-                P_q : q,
-                rgPpos : rg.P.pos,
-                sagittaDeltaT : op.delta_t
-            });
+            } = deltaT_2_arc();
             rg.Q.pos[0] = rr[0];
             rg.Q.pos[1] = rr[1];
             var sagittaDelta_q = op.sagittaDelta_q = sagittaDeltaQ;
-            rg.PR.caption = fconf.sappId === "b1sec3prop15" ?
-                '' :
-                (fconf.sappId === 'b1sec3prop16' ? 'v = ' : 'Δt = ') +
-                (op.delta_t / op.delta_t_initial).toFixed(3);
+            //rg.R.caption = fconf.sappId === "b1sec3prop15" ?
+            //    'R' : 'Δt = ' + op.Kepler_v.toFixed(3);
+            rg.PR.caption = fconf.sappId === "b1sec3prop15" || fconf.effId !== 'b1sec3prop14' ?
+                '' :  'v = ' + op.Kepler_v.toFixed(3);
+            rg.SY.caption = fconf.sappId === "b1sec3prop16" ?
+                'SY = ' + (rg.P.sinOmega * rg.P.abs ).toFixed(3) :
+                '';
         } else {
             var sagittaDelta_q = op.sagittaDelta_q;
             {
@@ -234,12 +230,29 @@
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
 
+        //==========================================================================
+        // was: now fixed: remove this comment:
+        //      possibly outdated: get rid,
+        //----------------------------------------------------------------
+        // this needs (?only for B?)
+        // a bit of work for case when fi between A,AA and horizontal axis
+        // changes: need to rotate semiaxes:
+        // in mean time, this rotation is disabled for prop. 15:
+        //nspaste( rg.B.pos, [rg.C.pos[0], op.B, ] );
+        //nspaste( rg.BB.pos, [rg.C.pos[0], -op.B, ] );
+        //==========================================================================
+
         nspaste( rg.A.pos, fun( Math.PI ) );
         nspaste( rg.AA.pos, fun( 0 ) );
-        nspaste( rg.B.pos, [rg.C.pos[0], op.B, ] );
-        nspaste( rg.BB.pos, [rg.C.pos[0], -op.B, ] );
-
-
+        {
+            let posBx = op.conicSignum === -1 ? -op.C : op.C;
+            let posB = [posBx, op.B,];
+            let ww = mat.rotatesVect( posB, op.mainAxisAngle, );
+            nspaste( rg.B.pos, ww );
+            posB = [posBx, -op.B,];
+            ww = mat.rotatesVect( posB, op.mainAxisAngle, );
+            nspaste( rg.BB.pos, ww );
+        }
 
         //=============================================================
         // //\\ for prop. 11,12
@@ -270,7 +283,7 @@
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
-        rg.L.caption = 'L=' + (2*op.latus).toFixed(3);
+        rg[ 'L,LL' ].caption = 'L=' + (2*op.latus).toFixed(3);
         //=============================================================
         // \\//
         //=============================================================
@@ -291,73 +304,64 @@
         // \\// instant triangle
         //=============================================================
 
+
+        //=============================================================
+        // //\\ prop. 17
+        //=============================================================
+        if( "b1sec3prop17" === fconf.sappId ) {
+            ////hyperbola or ellipse
+            nspaste( rg.D.pos, fun( 0 ) );
+            nspaste( rg.K.pos, mat.dropPerpendicular( rg.O.pos, rg.H.pos, rg.P.pos ) );
+        }
+        //=============================================================
+        // \\// prop. 17
+        //=============================================================
+
     }
 
 
 
     ///calculates arc's delta q depending on delta_t by
     ///integrating delta_q and reaching delta_t,
-    function deltaT_2_arc({
-        rgPpos,
-        P_q,
-        speedDirection,     //was? rg.sForSagitta.val
-        sagittaDeltaT,
-    }){
+    function deltaT_2_arc()
+    {
         const INTEGRATION_STEPS = 1000;
 
-        op              = sconf.orbitParameters;
-        speedDirection  = speedDirection || 1;
-        const STEP      = 2 * sagittaDeltaT / INTEGRATION_STEPS;
-        const rrc       = rg.S.pos;
-        const fun       = rg[ 'approximated-curve' ].t2xy;
-
-        //integration starting values
-        //var s = P_q; //stdMod.pos2t( rgPpos );
-        //var s0 = s;
+        op          = sconf.orbitParameters;
+        const STEP  = op.delta_t / INTEGRATION_STEPS;
+        const rrc   = rg.S.pos;
+        const fun   = rg[ 'approximated-curve' ].t2xy;
+        var q       = rg.P.q;
         var {
                 staticSectorialSpeed_rrrOnUU,
+                v,
                 uu,
             } = mcurve.planeCurveDerivatives({
                 fun,
-                q : P_q,
+                q,
                 rrc,
             });
-        rg.P.uu = uu;
-        var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU * speedDirection; 
+        var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU; 
         var intervalT = 0;
-        var q = P_q;
         var deltaT_isReached = false;
-        for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
-            var rr = fun( q );
+        for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
                 staticSectorialSpeed_rrrOnUU,
                 v,
+                rr,
             } = mcurve.planeCurveDerivatives({
                 fun,
                 q,
                 rrc,
             });
             //assumes central force, i.e. constant sectorial speed
-            //v_per_v0 = v(q+dq)/v(q), v(q) = v0
-            var v_per_v0 = op.arcSpeed_initial * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
-            intervalT += STEP * v / Math.abs( v_per_v0 );
-            if( Math.abs( sagittaDeltaT ) <= Math.abs( intervalT ) ) {
-                deltaT_isReached = true;
-                break;
-            }
-            q = STEP*ix + P_q;
+            var Kepler_v_instant = op.Kepler_v * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
+            var intervalQ = STEP * Kepler_v_instant / v;
+            q += intervalQ;
         }
-
-
-        if( !deltaT_isReached ) {
-            ////decreases delta to match delta_q
-            op.delta_t = intervalT;
-        }
-        //var side = [ rr[0] - rgPpos[0], rr[1] - rgPpos[1] ];
         return {
             rr,
-            sagittaDeltaQ : q - P_q,
-            intervalT, //"purified"
+            sagittaDeltaQ : q - rg.P.q,
         };
     }
 

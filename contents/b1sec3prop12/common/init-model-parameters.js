@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, nssvg, mcurve, integral, mat,
+        ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat,
         fconf, ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -28,16 +28,40 @@
     ///****************************************************
     function init_model_parameters()
     {
+        var op = sconf.orbitParameters;
         toreg( 'approximated-curve' );
         toreg( 'orbitarea' );
         toreg( 'instanttriangle' );
+
+        rg.P.q = op.PparQ_initial;
         stdMod.creates_orbitRack();
+        {
+            var {
+                rr,
+                projectionOfCenterOnTangent,
+            } = mcurve.planeCurveDerivatives({
+                fun : rg[ 'approximated-curve' ].t2xy,
+                q : op.PparQ_initial,
+                rrc : rg.S.pos,
+            });
+            nspaste( rg.P.pos, rr );
+            nspaste( rg.Y.pos, projectionOfCenterOnTangent );
+            {
+                ////establishes rg.Yhandle.pos
+                let excess = fconf.sappId === "b1sec3prop17" ?
+                    0.5 :
+                    -0.2
+                ;
+                rg.Yhandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
+                nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+            }
+        }
+
         stdMod.completesSlidersCreation();      //in-diagram sliders
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
         //creates placeholder
         //toreg( 'curvatureCircle' );
         toreg( 'tangentCircle' );
-
 
         //==================================================
         // //\\ decoration graph

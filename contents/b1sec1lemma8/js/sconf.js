@@ -25,6 +25,8 @@
         //sconf.nonhover_width = 4;
         //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r= 5;
 
 
         //====================================================
@@ -42,46 +44,18 @@
         //--------------------------------------
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 858; //839;
-        var pictureHeight = 566; //563;
-
-
-        //================================================================
-        // //\\ we need good names ...
-        //================================================================
-        //var modOrigin_inPictureSystem_x;
-        //var modorInPicX;
-        //var modelOriginInPictureLayoutCoordinates_x = 140;
-        //var originX_onPicture = modelOriginInPictureLayoutCoordinates_x;
-        //var originY_onPicture = 61;
-        var modorInPicX = 165; //140;
-        var modorInPicY = 61;
-        //================================================================
-        // \\// we need good names ...
-        //================================================================
-
+        var pictureWidth = 858;
+        var pictureHeight = 566;
+        var modorInPicX = 166;
+        var modorInPicY = 63;
+                                 //model's spacial unit in pixels of the picture:
+        var mod2inn_scale = 239; //was?: originalPoints.R.pos[1] - originalPoints.A.pos[1];
 
         var A = [modorInPicX, modorInPicY];
-        var r = [modorInPicX, 531];
-        var R = [modorInPicX, 302];
-        var B = [323, 156];
-        //var B = [313, 156];
+        var B = [358, 165];
+        var D = [496, modorInPicY];
+        sconf.b_per_B_original = 1.931578947;
 
-        var D = [474, modorInPicY];
-        var Dleft = [A[0] -0.3*(D[0]-A[0]), modorInPicY];
-        var d = [778, modorInPicY];
-        var b = [514, 254];
-
-        //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];
-
-        // //\\ lemma 7
-        //fixes direction of line BE as constant
-        //can be any number from -oo to +oo
-        sconf.BXBE_per_BY = 0.5;
-        //todm ... bug: when decreasing then ratio begins worse:
-        sconf.NON_ZERO_A_PREVENTOR = 0.01;
-        // \\// lemma 7
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -91,6 +65,7 @@
         var given   = [0,     150, 0,      0.6];
         var proof   = [0,     0,   255,    0.6];
         var result  = [200,   40,  0,      0.6];
+        var shadow  = [150,  150,  150,    1];
         var hidden  = [0,     0,   0,      0];
 
 
@@ -127,7 +102,6 @@
             //:context
             //axis-y addendum
             'ytop' : {
-                pos             : ytop,
                 letterAngle     : 90,
                 caption         : 'axis y',
                 letterRotRadius : 35,
@@ -169,6 +143,42 @@
                 letterAngle : -90,
                 letterRotRadius : 20,
             },
+
+            ///modified point r, closer to d
+            "imageOfR" : {
+                caption : "r",
+                pcolor      : proof,
+                letterAngle : -45,
+                letterRotRadius : 30,
+            },
+
+            ///modified point r, closer to d
+            "imageOfD" : {
+                caption : "d",
+                pos : D,
+                pcolor      : proof,
+                letterAngle : -90,
+                letterRotRadius : 30,
+            },
+
+
+            c : {
+                letterAngle : 45,
+                letterRotRadius : 18,
+                pcolor      : proof,
+            },
+
+            //proof
+            b : {
+                letterAngle : 0,
+                pcolor      : proof,
+            },
+            d : {
+                caption : 'dₒ',
+                letterAngle : 90,
+                pcolor      : proof,
+            },
+
 
             "y0" : {
                 caption     : 'yₒ',
@@ -225,27 +235,40 @@
 
 
             //:originals from Book
-            A : { 
-                //assigment by reference to pos is safe: no parasite links, pos is recalculated later
+            A : {
+                //assigment by reference to pos is safe: no parasite links,
+                //pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
                 pcolor      : given,
             },
+
             r : {
-                pos: r,
+                caption : 'rₒ',
                 letterAngle : 135,
                 pcolor      : given,
             },
+
             R : {
-                pos: R,
                 letterAngle : 135,
                 pcolor      : given,
+                draggableX  : false,
+                draggableY  : true,
             },
+
             B : {
                 pos: B,
                 letterAngle : 0,
                 pcolor      : given,
             },
+
+            C : {
+                letterAngle : 45,
+                letterRotRadius : 13,
+                pcolor      : given,
+            },
+
+
             /*
             'B-kernelx' : {
                cssClass : 'hover-width',
@@ -255,24 +278,6 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,
-            },
-            Dleft : {
-                pos: Dleft,
-                letterAngle : 90,
-                pcolor      : given,
-            },
-
-
-            //proof
-            b : {
-                pos: b,
-                letterAngle : 0,
-                pcolor      : proof,
-            },
-            d : {
-                pos         : d,
-                letterAngle : 90,
-                pcolor      : proof,
             },
 
             curveEnd : {
@@ -304,6 +309,14 @@
                 pcolor      : result,
             },
 
+            fi : {
+                caption : "φ",
+                pcolor : shadow,
+                letterAngle : 180,
+                draggableX  : true,
+                draggableY  : true,
+            },
+
         };
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
@@ -311,32 +324,44 @@
             point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
 
-        //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
         var linesArray =
         [
-            { 'Ad' : { pcolor : proof } },
-            { 'Ar' : { pcolor : given } },
-            { 'Ab' : { pcolor : proof } },
             { "rd" : { pcolor : proof } },
+            { "rb" : { pcolor : proof } },
 
             { 'dr-decorpoint,d' : { pcolor : proof } },
             { 'dr' : { pcolor : proof } },
+            { 'imageOfR,imageOfD' : { pcolor : proof } },
+            { 'A,imageOfD' : { pcolor : proof } },
+            { 'A,imageOfR' : { pcolor : proof } },
+            { 'imageOfR,b' : { pcolor : proof } },
 
+            { 'Ad' : { pcolor : proof } },
+            { 'Ar' : { pcolor : given } },
 
             //l7
             { 'bd' : { pcolor : proof } },
+            { 'be' : { pcolor : proof } },
+
+            { 'Ab' : { pcolor : proof } },
+            { 'AR' : { pcolor : given } },
+            { 'AD' : { pcolor : given } },
+
+            //l7
             { 'BD' : { pcolor : given } },  //lemma 7, coroll 1
             { 'BF' : { pcolor : given } },
             { 'AF' : { pcolor : given } },
             { 'AG' : { pcolor : given } },
             { 'AE' : { pcolor : given } },
             { 'BG' : { pcolor : given } },
-            { 'be' : { pcolor : proof } },
+
+
+            //l8
+            { 'RD' : { pcolor : given } },
+            { 'BR' : { pcolor : given } },
 
             //sin(x)/x
             { 'Br' : { pcolor : given } },
-
 
             { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
 
@@ -379,8 +404,6 @@
             { 'AE' : { pcolor : given } },
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-            { 'A,Dleft' : { pcolor : given } },
         ]
 
         //----------------------------------
@@ -388,49 +411,42 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
+        var ww1 = [204,67];
+        var ww1 = [244,82];
+        var ww2 = [272,94];
+        var ww2 = [300,110];
+        var ww3 = B;
 
-        var minusX1 = 148 - modorInPicX;
-        var minusX2 = 161 - modorInPicX;
-        var minusX3 = 202 - modorInPicX;
-        var minusX4 = 259 - modorInPicX;
-        var minusX5 = 305 - modorInPicX;
-        var minusX6 = B[0] - modorInPicX;
-        var minusX7 = 353 - modorInPicX;
-        var minusX8 = 360.5 - modorInPicX;
-
+        originalPoints.t1 = {
+                pos: ww1,
+                letterAngle : 90,
+                pcolor      : given,
+        };
+        originalPoints.t2 = {
+                pos: ww2,
+                letterAngle : 90,
+                pcolor      : given,
+        };
 
         var givenCurve_pivots =
         [
-            //extending the curve to the left is quite a work bs
-            //we need to change hard-coded tangent
-            //[86,75],
-            //[135,64],
-            //[100,75],
-            //[10,151],
+            //make curve symmetrical in respect to axis Y
+            [2*A[0]-ww3[0],ww3[1]],
+            [2*A[0]-ww2[0],ww2[1]],
+            [2*A[0]-ww1[0],ww1[1]],
 
-            [148,62],
-            [161,64],
-            [202,75],
-            [259,100],
-            [305,135],
-            [B[0], B[1]],
-            //[353,203],
-            //[313, 156];
-            [353,203],
-            //[360.5, 239.0], //"oversampling"
-
+            [A[0], A[1]],
+            ww1,
+            ww2,
+            [ww3[0], ww3[1]],
+            [377,206],
         ];
         var ww_MONITOR_Y_FLIP = -1;
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
         var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
             [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
-              ( opoint[1] - modorInPicY +
-
-                //additional tune-up: shifting curve exactly into origin A
-                //modorInPicY - 61.0858
-                modorInPicY - 64.0858
-
+              ( opoint[1] - modorInPicY
               ) * ww_factor,
             ]
         );

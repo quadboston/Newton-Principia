@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, mat,
+        ns, sn, paste, mat, nspaste,
         sconf, fconf, ssF, ssD, sDomF, sData,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -28,9 +28,45 @@
     ///****************************************************
     function init_model_parameters()
     {
+        //---------------------------------------------
+        // //\\ saves originals for lemma 8
+        //---------------------------------------------
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            let b2B = sconf.b_per_B_original;        
+            nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
+            let D = rg.D.pos;
+            let B = rg.B.pos;
+            rg.rd.originalDirection = [ D[0]-B[0], D[1]-B[1], ];
+            let R = mat.linesCross(
+                rg.rd.originalDirection,
+                B,         //start-1
+                [ 0, -1],  //direction-2'
+                rg.A.pos,  //start-2'
+            );
+            nspaste( rg.R.pos, R );
+            rg.r.pos[0] = rg.R.pos[0] * b2B;
+            rg.r.pos[1] = rg.R.pos[1] * b2B;
+            rg.d.pos[0] = rg.D.pos[0] * b2B;
+            rg.d.pos[1] = rg.D.pos[1] * b2B;
+            nspaste( rg.imageOfR.pos, rg.r.pos );
+            nspaste( rg.imageOfD.pos, rg.d.pos );
+        }
+        rg.B.originalPos = [];
+        nspaste( rg.B.originalPos, rg.B.pos );
+        rg.D.originalPos = [];
+        nspaste( rg.D.originalPos, rg.D.pos );
+        rg.R.originalPos = [];
+        nspaste( rg.R.originalPos, rg.R.pos );
+        //---------------------------------------------
+        // \\// saves originals for lemma 8
+        //---------------------------------------------
+
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
+        //-------------------------------------------------
+        // //\\ dragger L
+        //-------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             orientation : 'axis-y',
@@ -64,13 +100,14 @@
                 return true;
             }
         });
-
         //-------------------------------------------------
-        // //\\ adds methods to single base point only once
+        // \\// dragger L
+        //-------------------------------------------------
+
+
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
-
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
         //apparently this is a vitual master parameter of B along x,
         //the parctical position of B obtains by rotation of line AL,
@@ -79,9 +116,8 @@
         //apparently, this is an original-unrotated-parameter-X mapped to
         //rg.originalGapTangent.angle which is not 0 and mapped to
         //rotational angle = 0,
-        rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
+        //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
@@ -92,12 +128,16 @@
                 var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
                 var cpos = cfun( new_unrotatedParameterX );
 
-                ///we need to put some constraint here, to
-                ///prevent chord vanishing
-                if(
-                    //new_unrotatedParameterX < 0.001 ) {
-                    //new_unrotatedParameterX = 0.001;
-                    new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
+
+                //patch: instead of fixing arc-Ab calculations properly,
+                //       this code-fragment restricts area where this arc miscalculated:
+                if( fconf.sappId === "b1sec1lemma8" ) {
+                    if( new_unrotatedParameterX < 0.008 ) {
+                        new_unrotatedParameterX = 0.008;
+                    }
+                } else if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
+                    ///we need to put some constraint here, to
+                    ///prevent chord vanishing
                     new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
                 }
 
@@ -124,7 +164,6 @@
                             if( lineY > pos[1] ) {
                                 ////B crossed line AL
                                 new_unrotatedParameterX = cpar;
-                                //ccc( lineY.toFixed(3) + ' ' + pos[1].toFixed(3) );
                                 break;
                             }
                         }
@@ -133,11 +172,16 @@
                     sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
                 }
 
-
-                //.prevents user from playing with too big curves
-                if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
+                ///prevents user from playing with too big curves
+                if( fconf.sappId === "b1sec1lemma8" ) {
+                    //.prevents user from playing with too big curves
+                    if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
+                        new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
+                    }
+                } else if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
                 }
+
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 return true;
             }
@@ -146,16 +190,101 @@
         // \\// dragger B
         //-------------------------------------------------
 
-        //getting original gap tangent
-        toreg( 'originalGapTangent' )( 'tangent',
-            mat.calculate_divided_differences( sconf.givenCurve_pivots_inModel ).derivativeAtZero()
-        );
-        rg.originalGapTangent.angle = Math.atan( rg.originalGapTangent.tangent );
-        //c cc( 'rg.originalGapTangent.angle='+rg.originalGapTangent.angle );
 
+
+
+        //-------------------------------------------------
+        // //\\ dragger R
+        //-------------------------------------------------
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            rg.R.processOwnDownEvent = function() {
+                sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+            };
+
+            sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
+                pname : 'R',
+                acceptPos : ( newPos ) =>
+                {
+                    var ach = rg.R.achieved;
+                    newPos[0] = 0;
+                    if(
+                        //patch: instead of fixing arc-Ab calculations properly,
+                        //       this code-fragment restricts area where this arc miscalculated:
+                        newPos[1] > -0.01 ) {
+                        newPos[1] = -0.01;
+                    } else if( newPos[1] < -1.5 ) {
+                        newPos[1] = -1.5;
+                    }
+                    //prepares point B which implies new position of point R
+                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
+                        / ach.achieved[1];
+                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
+                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                    }
+                    nspaste( newPos, dir8innerB_2_R( rg.rd.originalDirection ) );
+                    return true;
+                }
+            });
+        }
+        //-------------------------------------------------
+        // \\// dragger R
+        //-------------------------------------------------
+
+
+
+
+        //-------------------------------------------------
+        // //\\ dragger fi
+        //-------------------------------------------------
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            rg.fi.processOwnDownEvent = function() {
+                sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
+            };
+
+            sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
+                pname : 'fi',
+                acceptPos : ( newPos ) =>
+                {
+                    //-------------------------------------------------------------------
+                    // //\\ corrects approximate mouse point to exact point on the circle
+                    //-------------------------------------------------------------------
+                    var q = Math.atan2( newPos[1], newPos[0] );
+                    var posAbs = mat.unitVector( newPos ).abs;            
+                    //sets handle
+                    newPos[0] = posAbs*Math.cos( q );
+                    newPos[1] = posAbs*Math.sin( q );
+                    //-------------------------------------------------------------------
+                    // \\// corrects approximate mouse point to exact point on the circle
+                    //-------------------------------------------------------------------
+                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ));
+                    return true;
+                }
+            });
+        }
+        //-------------------------------------------------
+        // \\// dragger fi
+        //-------------------------------------------------
+
+
+
+        //getting original gap tangent
+        const orTan = rg.originalGapTangent = {};
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            orTan.tangent = 0;
+            orTan.angle = 0;
+            mat.calculate_divided_differences(
+                sconf.givenCurve_pivots_inModel
+            );
+        } else {
+            orTan.tangent = mat.calculate_divided_differences(
+                sconf.givenCurve_pivots_inModel
+            ).derivativeAtZero();
+            orTan.angle = Math.atan( rg.originalGapTangent.tangent );
+        }
         //sets angle as it is in original picture in lemma
         toreg( 'curveRotationAngle' )( 'angle', 0 );
-
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
@@ -302,8 +431,9 @@
         // //\\ builds Newton microscope
         //=================================================
         var Bx = rg.B.pos[0];
-        var bpos = rayAXTangent__2__XOn_Base_rd( rg.B.pos[1] / Bx );
-        rg.b.pos =  bpos;
+        //var bpos = rayAXTangent__2__XOn_Base_rd( rg.B.pos[1] / Bx );
+        var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
+        nspaste( rg.b.pos, bpos );
         //calculating magnitude
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' );
         //=================================================
@@ -314,13 +444,21 @@
 
 
         //=================================================
-        // //\\ l7 specific
+        // //\\ l7, l8 specific
         //=================================================
         if( fconf.sappId === "b1sec1lemma7" ) {
             //makes line DB proportionally move
             rg.D.pos[0] = rg.d.pos[0] / magn;
+        } else if( fconf.sappId === "b1sec1lemma8" ) {
+            //RBD line
+            let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
+            rg.D.pos[0] = posD[0];
+            rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
+            rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
+            rg.imageOfD.pos[0] = posD[0] * magn;
         }
-        if( amode.subessay !== 'sin(x)/x' ){
+
+        if( amode.subessay !== 'sin(x)/x' && fconf.sappId !== "b1sec1lemma8" ){
             rg.E.pos[1] = rg.D.pos[1];
             rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
         }
@@ -329,7 +467,7 @@
         rg.F.pos[1] = rg.B.pos[1];
         rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
         //=================================================
-        // \\// l7 specific
+        // \\// l7, l8 specific
         //=================================================
 
         if( amode.subessay === 'sin(x)/x' ){
@@ -409,7 +547,7 @@
         //=================================================
 
 
-        if( fconf.sappId === "b1sec1lemma7" ) {
+        if( fconf.sappId === "b1sec1lemma7" || fconf.sappId === "b1sec1lemma8" ) {
             rg.AB.arcLen = mat.integral.curveLength({
                 fun             : ssD.repoConf[0].fun,
                 curveStartParam : rg.A.pos[0],
@@ -417,9 +555,14 @@
                 funIsAVector    : true,
                 calculationAccuracy : 1e-4*rg.AB.abs,
             });
-            //ccc( 'rg.AB.arcLen', rg.AB.arcLen , 'rg.AB.abs',rg.AB.abs );
         }
 
+        ///decorations
+        if( fconf.sappId === "b1sec1lemma8" ) {
+            let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
+            nspaste( rg.C.pos, C );
+            nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
+        }
     }
 
 
@@ -428,30 +571,30 @@
     {
         var angleL = rg.originalGapTangent.angle + rg.curveRotationAngle.angle;
         rg.L.gapTangent = Math.tan( angleL );
-        paste( rg.L.pos, rayAXTangent__2__XOn_Base_rd( rg.L.gapTangent ) );
+        let L = mat.lineSegmentsCross(
+            rg.A.pos, [rg.A.pos[0]+1, rg.A.pos[1]+rg.L.gapTangent],
+            rg.r.pos, rg.d.pos );
+        nspaste( rg.L.pos, L );
     }
 
-
-    ///Inputs: rayTangent - an arbitrary line from point-A,
-    ///Outputs: X === pos of crossing of rayTangent wit rd,
-    function rayAXTangent__2__XOn_Base_rd( rayTangent )
+    function dir8innerB_2_R( RB_slope )
     {
-        var rayAngle = -Math.atan( rayTangent ); //treats direction-to-bottom as positive
-
-        var rdX=rg.d.pos[0];
-        var rdY=-rg.r.pos[1]; //treats direction-to-bottom as positive
-        var rd = Math.sqrt( rdX*rdX + rdY*rdY );
-        var sin_d = rdY/rd;
-        var cos_d = rdX/rd;
-        var angle_d = Math.acos( cos_d );
-
-        var Sd = rdX / Math.sin( angle_d + rayAngle ) * Math.sin( rayAngle );
-        var SdX = Sd * cos_d;
-        var SdY = -Sd * sin_d; //treats direction-to-bottom as negative (as it must be)
-        var Sx = rg.d.pos[ 0 ] - SdX;
-        var Spos = [ Sx, SdY ];
-        return Spos;
+        //prepares point B which implies new position of point R
+        //finds new point B
+        let posB = ssD.repoConf[ssD.repoConf.customFunction]
+            .fun( rg.B.unrotatedParameterX );
+        ///finds new point R
+        var newRpos = mat.linesCross(
+            ///drags line from B along original direction to
+            ///cross line A,f which becomes a new R
+            RB_slope,
+            posB,
+            rg.fi.pos,
+            rg.A.pos,
+        );
+        return newRpos;
     }
+
 
 }) ();
 

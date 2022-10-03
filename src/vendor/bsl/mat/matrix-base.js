@@ -15,7 +15,7 @@
     //subtracts vectors
     function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
     */
-
+    mat.rotatesVect         = rotatesVect;
     mat.unitVector          = unitVector;
     mat.vector2normalOrts   = vector2normalOrts;
     mat.p1_to_p2            = p1_to_p2;
@@ -26,9 +26,10 @@
     mat.pointPlusTVector    = dropLine;
     mat.lineSegmentsCross   = lineSegmentsCross;
     mat.angleBetweenLines   = angleBetweenLines;
-    mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     mat.sm                  = sm;
     mat.sm3                 = sm3;
+    mat.scalarProduct       = scalarProduct;
+    mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     return;
 
 
@@ -94,26 +95,60 @@
 
     ///gets vector's abs value and its direction:
     ///for 2d and 3d vectors
-    function unitVector( vector )
-    {
+    function unitVector(
+        vector,
+        doDenullify //makes vector non zero
+    ){
         var is3d = vector.length === 3;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
         if( is3d ) {
             v2 += vector[2]*vector[2];
         }
         var abs = Math.sqrt( v2 );
-        if( is3d ) {
-            var unitVec = abs < 1e-40 ? [0,0,0] :
-                [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
+        if( abs < 1e-100 && doDenullify ) {
+                var unitVec = [1e-100,0,0];
+                var abs = 1e-100;
+                var v2 = abs * abs;
         } else {
-            var unitVec = abs < 1e-40 ? [0,0] : [ vector[0]/abs, vector[1]/abs ];
+            if( is3d ) {
+                var unitVec = abs < 1e-40 ? [0,0,0] :
+                    [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
+            } else {
+                var unitVec = abs < 1e-40 ? [0,0] : [ vector[0]/abs, vector[1]/abs ];
+            }
         }
         return {
             abs,
-            v2, //square of vector
+            v2, //square of vector, todo minor discrepancy: must be abs*abs
             unitVec,
         };
     }
+
+
+
+    ///gets scalar product of two vectors,
+    ///mostly for shortening names of variables
+    function scalarProduct(
+        v1,
+        v2,
+    ){
+        return v1[0]*v2[0] + v1[1]*v2[1];
+    }
+
+    ///rotates two-dimenstional vector anti-clockwidse
+    function rotatesVect( v, angle,
+        sn, cs // sin or cos - alternative arguments
+    ){
+        if( typeof angle !== 'undefined' ) {
+            sn = Math.sin( angle );
+            cs = Math.cos( angle );
+        }
+        return [
+            v[0] * cs - v[1] * sn,
+            v[0] * sn + v[1] * cs,
+        ];
+    }
+
 
 
 
@@ -183,11 +218,16 @@
 
 
 
-    ///gets vector's abs value and it's direction from
-    ///vector tips p1, p2
-    function p1_to_p2( p1, p2 )
-    {
-        return unitVector( [ p2[0]-p1[0], p2[1]-p1[1] ] );
+    ///gets vector's abs value and it's direction for vector p2-p1
+    function p1_to_p2(
+        p1,
+        p2,
+        doDenullify //makes vector non zero
+    ){
+        const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
+        const res = unitVector( vector );
+        res.vector = vector;
+        return res;
     }
 
     //intersection of two lines to be found:

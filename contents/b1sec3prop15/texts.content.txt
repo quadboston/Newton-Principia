@@ -104,11 +104,11 @@ Page 114.
 
 From "physics"
 <a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
- assuming 𝜂 is the same for all orbits, (S)
+ assuming 𝛾 is the same for all orbits, (S)
 </a>
 
     <div style="text-align:center;">
-        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4/𝜂  S˙², <br>
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4/𝛾  S˙², <br>
     </div>
 From geometry:
     <div style="text-align:center;">
@@ -116,8 +116,8 @@ From geometry:
     </div>
 From "both":
     <div style="text-align:center;">
-        ¦SL¦ρ<sub>⟂</sub>¦¦T² = 4/𝜂  S˙²T² = 4/𝜂  S² = 4/𝜂  π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦, <br>
-        T² = 4π²/𝜂  ¦A,AA¦a¦¦³ <br>
+        ¦SL¦ρ<sub>⟂</sub>¦¦T² = 4/𝛾  S˙²T² = 4/𝛾  S² = 4/𝛾  π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦, <br>
+        T² = 4π²/𝛾  ¦A,AA¦a¦¦³ <br>
     </div>
 
 

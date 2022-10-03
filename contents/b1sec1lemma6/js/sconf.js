@@ -67,7 +67,6 @@
         var B = [323, 156];
 
         var D = [474, modorInPicY];
-        var Dleft = [A[0] -0.3*(D[0]-A[0]), modorInPicY];
         var d = [778, modorInPicY];
         var b = [514, 254];
 
@@ -81,6 +80,10 @@
         //todm ... bug: when decreasing then ratio begins worse:
         sconf.NON_ZERO_A_PREVENTOR = 0.01;
         // \\// lemma 7
+
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r= 5;
+
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -255,12 +258,6 @@
                 letterAngle : 90,
                 pcolor      : given,
             },
-            Dleft : {
-                pos: Dleft,
-                letterAngle : 90,
-                pcolor      : given,
-            },
-
 
             //proof
             b : {
@@ -379,7 +376,6 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'A,Dleft' : { pcolor : given } },
         ]
 
         //----------------------------------
@@ -387,7 +383,6 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
-
         var minusX1 = 148 - modorInPicX;
         var minusX2 = 161 - modorInPicX;
         var minusX3 = 202 - modorInPicX;

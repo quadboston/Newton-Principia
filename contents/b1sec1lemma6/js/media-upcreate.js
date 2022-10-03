@@ -1,13 +1,8 @@
 ( function() {
     var {
-        ns, sn, $$, mat,
-        haz,
-        sconf, rg, toreg,
-        ssF, ssD,
-        sDomF,
-        amode,
-        stdMod,
-
+        ns, sn, $$, mat, haz, nspaste,
+        fconf, sDomF, ssF, ssD,
+        sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -124,10 +119,11 @@
         // //\\ paints magnified curve
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
+        //misleading notation: this is not ..._b, this is ..._B
         rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
         ssF.paintsCurve({
                 rgName      : 'arc-Ab',
-                fun         : cfun.fun,
+                fun         : cfun.fun, //for l8, cust fun = 0 = rotated fun
                 pointA      : rg.A,
                 pointB      : rg.derotated_b,
                 mmedia      : stdMod.mmedia,
@@ -135,6 +131,7 @@
                 //addedCssClass: 'tp-arc-Ab tp-both-curves', 
                 addedCssClass: 'tp-arc-Ab', 
                 addToStepCount : 1,
+                stepsCount : fconf.sappId === "b1sec1lemma8" ? 200 : null,
         });
         //-------------------------------------------------
         // \\// paints magnified curve

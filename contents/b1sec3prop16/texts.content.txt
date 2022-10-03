@@ -29,16 +29,23 @@
 }
 *..*
 
+
+<b>Not authorized for development yet.</b>
+<br><br><br>
+
+
 Under the same suppositions as in prop. 15, if ¦PR P,Zminus PZ¦straight lines¦¦
  are drawn to the ¦P¦bodies¦¦
 in such a way as to touch the ¦orbit¦orbits¦¦ in the ¦P¦places where the bodies are located¦¦,
 and if ¦SY¦perpendiculars¦¦ are dropped from the ¦S¦common focus¦¦ to these tangents, I say
 that the ¦PR¦velocities¦¦ of the bodies are inversely as ¦SY¦the perpendiculars¦¦ and directly as
 the square roots of the ¦L,LL¦principal latera recta¦¦.
+<br><br>
+[Assumied: here, latus rectum is = principal latera recta]
+
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
-
 
 
 
@@ -49,17 +56,29 @@ Page 114.
 }
 *..*
 
-From focus S to tangent PR drop perpendicular SY, and the velocity of body P
-will be inversely as the square root of SY²/L.
+¦SY¦¦¦
+¦SP¦¦¦
+¦QT¦¦¦
+¦PR¦¦¦
+¦orbitdq¦PQ¦¦¦
 
-For this velocity is as the minimally small
+<b>Not authorized for development yet.</b>
+<br><br><br>
+
+
+From ¦S¦focus S¦¦ to ¦PR P,Zminus PZ¦tangent PR¦¦ drop ¦SY¦perpendicular SY¦¦,
+and ¦PR¦the velocity¦¦ of ¦P¦body P¦¦
+will be inversely as the square root of ¦SY¦¦²/¦L,LL¦L¦¦.
+
+For ¦PR¦this velocity¦¦ is as the minimally small
 arc PQ described in a given particle of time,
-that is (by lem. 7), as the tangent PR, that
+that is (by lem. 7), as the ¦PR¦tangent PR¦¦, that
 is — because the proportion of PR to QT is
 as SP to SY — as SP x QT / SY or as SY inversely and SP x QT directly; and
-SP x QT is as the area described in the given time, that is (by prop. 14), as
-the square root of the latus rectum. Q.E.D.
+SP x QT is as the ¦instanttriangle¦area described in the given time¦¦, that is (by prop. 14), as
+the square root of the
 
+¦L,LL¦latus rectum¦¦. Q.E.D.
 
 <br><br><br>
 
@@ -70,17 +89,20 @@ Page 114.
 
 
 
-
 *::*corollary|latin
 {
+  "menuCaption" : "---"
 }
 *..*
 
 *::*corollary|addendum
 {
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
 }
 *..*
 
+<b>Corollary 1: <><>CXX:</b> <a target="_blank" href="?conf=sappId=b1sec3prop16,theorionId=proof,aspectId=addendum">see addendum for proof</a>
 
 
 
@@ -91,8 +113,8 @@ Page 114.
 }
 *..*
 
-
-The principal latera recta are as the squares of the perpendiculars and as the squares of the velocities
+The ¦L,LL¦principal latera recta¦¦ are as the squares of ¦SY¦the perpendiculars¦¦
+ and as the squares of ¦PR¦the velocities¦¦
 <br><br><br>
 
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
@@ -110,8 +132,8 @@ Page 114.
 *..*
 
 
-The velocities of bodies at their greatest and least distances from the common focus are inversely as the distances and directly as
-the square roots of the principal latera recta. For the perpendiculars are now
+The ¦PR¦velocities of bodies¦¦ at their greatest and least distances from the common focus are inversely as the distances and directly as
+the square roots of the ¦L,LL¦principal latera recta¦¦. For ¦SY¦the perpendiculars¦¦ are now
 the distances themselves.
 
 <br><br><br>
@@ -130,8 +152,8 @@ Page 114.
 }
 *..*
 
-
-And thus the velocity in a conic, at the greatest or least
+//start text highlighting from here:
+And thus the ¦PR¦velocity¦¦ in a conic, at the greatest or least
 distance from the focus, is to the velocity with which the body would move
 in a circle, at the same distance from the center, as the square root of the
 principal latus rectum is to the square root of twice that distance.
@@ -301,8 +323,24 @@ Page 116.
   "subessayCaption" : "model for non-similar curves"
 }
 *..*
+<b>In <><>CXX:</b><br>
 
+Geometry: <a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
 
+    <div style="text-align:center;">
+        f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
+    </div>
+
+Physics: assuming 𝛾 = const and is the same for all orbits:
+    <div style="text-align:center;">
+        f = 𝜎𝛾/¦SP¦r¦¦²,
+    </div>
+
+Therefore:
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝛾 M² = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦² =
+        4/𝛾 ( ¦PR¦v¦¦ sin(ω) ¦SP¦r¦¦ )² = 4/𝛾 ( ¦PR¦v¦¦ ¦SY¦¦ )²
+    </div>
 
 <div book-reference-id="kvk"></div>
 

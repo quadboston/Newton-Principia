@@ -231,7 +231,7 @@ M/2 is "Kepler constant" for constant sectorial speed:
 <br><br><br>
 
 
-<b><><>CXX2E</b>
+<b>From <><>CXX2E</b>
 <br><br>
 
 (*) gives:
@@ -266,7 +266,7 @@ Hence in Book notations for (**), the specific coefficient is 2M².
 }
 *..*
 
-<b><><>CXX2E:</b><br><br>
+<b>From <><>CXX2E:</b><br><br>
 
 For counter-clockwise curvature orientation b<sub>𝗸</sub> = 1,
 <a target="_blank" href="?conf=sappId=addd-kepler-task">recalling (f') and (k')</a>

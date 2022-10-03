@@ -207,7 +207,7 @@ Page 456.
 *..*
 
 
-<b><><>CXX2E</b>
+<b>From <><>CXX2E</b>
 <br><br>
 
 <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">

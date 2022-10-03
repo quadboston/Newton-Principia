@@ -1,7 +1,7 @@
 
 ( function() {
     var { //import from apptree
-        ns,
+        ns, mat,
         fconf,
         sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
@@ -39,34 +39,66 @@
         var mod2inn_scale = 145;
         op.mainAxisAngle_initial = 0;
         op.mainAxisAngle = op.mainAxisAngle_initial;
+
+        //sets physics
+        op.Kepler_v_initial = 1;
+        op.Kepler_v = op.Kepler_v_initial;
+
         fconf.effId =
             fconf.sappId === 'b1sec3prop14' ||
             fconf.sappId === 'b1sec3prop15' ||
-            fconf.sappId === 'b1sec3prop16'
+            fconf.sappId === 'b1sec3prop16' ||
+            fconf.sappId === 'b1sec3prop17'
                 ? 'b1sec3prop14' : fconf.sappId;
-        switch ( fconf.effId ) {
-            case 'b1sec3prop14' :
-                    op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
-                    sconf.insertDelayedBatch = true;
+
+        if( fconf.effId === 'b1sec3prop14' ) {
+
+            switch ( fconf.sappId ) {
+            case "b1sec3prop17" :
+                    op.initialEccentricity = 0.60;
                     //for real picture if diagram's picture is supplied or
                     //for graphical-media work-area if not supplied:
-                    var pictureWidth = 884;
-                    var pictureHeight = 733; //728;
+                    var pictureWidth = 1037;
+                    var pictureHeight = 765;
                     var mod2inn_scale = 260;
-                    var F = [ fconf.sappId === 'b1sec3prop16' ? 170 : 160,
-                              fconf.sappId === 'b1sec3prop16' ? 440 : 410
+                    var F = [ 350,
+                              410
                             ];
-                    op.latusInitial = fconf.sappId === 'b1sec3prop16' ? 0.83 : 0.83;
-                    var PparQ = ( fconf.sappId === 'b1sec3prop16' ? 0.14 : 0.07 ) * Math.PI;
-                    var ww_sagittaDelta_q_initial = fconf.sappId === 'b1sec3prop16' ? 0.2 : 0.19;
+                    op.latusInitial = 0.93;
+                    var PparQ = 0.39 * Math.PI;
+                    var ww_sagittaDelta_q_initial = 0.16;
 
+                    op.sagittaDelta_q_initial = ww_sagittaDelta_q_initial;
                     //in this prop, using delta_t instead of delta_q
                     op.delta_t_initial = ww_sagittaDelta_q_initial * 2.5;
                     op.delta_t = op.delta_t_initial;
                     op.delta_t_LIMIT = op.delta_t_initial * 1.5;
-                    op.arcSpeed_initial = 1;
                     sconf.Fi_distance = 1.8;
+                    sconf.insertDelayedBatch = true;
                   break;
+            default:
+                op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
+                sconf.insertDelayedBatch = true;
+                //for real picture if diagram's picture is supplied or
+                //for graphical-media work-area if not supplied:
+                var pictureWidth = 884;
+                var pictureHeight = 733;
+                var mod2inn_scale = 260;
+                var F = [ fconf.sappId === 'b1sec3prop16' ? 170 : 160,
+                          fconf.sappId === 'b1sec3prop16' ? 440 : 410
+                        ];
+                op.latusInitial = fconf.sappId === 'b1sec3prop16' ? 0.83 : 0.83;
+                var PparQ = ( fconf.sappId === 'b1sec3prop16' ? 0.14 : 0.07 ) * Math.PI;
+                var ww_sagittaDelta_q_initial = fconf.sappId === 'b1sec3prop16' ? 0.2 : 0.19;
+                op.sagittaDelta_q_initial = ww_sagittaDelta_q_initial;
+                //in this prop, using delta_t instead of delta_q
+                op.delta_t_initial = ww_sagittaDelta_q_initial * 2.5;
+                op.delta_t = op.delta_t_initial;
+                op.delta_t_LIMIT = op.delta_t_initial * 1.5;
+                sconf.Fi_distance = 1.8;
+            }
+        } else {
+            switch ( fconf.sappId ) {
             case "b1sec3prop13" :
                     op.initialEccentricity = 1; //parabola
                     var pictureWidth = 938;
@@ -87,9 +119,20 @@
                     op.sagittaDelta_q_initial = 1;
                     sconf.Fi_distance = 3;
                   break;
+           }
         }
-        op.latus = op.latusInitial;
+        op.PparQ_initial    = PparQ;
+        op.sagittaDelta_q   = op.sagittaDelta_q_initial;
+        op.latus            = op.latusInitial;
         stdMod.establishesEccentricity( op.initialEccentricity );
+        //sets physics
+        var { Kepler_g } = mat.conics.innerPars2innerPars({
+                lat         : op.latusInitial,
+                fi          : PparQ,
+                e           : op.initialEccentricity,
+                Kepler_v    : op.Kepler_v,
+        })
+        op.Kepler_g = Kepler_g;
 
         //***************************************************************
         // //\\ decorational parameters
@@ -143,7 +186,7 @@
         // //\\ points reused in config
         //=============================================
         var S = F;
-        var P = [0, 0 ]; //set bu sconf.PparQ
+        var P = [0, 0 ]; //set by op.PparQ_initial
         var Q = [0, 0 ]; //set in amode8captures
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
@@ -170,6 +213,7 @@
         var context = [0,     0,   0,      1];
         var shadow  = [150,  150,  150,    1];
         var invalid = [200,  150,  0,      1];
+        var attention = [200,  200,  0,      1];
         var predefinedTopics =
         {
             given,
@@ -181,6 +225,7 @@
             body,
             orbit,
             orbitarea,
+            orbitdq : body,
             shadow,
             force   : result,
             tangentCircle : curvature,
@@ -254,6 +299,8 @@
                 pcolor : orbit,
                 letterAngle : -45,
                 letterRotRadius : 20,
+                draggableX  : true,
+                draggableY  : true,
             },
 
             LL : {
@@ -314,11 +361,23 @@
                 pcolor : proof,
                 letterAngle : 135,
                 letterRotRadius : 20,
+                draggableX  : true,
+                draggableY  : true,
             },
 
             Y : {
                 pcolor : proof,
                 letterAngle : 45,
+            },
+
+            Yhandle : {
+                caption : 'ω',
+                pcolor : shadow,
+                letterAngle : 90,
+                letterRotRadius : 17,
+                draggableX  : true,
+                draggableY  : true,
+                fontSize : 20,
             },
 
             Z : {
@@ -503,7 +562,10 @@
             { EO : { pcolor : proof }, },
             { EC : { pcolor : proof }, },
             { PH : { pcolor : proof }, },
+            { PK : { pcolor : attention }, },
+            { SK : { pcolor : proof }, },
             { HI : { pcolor : proof }, },
+            { BH : { pcolor : proof }, },
             { OS : { pcolor : proof }, },
             { OH : { pcolor : proof }, },
             { PI : { pcolor : proof }, },
@@ -516,23 +578,27 @@
             { 'O,Fi' : { pcolor : shadow }, },
 
             { ST : { pcolor : proof, }, },
-            { 'SP' : { pcolor : result }, },
-            { 'SY' : { pcolor : proof }, },
+            { 'SP' : { pcolor : result, vectorTipIx : 1 }, },
+            { 'SY' : { pcolor : proof, captionShiftNorm : -28 }, },
             { 'PY' : { pcolor : body }, },
             { 'CS' : { pcolor : proof }, },
             { 'CH' : { pcolor : proof }, },
 
             { 'P,Zminus' : { pcolor : body }, },
+            { 'P,Yhandle' : { pcolor : context }, },
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
-            { 'PR' : { pcolor : body, 'stroke-width' : 0.1 }, },
+            { 'PR' : { pcolor : body, 'stroke-width' : 0.1, captionShiftNorm : -18,
+                       vectorTipIx : 1 }, },
             { 'QR' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
             { DK : { pcolor : proof }, },
+            { DS : { pcolor : proof }, },
+            { DH : { pcolor : proof }, },
             { PM : { pcolor : body }, },
             { SM : { pcolor : body }, },
 
@@ -562,7 +628,7 @@
             { CB : { pcolor : proof }, },
             //{ 'L,LL' : { pcolor : proof, caption : 'L/2',
             //             captionShiftNorm : -18, fontSize : 20, }, },
-            { 'L,LL' : { pcolor : orbit, }, },
+            { 'L,LL' : { pcolor : orbit, captionShiftNorm : 22, lposYSugar : -3 }, },
             { SL : { pcolor : orbit, }, },
             { CD : { pcolor : proof }, },
 
@@ -582,8 +648,6 @@
 
         //stdMod.init_sliders_conf();
         ns.paste( sconf, {
-            PparQ,
-
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,

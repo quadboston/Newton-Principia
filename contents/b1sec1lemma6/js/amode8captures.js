@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, capture,
+        ns, sn, paste, capture, nspaste,
         fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
         studyMods, amode, toreg, rg,
     } = window.b$l.apptree({
@@ -10,13 +10,23 @@
         },
     });
 
+    if( fconf.sappId === "b1sec1lemma8" ) {
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
-    {
-        "angle": 0.10579977792284677,
-        "sin": 0.10560250842053673,
-        "cos": 0.9944084222367038
-    };
+        var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+        {
+            "angle": 0,
+            "sin": 0,
+            "cos": 1
+        };
+    } else {
+        ///diff and Euclid tangents are equal
+        var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+        {
+            "angle": 0.10579977792284677,
+            "sin": 0.10560250842053673,
+            "cos": 0.9944084222367038
+        };
+    }
 
     //this is Books origin, authentic N. drawing,
     //curveRotationAngle = 0,
@@ -174,6 +184,28 @@
         var { theorion, aspect, submodel, subessay } = amode;
         var stdMod = studyMods[ submodel ];
 
+        //------------------------------------------------
+        // //\\ returns diagram back at every menu click
+        //      todm: this is a patch: do streamline
+        //------------------------------------------------
+        {
+            nspaste( rg[ "media-mover" ].achieved,
+                {
+                    "achieved": [
+                        sconf.originX_onPicture, //492,
+                        sconf.originY_onPicture, //565
+                    ]
+                }
+            );
+            //todm: without this diagram does not return back immediately, only after a click
+            var ach = rg[ "media-mover" ].achieved.achieved;
+            sconf.modorInPicX = ach[0];
+            sconf.modorInPicY = ach[1];
+        }
+        //------------------------------------------------
+        // \\// returns diagram back at every menu click
+        //------------------------------------------------
+
         //----------------------------------
         // //\\ common values
         //----------------------------------
@@ -181,11 +213,13 @@
         rg.B.undisplay              = false;
         rg.AB.undisplay             = false;
         rg[ 'arc-AB' ].undisplay    = false;
+
+        //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
+
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-
         var media_scale = toreg( 'media_scale' )();
         //----------------------------------
         // \\// common values
@@ -205,7 +239,7 @@
             if( theorion === 'claim' ) {
                  captured = 'L-equal-d';
             }
-            ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
+            //ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
             [
                 'curve-AB',
@@ -213,7 +247,6 @@
                 'arc-AB',
                 'AD',
                 'D',
-                'A,Dleft',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
             if(
                 theorion === 'proof' || theorion === 'claim' 
@@ -507,99 +540,98 @@
         // //\\ lemma 8
         //*****************************************************************************
         if( fconf.sappId === "b1sec1lemma8" ) {
-            if(
-                amode.subessay === 'who-knows'
-            ){
-                //sDomF.detected_user_interaction_effect();
-                captured = "analytic-derivative";
-                //=================================================
-                // //\\ visibility
-                //=================================================
+            sDomF.detected_user_interaction_effect( 'doUndetected' );
+
+            captured = '';
+
+            nspaste( rg.B.pos, rg.B.originalPos );
+            rg.B.unrotatedParameterX = rg.B.originalPos[0]; //what a misleading naming
+
+            nspaste( rg.R.pos, rg.R.originalPos );
+            rg.fi.pos[0] = rg.R.pos[0];
+            rg.fi.pos[1] = rg.R.pos[1] * 1.2;
+
+            rg.media_scale.value = 1;
+            ssF.scaleValue2app( rg.media_scale.value, stdMod );
+
+            ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
+            ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+
+            [
+                //'dr-decorpoint',
+            ].forEach( gname => { rg[ gname ].undisplay = true; });
+
+            rg.L.hideD8Dpoint   = true;
+
+            [
+                'D',
+                'R',
+                'C',
+                'AR',
+                'AD',
+                'BD',
+                'BR',
+                'RD',
+                'curve-AB',
+                'fi',
+            ].forEach( gname => { rg[ gname ].undisplay = false; });
+
+            if( amode.theorion === 'claim' ) {
                 [
-                    //addendum axes
-                    'O',
-                    'ytop',
-                    'xtop',
-                    'ylow,ytop',
-                    'xlow,xtop',
-
-                    //addendum axes points
-                    'x',
-                    'y',
-                    'x0',
-                    'y0',
-                    //addendum axes points projection lines
-                    'A,y0',
-                    'By',
-                    'A,x0',
-                    'Bx',
-                    //addendum axes increment projections
-                    'x0,x',
-                    'y0,y',
-
-                    //microscope
+                    'c',
+                    'rd',
+                    'rb',
+                    'imageOfR',
+                    'imageOfD',
+                    'A,imageOfD',
+                    'A,imageOfR',
+                    'imageOfR,b',
+                    'imageOfR,imageOfD',
+                ].forEach( gname => { rg[ gname ].undisplay = true; });
+                rg.B.hideD8Dpoint   = false;
+                rg.R.hideD8Dpoint   = false;
+            } else if( theorion === 'proof' ) {
+                [
+                    'c',
+                    //'d',
+                    //'r',
+                    'b',
                     'Ab',
-
-                    //microscope axes points projections
-                    'X',
-                    'X0',
-                    'Y',
-                    'Y0',
-                    //microscope axes increment projections
-                    'X0,X',
-                    'A,Y',
-
-                    //tangent's angle
-                    'tangentPhi',
-                    'AL',
-                    'L',
-                    'd',
-
-                    //decorations
-                    'line-dr-start,dr-decorpoint',
-                    'dr-decorpoint',
-                    'A,line-AL-end',
-
+                    'Ad',
+                    'rd',
+                    //'rb',
+                    'bd',
+                    'Ar',
+                    'imageOfR',
+                    'imageOfD',
+                    'A,imageOfD',
+                    'A,imageOfR',
+                    'imageOfR,b',
+                    'imageOfR,imageOfD',
+                    'arc-Ab',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
-
-            if(
-                aspect !== 'model'
-            ) {
-                sDomF.detected_user_interaction_effect( 'doUndetected' );
-                captured = "L-equal-d";
-                rg.media_scale.value = 1;
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
-
-                ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
-                ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+            if( subessay === 'interpretation1' ) {
                 [
-                    'D',
-                    'R',
-                    'BD',
-                    //'RD',
-                    'AD',
-                    'curve-AB',
+                    'rd',
+                    'rb',
+                    'bd',
+                    'b',
+                    'r',
+                    'd',
+                ].forEach( gname => { rg[ gname ].undisplay = true; });
+                rg.B.hideD8Dpoint   = true;
+                rg.R.hideD8Dpoint   = false;
+            } else if( subessay === 'interpretation2' ) {
+                [
+                    'rd',
+                    'rb',
+                    'b',
+                    'r',
+                    'd',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
-
-                if( theorion === 'proof' ) {
-                    sDomF.detected_user_interaction_effect( 'doUndetected' );
-                    [
-                        'd',
-                        'r',
-                        'Ad',
-                        'rd',
-                        'bd',
-
-                        'b',
-                        'Ab',
-                        'arc-Ab',
-
-                        //'AL',
-                        //'L',
-                    ].forEach( gname => { rg[ gname ].undisplay = false; });
-                    rg.L.hideD8Dpoint   = false;
-                }
+                rg.B.hideD8Dpoint   = false;
+                rg.R.hideD8Dpoint   = true;
             }
         }
         //*****************************************************************************

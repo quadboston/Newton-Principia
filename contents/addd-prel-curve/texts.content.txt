@@ -227,7 +227,7 @@ where t<sub>max</sub> and t<sub>min</sub> are abscissas of max and min points of
 
 <a name="cif-breaks-l6"></a>
 <br><br>
-At point ¦A¦¦, this curve has ¦A,Tleft AT¦Euclidean tangent¦¦ and is continuous. (It is continuous at each own point, and has Euclidean tangent in some neighbourhood of each own point. ). But it still does not satisfy conclusion of lemma 6:
+At point ¦A¦¦, this curve has ¦A,Tleft AT¦Euclidean tangent¦¦ and is continuous. (It is continuous at each point, and has Euclidean tangent in some neighbourhood of each point. ). But it still does not satisfy conclusion of lemma 6:
 <br>
 
                                             <div style="text-align:center;">

@@ -78,11 +78,12 @@
         var cv3     = vv[0]*aa[1]-vv[1]*aa[0];
         //curvature abs. value
         var c       = Math.abs( cv3 ) / (v2*v);
+        var bk      = Math.sign( cv3 ); //=orientation = [𝘂𝗻]𝗸
 
-        //normal vector,
-        //if vector product is along kk, then curvature is
-        //rotated counter-clockwise from uu:
-        var nn = cv3 < 0 ?
+        //normal vector, correctly oriented in respect to ort 𝗸,
+        //if vector product is along 𝗸, then curvature is
+        //rotated counter-clockwise from 𝘂:
+        var nn = bk < 0 ?
             [ uu[1], -uu[0], ] : //clockwise
             [ -uu[1], uu[0], ];  //counter-clockwise;
         //curvature vector
@@ -109,7 +110,11 @@
 
 
         //:angle between norm n and radius vector rrr
-        var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] );
+        var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] ) * bk;
+        var cosOmega = ee[0]*uu[0] + ee[1]*uu[1];
+        var angleRV = Math.asin( sinOmega );
+        angleRV = cosOmega > 0 ? angleRV :
+            angleRV > 0 ? Math.PI-angleRV : -Math.PI-angleRV;
 
         //: gets chord second point V, which
         // is a point V in Newton's Prop6, Theor 5,
@@ -163,6 +168,7 @@
             a,
             c,
             nn, //unit curvature vector
+            bk, //=[uu,nn]
             cc, //curvature vector
             R,  //curvature radius
             RR,
@@ -172,7 +178,10 @@
             staticSectorialSpeed_rrrOnUU, //=sectorialSpeedDividedByArcSpeed
 
             //angle between norm n and radius vector rrr
+            angleRV,
             sinOmega,
+            cosOmega,
+
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }

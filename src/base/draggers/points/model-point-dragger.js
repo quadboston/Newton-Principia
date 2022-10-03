@@ -57,6 +57,7 @@
         var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, stdMod })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
+        //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
         rgX.pcolor              = sDomF.getFixedColor( rgX.pname );

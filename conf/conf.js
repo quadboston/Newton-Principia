@@ -125,9 +125,16 @@
         HTMLMacroKey : '<><>',
         textScriptMacros : {
             CXX2E :
-                `From <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>
+                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>
                 to
-                <a target="_blank" href="?conf=sappId=addd-fw#Eframework">Euclid</a> framwork`
+                <a target="_blank" href="?conf=sappId=addd-fw#Eframework">Euclid</a>
+                framwork`
+            ,
+            E2CXX :
+                `<a target="_blank" href="?conf=sappId=addd-fw#Eframework">CalculusXX</a>
+                to
+                <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Euclid</a>
+                framwork`
             ,
             CXX :
                 `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework`

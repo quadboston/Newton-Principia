@@ -11,7 +11,7 @@
             protectedQ,
             establishesEccentricity,
             eccentricity2pos,
-            doAdjustEta,
+            //doAdjustEta,
         },
     });
     return;
@@ -32,14 +32,19 @@
     //function pointsArr_2_singleDividedDifferences()
     function creates_orbitRack()
     {
+        const op = sconf.orbitParameters;
         const fi0   = sconf.orbitParameters.qStart;
 
         var curveName = 'orbit';
+        var dqName = 'orbitdq';
         var areaName = 'orbitarea';
         var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
+        var dqlowname = sDomF.topicIdUpperCase_2_underscore( dqName );
         var rgX = rg[ 'approximated-curve' ];
+        var rgDq = rg[ dqName ];
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
+        rgDq.polylineSvg = haz( rgX, dqName );
 
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
@@ -48,15 +53,18 @@
                 poly2svg,
         };
         Object.assign( rgX, result );
+        Object.assign( rgDq, result );
         poly2svg({});
+        poly2svg({ doDeltaArc:true });
         return result;
 
 
         ///param t to [x,y]
         function t2xy(
-            q //inner parameter for conics, usually angle
+            //inner parameter for conics, usually angle,
+            //aka below poz.x = signedRo * Math.cos( q + op.mainAxisAngle );
+            q
         ){
-            var op = sconf.orbitParameters;
             var den = 1 - op.eccentricity * Math.cos(q);
             if( den === 0 ) {
                 ////floating point error protection:
@@ -67,6 +75,8 @@
                 den = 1e-20;
             }
             var signedRo = op.latus / den;
+
+            /*
             if( fconf.effId === "b1sec3prop14" ) {
                 if( op.conicSignum === -1 && Math.abs( rg.P.q ) < op.SINGULARITY_ANGLE ) {
                     ////in this proposition, we keep position P = constant, so
@@ -75,6 +85,14 @@
                     signedRo = -signedRo;
                 }
             }
+            */
+            if( op.conicSignum === -1 && Math.abs( rg.P.q ) < op.SINGULARITY_ANGLE ) {
+                ////in this proposition, we keep position P = constant, so
+                ////do invert signedRo for opposite branch of hyperbola,
+                ////alternatively: signedRo = Math.abs( signedRo );
+                signedRo = -signedRo;
+            }
+
             var x = signedRo * Math.cos( q + op.mainAxisAngle );
             var y = signedRo * Math.sin( q + op.mainAxisAngle );
             return [ x, y ];
@@ -84,7 +102,7 @@
         function trange2points({ qStart, qEnd, stepsCount, })
         {
             var newpoints = [];
-            var op = sconf.orbitParameters;
+            var op = sconf.orbitParameters; //for speed
             var qStep = ( qEnd - qStart ) / stepsCount;
             for( var qix = 0; qix<=stepsCount; qix++ ) {
                 var q = qStart + qStep * qix;
@@ -99,44 +117,49 @@
 
         ///draws full orbit for t in [0,2PI)
         //returns unclosed curve with end point =/= first point exactly
-        function ownrange2points({ stepsCount })
+        function ownrange2points({ stepsCount, doDeltaArc })
         {
-            var op = sconf.orbitParameters;
-            var points = trange2points({ qStart:op.qStart, qEnd:op.qEnd, stepsCount });
+            if( doDeltaArc ) {
+                var qStart = rg.P.q;
+                var qEnd = rg.P.q + op.sagittaDelta_q;
+            } else {
+                var qStart = op.qStart;
+                var qEnd = op.qEnd;
+            }
+            var points = trange2points({ qStart, qEnd, stepsCount });
             //points[ points.length - 1 ] = points[ 0 ]; //does close the poly.
             return points;
         }
 
 
-        function poly2svg(arg)
+        function poly2svg({ doDeltaArc, toString })
         {
-            var curvePoints = ownrange2points({ stepsCount:800 });
-            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
-            var polylineSvg = rgX.polylineSvg = nssvg.polyline({
+            const rgXX = doDeltaArc ? rgDq : rgX;
+            var curvePoints         = ownrange2points({ stepsCount:800, doDeltaArc });
+            var medpoints           = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
+            var polylineSvg         = rgXX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints, 
-                svgel   : rgX.polylineSvg,
+                svgel   : rgXX.polylineSvg,
                 parent  : stdMod.svgScene,
-
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
                 //'stroke-width'   : haz( arg, 'stroke-width' ),
                 //fill             : haz( arg, 'fill' ),
             });
             //##tp-machine
-            $$.$( polylineSvg ).addClass( 'tostroke thickable tp-'+lowname );
-            /*
-            var strokeWidth = haz( arg, 'stroke-width' );
-            if( strokeWidth ) {
-                polylineSvg.setAttribute( 'stroke-width', strokeWidth );
-            }
-            */
+            $$.$( polylineSvg ).addClass( 'tostroke thickable tp-' +
+                                          (doDeltaArc ? dqlowname : lowname) );
+            //var strokeWidth = haz( arg, 'stroke-width' );
+            //if( strokeWidth ) {
+            //    polylineSvg.setAttribute( 'stroke-width', strokeWidth );
+            //}
+            if( doDeltaArc ) return; //arc does not have area
 
             var rgArea = rg[ areaName ];
             var areaSvg = rgArea.areaSvg = nssvg.polyline({
                 pivots  : medpoints,
                 svgel   : rgArea.areaSvg,
                 parent  : stdMod.svgScene,
-
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
                 //'stroke-width'   : haz( arg, 'stroke-width' ),
@@ -178,12 +201,12 @@
         var op = sconf.orbitParameters;
         var SAFE_VALUE = 1e-8;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
+
+        //protects against parabola case by making conic ellipse
         if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
             eccentricity = 1-1.2*SAFE_VALUE;
-            op.conicSignum === 0;
-        } else {
-            op.conicSignum = eccentricity >= 1 ? -1 : 1;
         }
+        op.conicSignum = eccentricity >= 1 ? -1 : 1;
         if( doAdjustLatus ) {
             op.latus = Math.abs( rg.P.abs *
                 ( 1 - eccentricity * Math.cos( rg.P.q ) ) );
@@ -196,8 +219,9 @@
             op.lambda       = Math.sqrt( op.lambda2 );
             op.qStart       = -Math.PI;
             op.qEnd         = Math.PI;
-            if( op.conicSignum === 0 || op.conicSignum === -1 ) {
-                ////hyperbola or parabola
+            //if( op.conicSignum === 0 || op.conicSignum === -1 ) {
+            if( op.conicSignum === -1 ) {
+                ////hyperbola
                 op.SINGULARITY_ANGLE    = Math.acos(1/op.eccentricity);
                 op.LOW_BOUNDARY         = op.SINGULARITY_ANGLE - op.ANGLE_BOUNDARY;
                 op.UPPER_BOUNDARY       = op.SINGULARITY_ANGLE + op.ANGLE_BOUNDARY;
@@ -209,8 +233,8 @@
             op.C            = op.A * op.eccentricity;
 
             //gets ellipse parameters
-            let ellB2       = op.B*op.B;
-            let ellA2       = op.A*op.A;
+            //let ellB2       = op.B*op.B;
+            //let ellA2       = op.A*op.A;
         }
         stdMod.eccentricity2pos();
     }
@@ -227,6 +251,7 @@
         rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
     }
 
+    /*
     function doAdjustEta( q, focusPos)
     {
         var op = sconf.orbitParameters;
@@ -238,7 +263,7 @@
         var M = r * sinOmega;
         op.eta = M*M / op.latus;
     }
-
+    */
 
 }) ();
 

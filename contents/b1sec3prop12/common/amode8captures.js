@@ -83,12 +83,14 @@
         op.latus = op.latusInitial;
         stdMod.establishesEccentricity( op.initialEccentricity )
 
-        rg.P.q      = sconf.PparQ;
+        rg.P.q      = op.PparQ_initial;
         rg.S.pos[0] = 0;
         rg.S.pos[1] = 0;
-        stdMod.doAdjustEta( rg.P.q, rg.S.pos);
+        op.Kepler_v = op.Kepler_v_initial;
+        op.delta_t = op.delta_t_initial;
+        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
+        nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
 
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparQ ));
         if( fconf.effId === "b1sec3prop14" ) {
             op.delta_t = op.delta_t_initial;
             rg.P.abs = mat.unitVector( rg.P.pos ).abs;
@@ -100,12 +102,12 @@
         } else {
             //nspaste( rg.Fi.pos, [ rg.P.pos[0] * 1.2, rg.P.pos[1] * 1.2, ] );
             rg.instanttriangle.undisplay = true;
-            op.sagittaDelta_q = op.sagittaDelta_q_initial;
             nspaste( rg.Fi.pos, [
                 sconf.Fi_distance * Math.cos( rg.P.q ),
                 sconf.Fi_distance * Math.sin( rg.P.q ),
             ]);
         }
+        op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -115,8 +117,21 @@
         var isAdden = aspect === 'addendum';
 
         // //\\ hiding
+        rg.DS.undisplay = true;
+        rg.DH.undisplay = true;
+        rg.PK.undisplay = true;
+        rg.SK.undisplay = true;
+        rg.K.hideD8Dpoint = true;
+
         rg[ 'L,LL' ].undisplay = true;
         rg.L.undisplay = true;
+        rg.L.hideD8Dpoint = true;
+
+        rg.Y.undisplay = true;
+        rg.Yhandle.undisplay = true;
+        rg.Yhandle.hideD8Dpoint = true;
+        rg[ 'P,Yhandle' ].undisplay = true;
+
         rg.VV.undisplay = true;
         rg[ 'P,VV' ].undisplay = true;
         rg.VV.undisplay = true;
@@ -128,7 +143,8 @@
         rg.SL.undisplay = true;
         rg.SY.undisplay = true;
         rg.PY.undisplay = true;
-        rg.Y.undisplay = true;
+        rg.BH.undisplay = true;
+
         rg.orbitarea.undisplay = false;
 
         rg.Tu.undisplay = true;
@@ -175,7 +191,7 @@
         rg.PF.undisplay = un0display;
         rg.Z.undisplay = un0display;
         rg.Zminus.undisplay = un0display;
-        rg.R.undisplay = un0display;
+        rg.R.undisplay = rg.R.hideD8Dpoint = false;
         rg.PC.undisplay = un0display;
         rg.C.undisplay = un0display;
 
@@ -206,6 +222,7 @@
         rg.SM.undisplay = true;
         rg.NP.undisplay = true;
         rg.N.undisplay = true;
+        rg.R.hideD8Dpoint = true;
         rg[ 'ZetaStart,ZetaEnd' ].undisplay = false;
 
         if( "b1sec3prop13" === fconf.sappId ) {
@@ -221,6 +238,8 @@
             rg.SM.undisplay = false;
             rg.NP.undisplay = false;
             rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
+            rg.S.hideD8Dpoint = true;
+            rg.O.undisplay = true;
         }
 
         if( fconf.effId === "b1sec3prop14" || "b1sec3prop13" === fconf.sappId ) {
@@ -254,15 +273,21 @@
         }
 
         if( fconf.effId === "b1sec3prop14" ) {
+            rg.DH.undisplay = true;
+            rg.Y.undisplay = false;
+            rg.PY.undisplay = false;
             rg.SL.undisplay = false;
             rg.C.undisplay = false;
-            rg.R.undisplay = false;
+            rg.R.undisplay = rg.R.hideD8Dpoint = false;
             rg.Q.undisplay = false;
+            rg.Q.hideD8Dpoint = true;
+
             rg.QR.undisplay = false;
             rg.T.undisplay = false;
             rg.QT.undisplay = false;
             rg[ 'L,LL' ].undisplay = false;
             rg.L.undisplay = false;
+            //apparently this is not needed: rg.L.hideD8Dpoint = false;
 
             rg.G.undisplay = true;
             rg.I.undisplay = true;
@@ -281,6 +306,9 @@
         }
 
         if( fconf.sappId === "b1sec3prop15" ) {
+            rg.Y.undisplay = true;
+            rg.PY.undisplay = true;
+            rg.PR.undisplay = true;
             rg.SP.undisplay = true;
             rg.QT.undisplay = true;
             rg.QR.undisplay = true;
@@ -291,7 +319,10 @@
             rg.Z.undisplay = true;
             rg.Zminus.undisplay = true;
             rg.R.undisplay = true;
+            rg.R.undisplay = rg.R.hideD8Dpoint = true;
             rg.Q.undisplay = true;
+            rg.Q.hideD8Dpoint = true;
+
             rg.P.undisplay = true;
             rg.Fi.undisplay = true;
             rg.T.undisplay = true;
@@ -305,14 +336,90 @@
             rg.BB.undisplay = false;
             rg[ 'A,AA' ].undisplay = false;
             rg[ 'B,BB' ].undisplay = false;
+
+            rg.L.hideD8Dpoint = false; //causes main axes rotation, so is disabled
         }
 
 
         if( fconf.sappId === 'b1sec3prop16' ) {
+            rg.orbitarea.undisplay = true;
             rg.SY.undisplay = false;
             rg.PY.undisplay = false;
+
             rg.Y.undisplay = false;
+            rg.Yhandle.undisplay = false;
+            rg.Yhandle.hideD8Dpoint = false;
+            rg[ 'P,Yhandle' ].undisplay = false;
+
+            rg.L.hideD8Dpoint = false;
+            rg.R.hideD8Dpoint = true;
+            stdMod.imgRk.dom$.css( 'visibility', 'visible' );
+            stdMod.svgScene$.css( 'visibility', 'visible' );
+            if( theorion === 'corollary' ) {
+                if( subessay === "corollary1" ) {
+                    ////latus on others: swaps latus and speed
+                    rg.R.hideD8Dpoint = false;
+                    rg.L.hideD8Dpoint = true;
+                } else {
+                    stdMod.imgRk.dom$.css( 'visibility', 'hidden' );
+                    stdMod.svgScene$.css( 'visibility', 'hidden' );
+                }
+            }
+        }
+
+        if( fconf.sappId === 'b1sec3prop17' ) {
+            rg.instanttriangle.undisplay = true;
             rg.orbitarea.undisplay = true;
+
+            //rg.omega.undisplay = false;
+            rg.K.undisplay = false;
+            rg.D.undisplay = false;
+            rg.CD.undisplay = false;
+
+            rg.A.undisplay = false;
+            rg.B.undisplay = false;
+            rg.CB.undisplay = false;
+
+            rg.Y.undisplay = false;
+            rg.Yhandle.undisplay = false;
+            rg.Yhandle.hideD8Dpoint = false;
+            rg[ 'P,Yhandle' ].undisplay = false;
+            rg.SY.undisplay = false;
+            rg.PY.undisplay = false;
+            rg.T.undisplay = true;
+            rg.QT.undisplay = true;
+            rg.Fi.undisplay = true;
+            rg.H.undisplay = false;
+            rg.PH.undisplay = false;
+            rg.BH.undisplay = false;
+            rg.PK.undisplay = false;
+            rg.SK.undisplay = false;
+            rg.DS.undisplay = false;
+            rg.DH.undisplay = false;
+
+            rg.Q.hideD8Dpoint = true;
+            rg.R.hideD8Dpoint = true;
+            rg.L.hideD8Dpoint = true;
+
+            rg.SL.undisplay = true;
+            rg.Zeta.hideD8Dpoint = true;
+
+            if( theorion === 'scholium' ) {
+                var imgVisib = 'hidden';
+                rg.Yhandle.hideD8Dpoint = true;
+                rg[ 'P,Yhandle' ].undisplay = true;
+            } else {
+                var imgVisib = 'visible';
+                rg.R.hideD8Dpoint = false;
+                rg.Zeta.hideD8Dpoint = false;
+            }
+            stdMod.imgRk.dom$.css( 'visibility', imgVisib );
+            stdMod.svgScene$.css( 'visibility', imgVisib );
+
+            if( aspect === 'addendum' ) {
+                rg.SY.undisplay = false;
+                rg.PY.undisplay = false;
+            }
         }
 
         //comment out to remove Book's diagram after timeout

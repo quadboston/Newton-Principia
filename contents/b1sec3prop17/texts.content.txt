@@ -4,6 +4,40 @@
   "menuCaption" : "Latin"
 }
 *..*
+
+¦D¦¦¦
+¦H¦¦¦
+¦S¦¦¦
+¦P¦¦¦
+¦L,LL¦L¦¦¦
+
+¦SY¦¦¦
+¦QT¦¦¦
+¦SK¦¦¦
+¦PK¦¦¦
+¦PK²¦¦¦
+¦PK¦KP¦¦¦
+¦PK¦KP²¦¦¦
+¦PR¦¦¦
+¦CB¦BC¦¦¦
+¦CB¦BC²¦¦¦
+
+¦DH¦¦¦
+¦DS¦¦¦
+¦SP¦¦¦
+¦SP¦SP²¦¦¦
+¦PH¦¦¦
+¦PH¦PH²¦¦¦
+¦CS CH¦SH²¦¦¦
+¦CS CH¦SH¦¦¦
+¦CH¦¦¦
+¦CH¦CH²¦¦¦
+¦BH¦¦¦
+¦BH¦BH²¦¦¦
+
+¦PR PH¦RPH¦¦¦
+¦PR SP¦RPS¦¦¦
+
 <img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
 <br>
 <div book-reference-id="latin"></div>
@@ -30,13 +64,13 @@
 
 
 Supposing that the centripetal force is inversely proportional to the square of the
-Problem 9 distance of places from the center and that the absolute quantity of this force is
+SP distance of places¦¦ from the center and that the absolute quantity of this force is
 known, it is required to find the line which a body describes when going forth
-from a given place with a given velocity along a given straight line.
+from a ¦P¦given place¦¦ with a given velocity along a ¦PY¦given straight line¦¦.
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 470.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 116.
 
 
 
@@ -53,46 +87,60 @@ Page 470.
 
 Let the centripetal force tending toward a point S be such that a body p
 revolves by its action in any given orbit pq, and let its velocity in the place p
-be found out. Let body P go forth from place P along line PR with a given
-velocity and thereupon be deflected from that line into a conic PQ under
-the compulsion of the centripetal force. Therefore the straight line PR will
+be found out. Let body P go forth from place P along line ¦PR¦¦ with a given
+¦PR¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
+the compulsion of the centripetal force. Therefore the straight line ¦PR¦¦ will
 touch this conic at P. Let some straight line pr likewise touch the orbit pq
-at /?, and if perpendiculars are understood to be dropped from S to these
-tangents, the principal latus rectum of the conic will (by prop. 16, corol. 1)
+at p, and if ¦SY¦perpendiculars¦¦ are understood to be dropped from S to these
+tangents, the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
 be to the principal latus rectum of the orbit in a ratio compounded of the
-squares of the perpendiculars and the squares of the velocities and thus is
+squares of the ¦SY¦perpendiculars¦¦ and the squares of the ¦PR¦velocities¦¦ and thus is
+given.
+<br><br>
 
-given. Let L be the latus rectum of the conic. The focus S of the conic is
-also given. Let angle RPH be the complement of angle RPS to two right
+Let L be the ¦L,LL¦latus rectum of the conic¦¦. The focus S of the conic is
+also given.
+
+Let angle RPH be the complement of angle RPS to two right
 angles [i.e., the supplement of angle RPS]; then the line PH, on which the
 other focus H is located, will be given in position. Drop the perpendicular
 SK to PH and understand the conjugate semiaxis BC to be erected; then
-SP2 - 2KP x PH + PH2 = SH2 = 4CH2 = 4BH2 - 4BC2 = (SP + PH)2 -
-L x (SP + PH) = SP2 + 2SP x PH + PH2 - L x (SP + PH). Add to each side
-2(KP x PH) - SP2 - PH2 + L x (SP + PH), and L x (SP + PH) will become
-= 2(SP x PH) + 2(KP x PH), or SP + PH will be to PH as 2SP + 2KP to L.
-Hence PH is given in length as well as in position. Specifically, if the velocity
-of the body at P is such that the latus rectum L is less than 2SP + 2KP, PH
-will lie on the same side of the tangent PR as the line PS; and thus the figure
+SP² + 2¦PK¦KP¦¦ x PH + PH² = SH² = 4¦CH¦¦² = 4¦BH¦¦² - 4¦CB¦BC¦¦² = (SP + PH)² -
+
+L x (SP + PH) = SP² + 2¦SP¦¦ x PH + PH² - L x (SP + PH).
+<br><br>
+
+Add to each side
+2(KP x PH) - SP² - PH² + L x (SP + PH), and L x (SP + PH) will become
+= 2(SP x PH) + 2(KP x PH), or SP + PH will be to PH as 2¦SP¦¦ + 2¦PK¦KP¦¦ to L.
+<br><br>
+
+Hence PH is given in length as well as in position. Specifically, if the ¦PR¦velocity¦¦
+of the body at P is such that the latus rectum L is less than 2¦SP¦¦ + 2¦PK¦KP¦¦, PH
+will lie on the same side of the tangent PR as the line PS; and thus the ¦orbit¦figure¦¦
 will be an ellipse and will be given from the given foci S and H and the
 given principal axis SP + PH. But if the velocity of the body is so great that
-the latus rectum L is equal to 2SP + 2KP, the length PH will be infinite; and
+the latus rectum L is equal to 2¦SP¦¦ + 2¦PK¦KP¦¦, the length PH will be infinite; and
 accordingly the figure will be a parabola having its axis SH parallel to the
-line PK, and hence will be given. But if the body goes forth from its place
-P with a still greater velocity, the length PH will have to be taken on the
-other side of the tangent; and thus, since the tangent goes between the foci,
+line PK, and hence will be given.
+<br><br>
+
+But if the body goes forth from its place
+P with a still greater ¦PR¦velocity¦¦, the length PH will have to be taken on the
+other side of the tangent; and thus, since the tangent goes between the ¦S H¦foci¦¦,
 the figure will be a hyperbola having its principal axis equal to the difference
 of the lines SP and PH, and hence will be given. For if the body in these
 cases revolves in a conic thus found, it has been demonstrated in props. 11,
 12, and 13 that the centripetal force will be inversely as the square of the
-distance of the body from the center of forces S; and thus the line PQ is
+distance of the body from the center of forces S; and thus the line ¦orbit¦PQ¦¦ is
 correctly determined, which a body will describe under the action of such a
 force, when it goes forth from a given place P with a given velocity along a
 straight line PR given in position. Q.E.F.
+
 <br><br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 470.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 116.
 
 
 
@@ -117,14 +165,14 @@ Page 470.
 Hence in every conic, given the principal vertex D, the
 latus rectum L, and a focus S, the other focus H is given when DH is taken
 to DS as the latus rectum is to the difference between the latus rectum and
-4DS. For the proportion SP + PH to PH as 2SP + 2KP to L in the case of
-this corollary becomes DS + DH to DH as 4DS to L and, by separation [or
-dividendo], becomes DS to DH as 4DS — L to L.
+4¦DS¦¦. For the proportion SP + PH to PH as 2¦SP¦¦ + 2¦PK¦KP¦¦ to L in the case of
+this corollary becomes DS + DH to DH as 4¦DS¦¦ to L and, by separation [or
+dividendo], becomes DS to DH as 4¦DS¦¦ — L to L.
 <br><br><br>
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 470.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 117.
 
 
 
@@ -141,16 +189,16 @@ Page 470.
 *..*
 
 Hence, given the velocity of a body in the principal vertex
-D, the orbit will be found expeditiously, namely, by taking its latus rectum to
-twice the distance DS as the square of the ratio of this given velocity to the
+D, the orbit will be found expeditiously, namely, by taking its ¦L¦latus rectum¦¦ to
+twice the distance DS as the square of the ratio of this given ¦PR¦velocity¦¦ to the
 velocity of a body revolving in a circle at a distance DS (by prop. 16, corol.
-3), and then taking DH to DS as the latus rectum to the difference between
-the latus rectum and 4DS.
+3), and then taking DH to DS as the ¦L¦latus rectum¦¦ to the difference between
+the ¦L¦latus rectum¦¦ and 4¦DS¦¦.
 <br><br><br>
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 472.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 117.
 
 
 
@@ -175,8 +223,8 @@ impulse along a straight line given in position.
 <br><br><br>
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 472.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
 
 
 
@@ -204,12 +252,16 @@ Page 472.
 
 And if the body is continually perturbed by some force
 impressed from outside, its trajectory can be determined very nearly, by noting the changes which the force introduces at certain points and estimating
-from the order of the sequence the continual changes at intermediate places.3
+from the order of the sequence the continual changes at intermediate placesᵃ.
+
 <br><br><br>
 
+ᵃ. The sense of corol. 4 is that Newton can determine "the changes which the [impressed] force
+will make at certain points" and, by interpolation, estimate the changes continually made at intermediary points.
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 472.
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
 
 
 
@@ -233,22 +285,25 @@ Page 472.
 
 If a body P, under the action of a centripetal force tending toward any given
 point R, moves in the perimeter of any
+
+<img src="contents/b1sec3prop17/img/diagram-scholium.png" style="width:50%; float:right;">
+
 given conic whatever, whose center is
 C, and the law of the centripetal force
 is required, let CG be drawn parallel to
 the radius RP and meeting the tangent
 PG of the orbit at G; then the force
 (by prop. 10, corol. 1 and schol.; and
-CG3
-prop. 7, corol. 3) will be as -.
-a. The sense of corol. 4 is that Newton can determine "the changes which the [impressed] force
-will make at certain points" and, by interpolation, estimate the changes continually made at intermediary
-points.
+
+prop. 7, corol. 3) will be as
+CG³/RP².
+<br>
+
 <br><br><br>
 
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 472.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
 
 
 
@@ -268,6 +323,58 @@ Page 472.
   "subessayCaption" : "model for non-similar curves"
 }
 *..*
+
+In this proposition, the Newton's proof and calculation scenario is as follows.
+<br><br>
+
+1. Given orbit for given body is conic. Some 𝗿₁,𝘃₁,L₁ are known.
+(Hence already proven propositions do imply: the force law is 1/r².)
+<br><br>
+
+2. Hypothesis: reserched orbit for the same given body with the same force and different
+initial 𝗿₂,𝘃₂, will be conic too.
+<br><br>
+Hence already proven propositions do imply:
+<br><br>
+
+3. (r₁v₁𝛺₁)²/L₁ = (r₂v₂𝛺₂)²/L₂
+<br><br>
+
+So, the only unproven hypothesis is 2). It needs proof via integration (or curve quadrature in Books language.) This proposistion does not prove 2).
+<br><br>
+
+One can add this additional hypothesis:
+<br>
+4) for two different bodies and the same force field, the proportion "3)" still holds.
+<br><br>
+This enables knowing an orbit for comet to calculate the orbit for the Earth, for example.
+<br><br>
+
+
+In modern form, if the force law constant 𝛾  is fixed:
+<br><br>
+
+f = 𝛾 /r²
+<br><br>
+
+then it is 𝛾  = (v r 𝛺)^²2/L, and for the other orbit known v,r,𝛺, one can always find L and an entire orbit.
+<br><br>
+
+In the Book, instead of r,𝛺, the value PY=r𝛺  is used which use does not change the calculation scenario.
+<br><br>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
 
 
 

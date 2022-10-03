@@ -62,7 +62,6 @@
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
         var vectorTipIx = haz( line, 'vectorTipIx' );
-
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
 
         if( haz( pivots[0], 'unscalable' ) ) {
@@ -136,7 +135,8 @@
             var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
             var lposXSugar = 0.5;
-            var lposYSugar = -0.3; //1.5;
+            var lposYSugar = haz( lineAttr, 'lposYSugar' );
+            var lposYSugar = lposYSugar || lposYSugar === 0 ? lposYSugar : -0.3; //1.5;
             var pvs = pivotsMedPos,
             lposX = ( pvs[0][0] + pvs[1][0] ) / 2;
             lposY = ( pvs[0][1] + pvs[1][1] ) / 2;
@@ -187,6 +187,11 @@
                 )
             );
             line.pnameLabelsvg.textContent = caption;
+
+
+            //todo todo bug, must be out of this if-block
+            //  the bug is that only lines with caption are being dressified,
+            //  the others are never,
             line.pointIsAlreadyDressed = true;
         }
         //=================================================
@@ -294,6 +299,8 @@
         if( has( lineAttr, 'captionShiftNorm' ) ) {
             lineAttrPassed.captionShiftNorm = lineAttr.captionShiftNorm;
         }
+        lineAttrPassed.lposYSugar = haz( lineAttr, 'lposYSugar' );
+
         return pointies2line(
             str,
             [ rg[ lpoints[0] ], rg[ lpoints[1] ] ],

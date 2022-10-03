@@ -45,8 +45,8 @@
         var originY_onPicture = 329; //for model's axis y
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        var svgScale = 1.5 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = svgScale / sconf.standardSvgSize
 
 
         //--------------------------------------

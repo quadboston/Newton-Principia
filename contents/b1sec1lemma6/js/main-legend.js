@@ -130,7 +130,10 @@
     //--------------------------
     // //\\ corollary's script
     //--------------------------
-    legendScript7.corollary = legendScript7.proof.concat([
+    legendScript7.corollary = legendScript7.proof.concat(
+        fconf.sappId === "b1sec1lemma8" ?
+        [] :
+        [
             //third+1 table row
                 //first cell
                 'BF,BF&nbsp;=&nbsp;,rg.BF.abs' +

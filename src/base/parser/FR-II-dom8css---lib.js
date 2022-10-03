@@ -29,6 +29,13 @@
 
     //todo: these regexes do proliferate in two files
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+
+    //for delaeyd batch tp-clause:
+    //1. these chars "[ \ ^ $ . | ? * + ( )"  must not exist in replaceeKey
+    //   ¦controls¦replaceeKey¦¦¦
+    //2. replaceeKey must not be naked in controls for ordinary tp-clause and in
+    //   , until this fixed, controls for batch.
+
     var TOP_ANCH_REG = 
         '(¦[^¦]+|)¦' +  //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
@@ -86,15 +93,26 @@
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
-                if(  parsedLink[4] ) {
+                if(  parsedLink[3] ) {
+
+                    ///this array collects information for spawning plain-words (which are
+                    ///original match keys), collected info will be used later for first-step for
+                    ///replacing plain-words with match-clauses,
+                    ///in the later second-step replacement, match-clauses will be normally
+                    ///parsed to html-anchors as usual "tp-topics",
                     collectedDelayedLinks[ parsedLink[2] ] = {
-                        //total match = string aka  ¦anchor config¦anchor caption¦¦
+
+                        //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
-                        match : parsedLink[0].substring( 0, parsedLink[0].length-2 ),
+                        match : parsedLink[0].substring( 0,
+                                //"length-1" makes sure that last dividor "¦" is included
+                                parsedLink[0].length-1
+                        ),
 
                         anchorConfig : parsedLink[1],
-                        replaceeKey : parsedLink[2],  //anchor caption
+                        replaceeKey : parsedLink[2],  //anchor caption = first match key
                     };
+                    //todo: now do remove this tp-clause from rawActFrValue
                 }
 
                 //=========================================
@@ -281,8 +299,9 @@
 
             //----------------------------------------------------
             // //\\ processes tp-batch-controllers
-            //      by replacing marks with tp-script-clauses
-            //      
+            //      by replacing marks with tp-script-clauses:
+            //          if there are marks in book-text, then replaces all of them,
+            //      implemented, since proposition 14,
             //----------------------------------------------------
             if( has( sconf, 'insertDelayedBatch' ) ) {
                 fragBody_raw = insertDelayedBatch( fragBody_raw );
@@ -443,21 +462,25 @@
         if( Object.keys( collectedDelayedLinks ).length ) {
             var regEx = '';
             eachprop( collectedDelayedLinks, (lnk,keyName) => {
-                //todo: '[ \ ^ $ . | ? * + ( )' must be escaped in replaceeKey:
+                //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not exist in replaceeKey:
+                //see https://javascript.info/regexp-escaping
                 regEx += (regEx ? '|' : '') + lnk.replaceeKey;
             });
-            regEx = new RegExp ('(\\s|\\n|\\r)+(' + regEx + ')(\\s|\\n|\\r)+', 'ug' );
+            //matchinig keyword in text must be separated by spacer,brackets,
+            //some punctuation chars,
+            //in reg.ex., don't do (...)+ for dividors, apparently
+            //JS-replce machinery does not remember more than one dividor:
+            regEx = new RegExp ('(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)(' + regEx +
+                               ')(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)', 'ug' );
             fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
-                //ccc( collectedDelayedLinks[ arguments[2] ].match );
-                //match,          //total match:      ¦anchor config¦anchor caption¦¦
-                //\s
-                //key
-                //\s
+                //ccc( 'future match clause='+collectedDelayedLinks[ arguments[2] ].match,
+                //     'current replacee key=' + arguments[2]
+                //);
                 return arguments[1] + //leading spacer
+                       //this "match" will be a match-key for future replacement with anchor
                        collectedDelayedLinks[ arguments[2] ].match + //replacer
                        arguments[3];  //trailing spacer
             });
-            //ccc( ssD.collectedDelayedLinks, fragBody_raw );
         }
         return fragBody_raw;
     }

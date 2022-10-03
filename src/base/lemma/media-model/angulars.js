@@ -44,9 +44,13 @@
     ///paints angle from "start" to "end" by placing result in the range (-PI,+PI) counting
     ///from start ray
     function drawAngleFrom_rayAB2rayCD_at_medpos({
+
+        //directions of these rays are important
         AB,         //starting angle ray = [ pivotA, pivotB ]
         CD,         //ending angle ray = [ pivotC, pivotD ]
-        rgSample,   // provides angle's vertex: x0 : rgSample.medpos[0], y0 : rgSample.medpos[1],
+
+        rgSample,   //provides angle's vertex === rgSample.medpos,
+                    //see the usage below at "var pname",
         ANGLE_SIZE,
         caption,
         fill,
@@ -70,7 +74,6 @@
             angleDelta -= Math.PI*2;
         }
         angleEnd = angleStart + angleDelta;
-
         var pname           = 'rays-angle-' + rgSample.pname;
         var rgAngle         = toreg( pname )();
         rgAngle.pname       = pname;
@@ -108,9 +111,9 @@
         tpClassName,    //optional aka: angle-beta
         stroke,         //color string, optional
         fill,           //color string, optional
-        rgX,
         //rgX.medpos,   //vertex of an angle: aka rg.B.medpos
         //rgX.svgel,    //optional, aka: rg.beta.angleSvg
+        rgX,
         caption,
         fontSize,
         drawExternalSector,

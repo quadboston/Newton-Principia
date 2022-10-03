@@ -17,15 +17,7 @@
 In this Appendix, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
 <br><br>
 
-
-⦁  We present mathematical facts as they are.
-<br><br>
-
-⦁  We don't assume were or were not these facts known to Newton or Euclid. It is irrelevant to
-these Preliminaies.
-<br><br>
-
-⦁  We do not do any claims these facts represent Newton's or Euclid's writings. We do not insist what Newton or Euclid said or were intended to say. We reserved the place to do such suggestions or interpretations in Addendums under original Lemma or Proposition.
+⦁  We do not do any claims these facts are known to Newton or Euclid. We do not insist on what Newton or Euclid intended to say. This may be discussed in Addendums under original Lemma or Proposition.
 <br><br>
 
 ⦁  References to original text lemma are in parenthesises.
@@ -44,45 +36,56 @@ refers to
 <b><i>Used axiomatic frameworks</i></b>
 <br>
 We use two frameworks, "Euclid" and "CalculusXX".
-<br><br>
-
 <a name="Eframework"></a>
-<b>"Euclid"</b> framework derives Geometrical and Ratio
+<br><br><br><br>
+
+
+<div style="background-color:#eeeeee;"><b>"Euclid"</b> framework<br></div>
+
+derives Geometrical and Ratio
 properties from "Euclid's Elements".
 
 <a target="_blank" href="?conf=sappId=addd-prel">
-Real numbers apparently logically follow from E.V.5</a>
-and imply
+Although real numbers are apparently logically follow from E.V.5</a>
+and therefore are contained in Euclid framework, this framework pretends to ignore them
+restricting itself with 
 <a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
-"Legacy proportions and ratios"</a>.
+"Legacy proportions and ratios"</a>,
+which are interpreted as properties of geometrical objects or assumed as axioms for other objects like time or force.
 <br><br>
 
-In Newton times, complete properties of real number apparently unknown and
-<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
-"Legacy proportions and ratios"</a> have to be proven for geometrical objects or assumed
-as axioms for other objects like time or force.
-<br><br>
-
-Development of Calculus and existence of ratio limits still relies on geometrical intuition.
-<br><br><br>
-
-
-
+Fundamental logical sequence: Geometry, ratio axioms, rational numbers --&gt; Geometry-based Calculus for magnitudes and possibly fluxions-based Calculus[1] for "numbers" --&gt; Physics
 
 <a name="Cframework"></a>
-<b>"CalculusXX"</b> framework is Calculus which is built in XIX-XX centuries.
+<br><br><br><br>
+
+
+
+
+<div style="background-color:#eeeeee;"><b>"CalculusXX"</b> framework<br></div>
+
+is Calculus which is built in XIX-XX centuries.
 <br><br>
 
 Fundamental logical sequence: Axioms of Set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; the rest, Calculus, Analytic Geometry, ... --&gt; Physics
 <br><br>
 
-The difference from "Euclid" framwork is that "Fundamental logical sequence" is more effective, Geometry is based on Number theory, and
+This sequence is more effective, than Geometry-based in Euclid framework.
 
 <a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
 Legacy proportions</a>
-
-are ignored in favour of concise Real number operations.
+are ignored in favor of concise Real number operations.
 <br><br>
+<br><br>
+
+
+
+[1]<br>
+The Method of Fluxions and Infinite Series: With Its Application to the Geometry of Curve-lines. By Sir Isaac Newton, Translated from the Author's Latin Original Not Yet Made Publick. To which is Subjoin'd, a Perpetual Comment Upon the Whole Work, By John Colson, Sir Isaac Newton. Henry Woodfall; and sold by John Nourse, 1736
+<br>
+<a href="https://en.wikipedia.org/wiki/Method_of_Fluxions">In Wikipedia</a><br>
+<a href="https://books.google.com/books?id=WyQOAAAAQAAJ">In Google books</a><br>
+
 
 
 

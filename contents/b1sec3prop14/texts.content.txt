@@ -32,7 +32,7 @@
 If several bodies revolve about a ¦S¦common center¦¦ and the centripetal force is in-
 versely as the square of ¦SP¦the distance of places¦¦ from ¦S¦the center¦¦, I say that the
 ¦L,LL¦principal latera recta¦¦ of ¦orbit¦the orbits¦¦ are as the squares of
-the areas which ¦P¦the bodies¦¦
+the ¦instanttriangle¦areas¦¦ which ¦P¦the bodies¦¦
 describe in the same time by ¦SP¦radii¦¦ drawn to the ¦S¦center¦¦.
 
 
@@ -48,15 +48,15 @@ Page 113.
 }
 *..*
 
-¦body¦P¦¦¦¦
-¦QT¦¦¦¦
-¦QT¦QT²¦¦¦¦
-¦SP¦¦¦¦
-¦SP¦SP²¦¦¦¦
-¦QR¦¦¦¦
-¦P¦¦¦¦
-¦Q¦¦¦¦
-¦L,LL¦latus rectum L¦¦¦¦
+¦body¦P¦¦¦
+¦QT¦¦¦
+¦QT¦QT²¦¦¦
+¦SP¦¦¦
+¦SP¦SP²¦¦¦
+¦QR¦¦¦
+¦P¦¦¦
+¦Q¦¦¦
+¦L,LL¦latus rectum L¦¦¦
 
 For
 
@@ -93,18 +93,18 @@ From proof addendum (S):
 </a>
 
     <div style="text-align:center;">
-        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4𝜎/𝜂 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
     </div>
 Threfore, the ¦orbitarea¦full area¦¦
     <div style="text-align:center;">
-        ¦orbitarea¦A¦¦ = ¦instanttriangle¦S˙¦¦T = ( 𝜂/𝜎/4 ¦SL¦ρ<sub>⟂</sub>¦¦ )<sup>½</sup>  T.
+        ¦orbitarea¦A¦¦ = ¦instanttriangle¦S˙¦¦T = ( 𝛾/𝜎/4 ¦SL¦ρ<sub>⟂</sub>¦¦ )<sup>½</sup>  T.
     </div>
 
-Returning to the Book, for fixed interval time dt,
+Returning from <><>CXX2E, for fixed interval time Δt,
 
     <div style="text-align:center;">
-        ¦instanttriangle¦S˙¦¦ =<sup>u</sup>¦QT¦¦² ¦SP¦¦² / dt, <br>
-        ¦orbitarea¦A¦¦ =<sup>u</sup> ¦QT¦¦² ¦SP¦¦²/dt T ~ ¦QT¦¦² ¦SP¦¦² T.
+        ¦instanttriangle¦S˙¦¦ =<sup>u</sup>¦QT¦¦ ¦SP¦¦ / Δt, <br>
+        ¦orbitarea¦A¦¦ =<sup>u</sup> ¦QT¦¦ ¦SP¦¦ / Δt T ~ ¦QT¦¦ ¦SP¦¦ T.
     </div>
 
 <div book-reference-id="kvk"></div>
@@ -160,18 +160,18 @@ Page 113.
     </div>
 Given:
     <div style="text-align:center;">
-        f = 𝜂/¦SP¦r¦¦², 𝜂 = const, assuming 𝜂 is the same for all orbits.
+        f = 𝛾/¦SP¦r¦¦², 𝛾 = const, assuming 𝛾 is the same for all orbits.
     </div>
 Therefore:
     <div style="text-align:center;">
-        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝜂 M² = 4𝜎/𝜂 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝛾 M² = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
     </div>
-Returning to the Book, for fixed interval time dt,
+Returning from <><>CXX2E, for fixed time interval Δt,
     <div style="text-align:center;">
-        ¦QT¦¦ =<sup>u</sup> QP * sin(ω) =<sup>u</sup> PR * sin(ω) =<sup>u</sup> v * dt * sin(ω) <br>
+        ¦QT¦¦ =<sup>u</sup> QP * sin(ω) =<sup>u</sup> PR * sin(ω) =<sup>u</sup> v * Δt * sin(ω) <br>
         ¦SP¦¦ = ¦SP¦r¦¦ <br>
-        ¦QT¦¦² ¦SP¦¦² =<sup>u</sup> ¦instanttriangle¦( vrsin(ω)dt )¦¦ =
-                       ¦instanttriangle¦(S˙dt)¦¦  <br>
+        ¦QT¦¦² ¦SP¦¦² =<sup>u</sup> ¦instanttriangle¦( vrsin(ω)Δt )¦¦² =
+                       ¦instanttriangle¦(S˙Δt)¦¦²  <br>
         ¦QT¦¦² ¦SP¦¦² ~ ¦L,LL¦2ρ<sub>⟂</sub>¦¦. <br>
     </div>
 <br>

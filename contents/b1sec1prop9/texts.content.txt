@@ -114,7 +114,7 @@ Page 458.
 *..*
 
 
-<b><><>CXX2E:</b><br><br>
+<b>From <><>CXX2E:</b><br><br>
 
 <a target="_blank" href="?conf=sappId=addd-kepler-task#logarithmic-spiral-motion">Logarithmic spiral motion</a>
 gives
