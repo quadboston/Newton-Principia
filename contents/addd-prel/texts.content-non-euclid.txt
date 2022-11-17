@@ -14,7 +14,7 @@ Let M is a set of magnitudes. Mᵖ = MxMx...xM p times.
 For m', m" in Mᵖ, sum "+" and order "‹" are defined positionwise as
 <br><br>
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left"">
+                                            <table style="display:inline-block; text-align:left">
                                             <tr><td>
     (m'₁,m'₂,...,m'ₚ) + (m"₁,m"₂,...,m"ₚ) <b>=</b>
                                             </td>
@@ -28,7 +28,7 @@ For m', m" in Mᵖ, sum "+" and order "‹" are defined positionwise as
 
 <br><br>
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left"">
+                                            <table style="display:inline-block; text-align:left">
                                             <tr><td>
     (m'₁,m'₂,...,m'ₚ) ‹ (m"₁,m"₂,...,m"ₚ) iff
                                             </td>

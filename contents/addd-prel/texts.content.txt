@@ -12,7 +12,7 @@
     <div style="display:inline-block; text-align:left;">
         Возникают недробные числа   <br>
         Вновь из дробных себя подробя.   <br>
-        Как паук мыслью созданной нитями   <br>
+        Как паук мыслью сшитыми нитями   <br>
         Появляется сам из себя. <br>
         ... around Mundaka Upanishad 1.1.7...
             <!-- https://archive.org/stream/thirteenprincipa028442mbp#page/n387/mode/2up -->
@@ -39,7 +39,7 @@ and
 Let M be a positive semigroup (p.s.) which is commutative, operation-wise totally ordered, positive, non-empty, semigroup. In other words:
 <br><br>
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left"">
+                                            <table style="display:inline-block; text-align:left">
                                             <tr><td>
     there exist operation "+" on M
     for which
@@ -114,7 +114,7 @@ set of non-zero areas of squares in two-dimensional plane.
 <br><br>
 
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left"">
+                                            <table style="display:inline-block; text-align:left">
                                             <tr><td>
         m' + m'' &gt; m'
         <br>
@@ -167,7 +167,7 @@ Operation "+" repeated n-times will be defined as <br>
 
 Immediate consequences of this definition are:
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left""><tr><td>
+                                            <table style="display:inline-block; text-align:left"><tr><td>
     1m = m
                                             </td><td>
                                             <br></td></tr><tr><td> 
@@ -615,7 +615,7 @@ In case difference m' - m" exist for some m', m", then it is preserved also beca
     <a name="ctxt-convertendo"></a>
 
                                             <div style="text-align:center;">
-                                            <table style="display:inline-block; text-align:left""><tr><td>
+                                            <table style="display:inline-block; text-align:left"><tr><td>
         (<i>❚</i>) implies:
 
                                             </td></tr><tr><td> 

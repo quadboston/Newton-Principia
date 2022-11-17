@@ -33,10 +33,17 @@
         e,
 
         //second batch of variables
+        // if om is defined, then special case, e < 0.00000001,
+        // manually makes angle fi = 0,
         om, // sinOmega,
         signCosOmega,
 
-        //additions for Kepler's law
+        //sigma,    //hyperbola branch for future version
+
+        //additions for Kepler's law,
+        //only to redefine eash other,
+        //if either of them is profided, then the other
+        //is defined from provided,
         Kepler_g, //optional, f = Kepler_g / r²
         Kepler_v, //optional, Kepler_g = (om*r*Kepler_v)²/latus
     }) {
@@ -56,12 +63,20 @@
             var eo = eta/om;
             var e2 = eo*eo-2*eta+1;
             e = Math.sqrt(e2);
-            var Cfi = (1 - eta)/e;
-            fi = Math.acos( Cfi );
-            let finalSignum = typeof signCosOmega === 'undefined' ? -1 : signCosOmega;
-            finalSignum = Math.sign( om ) * finalSignum;
-            let fiCritical = e <= 1 ? 0 : Math.acos( 1/e );
-            fi = -( fi < fiCritical ? -fi : fi ) * finalSignum;
+            if( e < 0.00000001 ) {
+                fi = 0; //fi is undefined and we make it 0
+            } else {
+                var Cfi =
+                Math.min(       //because sometimes it is > 1 due floating ...
+                1, (1 - eta)/e );
+                Cfi = Math.max( -1, Cfi );  //for floating ...
+                fi = Math.acos( Cfi );
+                let finalSignum = typeof signCosOmega === 'undefined' ? -1 : signCosOmega;
+                finalSignum = Math.sign( om * finalSignum );
+                let eInv = 1/e;
+                let fiCritical = eInv >= 1 ? 0 : Math.acos( eInv );
+                fi = -( fi < fiCritical ? -fi : fi ) * finalSignum;
+            }
         }
 
         //addition for Kepler's law

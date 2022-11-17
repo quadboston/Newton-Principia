@@ -25,7 +25,7 @@
         {
             var q = qStart + forceArrayIx * ( qEnd - qStart ) / FORCE_ARRAY_LEN;
             if( 1 !== op.conicSignum ) {
-                q = stdMod.protectedQ( q );
+                q = op.protectedQ( q );
             }
             var {
                 rr,

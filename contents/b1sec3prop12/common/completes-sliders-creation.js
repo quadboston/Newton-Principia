@@ -1,15 +1,18 @@
 ( function() {
     var {
-        sn, mat, mcurve, nspaste,
+        sn, has, mat, mcurve, nspaste,
         fconf, sData,
         amode, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
         {
             completesSlidersCreation,
+            //setsOmegaHandle,
         },
     });
     var conics = sn( 'conics', mat );
+    var op = sn( 'orbitParameters', sconf );
+    var sop = sn( 'sampleOrbitParameters', sconf );
 
     sconf.REPELLING_DISTANCE = 0.01;
     return;
@@ -225,7 +228,7 @@
             //      if( fconf.sappId === 'b1sec3prop16' ) {
             //-----------------------------------------------------
             //latus and omega do change
-            var { e, fi, om, lat, r, eta, Kepler_v } = conics.innerPars2innerPars({
+            var { e, fi, lat, r, eta, Kepler_v } = conics.innerPars2innerPars({
                 r : rg.P.abs * (
                     op.conicSignum === -1 && Math.abs( rg.P.q ) < op.SINGULARITY_ANGLE ?
                         -1 : 1
@@ -234,8 +237,9 @@
                 om : newSinOmega,
                 signCosOmega,
                 Kepler_g : op.Kepler_g,
-            })
+            });
             op.Kepler_v         = Kepler_v;
+
             rg.P.q              = fi;
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
@@ -304,7 +308,6 @@
             var dS = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             if( dS < 0.00000001 ) return;
             var incr = dS / sData.dShift;
-
             if( theorion === 'claim' || theorion === 'proof' ||
                 fconf.sappId === 'b1sec3prop15'
             ){
@@ -353,6 +356,151 @@
         // \\// point L slider
         //=========================================================================
 
+
+
+        //=========================================================================
+        // //\\ gamma slider
+        //      for omega
+        //=========================================================================
+        rg.f.processOwnDownEvent = function() {
+
+            //--------------------------------------------------------
+            // //\\ stashes sample
+            //--------------------------------------------------------
+            sData.Lpos0_g = rg.f.pos[0];
+            sData.Lpos1_g = rg.f.pos[1];
+            {
+                let dShift    = [ rg.f.pos[0] - rg.p.pos[0],
+                               rg.f.pos[1] - rg.p.pos[1] ];
+                sData.dShift_g = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+                let { sinOmega, cosOmega } = mcurve.planeCurveDerivatives({
+                    fun : rg[ 'approximated-curve-sample' ].t2xy,
+                    q : rg.p.q,
+                    rrc : rg.O.pos,
+                });
+                sData.stashedOmega_g = sinOmega;
+                sData.stashedCosOmega_g = cosOmega;
+            }
+            sData.stashedKepler_g = op.Kepler_g;
+            sData.stashedKepler_v = sop.Kepler_v;
+            sData.stashedLatus_g = sop.latus;
+            //--------------------------------------------------------
+            // \\// stashes sample
+            //--------------------------------------------------------
+
+            //--------------------------------------------------------
+            // //\\ stashes solved
+            //--------------------------------------------------------
+            let { sinOmega, cosOmega } = mcurve.planeCurveDerivatives({
+                fun : rg[ 'approximated-curve' ].t2xy,
+                q : rg.P.q,
+                rrc : rg.O.pos,
+            });
+            sData.stashedOmega = sinOmega;
+            sData.stashedCosOmega = cosOmega;
+            sData.stashedLatus = op.latus;
+            //--------------------------------------------------------
+            // \\// stashes solved
+            //--------------------------------------------------------
+        };
+
+        rg.f.acceptPos = ( newPos, dragMove ) => {
+            var { theorion, aspect, submodel, subessay } = amode;
+            var newPos0 = dragMove[0] *
+                          0.5 //decreases slider sensetivity
+                         + sData.Lpos0_g;
+            var newPos1 = -dragMove[1] *
+                          0.5 //decreases slider sensetivity
+                         + sData.Lpos1_g;
+            var incr;
+            {
+                let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
+                var dS = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+                if( dS < 0.00000001 ) return;
+                incr = dS / sData.dShift_g;
+            }
+
+            //-------------------------------------------
+            // //\\ sample
+            //-------------------------------------------
+            var Kepler_g = sData.stashedKepler_g * incr;
+
+            if( fconf.sappId === 'b1sec3prop17' && amode.subessay === 'corollary2' ){
+                var newLatus = sData.stashedLatus_g;
+                sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
+            } else {
+                var newLatus = sData.stashedLatus_g / incr;
+            }
+
+            var { e, fi } = conics.innerPars2innerPars({
+                r : rg.p.abs,
+                lat : newLatus,
+                om  : sData.stashedOmega_g,
+                signCosOmega : sData.stashedCosOmega_g,
+                Kepler_g,
+            });
+            sop.Kepler_g = Kepler_g;
+            op.Kepler_g = Kepler_g;
+            sop.latus = newLatus;
+
+            if( !( fconf.sappId === 'b1sec3prop17' && amode.subessay === 'corollary2' ) ){
+                rg.p.q = fi;
+                //rotates main axis in respect to change q,
+                //bs op.PparQ_initial === initial axis-fi
+                //in respect to SP
+                sop.mainAxisAngle = sop.r2axisX_angle - fi;
+            }
+            stdMod.establishesEccentricity( e, !'doAdjustLatus', sop );
+            //-------------------------------------------
+            // \\// sample
+            //-------------------------------------------
+
+            //--------------------------------
+            // //\\ reestablish solved-orbit
+            //--------------------------------
+            let solvedLatus = sData.stashedLatus / incr;
+            let p17c12 = fconf.sappId === 'b1sec3prop17' &&
+                ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' );
+            var { e, fi } = conics.innerPars2innerPars({
+                r : ( p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs ) *
+                    1,  //We do enforce here only positive branch, no matter is this
+                        //ellipse or hyperbola.
+                lat : solvedLatus,
+                om  : sData.stashedOmega,
+                signCosOmega : sData.stashedCosOmega,  // -1 for for cor.
+            })
+            if( p17c12 ){
+                if( e > 1 ) {
+                    op.mainAxisAngle = -Math.PI;
+                }
+            }
+
+            rg.P.q              = fi;
+            //rotates main axis in respect to change q,
+            //bs op.PparQ_initial === initial axis-fi
+            //in respect to SP
+            op.mainAxisAngle    = op.PparQ_initial - fi;
+            op.latus            = solvedLatus;
+            stdMod.establishesEccentricity( e );
+            // //\\ decorates Fi handle
+            var posAbs = mat.unitVector( rg.Fi.pos ).abs;            
+            //sets handle
+            rg.Fi.pos[0] = posAbs*Math.cos( op.mainAxisAngle );
+            rg.Fi.pos[1] = posAbs*Math.sin( op.mainAxisAngle );
+            // \\// decorates Fi handle
+            //--------------------------------
+            // \\// reestablish solved-orbit
+            //--------------------------------------------------------------------
+            // //\\ lets validators to do the job
+            //--------------------------------------------------------------------
+            stdMod.model8media_upcreate();
+            //--------------------------------------------------------------------
+            // \\// lets validators to do the job
+            //--------------------------------------------------------------------
+        }
+        //=========================================================================
+        // \\// gamma slider
+        //=========================================================================
 
 
 
@@ -407,7 +555,6 @@
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
             op.mainAxisAngle    = op.PparQ_initial - fi;
-
             op.latus            = latus;
             op.Kepler_v         = Kepler_v;
             stdMod.establishesEccentricity( e );
@@ -435,6 +582,82 @@
         //=========================================================================
         // \\// point R slider
         //=========================================================================
+
+
+
+        //=========================================================================
+        // //\\ point r slider
+        //      for Kepler_v
+        //=========================================================================
+        rg.vSample.processOwnDownEvent = function() {
+            ////apparently, there is no arg at this version,
+            ////            and useless "function.this" === rg.Q
+            sData.pos_r = [];
+            nspaste( sData.pos_r, rg.vSample.pos );
+
+            var dShift = mat.sm( 1, rg.vSample.pos, -1, rg.p.pos );
+            sData.dShift_r = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+
+            var { sinOmega, cosOmega } = mcurve.planeCurveDerivatives({
+                fun : rg[ 'approximated-curve-sample' ].t2xy,
+                q   : rg.p.q,
+                rrc : rg.O.pos,
+            });
+            sData.stashedOmega_r        = sinOmega;
+            sData.stashedCosOmega_r     = cosOmega;
+            sData.Kepler_v_stashed_r    = sop.Kepler_v;
+            sData.stashedR_r            = rg.p.abs;
+            sData.stashedLatus4slider_r = sop.latus;
+        };
+
+        rg.vSample.acceptPos = ( newPos, dragMove ) => {
+            var { theorion, aspect, submodel, subessay } = amode;
+            let np       = [];
+            np[0]        = dragMove[0] + sData.pos_r[0];
+            np[1]        = -dragMove[1] + sData.pos_r[1];
+            var dShift   = mat.sm( 1, np, -1, rg.p.pos );
+            var dS       = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            var increase = dS / sData.dShift_r;
+            var Kepler_v = sData.Kepler_v_stashed_r * increase;
+            //in chosen scenario, speed changes force's constant gamma, no latus change
+            var latus    = sData.stashedLatus4slider_r * increase * increase;
+            var { e, fi, om, lat, r, eta, } = conics.innerPars2innerPars({
+
+                r : sop.r,
+                //apparently, we can restrict ourself with positive r ouside of
+                //condition, i.e. in positive conic branch:
+                //  sop.conicSignum === -1 && Math.abs( rg.p.q ) < sop.SINGULARITY_ANGLE ?
+                //  -1 : 1
+
+                om : sData.stashedOmega_r,
+                signCosOmega : sData.stashedCosOmega_r,
+                lat : latus, 
+            })
+            rg.p.q = fi;
+
+            //rotates main axis in respect to change q,
+            //bs op.PparQ_initial === initial axis-fi
+            //in respect to SP
+            //sop.mainAxisAngle    = sop.mainAxisAngle - fi;
+            sop.mainAxisAngle    = sop.r2axisX_angle - fi;
+            sop.latus            = latus;
+            sop.Kepler_v         = Kepler_v;
+            stdMod.establishesEccentricity( e, null, sop );
+            //start here
+
+            //--------------------------------------------------------------------
+            // //\\ lets validators to do the job
+            //--------------------------------------------------------------------
+            stdMod.model8media_upcreate();
+            return false;
+            //--------------------------------------------------------------------
+            // \\// lets validators to do the job
+            //--------------------------------------------------------------------
+        }
+        //=========================================================================
+        // \\// point r slider
+        //=========================================================================
+
 
 
 
@@ -487,13 +710,6 @@
                         "b1sec3prop14" === fconf.effId );
             newPos[0] = rg.Zeta.pos[0];         //corrects
             newPos[1] = rg.ZetaStart.pos[1];    //corrects
-            /*
-            ccc( 'move: '+ rg.P.pos[0].toFixed(3) +
-                 ' checked=' + pos[0].toFixed(3) +
-                 ' derived latus=' + op.latus.toFixed(3) +
-                 ' exc=' + op.eccentricity.toFixed(3)
-            );
-            */
             var { angleRV, rr } = mcurve.planeCurveDerivatives({
                 fun : rg[ 'approximated-curve' ].t2xy,
                 q : rg.P.q,

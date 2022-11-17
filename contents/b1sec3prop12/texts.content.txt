@@ -53,7 +53,7 @@ ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter DK in ¦E¦¦ 
 <br><br>
 
 b. This result is given in <i>Source</i>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
-[<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum#in-focus">
+[<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#in-focus">
 and in CalculusXX, (A)</a>
 ]
 <br><br>
@@ -181,7 +181,7 @@ Page 465.
                      𝑓<sub>𝛙</sub> = 𝑠M²α²β²ρ<sub>𝛙</sub>. <br>
     </div>
 
-and <a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum#ellipse">
+and <a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#ellipse">
 recalling conic's property (A),
 </a>
     <div style="text-align:center;">

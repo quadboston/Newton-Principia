@@ -70,78 +70,89 @@
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 
-        rg.VV.undisplay = true;
-        rg[ 'P,VV' ].undisplay = true;
-        rg[ 'FF,P' ].undisplay = true;
 
-        rg.VV.undisplay = true;
-        rg.u.undisplay = true;
+        [
+            'VV',
+            'P,VV',
+            'FF,P',
+            'u',
+            'Tv',
+            'FO',
+            'PQ',
+            'ZR',
+            'EO',
+            'Tu',
+            'u,VV',
+            'uP',
+            'OS',
 
-        rg.u.undisplay = true;
-        rg.Tv.undisplay = true;
-        rg.FO.undisplay = true;
-        rg.PQ.undisplay = true;
-        rg.ZR.undisplay = true;
-        rg.EO.undisplay = true;
+            // //\\ another solution
+            'PI',
+            'R',
+            // \\// another solution
 
-        rg.Tu.undisplay = true;
-        rg[ 'u,VV' ].undisplay = true;
-        rg.uP.undisplay = true;
-        rg.OS.undisplay = true;
+            'FF,O',
+            'S,FF',
+            'FF',
+        ].forEach( nam => {
+            rg[ nam ].undisplay = true;
+        });
 
-        // //\\ another solution
-        rg.PI.undisplay = true;
-        rg.R.undisplay = true;
-        // \\// another solution
 
-        rg[ 'FF,O' ].undisplay = true;
-        rg[ 'S,FF' ].undisplay = true;
-        rg[ 'FF' ].undisplay = true;
 
         //=====================================================
         // //\\ alternates for hideExtras
         //=====================================================
-        var hideExtras = true;
-        rg.G.undisplay = hideExtras;
-        rg.GP.undisplay = hideExtras;
-        rg.GO.undisplay = hideExtras;
-        rg.K.undisplay = hideExtras;
-        rg.D.undisplay = hideExtras;
-        rg.F.undisplay = hideExtras;
-        rg.PF.undisplay = hideExtras;
-        rg.B.undisplay = hideExtras;
-        rg.T.undisplay = hideExtras;
-        rg.Q.undisplay = hideExtras;
-        rg.Z.undisplay = hideExtras;
-        rg.Zminus.undisplay = hideExtras;
-        rg.ES.undisplay = hideExtras;
-        rg.EI.undisplay = hideExtras;
+        [
+            'G',
+            'GP',
+            'GO',
+            'K',
+            'D',
+            'F',
+            'PF',
+            'B',
+            'T',
+            'Q',
+            'Z',
+            'Zminus',
+            'ES',
+            'EI',
 
-        rg.v.undisplay = hideExtras;
-        rg.x.undisplay = hideExtras;
-        rg.Qx.undisplay = hideExtras;
-        rg.Pv.undisplay = hideExtras;
-        rg.Qv.undisplay = hideExtras;
-        rg.vG.undisplay = hideExtras;
-        rg.QT.undisplay = hideExtras;
-        rg.PT.undisplay = hideExtras;
-        rg.QR.undisplay = hideExtras;
-        rg.SQ.undisplay = hideExtras;
+            'v',
+            'x',
+            'Qx',
+            'Pv',
+            'Qv',
+            'vG',
+            'QT',
+            'PT',
+            'QR',
+            'SQ',
 
-        rg.DO.undisplay = hideExtras;
-        rg.BO.undisplay = hideExtras;
-        rg.PC.undisplay = hideExtras;
-        rg[ 'P,tCircleCenter' ].undisplay = hideExtras;
-        rg.tCircleCenter.undisplay = hideExtras;
-        rg.tangentCircle.undisplay = hideExtras;
+            'DO',
+            'BO',
+            'PC',
+            'P,tCircleCenter',
+            'tCircleCenter',
+            'tangentCircle',
 
-        rg.HI.undisplay = hideExtras;
-        rg.PH.undisplay = hideExtras;
-        rg.I.undisplay = hideExtras;
-        rg.H.undisplay = hideExtras;
+            'HI',
+            'PH',
+            'I',
+            'H',
+        ].forEach( nam => {
+            rg[ nam ].undisplay = true;
+        });
         //=====================================================
         // \\// alternates for hideExtras
         //=====================================================
+
+        {
+            let vis = subessay === 'interval' ? 'visible' : 'hidden';
+            stdMod.svgScene$.css( 'visibility', vis );
+            stdMod.graphFW.container$.css( 'visibility', vis );
+        }
 
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( !'doUndetected' );

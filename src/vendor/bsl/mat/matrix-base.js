@@ -121,6 +121,7 @@
             abs,
             v2, //square of vector, todo minor discrepancy: must be abs*abs
             unitVec,
+            //vector,  //must be good extension to story original in this wrapper
         };
     }
 

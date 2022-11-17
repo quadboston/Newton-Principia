@@ -51,7 +51,7 @@ and therefore are contained in Euclid framework, this framework pretends to igno
 restricting itself with 
 <a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
 "Legacy proportions and ratios"</a>,
-which are interpreted as properties of geometrical objects or assumed as axioms for other objects like time or force.
+for which we use geometrical language or assume them as axioms for non geometrical objects like time or force.
 <br><br>
 
 Fundamental logical sequence: Geometry, ratio axioms, rational numbers --&gt; Geometry-based Calculus for magnitudes and possibly fluxions-based Calculus[1] for "numbers" --&gt; Physics

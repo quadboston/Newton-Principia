@@ -199,7 +199,7 @@ Page 463.
                  𝑓<sub>φ</sub> = 𝑠M²α²β²ρ<sub>φ</sub>. <br>
     </div>
 and recalling conic's property 𝘨  = 𝜎𝑠a,
-<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum#ellipse">
+<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#ellipse">
 from "Interval between conjugate parallels", (A),
 </a>
 we obtain the inverse square law again: 𝑓  = 𝑓 <sub>𝛙</sub> and

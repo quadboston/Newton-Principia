@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, nspaste, capture, toreg, mat,
+        ns, sn, has, nspaste, capture, toreg, mat,
         sDomF, ssD, ssF, fconf,
         studyMods, amode, rg, sconf,
     } = window.b$l.apptree({
@@ -74,22 +74,72 @@
         // \\// returns diagram back at every menu click
         //------------------------------------------------
 
-        var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        var media_scale         = toreg( 'media_scale' )();
+        rg.media_scale.value    = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-        var op = sconf.orbitParameters;
+        var op           = sconf.orbitParameters;
         op.mainAxisAngle = op.mainAxisAngle_initial;
-        op.latus = op.latusInitial;
-        stdMod.establishesEccentricity( op.initialEccentricity )
 
+        // //\\ "draws" conics and P
+        //1
+        op.latus         = op.latusInitial;
+        //2
+        stdMod.establishesEccentricity( op.initialEccentricity )
+        if( fconf.sappId === "b1sec3prop17" ) {
+            op.PparQ_initial = op.PparQ_initial_essay
+            if( theorion === 'corollary' &&
+                ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' )
+            ){
+                op.PparQ_initial = 0;
+            }
+        }
+        //3
         rg.P.q      = op.PparQ_initial;
+        //4
+        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
+        // \\// "draws" conics and P
+
+        rg.P.posInitialUnitVector = mat.unitVector( rg.P.pos );
+        op.Kepler_g = op.Kepler_gInitial; //todo who is redundant?
+        op.Kepler_v = op.Kepler_v_initial; //todo who is redundant?
+        op.delta_t  = op.delta_t_initial;
+        nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+        op.sagittaDelta_q = op.sagittaDelta_q_initial;
+
+        if( fconf.sappId === "b1sec3prop17" ) {
+            var sop = sconf.sampleOrbitParameters;
+            sop.latus = sop.latusInitial;
+            sop.Kepler_g = op.Kepler_gInitial;
+            sop.Kepler_v = sop.Kepler_v_initial;
+            if( theorion === 'corollary' && amode.subessay === 'corollary2' ){
+                sop.latus = sop.corII_DVect.abs;
+                stdMod.establishesEccentricity(
+                    0, //sop.initialEccentricity,
+                    null,
+                    sop,
+                );
+                sop.corII_speed = Math.sqrt( op.Kepler_g / sop.corII_DVect.abs );
+                sop.Kepler_v    = sop.corII_speed;
+                rg.p.q          = 0;
+                //nspaste( rg.p.pos, sop.corII_Dpos );
+                sop.mainAxisAngle = 0;
+
+            } else {
+                rg.p.q      = sop.PparQ_initial;
+                sop.latus   = sop.latusInitial;
+                stdMod.establishesEccentricity(
+                    sop.initialEccentricity,
+                    null,
+                    sop,
+                );
+                //nspaste( rg.p.pos, rg.p.proofPos );
+                sop.mainAxisAngle = sop.r2axisX_angle - rg.p.q;
+            }
+            sop.delta_t  = sop.delta_t_initial;
+        }
         rg.S.pos[0] = 0;
         rg.S.pos[1] = 0;
-        op.Kepler_v = op.Kepler_v_initial;
-        op.delta_t = op.delta_t_initial;
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
-        nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
 
         if( fconf.effId === "b1sec3prop14" ) {
             op.delta_t = op.delta_t_initial;
@@ -107,7 +157,6 @@
                 sconf.Fi_distance * Math.sin( rg.P.q ),
             ]);
         }
-        op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -115,6 +164,14 @@
 
 
         var isAdden = aspect === 'addendum';
+
+
+
+
+
+
+
+
 
         // //\\ hiding
         rg.DS.undisplay = true;
@@ -145,7 +202,19 @@
         rg.PY.undisplay = true;
         rg.BH.undisplay = true;
 
+        rg.f.caption = '';
+        rg.q.undisplay = true;
+        rg.p.undisplay = true;
+        rg.vSample.undisplay = true;
+        rg.vSample.hideD8Dpoint = true;
+        rg.f.hideD8Dpoint = true;
+        rg.l.undisplay = true;
+        rg.ll.undisplay = true;
+        rg[ 'l,ll' ].undisplay = true;
+        rg[ 'orbitarea-sample' ].undisplay = true;
+
         rg.orbitarea.undisplay = false;
+        rg[ 'orbitarea' ].undisplay = true;
 
         rg.Tu.undisplay = true;
         rg[ 'u,VV' ].undisplay = true;
@@ -325,6 +394,7 @@
 
             rg.P.undisplay = true;
             rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
             rg.T.undisplay = true;
             rg.Px.undisplay = true;
             rg.PZ.undisplay = true;
@@ -368,8 +438,11 @@
         }
 
         if( fconf.sappId === 'b1sec3prop17' ) {
+            nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+
             rg.instanttriangle.undisplay = true;
             rg.orbitarea.undisplay = true;
+            rg[ 'orbitarea-sample' ].undisplay = false;
 
             //rg.omega.undisplay = false;
             rg.K.undisplay = false;
@@ -380,15 +453,18 @@
             rg.B.undisplay = false;
             rg.CB.undisplay = false;
 
-            rg.Y.undisplay = false;
+            rg.Y.undisplay = true;
             rg.Yhandle.undisplay = false;
             rg.Yhandle.hideD8Dpoint = false;
             rg[ 'P,Yhandle' ].undisplay = false;
             rg.SY.undisplay = false;
             rg.PY.undisplay = false;
             rg.T.undisplay = true;
+            rg.Q.undisplay = false;
             rg.QT.undisplay = true;
+            rg.QR.undisplay = true;
             rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
             rg.H.undisplay = false;
             rg.PH.undisplay = false;
             rg.BH.undisplay = false;
@@ -400,25 +476,93 @@
             rg.Q.hideD8Dpoint = true;
             rg.R.hideD8Dpoint = true;
             rg.L.hideD8Dpoint = true;
+            rg.L.undisplay = true;
+            rg.LL.undisplay = true;
+
+            rg[ 'l,ll' ].undisplay = false;
+            rg.q.undisplay = false;
+            rg.p.undisplay = false;
+            rg.vSample.undisplay = false;
+            rg.vSample.hideD8Dpoint = false;
+            rg[ 'p,vSample' ].undisplay = false;
+            rg.f.hideD8Dpoint = false;
 
             rg.SL.undisplay = true;
             rg.Zeta.hideD8Dpoint = true;
+            rg.Sp.undisplay = false;
+            //rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
+            //rg[ 'ZetaEnd' ].undisplay = true;
+            //rg[ 'ZetaStart' ].undisplay = true;
+            rg['P,Zminus'].undisplay = true;
+            rg['Zminus'].undisplay = true;
+            rg['ZR'].undisplay = true;
+            rg['PZ'].undisplay = true;
+            rg['PR'].undisplay = false;
 
-            if( theorion === 'scholium' ) {
-                var imgVisib = 'hidden';
+            if( theorion === 'corollary' &&
+                ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' )
+            ){
+                rg.Q.undisplay = true;
+                rg.P.q      = 0;;
+                //op.Kepler_v = op.Kepler_v_initial;
+                //op.delta_t = op.delta_t_initial;
+                nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( rg.P.q ));
+
+                rg.Yhandle.undisplay = true;
                 rg.Yhandle.hideD8Dpoint = true;
-                rg[ 'P,Yhandle' ].undisplay = true;
-            } else {
-                var imgVisib = 'visible';
-                rg.R.hideD8Dpoint = false;
-                rg.Zeta.hideD8Dpoint = false;
+                nspaste( rg.Yhandle.pos, [ rg.P.pos[0], 0.7 ] );
+                //nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+                //stdMod.setsOmegaHandle( op.omega, sliderAbs );
+
+                rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+
+                if( amode.subessay === 'corollary2' ) {
+                    rg.vSample.hideD8Dpoint = true;
+                }
             }
-            stdMod.imgRk.dom$.css( 'visibility', imgVisib );
-            stdMod.svgScene$.css( 'visibility', imgVisib );
 
             if( aspect === 'addendum' ) {
                 rg.SY.undisplay = false;
                 rg.PY.undisplay = false;
+            }
+            {
+                //// addendum. comparision.
+                let rgXX = rg[ 'approximated-curve-sample' ];
+                let disp = aspect === 'addendum' && subessay === 'comparing-proof-steps' ?
+                'none' : 'block';
+                if( has( rgXX, 'polylineSvg$' ) ) {
+                    rgXX.polylineSvg$.css( 'display', disp );
+                }
+                if( has( rgXX, 'areaSvg$' ) ) {
+                    rgXX.areaSvg$.css( 'display', disp );
+                }
+                if( subessay === 'comparing-proof-steps' ) {
+                    rg.q.undisplay = true;
+                    rg.SY.undisplay = true;
+                    rg.PY.undisplay = true;
+                    rg.vSample.undisplay = true;
+                    rg.vSample.hideD8Dpoint = true;
+                    rg.Sp.undisplay = true;
+                    rg[ 'orbitarea-sample' ].undisplay = true;
+                    rg[ 'p,vSample' ].undisplay = true;
+                    rg[ 'l,ll' ].undisplay = true;
+                }
+            }
+
+            {
+                //// scholium
+                let imgVisib = 'hidden';
+                if( theorion === 'scholium' ||
+                    ( amode.subessay === 'corollary3' || amode.subessay === 'corollary4' )
+                ){
+                    rg.Yhandle.hideD8Dpoint = true;
+                    rg[ 'P,Yhandle' ].undisplay = true;
+                } else {
+                    imgVisib = 'visible';
+                    rg.R.hideD8Dpoint = false;
+                }
+                stdMod.imgRk.dom$.css( 'visibility', imgVisib );
+                stdMod.svgScene$.css( 'visibility', imgVisib );
             }
         }
 

@@ -9,6 +9,7 @@
             init_model_parameters,
         },
     });
+    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -32,11 +33,14 @@
         toreg( 'approximated-curve' );
         toreg( 'orbitarea' );
         toreg( 'instanttriangle' );
+        toreg( 'approximated-curve-sample' );
+        toreg( 'orbitarea-sample' );
+        toreg( 'instanttriangle-sample' );
 
         rg.P.q = op.PparQ_initial;
         stdMod.creates_orbitRack();
         {
-            var {
+            let {
                 rr,
                 projectionOfCenterOnTangent,
             } = mcurve.planeCurveDerivatives({
@@ -46,15 +50,40 @@
             });
             nspaste( rg.P.pos, rr );
             nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-            {
-                ////establishes rg.Yhandle.pos
-                let excess = fconf.sappId === "b1sec3prop17" ?
-                    0.5 :
-                    -0.2
-                ;
-                rg.Yhandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
-                nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
-            }
+            ////establishes rg.Yhandle.pos
+            let excess = fconf.sappId === "b1sec3prop17" ?
+                0.5 :
+                -0.2
+            ;
+            rg.Yhandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
+            nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+        }
+        if( fconf.sappId === 'b1sec3prop17' ) {
+            //---------------------------------
+            // //\\ sop initials
+            //      stashes some values
+            //---------------------------------
+            stdMod.creates_orbitRack( sop );
+            let {
+                rr,
+            } = mcurve.planeCurveDerivatives({
+                fun : rg[ 'approximated-curve-sample' ].t2xy,
+                q   : sop.PparQ_initial,
+                rrc : rg.S.pos,
+            });
+            nspaste( rg.p.pos, rr );
+            rg.p.proofPos = [];
+            nspaste( rg.p.proofPos, rr );
+
+            //cor2.
+            let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
+            let DVect = mat.unitVector( Dpos );
+            sop.corII_speed = Math.sqrt( op.Kepler_g / DVect.abs );
+            sop.corII_Dpos = Dpos;
+            sop.corII_DVect = DVect;
+            //---------------------------------
+            // \\// sop initials
+            //---------------------------------
         }
 
         stdMod.completesSlidersCreation();      //in-diagram sliders

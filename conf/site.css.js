@@ -22,6 +22,13 @@
                 border  : 1px solid black;
             }
 
+            table.essay-columns td {
+                padding : 5px;
+                border  : 1px solid grey;
+                border-top : none;
+                border-bottom : none;
+            }
+
             table.essay-no-border {
                 border-collapse : collapse;
                 display         : inline-block;

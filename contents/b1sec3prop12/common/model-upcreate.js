@@ -9,6 +9,7 @@
             model_upcreate,
         },
     });
+    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -41,7 +42,6 @@
         const rr0       = fun( q );
         const rrc       = rg.S.pos;
         nspaste( rg.P.pos, rr0 );
-
         //"caustics"
         const axisC     = op.conicSignum === -1 ? -op.C : op.C;
         rg.C.pos[0]     = cosAxis * axisC;
@@ -66,7 +66,6 @@
             sinOmega,
             //staticSectorialSpeed_rrrOnUU,
         } = diff;
-        //rr0[1] = rr[1]; //=fun( rr0[0] )[1];
         var Rc = R; //curvature radius
         rg.P.sinOmega = sinOmega;
         rg.P.uu = uu;
@@ -277,7 +276,7 @@
 
 
         //=============================================================
-        // //\\
+        // //\\ latus
         //=============================================================
         rg.L.pos[0]  = -sinAxis * op.latus;
         rg.L.pos[1]  =  cosAxis * op.latus;
@@ -285,7 +284,7 @@
         rg.LL.pos[1] = -cosAxis * op.latus;
         rg[ 'L,LL' ].caption = 'L=' + (2*op.latus).toFixed(3);
         //=============================================================
-        // \\//
+        // \\// latus
         //=============================================================
 
 
@@ -309,14 +308,69 @@
         // //\\ prop. 17
         //=============================================================
         if( "b1sec3prop17" === fconf.sappId ) {
-            ////hyperbola or ellipse
-            nspaste( rg.D.pos, fun( 0 ) );
+            //solved orbit hyperbola or ellipse
+            if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
+                nspaste( rg.D.pos, rg.P.pos );
+            } else {
+                nspaste( rg.D.pos, fun( 0 ) );
+            }
             nspaste( rg.K.pos, mat.dropPerpendicular( rg.O.pos, rg.H.pos, rg.P.pos ) );
+            {
+                ////sample orbit
+                let fun = rg[ 'approximated-curve-sample' ].t2xy;
+                //orbit
+                let rrc = rg.S.pos;
+                var {
+                    rr,
+                    uu,
+                    ee,
+                } = mcurve.planeCurveDerivatives({
+                    fun,
+                    q   : rg.p.q,
+                    rrc,
+                });
+                nspaste( rg.p.pos, rr );
+                //sample speed vector
+                nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v, uu, 1, rg.p.pos ) );
+                //sample's decorational dt arc
+                var {
+                    rr,
+                } = mcurve.planeCurveDerivatives({
+                    fun,
+                    q : rg.p.q + sop.sagittaDelta_q_initial,
+                    rrc,
+                });
+                nspaste( rg.q.pos, rr );
+                rg.p.abs = mat.unitVector( rg.p.pos ).abs;
+            }
+            const cosAxis   = Math.cos( sop.mainAxisAngle );
+            const sinAxis   = Math.sin( sop.mainAxisAngle );
+
+            //----------------------------------
+            // //\\ force, gamma, and latus
+            //----------------------------------
+            rg.l.pos[0]  = -sinAxis * sop.latus;
+            rg.l.pos[1]  =  cosAxis * sop.latus;
+            rg.ll.pos[0] =  sinAxis * sop.latus;
+            rg.ll.pos[1] = -cosAxis * sop.latus;
+            rg[ 'l,ll' ].caption = 'l=' + (2*sop.latus).toFixed(3);
+            {
+                ////force and gamma
+                let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
+                var newLen = relativeGamma * sop.forceHandleInitial;
+                nspaste( rg.f.pos,
+                         mat.sm( rg.p.pos, -1*newLen, ee )
+                );
+                rg[ 'p,f' ].caption = 'f = ' + relativeGamma.toFixed(2);
+            }
+            //----------------------------------
+            // \\// force, gamma, and latus
+            //----------------------------------
+            rg[ 'p,vSample' ].caption = 'v = ' + op.Kepler_v.toFixed(3);
         }
         //=============================================================
         // \\// prop. 17
         //=============================================================
-
     }
 
 

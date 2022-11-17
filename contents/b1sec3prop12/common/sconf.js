@@ -1,12 +1,14 @@
 
 ( function() {
     var { //import from apptree
-        ns, mat,
+        ns, sn, mat,
         fconf,
         sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
+    var op = sn( 'orbitParameters', sconf );
+    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -33,14 +35,15 @@
         // \\// subapp regim switches
         //====================================================
 
-        var op = sconf.orbitParameters = {};
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 145;
+
+        //sets model offset
         op.mainAxisAngle_initial = 0;
         op.mainAxisAngle = op.mainAxisAngle_initial;
 
-        //sets physics
+        //sets cinematics
         op.Kepler_v_initial = 1;
         op.Kepler_v = op.Kepler_v_initial;
 
@@ -55,27 +58,78 @@
 
             switch ( fconf.sappId ) {
             case "b1sec3prop17" :
-                    op.initialEccentricity = 0.60;
+
                     //for real picture if diagram's picture is supplied or
                     //for graphical-media work-area if not supplied:
                     var pictureWidth = 1037;
                     var pictureHeight = 765;
                     var mod2inn_scale = 260;
+                    var forceHandleInitial = 0.8
                     var F = [ 350,
                               410
                             ];
-                    op.latusInitial = 0.93;
-                    var PparQ = 0.39 * Math.PI;
-                    var ww_sagittaDelta_q_initial = 0.16;
-
-                    op.sagittaDelta_q_initial = ww_sagittaDelta_q_initial;
-                    //in this prop, using delta_t instead of delta_q
-                    op.delta_t_initial = ww_sagittaDelta_q_initial * 2.5;
-                    op.delta_t = op.delta_t_initial;
-                    op.delta_t_LIMIT = op.delta_t_initial * 1.5;
                     sconf.Fi_distance = 1.8;
                     sconf.insertDelayedBatch = true;
+
+                    //-------------------------------------------
+                    // //\\ sop
+                    //-------------------------------------------
+                    //sets cinematics
+                    sop.Kepler_v_initial = 0.6; //imlies v for result
+                    sop.Kepler_v = sop.Kepler_v_initial;
+
+                    sop.latusInitial        = 1;
+                    sop.latus = sop.latusInitial;
+                    sop.forceHandleInitial = forceHandleInitial;
+                    sop.forceHandle = forceHandleInitial;
+                    {
+                        //Book's diagram values
+                        let r             = 1.3030798609954344;
+                        let r2axisX_angle = 2.24;
+                        let sin2speed     = 0.999;
+                        //Book's derivative values
+                        let eta = sop.latus / r;
+                        let e   = Math.sqrt( eta*eta / sin2speed / sin2speed - 2 * eta + 1 );
+                        let fi  = Math.acos( (1-eta)/e );
+
+                        //sop.latusInitial is already saved
+                        sop.r = r;
+                        sop.PparQ_initial = fi;
+                        sop.initialEccentricity = e;
+                        //diagram valuse:
+                        sop.r2axisX_angle = r2axisX_angle;
+                        //derived
+                        sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
+                    }
+                    stdMod.establishesEccentricity( sop.initialEccentricity, null, sop );
+
+                    //decoration
+                    sop.sagittaDelta_q_initial = 0.4;
+                    //-------------------------------------------
+                    // \\// sop
+                    //-------------------------------------------
+
+                    //-------------------------------------------
+                    // //\\ op
+                    //-------------------------------------------
+                    op.latusInitial         = 0.93;
+                    op.latus                = op.latusInitial;
+                    op.initialEccentricity  = 0.60;
+                    var PparQ = 0.39 * Math.PI;
+                    {
+                        let sag_init                    = 0.16;
+                        op.sagittaDelta_q_initial       = sag_init;
+                        //in this prop, using delta_t instead of delta_q
+                        op.delta_t_initial              = sag_init * 2.5;
+                        op.delta_t                      = op.delta_t_initial;
+                        op.delta_t_LIMIT                = op.delta_t_initial * 1.5;
+                    }
+                    stdMod.establishesEccentricity( op.initialEccentricity );
+                    //-------------------------------------------
+                    // \\// op
+                    //-------------------------------------------
                   break;
+
             default:
                 op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
                 sconf.insertDelayedBatch = true;
@@ -122,17 +176,73 @@
            }
         }
         op.PparQ_initial    = PparQ;
+        op.PparQ_initial_essay = PparQ;
         op.sagittaDelta_q   = op.sagittaDelta_q_initial;
-        op.latus            = op.latusInitial;
-        stdMod.establishesEccentricity( op.initialEccentricity );
-        //sets physics
-        var { Kepler_g } = mat.conics.innerPars2innerPars({
-                lat         : op.latusInitial,
-                fi          : PparQ,
-                e           : op.initialEccentricity,
-                Kepler_v    : op.Kepler_v,
-        })
-        op.Kepler_g = Kepler_g;
+
+        //-----------------------------------------------------
+        // //\\ sets force
+        //-----------------------------------------------------
+        if( fconf.sappId === "b1sec3prop17" ) {
+            //todm get r and then e:
+            //var neededG = 0.975339131380;
+
+            //-----------------------------------------
+            // //\\ defines force constant
+            //-----------------------------------------
+            var { Kepler_g } = mat.conics.innerPars2innerPars({
+                    lat         : sop.latusInitial,
+                    fi          : sop.PparQ_initial,
+                    e           : sop.initialEccentricity,
+                    Kepler_v    : sop.Kepler_v,
+            })
+            op.Kepler_g = Kepler_g;     //op.Kepler_g is a master value
+            op.Kepler_gInitial = Kepler_g;
+            sop.Kepler_g = Kepler_g;
+            sop.Kepler_gInitial = Kepler_g;
+            //-----------------------------------------
+            // \\// defines force constant
+            //-----------------------------------------
+
+            //-----------------------------------------
+            // //\\ redefines result initial speed
+            //-----------------------------------------
+            stdMod.establishesEccentricity( op.initialEccentricity );
+            var { Kepler_v } = mat.conics.innerPars2innerPars({
+                    lat         : op.latusInitial,
+                    fi          : PparQ,
+                    e           : op.initialEccentricity,
+                    Kepler_g,
+            });
+            op.Kepler_v_initial = Kepler_v;
+            op.Kepler_v = Kepler_v;
+            //-----------------------------------------
+            // \\// redefines result initial speed
+            //-----------------------------------------
+
+        } else {
+            op.latus = op.latusInitial;
+            stdMod.establishesEccentricity( op.initialEccentricity );
+            //-----------------------------------------
+            // //\\ defines force constant
+            //-----------------------------------------
+            var { Kepler_g, } = mat.conics.innerPars2innerPars({
+                    lat         : op.latusInitial,
+                    fi          : PparQ,
+                    e           : op.initialEccentricity,
+                    Kepler_v    : op.Kepler_v,
+            });
+            //-----------------------------------------
+            // \\// defines force constant
+            //-----------------------------------------
+            op.Kepler_g = Kepler_g;
+            op.Kepler_gInitial = Kepler_g;
+            sop.Kepler_g = Kepler_g;
+            sop.Kepler_gInitial = Kepler_g;
+        }
+        //-----------------------------------------------------
+        // \\// sets force
+        //-----------------------------------------------------
+
 
         //***************************************************************
         // //\\ decorational parameters
@@ -186,8 +296,6 @@
         // //\\ points reused in config
         //=============================================
         var S = F;
-        var P = [0, 0 ]; //set by op.PparQ_initial
-        var Q = [0, 0 ]; //set in amode8captures
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
         var originY_onPicture = F[1]; //for model's axis y
@@ -200,6 +308,7 @@
         //      todm: possibly proliferation
         //-----------------------------------
         var given   = [0,     150, 0,      1];
+        var orbitareaSample = [0,     150, 0,  0.05];
         var orbit   = given;
         var orbitarea = [0,     150, 0,    fconf.effId === "b1sec3prop14" ? 0.1 : 0.001, 0.5];
         var instanttriangle = [0, 150, 200,
@@ -214,6 +323,14 @@
         var shadow  = [150,  150,  150,    1];
         var invalid = [200,  150,  0,      1];
         var attention = [200,  200,  0,      1];
+        var force   = [200,  0,  200,      1];
+
+        var p17_result_proof = fconf.sappId === "b1sec3prop17" ? result : proof;
+        var p17_result_orbit = fconf.sappId === "b1sec3prop17" ? result : orbit;
+        var p17_body_proof   = fconf.sappId === "b1sec3prop17" ? body : proof;
+        var p17_result_given = fconf.sappId === "b1sec3prop17" ? result : given;
+        var p17_force_result = fconf.sappId === "b1sec3prop17" ? force : result;
+
         var predefinedTopics =
         {
             given,
@@ -223,11 +340,14 @@
             context,
             curvature,
             body,
-            orbit,
+            orbit : p17_result_given,
+            'orbit-sample' : given,
             orbitarea,
-            orbitdq : body,
+            'orbitarea-sample' : orbitareaSample,
+            orbitdq : p17_result_given,
+            'orbitdq-sample' : given, //todm remove
             shadow,
-            force   : result,
+            force   : p17_force_result,
             tangentCircle : curvature,
             instanttriangle,
             //curvatureCircle : curvature,
@@ -270,7 +390,7 @@
                 //letterAngle : 90,
             },
             H : {
-                pcolor : proof,
+                pcolor : p17_result_proof,
                 letterAngle : -90,
             },
             I : {
@@ -285,13 +405,14 @@
 
             B : {
                 letterRotRadius : 20,
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
             },
 
             BB : {
                 letterAngle : 90,
                 undisplayAlways : true,
                 doPaintPname : false,
+                pcolor : p17_result_orbit,
             },
 
             L : {
@@ -309,8 +430,21 @@
             },
 
 
+            l : {
+                //no need: will be dynamic: caption : 'mmm',
+                pcolor : given,
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
+
+            ll : {
+                pcolor : given,
+                doPaintPname : false,
+            },
+
+
             A : {
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 letterRotRadius : 20,
                 letterAngle : -90,
             },
@@ -318,19 +452,20 @@
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
+                pcolor : p17_result_orbit,
             },
 
 
             D : {
-                pcolor : proof,
+                pcolor : p17_result_proof,
                 letterRotRadius : 20,
-                letterAngle : 135,
+                //letterAngle : 135,
             },
 
             K : {
                 pcolor : proof,
                 letterRotRadius : 20,
-                letterAngle : -45,
+                letterAngle : -60,
             },
 
             M : {
@@ -358,12 +493,23 @@
             },
 
             R : {
-                pcolor : proof,
+                pcolor : p17_body_proof,
                 letterAngle : 135,
                 letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
             },
+
+            vSample : {
+                ////prop17
+                caption : 'r',
+                pcolor : given,
+                letterAngle : 135,
+                letterRotRadius : 20,
+                draggableX  : true,
+                draggableY  : true,
+            },
+
 
             Y : {
                 pcolor : proof,
@@ -373,6 +519,16 @@
             Yhandle : {
                 caption : 'ω',
                 pcolor : shadow,
+                letterAngle : 90,
+                letterRotRadius : 17,
+                draggableX  : true,
+                draggableY  : true,
+                fontSize : 20,
+            },
+
+            f : {
+                caption : '𝛾',
+                pcolor : force,
                 letterAngle : 90,
                 letterRotRadius : 17,
                 draggableX  : true,
@@ -425,7 +581,7 @@
 
             //center symmetry of orbit
             C : {
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 letterAngle : -45,
             },
 
@@ -434,7 +590,7 @@
             //----------------------------------------
             u : {
                 caption : '𝑢',
-                pcolor : proof,
+                pcolor : p17_body_proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
             },
@@ -476,9 +632,17 @@
             },
 
             P : {
-                pos: P,
+                //pos: P,
                 pcolor : body,
-                letterAngle : fconf.sappId === 'b1sec3prop16' ? -90 : 120,
+                letterAngle : fconf.sappId === 'b1sec3prop16' ? -90 :
+                                ( fconf.sappId === 'b1sec3prop17' ? 225 : 120 ),
+                //draggableX  : true,
+                //draggableY  : true,
+            },
+
+            p : {
+                pcolor : given,
+                letterAngle : 120,
                 //draggableX  : true,
                 //draggableY  : true,
             },
@@ -493,12 +657,18 @@
             },
 
             Q : {
-                pos: Q,
-                pcolor : proof,
+                //pos: Q,
+                pcolor : p17_result_proof,
                 letterAngle : -65,
                 letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
+            },
+            q : {
+                ////prop17
+                pcolor : given,
+                letterAngle : -65,
+                letterRotRadius : 20,
             },
 
 
@@ -506,7 +676,7 @@
             Zeta : {
                 caption : 'eccentricity, e',
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 letterAngle : 90,
                 letterRotRadius : 20,
                 draggableX  : 'b1sec3prop13' !== fconf.sappId,
@@ -517,7 +687,7 @@
 
             ZetaCaption : {
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 undisplayAlways : true,
                 letterAngle : 90,
                 letterRotRadius : 20,
@@ -527,7 +697,7 @@
 
             ZetaStart : {
                 pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -535,7 +705,7 @@
 
             ZetaEnd : {
                 pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : orbit,
+                pcolor : p17_result_orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -578,10 +748,10 @@
             { 'O,Fi' : { pcolor : shadow }, },
 
             { ST : { pcolor : proof, }, },
-            { 'SP' : { pcolor : result, vectorTipIx : 1 }, },
+
             { 'SY' : { pcolor : proof, captionShiftNorm : -28 }, },
             { 'PY' : { pcolor : body }, },
-            { 'CS' : { pcolor : proof }, },
+            { 'CS' : { pcolor : p17_result_proof }, },
             { 'CH' : { pcolor : proof }, },
 
             { 'P,Zminus' : { pcolor : body }, },
@@ -589,23 +759,28 @@
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
-            { 'PR' : { pcolor : body, 'stroke-width' : 0.1, captionShiftNorm : -18,
+            { 'PR' : { pcolor : body, 'stroke-width' : 2, captionShiftNorm : -18,
                        vectorTipIx : 1 }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'p,vSample' : { pcolor : given, 'stroke-width' : 1.1, captionShiftNorm : -18,
+                       vectorTipIx : 1 }, },
+            { 'p,f' : { pcolor : force, 'stroke-width' : 1.1, captionShiftNorm : -18,
+                       vectorTipIx : 1 }, },
+
+            { 'QR' : { pcolor : p17_result_proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
             { DK : { pcolor : proof }, },
             { DS : { pcolor : proof }, },
-            { DH : { pcolor : proof }, },
+            { DH : { pcolor : p17_result_proof }, },
             { PM : { pcolor : body }, },
             { SM : { pcolor : body }, },
 
             { OM : { pcolor : proof }, },
             { ON : { pcolor : proof }, },
             { NS : { pcolor : proof }, },
-            { SA : { pcolor : proof }, },
+            { SA : { pcolor : p17_result_proof }, },
             { NP : { pcolor : proof }, },
 
             { GP : { pcolor : proof }, },
@@ -617,24 +792,33 @@
 
             { Gv : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : orbit }, },
-            { 'B,BB' : { pcolor : orbit }, },
-            { AO : { pcolor : orbit }, },
+            { 'A,AA' : { pcolor : p17_result_orbit }, },
+            { 'B,BB' : { pcolor : p17_result_orbit }, },
+            { AO : { pcolor : p17_result_orbit }, },
             { AT : { pcolor : proof }, },
-            { CA : { pcolor : proof }, },
+            { CA : { pcolor : p17_result_proof }, },
 
-            { DO : { pcolor : proof }, },
-            { BO : { pcolor : proof }, },
-            { CB : { pcolor : proof }, },
+            { DO : { pcolor : p17_result_proof }, },
+            { BO : { pcolor : p17_result_proof }, },
+            { CB : { pcolor : p17_result_proof }, },
             //{ 'L,LL' : { pcolor : proof, caption : 'L/2',
             //             captionShiftNorm : -18, fontSize : 20, }, },
-            { 'L,LL' : { pcolor : orbit, captionShiftNorm : 22, lposYSugar : -3 }, },
+            { 'L,LL' : { pcolor : p17_result_orbit,
+               captionShiftNorm : 22, lposYSugar : 3 }, },
+            { 'l,ll' : { pcolor : given,
+               captionShiftNorm : 44, lposYSugar : -5, }, },
             { SL : { pcolor : orbit, }, },
-            { CD : { pcolor : proof }, },
+            { CD : { pcolor : p17_result_proof }, },
 
             { PO : { pcolor : proof }, },
             { GO : { pcolor : proof }, },
             { FO : { pcolor : proof }, },
+            { 'SP' : {
+                    pcolor : fconf.sappId === "b1sec3prop17" ? body : body,
+                    vectorTipIx : 1 },
+            },
+            { 'Sp' : { pcolor : given, 'stroke-width' : 1.1, captionShiftNorm : -18,
+                       vectorTipIx : 1 }, },
 
             //Book's "another solution"
             { Tu : { pcolor : proof }, },
@@ -643,7 +827,9 @@
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
             { 'P,tCircleCenter' : { pcolor : curvature }, },
-            { 'ZetaStart,ZetaEnd' : { pcolor : orbit }, },
+            { 'ZetaStart,ZetaEnd' :
+              { pcolor : p17_result_orbit } 
+            },
         ];
 
         //stdMod.init_sliders_conf();
