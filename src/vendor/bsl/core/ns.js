@@ -419,7 +419,9 @@
                     html:   function( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
 
 
-                    //adds class.
+                    ///adds class,
+                    ///supports multiword class,
+                    ///does not create duplicate words in class,
                     addClass:   function( text, obj )
                                 {   
                                     ctxEl = obj || ctxEl;  //bug fix: if text === '', then 
@@ -439,7 +441,6 @@
                                     var at = ctxEl.getAttribute( 'class' ); //className is not for SVG
                                     if( !at ) {
                                         //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
-                                        //ctxEl.className = text;
                                         ctxEl.setAttribute( 'class', text ); //For SVG
                                         return;
                                     }
@@ -448,6 +449,9 @@
                                     if( ats.indexOf( testee ) === -1 ) {
                                         //c onsole.log( 'adding=' + text + ' to ' + at);
                                         if( at.length > 0 && text ) {
+                                            ////adds spacer betwenn end of class-sentence and addee,
+                                            ////ASSUMES: multispacer dividors are harmless or none,
+                                            ////for clear work, must "cleanse" them,
                                             at += ' ';
                                         }
                                         at += text;

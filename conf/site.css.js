@@ -39,6 +39,10 @@
                 padding         : 5px;
                 border          : none;
             }
+            table.essay-minimal-td td {
+                padding         : 0px 0px 0px 10px;
+                border          : none;
+            }
 
             table.matrix-determinant {
                 border          : none;

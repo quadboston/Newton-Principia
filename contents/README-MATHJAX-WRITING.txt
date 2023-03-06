@@ -1,81 +1,38 @@
 
-QEI: Quod Erat Inveniendum
-which was to be found
-https://proofwiki.org/wiki/Definition:QEI
-
-QED: quod erat demonstrandum
-
-https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviations_other_than/
-    QEI : Quod Erat Inveniendum (which was to be found)
-    QEA : Quod Est Absurdum (which is absurd)
-    QEF : Quod Erat Faciendum (which was to be done)
-
-
---------------------------------------------
-//\\ useful tokens:
---------------------------------------------
-    ⟂∤ ⫾ upperscores:𝗴&#773;𝘂&#773;
-
-    diagonal    𝔇𝕯  sagitta 𝔓𝕻
-
-
+//\\ useful tokens --------------------------------------------
+          𝑎 𝑏 𝑐 𝑑 𝑒 𝑓 𝑔 ℎ 𝑖 𝑗 𝑘 𝑙 𝑚 𝑛 𝑜 𝑝 𝑞 𝑟 𝑠 𝑡 𝑢 𝑣 𝑤 𝑥 𝑦 𝑧
     αβγδεζηθικλμνξοπρςστυφχψω
     ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
-    ‹ › ⩽ ⩾ ≂ ≃ ≄ 
-    ←↑→↓↔↕↖↗↘↙ ↚ ↛ 	↜ 	↝  ↞
-    ⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚ ⇛
-           🠪 🠆
-
-    ×? x
-    ≠ https://en.wikipedia.org/wiki/Equals_sign#Not_equal
-    ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	⋂ ⋃ ⊂ ⊃ ⊄	⊅
-    ∂ ∅ ∆ ∇	 ⊆ ⊇  ∑
-    ∎ ▲ ⏶   https://en.wikipedia.org/wiki/List_of_Unicode_characters#Geometric_Shapes
-          https://en.wikipedia.org/wiki/Geometric_Shapes_Extended
-    ∫ √  ∛ ∜
-    ∴
-        https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
-    ℝ ℚ⁺ ℝ⁺ 𝕀 ∙ ⦁
-        https://en.wikipedia.org/wiki/Blackboard_bold
-
-    (• - legal? https://altcodeunicode.com/alt-codes-bullet-point-symbols/
-             🞄  - in wiki
-    )
-
-    x˙⁺⁻⁼  ²³⁰ⁱ⁴⁵⁶⁷⁸⁹ *
- 	x⁽ 	x⁾ 	xⁿ 
-    x₀₁₂₃₄₅₆₇₈₉₊
-    x₊ 	x₋ 	x₌ 	x₍ 	x₎
-    xₐ 	xₑ 	xₒ 	xₓ 	xₔ 	xₕ 	xₖ 	xₗ 	xₘ 	xₙ 	xₚ 	xₛ 	xₜ
-
-    xᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ   ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ 
+        𝔸 𝔹 𝔻 𝔼 𝔽 𝔾         ℝ ℚ 𝕀  
+    x˙⁺⁻⁼  ²³⁰ⁱ⁴⁵⁶⁷⁸⁹ * ⁽⁾      ᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ   ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ
     Xᴬ ᴮ C ᴰ ᴱ F ᴳ ᴴ ᴵ ᴶ ᴷ ᴸ ᴹ ᴺ ᴼ ᴾ Q ᴿ S ᵀ ᵁ ⱽ ᵂ X Y Z
-    xₐ ₑ           ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ   ᵣ ₛ ₜ ᵤ ᵥ   ₓ
+    x₀₁₂₃₄₅₆₇₈₉₊  ₊ ₋ ₌ ₍₎ ₔ    ₐ ₑ           ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ   ᵣ ₛ ₜ ᵤ ᵥ   ₓ
     Xᵅ ᵝ ᵞ ᵟ ᵋ ᶿ ᶥ ᶲ ᵠ ᵡ ᵦ ᵧ ᵨ ᵩ ᵪ
-    \( \; \overset{df} \iff \; \)
-    \( \; \overset{df} = \; \)
-    ∫   \({\int_{0}^{1}} \)
---------------------------------------------
-\\// useful tokens:
---------------------------------------------
+    ≠ ‹ › ⩽ ⩾ ≂ ≃ ≄ 
+           🠪 🠆  ←↑→↓↔↕↖↗↘↙ ↚ ↛ 	↜ 	↝  ↞   ⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚ ⇛
+    ½ ∑ ∫ √  ∛ ∜
+    ⟂ ∎ ▲ ∙ ⦁ ∤ ⫾ 
+    ∀ ∃ ⬜ ∈ ∉	∊ ∋	∌ ∍	⋂ ⋃ ⊂ ⊃ ⊄ ⊅ ⊆ ⊇     ∂ ∅ ∆ ∇	   
 
-Italics:
-    𝑣𝑓𝑠
-    𝑥𝑦𝑧   serif
-         https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
-             https://www.compart.com/en/unicode/block/U+1D400
-             Unicode Block “Mathematical Alphanumeric Symbols”
+        𝗔 	𝗕 	𝗖 	𝗗 	𝗘 	𝗙 	𝗚 	𝗛 	𝗜 	𝗝 	𝗞 	𝗟
+        𝗠 	𝗡 	𝗢 	𝗣 	𝗤 	𝗥 	𝗦 	𝗧 	𝗨 	𝗩 	𝗪 	𝗫 	𝗬 	𝗭 	𝗮 	𝗯
+        𝗰 	𝗱 	𝗲 	𝗳 	𝗴 	𝗵 	𝗶 	𝗷 	𝗸 	𝗹 	𝗺 	𝗻 	𝗼 	𝗽 	𝗾 	𝗿
+        𝘀 	𝘁 	𝘂 	𝘃 	𝘄 	𝘅 	𝘆 	𝘇 
+\\// useful tokens --------------------------------------------
 
-    
+//\\ abbreviations --------------------------------------------
+    QEI: Quod Erat Inveniendum
+    which was to be found
+    https://proofwiki.org/wiki/Definition:QEI
 
+    QED: quod erat demonstrandum
 
-complex signs too:
-https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
+    https://www.reddit.com/r/math/comments/6f36w9/does_anyone_use_latin_abbreviations_other_than/
+        QEI : Quod Erat Inveniendum (which was to be found)
+        QEA : Quod Est Absurdum (which is absurd)
+        QEF : Quod Erat Faciendum (which was to be done)
+\\// abbreviations --------------------------------------------
 
-𝗔 	𝗕 	𝗖 	𝗗 	𝗘 	𝗙 	𝗚 	𝗛 	𝗜 	𝗝 	𝗞 	𝗟
-𝗠 	𝗡 	𝗢 	𝗣 	𝗤 	𝗥 	𝗦 	𝗧 	𝗨 	𝗩 	𝗪 	𝗫 	𝗬 	𝗭 	𝗮 	𝗯
-𝗰 	𝗱 	𝗲 	𝗳 	𝗴 	𝗵 	𝗶 	𝗷 	𝗸 	𝗹 	𝗺 	𝗻 	𝗼 	𝗽 	𝗾 	𝗿
-𝘀 	𝘁 	𝘂 	𝘃 	𝘄 	𝘅 	𝘆 	𝘇 
 
 
 𝔸 	𝔹 		𝔻 	𝔼 	𝔽 	𝔾 	
@@ -115,6 +72,22 @@ super bold Greeks
  	𝟀 	𝟁 	𝟂 	𝟃 	𝟄 	𝟅 	𝟆 	𝟇 	𝟈 	𝟉 
 
 
+//\\ useful tokens 2 --------------------------------------------
+    upperscores:𝗴&#773;𝘂&#773;
+    diagonal    𝔇𝕯  sagitta 𝔓𝕻
+    ×? x
+    (• - legal? https://altcodeunicode.com/alt-codes-bullet-point-symbols/
+             🞄  - in wiki
+    )
+
+    \( \; \overset{df} \iff \; \)
+    \( \; \overset{df} = \; \)
+    ∫   \({\int_{0}^{1}} \)
+\\// useful tokens 2 --------------------------------------------
+
+
+
+
 **************************************************************************************************
 best tutorial and dictionary:
     https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
@@ -133,6 +106,9 @@ often used:
 
 UTF Math Symbols, vital codes:
     generic: https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
+          𝑏 𝑐 𝑑 
+
+
 arrows:
     https://en.wikipedia.org/wiki/Arrows_(Unicode_block)
         ← 	↑ 	→ 	↓ 	↔ 	↕ 	↖ 	↗ 	↘ 	↙ 	↚ 	↛ 	↜ 	↝ 	↞ 	↟
@@ -323,4 +299,22 @@ https://en.wikipedia.org/wiki/Radical_symbol
     𝖆 𝖇 𝖈 𝖉 𝖊 𝖋 𝖌 𝖍 𝖎 𝖏 𝖐 𝖑 𝖒 𝖓 𝖔 𝖕 𝖖 𝖗 𝖘 𝖙 𝖚 𝖛 𝖜 𝖝 𝖞 𝖟
 // \\// fraktur //////////////////
 
+
+
+//\\ references
+    ≠ https://en.wikipedia.org/wiki/Equals_sign#Not_equal
+    ∎ ▲ ⏶   https://en.wikipedia.org/wiki/List_of_Unicode_characters#Geometric_Shapes
+           https://en.wikipedia.org/wiki/Geometric_Shapes_Extended
+    ℝ ℚ⁺ ℝ⁺ 𝕀 ∙ ⦁
+        https://en.wikipedia.org/wiki/Blackboard_bold
+    ∴ ... https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
+    complex signs too:
+        https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode#Dedicated_blocks
+    //\\ Italics --------------------------------------------
+        Serif: 𝑎 𝑏 𝑐 𝑑 𝑒 𝑓 𝑔 ℎ 𝑖 𝑗 𝑘 𝑙 𝑚 𝑛 𝑜 𝑝 𝑞 𝑟 𝑠 𝑡 𝑢 𝑣 𝑤 𝑥 𝑦 𝑧
+             https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
+                 https://www.compart.com/en/unicode/block/U+1D400
+                 Unicode Block “Mathematical Alphanumeric Symbols”
+    \\// Italics --------------------------------------------
+\\// references
 

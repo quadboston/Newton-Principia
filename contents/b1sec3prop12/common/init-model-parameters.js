@@ -31,13 +31,14 @@
     {
         var op = sconf.orbitParameters;
         toreg( 'approximated-curve' );
-        toreg( 'orbitarea' );
-        toreg( 'instanttriangle' );
         toreg( 'approximated-curve-sample' );
+        toreg( 'orbitarea' );
         toreg( 'orbitarea-sample' );
+        toreg( 'instanttriangle' );
         toreg( 'instanttriangle-sample' );
 
         rg.P.q = op.PparQ_initial;
+        ////creates both curve and its area
         stdMod.creates_orbitRack();
         {
             let {
@@ -50,13 +51,13 @@
             });
             nspaste( rg.P.pos, rr );
             nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-            ////establishes rg.Yhandle.pos
+            ////establishes rg.omegaHandle.pos
             let excess = fconf.sappId === "b1sec3prop17" ?
                 0.5 :
                 -0.2
             ;
-            rg.Yhandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
-            nspaste( rg.Yhandle.pos, rg.Yhandle.initialPos );
+            rg.omegaHandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
+            nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         }
         if( fconf.sappId === 'b1sec3prop17' ) {
             //---------------------------------
@@ -72,8 +73,7 @@
                 rrc : rg.S.pos,
             });
             nspaste( rg.p.pos, rr );
-            rg.p.proofPos = [];
-            nspaste( rg.p.proofPos, rr );
+            rg.p.proofPos = nspaste( [], rr );
 
             //cor2.
             let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
@@ -90,7 +90,7 @@
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
         //creates placeholder
         //toreg( 'curvatureCircle' );
-        toreg( 'tangentCircle' );
+        //toreg( 'tangentCircle' );
 
         //==================================================
         // //\\ decoration graph

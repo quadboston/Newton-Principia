@@ -93,6 +93,7 @@
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
+                //parsedLink[3] === '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
                 if(  parsedLink[3] ) {
 
                     ///this array collects information for spawning plain-words (which are
@@ -105,10 +106,10 @@
                         //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
                         match : parsedLink[0].substring( 0,
-                                //"length-1" makes sure that last dividor "¦" is included
+                                //"length-1" erases last char which is "¦"
+                                //if is ¦IN¦¦¦, then makes ¦IN¦¦,
                                 parsedLink[0].length-1
                         ),
-
                         anchorConfig : parsedLink[1],
                         replaceeKey : parsedLink[2],  //anchor caption = first match key
                     };
@@ -457,13 +458,17 @@
 
 
 
-
+    ///replaces raw words with value from value found in collection of collectedDelayedLinks
+    ///runs before tp machine parses fragBody_raw
     function insertDelayedBatch( fragBody_raw ) {
         if( Object.keys( collectedDelayedLinks ).length ) {
             var regEx = '';
             eachprop( collectedDelayedLinks, (lnk,keyName) => {
                 //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not exist in replaceeKey:
                 //see https://javascript.info/regexp-escaping
+                //replaceeKey is a "raw word caption": made before as:
+                //      replaceeKey : parsedLink[2],  //anchor caption = original-raw-caption
+                //      must have no destroy-reg-ex-chars = [ ] { } ( ) \ ^ $ . | ? * +
                 regEx += (regEx ? '|' : '') + lnk.replaceeKey;
             });
             //matchinig keyword in text must be separated by spacer,brackets,
@@ -471,15 +476,24 @@
             //in reg.ex., don't do (...)+ for dividors, apparently
             //JS-replce machinery does not remember more than one dividor:
             regEx = new RegExp ('(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)(' + regEx +
-                               ')(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)', 'ug' );
+                                ')(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)', 'ug' );
             fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
                 //ccc( 'future match clause='+collectedDelayedLinks[ arguments[2] ].match,
                 //     'current replacee key=' + arguments[2]
                 //);
+
+                ///returns full-replacer = full match which
+                ///        is match=leadingDividor+|config|caption||+trailingDividor,
+                ///        this full-replacer is inserted after execution of this "return",
                 return arguments[1] + //leading spacer
+
                        //this "match" will be a match-key for future replacement with anchor
-                       collectedDelayedLinks[ arguments[2] ].match + //replacer
-                       arguments[3];  //trailing spacer
+                       //match===all===config+key+pipes: aka: ¦v2graph VSarea¦ABFD¦¦
+                       collectedDelayedLinks[ arguments[2] ].match +
+
+                       arguments[3];  //trailing spacer: !!it cannot be used in ajacent RegEx if any,
+                                      //must: KWA dividorA dividorB KWB, not dividorA is the same as
+                                      //dividorB
             });
         }
         return fragBody_raw;

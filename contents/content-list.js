@@ -162,6 +162,11 @@
             annotation : "",
         },
 
+        {   sappId : 'b1sec8prop41',
+            book : 'Book 1',
+            caption : 'Sec. VIII. Proposition XLI. Problem XXVIII.',
+            annotation : "",
+        },
 
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',

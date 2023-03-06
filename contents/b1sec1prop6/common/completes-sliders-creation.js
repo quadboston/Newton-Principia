@@ -89,6 +89,9 @@
                     pos1[0] = newPos[0];
                     pos1[1] = newPos[1];
                     stdMod.pointsArr_2_singleDividedDifferences();
+
+                    ///apparently validates if point is valid and
+                    ///if not, shows a warning, and stashes most possible value
                     var { solvable, rr } = stdMod.curveIsSolvable();
                     if( solvable ) {
                         stashedPos = [ pos1[0], pos1[1] ];

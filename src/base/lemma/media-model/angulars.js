@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, sv, haz,
+        ns, sn, ow, $$, sv, haz,
         sconf, ssF, ssD, sDomF, sDomN, rg, toreg,
         amode, studyMods,
     } = window.b$l.apptree({
@@ -57,6 +57,7 @@
         drawExternalSector,
         tpclassName,
         stepsCount,
+        captionRadiusIncrease,
     }){
         var medPosPivotsAB = [  //=[ medposA, medposB ]
             [ AB[0].medpos[0], AB[0].medpos[1] ],
@@ -85,6 +86,7 @@
             angleStart,
             angleEnd,
             ANGLE_SIZE      : ANGLE_SIZE || 1,
+            captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
                               tpclassName || sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
             fill            : fill || rgAngle.pcolor,
@@ -108,6 +110,7 @@
         angleStart,     //aka rg.beta.value
         angleEnd,
         ANGLE_SIZE,
+        captionRadiusIncrease,
         tpClassName,    //optional aka: angle-beta
         stroke,         //color string, optional
         fill,           //color string, optional
@@ -179,15 +182,14 @@
             var wwAngle = ( angleStart + angleEnd ) / 2;
 
             var lposXSugar = Math.abs( Math.sin(wwAngle) ) > 0.7 ? 0.5 : 0;
-            var lposX = ANGLE_SIZE * 1.1 * 0.5 *
-                        sconf.mod2inn_scale * Math.cos( wwAngle )+rgX.medpos[0] +
+            let rad = ANGLE_SIZE * 0.5 * sn( 'captionRadiusIncrease', arguments[0], 1.1 );
+            var lposX = rad * sconf.mod2inn_scale * Math.cos( wwAngle )+rgX.medpos[0] +
                         -fontSize * lposXSugar;
-            var lposY = ANGLE_SIZE * 1.1 * 0.5 *
-                        sconf.mod2inn_scale * Math.sin( wwAngle )+rgX.medpos[1] +
+            var lposY = rad * sconf.mod2inn_scale * Math.sin( wwAngle )+rgX.medpos[1] +
                         -fontSize * 0.2;
-
+            var tpcls = tpClassName ? ' tostroke tobold tofill tp-' + tpClassName : '';
             rgX.pnameLabelsvg = ns.svg.printText({
-                tpclass         : tpClassName ? ' tostroke tobold tofill tp-' + tpClassName : '',
+                //tpclass         : tpcls,
                 text            : caption,
                 stroke          : rgX.pcolor,
                 //fill            : rgX.pcolor,
@@ -204,6 +206,8 @@
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =
                 haz( rgX, 'pnameLabelsvg$' ) || $$.$( rgX.pnameLabelsvg );
             pnameLabelsvg$.tgcls( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
+            //ccc( tpClassName );
+            pnameLabelsvg$.addClass( tpcls );
         }
         return rgX;
     }

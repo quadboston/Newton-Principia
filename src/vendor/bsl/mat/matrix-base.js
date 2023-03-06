@@ -337,12 +337,24 @@
         };
     }
 
+
+    ///*****************************************
+    /// possible mess:
+    /// compare: this may replace this sub:
+    ///         mat.dropLine( 1, null, null, rg.p.pos, uu, udir * sop.Kepler_v )
+    ///         mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos )
+    ///*****************************************
     ///adds t*vector to point start
     ///inputs:    A,B,start - 2-dim. vectors,
     ///           t - distance parameter,
     ///returns:   u = start + (B-A)*t
+    ///
+    ///variant: canonical: res = dropLine(... = A + (B-A)t,
+    ///variant: res = dropLine(... = A + direction * directionLength
+    ///variant: res = dropLine(... = start + direction * directionLength
+    ///variant: res = dropLine(... = start + direction * t
     function dropLine(
-        t,
+        t,      //t - distance parameter,
         A,
         B,
         start, //optional
@@ -377,7 +389,7 @@
     ///partially tested
     ///inputs:  vector1=[ startPoint, endPoint ],
     ///         vector2=[ startPoint, endPoint ],
-    ///outputs: angele from vector1 to vector2 in range -PI to PI,
+    ///outputs: angele from vector1 to vector2 in range (-PI,PI],
     ///         counterclockwise direction is positive,
     function angleBetweenLines([
         vector1,

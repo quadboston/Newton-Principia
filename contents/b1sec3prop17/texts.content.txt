@@ -90,15 +90,15 @@ Let the centripetal force tending toward a point S be such that a body p
 revolves by its action in any given orbit ¦orbit-sample¦pq¦¦,
 and let ¦p,vSample¦its velocity¦¦ in the place ¦p¦¦
 be found out. Let body P go forth from place P along line ¦PR¦¦ with a given
-¦PR¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
+¦P,vb¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
 the compulsion of the centripetal force. Therefore the straight line ¦PR¦¦ will
 touch this conic at P. Let some straight line ¦p,vSample¦pr¦¦ likewise touch
 the orbit ¦orbit-sample¦pq¦¦
-at p, and if ¦SY¦perpendiculars¦¦ are understood to be dropped from S to
+at p, and if ¦S,Ys SY¦perpendiculars¦¦ are understood to be dropped from S to
  ¦p,vSample PR¦these tangents¦¦,
  the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
 be to the ¦l,ll¦principal latus rectum of the orbit¦¦ in a ratio compounded of the
-squares of the ¦SY¦perpendiculars¦¦ and the squares of the ¦p,vSample PR¦velocities¦¦
+squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,vSample P,vb¦velocities¦¦
 and thus is given.
 <br><br>
 
@@ -119,7 +119,7 @@ Add to each side
 = 2(SP x PH) + 2(KP x PH), or SP + PH will be to PH as 2¦SP¦¦ + 2¦PK¦KP¦¦ to L.
 <br><br>
 
-Hence PH is given in length as well as in position. Specifically, if the ¦PR¦velocity¦¦
+Hence PH is given in length as well as in position. Specifically, if the ¦P,vb¦velocity¦¦
 of the body at P is such that the latus rectum L is less than 2¦SP¦¦ + 2¦PK¦KP¦¦, PH
 will lie on the same side of the tangent PR as the line PS; and thus the ¦orbit¦figure¦¦
 will be an ellipse and will be given from the given foci S and H and the
@@ -130,7 +130,7 @@ line PK, and hence will be given.
 <br><br>
 
 But if the body goes forth from its place
-P with a still greater ¦PR¦velocity¦¦, the length PH will have to be taken on the
+P with a still greater ¦P,vb¦velocity¦¦, the length PH will have to be taken on the
 other side of the tangent; and thus, since the tangent goes between the ¦S H¦foci¦¦,
 the figure will be a hyperbola having its principal axis equal to the difference
 of the lines SP and PH, and hence will be given. For if the body in these
@@ -235,7 +235,7 @@ After that, χ must be -1 and conic transforms to a hyperbola.
 
 Hence, given the velocity of a body in the principal vertex
 D, the orbit will be found expeditiously, namely, by taking its ¦L,LL¦latus rectum¦¦ to
-twice the distance DS as the square of the ratio of this given ¦PR¦velocity¦¦ to the
+twice the distance DS as the square of the ratio of this given ¦P,vb¦velocity¦¦ to the
 velocity of a body revolving in a circle at a distance DS (by prop. 16, corol.
 3), and then taking DH to DS as the ¦L,LL¦latus rectum¦¦ to the difference between
 the ¦L,LL¦latus rectum¦¦ and 4¦DS¦¦.
@@ -261,11 +261,11 @@ For ¦p,f¦f¦¦ = 𝛾 /¦SP¦r¦¦²,
 <br><br>
 
 
-𝛾  = ( ¦SP¦r¦¦ ¦PR¦v¦¦ )² / L = ( ¦SP¦r¦¦ ¦p,vSample¦v<sub>or</sub>¦¦ )² / (2¦SP¦r¦¦ ) =  
+𝛾  = ( ¦SP¦r¦¦ ¦P,vb¦v¦¦ )² / L = ( ¦SP¦r¦¦ ¦p,vSample¦v<sub>or</sub>¦¦ )² / (2¦SP¦r¦¦ ) =  
 ¦SP¦r¦¦ ¦p,vSample¦v²<sub>or</sub>¦¦ / 2.
 <br><br>
 
-L = 2 ¦SP¦r¦¦ ¦PR¦v¦¦² / ¦p,vSample¦v²<sub>or</sub>¦¦.
+L = 2 ¦SP¦r¦¦ ¦P,vb¦v¦¦² / ¦p,vSample¦v²<sub>or</sub>¦¦.
 <br><br>
 
 
@@ -393,12 +393,12 @@ Page 118.
 Following points 1),2),3) do paraphrase proposition 17.
 <br><br>
 
-1. Given ¦orbit-sample¦orbit¦¦ for ¦p¦given body¦¦ is conic. Its ¦Sp¦𝗿₁¦¦,
-¦p,vSample¦𝘃₁¦¦, ¦l,ll¦L₁¦¦ are known.
+1. Given ¦orbit-sample¦orbit¦¦ for ¦p¦given body¦¦ is conic. Its ¦Sp¦𝗿ₛ¦¦,
+¦p,vSample¦𝘃ₛ¦¦, ¦l,ll¦Lₛ¦¦ are known.
 (Hence already proven propositions do imply: the ¦p,f¦force¦¦ is as 1 /r².)
 <br><br>
 
-For orbit to be calculated for the same given body located at ¦SP¦𝗿₂¦¦ with speed ¦PR¦𝘃₂¦¦:
+For orbit to be calculated for the same given body located at ¦SP¦𝗿¦¦ with speed ¦P,vb¦𝘃¦¦:
 <br>
 2. Hypothesis: ¦orbit¦calculated orbit¦¦ will be a conic.
 <br><br>
@@ -406,7 +406,7 @@ For orbit to be calculated for the same given body located at ¦SP¦𝗿₂¦¦ 
 From 1) and 2), already proven propositions do imply
 <br><br>
 
-3. (r₁v₁𝛺₁)²/L₁ = (r₂v₂𝛺₂)²/L₂
+3. (rₛvₛ𝛺ₛ)²/Lₛ = (rv𝛺)²/L
 <br><br>
 
 So, the only unproven hypothesis is 2). It needs proof via integration (or curve quadrature in Book's language.) Proposistion 17 does not prove 2).
@@ -620,8 +620,14 @@ starting from the case χ = 1.
 
                                         <tr><td>
                                         </td><td>
-e² = η²/Ω² - 2η + 1, η = L/(2r₊), <br>
-( 1 - e cos( φ ) ) = η <br>
+e² = η²Ω⁻² - 2η + 1,<br>
+η = L/(2r₊), <br>
+η = 1 - e cos(φ)<br>
+sign φ = -σ sign( cos(ω)/sin(ω) )<br>
+σ - cocnic's branch,
+σ = 1 for |φ| ⩾ φ<sub>crit</sub>,
+-1 otherwise,<br>
+Ω = sin(ω).<br>
                                         </td><td>
                                         </td><td>
                                         </td></tr>

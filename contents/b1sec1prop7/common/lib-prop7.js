@@ -25,7 +25,7 @@
 
 
     //analogy of
-    //function pointsArr_2_singleDividedDifferences()
+    //function  pointsArr_2_singleDividedDifferences()
     function creates_orbitRack()
     {
         var curveName = 'orbit';

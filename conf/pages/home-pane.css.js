@@ -110,24 +110,26 @@
           position: relative;
           grid-area: lemmas;
           padding: 80px 0;
-          padding-top: 150px;
+          padding-top: 80px;
         }
-
 
       .landing-table-of-contents .content-book-title,
       .landing-table-of-contents ul a {
         color: white;
-        font-size: 20px;
+        font-size: 17px;
         font-family: 'Goudy Old Style', 'Garamond','Times', serif;
         display: flex;
         justify-content: space-between;
         transition: all .6s;
         width: 100%;
       }
+      .landing-table-of-contents .content-book-title {
+        font-size: 19px;
+      }
 
       .landing-table-of-contents ul a {
         padding-top: 0px;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
       }
 
       .landing-table-of-contents .content-book-title {

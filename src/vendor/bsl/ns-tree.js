@@ -3,24 +3,9 @@
 
 ( function() {
     var ns          = window.b$l;
-    ns.nstree       = nstree;
-    var $$          = ns.$$;
     var sn          = ns.sn;
-    var cssp        = ns.CSS_PREFIX;
-    var nsheap      = sn('heap');
-    var nsmethods   = sn('methods');
-    var plugins     = sn('plugins');
-    var html        = sn('html');
-    var bezier      = sn('bezier');
     var mat         = sn('mat');
-    var mcurve      = sn( 'mcurve', mat );
-    var integral    = sn( 'integral', mat );
-    var chemistry   = sn('chemistry');
-    var sv          = sn('svg');
-    var nssvg       = sn('svg');
-    var dpdec       = sn('drag-point-decorator');
-    var d8dp        = sn( 'd8dp' );
-    var tframes     = sn('tframes');
+    ns.nstree       = nstree;
     return;
 
 
@@ -32,14 +17,20 @@
     {
         //do this first:
         // var ret = Object( {}, ns );
+
+        //why this function cannot be passed?:
+        //let ow = Object.prototype.hasOwnProperty.call;
+
+        let ow = Object.prototype.hasOwnProperty;
         var ret =
         {
+            ow          : function( ob, prop ) { return ow.call( ob, prop ); },
             ns,
-            nsd : ns.d,
+            nsd         : ns.d,
 
             //:frequent functions
             sn,
-            $$,
+            $$          : ns.$$,
             own         : ns.own,
             haz         : ns.haz,
             hazz        : ns.hazz,
@@ -60,21 +51,21 @@
             clonetree   : ns.clonetree,
             svgNS       : ns.svgNS,
 
-            cssp,
-            nsheap,
-            nsmethods,
-            html,
-            bezier,
+            cssp        : ns.CSS_PREFIX,
+            nsheap      : sn('heap'),
+            nsmethods   : sn('methods'),
+            html        : sn('html'),
+            bezier      : sn('bezier'),
             mat,
-            mcurve,
-            integral,
-            chemistry,
-            dpdec,
-            sv,
-            nssvg,
-            d8dp,
-            plugins,
-            tframes,
+            mcurve      : sn( 'mcurve', mat ),
+            integral    : sn( 'integral', mat ),
+            chemistry   : sn('chemistry'),
+            dpdec       : sn('drag-point-decorator'),
+            sv          : sn('svg'),
+            nssvg       : sn('svg'),
+            d8dp        : sn( 'd8dp' ),
+            plugins     : sn('plugins'),
+            tframes     : sn('tframes'),
         };
         return ret;
     }

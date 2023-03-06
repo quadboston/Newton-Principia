@@ -109,7 +109,7 @@
             landingImage            : 'landing-img.jpg',
             homePageCaption         : 'Interact with<br>' +
                                       'Newton’s <span>Principia</span>',
-            helpButtonCaption       : 'Hover over the diagram to interact',
+            helpButtonCaption       : 'Hover over the diagram or text to interact',
 
             //todm: this disables functionality ... not only CSS:
             helpBox_opacity0        : false,

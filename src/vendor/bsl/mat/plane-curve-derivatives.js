@@ -110,8 +110,11 @@
 
 
         //:angle between norm n and radius vector rrr
-        var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] ) * bk;
+
+        //the same: var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] ) * bk;
+        var sinOmega = ee[0]*uu[1] - ee[1]*uu[0];
         var cosOmega = ee[0]*uu[0] + ee[1]*uu[1];
+
         var angleRV = Math.asin( sinOmega );
         angleRV = cosOmega > 0 ? angleRV :
             angleRV > 0 ? Math.PI-angleRV : -Math.PI-angleRV;
@@ -156,7 +159,7 @@
             //in respect to chosen polar center rrc, if rrc presented
             rrr,
             r2,
-            r,
+            r,  //abs value of offset radius
             ee,
 
             vv, //vector = dr/dq
@@ -179,8 +182,8 @@
 
             //angle between norm n and radius vector rrr
             angleRV,
-            sinOmega,
-            cosOmega,
+            sinOmega,   //in respect to origin radius vector
+            cosOmega,   //in respect to origin radius vector
 
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };

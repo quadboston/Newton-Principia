@@ -9,16 +9,59 @@
 }
 *..*
 
-<b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+<b>I. Sketch of basic ideas.</b>
+<br><br>
+
+1. This lemma has nothing to do with limit of ratio: lim x/y, x → a, y → a. Even for case a ≄ 0. The word "which" in Motte's translation refers to ratios x and y in lim(x-y). Not to x and y in x/y:
+"...Quantities, and the ratio's of quantities, which ...". Because of the proof of L1 does not refer to
+x/y. Only to x-y.
+<br><br>
+
+The proof for x/y would require lim((x-y)/y) which will be techincally based on lim(x-y). Why involve special technical case when laying down the concept of limit?
+<br><br>
+
+2. Even lim(x-y) is quite advanced for Newton's times because (x-y) does not exist for Euclidian ratios.
+Strictly it is not defined. How one would add π/√2 - (√3)/π³? Especially when x is time, force, or speed.
+This will be "cleared" in two coming centuries after Newton. Dedekind's time not yet came.
+<br><br> 
+
+2'. x and y in lim(x-y) are things more complex than Euclidean ratios. For example,
+x and y are circumscribed and and inscribed Darboux sums in integral like in Lemma 2.
+<br><br>
+
+Like in 2φR² = ∫ dρ vsin(ω)/ρ²/( v² - z² ) in proposition 41,
+<br><br>
+
+The integree is a function vsin(ω)/ρ² / ( v² - z² ) where v² and z² are ratios themselves.
+Again, the difference v² - z² does not exist in Newton's time math. 
+<br><br>
+
+Moreover, v² is v² = ∫ dρ f(ρ), and force f is always a ratio like f =  F(ρ)/F(ρ<sub>o</sub>).
+<br><br>
+
+3. In own self, Lemma 1 contains definition of limit. Which comes when x = const = a, for example.
+<br><br>
+
+4. Because L1 lays down a basic concept of limit, it can be applied to limit of sets. Which actually happens
+in Principia immediately in Lemma 3.
+
+Inscribed and circumscribed sums, X and Y in lemma 3 are the sets {x} and {y}. For fixed maximum size of
+partition intervals for sum x and y, the are infinitely many x and infinitely many y.
+<br><br><br><br>
+
+
+
+
+
+<b>II. <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework.</a></b><br><br>
 <br>
 
 This is an interpretation of Newton's definition of limit in context of beginning XIX century (Bolzano).<br><br>
-1. Because of Newton uses it for inscribed and circumscribed sums limits in lemma 3 for non-equal
- partition intervals, the limit is interpreted as limit of sets of numbers.
- (Non equal intervals produce many partitions for given maximum interval.)
+1. As noted above in item 4, the limit is interpreted as limit of sets of numbers.
 <br><br>
-2. Real numbers are chosen because of Euclid.V.5 ratios are nothing less than Dedekind's cuts of rational numbers.<br><br>
+
+2. Real numbers are chosen as a "finalized form of of Euclid.V.5 ratios".<br><br>
 
 At first, we set up context with definition of limit.<br><br><br>
 
@@ -109,8 +152,11 @@ One notation can be made before stating the lemma 1: set of pointwise difference
         { G_\gamma }\rightarrow\ h , \;
         { {G'}_\gamma }\rightarrow\ h'
     \)
-    ,<br>
-    and it will even hold if to remove both of them and make the last condition stronger for which we first give the following definition:<br><br>
+    .<br>
+    It fails if to remove both.
+    <br><br>
+
+    However, it will even hold if to remove both of them and make the last condition stronger for which we first give the following definition:<br><br>
 
 
 <b>Definition:</b><br><br>
@@ -139,9 +185,9 @@ Two functions or sequences are Cauchy-equivalent "in neighbourhoods of point c" 
     \]
 \(\blacktriangle \)<br><br>
 
-The Book does not specify what type of convergence is: "nighbourhood-wise" or "pointwise". "Neighbourhood-wise" Lemma 1 is invalid for rational numbers.<br><br>
+The Principia does not specify what type of convergence is: "nighbourhood-wise" or "pointwise". "Neighbourhood-wise" Lemma 1 is invalid for rational numbers.<br><br>
 
-For "pointwise" Claim, the Book' Claim implicitly supposes existence of limiit at least for one of the functions. Otherwise Lemma 1 is invalid.<br><br>
+As noted above, for "pointwise" Claim, the Book' Claim implicitly supposes existence of limiit at least for one of the functions.<br><br>
 
 <br><br>
 

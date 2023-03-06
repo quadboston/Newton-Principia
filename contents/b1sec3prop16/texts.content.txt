@@ -30,9 +30,6 @@
 *..*
 
 
-<b>Not authorized for development yet.</b>
-<br><br><br>
-
 
 Under the same suppositions as in prop. 15, if ¦PR P,Zminus PZ¦straight lines¦¦
  are drawn to the ¦P¦bodies¦¦
@@ -62,8 +59,6 @@ Page 114.
 ¦PR¦¦¦
 ¦orbitdq¦PQ¦¦¦
 
-<b>Not authorized for development yet.</b>
-<br><br><br>
 
 
 From ¦S¦focus S¦¦ to ¦PR P,Zminus PZ¦tangent PR¦¦ drop ¦SY¦perpendicular SY¦¦,

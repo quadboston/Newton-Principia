@@ -28,7 +28,7 @@
 
 
     //analogy of
-    //function pointsArr_2_singleDividedDifferences()
+    //function  pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
     {
         var op                         = vop || sconf.orbitParameters;
@@ -38,13 +38,20 @@
         op.qEnd                        = Math.PI;
 
         var rgP         = vop ? rg.p : rg.P;
+
+        //:only css names
         var curveName   = vop ? 'orbit-sample' : 'orbit';
+
+        //both: css and rg names
         var dqName      = vop ? 'orbitdq-sample' : 'orbitdq';
         var areaName    = vop ? 'orbitarea-sample' : 'orbitarea';
-        var lowname     = sDomF.topicIdUpperCase_2_underscore( curveName );
-        var dqlowname   = sDomF.topicIdUpperCase_2_underscore( dqName );
+
+        var lowname     = curveName; //sDomF.topicIdUpperCase_2_underscore( curveName );
+        var dqlowname   = dqName; //sDomF.topicIdUpperCase_2_underscore( dqName );
+
         var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
-        var rgDq        = rg[ dqName ];
+        var rgDq        = rg[ dqName ]; //"twin-object" for rgX
+
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
         rgDq.polylineSvg = haz( rgX, dqName );
@@ -58,7 +65,6 @@
         Object.assign( rgX, result );
         Object.assign( rgDq, result );
         poly2svg({});
-        //poly2svg({ doDeltaArc:true });
         return result;
 
 
@@ -138,6 +144,8 @@
             doDeltaArc, //do delta arc only, do not try area,
         }){
             const rgXX = doDeltaArc ? rgDq : rgX;
+            //rgX = approximated-curve-[sample]
+            //rgDq = orbitdq-[sample]
             var curvePoints         = ownrange2points({ stepsCount:800, doDeltaArc });
             var medpoints           = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
             var polylineSvg         = rgXX.polylineSvg = nssvg.polyline({
@@ -155,28 +163,28 @@
             //##tp-machine
             rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' +
                                          (doDeltaArc ? dqlowname : lowname) );
-            //var strokeWidth = haz( arg, 'stroke-width' );
-            //if( strokeWidth ) {
-            //    polylineSvg.setAttribute( 'stroke-width', strokeWidth );
-            //}
-            if( doDeltaArc ) return; //arc does not have area
+                                         //rgDq has tp - dqlowname, rgXX has tp - lowname
+            //arc does not have area
+            //"no more dq below" ...
+            if( doDeltaArc ) return;
 
-            var rgArea = rg[ areaName ];
-            var areaSvg = rgArea.areaSvg = nssvg.polyline({
+            let rgA = rg[ areaName ]; //areaName = orbitarea-[sample]
+            let areaSvg = rgA.areaSvg = nssvg.polyline({
                 pivots  : medpoints,
-                svgel   : rgArea.areaSvg,
+                svgel   : rgA.areaSvg,
                 parent  : stdMod.svgScene,
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
                 //'stroke-width'   : haz( arg, 'stroke-width' ),
                 //fill             : haz( arg, 'fill' ),
             });
-            if( !has( rgXX, 'areaSvg$' ) ) {
-                rgXX.areaSvg$ = $$.$( areaSvg );
+
+            if( !has( rgA, 'areaSvg$' ) ) {
+                rgA.areaSvg$ = $$.$( areaSvg );
             }
-            rgXX.areaSvg$
+            rgA.areaSvg$
                 .addClass( 'tofill tp-'+areaName )
-                .tgcls( 'undisplay', rgArea.undisplay );
+                .tgcls( 'undisplay', rgA.undisplay );
         }
 
         function protectedQ( q ) {
