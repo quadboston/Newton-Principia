@@ -1,29 +1,12 @@
 ( function () {
     var {
-        SUB_MODEL, stdMod, rg,
+        sn,
+        ss,
+        sapp,
+        amode, SUB_MODEL, stdMod,
     } = window.b$l.apptree({
+        setModule,
     });
-
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var ss          = sn('ss',fapp);
-
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var amode       = sn('mode',sapp);
-    var sDomF       = sn('dfunctions', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     return;
 
 
@@ -32,16 +15,14 @@
 
     function setModule()
     {
-        var l23         = ss;
-
-        var study       = sn('study', l23 );
+        stdMod.refreshSVG_master = refreshSVG_master;
+        var study       = sn('study', ss );
         var sdata       = sn('sdata', study );
-        var gui         = sn('gui', l23 );
-        var guiup       = sn('guiUpdate',gui);
-        var numModel    = sn('numModel', l23 );
-        var dr          = sn('datareg', l23 );
-        var appstate    = sn('appstate', l23 );
-
+        var gui         = sn('gui', ss );
+        var guiup       = sn('guiUpdate', gui);
+        var numModel    = sn('numModel', ss );
+        var dr          = sn('datareg', ss );
+        var appstate    = sn('appstate', ss );
         
         ///same in meaning to legacy !view.isNewton property
         sapp.isLite = function()
@@ -54,11 +35,20 @@
         //======================================
         // //\\ exports module
         //======================================
-        stdMod.model8media_upcreate = refreshSVG_master;
+        //stdMod.model8media_upcreate = refreshSVG_master;
 
-        Object.assign( l23, {
-	        //refreshSVG_master               : refreshSVG_master,
-            //refreshSVG                      : refreshSVG_master,
+        //----------------------------------------------
+        // //\\ fits lemma to modern framework
+        //----------------------------------------------
+        //we do this because of refreshSVG_master may play role of model, so all the
+        //stuff for gui must be created before framework's media update
+//        stdMod.media_upcreate___before_basic = refreshSVG_master;
+        //stdMod.media_upcreate___part_of_medupcr_basic = refreshSVG_master;
+        //----------------------------------------------
+        // \\// fits lemma to modern framework
+        //----------------------------------------------
+
+        Object.assign( ss, {
             adjustVisibilityForBaseDelta    : adjustVisibilityForBaseDelta,
             show_LPR                        : show_LPR
         });
@@ -82,7 +72,9 @@
 	        guiup.updatePtsRectsLabelsAreas(); // depends on curveArea
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
-            //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax(); //todo toggle ???active
+            stdMod.syncPoints();
+            //todo toggle ???active
+            //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax();
         }
         //======================================
         // \\// view top-manager

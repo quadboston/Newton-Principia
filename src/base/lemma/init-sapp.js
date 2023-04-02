@@ -49,7 +49,7 @@
             //      todm patch
             //makes importan choice:
             //      media_upcreate          -       for non-standard, past lemmas
-            //      media_upcreate_generic    -     for modern, half-automated lemmas    
+            //      media_upcreate_generic    -     for modern, half-automated lemmas
             stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
                                     ssF.media_upcreate_generic;
             //------------------------------------------------------------------
@@ -112,7 +112,7 @@
                 stdMod.media_upcreate(); //todm apparently needed for
                 //                       //createsFW__8__executes_dragWr_gens_list
             }
-            sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
+            !sconf.skipGenDragList && sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
 
             //=======================================================
             // //\\ executes "lesson-guide-scenario" from start-event

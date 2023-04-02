@@ -1,16 +1,9 @@
 ( function () {
     var {
-        ns, sn,
+        sn,
         ss,
-        stdMod,
     } = window.b$l.apptree({
         setModule,
-        ssFExportList :
-        {
-        },
-        stdModExportList :
-        {
-        },
     });
     return;
 
@@ -20,12 +13,8 @@
 
     function setModule()
     {
-        var l23         = ss;
-
-
-        var dr          = sn('datareg', l23 );
-        var numModel    = sn('numModel', l23 );
-
+        var dr          = sn('datareg', ss );
+        var numModel    = sn('numModel', ss );
 
 
         //==================================

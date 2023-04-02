@@ -25,22 +25,10 @@
             //optional
             referencesForAllLemmaEssays :
             `
-            <div style="font-size:11px;">
-                <br><br>
-                Sources:
-                <br>
-                <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
-                    3rd Edition English translation by I. Bernard Cohen.
-                </a>
-                <br>
-                <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102">
-                    Diagram. Latin, 3rd Edition.
-                </a>
-                <br>
-                <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102">
-                    Text. Latin, 3rd Edition.
-                </a>
-            </div>
+            <br><br>
+            <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+            <div book-reference-id="latin-diagram"></div>
+            <div book-reference-id="latin"></div>
             `,
         };
     }

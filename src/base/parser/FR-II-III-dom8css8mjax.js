@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, eachprop, haz,
-        sDomF, ssF, exegs,
+        sconf, sDomF, ssF, exegs,
         amode,        
     } = window.b$l.apptree({
         ssFExportList :
@@ -20,6 +20,10 @@
     ///Frag. step III. Html and global-css-visib-of-active-category.
     function exegs__2__tpAn8dom8css8mjax()
     {
+
+        if( sconf.dontDoMathJax ) {
+           // delete window.MathJax;
+        }
         eachprop( exegs, ( theorionAspects, mcat_id ) => {
             eachprop( theorionAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg ) => {
@@ -44,7 +48,7 @@
                         ///converts frags-texts into html
                         eachprop( bFrag.htmlReadyFragText_racks, ( htmlReadyRack, fid ) => {
                             ssF.builtFrags_2_dom8mj(
-                                subexeg.domEl, htmlReadyRack, fid );
+                                subexeg.domEl, htmlReadyRack, fid, sconf.dontDoMathJax );
                         });
                     });
                 });

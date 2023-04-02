@@ -16,12 +16,11 @@
 
     function setModule()
     {
-        var l23         = ss;
-        var study       = sn('study', l23 );
+        var study       = sn('study', ss );
         var sdata       = sn('sdata', study );
-        var numModel    = sn('numModel', l23 );
-        var gui         = sn('gui', l23 );
-        var dr          = sn('datareg', l23 );
+        var numModel    = sn('numModel', ss );
+        var gui         = sn('gui', ss );
+        var dr          = sn('datareg', ss );
 
         sdata.curveDragHandlesVisible = true;
         study.eventHandlers =
@@ -133,12 +132,12 @@
 
         function toggleInscribed() {
 	        sdata.view.isInscribed^=1;
-	        l23.show_LPR();
+	        ss.show_LPR();
         }
 
         function toggleCircumscribed() {
 	        sdata.view.isCircumscribed^=1;
-	        l23.show_LPR();
+	        ss.show_LPR();
         }
 
         ///toggles mode for curve-shape is-draggable/non-draggable

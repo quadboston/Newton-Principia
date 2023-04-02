@@ -15,7 +15,6 @@
                 { src:'main.js' },
 
                 {  src:"css/css-order.js" },
-                {  src:"css/widget-media.css.js" },
                 {  src:"css/slider.css.js" },
                 {  src:"css/model.css.js" },
                 {  src:"css/inner-page.css.js" },
@@ -34,6 +33,16 @@
             [
                 "texts.content.txt",
             ],
+
+            //optional
+            referencesForAllLemmaEssays :
+            `
+            <br><br>
+            <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+            <div book-reference-id="latin-diagram"></div>
+            <div book-reference-id="latin"></div>
+            `,
+
         };
     }
 

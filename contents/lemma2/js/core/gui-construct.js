@@ -1,7 +1,6 @@
 ( function () {
     var {
-        sn,
-        $$,
+        sn, $$,
         ss,
         fconf, sconf,
         sDomF,
@@ -13,7 +12,6 @@
     var guiup               = sn('guiUpdate',gui);
     var appstate            = sn('appstate', ss );
     var dr                  = sn('datareg', ss );
-    var sacf                = sconf;
     return;
 
 
@@ -40,7 +38,7 @@
     //======================================
     function constructFigure()
     {
-        var baseMax = sacf.baseMax;
+        var baseMax = sconf.baseMax;
         // labels
         /*constructLabels(dr.curvLabels.list, "figure tostroke", 'abcde');
         constructLabels(dr.baseLabels.list, "figure tostroke", 'ABCDE');
@@ -63,12 +61,12 @@
     {
         // rectangle points
         if (appstate.showRectPts) {
-	        //constructPts(dr.leftPts, baseMax, "inscribed tofill", sacf.FINEPTS_RADIUS);
-	        //constructPts(dr.righPts, baseMax, "circumscribed tofill", sacf.FINEPTS_RADIUS);
-	        //constructPts(dr.curvPts, baseMax, "figure tofill", sacf.FINEPTS_RADIUS);
-	        constructPts(dr.leftPts, baseMax, "inscribed", sacf.FINEPTS_RADIUS);
-	        constructPts(dr.righPts, baseMax, "circumscribed", sacf.FINEPTS_RADIUS);
-	        constructPts(dr.curvPts, baseMax, "figure", sacf.FINEPTS_RADIUS);
+	        //constructPts(dr.leftPts, baseMax, "inscribed tofill", sconf.FINEPTS_RADIUS);
+	        //constructPts(dr.righPts, baseMax, "circumscribed tofill", sconf.FINEPTS_RADIUS);
+	        //constructPts(dr.curvPts, baseMax, "figure tofill", sconf.FINEPTS_RADIUS);
+	        constructPts(dr.leftPts, baseMax, "inscribed", sconf.FINEPTS_RADIUS);
+	        constructPts(dr.righPts, baseMax, "circumscribed", sconf.FINEPTS_RADIUS);
+	        constructPts(dr.curvPts, baseMax, "figure", sconf.FINEPTS_RADIUS);
         }
         constructBasePts_dom(appstate.showRectPts, dr.basePts);
     }
@@ -78,7 +76,7 @@
     {
         // control points
         var ctrlPts = dr.ctrlPts;
-        for (var i=0, len=sacf.ctrlPtXYs_js.length; i < len; i++) {
+        for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
 	        dr.ctrlPts.push( constructCtrlPt( i ) );
         }
     }
@@ -95,7 +93,7 @@
 
         constructEndBasePt_dom(basePts, show ? "figure" : "todm-fix-this");
 
-        for (var i=1, len=sacf.baseMax; i <= len; i++) {
+        for (var i=1, len=sconf.baseMax; i <= len; i++) {
   		    pt = makeDragP( "base", i );
 	        if( fconf.sappId === 'lemma3' ) {
 	            guiup.set_pt2movable( pt ); //todo-patch-disable-base-drag 1 of 2
@@ -111,7 +109,7 @@
             basePts.list[ basePts.list.length-1 ] = { dom:pdom };
 
             // //\\ patch: todm-fix-this
-            //pdom.setAttributeNS(null, "r", sacf.FINEPTS_RADIUS);
+            //pdom.setAttributeNS(null, "r", sconf.FINEPTS_RADIUS);
             pdom.setAttributeNS(null, "stroke", 'blue');
             pdom.setAttributeNS(null, "stroke-width", '5px');
             pdom.setAttributeNS(null, "fill", 'rgba(255,255,255,1)');
@@ -158,7 +156,8 @@
     ///dom
     function constructCtrlPt( i )
     {
-        var ctrlPtXYs_js = sacf.ctrlPtXYs_js; 
+        var ctrlPtXYs_js = sconf.ctrlPtXYs_js; 
+        //pt = dr.movables[ type + i ]
         var pt = makeDragP( "ctrl", i );
         var pdom = pt.dom;
 
@@ -167,7 +166,7 @@
 
         pdom.setAttributeNS(null, "cx", ctrlPtXYs_js[i].x);
         pdom.setAttributeNS(null, "cy", ctrlPtXYs_js[i].y);
-        pdom.setAttributeNS(null, "r", sacf.CTRL_RADIUS);
+        pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
         //.todm patch
         pdom.style.fill = 'rgba(255,255,255,1)';
         pdom.style.stroke = sDomF.getFixedColor( 'given' );
@@ -179,7 +178,7 @@
 
     function makeShape( shapeType, classStyle, textContent )
     {
-        var sdom = document.createElementNS( sacf.svgns, shapeType);
+        var sdom = document.createElementNS( sconf.svgns, shapeType);
         sdom.setAttributeNS(null, "class", classStyle);
         sdom.setAttributeNS(null, "visibility", "hidden");
         if( textContent ) { sdom.textContent = textContent; }
@@ -191,7 +190,7 @@
     function makeDragP( type, i )
     {
         var key  = type + i;
-        var pdom = document.createElementNS( sacf.svgns, "circle");
+        var pdom = document.createElementNS( sconf.svgns, "circle");
         dr.svgSeg.appendChild( pdom );
         pdom.setAttributeNS( null, "id", key );
         pdom.setAttributeNS( null, "draggable", "false" ); //todo ... redundant? ...

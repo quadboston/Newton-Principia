@@ -12,7 +12,6 @@
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Elucidation"
 }
 *..*
@@ -34,11 +33,6 @@
             ¦inscribed-rectangles¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles¦figuræ circumscripta¦¦;
             at latitudine sua AF in infinitum diminuta, 
             minus fiet dato quovis rectangulo. Q. E. D.
-
-
-
-
-
 
 
 

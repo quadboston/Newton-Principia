@@ -1,21 +1,7 @@
 *::*claim|latin
 {
   "menuCaption" : "Latin",
-  "mediaBgImage" : "lemma-23-3rd-ed.png",
-  "fixed-colors" :
-  {
-    "given"                     : [0,    100,  0 ],
-    "base"                      : [0,    100,  0 ],
-    "wall"                      : [0,    100,  0 ],
-    "curve"                     : [0,    100,  0 ],
-
-    "figure"                    : [0,    100,  0 ],
-    "figure-area"               : [0,    100,  0 ],
-
-    "circumscribed-rectangles"  : [0,  50, 100 ],
-    "widthest-rectangular"      : [0,  0, 100 ],
-    "inscribed-rectangles"      : [100,  0, 100 ]
-  }
+  "mediaBgImage" : "lemma-23-3rd-ed.png"
 }
 *..*
 
@@ -34,9 +20,8 @@
         &amp; ¦figure¦curvilinea AabcdE¦¦, 
         sunt rationes æqualitatis.
 
-<br><br>
-<div book-reference-id="latin-diagram"></div>
-<div book-reference-id="latin"></div>
+
+
 
 
 *::*claim|english
@@ -60,10 +45,6 @@
         the ¦circumscribed-rectangles¦circumscribed figure AalbmcndoE¦¦, 
         and the ¦figure-area¦curvilinear figure AabcdE¦¦ 
         have to one another are ratios of equality.
-
-<br><br>
-<div book-reference-id="Bernard-Cohen"></div>
-<div book-reference-id="latin-diagram"></div>
 
 
 
@@ -100,9 +81,6 @@
             Ergo per Lemma I, figura ¦inscribed-rectangles¦inscripta¦¦ &amp; ¦circumscribed-rectangles¦circumscripta¦¦ &amp; 
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q. E. D.
 
-<br><br>
-<div book-reference-id="latin-diagram"></div>
-<div book-reference-id="latin"></div>
 
 
 
@@ -118,9 +96,6 @@
             Therefore (by lem. 1) the ¦inscribed-rectangles¦inscribed figure¦¦ and the ¦circumscribed-rectangles¦circumscribed figure¦¦ and, 
             all the more, the intermediate ¦figure-area¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
 
-<br><br>
-<div book-reference-id="Bernard-Cohen"></div>
-<div book-reference-id="latin-diagram"></div>
 
 
 

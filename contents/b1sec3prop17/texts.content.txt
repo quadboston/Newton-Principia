@@ -59,7 +59,6 @@
 
 *::*claim|english
 {
-  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -639,4 +638,21 @@ sign φ = -σ sign( cos(ω)/sin(ω) )<br>
 
 <div book-reference-id="kvk"></div>
 
+
+
+*::*proof|addendum
+{
+  "default" : "1",
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Test your understanding",
+  "subessay" : "self-test"
+}
+*..*
+
+
+<b>Reiteration.</b> A force ¦p,f¦f¦¦ = 𝛾 /r² acts on ¦p¦given body¦¦ in position ¦Sp¦𝗿ₛ¦¦ with speed ¦p,vSample¦𝘃ₛ¦¦ and latus ¦l,ll¦Lₛ¦¦ of its ¦orbit-sample¦orbit¦¦ is known. 
+Calculate an ¦orbit¦orbit¦¦, if this body would start at position ¦SP¦𝗿¦¦ with speed ¦P,vb¦𝘃¦¦.
+<br><br>
+
+<div class="model-user-feedback"></div>
 

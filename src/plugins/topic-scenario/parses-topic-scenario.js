@@ -47,9 +47,9 @@
         var TIMEOUT = /^(\d+)\s*(.*)$/;
         var PURGE_EVENT = /^>\s/;
 
-                           "exersise"
+        //                 "exersise"
         eachprop( exegs, ( theorionAspects, theorion_id ) => {
-                                         "subtopics"
+        //                               "subtopics"
             eachprop( theorionAspects, ( exAspect, aspect_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
 

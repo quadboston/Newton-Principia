@@ -1,23 +1,10 @@
 ( function () {
-    var ns          = window.b$l;
-    var $$          = ns.$$;    
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-    var sacf        = sconf;
-
-    var ss          = sn('ss',fapp);
-    var ssF         = sn('ssFunctions',ss);
-    
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
+    var {
+        sn, $$,
+        sapp, sconf, ss,
+    } = window.b$l.apptree({
+        setModule,
+    });
     return;
 
 
@@ -26,15 +13,13 @@
 
     function setModule()
     {
-        var l23         = ss;
-
-        var study       = sn('study', l23 );
-        var gui         = sn('gui', l23 );
+        var study       = sn('study', ss );
+        var gui         = sn('gui', ss );
         var guicon      = sn('guiConstruct', gui );
         var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', l23 );
-        var dr          = sn('datareg', l23 );
-        var numModel    = sn('numModel', l23 );
+        var appstate    = sn('appstate', ss );
+        var dr          = sn('datareg', ss );
+        var numModel    = sn('numModel', ss );
         var sdata       = sn('sdata', study );
 
 
@@ -67,7 +52,7 @@
             dr.labelf = guicon.makeShape( "text", "figure label f", "f" );
             dr.labelF = guicon.makeShape( "text", "figure label F", "F" );
             dr.faaf   = ( function() {
-	                        var x = document.createElementNS( sacf.svgns, "rect");
+	                        var x = document.createElementNS( sconf.svgns, "rect");
 	                        //not in use: x.setAttributeNS(null, "class", "dottedRect");
 	                        dr.svgSeg.appendChild(x);
 	                        return x;
@@ -76,39 +61,39 @@
                 'widthest-rectangular tp-widthest-rectangular tofill' );
         };
 
+        gui.calculatesWidest = function () {
+            var fb = dr.figureBasics;
+	        if (fb.deltaOnLeft) {
+                ////supposition is that function monotonically decreases
+		        var x = fb.minX; //x of control point
+		        var y = numModel.f(x);
+                var rightX = x + dr.widest;
+                var f = numModel.f( rightX );
+                var F = rightX;
+	        } else {
+                ////supposition is that function monotonically increases
+                var x = fb.maxX-dr.widest;  //gets rect's left side x
+                var y = numModel.f(fb.maxX); //gets rect's right side y
+                var rightX = fb.maxX;
+                var f = numModel.f( x );
+                var F = x;
+	        }
+            var rightY = numModel.f( rightX );
+            dr.widestRect = { x, y, rightX, rightY, F, f };
+            return dr.widestRect;
+        }
+
         gui.widthEnd = function(pt, showRectPts, view)
         {
             var fb = dr.figureBasics;
 	        pt.setAttributeNS(null, "class", "figure");
-	        pt.setAttributeNS(null, "r", showRectPts ? sacf.FINEPTS_RADIUS : 0);
-	        if (fb.deltaOnLeft) {
-		        var x = fb.minX; //x of control point
-		        var y = numModel.f(x);
-                //.offset and sizes
-		        guiup.updateRectLike(
-                        dr.faaf, x, Math.min(y, fb.baseY),
-                        dr.widest, Math.abs(fb.baseY-y));
-	        } else {
-
-                // //\\ somehow this does not work
-		        //var x = 100; //fb.maxX;
-		        //var y = numModel.f(x);
-		        //guiup.updateRectLike(
-                //        dr.faaf, x-dr.widest,
-                //        Math.min(y, fb.baseY), dr.widest, Math.abs(fb.baseY-y));
-                // \\// somehow this does not work
-
-                var x = fb.maxX-dr.widest;
-
-                //.bug fix:
-                //var y = numModel.f(x);
-                var   y = numModel.f(fb.maxX);
-
-		        guiup.updateRectLike(
-                        dr.faaf,
-                        x, Math.min(y, fb.baseY),
-                        dr.widest, Math.abs(fb.baseY-y));
-                //ccc(fb.minX, fb.maxX, ' dr.widest='+dr.widest );
+	        pt.setAttributeNS(null, "r", showRectPts ? sconf.FINEPTS_RADIUS : 0);
+            var { x, y } = gui.calculatesWidest();
+	        guiup.updateRectLike(
+                dr.faaf, //item
+                x, Math.min(y, fb.baseY), //x,y
+                dr.widest, Math.abs(fb.baseY-y)); //width, height
+            if( fb.deltaOnLeft ) {
 		        dr.widest *= -1;
 	        }
 	        guiup.updateLabel( dr.labelf, x+dr.widest-3, y-10);

@@ -24,6 +24,9 @@
                 { src: sm + 'graph-array.js' },
                 { src: sm + 'graph-fw-lib.js' },
                 { src: sm + 'makes-orbit.js' },
+
+                { src : sm + 'inits/finalizes-subessay-relaunch.js' },
+                { src : sm + 'learner-scenario/activity-scenario-I.conf.js' },
             ],
             "contents-list" :
             [

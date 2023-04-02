@@ -2,48 +2,26 @@
 
 ( function () {
     var {
+        sn,
+        sapp, ss, sconf,
+        fconf,
         stdMod, rg,
     } = window.b$l.apptree({
+        setModule,
     });
-    var ns          = window.b$l;
-    var $$          = ns.$$;    
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp');
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-    //000000000000000000000000000000000000000000000000000000
     return;
-    //000000000000000000000000000000000000000000000000000000
-
-
 
 
 
 
     function setModule()
     {
-        var l23         = ss;
-
-        var study       = sn('study', l23 );
+        var study       = sn('study', ss );
         var sdata       = sn('sdata', study );
-        var dr          = sn('datareg', l23 );
-        var appstate    = sn('appstate', l23 );
+        var dr          = sn('datareg', ss );
+        var appstate    = sn('appstate', ss );
 
-        l23.presetData = function()
+        ss.presetData = function()
         {
             //=====================================
             // //\\ presets data

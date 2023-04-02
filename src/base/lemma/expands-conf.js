@@ -198,6 +198,76 @@
             // \\// expands originalPoints placeholders
             //--------------------------------------------------
 
+
+            //----------------------------------
+            // //\\ expands lines placeholders
+            //----------------------------------
+            linesArray = haz( sconf, 'linesArray' );
+            if( linesArray ) {
+                lines = {};
+                linesArray.forEach( (lineConf) => {
+                    var lname = Object.keys( lineConf )[0];
+                    lines[ lname ] = lineConf[ lname ];
+                });
+            }
+
+
+            ///apparently non-unified with shapes-points, points have more properties
+            eachprop( lines, ( gshape, pname ) => {
+                var rgX = toreg( pname )( 'pname', pname )();
+
+                //todm: mess: lines array elements attributes go into
+                //line-maker in lemma-linerars-machine lineAttr
+                //, but this is done via "str2line" which ignores "everything" except
+                //stroke, 'stroke-width', and 'caption'
+                //here we create even more mess because adding alternative stream for
+                //pcolor
+                if( has( gshape, 'pcolor' ) ) {
+                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    fixedColors[ tk ] = gshape.pcolor;
+                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
+                    rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
+                } else {
+                    rgX.pcolor = sDomF.getFixedColor( pname );
+                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
+                }
+
+                ///todm: this code is extremely non-automated:
+                if( has( gshape, 'captionShiftNorm' ) ) {
+                    rgX.captionShiftNorm = gshape.captionShiftNorm;
+                }
+
+                //---------------------------------------------------------
+                // //\\ transfers properties from line-options to rg-lines:
+                //      todo ... we stumbled upon this 100 times ...
+                //               property transfer must automate ...
+                //               every time we forget to transfer new
+                //               property, we lose hours ...
+                //---------------------------------------------------------
+                if( has( gshape, 'undisplay' ) ) {
+                    rgX.undisplay = gshape.undisplay;
+                }
+
+                //start here: add tp classes, tp shadows for rules and slider handles ...
+
+                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
+                rgX.notp        = haz( gshape, 'notp' );
+                rgX.cssClass    = haz( gshape, 'cssClass' );
+                if( has( gshape, 'vectorTipIx' ) ) {
+                    rgX.vectorTipIx = gshape.vectorTipIx;
+                }
+
+                rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
+                                  gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+                //---------------------------------------------------------
+                // \\// transfers properties from line-options to rg-lines:
+                //---------------------------------------------------------
+            });
+            //----------------------------------
+            // \\// expands lines placeholders
+            //----------------------------------
+            return;
+
             function expandsOrPoints( op, pname )
             {
                 //todo ... non-readable: it tranfers properties from ??original points to here,
@@ -361,74 +431,6 @@
                 // \\// sets up point letters
                 //----------------------------------------------------------
             }
-
-            //----------------------------------
-            // //\\ expands lines placeholders
-            //----------------------------------
-            linesArray = haz( sconf, 'linesArray' );
-            if( linesArray ) {
-                lines = {};
-                linesArray.forEach( (lineConf) => {
-                    var lname = Object.keys( lineConf )[0];
-                    lines[ lname ] = lineConf[ lname ];
-                });
-            }
-
-
-            ///apparently non-unified with shapes-points, points have more properties
-            eachprop( lines, ( gshape, pname ) => {
-                var rgX = toreg( pname )( 'pname', pname )();
-
-                //todm: mess: lines array elements attributes go into
-                //line-maker in lemma-linerars-machine lineAttr
-                //, but this is done via "str2line" which ignores "everything" except
-                //stroke, 'stroke-width', and 'caption'
-                //here we create even more mess because adding alternative stream for
-                //pcolor
-                if( has( gshape, 'pcolor' ) ) {
-                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    fixedColors[ tk ] = gshape.pcolor;
-                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
-                } else {
-                    rgX.pcolor = sDomF.getFixedColor( pname );
-                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
-                }
-
-                ///todm: this code is extremely non-automated:
-                if( has( gshape, 'captionShiftNorm' ) ) {
-                    rgX.captionShiftNorm = gshape.captionShiftNorm;
-                }
-
-                //---------------------------------------------------------
-                // //\\ transfers properties from line-options to rg-lines:
-                //      todo ... we stumbled upon this 100 times ...
-                //               property transfer must automate ...
-                //               every time we forget to transfer new
-                //               property, we lose hours ...
-                //---------------------------------------------------------
-                if( has( gshape, 'undisplay' ) ) {
-                    rgX.undisplay = gshape.undisplay;
-                }
-
-                //start here: add tp classes, tp shadows for rules and slider handles ...
-
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
-                rgX.notp        = haz( gshape, 'notp' );
-                rgX.cssClass    = haz( gshape, 'cssClass' );
-                if( has( gshape, 'vectorTipIx' ) ) {
-                    rgX.vectorTipIx = gshape.vectorTipIx;
-                }
-
-                rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
-                                  gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
-                //---------------------------------------------------------
-                // \\// transfers properties from line-options to rg-lines:
-                //---------------------------------------------------------
-            });
-            //----------------------------------
-            // \\// expands lines placeholders
-            //----------------------------------
         })();
         //---------------------------------------------------------------------------
         // \\// derives initial model parameters from picture's points

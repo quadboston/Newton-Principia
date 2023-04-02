@@ -1,34 +1,12 @@
 ( function() {
     var {
-        stdMod, rg,
+        sn, $$,
+        ss, sDomN, ssF,
+        fconf, fapp,
+        stdMod, amode,
     } = window.b$l.apptree({
+        setModule,
     });
-
-    var ns          = window.b$l;
-    var cssp        = ns.CSS_PREFIX;
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-
-    var fapp        = sn('fapp' ); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-
-    var ss          = sn('ss',fapp);
-    var ssF         = sn('ssFunctions',ss);
-    var ssD         = sn('ssData',ss);
-    
-    var sapp        = sn('sapp'); 
-    var amode       = sn('mode',sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomN       = sn('dnative', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     return;
 
 

@@ -1,34 +1,17 @@
 ( function () {
     var {
-        has,
-        ssF,
-        stdMod,
+        sn,
+        sconf, ss, sDomN, ssF,
     } = window.b$l.apptree({
+        setModule,
         stdModExportList :
         {
+            syncPoint,
+            syncPoints,
         },
     });
-
-
-    var ns          = window.b$l;
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var fconf   = ns.sn('fconf',fapp);
-    var sconf   = ns.sn('sconf',fconf);
-    var sacf    = sconf;
-
-    var ss          = sn('ss',fapp);
-
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var dr          = sn('datareg', ss );
+    var numModel    = sn('numModel', ss );
     return;
 
 
@@ -37,17 +20,13 @@
 
     function setModule()
     {
-        var l23         = ss;
-
-        var study       = sn('study', l23 );
-        var gui         = sn('gui', l23 );
+        var study       = sn('study', ss );
+        var gui         = sn('gui', ss );
         var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', l23 );
-        var dr          = sn('datareg', l23 );
-        var numModel    = sn('numModel', l23 );
+        var appstate    = sn('appstate', ss );
+        var dr          = sn('datareg', ss );
+        var numModel    = sn('numModel', ss );
         var sdata       = sn('sdata', study );
-
-
         //======================================
         // //\\ exports module
         //======================================
@@ -67,8 +46,6 @@
         //======================================
         // \\// exports module
         //======================================
-
-
 
 
         function xy2lineShape( line,x1,y1,x2,y2 )
@@ -110,7 +87,7 @@
         function set_pt2movable( pt )
         {
             pt.dom.setAttributeNS(null, "class", "movable figure");
-            pt.dom.setAttributeNS(null, "r", sacf.MOVABLE_BASE_RADIUS);
+            pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
             pt.movable = true;
         }
 
@@ -168,7 +145,7 @@
 
             // //\\ sets curves type
 
-	        l23.adjustVisibilityForBaseDelta();
+	        ss.adjustVisibilityForBaseDelta();
 
             // //\\ resets app modes
             var wfirst = curveMicroPts[0];
@@ -310,5 +287,124 @@
         //========================================
 
     }
+
+    ///======================================
+    /// syncronizes positions for
+    /// framework points and legacy points
+    ///======================================
+    function syncPoint( item ) {
+       if( item.type === 'ctrl' ) {
+            switch( item.index ) {
+            case 0 : var pname = 'a';
+                     syncPoint( dr.basePts.list[ 0 ] );
+                     break;
+            case 4 :
+                     if( dr.bases === 4 ) {
+                         var pname = 'E';
+                         var pnameTop = 'o';
+                         var previousItem = dr.basePts.list[ 3 ];
+                     }
+                     break;
+            }
+        } else if( item.spinnerClsId === 'ctrl-0' ) {
+            var pname = 'A';
+        } else if( item.type === 'base' ) {
+            switch( item.index ) {
+            case 1 : var pname = 'B';
+                     var pnameFun = 'b';
+                     var pnameTop = 'l';
+                     var pnameLow = 'K';
+                     var previousItem = dr.basePts.list[ 0 ];
+                     break;
+            case 2 : var pname = 'C';
+                     var pnameFun = 'c';
+                     var pnameTop = 'm';
+                     var pnameLow = 'L';
+                     var previousItem = dr.basePts.list[ 1 ];
+                     break;
+            case 3 : var pname = 'D';
+                     var pnameFun = 'd';
+                     var pnameTop = 'n';
+                     var pnameLow = 'M';
+                     var previousItem = dr.basePts.list[ 2 ];
+                     break;
+            case 4 : if( dr.bases > 4 ) {
+                        var pname = 'E';
+                        var pnameTop = 'o';
+                        var previousItem = dr.basePts.list[ 3 ];
+                     }
+                     break;
+            }
+        }
+        if( pname ) {
+            var xoff = sconf.originX_onPicture;
+            var yoff = sconf.originY_onPicture;
+            var scale = sconf.mod2inn_scale;
+            rg[ pname ].pos[0] = (item.x - xoff) / scale;
+            rg[ pname ].pos[1] = -(item.y - yoff) / scale;
+
+            if( pnameFun ) {
+                rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
+                rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
+            }
+            if( pnameLow ) {
+                rg[ pnameLow ].pos[0] = ( previousItem.x - xoff ) / scale;
+                rg[ pnameLow ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
+            }
+            if( pnameTop ) {
+                rg[ pnameTop ].pos[0] = rg[ pname ].pos[0];
+                rg[ pnameTop ].pos[1] = -( numModel.f( previousItem.x ) - yoff ) / scale;
+            }
+        }
+    }
+
+
+    function syncPoints() {
+        //order of statements seems vital
+        [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
+        dr.ctrlPts.forEach( item => { syncPoint( item ); });
+        [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
+
+        if( dr.bases < 4 ) {
+            rg.E.undisplay = true;
+            rg.o.undisplay = true;
+        } else {
+            rg.E.undisplay = false;
+            rg.o.undisplay = false;
+        }
+        if( dr.bases < 3 ) {
+            rg.D.undisplay = true;
+            rg.n.undisplay = true;
+        } else {
+            rg.D.undisplay = false;
+            rg.n.undisplay = false;
+        }
+        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
+        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
+        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
+        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
+
+        // //\\ majorant rect
+        var xoff = sconf.originX_onPicture;
+        var yoff = sconf.originY_onPicture;
+        var scale = sconf.mod2inn_scale;
+
+        /*
+        var fb = dr.figureBasics; 
+        rg.F.pos[1] = 0;
+        var Fx = dr.widest + ( dr.widest < 0 ? fb.maxX : fb.minX );
+        rg.F.pos[0] = ( Fx - xoff ) / scale;
+        rg.f.pos[0] = rg.F.pos[0];
+        rg.f.pos[1] = -( numModel.f( Fx ) - yoff ) / scale;
+        */
+
+        var { x, y, rightX, rightY, F, f } = dr.widestRect;
+        rg.F.pos[0] = ( F - xoff ) / scale;
+        rg.F.pos[1] = 0;
+        rg.f.pos[0] = rg.F.pos[0];
+        rg.f.pos[1] = -( f - yoff ) / scale;
+        // \\// majorant rect
+    }
+
 }) ();
 

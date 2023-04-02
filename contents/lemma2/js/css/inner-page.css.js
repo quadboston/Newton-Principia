@@ -1,22 +1,12 @@
 (function() {
-    var ns  = window.b$l;    var ns  = window.b$l;
-    var cssp= ns.CSS_PREFIX;
-    var sn  = ns.sn;
-
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var ss          = sn('ss', fapp);
-    var cssmod      = sn('ssCssModules',ss);
-
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var modulesCount = sn('modulesCount', sapp);
-    modulesCount.count = modulesCount.count ? modulesCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + modulesCount.count ] = setModule;
-
-    var cssName     = 'inner-page';
-    return; //000000000000000000000
+    var {
+        sn, cssp, cssmod, ssCssOrder,
+        fconf,
+    } = window.b$l.apptree({
+        setModule,
+    });
+    var cssName = 'inner-page';
+    return;
 
 
 
