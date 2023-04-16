@@ -5,8 +5,6 @@
 }
 *..*
 
-<pre>
-
 Si recta ¦AE¦AE¦¦ &amp;
 If the straight line ¦AE¦AE¦¦ and
 
@@ -35,7 +33,6 @@ ultimately ¦ABDPerACE¦be to each other¦¦
 in ¦AD2PerAE2¦duplicata ratione¦¦ laterum.
 as the ¦AD2PerAE2¦squares of the sides¦¦.
 
-</pre>
 
 
 
