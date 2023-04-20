@@ -5,8 +5,16 @@
 }
 *..*
 
-<img src="contents/b1sec1lemma6/img/b1s1l6-3rded.png" style="width:100%">
-<div book-reference-id="latin"></div>
+Si arcus quilibet positione datus ¦arc-AB¦ACB¦¦ subtendatur chorda ¦AB¦AB¦¦, 
+& in puncto aliquo ¦A¦A¦¦, 
+in medio curvaturæ continuæ, tangatur a recta utrinq; producta ¦AD¦AD¦¦; 
+dein puncta ¦A¦A¦¦, ¦B¦B¦¦ ad invicem accendant & coeant; 
+dico ¦angleBAD AB AD *anch-color*given¦quod angulus BAD¦¦ sub chorda & tangente contentus minuetur in infinitum & ultimo evanescet.
+
+<div book-reference-id="Gutenberg"></div>
+
+
+
 
 
 *::*claim|english
@@ -16,28 +24,39 @@
 }
 *..*
 
-If any arc ¦arc-AB¦ACB¦¦, given in position, is subtended by its chord ¦AB¦AB¦¦,
-and in any point
-¦A¦A¦¦, in the middle of the continued curvature, is touched by a ¦AD¦right line AD¦¦, produced both ways; then if the points ¦A¦A¦¦ and ¦B¦B¦¦
+If any arc ¦arc-AB¦ACB¦¦, given in position, 
+is subtended by the chord ¦AB¦AB¦¦
+and at some point ¦A¦A¦¦, 
+in the middle of the continuous
+curvature, is touched by the ¦AD¦straight line AD¦¦, 
+produced in both directions,
+and if then points ¦A¦A¦¦ and ¦B¦B¦¦
 
- <span class="captured-reference id-true-convergence-1">approach one another</span>
+ <span class="captured-reference id-true-convergence-1">approach
+each other</span>
 
- <span class="captured-reference id-meet">and meet</span>,
+ <span class="captured-reference id-meet">and come together</span>,
 
-I say, ¦angleBAD AB AD *anch-color*given¦the angle BAD¦¦, contained between,
-the chord and the tangent, will be diminished in infinitum, and ultimately will vanish.
+I say
+that ¦angleBAD AB AD *anch-color*given¦the angle BAD¦¦ contained by the
+chord and the tangent will be indefinitely diminished and will ultimately
+vanish.
 
-<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
-<br><br>
-<div book-reference-id="Motte-3rd"></div>
 
 
 *::*proof|latin
 
-<img src="contents/b1sec1lemma6/img/b1s1l6-3rded.png" style="width:100%">
-<div book-reference-id="latin"></div>
+Nam producatur AB ad b & AD ad d, & punctis A, B
+coeuntibus, nullaq; adeo ipsius Ab parte AB jacente am-
+plius intra curvam, manifestum esi quod hæc recta Ab, 
+vel coincidet cum tangente Ad, 
+vel ducetur inter tangentem & curvam. 
+Sed casus posterior est contra naturam Curvaturæ, 
+ergo prior obtinet. Q. E. D.
+<div book-reference-id="Gutenberg"></div>
 
 
 
@@ -45,17 +64,17 @@ the chord and the tangent, will be diminished in infinitum, and ultimately will 
 *::*proof|english
 
     For if ¦angleBAD AB AD *anch-color*given¦that angle¦¦ does not vanish, 
+    the angle contained by the arc ¦arc-AB¦ACB¦¦ 
+    and the tangent ¦AD¦AD¦¦ will be equal to a ¦AL Ad L¦rectilinear angle¦¦, 
+    and therefore the curvature at ¦A¦point A¦¦ will not be continuous,
+    <span class="captured-reference id-L-equal-d">contrary to the hypothesis</span>.
 
-    the arc ¦arc-AB¦ACB¦¦ will contain with the
-
-    tangent ¦AD¦AD¦¦ an angle equal to a ¦AL Ad L¦rectilinear angle¦¦; and
-    therefore the curvature at the point ¦A¦A¦¦ will not be continued,
-    <span class="captured-reference id-L-equal-d">which is against the supposition</span>.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 
-<br><br>
-<div book-reference-id="Motte-3rd"></div>
+
+
 
 
 *::*claim|model

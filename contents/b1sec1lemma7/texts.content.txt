@@ -4,9 +4,18 @@
   "menuCaption" : "Latin"
 }
 *..*
-
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
 <div book-reference-id="latin"></div>
+
+
+*::*proof|latin
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+*::*corollary|latin
+*..*
+
 
 
 
@@ -16,10 +25,47 @@
   "menuCaption" : "English"
 }
 *..*
+With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,
+the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one another ¦¦ are ratios of equality.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
-The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦, and ¦AD¦tangent¦¦, ¦conterminousRatio¦any one to any other¦¦, is the ratio of equality.
+*::*proof|english
+<!--some italic text gets cut off on some mobile browsers unless followed by a space; hence space after italics-->
+For while point ¦B¦¦ <span class="captured-reference id-true-convergence-1">approaches</span> point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood
+always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d&hairsp;&hairsp;¦¦</i>; and let <i>¦bd ¦¦</i> be drawn
+parallel to secant ¦BD¦¦. And let arc ¦arc-Ab¦A<i>cb </i>¦¦ be always similar to arc ¦arc-AB¦ACB¦¦. Then as
+points ¦A¦A¦¦ and ¦B¦B¦¦ come together, the angle
+¦Ab Ad *anch-color*proof¦<i>d</i>A<i>b </i>¦¦ will vanish (by lem. 6), and thus the
+straight lines ¦Ab¦A<i>b</i>¦¦ and ¦Ad¦A<i>d</i> ¦¦ (which are 
+always finite) and the intermediate arc ¦arc-Ab¦A<i>cb </i>¦¦
+will coincide and therefore will be equal. Hence, the straight lines ¦AB¦¦ and
+¦AD¦¦ and the intermediate arc ¦arc-AB¦ACB¦¦ (which are always proportional to the
+lines ¦Ab¦A<i>b </i>¦¦ and ¦Ad¦A<i>d </i>¦¦ and the ¦arc-Ab¦A<i>cb </i>¦¦ respectively) will also vanish and will
+have to one another an ultimate ratio of equality. &nbsp; Q.E.D.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+*::*corollary|english
+*..*
+<span class="captured-reference id-colollary-1">COROLLARY 1.</span>
+Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦
+and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦
+will ultimately have a ratio of equality to the vanishing arc ¦arc-AB¦ACB¦¦, because, if
+parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ always has a ratio of equality to ¦AD¦¦.
 <br><br>
+
+<span class="captured-reference id-colollary-2">COROLLARY 2.</span>
+And if through ¦B¦¦ and ¦A¦¦ additional straight lines ¦BE¦¦,
+¦BD¦¦, ¦AF¦¦, and ¦AG¦¦ are drawn cutting the tangent ¦AD¦¦ and its parallel ¦BF¦¦, the
+¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦
+and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
+<br><br>
+
+COROLLARY 3. And therefore all these lines can be used for one another
+interchangeably in any argumentation concerning ultimate ratios.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
 
 
 
@@ -28,48 +74,6 @@ The same things being supposed, I say that the ultimate ratio of the ¦arc-AB¦a
   "menuCaption" : "---"
 }
 *..*
-
-
-
-*::*proof|latin
-
-<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
-<div book-reference-id="latin"></div>
-
-
-
-
-
-
-*::*proof|english
-
-
-For while the point ¦B¦B¦¦
-
-<span class="captured-reference id-true-convergence-1">approaches</span>
-
-towards the point ¦A¦¦, consider always
-¦AB¦¦ and ¦AD¦¦ as produced to the remote points ¦b¦¦ and ¦d¦¦,
-and parallel to the
-secant ¦BD¦¦ draw ¦bd¦¦ : and let the ¦arc-Ab¦arc Acb¦¦ be always similar to the ¦arc-AB¦arc ACB¦¦. Then, supposing the points ¦A¦A¦¦ and ¦B¦B¦¦ to coincide,
-the angle ¦Ab Ad *anch-color*proof¦dAb¦¦
-will vanish, by the preceding Lemma; and therefore the right lines ¦Ab¦¦,
-¦Ad¦¦ (which are always finite), and the intermediate ¦arc-Ab¦arc Acb¦¦, will coincide,
-and become equal among themselves. Wheref[o]re, the right lines ¦AB¦¦, ¦AD¦¦,
-and the intermediate ¦arc-AB¦arc ACB¦¦ (which are always proportional to the
-¦arc-Ab¦former¦¦), will vanish, and ultimately acquire the ratio of equality. Q.E.D.
-
-
-<div book-reference-id="Motte-3rd"></div>
-<br><br>
-
-
-
-
-
-
-
-
 
 
 *::*proof|model
@@ -192,8 +196,6 @@ where ¦tangent_phi¦ψ¦¦ is angle from axis x to tangent ¦AL¦¦,
 
 
 
-
-
 *::*proof|model
 {
   "subessayCaption" : "<b>r'</b>(l)",
@@ -214,12 +216,6 @@ Let initially chose point d as Ad = 1. Proof's sketch:
 In other words, when independent variable chosen as curve length, the vector speed is equal to
 unit tangent vector ¦Ad¦<b>Ad</b>¦¦.
 <br>
-
-
-
-
-
-
 
 
 
@@ -255,49 +251,8 @@ where <br>
 
 
 
-
-*::*corollary|latin
-*..*
-
-
-*::*corollary|english
-{
-}
-*..*
-
-<span class="captured-reference id-colollary-1">COR. 1</span>.
-
-Whence if through ¦B¦¦ we draw ¦BF¦¦ parallel to the ¦AD¦tangent¦¦, always cutting
-any right line ¦AF¦¦ passing through ¦A¦¦ in ¦F¦¦,
-this line ¦BF¦¦ will be ultimately in the
-ratio of equality with the evanescent ¦arc-AB¦arc ACB¦¦; because, completing the
-¦AF BF AD BD *anch-color*given¦parallelogram AFBD¦¦, it is always in a ratio of equality with ¦AD¦¦.
-<br><br>
-
-
-<span class="captured-reference id-colollary-2">COR. 2</span>.
-
-And if through ¦B¦¦ and ¦A¦¦ more right lines are drawn, as ¦BE¦¦,
-¦BD¦¦, ¦AF¦¦, ¦AG¦¦, cutting the tangent ¦AD¦¦ and
-its parallel ¦BF¦¦ : the ultimate
-ratio of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦,
-¦BG¦¦, and of ¦AB¦the chord¦¦ and ¦arc-AB¦arc AB¦¦,
-¦conterminousRatio¦any one to any other¦¦, will be the ratio of equality.
-<br><br>
-
-COR. 3. And therefore in all our reasoning about ultimate ratios, we
-may freely use any one of those lines for any other.
-<br><br>
-
-<br><br>
-
-
-<div book-reference-id="Motte-3rd"></div>
-
 *::*corollary|model
 {
   "menuCaption" : "---"
 }
 *..*
-
-

@@ -54,27 +54,18 @@
 
 
         'Bernard-Cohen-Anne-Whitman' : `
-            <br><br>
+            <br>
             <div style="font-size:12px;">
-                <i>Source:</i><br><br>
-                ISAAC NEWTON, THE PRINCIPIA
-                        <br>
-                Mathematical Principles of Natural Philosophy
-                <br>
-                A New Translation
-                by I. Bernard Cohen and Anne Whitman
-                assisted by Julia Budenz
-                <br><br>
-                UNIVERSIT Y OF CALIFORNI A PRESS
-                <br>
-                Berkeley Los Angeles London
-                <br><br>
+                <i>Source:</i><br>
                 <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
-                    3rd Edition English translation by I. Bernard Cohen.
+                NEWTON, THE <i>PRINCIPIA</i><br>
+                <i>Mathematical Principles of Natural Philosophy</i><br>
+                A New Translation<br>
+                I. Bernard Cohen and Anne Whitman<br>
                 </a>
-
             </div>
             `,
+
 
         'Bernard-Cohen-Anne-Whitman-without-Guide' : `
             <br><br>
