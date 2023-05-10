@@ -19,7 +19,7 @@ and in file ver/contents/content-list.js
 add an entry like
         {   sappId : 'b1sec1lemma11',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma XI',
+            caption : 'Sec. 1. Lemma 11',
             annotation : "",
         },
 
