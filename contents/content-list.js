@@ -5,7 +5,7 @@
         {
             sappId : 'home-pane',
             book : '',
-            caption : 'Newton’s Principia',
+            caption : 'Principia models',
             annotation : "Home Page and Contents",
         },
 
@@ -225,6 +225,12 @@
 
 
     ];
+
+    var basicSiteFeatures = true;
+    if (basicSiteFeatures) {
+        fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
+    }
+
 
 }) ();
 
