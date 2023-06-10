@@ -612,24 +612,9 @@
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
             if( subessay === 'interpretation1' ) {
-                [
-                    'rd',
-                    'rb',
-                    'bd',
-                    'b',
-                    'r',
-                    'd',
-                ].forEach( gname => { rg[ gname ].undisplay = true; });
                 rg.B.hideD8Dpoint   = true;
                 rg.R.hideD8Dpoint   = false;
             } else if( subessay === 'interpretation2' ) {
-                [
-                    'rd',
-                    'rb',
-                    'b',
-                    'r',
-                    'd',
-                ].forEach( gname => { rg[ gname ].undisplay = false; });
                 rg.B.hideD8Dpoint   = false;
                 rg.R.hideD8Dpoint   = true;
             }

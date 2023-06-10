@@ -57,7 +57,7 @@ are similar in their ultimate form, and that their ultimate ratio is one of equa
 For while point ¦B¦¦ approaches
 point ¦A¦¦, let ¦AB¦¦, ¦AD¦¦, and ¦AR¦¦ be
 understood always to be produced
-to the distant points ¦b¦¦, ¦d¦¦, and ¦r¦¦, and
+to the distant points ¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
 ¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
 and let ¦arc-Ab¦arc Acb¦¦ be always similar
 to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
@@ -68,8 +68,8 @@ vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
 and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
 also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
-to these, will ultimately become similar and equal to one another. Q.E.D
-
+to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 *::*proof|english
@@ -78,7 +78,22 @@ to these, will ultimately become similar and equal to one another. Q.E.D
   "subessay" : "interpretation2"
 }
 *..*
+1 For while point ¦B¦¦ approaches
+point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
+understood always to be produced
+to the distant points ¦b¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
+¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
+and let ¦arc-Ab¦arc Acb¦¦ be always similar
+to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
+¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
 
+vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
+¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
+and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
+also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
+and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
+to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 
