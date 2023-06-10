@@ -143,7 +143,7 @@
                     <h2>About</h2>
                     <p class="about__author__text">
                         <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
-                            production, programming, video<br>
+                            concept, production, programming, video<br>
                         <span class="dd-label"><a href="http://landkey.net/">Konstantin Kirillov:</a></span>
                             lead programming, addenda, UI<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
