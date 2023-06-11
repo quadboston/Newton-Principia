@@ -7,9 +7,9 @@
 }
 *..*
 
-If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the ¦arc-AB¦arc ACB¦¦,
-its ¦AB¦chord AB¦¦,
-and the ¦AD¦tangent AD¦¦, constitute three triangles
+If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the arc ¦arc-AB¦ACB¦¦,
+its chord ¦AB¦¦,
+and the tangent ¦AD¦¦, constitute three triangles
 ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦, and ¦AR RD AD¦RAD¦¦, and if
 then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the triangles as they vanish
 are similar in their ultimate form, and that their ultimate ratio is one of equality.
@@ -31,8 +31,8 @@ point ¦A¦¦, let ¦AB¦¦, ¦AD¦¦, and ¦AR¦¦ be
 understood always to be produced
 to the distant points ¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
 ¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
-and let ¦arc-Ab¦arc Acb¦¦ be always similar
-to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
+and let arc ¦arc-Ab¦Acb¦¦ be always similar
+to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
 ¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
 
 vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
@@ -55,8 +55,8 @@ point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
 understood always to be produced
 to the distant points ¦b¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
 ¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
-and let ¦arc-Ab¦arc Acb¦¦ be always similar
-to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
+and let arc ¦arc-Ab¦Acb¦¦ be always similar
+to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
 ¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
 
 vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
