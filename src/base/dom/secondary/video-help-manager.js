@@ -1,30 +1,10 @@
 ( function() {
     var {
-        stdMod, rg,
+        $$, eachprop, has,
+        fconf, fmethods, exegs, sDomN,
+        amode, stdMod, rg,
     } = window.b$l.apptree({
     });
-
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;    
-    var rootvm      = sn('rootvm');
-
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-    var fmethods    = sn('methods',fapp);
-
-    var sapp        = sn('sapp'); 
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var amode       = sn('mode',sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-    var exegs    = sn('exegs', ssD);
-
     fmethods.create_video_help_manager = create_video_help_manager;
     return;
 
@@ -52,16 +32,14 @@
         /*
         ///never processed ... todm why
         sDomN.localVideo$.e('loadeddata', function() {
-           ccc('loadeddata');
+           c cc('loadeddata');
           if(sDomN.localVideo$().readyState >= 2) {
-            ccc('2222222');
+            c cc('2222222');
             sDomN.localVideo$().play();}
         });
         */
         fmethods.spawnVideoList = spawnVideoList;
-        //111111111111111111111111
         return;
-        //111111111111111111111111
 
 
 
@@ -82,15 +60,17 @@
                 'display','none');
 
             //:theorion menu cleanup
-            ///cleans up video icon placeholders in exegesis-tabs
-            var iconClass = 'videoicon-placeholder';
-            ns.eachprop( rg[ iconClass ], function( iconRg$, iid ) {
-                if( iid === 'rgId' || iid === 'stdModName' ) return;
-                iconRg$.html('');
-            });
+            ///cleans up video icon placeholders in exegesis-tabs,
+            ///in tabs, not in help button,
+            [ 'videoicon-placeholder', 'videoicon-placeholder-aspect' ]
+                .forEach( iconClass => {
+                    eachprop( rg[ iconClass ], function( iconRg$, iid ) {
+                        if( iid === 'rgId' || iid === 'stdModName' ) return;
+                        iconRg$.html('');
+                    });
+                });
             var vConf = exegs[ amode['theorion'] ][ amode['aspect'] ].subexegs[0]
                         .essayHeader.video;
-
             if( vConf ) {
                 if( vConf['to model help'] ) {
                     var listForPopup = [];
@@ -114,8 +94,11 @@
                     //----------------------------------------------------------
                     // //\\ teorion video buttons
                     //----------------------------------------------------------
+                    let iconClass = 'videoicon-placeholder' +
+                                    ( has( vConf, 'to-aspect' ) ? '-aspect' : '' );
+                    let category = has( vConf, 'to-aspect' ) ? 'aspect' : 'theorion';
                     var itemDom$ = createVideoIconEntry( vConf );
-                    var dom_already_built = rg[ iconClass ][ amode['theorion'] ];
+                    var dom_already_built = rg[ iconClass ][ amode[ category ] ];
                     if( dom_already_built  ) {
                         itemDom$.to( dom_already_built );
                     }
@@ -138,6 +121,11 @@
                     .cls('video-icon-img-container')
                     .html( '<img class="video-help-button" width="25"' +
                            'src="' + fconf.engineImg + '/camera-lightbulb.png" ' +
+
+                           ( vConf.tooltip ?
+                             'title="' + vConf.tooltip + '" ' : ''
+                           ) +
+
                            '>' +
                            ( vConf.caption ?
                              ' <span style="vertical-align:middle;">' +
@@ -187,7 +175,11 @@
         }
 
         function runInternal(URL) {
-            sDomN.localVideoSource$().src = URL;
+
+            //which is a correct statement?
+            //sDomN.localVideoSource$().src = URL;
+            sDomN.localVideoSource$().src = URL + '?autoplay=1';
+
             setDisplayForInternal( 'block' );
             sDomN.localVideo$().play();
         };

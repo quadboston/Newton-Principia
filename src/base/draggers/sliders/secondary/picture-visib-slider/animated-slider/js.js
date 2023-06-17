@@ -1,24 +1,12 @@
 // //\\//
 (function() {
     var {
+        ns, sn, $$,
+        fconf, sconf, ssF, ssD,
         stdMod, rg,
     } = window.b$l.apptree({
     });
-	var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var anslider    = ns.sn('animated-slider');
-
-    var fapp        = ns.sn('fapp' ); 
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-
+    var anslider    = sn('animated-slider');
     ssF.animatedSlider = animatedSlider;
     return;
 
@@ -30,7 +18,8 @@
 
 
     ///... appar. this function is derived from vbls/... animated-slider.js
-    ///... which had prototype: ns.simpleSlider = function( parent, cssp, sliderClassId, captionScale )
+    ///... which had prototype: n s .simpleSlider =
+    ///    function( parent, cssp, sliderClassId, captionScale )
     function animatedSlider( sarg )
     {
         var parent          = sarg.parent;

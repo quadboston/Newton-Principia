@@ -58,7 +58,7 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-
+        sconf.default_tp_lightness = 30;
         var predefinedTopics =
         {
             given,

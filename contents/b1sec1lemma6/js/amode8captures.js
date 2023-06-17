@@ -390,6 +390,7 @@
                     'line-dr-start,dr-decorpoint',
                     'dr-decorpoint',
                     'A,line-AL-end',
+                    'arc-Ab',
 
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
 
@@ -405,7 +406,7 @@
                         'BO',
                         'Ab',
                         //microscope arc
-                        'arc-Ab',
+                        //'arc-Ab',
                         'phi0',
                         'deltaphi',
                     ].forEach( gname => { rg[ gname ].undisplay = false; });

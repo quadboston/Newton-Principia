@@ -1,10 +1,11 @@
 ( function () {
     var {
-        sn, $$,
-        sapp, sconf, ss,
+        sn, $$, svgNS,
+        fapp, sapp, sconf, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
+    var stdL2 = sn('stdL2', fapp );
     return;
 
 
@@ -13,13 +14,13 @@
 
     function setModule()
     {
-        var study       = sn('study', ss );
-        var gui         = sn('gui', ss );
+        var study       = sn('study', stdL2 );
+        var gui         = sn('gui', stdL2 );
         var guicon      = sn('guiConstruct', gui );
         var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', ss );
-        var dr          = sn('datareg', ss );
-        var numModel    = sn('numModel', ss );
+        var appstate    = sn('appstate', stdL2 );
+        var dr          = sn('datareg', stdL2 );
+        var numModel    = sn('numModel', stdL2 );
         var sdata       = sn('sdata', study );
 
 
@@ -51,19 +52,24 @@
         {
             dr.labelf = guicon.makeShape( "text", "figure label f", "f" );
             dr.labelF = guicon.makeShape( "text", "figure label F", "F" );
-            dr.faaf   = ( function() {
-	                        var x = document.createElementNS( sconf.svgns, "rect");
-	                        //not in use: x.setAttributeNS(null, "class", "dottedRect");
-	                        dr.svgSeg.appendChild(x);
-	                        return x;
-            })();
+            dr.faaf   = document.createElementNS( svgNS, "rect");
+            stdMod.svgScene.appendChild( dr.faaf );
+            //not in use: x.setAttributeNS(null, "class", "dottedRect");
             $$.$(dr.faaf).addClass(
                 'widthest-rectangular tp-widthest-rectangular tofill' );
         };
 
         gui.calculatesWidest = function () {
             var fb = dr.figureBasics;
-	        if (fb.deltaOnLeft) {
+            let yVar = dr.yVariations;
+            ccc( 'gui.calculatesWidest' );
+            if( yVar.changes.length > 2 ) { //3 elements == two intervals
+	            var x = fb.minX; //x of control point
+	            var y = yVar.minY;
+                var rightX = x + dr.widest;
+                var f = y - yVar.maximumDeltaF; //numModel.f( rightX );
+                var F = rightX;
+            } else if( fb.deltaOnLeft ) {
                 ////supposition is that function monotonically decreases
 		        var x = fb.minX; //x of control point
 		        var y = numModel.f(x);
@@ -79,7 +85,12 @@
                 var F = x;
 	        }
             var rightY = numModel.f( rightX );
-            dr.widestRect = { x, y, rightX, rightY, F, f };
+            dr.widestRect = {
+                x, y,   //left-top-corner:
+                rightX, rightY,
+                F, //F,f = bottom right corner
+                f  //top y
+            };
             return dr.widestRect;
         }
 
@@ -102,7 +113,7 @@
 	        document.getElementById("diffAmtd").innerHTML =
                 guiup.normalizedStr( Math.abs( dr.widest * (fb.baseY-y)) );
         };
-        gui.show_widthest_claim_labels = function( view )
+        gui.styles___show_widthest_claim_labels = function( view )
         {
             var visib = !sapp.isLite() && !sdata.view.isClaim ? "visible":"hidden";
 	        dr.labelf.setAttributeNS(null, "visibility", visib );

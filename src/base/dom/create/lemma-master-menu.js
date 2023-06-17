@@ -14,7 +14,7 @@
         ns, sn, $$, haff,
         eachprop, haz,
         sconf, fconf,
-        fapp, sapp, ss,
+        fapp, sapp,
         fmethods,
         ssF,
         sDomF, sDomN,
@@ -152,8 +152,8 @@
     /// makes tab's components shadow and button;
     function make_menu_leaf__onceLocFun( leafRk )
     {
-        var scat_id     = leafRk.scat_id;
-        var mcat_id     = leafRk.mcat_id;
+        var scat_id     = leafRk.scat_id;   //sub category: theorion or aspect
+        var mcat_id     = leafRk.mcat_id;   //main category: theorion or aspect
         var mitemIx     = leafRk.ix;
         var caption     = leafRk.caption;
         var studylab    = leafRk.studylab;
@@ -179,22 +179,24 @@
         //------------------------------
         // //\\ video-button placeholder
         //------------------------------
-        if( mcat_id === 'theorion' ) {
-            var iconClass = 'videoicon-placeholder';
-            var videoPlaceholder$ = toreg( iconClass )( scat_id,
-                $$
-                .div()
-                .cls( iconClass )
-                //:can put this css into fapp.css.js 
-                //:while no specific place exist
-                .css( 'display', 'inline-block' )
-                .css( 'position', 'relative' )
-                .css( 'top', '2px' )
-                .css( 'padding-right', '4%' )
-                .css( 'padding-left', '0%' )
-                .css( 'height', '10px' )
-            )( scat_id );
-        }
+        //if( mcat_id === 'theorion' ) {
+        ///this thing participate in creation placeholder inside
+        ///theorion tab-tags-buttons
+        var iconClass = 'videoicon-placeholder' +
+            ( mcat_id === 'aspect' ? '-aspect' : '' );
+        var videoPlaceholder$ = toreg( iconClass )( scat_id,
+            $$
+            .div()
+            .cls( iconClass )
+            //:can put this css into fapp.css.js 
+            //:while no specific place exist
+            .css( 'display', 'inline-block' )
+            .css( 'position', 'relative' )
+            .css( 'top', '2px' )
+            .css( 'padding-right', '4%' )
+            .css( 'padding-left', '0%' )
+            .css( 'height', '10px' )
+        )( scat_id );
         //------------------------------
         // \\// video-button placeholder
         // \\// fluid-html part
@@ -207,6 +209,13 @@
             .dct( 'shape litem', teaf$ )
             .e('click', function( event ) {
                 if( mcat_id !== 'theorion' || !fconf.theorionTab_nonClickable ) {
+
+                    //:todm: it is not clear why this is required, and why flag
+                    //:'chosen' is not cleared up downstream automatically
+                    let mid = mcat_id;
+                    let submItem = sconf.asp8theor_menus[ mid ].duplicates[ amode[ mid ] ];
+                        submItem.leafRk.li$.removeClass( 'chosen' );
+
                     do_select_leaf__localfun( leafRk, !!'amodel2app_8_extraWork' );
                 }
             })
@@ -256,6 +265,7 @@
         //==================================================
         //sets menu flag
         leafRk.li$.removeClass( 'chosen' );
+
         //sets fappRoot flags
         fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion +
             ' aspect--' + amode.aspect );
@@ -264,6 +274,7 @@
             exAspect.subessayMenuContainer$.removeClass( 'chosen' );
         }
         exAspect.subexegs.forEach( subexeg => {
+            //book's text
             $$.removeClass( 'chosen', subexeg.domEl );
             ( exAspect.subexegs.length > 1 ) &&
               subexeg.subessayMenuItem$.removeClass( 'chosen' );
@@ -313,11 +324,13 @@
                 subexeg.subessayMenuItem$.addClass( 'chosen' );
             });
         } else {
+            //adds 'chosen' to book's text
             $$.addClass( 'chosen', subexeg0.domEl );
         }
 
         //flag to menu
-        leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag
+        //menu "button"
+        leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag, but fails if omitted
         //flag to shuttle
         decorOfShuttle$.a('class','shape shuttle shuttle-'+leafRk.ix);
         if( mcat_id === 'theorion' ) {
@@ -341,7 +354,7 @@
             ////this happens only on 2 click events(ver Dec10,2020)
             ////one click is for top-text-menu?,
             ////second click is for submenu,
-            ns.haf( ss, 'state8css_for_l2_l3' )( mcat_id, scat_id );
+            ns.haf( fapp.ss, 'state8css_for_l2_l3' )( mcat_id, scat_id );
         }
 
 

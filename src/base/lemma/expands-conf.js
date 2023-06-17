@@ -13,7 +13,6 @@
     var LETTER_ROTATION_RADIUS_PER_1000 = 30;
     var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
     var LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
-    var super_default_highlight_tp_stroke_width = 10;
     return;
 
 
@@ -459,12 +458,14 @@
             //----------------------------------
             // \\// scenario
             //----------------------------------
-
-            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+            /*
+            //moved to site conf
             default_tp_stroke_width     : haz( sconf, 'default_tp_stroke_width' ) ||
                                           super_default_highlight_tp_stroke_width,
+            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
             default_tp_lightness        : 40, //50 is full lightness
             defaultLineWidth            : 2,
+            */
         });
         sn( 'hover_width', sconf,
             Math.max( 1,  sconf.default_tp_stroke_width ) );

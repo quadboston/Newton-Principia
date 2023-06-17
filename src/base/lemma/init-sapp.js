@@ -2,7 +2,7 @@
 ( function() {
     var {
         ns, sn, has, haz, haff, eachprop,
-        ss, sapp, fapp, sconf, fconf, ssF, sDomF, sDomN, ssD, exegs,
+        sapp, fapp, sconf, fconf, arios, ssF, sDomF, sDomN, ssD, exegs,
         studyModsActivated, studyMods, amode, rg,
     } = window.b$l.apptree({
         setModule
@@ -84,25 +84,21 @@
             //on Dec 4, 2021, this is only for lem. 20,21,5
             haff( stdMod, 'populates__cust_draggers_list' );
 
-            ( function() {
+            {
                 ////for "sites" which have user-guiding-scenarios
-                var ts = haz( ss, 'activityScenario' );
-                if( ts ) {
-                    var activityScenarios = haz( ts, 'activityScenarios' );
-                    var parsesTopicScenarios = haz( ssF, 'parsesTopicScenarios' );
-                    if( activityScenarios && parsesTopicScenarios ) {
+                var parsesTopicScenarios = haz( ssF, 'parsesTopicScenarios' );
+                if( parsesTopicScenarios ) {
 
-                        //apparently, this completes assembling of scripts among
-                        //them own: pieces are merged to be later parsed with
-                        //parsesTopicScenarios()
-                        activityScenarios.forEach( as => { as(); } );
+                    //apparently, this completes assembling of scripts among
+                    //them own: pieces are merged to be later parsed with
+                    //parsesTopicScenarios()
+                    arios.forEach( as => { as(); } );
 
-                        //apparently, pieces are parsed now
-                        haff( ssF, 'parsesTopicScenarios' );
-                        haff( ssF, 'doInitTopicScenarioCss' );
-                    }
+                    //apparently, pieces are parsed now
+                    haff( ssF, 'parsesTopicScenarios' );
+                    haff( ssF, 'doInitTopicScenarioCss' );
                 }
-            }) ();
+            }
 
             ssF.in_subessay_launch____amode2lemma();
             haff( stdMod, 'sliders_value2pos' );

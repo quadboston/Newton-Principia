@@ -19,6 +19,8 @@
     //====================================================
     function init_conf()
     {
+        sconf.default_tp_lightness = 30; //todm no effect
+
         //--------------------------------------
         // //\\ original-book picture parameters
         //--------------------------------------
@@ -183,7 +185,7 @@
             //----------------------------------
 
             default_tp_stroke_opacity : 2,
-            default_tp_lightness : 40, //50 is full lightness
+            //default_tp_lightness : 40, //50 is full lightness
 
             default_tp_stroke_width : Math.floor( 10 * controlsScale ),
             defaultLineWidth : Math.floor( 2 * controlsScale ),

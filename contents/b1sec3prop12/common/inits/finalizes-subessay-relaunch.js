@@ -33,7 +33,10 @@
     function finalizes_activityScriptSelection()
     {
         rg.activitiesAreLaunched = true;
-        document.querySelector( '.exersise-introduction' ).style.display = 'none';
+        var ei = document.querySelector( '.exersise-introduction' );
+        if( ei ) {
+            ei.style.display = 'none';
+        }
         finalizesChosenActivity();
     }
 

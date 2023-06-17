@@ -265,7 +265,19 @@ contains ¦orbit¦¦ which is in experimental space. Right part of the diagram i
 
 *::*proof|addendum
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "Addendum",
+  "video" :
+  {
+    "annotation" : "Video Help on Claim",
+    "xx corrupts button caption" : "Comparing Newton's and modern solution.",
+    "tooltip" : "Video. Comparing Newton's and modern solution.",
+    "to-aspect" : true,
+    "isNotExternal" : false,
+    "URL" : "./contents/videos/addendum-prop-41.mp4",
+
+    "xxto model help" :  true,
+    "xxURL" : "http://sciencehike.com/original/NewtonPrincipia/content-guide/B1S1L02Claim.mp4"
+  }    
 }
 *..*
 

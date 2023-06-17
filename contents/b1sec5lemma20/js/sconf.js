@@ -1,24 +1,14 @@
 // //\\// widget config
 ( function() {
-    var ns      = window.b$l;
-    var mat     = ns.sn( 'mat' );
-    var sn      = ns.sn;
-
-    var fapp    = sn('fapp' ); 
-    var fconf   = sn('fconf',fapp);
-    var sconf   = sn('sconf',fconf);
-    var sapp    = sn('sapp'); 
-
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'load_conf';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        mat,
+        fapp, sconf,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            init_conf
+        },
+    });
     return;
 
 
@@ -26,13 +16,6 @@
 
 
 
-
-
-
-    function setModule()
-    {
-        ssF.init_conf = init_conf;
-    }
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
@@ -116,6 +99,7 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
+        sconf.default_tp_lightness = 30;
         to_sconf =
         {
             mediaBgImage : "l20.jpg",
@@ -170,7 +154,7 @@
             default_tp_stroke_opacity : 0.5,
             default_tp_stroke_width : 20,
             //default_tp_lightness : 50, //50 is full lightness
-            default_tp_lightness : 40, //50 is full lightness
+            //default_tp_lightness : 40, //50 is full lightness
             defaultLineWidth : 3,
 
             //:for tools sliders: todo proliferation

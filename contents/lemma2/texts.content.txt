@@ -26,6 +26,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -51,7 +52,6 @@
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Elucidation" 
 }
 *..*
@@ -119,8 +119,7 @@
                 the key is a mode and value is a text-to-show:
                 the key must be CSS-selector-characters-compatible.
                             
-
-                Application modes store is in the JS-object: ns.fapp.ss.ssData.ssModes'
+                    Application modes store is in the JS-object: ns.fapp. s s .ssData.ssModes'
                 see, for example, how ssModes is set in module gui-update.js:
                   ssModes[ 'right' ] =  wfirst[1] > wlast[1];
                   in other words format is: ssModes[key]=boolean-value

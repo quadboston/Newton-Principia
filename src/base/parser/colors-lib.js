@@ -36,9 +36,6 @@
     ///     topic elements obtain properties: { rgba_low, rgba_high }
     function topics__2__topicsColorModel()
     {
-        var SATUR   = sconf.DEFAULT_TP_SATUR;
-        var LIGHT   = sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT;
-
         eachprop( lcaseId2allLemTopics,
                   ( topi_c, topicId, tcount, allTopicsCount ) => {
             var fc = haz( topi_c, 'fixed-color' );
@@ -61,8 +58,12 @@
                 var zebra = rem ? (tcount-rem)/2 : tcount/2 + Math.floor( allTopicsCount / 2 );
                 var hue = 359 / allTopicsCount * zebra; // topicsCount * zebra;
 
-                var lh = ns.hslo_2_low8high( hue, SATUR, LIGHT,
-                    sconf.OWN_SHAPE_OPACITY, sconf.OWN_SHAPE_OPACITY_HIGH,
+                var lh = ns.hslo_2_low8high(
+                    hue,
+                    sconf.DEFAULT_TP_SATUR, // SATUR,
+                    sconf.default_tp_lightness || sconf.DEFAULT_TP_LIGHT, //=LIGHT,
+                    sconf.OWN_SHAPE_OPACITY,
+                    sconf.OWN_SHAPE_OPACITY_HIGH,
                 );
             }
             //lh==={ rgba_low, rgba_high, lowOpacity, highOpacity }

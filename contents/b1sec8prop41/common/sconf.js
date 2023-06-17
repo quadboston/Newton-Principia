@@ -112,6 +112,8 @@
         sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
         sconf.text_hover_width      = 1.5;
         // \\// principal tp-css pars
+
+        sconf.default_tp_lightness = 30;
         //--------------------------------------
         // \\// do override engine defaults,
         //--------------------------------------

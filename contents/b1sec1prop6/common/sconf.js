@@ -55,6 +55,7 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
+        sconf.default_tp_lightness = 30;
         sconf.rgShapesVisible = true;
 
         //gives bar full range of opacity for tp machine

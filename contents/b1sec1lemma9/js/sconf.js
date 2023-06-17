@@ -70,6 +70,7 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
+        sconf.default_tp_lightness = 30;
         var given   = [0,     150, 0,      ]; //0.5];
         var proof   = [0,     0,   255,    ]; //0.5];
         var result  = [200,   40,  0,      ]; //0.5];

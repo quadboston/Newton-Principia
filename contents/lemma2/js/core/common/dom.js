@@ -1,12 +1,12 @@
 ( function() {
     var {
         sn, $$,
-        ss, sDomN, ssF,
-        fconf, fapp,
+        fapp, fconf, sDomN, ssF,
         stdMod, amode,
     } = window.b$l.apptree({
         setModule,
     });
+    var stdL2 = sn('stdL2', fapp );
     return;
 
 
@@ -20,7 +20,7 @@
         ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
         ssF.convergenceResultArea               = convergenceResultArea;
         ssF.create_digital_legend               = create_digital_legend;
-        ss.state8css_for_l2_l3                  = state8css_for_l2_l3;
+        stdL2.state8css_for_l2_l3                  = state8css_for_l2_l3;
     }
 
 
@@ -34,7 +34,7 @@
 
         ///refreshes legacy state of subapplication for l23 ...
         ///should be in some state enging specific to subapplication ...
-        ss.study.sdata.view.isClaim = amode.theorion === 'claim';
+        stdL2.study.sdata.view.isClaim = amode.theorion === 'claim';
 
 
         ///=========================================================================
@@ -168,7 +168,7 @@
                     <div class="checkbox-wrap tobg">
                         <input id="checkbox_4" type="checkbox" name="option"
                                class="checkbox figure"
-                               onclick="window.b$l.fapp.ss.gui.showFig()"
+                               onclick="window.b$l.fapp.stdL2.gui.showFig()"
                                checked>
                         <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
                     </div>

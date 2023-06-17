@@ -40,6 +40,7 @@
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
+        sconf.default_tp_lightness = 30;
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 1500;

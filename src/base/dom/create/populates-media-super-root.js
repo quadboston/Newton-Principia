@@ -181,7 +181,8 @@
         //..........................
 
 
-
+        ///video-help-button is not the bulb image of help box,
+        ///video-help-button is about running movies,
         sDomN.videoListPopup_button_onModelPane$ = $$
             .c('img')
             .addClass( "video-help-button" )
@@ -280,7 +281,7 @@
         // \\// close-video button
         //. . . . . . . . . . . . . 
     
-        fmethods.create_video_help_manager();
+        haff( fmethods, 'create_video_help_manager' );
         //..........................
         // \\// video help
         //..........................

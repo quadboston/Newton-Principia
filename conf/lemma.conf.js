@@ -19,6 +19,14 @@
     var SLIDERS_LEGEND_HEIGHT = 25*GENERIC_SLIDERS_COUNT+20;
     var SLIDERS_OFFSET_Y      = 0;
 
+
+    //:this solution is not good:
+    //:some lemmas need bright red, but
+    //:bright green text is hard to read ...
+    //:so we resort to dark color LIGHT = 30
+    sconf.DEFAULT_TP_LIGHT = 30;
+
+
     to_sconf =
     {
         mediaOffset : [ 0, 0 ],                 //in respect to simscene
@@ -39,12 +47,6 @@
         ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
         ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
 
-        //:this solution is not good:
-        //:some lemmas need bright red, but
-        //:bright green text is hard to read ...
-        //:so we resort to dark color LIGHT = 30
-        DEFAULT_TP_LIGHT : 30,
-
         GENERIC_SLIDERS_FONT_SIZE,
         GENERIC_SLIDER_HEIGHT_Y,
         GENERIC_SLIDERS_COUNT,
@@ -60,6 +62,13 @@
         ///in module points.js
         handleRadius : 8,
         standardSvgSize : 1000,
+
+        // //\\ moved to site conf from expand-conf.js
+        default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+        default_tp_stroke_width     : 10,
+        default_tp_lightness        : 40, //instead of sconf.DEFAULT_TP_LIGHT, 50 is full lightness
+        defaultLineWidth            : 2,
+        // \\// moved to site conf from expand-conf.js
     };
 
     to_sconf.pointDecoration =

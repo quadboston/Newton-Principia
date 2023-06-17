@@ -71,9 +71,7 @@
         ///***********************************************************************
         /// attaches drag8droppers to medD8D
         /// see other lemmas for search-token customDraggers_list
-        var ww = 'customDraggers_list';
-        ns.h( stdMod, ww ) &&
-            stdMod[ ww ].forEach( dcreator => { dcreator( medD8D ); });
+        stdMod.customDraggers_list.forEach( dcreator => { dcreator( medD8D ); });
         ssF.inits_tools_sliders( medD8D, stdMod );
         ///***********************************************************************
         ns.globalCss.update(); //for decorator

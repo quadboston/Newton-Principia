@@ -1,8 +1,9 @@
 ( function() {
     var {
-        sn,
-        exegs, ss, amode,
+        haz,
+        exegs,
         rg, stdMod,
+        arios,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -14,24 +15,23 @@
     const SUBESSAY_KEYNAME = 'self-test';
     //****************************************
 
-    const ario    = sn( 'activityScenario', ss );
-    const arios   = sn( 'activityScenarios', ario, [] );
 
     arios.push(( function () {
-        exegs.proof.addendum.subessay2subexeg[ SUBESSAY_KEYNAME ].scenarioScript = `
 
+        var sScript = haz( exegs.proof.addendum.subessay2subexeg, SUBESSAY_KEYNAME );
+        if( !sScript ) return; //no script in book for this user-activity
+        sScript.scenarioScript = `
 
             || start
                 + lesson-start
-                    :When ¦P,vb¦<b>initial speed</b>¦¦ increases, which shape ¦orbit¦<b>orbit</b>¦¦ takes? (Ellipse, hyperbola, parabola?)<br><br>Verify your idea ¦vb¦<b>by dragging</b>¦¦ value ¦P,vb¦<b>of v</b>¦¦.<br><br>Advanced: Why? Prove your idea with Principia or modern proofs.
+                    :1. When ¦P,vb¦<b>initial speed</b>¦¦ increases, which shape ¦orbit¦<b>orbit</b>¦¦ takes? (Ellipse, hyperbola, parabola?)<br><br>Verify your idea ¦vb¦<b>by dragging</b>¦¦ value ¦P,vb¦<b>of v</b>¦¦.<br><br>2. Advanced: Why? Prove your idea with Principia or modern proofs.<br><br>3. Change angle ω that point P falls on main axis. What is the angele omega value now? Why? <br><br>4. When point P is apogee or perigee? Drag value ¦P,vb¦<b>of v</b>¦¦ to see you are right.<br><br>5. At which speed ¦orbit¦<b>orbit</b>¦¦ becomes circle?
                 + start
                     -> started
 
             || started
                 + start
-                    stdMod.finalizes_activityScriptSelection();
-                    :User the ¦N2-kernel H2-kernel NH3-kernel cssbold¦slider tool¦¦ to increase or decrease the concentrations of ¦N2 cssbold¦N₂¦¦, ¦H2 cssbold¦H₂¦¦, and ¦NH3 cssbold¦NH₃¦¦ and observe what happens.
-
+                    'stdMod.finalizes_activityScriptSelection();
+                    ':User ...
                     'stdMod.activity0_enablesSliders();
     `}));
 

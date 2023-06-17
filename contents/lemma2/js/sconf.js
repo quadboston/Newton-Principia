@@ -1,7 +1,8 @@
 ( function () {
     var {
         nspaste,
-        fconf, sconf,
+        fapp, fconf, sconf,
+        sapp,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -19,6 +20,8 @@
 
     function init_conf()
     {
+        //as of Ap/13 2023 sets data in preset-data.js
+
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -40,7 +43,7 @@
         var MONITOR_Y_FLIP = 0;
         var SLIDERS_LEGEND_HEIGHT = 0;
 
-
+        sconf.default_tp_lightness = 30;
         var predT =
         {
             "given"                     : [0,    60,  0 ],
@@ -57,6 +60,10 @@
             "inscribed-rectangles"      : [100,  0, 100 ]
         };
 
+        //todm: this disables functionality ... not only CSS:
+        fconf.appDecor.helpBox_opacity0             = true;
+        fconf.appDecor.idleHelpButtonTooltip        = '';
+
         //=====================================
         // //\\ configures application engine
         //=====================================
@@ -64,6 +71,14 @@
         {
             dontDoMathJax : true,
             skipGenDragList : true,
+            //====================================================
+            // //\\ subapp regim switches
+            //====================================================
+            enableStudylab  : false,
+            enableTools     : false,
+            //====================================================
+            // \\// subapp regim switches
+            //====================================================
 
             dontRun_ExpandConfig : false,
             //----------------------------------
@@ -78,6 +93,7 @@
 
             //:model
             baseMax         : 500,
+            draggableBasePoints : 15,
             //user-adjustable points
             ctrlPtXYs_js    :
             [
@@ -88,13 +104,7 @@
                 {x:248,         y: 259.5 }
             ],
 
-            //.widths coinsided with dashed-rect ...
-            //set to empty array if not to match dashed rect
-            //baseWidths_for_lemma3 : [41, 69, 53.5, 53.5],
-            baseWidths_for_lemma3 : [],
-
             ////GUI
-            svgns           : "http://www.w3.org/2000/svg",
             FINEPTS_RADIUS  : 10,
             MOVABLE_BASE_RADIUS : 3,
             CTRL_RADIUS     : 3,
@@ -122,37 +132,39 @@
         {
             B : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -45,
                 initialR    : 3,
             },
 
             K : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -145,
+                letterRotRadius : 40,
                 initialR    : 3,
             },
 
             L : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -145,
                 initialR    : 3,
             },
 
             M : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -145,
+                letterRotRadius : 40,
                 initialR    : 3,
             },
 
             a : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             A : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -45,
                 initialR    : 3,
             },
 
@@ -170,61 +182,61 @@
 
             C : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -45,
                 initialR    : 3,
             },
 
             D : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -45,
                 initialR    : 3,
             },
 
             E : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : -45,
                 initialR    : 3,
             },
 
             l : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             b : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             c : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             d : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             m : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             n : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
             o : {
                 pcolor      : predT.given,
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 
@@ -306,6 +318,8 @@
         //=====================================
         // \\// patch for quick slider creation
         //=====================================
+
+        //fapp.stdL2.setupL2data();
     };
 
 

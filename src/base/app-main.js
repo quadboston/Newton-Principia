@@ -8,7 +8,7 @@
         fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
-        ss, ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
+        ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
     } = window.b$l.apptree({
     });
 

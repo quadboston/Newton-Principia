@@ -17,6 +17,7 @@
     //====================================================
     function init_conf()
     {
+        sconf.default_tp_lightness = 22;
         sconf.rgShapesVisible = false;
         sconf.default_tp_stroke_width = 8;
         sconf.text_nonhover_width = 1;

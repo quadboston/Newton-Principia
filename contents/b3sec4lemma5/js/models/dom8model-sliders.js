@@ -1,39 +1,13 @@
 ( function() {
     var {
+        $$, nssvg,
+        fconf, sconf, ssF, ssD,
         stdMod, rg,
     } = window.b$l.apptree({
+        setModule
     });
-
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var mat         = sn('mat');
-    var bezier      = sn('bezier');
-    var sv          = sn('svg');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions',sapp);
-    var sDomN       = sn('dnative',sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var ss          = sn('ss',fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'mediaModel_create';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     var pos2pointy;
     var pointies2line;
-
     return;
 
 
@@ -159,7 +133,7 @@
         function updateSliderHandlePos()
         {
             m.medpos = ssF.mod2inn_original( m.pos, stdMod );
-            sv.u({
+            nssvg.u({
                 svgel   : m.svgel,
                 parent  : stdMod.mmedia,
                 cx : m.medpos[0],
@@ -199,7 +173,7 @@
 
         function printText()
         {
-            m.text_svg = sv.printText({
+            m.text_svg = nssvg.printText({
                 parent  : stdMod.mmedia,
                 text    : captionPrefix + (m.value-1),
                 svgel   : m.text_svg,

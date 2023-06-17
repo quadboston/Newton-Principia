@@ -4,9 +4,9 @@
     var sn          = ns.sn;
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
+    var ssTmp       = sn('ss', fapp);   //todm remove ss later
+    var ssD         = sn('ssData',ssTmp);
+    var ssF         = sn('ssFunctions',ssTmp);
 
     ssF.toregUnbound    = toreg;
     ssF.makes_toreg4pos = makes_toreg4pos;

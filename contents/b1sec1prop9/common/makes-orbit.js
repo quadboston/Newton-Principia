@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ss, $$, nssvg, haz, mat,
+        $$, nssvg, haz, mat,
         sDomF, ssF,
         stdMod, sconf,
     } = window.b$l.apptree({

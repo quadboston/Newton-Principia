@@ -1036,6 +1036,7 @@
     };
 
     ///adds text with changing html-tag
+    ///for example:     globalCss.update( cssTxt, 'my-css' )
     function update( moreText, htmlkey )
     {
         var rack = key2rack( htmlkey );

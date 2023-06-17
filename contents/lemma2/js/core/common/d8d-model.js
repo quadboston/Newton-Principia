@@ -2,13 +2,14 @@
 ( function () {
     var {
         sn, dpdec, d8dp, fmethods, globalCss,
-        ss, sDomN, sDomF, ssF, sconf,
+        fapp, sconf, sDomN, sDomF, ssF,
         fconf,
         stdMod,
     } = window.b$l.apptree({
         setModule,
     });
-    var datareg     = sn('datareg', ss );
+    var stdL2 = sn('stdL2', fapp );
+    var datareg = sn('datareg', stdL2 );
     return;
 
 
@@ -21,13 +22,13 @@
 
     function setModule()
     {
-        var study       = sn('study', ss );
+        var study       = sn('study', stdL2 );
         var sdata       = sn('sdata', study );
-        var dr          = sn('datareg', ss );
-        var numModel    = sn('numModel', ss );
-        var gui         = sn('gui', ss );
+        var dr          = sn('datareg', stdL2 );
+        var numModel    = sn('numModel', stdL2 );
+        var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', ss );
+        var appstate    = sn('appstate', stdL2 );
         var medD8D;
 
         gui.createDragModel = createDragModel;

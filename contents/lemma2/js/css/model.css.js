@@ -1,11 +1,11 @@
 (function() {
     var {
         sn,
-        ss, cssmod,
+        cssmod,
     } = window.b$l.apptree({
         setModule,
     });
-    var cssName     = 'model';
+    var cssName = 'model';
     return;
 
 

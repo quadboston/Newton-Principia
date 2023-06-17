@@ -1,8 +1,8 @@
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    var ss     = ns.sn('ss', fapp);
-    var ssD    = ns.sn('ssData',ss);
+    var {
+        ssD,
+    } = window.b$l.apptree({
+    });
 
 
 

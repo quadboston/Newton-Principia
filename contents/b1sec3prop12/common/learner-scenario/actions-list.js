@@ -1,20 +1,11 @@
 
 ( function() {
     var {
-        sn, haz, haff,
-        eachprop,
-        fconf,
-        sconf,
-        ss, ssF,
-        rg, toreg,
-        exegs,
-        amode,
-        stdMod,
+        actionsList_coded,
+        rg,
     } =  window.b$l.apptree({
     });
 
-    var ts = sn( 'activityScenario', ss );
-    var actionsList_coded = sn( 'actionsList_coded', ts );
 
 
     Object.assign( actionsList_coded, {
