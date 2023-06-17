@@ -140,22 +140,18 @@
         //==================================================
         coreText = `
                 <div class="about__author">
+                    <h2>About</h2>
                     <p class="about__author__text">
-                        Programming by Konstantin Kirillov and John Scott.<br>
-                        A User Interface Design by
-                        <span class="dd-label">
-                            <a href="http://theoddson.io">Darien Dodson</a>.
-                        </span><br>
-                        Welcome to project home: 
-                        <span class="dd-label">
-                            <a href="https://github.com/quadboston/Newton-Principia"
-                               target="_blank">
-                                github.com/quadboston/Newton-Principia</a>.
-                        </span><br>
-                        Produced by John Scott.
-                        <span style="display:inlilne-block; float:right; right:10px;">
-                            Version 0.${fapp.version}
-                        </span>
+                        <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
+                            production, programming, video<br>
+                        <span class="dd-label"><a href="http://landkey.net/">Konstantin Kirillov:</a></span>
+                            lead programming, addenda, UI<br>
+                        <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
+                            voice<br>
+                        <span class="dd-label"><a href="http://darien.io/">Darien Dodson:</a></span>
+                            UI<br>
+                        <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
+                            open source, MIT license. Version 0.${fapp.version}<br>
                         <!-- todm fix these <br> by css not by markup -->
                         <br><br><br><br>
                     </p>

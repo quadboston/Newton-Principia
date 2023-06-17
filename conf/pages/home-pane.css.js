@@ -227,7 +227,6 @@
 
     .dd-label {
       font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-      background-color: rgba(0, 0, 0, 0.1);
       color: rgba(255, 255, 255, 0.6);
       padding: 8px; }
       .dd-label a {
@@ -284,8 +283,6 @@ Media Queries
       width: 100%; }
     .about .about__author {
       width: 100%;
-      display: flex;
-      flex-direction: row;
       text-align: left; }
       .about .about__author__image {
         transform: scale(0.8);

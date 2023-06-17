@@ -11,4 +11,4 @@ src/plugins/gas-particles
 src/plugins/phys-ideal-gas
 src/plugins/dynoribbon
 src/plugins/vend
-
+.vscode

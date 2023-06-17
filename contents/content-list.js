@@ -5,116 +5,116 @@
         {
             sappId : 'home-pane',
             book : '',
-            caption : 'Newton’s Principia',
+            caption : 'Principia models',
             annotation : "Home Page and Contents",
         },
 
         {
             sappId : 'lemma1',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma I.',
+            caption : 'Sec. 1. Lemma 1.',
             annotation : "Core lemma introducing limit method",
         },
 
         {   sappId : 'lemma2',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma II.',
+            caption : 'Sec. 1. Lemma 2.',
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
 
         {   sappId : 'lemma3',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma III.',
+            caption : 'Sec. 1. Lemma 3.',
             annotation : "Lorem ipsum  set lorem ipsum doler sut.",
         },
 
         {   sappId : 'b1sec1lemma4',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma IV.',
+            caption : 'Sec. 1. Lemma 4.',
             annotation : "Lorem ipsum  set lorem ipsum doler sut.",
         },
 
         {   sappId : 'b1sec1lemma6',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma VI.',
+            caption : 'Sec. 1. Lemma 6.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1lemma7',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma VII.',
+            caption : 'Sec. 1. Lemma 7.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1lemma8',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma VIII.',
+            caption : 'Sec. 1. Lemma 8.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1lemma9',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma IX.',
+            caption : 'Sec. 1. Lemma 9.',
             annotation : "Lorem ipsum dolor acnut lima noir set lorem ipsum doler sut.",
         },
 
         {   sappId : 'b1sec1lemma10',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma X.',
+            caption : 'Sec. 1. Lemma 10.',
             annotation : "Lorem ipsum dolor acnut lima noir set lorem ipsum doler sut.",
         },
 
         {   sappId : 'b1sec1lemma11',
             book : 'Book 1',
-            caption : 'Sec. I. Lemma XI.',
+            caption : 'Sec. 1. Lemma 11.',
             annotation : "",
         },
 
         {   sappId : 'b1s2prop1theor1',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition I. Theorem I.',
+            caption : 'Sec. 2. Proposition 1. Theorem 1.',
             annotation : "",
         },
 
         {   sappId : 'b1s2prop2theor2',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition II. Theorem II.',
+            caption : 'Sec. 2. Proposition 2. Theorem 2.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1prop6',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition VI. Theorem V.',
+            caption : 'Sec. 2. Proposition 6. Theorem 5.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1prop7',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition VII. Problem II.',
+            caption : 'Sec. 2. Proposition 7. Problem 2.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1prop9',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition IX. Problem IV.',
+            caption : 'Sec. 2. Proposition 9. Problem 4.',
             annotation : "",
         },
 
         {   sappId : 'b1sec1prop10',
             book : 'Book 1',
-            caption : 'Sec. II. Proposition X. Problem V.',
+            caption : 'Sec. 2. Proposition 10. Problem 5.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3prop11', //'b1sec1prop11',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XI. Problem VI.',
+            caption : 'Sec. 3. Proposition 11. Problem 6.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3prop12',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XII. Problem VII',
+            caption : 'Sec. 3. Proposition 12. Problem 7',
             annotation : "",
         },
 
@@ -122,67 +122,67 @@
         /*
         {   sappId : 'b1sec3lemma13',
             book : 'Book 1',
-            caption : 'Sec. III. Lemma XIII.',
+            caption : 'Sec. 3. Lemma 13.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3lemma14',
             book : 'Book 1',
-            caption : 'Sec. III. Lemma XIV.',
+            caption : 'Sec. 3. Lemma 14.',
             annotation : "",
         },
         */
 
         {   sappId : 'b1sec3prop13',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XIII. Problem VIII.',
+            caption : 'Sec. 3. Proposition 13. Problem 8.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3prop14',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XIV. Theorem VI.',
+            caption : 'Sec. 3. Proposition 14. Theorem 6.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3prop15',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XV. Theorem VII.',
+            caption : 'Sec. 3. Proposition 15. Theorem 7.',
             annotation : "",
         },
         {   sappId : 'b1sec3prop16',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XVI. Theorem VIII.',
+            caption : 'Sec. 3. Proposition 16. Theorem 8.',
             annotation : "",
         },
 
         {   sappId : 'b1sec3prop17',
             book : 'Book 1',
-            caption : 'Sec. III. Proposition XVII. Problem IX.',
+            caption : 'Sec. 3. Proposition 17. Problem 9.',
             annotation : "",
         },
 
         {   sappId : 'b1sec8prop41',
             book : 'Book 1',
-            caption : 'Sec. VIII. Proposition XLI. Problem XXVIII.',
+            caption : 'Sec. 8. Proposition 41. Problem 28.',
             annotation : "",
         },
 
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
-            caption : 'Sec. V. Lemma XX.',
+            caption : 'Sec. 5. Lemma 20.',
             annotation : "",
         },
 
         {   sappId : 'b1sec5lemma21',
             book : 'Book 1',
-            caption : 'Sec. V. Lemma XXI.',
+            caption : 'Sec. 5. Lemma 21.',
             annotation : "",
         },
 
         {   sappId : 'b3sec4lemma5',
             book : 'Book 3',
-            caption : 'Sec. IV. Lemma V.',
+            caption : 'Sec. 4. Lemma 5.',
             annotation : "",
         },
 
@@ -225,6 +225,12 @@
 
 
     ];
+
+    var basicSiteFeatures = true;
+    if (basicSiteFeatures) {
+        fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
+    }
+
 
 }) ();
 
