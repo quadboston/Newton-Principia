@@ -1,11 +1,11 @@
 
 ( function() {
     var {
-        fconf, sconf, nspaste,
+        url2conf, fconf, sconf, nspaste,
     } = window.b$l.apptree({
     });
 
-
+    url2conf( fconf );
     to_fconf =
     {
         hideSingleItemContentMenus : true,

@@ -66,7 +66,12 @@
         // //\\ moved to site conf from expand-conf.js
         default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
         default_tp_stroke_width     : 10,
-        default_tp_lightness        : 40, //instead of sconf.DEFAULT_TP_LIGHT, 50 is full lightness
+
+        //This sets L-paramter in SHL color model.
+        //Range of L is from 0 to 100. 100 is 100% lightness which mean
+        //all colors are equaly bright and diagram becomes invisible. 0 - is complete darkness.
+        default_tp_lightness        : 40, //instead of sconf.DEFAULT_TP_LIGHT, 50 is "full" lightness
+
         defaultLineWidth            : 2,
         // \\// moved to site conf from expand-conf.js
     };

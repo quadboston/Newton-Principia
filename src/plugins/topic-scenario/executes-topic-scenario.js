@@ -236,6 +236,9 @@
 
         //todm: why there are two MathJax flags? here and below,
         ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand, !!'dontDoMathJax' );
+
+        //updates only for newMessage
+        ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
         if( noMathJax ) return;
 
         ///we put new message in MathJax queue:

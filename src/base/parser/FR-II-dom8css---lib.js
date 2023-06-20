@@ -12,6 +12,7 @@
             fragment__collectsRawTpLinks,
             rawFragments2htmlText,
             builtFrags_2_dom8mj,
+            updateFrameWorkAnchors_2_basicSiteFeatures,
         },
     });
     var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
@@ -439,6 +440,7 @@
         // \\// inserts book-references in DOM
         //-----------------------------------------------------------------------
 
+        updateFrameWorkAnchors_2_basicSiteFeatures();
         //does delayed anchors
         !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
         //do later: ssF.puts_delayed_tp_anch_in_syblings( bFrag.dom$() );
@@ -456,6 +458,26 @@
         return rawActFrValue;
     }
 
+    ///if we want to keep link-to-link browsing insed of framework with
+    ///addendums added to original text, then we have to update static
+    ///links reffered to Addendums,
+    ///this function does this job and is in effect in two places:
+    ///1) at landing time and 2) in "tutor framework" when scenario adds a new message
+    ///to student's console,
+    function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
+    {
+        if( !fconf.basicSiteFeatures ) {
+            let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
+            let sea = '?conf=sappId=';
+            let reg = new RegExp( '\\' + sea );
+            anchors.forEach( anch => {
+                if( anch.search.indexOf( sea ) === 0 ) {
+                    anch.search = anch.search.replace(
+                        reg, '?conf=basicSiteFeatures=no,sappId=' );
+                }
+            });
+        }
+    }
 
 
     ///replaces raw words with value from value found in collection of collectedDelayedLinks
@@ -478,10 +500,6 @@
             regEx = new RegExp ('(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)(' + regEx +
                                 ')(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)', 'ug' );
             fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
-                //ccc( 'future match clause='+collectedDelayedLinks[ arguments[2] ].match,
-                //     'current replacee key=' + arguments[2]
-                //);
-
                 ///returns full-replacer = full match which
                 ///        is match=leadingDividor+|config|caption||+trailingDividor,
                 ///        this full-replacer is inserted after execution of this "return",

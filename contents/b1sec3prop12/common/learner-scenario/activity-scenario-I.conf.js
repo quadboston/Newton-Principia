@@ -1,6 +1,6 @@
 ( function() {
     var {
-        haz,
+        has, haz,
         exegs,
         rg, stdMod,
         arios,
@@ -18,7 +18,8 @@
 
     arios.push(( function () {
 
-        var sScript = haz( exegs.proof.addendum.subessay2subexeg, SUBESSAY_KEYNAME );
+        var sScript = has( exegs.proof, 'addendum' ) &&
+            haz( exegs.proof.addendum.subessay2subexeg, SUBESSAY_KEYNAME );
         if( !sScript ) return; //no script in book for this user-activity
         sScript.scenarioScript = `
 
