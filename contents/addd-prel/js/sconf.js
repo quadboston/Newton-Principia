@@ -56,6 +56,7 @@
         sconf.enableTools               = false;
         sconf.GENERIC_SLIDERS_COUNT     = 0;
         sconf.SLIDERS_LEGEND_HEIGHT     = 0;
+        sconf.default_tp_lightness = 30;
         //====================================================
         // \\// subapp regim switches
         //====================================================

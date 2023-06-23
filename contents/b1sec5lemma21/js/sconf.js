@@ -1,24 +1,14 @@
 // //\\// widget config
 ( function() {
-    var ns      = window.b$l;
-    var mat     = ns.sn( 'mat' );
-    var sn      = ns.sn;
-
-    var fapp    = sn('fapp' ); 
-    var fconf   = sn('fconf',fapp);
-    var sconf   = sn('sconf',fconf);
-    var sapp    = sn('sapp'); 
-
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'load_conf';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var {
+        mat,
+        fapp, sconf,
+    } = window.b$l.apptree({
+        ssFExportList :
+        {
+            init_conf
+        },
+    });
     return;
 
 
@@ -31,10 +21,6 @@
 
 
 
-    function setModule()
-    {
-        ssF.init_conf = init_conf;
-    }
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
@@ -161,6 +147,7 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
+        sconf.default_tp_lightness = 30;
         Object.assign( to_sconf, {
             mediaBgImage : "diagram.png",
             dontRun_ExpandConfig : true,
@@ -203,8 +190,6 @@
             //----------------------------------
 
             default_tp_stroke_opacity : 0.5,
-            default_tp_lightness : 40, //50 is full lightness
-
             default_tp_stroke_width : Math.floor( 10 * controlsScale ),
             defaultLineWidth : Math.floor( 2 * controlsScale ),
             handleRadius : Math.floor( 25 * controlsScale ),

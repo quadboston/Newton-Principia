@@ -1,35 +1,15 @@
 // //\\// application-level d8d module
 ( function () {
     var {
-        d8dp,
-        stdMod, rg,
+        sn, dpdec, d8dp, fmethods, globalCss,
+        fapp, sconf, sDomN, sDomF, ssF,
+        fconf,
+        stdMod,
     } = window.b$l.apptree({
+        setModule,
     });
-
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var dpdec       = ns.sn('drag-point-decorator');
-    var fapp        = ns.sn('fapp' );
-    var fmethods    = sn('methods',fapp);
-
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-    var sacf        = sconf;
-
-    var ss          = sn('ss',fapp);
-    var datareg     = sn('datareg', ss );
-    
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
+    var stdL2 = sn('stdL2', fapp );
+    var datareg = sn('datareg', stdL2 );
     return;
 
 
@@ -42,14 +22,13 @@
 
     function setModule()
     {
-        var l23         = ss
-        var study       = sn('study', l23 );
+        var study       = sn('study', stdL2 );
         var sdata       = sn('sdata', study );
-        var dr          = sn('datareg', l23 );
-        var numModel    = sn('numModel', l23 );
-        var gui         = sn('gui', l23 );
+        var dr          = sn('datareg', stdL2 );
+        var numModel    = sn('numModel', stdL2 );
+        var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', l23 );
+        var appstate    = sn('appstate', stdL2 );
         var medD8D;
 
         gui.createDragModel = createDragModel;
@@ -63,7 +42,8 @@
                     findDraggee                         : findDraggee,
                     dragSurface                         : sDomN.medRoot,
                     //DRAG_POINTS_THROTTLE_TIME           : false,
-                    detected_user_interaction_effect    : sDomF.detected_user_interaction_effect,
+                    detected_user_interaction_effect    :
+                                    sDomF.detected_user_interaction_effect,
                     processMouseDown                    : processMouseDown
                 });
             setDragPoints();
@@ -73,6 +53,11 @@
         {
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
+
+            ///apparently, d8dp.crePointFW_BSLd8d1CHAMBER does this
+            //if( !rg.detected_user_interaction_effect_DONE ) {
+                //sDomF.detected_user_interaction_effect();
+            //}
         }
 
         function setDragPoints() {
@@ -80,7 +65,7 @@
             datareg.basePts.list.forEach( setPoint );
             datareg.ctrlPts.forEach( setPoint );
             //for decorator ... todm very easy to forget and be in pain ...
-            ns.globalCss.update(); 
+            globalCss.update(); 
         }
 
         function setPoint( pointWrap, pwix ) {
@@ -144,11 +129,17 @@
                 move2js( pw, arg.surfMove, pw.achieved );
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
 
+                // //\\ recent framework
+                ssF.media_upcreate_generic();
+                //instead of following:
+                /*
                 if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
                     //.this is a duty of contributor to provide:
                     //.if( studyMods[ ww ] ) {
                     studyMods[ amode['submodel'] ].model8media_upcreate();
                 }
+                */
+                // \\// recent framework
             }
         }
 
@@ -177,7 +168,7 @@
             var pointWrap = dwrap.pointWrap;
             var DRAGGEE_HALF_SIZE = pointWrap.type === 'base' ?
                     5 : //crowdy base needs pinpointed selection
-                    sacf.DRAGGEE_HALF_SIZE;
+                    sconf.DRAGGEE_HALF_SIZE;
             var bases = dr.bases;
             var closestPoint = null;
             if( 
@@ -187,7 +178,7 @@
                 return closest;
             }
             //.already in sync
-            //sacf.modorInPicY + sacf.pictureActiveArea - mousePoint[1];
+            //sconf.modorInPicY + sconf.pictureActiveArea - mousePoint[1];
 
             var tdX = Math.abs( mousePoint[0] - pointWrap.x );
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );
@@ -207,23 +198,35 @@
         //====================
 
 
+
         //======================================
         // //\\ event to js
         //======================================
         function move2js( pointWrap,move, ach )
         {
             var item = pointWrap;
+            let pw = item;
             var index = item.index;
+            if( pw.type === 'base' && pw.index === 0 ) {
+                ccc( 'moves point A ' );
+            }
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
-                item.y = ach.achieved.y + move[1];;
+                item.y = ach.achieved.y + move[1];
+                /*
+                if( item.index === 0 || item.index === 4 ) {
+                    stdMod.syncPoints();
+                } else {
+                    stdMod.syncPoint( item );
+                }
+                */
 	            appstate.movingBasePt = false;
 
             } else if( index > 0 && index < dr.bases ) {
 
 	            var newX = ach.achieved.x + move[0];
                 // //\\ limitifies newX by dom-neighbors
-                var PAD         = sacf.BASE_POINTS_REPELLING_DISTANCE;
+                var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
                 var lst         = dr.basePts.list;
                 var itemM       = lst[index];   //middle
                 var itemL       = lst[index-1]; //left
@@ -234,6 +237,9 @@
 
                 // //\\ applies newX to js-model
                 itemM.x = newX;        
+                if( itemM.index < 4 ) {
+                    stdMod.syncPoint( item );
+                }
                 dr.baseWidths[index-1] = itemM.x - itemL.x;
                 dr.baseWidths[index]   = itemR.x - itemM.x;
                 // \\// applies newX to js-model

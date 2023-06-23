@@ -1,5 +1,5 @@
 ( function() {
-    var { fconf, ssF, } = window.b$l.apptree({});
+    var { has, sconf, fconf, ssF, } = window.b$l.apptree({});
     fconf.ix2lemmaDef =
     [
         {
@@ -225,9 +225,10 @@
 
 
     ];
-
-    var basicSiteFeatures = true;
-    if (basicSiteFeatures) {
+    if( !has( fconf, 'basicSiteFeatures' ) ){
+        fconf.basicSiteFeatures = true;
+    }
+    if(fconf.basicSiteFeatures) {
         fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
     }
 

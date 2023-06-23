@@ -81,7 +81,9 @@
         } else {
             var nextSapp = fconf.ix2lemmaDef[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
-            var newLoc = window.location.pathname + '?conf=sappId=' + nextSapp.sappId;
+            var newLoc = window.location.pathname + '?conf=' +
+                ( !fconf.basicSiteFeatures ? 'basicSiteFeatures=no,' : '' ) +
+                'sappId=' + nextSapp.sappId;
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';

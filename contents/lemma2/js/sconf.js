@@ -1,7 +1,8 @@
 ( function () {
     var {
         nspaste,
-        fconf, sconf,
+        fapp, fconf, sconf,
+        sapp,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -19,6 +20,8 @@
 
     function init_conf()
     {
+        //as of Ap/13 2023 sets data in preset-data.js
+
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -40,36 +43,58 @@
         var MONITOR_Y_FLIP = 0;
         var SLIDERS_LEGEND_HEIGHT = 0;
 
+        sconf.default_tp_lightness = 30;
+        var predT =
+        {
+            "given"                     : [0,    60,  0 ],
+            "difference"                : [185,  116, 85 ],
+            "base"                      : [0,    80,  0 ],
+            "wall"                      : [0,    80,  0 ],
+            "curve"                     : [0,    80,  0 ],
 
+            "figure"                    : [0,    80,  0 ],
+            "figure-area"               : [0,    80,  0 ],
+
+            "circumscribed-rectangles"  : [0,  50, 100 ],
+            "widthest-rectangular"      : [0,  0, 100 ],
+            "inscribed-rectangles"      : [100,  0, 100 ]
+        };
+
+        //todm: this disables functionality ... not only CSS:
+        fconf.appDecor.helpBox_opacity0             = true;
+        fconf.appDecor.idleHelpButtonTooltip        = '';
 
         //=====================================
         // //\\ configures application engine
         //=====================================
         Object.assign( sconf,
         {
-            dontRun_ExpandConfig : true,
+            dontDoMathJax : true,
+            skipGenDragList : true,
+            //====================================================
+            // //\\ subapp regim switches
+            //====================================================
+            enableStudylab  : false,
+            enableTools     : false,
+            //====================================================
+            // \\// subapp regim switches
+            //====================================================
 
+            dontRun_ExpandConfig : false,
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
-
-
             //todm ... this still makes?? a gap between svg and slider
             SLIDERS_LEGEND_HEIGHT : SLIDERS_LEGEND_HEIGHT,
-
-
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            innerMediaHeight    : pictureHeight + SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
-            modorInPicY,
-            pictureActiveArea   : pictureActiveArea,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
 
-
             //:model
             baseMax         : 500,
+            draggableBasePoints : 15,
+            //user-adjustable points
             ctrlPtXYs_js    :
             [
                 {x:modorInPicX,             y: modorInPicY},
@@ -79,12 +104,7 @@
                 {x:248,         y: 259.5 }
             ],
 
-            //.widths coinsided with dashed-rect ... set to empty array if not to match dashed rect
-            //baseWidths_for_lemma3 : [41, 69, 53.5, 53.5],
-            baseWidths_for_lemma3 : [],
-
             ////GUI
-            svgns           : "http://www.w3.org/2000/svg",
             FINEPTS_RADIUS  : 10,
             MOVABLE_BASE_RADIUS : 3,
             CTRL_RADIUS     : 3,
@@ -104,44 +124,202 @@
 
 
 
-        /*
-        //see ///modern approach ... abandoned
         //=====================================
         // //\\ patch for quick slider creation
+        //      see //modern approach ... abandoned
         //=====================================
-        var originX_onPicture = modorInPicX;
-        var originY_onPicture = modorInPicY + pictureActiveArea;
         var originalPoints =
         {
+            B : {
+                pcolor      : predT.given,
+                letterAngle : -45,
+                initialR    : 3,
+            },
+
+            K : {
+                pcolor      : predT.given,
+                letterAngle : -145,
+                letterRotRadius : 40,
+                initialR    : 3,
+            },
+
+            L : {
+                pcolor      : predT.given,
+                letterAngle : -145,
+                initialR    : 3,
+            },
+
+            M : {
+                pcolor      : predT.given,
+                letterAngle : -145,
+                letterRotRadius : 40,
+                initialR    : 3,
+            },
+
+            a : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            A : {
+                pcolor      : predT.given,
+                letterAngle : -45,
+                initialR    : 3,
+            },
+
+            F : {
+                pcolor      : predT[ "widthest-rectangular" ],
+                letterAngle : 90,
+                initialR    : 3,
+            },
+
+            f : {
+                pcolor      : predT.given,
+                letterAngle : 90,
+                initialR    : 3,
+            },
+
+            C : {
+                pcolor      : predT.given,
+                letterAngle : -45,
+                initialR    : 3,
+            },
+
+            D : {
+                pcolor      : predT.given,
+                letterAngle : -45,
+                initialR    : 3,
+            },
+
+            E : {
+                pcolor      : predT.given,
+                letterAngle : -45,
+                initialR    : 3,
+            },
+
+            l : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            b : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            c : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            d : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            m : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            n : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            o : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            /*
             baseSlider : { 
                 pos         : [0,0.1],
+                pcolor      : [255,0,0],
                 letterAngle : 90,
                 draggableX  : true,
             },
-        };
-        var predefinedTopics =
-        {
-            baseSlider : [0,0,100],
+            */
         };
 
-        var mod2inn_scale = 1; //todo
+        //AB, BC, CD
+        var linesArray =
+        [
+            { AB : {
+                        pcolor : predT.given,
+                   },
+            },
+            { BC : {
+                        pcolor : predT.given,
+                   },
+            },
+            { CD : {
+                        pcolor : predT.given,
+                   },
+            },
+            { Aa : {
+                        pcolor : predT.given,
+                   },
+            },
+            { AE : {
+                        pcolor : predT.given,
+                   },
+            },
+            { Kb : {
+                        pcolor : predT.given,
+                   },
+            },
+            { Bb : {
+                        pcolor : predT.given,
+                   },
+            },
+            { Cc : {
+                        pcolor : predT.given,
+                   },
+            },
+            { Dd : {
+                        pcolor : predT.given,
+                   },
+            },
+            { AF : {
+                        pcolor : predT.given,
+                   },
+            },
+
+
+        ];
+
+
+        //rects predT.difference
+
+
 
         nspaste( sconf, {
-            predefinedTopics,
+            predefinedTopics : predT,
             originalPoints,
-            //linesArray,
+            linesArray,
             //lines,
-            originX_onPicture,
-            originY_onPicture,
+            originX_onPicture : modorInPicX,
+            originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2inn_scale : pictureActiveArea, //todo,
             //default_tp_stroke_width : 12,
+            handleRadius : 55,
         });
         //=====================================
         // \\// patch for quick slider creation
         //=====================================
-        */
+
+        //fapp.stdL2.setupL2data();
     };
 
 

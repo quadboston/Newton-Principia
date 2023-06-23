@@ -138,6 +138,12 @@
                     var theorion_id = ess_instructions[1];
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
+
+                    if( haz( fconf, 'basicSiteFeatures' ) &&
+                        ( aspect_id === 'model' || aspect_id === 'addendum' ||
+                          aspect_id === 'xixcentury') ){
+                        return;
+                    }
                     var wIx         = precontent.indexOf("*..*");
                     if( wIx > -1 ) {
                         var wHeader = precontent.substring(0, wIx-1);

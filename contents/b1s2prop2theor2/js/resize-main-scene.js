@@ -1,8 +1,8 @@
 ( function() {
     var {
-        sn, $$, plugins, has, haz, eachprop, fmethods,
-        sconf, ssD, sDomN, rg,
-        amode, stdMod,
+        sn, $$, plugins, has, haz, eachprop,
+        sconf,  fmethods, ssD, sDomN,
+        amode, stdMod, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {

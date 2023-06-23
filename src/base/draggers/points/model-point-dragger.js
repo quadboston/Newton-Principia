@@ -61,10 +61,6 @@
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
         rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
-        ns.sn( 'customDraggers_list', stdMod, [] );
-        //if( rgX.pname === 'fret-0-0' ) {
-        //  ccc( 'adds ' + rgX.pname + ' to stdMod.customDraggers_list ' );
-        //}
 
         orientation = orientation ||
         ( haz( rgX, 'draggableY' ) && haz( rgX, 'draggableX' ) ?

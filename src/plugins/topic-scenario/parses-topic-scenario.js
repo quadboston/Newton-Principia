@@ -10,16 +10,13 @@
     var {
         ns, sn,
         haz, eachprop,
-        ss, ssF, exegs,
+        ssF, exegs, actionsList_default, actionsList_coded,
     } = window.b$l.apptree({
         ssFExportList :
         {
             parsesTopicScenarios,
         },
     });
-    var ts = sn( 'activityScenario', ss );
-    var actionsList_default = sn( 'actionsList_default', ts );
-    var actionsList_coded = sn( 'actionsList_coded', ts );
     var actionsList_shells = '';
     return;
 
@@ -47,9 +44,9 @@
         var TIMEOUT = /^(\d+)\s*(.*)$/;
         var PURGE_EVENT = /^>\s/;
 
-                           "exersise"
+        //                 "exersise"
         eachprop( exegs, ( theorionAspects, theorion_id ) => {
-                                         "subtopics"
+        //                               "subtopics"
             eachprop( theorionAspects, ( exAspect, aspect_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
 

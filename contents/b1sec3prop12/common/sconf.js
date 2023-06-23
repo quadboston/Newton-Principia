@@ -31,6 +31,7 @@
         sconf.enableTools               = true;
         sconf.rgShapesVisible           = true;
         //fconf.timeToShowOriginalDiagram = 11111111;
+        sconf.default_tp_lightness = 30;
         //====================================================
         // \\// subapp regim switches
         //====================================================

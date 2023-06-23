@@ -378,6 +378,7 @@
 
     ///api: if poly is not supplied, then it must be "this",
     ///does update "undisplay",
+    ///switch poly.UPDATE_MPOS_BEFORE_POLY does update mpos before pivots
     function poly_2_updatedPolyPos8undisplay( poly, stdMod ) {
         stdMod          = stdMod || studyMods[ amode.submodel ];
         var toreg       = stdMod.toreg;
@@ -385,7 +386,12 @@
 
         poly = poly || this;
         var CLOSED_POLYLINE = true;
-        var pivots = poly.pNames.map( pname => rg[ pname ].medpos );
+        var pNames = poly.pNames;
+        if( poly.UPDATE_MPOS_BEFORE_POLY ) {
+            let mod2inn = ssF.mod2inn;
+            pNames.forEach( pname => { rg[ pname ].medpos = mod2inn( rg[ pname ].pos ) } );
+        }
+        var pivots = pNames.map( pname => rg[ pname ].medpos );
         if( CLOSED_POLYLINE ) {
             pivots.push( pivots[0] );
         }

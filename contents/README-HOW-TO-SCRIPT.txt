@@ -10,53 +10,48 @@ example: makes self-reference in content-script
 Authoring own content
 =====================
 
-Contributor can modify or add own lemmmas. To add own-lemma, contributor must add a folder
-
-ver/contents folder/own-lemma
-
-and in file ver/contents/content-list.js
+To add own-lemma, contributor must
+1) add a folder ver/contents/own-lemma and
+2)in file ver/contents/content-list.js
 
 add an entry like
-        {   sappId : 'b1sec1lemma11',
+        {   sappId : 'own-lemma-chosen-id',
             book : 'Book 1',
             caption : 'Sec. 1. Lemma 11',
             annotation : "",
         },
 
 The simplest way to add own lemma is to copy/paste existging simple lemma,
-(as of today 'b1sec1lemma11') and modify its name, code, and contents.
+like ver/contents/own-lemma  and modify its name, code, and contents.
 
-Throughout, lemma's commenting-text is called "essay".
+Books contents set in text files. Each lemma has own text file which can concatenate many essays.
+In text file each essay must have a header like
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+Text inside { } is sets essay options which must be written in JSON format.
+Part {...} is optional.
+
+Pair like corollary|english above is an index of essay comprised of two categories
+<theorion>|<aspect>
+which in given case is corollary|english.
+
+theorions currently are claim, proof, corollary, ... but can be any words,
+aspects currently are claim, proof, corollary, ... but can be any words.
+
+theorions comprise horizontal menu in reader's work space in browser,
+aspects go to vertical menu.
 
 
 
-Essays structure
+Essay's structure
 ================
 
-    Essays are classified with their role in logic: claim, proof, corollary, ...
-    These categories are called called "theorions" and are arranged horizontally
-    in essay menu.
-
-    Any other classification categories called "aspects". They are arranged vertically
-    in essay menu. For example: English, Latin, Addendum, ...
-
-    Hence, each essay is indexed with pair aspect/theoreon categories.
-    For example, claim/English or proof/lite.
-
-    (The semantic "theorion" and "aspect" is insignificant, the only hard-coded part
-     is a GUI structure with two menus: vertical and horizontal.)
-
-    In essay-script, essays are separated with characters:
-        *::*
-        <optional exeg header> 
-        *..*
-        <exegesis body>
-
-    with these two elements described below.
-
-
-<exegesis body>
-===============
     There is one more level of complexity in essay structure due the application feature
     that allows to change essay text when application-model state changes.
     Specifically, model-states are indexed with special words, "state-keys".
@@ -190,6 +185,24 @@ aka
         "force"           : [255, 0, 0,1],
 
 
+
+Additional colors may exist in JavaScript code specifically for each lemma in file:
+
+ver/contents/b1sec1lemma6/js/sconf.js
+
+See pictures.
+ver/doc/additional-topic-colors-in-code.png
+ver/doc/addtional-colors-can-be-added-in-pcolor-properties-Screenshot at 2023-04-26 20:49:55.png
+ver/doc/addtional-colors-for-lines-2023-04-26 20:50:55.png
+
+It may be very convenient for content-writer to look in code, but it is done this way.
+
+(Probably most rich example is in
+ver/contents/b1sec8prop41/texts.content.txt
+notably in *::*claim|english
+where "Meta parsing" allows to preset colors for word clauses in text eliminating necessity to
+wrap each word-clause.
+)
 
 
 I. Essay-body topics.

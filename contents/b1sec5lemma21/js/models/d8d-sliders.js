@@ -1,37 +1,15 @@
 ( function() {
     var {
+        sn, has,
+        fconf, sconf, fmethods,
+        sDomF,
         stdMod, rg,
     } = window.b$l.apptree({
+        stdModExportList :
+        {
+            populates__cust_draggers_list,
+        },
     });
-
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;    
-    var bezier      = sn('bezier');
-
-    var fapp        = ns.sn('fapp' ); 
-    var fmethods    = sn('methods',fapp);
-    var fconf       = ns.sn('fconf',fapp);
-    var sconf       = ns.sn('sconf',fconf);
-
-    var sapp        = sn('sapp' ); 
-    var sDomF       = sn('dfunctions', sapp);
-    var sDomN       = sn('dnative', sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var amode       = sn('mode',sapp);
-
-    var ss          = sn('ss', fapp);
-    var ssD         = sn('ssData',ss);
-    var ssF         = sn('ssFunctions',ss);
-
-    var srg         = sn('sapprg', fapp ); 
-    var srg_modules = sn('srg_modules', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = 'dragModel_2_ss';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
     return;
 
 
@@ -43,22 +21,16 @@
 
 
 
-    function setModule()
-    {
-        stdMod.populates__cust_draggers_list = populates__cust_draggers_list;
-    }
-
 
     //==========================================
     // //\\ inits drag model
     //==========================================
     function populates__cust_draggers_list()
     {
-        ns.sn( 'customDraggers_list', stdMod, [] );
         stdMod.customDraggers_list.push( createDraggers_p );
 
         //todm ... do automate
-        stdMod.railsCustomSlidersCount = ns.h( stdMod, 'railsCustomSlidersCount' ) ?
+        stdMod.railsCustomSlidersCount = has( stdMod, 'railsCustomSlidersCount' ) ?
             stdMod.railsCustomSlidersCount + 1 : 1; 
     };
     //==========================================

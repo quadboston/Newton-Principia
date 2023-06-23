@@ -7,7 +7,7 @@
         globalCss,
         fconf,
         sconf,
-        ss, exegs,
+        exegs, actionsList_coded, actionsList_default,
         ssF, ssD, amode,
         rg,
         studyMods,
@@ -21,9 +21,6 @@
             restylifyUserConsole,
         },
     });
-    var ts = sn( 'activityScenario', ss );
-    var actionsList_coded = sn( 'actionsList_coded', ts );
-    var actionsList_default = sn( 'actionsList_default', ts );
     var eventFlow_locked = false;
     var doInitCssDone = false;
 
@@ -239,6 +236,9 @@
 
         //todm: why there are two MathJax flags? here and below,
         ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand, !!'dontDoMathJax' );
+
+        //updates only for newMessage
+        ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
         if( noMathJax ) return;
 
         ///we put new message in MathJax queue:

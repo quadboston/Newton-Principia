@@ -1,11 +1,12 @@
 ( function () {
     var {
         ns, sn, $$, haz,
-        sconf, ss, fmethods, sDomN,
+        fapp, sconf, fmethods, sDomN,
         stdMod,
     } = window.b$l.apptree({
         setModule,
     });
+    var stdL2 = sn('stdL2', fapp );
     return;
 
 
@@ -16,12 +17,11 @@
 
     function setModule()
     {
-        var l23         = ss;
-        var study       = sn('study', l23 );
+        var study       = sn('study', stdL2 );
         var sdata       = sn('sdata', study );
-        var numModel    = sn('numModel', l23 );
-        var gui         = sn('gui', l23 );
-        var dr          = sn('datareg', l23 );
+        var numModel    = sn('numModel', stdL2 );
+        var gui         = sn('gui', stdL2 );
+        var dr          = sn('datareg', stdL2 );
 
         sdata.curveDragHandlesVisible = true;
         study.eventHandlers =
@@ -76,7 +76,8 @@
                     $$.qa( '.outline' )().forEach( outlinee => {
                         //ccc( 'checked', outlinee );
                         $$.$(outlinee).removeClass( 'hidden' );
-                        //outlinee.style.visibility = 'visible'; //todm ... is this a right action?
+                        //outlinee.style.visibility =
+                        // 'visible'; //todm ... is this a right action?
                     });
                     //sDomN.figureInternalArea$.removeClass('hidden');
                 }else{
@@ -84,8 +85,6 @@
                         //outlinee.style.visibility = 'hidden';
                         $$.$(outlinee).cls( 'hidden' );
                     });
-                    //sDomN.figureInternalArea$.cls('hidden');
-                    //ccc( 'non checked sDomN.figureInternalArea$', sDomN.figureInternalArea$() );
                 }
             }
             // \\// copy-pasted from gui-art
@@ -133,12 +132,12 @@
 
         function toggleInscribed() {
 	        sdata.view.isInscribed^=1;
-	        l23.show_LPR();
+	        stdL2.styles___shows_LabelsPointsRects();
         }
 
         function toggleCircumscribed() {
 	        sdata.view.isCircumscribed^=1;
-	        l23.show_LPR();
+	        stdL2.styles___shows_LabelsPointsRects();
         }
 
         ///toggles mode for curve-shape is-draggable/non-draggable
@@ -157,7 +156,8 @@
                 //.as of version 91, used in mouse-down point-detection
                 dr.ctrlPts[i].visible = !!cvis; 
                 if( sconf.dragPointVisibilityToggling ) {                
-    		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility", cvis ? "visible":"hidden");
+    		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility",
+                        cvis ? "visible":"hidden");
     	        } else {
                     //here we disable dragPointVisibilityToggling
     		        dr.ctrlPts[i].dom.setAttributeNS(null, "visibility", "visible");
@@ -167,13 +167,6 @@
         //======================================
         // \\// event-handlers
         //======================================
-
-
-
-
-
-
-        //todo 	        gui.show_widthest_claim_labels( view );
     }
 
 }) ();

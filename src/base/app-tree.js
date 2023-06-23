@@ -20,11 +20,19 @@
     var sconf       = sn('sconf',fconf);
 
     //lemma-independent lemma-subapplication (aka lemma-class-functions in Java)
+    //this layer, ss, should be invisible in lemmas, but
+    //this invisibility is not yet done in many praxis sites,
     var ss          = sn('ss', fapp);
+
     var cssmod      = sn('ssCssModules',ss);
     var ssCssOrder  = sn('ssCssOrder',ss);
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
+    const ts        = sn( 'activityScenario', ss );
+    var actionsList_coded = sn( 'actionsList_coded', ts );
+    var actionsList_default = sn( 'actionsList_default', ts );
+    const ario      = sn( 'activityScenario', ss );
+    const arios     = sn( 'activityScenarios', ario, [] );
 
     var rgtools     = sn('tools',ssD);
     var fixedColors = sn('fixed-colors',ssD);
@@ -200,6 +208,10 @@
             ss,
             ssF,
             ssD, fixedColors,
+            actionsList_coded,
+            actionsList_default,
+            //ario,
+            arios,
 
             rg    : stdMod.rg,
             topos : stdMod.topos,

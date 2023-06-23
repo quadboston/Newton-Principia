@@ -43,6 +43,7 @@
         //--------------------------------------
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
+        sconf.default_tp_lightness = 30;
         var pictureWidth = 1500;
         var pictureHeight = 1200;
 

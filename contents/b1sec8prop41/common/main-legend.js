@@ -27,8 +27,10 @@
     {
         return;
         //see lemma 11 for the sample
+        /*
         create_digital_legend_for_theorion( 'proof' );
         create_digital_legend_for_theorion( 'corollary' );
+        */
     }
 
     function create_digital_legend_for_theorion( theorion )

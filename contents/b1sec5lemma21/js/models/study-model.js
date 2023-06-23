@@ -4,7 +4,6 @@
         sconf, ssD, ssF, sapp,
         amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
-        setModule,
         stdModExportList :
         {
             model_upcreate,
@@ -19,10 +18,6 @@
 
 
 
-    function setModule()
-    {
-        sn( 'customDraggers_list', stdMod, [] ); //todm: fake
-    }
 
     //===================================================
     // //\\ registers model pars into common scope

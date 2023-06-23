@@ -1,13 +1,10 @@
 (function() {
-    var ns      = window.b$l;
-    var sn      = ns.sn;
-
-    var fapp        = ns.sn('fapp' ); 
-
-    var ss          = sn('ss', fapp);
-    var cssmod      = sn('ssCssModules',ss);
-    var modName     = 'proof-vs-claim-visib';
-    setModule();
+    var {
+        cssmod,
+    } = window.b$l.apptree({
+        setModule
+    });
+    const modName = 'proof-vs-claim-visib';
     return;
 
 

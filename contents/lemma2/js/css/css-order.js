@@ -5,7 +5,6 @@
     } = window.b$l.apptree({
         setModule,
     });
-
     return;
 
 
@@ -19,7 +18,6 @@
             'inner-page',
             'slider',
             'model',
-            'widget-media'
         ];
     }
 

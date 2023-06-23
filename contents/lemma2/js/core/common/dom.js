@@ -1,34 +1,12 @@
 ( function() {
     var {
-        stdMod, rg,
+        sn, $$,
+        fapp, fconf, sDomN, ssF,
+        stdMod, amode,
     } = window.b$l.apptree({
+        setModule,
     });
-
-    var ns          = window.b$l;
-    var cssp        = ns.CSS_PREFIX;
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-
-    var fapp        = sn('fapp' ); 
-    var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
-
-
-    var ss          = sn('ss',fapp);
-    var ssF         = sn('ssFunctions',ss);
-    var ssD         = sn('ssData',ss);
-    
-    var sapp        = sn('sapp'); 
-    var amode       = sn('mode',sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomN       = sn('dnative', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
+    var stdL2 = sn('stdL2', fapp );
     return;
 
 
@@ -42,7 +20,7 @@
         ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
         ssF.convergenceResultArea               = convergenceResultArea;
         ssF.create_digital_legend               = create_digital_legend;
-        ss.state8css_for_l2_l3                  = state8css_for_l2_l3;
+        stdL2.state8css_for_l2_l3                  = state8css_for_l2_l3;
     }
 
 
@@ -56,7 +34,7 @@
 
         ///refreshes legacy state of subapplication for l23 ...
         ///should be in some state enging specific to subapplication ...
-        ss.study.sdata.view.isClaim = amode.theorion === 'claim';
+        stdL2.study.sdata.view.isClaim = amode.theorion === 'claim';
 
 
         ///=========================================================================
@@ -190,7 +168,7 @@
                     <div class="checkbox-wrap tobg">
                         <input id="checkbox_4" type="checkbox" name="option"
                                class="checkbox figure"
-                               onclick="window.b$l.fapp.ss.gui.showFig()"
+                               onclick="window.b$l.fapp.stdL2.gui.showFig()"
                                checked>
                         <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
                     </div>

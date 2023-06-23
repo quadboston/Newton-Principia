@@ -8,7 +8,7 @@
         fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
-        ss, ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
+        ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
     } = window.b$l.apptree({
     });
 
@@ -58,7 +58,7 @@
         // //\\ home8lemmas
         // //\\ sets ids and titles
         //===============================
-        ns.url2conf( fconf );
+        //ns.url2conf( fconf );
         sn( 'pathToContentSite', fconf, '.' );
         sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr(); //converts ix to id, lemma ix "is well established"

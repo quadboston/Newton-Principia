@@ -1,132 +1,109 @@
 ( function () {
     var {
+        sn,
+        fapp, fconf, sconf, sDomF, ssF,
         stdMod,
-    } = window.b$l.apptree({
+    } = window.b$l.apptree({});
+    var stdL2       = sn('stdL2', fapp );
+    var gui         = sn('gui', stdL2 );
+    var guiup       = sn('guiUpdate',gui);
+    var appstate    = sn('appstate', stdL2 );
+    var dr          = sn('datareg', stdL2 );
+
+    //=====================================
+    // //\\ does gui configuration
+    //=====================================
+    Object.assign( sconf,
+    {
+        //:slider config
+        MINP            : 1,
+        MAXP            : 50
     });
-    var ns          = window.b$l;
-    var sn          = ns.sn;    
-	var bsl	        = ns;
-    var fapp        = ns.sn('fapp' ); 
-    var fconf   = ns.sn('fconf',fapp);
-    var sconf   = ns.sn('sconf',fconf);
-    var sacf    = sconf;
+    //=====================================
+    // \\// does gui configuration
+    //=====================================
 
-    var ss          = sn('ss',fapp);
-    
-    var sapp        = sn('sapp');
-    var srg_modules = sn('srg_modules', sapp);
-    var sDomF       = sn('dfunctions', sapp);
-    var studyMods   = sn('studyMods', sapp);
-
-    var mCount      = sn('modulesCount', sapp);
-    mCount.count    = mCount.count ? mCount.count + 1 : 1;
-    var modName     = '';
-    srg_modules[ modName + '-' + mCount.count ] = setModule;
-
+    //======================================
+    // //\\ exports module
+    //======================================
+    Object.assign( gui, {
+        buildSlider: buildSlider
+    });
+    //======================================
+    // \\// exports module
+    //======================================
     return;
 
 
 
 
 
-    function setModule()
+    //======================================
+    // //\\ slider
+    //======================================
+    function buildSlider( undefined )
     {
-        var l23         = ss;
+        //.appar. slider-for-base-points-number
+        var slider = document.getElementById("mySlider");
+        slider.setAttributeNS( null, "min", sconf.MINP );
+        slider.setAttributeNS( null, "max", sconf.MAXP );
 
-        var gui         = sn('gui', l23 );
-        var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', l23 );
-        var dr          = sn('datareg', l23 );
+        //.appar. sets current base-points-number
+        slider.setAttributeNS( null, "value", dr.bases );
 
-        //=====================================
-        // //\\ does gui configuration
-        //=====================================
-        Object.assign( sacf,
-        {
-            //:slider config
-            MINP            : 1,
-            MAXP            : 50
-        });
-        //=====================================
-        // \\// does gui configuration
-        //=====================================
+        var sliderOutput = document.getElementById("baseSpan");
+        var baseLabel = document.getElementById("baseLabelSpan");
+        showBasesNumberInGui( sliderOutput, baseLabel );
 
-
-
-
-        //======================================
-        // //\\ exports module
-        //======================================
-        Object.assign( gui, {
-	        buildSlider: buildSlider
-        });
-        //======================================
-        // \\// exports module
-        //======================================
-
-
-
-
-        //======================================
-        // //\\ slider
-        //======================================
-        function buildSlider()
-        {
-            //.appar. slider-for-base-points-number
-	        var slider = document.getElementById("mySlider");
-	        slider.setAttributeNS( null, "min", sacf.MINP );
-	        slider.setAttributeNS( null, "max", sacf.MAXP );
-
-            //.appar. sets current base-points-number
-	        slider.setAttributeNS( null, "value", dr.bases );
-
-	        var sliderOutput = document.getElementById("baseSpan");
-	        var baseLabel = document.getElementById("baseLabelSpan");
+        slider.oninput = function() {
+            appstate.movingBasePt = false; // better way?
+	        var newB = interpretSlider( this.value );
+            //dr.bases === basesAmount
+	        sliderEvent( newB-dr.bases, newB, dr.basePts );
+	        dr.bases = newB;
 	        showBasesNumberInGui( sliderOutput, baseLabel );
 
-	        slider.oninput = function() {
-                appstate.movingBasePt = false; // better way?
-		        var newB = interpretSlider( this.value );
-		        sliderEvent( newB-dr.bases, newB, dr.basePts );
-		        dr.bases = newB;
-		        showBasesNumberInGui( sliderOutput, baseLabel );
-                stdMod.model8media_upcreate();
-          	}
+            ssF.media_upcreate_generic();
+      	}
 
-            function sliderEvent(bd, newBases, basePts) {
-                sDomF.detected_user_interaction_effect();
-            	//var baseDelta = bd;
-	            for (var i=newBases-bd; i<newBases; i++) {
-    		        if( fconf.sappId === 'lemma3' ) {
-    		            guiup.set_pt2movable( basePts.list[i] );
+        function sliderEvent(bd, newBases, basePts) {
+            sDomF.detected_user_interaction_effect();
+        	//var baseDelta = bd;
+	        if( fconf.sappId === 'lemma3' ) {
+                ///dynamically adds more base points
+                for (var i=newBases-bd; i<newBases; i++) {
+                    ///prevents making too many draggable base points
+                    if( i < sconf.draggableBasePoints ) {
+       		            guiup.set_pt2movable( basePts.list[i] );
                     }
-	            }
-                var baseWidths = dr.baseWidths;
-	            for (var i=newBases; i < newBases-bd; i++) {
-		            baseWidths[i] = undefined;
-	            }
+                }
             }
-
-            function showBasesNumberInGui( sliderOutput, baseLabel )
-            {
-	            sliderOutput.innerHTML = dr.bases;
-	            baseLabel.innerHTML = dr.bases === 1 ? " base":" bases";
-            }
-
-            function interpretSlider(val){
-	            const maxLinV = 20; //linear through 20
-	            if (val <= maxLinV) {
-		            return parseInt(val);
-	            }
-	            const minV = Math.log(maxLinV);
-	            const maxV = Math.log(sacf.baseMax);
-	            var scale = (maxV-minV) / (sacf.MAXP-maxLinV);
-	            return Math.round(Math.exp(minV + scale*(val-maxLinV)));
+            var baseWidths = dr.baseWidths;
+            for (var i=newBases; i < newBases-bd; i++) {
+	            baseWidths[i] = undefined;
             }
         }
-        //======================================
-        // \\// slider
-        //======================================
+
+        function showBasesNumberInGui( sliderOutput, baseLabel )
+        {
+            sliderOutput.innerHTML = dr.bases;
+            baseLabel.innerHTML = dr.bases === 1 ? " base":" bases";
+        }
+
+        function interpretSlider(val)
+        {
+            const maxLinV = 20; //linear through 20
+            if (val <= maxLinV) {
+	            return parseInt(val);
+            }
+            const minV = Math.log(maxLinV);
+            const maxV = Math.log(sconf.baseMax);
+            var scale = (maxV-minV) / (sconf.MAXP-maxLinV);
+            return Math.round(Math.exp(minV + scale*(val-maxLinV)));
+        }
     }
+    //======================================
+    // \\// slider
+    //======================================
 }) ();
 

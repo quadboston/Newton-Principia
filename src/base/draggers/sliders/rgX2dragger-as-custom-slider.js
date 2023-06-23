@@ -26,7 +26,6 @@
         nospinner,
         stdMod,
     }) {
-        sn( 'customDraggers_list', stdMod, [] );
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
                 rgX.dragDecorColor= rgX.pcolor; //'#00aaba';

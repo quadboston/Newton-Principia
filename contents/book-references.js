@@ -1,8 +1,8 @@
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    var ss     = ns.sn('ss', fapp);
-    var ssD    = ns.sn('ssData',ss);
+    var {
+        ssD,
+    } = window.b$l.apptree({
+    });
 
 
 
@@ -14,10 +14,17 @@
         latin : `
                 <br>
                 <i>Source</i>: <br>
-                <a href="https://www.e-rara.ch/zut/wihibe/content/structure/338026"
-                     target="_blank">
-                     3rd Edition: https://www.e-rara.ch/zut/wihibe/content/structure/338026
-                     License: public domain.
+                
+                    Philosophiae Naturalis Principia Mathematica. Auctore Isaaco<br>
+                    Newton, Isaac<br>
+                    Londini [i.e. London], 1726<br>
+                    3rd Edition<br>
+                    ETH-Bibliothek Zürich<br>
+                    Shelf Mark: Rar 4176<br>
+                    License: public domain.<br>
+                    Persistent Link: <a href="http://dx.doi.org/10.3931/e-rara-1235"
+                               target="_blank"> http://dx.doi.org/10.3931/e-rara-1235<br>
+                    http://www.e-rara.ch/<br>
                 </a>
         `,
         'latin---inline-style' : `
@@ -106,6 +113,9 @@
             font-size: 11px;
         `,
         */
+
+
+
 
         'latin-diagram' : `
         <br>
