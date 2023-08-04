@@ -4,7 +4,7 @@
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
         lcaseId2allLemTopics,
         id2tplink, ix2tplink,
-        amode, sconf, rg,
+        amode, sconf, rg, userOptions
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -458,15 +458,15 @@
         return rawActFrValue;
     }
 
-    ///if we want to keep link-to-link browsing insed of framework with
+    ///if we want to keep link-to-link browsing instead of framework with
     ///addendums added to original text, then we have to update static
-    ///links reffered to Addendums,
+    ///links referred to Addendums,
     ///this function does this job and is in effect in two places:
     ///1) at landing time and 2) in "tutor framework" when scenario adds a new message
     ///to student's console,
     function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
     {
-        if( !fconf.basicSiteFeatures ) {
+        if( userOptions.showingBonusFeatures() ) {
             let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
             let sea = '?conf=sappId=';
             let reg = new RegExp( '\\' + sea );

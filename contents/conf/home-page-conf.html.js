@@ -4,6 +4,7 @@
     var sn           = ns.sn;
     var fapp         = ns.sn('fapp' ); 
     var fconf        = ns.sn('fconf',fapp);
+    var userOptions  = sn('userOptions',fapp);
     var sconf        = ns.sn('sconf',fconf);
 
     var sapp         = sn('sapp');
@@ -20,14 +21,20 @@
 
     function builds_homePane()
     {
-        var landingPath = window.location.pathname;
         var subsiteImg  = fconf.pathToContentSiteImg;
-        var coreText    = '';
+
+        buildHeader();
+        buildTableOfContents();
+        buildHowTo();
+        buildOptions();
+        buildAbout();
+
 
         //==================================================
         // //\\ header
         //==================================================
-        $$.c('header').to( fapp.homePage$() ).html(`
+        function buildHeader() {
+            $$.c('header').to(fapp.homePage$()).html(`
             <div class="hp-section-wrap">
                 <div class="landing-text">
                     <h1 class="landing-title">${fconf.appDecor.homePageCaption}</h1>
@@ -38,58 +45,64 @@
                 </div>
             </div>
             <img class="newton-img"
-                 src="${subsiteImg}/${fconf.appDecor.landingImage}">
-        `);
+                 src="${subsiteImg}/${fconf.appDecor.landingImage}">`);
+        }
         //==================================================
         // \\// header
         //==================================================
 
-
-
-
+        
         //==================================================
         // //\\ table of contents
         //==================================================
-        var coreText =`
+        function buildTableOfContents() {
+            var coreText = `
                 <h2>Table of contents</h2>
-                <ul>
-        `;
+                <ul>`;
 
-        var book = null;
-        fconf.ix2lemmaDef.forEach( function( sappItem ) {
-            if( sappItem.sappId === 'home-pane' ) return;
-            if( book === null || book !== sappItem.book ) {
-                book = sappItem.book;
-                ////add title "Book ... " when list switches to the next book ...
-                coreText += `
+            var book = null;
+            var landingPath = window.location.pathname;
+            fconf.ix2lemmaDef.forEach(function (sappItem) {
+                if (sappItem.sappId === 'home-pane') return;
+                if (book === null || book !== sappItem.book) {
+                    book = sappItem.book;
+                    if (sappItem.annotation === userOptions.BONUS_START) {
+                        coreText += `<span id=` + userOptions.BONUS_START + `>`;
+                    }
+                    ////add title "Book ... " when list switches to the next book ...
+                    coreText += `
                     <li><div class="content-book-title">
                             <span class="table-title">${book}</span>
                         </div>
                     </li>
                 `;
-            }
-            coreText += `
+                }
+                coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
                     <span class="table-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
                     </a>
-                </li>
-            `;
-        });
-        coreText += `
+                </li>`;
+                if (sappItem.annotation === userOptions.BONUS_END) {
+                    coreText += `</span>`;
+                }
+            });
+            coreText += `
              </ul>
-             <!--END table of contents-->
-        `;
-        $$  .c('div').addClass('landing-table-of-contents hp-section-wrap').to( fapp.homePage$() )
-            .html(coreText);
+             <!--END table of contents-->`;
+            $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+        }
         //==================================================
         // \\// table of contents
         //==================================================
 
 
+
         //==================================================
         // //\\ how-to
         //==================================================
-        coreText = `
+        function buildHowTo() {
+            var coreText = `
             <div class="hp-section-wrap">
                 <h2>Usage Guide</h2>
                 <div class=" how-to-grid">
@@ -108,7 +121,7 @@
                              src="${subsiteImg}/draggable-model.mkv.gif">
                     </div>
                     <h4>Model</h4>
-                    <p>Drag sliders and hollow points to interact with the mode.</p>
+                    <p>Drag sliders and hollow points to interact with the model.</p>
                 </div><!--END cell-->
                 <div class="how-to__cell">
                     <div class="how-to__cell__image">
@@ -121,24 +134,45 @@
                        item in the model.</p>
                 </div><!--END cell-->
                 </div>
-            </div>
-        `;
-        $$  .c('div').addClass('how-to').to( fapp.homePage$() )
-            .html(coreText);
+            </div>`;
+            $$.c('div').addClass('how-to').to(fapp.homePage$())
+                .html(coreText);
+        }
         //==================================================
         // \\// how-to
         //==================================================
 
 
-
-
-
+        //==================================================
+        // \\// options
+        //==================================================
+        function buildOptions(coreText) {
+            var coreText = `
+                <h2>Options</h2>
+                <div>
+                    <p class="about__author__text">      
+                        <input type="checkbox" id="latinCheckbox"> 
+                            Latin tabs (in progress)<br>
+                        <input type="checkbox" id="fadeCheckbox"> 
+                            fade from original diagram images (experimental)<br>
+                        <input type="checkbox" id="bonusCheckbox"> 
+                            addendums and additional interpetations by Konstantin Krillov 
+                    </p>
+                </div>`;
+            $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+            return coreText;
+        }
+        //==================================================
+        // \\// options
+        //==================================================
 
 
         //==================================================
         // //\\ about wrapper
         //==================================================
-        coreText = `
+        function buildAbout() {
+            var coreText = `
                 <div class="about__author">
                     <h2>About</h2>
                     <p class="about__author__text">
@@ -155,10 +189,10 @@
                         <!-- todm fix these <br> by css not by markup -->
                         <br><br><br><br>
                     </p>
-                </div>
-        `;
-        var aboutWrapper$ = $$  .c('div').addClass('about hp-section-wrap').to( fapp.homePage$() )
-            .html(coreText);
+                </div>`;
+            $$.c('div').addClass('about hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+        }
         //==================================================
         // \\// about wrapper
         //==================================================

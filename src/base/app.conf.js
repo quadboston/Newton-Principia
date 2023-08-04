@@ -8,7 +8,7 @@
     url2conf( fconf );
     to_fconf =
     {
-        hideSingleItemContentMenus : true,
+        hideSingleItemContentMenus : false,
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
     }
 

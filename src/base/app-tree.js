@@ -60,6 +60,9 @@
     var srg         = sn('sapprg', fapp ); 
     var srg_modules = sn('srg_modules', sapp);
 
+    //site-wide user options
+    var userOptions = sn('userOptions',fapp);
+
     setsEngineDefaults();
     return;
 
@@ -237,6 +240,8 @@
 
             srg,
             srg_modules,
+
+            userOptions,
 
             //sugar variables
             mCount,

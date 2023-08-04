@@ -3,7 +3,7 @@
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture,
         topics, studyModsActivated, fixedColors, references, exegs,
-        studyMods, amode,
+        studyMods, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -108,6 +108,7 @@
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
             var subessays = allEssays__str.split( SUBESSAYS_DIVIDOR );
 
+
             //=========================================================
             // //\\ splits text to subessays
             //      and prebuilds esssay-placeholders and indexes them
@@ -139,11 +140,10 @@
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
 
-                    if( haz( fconf, 'basicSiteFeatures' ) &&
-                        ( aspect_id === 'model' || aspect_id === 'addendum' ||
-                          aspect_id === 'xixcentury') ){
+                    if (!aspectTurnedOn(aspect_id)) {
                         return;
                     }
+
                     var wIx         = precontent.indexOf("*..*");
                     if( wIx > -1 ) {
                         var wHeader = precontent.substring(0, wIx-1);
@@ -549,6 +549,16 @@
         // \\// on content Files Load Success
         //====================================================
 
+
+        function aspectTurnedOn(aspect_id) {
+            if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
+                return userOptions.showingBonusFeatures();
+            }
+            if (aspect_id === 'latin'){
+                return userOptions.showingLatin();
+            }
+            return true;
+        }
     }
 
     ///input: ptype - optional,
