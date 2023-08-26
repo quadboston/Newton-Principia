@@ -9,40 +9,41 @@
         localStorage.setItem(CHANGED, false);
     }
     userOptions.showingLatin = showingLatin;
+    userOptions.usingBackgroundImage = useBGimage;
     userOptions.showingBonusFeatures = showingBonusFeatures;
     userOptions.initializeOptions = initializeOptions;
     userOptions.BONUS_START = "bonus-section-start";
     userOptions.BONUS_END = "bonus-section-end";
 
     function showingLatin() {
-        return localStorage.getItem('latin') === 'true';
+        return localStorage.getItem(LATIN) === 'true';
     }
 
-    function fadingImage() {
-        return localStorage.getItem('imageFade') === 'true';
+    function useBGimage() {
+        return localStorage.getItem(USE_BG_IMAGE) === 'true';
     }
 
     function showingBonusFeatures() {
-        return localStorage.getItem('bonus') === 'true';
+        return localStorage.getItem(BONUS) === 'true';
     }
 
     function initializeOptions() {
         let latinCB = document.getElementById("latinCheckbox");
         latinCB.checked = showingLatin();
         latinCB.onclick = () => {
-            localStorage.setItem("latin", !showingLatin());
+            localStorage.setItem(LATIN, !showingLatin());
         };
 
         let fadeCB = document.getElementById("fadeCheckbox");
-        fadeCB.checked = fadingImage();
+        fadeCB.checked = useBGimage();
         fadeCB.onclick = () => {
-            localStorage.setItem("imageFade", !fadingImage());
+            localStorage.setItem(USE_BG_IMAGE, !useBGimage());
         };
 
         let bonusCB = document.getElementById("bonusCheckbox");
         bonusCB.checked = showingBonusFeatures();
         bonusCB.onclick = () => {
-            localStorage.setItem("bonus", !showingBonusFeatures());
+            localStorage.setItem(BONUS, !showingBonusFeatures());
             updateBonusContentVisibility();
         };
         updateBonusContentVisibility();

@@ -257,6 +257,8 @@
       font-family: 'Goudy Old Style', 'Garamond','Times', serif;
       margin-top: 128px;
     }
+    .option__text {
+      font-size: 18px; }
     /*====================================================== 
       ||// options
      ======================================================*/

@@ -150,11 +150,11 @@
             var coreText = `
                 <h2>Options</h2>
                 <div>
-                    <p class="about__author__text">      
+                    <p class="option__text">      
                         <input type="checkbox" id="latinCheckbox"> 
                             Latin tabs (in progress)<br>
                         <input type="checkbox" id="fadeCheckbox"> 
-                            fade from original diagram images (experimental)<br>
+                            overlay original diagrams<br>
                         <input type="checkbox" id="bonusCheckbox"> 
                             addendums and additional interpetations by Konstantin Krillov 
                     </p>
