@@ -30,8 +30,8 @@ Jargon
     ns   - top node of name space = window.b$l
 
     fapp - full application - a shell for an entire book
-    sapp - sub application ... assumingly there can be many lemmas then code for each lemma
-            shold be loaded on demand ... 
+    sapp - sub application ... assuming there can be many lemmas then code for each lemma
+            should be loaded on demand ... 
             sapp stands for lemma2, lemma3, lemma4, ....
 
     this jargon is reflected in JavaScript object tree and folder structure
