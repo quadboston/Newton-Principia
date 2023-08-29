@@ -108,7 +108,6 @@
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
             var subessays = allEssays__str.split( SUBESSAYS_DIVIDOR );
 
-
             //=========================================================
             // //\\ splits text to subessays
             //      and prebuilds esssay-placeholders and indexes them
@@ -143,7 +142,6 @@
                     if (!aspectTurnedOn(aspect_id)) {
                         return;
                     }
-
                     var wIx         = precontent.indexOf("*..*");
                     if( wIx > -1 ) {
                         var wHeader = precontent.substring(0, wIx-1);

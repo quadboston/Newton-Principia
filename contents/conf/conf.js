@@ -14,8 +14,6 @@
     fconf.pathToContentSiteImg  = 'contents/img';
     fconf.engineImg             = 'engine-img';
 
-
-
     //====================================================
     // //\\ put configuration parameters here
     //====================================================

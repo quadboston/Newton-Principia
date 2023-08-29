@@ -115,20 +115,27 @@
 
                       } else {
                             // user is going back the lemmas
-                            ns.globalCss.clearStyleTag( 'home' );
-                            fapp.homePage$.addClass( 'is-hidden' );
-                            sDomN.homeButton$
-                                .html( fconf.homeButtonName )
-                                .addClass( 'is-hidden' )
-                                ;
-                            document.body.style.overflow = 'hidden';
-                            $$.$( document.body ).removeClass( 'contents' );
-                            //todm patch
-                            sDomN.simSScene$.css( 'display', 'inline-block' );
+                            if (userOptions.hasNewSettings()) {
+                                window.location.reload();
+                            } else {
+                                wipeFromHomeToLemma();
+                            }
                       }
                       return false;
                 })
             )
+
+            function wipeFromHomeToLemma() {
+                ns.globalCss.clearStyleTag('home');
+                fapp.homePage$.addClass('is-hidden');
+                sDomN.homeButton$
+                    .html(fconf.homeButtonName)
+                    .addClass('is-hidden');
+                document.body.style.overflow = 'hidden';
+                $$.$(document.body).removeClass('contents');
+                //todm patch
+                sDomN.simSScene$.css('display', 'inline-block');
+            }
         //==================================================
         // \\// builds home button
         //==================================================
