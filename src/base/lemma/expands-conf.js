@@ -458,14 +458,6 @@
             //----------------------------------
             // \\// scenario
             //----------------------------------
-            /*
-            //moved to site conf
-            default_tp_stroke_width     : haz( sconf, 'default_tp_stroke_width' ) ||
-                                          super_default_highlight_tp_stroke_width,
-            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
-            default_tp_lightness        : 40, //50 is full lightness
-            defaultLineWidth            : 2,
-            */
         });
         sn( 'hover_width', sconf,
             Math.max( 1,  sconf.default_tp_stroke_width ) );

@@ -132,7 +132,7 @@
     //***********************************************
     function LANDING_III___config8run_lemmaModules( lemBriefDef )
     {
-        var lemmaConfig = lemBriefDef; //to merge both later: def and conf
+        var lemmaConfigList = lemBriefDef; //to merge both later: def and conf
         //-------------------------------------------------
         // //\\ prepares sub-application-source-code-files,
         //      sub-application === lemma
@@ -142,7 +142,7 @@
         nsmethods.loadScripts(
             [
                 { src : fconf.pathToContentSite + "/contents/" +
-                        lemmaConfig.sappId + "/lemma-conf.js"
+                        lemmaConfigList.sappId + "/lemma-conf.js"
                 }
             ],
             landing_III_cb,
@@ -158,10 +158,13 @@
 
         function landing_III_cb()
         {
-            ns.paste( lemmaConfig, fapp.lemmaConfig() );
+            //deep copy, original does not change
+            ns.paste( lemmaConfigList, fapp.lemmaConfig() );
+            //hidden twist in design:
+            fapp.lemmaConfigList = lemmaConfigList;
 
-            var sappId_ref = ns.haz( lemmaConfig, 'sappCodeReference' );
-            jscode_sappId = sappId_ref || lemmaConfig.sappId;
+            var sappId_ref = ns.haz( lemmaConfigList, 'sappCodeReference' );
+            jscode_sappId = sappId_ref || lemmaConfigList.sappId;
             //must be the same type of data as "fconf.sappId"
             fconf.lemBasecode_fullpath =
                 fconf.pathToContentSite + "/contents/" + jscode_sappId;
@@ -177,17 +180,17 @@
                     ],
                     function() {
                         ////uses own placeholder of-jscodes-list or adds missed
-                        codesList = sn( 'codesList', fapp.lemmaConfig(), [] );
+                        codesList = sn( 'codesList', lemmaConfigList, [] );
                         //loads own jscodes and continues landing
-                        LANDING_IV___loadLemmaJSCodes( lemmaConfig );
+                        LANDING_IV___loadLemmaJSCodes( lemmaConfigList );
                     }
                 );
 
             } else {
                 ////uses own placeholder of-jscodes-list or adds missed
-                codesList = sn( 'codesList', lemmaConfig, [] );
+                codesList = sn( 'codesList', lemmaConfigList, [] );
                 //loads own jscodes and continues landing
-                LANDING_IV___loadLemmaJSCodes( lemmaConfig );
+                LANDING_IV___loadLemmaJSCodes( lemmaConfigList );
             }
             // \\// loads jscodes and continues
         }
@@ -197,18 +200,32 @@
 
 
 
-        //loads JS-scripts for specific lemma
-        function LANDING_IV___loadLemmaJSCodes( lemmaConfig )
+        //loads images (if any) and then JS-scripts for specific lemma
+        function LANDING_IV___loadLemmaJSCodes( lemmaConfigList )
         {
-            codesList.forEach( function( codeItem ) {
-                codeItem.src = fconf.pathToContentSite + "/contents/" +
-                               jscode_sappId + "/js/" + codeItem.src;
-            });
-            nsmethods.loadScripts(
-                codesList,
+            let imagesToLoadList = lemmaConfigList.imagesToLoadList;
+            if( imagesToLoadList ) {
+                ////loads images first
+                eachprop( imagesToLoadList, function( codeItem ) {
+                    codeItem.src = fconf.pathToContentSite + "/contents/" +
+                                   jscode_sappId + "/img/" + codeItem.src;
+                });
+                ///loads images first and then follows to load scripts
+                nsmethods.loadImages( loadsJSScripts, imagesToLoadList );
+            } else {
+                ///follows to load scripts
+                loadsJSScripts();
+            }
 
-                ///this function is called when all JS-lemma-modules are loaded
-                function()
+            function loadsJSScripts()
+            {
+                codesList.forEach( function( codeItem ) {
+                    codeItem.src = fconf.pathToContentSite + "/contents/" +
+                                   jscode_sappId + "/js/" + codeItem.src;
+                });
+                nsmethods.loadScripts(codesList, loadsJSScripts_atLastLoadedScript);
+
+                function loadsJSScripts_atLastLoadedScript()
                 {
                     //----------------------------------------------------------
                     ///module can be executed right after load if it is safe or
@@ -244,6 +261,7 @@
                                 ssF.doExpandConfig( stdMod );
                         ns.url2conf( stdMod.sconf );
                     });
+                    ns.url2conf( fconf ); //overriding url-query one more time
                     //==========================================================
                     // \\// init_conf for models
                     //==========================================================
@@ -317,7 +335,7 @@
                         }
                     );
                 }
-            );
+            }
         }
     }
 

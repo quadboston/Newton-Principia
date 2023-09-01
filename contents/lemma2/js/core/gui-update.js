@@ -223,10 +223,10 @@
         fb.minX = ctrlPts[min].x;
         fb.maxX = ctrlPts[max].x;
         
+        fb.deltaOnLeft = true;
         if (ctrlPts[max].y > ctrlPts[min].y) {
             //// most right point has maximum ordinate
 	        fb.baseY = ctrlPts[max].y;
-	        fb.deltaOnLeft = true;
 	        dr.leftLabels.offset = -1;
 	        dr.righLabels.visOffset = 0;
 	        dr.curvLabels.visOffset = 0;

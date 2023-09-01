@@ -302,8 +302,8 @@
     function createsMediaRoot( stdMod, bgImagesAreLoaded_cb )
     {
         var stdModName  = stdMod.SUB_MODEL;
-        var medRoot     = stdMod.simScene;
-        var medRoot$    = stdMod.simScene$;
+        //var medRoot     = stdMod.simScene;
+        //var medRoot$    = stdMod.simScene$;
 
 
         //..............................

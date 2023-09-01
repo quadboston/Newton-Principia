@@ -359,24 +359,6 @@ Corollary 2.
 <img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
 <div book-reference-id="latin"></div>
 
-*::*scholium|english
-{
-}
-*..*
-
-A body can be urged by a centipetal force componded of many forces.
-In this case, the sense of proposition is that that force which is
-compounded of all of them tends to the point S.
-
-<!-- Calculus XX, addendum -->
-Further, if some force
-act always along a line perpendicular to surface described, this will
-make the body deflect from the plane of its motion, but it will neither
-increase nor decrease the quantity of the surface described, and so
-may be negected in the compounding of forces.
-
-
-<div book-reference-id="Donahue"></div>
 
 
 *::*scholium|model
@@ -396,11 +378,30 @@ may be negected in the compounding of forces.
 <br><br>
 
 
-
-
-
-
 <div book-reference-id="kvk"></div>
+
+
+
+
+*::*scholium|english
+{
+}
+*..*
+
+A body can be urged by a centipetal force componded of many forces.
+In this case, the sense of proposition is that that force which is
+compounded of all of them tends to the point S.
+
+<!-- Calculus XX, addendum -->
+Further, if some force
+act always along a line perpendicular to surface described, this will
+make the body deflect from the plane of its motion, but it will neither
+increase nor decrease the quantity of the surface described, and so
+may be negected in the compounding of forces.
+
+
+<div book-reference-id="Donahue"></div>
+
 
 
 *:::*:::*

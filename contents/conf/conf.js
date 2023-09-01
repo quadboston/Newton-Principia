@@ -1,24 +1,31 @@
 // //\\// site-wide conf
 ( function() {
     var {
-        ns,
+        ns, url2conf,
         fconf,
     } = window.b$l.apptree({
     });
 
-    //apparently, we can do '.' because "contents" is moved levels up
-    //when move-to-prod-folder.php builds production package folders,
-    //will be it better to explicitly set './'?
-    fconf.pathToContentSite     = '.';
+    fconf.basicSiteFeatures = true;
+    url2conf( fconf );
 
-    fconf.pathToContentSiteImg  = 'contents/img';
-    fconf.engineImg             = 'engine-img';
 
     //====================================================
     // //\\ put configuration parameters here
     //====================================================
     to_fconf =
     {
+
+        //apparently, we can do '.' because "contents" is moved levels up
+        //when move-to-prod-folder.php builds production package folders,
+        //will be it better to explicitly set './'?
+        pathToContentSite     : '.',
+
+        pathToContentSiteImg  : 'contents/img',
+        engineImg             : 'engine-img',
+
+        hideSingleItemContentMenus : true,
+        SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
         timeToShowOriginalDiagram  : 5000, //ms
 

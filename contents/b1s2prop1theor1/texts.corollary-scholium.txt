@@ -102,31 +102,6 @@ Pages 123 - 141.
 
 
 
-*::*corollary|english
-{
-  "subessayCaption" : "Corollary 6",
-  "subessay" : "cor-6"
-}
-*..*
-
-
-
-
-
-T.1. Corollary 6.
-All the same things pertain, by Corollary 5 of the Laws, where the planes in which the
-bodies move, along with the centres of forces located in them, are not at rest, but move
-uniformely in a straight line.
-<br><br><br>
-
-<div book-reference-id="Donahue"></div>
-Pages 123 - 141.
-
-<br><br>
-
-
-
-
 
 
 
@@ -193,6 +168,33 @@ From (sagg):
         when δ → 0.
    </div>
 <br><br>
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 6",
+  "subessay" : "cor-6"
+}
+*..*
+
+
+
+
+
+T.1. Corollary 6.
+All the same things pertain, by Corollary 5 of the Laws, where the planes in which the
+bodies move, along with the centres of forces located in them, are not at rest, but move
+uniformely in a straight line.
+<br><br><br>
+
+<div book-reference-id="Donahue"></div>
+Pages 123 - 141.
+
+<br><br>
+
+
+
+
 
 
 

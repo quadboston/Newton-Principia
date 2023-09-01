@@ -26,6 +26,8 @@
         curvLabels      : {offset:0, visOffset:0, list:[]},
         leftLabels      : {offset:0, visOffset:0, list:[]},
         righLabels      : {offset:0, visOffset:0, list:[]},
+        //deltaOnLeft historically means "virtual majoranta-rectangle"
+        //is on the right
         figureBasics    : {minX:0, maxX:0, baseY:0, deltaOnLeft:true},
         ctrlPts         : [],
         baseWidths      : [],

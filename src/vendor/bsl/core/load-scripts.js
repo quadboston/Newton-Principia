@@ -1,8 +1,7 @@
 ( function() {
     var ns          = window.b$l;
-    var sn          = ns.sn;    
+    var sn          = ns.sn;
     var methods     = sn('methods');
-
     methods.loadScripts = loadScripts;
     return;
 

@@ -64,32 +64,57 @@
             let yVar = dr.yVariations;
             ccc( 'gui.calculatesWidest' );
             if( yVar.changes.length > 2 ) { //3 elements == two intervals
-	            var x = fb.minX; //x of control point
-	            var y = yVar.minY;
-                var rightX = x + dr.widest;
-                var f = y - yVar.maximumDeltaF; //numModel.f( rightX );
-                var F = rightX;
+                ccc( (yVar.changes.length-1) + ' monotonity intervals' );
+	            var left = fb.minX; //x of control point
+	            var x = left; //todo right?
+                var right = x + dr.widest;
+                var bottom = yVar.minY;
+                var y = bottom; //wright?
+	            var top = bottom - yVar.maximumDeltaF;;
+
+                //todm need? correct?
+                rightX = right;
+
             } else if( fb.deltaOnLeft ) {
                 ////supposition is that function monotonically decreases
+
+                //left top
 		        var x = fb.minX; //x of control point
 		        var y = numModel.f(x);
+
+                //left top for the next
                 var rightX = x + dr.widest;
-                var f = numModel.f( rightX );
+                var f = numModel.f( rightX ); //rubbish
+
                 var F = rightX;
-	        } else {
+                //x, y, left-top-corner:
+                //F,0   bottom right corner
+
+            } else {
                 ////supposition is that function monotonically increases
                 var x = fb.maxX-dr.widest;  //gets rect's left side x
                 var y = numModel.f(fb.maxX); //gets rect's right side y
+
                 var rightX = fb.maxX;
                 var f = numModel.f( x );
                 var F = x;
-	        }
+
+                //x, y, left-top-corner:
+                //F,0   bottom right corner
+            }
+            //x, y, left-top-corner:
+            //F,0   bottom right corner
             var rightY = numModel.f( rightX );
             dr.widestRect = {
-                x, y,   //left-top-corner:
+                x,  //left
+                y,  //left-top-corner for inscribed rect
                 rightX, rightY,
                 F, //F,f = bottom right corner
-                f  //top y
+                f,  //top y
+                left,
+                right,
+                bottom,
+                top,
             };
             return dr.widestRect;
         }

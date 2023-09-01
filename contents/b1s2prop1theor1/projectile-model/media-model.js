@@ -30,6 +30,7 @@
     function media_upcreate()
     {
         return;
+        /*
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
@@ -57,6 +58,7 @@
         hafff( rg.slider_sltime, 'upd_sliderGUI8legend__8__unmask' ); 
 
         ssF.mediaModelInitialized = true;
+        */
     }
 
 }) ();

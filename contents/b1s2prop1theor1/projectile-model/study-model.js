@@ -29,7 +29,7 @@
     {
         //develop. of this submodel is suspended
         return;
-
+        /*
         // complimentary to and runs after
         // sconf.js::init_conf(),
         stdMod.decShapes_conf();
@@ -71,6 +71,7 @@
         ssF.doesSchedule_A_B_V_sliders_in_init_pars( stdMod );
         stdMod.creates_sliderDomModel__4__time();
         haff( stdMod, 'init_model_parameters_addon' );
+        */
     }
     //===================================================
     // \\// registers model pars into common scope
@@ -84,10 +85,12 @@
     function model_upcreate()
     {
         return;
+        /*
         haff( stdMod, 'model_upcreate_addon' );
         ssF.ABVpos_2_trajectory( stdMod );
         stdMod.path_2_pathCrowd();
         stdMod.groupifies_pathModelShapes();
+        */
     }
 
 }) ();

@@ -1,10 +1,9 @@
 // //\\// file where to set plugin main configuration
 ( function() {
     var {
-        fapp, fconf, sconf,
+        fapp, sconf,
     } = window.b$l.apptree({
     });
-
 
 
     //MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD is in fconf
@@ -19,16 +18,29 @@
     var SLIDERS_LEGEND_HEIGHT = 25*GENERIC_SLIDERS_COUNT+20;
     var SLIDERS_OFFSET_Y      = 0;
 
-
-    //:this solution is not good:
-    //:some lemmas need bright red, but
-    //:bright green text is hard to read ...
-    //:so we resort to dark color LIGHT = 30
-    sconf.DEFAULT_TP_LIGHT = 30;
-
-
     to_sconf =
     {
+        //:this solution is not good:
+        //:some lemmas need bright red, but
+        //:bright green text is hard to read ...
+        //:so we resort to dark color LIGHT = 30
+        DEFAULT_TP_LIGHT : 30,
+
+        //***************************************************
+        // in better design, this setting should come
+        // from ns.dpdec.dimensions.WIDTH bsl-core,
+        // to do this, this module should have
+        // delayed execution of to_sconf based on setModue
+        // machinery,
+        //
+        // in mean time, these 21px comes as a sum
+        // for 5px of image width + 2*8px padding from
+        //     subroots.css.js::#bsl-resizable-handle
+        // and not from dpdec.dimensions.WIDTH as may appear,
+        main_horizontal_dividor_width_px : 21,
+        //***************************************************
+
+        SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
         mediaOffset : [ 0, 0 ],                 //in respect to simscene
 
         //topics:

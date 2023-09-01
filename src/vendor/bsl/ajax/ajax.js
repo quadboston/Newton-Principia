@@ -6,10 +6,7 @@
 ( function () {
 	var ns = window.b$l = window.b$l || {};
     ns.ajax = createAjaxFramework();
-
-    //000000000000000000000000
     return;
-    //000000000000000000000000
 
 
 
