@@ -59,6 +59,7 @@
             var coreText = `
                 <h2>Table of contents</h2>
                 <ul>`;
+                        ccc( 'builds tabkew of contents in homew page' );
 
             var book = null;
             var landingPath = window.location.pathname;
@@ -67,6 +68,7 @@
                 if (book === null || book !== sappItem.book) {
                     book = sappItem.book;
                     if (sappItem.annotation === userOptions.BONUS_START) {
+                        ccc( 'aannotation' );
                         coreText += `<span id=` + userOptions.BONUS_START + `>`;
                     }
                     ////add title "Book ... " when list switches to the next book ...

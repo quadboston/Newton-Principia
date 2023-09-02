@@ -1,5 +1,6 @@
 ( function() {
     var { has, sconf, fconf, ssF, userOptions } = window.b$l.apptree({});
+    ccc( 'base content list is laoded, userOptions.BONUS_START=' + '"' + userOptions.BONUS_START + '"' );
     fconf.ix2lemmaDef =
     [
         {
@@ -225,10 +226,12 @@
 
 
     ];
-    if(fconf.basicSiteFeatures) {
-        fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
-    }
-
+    //if( !has( fconf, 'basicSiteFeatures' ) ){
+    //     fconf.basicSiteFeatures = true;
+    //}
+    //if(fconf.basicSiteFeatures) {
+    //    fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
+    //}
 
 }) ();
 

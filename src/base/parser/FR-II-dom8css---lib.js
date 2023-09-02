@@ -466,6 +466,7 @@
     ///to student's console,
     function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
     {
+        ///formerly !fconf.basicSiteFeatures === userOptions.showingBonusFeatures()
         if( userOptions.showingBonusFeatures() ) {
             let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
             let sea = '?conf=sappId=';

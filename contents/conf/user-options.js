@@ -1,12 +1,14 @@
 ( function() {
     var { userOptions } = window.b$l.apptree({});
     const LATIN = "latin", USE_BG_IMAGE = "use-background-image", BONUS = "bonus", CHANGED = "changed";
+    ccc( 'starting local storage: ', localStorage );
     if (!(LATIN in localStorage)) {
         // if LATIN has not been set, assume none are set
         localStorage.setItem(LATIN, true);
         localStorage.setItem(USE_BG_IMAGE, true);
         localStorage.setItem(BONUS, true);
         localStorage.setItem(CHANGED, false);
+        ccc( 'localStorage settings found=' + '"' + userOptions.BONUS_START + '"' );
     }
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
@@ -15,6 +17,7 @@
     userOptions.hasNewSettings = hasNewSettings
     userOptions.BONUS_START = "bonus-section-start";
     userOptions.BONUS_END = "bonus-section-end";
+    ccc( 'userOptions are set: ', userOptions );
 
     function hasNewSettings() {
         return localStorage.getItem(CHANGED) === 'true';
@@ -57,6 +60,7 @@
 
         function updateBonusContentVisibility() {
             let element = document.getElementById(userOptions.BONUS_START);
+            ccc( element );
             if (showingBonusFeatures()) {
                 element.removeAttribute("hidden");
             } else {
