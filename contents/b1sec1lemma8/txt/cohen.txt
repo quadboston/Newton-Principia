@@ -1,0 +1,83 @@
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the arc ¦arc-AB¦ACB¦¦,
+its chord ¦AB¦¦,
+and the tangent ¦AD¦¦, constitute three triangles
+¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦, and ¦AR RD AD¦RAD¦¦, and if
+then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the triangles as they vanish
+are similar in their ultimate form, and that their ultimate ratio is one of equality.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+
+
+
+*::*proof|english
+{
+  "subessayCaption" : "Interpretation 1. Bounded triangles.",
+  "subessay" : "interpretation1"
+}
+*..*
+
+For while point ¦B¦¦ approaches
+point ¦A¦¦, let ¦AB¦¦, ¦AD¦¦, and ¦AR¦¦ be
+understood always to be produced
+to the distant points ¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
+¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
+and let arc ¦arc-Ab¦Acb¦¦ be always similar
+to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
+¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
+
+vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
+¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
+and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
+also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
+and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
+to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+*::*proof|english
+{
+  "subessayCaption" : "Interpretation 2. Unbounded triangles.",
+  "subessay" : "interpretation2"
+}
+*..*
+1 For while point ¦B¦¦ approaches
+point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
+understood always to be produced
+to the distant points ¦b¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
+¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
+and let arc ¦arc-Ab¦Acb¦¦ be always similar
+to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
+¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
+
+vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
+¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
+and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
+also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
+and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
+to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+
+
+
+
+*::*corollary|english
+{
+}
+*..*
+
+
+
+And hence ¦AR AB BR arc-AB RD AD¦those triangles¦¦ can be used for one another interchangeably in any argumentation concerning ultimate ratios.
+

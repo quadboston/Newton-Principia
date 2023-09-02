@@ -11,6 +11,7 @@
         rg,
         exegs, rgtools,
         studyMods,
+        userOptions
     } = window.b$l.apptree({
     });
 
@@ -294,7 +295,11 @@
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
         eachprop( studyMods, stdMod => {
-            createsMediaRoot( stdMod, bgImagesAreLoaded_cb );
+            if (userOptions.usingBackgroundImage()) {
+                createsMediaRoot( stdMod, bgImagesAreLoaded_cb );
+            } else {
+                bgImagesAreLoaded_cb();
+            }
         });
     }
 

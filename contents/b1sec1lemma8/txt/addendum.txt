@@ -1,0 +1,99 @@
+
+
+*::*claim|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Interpretation 1. Bounded triangles.",
+  "subessay" : "interpretation1"
+}
+*..*
+
+<b>In <><>CXX:</b><br><br>
+
+If curve
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
+is continuously differentiable,
+</a>
+
+then
+    <div style="text-align:center;">
+        ds / ¦AR¦r¦¦ = |d𝗿| / ¦AR¦r¦¦ = vdq / ¦AR¦r¦¦. &nbsp;&nbsp;&nbsp;(*)
+    </div>
+<br>
+
+Returning from <><>CXX2E, let q be such a curve parameter that
+
+    <div style="text-align:center;">
+        (¦AD¦𝘃∆q¦¦ - ¦AB¦∆𝗿¦¦) // to constant vector
+        ¦imageOfR,imageOfD¦𝗵 ¦¦ = ¦imageOfR,imageOfD¦'rd'¦¦.
+    </div>
+This is equivalent to,
+
+    <div style="text-align:center;">
+        (¦AD¦𝘃∆q¦¦ - ¦AB¦∆𝗿¦¦) ⊺ ¦rd¦𝗵 ¦¦ = 0, and ∆q = ∆𝗿⊺𝗵 / 𝘃⊺𝗵.
+    </div>
+Using
+    <div style="text-align:center;">
+        ∆𝗿 = 𝘃∆q + 𝗼(∆q)
+    </div>
+implies ultimate similarity of underlined triangles. For example, ratios to r
+will be:
+    <div style="text-align:center;">
+        ¦AB¦∆𝗿¦¦ / ¦AR¦r¦¦ = ¦AD¦𝘃∆q¦¦ / ¦AR¦r¦¦ + 𝗼(∆q), <br>
+        ¦arc-AB¦∆s¦¦ / ¦AR¦r¦¦ + o<sub>1</sub>(∆q) =<br>
+        ¦AB¦|∆𝗿|¦¦ / ¦AR¦r¦¦ + o<sub>2</sub>(∆q) =<br>
+        ¦AD¦v∆q¦¦ / ¦AR¦r¦¦ + o<sub>3</sub>(∆q). &nbsp;&nbsp;&nbsp;(**)
+    </div>
+which is a finite form of above differential equalities (*).
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Interpretation 2. Unbounded triangles.",
+  "subessay" : "interpretation2"
+}
+*..*
+
+<b>In <><>CXX:</b><br><br>
+
+
+If curve
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
+is continuously differentiable,
+</a>
+
+then above equalities (*) do hold.
+<br><br>
+
+Returning to the Book here, we define parameter q like in case with "Bounded triangles", but for different vector 𝗵
+which in this case will be
+
+    <div style="text-align:center;">
+        ¦BR¦𝗵¦¦ = ¦AR¦𝗿¦¦ + ¦AB¦∆𝗿¦¦ = ¦BR¦RB¦¦.
+    </div>
+
+This analogically implies ultimate similarity of underlined triangles. For example, ratios to r
+(**) will still hold.
+
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+

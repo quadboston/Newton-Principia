@@ -7,6 +7,7 @@
         sDomN,
         html,
         fconf,
+        userOptions
     } = window.b$l.apptree({
     });
     html.builds_body_4_home8lemma = builds_body_4_home8lemma;
@@ -96,6 +97,8 @@
                 .html( fconf.homeButtonName )
                 .e( 'click', function() {
                       if( fapp.homePage$().className.indexOf( 'is-hidden' ) > -1 ) {
+                            // user is viewing landing page
+                            userOptions.initializeOptions();
                             ns.globalCss.update('','home');
                             ////home-pane becomes visible
                             fapp.homePage$.removeClass( 'is-hidden' );
@@ -111,20 +114,28 @@
                                 sDomN.simSScene$.css( 'display', 'none' );
 
                       } else {
-                            ns.globalCss.clearStyleTag( 'home' );
-                            fapp.homePage$.addClass( 'is-hidden' );
-                            sDomN.homeButton$
-                                .html( fconf.homeButtonName )
-                                .addClass( 'is-hidden' )
-                                ;
-                            document.body.style.overflow = 'hidden';
-                            $$.$( document.body ).removeClass( 'contents' );
-                            //todm patch
-                            sDomN.simSScene$.css( 'display', 'inline-block' );
+                            // user is going back the lemmas
+                            if (userOptions.hasNewSettings()) {
+                                window.location.reload();
+                            } else {
+                                wipeFromHomeToLemma();
+                            }
                       }
                       return false;
                 })
             )
+
+            function wipeFromHomeToLemma() {
+                ns.globalCss.clearStyleTag('home');
+                fapp.homePage$.addClass('is-hidden');
+                sDomN.homeButton$
+                    .html(fconf.homeButtonName)
+                    .addClass('is-hidden');
+                document.body.style.overflow = 'hidden';
+                $$.$(document.body).removeClass('contents');
+                //todm patch
+                sDomN.simSScene$.css('display', 'inline-block');
+            }
         //==================================================
         // \\// builds home button
         //==================================================

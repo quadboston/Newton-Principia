@@ -14,6 +14,7 @@
         studyMods,
         sDomN,
         sDomF,
+        userOptions
     } = window.b$l.apptree({
     });
 
@@ -75,14 +76,15 @@
         sapp.ix = mList.ix;
         var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
         if( next >= fconf.ix2lemmaDef.length || next < 0 ||
-            fconf.ix2lemmaDef[ next ].sappId === 'home-pane'
+            fconf.ix2lemmaDef[ next ].sappId === 'home-pane' ||
+            (fconf.ix2lemmaDef[ next ].annotation === userOptions.BONUS_START && !userOptions.showingBonusFeatures())
         ) {
             pager$.addClass( 'non-displayed' );
         } else {
             var nextSapp = fconf.ix2lemmaDef[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=' +
-                ( !fconf.basicSiteFeatures ? 'basicSiteFeatures=no,' : '' ) +
+                ( userOptions.showingBonusFeatures() ? 'basicSiteFeatures=no,' : '' ) +
                 'sappId=' + nextSapp.sappId;
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){

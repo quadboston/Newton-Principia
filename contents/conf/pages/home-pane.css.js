@@ -65,7 +65,6 @@
       padding-top: 0px;
       position: relative;
       width: 100%;
-      z-index: 1;
     }
 
 
@@ -96,7 +95,7 @@
     .newton-img {
       position: absolute;
       top: 72px;
-      z-index: 0;
+      z-index: -1;
       right: 96px; }
     /*====================================================== 
        ||// home-page header
@@ -250,7 +249,20 @@
       ======================================================*/
 
 
-
+      
+    /*====================================================== 
+      //|| options
+     ======================================================*/
+    .options {
+      color: ${colorWhite};
+      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+      margin-top: 128px;
+    }
+    .option__text {
+      font-size: 18px; }
+    /*====================================================== 
+      ||// options
+     ======================================================*/
 
 
 @keyframes mousemove {

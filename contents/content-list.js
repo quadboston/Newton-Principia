@@ -1,5 +1,5 @@
 ( function() {
-    var { sconf, fconf, ssF, } = window.b$l.apptree({});
+    var { has, sconf, fconf, ssF, userOptions } = window.b$l.apptree({});
     fconf.ix2lemmaDef =
     [
         {
@@ -189,7 +189,7 @@
         {   sappId : 'addd-fw',
             book : 'Appendix',
             caption : 'Logical frameworks.',
-            annotation : "Comments to the Book",
+            annotation : userOptions.BONUS_START,
         },
 
         {   sappId : 'addd-prel',
@@ -218,7 +218,7 @@
         {   sappId : 'addd-kepler-task',
             book : 'Appendix',
             caption : 'Kepler Task.',
-            annotation : "Kepler task",
+            annotation : userOptions.BONUS_END,
         },
 
 

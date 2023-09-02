@@ -3,7 +3,7 @@
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture,
         topics, studyModsActivated, fixedColors, references, exegs,
-        studyMods, amode,
+        studyMods, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -139,9 +139,7 @@
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
 
-                    if( haz( fconf, 'basicSiteFeatures' ) &&
-                        ( aspect_id === 'model' || aspect_id === 'addendum' ||
-                          aspect_id === 'xixcentury') ){
+                    if (!aspectTurnedOn(aspect_id)) {
                         return;
                     }
                     var wIx         = precontent.indexOf("*..*");
@@ -549,6 +547,16 @@
         // \\// on content Files Load Success
         //====================================================
 
+
+        function aspectTurnedOn(aspect_id) {
+            if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
+                return userOptions.showingBonusFeatures();
+            }
+            if (aspect_id === 'latin'){
+                return userOptions.showingLatin();
+            }
+            return true;
+        }
     }
 
     ///input: ptype - optional,
