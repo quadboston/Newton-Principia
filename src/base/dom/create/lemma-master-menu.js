@@ -23,6 +23,7 @@
         wrkwin,
         exegs,
         toreg,
+        userOptions
     } = window.b$l.apptree({
     });
     sDomF.populateMenu  = populateMenu;
@@ -270,13 +271,13 @@
         fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion +
             ' aspect--' + amode.aspect );
         //sets content-text visibility
-        if( exAspect.subexegs.length > 1 ) {
+        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
             exAspect.subessayMenuContainer$.removeClass( 'chosen' );
         }
         exAspect.subexegs.forEach( subexeg => {
             //book's text
             $$.removeClass( 'chosen', subexeg.domEl );
-            ( exAspect.subexegs.length > 1 ) &&
+            ( userOptions.shouldShowSubessayMenu(exAspect) ) &&
               subexeg.subessayMenuItem$.removeClass( 'chosen' );
         });
 
@@ -314,7 +315,7 @@
         //ccc( 'new cls: ' + amode.submodel + ' rootCls=' + fapp.fappRoot$._cls() );
 
         //flag to content-text-components
-        if( exAspect.subexegs.length > 1 || fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
+        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
 
             //vital: makes an entire subessays-menu visible ...
             //       misleading wording "chosen"
@@ -424,12 +425,12 @@
     {
         exAspect.subexegs.forEach( subexeg => {
             subexeg.domEl$.removeClass( 'chosen' );
-            if( exAspect.subexegs.length > 1) {
+            if( userOptions.shouldShowSubessayMenu(exAspect) ) {
                 subexeg.subessayMenuItem$.removeClass( 'subexeg-toggler-chosen' );
             }
         });
         subexeg.domEl$.addClass( 'chosen' );
-        if( exAspect.subexegs.length > 1) {
+        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
             subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }

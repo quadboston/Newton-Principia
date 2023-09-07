@@ -1,11 +1,11 @@
 ( function() {
-    var { userOptions } = window.b$l.apptree({});
+    var { userOptions, fconf, haz } = window.b$l.apptree({});
     const LATIN = "latin", USE_BG_IMAGE = "use-background-image", BONUS = "bonus", CHANGED = "changed";
     if (!(LATIN in localStorage)) {
-        // if LATIN has not been set, assume none are set
+        // if LATIN has not been set, assume none are set, and set to default values
         localStorage.setItem(LATIN, true);
         localStorage.setItem(USE_BG_IMAGE, true);
-        localStorage.setItem(BONUS, true);
+        localStorage.setItem(BONUS, false);
         localStorage.setItem(CHANGED, false);
     }
     userOptions.showingLatin = showingLatin;
@@ -15,6 +15,7 @@
     userOptions.hasNewSettings = hasNewSettings
     userOptions.BONUS_START = "bonus-section-start";
     userOptions.BONUS_END = "bonus-section-end";
+    userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
 
     function hasNewSettings() {
         return localStorage.getItem(CHANGED) === 'true';
@@ -68,6 +69,15 @@
             localStorage.setItem(option, newValue);
             localStorage.setItem(CHANGED, true);
         }
+    }
+
+    //decides whether an entire subessay-menu should be visible
+    function shouldShowSubessayMenu(exAspect) {
+        if (exAspect.subexegs.length > 1) {
+            let someIsBonus = haz( exAspect.subexegs[1].essayHeader, 'isBonus' );
+            return someIsBonus ? showingBonusFeatures() : true;
+        }
+        return fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM;
     }
 
 }) ();
