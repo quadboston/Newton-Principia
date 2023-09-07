@@ -52,7 +52,6 @@
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Explanation" 
 }
 *..*

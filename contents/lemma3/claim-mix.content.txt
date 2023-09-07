@@ -1,6 +1,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -12,7 +13,6 @@
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Explanation"
 }
 *..*
