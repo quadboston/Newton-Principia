@@ -62,18 +62,21 @@
         gui.calculatesWidest = function () {
             var fb = dr.figureBasics;
             let yVar = dr.yVariations;
-            ccc( 'gui.calculatesWidest' );
-            if( yVar.changes.length > 2 ) { //3 elements == two intervals
+            ccc( 'gui.calculatesWidest', yVar);
+            if( yVar.areMany ) { //3 elements == two intervals
                 ccc( (yVar.changes.length-1) + ' monotonity intervals' );
 	            var left = fb.minX; //x of control point
-	            var x = left; //todo right?
-                var right = x + dr.widest;
-                var bottom = yVar.minY;
-                var y = bottom; //wright?
-	            var top = bottom - yVar.maximumDeltaF;;
+                var right = left + dr.widest;
+                var top = yVar.minY;
+	            var bottom = top - yVar.maximumDeltaF;;
 
                 //todm need? correct?
                 rightX = right;
+                rightY = top;
+                var f = top;
+                var x = left;
+                var y = top; //wright?
+	            var F = bottom; //todo right?
 
             } else if( fb.deltaOnLeft ) {
                 ////supposition is that function monotonically decreases
@@ -82,13 +85,15 @@
 		        var x = fb.minX; //x of control point
 		        var y = numModel.f(x);
 
-                //left top for the next
+                //right bottom corner //was: left top for the next
                 var rightX = x + dr.widest;
-                var f = numModel.f( rightX ); //rubbish
+                var F = rightX; //rubbish
+                var f = y;
 
-                var F = rightX;
-                //x, y, left-top-corner:
-                //F,0   bottom right corner
+                var left = fb.minX;
+                var top = numModel.f(left);
+                var right = rightX;
+                var bottom = numModel.f(fb.maxX);
 
             } else {
                 ////supposition is that function monotonically increases
@@ -96,21 +101,32 @@
                 var y = numModel.f(fb.maxX); //gets rect's right side y
 
                 var rightX = fb.maxX;
-                var f = numModel.f( x );
+                var f = y
                 var F = x;
+
+                var left = x;
+                var top = y;
+                var right = rightX;
+                var bottom = numModel.f(fb.minX);
+                var rightY = top;
+
+                var right = fb.maxX;
+                var left = right - Math.abs( dr.widest );
+                var top = numModel.f(right);
+                var bottom = numModel.f(fb.minX);
 
                 //x, y, left-top-corner:
                 //F,0   bottom right corner
             }
             //x, y, left-top-corner:
             //F,0   bottom right corner
-            var rightY = numModel.f( rightX );
             dr.widestRect = {
                 x,  //left
                 y,  //left-top-corner for inscribed rect
                 rightX, rightY,
                 F, //F,f = bottom right corner
                 f,  //top y
+
                 left,
                 right,
                 bottom,
@@ -129,7 +145,7 @@
                 dr.faaf, //item
                 x, Math.min(y, fb.baseY), //x,y
                 dr.widest, Math.abs(fb.baseY-y)); //width, height
-            if( fb.deltaOnLeft ) {
+            if( fb.deltaOnLeft && !dr.yVariations.areMany ) {
 		        dr.widest *= -1;
 	        }
 	        guiup.updateLabel( dr.labelf, x+dr.widest-3, y-10);
@@ -149,8 +165,6 @@
         //===============================================
         // \\// widthest-rect
         //===============================================
-
-
     }
 
 }) ();

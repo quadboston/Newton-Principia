@@ -59,12 +59,12 @@
         // //\\ sets ids and titles
         //===============================
         //ns.url2conf( fconf );
-        sn( 'pathToContentSite', fconf, '.' );
+        //sn( 'pathToContentSite', fconf, '.' );
         sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr(); //converts ix to id, lemma ix "is well established"
-        var lemBriefDef     = fconf.sappId2lemmaDef[ fconf.sappId ];
-        sapp.ix             = lemBriefDef.ix;
-        document.title      = lemBriefDef.caption;
+        fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
+        sapp.ix             = fapp.lemmaDef.ix;
+        document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
         //=========================
         // \\// sets ids and titles
@@ -91,13 +91,13 @@
                 sDomN.homeButton$.css( 'display', 'none' );
             }
             //// lemma
-            LANDING_II___main_lemma( lemBriefDef );
+            LANDING_II___main_lemma();
         }
     }
 
 
 
-    function LANDING_II___main_lemma( lemBriefDef )
+    function LANDING_II___main_lemma()
     {
         //=============================================================
         // does first round (of two) of executing setModule for modules
@@ -118,7 +118,7 @@
         // further-modules-loads: lemmas
         //====================================
         ns.globalCss.clearStyleTag( 'home' )
-        LANDING_III___config8run_lemmaModules( lemBriefDef ); //no home-pane modules
+        LANDING_III___config8run_lemmaModules(); //no home-pane modules
     }
     //***********************************************
     // \\// begins establish home and lemmas
@@ -130,20 +130,18 @@
     //***********************************************
     // //\\ establishes lemmas
     //***********************************************
-    function LANDING_III___config8run_lemmaModules( lemBriefDef )
+    function LANDING_III___config8run_lemmaModules()
     {
-        var lemmaConfigList = lemBriefDef; //to merge both later: def and conf
+        fconf.lemmaCode_fullpath = fconf.pathToContents + "/" +
+                                   fapp.lemmaDef.sappId;
         //-------------------------------------------------
         // //\\ prepares sub-application-source-code-files,
         //      sub-application === lemma
         //-------------------------------------------------
-        var jscode_sappId;
         var codesList;
         nsmethods.loadScripts(
             [
-                { src : fconf.pathToContentSite + "/contents/" +
-                        lemmaConfigList.sappId + "/lemma-conf.js"
-                }
+                { src : fconf.lemmaCode_fullpath + "/lemma-conf.js" }
             ],
             landing_III_cb,
         );
@@ -158,39 +156,34 @@
 
         function landing_III_cb()
         {
+            //"ancestor" scripts list now is "inside" of function fapp.lemmaConfig
             //deep copy, original does not change
-            ns.paste( lemmaConfigList, fapp.lemmaConfig() );
-            //hidden twist in design:
-            fapp.lemmaConfigList = lemmaConfigList;
-
-            var sappId_ref = ns.haz( lemmaConfigList, 'sappCodeReference' );
-            jscode_sappId = sappId_ref || lemmaConfigList.sappId;
-            //must be the same type of data as "fconf.sappId"
-            fconf.lemBasecode_fullpath =
-                fconf.pathToContentSite + "/contents/" + jscode_sappId;
-
-
+            ns.paste( fapp.lemmaDef, fapp.lemmaConfig() );
+            //establishes array if missed
+            sn( 'codesList', fapp.lemmaDef, [] );
+            fconf.ancestor_ref = ns.haz( fapp.lemmaDef, 'sappCodeReference' );
+            fconf.ancestorCode_fullpath = fconf.pathToContents + "/" +
+                                          fconf.ancestor_ref;
             // //\\ loads jscodes and continues
-            if( sappId_ref ) {
+            if( fconf.ancestor_ref ) {
                 ////preloads referenced jscodes before own jscodes
                 nsmethods.loadScripts(
                     [
-                        { src : fconf.lemBasecode_fullpath + "/lemma-conf.js"
+                        { src : fconf.ancestorCode_fullpath + "/lemma-conf.js"
                         }
                     ],
                     function() {
                         ////uses own placeholder of-jscodes-list or adds missed
-                        codesList = sn( 'codesList', lemmaConfigList, [] );
+                        fapp.jsCodesList = sn( 'codesList', fapp.lemmaConfig(), [] );
                         //loads own jscodes and continues landing
-                        LANDING_IV___loadLemmaJSCodes( lemmaConfigList );
+                        LANDING_IV___loadLemmaJSCodes();
                     }
                 );
 
             } else {
-                ////uses own placeholder of-jscodes-list or adds missed
-                codesList = sn( 'codesList', lemmaConfigList, [] );
-                //loads own jscodes and continues landing
-                LANDING_IV___loadLemmaJSCodes( lemmaConfigList );
+                fapp.jsCodesList = [];
+                ////loads own jscodes and continues landing
+                LANDING_IV___loadLemmaJSCodes();
             }
             // \\// loads jscodes and continues
         }
@@ -201,14 +194,13 @@
 
 
         //loads images (if any) and then JS-scripts for specific lemma
-        function LANDING_IV___loadLemmaJSCodes( lemmaConfigList )
+        function LANDING_IV___loadLemmaJSCodes()
         {
-            let imagesToLoadList = lemmaConfigList.imagesToLoadList;
+            let imagesToLoadList = fapp.lemmaDef.imagesToLoadList;
             if( imagesToLoadList ) {
                 ////loads images first
                 eachprop( imagesToLoadList, function( codeItem ) {
-                    codeItem.src = fconf.pathToContentSite + "/contents/" +
-                                   jscode_sappId + "/img/" + codeItem.src;
+                    codeItem.src = fconf.lemmaCode_fullpath + "/img/" + codeItem.src;
                 });
                 ///loads images first and then follows to load scripts
                 nsmethods.loadImages( loadsJSScripts, imagesToLoadList );
@@ -219,11 +211,24 @@
 
             function loadsJSScripts()
             {
-                codesList.forEach( function( codeItem ) {
-                    codeItem.src = fconf.pathToContentSite + "/contents/" +
-                                   jscode_sappId + "/js/" + codeItem.src;
+                //c cc( 'ancestor jsCodesList=', fapp.jsCodesList );
+                ///we complete paths for ancestor list if any
+                fapp.jsCodesList.forEach( function( codeItem ) {
+                    codeItem.src = fconf.ancestorCode_fullpath + "/js/" + codeItem.src;
                 });
-                nsmethods.loadScripts(codesList, loadsJSScripts_atLastLoadedScript);
+
+                //c cc( 'descendant codes=', fapp.lemmaDef.codesList );
+                ///adds ancestors (if any) to descendants(if any) and accumulates
+                ///result in fapp.jsCodesList
+                fapp.lemmaDef.codesList.forEach( function( codeItem ) {
+                    fapp.jsCodesList.push({
+                        src : fconf.lemmaCode_fullpath + "/js/" + codeItem.src
+                        });
+                });
+                //fapp.jsCodesList has ancestor and desc list merged and
+                //polished for fapp.lemmaDef.sappId
+                //goes again to web site and gets all js-codes for lemma:
+                nsmethods.loadScripts( fapp.jsCodesList, loadsJSScripts_atLastLoadedScript );
 
                 function loadsJSScripts_atLastLoadedScript()
                 {

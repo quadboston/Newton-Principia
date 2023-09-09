@@ -98,7 +98,6 @@
         let len = p.length;
         let dir = p[1][1] > p[0][1] ? 1 : 0;
         changes.push( {ix, dir, p:p[ix]} );
-        ccc( '****\nchecking intervals' );
         for( ix = 1; ix<len; ix++ ) {
             let y = p[ix][1];
             minY = minY > y ? y : minY;
@@ -121,8 +120,8 @@
             maximumDeltaF += Math.abs(gap);
             ccc( 'gap='+gap );
         }
-        ccc( 'final: intervals=' + (changes.length - 1 ) + ' maximumDeltaF='+maximumDeltaF, changes );
-        return { maximumDeltaF, changes, minY };
+        ccc( '********************\nfinal: intervals=' + (changes.length - 1 ) + ' maximumDeltaF='+maximumDeltaF, changes );
+        return { maximumDeltaF, changes, minY, areMany : changes.length > 2 };
     }
 
 
@@ -223,9 +222,12 @@
         fb.minX = ctrlPts[min].x;
         fb.maxX = ctrlPts[max].x;
         
+        //means "original-natural bar is on the left"
         fb.deltaOnLeft = true;
         if (ctrlPts[max].y > ctrlPts[min].y) {
-            //// most right point has maximum ordinate
+            //// most x-right point has maximum ordinate:
+            //// decreasing function: screen-y increases ===
+            //// goes from screen-top to screen-bottom
 	        fb.baseY = ctrlPts[max].y;
 	        dr.leftLabels.offset = -1;
 	        dr.righLabels.visOffset = 0;
@@ -387,6 +389,9 @@
             }
         }
         if( pname ) {
+            ////apparently convert from svg-space to model-space
+            ////apparently program and numModel.f made in svg-space and
+            ////not in gemetrical-model-space;
             var xoff = sconf.originX_onPicture;
             var yoff = sconf.originY_onPicture;
             var scale = sconf.mod2inn_scale;
@@ -448,11 +453,19 @@
         rg.f.pos[1] = -( numModel.f( Fx ) - yoff ) / scale;
         */
 
-        var { x, y, rightX, F, f } = dr.widestRect;
-        rg.F.pos[0] = ( F - xoff ) / scale;
-        rg.F.pos[1] = 0;
-        rg.f.pos[0] = rg.F.pos[0];
-        rg.f.pos[1] = -( f - yoff ) / scale;
+        var { x, y, rightX, F, f,
+              left, right, bottom, top, } = dr.widestRect;
+        if( dr.figureBasics.deltaOnLeft || dr.yVariations.areMany ) {
+            rg.F.pos[0] = ( right - xoff ) / scale;
+            rg.F.pos[1] = -( bottom - yoff ) / scale;
+            rg.f.pos[0] = ( right - xoff ) / scale;
+            rg.f.pos[1] = -( top - yoff ) / scale;
+        } else {
+            rg.F.pos[0] = ( left - xoff ) / scale;
+            rg.F.pos[1] = -( bottom - yoff ) / scale;
+            rg.f.pos[0] = ( left - xoff ) / scale;
+            rg.f.pos[1] = -( top - yoff ) / scale;
+        }
         // \\// majorant rect
     }
 

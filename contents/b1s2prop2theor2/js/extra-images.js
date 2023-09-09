@@ -40,7 +40,6 @@
         // \\// main root
         //-------------------------------------------
 
-ccc( 'im' );
         $$
             .c( 'img' )
             .addClass( 'corollary-diagram' )
