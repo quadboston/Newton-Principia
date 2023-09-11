@@ -295,11 +295,7 @@
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
         eachprop( studyMods, stdMod => {
-            if (userOptions.usingBackgroundImage()) {
-                createsMediaRoot( stdMod, bgImagesAreLoaded_cb );
-            } else {
-                bgImagesAreLoaded_cb();
-            }
+            createsMediaRoot( stdMod, bgImagesAreLoaded_cb );
         });
     }
 

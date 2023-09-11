@@ -349,12 +349,12 @@
             ///     have been established from parser
             //===========================================================
             sconf.asp8theor_menus = {};
+
             eachprop( exegs, ( exAspects, theorion_id ) => {
                 eachprop( exAspects, ( exAspect, aspect_id ) => {
                     exAspect.subexegs.forEach( ( subex, subexId ) => {
                         var essayHeader = subex.essayHeader;
-                        collectBgImg( essayHeader, subex );
-
+                        doesAddStudyModelIfNew( essayHeader, subex );
 
                         ///we need menu and classes only once per theor-aspect pair
                         if( subexId === 0 ) {
@@ -516,15 +516,24 @@
             //imgId is === "empty" or "path-to-image-in-img-folder":
             //      see this below: stdMod.imgRk.srcParsed = src,
             //******************************************************
-            function collectBgImg( essayHeader, subex ) {
+            function doesAddStudyModelIfNew( essayHeader, subex ) {
                 var stdMod = studyMods[ essayHeader.submodel ];
+
+                //this has nothing to do with image: "parsed" means
+                //the module has been bookkeeped or "study model is activated".
                 if( haz( stdMod.imgRk, 'srcParsed' ) ) return;
+
                 studyModsActivated.push( stdMod );
 
                 //*************************************************************
                 //first new-submodel header must have img if submodel needs it,
                 //      bg image is per submodel
                 //*************************************************************
+                if( !userOptions.usingBackgroundImage() ) {
+                    essayHeader.mediaBgImage = null;
+                }
+                // //\\ this property is used
+                //      only once and in this block:
                 if( has( essayHeader, 'mediaBgImage' ) ) {
                     //for "empty.png", use any falsy like mediaBgImage:null, ...""
                     //in professor-script,
@@ -533,6 +542,8 @@
                     var imgId = haz( studyMods[ essayHeader.submodel ].sconf,
                                      'mediaBgImage' ) || '*empty*';
                 }
+                // \\// this property is used
+
                 var src = imgId === '*empty*' ?
                      fconf.engineImg + '/empty.png' :
                      fconf.pathToContentSite + '/contents/' +

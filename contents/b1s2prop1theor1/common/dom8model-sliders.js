@@ -86,7 +86,8 @@
         //--------------------------------------------------------
         // //\\ slider api
         //--------------------------------------------------------
-        var api = toreg( api_rgid )( 'pos', [startPos, endPos] )();
+        var api = toreg( api_rgid )();
+        api.pos         = [startX, startY];
         api.startX      = startX;
         api.endX        = endX;
         api.railsLength = endX - startX; //in model units

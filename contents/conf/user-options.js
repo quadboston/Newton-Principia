@@ -7,7 +7,6 @@
         localStorage.setItem(USE_BG_IMAGE, true);
         localStorage.setItem(BONUS, true);
         localStorage.setItem(CHANGED, false);
-        ccc( 'localStorage settings found=' + '"' + userOptions.BONUS_START + '"' );
     }
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
@@ -58,7 +57,6 @@
 
         function updateBonusContentVisibility() {
             let element = document.getElementById(userOptions.BONUS_START);
-            ccc( 'updateBonusContentVisibility, element=', element );
             if (showingBonusFeatures()) {
                 element.removeAttribute("hidden");
             } else {
