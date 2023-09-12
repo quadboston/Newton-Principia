@@ -42,6 +42,7 @@
         var apiValueName = 't';
 
         var captionPrefix = 'm = ';
+        ///will be overridden with tp-color if any:
         var COLOR         = sDomF.getFixedColor( sliderId );
         var customSliderShift = 0; //picture units
         //=========================================
@@ -108,6 +109,8 @@
             { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
         );
         ///draws rails
+        ///if tpclass does exist, it apparently overrides stroke and
+        ///some other styles,
         var rails = pointies2line(
              rails_rgid,
              [ railsStart, railsEnd ],

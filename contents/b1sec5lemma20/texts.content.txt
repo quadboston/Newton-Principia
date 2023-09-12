@@ -1,21 +1,7 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin",
-  "fixed-colors" :
-  {
-    "key-triangle"          : [255,   0, 0, 1],
-    "similar-triangle"      : [0,     0, 255, 1],
-
-    "PT"                    : [255,   0, 0, 1],
-
-    "base-figure"           : [0,     0, 255, 1],
-    "static-generator"      : [255,   0, 255, 1],
-    "ellipse"               : [0,   150, 0, 1],
-    "tangent"               : [0,   150, 0, 1],
-    "given-parallelogram"   : [0,   200, 255, 1],
-    "generators"            : [200, 150, 0, 1]
-  }
+  "menuCaption" : "Latin"
 }
 *..*
 
@@ -80,7 +66,21 @@ Book I Section V.<br>
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "English",
+  "fixed-colors" :
+  {
+    "key-triangle"          : [255,   0, 0, 1],
+    "similar-triangle"      : [0,     0, 255, 1],
+
+    "PT"                    : [255,   0, 0, 1],
+
+    "base-figure"           : [0,     0, 255, 1],
+    "static-generator"      : [255,   0, 255, 1],
+    "ellipse"               : [0,   150, 0, 1],
+    "tangent"               : [0,   150, 0, 1],
+    "given-parallelogram"   : [0,   200, 255, 1],
+    "generators"            : [200, 150, 0, 1]
+  }
 }
 *..*
 

@@ -1,7 +1,18 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin",
+  "menuCaption" : "Latin"
+}
+*..*
+
+<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
   "fixed-colors" :
   {
     "gamma"                 : [255,   0, 0, 1],
@@ -21,17 +32,6 @@
     "given-parallelogram"   : [0,   200, 255, 1],
     "generators"            : [0,   0,   255, 1]
   }
-}
-*..*
-
-<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English"
 }
 *..*
 

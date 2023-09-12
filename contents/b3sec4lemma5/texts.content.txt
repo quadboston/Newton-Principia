@@ -1,13 +1,7 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin",
-  "fixed-colors" :
-  {
-    "given"          : [0,     50, 0,      1],
-    "experimental"   : [0,     0,   255,    1],
-    "approximator"   : [255,   0,   0,      1]
-  }
+  "menuCaption" : "Latin"
 }
 *..*
 
@@ -19,7 +13,13 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "English",
+  "fixed-colors" :
+  {
+    "given"          : [0,     50, 0,      1],
+    "experimental"   : [0,     0,   255,    1],
+    "approximator"   : [255,   0,   0,      1]
+  }
 }
 *..*
 

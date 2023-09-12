@@ -1,8 +1,23 @@
 
 *::*claim|latin
 {
-  "menuCaption" : "Latin",
+  "menuCaption" : "Latin"
+}
+*..*
 
+<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
   "fixed-colors" :
   {
     "path"              : [0,   0,  100],
@@ -99,22 +114,6 @@
 
     "time"              : [0,100,100,1]
   }
-}
-*..*
-
-<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
-<div book-reference-id="latin"></div>
-
-
-
-
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English"
 }
 *..*
 

@@ -571,7 +571,7 @@
     }
 
     ///input: ptype - optional,
-    ///               if falsy, then "rgba('0,0,0,1')" color is returned,
+    ///               if falsy, then "rgba(0,0,0,1)" color is returned,
     ///               if string, then converted to array first,
     ///               if captilized-string, then converts to low-case-topic-style
     ///               if array, converted as array to color
@@ -588,7 +588,7 @@
         } else {
             var colorArray = ptype0colorArray;
         }
-        ///returns "rgba('0,0,0,1')" if color is falsy
+        ///returns "rgba(0,0,0,1)" if color is falsy
         if( colorArray && makeOpacity1 ) {
             var rgba = ns.arr2rgba(
                 [ colorArray[0], colorArray[1], colorArray[2], 1 ]
