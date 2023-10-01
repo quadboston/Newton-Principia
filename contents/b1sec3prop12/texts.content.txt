@@ -24,6 +24,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -41,7 +42,6 @@ Page 463.
 
 *::*proof|english
 {
-  "default" : "1",
   "menuCaption" : "English",
   "subessayCaption" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
   "subessay" : "solution"

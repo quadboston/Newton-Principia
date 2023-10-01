@@ -59,6 +59,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -642,7 +643,6 @@ sign φ = -σ sign( cos(ω)/sin(ω) )<br>
 
 *::*proof|addendum
 {
-  "default" : "1",
   "menuCaption" : "Addendum",
   "subessayCaption" : "Test your understanding",
   "subessay" : "self-test"

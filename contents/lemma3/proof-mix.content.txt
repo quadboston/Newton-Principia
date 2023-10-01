@@ -3,7 +3,6 @@
 
 *::*proof|english
 {
-  "default" : "1"
 }
 *..*
             <dense class='orig';>For let AF be equal to the greatest width, 

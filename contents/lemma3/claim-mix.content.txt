@@ -1,6 +1,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English",
   "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
   "fixed-colors" :
@@ -27,7 +28,6 @@
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Explanation"
 }
 *..*

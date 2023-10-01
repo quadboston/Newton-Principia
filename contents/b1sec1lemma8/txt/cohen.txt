@@ -46,11 +46,13 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 
 *::*proof|english
 {
+  "isBonus" : "true",
   "subessayCaption" : "Interpretation 2. Unbounded triangles.",
   "subessay" : "interpretation2"
 }
 *..*
-1 For while point ¦B¦¦ approaches
+
+For while point ¦B¦¦ approaches
 point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
 understood always to be produced
 to the distant points ¦b¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
