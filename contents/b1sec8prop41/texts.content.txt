@@ -24,6 +24,7 @@
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
@@ -139,7 +140,6 @@ Page 529.
 
 *::*proof|english
 {
-  "default" : "1",
   "menuCaption" : "English",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution"

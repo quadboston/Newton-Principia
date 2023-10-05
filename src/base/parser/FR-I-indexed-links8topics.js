@@ -3,7 +3,7 @@
         sn, $$, eachprop, haz,
         fconf, sconf,
         sDomN, sDomF, ssF, ssD, exegs,
-        amode,
+        amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -39,8 +39,7 @@
                     // //\\ creates subessay's doms for text and
                     //      subessay menuItem
                     //====================================================
-                    if( exAspect.subexegs.length > 1 ||
-                        fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM ) {
+                    if( userOptions.shouldShowSubessayMenu(exAspect) ) {
                         subexeg.subessayCaption =
                                 haz( subexeg.essayHeader, 'subessayCaption' ) ||
                                 haz( subexeg.essayHeader, 'menuCaption' ) ||
@@ -110,8 +109,7 @@
                 //      this visibility,
                 //************************************************************
                 ///puts togglers on top
-                if( exAspect.subexegs.length > 1 ||
-                    fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM
+                if( userOptions.shouldShowSubessayMenu(exAspect)
                 ){
                     var subessayMenuContainer$ = exAspect.subessayMenuContainer$ = $$
                         .c( 'div' )
@@ -153,7 +151,7 @@
             ;
         //removes blocker at the first click or first
         //virtual subessay click
-        subexeg.subessayMenuItem$.removeClass( 'user-untouched' );
+        subexeg.subessayMenuItem$.removeClass( 'user-untouched' ); //vestige?
         sDomF.menu2lemma( !!'amodel2app_8_extraWork' );
         sDomF.tellActivityEngine_that_userStartedSubessay();
     }

@@ -25,7 +25,6 @@
 
 *::*claim|english
 {
-  "default" : "1",
   "menuCaption" : "English",
   "mediaBgImage" : "lemma-23-3rd-ed.png"
 }
