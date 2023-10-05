@@ -5,7 +5,7 @@
 ( function() {
     var {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
-        fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
+        userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
         ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
@@ -255,10 +255,15 @@
                     //note: for non-common module, there cannot be
                     //      ssF.init_conf, only stdMod.init_conf,
                     //      for common - the only ssF.init_conf,
-                    ssF.init_conf(); //adds common-module data to fconf.sconf
+
+                    //adds common-module data to fconf.sconf
+                    ssF.init_conf();
+                    //modifies appearance effect depending on user options
+                    fconf.timeToShowOriginalDiagram_effective =
+                        userOptions.usingBackgroundImage() ? fconf.timeToShowOriginalDiagram : 1;
+
                     eachprop( studyMods, stdMod => {
                         haff( stdMod, 'init_conf' );
-
                         //expansion patch: todm: make function for this:
                         stdMod.sconf.originalMod2inn_scale = stdMod.sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();

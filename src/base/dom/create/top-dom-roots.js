@@ -59,14 +59,14 @@
     function detected_user_interaction_effect( doShowDiagram )
     {
         doesShowDiagram( doShowDiagram );
-        if( typeof fconf.timeToShowOriginalDiagram === 'number' &&
-            fconf.timeToShowOriginalDiagram > 0 && doShowDiagram ) {
+        if( typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
+            fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram ) {
             setTimeout(
                 () => {
                     doesShowDiagram( false ),
                     studyMods[ amode.submodel ].media_upcreate();
                 },
-                fconf.timeToShowOriginalDiagram
+                fconf.timeToShowOriginalDiagram_effective
             );
         }
     }

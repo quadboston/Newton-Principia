@@ -7,6 +7,7 @@
         setModule,
     });
     var stdL2 = sn('stdL2', fapp );
+    var dr    = sn('datareg', stdL2 );
     return;
 
 
@@ -18,7 +19,7 @@
     function setModule()
     {
         ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
-        ssF.convergenceResultArea               = convergenceResultArea;
+        ssF.creates_figures_domPlaceholder    = creates_figures_domPlaceholder;
         ssF.create_digital_legend               = create_digital_legend;
         stdL2.state8css_for_l2_l3                  = state8css_for_l2_l3;
     }
@@ -46,7 +47,7 @@
         ///apparently this and letter-labels is somehow disabled to
         ///prevent conflict with
         ///colors of topic engine
-        ///... possibly look here: var l = makeS_inList("text", list, style+" label");
+        ///... possibly look here: var l = makeS_inList_parlessDom("text", list, style+" label");
         ///... in lemma2/core/gui-construct.js
         document.querySelectorAll('.label').forEach( function( el ) {
             el.style.visibility = isHyper ? 'hidden' : 'visible';
@@ -60,7 +61,7 @@
         ///=========================================================================
     }
 
-    function convergenceResultArea()
+    function creates_figures_domPlaceholder()
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         $$.cNS( 'polyline' )
@@ -73,6 +74,7 @@
             .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
             .to(svg)
             ;
+        dr.figureInternalArea = document.getElementById( 'figureInternalArea' );
     }
 
 
@@ -116,6 +118,10 @@
             .aNS( 'class', "tp-figure figure outline tostroke" )
             .to(svg)
             ;
+        //tod? right:
+        dr.baseAxis = document.getElementById( 'baseAxis' );
+        dr.wallL = document.getElementById( 'wallL' );
+        dr.wallR = document.getElementById( 'wallR' );
         //====================================================================
         // \\// paints preliminary elements
         //====================================================================
@@ -210,7 +216,7 @@
                               id="diffAmtd"></span>
                     </span>
                     <span class="tp-widthest-rectangular tocolor tobold tag proof-tag">
-                          end rectangle</span>
+                          majorant rectangle</span>
                 </div>
 
         `);

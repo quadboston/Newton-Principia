@@ -51,7 +51,6 @@
                     //dirt: subexeg.domComponents  = [];
                     subexeg.classStr       = 'original-text ' + theorion_id + ' ' + aspect_id +
                                              ' subessay-' + subexeg.essayHeader.subessay;
-
                     //-----------------------------------------------------
                     // //\\ preliminary prepasing to extract active content
                     //-----------------------------------------------------

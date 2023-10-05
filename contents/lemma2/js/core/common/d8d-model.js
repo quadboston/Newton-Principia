@@ -65,7 +65,7 @@
             datareg.basePts.list.forEach( setPoint );
             datareg.ctrlPts.forEach( setPoint );
             //for decorator ... todm very easy to forget and be in pain ...
-            globalCss.update(); 
+            globalCss.update();
         }
 
         function setPoint( pointWrap, pwix ) {
@@ -106,7 +106,7 @@
         }
 
 
-        ///decorates DraggeeHoverer movement    
+        ///decorates DraggeeHoverer movement
         function Update_decPoint( pointWrap )
         {
             var pw = pointWrap;
@@ -115,8 +115,8 @@
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
                     );
-                    decPoint.style.left = dompos[0] + 'px';            
-                    decPoint.style.top = dompos[1] + 'px';            
+                    decPoint.style.left = dompos[0] + 'px';
+                    decPoint.style.top = dompos[1] + 'px';
                 }
             });
         }
@@ -126,7 +126,12 @@
         {
             if( arg.down_move_up === 'move' ) {
                 var pw = arg.pointWrap;
-                move2js( pw, arg.surfMove, pw.achieved );
+                if( pw.type === 'base' ) {
+                    move2js( pw, [arg.surfMove[0],0], pw.achieved );
+                } else {
+                    move2js( pw, arg.surfMove, pw.achieved );
+                }
+
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
 
                 // //\\ recent framework
@@ -171,7 +176,7 @@
                     sconf.DRAGGEE_HALF_SIZE;
             var bases = dr.bases;
             var closestPoint = null;
-            if( 
+            if(
                 //.excludes excess of non-used points
                 pointWrap.type === 'base' && pointWrap.index >= bases
             ) {
@@ -207,9 +212,9 @@
             var item = pointWrap;
             let pw = item;
             var index = item.index;
-            if( pw.type === 'base' && pw.index === 0 ) {
-                ccc( 'moves point A ' );
-            }
+            //if( pw.type === 'base' && pw.index === 1 ) {
+            //    ccc( 'moves point B '+ move[1] );
+            //}
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
                 item.y = ach.achieved.y + move[1];
@@ -223,7 +228,7 @@
 	            appstate.movingBasePt = false;
 
             } else if( index > 0 && index < dr.bases ) {
-
+ccc( dr.bases );
 	            var newX = ach.achieved.x + move[0];
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
@@ -236,12 +241,12 @@
                 // \\// limitifies newX by dom-neighbors
 
                 // //\\ applies newX to js-model
-                itemM.x = newX;        
+                itemM.x = newX;
                 if( itemM.index < 4 ) {
                     stdMod.syncPoint( item );
                 }
-                dr.baseWidths[index-1] = itemM.x - itemL.x;
-                dr.baseWidths[index]   = itemR.x - itemM.x;
+                dr.partitionWidths[index-1] = itemM.x - itemL.x;
+                dr.partitionWidths[index]   = itemR.x - itemM.x;
                 // \\// applies newX to js-model
 
                 //. todo: plays only in function updatePts(i, x) ... what for?

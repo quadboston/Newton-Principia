@@ -20,17 +20,17 @@
         curvPts         : {offset:1, visOffset:0, list:[]},
         leftPts         : {offset:0, visOffset:0, list:[]},
         righPts         : {offset:0, visOffset:0, list:[]},
-        righRects       : {offset:0, visOffset:0, list:[]},
-        leftRects       : {offset:0, visOffset:0, list:[]},
+        circRects       : {offset:0, visOffset:0, list:[]},
+        InscrRects       : {offset:0, visOffset:0, list:[]},
         baseLabels      : {offset:1, visOffset:0, list:[]},
         curvLabels      : {offset:0, visOffset:0, list:[]},
         leftLabels      : {offset:0, visOffset:0, list:[]},
         righLabels      : {offset:0, visOffset:0, list:[]},
         //deltaOnLeft historically means "virtual majoranta-rectangle"
         //is on the right
-        figureBasics    : {minX:0, maxX:0, baseY:0, deltaOnLeft:true},
+        figureParams    : {minX:0, maxX:0, baseY:0, deltaOnLeft:true},
         ctrlPts         : [],
-        baseWidths      : [],
+        partitionWidths      : [],
         bases           : 4,
         movables        : {} //key-value for movable jswrap
     });

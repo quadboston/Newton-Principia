@@ -49,9 +49,9 @@
             */
             #areadesk {
                 display:inline-block;
-                margin-top:20px;
-                width:200px;
-                z-index     : 1000;
+                margin-top : 20px;
+                width : 230px;
+                z-index : 1000;
             }
 
             /*---------------------*/

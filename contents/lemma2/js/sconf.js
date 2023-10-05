@@ -47,7 +47,7 @@
         var predT =
         {
             "given"                     : [0,    60,  0 ],
-            "difference"                : [185,  116, 85 ],
+            "difference"                : [255, 255, 0, 0 ], //[185,  116, 85 ],
             "base"                      : [0,    80,  0 ],
             "wall"                      : [0,    80,  0 ],
             "curve"                     : [0,    80,  0 ],
@@ -241,7 +241,7 @@
             },
 
             /*
-            baseSlider : { 
+            baseSlider : {
                 pos         : [0,0.1],
                 pcolor      : [255,0,0],
                 letterAngle : 90,
@@ -269,10 +269,12 @@
                         pcolor : predT.given,
                    },
             },
+            /*
             { AE : {
                         pcolor : predT.given,
                    },
             },
+            */
             { Kb : {
                         pcolor : predT.given,
                    },

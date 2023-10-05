@@ -29,46 +29,38 @@
 
     function setModule()
     {
-        guicon.makeShape             = makeShape;
-        guicon.constructFigure       = constructFigure;
+        guicon.makeShape_parlessDom  = makeShape_parlessDom;
+        guicon.constructFigure_tillExtraOffset_parlessDom       = constructFigure_tillExtraOffset_parlessDom;
         guicon.buildsControlPoints   = buildsControlPoints;
         guicon.buildsRect8BasePoints = buildsRect8BasePoints;
     }
 
-    //======================================
-    // //\\ constructFigure
-    //======================================
-    function constructFigure()
+    function constructFigure_tillExtraOffset_parlessDom()
     {
-        var baseMax = sconf.baseMax;
         // labels
         /*constructLabels(dr.curvLabels.list, "figure tostroke", 'abcde');
         constructLabels(dr.baseLabels.list, "figure tostroke", 'ABCDE');
         constructLabels(dr.leftLabels.list, "inscribed tostroke", 'KLMNO');
         constructLabels(dr.righLabels.list, "circumscribed tostroke", 'lmnop');
         */
-        
         // rects
-        constructShapesList("rect", dr.righRects, baseMax,
+        constructShapesList_tillExtraOffset_parlessDom("rect", dr.circRects, sconf.baseMax,
             "tp-circumscribed-rectangles circumscribed rect tofill");
-        constructShapesList("rect", dr.leftRects, baseMax,
+        constructShapesList_tillExtraOffset_parlessDom("rect", dr.InscrRects, sconf.baseMax,
             "tp-inscribed-rectangles inscribed rect tofill");
     }
-    //======================================
-    // \\// constructFigure
-    //======================================
 
     ///builds ...
     function buildsRect8BasePoints()
     {
         // rectangle points
         if (appstate.showRectPts) {
-	        //constructPts(dr.leftPts, baseMax, "inscribed tofill", sconf.FINEPTS_RADIUS);
-	        constructPts(dr.leftPts, baseMax, "inscribed", sconf.FINEPTS_RADIUS);
-	        constructPts(dr.righPts, baseMax, "circumscribed", sconf.FINEPTS_RADIUS);
-	        constructPts(dr.curvPts, baseMax, "figure", sconf.FINEPTS_RADIUS);
+	        //constructPts_tillOffset_parslessDom(dr.leftPts, baseMax, "inscribed tofill", sconf.FINEPTS_RADIUS);
+	        constructPts_tillOffset_parslessDom(dr.leftPts, baseMax, "inscribed", sconf.FINEPTS_RADIUS);
+	        constructPts_tillOffset_parslessDom(dr.righPts, baseMax, "circumscribed", sconf.FINEPTS_RADIUS);
+	        constructPts_tillOffset_parslessDom(dr.curvPts, baseMax, "figure", sconf.FINEPTS_RADIUS);
         }
-        constructBasePts_dom(appstate.showRectPts, dr.basePts);
+        constructBasePts_domParless(appstate.showRectPts, dr.basePts);
     }
 
     ///builds list of control points, dr.ctrlPts and updates construction of
@@ -88,26 +80,28 @@
     //==================================================
     ///apparently, base points from second to "D" are
     ///draggable (movable) and also include draggable point "E" = end point,
-    function constructBasePts_dom( show, basePts )
+    function constructBasePts_domParless( show, basePts )
     {
         //.this restriction is done via css ... the rect is simply hidden
         //.if( fconf.sappId === 'lemma3' ) {
-        //   constructEndBasePt_dom(basePts, show ? "figure" : "todm-fix-this");
+        //   constructEndBasePt_parslessDom_inList(basePts, show ? "figure" : "todm-fix-this");
 
-        constructEndBasePt_dom(basePts, show ? "figure" : "todm-fix-this");
+        constructEndBasePt_parslessDom_inList(basePts, show ? "figure" : "todm-fix-this");
 
         for (var i=1, len=sconf.baseMax; i <= len; i++) {
-  		    pt = makeDragP( "base", i );
+  		    pt = makeDragP_parlessDom( "base", i );
 	        if( fconf.sappId === 'lemma3' && i < sconf.draggableBasePoints ) {
-	            guiup.set_pt2movable( pt ); //todo-patch-disable-base-drag 1 of 2
+                //todo-patch-disable-base-drag 1 of 2
+                guiup.sets_pt2movable_2_tpl8domParless( pt );
             }
             pt.dom.style.fill = 'rgba(255,255,255,1)';
   		    basePts.list.push( pt );
-            //ccc( 'must be full p', pt ) todo
         }
-        function constructEndBasePt_dom( basePts, style )
+        return;
+
+        function constructEndBasePt_parslessDom_inList( basePts, style )
         {
-            var pdom = makeS_inList( "circle", basePts.list, style );
+            var pdom = makeS_inList_parlessDom( "circle", basePts.list, style );
             //.makes end point of the same structure as movable points
             basePts.list[ basePts.list.length-1 ] = { dom:pdom };
 
@@ -124,30 +118,30 @@
     // //\\ builds generic lists
     //---------------------------------------------------------
     ///dom, constructs generic shapeType,
-    function constructShapesList( shapeType, list, n, style ) {
+    function constructShapesList_tillExtraOffset_parlessDom( shapeType, list, n, style ) {
         for (var i=0; i<n+list.offset; i++){
-	        makeS_inList( shapeType, list.list, style );
+	        makeS_inList_parlessDom( shapeType, list.list, style );
         }
     }
     ///dom, constructs "circle" type,
-    function constructPts( list, n, classStyle, r )
+    function constructPts_tillOffset_parslessDom( list, n, classStyle, r )
     {
         for (var i=0; i<n+list.offset; i++){
-	        var shape = makeS_inList( "circle", list.list, classStyle );
+	        var shape = makeS_inList_parlessDom( "circle", list.list, classStyle );
 	        shape.dom.setAttributeNS( null, "r", r );
         }
     }
     ///dom, constructs "text" type,
     function constructLabels(list, style, content) {
         for (var i=0; i<content.length; i++){
-	        var l = makeS_inList( "text", list, style+" label" );
+	        var l = makeS_inList_parlessDom( "text", list, style+" label" );
 	        l.textContent = content.slice(i, i+1);
         }
     }
     ///dom, constructs shapeType in given list
-    function makeS_inList( shapeType, list, classStyle )
+    function makeS_inList_parlessDom( shapeType, list, classStyle )
     {
-        var sdom = makeShape( shapeType, classStyle );
+        var sdom = makeShape_parlessDom( shapeType, classStyle );
         list.push( sdom );
         return sdom;
     }
@@ -166,9 +160,9 @@
     ///updated bookkeeper: dr.movables[ key ] = draggable
     function constructCtrlPt( i )
     {
-        var ctrlPtXYs_js = sconf.ctrlPtXYs_js; 
+        var ctrlPtXYs_js = sconf.ctrlPtXYs_js;
         //pt = dr.movables[ type + i ]
-        var pt = makeDragP( "ctrl", i );
+        var pt = makeDragP_parlessDom( "ctrl", i );
         var pdom = pt.dom;
 
         //pdom.setAttributeNS(null, "class", "movable ctrlPt tofill");
@@ -187,7 +181,7 @@
     }
 
     ///does only dom
-    function makeShape( shapeType, classStyle, textContent )
+    function makeShape_parlessDom( shapeType, classStyle, textContent )
     {
         var sdom = document.createElementNS( svgNS, shapeType);
         sdom.setAttributeNS(null, "class", classStyle);
@@ -199,7 +193,7 @@
 
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
-    function makeDragP( type, i )
+    function makeDragP_parlessDom( type, i )
     {
         var key  = type + i;
         var pdom = document.createElementNS( svgNS, "circle");

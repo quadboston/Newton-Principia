@@ -37,24 +37,8 @@
 
     function init_sapp()
     {
-        //-------------------------------------------------------
-        // //\\ dom z-order patch
-        //-------------------------------------------------------
-        //set in setModule::dom.js
-        //ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
+        // dom z-order patch
         haff( ssF, 'continue_create_8_prepopulate_svg' );
-
-        //tod? right:
-        //this element is defined in above sub.:
-        dr.baseAxis = document.getElementById( 'baseAxis' );
-        //baseAxis        : document.getElementById( 'base' ),
-
-        //these elements are defined in above sub.:
-        dr.wallL = document.getElementById( 'wallL' );
-        dr.wallR = document.getElementById( 'wallR' );
-        //-------------------------------------------------------
-        // \\// dom z-order patch
-        //-------------------------------------------------------
 
         //----------------------------------------------
         // //\\ fits lemma to modern framework
@@ -99,11 +83,10 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        gui.constructWidthestRectangular();
-        guicon.constructFigure();
-        ssF.convergenceResultArea(); //do on top of ancestors
+        gui.constructWidthestRectangular_parameterlessDom();
+        guicon.constructFigure_tillExtraOffset_parlessDom();
+        ssF.creates_figures_domPlaceholder(); //do on top of ancestors
         guicon.buildsRect8BasePoints();
-        dr.figureInternalArea = document.getElementById( 'figureInternalArea' );
         guicon.buildsControlPoints();
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
@@ -113,6 +96,7 @@
         study.eventHandlers.toggleChangeFigure();
 
         gui.buildSlider();
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
 
     /*

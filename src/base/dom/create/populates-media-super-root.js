@@ -225,7 +225,7 @@
         // //\\ video help
         //..........................
         // //\\ local video
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
         sDomN.videoWrap$ = $$
             .c( 'div' )
             .css( 'display', 'none' )
@@ -246,13 +246,13 @@
             .a('type','video/mp4')
             .to( sDomN.localVideo$() )
             ;
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
         // \\// local video
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
 
         //..........................
         // //\\ iframed video
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
         sDomN.iframedVideo$ = $$
             .c( 'iframe' )
             .css( 'display', 'none' )
@@ -263,13 +263,13 @@
             .a('allowfullscreen','true')
             .to( sDomN.videoWrap$() )
             ;
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
         // \\// iframed video
         //..........................
 
         //..........................
         // //\\ close-video button
-        //. . . . . . . . . . . . . 
+        //. . . . . . . . . . . . .
         sDomN.doCloseVideoHelp$ = $$
             .c( 'div' )
             .a('title','close video')
@@ -280,8 +280,8 @@
             ;
         //..........................
         // \\// close-video button
-        //. . . . . . . . . . . . . 
-    
+        //. . . . . . . . . . . . .
+
         haff( fmethods, 'create_video_help_manager' );
         //..........................
         // \\// video help
@@ -339,12 +339,12 @@
                     }
                     imgRk.src = stdMod.imgRk.srcParsed;
                     var cssId = imgRk.cssId;
-                    //ccc( headSubMod + ' filling: ', imgRk.src, cssId );
 
                     if( !imgRk.onloadStarted ) {
                         imgRk.onloadStarted = true;
                         imgRk.dom$().onload = function() {
                             if( studyModsActivated.length === ++actuallyLoaded ) {
+                                ////assumes that each stdMod has bg. image to download
                                 //setTimeout( bgImagesAreLoaded_cb, 1000 );
                                 //without this call, app landing must crash:
                                 bgImagesAreLoaded_cb();

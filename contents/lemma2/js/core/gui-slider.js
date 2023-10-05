@@ -16,7 +16,7 @@
     Object.assign( sconf,
     {
         //:slider config
-        MINP            : 1,
+        MINP            : 4,
         MAXP            : 50
     });
     //=====================================
@@ -41,7 +41,7 @@
     //======================================
     // //\\ slider
     //======================================
-    function buildSlider( undefined )
+    function buildSlider()
     {
         //.appar. slider-for-base-points-number
         var slider = document.getElementById("mySlider");
@@ -57,30 +57,30 @@
 
         slider.oninput = function() {
             appstate.movingBasePt = false; // better way?
-	        var newB = interpretSlider( this.value );
+	        var newIntervalsNumber = interpretSlider( this.value );
             //dr.bases === basesAmount
-	        sliderEvent( newB-dr.bases, newB, dr.basePts );
-	        dr.bases = newB;
+            sDomF.detected_user_interaction_effect();
+	        aduptPartitionChange( newIntervalsNumber-dr.bases,
+                                  newIntervalsNumber, dr.basePts );
+	        dr.bases = newIntervalsNumber;
 	        showBasesNumberInGui( sliderOutput, baseLabel );
 
             ssF.media_upcreate_generic();
       	}
 
-        function sliderEvent(bd, newBases, basePts) {
-            sDomF.detected_user_interaction_effect();
-        	//var baseDelta = bd;
+        function aduptPartitionChange(partitionChange, newBases, basePts, undef) {
 	        if( fconf.sappId === 'lemma3' ) {
                 ///dynamically adds more base points
-                for (var i=newBases-bd; i<newBases; i++) {
+                for (var i=newBases-partitionChange; i<newBases; i++) {
                     ///prevents making too many draggable base points
                     if( i < sconf.draggableBasePoints ) {
-       		            guiup.set_pt2movable( basePts.list[i] );
+       		            guiup.sets_pt2movable_2_tpl8domParless( basePts.list[i] );
                     }
                 }
             }
-            var baseWidths = dr.baseWidths;
-            for (var i=newBases; i < newBases-bd; i++) {
-	            baseWidths[i] = undefined;
+            var partitionWidths = dr.partitionWidths;
+            for (var i=newBases; i < newBases-partitionChange; i++) {
+	            partitionWidths[i] = undef;
             }
         }
 

@@ -97,7 +97,7 @@
         }
 
 
-        
+
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
@@ -121,11 +121,11 @@
                 // //\\ splits the singleSubessay ...
                 //--------------------------------------
                 //      singleSubessay = proof|english precontent
-                //             precontent = \nJSON*..*\n content 
-                //             JSON in singleSubessay is optional                
-                //              
+                //             precontent = \nJSON*..*\n content
+                //             JSON in singleSubessay is optional
+                //
                 //      below: ess_instructions[1] = theorion_id: claim, proof,
-                //                                            theorems, neutral, ... 
+                //                                            theorems, neutral, ...
                 //             ess_instructions[2] = aspect_id: english,... latin, ...
                 //             ess_instructions[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
@@ -268,7 +268,7 @@
                     //---------------------------------------------------------------
                     // //\\ adds topic-categories from
                     //---------------------------------------------------------------
-                    //      essayHeader, 'fixed-colors' to fixedColors 
+                    //      essayHeader, 'fixed-colors' to fixedColors
                     //      for entire lemma
                     var wwfc = haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
@@ -460,7 +460,7 @@
                         "default" : leafId,
                         duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
-                //ccc( 'checing dup ' + leafId + ' ' + mcat_id  + ' men=', men); 
+                //ccc( 'checing dup ' + leafId + ' ' + mcat_id  + ' men=', men);
                 if( !men.duplicates[ leafId ] ) {
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;
@@ -508,7 +508,6 @@
 
 
             // //\\ bg images
-            ///
             /// collects all possible background images racks
 
             //******************************************************
@@ -518,39 +517,41 @@
             //******************************************************
             function doesAddStudyModelIfNew( essayHeader, subex ) {
                 var stdMod = studyMods[ essayHeader.submodel ];
-
-                //this has nothing to do with image: "parsed" means
-                //the module has been bookkeeped or "study model is activated".
-                if( haz( stdMod.imgRk, 'srcParsed' ) ) return;
-
-                studyModsActivated.push( stdMod );
-
+                var stdModActivatedIx = haz( stdMod, 'stdModActivatedIx' );
+                if( !stdModActivatedIx && stdModActivatedIx !== 0) {
+                    ////todm, is forgotten why there is an
+                    ////array of flags studyModsActivated additional to
+                    ////studyMods, but keep it here
+                    stdMod.stdModActivatedIx = studyModsActivated.length;
+                    studyModsActivated.push( stdMod );
+                }
+                stdMod.imgRk.cssId = 'bg' + stdMod.stdModActivatedIx;
                 //*************************************************************
                 //first new-submodel header must have img if submodel needs it,
                 //      bg image is per submodel
                 //*************************************************************
                 if( !userOptions.usingBackgroundImage() ) {
-                    essayHeader.mediaBgImage = null;
+                    //essayHeader.mediaBgImage = null; //disables it for definitness
+                    stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
+                    return;
                 }
-                // //\\ this property is used
-                //      only once and in this block:
-                if( has( essayHeader, 'mediaBgImage' ) ) {
-                    //for "empty.png", use any falsy like mediaBgImage:null, ...""
-                    //in professor-script,
-                    var imgId = essayHeader.mediaBgImage || '*empty*';
+                // //\\ establishes image source file name
+                var imgInSconf = haz( studyMods[ essayHeader.submodel ].sconf, 'mediaBgImage' );
+                var imgInHeader = haz( essayHeader, 'mediaBgImage' );
+                if( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
+                if( imgInHeader ) {
+                    var imgId = ''+imgInHeader;
+                    stdMod.imgRk.imgFoundInText = true;
+                } else if( imgInSconf )  {
+                    var imgId = imgInSconf;
                 } else {
-                    var imgId = haz( studyMods[ essayHeader.submodel ].sconf,
-                                     'mediaBgImage' ) || '*empty*';
+                    imgId = '*empty*';
                 }
-                // \\// this property is used
-
-                var src = imgId === '*empty*' ?
+                stdMod.imgRk.srcParsed = imgId === '*empty*' ?
                      fconf.engineImg + '/empty.png' :
-                     fconf.pathToContentSite + '/contents/' +
+                        fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
-                var cssId = 'bg' + studyModsActivated.length;
-                stdMod.imgRk.srcParsed = src;
-                stdMod.imgRk.cssId = cssId;
+                // \\// establishes image source file name
             }
             // \\// bg images
         }

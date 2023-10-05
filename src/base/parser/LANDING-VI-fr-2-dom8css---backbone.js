@@ -60,7 +60,7 @@
         globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
         //***********************************************************
 
-        sDomN.topicModelInitialized = true;
+        //outdated: sDomN.topicModelInitialized = true;
     }
 
 

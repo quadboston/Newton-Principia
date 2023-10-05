@@ -22,16 +22,15 @@
     // //\\ exports module
     //======================================
     Object.assign( guiup, {
-        updatePtsRectsLabelsAreas   : updatePtsRectsLabelsAreas,
-        updateFigureBasicsJS        : updateFigureBasicsJS,
-        normalizedStr               : normalizedStr,
-
-        set_pt2movable  : set_pt2movable,
-        updateLabel     : updateLabel,
-        updateRectLike  : updateRectLike,
-        xy2shape        : xy2shape,
-        xy_2_xy8shape   : xy_2_xy8shape,
-        calculate8paintCurve_8_paintAxes : calculate8paintCurve_8_paintAxes
+        updatePtsRectsLabelsAreas,
+        redraws_labels8curveLabels,
+        normalizedStr,
+        sets_pt2movable_2_tpl8domParless,
+        //updateLabel,
+        xywh2svg,
+        xy2shape,
+        xy_2_xy8shape,
+        paints_curve8axes,
     });
     //======================================
     // \\// exports module
@@ -65,19 +64,15 @@
     {
         item.setAttributeNS( null, "cy", y );
     }
-    function updateLabel( item, x, y )
-    {
-        //xy2shape( item, "x", x, "y", y );
-    }
     ///updates item with rectangular parameters x, y, width, height
-    function updateRectLike(item, x, y, width, height) {
+    function xywh2svg(item, x, y, width, height) {
         xy2shape(item, "x", x, "y", y);
         item.setAttributeNS(null, "width", width);
         item.setAttributeNS(null, "height", height);
     }
 
 
-    function set_pt2movable( pt )
+    function sets_pt2movable_2_tpl8domParless( pt )
     {
         pt.dom.setAttributeNS(null, "class", "movable figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
@@ -86,73 +81,31 @@
 
 
 
-    ///second point in changes contains first turning point
-    ///if function is monotonic, then there is only
-    ///"one turning point" - a last one
-    function curve2monotonityIntervals( curveMicroPts )
-    {
-        let changes = [];
-        let p = curveMicroPts;
-        let ix = 0;
-        var minY = p[0][1];
-        let len = p.length;
-        let dir = p[1][1] > p[0][1] ? 1 : 0;
-        changes.push( {ix, dir, p:p[ix]} );
-        for( ix = 1; ix<len; ix++ ) {
-            let y = p[ix][1];
-            minY = minY > y ? y : minY;
-            let newDir = p[ix][1] > p[ix-1][1] ? 1 : 0;
-            if( newDir !== dir ) {
-                dir = newDir;
-                let ch = {ix:ix-1, dir, p:p[ix-1]};
-                changes.push( ch );
-            }
-        }
-        let pLast = p.length-1;
-        let chLast = changes.length-1;
-        if( changes[ chLast ].ix !== pLast ) {
-            ix = pLast;
-            changes.push( {ix, dir, p:p[ix]} );
-        }
-        var maximumDeltaF = 0;
-        for(let ch=0; ch<changes.length-1; ch++ ) {
-            let gap = changes[ ch+1 ].p[1] - changes[ ch ].p[1];
-            maximumDeltaF += Math.abs(gap);
-            ccc( 'gap='+gap );
-        }
-        ccc( '********************\nfinal: intervals=' + (changes.length - 1 ) + ' maximumDeltaF='+maximumDeltaF, changes );
-        return { maximumDeltaF, changes, minY, areMany : changes.length > 2 };
-    }
 
 
-    function calculate8paintCurve_8_paintAxes()
+    function paints_curve8axes()
     {
         var ff = numModel.f;
 
-        ///calculates curve
+        ///calculates curve with horizontal increment = delta
         var delta           = 3;
         var curveMicroPts   = [];
-        var figureArea      = 0;
-        var fb              = dr.figureBasics;
-        var oldY            = 2 * fb.baseY-ff(fb.minX);
+        var fb              = dr.figureParams;
         for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
 	        var yy = ff( xx );
 	        curveMicroPts.push([xx,yy]);
-	        figureArea += (delta*(fb.baseY-(yy+oldY)/2));
-	        oldY = yy;
         }
 
         //:paints curve
         var yy = ff( fb.maxX );
-        //this does not collect 
+        //this does not collect
         curveMicroPts.push([fb.maxX,yy]);
-        dr.yVariations = curve2monotonityIntervals( curveMicroPts );
-        dr.figureArea = figureArea + ((fb.maxX-xx+delta)*(fb.baseY-(yy+oldY)/2));
 
         var wwPL = document.getElementById( 'polylineCurve' );
         wwPL.setAttribute( "points",curveMicroPts.join(" ") );
         //:paints axes
-        var yy = fb.baseY;
+        //var yy = fb.baseY;
+        var yy = dr.yVariations.yRef;
         var x1 = fb.minX;
         var x2 = fb.maxX;
         //apparently, horizontal axis x
@@ -164,7 +117,7 @@
 
 
         //=============================================
-        // //\\ paints figureInternalArea
+        // //\\ builds bottom part of curve area string
         //=============================================
         //var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
         var wfirstPoint = curveMicroPts[0];
@@ -172,24 +125,23 @@
         //.this code connects four points two tips on base and first and end
         //.points on curve making base as a part of area perimeter
         var figureInternalArea = curveMicroPts.concat([
-            [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy] 
+            [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy]
         ]);
         var figureInternalAreaStr = figureInternalArea.join(" ");
         dr.figureInternalArea.setAttribute( "points",figureInternalAreaStr );
         //=============================================
-        // \\// paints figureInternalArea
+        // \\// builds bottom part of curve area string
         //=============================================
 
 
         // //\\ sets curves type
-
         stdL2.adjustVisibilityForBaseDelta();
 
         // //\\ resets app modes
         var wfirst = curveMicroPts[0];
         var wlast = curveMicroPts[curveMicroPts.length-1];
         //:note: y axis is apparently flipped, bottom > top
-        //:dr.figureBasics.deltaOnLeft is already calculated and
+        //:dr.figureParams.deltaOnLeft is already calculated and
         //:can be used
         //:and means decresing function witm max on left
         if( wfirst[1] > wlast[1] ) {
@@ -200,7 +152,6 @@
             sDomN.essaionsRoot$.addClass( 'active-left' );
         }
         // \\// resets app modes
-
     }
 
 
@@ -211,124 +162,90 @@
     // //\\ possibly move to gui-update module
     //========================================
     ///gui-model
-    ///resets fb.baseY, "dr-labels" to match maximum Y
-    function updateFigureBasicsJS()
+    ///resets "dr-labels" to match maximum Y
+    function redraws_labels8curveLabels()
     {
         var ctrlPts = dr.ctrlPts;
         //finds index of control point with maximum x:
         var max = numModel.ctrlPt_2_maxIx();
         var min = numModel.ctrlPt_2_minIx();
-        var fb  = dr.figureBasics;
-        fb.minX = ctrlPts[min].x;
-        fb.maxX = ctrlPts[max].x;
-        
-        //means "original-natural bar is on the left"
-        fb.deltaOnLeft = true;
-        if (ctrlPts[max].y > ctrlPts[min].y) {
+        var fb  = dr.figureParams;
+
+        if( fb.deltaOnLeft ) {
             //// most x-right point has maximum ordinate:
             //// decreasing function: screen-y increases ===
             //// goes from screen-top to screen-bottom
-	        fb.baseY = ctrlPts[max].y;
 	        dr.leftLabels.offset = -1;
 	        dr.righLabels.visOffset = 0;
 	        dr.curvLabels.visOffset = 0;
 	        dr.curvLabels.offset = 0;
         } else {
-	        fb.baseY = ctrlPts[min].y;
-	        fb.deltaOnLeft = false;
 	        dr.leftLabels.offset = 0;
 	        dr.righLabels.visOffset = 1;
 	        dr.curvLabels.visOffset = 1;
 	        dr.curvLabels.offset = 1;
         }
-
         //todm remove: experiment:
         //has( stdMod.rg, 'baseSlider' ) && ssF.pos2pointy( 'baseSlider' );
     }
 
-    function updateLeft(i,width,x,y,nextX,nextY)
+    function updatesRect(rectDom,width,x,y,nextX,nextY)
     {
-        var fb  = dr.figureBasics;
-        if (appstate.showRectPts)
-	        guiup.xy2shape( dr.leftPts.list[i], "cx", x, "cy", nextY ); 
-        guiup.updateRectLike( dr.leftRects.list[i], x,
-            Math.min(nextY, fb.baseY), width, Math.abs( fb.baseY-nextY));
-        if (i< dr.bases-1 && i< dr.leftLabels.list.length) {
-	        guiup.updateLabel( dr.leftLabels.list[i], x-20, nextY+3);
+        var fb  = dr.figureParams;
+        var yRef = dr.yVariations.yRef;
+        ///shows bottom points
+        if (appstate.showRectPts) {
+	        guiup.xy2shape( rectDom, "cx", nextX, "cy", yRef );
         }
-        //todo why?: already done:
-        //dr.leftRects.list[i].setAttributeNS(null, "class", "inscribed rect");
-    }
-    function updateRigh(i,width,x,y,nextX,nextY)
-    {
-        var fb  = dr.figureBasics;
-        if (appstate.showRectPts)
-	        guiup.xy2shape( dr.righPts.list[i], "cx", nextX, "cy", y );
-        guiup.updateRectLike( dr.righRects.list[i], x, Math.min(y, fb.baseY), width,
-            Math.abs( fb.baseY-y));
-        if (i<dr.righLabels.list.length) {
-	        guiup.updateLabel( dr.righLabels.list[i], nextX-5, y-10);
-        }		
+        guiup.xywh2svg( rectDom, x, y, width, yRef-y );
     }
     function updatePts(i, x)
     {
-        var fb  = dr.figureBasics;
+        var fb  = dr.figureParams;
+        var yRef = dr.yVariations.yRef; //fb.baseY
         if (!appstate.movingBasePt) {
-	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", fb.baseY );
+	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
         }
         if (appstate.showRectPts) {
 	        guiup.xy_2_xy8shape( dr.curvPts.list[i], "cx", x, "cy", numModel.f(x) );
         }
         if (i< dr.baseLabels.list.length) {
-	        guiup.updateLabel( dr.baseLabels.list[i], x-5, fb.baseY+20 );
+	        //guiup.updateLabel( dr.baseLabels.list[i], x-5, yRef+20 );
         }
     }
     function updatePtsRectsLabelsAreas()
     {
-        var fb  = dr.figureBasics;
+        var fb  = dr.figureParams;
         var x = fb.minX;
-        var bases = dr.bases;
-
-    	//.var useInitialWidest = true; //kvk: I don't understand what is
-        //.this for ... probably need more background on "Principia"
-        //.gui.widthStart(figureBasics, bases);
-        dr.sumWidth = numModel.calcSumBaseWidth( bases );
-
-        var circumscribedArea = 0
-        var inscribedArea = circumscribedArea;
-        for (var i=0; i<bases; i++) {
-	        var width = numModel.nextWidth(i);
-	        var y = numModel.f(x);
-	        var nextX = x + width;
-	        var nextY = numModel.f(nextX);
-	        if (i< dr.curvLabels.list.length) {
-		        guiup.updateLabel( dr.curvLabels.list[i], x-15, y+(i==0?-5:15));
-	        }
-	        updateRigh(i,width,x,y,nextX,nextY);
-	        circumscribedArea += (width*( fb.baseY-y));
-	        updateLeft(i,width,x,y,nextX,nextY);
-	        inscribedArea += width*( fb.baseY-nextY);
-	        if (i< dr.righLabels.list.length) {
-		        guiup.updateLabel( dr.righLabels.list[i], nextX-5, y-10);
-		        guiup.updateLabel( dr.leftLabels.list[i], x-20, nextY+3);
-	        }
+        var basN = dr.bases;
+        var basXar = dr.basePts.basXar;
+        var insYar = dr.basePts.inscribedY;
+        var cirYar = dr.basePts.circumscribedY;
+        var yRef = dr.yVariations.yRef; //?fb.base
+        for (var i=0; i<basN; i++) {
+            let x = basXar[i];
+            let insY = insYar[i];
+            let cirY = cirYar[i];
+   	        var width = dr.partitionWidths[i];
+	        updatesRect( dr.circRects.list[i], width, x, cirY, x + width );
+	        updatesRect( dr.InscrRects.list[i], width, x, insY, x + width );
 	        updatePts(i, x);
-	        x += width;
         }
-        updatePts( bases, x);
-        gui.widthEnd( dr.basePts.list[bases].dom, appstate.showRectPts, sdata.view );
+        updatePts( basN, fb.maxX);
+        gui.drawsWidestRect( dr.basePts.list[basN].dom,
+                               appstate.showRectPts, sdata.view );
+        //-----------------------------------------------------
+        // //\\ legend amounts
+        //-----------------------------------------------------
         document.getElementById("figAmt").innerHTML =
             ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
-
-        //tod? document.getElementById("inAmt").innerHTML =
-        // normalizedStr( inscribedArea, dr.figureArea);
         document.getElementById("inAmtd").innerHTML =
-            normalizedStr( inscribedArea, dr.figureArea);
-
-        //tod? document.getElementById("circAmt").innerHTML =
-        //normalizedStr( circumscribedArea, dr.figureArea);
+            normalizedStr( dr.areaIns, dr.figureArea);
         document.getElementById("circAmtd").innerHTML =
-            normalizedStr( circumscribedArea, dr.figureArea);
+            normalizedStr( dr.areaCir, dr.figureArea);
+        //-----------------------------------------------------
+        // \\// legend amounts
+        //-----------------------------------------------------
     }
 
     function normalizedStr( amt )
@@ -362,19 +279,24 @@
             var pname = 'A';
         } else if( item.type === 'base' ) {
             switch( item.index ) {
+            //case 0 : var pname = 'A';
+            //         break;
             case 1 : var pname = 'B';
-                     var pnameFun = 'b';
-                     var pnameTop = 'l';
-                     var pnameLow = 'K';
+                     ////optional names
+                     var pnameFun = 'b'; //right on the curve
+                     var pnameTop = 'l'; //max of the interval
+                     var pnameLow = 'K'; //min of the interval
                      var previousItem = dr.basePts.list[ 0 ];
                      break;
             case 2 : var pname = 'C';
+                     ////optional names
                      var pnameFun = 'c';
                      var pnameTop = 'm';
                      var pnameLow = 'L';
                      var previousItem = dr.basePts.list[ 1 ];
                      break;
             case 3 : var pname = 'D';
+                     ////optional names   
                      var pnameFun = 'd';
                      var pnameTop = 'n';
                      var pnameLow = 'M';
@@ -382,6 +304,7 @@
                      break;
             case 4 : if( dr.bases > 4 ) {
                         var pname = 'E';
+                        ////optional names
                         var pnameTop = 'o';
                         var previousItem = dr.basePts.list[ 3 ];
                      }
@@ -389,6 +312,7 @@
             }
         }
         if( pname ) {
+            var iY = item.type === 'base' ? dr.yVariations.yRef : item.y;
             ////apparently convert from svg-space to model-space
             ////apparently program and numModel.f made in svg-space and
             ////not in gemetrical-model-space;
@@ -396,8 +320,9 @@
             var yoff = sconf.originY_onPicture;
             var scale = sconf.mod2inn_scale;
             rg[ pname ].pos[0] = (item.x - xoff) / scale;
-            rg[ pname ].pos[1] = -(item.y - yoff) / scale;
+            rg[ pname ].pos[1] = -(iY - yoff) / scale;
 
+            ////optional names
             if( pnameFun ) {
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
                 rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
@@ -418,7 +343,6 @@
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
-        [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
 
         if( dr.bases < 4 ) {
             rg.E.undisplay = true;
@@ -439,32 +363,24 @@
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
 
+        rg.AB.undisplay = dr.figureParams.baseY > dr.yVariations.maxY;
+
         // //\\ majorant rect
         var xoff = sconf.originX_onPicture;
+        //yoff is equal to 0 in "numerical space" of "rg.point.pos"
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
 
-        /*
-        var fb = dr.figureBasics; 
-        rg.F.pos[1] = 0;
-        var Fx = dr.widest + ( dr.widest < 0 ? fb.maxX : fb.minX );
-        rg.F.pos[0] = ( Fx - xoff ) / scale;
-        rg.f.pos[0] = rg.F.pos[0];
-        rg.f.pos[1] = -( numModel.f( Fx ) - yoff ) / scale;
-        */
-
-        var { x, y, rightX, F, f,
-              left, right, bottom, top, } = dr.widestRect;
-        if( dr.figureBasics.deltaOnLeft || dr.yVariations.areMany ) {
+        rg.F.pos[1] = -( dr.yVariations.yRef - yoff ) / scale;
+        rg.E.pos[1] = -( dr.yVariations.yRef - yoff ) / scale;
+        var { left, right, bottom, top, } = dr.widestRect;
+        rg.f.pos[1] = -( top - yoff ) / scale;
+        if( dr.figureParams.deltaOnLeft || dr.yVariations.areMany ) {
             rg.F.pos[0] = ( right - xoff ) / scale;
-            rg.F.pos[1] = -( bottom - yoff ) / scale;
             rg.f.pos[0] = ( right - xoff ) / scale;
-            rg.f.pos[1] = -( top - yoff ) / scale;
         } else {
             rg.F.pos[0] = ( left - xoff ) / scale;
-            rg.F.pos[1] = -( bottom - yoff ) / scale;
             rg.f.pos[0] = ( left - xoff ) / scale;
-            rg.f.pos[1] = -( top - yoff ) / scale;
         }
         // \\// majorant rect
     }
