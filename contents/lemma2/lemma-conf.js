@@ -24,8 +24,8 @@
                 {  src:"core/gui-construct.js" },
                 {  src:"core/gui-slider.js" },
                 {  src:"core/gui-update.js" },
-                {  src:"core/common/gui-visibility.js" },
-                {  src:"core/gui-widthest.js" },
+                {  src:"core/gui-update-2.js" },
+                {  src:"core/gui-update-widthest.js" },
                 {  src:"core/model.js" },
                 {  src:"core/common/event-handlers.js" }
             ],

@@ -1,7 +1,8 @@
 ( function () {
     var {
         sn,
-        fapp, sconf, sDomN, ssF,
+        fapp, fconf, sconf, sDomN, ssF,
+        amode,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -259,7 +260,8 @@
 
     ///======================================
     /// syncronizes positions for
-    /// framework points and legacy points
+    /// framework points with L2/3 legacy
+    /// code points (with rg[ name ].pos)
     ///======================================
     function syncPoint( item ) {
        if( item.type === 'ctrl' ) {
@@ -363,8 +365,6 @@
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
 
-        rg.AB.undisplay = dr.figureParams.baseY > dr.yVariations.maxY;
-
         // //\\ majorant rect
         var xoff = sconf.originX_onPicture;
         //yoff is equal to 0 in "numerical space" of "rg.point.pos"
@@ -383,6 +383,10 @@
             rg.f.pos[0] = ( left - xoff ) / scale;
         }
         // \\// majorant rect
+        let wwNoMajor = fconf.sappId === 'lemma2' || amode.theorion === 'claim';
+        rg.f.undisplay = wwNoMajor;
+        rg.F.undisplay = wwNoMajor;
+        rg.AB.undisplay = dr.figureParams.baseY > dr.yVariations.maxY;
     }
 
 }) ();

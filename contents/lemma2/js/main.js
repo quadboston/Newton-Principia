@@ -120,7 +120,7 @@
                 return !!'move permitted';
             },
         });
-        ccc( rg.baseSlider );
+        c cc( rg.baseSlider );
         sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
         //====================================
         // \\// slider

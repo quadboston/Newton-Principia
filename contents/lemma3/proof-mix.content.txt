@@ -6,9 +6,9 @@
 }
 *..*
             <dense class='orig';>For let AF be equal to the greatest width, 
-            and let the ¦widthest-rectangular¦parallelogram FAaf¦¦ be completed. 
+            and let the ¦widthest-rectangular widt-txt¦parallelogram FAaf¦¦ be completed. 
             This parallelogram will be greater than the difference of 
-            the ¦inscribed-rectangles¦inscribed¦¦ and ¦circumscribed-rectangles¦circumscribed¦¦ figures; 
+            the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
             but if its width AF is diminished indefinitely, 
             it will become less than any given rectangle.  Q.E.D.</dense>
 
@@ -16,19 +16,19 @@
 
 *::*proof|hypertext
 
-            We can create a ¦widthest-rectangular¦new end rectangle¦¦ whose area is greater or equal to 
+            We can create a ¦widthest-rectangular widt-txt¦new end rectangle¦¦ whose area is greater or equal to 
             the difference in area between the 
-            ¦inscribed-rectangles¦inscribed¦¦ and ¦circumscribed-rectangles¦circumscribed¦¦ rectangles. 
+            ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles. 
             We guarantee it is no smaller than the difference by making its base equal 
             to the greatest width. 
 
             As the number of rectangles is increased indefinitely, the width of each 
-            decreases indefinitely, including the ¦widthest-rectangular¦rectangle¦¦ just mentioned. 
+            decreases indefinitely, including the ¦widthest-rectangular widt-txt¦rectangle¦¦ just mentioned. 
             Since its width decreases indefinitely, its area decreases indefinitely, 
             becoming arbitrarily close to 0. So the difference between the areas of the 
-            ¦inscribed-rectangles¦inscribed rectangles¦¦, the
-            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. 
-            For the current ¦figure¦figure¦¦, that ¦widthest-rectangular¦single rectangle¦¦ is on the
+            ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, the
+            ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦, and the ¦figure-area figure-area-txt¦figure¦¦ in between them becomes arbitrarily close to 0. 
+            For the current ¦figure¦figure¦¦, that ¦widthest-rectangular widt-txt¦single rectangle¦¦ is on the
             ¿?
             {
                 "left" : "left",

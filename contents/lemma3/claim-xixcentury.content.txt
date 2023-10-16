@@ -15,7 +15,7 @@ In XIX century notations, for any monotonic and bounded function ¦curve¦\( [A,
             \underset{\delta \to 0} {\text{lim }} L_\delta .
     \]
 
-In plain words, ¦circumscribed-rectangles¦circumscribed¦¦ and ¦inscribed-rectangles¦inscribed¦¦ sums converge to the same ¦figure-area¦limit¦¦ making upper and lower Darboux intergrals equal.
+In plain words, ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ and ¦inscribed-rectangles insc-txt¦inscribed¦¦ sums converge to the same ¦figure-area¦limit¦¦ making upper and lower Darboux intergrals equal.
 
 
 

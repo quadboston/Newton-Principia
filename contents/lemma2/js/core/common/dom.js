@@ -155,15 +155,15 @@
                     <div class="tp-circumscribed checkbox-wrap tobg">
                         <input id="toggleCircumscribed" type="checkbox" name="option" 
                                class="checkbox circumscribed" checked>
-                        <label class="tp-circumscribed-rectangles"
+                        <label class="tp-circ-txt"
                                for="toggleCircumscribed"></label>
                     </div>
                     <span class="number">
-                        <span class="tp-circumscribed-rectangles tocolor tobold circAmtd"
+                        <span class="tp-circ-txt tocolor tobold circAmtd"
                               id="circAmtd"></span>
                     </span>
-                    <span class="tp-circumscribed-rectangles tag circumscribed-tag
-                          tp-circumscribed tocolor tobold">circumscribed</span>
+                    <span class="tp-circ-txt tag circumscribed-tag
+                          tp-circumscribedXXX tocolor tobold">circumscribed</span>
                 </div>
                 <!--END Circumscribed-->
 
@@ -176,14 +176,14 @@
                                class="checkbox figure"
                                onclick="window.b$l.fapp.stdL2.gui.showFig()"
                                checked>
-                        <label class="tp-figure tp-figure-area" for="checkbox_4"></label>
+                        <label class="tp-figure tp-figure-area-txt" for="checkbox_4"></label>
                     </div>
                     <span class="number">
-                        <!-- class="tp-figure-area -->
-                        <span class="tp-figure tp-figure-area tocolor tobold figAmt"
+                        <!-- class="tp-figure-area-txt -->
+                        <span class="tp-figure tp-figure-area-txt tocolor tobold figAmt"
                               id="figAmt">100.0</span>
                     </span>
-                    <span class="tp-figure tp-figure-area tocolor tobold figAmt">figure</span>
+                    <span class="tp-figure tp-figure-area-txt tocolor tobold figAmt">figure</span>
                 </div>
                 <!--END figure-->
 
@@ -192,13 +192,13 @@
                     <div class="checkbox-wrap">
                         <input id="toggleInscribed" type="checkbox" name="option" 
                                class="checkbox inscribed" checked>
-                        <label class="tp-inscribed-rectangles" for="toggleInscribed"></label>
+                        <label class="tp-insc-txt" for="toggleInscribed"></label>
                     </div>
                     <span class="number">
-                        <span class="tp-inscribed-rectangles tocolor tobold inAmt"
+                        <span class="tp-insc-txt tocolor tobold inAmt"
                               id="inAmtd"></span>
                     </span>
-                    <span class="tp-inscribed-rectangles tocolor tobold tag
+                    <span class="tp-insc-txt tocolor tobold tag
                           inscribed-tag">inscribed</span>
                 </div>
                 <!--END inscribed-->
@@ -209,13 +209,13 @@
                     <div class="checkbox-wrap">
                         <input id="toggleWidthest" type="checkbox" name="option" 
                                class="checkbox" checked>
-                        <label class="tp-widthest-rectangular" for="toggleWidthest"></label>
+                        <label class="tp-widt-txt" for="toggleWidthest"></label>
                     </div>
                     <span class="number">
-                        <span class="tp-widthest-rectangular tocolor tobold diffAmtm"
+                        <span class="tp-widt-txt tocolor tobold diffAmtm"
                               id="diffAmtd"></span>
                     </span>
-                    <span class="tp-widthest-rectangular tocolor tobold tag proof-tag">
+                    <span class="tp-widt-txt tocolor tobold tag proof-tag">
                           majorant rectangle</span>
                 </div>
 

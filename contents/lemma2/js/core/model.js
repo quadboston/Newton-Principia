@@ -131,14 +131,7 @@
 	        if ( !dr.partitionWidths[i] ) {
                 //makes average base constant and, therefore,
                 //provides equal bases for all added bases
-                if( sum === 0 || i === 0 ) {
-                    ccc( i, sum );
-                }
-                let ww =
 		        dr.partitionWidths[i] = sum / i;
-                if (!isFinite(ww) ||  ww <= 0 ){
-                    ccc( '...<= 0, i='+i);
-                }
             }
 	        sum += dr.partitionWidths[i];
             //in first round of setting partitionWidths, sum = bases
@@ -147,9 +140,6 @@
 
         ///converts virtual widths to media widths
         for (var i=0; i<bases; i++) {
-            if (!isFinite(dr.partitionWidths[i]) ||  dr.partitionWidths[i] === 0 ){
-                ccc( 'bbbb i='+i);
-            }
             dr.partitionWidths[i] = dr.partitionWidths[i] / sum *
                                     (dr.figureParams.maxX-dr.figureParams.minX);
             if ( !i || dr.partitionWidths[i] > dr.widest) {
@@ -217,7 +207,6 @@
         for( var ib = 0; ib < basN; ib++ ) {
             basXar[ib] = baseX;
             baseX += baseW[ib];
-            //ccc( 'x='+basXar[ib] );
         }
 
         // //\\ calculates microindices which are covered
@@ -267,7 +256,6 @@
             }
             insYar[ib] = ymax;
             cirYar[ib] = ymin;
-            //ccc( ib + ' ins=' + insYar[ib] + ' cir=' + cirYar[ib] );
         }
         // \\// calculates min and max on separate bases
 
@@ -284,7 +272,6 @@
             let len = xN-x;
             areaCir += len*cirYar[ib];
             areaIns += len*insYar[ib];
-            //ccc( ib + ' areaCir=' + areaCir + ' areaIns=' + areaIns );
         }
         //makes areas in respect to dr.yVariations.yRef
         let domain = fb.maxX-fb.minX;

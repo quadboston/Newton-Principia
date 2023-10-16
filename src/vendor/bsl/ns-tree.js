@@ -6,9 +6,13 @@
     var sn          = ns.sn;
     var mat         = sn('mat');
     ns.nstree       = nstree;
+
+    //simplifies adding test-modules designed for
+    //master b$l application,
+    fapp            = sn('fapp' );
+    fconf           = sn('fconf',fapp);
+    sconf           = sn('sconf',fconf);
     return;
-
-
 
 
 
@@ -66,6 +70,10 @@
             d8dp        : sn( 'd8dp' ),
             plugins     : sn('plugins'),
             tframes     : sn('tframes'),
+ 
+            fapp,
+            fconf,
+            sconf,
         };
         return ret;
     }

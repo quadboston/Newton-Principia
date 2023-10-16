@@ -46,7 +46,7 @@ and using Lemma 1 with
     \( U^{-}_{\delta} = L^{+}_{\delta}
 \)
 \( \blacksquare \)<br>
-Note: The ¦widthest-rectangular¦(majorant) item¦¦ corresponds to the highest column with biggest base in original text.<br>
+Note: The ¦widthest-rectangular widt-txt¦(majorant) item¦¦ corresponds to the highest column with biggest base in original text.<br>
 
 <br><br><br>
 

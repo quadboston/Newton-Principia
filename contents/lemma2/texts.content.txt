@@ -6,7 +6,7 @@
 
         Si in figura quavis ¦figure¦AacE¦¦
         rectis ¦wall¦Aa¦¦, ¦base¦AE¦¦, &amp; ¦curve¦curva acE¦¦ comprehensa,
-        inscribantur parallelogramma quotcunq; ¦inscribed-rectangles¦Ab, Bc, Cd¦¦,
+        inscribantur parallelogramma quotcunq; ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦,
         &amp;c. sub basibus AB, BC, CD, &amp;c. æqualibus,
 
         &amp; lateribus Bb, Cc, Dd, &amp;c.
@@ -14,8 +14,8 @@
         &amp; compleantur parallelogramma aKbl, bLcm, cMdn, &amp;c.
         Dein horum parallelogrammorum latitudo minuatur, &amp; numerus augeatur in infinitum:
 
-        dico quod ultimæ rationes, quas habent ad se invicem figura ¦inscribed-rectangles¦inscripta AKbLcMdD¦¦,
-        ¦circumscribed-rectangles¦circumscripta AalbmcndoE¦¦,
+        dico quod ultimæ rationes, quas habent ad se invicem figura ¦inscribed-rectangles insc-txt¦inscripta AKbLcMdD¦¦,
+        ¦circumscribed-rectangles circ-txt¦circumscripta AalbmcndoE¦¦,
         &amp; ¦figure¦curvilinea AabcdE¦¦,
         sunt rationes æqualitatis.
 
@@ -33,7 +33,7 @@
 
         If in any figure ¦figure¦AacE¦¦,
         comprehended by the straight lines ¦wall¦Aa¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve acE¦¦,
-        any number of parallelograms ¦inscribed-rectangles¦Ab, Bc, Cd¦¦, ...
+        any number of parallelograms ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦, ...
         are inscribed upon equal bases AB, BC, CD, ...
 
         and have sides Bb, Cc, Dd, ...
@@ -41,9 +41,9 @@
         and if the parallelograms aKbl, bLcm, cMdn, ... are completed;
         if then the width of these parallelograms is diminished and their number increased indefinitely,
 
-        I say that the ultimate ratios which the ¦inscribed-rectangles¦inscribed figure AKbLcMdD¦¦,
-        the ¦circumscribed-rectangles¦circumscribed figure AalbmcndoE¦¦,
-        and the ¦figure-area¦curvilinear figure AabcdE¦¦
+        I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AKbLcMdD¦¦,
+        the ¦circumscribed-rectangles circ-txt¦circumscribed figure AalbmcndoE¦¦,
+        and the ¦figure-area figure-area-txt¦curvilinear figure AabcdE¦¦
         have to one another are ratios of equality.
 
 
@@ -66,10 +66,10 @@
 
         Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦wall¦side¦¦.
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
-        for ¦inscribed-rectangles¦inscribed rectangles¦¦ and ¦circumscribed-rectangles¦circumscribed rectangles¦¦.
+        for ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
         If we increase the number of these rectangles indefinitely,
-        then the areas of the ¦figure¦¦, the ¦inscribed-rectangles¦inscribed rectangles¦¦, and the
-        ¦circumscribed-rectangles¦circumscribed rectangles¦¦ all converge to the
+        then the areas of the ¦figure¦¦, the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, and the
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦ all converge to the
         ¦figure-area¦same value¦¦.
 
 
@@ -80,14 +80,14 @@
 }
 *..*
 
-            Nam figuræ ¦inscribed-rectangles¦inscriptæ¦¦ &amp; ¦circumscribed-rectangles¦circumscriptæ¦¦ differentia
+            Nam figuræ ¦inscribed-rectangles insc-txt¦inscriptæ¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscriptæ¦¦ differentia
             est summa parallelogrammorum Kl + Lm + Mn + Do,
             hoc est (ob æquales omnium bases)
             rectangulum sub unius basi Kb
-            &amp; altitudinum summa Aa, id est rectangulum ¦widthest-rectangular¦ABla¦¦.
+            &amp; altitudinum summa Aa, id est rectangulum ¦widthest-rectangular widt-txt¦ABla¦¦.
 
             Sed hoc rectangulum, eo quod latitudo ejus AB in infinitum minuitur, sit minus quovis dato.
-            Ergo per Lemma I, figura ¦inscribed-rectangles¦inscripta¦¦ &amp; ¦circumscribed-rectangles¦circumscripta¦¦ &amp;
+            Ergo per Lemma I, figura ¦inscribed-rectangles insc-txt¦inscripta¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscripta¦¦ &amp;
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q.E.D.
 
 
@@ -95,15 +95,15 @@
 
 *::*proof|english
 
-            For the difference of the ¦inscribed-rectangles¦inscribed¦¦ and ¦circumscribed-rectangles¦circumscribed¦¦ figures
+            For the difference of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures
             is the sum of the parallelograms Kl, Lm, Mn, and Do,
             that is (because they all have equal bases),
             the rectangle having as base Kb (the base of one of them)
-            and as altitude ¦wall¦Aa¦¦ (the sum of the altitudes), that is, the rectangle ¦widthest-rectangular¦ABla¦¦.
+            and as altitude ¦wall¦Aa¦¦ (the sum of the altitudes), that is, the rectangle ¦widthest-rectangular widt-txt¦ABla¦¦.
 
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle.
-            Therefore (by lem. 1) the ¦inscribed-rectangles¦inscribed figure¦¦ and the ¦circumscribed-rectangles¦circumscribed figure¦¦ and,
-            all the more, the intermediate ¦figure-area¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
+            Therefore (by lem. 1) the ¦inscribed-rectangles insc-txt¦inscribed figure¦¦ and the ¦circumscribed-rectangles circ-txt¦circumscribed figure¦¦ and,
+            all the more, the intermediate ¦figure-area figure-area-txt¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
 
 
 
@@ -112,15 +112,15 @@
 *..*
 
 
-            The difference in area between the ¦inscribed-rectangles¦inscribed rectangles¦¦ and ¦circumscribed-rectangles¦circumscribed rectangles¦¦
-            is equal to the area of a ¦widthest-rectangular¦single rectangle¦¦ on the end.
+            The difference in area between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
+            is equal to the area of a ¦widthest-rectangular widt-txt¦single rectangle¦¦ on the end.
             As the number of rectangles is increased indefinitely, the width of each
-            decreases indefinitely, including the ¦widthest-rectangular¦single rectangle¦¦ just mentioned.
+            decreases indefinitely, including the ¦widthest-rectangular widt-txt¦single rectangle¦¦ just mentioned.
             Since its width decreases indefinitely,
             its area decreases indefinitely, becoming arbitrarily close to 0. So the difference between the areas of the
-            ¦inscribed-rectangles¦inscribed rectangles¦¦, the
-            ¦circumscribed-rectangles¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. For the current figure,
-            that ¦widthest-rectangular¦single rectangle¦¦ is on the
+            ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, the
+            ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. For the current figure,
+            that ¦widthest-rectangular widt-txt¦single rectangle¦¦ is on the
 
             <!--
                 This is a key-value sample what text-to-show in place of this text fragment:

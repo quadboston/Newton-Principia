@@ -92,7 +92,7 @@
 
             ///small test-case
             //if( pointWrap.spinnerClsId === "base-2" ) {
-            //    ccc('assigned achieved', achieved, " point wrap", pointWrap);
+            //    c cc('assigned achieved', achieved, " point wrap", pointWrap);
             //}
             medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
                 pointWrap       : pointWrap,
@@ -161,7 +161,6 @@
             // \\// todo. d8d points tmp patch.
             //////////////////////////////////////////////////////////
 
-            //ccc( 'mouseY=' + mousePoint[1].toFixed() );
             var closest = null;
             dragWraps.forEach( function( dwrap ) {
                 closest = findClosestPoint( closest, mousePoint, dwrap );
@@ -193,7 +192,7 @@
                     closestPoint = { td:td, pt:pointWrap };
                     closest = dwrap;
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
-                    //    //ccc( 'selected' );
+                    //    //c cc( 'selected' );
                 }
             }
             return closest;
@@ -212,9 +211,6 @@
             var item = pointWrap;
             let pw = item;
             var index = item.index;
-            //if( pw.type === 'base' && pw.index === 1 ) {
-            //    ccc( 'moves point B '+ move[1] );
-            //}
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
                 item.y = ach.achieved.y + move[1];
@@ -228,7 +224,6 @@
 	            appstate.movingBasePt = false;
 
             } else if( index > 0 && index < dr.bases ) {
-ccc( dr.bases );
 	            var newX = ach.achieved.x + move[0];
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;

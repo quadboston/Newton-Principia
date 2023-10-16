@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Content template. Test.</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!-- //\\ non-required part: -->
+    <!--      links to b$l based app -->
+    <script src="../../core/ns.js"></script>
+    <script src="../../ns-tree.js"></script>
+    <script src="./trigger.css.js"></script>
+    <script src="./trigger.js"></script>
+    <script>
+    {
+        let { fconf, nsmethods } = window.b$l.nstree();
+        fconf.engineImg = '.';
+
+        let onload = window.onload;
+        window.onload = function() {
+            nsmethods.establishesContentTriggers( onload );
+        }
+    }
+    <!-- \\// non-required part: -->
+
+    </script>
+  </head>
+  <body>
+        <div class="isclosed">
+            <div class="trigger-option">
+                Option 1
+            </div>
+            <div class="trigger-content">
+            Content 1
+            </div>
+        </div>
+
+        <div class="isopen">
+            <div class="trigger-option">
+                Option 2
+            </div>
+            <div class="trigger-content">
+                Content 2
+            </div>
+        </div>
+
+        <div class="isclosed">
+            <div class="trigger-option">
+                Option 3
+            </div>
+            <div class="trigger-content">
+                Content 3
+            </div>
+        </div>
+  </body>
+</html>

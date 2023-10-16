@@ -284,7 +284,6 @@
 
                     //40 seems better than 40 for distinct graph lines
                     LIGHT       : 40,  //sconf.default_tp_lightness ||
-                                       //sconf.DEFAULT_TP_LIGHT,
                     OPACITY     : 0.8, //apparently irrelevant; sconf.DEFAULT_TP_OPACITY,
                     zebraNumber : monoColorHue ? 3 : sconf.ZEBRA_COLORS,
                     monoColorHue,

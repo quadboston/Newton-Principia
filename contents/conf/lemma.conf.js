@@ -20,12 +20,77 @@
 
     to_sconf =
     {
-        //:this solution is not good:
-        //:some lemmas need bright red, but
-        //:bright green text is hard to read ...
-        //:so we resort to dark color LIGHT = 30
-        DEFAULT_TP_LIGHT : 30,
+        //***************************************************
+        // //\\ TOPIC COLORS AND SHAPES
+        // //\\ tp color
+        //===================================================
+        //takes precedence in: ssF.colorArray_2_rgba
+        //                     ssF.topics__2__topicsColorModel
+        default_tp_lightness : 40,
+        //this solution is not good:
+        //some lemmas need bright red, but
+        //bright green text is hard to read ...
+        //so we resort to dark color LIGHT = 30
 
+        //This sets L-paramter in SHL color model.
+        //Range of L is from 0 to 100. 100 is 100% lightness which mean
+        //all colors are equaly bright and diagram becomes invisible. 0 - is complete darkness.
+  
+        //topics:
+        DEFAULT_TP_SATUR : 99,
+  
+        //---------------------------------------------------
+        // //\\ tp color opacity
+        //---------------------------------------------------
+        //affects only ssF.topics__2__topicsColorModel and  ssF.colorArray_2_rgba
+        OWN_SHAPE_OPACITY : 0.6, //not used at current version
+        OWN_SHAPE_OPACITY_HIGH : 1,
+        ITEM_OPACITY_INSTEAD_OF_OWN_SHAPE_in_low8high : false,
+        //---------------------------------------------------
+        // \\// tp color opacity
+        // \\// tp color
+        //===================================================
+
+        SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
+
+        //---------------------------------------------------------------
+        // //\\ global tp svg opacity
+        //---------------------------------------------------------------
+        //goes only to tpOpacityLow through topics__2__topicsColorModel(),
+        //which is global tp-css
+        TOPIC_FILL_OPACITY_NOT_IN_FOCUS : 0.6,
+        TOPIC_FILL_OPACITY_IN_FOCUS : 0.9, //controls mutual visibility overlapped areas,
+                                           //apparently, 1.0 is for bully overlapping
+        //---------------------------------------------------------------
+        // \\// global tp svg opacity
+        //---------------------------------------------------------------
+
+        default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+  
+        //---------------------------------------------------------------
+        // //\\ anchor control
+        //---------------------------------------------------------------
+        ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
+        ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
+        ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
+        //---------------------------------------------------------------
+        // \\// anchor control
+        //---------------------------------------------------------------
+  
+        //---------------------------------------------------------------
+        // //\\ moved to site conf from expand-conf.js
+        //---------------------------------------------------------------
+        default_tp_stroke_width     : 10,
+        defaultLineWidth            : 2,
+        //---------------------------------------------------------------
+        // \\// moved to site conf from expand-conf.js
+        //***************************************************
+        // \\// TOPIC COLORS AND SHAPES
+        //***************************************************
+            
+            
+            
+            
         //***************************************************
         // in better design, this setting should come
         // from ns.dpdec.dimensions.WIDTH bsl-core,
@@ -39,26 +104,8 @@
         // and not from dpdec.dimensions.WIDTH as may appear,
         main_horizontal_dividor_width_px : 21,
         //***************************************************
-
-        SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
+  
         mediaOffset : [ 0, 0 ],                 //in respect to simscene
-
-        //topics:
-        DEFAULT_TP_SATUR : 99,
-
-        //own color, not the parent opacity at topic focus or unfocus,
-        //possibly good for anchor too,
-        OWN_SHAPE_OPACITY : 0.6, //not used at current version
-        OWN_SHAPE_OPACITY_HIGH : 1,
-
-        //this settings play role in tp/opacity/mouseover scenario
-        TOPIC_FILL_OPACITY_NOT_IN_FOCUS : 0.6,
-        TOPIC_FILL_OPACITY_IN_FOCUS : 0.9, //controls mutual visibility overlapped areas,
-                                           //apparently, 1.0 is for bully overlapping
-
-        ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
-        ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
-
         GENERIC_SLIDERS_FONT_SIZE,
         GENERIC_SLIDER_HEIGHT_Y,
         GENERIC_SLIDERS_COUNT,
@@ -74,18 +121,6 @@
         ///in module points.js
         handleRadius : 8,
         standardSvgSize : 1000,
-
-        // //\\ moved to site conf from expand-conf.js
-        default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
-        default_tp_stroke_width     : 10,
-
-        //This sets L-paramter in SHL color model.
-        //Range of L is from 0 to 100. 100 is 100% lightness which mean
-        //all colors are equaly bright and diagram becomes invisible. 0 - is complete darkness.
-        default_tp_lightness        : 40, //instead of sconf.DEFAULT_TP_LIGHT, 50 is "full" lightness
-
-        defaultLineWidth            : 2,
-        // \\// moved to site conf from expand-conf.js
     };
 
     to_sconf.pointDecoration =

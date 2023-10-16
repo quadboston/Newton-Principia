@@ -295,6 +295,8 @@
                             var wwCase = sDomF.topicIdUpperCase_2_underscore;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             //pastes ssD['fixed-colors'] into lcaseId2allLemTopics
+                            //ssD['fixed-colors'] - goes from JS-code and book's text,
+                            //lcaseId2allLemTopics is empty at this moment,
                             eachprop( ssD['fixed-colors'], ( colorArray, topicId_ ) => {
                                 lcaseId2allLemTopics[ wwCase( topicId_ ) ] = {
                                     'fixed-color' : colorArray,
@@ -373,6 +375,7 @@
 
         sDomF.populateMenu();
         ns.haff( sapp, 'finish_sapp_UI' ); 
+        nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
         fmethods.setupEvents();
 

@@ -22,6 +22,8 @@
     {
         //as of Ap/13 2023 sets data in preset-data.js
 
+        sconf.ITEM_OPACITY_INSTEAD_OF_OWN_SHAPE_in_low8high = true;
+
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -54,15 +56,33 @@
 
             "figure"                    : [0,    80,  0 ],
             "figure-area"               : [0,    80,  0 ],
+            "figure-area-txt"           : [0,    80,  0, 0.7, 1],
 
-            "circumscribed-rectangles"  : [0,  50, 100 ],
-            "widthest-rectangular"      : [0,  0, 100 ],
-            "inscribed-rectangles"      : [100,  0, 100 ]
+            "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.7],
+            "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7],
+            "widthest-rectangular"      : [0,  0, 100, 0.4, 0.7],
+            "circ-txt"                  : [0,  50, 100, 0.7, 1],
+            "insc-txt"                  : [100,  0, 100, 0.7, 1],
+            "widt-txt"                  : [0,  0, 100, 0.7, 1],
         };
 
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
+        
+        //to make legend nicely seen, the legend needs
+        //own css independent of rectangulars:
+        //then so, we can decreas opacities below for nicer diagram:
+
+        //apparently goes right into color opacity
+        //sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.5;
+        //sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
+        
+        //these are additional over high and low opacities in color itself:
+        sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
+        sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
+        
+        //no dice: sconf.default_tp_lightness = 0;
 
         //=====================================
         // //\\ configures application engine
@@ -170,7 +190,7 @@
 
             F : {
                 pcolor      : predT[ "widthest-rectangular" ],
-                letterAngle : 90,
+                letterAngle : 45,
                 initialR    : 3,
             },
 

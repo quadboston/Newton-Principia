@@ -31,12 +31,12 @@ For two partitions P' and P'', their mix will be defined as
     \]
 
 
-¦circumscribed-rectangles¦
+¦circumscribed-rectangles circ-txt¦
     Circumscribed
     \( \Phi_{cir} \)
 ¦¦,
 
-¦inscribed-rectangles¦inscribed \( \Phi_{ins} \)¦¦, and interscribed \( \Phi_{inter} \)
+¦inscribed-rectangles insc-txt¦inscribed \( \Phi_{ins} \)¦¦, and interscribed \( \Phi_{inter} \)
 figure is defined as a function:
 
 

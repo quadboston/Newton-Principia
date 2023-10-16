@@ -74,7 +74,6 @@
                 if(checked)  {
                     //$('.outline').toggle();
                     $$.qa( '.outline' )().forEach( outlinee => {
-                        //ccc( 'checked', outlinee );
                         $$.$(outlinee).removeClass( 'hidden' );
                         //outlinee.style.visibility =
                         // 'visible'; //todm ... is this a right action?

@@ -3,21 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "English",
-  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
-  "fixed-colors" :
-  {
-    "given"                     : [0,    100,  0 ],
-    "base"                      : [0,    100,  0 ],
-    "wall"                      : [0,    100,  0 ],
-    "curve"                     : [0,    100,  0 ],
-
-    "figure"                    : [0,    100,  0 ],
-    "figure-area"               : [0,    100,  0 ],
-
-    "circumscribed-rectangles"  : [0,  50, 100 ],
-    "widthest-rectangular"      : [0,  0, 100 ],
-    "inscribed-rectangles"      : [100,  0, 100 ]
-  }
+  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png"
 }
 *..*
 
@@ -34,8 +20,8 @@
 
         Even if the lengths of the ¦base¦bases¦¦ are unequal, the areas of the
         ¦figure-area¦figure¦¦,
-        the ¦inscribed-rectangles¦inscribed rectangles¦¦,
-        and the ¦circumscribed-rectangles¦circumscribed rectangles¦¦
+        the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦,
+        and the ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
         <i>still</i> all converge to the same value.
 
 
@@ -44,9 +30,9 @@
 
 *::*proof|latin
             Sit enim AF æqualis latitudini maximæ
-            &amp; compleatur ¦widthest-rectangular¦parallelogrammum FAaf¦¦.
+            &amp; compleatur ¦widthest-rectangular widt-txt¦parallelogrammum FAaf¦¦.
             Hoc erit majus quam differentia
-            ¦inscribed-rectangles¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles¦figuræ circumscripta¦¦;
+            ¦inscribed-rectangles insc-txt¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles circ-txt¦figuræ circumscripta¦¦;
             at latitudine sua AF in infinitum diminuta,
             minus fiet dato quovis rectangulo. Q.E.D.
 

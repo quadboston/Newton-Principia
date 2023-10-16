@@ -10,6 +10,9 @@
         '((?:\\d|\\.)+)\\s*\\)',
         'i'
     );
+    ns.builds_zebraNColors_array = builds_zebraNColors_array;
+    ns.hslo_2_low8high = hslo_2_low8high;
+    ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
 
     ns.rgba2arr = function( rgbastr )
@@ -253,17 +256,6 @@
         }
         return str;
     }
-
-
-
-
-
-
-
-
-    ns.builds_zebraNColors_array = builds_zebraNColors_array;
-    ns.hslo_2_low8high = hslo_2_low8high;
-    ns.rgbStr2digitsArray = rgbStr2digitsArray;
     return;
 
 
@@ -280,7 +272,7 @@
     ///                 "classic"-binary-zebra obtains with N=2,
     ///     output: zebraNcolorsArray with lenght >= maxColors,
     ///======================================================================
-    function builds_zebraNColors_array({
+    function builds_zebraNColors_array({ //with low8high signature
         maxColors,
         SATUR,
         LIGHT,
@@ -334,11 +326,11 @@
         highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
         //ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
         var corRack     = ns.pars2colors( hue, sat, light, lowOpacity );
-        rgba_low        = corRack.rgba;
-        rgbaCSS         = corRack.rgbaCSS;
+        let rgb         = corRack.rgb;
+        let rgba_low    = corRack.rgba;
         var corRack     = ns.pars2colors( hue, sat, light, highOpacity );
-        rgba_high       = corRack.rgba;
-        return { rgba_low, rgba_high, lowOpacity, highOpacity }; 
+        let rgba_high   = corRack.rgba;
+        return { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
     }
 
     ///Inputs:      rgbStr, aka #FFFFFF or FFFFFF,

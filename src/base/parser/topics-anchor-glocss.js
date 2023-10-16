@@ -66,40 +66,48 @@
 
         var notfocusOp_str = sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS.toFixed(3);
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
-
         var fixedCol = haz( tplink, 'fixed-color' );
         if( fixedCol ) {
             //note: high opacity is taken as sconf.OWN_SHAPE_OPACITY_HIGH in this ver
-            var { rgba_high } = ssF.colorArray_2_rgba( fixedCol );
-
+            var { rgb, rgba_high, } = ssF.colorArray_2_rgba( fixedCol );
         } else if( tpIDs.length === 0 ) {
             ////safety case: no topics exist in collection,
             ////setting default anchor color
             var rgba_high = 'rgba( 150, 0, 150, 1 )';
+            var rgb = 'rgba( 150, 0, 150)';
 
         } else {
             ////tplink which comprised of more than one topics,
             //.gets color of the first topic in link's topics collection
             var topi_c = topics.lcaseId2allLemTopics[ tpIDs[0] ];
-            //var { rgba_high, tpOpacityLow, tpOpacityHigh } = topi_c;
-            var { rgba_high, } = topi_c;
+            // see *topi_c properties*
+            var { rgb, rgba_high, } = topi_c;
         }
 
         //  apparently padding highlighted anchor does bloat MathJax font,
         //  so, padding is disabled
+        let tplink_str = 'a.tl-'+tplink_ix;
+        
+        //todm needs more work to proofcheck other texts:
+        let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb : rgba_high;
+
+        //if( tpIDs[0] === 'circ-txt' ) {
+            //ccc( tplink_ix + ' col='+ rgba_high + ` ${rgba_high} ${tplink_str}` + ' ids=', tpIDs, topi_c );
+        //}
+        
         anchors__cssHighlighter.value += `
-            a.tl-${tplink_ix + ''} {
+            ${tplink_str} {
                border-radius : 4px;
-               color         : ${rgba_high};
+               color         : ${baseColor};
                opacity       : ${notfocusOp_str};
                font-weight   : ${ tplink.anchorIsBold ? 'bold' : 'normal' };
             }
-            a.tl-${tplink_ix + ''}:hover {
+            ${tplink_str}:hover {
                opacity          : ${focusOp_str};
                background-color : #eaeaea;
                cursor           : default;
             }
-            a.tl-${tplink_ix + ''}:hover span{
+            ${tplink_str}:hover span{
                font-weight      : bold;
                background-color : #eaeaea;
                cursor           : default;
