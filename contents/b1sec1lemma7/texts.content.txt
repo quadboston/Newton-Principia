@@ -5,11 +5,15 @@
 }
 *..*
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
 *::*proof|latin
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -27,6 +31,8 @@
 *..*
 With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,
 the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one another ¦¦ are ratios of equality.
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -43,6 +49,7 @@ will coincide and therefore will be equal. Hence, the straight lines ¦AB¦¦ an
 ¦AD¦¦ and the intermediate arc ¦arc-AB¦ACB¦¦ (which are always proportional to the
 lines ¦Ab¦A<i>b </i>¦¦ and ¦Ad¦A<i>d </i>¦¦ and the ¦arc-Ab¦A<i>cb </i>¦¦ respectively) will also vanish and will
 have to one another an ultimate ratio of equality. &nbsp; Q.E.D.
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -64,6 +71,7 @@ and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 
 COROLLARY 3. And therefore all these lines can be used for one another
 interchangeably in any argumentation concerning ultimate ratios.
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 

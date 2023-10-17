@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3lemma13/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3lemma13/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -66,6 +68,8 @@ Page 463.
 
 
 
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

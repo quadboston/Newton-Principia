@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -41,6 +43,7 @@ the square roots of the ¦L,LL¦principal latera recta¦¦.
 [Assumied: here, latus rectum is = principal latera recta]
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -75,8 +78,8 @@ the square root of the
 
 ¦L,LL¦latus rectum¦¦. Q.E.D.
 
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -110,8 +113,8 @@ Page 114.
 
 The ¦L,LL¦principal latera recta¦¦ are as the squares of ¦SY¦the perpendiculars¦¦
  and as the squares of ¦PR¦the velocities¦¦
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -131,8 +134,7 @@ The ¦PR¦velocities of bodies¦¦ at their greatest and least distances from th
 the square roots of the ¦L,LL¦principal latera recta¦¦. For ¦SY¦the perpendiculars¦¦ are now
 the distances themselves.
 
-<br><br><br>
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -153,8 +155,7 @@ distance from the focus, is to the velocity with which the body would move
 in a circle, at the same distance from the center, as the square root of the
 principal latus rectum is to the square root of twice that distance.
 
-<br><br><br>
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -178,8 +179,8 @@ semiaxes minor, and these are as mean proportionals between the distances
 and the latera recta. Compound this ratio [of the semiaxes] inversely with
 the square root of the ratio of the latera recta directly, and it will become the
 square root of the ratio of the distances inversely.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -197,8 +198,8 @@ Page 115.
 In the same figure, or even in different figures whose
 principal latera recta are equal, the velocity of a body is inversely as the
 perpendicular dropped from the focus to the tangent.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -220,8 +221,8 @@ ratio that is less. For (by lem. 14, corol. 2) the perpendicular dropped from
 the focus to the tangent of a parabola is as the square root of that distance.
 In a hyperbola the perpendicular is smaller, and in an ellipse greater, than in
 this ratio.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -244,8 +245,8 @@ corol. 6 of this proposition and by prop. 4, corol. 6 — the same proportion is
 kept at all distances. Hence, also, in a parabola the velocity everywhere is
 equal to the velocity of a body revolving in a circle at half the distance; in
 an ellipse it is smaller and in a hyperbola greater.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -264,8 +265,8 @@ The velocity of a body revolving in any conic is to the
 velocity of a body revolving in a circle at a distance of half the principal latus
 rectum of the conic as that distance is to the perpendicular dropped from the
 focus to the tangent of the conic. This is evident by corol. 5.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 115.
 
@@ -290,8 +291,9 @@ conic will have the same ratio to the velocity of a body revolving in a circle
 at the same distance that a mean proportional between that common distance
 and half of the principal latus rectum of the conic has to the perpendicular
 dropped from the common focus to the tangent of the conic.
-<br><br><br>
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 116.
 
@@ -337,6 +339,8 @@ Therefore:
         4/𝛾 ( ¦PR¦v¦¦ sin(ω) ¦SP¦r¦¦ )² = 4/𝛾 ( ¦PR¦v¦¦ ¦SY¦¦ )²
     </div>
 
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

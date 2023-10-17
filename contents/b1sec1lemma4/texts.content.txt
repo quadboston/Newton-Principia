@@ -7,7 +7,7 @@
 
 
 <img src="contents/b1sec1lemma4/img/l4.png" style="width:100%">
-
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -20,7 +20,7 @@
 
 
 <img src="contents/b1sec1lemma4/img/l4.png" style="width:100%">
-
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -62,6 +62,7 @@ figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that
 
 *::*proof|english
 {
+      "APPARENTLY IS NOT IMPLEMENTED, LOADS, DOES NOT APPEAR mediaBgImage" : "l4-diagram.png"
 }
 *..*
 
@@ -73,7 +74,7 @@ by Lemma 3, the former figure stands to the former sum and the latter figure to 
 in the ratio of equality.
 
 Q.E.D.
-<br><br><br>
+<br><br>
 
 
 <div book-reference-id="Donahue"></div>

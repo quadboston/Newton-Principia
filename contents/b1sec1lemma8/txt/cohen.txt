@@ -13,6 +13,7 @@ and the tangent ¦AD¦¦, constitute three triangles
 ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦, and ¦AR RD AD¦RAD¦¦, and if
 then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the triangles as they vanish
 are similar in their ultimate form, and that their ultimate ratio is one of equality.
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -41,6 +42,7 @@ and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite,
 also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -67,6 +69,7 @@ and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite,
 also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 

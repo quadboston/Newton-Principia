@@ -535,12 +535,15 @@
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
                     return;
                 }
-                // //\\ establishes image source file name
-                var imgInSconf = haz( studyMods[ essayHeader.submodel ].sconf, 'mediaBgImage' );
-                var imgInHeader = haz( essayHeader, 'mediaBgImage' );
                 if( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
-                if( imgInHeader ) {
-                    var imgId = ''+imgInHeader;
+
+                // //\\ establishes image source file name
+                var headerHasImage = has( essayHeader, 'mediaBgImage' );
+                var imgInSconf = haz( studyMods[ essayHeader.submodel ].sconf, 'mediaBgImage' );
+                if( headerHasImage ) {
+                    let imgInHeader = essayHeader.mediaBgImage;
+                    var imgId = imgInHeader === null || imgInHeader === '' ?
+                                '*empty*' : ''+imgInHeader;
                     stdMod.imgRk.imgFoundInText = true;
                 } else if( imgInSconf )  {
                     var imgId = imgInSconf;

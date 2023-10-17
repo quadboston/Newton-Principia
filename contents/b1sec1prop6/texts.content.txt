@@ -8,6 +8,8 @@
 
 <img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
 
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -21,6 +23,8 @@
 
 <img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
 
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -82,9 +86,7 @@ The same thing is also easily demonstrated
 
 (<a target="_blank" href="?conf=sappId=b1sec1lemma10,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
 
-<br><br><br>
-
-
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 <br><br>
@@ -112,6 +114,8 @@ to the time in which that ¦timearc¦double arc¦¦ is described; and therefore 
 used to represent the time.
 
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -150,6 +154,8 @@ We shall give example of this procedure in the following problems.
 
 
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -250,7 +256,8 @@ where
 <br><br>
 
 Hence in Book notations for (**), the specific coefficient is 2M².
-<br>
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 
@@ -280,7 +287,8 @@ correspondingly:
         ¦force¦𝑓¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
         ¦force¦𝗳 = -𝗲𝑓¦¦ <br>
     </div>
-<br>
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

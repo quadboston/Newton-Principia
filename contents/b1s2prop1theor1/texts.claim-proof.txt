@@ -6,6 +6,9 @@
 *..*
 
 <img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -120,8 +123,6 @@
 The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of ¦force¦forces¦¦, are contained in immobile planes and are proportional to the times.
 
 <br><br>
-
-
 <div book-reference-id="Donahue">Page 123.</div>
 
 
@@ -148,6 +149,9 @@ The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyr
 *::*proof|latin
 
 <img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -253,8 +257,9 @@ while any described areas whatever ¦SABCD¦SADS¦¦,
 ¦SABCDEF¦SAFS¦¦,
 always proportional to the times of
 description, will be proportional to those times in this case.
-<br><br><br><br>
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -420,6 +425,7 @@ description, will be proportional to those times in this case.
 
 <br>
 
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

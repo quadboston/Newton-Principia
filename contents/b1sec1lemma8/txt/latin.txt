@@ -6,6 +6,7 @@
 *..*
 
 <img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -15,6 +16,7 @@
 *::*proof|latin
 
 <img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+<br><br>
 <div book-reference-id="latin"></div>
 
 

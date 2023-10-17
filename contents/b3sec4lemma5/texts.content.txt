@@ -6,6 +6,9 @@
 *..*
 
 <img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -25,12 +28,18 @@
 
 
 <img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="Motte-3rd"></div>
 
 
 *::*proof|latin
 
 <img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -40,6 +49,9 @@
 
 
 <img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="Motte-3rd"></div>
 
 
@@ -195,6 +207,8 @@ Moving other point L closer to H
 makes picture even worse.
 </span>
 
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

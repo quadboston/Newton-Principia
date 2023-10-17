@@ -8,6 +8,8 @@
 
 <img src="contents/b1sec1lemma11/img/l11-3rded.jpg" style="width:100%">
 
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -134,9 +136,9 @@ you please, and therefore will ultimately be equal, by Lemma1; and on that accou
 the lines ¦BD¦¦, ¦bd¦¦ are in the same ratio to each other as before.
 <br>
 Q.E.D.
-<br><br><br>
 
 
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 <br><br>
@@ -202,11 +204,17 @@ AD, Ad, as of the chords and arcs AB, AB.
 <div style="font-size:10px;">
     Sources: <br><br>
 
-    COR. 1, 2, 3. <br>
+    COR. 1, 2, 3.
+
+
+<br><br>
     <div book-reference-id="Donahue"></div>
     <br><br>
 
-    COR. 4 and COR. 5. <br>
+    COR. 4 and COR. 5.
+
+
+<br><br>
     <div book-reference-id="Motte-3rd"></div>
 </div>
 

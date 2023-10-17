@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -33,6 +35,8 @@
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
 ¦centripetal force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 463.
 
@@ -122,6 +126,8 @@ centrifugal force, a body will move in the opposite branch of the hyperbola.
 
 
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
 

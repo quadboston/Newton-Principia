@@ -3,6 +3,9 @@
 
 
 <img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -69,9 +72,8 @@ The ¦BV EZ¦forces¦¦ by which any bodies in nonresisting spaces are drawn bac
 in equal times which converge to the ¦S¦center of forces¦¦ and bisect ¦AC DF¦the chords¦¦, when
 those arcs are diminished in infinitum. For these ¦BU EW¦sagittae¦¦ are
 the halves of the ¦BV EZ¦diagonals¦¦ with which we have been concerned in Corollary 3.
-<br><br><br>
 
-
+<br><br>
 <div book-reference-id="Donahue"></div>
 Pages 123 - 141.
 
@@ -90,8 +92,8 @@ T.1. Corollary 5.
 Therefore, the same forces are to the force of gravity [gravitas] as these sagittae are to
 the sagittae, perpendicular to the horizon, of parabolic arcs which projectiles describe in the
 same time.
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Donahue"></div>
 Pages 123 - 141.
 
@@ -185,8 +187,9 @@ T.1. Corollary 6.
 All the same things pertain, by Corollary 5 of the Laws, where the planes in which the
 bodies move, along with the centres of forces located in them, are not at rest, but move
 uniformely in a straight line.
-<br><br><br>
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 Pages 123 - 141.
 

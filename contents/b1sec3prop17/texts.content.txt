@@ -51,7 +51,8 @@
 }
 *..*
 <img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -69,8 +70,9 @@ Supposing that the centripetal force is inversely proportional to the square of 
 ¦SP¦distance of places¦¦ from the center and that the absolute quantity of this force is
 known, it is required to find the line which a body describes when going forth
 from a ¦P¦given place¦¦ with a given velocity along a ¦PY¦given straight line¦¦.
-<br><br><br>
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 116.
 
@@ -141,8 +143,8 @@ correctly determined, which a body will describe under the action of such a
 force, when it goes forth from a given place P with a given velocity along a
 straight line PR given in position. Q.E.F.
 
-<br><br><br>
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 116.
 
@@ -172,9 +174,8 @@ to DS as the latus rectum is to the difference between the latus rectum and
 4¦DS¦¦. For the proportion SP + PH to PH as 2¦SP¦¦ + 2¦PK¦KP¦¦ to L in the case of
 this corollary becomes DS + DH to DH as 4¦DS¦¦ to L and, by separation [or
 dividendo], becomes DS to DH as 4¦DS¦¦ — L to L.
-<br><br><br>
 
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 117.
 
@@ -218,8 +219,9 @@ and ellipse changes to a parabola.
 <br><br>
 
 After that, χ must be -1 and conic transforms to a hyperbola.
-<br><br>
 
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 
@@ -239,9 +241,8 @@ twice the distance DS as the square of the ratio of this given ¦P,vb¦velocity�
 velocity of a body revolving in a circle at a distance DS (by prop. 16, corol.
 3), and then taking DH to DS as the ¦L,LL¦latus rectum¦¦ to the difference between
 the ¦L,LL¦latus rectum¦¦ and 4¦DS¦¦.
-<br><br><br>
 
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 117.
 
@@ -284,9 +285,9 @@ pursue its course can be found. For by compounding the body's own motion
 with that motion which the impulse alone would generate, there will be
 found the motion with which the body will go forth from the given place of
 impulse along a straight line given in position.
-<br><br><br>
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 118.
 
@@ -324,6 +325,7 @@ from the order of the sequence the continual changes at intermediate placesᵃ.
 will make at certain points" and, by interpolation, estimate the changes continually made at intermediary points.
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 118.
 
@@ -361,11 +363,9 @@ PG of the orbit at G; then the force
 
 prop. 7, corol. 3) will be as
 CG³/RP².
-<br>
-
-<br><br><br>
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 118.
 
@@ -637,6 +637,8 @@ sign φ = -σ sign( cos(ω)/sin(ω) )<br>
                                         </table>
                                         </div>
 
+
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

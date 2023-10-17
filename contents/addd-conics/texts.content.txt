@@ -174,9 +174,8 @@ Finally <span class="captured-reference id-ellipse">for S in focus</span>,
             &nbsp;&nbsp;&nbsp; (A) <br>
         </div>
     </div>
+
 <br><br>
-
-
 <div book-reference-id="kvk"></div>
 
 

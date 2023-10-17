@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -27,7 +29,8 @@
 }
 *..*
 <img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -37,7 +40,8 @@
 }
 *..*
 <img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -55,6 +59,8 @@ Let a ¦body P¦body¦¦ revolve in an ellipse; it is required to find the law
 of the centripetal
 ¦force¦¦ tending toward the ¦O¦center of the ellipse¦¦
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -111,6 +117,8 @@ directly. Q.E.I.
 <br><br>
 a. Concerning this reference to "the Conics" see the <i>Source</i>, Guide, §10.10.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -144,6 +152,8 @@ be equal to 2¦DO¦DC¦¦²/¦PO¦PC¦¦. Accordingly, the ¦force¦¦ under the
 revolves in the ellipse will (<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) be as 2¦DO¦DC¦¦² / ¦PO¦PC¦¦ x ¦PF¦¦² inversely,
 that is (because 2¦DO¦DC¦¦² x ¦PF¦¦² is given), as ¦PO¦PC¦¦ directly. Q.E.I.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -248,6 +258,7 @@ from the center.
 
 
 
+<br><br>
 <div book-reference-id="kvk"></div>
 
 *::*corollary|addendum

@@ -238,6 +238,8 @@ For ellipse, 𝑠 = 1 and the force attracts; otherwise, repels.
 ??For Ellipse motion with force origin in conic's center.
 
 Binet Jacqes Phillipe Marie 1786-1856, cited at Krylov p83, p84
+
+<br><br>
 <div book-reference-id="Krylov"></div>
 
 2. Lorentz corresponding states:
@@ -323,8 +325,7 @@ If ω = 90ᵒ, then ρ = const = ρₒ, body's orbit is a circle, and 𝑓 = v²
 <a target="_blank" href="https://en.wikipedia.org/wiki/Logarithmic_spiral">Logarithmic spiral</a> <br>
 <a target="_blank" href="https://en.wikipedia.org/wiki/Cotes%27s_spiral">Roger Cotes spirals</a>
 
-
-<br>
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

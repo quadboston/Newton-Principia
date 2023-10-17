@@ -9,7 +9,7 @@
     function lemmaConfig()
     {
         return {
-            sappCodeReference : 'b1sec1prop6',
+           sappCodeReference : 'b1sec1prop6',
             "contents-list" :
             [
                 'texts.content.txt',

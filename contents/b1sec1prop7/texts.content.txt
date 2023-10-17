@@ -8,6 +8,8 @@
 
 <img src="contents/b1sec1prop7/img/latin.png" style="width:100%">
 
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -21,6 +23,8 @@
 
 <img src="contents/b1sec1prop7/img/latin.png" style="width:100%">
 
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -48,6 +52,8 @@
 
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 455.
 

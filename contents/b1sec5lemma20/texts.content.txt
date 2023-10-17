@@ -55,6 +55,8 @@ easque secet recta BD in punctis D, d, &amp; ipsam PQ secet recta Cd in q. Ergo 
 PT ut Pq ad PT; unde PR &amp; Pq sibi invicem aequantur, contra hypothesin.
 </pre>
 
+
+<br><br>
 <div book-reference-id="IanBruce"></div>
 Book I Section V.<br>
 
@@ -97,8 +99,9 @@ A, B, C, P.
 <br><br>
 
 <pre style="font-size:11px">
-</pre><br>
+</pre>
 
+<br><br>
 <div book-reference-id="IanBruce"></div>
 Book I Section V.
 
@@ -165,9 +168,9 @@ reference line on which related points and angles may be defined. Note the posit
 the points A, B, C, D and P in the diagrams relating to these lemmas, where the hyperbola
 in the latter can be viewed as an inverted form of the ellipse in the former. Newton has
 not followed with a like proof, but has introduced a new way of drawing a conic section.]
+
+
 <br><br>
-
-
 <div book-reference-id="IanBruce"></div>
 Book I Section V.
 <br>

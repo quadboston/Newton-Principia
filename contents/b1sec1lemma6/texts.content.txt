@@ -11,6 +11,7 @@ in medio curvaturæ continuæ, tangatur a recta utrinq; producta ¦AD¦AD¦¦;
 dein puncta ¦A¦A¦¦, ¦B¦B¦¦ ad invicem accendant & coeant; 
 dico ¦angleBAD AB AD *anch-color*given¦quod angulus BAD¦¦ sub chorda & tangente contentus minuetur in infinitum & ultimo evanescet.
 
+<br><br>
 <div book-reference-id="Gutenberg"></div>
 
 
@@ -42,6 +43,7 @@ that ¦angleBAD AB AD *anch-color*given¦the angle BAD¦¦ contained by the
 chord and the tangent will be indefinitely diminished and will ultimately
 vanish.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -56,6 +58,9 @@ vel coincidet cum tangente Ad,
 vel ducetur inter tangentem & curvam. 
 Sed casus posterior est contra naturam Curvaturæ, 
 ergo prior obtinet. Q. E. D.
+
+
+<br><br>
 <div book-reference-id="Gutenberg"></div>
 
 
@@ -69,6 +74,7 @@ ergo prior obtinet. Q. E. D.
     and therefore the curvature at ¦A¦point A¦¦ will not be continuous,
     <span class="captured-reference id-L-equal-d">contrary to the hypothesis</span>.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 

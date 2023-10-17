@@ -154,9 +154,6 @@ equivalent by definition
                                             </div>
 
 
-
-
-
 <br><br>
 <div book-reference-id="kvk"></div>
 

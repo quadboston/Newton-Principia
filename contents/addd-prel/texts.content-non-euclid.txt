@@ -66,7 +66,7 @@ For any n'/n" < 1, n'/n" < v'/v" < 1.
 Corollary.
 (1,1)<i>❚</i>(2,1) = 1. Non-equal magnitues can have ratio of equality. Informally, real numbers are "insufficient currency" in "non-Euclidean magnitudes economy".
 
-<br>
+<br><br>
 <div book-reference-id="kvk"></div>
 <br><br>
 

@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop15/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop15/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -32,6 +34,7 @@
 Under the same suppositions as in prop. 14, I say that the squares of the periodic
 times in ellipses are as the cubes of the ¦A,AA¦major axes¦¦.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -54,8 +57,7 @@ as the periodic time. Take away from both sides [i.e., divide through by] the
 square root of the latus rectum, and the result will be that the squares of the
 periodic times are as the cubes of the ¦A,AA¦major axes¦¦. Q.E.D.
 
-<br><br><br>
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -83,6 +85,7 @@ Page 114.
 Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in
 circles whose diameters are equal to the ¦A,AA¦major axes¦¦ of the ellipses.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 114.
 
@@ -120,7 +123,7 @@ From "both":
         T² = 4π²/𝛾  ¦A,AA¦a¦¦³ <br>
     </div>
 
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

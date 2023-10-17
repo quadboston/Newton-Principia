@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop11/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop11/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -33,6 +35,8 @@ Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
 it is required to find the law of the centripetal
 ¦force¦¦ tending toward a focus of the ellipse.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 462.
 
@@ -147,6 +151,8 @@ concisely as in prop. 10, but because of the importance of this problem and
 its use in what follows, it will not be too troublesome to confirm each of
 these other cases by a separate demonstration.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 463.
 

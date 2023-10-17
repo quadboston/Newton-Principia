@@ -6,7 +6,8 @@
 *..*
 
 <img src="contents/b1sec8prop41/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -17,7 +18,9 @@
 }
 *..*
 <img src="contents/b1sec8prop41/img/latin.png" style="width:100%">
-<br>
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -131,6 +134,8 @@
 Supposing a ¦force¦centripetal force¦¦ of any kind and granting the ¦VSarea Tarea fiArea¦quadratures¦¦ of ¦force Tkernel Fkernel¦curvilinear figures¦¦, it is required to find the ¦orbit¦trajectories¦¦ in which bodies will move and
 also the ¦Tarea¦times¦¦ of their motions in the ¦orbit¦trajectories¦¦ so found.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 529.
 
@@ -223,16 +228,15 @@ the sector VCX along with its angle VCI. And given the angle VCI and the
 height CI, the place I will be given, in which the body will be found at the
 end of that time. Q<!--  -->.E.I<!--  -->.
 
-
-<br><br><br>
-
 <!-- remove this
-[ In diagram model: "starting point" V placed at distance 1 from ¦C¦¦: CV = A<sub>o</sub> = 1.
-Therfore, constant angular momentum Q = ¦V,v¦v<sub>o</sub>¦¦sin(ω<sub>o</sub>).
-"Newton/Halley printing parameter" Z = ¦vgraph¦v¦¦sin(ω). At starting point: ¦VM¦Z<sub>o</sub>¦¦ = Q. ]
-<br><br>
+    [ In diagram model: "starting point" V placed at distance 1 from ¦C¦¦: CV = A<sub>o</sub> = 1.
+    Therfore, constant angular momentum Q = ¦V,v¦v<sub>o</sub>¦¦sin(ω<sub>o</sub>).
+    "Newton/Halley printing parameter" Z = ¦vgraph¦v¦¦sin(ω). At starting point: ¦VM¦Z<sub>o</sub>¦¦ = Q. ]
+    <br><br>
 -->
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Pages 530 - 531.
 
@@ -534,8 +538,7 @@ Newton's diagram fits diligently diagram which we reproduced here
 by estimating Newton's initial values and making numerical calculation of second degree differential equation by computer.
 
 
-
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 
@@ -567,9 +570,8 @@ are those points in which the straight line IC drawn through the ¦C¦center¦¦
 perpendicularly upon the trajectory VIK, which happens when the straight
 lines IK and NK are equal, and thus when the area ABFD is equal to Z².
 
-<br><br><br>
 
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 530.
 
@@ -586,9 +588,8 @@ the line IC, is also expeditiously found from the given height IC of the body,
 namely, by taking its sine to the radius as KN to IK, that is, as Z to the
 square root of the area ABFD.
 
-<br><br><br>
 
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 530.
 
@@ -639,9 +640,9 @@ is found by taking the angle VCP proportional to the elliptic sector VRC and
 by taking the length CP equal to the length CT, as above. All this follows
 from the foregoing (prop. 41), by means of the quadrature of a certain curve,
 the finding of which, as being easy enough, I omit for the sake of brevity.
-<br><br><br>
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 530.
 

@@ -6,6 +6,8 @@
 *..*
 
 <img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -15,6 +17,8 @@
 *::*proof|latin
 
 <img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -69,6 +73,8 @@ and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite,
 also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
@@ -93,6 +99,8 @@ and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite,
 also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 

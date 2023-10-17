@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3lemma14/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3lemma14/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -34,6 +36,7 @@ proportional between the distance of the focus from the point of contact and its
 distance from the principal vertex of the figure.
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
 
@@ -62,8 +65,7 @@ parallel; and hence triangle SAN will
 be right-angled at A and similar to the equal triangles SNM and SNP; therefore, PS is to SN as SN to SA. Q.E.D.
 
 
-<br><br><br>
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
 
@@ -91,6 +93,7 @@ PS2
  as PS to SA.
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
 
@@ -109,6 +112,8 @@ And because SA is given, SN2
 QR QR
 SP2
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
 
@@ -124,8 +129,7 @@ And the point where any tangent PM meets the straight
 line SN, which is drawn from the focus perpendicular to that tangent, occurs
 in the straight line AN, which touches the parabola in the principal vertex.
 
-
-
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 466.
 
@@ -144,8 +148,7 @@ Page 466.
 }
 *..*
 
-
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

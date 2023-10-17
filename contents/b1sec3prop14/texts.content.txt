@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop14/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop14/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -36,6 +38,7 @@ the ¦instanttriangle¦areas¦¦ which ¦P¦the bodies¦¦
 describe in the same time by ¦SP¦radii¦¦ drawn to the ¦S¦center¦¦.
 
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 
@@ -71,6 +74,8 @@ hypothesis), inversely as ¦SP¦SP²¦¦. Therefore, QT² / QR is as
 QT² x ¦SP¦SP²¦¦, that is, the latus rectum L is as
 the square of ¦instanttriangle¦the area¦¦ QT x ¦SP¦¦. Q.E.D.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 
@@ -107,6 +112,7 @@ Returning from <><>CXX2E, for fixed interval time Δt,
         ¦orbitarea¦A¦¦ =<sup>u</sup> ¦QT¦¦ ¦SP¦¦ / Δt T ~ ¦QT¦¦ ¦SP¦¦ T.
     </div>
 
+<br><br>
 <div book-reference-id="kvk"></div>
 
 
@@ -134,6 +140,7 @@ described in a given time, multiplied by the periodic time.
 Так как площадь эллипса ...
 -->
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 
@@ -174,9 +181,8 @@ Returning from <><>CXX2E, for fixed time interval Δt,
                        ¦instanttriangle¦(S˙Δt)¦¦²  <br>
         ¦QT¦¦² ¦SP¦¦² ~ ¦L,LL¦2ρ<sub>⟂</sub>¦¦. <br>
     </div>
-<br>
 
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

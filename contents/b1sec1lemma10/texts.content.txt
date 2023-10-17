@@ -6,6 +6,9 @@
 *..*
 
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -19,6 +22,8 @@
 The ¦ABD ACE¦spaces¦¦ which a body describes when any finit force whatever urges [it], whether that force be determinate and immutable, or whether it be continually increased or continually decreased, are at
 the very beginning of the motion in the ¦AD2PerAE2¦duplicated ratio of the times¦¦.
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -29,6 +34,9 @@ the very beginning of the motion in the ¦AD2PerAE2¦duplicated ratio of the tim
 }
 *..*
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -46,6 +54,8 @@ at the very beginning of the motion ( by Lemma 9 ),
 in the ¦AD2PerAE2¦duplicate ratio¦¦ of times ¦AD¦¦, ¦AE¦¦.
 Q.E.D.
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -59,6 +69,9 @@ Q.E.D.
 }
 *..*
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -111,6 +124,7 @@ Corollary 5.
 And the squares of the times are as the spaces described directly and the forces inversely.
 
 
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -289,7 +303,7 @@ then the defined in Lemma area, drawn by plot of <b>v</b><sub>d</sub> correspond
     In other words, the area S is swept "curvewise": parallel lines sweep already given curve.
 
 
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 

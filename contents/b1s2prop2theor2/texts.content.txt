@@ -6,6 +6,9 @@
 *..*
 
 <img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -157,6 +160,9 @@ times, is urged by a ¦force¦centripetal force¦¦ tending to the same ¦S¦poi
 *::*proof|latin
 
 <img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -192,6 +198,8 @@ whether the surface in which the body describes the curvilinear figure
 be at the rest, or move along with the body, the figure described, and
 its ¦S¦point S¦¦, uniformly in a straight line.
 
+
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 
@@ -272,6 +280,9 @@ its ¦S¦point S¦¦, uniformly in a straight line.
 
 
 <img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -297,7 +308,7 @@ the radii meet, towards the
 parts ¦Bc¦to which the motion tends¦¦.
 
 
-
+<br><br>
 <div book-reference-id="Motte-3rd">Page 106.</div>
 
 
@@ -356,6 +367,9 @@ Corollary 2.
 *::*scholium|latin
 
 <img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -399,6 +413,7 @@ increase nor decrease the quantity of the surface described, and so
 may be negected in the compounding of forces.
 
 
+<br><br>
 <div book-reference-id="Donahue"></div>
 
 

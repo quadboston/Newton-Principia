@@ -896,7 +896,8 @@ Theorem: ratio preserves * <b>r</b> product
   "subessay" : "references"
 }
 *..*
-<br>
+
+<br><br>
 <div book-reference-id="kvk"></div>
 <br><br>
 

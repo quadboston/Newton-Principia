@@ -68,6 +68,8 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 *::*proof|latin
 
 <img src="contents/b1sec1lemma9/img/lemma9.jpg" style="width:100%">
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 

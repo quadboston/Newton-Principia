@@ -5,7 +5,8 @@
 }
 *..*
 <img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -16,7 +17,8 @@
 }
 *..*
 <img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -33,6 +35,8 @@ Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is requ
 the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
 
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 112.
 
@@ -80,6 +84,8 @@ and therefore (by prop. 6, corols. 1 and 5) the centripetal force is inversely a
  x 4¦SA¦¦, that is,
 because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. Q.E.I.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 112.
 
@@ -118,6 +124,8 @@ a given curvature at that point. But the curvature is given from the given
 each other cannot be described with the same centripetal force and the same
 velocity.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 
@@ -140,6 +148,8 @@ results when the line-elements ¦PR¦¦ and ¦QR¦¦ are diminished indefinitely
 these corollaries I include the circle along with the ellipse, but not for the
 case where the body descends straight down to a center.
 
+
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 

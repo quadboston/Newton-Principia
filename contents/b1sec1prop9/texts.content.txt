@@ -19,7 +19,8 @@
 }
 *..*
 <img src="contents/b1sec1prop9/img/latin.png" style="width:100%">
-<br>
+
+<br><br>
 <div book-reference-id="latin"></div>
 
 
@@ -42,6 +43,7 @@ Let a ¦body P¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all i
 given angle; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
 the ¦S¦center of the spiral¦¦.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 458.
 
@@ -88,6 +90,7 @@ that is
 
 inversely as the ¦force¦centripetal force¦¦.
 
+<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 458.
 
@@ -131,7 +134,7 @@ v²~ M²¦SP¦r¦¦⁻²𝛺⁻², then
             ¦force¦𝑓¦¦ ~ ¦SP¦r¦¦⁻³.
         </div>
 
-
+<br><br>
 <div book-reference-id="kvk"></div>
 
 
