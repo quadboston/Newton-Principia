@@ -19,12 +19,15 @@
         &amp; ¦figure¦curvilinea AabcdE¦¦,
         sunt rationes æqualitatis.
 
+        <br><br><div book-reference-id="latin"></div>
+
 
 
 
 
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English",
   "mediaBgImage" : "lemma-23-3rd-ed.png"
 }
@@ -45,13 +48,13 @@
         the ¦circumscribed-rectangles circ-txt¦circumscribed figure AalbmcndoE¦¦,
         and the ¦figure-area figure-area-txt¦curvilinear figure AabcdE¦¦
         have to one another are ratios of equality.
-
+            
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 
 *::*claim|hypertext
 {
-  "default" : "1",
   "menuCaption" : "Explanation"
 }
 *..*
@@ -89,7 +92,8 @@
             Sed hoc rectangulum, eo quod latitudo ejus AB in infinitum minuitur, sit minus quovis dato.
             Ergo per Lemma I, figura ¦inscribed-rectangles insc-txt¦inscripta¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscripta¦¦ &amp;
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q.E.D.
-
+        
+            <br><br><div book-reference-id="latin"></div>
 
 
 
@@ -104,7 +108,8 @@
             But this rectangle, because its width AB is diminished indefinitely, becomes less than any given rectangle.
             Therefore (by lem. 1) the ¦inscribed-rectangles insc-txt¦inscribed figure¦¦ and the ¦circumscribed-rectangles circ-txt¦circumscribed figure¦¦ and,
             all the more, the intermediate ¦figure-area figure-area-txt¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
-
+            
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 

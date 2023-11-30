@@ -10,6 +10,8 @@
         <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths AB, BC, CD,...
         of the parallelograms are unequal and are all diminished indefinitely.</dense>
 
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
 
 
 *::*claim|hypertext
@@ -36,6 +38,7 @@
             at latitudine sua AF in infinitum diminuta,
             minus fiet dato quovis rectangulo. Q.E.D.
 
+            <br><br><div book-reference-id="latin"></div>
 
 
 

@@ -12,6 +12,8 @@
             but if its width AF is diminished indefinitely, 
             it will become less than any given rectangle.  Q.E.D.</dense>
 
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
 
 
 *::*proof|hypertext
