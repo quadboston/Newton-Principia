@@ -3,6 +3,9 @@
     let style = document.createElement( 'style' );
     style.innerHTML = `
 
+    div.trigger-option {
+        cursor : pointer;  
+    }
     img.isopen,
     img.isclosed {
         width : 20px;

@@ -32,7 +32,7 @@
                 <img class="isopen" src="${IMAGE_PATH}/content-book-opened.png" title="click to close local content">
             ` + div.innerHTML;
         });
-        var divs = document.querySelectorAll( 'img.isclosed, img.isopen' ).forEach( div =>
+        var divs = document.querySelectorAll( 'div.trigger-option' ).forEach( div =>
         {
             div.addEventListener( 'click', clicker );
         });
@@ -48,7 +48,7 @@
         
         function clicker()
         {
-            let p = this.parentNode.parentNode;
+            let p = this.parentNode;
             p.className = p.className === 'isopen' ? 'isclosed' : 'isopen';
         }
 
