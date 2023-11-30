@@ -78,14 +78,13 @@
         'Bernard-Cohen-Anne-Whitman' : `
             <div class="isclosed">
                 <div class="trigger-option">
-                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"
-                       target="_blank">
-                       NEWTON, THE <i>PRINCIPIA</i></a>
+                    The <i>Principia</i>, Cohen translation
                 </div>
                 <div class="trigger-content">
-                    <i>Mathematical Principles of Natural Philosophy</i><br>
-                    A New Translation<br>
-                    I. Bernard Cohen and Anne Whitman<br>
+                    Cohen, I. B., Whitman, A., & Budenz, J. (1999).<br>
+                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
+                    <i>The Principia: Mathematical Principles of Natural Philosophy</i> (1st ed.)</a>.<br>
+                    University of California Press.<br>
                 </div>
             </div>
             `,
