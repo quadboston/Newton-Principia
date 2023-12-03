@@ -16,7 +16,7 @@
 
 *::*claim|hypertext
 {
-  "menuCaption" : "Explanation"
+  "menuCaption" : "Video"
 }
 *..*
 

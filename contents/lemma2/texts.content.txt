@@ -55,7 +55,7 @@
 
 *::*claim|hypertext
 {
-  "menuCaption" : "Explanation"
+  "menuCaption" : "Video"
 }
 *..*
         <div style="padding:56.25% 0 0 0;position:relative;">
