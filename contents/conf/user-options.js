@@ -1,12 +1,12 @@
 ( function() {
     var { userOptions, fconf, haz } = window.b$l.apptree({});
     const LATIN = "latin", USE_BG_IMAGE = "use-background-image", BONUS = "bonus", CHANGED = "changed";
-    if (!(LATIN in localStorage)) {
+    if (!(LATIN in sessionStorage)) {
         // if LATIN has not been set, assume none are set, and set to default values
-        localStorage.setItem(LATIN, true);
-        localStorage.setItem(USE_BG_IMAGE, true);
-        localStorage.setItem(BONUS, true);
-        localStorage.setItem(CHANGED, false);
+        sessionStorage.setItem(LATIN, false);
+        sessionStorage.setItem(USE_BG_IMAGE, false);
+        sessionStorage.setItem(BONUS, false);
+        sessionStorage.setItem(CHANGED, false);
     }
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
@@ -18,23 +18,23 @@
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
 
     function hasNewSettings() {
-        return localStorage.getItem(CHANGED) === 'true';
+        return sessionStorage.getItem(CHANGED) === 'true';
     }
 
     function showingLatin() {
-        return localStorage.getItem(LATIN) === 'true';
+        return sessionStorage.getItem(LATIN) === 'true';
     }
 
     function useBGimage() {
-        return localStorage.getItem(USE_BG_IMAGE) === 'true';
+        return sessionStorage.getItem(USE_BG_IMAGE) === 'true';
     }
 
     function showingBonusFeatures() {
-        return localStorage.getItem(BONUS) === 'true';
+        return sessionStorage.getItem(BONUS) === 'true';
     }
 
     function initializeOptions() {
-        localStorage.setItem(CHANGED, false);
+        sessionStorage.setItem(CHANGED, false);
 
         let latinCB = document.getElementById("latinCheckbox");
         latinCB.checked = showingLatin();
@@ -66,8 +66,8 @@
         }
 
         function changeOption(option, newValue) {
-            localStorage.setItem(option, newValue);
-            localStorage.setItem(CHANGED, true);
+            sessionStorage.setItem(option, newValue);
+            sessionStorage.setItem(CHANGED, true);
         }
     }
 

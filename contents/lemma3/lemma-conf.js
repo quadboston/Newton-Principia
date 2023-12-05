@@ -22,14 +22,6 @@
                 "proof-xix-century-III.content.txt",
             ],
 
-            //optional
-            referencesForAllLemmaEssays :
-            `
-            <br><br>
-            <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-            <div book-reference-id="latin-diagram"></div>
-            <div book-reference-id="latin"></div>
-            `,
         };
     }
 

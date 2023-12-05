@@ -187,7 +187,7 @@
                               id="diffAmtd"></span>
                     </span>
                     <span class="tp-widt-txt tocolor tobold tag proof-tag">
-                          majorant rectangle</span>
+                          area difference</span>
                 </div>
 
         `);
