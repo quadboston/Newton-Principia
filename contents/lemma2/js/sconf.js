@@ -48,13 +48,13 @@
         sconf.default_tp_lightness = 30;
         var predT =
         {
-            "given"                     : [0,    60,  0 ],
+            "given"                     : [0,    100,  0 ],
             "difference"                : [255, 255, 0, 0 ], //[185,  116, 85 ],
-            "base"                      : [0,    80,  0 ],
-            "wall"                      : [0,    80,  0 ],
-            "curve"                     : [0,    80,  0 ],
+            "base"                      : [0,    100,  0 ],
+            "wall"                      : [0,    100,  0 ],
+            "curve"                     : [0,    100,  0 ],
 
-            "figure"                    : [0,    80,  0 ],
+            "figure"                    : [0,    100,  0 ],
             "figure-area"               : [0,    80,  0 ],
             "figure-area-txt"           : [0,    80,  0, 0.7, 1],
 
@@ -113,7 +113,7 @@
 
             //:model
             baseMax         : 500,
-            draggableBasePoints : 15,
+            DRAGGABLE_BASE_POINTS : 15,
             //user-adjustable points
             ctrlPtXYs_js    :
             [

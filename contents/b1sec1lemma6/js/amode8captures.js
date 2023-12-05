@@ -247,6 +247,7 @@
                 'arc-AB',
                 'AD',
                 'D',
+                'C',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
             if(
                 theorion === 'proof' || theorion === 'claim' 
@@ -504,6 +505,7 @@
                 ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
                 ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
                 [
+                    'C',
                     'D',
                     'BD',
                     'AD',
@@ -513,6 +515,7 @@
                 if( theorion === 'proof' ) {
                     sDomF.detected_user_interaction_effect( 'doUndetected' );
                     [
+                        'c',
                         'd',
                         //'r',
                         'Ad',

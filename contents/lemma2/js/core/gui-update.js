@@ -24,9 +24,8 @@
     //======================================
     Object.assign( guiup, {
         updatePtsRectsLabelsAreas,
-        redraws_labels8curveLabels,
         normalizedStr,
-        sets_pt2movable_2_tpl8domParless,
+        sets_pt2movable,
         //updateLabel,
         xywh2svg,
         xy2shape,
@@ -73,7 +72,7 @@
     }
 
 
-    function sets_pt2movable_2_tpl8domParless( pt )
+    function sets_pt2movable( pt )
     {
         pt.dom.setAttributeNS(null, "class", "movable figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
@@ -162,42 +161,10 @@
     //========================================
     // //\\ possibly move to gui-update module
     //========================================
-    ///gui-model
-    ///resets "dr-labels" to match maximum Y
-    function redraws_labels8curveLabels()
-    {
-        var ctrlPts = dr.ctrlPts;
-        //finds index of control point with maximum x:
-        var max = numModel.ctrlPt_2_maxIx();
-        var min = numModel.ctrlPt_2_minIx();
-        var fb  = dr.figureParams;
-
-        if( fb.deltaOnLeft ) {
-            //// most x-right point has maximum ordinate:
-            //// decreasing function: screen-y increases ===
-            //// goes from screen-top to screen-bottom
-	        dr.leftLabels.offset = -1;
-	        dr.righLabels.visOffset = 0;
-	        dr.curvLabels.visOffset = 0;
-	        dr.curvLabels.offset = 0;
-        } else {
-	        dr.leftLabels.offset = 0;
-	        dr.righLabels.visOffset = 1;
-	        dr.curvLabels.visOffset = 1;
-	        dr.curvLabels.offset = 1;
-        }
-        //todm remove: experiment:
-        //has( stdMod.rg, 'baseSlider' ) && ssF.pos2pointy( 'baseSlider' );
-    }
-
     function updatesRect(rectDom,width,x,y,nextX,nextY)
     {
         var fb  = dr.figureParams;
         var yRef = dr.yVariations.yRef;
-        ///shows bottom points
-        if (appstate.showRectPts) {
-	        guiup.xy2shape( rectDom, "cx", nextX, "cy", yRef );
-        }
         guiup.xywh2svg( rectDom, x, y, width, yRef-y );
     }
     function updatePts(i, x)
@@ -206,12 +173,6 @@
         var yRef = dr.yVariations.yRef; //fb.baseY
         if (!appstate.movingBasePt) {
 	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
-        }
-        if (appstate.showRectPts) {
-	        guiup.xy_2_xy8shape( dr.curvPts.list[i], "cx", x, "cy", numModel.f(x) );
-        }
-        if (i< dr.baseLabels.list.length) {
-	        //guiup.updateLabel( dr.baseLabels.list[i], x-5, yRef+20 );
         }
     }
     function updatePtsRectsLabelsAreas()
@@ -233,8 +194,7 @@
 	        updatePts(i, x);
         }
         updatePts( basN, fb.maxX);
-        gui.drawsWidestRect( dr.basePts.list[basN].dom,
-                               appstate.showRectPts, sdata.view );
+        gui.drawsWidestRect( dr.basePts.list[basN].dom,false, sdata.view );
         //-----------------------------------------------------
         // //\\ legend amounts
         //-----------------------------------------------------

@@ -6,8 +6,10 @@
     } = window.b$l.apptree({
         setModule,
     });
-    var stdL2 = sn('stdL2', fapp );
-    var dr    = sn('datareg', stdL2 );
+    var stdL2   = sn('stdL2', fapp );
+    var dr      = sn('datareg', stdL2 );
+    var gui     = sn('gui', stdL2 );
+    var guicon  = sn('guiConstruct', gui );
     return;
 
 
@@ -18,50 +20,19 @@
 
     function setModule()
     {
-        ssF.continue_create_8_prepopulate_svg   = continue_create_8_prepopulate_svg;
-        ssF.creates_figures_domPlaceholder    = creates_figures_domPlaceholder;
-        ssF.create_digital_legend               = create_digital_legend;
-        stdL2.state8css_for_l2_l3                  = state8css_for_l2_l3;
-    }
-
-
-    function state8css_for_l2_l3( mcat_id, scat_id )
-    {
-
-        if( mcat_id !== 'aspect' || (fconf.sappId !== 'lemma2' && fconf.sappId !== 'lemma3') ) {
-            return;
-        }
-        ////following work is done for mcat_id === 'aspect' and ( lemma2 or lemma3 )
-
-        ///refreshes legacy state of subapplication for l23 ...
-        ///should be in some state enging specific to subapplication ...
-        stdL2.study.sdata.view.isClaim = amode.theorion === 'claim';
-
-
-        ///=========================================================================
-        /// //\\ 2) Switch: This controls the translation switch ...?Newton/informal
-        ///      function l23_english_latin_switch()
-        ///=========================================================================
-        var isHyper = scat_id === 'hypertext';
-
-        ///apparently this and letter-labels is somehow disabled to
-        ///prevent conflict with
-        ///colors of topic engine
-        ///... possibly look here: var l = makeS_inList_parlessDom("text", list, style+" label");
-        ///... in lemma2/core/gui-construct.js
-        document.querySelectorAll('.label').forEach( function( el ) {
-            el.style.visibility = isHyper ? 'hidden' : 'visible';
+        Object.assign( ssF,
+        {
+            continue_create_8_prepopulate_svg,
+            create_digital_legend,
         });
-
-        var addRem = isHyper ? 'addClass' : 'removeClass';
-        //.area labels color vs black toggle
-        $$.$(document.querySelector('.areas'))[addRem]('dull');
-        ///-------------------------------------------------------------------------
-        /// \\// 2) Switch: This controls the translation switch ...?Newton/informal
-        ///=========================================================================
+        Object.assign( guicon,
+        {
+            constructsCurve8Area,
+        });
     }
 
-    function creates_figures_domPlaceholder()
+    
+    function constructsCurve8Area()
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         $$.cNS( 'polyline' )
@@ -163,7 +134,7 @@
                               id="circAmtd"></span>
                     </span>
                     <span class="tp-circ-txt tag circumscribed-tag
-                          tp-circumscribedXXX tocolor tobold">circumscribed</span>
+                          tocolor tobold">circumscribed</span>
                 </div>
                 <!--END Circumscribed-->
 

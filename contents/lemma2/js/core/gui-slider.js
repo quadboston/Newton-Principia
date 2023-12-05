@@ -57,29 +57,27 @@
 
         slider.oninput = function() {
             appstate.movingBasePt = false; // better way?
-	        var newIntervalsNumber = interpretSlider( this.value );
+	        var newBases = interpretSlider( this.value );
             //dr.bases === basesAmount
             sDomF.detected_user_interaction_effect();
-	        aduptPartitionChange( newIntervalsNumber-dr.bases,
-                                  newIntervalsNumber, dr.basePts );
-	        dr.bases = newIntervalsNumber;
+	        aduptPartitionChange( newBases, dr.basePts );
+	        dr.bases = newBases;
 	        showBasesNumberInGui( sliderOutput, baseLabel );
 
             ssF.media_upcreate_generic();
       	}
 
-        function aduptPartitionChange(partitionChange, newBases, basePts, undef) {
+        function aduptPartitionChange( newBases, basePts, undef) {
 	        if( fconf.sappId === 'lemma3' ) {
+                const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
                 ///dynamically adds more base points
-                for (var i=newBases-partitionChange; i<newBases; i++) {
+                for (var i=dr.bases; i<pointsLimit; i++) {
                     ///prevents making too many draggable base points
-                    if( i < sconf.draggableBasePoints ) {
-       		            guiup.sets_pt2movable_2_tpl8domParless( basePts.list[i] );
-                    }
+   		            guiup.sets_pt2movable( basePts.list[i] );
                 }
             }
             var partitionWidths = dr.partitionWidths;
-            for (var i=newBases; i < newBases-partitionChange; i++) {
+            for (var i=newBases; i < dr.bases; i++) {
 	            partitionWidths[i] = undef;
             }
         }

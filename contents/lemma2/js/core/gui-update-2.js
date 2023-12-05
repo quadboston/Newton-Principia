@@ -82,7 +82,6 @@
             study.calculates_monotIntervals8ref();
             study.calculates_inscr8circums();
             study.calculatesWidestRect();
-	        guiup.redraws_labels8curveLabels();
 	        guiup.paints_curve8axes();
             guiup.updatePtsRectsLabelsAreas();
             let medD8D = haz( stdMod, 'medD8D' );
@@ -111,19 +110,11 @@
 	        styles___setVisibilityGap(dr.curvLabels, !sapp.isLite() );
 	        styles___setVisibilityGap(dr.baseLabels, !sapp.isLite() );
 
-	        if (appstate.showRectPts) {
-		        styles___setVisibilityGap(dr.leftPts, view.isInscribed);
-		        styles___setVisibilityGap(dr.righPts, view.isCircumscribed);
-	        }
-
 	        styles___setVisibilityGap(dr.InscrRects, view.isInscribed);
 	        styles___setVisibilityGap(dr.leftLabels, !sapp.isLite() && view.isInscribed);
 
 	        styles___setVisibilityGap(dr.circRects, view.isCircumscribed);
 	        styles___setVisibilityGap(dr.righLabels, !sapp.isLite() && view.isCircumscribed);
-	        gui.styles___show_widthest_claim_labels( view );
-            //strange line: what is this for?
-            //gui.toggle_widthest_rect_visib;
         }
 
         ///only decorational and non-positional settings

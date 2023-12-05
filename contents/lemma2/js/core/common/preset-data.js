@@ -18,8 +18,6 @@
     {
         basePts         : {offset:1, visOffset:0, list:[]},
         curvPts         : {offset:1, visOffset:0, list:[]},
-        leftPts         : {offset:0, visOffset:0, list:[]},
-        righPts         : {offset:0, visOffset:0, list:[]},
         circRects       : {offset:0, visOffset:0, list:[]},
         InscrRects       : {offset:0, visOffset:0, list:[]},
         baseLabels      : {offset:1, visOffset:0, list:[]},
@@ -35,8 +33,7 @@
         movables        : {} //key-value for movable jswrap
     });
     appstate.movingBasePt = false;
-    appstate.showRectPts  = false;
-    sdata.view = { isClaim:1, isInscribed:1, isCircumscribed:1 };
+    sdata.view = { isInscribed:1, isCircumscribed:1 };
     //=====================================
     // \\// presets data
     //=====================================

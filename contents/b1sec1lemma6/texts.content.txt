@@ -205,7 +205,7 @@ then
 <br><br>
 
 For definiteness, consider an arbitrary ray ¦AD¦¦ beginning at point ¦A¦¦ and
-¦curve-AB¦AcB¦¦, branch of curve which begins at point ¦A¦¦.<br><br>
+¦curve-AB¦ACB¦¦, branch of curve which begins at point ¦A¦¦.<br><br>
 
 <br><br>
 
@@ -223,7 +223,7 @@ If
 then
 
 <br><br>
-(i') for ¦curve-AB¦AcB¦¦ which lies on one side of ray ¦AL¦¦ in some of neighborhood of point ¦A¦¦ except point ¦A¦¦, <br><br>
+(i') for ¦curve-AB¦ACB¦¦ which lies on one side of ray ¦AL¦¦ in some of neighborhood of point ¦A¦¦ except point ¦A¦¦, <br><br>
 ¦AL¦¦ is
 
 <a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
@@ -232,7 +232,7 @@ one-side Euclidean tangent,
 
 and angle between this tangent and chord is ultimately 0.
 <br><br>
-if( (i')  does not hold, then ¦curve-AB¦AcB¦¦ does not have Eclidean tangent at ¦A¦¦.
+if( (i')  does not hold, then ¦curve-AB¦ACB¦¦ does not have Eclidean tangent at ¦A¦¦.
 <br><br><br>
 
 

@@ -22,10 +22,7 @@
 
     function setModule()
     {
-        var study       = sn('study', stdL2 );
-        var sdata       = sn('sdata', study );
         var dr          = sn('datareg', stdL2 );
-        var numModel    = sn('numModel', stdL2 );
         var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate',gui);
         var appstate    = sn('appstate', stdL2 );
@@ -74,7 +71,7 @@
             if( pointWrap.type === 'base' ) {
                 if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor='blue';
+                pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
                 pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );

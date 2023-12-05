@@ -5,7 +5,6 @@
     var fapp        = sn('fapp'); 
     var fconf       = sn('fconf',fapp);
     var ssTmp       = sn('ss', fapp);   //todm remove ss later
-    var ssD         = sn('ssData',ssTmp);
     var ssF         = sn('ssFunctions',ssTmp);
 
     ssF.toregUnbound    = toreg;

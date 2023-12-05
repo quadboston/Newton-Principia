@@ -350,14 +350,6 @@
         //==================================================
         // updates app and ...
         //==================================================
-        if( amodel2app_8_extraWork ) {
-            ////menu work for special subapp
-            ////this happens only on 2 click events(ver Dec10,2020)
-            ////one click is for top-text-menu?,
-            ////second click is for submenu,
-            ns.haf( fapp.ss, 'state8css_for_l2_l3' )( mcat_id, scat_id );
-        }
-
 
         //==================================================
         // //\\ amodel and image and legend

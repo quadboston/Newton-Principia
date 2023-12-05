@@ -19,7 +19,6 @@
     {
         var study       = sn('study', stdL2 );
         var sdata       = sn('sdata', study );
-        var numModel    = sn('numModel', stdL2 );
         var gui         = sn('gui', stdL2 );
         var dr          = sn('datareg', stdL2 );
 

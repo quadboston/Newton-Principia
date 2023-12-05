@@ -83,11 +83,11 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        gui.constructWidthestRectangular_parameterlessDom();
-        guicon.constructFigure_tillExtraOffset_parlessDom();
-        ssF.creates_figures_domPlaceholder(); //do on top of ancestors
-        guicon.buildsRect8BasePoints();
-        guicon.buildsControlPoints();
+        guicon.constructsWidthestRect();
+        guicon.constructsRects_tillExtraOffset_parlessDom();
+        guicon.constructsCurve8Area(); //do on top of ancestors
+        guicon.constructBasePts_domParless(dr.basePts);
+        guicon.constructsControlPoints();
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
         //see:     ///modern approach ... abandoned

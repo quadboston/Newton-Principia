@@ -556,13 +556,12 @@
                 calculationAccuracy : 1e-4*rg.AB.abs,
             });
         }
-
         ///decorations
-        if( fconf.sappId === "b1sec1lemma8" ) {
+        //if( fconf.sappId === "b1sec1lemma8" ) {
             let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
             nspaste( rg.C.pos, C );
             nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
-        }
+        //}
     }
 
 

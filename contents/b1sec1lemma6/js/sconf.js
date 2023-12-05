@@ -254,6 +254,13 @@
                cssClass : 'hover-width',
             },
             */
+
+            C : {
+                letterAngle : 45,
+                letterRotRadius : 13,
+                pcolor      : given,
+            },
+
             D : {
                 pos: D,
                 letterAngle : 90,
@@ -266,6 +273,14 @@
                 letterAngle : 0,
                 pcolor      : proof,
             },
+
+            c : {
+                letterAngle : 45,
+                letterRotRadius : 13,
+                pcolor      : proof,
+            },
+  
+  
             d : {
                 pos         : d,
                 letterAngle : 90,
