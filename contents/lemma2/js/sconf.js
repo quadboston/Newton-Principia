@@ -112,7 +112,7 @@
             //----------------------------------
 
             //:model
-            baseMax         : 500,
+            BASE_MAX_NUM         : 500,
             DRAGGABLE_BASE_POINTS : 15,
             //user-adjustable points
             ctrlPtXYs_js    :

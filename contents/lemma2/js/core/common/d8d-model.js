@@ -170,11 +170,11 @@
             var DRAGGEE_HALF_SIZE = pointWrap.type === 'base' ?
                     5 : //crowdy base needs pinpointed selection
                     sconf.DRAGGEE_HALF_SIZE;
-            var bases = dr.bases;
+            var basesN = dr.basesN;
             var closestPoint = null;
             if(
                 //.excludes excess of non-used points
-                pointWrap.type === 'base' && pointWrap.index >= bases
+                pointWrap.type === 'base' && pointWrap.index >= basesN
             ) {
                 return closest;
             }
@@ -220,7 +220,7 @@
                 */
 	            appstate.movingBasePt = false;
 
-            } else if( index > 0 && index < dr.bases ) {
+            } else if( index > 0 && index < dr.basesN ) {
 	            var newX = ach.achieved.x + move[0];
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;

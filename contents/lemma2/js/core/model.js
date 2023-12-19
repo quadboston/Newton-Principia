@@ -117,7 +117,7 @@
     //==================================
     function recalculates_Bases8maxWidth()
     {
-        var bases = dr.bases;
+        var basesN = dr.basesN;
         var sum = 0;
 
         if( !dr.partitionWidths.length ) {
@@ -126,20 +126,20 @@
 	        dr.partitionWidths[0] = 1;
         }
 
-        for (var i=0; i<bases; i++) {
+        for (var i=0; i<basesN; i++) {
             ///if base is new and to be added
 	        if ( !dr.partitionWidths[i] ) {
                 //makes average base constant and, therefore,
-                //provides equal bases for all added bases
+                //provides equal basesN for all added basesN
 		        dr.partitionWidths[i] = sum / i;
             }
 	        sum += dr.partitionWidths[i];
-            //in first round of setting partitionWidths, sum = bases
+            //in first round of setting partitionWidths, sum = basesN
         }
-        //now, average sum=previous average sum = sum/bases;
+        //now, average sum=previous average sum = sum/basesN;
 
         ///converts virtual widths to media widths
-        for (var i=0; i<bases; i++) {
+        for (var i=0; i<basesN; i++) {
             dr.partitionWidths[i] = dr.partitionWidths[i] / sum *
                                     (dr.figureParams.maxX-dr.figureParams.minX);
             if ( !i || dr.partitionWidths[i] > dr.widest) {
@@ -199,7 +199,7 @@
         basMicNext.length = 0;
         
         var baseW = dr.partitionWidths;
-        var basN = dr.bases;
+        var basN = dr.basesN;
 
         ///create basXar points of base partion
         let micAr = dr.curveMicroPts;

@@ -26,11 +26,10 @@
         var numModel    = sn('numModel', stdL2 );
         var dr          = sn('datareg', stdL2 );
         var appstate    = sn('appstate', stdL2 );
-
         ///same in meaning to legacy !view.isNewton property
         sapp.isLite = function()
         {
-            return amode.text === 'hypertext';
+            return amode.aspect === 'hypertext';
         };
 
 
@@ -53,7 +52,7 @@
 
         Object.assign( stdL2, {
             adjustVisibilityForBaseDelta,
-            styles___shows_LabelsPointsRects,
+            shows_rects,
         });
         //======================================
         // \\// exports module
@@ -104,40 +103,37 @@
         // //\\ manages visibility
         //======================================
         ///shows vis. for Labels, Points, Rects
-        function styles___shows_LabelsPointsRects()
+        ///only decorational and non-positional settings
+        ///fills visibility in items.list by value vis:
+        ///     in this range: items.visOffset <= ii && ii < items.visOffset+dr.basesN,
+        ///     the rest is filled with "hidden",
+        function setsVisGap( items, vis )
+        {
+            let list = items.list;
+            let len = list.length;
+	        var end = Math.min( len, dr.basesN+items.offset);
+            let offset = items.visOffset;
+            for( ix=0; ix<len; ix++ ) {
+                let item = list[ix];
+                var visib = ( offset <= ix && ix < end && vis ) ? "visible" : "hidden";
+                ( item.dom || item ).style.visibility = visib; //vital line
+            }
+        }
+
+        function shows_rects()
         {
             var view = sdata.view;
-	        styles___setVisibilityGap(dr.curvLabels, !sapp.isLite() );
-	        styles___setVisibilityGap(dr.baseLabels, !sapp.isLite() );
-
-	        styles___setVisibilityGap(dr.InscrRects, view.isInscribed);
-	        styles___setVisibilityGap(dr.leftLabels, !sapp.isLite() && view.isInscribed);
-
-	        styles___setVisibilityGap(dr.circRects, view.isCircumscribed);
-	        styles___setVisibilityGap(dr.righLabels, !sapp.isLite() && view.isCircumscribed);
+	        setsVisGap(dr.InscrRects, view.isInscribed);
+	        setsVisGap(dr.circRects, view.isCircumscribed);
         }
 
-        ///only decorational and non-positional settings
-        ///fills visibility in items' list
-        ///     gap: items.visOffset <= ii && ii < end
-        ///     by value vis
-        function styles___setVisibilityGap( items, vis )
-        {
-	        var end = Math.min(items.list.length, dr.bases+items.offset);
-            items.list.forEach( function( item, ix ) {
-                var visib = ( items.visOffset <= ix && ix < end && vis ) ? "visible" : "hidden";
-                //( item.dom || item ).setAttributeNS( null, "visibility", visib );
-                //this overrides other "style" settings and makes desired effect
-                ( item.dom || item ).style.visibility = visib; //vital line
-            });
-        }
 
         function adjustVisibilityForBaseDelta() {
 	        if (appstate.showRectPts) {
-		        styles___setVisibilityGap(dr.curvPts,1);
+		        setsVisGap(dr.curvPts,1);
             }
-            styles___setVisibilityGap(dr.basePts,1);
-	        styles___shows_LabelsPointsRects();
+            setsVisGap(dr.basePts,1);
+	        shows_rects();
         }
         //======================================
         // \\// manages visibility

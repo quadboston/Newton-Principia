@@ -1,7 +1,7 @@
 ( function () {
     var {
         ns, sn, $$, haz,
-        fapp, sconf, fmethods, sDomN,
+        fapp, sconf, fmethods, sDomN, ssF,
         stdMod,
     } = window.b$l.apptree({
         setModule,
@@ -69,7 +69,7 @@
                 //'checkbox_4').getAttribute('checked');
                 //no good: if($('.figur').is(':checked'))  {
                 var checked = document.getElementById('checkbox_4').checked;
-
+                sdata.view.isFigureChecked = checked;
                 if(checked)  {
                     //$('.outline').toggle();
                     $$.qa( '.outline' )().forEach( outlinee => {
@@ -84,6 +84,7 @@
                         $$.$(outlinee).cls( 'hidden' );
                     });
                 }
+                ssF.media_upcreate_generic();
             }
             // \\// copy-pasted from gui-art
 
@@ -130,12 +131,15 @@
 
         function toggleInscribed() {
 	        sdata.view.isInscribed^=1;
-	        stdL2.styles___shows_LabelsPointsRects();
+	        //stdL2.shows_rects();
+            //stdMod.refreshSVG_master();
+            ssF.media_upcreate_generic();
         }
 
         function toggleCircumscribed() {
 	        sdata.view.isCircumscribed^=1;
-	        stdL2.styles___shows_LabelsPointsRects();
+	        //stdL2.shows_rects();
+            ssF.media_upcreate_generic();
         }
 
         ///toggles mode for curve-shape is-draggable/non-draggable

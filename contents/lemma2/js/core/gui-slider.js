@@ -49,7 +49,7 @@
         slider.setAttributeNS( null, "max", sconf.MAXP );
 
         //.appar. sets current base-points-number
-        slider.setAttributeNS( null, "value", dr.bases );
+        slider.setAttributeNS( null, "value", dr.basesN );
 
         var sliderOutput = document.getElementById("baseSpan");
         var baseLabel = document.getElementById("baseLabelSpan");
@@ -58,10 +58,10 @@
         slider.oninput = function() {
             appstate.movingBasePt = false; // better way?
 	        var newBases = interpretSlider( this.value );
-            //dr.bases === basesAmount
+            //dr.basesN === basesAmount
             sDomF.detected_user_interaction_effect();
 	        aduptPartitionChange( newBases, dr.basePts );
-	        dr.bases = newBases;
+	        dr.basesN = newBases;
 	        showBasesNumberInGui( sliderOutput, baseLabel );
 
             ssF.media_upcreate_generic();
@@ -71,21 +71,21 @@
 	        if( fconf.sappId === 'lemma3' ) {
                 const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
                 ///dynamically adds more base points
-                for (var i=dr.bases; i<pointsLimit; i++) {
+                for (var i=dr.basesN; i<pointsLimit; i++) {
                     ///prevents making too many draggable base points
    		            guiup.sets_pt2movable( basePts.list[i] );
                 }
             }
             var partitionWidths = dr.partitionWidths;
-            for (var i=newBases; i < dr.bases; i++) {
+            for (var i=newBases; i < dr.basesN; i++) {
 	            partitionWidths[i] = undef;
             }
         }
 
         function showBasesNumberInGui( sliderOutput, baseLabel )
         {
-            sliderOutput.innerHTML = dr.bases;
-            baseLabel.innerHTML = dr.bases === 1 ? " base":" bases";
+            sliderOutput.innerHTML = dr.basesN;
+            baseLabel.innerHTML = dr.basesN === 1 ? " base":" bases";
         }
 
         function interpretSlider(val)
@@ -95,7 +95,7 @@
 	            return parseInt(val);
             }
             const minV = Math.log(maxLinV);
-            const maxV = Math.log(sconf.baseMax);
+            const maxV = Math.log(sconf.BASE_MAX_NUM);
             var scale = (maxV-minV) / (sconf.MAXP-maxLinV);
             return Math.round(Math.exp(minV + scale*(val-maxLinV)));
         }

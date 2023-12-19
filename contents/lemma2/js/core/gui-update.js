@@ -179,7 +179,7 @@
     {
         var fb  = dr.figureParams;
         var x = fb.minX;
-        var basN = dr.bases;
+        var basN = dr.basesN;
         var basXar = dr.basePts.basXar;
         var insYar = dr.basePts.inscribedY;
         var cirYar = dr.basePts.circumscribedY;
@@ -224,16 +224,25 @@
     /// code points (with rg[ name ].pos)
     ///======================================
     function syncPoint( item ) {
-       if( item.type === 'ctrl' ) {
+        var xoff = sconf.originX_onPicture;
+        var yoff = sconf.originY_onPicture;
+        var scale = sconf.mod2inn_scale;
+        if( item.type === 'ctrl' ) {
             switch( item.index ) {
             case 0 : var pname = 'a';
                      syncPoint( dr.basePts.list[ 0 ] );
                      break;
             case 4 :
-                     if( dr.bases === 4 ) {
+                     if( dr.basesN === 4 ) {
                          var pname = 'E';
-                         var pnameTop = 'o';
                          var previousItem = dr.basePts.list[ 3 ];
+                         //todo why twice?
+                         var pnameTop_ = 'o';
+                         //var insYar = dr.basePts.inscribedY;
+                         var cirYar = dr.basePts.circumscribedY;
+                         rg[ pnameTop_ ].pos[0] = rg[ pname ].pos[0];
+                         rg[ pnameTop_ ].pos[1] = -( cirYar[3] - yoff ) / scale;
+                         ccc( 'case4, ===',rg[ pnameTop_ ].pos );
                      }
                      break;
             }
@@ -264,11 +273,18 @@
                      var pnameLow = 'M';
                      var previousItem = dr.basePts.list[ 2 ];
                      break;
-            case 4 : if( dr.bases > 4 ) {
+            case 4 : if( dr.basesN > 4 ) {
                         var pname = 'E';
                         ////optional names
-                        var pnameTop = 'o';
+                        //todo why twice?
+                        var pnameTop_ = 'o';
                         var previousItem = dr.basePts.list[ 3 ];
+
+                        //var insYar = dr.basePts.inscribedY;
+                        var cirYar = dr.basePts.circumscribedY;
+                        rg[ pnameTop_ ].pos[0] = rg[ pname ].pos[0];
+                        rg[ pnameTop_ ].pos[1] = -( cirYar[3] - yoff ) / scale;
+                        ccc( 'case4, >',rg[ pnameTop_ ].pos );
                      }
                      break;
             }
@@ -278,9 +294,6 @@
             ////apparently convert from svg-space to model-space
             ////apparently program and numModel.f made in svg-space and
             ////not in gemetrical-model-space;
-            var xoff = sconf.originX_onPicture;
-            var yoff = sconf.originY_onPicture;
-            var scale = sconf.mod2inn_scale;
             rg[ pname ].pos[0] = (item.x - xoff) / scale;
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
 
@@ -302,24 +315,43 @@
 
 
     function syncPoints() {
+
+        // //\\ user options
+        let notInscribed = !sdata.view.isInscribed;
+        rg.K.undisplay = notInscribed;
+        rg.L.undisplay = notInscribed;
+        rg.M.undisplay = notInscribed;
+        let notCircumscribed = !sdata.view.isCircumscribed;
+        rg.l.undisplay = notCircumscribed;
+        rg.m.undisplay = notCircumscribed;
+        rg.n.undisplay = notCircumscribed;
+        rg.o.undisplay = notCircumscribed;
+        let notFigure = !sdata.view.isFigureChecked;
+        rg.a.undisplay = notFigure;
+        rg.b.undisplay = notFigure;
+        rg.c.undisplay = notFigure;
+        rg.d.undisplay = notFigure;
+        // \\// user options
+
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
 
-        if( dr.bases < 4 ) {
+        if( dr.basesN < 4 ) {
             rg.E.undisplay = true;
             rg.o.undisplay = true;
         } else {
             rg.E.undisplay = false;
-            rg.o.undisplay = false;
+            rg.o.undisplay = false || notCircumscribed;
         }
-        if( dr.bases < 3 ) {
+        if( dr.basesN < 3 ) {
             rg.D.undisplay = true;
             rg.n.undisplay = true;
         } else {
             rg.D.undisplay = false;
-            rg.n.undisplay = false;
+            rg.n.undisplay = false || notCircumscribed;
         }
+        
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
@@ -342,6 +374,7 @@
             rg.F.pos[0] = ( left - xoff ) / scale;
             rg.f.pos[0] = ( left - xoff ) / scale;
         }
+        rg.Kb.undisplay = rg.K.undisplay || rg.b.undisplay;
         // \\// majorant rect
         let wwNoMajor = fconf.sappId === 'lemma2' || amode.theorion === 'claim';
         rg.f.undisplay = wwNoMajor;

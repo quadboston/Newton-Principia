@@ -42,16 +42,16 @@
     //======================================================
     function constructsRects_tillExtraOffset_parlessDom()
     {
-        constructs_Insc8Circs_rects( dr.circRects,
-            "tp-circumscribed-rectangles circumscribed rect tofill");
-        constructs_Insc8Circs_rects( dr.InscrRects,
-            "tp-inscribed-rectangles inscribed rect tofill");
+        makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
+        makes_rects( dr.InscrRects, "tp-inscribed-rectangles inscribed");
     }
-    function constructs_Insc8Circs_rects( listWrap, classStyle )
+    function makes_rects( listWrap, classStyle )
     {
-        let n = sconf.baseMax;
+        classStyle += ' rect tofill';
+        let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
-        for (var i=0; i<n+listWrap.offset; i++){
+        let len = BASE_MAX_NUM+listWrap.offset;
+        for (var i=0; i<len; i++){
             list.push( makeSType( "rect", classStyle ) );
         }
     }
@@ -109,11 +109,11 @@
             pdom.setAttributeNS(null, "fill", col );
             // \\// patch: todm-fix-this
         }
-        //constant, sconf.baseMax = usually 500,
+        //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
         const l3 = fconf.sappId === 'lemma3';
-        for (var i=1, len=sconf.baseMax; i <= len; i++) {
+        for (var i=1, len=sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( "base", i );
 	        if( l3 && i < DRAGGABLE_BASE_POINTS ) {

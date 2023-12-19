@@ -20,16 +20,16 @@
         curvPts         : {offset:1, visOffset:0, list:[]},
         circRects       : {offset:0, visOffset:0, list:[]},
         InscrRects       : {offset:0, visOffset:0, list:[]},
-        baseLabels      : {offset:1, visOffset:0, list:[]},
+        //baseLabels      : {offset:1, visOffset:0, list:[]},
         curvLabels      : {offset:0, visOffset:0, list:[]},
         leftLabels      : {offset:0, visOffset:0, list:[]},
-        righLabels      : {offset:0, visOffset:0, list:[]},
+        //righLabels      : {offset:0, visOffset:0, list:[]},
         //deltaOnLeft historically means "virtual majoranta-rectangle"
         //is on the right
         figureParams    : {minX:0, maxX:0, baseY:0, deltaOnLeft:true},
         ctrlPts         : [],
         partitionWidths      : [],
-        bases           : 4,
+        basesN         : 4,
         movables        : {} //key-value for movable jswrap
     });
     appstate.movingBasePt = false;
