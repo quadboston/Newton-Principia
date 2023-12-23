@@ -60,10 +60,6 @@
         item.setAttributeNS( null, xName, x );
         item.setAttributeNS( null, yName, y );
     }
-    function y2cy(item, y)
-    {
-        item.setAttributeNS( null, "cy", y );
-    }
     ///updates item with rectangular parameters x, y, width, height
     function xywh2svg(item, x, y, width, height) {
         xy2shape(item, "x", x, "y", y);
@@ -227,64 +223,81 @@
         var xoff = sconf.originX_onPicture;
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
+        var cirYar = dr.basePts.circumscribedY;
+        var insYar = dr.basePts.inscribedY;
         if( item.type === 'ctrl' ) {
+            //ccc( item );
             switch( item.index ) {
             case 0 : var pname = 'a';
-                     syncPoint( dr.basePts.list[ 0 ] );
+                     //syncPoint( dr.basePts.list[ 0 ] );
                      break;
             case 4 :
                      if( dr.basesN === 4 ) {
                          var pname = 'E';
-                         var previousItem = dr.basePts.list[ 3 ];
+                         //var previousItem = dr.basePts.list[ 3 ];
                          //todo why twice?
+                         /*
                          var pnameTop_ = 'o';
                          //var insYar = dr.basePts.inscribedY;
                          var cirYar = dr.basePts.circumscribedY;
                          rg[ pnameTop_ ].pos[0] = rg[ pname ].pos[0];
                          rg[ pnameTop_ ].pos[1] = -( cirYar[3] - yoff ) / scale;
-                         ccc( 'case4, ===',rg[ pnameTop_ ].pos );
-                     }
-                     break;
+                        */
+                    }
+                    break;
             }
-        } else if( item.spinnerClsId === 'ctrl-0' ) {
-            var pname = 'A';
+        //} else if( item.spinnerClsId === 'ctrl-0' ) {
+       //     ccc( 'a' );
+        //    var pname = 'A';
         } else if( item.type === 'base' ) {
-            switch( item.index ) {
-            //case 0 : var pname = 'A';
-            //         break;
+            var iIx = item.index;
+            switch( iIx ) {
+            case 0 : var pname = 'A';
+                        var pnameFun = 'a'; //right on the curve
+                        var pnameLow_ = 'K'; //min of the interval
+                        rg[ pnameLow_ ].pos[0] = rg[ pname ].pos[0];
+                        rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+
+                        var pnameLow_ = 'bk'; //min of the interval
+                        rg[ pnameLow_ ].pos[0] = rg[ 'B' ].pos[0];
+                        rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+
+                        var pnameTop_ = 'l'; //min of the interval
+                        rg[ pnameTop_ ].pos[0] = rg[ 'B' ].pos[0];
+                        rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                     break;
             case 1 : var pname = 'B';
                      ////optional names
                      var pnameFun = 'b'; //right on the curve
-                     var pnameTop = 'l'; //max of the interval
-                     var pnameLow = 'K'; //min of the interval
-                     var previousItem = dr.basePts.list[ 0 ];
-                     break;
+                     var pnameLow_ = 'L'; //min of the interval
+                     rg[ pnameLow_ ].pos[0] = rg[ 'B' ].pos[0];
+                     rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+
+                    var pnameTop_ = 'm'; //min of the interval
+                    rg[ pnameTop_ ].pos[0] = rg[ 'C' ].pos[0];
+                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+
+                    break;
             case 2 : var pname = 'C';
                      ////optional names
                      var pnameFun = 'c';
-                     var pnameTop = 'm';
-                     var pnameLow = 'L';
-                     var previousItem = dr.basePts.list[ 1 ];
-                     break;
+                     var pnameLow_ = 'M'; //min of the interval
+                     rg[ pnameLow_ ].pos[0] = rg[ pname ].pos[0];
+                     rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+
+                    var pnameTop_ = 'n'; //min of the interval
+                    rg[ pnameTop_ ].pos[0] = rg[ 'D' ].pos[0];
+                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                    break;
             case 3 : var pname = 'D';
                      ////optional names   
                      var pnameFun = 'd';
-                     var pnameTop = 'n';
-                     var pnameLow = 'M';
-                     var previousItem = dr.basePts.list[ 2 ];
+                    var pnameTop_ = 'o'; //min of the interval
+                    rg[ pnameTop_ ].pos[0] = rg[ 'E' ].pos[0];
+                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
                      break;
             case 4 : if( dr.basesN > 4 ) {
                         var pname = 'E';
-                        ////optional names
-                        //todo why twice?
-                        var pnameTop_ = 'o';
-                        var previousItem = dr.basePts.list[ 3 ];
-
-                        //var insYar = dr.basePts.inscribedY;
-                        var cirYar = dr.basePts.circumscribedY;
-                        rg[ pnameTop_ ].pos[0] = rg[ pname ].pos[0];
-                        rg[ pnameTop_ ].pos[1] = -( cirYar[3] - yoff ) / scale;
-                        ccc( 'case4, >',rg[ pnameTop_ ].pos );
                      }
                      break;
             }
@@ -302,14 +315,7 @@
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
                 rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
             }
-            if( pnameLow ) {
-                rg[ pnameLow ].pos[0] = ( previousItem.x - xoff ) / scale;
-                rg[ pnameLow ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
-            }
-            if( pnameTop ) {
-                rg[ pnameTop ].pos[0] = rg[ pname ].pos[0];
-                rg[ pnameTop ].pos[1] = -( numModel.f( previousItem.x ) - yoff ) / scale;
-            }
+
         }
     }
 
@@ -374,7 +380,7 @@
             rg.F.pos[0] = ( left - xoff ) / scale;
             rg.f.pos[0] = ( left - xoff ) / scale;
         }
-        rg.Kb.undisplay = rg.K.undisplay || rg.b.undisplay;
+        rg["K,bk"].undisplay = rg.K.undisplay;
         // \\// majorant rect
         let wwNoMajor = fconf.sappId === 'lemma2' || amode.theorion === 'claim';
         rg.f.undisplay = wwNoMajor;

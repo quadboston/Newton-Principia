@@ -131,7 +131,6 @@
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
-
             pt.svgel$.tgcls( 'undisplay', pt.undisplayAlways );
         } else {
             pt.svgel$.tgcls( 'undisplay',

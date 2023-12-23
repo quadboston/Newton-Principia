@@ -4,7 +4,7 @@
         sn, dpdec, d8dp, fmethods, globalCss,
         fapp, sconf, sDomN, sDomF, ssF,
         fconf,
-        stdMod,
+        amode, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -69,6 +69,7 @@
             var nospinner = false;
             var decorator;
             if( pointWrap.type === 'base' ) {
+                if( pwix === 0 ) return; //point A is "unmovable"
                 if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
@@ -126,14 +127,28 @@
                 if( pw.type === 'base' ) {
                     move2js( pw, [arg.surfMove[0],0], pw.achieved );
                 } else {
+                    //reshapes the curve
                     move2js( pw, arg.surfMove, pw.achieved );
-                }
+                    // recent framework
+                    ssF.media_upcreate_generic();
 
+                    ///prevents non-monotonic curve to happen,
+                    ///usually ignored for modern calculus
+                    if( dr.yVariations.areMany &&
+                        ( sconf.ONLY_MONOTONIC_CURVE &&
+                          amode.aspect !== 'xixcentury'
+                        )
+                    ) {
+                        move2js( pw, [0,0], pw.achieved );
+                        guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
+                    }
+                }
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
 
                 // //\\ recent framework
                 ssF.media_upcreate_generic();
                 //instead of following:
+
                 /*
                 if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
                     //.this is a duty of contributor to provide:

@@ -33,7 +33,7 @@
         movables        : {} //key-value for movable jswrap
     });
     appstate.movingBasePt = false;
-    sdata.view = { isInscribed:1, isCircumscribed:1 };
+    sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
     //=====================================
     // \\// presets data
     //=====================================

@@ -97,28 +97,18 @@
     function constructBasePts_domParless( basePts )
     {
         let bplist = basePts.list;
-        {
-            let pdom = makeSType( "circle", "figure" );
-            //.makes end point of the same structure as movable points
-            bplist.push( { dom:pdom } );
-
-            // //\\ patch: todm-fix-this
-            let col = sDomF.getFixedColor( 'base' );
-            pdom.setAttributeNS(null, "stroke", col );
-            pdom.setAttributeNS(null, "stroke-width", '5px');
-            pdom.setAttributeNS(null, "fill", col );
-            // \\// patch: todm-fix-this
-        }
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
         const l3 = fconf.sappId === 'lemma3';
-        for (var i=1, len=sconf.BASE_MAX_NUM; i <= len; i++) {
+        for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( "base", i );
 	        if( l3 && i < DRAGGABLE_BASE_POINTS ) {
                 //todo-patch-disable-base-drag 1 of 2
-                guiup.sets_pt2movable( pt );
+                if( i>0 ) {
+                    guiup.sets_pt2movable( pt );
+                }
             }
             pt.dom.style.fill = 'rgba(255,255,255,1)';
   		    bplist.push( pt );
@@ -155,7 +145,9 @@
         pdom.setAttributeNS( null, "id", key );
         pdom.setAttributeNS( null, "draggable", "false" ); //todo ... redundant? ...
         var draggable = { dom:pdom, type:type, index:i, id:key };
-        dr.movables[ key ] = draggable;
+        if( i>0 || type === 'ctrl' ) {
+            dr.movables[ key ] = draggable;
+        }
         return draggable;
     }
     //==================================================

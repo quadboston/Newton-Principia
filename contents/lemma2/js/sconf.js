@@ -46,6 +46,7 @@
         var SLIDERS_LEGEND_HEIGHT = 0;
 
         sconf.default_tp_lightness = 30;
+        sconf.ONLY_MONOTONIC_CURVE = true;
         var predT =
         {
             "given"                     : [0,    100,  0 ],
@@ -220,7 +221,7 @@
 
             l : {
                 pcolor      : predT.given,
-                letterAngle : 45,
+                letterAngle : 135,
                 initialR    : 3,
             },
 
@@ -229,6 +230,16 @@
                 letterAngle : 45,
                 initialR    : 3,
             },
+
+            //invizible point
+            bk : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 30,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
 
             c : {
                 pcolor      : predT.given,
@@ -294,11 +305,17 @@
                         pcolor : predT.given,
                    },
             },
-            */
             { Kb : {
                         pcolor : predT.given,
                    },
             },
+            */
+
+            { "K,bk" : {
+                        pcolor : predT.given,
+                   },
+            },
+
             { Bb : {
                         pcolor : predT.given,
                    },

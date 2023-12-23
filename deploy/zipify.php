@@ -224,25 +224,70 @@
     //=====================================================
     chdir( '..' );
     $name_of_copy = "$version-$folder_to_zip$archive_postfix";
-    //printf( 'name_of_copy=' . $name_of_copy . "\n" );
-    cli( "cp -R $folder_to_zip $name_of_copy",
-         "cloning the zippee to new name" );
-    $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
+    $rsync = "$folder_to_zip/ $name_of_copy/";
 
     $skipper = '';
-    if( $skips_images ) {
-        //.excludes images from zip if requested
-        $skipper = ' *.png *.jpeg *.jpg *.gif *.mp4 *.mp3 *.mpeg *.mov *.avi *.webm *.pdf *.MP4 *.MP3 *.PNG *.JPEG *.GIF *.MPEG *.AVI *.WEBM *.xcf ';
+    if( !$add_git_repo ) {
+        //.excludes .git from zip if requested
+        $skipper .= ' --exclude \'.git\'';
     }
+
+    if( $skips_images ) {
+        $skipper .=
+        ' --exclude \'*.png\''.
+        ' --exclude \'*.jpeg\''.
+        ' --exclude \'*.jpg\''.
+        ' --exclude \'*.gif\''.
+        ' --exclude \'*.mp4\''.
+        ' --exclude \'*.mp3\''.
+        ' --exclude \'*.mpeg\''.
+        ' --exclude \'*.mov\''.
+        ' --exclude \'*.MOV\''.
+        ' --exclude \'*.mkv\''.
+        ' --exclude \'*.avi\''.
+        ' --exclude \'*.webm\''.
+        ' --exclude \'*.pdf\''.
+        ' --exclude \'*.MP4\''.
+        ' --exclude \'*.MP3\''.
+        ' --exclude \'*.PNG\''.
+        ' --exclude \'*.JPEG\''.
+        ' --exclude \'*.GIF\''.
+        ' --exclude \'*.MPEG\''.
+        ' --exclude \'*.AVI\''.
+        ' --exclude \'*.WEBM\''.
+        ' --exclude \'*.ogg\''.
+        ' --exclude \'*.OGG\''.
+        ' --exclude \'*.xcf\''.
+        ' --exclude \'*.zip\''.
+        ' --exclude \'*.m4a\''.
+        ' --exclude \'*.M4A\''
+        ;
+    }
+    $rsync = 'rsync -a ' . $skipper . ' ' . $rsync;
+    //echo $rsync;
+    printf( $rsync . "\n" );
+
+    cli( $rsync, "cloning the zippee to new name" );
+    //printf( 'name_of_copy=' . $name_of_copy . "\n" );
+    //cli( "cp -R $folder_to_zip $name_of_copy",
+    //     "cloning the zippee to new name" );
+    $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
+    printf( $command . "\n" );
+
+    /*
     if( !$add_git_repo ) {
         //.excludes .git from zip if requested
         $skipper .= ' *.git/* ';
     }
+    //.excludes images from zip if requested
+    $skipper = ' *.png *.jpeg *.jpg *.gif *.mp4 *.mp3 *.mpeg *.mov *.MOV *.mkv *.avi *.webm *.pdf *.MP4 *.MP3 *.PNG *.JPEG *.GIF *.MPEG *.AVI *.WEBM *.ogg *.OGG *.xcf \\*.zip *.m4a *.M4A ';
     if( $skipper ) {
         $command .= ' -x ' . $skipper;
     }
-
+    */
+    //prints command^ cli( $command, 'zipping up the copy', TRUE );
     cli( $command, 'zipping up the copy' );
+
     cli( "rm -rf $name_of_copy", "removing zippee copy" );
     //=====================================================
     // \\// zips up

@@ -240,6 +240,8 @@
 
         
         // //\\ calculates min and max on separate bases
+        //      insYar[ib===master index, from 0 till basN-1] = ymin on
+        //      interval with left point equal ib
         let p = dr.curveMicroPts;
         for( var ib = 0; ib < basN; ib++ ) {
             var micrIx = basMicIx[ib];
