@@ -27,7 +27,8 @@
                 {  src:"core/gui-update-2.js" },
                 {  src:"core/gui-update-widthest.js" },
                 {  src:"core/model.js" },
-                {  src:"core/common/event-handlers.js" }
+                {  src:"core/common/event-handlers.js" },
+                {  src:"core/amode2captures.js" }
             ],
             "contents-list" :
             [

@@ -225,80 +225,69 @@
         var scale = sconf.mod2inn_scale;
         var cirYar = dr.basePts.circumscribedY;
         var insYar = dr.basePts.inscribedY;
-        if( item.type === 'ctrl' ) {
-            //ccc( item );
-            switch( item.index ) {
-            case 0 : var pname = 'a';
-                     //syncPoint( dr.basePts.list[ 0 ] );
-                     break;
-            case 4 :
-                     if( dr.basesN === 4 ) {
-                         var pname = 'E';
-                         //var previousItem = dr.basePts.list[ 3 ];
-                         //todo why twice?
-                         /*
-                         var pnameTop_ = 'o';
-                         //var insYar = dr.basePts.inscribedY;
-                         var cirYar = dr.basePts.circumscribedY;
-                         rg[ pnameTop_ ].pos[0] = rg[ pname ].pos[0];
-                         rg[ pnameTop_ ].pos[1] = -( cirYar[3] - yoff ) / scale;
-                        */
-                    }
-                    break;
-            }
-        //} else if( item.spinnerClsId === 'ctrl-0' ) {
-       //     ccc( 'a' );
-        //    var pname = 'A';
-        } else if( item.type === 'base' ) {
+        if( item.type === 'base' ) {
             var iIx = item.index;
+            let blist = dr.basePts.list;
+            let insPy = -( insYar[iIx] - yoff ) / scale;
+            let cirPy = -( cirYar[iIx] - yoff ) / scale;
+            let posAx = ( blist[0].x - xoff )  / scale;
+            let posBx = ( blist[1].x - xoff )  / scale;
+            let posCx = ( blist[2].x - xoff )  / scale;
+            let posDx = ( blist[3].x - xoff )  / scale;
+            let posEx = ( blist[4].x - xoff )  / scale;
             switch( iIx ) {
             case 0 : var pname = 'A';
                         var pnameFun = 'a'; //right on the curve
                         var pnameLow_ = 'K'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = rg[ pname ].pos[0];
-                        rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+                        rg[ pnameLow_ ].pos[0] = posAx;
+                        //rg[ pname ].pos[0];
+                        rg[ pnameLow_ ].pos[1] = insPy;
 
                         var pnameLow_ = 'bk'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = rg[ 'B' ].pos[0];
-                        rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+                        rg[ pnameLow_ ].pos[0] = posBx;
+                        //rg[ 'B' ].pos[0];
+                        rg[ pnameLow_ ].pos[1] = insPy;
 
                         var pnameTop_ = 'l'; //min of the interval
-                        rg[ pnameTop_ ].pos[0] = rg[ 'B' ].pos[0];
-                        rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                        rg[ pnameTop_ ].pos[0] = posBx;
+                        rg[ pnameTop_ ].pos[1] = cirPy;
                      break;
             case 1 : var pname = 'B';
                      ////optional names
                      var pnameFun = 'b'; //right on the curve
                      var pnameLow_ = 'L'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = rg[ 'B' ].pos[0];
-                     rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+                     rg[ pnameLow_ ].pos[0] = posBx;
+                     rg[ pnameLow_ ].pos[1] = insPy;
 
                     var pnameTop_ = 'm'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = rg[ 'C' ].pos[0];
-                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                    rg[ pnameTop_ ].pos[0] = posCx;
+                    //rg[ 'C' ].pos[0];
+                    rg[ pnameTop_ ].pos[1] = cirPy;
 
                     break;
             case 2 : var pname = 'C';
                      ////optional names
                      var pnameFun = 'c';
                      var pnameLow_ = 'M'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = rg[ pname ].pos[0];
-                     rg[ pnameLow_ ].pos[1] = -( insYar[iIx] - yoff ) / scale;
+                     rg[ pnameLow_ ].pos[0] = posCx;
+                     rg[ pnameLow_ ].pos[1] = insPy;
 
                     var pnameTop_ = 'n'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = rg[ 'D' ].pos[0];
-                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                    rg[ pnameTop_ ].pos[0] = posDx;
+                    rg[ pnameTop_ ].pos[1] = cirPy;
                     break;
             case 3 : var pname = 'D';
                      ////optional names   
                      var pnameFun = 'd';
                     var pnameTop_ = 'o'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = rg[ 'E' ].pos[0];
-                    rg[ pnameTop_ ].pos[1] = -( cirYar[iIx] - yoff ) / scale;
+                    rg[ pnameTop_ ].pos[0] = posEx;
+                    rg[ pnameTop_ ].pos[1] = cirPy;
+                     var pnameLow_ = 'G'; //min of the interval
+                     rg[ pnameLow_ ].pos[0] = posDx;
+                     rg[ pnameLow_ ].pos[1] = insPy;
                      break;
-            case 4 : if( dr.basesN > 4 ) {
-                        var pname = 'E';
-                     }
+            case 4 : //if( dr.basesN > 4 ) {
+                     var pname = 'E';
                      break;
             }
         }
@@ -323,40 +312,68 @@
     function syncPoints() {
 
         // //\\ user options
+        let hideLabels = amode.aspect === 'hypertext';
+
         let notInscribed = !sdata.view.isInscribed;
-        rg.K.undisplay = notInscribed;
-        rg.L.undisplay = notInscribed;
-        rg.M.undisplay = notInscribed;
+        let doset = hideLabels || notInscribed;
+        rg.K.undisplay = doset;
+        rg.L.undisplay = doset;
+        rg.M.undisplay = doset;
+        rg.gG.undisplay = doset;
+        rg.dM.undisplay = doset;
+        rg.cL.undisplay = doset;
+        rg["K,bk"].undisplay = doset;
+        rg.AK.undisplay = doset;
+        rg.LB.undisplay = doset;
+        rg.MC.undisplay = doset;
+        rg.GD.undisplay = doset;
+        rg.gE.undisplay = doset;
+
         let notCircumscribed = !sdata.view.isCircumscribed;
-        rg.l.undisplay = notCircumscribed;
-        rg.m.undisplay = notCircumscribed;
-        rg.n.undisplay = notCircumscribed;
-        rg.o.undisplay = notCircumscribed;
-        let notFigure = !sdata.view.isFigureChecked;
-        rg.a.undisplay = notFigure;
-        rg.b.undisplay = notFigure;
-        rg.c.undisplay = notFigure;
-        rg.d.undisplay = notFigure;
+        doset = hideLabels || notCircumscribed;
+        rg.l.undisplay = doset;
+        rg.m.undisplay = doset;
+        rg.n.undisplay = doset;
+        rg.o.undisplay = doset;
+        rg.la.undisplay = doset;
+        rg["m,bk"].undisplay = doset;
+        rg.nc.undisplay = doset;
+        rg.od.undisplay = doset;
+        //right sides:
+        rg.lB.undisplay = doset;
+        rg.mC.undisplay = doset;
+        rg.nD.undisplay = doset;
+        rg.oE.undisplay = doset;
+        rg.Aa.undisplay = doset;
+
+        //let notFigure = !sdata.view.isFigureChecked;
+        doset = hideLabels || (notCircumscribed && notInscribed);
+        rg.a.undisplay = doset;
+        rg.b.undisplay = doset;
+        rg.c.undisplay = doset;
+        rg.d.undisplay = doset;
         // \\// user options
 
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
 
-        if( dr.basesN < 4 ) {
-            rg.E.undisplay = true;
-            rg.o.undisplay = true;
-        } else {
-            rg.E.undisplay = false;
-            rg.o.undisplay = false || notCircumscribed;
-        }
+        //if( dr.basesN < 4 ) {
+        //    rg.E.undisplay = true;
+         //   rg.o.undisplay = true;
+        //} else {
+        rg.E.undisplay = false;
+        rg.o.undisplay = hideLabels || notCircumscribed;
+        //}
+        /*
         if( dr.basesN < 3 ) {
             rg.D.undisplay = true;
             rg.n.undisplay = true;
         } else {
-            rg.D.undisplay = false;
-            rg.n.undisplay = false || notCircumscribed;
-        }
+        */
+        rg.D.undisplay = hideLabels;
+        rg.n.undisplay = hideLabels || notCircumscribed;
+        //}
         
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
@@ -380,12 +397,40 @@
             rg.F.pos[0] = ( left - xoff ) / scale;
             rg.f.pos[0] = ( left - xoff ) / scale;
         }
-        rg["K,bk"].undisplay = rg.K.undisplay;
+        rg["Aa"].undisplay = !sdata.view.isFigureChecked &&
+                             !sdata.view.isCircumscribed &&
+                             !!sdata.view.isInscribed;
+        rg["AK"].undisplay = !sdata.view.isInscribed;
+
+        let vertLines = sdata.view.isFigureChecked &&
+            !sdata.view.isCircumscribed &&
+            !sdata.view.isInscribed &&
+            dr.basesN > 4;
+        rg["Bb"].undisplay = vertLines;
+        rg["Cc"].undisplay = vertLines;
+        rg["Dd"].undisplay = vertLines;
+
         // \\// majorant rect
         let wwNoMajor = fconf.sappId === 'lemma2' || amode.theorion === 'claim';
         rg.f.undisplay = wwNoMajor;
         rg.F.undisplay = wwNoMajor;
         rg.AB.undisplay = dr.figureParams.baseY > dr.yVariations.maxY;
+
+        let view = sdata.view;
+        let isFig = !!view.isFigureChecked;
+        let isIn = !!view.isInscribed;
+        let isCir = !!view.isCircumscribed;
+        if( !isFig && isIn && !isCir ) {
+            rg["a"].undisplay = true;
+        }
+        rg.g.pos[0] = rg.E.pos[0];
+        rg.g.pos[1] = rg.G.pos[1];
+
+        rg.A.doPaintPname = !hideLabels;
+        rg.B.doPaintPname = !hideLabels;
+        rg.C.doPaintPname = !hideLabels;
+        rg.D.doPaintPname = !hideLabels;
+        rg.E.doPaintPname = !hideLabels;
     }
 
 }) ();

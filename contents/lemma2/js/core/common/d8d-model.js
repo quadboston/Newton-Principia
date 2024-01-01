@@ -50,6 +50,8 @@
         {
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
+            //prevents jerking when non-monotonity is encountered
+            cPW.lastMove = [0,0];
 
             ///apparently, d8dp.crePointFW_BSLd8d1CHAMBER does this
             //if( !rg.detected_user_interaction_effect_DONE ) {
@@ -139,8 +141,10 @@
                           amode.aspect !== 'xixcentury'
                         )
                     ) {
-                        move2js( pw, [0,0], pw.achieved );
+                        move2js( pw, pw.lastMove, pw.achieved );
                         guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
+                    } else {
+                        pw.lastMove = [ arg.surfMove[0], arg.surfMove[1] ];
                     }
                 }
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );

@@ -253,6 +253,21 @@
                 initialR    : 3,
             },
 
+            g : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            G : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
             m : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -300,6 +315,31 @@
                         pcolor : predT.given,
                    },
             },
+
+            { AK : {
+                        pcolor : predT.given,
+                   },
+            },
+            { LB : {
+                        pcolor : predT.given,
+                   },
+            },
+            { MC : {
+                        pcolor : predT.given,
+                   },
+            },
+            { GD : {
+                        pcolor : predT.given,
+                   },
+            },
+            { gE : {
+                        pcolor : predT.given,
+                   },
+            },
+
+
+
+
             /*
             { AE : {
                         pcolor : predT.given,
@@ -310,11 +350,62 @@
                    },
             },
             */
-
+            // //\\ top rect sides
+            //lower
             { "K,bk" : {
                         pcolor : predT.given,
                    },
             },
+            { cL : {
+                        pcolor : predT.given,
+                   },
+            },
+            { dM : {
+                        pcolor : predT.given,
+                   },
+            },
+            { gG : {
+                        pcolor : predT.given,
+                   },
+            },
+            //circ, right rect sides
+            { lB : {
+                        pcolor : predT.given,
+                   },
+            },
+            { mC : {
+                        pcolor : predT.given,
+                   },
+            },
+            { nD : {
+                        pcolor : predT.given,
+                   },
+            },
+            { oE : {
+                        pcolor : predT.given,
+                   },
+            },
+
+
+            //upper
+            { od : {
+                        pcolor : predT.given,
+                   },
+            },
+            { "m,bk" : {
+                        pcolor : predT.given,
+                   },
+            },
+            { nc : {
+                        pcolor : predT.given,
+                   },
+            },
+            { la : {
+                        pcolor : predT.given,
+                   },
+            },
+            // \\// top rect sides
+
 
             { Bb : {
                         pcolor : predT.given,

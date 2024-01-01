@@ -42,7 +42,7 @@
                 if( 'toggleChangeFigure' === methodName ) return;
 
                 document.getElementById( methodName )
-                    .addEventListener( 'click', study.eventHandlers[ methodName ] );
+                    .addEventListener( 'change', study.eventHandlers[ methodName ] );
             });
 
 
@@ -79,6 +79,15 @@
                     });
                     //sDomN.figureInternalArea$.removeClass('hidden');
                 }else{
+                    let view = sdata.view;
+                    let isFig = view.isFigureChecked;
+                    let isIn = view.isInscribed;
+                    let isCir = view.isCircumscribed;
+                    if( !isIn && !isCir ) {
+                        document.getElementById('checkbox_4').checked = true;
+                        sdata.view.isFigureChecked = true;
+                        return;
+                    }
                     $$.qa( '.outline' )().forEach( outlinee => {
                         //outlinee.style.visibility = 'hidden';
                         $$.$(outlinee).cls( 'hidden' );
@@ -130,6 +139,15 @@
         }
 
         function toggleInscribed() {
+            let view = sdata.view;
+            let isFig = view.isFigureChecked;
+            let isIn = view.isInscribed;
+            let isCir = view.isCircumscribed;
+            if( !isFig && !isCir ) {
+                document.getElementById('toggleInscribed').checked = true;
+                sdata.view.isInscribed=1;
+                return;
+            }
 	        sdata.view.isInscribed^=1;
 	        //stdL2.shows_rects();
             //stdMod.refreshSVG_master();
@@ -137,6 +155,15 @@
         }
 
         function toggleCircumscribed() {
+            let view = sdata.view;
+            let isFig = view.isFigureChecked;
+            let isIn = view.isInscribed;
+            let isCir = view.isCircumscribed;
+            if( !isFig && !isIn ) {
+                document.getElementById('toggleCircumscribed').checked = true;
+                view.isCircumscribed = 1;
+                return;
+            }
 	        sdata.view.isCircumscribed^=1;
 	        //stdL2.shows_rects();
             ssF.media_upcreate_generic();

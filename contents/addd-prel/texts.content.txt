@@ -520,27 +520,36 @@ Walter Rudin "Principles of Mathematical Analysis".
 A summary of this construction is:
 <br><br><br>
 
-1. cuts order is defined by C<sub>r'</sub> < C<sub>r''</sub> \( \; \overset{df} \iff \; \)
-    B⁺<sub>r'</sub> ⊃ B⁺<sub>r''</sub>. This order preserves order of rationals
+1. cuts order is defined by C<sub>r'</sub> < C<sub>r"</sub> \( \; \overset{df} \iff \; \)
+    B⁺<sub>r'</sub> ⊋ B⁺<sub>r"</sub>. This order preserves order of rationals
 q' &lt; q'' \( \; \iff \; \) C<sub>q'</sub> &lt; C<sub>q''</sub>
 <br>
 
-2. operation + is defined as C' + C'' = ( B-' + B-'', B+' + B+'')  <br>
-3. operation * is defined as C' * C'' = ( B-' * B-'', B+' * B+'')  <br>
-4. ℝ<sup>+</sup> is a p.s. in respect to "+",                      <br>
-5. ℝ<sup>+</sup> is totally-operation-wise-ordered group in respect to ".", <br>
+2. operation + is defined as C' + C" = ( B⁻' + B⁻", B⁺' + B⁺")  <br>
+3. operation * is defined as C' * C" = ( B⁻' * B⁻", B⁺' * B⁺")  <br>
+4. ℝ⁺ is a p.s. in respect to "+",                      <br>
+5. ℝ⁺ is totally-operation-wise-ordered group in respect to "*", <br>
 6. some ring properties ... <br>
 
-7. bijection <b>q</b> ↦ (Bq-, Bq+) preseves order in ℚ⁺, "+", ".": in plain words,
-   |R+ algebraically extends ℚ⁺ <br>
+7. bijection <b>q</b> ↦ (Bq⁻, Bq+) preseves order in ℚ⁺, "+", "*": in plain words,
+   ℝ⁺ algebraically extends ℚ⁺ <br>
 
-In plain words, ℝ<sup>+</sup> posessed all the properties of odered field except which do
+In plain words, ℝ<sup>+</sup> posesses all the properties of odered field except which do
 involve 0 and negative numbers.
 <br><br>
 
-8. ℝ<sup>+</sup> is Archimedian and supports inf and sup principle.
+8. ℝ⁺ is Archimedian and supports inf and sup principle.
 <br><br>
 
+For example, let us show how operation "*" is being constructed. <br>
+i. it is well defined because C' * C" is a cut; indeed:<br>
+i' when q-' ‹ q+' and q-" ‹ q+", then B-' * B-" ‹ B+' * B+"<br>
+i" if there exist B-' * B-" ‹ p' ‹ p" ‹ B+' * B+", then consruct contradiction by chosing q-' ‹ q+' and q-" ‹ q+" closer than 𝛆 and q+" closer than 𝛆 to p+"; then q-'q-" › q+'q+" - q+"𝛆 - q+'𝛆 + 𝛆² › p" - (q+"+ q+')𝛆 › p" - (p"+ p" + 2𝛆)𝛆
+= p"(1-2𝛆) +2𝛆² › p' at sufficietnly small 𝛆; <br><br>
+
+ii. operation "*" extends ownself from rational numbers:
+indeed, for Cₚ₁ and Cₚ₂,   q₁⁻ ‹ p₁ ‹ q₁⁺ and q₂⁻ ‹ p₂ ‹ q₂⁺ it follows that
+q₁⁻q₂⁻ ‹ p₁p₂ ‹ q₁⁺q₂⁺, and that p₁p₂ is a dividor of Cₚ₁Cₚ₂ and Cₚ₁Cₚ₂=Cₚ₁ₚ₂;
 
 
 *::*proof|algebraic-extension

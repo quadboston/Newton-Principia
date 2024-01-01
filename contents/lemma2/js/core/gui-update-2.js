@@ -7,8 +7,10 @@
     } = window.b$l.apptree({
         setModule,
     });
-    var stdL2 = sn('stdL2', fapp );
-    var study = sn('study', stdL2 );
+    var stdL2   = sn('stdL2', fapp );
+    var study   = sn('study', stdL2 );
+    var gui     = sn('gui', stdL2 );
+    var guicon  = sn('guiConstruct', gui );
     return;
 
 
@@ -89,6 +91,7 @@
                 medD8D.updateAllDecPoints();
             }
             stdMod.syncPoints();
+            guicon.dehollowfy_ctrlPts();
             //todm this function no longer exists; toggle ???active
             //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax();
         }
