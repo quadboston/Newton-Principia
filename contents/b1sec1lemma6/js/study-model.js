@@ -151,25 +151,10 @@
                         [rg.A.pos, rg.L.pos],
                     ]).angle < 0
                 ){
-                    (function() {
-                        var lpos = rg.L.pos;
-                        var apos = rg.A.pos;
-                        var kk = ( lpos[1] - apos[1] ) / ( lpos[0] - apos[0] );
-                        ///calculates point when moving back point B will cross
-                        ///line AL
-                        for( var ix=0; ix<200; ix++ ) {
-                            cpar = new_unrotatedParameterX+ix*0.005;
-                            var pos = cfun( cpar );
-                            var lineY = pos[0] * kk;
-                            if( lineY > pos[1] ) {
-                                ////B crossed line AL
-                                new_unrotatedParameterX = cpar;
-                                break;
-                            }
-                        }
-
-                    })();
+                    adjust_new_unrotatedParameterX_asNeccesary();
                     sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
+                } else {
+                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
                 }
 
                 ///prevents user from playing with too big curves
@@ -184,6 +169,27 @@
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 return true;
+
+                function adjust_new_unrotatedParameterX_asNeccesary() {
+                    (function () {
+                        var lpos = rg.L.pos;
+                        var apos = rg.A.pos;
+                        var kk = (lpos[1] - apos[1]) / (lpos[0] - apos[0]);
+                        ///calculates point when moving back point B will cross
+                        ///line AL
+                        for (var ix = 0; ix < 200; ix++) {
+                            cpar = new_unrotatedParameterX + ix * 0.005;
+                            var pos = cfun(cpar);
+                            var lineY = pos[0] * kk;
+                            if (lineY > pos[1]) {
+                                ////B crossed line AL
+                                new_unrotatedParameterX = cpar;
+                                break;
+                            }
+                        }
+
+                    })();
+                }
             }
         });
         //-------------------------------------------------
@@ -297,7 +303,7 @@
         ssF.createButton({
             caption                 :
                 'AB cannot be diminished further while ' +
-                'containing the rectilinear angle.<br><br>Close.',
+                'containing the rectilinear angle.',
             buttonUniversalId       : wwId,
             //scenarioEventOnClick    : 'graph-is-plotted',
             clickCallback           : () => {
