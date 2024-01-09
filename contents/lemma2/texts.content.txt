@@ -37,12 +37,12 @@
         If in any figure ¦figure¦AacE¦¦,
         comprehended by the straight lines ¦wall¦Aa¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve acE¦¦,
         any number of parallelograms ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦, ...
-        are inscribed upon equal bases AB, BC, CD, ...
+        are inscribed upon equal bases ¦AB BC CD¦AB, BC, CD¦¦, ...
 
-        and have sides Bb, Cc, Dd, ...
+        and have sides ¦Bb Cc Dd¦Bb, Cc, Dd¦¦, ...
         parallel to the ¦wall¦side Aa¦¦ of the figure;
-        and if the parallelograms aKbl, bLcm, cMdn, ... are completed;
-        if then the width of these parallelograms is diminished and their number increased indefinitely,
+        and if the parallelograms ¦inscribed-rectangles insc-txt¦aKbl, bLcm, cMdn¦¦, ... are completed;
+        if then the ¦AB BC CD¦width¦¦ of these parallelograms is diminished and their number increased indefinitely,
 
         I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AKbLcMdD¦¦,
         the ¦circumscribed-rectangles circ-txt¦circumscribed figure AalbmcndoE¦¦,
