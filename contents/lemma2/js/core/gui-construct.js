@@ -37,7 +37,7 @@
             constructsRects_tillExtraOffset_parlessDom,
             constructsControlPoints,
             constructBasePts_domParless,
-            dehollowfy_ctrlPts,
+            reset_hollowPoints,
         });
     }
 
@@ -93,53 +93,55 @@
             pt.y = ctrlPtXYs_js[i].y;
             ctrlPts.push( pt );
         }
-        dehollowfy_ctrlPts('onlyControlsOnCurve');
+        reset_hollowPoints({ onCurve:true, onBase:false });
     }
 
-    function dehollowfy_ctrlPts( onlyControlsOnCurve )
+    function reset_hollowPoints({ onCurve, onBase })
     {
         let view = sdata.view;
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
         let isCir = !!view.isCircumscribed;
-        let yes = !isFig &&
-                  ((!isIn && isCir) || (isIn && !isCir));
+        //let functionYes = !isFig &&
+        //          ((!isIn && isCir) || (isIn && !isCir));
         // control points
         var ctrlPts = dr.ctrlPts;
-        let functionYes = yes;
-        for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
-            //if( i===4 ) functionYes = false; //continue;
-            var ctrlPtXYs_js = sconf.ctrlPtXYs_js;
-            //pt = dr.movables[ type + i ]
-            var pt = ctrlPts[i];
-            var pdom = pt.dom;
-            pdom.style.fill = functionYes ? 'transparent' :
-                //.todm patch
-                'rgba(255,255,255,1)'; //makes the point hollow
-            pdom.style.stroke = functionYes ? 'transparent' :
-                sDomF.getFixedColor( 'curve' );
+        if( onCurve ) {
+            for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
+                //if( i===4 ) functionYes = false; //continue;
+                let ctrlPtXYs_js = sconf.ctrlPtXYs_js;
+                //pt = dr.movables[ type + i ]
+                let pt = ctrlPts[i];
+                let pdom = pt.dom;
+                pdom.style.fill = !isFig ? 'transparent' :
+                    //.todm patch
+                    'rgba(255,255,255,1)'; //makes the point hollow
+                pdom.style.stroke = !isFig ? 'transparent' :
+                    sDomF.getFixedColor( 'curve' );
+            }
         }
-        if( onlyControlsOnCurve ) return;
+
         // //\\ dehollowfies basePts
-        let bplist = dr.basePts.list;
-        const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-        if( fconf.sappId !== 'lemma3' ) return;
-        for (var i=0,
-            //let len=Math.min( sconf.DRAGGABLE_BASE_POINTS, sconf.BASE_MAX_NUM );
-            len=sconf.DRAGGABLE_BASE_POINTS;
-            i <= len; i++) {
-            //not yet draggable, just a template
-            //todo-patch-disable-base-drag 1 of 2
-            //if( i>0 ) {
-            //    guiup.sets_pt2movable( pt );
-            //}
-            var pt = bplist[i];
-            var pdom = pt.dom;
-            pdom.style.fill = yes ? 'transparent' :
-                //.todm patch
-                'rgba(255,255,255,1)'; //makes the point hollow
-            pdom.style.stroke = yes ? 'transparent' :
-                sDomF.getFixedColor( 'curve' );
+        if( onBase && fconf.sappId === 'lemma3' ) {
+            let bplist = dr.basePts.list;
+            const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
+            for (var i=0,
+                //let len=Math.min( sconf.DRAGGABLE_BASE_POINTS, sconf.BASE_MAX_NUM );
+                len=sconf.DRAGGABLE_BASE_POINTS;
+                i <= len; i++) {
+                //not yet draggable, just a template
+                //todo-patch-disable-base-drag 1 of 2
+                //if( i>0 ) {
+                //    guiup.sets_pt2movable( pt );
+                //}
+                var pt = bplist[i];
+                var pdom = pt.dom;
+                pdom.style.fill = !isIn && !isCir ? 'transparent' :
+                    //.todm patch
+                    'rgba(255,255,255,1)'; //makes the point hollow
+                pdom.style.stroke = !isIn && !isCir ? 'transparent' :
+                    sDomF.getFixedColor( 'curve' );
+            }
         }
         // \\//  dehollowfies basePts
     }

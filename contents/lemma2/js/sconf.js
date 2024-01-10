@@ -311,6 +311,10 @@
                         pcolor : predT.given,
                    },
             },
+            { AE : {
+                        pcolor : predT.given,
+                   },
+            },
             { Aa : {
                         pcolor : predT.given,
                    },
@@ -337,19 +341,6 @@
                    },
             },
 
-
-
-
-            /*
-            { AE : {
-                        pcolor : predT.given,
-                   },
-            },
-            { Kb : {
-                        pcolor : predT.given,
-                   },
-            },
-            */
             // //\\ top rect sides
             //lower
             { "K,bk" : {

@@ -1,6 +1,6 @@
 ( function () {
     var {
-        sn,
+        sn, $$,
         fapp, fconf, sconf, sDomN, ssF,
         amode,
     } = window.b$l.apptree({
@@ -310,12 +310,31 @@
 
 
     function syncPoints() {
-
-        // //\\ user options
-        let hideLabels = amode.aspect === 'hypertext';
-
-        let notInscribed = !sdata.view.isInscribed;
-        let doset = hideLabels || notInscribed;
+        let hiperMode = amode.aspect === 'hypertext';
+        let view = sdata.view;
+        let isFig = !!view.isFigureChecked;
+        let isIn = !!view.isInscribed;
+        let isCir = !!view.isCircumscribed;
+        let onlyFig = !isIn&&!isCir;
+        {
+            let s = hiperMode || onlyFig;
+            [ 'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', 'E',
+            ].forEach( function( l ) {
+                    rg[ l ].undisplay = s;
+                    rg[ l ].doPaintPname = !s;
+            });
+            [ 'AE', 'AB', 'BC', 'CD' ].forEach( function( l ) {
+                    rg[ l ].undisplay = s;
+            });
+            [ 'Bb', 'Cc', 'Dd', 'oE' ].forEach( function( l ) {
+                    rg[ l ].undisplay = s;
+            });
+            rg.Aa.undisplay = hiperMode || (!isCir && isIn && !isFig);
+            if( !isFig && isIn && !isCir ) {
+                rg["a"].undisplay = true;
+            }
+        }
+        let doset = hiperMode || !isIn;
         rg.K.undisplay = doset;
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
@@ -329,8 +348,7 @@
         rg.GD.undisplay = doset;
         rg.gE.undisplay = doset;
 
-        let notCircumscribed = !sdata.view.isCircumscribed;
-        doset = hideLabels || notCircumscribed;
+        doset = hiperMode || !isCir;
         rg.l.undisplay = doset;
         rg.m.undisplay = doset;
         rg.n.undisplay = doset;
@@ -344,36 +362,11 @@
         rg.mC.undisplay = doset;
         rg.nD.undisplay = doset;
         rg.oE.undisplay = doset;
-        rg.Aa.undisplay = doset;
-
-        //let notFigure = !sdata.view.isFigureChecked;
-        doset = hideLabels || (notCircumscribed && notInscribed);
-        rg.a.undisplay = doset;
-        rg.b.undisplay = doset;
-        rg.c.undisplay = doset;
-        rg.d.undisplay = doset;
-        // \\// user options
 
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
 
-        //if( dr.basesN < 4 ) {
-        //    rg.E.undisplay = true;
-         //   rg.o.undisplay = true;
-        //} else {
-        rg.E.undisplay = false;
-        rg.o.undisplay = hideLabels || notCircumscribed;
-        //}
-        /*
-        if( dr.basesN < 3 ) {
-            rg.D.undisplay = true;
-            rg.n.undisplay = true;
-        } else {
-        */
-        rg.D.undisplay = hideLabels;
-        rg.n.undisplay = hideLabels || notCircumscribed;
-        //}
         
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
@@ -397,41 +390,26 @@
             rg.F.pos[0] = ( left - xoff ) / scale;
             rg.f.pos[0] = ( left - xoff ) / scale;
         }
-        rg["Aa"].undisplay = !sdata.view.isFigureChecked &&
-                             !sdata.view.isCircumscribed &&
-                             !!sdata.view.isInscribed;
-        rg["AK"].undisplay = !sdata.view.isInscribed;
-
-        let vertLines = sdata.view.isFigureChecked &&
-            !sdata.view.isCircumscribed &&
-            !sdata.view.isInscribed &&
-            dr.basesN > 4;
-        rg["Bb"].undisplay = vertLines;
-        rg["Cc"].undisplay = vertLines;
-        rg["Dd"].undisplay = vertLines;
-
-        // \\// majorant rect
-        let wwNoMajor = fconf.sappId === 'lemma2' || amode.theorion === 'claim';
-        rg.f.undisplay = wwNoMajor;
-        rg.F.undisplay = wwNoMajor;
-        rg.AB.undisplay = dr.figureParams.baseY > dr.yVariations.maxY;
-
-        let view = sdata.view;
-        let isFig = !!view.isFigureChecked;
-        let isIn = !!view.isInscribed;
-        let isCir = !!view.isCircumscribed;
-        if( !isFig && isIn && !isCir ) {
-            rg["a"].undisplay = true;
-        }
         rg.g.pos[0] = rg.E.pos[0];
         rg.g.pos[1] = rg.G.pos[1];
 
-        rg.A.doPaintPname = !hideLabels;
-        rg.B.doPaintPname = !hideLabels;
-        rg.C.doPaintPname = !hideLabels;
-        rg.D.doPaintPname = !hideLabels;
-        rg.E.doPaintPname = !hideLabels;
+        //--------------------------------------
+        // //\\ majorant
+        //--------------------------------------
+        let checked = !!document.getElementById('toggleWidthest').checked &&
+                        amode.theorion !== 'claim' &&
+                        fconf.sappId === 'lemma3';
+        if( checked ){
+            $$.$(dr.faaf).removeClass( 'invisible' );
+        } else {
+            $$.$(dr.faaf).addClass( 'invisible' );
+        }
+        rg.F.undisplay = !checked || hiperMode || onlyFig;
+        rg.f.undisplay = !checked || hiperMode || onlyFig;
+        rg.AF.undisplay = !checked;
+        //--------------------------------------
+        // \\// majorant
+        //--------------------------------------
     }
-
 }) ();
 
