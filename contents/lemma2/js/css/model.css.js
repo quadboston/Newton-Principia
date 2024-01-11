@@ -102,10 +102,7 @@ svg text {
   display: flex;
 }
 
-#lemma2.bsl-approot .label.f,
-#lemma2.bsl-approot .label.F,
 #lemma2.bsl-approot #widthest-visib-toggler-wrap,
-#lemma2.bsl-approot .bsl-approot.theorion--claim .widthest-rectangular,
 .bsl-approot.theorion--claim #widthest-visib-toggler-wrap,
 .widthest-rectangular.invisible,
 .bsl-approot.theorion--claim .widthest-rectangular {

@@ -11,6 +11,8 @@
     var study   = sn('study', stdL2 );
     var gui     = sn('gui', stdL2 );
     var guicon  = sn('guiConstruct', gui );
+    var sdata   = sn('sdata', study );
+    var dr      = sn('datareg', stdL2 );
     return;
 
 
@@ -20,14 +22,10 @@
     function setModule()
     {
         stdMod.refreshSVG_master = refreshSVG_master;
-
-        var study       = sn('study', stdL2 );
-        var sdata       = sn('sdata', study );
-        var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate', gui);
         var numModel    = sn('numModel', stdL2 );
-        var dr          = sn('datareg', stdL2 );
         var appstate    = sn('appstate', stdL2 );
+
         ///same in meaning to legacy !view.isNewton property
         sapp.isLite = function()
         {
@@ -91,7 +89,10 @@
                 medD8D.updateAllDecPoints();
             }
             stdMod.syncPoints();
-            guicon.dehollowfy_ctrlPts();
+            guicon.reset_hollowPoints({
+                onCurve:true,
+                onBase:true,
+            });
             //todm this function no longer exists; toggle ???active
             //if(sDomN.topicModelInitialized)sDomF.exegs_2_tpAn8dom8mjax();
         }
@@ -141,7 +142,6 @@
         //======================================
         // \\// manages visibility
         //======================================
-
     }
 
 }) ();

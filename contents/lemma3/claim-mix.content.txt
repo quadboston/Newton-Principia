@@ -7,7 +7,7 @@
 }
 *..*
 
-        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths AB, BC, CD,...
+        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,...
         of the parallelograms are unequal and are all diminished indefinitely.</dense>
 
         <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
@@ -31,11 +31,11 @@
 
 
 *::*proof|latin
-            Sit enim AF æqualis latitudini maximæ
+            Sit enim ¦AF¦¦ æqualis latitudini maximæ
             &amp; compleatur ¦widthest-rectangular widt-txt¦parallelogrammum FAaf¦¦.
             Hoc erit majus quam differentia
             ¦inscribed-rectangles insc-txt¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles circ-txt¦figuræ circumscripta¦¦;
-            at latitudine sua AF in infinitum diminuta,
+            at latitudine sua ¦AF¦¦ in infinitum diminuta,
             minus fiet dato quovis rectangulo. Q.E.D.
 
             <br><br><div book-reference-id="latin"></div>

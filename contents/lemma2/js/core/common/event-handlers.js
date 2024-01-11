@@ -25,10 +25,10 @@
         sdata.curveDragHandlesVisible = true;
         study.eventHandlers =
         {
-            toggleChangeFigure  : toggleChangeFigure,
-	        toggleInscribed     : toggleInscribed,
-	        toggleCircumscribed : toggleCircumscribed,
-	        toggleWidthest : showOrHide_widthest
+            toggleChangeFigure,
+	        toggleInscribed,
+	        toggleCircumscribed,
+            toggleWidthest,
         };
         study.setupEvents = setupEvents;
         return;
@@ -126,16 +126,15 @@
 
 
 
-
         //======================================
         // //\\ event-handlers
         //======================================
-        function showOrHide_widthest() {
-            if(document.getElementById('toggleWidthest').checked){
-                $$.$(dr.faaf).removeClass( 'invisible' );
-            } else {
-                $$.$(dr.faaf).addClass( 'invisible' );
-            }
+
+
+
+        function toggleWidthest()
+        {
+            ssF.media_upcreate_generic();
         }
 
         function toggleInscribed() {
