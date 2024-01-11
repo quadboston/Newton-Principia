@@ -1,88 +1,3 @@
-
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-
-Si arcus quilibet positione datus ¦arc-AB¦ACB¦¦ subtendatur chorda ¦AB¦AB¦¦, 
-& in puncto aliquo ¦A¦A¦¦, 
-in medio curvaturæ continuæ, tangatur a recta utrinq; producta ¦AD¦AD¦¦; 
-dein puncta ¦A¦A¦¦, ¦B¦B¦¦ ad invicem accendant & coeant; 
-dico ¦angleBAD AB AD *anch-color*given¦quod angulus BAD¦¦ sub chorda & tangente contentus minuetur in infinitum & ultimo evanescet.
-
-<br><br>
-<div book-reference-id="Gutenberg"></div>
-
-
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English"
-}
-*..*
-
-If any arc ¦arc-AB¦ACB¦¦, given in position, 
-is subtended by the chord ¦AB¦AB¦¦
-and at some point ¦A¦A¦¦, 
-in the middle of the continuous
-curvature, is touched by the ¦AD¦straight line AD¦¦, 
-produced in both directions,
-and if then points ¦A¦A¦¦ and ¦B¦B¦¦
-
- <span class="captured-reference id-true-convergence-1">approach
-each other</span>
-
- <span class="captured-reference id-meet">and come together</span>,
-
-I say
-that ¦angleBAD AB AD *anch-color*given¦the angle BAD¦¦ contained by the
-chord and the tangent will be indefinitely diminished and will ultimately
-vanish.
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
-
-
-*::*proof|latin
-
-Nam producatur AB ad b & AD ad d, & punctis A, B
-coeuntibus, nullaq; adeo ipsius Ab parte AB jacente am-
-plius intra curvam, manifestum esi quod hæc recta Ab, 
-vel coincidet cum tangente Ad, 
-vel ducetur inter tangentem & curvam. 
-Sed casus posterior est contra naturam Curvaturæ, 
-ergo prior obtinet. Q. E. D.
-
-
-<br><br>
-<div book-reference-id="Gutenberg"></div>
-
-
-
-
-*::*proof|english
-
-    For if ¦angleBAD AB AD *anch-color*given¦that angle¦¦ does not vanish, 
-    the angle contained by the arc ¦arc-AB¦ACB¦¦ 
-    and the tangent ¦AD¦AD¦¦ will be equal to a ¦AL Ad L¦rectilinear angle¦¦, 
-    and therefore the curvature at ¦A¦point A¦¦ will not be continuous,
-    <span class="captured-reference id-L-equal-d">contrary to the hypothesis</span>.
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
-
-
-
-
-
 *::*claim|model
 {
   "menuCaption" : "Addendum",
@@ -186,6 +101,169 @@ then
 
 
 <br><br><span style="font-size:9px">This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Konstantin Kirillov</a>.</span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*claim|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Historical notes",
+  "subessay" : "historical-notes"
+}
+*..*
+
+
+<b>I. Newtons logic in Lemma 11,</b>
+<br>
+strongly suggests that by word "curvatue", Newton means
+<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=circle-based-curvature#circlescribed-curvature-anchor">
+"CirlescribedCurvature"
+</a>
+<br><br>
+
+<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=proof,aspectId=english">
+Drag point B to A and see that point G has limit J.
+</a>
+
+That's a diameter of curvature. It is irrelevant what limit to use
+R → R<sub>c</sub> or 2R=D → D<sub>c</sub>=J.
+(Rigorously, R and D are vectors from point A to point R or G on diagram, and curvature-radius-vector is a vector AJ which is a limit of these vectors).
+<br><br>
+
+(CircleSribed curvature is not the curvature χ in CalculusXX where it is |d²<b>r</b>/ds²|.
+Yes, when χ exists, then CircleSribed curvature does exist too and = χ = 1/R<sub>c</sub>, but not other way around:
+
+<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
+for this curve
+</a>
+CircleSribed curvature does exist, but χ does not because
+even the first derivative d<b>r</b>/dt does not exist.
+)
+<br><br>
+
+<a name="three-lemma6-versions"></a>
+<b>II. In addendums, there are offered 3 variants of L6:</b>
+<br><br>
+
+<b>Variant 1. Differential.</b> All of these three "Differential" versions are equivalent:
+<br>
+
+a) curve is differentiable
+<br>
+<a target="_blank" href="?conf=sappId=b1sec1lemma6,
+theorionId=proof,aspectId=model#differential-version">
+b) differential tangents exist
+</a>
+<br>
+
+<a target="_blank" href="?conf=sappId=b1sec1lemma6,
+theorionId=proof,aspectId=model#differential-version">
+c) chord angle has a limit
+</a>
+<br><br><br>
+
+
+
+<b>Variant 2.<a target="_blank" href="?conf=sappId=b1sec1lemma6,
+theorionId=proof,aspectId=model#pure-convex-version">
+Lemma 6. Pure convex version.
+</a></b> Apparently chosen in Dana Densmore book.
+However, this does not need any premise of "continuity" and "curvature".
+<br><br>
+
+
+
+<b>Variant 3. Lemma 6. Continues CircleScribe curvature for curve with existing length.</b>
+(Did not recorded yet in Addendums.)
+<br><br>
+
+Length axioms make
+curve continuous at point A which becomes sufficient condition to prove the lemma.
+<br><br>
+
+This is what most likely Newton meant. However, this makes "ad absudum" proof in Book's Lemma 6 logically redundant which, perhaps, Newton did not consider significant to pay attention to.
+<br><br><br>
+ 
+
+
+
+<b> III. "Differential version" turns calculus logic flow upside down.</b>
+<br><br>
+
+In Equclid framework the logic is
+<br><br>
+
+... conics, prexisting curves, curve length existence and its properties are apparently assumed,
+Euclidean tangents
+<br>
+ →
+<br>
+differential tangent definition and its equality to Euclidean
+<br><br>
+
+New theory logic is:
+<br><br>
+
+differential tangent definition
+<br>
+ →
+curve length s, is built upon on differential tangent definition as
+integral of ds = sqrt( dx'² + dy'² ),
+<br>
+→
+<br>
+curvature defined from d²r/ds²
+<br><br>
+
+Euclidean tangents become irrelevant,
+set of curves available for new theory is expanded,
+<br><br><br>
+
+
+<b> IV. Apparently real point of lemma 6 </b> 
+<br><br>
+is actually not the proof of that E-tangent and differential tangent are equal.
+Premise of existance of differential tangent constructs conceptually different definition of the tangent: differential tangent, tangent as a limiting position of decreasing chords.
+<br><br>
+
+(ii) automatically extends definition of tangent to non-Euclidean tangents, for example for
+non-convex functions in neighbouhood of point A, like x²sin(1/x) at A=(0,0). 
+<br><br>
+
+Moreover, in CalculusXX, differential tangent becomes logical backbone of the Calculus instead of Euclidean tangent.
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -297,6 +375,3 @@ We assume Dedekind-Cantor continuity axiom. We don't make any assumptions beyoun
   "Lemma 6. Differential version").
 
 <br><br>
-
-
-

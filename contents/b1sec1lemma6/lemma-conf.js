@@ -22,8 +22,10 @@
             ],
             "contents-list" :
             [
-                'texts.content.txt',
-                'addendum-comment.txt',
+                'txt/latin.txt',
+                'txt/cohen.txt',
+                'txt/video.txt',
+                'txt/addendum-comment.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',
