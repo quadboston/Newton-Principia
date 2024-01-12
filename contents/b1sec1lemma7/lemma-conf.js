@@ -12,7 +12,10 @@
             sappCodeReference : 'b1sec1lemma6',
             "contents-list" :
             [
-                'texts.content.txt',
+                'txt/latin.txt',
+                'txt/cohen.txt',
+                'txt/video.txt',
+                'txt/addendum-comment.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

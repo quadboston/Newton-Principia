@@ -1,0 +1,35 @@
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+
+
+*::*proof|latin
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+
+*::*corollary|latin
+<img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
+
+<br><br>
+<div book-reference-id="latin"></div>
