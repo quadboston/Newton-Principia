@@ -1,0 +1,37 @@
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png"
+}
+*..*
+
+        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,...
+        of the parallelograms are unequal and are all diminished indefinitely.</dense>
+
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+
+
+
+*::*proof|english
+{
+}
+*..*
+            <dense class='orig';>For let ¦AF¦¦ be equal to the greatest width,
+            and let the ¦widthest-rectangular widt-txt¦parallelogram FAaf¦¦ be completed. 
+            This parallelogram will be greater than the difference of 
+            the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
+            but if its width ¦AF¦¦ is diminished indefinitely,
+            it will become less than any given rectangle.  Q.E.D.</dense>
+
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+
+
+
+
+
+
+
