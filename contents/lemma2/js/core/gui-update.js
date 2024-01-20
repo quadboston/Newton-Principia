@@ -397,8 +397,7 @@
         // //\\ majorant
         //--------------------------------------
         let checked = !!document.getElementById('toggleWidthest').checked &&
-                        amode.theorion !== 'claim' &&
-                        fconf.sappId === 'lemma3';
+                        amode.theorion !== 'claim';
         if( checked ){
             $$.$(dr.faaf).removeClass( 'invisible' );
         } else {

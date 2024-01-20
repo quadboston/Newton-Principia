@@ -61,7 +61,12 @@
 
             "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.7],
             "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7],
-            "widthest-rectangular"      : [0,  0, 100, 0.4, 0.7],
+
+            //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+            "widthest-rectangular"      : fconf.sappId === 'lemma2' ?
+                                                [0,  0, 100, 0.0, 0.7] :
+                                                [0,  0, 100, 0.4, 0.7],
+
             "circ-txt"                  : [0,  50, 100, 0.7, 1],
             "insc-txt"                  : [100,  0, 100, 0.7, 1],
             "widt-txt"                  : [0,  0, 100, 0.7, 1],
