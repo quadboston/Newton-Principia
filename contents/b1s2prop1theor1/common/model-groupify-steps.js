@@ -164,8 +164,8 @@
                 var fkey = 'force-' + (pix-2);
                 var fappliedKey = fkey + '-applied';
                 var tipKey = fkey+'-1';
-                fgroup.push( rg[ fappliedKey ] );   
-                fgroup.push( rg[ tipKey ] );   
+                fgroup.push( rg[ fappliedKey ] );
+                fgroup.push( rg[ tipKey ] );
                 //------------------------------------
                 // \\// path finalized group
                 //------------------------------------

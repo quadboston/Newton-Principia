@@ -314,7 +314,7 @@
             { nam : ['B', 'V'], },
             { nam : ['E', 'Z'], },
 
-            { nam : ['C', 'V'], },
+            { nam : ['C', 'V'], decStart : rg.C.decStart, },
             { nam : ['A', 'V'], },
             { nam : ['F', 'Z'], },
             { nam : ['D', 'Z'], },
@@ -347,6 +347,8 @@
                 haz( pNam, 'cssClass' ),
                 stdMod,
             );
+            if( rgElem.pname === 'CV' )
+                ccc( rgElem );
             decor[ rgElem.pname ] = rgElem;
             decor[ rgElem.pname ].isPoint = false;
             var decStart = has( pNam, 'decStart' ) ?

@@ -119,6 +119,8 @@
         if( vectorTipIx || vectorTipIx === 0 ) {
             paintsVectorTips({ vectorTipIx, pivots, line, stdMod });
         }
+        if( pName === 'CV' )
+            ccc( pName, pivots, line );
 
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
