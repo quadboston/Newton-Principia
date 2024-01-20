@@ -1,0 +1,65 @@
+*::*claim|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/902147956"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+Even if the rectangle ¦base¦bases¦¦ are unequal, 
+the areas of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ 
+and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles 
+will <i>still</i> converge on the area of the ¦figure-area¦figure¦¦ as we 
+increase the number of ¦base¦bases¦¦.
+
+
+
+
+
+
+
+*::*proof|hypertext
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/902148117"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+Once the rectangle ¦base¦bases¦¦ are unequal, 
+we can no longer count on the largest circumscribed rectangle 
+to be equal in area to the difference between the 
+¦circumscribed-rectangles circ-txt¦circumscribed¦¦ and ¦inscribed-rectangles insc-txt¦inscribed¦¦ rectangle areas; 
+it could be smaller. 
+However, Newton constructs a ¦widthest-rectangular widt-txt¦new rectangle¦¦ for this proof; 
+one with a base as wide as the widest of the other bases.
+<br><br>
+
+The computer model does this for us. 
+As we make one of the bases wider than the rest, 
+we see this ¦widthest-rectangular widt-txt¦new rectangle¦¦ being formed. 
+We can uncheck the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles to draw attention to this newly constructed rectangle. 
+The model gives it a dark blue color, 
+and when we turn the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles back on, 
+we can still see it through the semi-transparent magenta of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ rectangles, 
+and the semi-transparent blue of the ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles.
+<br><br>
+
+By constructing this ¦widthest-rectangular widt-txt¦new rectangle¦¦ in this way, 
+it's guaranteed to be no smaller than the difference between the ¦inscribed-rectangles insc-txt¦inscribed¦¦ 
+and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles. 
+And as before with lemma 2, 
+its area becomes as close to 0 as we like 
+when we increase the number of ¦base¦bases¦¦. 
+So as with lemma 2, 
+the areas of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles 
+converge on the area of the ¦figure-area¦figure¦¦ as we increase the number of ¦base¦bases¦¦, 
+even though we are not requiring the ¦base¦bases¦¦ to be of equal width.

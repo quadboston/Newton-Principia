@@ -1,0 +1,21 @@
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+        Eædem rationes ultimæ sunt etiam rationes æqualitatis, ubi parallelogrammorum latitudines AB, BC, CD, &amp;c. 
+        sunt inæquales, &amp; omnes minuuntur in infinitum.
+
+        <br><br><div book-reference-id="latin"></div>
+
+
+*::*proof|latin
+            Sit enim ¦AF¦¦ æqualis latitudini maximæ
+            &amp; compleatur ¦widthest-rectangular widt-txt¦parallelogrammum FAaf¦¦.
+            Hoc erit majus quam differentia
+            ¦inscribed-rectangles insc-txt¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles circ-txt¦figuræ circumscripta¦¦;
+            at latitudine sua ¦AF¦¦ in infinitum diminuta,
+            minus fiet dato quovis rectangulo. Q.E.D.
+
+            <br><br><div book-reference-id="latin"></div>

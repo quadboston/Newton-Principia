@@ -1,0 +1,61 @@
+*::*claim|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/901936744"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+Consider an ¦arc-AB¦arc¦¦, a ¦AB¦chord¦¦ of that ¦arc-AB¦arc¦¦, 
+and a ¦AD¦tangent¦¦ which touches the ¦arc-AB¦arc¦¦ at one end of the ¦AB¦chord¦¦. 
+The ¦arc-AB¦arc¦¦ is required to be continuous at the ¦AD¦tangent¦¦. 
+If the ¦A B¦points¦¦ that determine the end of the ¦AB¦chord¦¦ approach each other, 
+the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ diminishes and ultimately disappears once the ¦A B¦endpoints¦¦ meet.
+
+
+
+
+
+*::*proof|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/901955691"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+If we assume the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ does not ultimately disappear,
+then the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ would contain a rectilinear angle, 
+which could only happen if the ¦arc-AB¦arc¦¦ was not continuous at the ¦AD¦tangent¦¦. 
+Since we stipulated that the ¦arc-AB¦arc¦¦ <em>is</em> continuous at the ¦AD¦tangent¦¦, 
+our assumption must be wrong, 
+meaning that the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ <em>does</em> ultimately disappear.
+<br><br>
+
+The model visualizes what the assumption might look like. 
+The red adjustable line forms an angle with the ¦AD¦tangent¦¦, 
+and it is this angle that we could, wrongly, 
+imagine is always contained within the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦, 
+even after the ¦A B¦endpoints¦¦ of the ¦AB¦chord¦¦ meet. 
+We observe that we can only shorten the ¦AB¦chord¦¦ so much before this angle is no longer contained. 
+No matter how much we lessen this angle, 
+as long as it has any value above 0, 
+at some point it will not be contained within the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ 
+as we bring the ¦A B¦endpoints¦¦ of the ¦AB¦chord¦¦ together.
+<br><br>
+
+This visualization is meant only as a supplement to Newton’s argument. 
+The proof is based on the understanding that a continuous curvature 
+will not allow the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ to contain a ¦AL Ad L¦rectilinear angle¦¦.

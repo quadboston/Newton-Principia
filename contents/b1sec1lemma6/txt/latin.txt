@@ -1,0 +1,41 @@
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+Si arcus quilibet positione datus ¦arc-AB¦ACB¦¦ subtendatur chorda ¦AB¦AB¦¦, 
+& in puncto aliquo ¦A¦A¦¦, 
+in medio curvaturæ continuæ, tangatur a recta utrinq; producta ¦AD¦AD¦¦; 
+dein puncta ¦A¦A¦¦, ¦B¦B¦¦ ad invicem accendant & coeant; 
+dico ¦angleBAD AB AD *anch-color*given¦quod angulus BAD¦¦ sub chorda & tangente contentus minuetur in infinitum & ultimo evanescet.
+
+<br><br>
+<div book-reference-id="Gutenberg"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*proof|latin
+
+Nam producatur AB ad b & AD ad d, & punctis A, B
+coeuntibus, nullaq; adeo ipsius Ab parte AB jacente am-
+plius intra curvam, manifestum esi quod hæc recta Ab, 
+vel coincidet cum tangente Ad, 
+vel ducetur inter tangentem & curvam. 
+Sed casus posterior est contra naturam Curvaturæ, 
+ergo prior obtinet. Q. E. D.
+
+
+<br><br>
+<div book-reference-id="Gutenberg"></div>

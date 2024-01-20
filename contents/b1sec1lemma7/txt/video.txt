@@ -1,0 +1,69 @@
+*::*claim|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/902089622"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+Using the same setup as lemma 6, 
+when the ¦A B¦points¦¦ that determine the end of the ¦AB¦chord¦¦ approach each other and meet, 
+the lengths of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ ultimately have ratios of equality.
+
+
+
+
+*::*proof|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/902089737"
+    allow="fullscreen; picture-in-picture"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+
+For this proof, we create a ¦arc-Ab¦larger arc¦¦ that is similar to the ¦arc-AB¦original arc¦¦. 
+We arrange this ¦arc-Ab¦larger arc¦¦ so that it shares a ¦A¦starting point¦¦ with the ¦arc-AB¦original arc¦¦, 
+and its ¦Ab¦chord¦¦ overlays the ¦AB¦original chord¦¦. 
+We now have a ¦arc-Ab Ab¦magnified version¦¦ of the ¦arc-AB AB¦original arc and chord¦¦. 
+We extend the ¦AD¦tangent¦¦ so that we have a ¦Ad¦magnified version of it¦¦ too. 
+Notice that because the ¦arc-Ab arc-AB¦arcs¦¦ are similar, 
+the ¦arc-Ab Ab Ad¦enlarged arc, chord, and tangent¦¦ are all proportional to the ¦arc-AB AB AD¦original¦¦. 
+<br><br>
+
+Now as we shorten the ¦arc-AB¦original arc¦¦, 
+we keep the ¦arc-Ab¦larger arc¦¦ similar to it. 
+So although the ¦arc-AB AB AD¦original arc, chord, and tangent¦¦ are vanishing, 
+the ¦arc-Ab Ab Ad¦enlarged arc, chord, and tangent¦¦ are not. 
+This lets us apply lemma 6 to know that the 
+¦Ab Ad¦enlarged chord and tangent¦¦ will ultimately coincide and be equal. 
+As the ¦arc-Ab¦enlarged arc¦¦ is trapped between them, 
+¦arc-Ab Ab Ad¦all three¦¦ will coincide and have ratios of equality. 
+<br><br>
+
+As these ¦arc-Ab Ab Ad¦magnified components¦¦ are proportional to the 
+¦AB arc-AB AD¦vanishing chord, tangent, and arc¦¦, 
+we know that the ¦AB arc-AB AD¦vanishing components¦¦ will likewise coincide and have ratios of equality.
+
+
+
+
+
+*::*corollary|hypertext
+{
+  "menuCaption" : "Video"
+}
+*..*
+
+<br>
