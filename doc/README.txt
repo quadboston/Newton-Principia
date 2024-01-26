@@ -98,3 +98,26 @@ topic-engine-css
     <script src="src/base/parser/topics-media-glocss.js"></script>
 
 
+********************************************
+//\\specific variables
+********************************************
+In lemma2 "predT" stands for predefined-topic colors.
+In other lemmas it is named as "predefinedTopics"
+
+These are the colors assigned for specific groups of logically bound itmes:
+
+In some lemmas, they can be, for example:
+green for given shapes,
+red for forces
+blue for times,
+
+Format is: values purposed for RGBA color:
+values
+
+[R, G, B, Adefault, A-mouse-highlighted]
+
+For example: "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7].
+
+********************************************
+\\//specific variables
+********************************************
