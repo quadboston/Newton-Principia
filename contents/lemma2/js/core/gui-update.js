@@ -396,16 +396,19 @@
         //--------------------------------------
         // //\\ majorant
         //--------------------------------------
-        let checked = !!document.getElementById('toggleWidthest').checked &&
-                        amode.theorion !== 'claim';
-        if( checked ){
-            $$.$(dr.faaf).removeClass( 'invisible' );
-        } else {
-            $$.$(dr.faaf).addClass( 'invisible' );
+        {
+            let l2 = fconf.sappId === 'lemma2';
+            let checked = !!document.getElementById('toggleWidthest').checked &&
+                            amode.theorion !== 'claim';
+            if( checked ){
+                $$.$(dr.faaf).removeClass( 'invisible' );
+            } else {
+                $$.$(dr.faaf).addClass( 'invisible' );
+            }
+            rg.F.undisplay = !checked || hiperMode || onlyFig || l2;
+            rg.f.undisplay = !checked || hiperMode || onlyFig || l2;
+            rg.AF.undisplay = !checked;
         }
-        rg.F.undisplay = !checked || hiperMode || onlyFig;
-        rg.f.undisplay = !checked || hiperMode || onlyFig;
-        rg.AF.undisplay = !checked;
         //--------------------------------------
         // \\// majorant
         //--------------------------------------
