@@ -176,11 +176,11 @@
 
 
                 <div class="areas__checkboxes-row"
-                     id="widthest-visib-toggler-wrap">
+                     id="widest-visib-toggler-wrap">
                     <div class="checkbox-wrap">
-                        <input id="toggleWidthest" type="checkbox" name="option" 
+                        <input id="toggleWidest" type="checkbox" name="option" 
                                class="checkbox" checked>
-                        <label class="tp-widt-txt" for="toggleWidthest"></label>
+                        <label class="tp-widt-txt" for="toggleWidest"></label>
                     </div>
                     <span class="number">
                         <span class="tp-widt-txt tocolor tobold diffAmtm"

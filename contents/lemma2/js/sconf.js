@@ -63,7 +63,7 @@
             "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7],
 
             //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-            "widthest-rectangular"      : fconf.sappId === 'lemma2' ?
+            "widest-rectangular"      : fconf.sappId === 'lemma2' ?
                                                 [0,  0, 100, 0.0, 0.7] :
                                                 [0,  0, 100, 0.4, 0.7],
 
@@ -195,7 +195,7 @@
             },
 
             F : {
-                pcolor      : predT[ "widthest-rectangular" ],
+                pcolor      : predT[ "widest-rectangular" ],
                 letterAngle : 45,
                 initialR    : 3,
             },

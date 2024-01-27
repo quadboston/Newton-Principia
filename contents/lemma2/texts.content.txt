@@ -87,7 +87,7 @@
             est summa parallelogrammorum Kl + Lm + Mn + Do,
             hoc est (ob æquales omnium bases)
             rectangulum sub unius basi Kb
-            &amp; altitudinum summa Aa, id est rectangulum ¦widthest-rectangular widt-txt¦ABla¦¦.
+            &amp; altitudinum summa Aa, id est rectangulum ¦widest-rectangular widt-txt¦ABla¦¦.
 
             Sed hoc rectangulum, eo quod latitudo ejus ¦AB¦¦ in infinitum minuitur, sit minus quovis dato.
             Ergo per Lemma I, figura ¦inscribed-rectangles insc-txt¦inscripta¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscripta¦¦ &amp;
@@ -103,7 +103,7 @@
             is the sum of the parallelograms Kl, Lm, Mn, and Do,
             that is (because they all have equal bases),
             the rectangle having as base Kb (the base of one of them)
-            and as altitude ¦wall¦Aa¦¦ (the sum of the altitudes), that is, the rectangle ¦widthest-rectangular widt-txt¦ABla¦¦.
+            and as altitude ¦wall¦Aa¦¦ (the sum of the altitudes), that is, the rectangle ¦widest-rectangular widt-txt¦ABla¦¦.
 
             But this rectangle, because its width ¦AB¦¦ is diminished indefinitely, becomes less than any given rectangle.
             Therefore (by lem. 1) the ¦inscribed-rectangles insc-txt¦inscribed figure¦¦ and the ¦circumscribed-rectangles circ-txt¦circumscribed figure¦¦ and,
@@ -125,14 +125,14 @@
         <br>
 
             The difference in area between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
-            is equal to the area of a ¦widthest-rectangular widt-txt¦single rectangle¦¦ on the end.
+            is equal to the area of a ¦widest-rectangular widt-txt¦single rectangle¦¦ on the end.
             As the number of rectangles is increased indefinitely, the width of each
-            decreases indefinitely, including the ¦widthest-rectangular widt-txt¦single rectangle¦¦ just mentioned.
+            decreases indefinitely, including the ¦widest-rectangular widt-txt¦single rectangle¦¦ just mentioned.
             Since its width decreases indefinitely,
             its area decreases indefinitely, becoming arbitrarily close to 0. So the difference between the areas of the
             ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, the
             ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes arbitrarily close to 0. For the current figure,
-            that ¦widthest-rectangular widt-txt¦single rectangle¦¦ is on the
+            that ¦widest-rectangular widt-txt¦single rectangle¦¦ is on the
 
             <!--
                 This is a key-value sample what text-to-show in place of this text fragment:

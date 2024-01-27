@@ -398,7 +398,7 @@
         //--------------------------------------
         {
             let l2 = fconf.sappId === 'lemma2';
-            let checked = !!document.getElementById('toggleWidthest').checked &&
+            let checked = !!document.getElementById('toggleWidest').checked &&
                             amode.theorion !== 'claim';
             if( checked ){
                 $$.$(dr.faaf).removeClass( 'invisible' );

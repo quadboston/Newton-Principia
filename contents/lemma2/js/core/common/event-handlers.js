@@ -28,7 +28,7 @@
             toggleChangeFigure,
 	        toggleInscribed,
 	        toggleCircumscribed,
-            toggleWidthest,
+            toggleWidest,
         };
         study.setupEvents = setupEvents;
         return;
@@ -132,7 +132,7 @@
 
 
 
-        function toggleWidthest()
+        function toggleWidest()
         {
             ssF.media_upcreate_generic();
         }

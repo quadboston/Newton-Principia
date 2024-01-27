@@ -24,13 +24,13 @@
 
 
         //===============================================
-        // //\\ widthest-rect
+        // //\\ widest-rect
         //===============================================
-        guicon.constructsWidthestRect = function()
+        guicon.constructsWidestRect = function()
         {
             dr.faaf   = document.createElementNS( svgNS, "rect");
             $$.$(dr.faaf)
-                .addClass( 'widthest-rectangular tp-widthest-rectangular tofill' )
+                .addClass( 'widest-rectangular tp-widest-rectangular tofill' )
                 .to( stdMod.svgScene );
         };
 
@@ -52,7 +52,7 @@
                 guiup.normalizedStr( dr.widest * (dr.yVariations.yRef - top ) );
         };
         //===============================================
-        // \\// widthest-rect
+        // \\// widest-rect
         //===============================================
     }
 

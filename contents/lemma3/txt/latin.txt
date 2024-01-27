@@ -12,7 +12,7 @@
 
 *::*proof|latin
             Sit enim ¦AF¦¦ æqualis latitudini maximæ
-            &amp; compleatur ¦widthest-rectangular widt-txt¦parallelogrammum FAaf¦¦.
+            &amp; compleatur ¦widest-rectangular widt-txt¦parallelogrammum FAaf¦¦.
             Hoc erit majus quam differentia
             ¦inscribed-rectangles insc-txt¦figuræ inscriptæ¦¦ &amp; ¦circumscribed-rectangles circ-txt¦figuræ circumscripta¦¦;
             at latitudine sua ¦AF¦¦ in infinitum diminuta,

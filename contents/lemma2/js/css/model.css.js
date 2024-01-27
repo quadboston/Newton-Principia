@@ -98,14 +98,14 @@ svg text {
   width: 80%; }
 
 
-#widthest-visib-toggler-wrap {  /* row in legend line for widthes rectangle */
+#widest-visib-toggler-wrap {  /* row in legend line for widthes rectangle */
   display: flex;
 }
 
-#lemma2.bsl-approot #widthest-visib-toggler-wrap,
-.bsl-approot.theorion--claim #widthest-visib-toggler-wrap,
-.widthest-rectangular.invisible,
-.bsl-approot.theorion--claim .widthest-rectangular {
+#lemma2.bsl-approot #widest-visib-toggler-wrap,
+.bsl-approot.theorion--claim #widest-visib-toggler-wrap,
+.widest-rectangular.invisible,
+.bsl-approot.theorion--claim .widest-rectangular {
     display:none;
 }
 
