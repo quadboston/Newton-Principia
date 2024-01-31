@@ -48,8 +48,6 @@
                 right - left,
                 dr.yVariations.yRef - top,
             );
-	        document.getElementById( "diffAmtd").innerHTML =
-                guiup.normalizedStr( dr.widest * (dr.yVariations.yRef - top ) );
         };
         //===============================================
         // \\// widest-rect
