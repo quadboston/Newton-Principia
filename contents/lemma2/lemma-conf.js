@@ -32,7 +32,9 @@
             ],
             "contents-list" :
             [
-                "texts.content.txt",
+                "txt/latin.txt",
+                "txt/cohen.txt",
+                "txt/video.txt",
             ],
 
         };
