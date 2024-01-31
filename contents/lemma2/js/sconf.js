@@ -47,6 +47,8 @@
 
         sconf.default_tp_lightness = 30;
         sconf.ONLY_MONOTONIC_CURVE = true;
+
+        //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         var predT =
         {
             "given"                     : [0,    100,  0 ],

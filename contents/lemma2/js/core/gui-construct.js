@@ -177,7 +177,7 @@
     
     //==================================================
     // //\\ common shape
-    //      dom without numberic parameters
+    //      dom without numeric parameters
     //==================================================
     function makeSType( shapeType, classStyle )
     {
