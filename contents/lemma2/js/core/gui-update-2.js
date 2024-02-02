@@ -29,7 +29,7 @@
         ///same in meaning to legacy !view.isNewton property
         sapp.isLite = function()
         {
-            return amode.aspect === 'hypertext';
+            return amode.aspect === 'video';
         };
 
 

@@ -1,4 +1,4 @@
-*::*claim|hypertext
+*::*claim|video
 {
   "menuCaption" : "Video"
 }
@@ -23,7 +23,7 @@
 
 
 
-*::*proof|hypertext
+*::*proof|video
 *..*
         <div style="padding:56.25% 0 0 0;position:relative;">
           <iframe src="https://player.vimeo.com/video/818990900"

@@ -75,7 +75,7 @@
         //since ver 1931 was automated from contents
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
-        //[ 'aspect--hypertext', 'aspect--english', 'aspect--xixcentury' ],
+        //[ 'aspect--video', 'aspect--english', 'aspect--xixcentury' ],
 
 
         LETTER_FONT_SIZE_PER_1000 : 32,

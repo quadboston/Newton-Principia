@@ -74,7 +74,7 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 
 
 
-*::*claim|hypertext
+*::*claim|video
 {
   "menuCaption" : "Elucidation"
 }
@@ -120,7 +120,7 @@ in the ¦AD2PerAE2¦squared ratio¦¦ of the sides ¦AD¦AD¦¦ and ¦AE¦AE¦¦
 
 
 
-*::*proof|hypertext
+*::*proof|video
 
 Make an ¦Abd Ace¦enlargement¦¦ of the ¦ABD ACE¦two original triangles¦¦, and place them such that they still share the same ¦A¦point¦¦ and ¦Ae¦straight line¦¦ shared by the ¦ABD ACE¦original triangles¦¦.
 

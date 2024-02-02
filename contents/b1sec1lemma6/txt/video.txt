@@ -1,4 +1,4 @@
-*::*claim|hypertext
+*::*claim|video
 {
   "menuCaption" : "Video"
 }
@@ -16,13 +16,13 @@ Consider an ¦arc-AB¦arc¦¦, a ¦AB¦chord¦¦ of that ¦arc-AB¦arc¦¦,
 and a ¦AD¦tangent¦¦ which touches the ¦arc-AB¦arc¦¦ at one end of the ¦AB¦chord¦¦. 
 The ¦arc-AB¦arc¦¦ is required to be continuous at the ¦AD¦tangent¦¦. 
 If the ¦A B¦points¦¦ that determine the end of the ¦AB¦chord¦¦ approach each other, 
-the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ diminishes and ultimately disappears once the ¦A B¦endpoints¦¦ meet.
+the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ diminishes and ultimately disappears once the ¦A B¦endpoints¦¦ meet.
 
 
 
 
 
-*::*proof|hypertext
+*::*proof|video
 {
   "menuCaption" : "Video"
 }
@@ -36,16 +36,16 @@ the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ diminishes and ultim
 
 <br>
 
-If we assume the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ does not ultimately disappear,
-then the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ would contain a rectilinear angle, 
+If we assume the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ does not ultimately disappear,
+then the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ would contain a ¦AL Ad L¦rectilinear angle¦¦, 
 which could only happen if the ¦arc-AB¦arc¦¦ was not continuous at the ¦AD¦tangent¦¦. 
 Since we stipulated that the ¦arc-AB¦arc¦¦ <em>is</em> continuous at the ¦AD¦tangent¦¦, 
 our assumption must be wrong, 
-meaning that the angle made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ <em>does</em> ultimately disappear.
+meaning that the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ <em>does</em> ultimately disappear.
 <br><br>
 
 The model visualizes what the assumption might look like. 
-The red adjustable line forms an angle with the ¦AD¦tangent¦¦, 
+The ¦AL L¦red adjustable line¦¦ forms an ¦AL Ad L¦angle¦¦ with the ¦AD¦tangent¦¦, 
 and it is this angle that we could, wrongly, 
 imagine is always contained within the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦, 
 even after the ¦A B¦endpoints¦¦ of the ¦AB¦chord¦¦ meet. 
