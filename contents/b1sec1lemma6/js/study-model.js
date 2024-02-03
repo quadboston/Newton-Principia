@@ -145,7 +145,7 @@
                 ////entering area above line AL for core essays
                 if( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
-                    ( amode.aspect === 'english' && amode.theorion === 'proof' ) && 
+                    ( !(amode.aspect === 'model') && amode.theorion === 'proof' ) && 
                     mat.angleBetweenLines([
                         [rg.A.pos, cpos ],
                         [rg.A.pos, rg.L.pos],
