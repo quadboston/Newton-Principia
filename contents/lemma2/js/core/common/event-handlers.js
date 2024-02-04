@@ -28,7 +28,6 @@
             toggleChangeFigure,
 	        toggleInscribed,
 	        toggleCircumscribed,
-            toggleWidthest,
         };
         study.setupEvents = setupEvents;
         return;
@@ -131,11 +130,6 @@
         //======================================
 
 
-
-        function toggleWidthest()
-        {
-            ssF.media_upcreate_generic();
-        }
 
         function toggleInscribed() {
             let view = sdata.view;

@@ -174,22 +174,6 @@
                 </div>
                 <!--END inscribed-->
 
-
-                <div class="areas__checkboxes-row"
-                     id="widthest-visib-toggler-wrap">
-                    <div class="checkbox-wrap">
-                        <input id="toggleWidthest" type="checkbox" name="option" 
-                               class="checkbox" checked>
-                        <label class="tp-widt-txt" for="toggleWidthest"></label>
-                    </div>
-                    <span class="number">
-                        <span class="tp-widt-txt tocolor tobold diffAmtm"
-                              id="diffAmtd"></span>
-                    </span>
-                    <span class="tp-widt-txt tocolor tobold tag proof-tag">
-                          area difference</span>
-                </div>
-
         `);
 
     }

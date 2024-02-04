@@ -91,7 +91,7 @@ More details if active-fragment implementation is of interest.
 ==============================================================
     Example of activity-json:
         ...
-        For the current figure, that ¦widthest-rectangular¦single rectangle¦¦ is on the
+        For the current figure, that ¦widest-rectangular¦single rectangle¦¦ is on the
         ¿?
         {
             "left" : "fragment body 1",

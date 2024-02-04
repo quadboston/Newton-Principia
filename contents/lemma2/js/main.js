@@ -83,7 +83,7 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        guicon.constructsWidthestRect();
+        guicon.constructsWidestRect();
         guicon.constructsRects_tillExtraOffset_parlessDom();
         guicon.constructsCurve8Area(); //do on top of ancestors
         guicon.constructBasePts_domParless(dr.basePts);
