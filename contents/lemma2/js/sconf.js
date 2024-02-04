@@ -49,31 +49,38 @@
         sconf.ONLY_MONOTONIC_CURVE = true;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
-        var predT =
         {
-            "given"                     : [0,    100,  0 ],
-            "difference"                : [255, 255, 0, 0 ], //[185,  116, 85 ],
-            "base"                      : [0,    100,  0 ],
-            "wall"                      : [0,    100,  0 ],
-            "curve"                     : [0,    100,  0 ],
+            let difference = [150, 50, 0, 0, 0.8 ];
+            var predT =
+            {
+                "given"                     : [0,    100,  0 ],
+                difference,
+                "base"                      : [0,    100,  0 ],
+                "wall"                      : [0,    100,  0 ],
+                "curve"                     : [0,    100,  0 ],
 
-            "figure"                    : [0,    100,  0 ],
-            "figure-area"               : [0,    80,  0 ],
-            "figure-area-txt"           : [0,    80,  0, 0.7, 1],
+                "figure"                    : [0,    100,  0 ],
+                "figure-area"               : [0,    80,  0 ],
+                "figure-area-txt"           : [0,    80,  0, 0.7, 1],
 
-            "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.7],
-            "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7],
+                "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.7],
+                "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.7],
 
-            //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-            "widest-rectangular"      : fconf.sappId === 'lemma2' ?
-                                                [0,  0, 100, 0.0, 0.7] :
-                                                [0,  0, 100, 0.4, 0.7],
+                //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+                "widest-rectangular"      : fconf.sappId === 'lemma2' ?
+                                                    [0,  0, 100, 0.0, 0.7] :
+                                                    [0,  0, 100, 0.4, 0.7],
 
-            "circ-txt"                  : [0,  50, 100, 0.7, 1],
-            "insc-txt"                  : [100,  0, 100, 0.7, 1],
-            "widt-txt"                  : [0,  0, 100, 0.7, 1],
-        };
-
+                "circ-txt"                  : [0,  50, 100, 0.7, 1],
+                "insc-txt"                  : [100,  0, 100, 0.7, 1],
+                "widt-txt"                  : [0,  0, 100, 0.7, 1],
+                'a--K--b--l'                : difference,
+                'a--K--b--l'                : difference,
+                'b--L--c--m'                : difference,
+                'c--M--d--n'                : difference,
+                'd--D--E--o'                : difference,
+            };
+        }
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
@@ -422,6 +429,10 @@
                    },
             },
 
+            { Kb : {
+                        pcolor : predT.difference,
+                   },
+            },
 
         ];
 

@@ -366,8 +366,6 @@
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
-
-        
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );

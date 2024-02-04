@@ -354,7 +354,7 @@
         var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
         var strokeWidth = han( attr, 'stroke-width', 1 );
         var poly        = toreg( pName )();
-        if( typeof undisplay !== 'undisplay' ) {
+        if( typeof undisplay !== 'undefined' && undisplay !== null ) { //was a bug
             poly.undisplay = undisplay;
         }
         poly.pname      = pName;

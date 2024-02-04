@@ -45,26 +45,36 @@
         //----------------------------------------------
         {
             //tp-difference is a color set in sconf in predefinedTopics
-            let cssClass = 'tp-difference tofill biggap';
+            let cssClass = 'tofill tp-difference';
+            let tostroke = ''; //tostroke causes no stroke
             ssF.pnames2poly(
                 [ 'a', 'K', 'b', 'l', ],
                 cssClass,
-                !!'correctJoin'
+                !!'correctJoin',
+                null,
+                tostroke
             ).UPDATE_MPOS_BEFORE_POLY = true;
+            ccc( rg );
             ssF.pnames2poly(
                 [ 'b', 'L', 'c', 'm' ],
                 cssClass,
-                !!'correctJoin'
+                !!'correctJoin',
+                null,
+                tostroke
             ).UPDATE_MPOS_BEFORE_POLY = true;
             ssF.pnames2poly(
                 [ 'c', 'M', 'd', 'n' ],
                 cssClass,
-                !!'correctJoin'
+                !!'correctJoin',
+                null,
+                tostroke
             ).UPDATE_MPOS_BEFORE_POLY = true;
             ssF.pnames2poly(
                 [ 'd', 'D', 'E', 'o' ],
                 cssClass,
-                !!'correctJoin'
+                !!'correctJoin',
+                null,
+                tostroke
             ).UPDATE_MPOS_BEFORE_POLY = true;
         }
 
