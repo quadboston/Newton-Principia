@@ -115,6 +115,8 @@
             landingImage            : 'landing-img.jpg',
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
+            homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
+                                      'These models make it easier.',
             helpButtonCaption       : 'Hover over the diagram or text to interact',
 
             //todm: this disables functionality ... not only CSS:
