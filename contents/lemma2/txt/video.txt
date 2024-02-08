@@ -36,14 +36,14 @@
         The difference in area between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
         ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
         is equal to the area of the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦. 
-        That's because the part of each ¦circumscribed-rectangles circ-txt¦circumscribed rectangle¦¦
+        That's because the ¦difference¦part¦¦ of each ¦circumscribed-rectangles circ-txt¦circumscribed rectangle¦¦
         that sticks out above the ¦inscribed-rectangles insc-txt¦inscribed rectangle¦¦ below it is the difference 
-        between that pair of rectangles. All those parts added together amount to the difference in area
+        between that pair of rectangles. All those ¦difference¦parts¦¦ added together amount to the difference in area
         between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
         ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
-        If you compare those individual parts to the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦, 
+        If you compare those individual ¦difference¦parts¦¦ to the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦, 
         you'll notice that the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦ could be split
-        up into those parts. So the difference between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
+        up into those ¦difference¦parts¦¦. So the ¦difference¦¦ between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
         ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
         is equal to the area of the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦.<br><br>
 

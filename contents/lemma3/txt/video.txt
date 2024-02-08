@@ -4,7 +4,7 @@
 }
 *..*
 <div style="padding:56.25% 0 0 0;position:relative;">
-  <iframe src="https://player.vimeo.com/video/908451024"
+  <iframe src="https://player.vimeo.com/video/902147956"
     allow="fullscreen; picture-in-picture"
     style="position:absolute;top:0;left:0;width:100%;height:100%;">
   </iframe></div>
@@ -36,24 +36,14 @@ increase the number of ¦base¦bases¦¦.
 
 Once the rectangle ¦base¦bases¦¦ are unequal, 
 we can no longer count on the largest circumscribed rectangle 
-to be equal in area to the difference between the 
+to be equal in area to the ¦difference¦¦ between the 
 ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ and ¦inscribed-rectangles insc-txt¦inscribed¦¦ rectangle areas; 
 it could be smaller. 
 However, Newton constructs a ¦widest-rectangular widt-txt¦new rectangle¦¦ for this proof; 
 one with a base as wide as the widest of the other bases.
 <br><br>
 
-The computer model does this for us. 
-As we make one of the bases wider than the rest, 
-we see this ¦widest-rectangular widt-txt¦new rectangle¦¦ being formed. 
-We can uncheck the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles to draw attention to this newly constructed rectangle. 
-The model gives it a dark blue color, 
-and when we turn the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles back on, 
-we can still see it through the semi-transparent magenta of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ rectangles, 
-and the semi-transparent blue of the ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles.
-<br><br>
-
-By constructing this ¦widest-rectangular widt-txt¦new rectangle¦¦ in this way, 
+As such,
 it's guaranteed to be no smaller than the difference between the ¦inscribed-rectangles insc-txt¦inscribed¦¦ 
 and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles. 
 And as before with lemma 2, 
