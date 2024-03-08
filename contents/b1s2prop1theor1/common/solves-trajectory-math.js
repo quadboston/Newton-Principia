@@ -86,7 +86,7 @@
             var path = rg.path.pos;
             var timeStep = rg.rgslid_dt.val;
             ccc( ' sol: dt=' + timeStep.toFixed(3) +
-                 ' p N=' + spatialStepsMax.toFixed(3);
+                 ' p N=' + spatialStepsMax.toFixed(3) );
             //pi = path index, we start here from poinit B:
             for( pi = 1; pi<spatialStepsMax; pi++ ) {
 
