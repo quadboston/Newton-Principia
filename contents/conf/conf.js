@@ -75,7 +75,7 @@
         //since ver 1931 was automated from contents
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
-        //[ 'aspect--hypertext', 'aspect--english', 'aspect--xixcentury' ],
+        //[ 'aspect--video', 'aspect--english', 'aspect--xixcentury' ],
 
 
         LETTER_FONT_SIZE_PER_1000 : 32,
@@ -115,6 +115,8 @@
             landingImage            : 'landing-img.jpg',
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
+            homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
+                                      'These models make it easier.',
             helpButtonCaption       : 'Hover over the diagram or text to interact',
 
             //todm: this disables functionality ... not only CSS:

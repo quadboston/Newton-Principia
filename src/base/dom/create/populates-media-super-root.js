@@ -311,7 +311,7 @@
         // //\\ study image and submodel
         //..............................
         var images = {};
-        //top mode CSS: bsl-approot theorion--claim aspect--hypertext
+        //top mode CSS: bsl-approot theorion--claim aspect--video
         var imgCss = 'bsl-bg-image';
 
         // //\\ hides all media before visualizing in relevant egreg-GUI

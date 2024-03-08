@@ -1,4 +1,4 @@
-*::*claim|hypertext
+*::*claim|video
 {
   "menuCaption" : "Video"
 }
@@ -19,7 +19,7 @@ the lengths of the ¦arc-AB¦arc¦¦, ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ ulti
 
 
 
-*::*proof|hypertext
+*::*proof|video
 {
   "menuCaption" : "Video"
 }
@@ -60,7 +60,7 @@ we know that the ¦AB arc-AB AD¦vanishing components¦¦ will likewise coincide
 
 
 
-*::*corollary|hypertext
+*::*corollary|video
 {
   "menuCaption" : "Video"
 }

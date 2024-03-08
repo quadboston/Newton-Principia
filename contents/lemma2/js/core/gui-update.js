@@ -310,14 +310,14 @@
 
 
     function syncPoints() {
-        let hiperMode = amode.aspect === 'hypertext';
+        let videoMode = amode.aspect === 'video';
         let view = sdata.view;
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
         let isCir = !!view.isCircumscribed;
         let onlyFig = !isIn&&!isCir;
         {
-            let s = hiperMode || onlyFig;
+            let s = videoMode || onlyFig;
             [ 'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', 'E',
             ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
@@ -329,12 +329,12 @@
             [ 'Bb', 'Cc', 'Dd', 'oE' ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
             });
-            rg.Aa.undisplay = hiperMode || (!isCir && isIn && !isFig);
+            rg.Aa.undisplay = videoMode || (!isCir && isIn && !isFig);
             if( !isFig && isIn && !isCir ) {
                 rg["a"].undisplay = true;
             }
         }
-        let doset = hiperMode || !isIn;
+        let doset = videoMode || !isIn;
         rg.K.undisplay = doset;
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
@@ -348,7 +348,7 @@
         rg.GD.undisplay = doset;
         rg.gE.undisplay = doset;
 
-        doset = hiperMode || !isCir;
+        doset = videoMode || !isCir;
         rg.l.undisplay = doset;
         rg.m.undisplay = doset;
         rg.n.undisplay = doset;
@@ -397,8 +397,8 @@
         {
             let l2 = fconf.sappId === 'lemma2';
             let checked = amode.theorion !== 'claim';
-            rg.F.undisplay = !checked || hiperMode || onlyFig || l2;
-            rg.f.undisplay = !checked || hiperMode || onlyFig || l2;
+            rg.F.undisplay = !checked || videoMode || onlyFig || l2;
+            rg.f.undisplay = !checked || videoMode || onlyFig || l2;
             rg.AF.undisplay = !checked;
         }
         //--------------------------------------

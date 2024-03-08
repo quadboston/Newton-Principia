@@ -83,6 +83,16 @@
       grid-area: title; }
       .landing-title span {
         font-style: italic; }
+
+    .landing-subtitle {
+      font-family: "essonnes-display", 'Garamond','Times', serif;
+      font-size: 25px;
+      color: ${colorWhite};
+      letter-spacing: 1.32px;
+      line-height: 36px;
+      grid-area: title; }
+      .landing-subtitle span {
+        font-style: italic; }
     /*====================================================== 
        ||// front-page master caption
       ======================================================*/

@@ -38,6 +38,8 @@
             <div class="hp-section-wrap">
                 <div class="landing-text">
                     <h1 class="landing-title">${fconf.appDecor.homePageCaption}</h1>
+                    <br><br>
+                    <p class="landing-subtitle">${fconf.appDecor.homePageSubCaption}</p>
                     <!--
                     <p class="sub-title"> 
                     </p>
