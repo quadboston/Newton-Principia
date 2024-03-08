@@ -26,8 +26,11 @@
     function trajectoryShapes_2_groups()
     {
         var pathRacks = rg.pathRacks.pathRacks;
-        rg.pathIx_2_pathSubsteps = pathRacks.map( (rgPathPoint, pix) => {
-
+        ///pathIx_2_groups: pathIx -> fGroups = { fgroup1,
+        rg.pathIx_2_pathSubsteps = pathRacks.map( (
+            rgPathPoint,
+            pix //=total index ~ (motion-step, logical-interaction-substep)
+        ) => {
             // in plain words:
             // fGroups[i] = motion = path-element[j],
             // it has "all the goodies" for specific logical-step,

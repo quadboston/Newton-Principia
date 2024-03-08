@@ -37,10 +37,12 @@
                 paintDec_point( dec, pname );
             } else {
                 //if( pname === 'CV' && ( rg.time < 2.5 || ( rg.time < 2.8 rg.step < 2 ) ) return;
+                /*
                 if( pname === 'CV' ) {
                     dec.undisplay = rg.stretchedFourTimes_stIx < 10;
                     ccc( 'set ' + pname + ' ' + dec.undisplay, dec, );
                 }
+                */
                 paintDec_nonPoints( dec );
             }
         });
@@ -126,14 +128,18 @@
     {
         /// ssF.pnames2line
         if( dec.pivotNames.length === 2 ) {
+            /*
             if( dec.pname === 'CV' )
                 ccc('again' + dec.undisplay);
+            */
             ////refreshes line position and presence
+            /*
             ssF.pnames2line(
                 dec.pivotNames[0],
                 dec.pivotNames[1],
                 haz( dec, 'cssClass' ),
             );
+            */
         ///ssF.pnames2poly
         } else {
             dec.poly_2_updatedPolyPos8undisplay();

@@ -92,7 +92,7 @@
         var middleSteps_conf = {
             c   : {
                 decStart : 8,
-                decEnd : 10,
+                decEnd : 22, //10,
                 cssClass : 'theor1proof theor2corollary',
             },
 
@@ -102,7 +102,7 @@
                 decEnd : finalSteps_conf.C.decEnd,
                 cssClass : 'theor1corollary theor2proof',
             },
-            d   : { decStart : 12, decEnd : 14,
+            d   : { decStart : 12, decEnd : 22, //14,
                 cssClass : 'theor1proof',
             },
 
@@ -114,7 +114,7 @@
                 cssClass : 'theor1proof theor2proof tohidden', //this uhides in Theor. 2
             },
 
-            e   : { decStart : 16, decEnd : 18,
+            e   : { decStart : 16, decEnd : 22, //18,
                 cssClass : 'theor1proof theor2proof',
             },
 
@@ -287,9 +287,9 @@
             { nam : ['C', 'c'], decStart : rg.C.decStart,
                 cssClass : 'theor1proof theor2proof theor2corollary',
             },
-            { nam : ['D', 'd'], decStart : rg.D.decStart,
-                cssClass : 'theor1proof theor2proof',
-            },
+            //{ nam : ['D', 'd'], decStart : rg.D.decStart,
+            //    cssClass : 'theor1proof theor2proof',
+            //},
             { nam : ['E', 'e'], decStart : rg.E.decStart,
                 cssClass : 'theor1proof theor2proof',
             },
@@ -297,11 +297,13 @@
                 cssClass : 'theor1proof theor2proof',
             },
 
-            { nam : ['B', 'c'], cssClass : 'theor1proof theor2proof theor2corollary', },
+            { nam : ['B', 'c'], cssClass : 'theor1proof theor2proof theor2corollary',
+                                decEnd : rg.f.decStart,
+            },
             { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
             { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
 
-            { nam : ['C', 'd'], cssClass : 'theor1proof', },
+            //{ nam : ['C', 'd'], cssClass : 'theor1proof', },
             { nam : ['C', 'j'], cssClass : 'theor1proof theor2proof', }, //theorem 2
             { nam : ['D', 'j'], cssClass : 'theor1proof theor2proof', }, //theorem 2
 
@@ -315,7 +317,7 @@
             { nam : ['E', 'Z'], },
 
             { nam : ['C', 'V'], decStart : rg.C.decStart, },
-            { nam : ['A', 'V'], },
+            { nam : ['A', 'V'], decStart : rg.C.decStart, decEnd : rg.d.decStart },
             { nam : ['F', 'Z'], },
             { nam : ['D', 'Z'], },
 
@@ -347,14 +349,18 @@
                 haz( pNam, 'cssClass' ),
                 stdMod,
             );
-            if( rgElem.pname === 'CV' )
-                ccc( rgElem );
             decor[ rgElem.pname ] = rgElem;
             decor[ rgElem.pname ].isPoint = false;
+
+            ///if there is not explicit decStart in the line element, then
+            ///decStart in extracted from the directional point of the line segment
             var decStart = has( pNam, 'decStart' ) ?
                 pNam.decStart : rg[ pNam.nam[1] ].decStart;
+            ///the same procedure happens with "end" setting
             var decEnd = has( pNam, 'decEnd' ) ?
                 pNam.decEnd : rg[ pNam.nam[1] ].decEnd;
+
+
             rgElem.decStart = decStart;
             rgElem.decEnd = decEnd;
             ////---------------------------------------------------
@@ -371,6 +377,20 @@
         toreg( 'displayTime' )( 'value', '' );
         toreg( 'displayStep' )( 'value', '' );
         toreg( 'thoughtStep' )( 'value', '' );
+
+        //---------------------------------------------------
+        // //\\ syncs decor and rg
+        //---------------------------------------------------
+        eachprop( decor, (dec,kName) => {
+            var pname = kName;
+            toreg( kName );
+            Object.assign( decor[ kName ], rg[ kName ] );
+            Object.assign( rg[ kName ], decor[ kName ] );
+            decor[ kName ] = rg[ kName ];
+        });
+        //---------------------------------------------------
+        // \\// syncs decor and rg
+        //---------------------------------------------------
     }
     //----------------------------------------
     // \\// declares decorations
@@ -409,10 +429,14 @@
             ['S', 'D', 'E',],
             ['S', 'E', 'F',],
             ['S', 'B', 'c',],
+            ['S', 'C', 'd',],
+            ['S', 'D', 'e',],
+            ['S', 'E', 'f',],
         ].forEach( pNames => {
             var rgElem = ssF.pnames2poly(
                 pNames,
-                'theor1proof theor2proof tohidden tofill theor2corollary',
+                //'theor1proof theor2proof tohidden tofill theor2corollary',
+                'theor1proof theor2proof tofill theor2corollary ',
                 null,
                 !!'undisplay',
                 !'tostroke',
@@ -422,6 +446,18 @@
             var lp = rg[ pNames[ 2 ] ];
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
+        });
+
+        ///makes first few free-triangles living
+        ///until the passing of the point f
+        [
+            ['S', 'B', 'c',],
+            ['S', 'C', 'd',],
+            ['S', 'D', 'e',],
+            ['S', 'E', 'f',],
+        ].forEach( pNames => {
+            var pn = pNames.join('');
+            rg[pn].decEnd = rg.f.decEnd;
         });
     }
 

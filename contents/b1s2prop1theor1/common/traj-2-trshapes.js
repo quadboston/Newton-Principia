@@ -109,8 +109,8 @@
             //applies force to pos0: just bare position
             var pos1 = [
                 ////we really draw paths, not forces
-                pos0[0]+fvectors[kix][0] * rg.timeStep.t,
-                pos0[1]+fvectors[kix][1] * rg.timeStep.t,
+                pos0[0]+fvectors[kix][0] * rg.rgslid_dt.val,
+                pos0[1]+fvectors[kix][1] * rg.rgslid_dt.val,
             ];
             var ffkey0 = fkey+'-0';
             var ffkey1 = fkey+'-1';
@@ -153,8 +153,8 @@
 
                 //applies force to pos0: just bare position
                 var pos1 = [
-                    pos0[0]+fvectors[kix][0] * rg.timeStep.t,
-                    pos0[1]+fvectors[kix][1] * rg.timeStep.t
+                    pos0[0]+fvectors[kix][0] * rg.rgslid_dt.val,
+                    pos0[1]+fvectors[kix][1] * rg.rgslid_dt.val
                 ];
                 //this section can be simplified ... but so far
                 //we have to create pointies to make line segments for forces,

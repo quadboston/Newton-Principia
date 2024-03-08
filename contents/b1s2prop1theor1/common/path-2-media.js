@@ -96,8 +96,14 @@
                 var pkey = 'freetr-' + kix;
                 var ktr = toreg( pkey )( { undisplay : true } )();
                 //paints Kepler's triangles rg[pkey] along the path:
-                paintTriangle( pkey, 'tofill', 'free-triangle theor1proof',
+                let triang = paintTriangle( pkey, 'tofill', 'free-triangle theor1proof',
                                'rgba( 100,255,100,0.2)' );
+                if( kix < 3 ) {
+                    ////todm don't create it at all or do coinside with decor
+                    ////other object, decor will take care of painting
+                    //ccc( triang );
+                    triang.svgel.style.display = 'none';
+                }
             }
             //---------------------------------------------------------
             // \\// free triangles

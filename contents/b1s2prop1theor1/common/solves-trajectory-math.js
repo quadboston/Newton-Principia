@@ -62,11 +62,11 @@
         freePathAracc.length= Math.min( freePathAracc.length, spatialStepsMax-2 );
 
 
-        if( rg.slider_sltime.t > spatialStepsMax - 1.01 ) {
-            rg.slider_sltime.t = spatialStepsMax - 1.011;
+        if( rg.slider_sltime.psteps > spatialStepsMax - 1.01 ) {
+            rg.slider_sltime.psteps = spatialStepsMax - 1.011;
             //todo ... why we need this warning
-            //ccc( 'rg.slider_sltime.t corrected to not exceeed steps max=' +
-            //     rg.slider_sltime.t );
+            //ccc( 'rg.slider_sltime.psteps corrected to not exceeed steps max=' +
+            //     rg.slider_sltime.psteps );
         }
         calculatesTrajectory();
         return;
@@ -84,7 +84,9 @@
         function calculatesTrajectory()
         {
             var path = rg.path.pos;
-            var timeStep = rg.timeStep.t;
+            var timeStep = rg.rgslid_dt.val;
+            ccc( ' sol: dt=' + timeStep.toFixed(3) +
+                 ' p N=' + spatialStepsMax.toFixed(3);
             //pi = path index, we start here from poinit B:
             for( pi = 1; pi<spatialStepsMax; pi++ ) {
 

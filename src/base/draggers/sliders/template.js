@@ -234,7 +234,9 @@
 
 
 
-
+    ///updates media position of svg-shape from
+    ///model position of this shape;
+    ///also updates text-caption if any of this shape;
     ///needs arg or "this"
     function modPos_2_GUI( api )
     {

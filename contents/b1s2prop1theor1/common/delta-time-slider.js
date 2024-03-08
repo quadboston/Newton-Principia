@@ -1,15 +1,11 @@
 ( function() {
     var {
-        sn, $$, sv,
+        sn, $$, sv, hafff,
         sconf, sDomF, ssF, ssD, toreg, rg,
         amode, stdMod,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
-            //creates_sliderDomModel__4__time,
-        },
     });
-    stdMod.creates_sliderDomModel__4__time = creates_sliderDomModel__4__time; 
+    stdMod.creates_delta_time_slider = creates_delta_time_slider;
     return;
 
 
@@ -25,7 +21,7 @@
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function creates_sliderDomModel__4__time()
+    function creates_delta_time_slider()
     {
         var pos2pointy    = ssF.pos2pointy;
         var pointies2line = ssF.pointies2line;
@@ -33,34 +29,30 @@
         //=========================================
         // //\\ slider api pars
         //=========================================
-        var slCaption   = 'time';
-        var sliderId    = 'time';
+        var sliderId    = 'dt';
+        var tpId        = sliderId;
+        var tptpId      = 'tp-' + tpId;
+        var slCaption   = '∆t';
 
-        /// adds input pars to api
-        /// store-name for value delivered from sliding ===
-        /// model value which is set by slider,
-        var apiValueName = 'psteps';
-
-        var captionPrefix = 'm = ';
         ///will be overridden with tp-color if any:
-        var COLOR         = sDomF.getFixedColor( sliderId );
-        var customSliderShift = 0; //picture units
+        var COLOR = sDomF.getFixedColor( sliderId );
+        var customSliderShift = -20; //picture units
         //=========================================
         // \\// slider api pars
         //=========================================
 
         //:spawns api pars
-        var api_rgid    = 'slider_sl'   + sliderId;
+        var api_rgid    = 'rgslid_'   + sliderId;
+        var api         = toreg( api_rgid )();
+        var rgX         = api;
         var start_rgid  = 'railsStart_' + sliderId;
         var end_rgid    = 'railsEnd_'   + sliderId;
         var rails_rgid  = 'slider_'     + sliderId;
-        var tpId        = sliderId;
-        var tptpId      = 'tp-' + tpId;
 
 
-        //----------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
         // //\\ in model units and reference system
-        //----------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
         var startX            = ( -sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
@@ -75,19 +67,20 @@
                                         + customSliderShift
                                 ;
         var startY            =  startY * sconf.inn2mod_scale;
-        //----------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
         // \\// in model units and reference system
-        //----------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
 
 
         //:spawns api pars
         var startPos          = [ startX, startY ];
         var endPos            = [ endX, startY ];
+        toreg( start_rgid )( 'pos', startPos );
+        toreg( end_rgid )( 'pos', endPos );
 
         //--------------------------------------------------------
         // //\\ slider api
         //--------------------------------------------------------
-        var api = toreg( api_rgid )();
         api.pos         = [startX, startY];
         api.startX      = startX;
         api.endX        = endX;
@@ -98,8 +91,6 @@
         //-------------------------------------
         // //\\ adds helpers
         //-------------------------------------
-        toreg( start_rgid )( 'pos', startPos );
-        toreg( end_rgid )( 'pos', endPos );
         var railsStart = pos2pointy(
             start_rgid,
             { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
@@ -130,7 +121,7 @@
         // //\\ makes svg representation of api
         //      as a point, adds medpos to api
         //-------------------------------------
-        var wwrack = pos2pointy(
+        pos2pointy(
             api_rgid,
             {
                 cssClass : 'tostroke',
@@ -140,10 +131,9 @@
                 r : 5,
                 tpclass : tpId,
             }
-        );
         //.overrides tp - machinery suppressed opacity,
         //.the handler must be solid,
-        wwrack.svgel.style[ 'fill-opacity' ] = '1';
+        ).svgel.style[ 'fill-opacity' ] = '1';
         //-------------------------------------
         // \\// makes svg representation of api
         //--------------------------------------------------------
@@ -165,19 +155,19 @@
             fill    : COLOR,
         });
         //todmm ... patch ... adds tp dimming machinery
-        $$.$( api.text_svg ).addClass( 'tp-time' );
+        $$.$( api.text_svg ).addClass( tptpId );
 
-        api.apiValueName        = apiValueName;
         api.move_2_updates      = move_2_updates;
         api.processDownEvent    = processDownEvent;
         api.modPos_2_GUI        = ssF.modPos_2_GUI;
         api.stdMod              = stdMod;
+        api.val                 = sconf.initialTimieStep;
+
         api.upd_sliderGUI8legend__8__unmask = upd_sliderGUI8legend__8__unmask;
         //-------------------------------------
         // \\// slider api
         //--------------------------------------------------------
 
-        var rgX = api; //rg.slider_sltime;
         ///this sub is defined in full-app/lib/custom-slider.js module
         ssF.rgXSlider__2__dragwrap_gen_list({
             rgX,
@@ -203,38 +193,29 @@
         ///  shows evolution corresponding to time;
         function upd_sliderGUI8legend__8__unmask()
         {
-            var rawTime = api[ apiValueName ]; //===rg.slider_sltime.psteps;
-
+            var rawDeltaT = api.val;
+            ccc( 'upd in sl: dt=' + api.val );
             //-----------------------------------------------------
             // //\\ corrects pos and updates slider's GUI
             //-----------------------------------------------------
             //interpolates slider GUI position
             var sliderXpos =
                  railsStart.pos[0] + 
-                 rawTime / rg.spatialStepsMax.pos * api.railsLength
+                 rawDeltaT / sconf.initialTimieStep * api.railsLength
                  ;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
-
             //at curr. ver., does what it says: pos to GUI
+            ///updates media position of svg-shape from
+            ///model position of this shape;
+            ///also updates text-caption if any of this shape;
             api.modPos_2_GUI();
             //-----------------------------------------------------
             // \\// corrects pos and updates slider's GUI
             //-----------------------------------------------------
 
-            //does what it says, no extra calculations
-            stdMod.sliderTime_2_time8stepIndices();
-            ssF.solvesTrajectoryMath();
-
-            //apparently, only decoration like time labels
-            stdMod.time_2_displayTimeStrings();
-            //perpendicular and point "T"
-            //they depend on slider-time, this is why their math model pos
-            //updates here and not in model_upcreate()
-            stdMod.doesPosition_PTandTheirLine();
-
             //at the end of job, runs application-provided callback
-            stdMod.unmasksVisib();
-            stdMod.upcreate_mainLegend();
+            //stdMod.unmasksVisib();
+            //stdMod.upcreate_mainLegend();
             if( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }
@@ -247,7 +228,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        this.achieved.achieved = this.psteps;
+        this.achieved.achieved = this.val;
     }
 
     ///move_2_val8gui8cb
@@ -263,13 +244,24 @@
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
         //sets preliminary time:
-        var newTime = api.achieved.achieved +
+        var newdt = api.achieved.achieved +
                             move_in_model[ 0 ] /
                             api.railsLength *
-                            rg.spatialStepsMax.pos;
-        //sets value:
-        var rawTime = stdMod.protects_stepIx_ranges( newTime );
-        api[ api.apiValueName ] = rawTime;
+                            sconf.initialTimieStep;
+        newdt = Math.max( 0.01, Math.min( sconf.initialTimieStep, newdt ) );
+        api.val = newdt;
+        rg.spatialStepsMax.pos = Math.ceil( 7/newdt );
+        ccc( 'slider dt updater: rg.spatialStepsMax.pos' );
+        var posB = rg.path.pos[0];
+        var absAB = sconf.vabs0 * newdt;
+        var absB = Math.sqrt( posB[0]*posB[0] + posB[1]*posB[1] );
+        var scale = absAB / absB;
+        posB[0] = posB[0]*scale;
+        posB[1] = posB[1]*scale;
+        hafff( rg.slider_sltime, 'upd_sliderGUI8legend__8__unmask' );
+
+        ssF.solvesTrajectoryMath();
+
         //sets the rest:
         api.upd_sliderGUI8legend__8__unmask();
     }

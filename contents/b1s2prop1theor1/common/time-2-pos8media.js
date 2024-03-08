@@ -25,6 +25,7 @@
     function protects_stepIx_ranges( time )
     {
         //protects_stepIx_exceeding_stepMax( time )
+        //initially rg.spatialStepsMax.pos = sconf.spatialStepsMax0 = 7
         time = Math.min( time, rg.spatialStepsMax.pos * 0.999999 );
 
         return Math.max(
@@ -38,12 +39,11 @@
     function sliderTime_2_time8stepIndices()
     {
         var sp8ep   = haz( rg, 'slider_sltime' );
-        var time    = rg.slider_sltime.t;
-        //this "rg.slider_sltime.t" can be set in program, so
+        var time    = rg.slider_sltime.psteps;
+        //this "rg.slider_sltime.psteps" can be set in program, so
         //do protect this,
         time        = protects_stepIx_ranges( time );
         rg.time     = time;
-
         //----------------------------------------
         // //\\ establishes model step and substep
         //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
@@ -107,11 +107,11 @@
                 //of timeStep-length/2
                 ( stepIx + (rg.time - stepIx - 0) * 2 ) *
 
-                rg.timeStep.t;
+                rg.rgslid_dt.val;
 
         } else if( substepIx < 2 ) {
 
-            rg.displayTime.value = (stepIx+0.5) * rg.timeStep.t;
+            rg.displayTime.value = (stepIx+0.5) * rg.rgslid_dt.val;
 
         } else if( substepIx < 3 ) {
             ////here, after force BV is applied, time begins
@@ -122,9 +122,9 @@
                 //of timeStep-length/2
                 ( stepIx + 0.5 + (rg.time - stepIx - 0.5) * 2 ) *
 
-                rg.timeStep.t;
+                rg.rgslid_dt.val;
         } else {
-            rg.displayTime.value = ((stepIx+1)*rg.timeStep.t);
+            rg.displayTime.value = ((stepIx+1)*rg.rgslid_dt.val);
         }
         //ccc( stepIx + '.' + substepIx + ' rg.time='+rg.time );
         rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
@@ -133,6 +133,78 @@
         // \\// visualizes time offsets
         //========================================================================
     }
+
+
+    //=========================================================
+    // //\\ display dt
+    //=========================================================
+    function time_2_displayTimeStrings()
+    {
+        var path        = rg.path.pos;
+        var stepIx      = rg.stepIx.value;
+        var substepIx   = rg.substepIx;
+
+        //========================================================================
+        // //\\ visualizes time offsets
+        //========================================================================
+        rg.displayStep.value = stepIx + '';
+        rg.thoughtStep.value = (substepIx+1) + '';
+
+
+        if( stepIx === 1 ) {
+            ////before thought experiment, no indication of it is shown
+            rg.thoughtStep.value = "";
+        }
+
+        //---------------------------------------------------------
+        // //\\ displays time
+        //      , this deserves elaboration, because is the heart
+        //      of differential method and interaction
+        //---------------------------------------------------------
+        //this assumes time changes continuously during proof steps
+        //rg.displayTime.value = rg.time.toFixed(3);
+
+        //this sets granular time display increment
+        //during last proof step
+        if( substepIx < 1 ) {
+            rg.displayTime.value =
+
+                //during first proof step "Bc", time grows by magnitude
+                //of timeStep-length/2
+                ( stepIx + (rg.time - stepIx - 0) * 2 ) *
+
+                rg.rgslid_dt.val;
+
+        } else if( substepIx < 2 ) {
+
+            rg.displayTime.value = (stepIx+0.5) * rg.rgslid_dt.val;
+
+        } else if( substepIx < 3 ) {
+            ////here, after force BV is applied, time begins
+            ///growing again
+            rg.displayTime.value =
+
+                //during third proof step, time grows by magnitude
+                //of timeStep-length/2
+                ( stepIx + 0.5 + (rg.time - stepIx - 0.5) * 2 ) *
+
+                rg.rgslid_dt.val;
+        } else {
+            rg.displayTime.value = ((stepIx+1)*rg.rgslid_dt.val);
+        }
+        //ccc( stepIx + '.' + substepIx + ' rg.time='+rg.time );
+        rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
+        //---------------------------------------------------------
+        // \\// displays time
+        // \\// visualizes time offsets
+        //========================================================================
+    }
+    //=========================================================
+    // \\// display dt
+    //=========================================================
+
+
+
 
     ///points P and T do depend on time, so cannot be updated
     ///in tr2decs subroutine

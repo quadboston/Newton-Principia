@@ -119,9 +119,6 @@
         if( vectorTipIx || vectorTipIx === 0 ) {
             paintsVectorTips({ vectorTipIx, pivots, line, stdMod });
         }
-        if( pName === 'CV' )
-            ccc( pName, pivots, line );
-
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
         line.pivots = [ pivots[0], pivots[1] ];
@@ -453,6 +450,7 @@
         }
         triang.shapeIsAlreadyDressed = true;
         triang.svgel$.tgcls( 'undisplay', ns.haz( triang, 'undisplay' ) );
+        return triang;
     }
     //==========================================
     // \\// paints svg triangles

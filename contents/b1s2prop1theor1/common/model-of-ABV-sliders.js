@@ -27,14 +27,15 @@
         var toreg = stdMod.toreg;
         var rg = stdMod.rg;
 
-        //**********************************************************************************
+        //**************************************************************************
         //initially does job which sliders do at run-time
-        toreg( 'slider_sltime' )( 't', 1.75000001 ); //1.75000001 for first nice value in slider
+        toreg( 'slider_sltime' )( 'psteps', 1.75000001 ); //1.75000001 for first nice value in slider
         toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
         toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
-        toreg( 'timeStep' )( 't', 0 ); //patch todo
+        toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep ); //patch todo
         toreg( 'spatialStepsMax' )( 'pos', 7 ); //patch todo
-        //**********************************************************************************
+        toreg( '' )( 'psteps', 2 ); //patch todo
+        //**************************************************************************
 
         //---------------------------------------------------
         //interface for B
@@ -96,10 +97,11 @@
     /// renews initial path parameters from point B of dragger-B,
     ///
     ///     estimates time and speed direction in the first step and
-    ///     resets speeds, timeStep, and number of spatial steps;
+    ///     resets speeds, and number of spatial steps;
     ///=============================================================
     function B2params( newPos, dummyPar, stdMod )
     {
+        ccc( 'renews init path par dragger-B,' );
         stdMod = stdMod || studyMods[ amode.submodel ];
         var toreg = stdMod.toreg;
         var rg = stdMod.rg;
@@ -116,24 +118,23 @@
 
         //gets time elapsed to travel from point A to point B:
         //time0 can become big at this moment
-        var time0 = s0 / vabs0;
+        //var time0 = s0 / vabs0;
 
         // gets new speed, but speed abs value does not change
         var newv0 = [ path0[0] / s0 * vabs0, path0[1] / s0 * vabs0, ];
 
+        /*
         //gets primitive-moves limit from original limit and new dt = time0
-        var newCount = Math.floor( sconf.spatialStepsMax0 / time0 );
-
+        var newCount = Math.floor( sconf.spatialStepsMax0 / rg.rgslid_dt.val );
         if( newCount < 3 ) {
             ////ignores paths with too small number of moves
             return;
         }
+        toreg( 'spatialStepsMax' )( 'pos', newCount );
+        ccc( rg.spatialStepsMax.pos );
+        */
         toreg( 'speeds' )( 'pos', [ newv0 ] );
         toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
-
-        toreg( 'timeStep' )( 't', time0 );
-        toreg( 'spatialStepsMax' )( 'pos', newCount );
-        //ccc('OKorrect: time0=' + time0 + ' newCount=' + newCount );
 
         //moving B changes "gravity constant" ... fixing this
         //reuse the code in V2forceParams ...
@@ -165,7 +166,7 @@
         }            
         */
 
-        var tstep               = rg.timeStep.t;
+        var tstep               = rg.rgslid_dt.val;
         var tstep2              = tstep * tstep;
         var posB                = rg.B.pos;
         var posS                = rg.S.pos;
@@ -233,7 +234,7 @@
         V2forceParams( rg.V.pos, null, stdMod, !!'doEnforcePars' );
         A2distanceToS( rg.A.pos, null, stdMod );
 
-        ssF.solvesTrajectoryMath( stdMod );
+        ssF.solvesTrajectoryMath();
     }
 
 }) ();

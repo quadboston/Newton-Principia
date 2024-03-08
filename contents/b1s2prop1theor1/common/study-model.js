@@ -75,7 +75,6 @@
         //possibly not intuitive solution:
         //toreg( 'slider_sltime' ...
         //toreg( 'speeds' ...
-        //toreg( 'timeStep' ...
         //toreg( 'spatialStepsMax' ...
         //**********************************************************************************
         //=========================================================
@@ -84,6 +83,7 @@
 
         ssF.doesSchedule_A_B_V_sliders_in_init_pars( stdMod );
         stdMod.creates_sliderDomModel__4__time();
+        stdMod.creates_delta_time_slider();
     }
     //===================================================
     // \\// registers model pars into common scope
