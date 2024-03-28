@@ -35,6 +35,16 @@
         // //\\ declares decorational points
         //      A,B are special d8d points
         //------------------------------------
+        {
+            let v = {
+                v   : {
+                    pos      : sconf.B.concat(),
+                    decStart : -2, //always visible
+                }
+            };
+            Object.assign( decor, v );
+        }
+
         var firstSteps_conf = {
             A   : { decStart : -2, pos : sconf.A.concat() },
             //todo redundant
@@ -148,10 +158,12 @@
                     pos      : [0,0],
                     decStart : -2, //always visible
                   },
+            /*
             v   : {
                     pos      : sconf.B.concat(),
                     decStart : -2, //always visible
                   },
+            */
             P   : {
                     decStart : -2, //always visible
                     cssClass : 'theor1corollary',
@@ -190,6 +202,7 @@
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
             },
+  /*
             'v-white-filler'   : {
                     decStart    : forceTip_conf.V.decStart,
                     decEnd      : forceTip_conf.V.decEnd, //todm too complex
@@ -199,6 +212,7 @@
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
             },
+  */
         };
 
 
@@ -354,15 +368,7 @@
         ].forEach( pNam => {
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
-                let pcolor = sDomF.getFixedColor( 'path' )
-                tipFill = pcolor;
-                let line = toreg( 'Av' )
-                        ( 'vectorTipIx', 1 )
-                        ( 'tipFraction', 0.15 )
-                        ( 'pcolor', pcolor )
-                        ( 'tipFill', tipFill )
-                        ();
-
+                toreg( 'Av' )( 'vectorTipIx', 1 );
             }
             var rgElem = ssF.pnames2line(
                 pNam.nam[0],

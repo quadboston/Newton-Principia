@@ -56,7 +56,7 @@
         //wraps remained tasks into d8d slider
         //if slider is already created ...
         hafff( rg.slider_sltime, 'upd_sliderGUI8legend__8__unmask' );
-        hafff( rg.rgslid_dt, 'upd_sliderGUI8legend__8__unmask' );
+        hafff( rg.rgslid_dt, 'updates_sliderGUI' );
         //***********************************************************
 
         ssF.mediaModelInitialized = true;

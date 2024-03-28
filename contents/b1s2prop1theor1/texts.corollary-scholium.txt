@@ -236,90 +236,56 @@ Pages 123 - 141.
             ]
         },
 
-        "spatialStepsMax": {
-            "pos": 7
-        },
-
         "slider_sltime": {
-            "psteps": 1.75000001
+            "curtime": 1.75000001
         }
 
     },
 
     "1-1": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 2.099161816013016
+            "curtime": 2.099161816013016
         }
     },
 
 
     "1-2": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 2.448323622026032
+            "curtime": 2.448323622026032
         }
     },
     "1-3": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 2.5752915514853103
+            "curtime": 2.5752915514853103
         }
     },
     "1-4": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 2.765743445674228
+            "curtime": 2.765743445674228
         }
     },
     "force-at-C": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 3.3370991282409808
+            "curtime": 3.3370991282409808
         }
     },
     "force-at-D": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 4.352842563915209
+            "curtime": 4.352842563915209
         }
     },
     "force-at-E": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 5.3685859995894365
+            "curtime": 5.3685859995894365
         }
     },
 
     "motion-F": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "psteps": 5.9081996997913695
+            "curtime": 4.63
         }
     },
     "more-triangles": {
-        "spatialStepsMax": {
-            "pos": 18
-        },
-        "slider_sltime": {
-            "psteps": 0.3699612716262433
-        },
         "speeds": {
             "pos": [
                 [
@@ -334,22 +300,17 @@ Pages 123 - 141.
                 0.3551336141138294
             ]
         },
-
         "slider_sltime": {
-            "psteps": 8.610802769710297
+            "curtime": 8.610802769710297
         }
     },
     "initial-state" : {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "B": {
             "pos": [
                 2.7464803960376174,
                 0.9548511283420502
             ]
         },
-
         "V": {
             "pos": [
                 2.310789220415451,
@@ -363,7 +324,7 @@ Pages 123 - 141.
             ]
         },
         "slider_sltime": {
-            "psteps": 5.995
+            "curtime": 5.995
         }
     },
 
@@ -378,7 +339,7 @@ Pages 123 - 141.
         },
 
         "slider_sltime": {
-            "psteps": 8.713627479397166
+            "curtime": 8.713627479397166
         },
         "B": {
             "pos": [
@@ -401,9 +362,6 @@ Pages 123 - 141.
 
     },
     "corollary-2": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "rgslid_dt": {
             "val": 1
         },
@@ -423,13 +381,10 @@ Pages 123 - 141.
         },
 
         "slider_sltime": {
-            "psteps": 2.9897076114077104
+            "curtime": 2.9897076114077104
         }
     },
     "corollary-4" : {
-        "spatialStepsMax": {
-            "pos": 8
-        },
         "rgslid_dt": {
             "val": 0.8438037286237602
         },
@@ -449,15 +404,12 @@ Pages 123 - 141.
         },
 
         "slider_sltime": {
-            "psteps": 6.961644376899696
+            "curtime": 6.961644376899696
         }
     },
 
 
     "corollary-3" : {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "rgslid_dt": {
             "val": 1
         },
@@ -478,7 +430,7 @@ Pages 123 - 141.
 
 
         "slider_sltime": {
-            "psteps": 5.995
+            "curtime": 5.995
         }
     },
 

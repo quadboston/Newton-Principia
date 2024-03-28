@@ -40,7 +40,7 @@
     {
         tableCaptionFun();
 
-        //ccc( 'does upcreate_mainLegend' );
+        //c cc( 'does upcreate_mainLegend' );
         var ww = clustersToUpdate;
         ww.time.innerHTML       = rg.displayTime.value;
         ww.step.innerHTML       = rg.displayStep.value;

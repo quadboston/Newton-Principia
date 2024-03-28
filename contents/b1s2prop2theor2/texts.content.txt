@@ -244,7 +244,7 @@ its ¦S¦point S¦¦, uniformly in a straight line.
 <div style="display:none;">
 
 ¦field¦force :¦¦¦¦
-¦time¦time step :¦¦¦¦
+¦dt¦time step :¦¦¦¦
 ¦field cssbold¦f¦¦¦¦
 ¦force cssbold¦p¦¦¦¦
 ¦time¦t¦¦¦¦
@@ -423,11 +423,8 @@ may be negected in the compounding of forces.
 {
 
     "proof-step-D": {
-        "spatialStepsMax": {
-            "pos": 7
-        },
         "slider_sltime": {
-            "t": 3.71
+            "curtime": 3.71
         },
         "V": {
             "pos": [
@@ -451,7 +448,7 @@ may be negected in the compounding of forces.
 
     "initial-state" : {
         "slider_sltime": {
-            "t": 5.995
+            "curtime": 5.995
         },
         "V": {
             "pos": [
@@ -477,7 +474,7 @@ may be negected in the compounding of forces.
 
         "detected_user_interaction_effect_DONE" : true,
         "slider_sltime": {
-            "t" : 2.66910230194876
+            "curtime" : 2.66910230194876
         },
         "stdModName": "common",
         "media-mover": {

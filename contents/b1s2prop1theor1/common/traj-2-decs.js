@@ -26,13 +26,12 @@
         //-----------------------------------------------------
         // //\\ recalculates CDEF points pos
         //-----------------------------------------------------
-        ( function() {
-            [ 'C', 'D', 'E', 'F' ].forEach( kname => {
-                var rgP = rg[ kname ];
-                var decStart = rgP.decStart;
-                nspaste( rgP.pos, path[ ( decStart - decStart%4 ) / 4 ] );
-            });
-        })();
+        [ 'C', 'D', 'E', 'F' ].forEach( kname => {
+            var rgP = rg[ kname ];
+            var decStart = rgP.decStart;
+            nspaste( rgP.pos, path[ ( decStart - decStart%4 ) / 4 ] );
+        });
+        nspaste( rg.B.pos, path[1] );
         //-------------------------------------------------
         // \\// recalculates CDEF points pos
         //-------------------------------------------------

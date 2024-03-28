@@ -63,7 +63,6 @@
         pivots          = pivots || haz( line, 'pivots' );
         var vectorTipIx = haz( line, 'vectorTipIx' );
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
-
         if( haz( pivots[0], 'unscalable' ) ) {
             pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos, stdMod );
         }
@@ -203,16 +202,20 @@
 
     function paintsVectorTips({ vectorTipIx, pivots, line, stdMod })
     {
-        var TIP_FRACTION = 0.2;
+        let tipFraction = haz( line, 'tipFraction' );
+        var TIP_FRACTION = tipFraction ||  0.2;
         var ARROW_TANGENT = 0.15;
         var vectEnd = pivots[ vectorTipIx ].medpos;
         var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
         var { abs, norm, unit } = mat.vector2normalOrts(
                 [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
+        let tF = TIP_FRACTION * abs;
         var tipLength =
+                tipFraction ? tF :
                 Math.min(
-                10 * sconf.pictureWidth * 0.0025, //min is sensetive to diagram scale
-                TIP_FRACTION * abs );
+                    //min is sensetive to diagram scale
+                    10 * sconf.pictureWidth * 0.0025, tF
+                );
         var tipStart = abs-tipLength;
         var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
         var tipHeight = Math.max( sconf.thickness*3, tipLength * ARROW_TANGENT );
@@ -229,6 +232,10 @@
             pivots,
             //'stroke-width' : strokeWidth * sconf.thickness, 
         });
+        let tipFill = haz( line, 'tipFill' );
+        if( tipFill ) {
+            line.vectorArrowSvg.style.fill = tipFill;
+        }
         line.vectorArrowSvg$ = $$.$(line.vectorArrowSvg)
             .tgcls( 'undisplay', ns.haz( line, 'undisplay' ) )
             .cls( line.finalCssClass + ' tofill' )
@@ -258,7 +265,7 @@
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function pnames2line( name1, name2, cssClass, stdMod )
+    function pnames2line( name1, name2, tpCssClass, stdMod )
     {
         stdMod          = stdMod || studyMods[ amode.submodel ];
         var toreg       = stdMod.toreg;
@@ -268,7 +275,7 @@
             [ rg[ name1 ], rg[ name2 ] ],
             {
                 cssClass        : 'tostroke thickable' +
-                                   ( cssClass ? ' ' + cssClass : '' ),
+                                   ( tpCssClass ? ' ' + tpCssClass : '' ),
                 'stroke-width'  : 2,
             },
             stdMod,

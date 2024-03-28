@@ -32,8 +32,6 @@
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
         var speeds          = rg.speeds.pos;
-        var speedsAracc     = rg.speedsAracc.pos;
-        var spatialStepsMax = rg.spatialStepsMax.pos;
 
         //=======================================================
         // //\\ spawns path to
@@ -78,7 +76,6 @@
                     tpCls,
                     '', //rgba( 100,100,255,0.2)'    //for svgarg.fill = defaultFill
                 );
-                //ccc( 'tohidden' + area_XXX, )
             }
             //---------------------------------------------------------
             // \\// placifies keplerTriangles
@@ -101,7 +98,6 @@
                 if( kix < 3 ) {
                     ////todm don't create it at all or do coinside with decor
                     ////other object, decor will take care of painting
-                    //ccc( triang );
                     triang.svgel.style.display = 'none';
                 }
             }

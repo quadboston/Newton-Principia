@@ -97,7 +97,7 @@
     ///for 2d and 3d vectors
     function unitVector(
         vector,
-        doDenullify //makes vector non zero
+        doDenullify //optional, makes vector non zero
     ){
         var is3d = vector.length === 3;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];

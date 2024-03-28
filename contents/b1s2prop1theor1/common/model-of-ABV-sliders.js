@@ -7,7 +7,7 @@
         ssFExportList :
         {
             doesSchedule_A_B_V_sliders_in_init_pars,
-            ABVpos_2_trajectory,
+            //ABVpos_2_trajectory,
         },
     });
     return;
@@ -29,12 +29,12 @@
 
         //**************************************************************************
         //initially does job which sliders do at run-time
-        toreg( 'slider_sltime' )( 'psteps', 1.75000001 ); //1.75000001 for first nice value in slider
+        toreg( 'slider_sltime' )( 'curtime', 1.75000001 ); //1.75000001 for first nice value in slider
         toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
         toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
         toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep ); //patch todo
-        toreg( 'spatialStepsMax' )( 'pos', 7 ); //patch todo
-        toreg( '' )( 'psteps', 2 ); //patch todo
+        //patch todo
+        toreg( '' )( 'curtime', 2 ); //patch todo
         //**************************************************************************
 
         //---------------------------------------------------
@@ -42,10 +42,10 @@
         //---------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'B',
-            acceptPos : B2params,
+            pname : 'v',
+            acceptPos : v2params,
             orientation : 'rotate',
-            pos: stdMod.rg.B.pos,
+            pos: rg.v.pos,
         });
 
         //---------------------------------------------------
@@ -55,7 +55,7 @@
             stdMod,
             pname : 'V',
             acceptPos : V2forceParams,
-            pos: stdMod.rg.V.pos,
+            pos: rg.V.pos,
         });
 
 
@@ -73,7 +73,7 @@
             stdMod,
             pname : 'A',
             acceptPos : A2distanceToS,
-            pos: stdMod.rg.A.pos,
+            pos: rg.A.pos,
         });
         //===================================================
         // \\// special points and points needed at model
@@ -93,52 +93,32 @@
 
 
     ///=============================================================
-    ///
-    /// renews initial path parameters from point B of dragger-B,
-    ///
-    ///     estimates time and speed direction in the first step and
-    ///     resets speeds, and number of spatial steps;
+    /// estimates speed direction in the first step and
+    /// resets speed direction;
     ///=============================================================
-    function B2params( newPos, dummyPar, stdMod )
+    function v2params( newPos, dummyPar, stdMod )
     {
-        ccc( 'renews init path par dragger-B,' );
-        stdMod = stdMod || studyMods[ amode.submodel ];
-        var toreg = stdMod.toreg;
-        var rg = stdMod.rg;
-
-        var path0 = [ newPos[0] - rg.path.pos[0][0],  newPos[1] - rg.path.pos[0][1], ];
-        //length of path from A to B
-        var s0 = Math.sqrt( path0[0]*path0[0] + path0[1]*path0[1] );
-        //ccc( 'new s0='+s0 + ' fconf.s0max=' + sconf.s0max + ' rg.B.pos', rg.B.pos );
-        if( s0 >= sconf.s0max ) {
-            //ccc( "first path cannot be greater than " + sconf.s0max );
+        stdMod      = stdMod || studyMods[ amode.submodel ];
+        var toreg   = stdMod.toreg;
+        //var path_Av = mat.unitVector( mat.subV( newPos, rg.v.pos ) );
+        var path_Av = mat.subV( newPos, rg.A.pos );
+        var unitAv = mat.unitVector( path_Av );
+        if( unitAv.abs >= sconf.s0max ) {
+            ////decorational interaction restriction
+            ////prevents too big mouse move
             return;
         }
-        var vabs0 = sconf.vabs0;
-
-        //gets time elapsed to travel from point A to point B:
-        //time0 can become big at this moment
-        //var time0 = s0 / vabs0;
 
         // gets new speed, but speed abs value does not change
-        var newv0 = [ path0[0] / s0 * vabs0, path0[1] / s0 * vabs0, ];
-
-        /*
-        //gets primitive-moves limit from original limit and new dt = time0
-        var newCount = Math.floor( sconf.spatialStepsMax0 / rg.rgslid_dt.val );
-        if( newCount < 3 ) {
-            ////ignores paths with too small number of moves
-            return;
-        }
-        toreg( 'spatialStepsMax' )( 'pos', newCount );
-        ccc( rg.spatialStepsMax.pos );
-        */
+        var newv0 = mat.scaleV( sconf.vabs0, unitAv.unitVec );
         toreg( 'speeds' )( 'pos', [ newv0 ] );
         toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
 
-        //moving B changes "gravity constant" ... fixing this
-        //reuse the code in V2forceParams ...
-        //... = (newPos[0] - posB[0]); //displacement x = from Bx to Vx
+        //updates dragger position
+        //var newP = mat.addV( path_Av.unitVec, rg.v.pos );
+        var newP = mat.addV( newv0, rg.A.pos );
+        newPos[0] = newP[0];
+        newPos[1] = newP[1];
 
         return true;
     }
@@ -148,45 +128,24 @@
     ///when dragging point V, converts V pos change to force-law constant change,
     ///returns true which means newPos is allowed,
     ///=============================================================
-    function V2forceParams( newPos, dummyPar, stdMod, enforceNewPos )
+    function V2forceParams( newVPos, dummyPar, stdMod, enforceNewPos )
     {
         stdMod                  = stdMod || studyMods[ amode.submodel ];
         var toreg               = stdMod.toreg;
         var rg                  = stdMod.rg;
-
-        /*
-        ///todm ... this validation blocks captured state from success,
-        ///if user did not move slider "V", no force-law change must happen
-        if( !enforceNewPos && (
-                Math.abs(rg.V.pos[0] - newPos[0]) +
-                Math.abs(rg.V.pos[0] - newPos[0]) < 1e-10
-            )
-        ) {
-            return;
-        }            
-        */
-
         var tstep               = rg.rgslid_dt.val;
         var tstep2              = tstep * tstep;
         var posB                = rg.B.pos;
         var posS                = rg.S.pos;
-        var displX              = (newPos[0] - posB[0]); //displacement x = from Bx to Vx
-        var displY              = (newPos[1] - posB[1]);
-        var disp                = Math.sqrt( displX*displX + displY*displY );
-        var bvNorm              = [ displX/disp, displY/disp ];
-        var newForce            = disp/tstep2; // dr = f*DT*DT
-
-        var distanceX           = posB[0] - posS[0];    
-        var distanceY           = posB[1] - posS[1];    
-        var dis2                = distanceX*distanceX + distanceY*distanceY;
-        var dis                 = Math.sqrt( dis2 ); //abs val from S to B
-        if( dis < 1e-20 ) return false; //B is too close to S, forbid this configuration
-
-        var bsNorm              = [ -distanceX/dis, -distanceY/dis ];
-        var forceSpatialFactor  = Math.exp( rg.force.lawPower * Math.log( dis ) );
-
+        var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );
+        var bvNorm              = newBV.unitVec;
+        var newForce            = newBV.abs/tstep2; // newBV.abs = f*DT*DT
+        var BS                  = mat.unitVector( mat.subV( posB, posS ) );
+        var bsNorm              = mat.scaleV( -1, BS.unitVec );
+        var forceSpatialFactor  = Math.exp(
+                                    rg.force.lawPower * Math.log( BS.abs )
+                                  );
         rg.force.lawConstant    = newForce/forceSpatialFactor;
-
         //negative fDirection makes force repelling
         var fDirection          = bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
         rg.force.lawConstant   *= fDirection;
@@ -196,21 +155,20 @@
     ///==============================================================
     /// when dragging, changes initial distance: distance from A to S
     ///==============================================================
-    function A2distanceToS( newPos, dummyPar, stdMod )
+    function A2distanceToS( newAPos, dummyPar, stdMod )
     {
         stdMod      = stdMod || studyMods[ amode.submodel ];
         var toreg   = stdMod.toreg;
         var rg      = stdMod.rg;
-
         var posS    = rg.S.pos;
-        var displX  = newPos[0] - posS[0]; //displacement x = from Ax to SVx
-        var displY  = newPos[1] - posS[1];
-        var disp2   = displX*displX + displY*displY;
-        if( disp2 < 1e-40 ) return false; //A is too close to S, forbid this configuration
-        
-        var posB    = rg.B.pos;
-        posB[0]     += newPos[0] - rg.A.pos[0];
-        posB[1]     += newPos[1] - rg.A.pos[1];
+        var newAS   = mat.unitVector( mat.subV( newAPos, posS ) );
+        //A is too close to S, forbid this configuration
+        if( newAS.abs < 1e-20 ) return false;
+
+        //updates dragger v position
+        var newP = mat.addV( rg.speeds.pos[0], rg.A.pos );
+        rg.v.pos[0] = newP[0];
+        rg.v.pos[1] = newP[1];
         return true;
     }
 
@@ -224,18 +182,19 @@
     ///      cases: either one newPos to rgX.pos change
     ///      or none of them
     ///=========================================================
+    /*
     function ABVpos_2_trajectory( stdMod )
     {
         stdMod      = stdMod || studyMods[ amode.submodel ];
         var toreg   = stdMod.toreg;
         var rg      = stdMod.rg;
 
-        B2params( rg.B.pos, null, stdMod );
-        V2forceParams( rg.V.pos, null, stdMod, !!'doEnforcePars' );
-        A2distanceToS( rg.A.pos, null, stdMod );
+        //v2params( rg.B.pos, null, stdMod );
+        //V2forceParams( rg.V.pos, null, stdMod, !!'doEnforcePars' );
+        //A2distanceToS( rg.A.pos, null, stdMod );
 
-        ssF.solvesTrajectoryMath();
+        //ssF.solvesTrajectoryMath();
     }
-
+    */
 }) ();
 

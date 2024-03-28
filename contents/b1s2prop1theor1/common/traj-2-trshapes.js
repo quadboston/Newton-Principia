@@ -32,7 +32,6 @@
 
         var freePath        = rg.freePath.pos;
         var speeds          = rg.speeds.pos;
-        var speedsAracc     = rg.speedsAracc.pos;
 
         //=======================================================
         // //\\ spawns path to
@@ -82,8 +81,6 @@
             // \\// free triangles
             //---------------------------------------------------------
         });
-
-
 
         //---------------------------------------------------------
         // //\\ path to spatial-model-forces

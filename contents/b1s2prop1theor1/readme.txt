@@ -47,9 +47,5 @@ Following is possibly an outdated readme:
         ssD.decor[ line-seg-name ] = rgElem;
 
 
-* apparently, rg.spatialStepsMax.pos is how may time steps is allowed for the slider
-        sconf.js::
-            var value_max       = rg.spatialStepsMax.pos;
-            var value_current   = api[ apiValueName ];
 
 

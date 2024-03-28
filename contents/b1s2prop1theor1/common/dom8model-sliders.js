@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, sv,
+        sn, $$, sv, globalCss,
         sconf, sDomF, ssF, ssD, toreg, rg,
         amode, stdMod,
     } = window.b$l.apptree({
@@ -39,7 +39,7 @@
         /// adds input pars to api
         /// store-name for value delivered from sliding ===
         /// model value which is set by slider,
-        var apiValueName = 'psteps';
+        var apiValueName = 'curtime';
 
         var captionPrefix = 'm = ';
         ///will be overridden with tp-color if any:
@@ -158,14 +158,19 @@
                 'font-family'   : 'helvetica, san-serif',
                 'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
                 'stroke-width'  : 1,
-                 color          : COLOR,
-                fill            : 'transparent',
             },
-            stroke  : COLOR,
-            fill    : COLOR,
         });
-        //todmm ... patch ... adds tp dimming machinery
         $$.$( api.text_svg ).addClass( 'tp-time' );
+        globalCss.update( `
+                .bsl-simscene svg text.${tptpId} {
+                    stroke          : ${COLOR};
+                    fill            : ${COLOR};
+                }
+            `,
+            'svg-text-special'
+        );
+
+
 
         api.apiValueName        = apiValueName;
         api.move_2_updates      = move_2_updates;
@@ -203,7 +208,7 @@
         ///  shows evolution corresponding to time;
         function upd_sliderGUI8legend__8__unmask()
         {
-            var rawTime = api[ apiValueName ]; //===rg.slider_sltime.psteps;
+            var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
             //-----------------------------------------------------
             // //\\ corrects pos and updates slider's GUI
@@ -211,8 +216,7 @@
             //interpolates slider GUI position
             var sliderXpos =
                  railsStart.pos[0] + 
-                 rawTime / rg.spatialStepsMax.pos * api.railsLength
-                 ;
+                 rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 
             //at curr. ver., does what it says: pos to GUI
@@ -223,7 +227,7 @@
 
             //does what it says, no extra calculations
             stdMod.sliderTime_2_time8stepIndices();
-            ssF.solvesTrajectoryMath();
+            //ssF.solvesTrajectoryMath();
 
             //apparently, only decoration like time labels
             stdMod.time_2_displayTimeStrings();
@@ -247,7 +251,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        this.achieved.achieved = this.psteps;
+        this.achieved.achieved = this.curtime;
     }
 
     ///move_2_val8gui8cb
@@ -266,9 +270,9 @@
         var newTime = api.achieved.achieved +
                             move_in_model[ 0 ] /
                             api.railsLength *
-                            rg.spatialStepsMax.pos;
+                            sconf.timeRange;
         //sets value:
-        var rawTime = stdMod.protects_stepIx_ranges( newTime );
+        var rawTime = stdMod.protects_curTime_ranges( newTime );
         api[ api.apiValueName ] = rawTime;
         //sets the rest:
         api.upd_sliderGUI8legend__8__unmask();

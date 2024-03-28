@@ -45,7 +45,7 @@
         var stepIx4     = rg.stretchedFourTimes_stIx;
         var substepIx   = rg.substepIx;
         var stepIx      = rg.stepIx.value;
-ccc( 'stepIx4 '+stepIx4, 'substepIx '+substepIx, 'stepIx '+stepIx );
+        //c cc( 'stepIx4 '+stepIx4, 'substepIx '+substepIx, 'stepIx '+stepIx );
         //todm why this can happen? float-calc error of stepIx?
         //no path paint above the time step
         //if( pathRacks.length <= stepIx ) return;
@@ -168,9 +168,6 @@ ccc( 'stepIx4 '+stepIx4, 'substepIx '+substepIx, 'stepIx '+stepIx );
                 )
             ){
                 dec.undisplay = false;
-                if( dec.pname === 'SCd' ) {
-                    //ccc( stepIx4, dec );
-                }
             }
             if( dec.isPoint ) {
                 dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );

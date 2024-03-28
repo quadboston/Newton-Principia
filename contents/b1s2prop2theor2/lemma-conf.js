@@ -21,6 +21,7 @@
                 { src : '../../b1s2prop1theor1/common/decor-conf.js' },
                 { src : '../../b1s2prop1theor1/common/dec-2-media.js' },
                 { src : '../../b1s2prop1theor1/common/dom8model-sliders.js' },
+                { src : '../../b1s2prop1theor1/common/delta-time-slider.js' },
                 { src : '../../b1s2prop1theor1/common/main-legend.js' },
                 { src : '../../b1s2prop1theor1/common/masks-visib.js' },
                 { src : '../../b1s2prop1theor1/common/media-model.js' },

@@ -36,11 +36,11 @@
         //=========================================================
         toreg( 'force' )
             ( 'lawPower', sconf.force[0][0] ) //-2
-            ( 'lawConstant', sconf.force[0][1] )
+            ( 'lawConstant', sconf.force[0][1]
+               /(sconf.initialTimieStep*sconf.initialTimieStep) )
             ;
 
         //awkward prop name. "pos"
-        toreg( 'spatialStepsMax' )( 'pos', sconf.spatialStepsMax0 );
         //area accelerating force
         toreg( 'forceAracc' )
             ( 'tangentialForcePerCentripetal_fraction',
@@ -69,26 +69,17 @@
         //spawnes path placeholder
         toreg( 'pathRacks' )( 'pathRacks', [] );
         toreg( 'pathRacksAracc' )( 'pathRacks', [] );
-
-        //**********************************************************************************
-        //this code is moved to slider module: model-of-ABV-sliders.js,
-        //possibly not intuitive solution:
-        //toreg( 'slider_sltime' ...
-        //toreg( 'speeds' ...
-        //toreg( 'spatialStepsMax' ...
-        //**********************************************************************************
         //=========================================================
         // \\// placeholders for body states along trajectory,
         //=========================================================
 
         ssF.doesSchedule_A_B_V_sliders_in_init_pars( stdMod );
-        stdMod.creates_sliderDomModel__4__time();
         stdMod.creates_delta_time_slider();
+        stdMod.creates_sliderDomModel__4__time();
     }
     //===================================================
     // \\// registers model pars into common scope
     //===================================================
-
 
 
     //=========================================================
@@ -96,8 +87,12 @@
     //=========================================================
     function model_upcreate()
     {
-        haff( stdMod, 'model_upcreate_addon' );
-        ssF.ABVpos_2_trajectory( stdMod );
+        ccc( rg.slider_sltime.curtime );
+        ssF.solvesTrajectoryMath();
+        //haff( stdMod, 'model_upcreate_addon' );
+        //ssF.ABVpos_2_trajectory( stdMod );
+
+        //apparently all of this is virtual
         stdMod.traj2trshapes();
         stdMod.traj2decs();
         stdMod.trajectoryShapes_2_groups();

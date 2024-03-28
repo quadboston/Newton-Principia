@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, sv, hafff,
+        sn, $$, sv, hafff, globalCss,
         sconf, sDomF, ssF, ssD, toreg, rg,
         amode, stdMod,
     } = window.b$l.apptree({
@@ -148,22 +148,29 @@
                 'font-family'   : 'helvetica, san-serif',
                 'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
                 'stroke-width'  : 1,
-                 color          : COLOR,
-                fill            : 'transparent',
+                 //stroke         : COLOR,
+                 //fill           : COLOR,
             },
-            stroke  : COLOR,
-            fill    : COLOR,
+            //stroke  : COLOR,
+            //fill    : COLOR,
         });
         //todmm ... patch ... adds tp dimming machinery
         $$.$( api.text_svg ).addClass( tptpId );
+        globalCss.update( `
+                .bsl-simscene svg text.${tptpId} {
+                    stroke          : ${COLOR};
+                    fill            : ${COLOR};
+                }
+            `,
+            'svg-text-special'
+        );
 
         api.move_2_updates      = move_2_updates;
         api.processDownEvent    = processDownEvent;
         api.modPos_2_GUI        = ssF.modPos_2_GUI;
         api.stdMod              = stdMod;
         api.val                 = sconf.initialTimieStep;
-
-        api.upd_sliderGUI8legend__8__unmask = upd_sliderGUI8legend__8__unmask;
+        api.updates_sliderGUI   = updates_sliderGUI;
         //-------------------------------------
         // \\// slider api
         //--------------------------------------------------------
@@ -191,18 +198,16 @@
         ///recalculate the evolution, but 
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function upd_sliderGUI8legend__8__unmask()
+        function updates_sliderGUI()
         {
             var rawDeltaT = api.val;
-            ccc( 'upd in sl: dt=' + api.val );
             //-----------------------------------------------------
             // //\\ corrects pos and updates slider's GUI
             //-----------------------------------------------------
             //interpolates slider GUI position
             var sliderXpos =
                  railsStart.pos[0] + 
-                 rawDeltaT / sconf.initialTimieStep * api.railsLength
-                 ;
+                 rawDeltaT / sconf.initialTimieStep * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
             //at curr. ver., does what it says: pos to GUI
             ///updates media position of svg-shape from
@@ -250,20 +255,18 @@
                             sconf.initialTimieStep;
         newdt = Math.max( 0.01, Math.min( sconf.initialTimieStep, newdt ) );
         api.val = newdt;
-        rg.spatialStepsMax.pos = Math.ceil( 7/newdt );
-        ccc( 'slider dt updater: rg.spatialStepsMax.pos' );
-        var posB = rg.path.pos[0];
+        var posB = rg.path.pos[1];
         var absAB = sconf.vabs0 * newdt;
         var absB = Math.sqrt( posB[0]*posB[0] + posB[1]*posB[1] );
         var scale = absAB / absB;
         posB[0] = posB[0]*scale;
         posB[1] = posB[1]*scale;
-        hafff( rg.slider_sltime, 'upd_sliderGUI8legend__8__unmask' );
 
-        ssF.solvesTrajectoryMath();
-
+        //ssF.solvesTrajectoryMath();
         //sets the rest:
-        api.upd_sliderGUI8legend__8__unmask();
+        stdMod.model_upcreate();
+        stdMod.media_upcreate();
+        //api.updates_sliderGUI();
     }
 
 }) ();

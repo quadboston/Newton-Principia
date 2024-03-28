@@ -79,6 +79,9 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
+        let initialTimieStep = 1;
+        let timeRange = 14;
+        let speed = 1;
         to_sconf =
         {
             default_tp_lightness : 30,
@@ -90,7 +93,12 @@
             //-----------
             force :
             [
-                [ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
+                //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
+                //f=Ar^n
+                [   -2,                  //=n
+                    3.9/initialTimieStep/initialTimieStep //=A
+                ],
+
                 [ -1, 0 ],
                 [ 0, 0 ],
                 [ 1, 0 ],
@@ -100,9 +108,9 @@
             //for T2.Cor2: accelerating areas:
             tangentialForcePerCentripetal_fraction : 0.4,
 
-            speed : 1,
-            initialTimieStep : 1,
-            spatialStepsMax0 : 15,
+            speed,
+            initialTimieStep,
+            timeRange,
 
             //maximum first path from A to B
             //too big values will allow user to place
@@ -128,6 +136,7 @@
             modorInPicY,
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
+            pictureWidth,       //needed only to paint vecor's Av tip
 
             thickness           : 1,
             default_tp_stroke_width : 10,
@@ -159,7 +168,7 @@
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
-            var a = initialPath[0].pos;
+            var a = initialPath[0].pos; //in picture space
             var b = initialPath[1].pos;
             //:speed
             var uu = [ b[0] - a[0], b[1] - a[1] ];
@@ -168,15 +177,17 @@
             //:
             var mod2inn_scale = u; //initial unit
             var inn2mod_scale = 1/mod2inn_scale;
+
             var vmodel = [
-                    uu[0]*inn2mod_scale * to_sconf.speed,
+                    uu[0]*inn2mod_scale / to_sconf.initialTimieStep, //* to_sconf.speed,
                     MONITOR_Y_FLIP *
-                    uu[1]*inn2mod_scale * to_sconf.speed 
+                    uu[1]*inn2mod_scale / to_sconf.initialTimieStep, //* to_sconf.speed
             ];
             to_sconf.v0 = vmodel;
-            var ww = vmodel;
-            to_sconf.vabs0 = Math.sqrt( ww[0]*ww[0] + ww[1]*ww[1] );
 
+            //why?
+            //to_sconf.vabs0 = Math.sqrt( ww[0]*ww[0] + ww[1]*ww[1] );
+            to_sconf.vabs0 = to_sconf.speed;
 
             //for Y:
             APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
@@ -187,6 +198,8 @@
             to_sconf.inn2mod_scale = inn2mod_scale;
             to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE
                                    / to_sconf.APP_MODEL_Y_RANGE;
+
+            ///creates point A position in model
             to_sconf.A = [
                 (a[0] - modorInPicX ) * inn2mod_scale,
                 MONITOR_Y_FLIP *
@@ -194,27 +207,29 @@
             ];
 
             //redundant ... v0 is enougth ... do fix later
+            ///creates point B position in model
             to_sconf.B = [
-                (b[0] - modorInPicX ) * inn2mod_scale,
-                MONITOR_Y_FLIP *
-                (b[1] - modorInPicY ) * inn2mod_scale
+                //1, 1 //insignificant
+                to_sconf.A[0] + vmodel[0] * initialTimieStep,
+                to_sconf.A[1] + vmodel[1] * initialTimieStep,
+                //was
+                //(b[0] - modorInPicX ) * inn2mod_scale,
+                //MONITOR_Y_FLIP *
+                //(b[1] - modorInPicY ) * inn2mod_scale
+            ];
+            to_sconf.v = [
+                to_sconf.A[0] + vmodel[0],
+                to_sconf.A[1] + vmodel[1],
+                //was
+                //(b[0] - modorInPicX ) * inn2mod_scale,
+                //MONITOR_Y_FLIP *
+                //(b[1] - modorInPicY ) * inn2mod_scale
             ];
         })();
-
-        /*
-        to_sconf.tfamilyColor =
-        {
-            generic         : to_sconf.GENERIC_COLOR,
-            claim           : to_sconf.CORE_AREA_COLOR,
-            proof           : to_sconf.REMOTE_AREA_COLOR,
-            'primary-curve' : to_sconf.CORE_CURVE_COLOR
-        };
-        */
         //----------------------------------
         // \\// spawns to_conf
         // \\// prepares sconf data holder
         //----------------------------------------------------
-
 
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
@@ -226,6 +241,7 @@
         // \\// copy-pastes to sconf
         //----------------------------------------------------
 
+        //this comes from theorem P2; this does not exist in P1;
         haff( ssF, 'init_conf_addon' );
     };
     //====================================================

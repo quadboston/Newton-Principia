@@ -39,7 +39,8 @@
         var rg      = stdMod.rg;
 
         //:study-pars
-        var spatialStepsMax = rg.spatialStepsMax.pos;
+        var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
+                              / rg.rgslid_dt.val);
         var S               = rg.S.pos;
         var B               = rg.B.pos;
         var force           = rg.force;
@@ -52,25 +53,19 @@
         var speeds          = rg.speeds.pos;
         var speedsAracc     = rg.speedsAracc.pos;
 
-        //:fixes lenghts to synch with new spatialStepsMax
-        path.length         = Math.min( path.length, spatialStepsMax );
-        forces.length       = Math.min( forces.length, spatialStepsMax-1 );
-        forcesAracc.length  = Math.min( forcesAracc.length, spatialStepsMax-1 );
-        speeds.length       = Math.min( speeds.length, spatialStepsMax-1 );
-        speedsAracc.length  = Math.min( speedsAracc.length, spatialStepsMax-1 );
-        freePath.length     = Math.min( freePath.length, spatialStepsMax-2 );
-        freePathAracc.length= Math.min( freePathAracc.length, spatialStepsMax-2 );
+        //:fixes lenghts to synch with new sSteps
+        path.length         = Math.min( path.length, sSteps );
+        forces.length       = Math.min( forces.length, sSteps-1 );
+        forcesAracc.length  = Math.min( forcesAracc.length, sSteps-1 );
+        speeds.length       = Math.min( speeds.length, sSteps-1 );
+        speedsAracc.length  = Math.min( speedsAracc.length, sSteps-1 );
+        freePath.length     = Math.min( freePath.length, sSteps-2 );
+        freePathAracc.length= Math.min( freePathAracc.length, sSteps-2 );
 
 
-        if( rg.slider_sltime.psteps > spatialStepsMax - 1.01 ) {
-            rg.slider_sltime.psteps = spatialStepsMax - 1.011;
-            //todo ... why we need this warning
-            //ccc( 'rg.slider_sltime.psteps corrected to not exceeed steps max=' +
-            //     rg.slider_sltime.psteps );
-        }
-        calculatesTrajectory();
-        return;
-
+        //if( rg.slider_sltime.curtime > sSteps - 1.01 ) {
+        //    rg.slider_sltime.curtime = sSteps - 1.011;
+        //}
 
         //***********************************************
         // //\\ calculates body's trajectory
@@ -81,16 +76,11 @@
         //      has nothing to do with
         //      time rg.slider_sltime.... set for lemma;
         //***********************************************
-        function calculatesTrajectory()
         {
             var path = rg.path.pos;
             var timeStep = rg.rgslid_dt.val;
-            ccc( ' sol: dt=' + timeStep.toFixed(3) +
-                 ' p N=' + spatialStepsMax.toFixed(3) );
             //pi = path index, we start here from poinit B:
-            for( pi = 1; pi<spatialStepsMax; pi++ ) {
-
-
+            for( pi = 1; pi<sSteps; pi++ ) {
                 //====================================================
                 // //\\ recalls current and former speed placeholders
                 //====================================================
@@ -98,7 +88,7 @@
                 var speed = speeds[pi-1]; //=== speed at A
                 var speedAracc = speedsAracc[ pi-1 ]; //=== speed at A
                 var formerSpeed = pi > 1 ? speeds[pi-2] : speed;
-                var formerSpeedAracc = pi > 1 ? speedsAracc[pi-2] : speedAracc;
+                //var formerSpeedAracc = pi > 1 ? speedsAracc[pi-2] : speedAracc;
                 //====================================================
                 // \\// recalls current and former speed placeholders
                 //====================================================
@@ -118,7 +108,6 @@
                     speedAracc[0]*timeStep, 
                     speedAracc[1]*timeStep,
                 ];
-
                 //path increment is added to path
                 path[pi] =
                 [
@@ -170,17 +159,19 @@
                 var forceAbs = force.lawConstant * forceByDistance;
 
                 var fx = forceAbs * rux
-                    *timeStep; //applies impuls of force, not force
+                    * timeStep; //applies impuls of force, not force
                 var fy = forceAbs * ruy
-                    *timeStep; //applies impuls of force, not force
+                    * timeStep; //applies impuls of force, not force
 
                 forces[pi-1] = [fx,fy];
 
-                //now, makes tangential force
-                var ww = mat.vector2normalOrts( forces[pi-1] );
-                var wwC = -forceAbs * rg.forceAracc.tangentialForcePerCentripetal_fraction;
-                var fAracc = [ wwC * ww.norm[ 0 ], wwC * ww.norm[ 1 ] ];
-                forcesAracc[ pi-1 ] = fAracc;
+                {
+                    //now, makes force forcesAracc[ pi-1 ] normal to original force
+                    let orts = mat.vector2normalOrts( forces[pi-1] );
+                    let df = -forceAbs * rg.forceAracc.tangentialForcePerCentripetal_fraction;
+                    var fAracc = [ df * orts.norm[ 0 ], df * orts.norm[ 1 ] ];
+                    forcesAracc[ pi-1 ] = fAracc;
+                }
                 //====================================
                 // \\// calculates forces
                 //====================================
@@ -198,15 +189,13 @@
                 ///speeds with tangential acc. contribution
                 speedsAracc[pi] =
                 [
-                    speedAracc[0]+fx + fAracc[ 0 ],
-                    speedAracc[1]+fy + fAracc[ 1 ],
+                    speedAracc[0]+fx + fAracc[ 0 ]*timeStep,
+                    speedAracc[1]+fy + fAracc[ 1 ]*timeStep,
                 ];
                 //====================================
                 // \\// forces do change velocities
                 //====================================
             }
-            //ccc( freePath );
-            //ccc( path );
         }
         //***********************************************
         // \\// calculates body's trajectory

@@ -36,13 +36,6 @@
             if( dec.isPoint ) {
                 paintDec_point( dec, pname );
             } else {
-                //if( pname === 'CV' && ( rg.time < 2.5 || ( rg.time < 2.8 rg.step < 2 ) ) return;
-                /*
-                if( pname === 'CV' ) {
-                    dec.undisplay = rg.stretchedFourTimes_stIx < 10;
-                    ccc( 'set ' + pname + ' ' + dec.undisplay, dec, );
-                }
-                */
                 paintDec_nonPoints( dec );
             }
         });
@@ -61,8 +54,12 @@
         pWrap.pcolor        = pcolor;   //todm: overengineering ...
 
         if(
-            pname !== 'B' && pname !== 'V' && pname !== 'A' &&
-            pname !== 'B-white-filler' && pname !== 'V-white-filler' &&
+            //all these points are not drawn here, because of
+            //they have special place in code where they are drawn as
+            //their representaion with white hole,
+            //this special place is dragPointPos_2_mediaOfDragKernels(),
+            pname !== 'v' && pname !== 'V' && pname !== 'A' &&
+            pname !== 'v-white-filler' && pname !== 'V-white-filler' &&
             pname !== 'A-white-filler'
         ) {
             var cls = 'tostroke tofill thickable';
@@ -128,19 +125,16 @@
     {
         /// ssF.pnames2line
         if( dec.pivotNames.length === 2 ) {
-            /*
-            if( dec.pname === 'CV' )
-                ccc('again' + dec.undisplay);
-            */
-            ////refreshes line position and presence
-            /*
-            ssF.pnames2line(
-                dec.pivotNames[0],
-                dec.pivotNames[1],
-                haz( dec, 'cssClass' ),
-            );
-            */
-        ///ssF.pnames2poly
+            ///refreshes line position and presence
+            ///for special lines
+            if( dec.pname === 'Av' ) {
+                ssF.pnames2line(
+                    dec.pivotNames[0],
+                    dec.pivotNames[1],
+                    haz( dec, 'cssClass' ),
+                );
+            }
+            ///ssF.pnames2poly
         } else {
             dec.poly_2_updatedPolyPos8undisplay();
         }
@@ -195,7 +189,7 @@
         //      override all other graphics
         //-------------------------------------------------
         rgPos2rgMedia(
-            'B',
+            'v',
             { 
                 //this possibly collides with white filling
                 //cssClass : 'tostroke',
@@ -264,15 +258,15 @@
     {
         //------------------------------------------------------
         // //\\ non-standard patch,
-        //      white kernels over drag points 'V', 'B', 'A',
-        //      by master-point "undisplay" flag,
-        //      white kernels dec virt-vis and material media,
+        //      white kernels over drag points 'V', 'v', 'A',
+        //      ???by master-point "undisplay" flag,
+        //      ???white kernels dec virt-vis and material media,
         //------------------------------------------------------
-        [ 'V', 'B', 'A' ].forEach( pname => {
+        [ 'V', 'v', 'A' ].forEach( pname => {
             var fakeName    = pname + '-white-filler';
-            var wwp         = rg[ pname ].pos;
+            var ps         = rg[ pname ].pos;
             toreg( fakeName )
-                ( 'pos', [ wwp[0], wwp[1] ]  )
+                ( 'pos', [ ps[0], ps[1] ]  )
                 ( 'undisplay', true  )
                 ;
             rgPos2rgMedia(
