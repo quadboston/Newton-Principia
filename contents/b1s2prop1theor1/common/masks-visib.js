@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            masksVisib,
+            doesMask_model8decor_svg_shapes,
         },
     });
     return;
@@ -24,7 +24,7 @@
     // adds "undisplay" flags to all interaction-groups for all pathIx
     // and to decoration-shapes
     //*****************************************************************
-    function masksVisib()
+    function doesMask_model8decor_svg_shapes()
     {
         eachprop( stdMod.decor, dec => {
             dec.undisplay = true;
@@ -36,6 +36,8 @@
                     //paintee.undisplay = true;
                     //todm ... make following line to follow from above line
                     $$.$(paintee.svgel).addClass( 'undisplay' );
+                    let tipArrow$ = haz( paintee, 'vectorArrowSvg$' );
+                    //tipArrow$ && tipArrow$.addClass( 'hidden' );
                 });
             });
         });

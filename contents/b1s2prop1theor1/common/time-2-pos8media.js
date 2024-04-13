@@ -24,13 +24,14 @@
     ///returns protected time
     function protects_curTime_ranges( ctime )
     {
-        //protects_stepIx_exceeding_stepMax( ctime )
+        let sl = rg.slider_sltime;
+        ctime = ( ctime || ctime === 0 ) ? ctime : sl.curtime;
         ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
-        return Math.max(
+        sl.curtime = ctime = Math.max(
             ctime,
-            1.75000001 //1.75 fits slider 4-step scenario <-->
-                       //lemma-launch-time below,
+            sconf.timeMin0 * rg.rgslid_dt.val
         );
+        return ctime;
     }
 
 
@@ -39,7 +40,7 @@
     {
         var sp8ep   = haz( rg, 'slider_sltime' );
         var ctime    = rg.slider_sltime.curtime;
-        ctime        = protects_curTime_ranges( ctime );
+        //ctime        = protects_curTime_ranges( ctime );
         //----------------------------------------
         // //\\ establishes model step and substep
         //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
@@ -78,54 +79,16 @@
         //========================================================================
         rg.displayStep.value = stepIx + '';
         rg.thoughtStep.value = (substepIx+1) + '';
-        let curTime          = rg.slider_sltime.curtime;
+        //this sets granular time display increment
+        //during last proof step
+        rg.displayTime.value = rg.slider_sltime.curtime.toFixed(2);
+        //was: why?: rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
 
         if( stepIx === 1 ) {
             ////before thought experiment, no indication of it is shown
             rg.thoughtStep.value = "";
         }
-
-        //---------------------------------------------------------
-        // //\\ displays time
-        //      , this deserves elaboration, because is the heart
-        //      of differential method and interaction
-        //---------------------------------------------------------
-
-        //this sets granular time display increment
-        //during last proof step
-        rg.displayTime.value = curTime;
-
-        /*
-        if( substepIx < 1 ) {
-            rg.displayTime.value =
-
-                //during first proof step "Bc", time grows by magnitude
-                //of timeStep-length/2
-                ( stepIx + (curTime - stepIx - 0) * 2 ) *
-
-                rg.rgslid_dt.val;
-
-        } else if( substepIx < 2 ) {
-
-            rg.displayTime.value = (stepIx+0.5) * rg.rgslid_dt.val;
-
-        } else if( substepIx < 3 ) {
-            ////here, after force BV is applied, time begins
-            ///growing again
-            rg.displayTime.value =
-
-                //during third proof step, time grows by magnitude
-                //of timeStep-length/2
-                ( stepIx + 0.5 + (rg.slider_sltime.curtime- stepIx - 0.5) * 2 ) *
-
-                rg.rgslid_dt.val;
-        } else {
-            rg.displayTime.value = ((stepIx+1)*rg.rgslid_dt.val);
-        }
-        */
-        rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
-        //---------------------------------------------------------
-        // \\// displays time
+        //========================================================================
         // \\// visualizes time offsets
         //========================================================================
     }
@@ -138,6 +101,9 @@
         var st      = rg.stepIx.value;
         var path    = rg.path.pos;
         if( st >= path.length -1 ) return; //no second point
+
+        //perpendicular to unseen lines looks awkward
+        st -= rg.substepIx < 2 ? 1 : 0;
         var pos0    = path[ st-1 ];
         var pos1    = path[ st ];
         nspaste( rg.P.pos, mat.dropPerpendicular( rg.S.pos, pos0, pos1 ) );

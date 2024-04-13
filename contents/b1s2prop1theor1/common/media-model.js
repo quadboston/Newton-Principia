@@ -46,16 +46,27 @@
         //todm ... generalize in one spot
         ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );
 
+        ///why apparently duplicate tr 2 shapes?
+        ///because this thing does historical job, it updates core svg shapes
+        ///along the path; but while program progressed, new decorations
+        ///came up which need their own work
         stdMod.trajectoryShapes_2_media();
-        stdMod.paints_draggableDecPoints8Line();
+
+        ssF.v2GUI();
+        stdMod.paints_draggableDecPoints8Line(); //changes svg
+
+        //these are the new generation decorational svg objects
         //does not repeat creation ...A.svgel, ...
-        stdMod.dec2media();
+        stdMod.dec2svg();
+
+        ///drags holes, but then hides them (why?)
         stdMod.dragPointPos_2_mediaOfDragKernels();
 
         //***********************************************************
         //wraps remained tasks into d8d slider
         //if slider is already created ...
-        hafff( rg.slider_sltime, 'upd_sliderGUI8legend__8__unmask' );
+        hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
+        //c cc( 'media rg.rgslid_dt,' + rg.rgslid_dt.val );
         hafff( rg.rgslid_dt, 'updates_sliderGUI' );
         //***********************************************************
 

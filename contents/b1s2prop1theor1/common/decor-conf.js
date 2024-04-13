@@ -31,6 +31,8 @@
     //----------------------------------------
     function decShapes_conf()
     {
+        var pcolorForce = sDomF.getFixedColor( 'force' )
+        //var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
         //------------------------------------
         // //\\ declares decorational points
         //      A,B are special d8d points
@@ -52,7 +54,7 @@
         };
         ///makes proof final points to disappear after a while
         eachprop( finalSteps_conf, (fs, kName) => {
-            fs.decEnd = fs.decStart+27;
+            fs.decEnd = finalSteps_conf.F.decStart+5;
         });
         //----------------------------------------------------
         // \\// proof final points
@@ -93,29 +95,31 @@
         var middleSteps_conf = {
             c   : {
                 decStart : 8,
-                decEnd : 22, //10,
+                decEnd : finalSteps_conf.F.decStart, //22, //10,
                 cssClass : 'theor1proof theor2corollary',
             },
 
             //c-col3
             h   : {
+                caption : 'c',
                 decStart : finalSteps_conf.C.decStart,
                 decEnd : finalSteps_conf.C.decEnd,
                 cssClass : 'theor1corollary theor2proof',
             },
             d   : { decStart : 12, decEnd : 22, //14,
-                cssClass : 'theor1proof',
+                cssClass : 'theor1proof theor2proof',
             },
 
-            //t2 proof
+            //t2 proof, todm not sure we need it?
             j   : {
                 caption : 'd', //will coinside with "d", so keep pos equal with "d"
                 decStart : finalSteps_conf.D.decStart,
-                decEnd : finalSteps_conf.D.decEnd,
+                decEnd : finalSteps_conf.F.decEnd,
                 cssClass : 'theor1proof theor2proof tohidden', //this uhides in Theor. 2
             },
 
-            e   : { decStart : 16, decEnd : 22, //18,
+            e   : { decStart : 16,
+                    decEnd : finalSteps_conf.F.decStart, //22, //18,
                 cssClass : 'theor1proof theor2proof',
             },
 
@@ -131,8 +135,6 @@
                 cssClass : 'theor1corollary',
             },
         };
-        toreg( 'h' )( 'caption', 'c' );
-        toreg( 'g' )( 'caption', 'e' );
 
         var forceTip_conf = {
             Z   : {
@@ -167,7 +169,7 @@
                     decEnd : finalSteps_conf.C.decEnd,
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
-                    cssClass : 'theor1corollary',
+                    cssClass : 'hidden',
             },
             //sagittae DEF=middle sagitta in sagittae-parallelogram
             W   : {
@@ -175,7 +177,8 @@
                     decEnd : finalSteps_conf.D.decEnd,
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
-                    cssClass : 'theor1corollary',
+                    cssClass : 'hidden',
+                    //cssClass : 'theor1corollary',
             },
 
             'A-white-filler'   : {
@@ -290,28 +293,34 @@
                 cssClass : 'theor1proof',
             },
 
+            //this is a thin line, which remains after thick line goes away,
             { nam : ['C', 'c'], decStart : rg.C.decStart,
-                cssClass : 'theor1proof theor2proof theor2corollary',
+                cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            //{ nam : ['D', 'd'], decStart : rg.D.decStart,
-            //    cssClass : 'theor1proof theor2proof',
-            //},
-            { nam : ['E', 'e'], decStart : rg.E.decStart,
-                cssClass : 'theor1proof theor2proof',
+            { nam : ['D', 'd'],
+                decStart : rg.D.decStart,
+                cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            { nam : ['F', 'f'], decStart : rg.F.decStart,
-                cssClass : 'theor1proof theor2proof',
+            { nam : ['E', 'e'],
+                decStart : rg.E.decStart,
+                //decEnd : rg.F.decEnd,
+                cssClass : 'theor1proof theor2proof tp-force-_move',
+            },
+            { nam : ['F', 'f'],
+                decStart : rg.F.decStart,
+                cssClass : 'theor1proof theor2proof tp-force-_move',
             },
 
-            { nam : ['B', 'c'], cssClass : 'theor1proof theor2proof theor2corollary',
-                                decEnd : rg.f.decStart,
+            { nam : ['B', 'c'],
+                cssClass : 'theor1proof xtheor2proof theor2corollary',
+                decEnd : rg.f.decStart,
             },
             { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
             { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
 
             //{ nam : ['C', 'd'], cssClass : 'theor1proof', },
-            { nam : ['C', 'j'], cssClass : 'theor1proof theor2proof', }, //theorem 2
-            { nam : ['D', 'j'], cssClass : 'theor1proof theor2proof', }, //theorem 2
+            //{ nam : ['C', 'j'], cssClass : 'theor1proof theor2proof', },
+            //{ nam : ['D', 'j'], cssClass : 'theor1proof theor2proof', },
 
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
 
@@ -319,24 +328,30 @@
             { nam : ['E', 'g'], cssClass : 'theor1corollary', },
             { nam : ['F', 'g'], cssClass : 'theor1corollary', },
 
-            { nam : ['B', 'V'], },
-            { nam : ['E', 'Z'], },
-
             { nam : ['C', 'V'], decStart : rg.C.decStart, },
-            { nam : ['A', 'V'], decStart : rg.C.decStart, decEnd : rg.d.decStart },
-            //{ nam : ['A', 'v'], decStart : -2, cssClass : 'theor1proof theor2proof' },
             { nam : ['A', 'v'], decStart : -2, },
-
-            { nam : ['F', 'Z'], },
-            { nam : ['D', 'Z'], },
 
             { nam : ['S', 'P'], decStart : -2,
                 cssClass : 'theor1corollary', }, //for perpendicular
             { nam : ['T', 'P'], decStart : -2,
                 cssClass : 'theor1corollary', }, //for tangent
 
-            { nam : ['B', 'U'], },
-            { nam : ['E', 'W'], },
+            { nam : ['B', 'U'], //saggitae at B
+                cssClass : 'hover-width theor1corollary' //for specaial width at hover
+            },
+            { nam : ['B', 'V'],
+              cssClass : 'hover-width theor1corollary theor1proof'
+            },
+
+            { nam : ['E', 'W'],  //saggitae at E
+                decStart : rg.F.decStart,
+                cssClass : 'hover-width theor1corollary'
+            },
+            { nam : ['E', 'Z'],
+                cssClass : 'hover-width theor1corollary',
+                decStart : rg.F.decStart,
+            },
+
             { nam : ['A', 'C'], cssClass : 'theor1corollary', },
             { nam : ['D', 'F'], cssClass : 'theor1corollary', },
 
@@ -346,6 +361,7 @@
             { nam : ['C','Caracc'], cssClass : 'theor2corollary', },
             { nam : ['S','Caracc'], cssClass : 'theor2corollary', },
             { nam : ['B','Caracc'], cssClass : 'theor2corollary', },
+            { nam : ['B','Paracc'], cssClass : 'theor2corollary', },
             { nam : ['C','Paracc'], cssClass : 'theor2corollary', },
             { nam : ['V','Varacc'], cssClass : 'theor2corollary', },
             { nam : ['B','Varacc'], cssClass : 'theor2corollary', },
@@ -355,14 +371,48 @@
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
                 let pcolor = sDomF.getFixedColor( 'path' )
-                tipFill = pcolor;
                 let line = toreg( 'Av' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.15 )
                         ( 'pcolor', pcolor )
-                        ( 'tipFill', tipFill )
+                        ( 'tipFill', pcolor )
                         ();
-
+            }
+            if( pNam.nam[0] === 'B' && pNam.nam[1] === 'U' ) {
+                ////patch for purpose of drawing a vector tip
+                let line = toreg( 'BU' )
+                        ( 'vectorTipIx', 1 )
+                        ( 'tipFraction', 0.2 )
+                        ( 'pcolor', pcolorForce )
+                        ( 'tipFill', pcolorForce )
+                        ();
+            }
+            if( pNam.nam[0] === 'E' && pNam.nam[1] === 'W' ) {
+                ////patch for purpose of drawing a vector tip
+                let line = toreg( 'EW' )
+                        ( 'vectorTipIx', 1 )
+                        ( 'tipFraction', 0.4 )
+                        ( 'pcolor', pcolorForce )
+                        ( 'tipFill', pcolorForce )
+                        ();
+            }
+            if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
+                ////patch for purpose of drawing a vector tip
+                let line = toreg( 'BV' )
+                        ( 'vectorTipIx', 1 )
+                        ( 'tipFraction', 0.4 )
+                        ( 'pcolor', pcolorForce )
+                        ( 'tipFill', pcolorForce )
+                        ();
+            }
+            if( pNam.nam[0] === 'E' && pNam.nam[1] === 'Z' ) {
+                ////patch for purpose of drawing a vector tip
+                let line = toreg( 'EZ' )
+                        ( 'vectorTipIx', 1 )
+                        ( 'tipFraction', 0.4 )
+                        ( 'pcolor', pcolorForce )
+                        ( 'tipFill', pcolorForce )
+                        ();
             }
             var rgElem = ssF.pnames2line(
                 pNam.nam[0],
@@ -443,12 +493,33 @@
 
     function keplerPolyNames_2_rg8media(
     ){
-        [
+
+        ///decorations
+        [   ////these triangles override kepler-triangles attached to path
+            ////in path-2-media js-code,
             ['S', 'A', 'B',],
             ['S', 'B', 'C',],
             ['S', 'C', 'D',],
             ['S', 'D', 'E',],
             ['S', 'E', 'F',],
+        ].forEach( pNames => {
+            var rgElem = ssF.pnames2poly(
+                pNames,
+                'theor1proof theor2proof tofill ',
+                null,
+                !!'undisplay',
+                !'tostroke',
+                stdMod,
+            );
+            decor[ rgElem.pname ] = rgElem;
+            var lp = rg[ pNames[ 2 ] ];
+            rgElem.decStart = lp.decStart;
+            rgElem.decEnd = lp.decEnd;
+        });
+
+
+        [   ////these triangles override free triangles attached to path
+            ////in path-2-media js-code,
             ['S', 'B', 'c',],
             ['S', 'C', 'd',],
             ['S', 'D', 'e',],
@@ -456,8 +527,7 @@
         ].forEach( pNames => {
             var rgElem = ssF.pnames2poly(
                 pNames,
-                //'theor1proof theor2proof tohidden tofill theor2corollary',
-                'theor1proof theor2proof tofill theor2corollary ',
+                'theor1proof theor2proof tofill theor2corollary ', //makes green
                 null,
                 !!'undisplay',
                 !'tostroke',

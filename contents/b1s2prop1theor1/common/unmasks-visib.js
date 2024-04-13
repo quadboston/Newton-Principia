@@ -2,7 +2,7 @@
 
 ( function() {
     var {
-        $$, sn, mat, haz, has, nspaste, eachprop, nssvg,
+        $$, sn, mat, haz, has, haf, nspaste, eachprop, nssvg,
         sapp, sconf, sDomF, ssD, ssF, rg,
         amode, stdMod,
     } = window.b$l.apptree({
@@ -62,7 +62,7 @@
         //--------------------------------------
         // //\\ cleanup
         //--------------------------------------
-        stdMod.masksVisib();
+        stdMod.doesMask_model8decor_svg_shapes();
         //--------------------------------------
         // \\// cleanup
         //--------------------------------------
@@ -100,27 +100,32 @@
                         .removeClass( 'undisplay' );
                 }
             }
-            if( pix > stepIx - 2 ) return; //draws only previous path
-            //--------------------------------------------
-            // \\// makes visible already accomplished path
-            //--------------------------------------------
-
             //--------------------------------------------
             // //\\ makes visible  'force-N' and
             //      'force-N-1' shapes
             //      by direct svg-undisplay
             //--------------------------------------------
-            if( pix-1 >= 0 ) {
-                var fkey = 'force-' + (pix-1);
+            //if( 0 < pix && pix < stepIx - 1) {
+            if( pix < stepIx - 1) {
+                //var fkey = 'force-' + (pix-1);
+                var fkey = 'force-' + pix;
                 var fappliedKey = fkey + '-applied';
                 var tipKey = fkey+'-1';
-                $$.$(rg[ fappliedKey ].svgel)
+                let rgX = rg[ fappliedKey ];
+                $$.$(rgX.svgel)
                     .removeClass( 'undisplay' );
+                rgX.vectorArrowSvg$.removeClass( 'undisplay' );
+                rgX.vectorArrowSvg$.removeClass( 'hidden' );
+
                 $$.$(rg[ tipKey ].svgel)
-                    .removeClass( 'undisplay' );   
+                    .removeClass( 'undisplay' );
             }
             //--------------------------------------------
             // \\// makes visible  'force-N' and
+            //--------------------------------------------
+            //if( pix > stepIx - 2 ) return; //draws only previous path
+            //--------------------------------------------
+            // \\// makes visible already accomplished path
             //--------------------------------------------
         });
         //----------------------------------------------
@@ -169,6 +174,10 @@
             ){
                 dec.undisplay = false;
             }
+                let arrow$ = haz( decor, 'vectorArrowSvg$' );
+                if( arrow$ ) {
+                                        //ccc( decor.pname );
+                }
             if( dec.isPoint ) {
                 dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
                 if( dec.doPaintPname &&
@@ -177,6 +186,12 @@
                     dec.pnameLabelsvg$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
                 }
             } else {
+                let arrow$ = haz( dec, 'vectorArrowSvg$' );
+                if( arrow$ ) {
+                    let act = haz( dec, 'undisplay' );
+                    arrow$.tgcls( 'undisplay', act );
+                    //act && rgX.vectorArrowSvg$.removeClass( 'hidden' );
+                }
                 dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
             }
         });

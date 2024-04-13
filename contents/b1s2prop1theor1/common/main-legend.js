@@ -47,10 +47,11 @@
         ww.thought.innerHTML    = rg.thoughtStep.value;
 
         var stepIx = rg.stepIx.value;
+        var fullDtRev = 1/rg.rgslid_dt.val * 2;
         if( stepIx > 0 ) {
-            var force = rg.forces.vectors[stepIx-1];
-            var fx = force[0];
-            var fy = force[1];
+            var force = rg.impulses.vectors[stepIx-1];
+            var fx = force[0]*fullDtRev;
+            var fy = force[1]*fullDtRev;
             var fabs = Math.sqrt( fx*fx + fy*fy );
             ww.force.innerHTML = fabs.toFixed(3);
             ww.fx.innerHTML = fx.toFixed(3);
@@ -114,7 +115,7 @@
         // //\\ table caption
         //===================
         //prepares force parameters
-        var forceColor = sDomF.getFixedColor( 'field' );
+        var forceColor = sDomF.getFixedColor( 'force' );
         tableCaptionFun = function() {
             var cap = 'Centripetal force f = ' +  rg.force.lawConstant.toFixed(2) +
                     ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>';
@@ -124,7 +125,7 @@
         var tableCaption$ = $$.c('td').a('colspan','9')
                   .addClass('table-caption')
                   .css( 'color', forceColor )
-                  .cls( 'tp-field' )
+                  .cls( 'tp-force' )
                   .to(row);
         //===================
         // \\// table caption

@@ -63,6 +63,7 @@
         pivots          = pivots || haz( line, 'pivots' );
         var vectorTipIx = haz( line, 'vectorTipIx' );
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
+        line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
         if( haz( pivots[0], 'unscalable' ) ) {
             pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos, stdMod );
         }
@@ -96,7 +97,7 @@
                 //parent  : studyMods[ amode['submodel' ].mmedia,
 
                 pivots      : pivotsMedPos,
-                'stroke-width' : strokeWidth * sconf.thickness, 
+                'stroke-width' : line.finalStrokeWidth.toFixed(4),
             });
             var svgel$ = line.svgel$ = $$.$(line.svgel);
             svgel$.cls( line.finalCssClass );
@@ -108,11 +109,11 @@
                 svgel       : line.svgel,
 
                 //todm apparent bug: rid of this line
-                //'stroke-width' : strokeWidth * sconf.thickness,
+                //'stroke-width' : line.finalStrokeWidth,
 
                 //todm: this line is added to fix a bug: do
                 //proofcheck does it break the legacy code:
-                strokeWidth :  strokeWidth * sconf.thickness,
+                strokeWidth : line.finalStrokeWidth.toFixed(4),
             });
         }
         if( vectorTipIx || vectorTipIx === 0 ) {
@@ -203,13 +204,12 @@
     function paintsVectorTips({ vectorTipIx, pivots, line, stdMod })
     {
         let tipFraction = haz( line, 'tipFraction' );
-        var TIP_FRACTION = tipFraction ||  0.2;
-        var ARROW_TANGENT = 0.15;
+        var TIP_FRACTION = Math.abs( tipFraction ) ||  0.2;
         var vectEnd = pivots[ vectorTipIx ].medpos;
         var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
         var { abs, norm, unit } = mat.vector2normalOrts(
                 [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
-        let tF = TIP_FRACTION * abs;
+        let tF = (TIP_FRACTION * abs ) || 1; //vector can be 0
         var tipLength =
                 tipFraction ? tF :
                 Math.min(
@@ -218,7 +218,12 @@
                 );
         var tipStart = abs-tipLength;
         var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
-        var tipHeight = Math.max( sconf.thickness*3, tipLength * ARROW_TANGENT );
+
+        var ARROW_TANGENT = tipFraction < 0 ?
+            0.15 :
+            line.finalStrokeWidth * 1.5 / tipLength;
+        var tipHeight = Math.max( sconf.thickness*1.5, tipLength * ARROW_TANGENT );
+
         var pivots = [
                 [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
                 [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
@@ -235,6 +240,7 @@
         let tipFill = haz( line, 'tipFill' );
         if( tipFill ) {
             line.vectorArrowSvg.style.fill = tipFill;
+            line.vectorArrowSvg.style.stroke = tipFill;
         }
         line.vectorArrowSvg$ = $$.$(line.vectorArrowSvg)
             .tgcls( 'undisplay', ns.haz( line, 'undisplay' ) )

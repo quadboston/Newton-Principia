@@ -1,6 +1,6 @@
 ( function() {
     var { //import from apptree
-        sn,
+        sn, haz,
         fconf, fapp,
         sconf,
     } = window.b$l.apptree({ //export to apptree
@@ -29,7 +29,8 @@
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        var controlsScale = haz( sconf, 'controlsScale' ) ||
+                            ( realSvgSize / sconf.standardSvgSize );
 
         var modorInPicX = 98.0;
         var modorInPicY = 474;

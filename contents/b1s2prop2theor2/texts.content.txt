@@ -20,117 +20,14 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
-  "fixed-colors" :
-  {
-    "path"              : [0,   0,  100],
-    "path-change"       : [0,   0,  100, 1],
-    "kepler-triangle"   : [50,  50, 100],
-    "SABCD"             : [0,   0,  100],
-    "SABCDEF"           : [0,   0,  100],
-
-    "SAB"               : [0,   0,  100],
-
-    "SBC"               : [0,   0,  100],
-    "SCD"               : [0,   0,  100],
-    "SDE"               : [0,   0,  100],
-    "SEF"               : [0,   0,  100],
-    "SBc"               : [0, 100,  0],
-    "A"                 : [0,   0,  100],
-    "B"                 : [0,   0,  100],
-    "C"                 : [0,   0,  100],
-    "D"                 : [0,   0,  100],
-    "E"                 : [0,   0,  100],
-    "F"                 : [0,   0,  100],
-
-    "AB"                : [0,   0,  100, 0],
-    "BC"                : [0,   0,  100],
-    "CD"                : [0,   0,  100],
-    "DE"                : [0,   0,  100],
-    "EF"                : [0,   0,  100],
-
-    "comment neutral colors"
-                        : [100,   0,  100],
-    "ABCV"              : [100,   0,  100],
-    "DEFZ"              : [100,   0,  100],
-    "SA"                : [100,   0,  100],
-
-    "Sb"                : [100,   0,  100],
-    "Sc"                : [100,   0,  100],
-    "Sd"                : [100,   0,  100],
-    "Se"                : [100,   0,  100],
-    "Sf"                : [100,   0,  100],
-
-    "Cc"                : [100,   0,  100],
-    "Dd"                : [100,   0,  100],
-    "Ee"                : [100,   0,  100],
-    "Ff"                : [100,   0,  100],
-
-
-    "field"             : [255,   0,  0, 0.5],
-    "force-center"      : [255,   0,  0, 0.5],
-    "S"                 : [255,   0,  0, 0.5],
-    "SB"                : [255,   0,  0, 0.3],
-    "SC"                : [255,   0,  0, 0.3],
-    "SD"                : [255,   0,  0, 0.3],
-    "SE"                : [255,   0,  0, 0.3],
-    "SF"                : [255,   0,  0, 0.3],
-
-    "BU"                : [255,   0,  0, 0.7],
-    "EW"                : [255,   0,  0, 0.7],
-    "AC"                : [0,   0,  100],
-    "DF"                : [0,   0,  100],
-
-
-    "force"             : [255, 100, 0, 1],
-    "Z"                 : [255, 100, 0, 1],
-    "V"                 : [255, 100, 0, 1],
-    "BV"                : [255, 100, 0, 1],
-    "EZ"                : [255, 100, 0, 1],
-    "SP"                : [200, 100, 0, 0],
-    "P"                 : [200, 100, 0, 0],
-    "T"                 : [200, 100, 0, 0],
-    "TP"                : [200, 100, 0, 0],
-    "Caracc"            : [100,   0,  100],
-    "CCaracc"           : [100,   0,  100],
-    "CParacc"           : [100,   0,  100],
-    "SBCaracc"          : [255,  100, 0, 0.7],
-    "cCaracc"           : [100,   0,  100],
-
-    "Varacc"            : [255, 0, 0, 0.7],
-    "BVaracc"           : [255, 0, 0, 0.7],
-    "VVaracc"           : [255, 0, 0, 0.7],
-    "CParacc"           : [100,   0,  100],
-    "CaraccParacc"      : [100,   0,  100],
-
-    "free-path"         : [0,100,0],
-    "c"                 : [0,100,0],
-    "h"                 : [0,100,0],
-    "d"                 : [0,100,0],
-    "j"                 : [0,100,0],
-    "e"                 : [0,100,0],
-    "f"                 : [0,100,0],
-
-    "Bc"                : [0,100,0],
-    "Bh"                : [0,100,0],
-    "Ch"                : [255, 100, 0],
-    "Cd"                : [0,100,0],
-    "De"                : [0,100,0],
-    "Cj"                : [0,100,0],
-    "Dj"                : [255, 100, 0],
-    "Ef"                : [0,100,0],
-    "free-triangle"     : [0,100,0],
-    "speed-change"      : [0,100,0,1],
-
-    "time"              : [0,100,100,1]
-  }
+  "menuCaption" : "English"
 }
 *..*
 
 Every body that moves in ¦path¦some curved line described in a plane¦¦, and, by
 a radius drawn to a ¦S¦point¦¦ that either is immobile or proceeds uniformly
 in a straight line, describes ¦kepler-triangle¦areas¦¦ about that point proportional to the
-times, is urged by a ¦force¦centripetal force¦¦ tending to the same ¦S¦point¦¦.
+times, is urged by a centripetal force ¦forceMove¦tending to the same¦¦ ¦S¦point¦¦.
 <br><br>
 
 
@@ -171,8 +68,8 @@ times, is urged by a ¦force¦centripetal force¦¦ tending to the same ¦S¦poi
 }
 *..*
 
-Case 1. For every body that moves in a curved line is deflected from a
-rectilinear course by some ¦BV EZ force¦force¦¦ acting upon it (by Law 1). And that
+Case 1. For every body that moves in a curved line ¦Cc¦is deflected¦¦ from a
+rectilinear course by some force ¦BV EZ forceMove¦acting upon it¦¦ (by Law 1). And that
 ¦force¦¦ by which a body is deflected from a rectilinear course, and driven
 to describe the
 
@@ -184,7 +81,7 @@ and so on (are equal), about an ¦S¦immobile point S¦¦
 in equal times, acts at the place ¦B¦¦ along a line parallel to ¦Ch¦cC¦¦ (by
 I.40 of the Elements and Law 2), that is along ¦SB¦line BS¦¦;
 
-and at the place ¦C¦¦ along a line parallel to ¦Dj¦dD¦¦, that is, along the
+and at the place ¦C¦¦ along a line parallel to ¦Dd¦dD¦¦, that is, along the
 ¦SC¦line SC¦¦, and so on. Therefore, it acts always along lines tending to
 that ¦S¦immobile point S¦¦.
 <br>
@@ -415,139 +312,5 @@ may be negected in the compounding of forces.
 
 <br><br>
 <div book-reference-id="Donahue"></div>
-
-
-
-*:::*:::*
-
-{
-
-    "proof-step-D": {
-        "slider_sltime": {
-            "curtime": 3.71
-        },
-        "V": {
-            "pos": [
-                2.310789220415451,
-                0.8033771869107924
-            ]
-        },
-        "B": {
-            "pos": [
-                2.7464803960376174,
-                0.9548511283420502
-            ]
-        },
-        "A": {
-            "pos": [
-                2.4846663769760875,
-                -0.010267216433785486
-            ]
-        }
-    },
-
-    "initial-state" : {
-        "slider_sltime": {
-            "curtime": 5.995
-        },
-        "V": {
-            "pos": [
-                2.310789220415451,
-                0.8033771869107924
-            ]
-        },
-        "B": {
-            "pos": [
-                2.7464803960376174,
-                0.9548511283420502
-            ]
-        },
-        "A": {
-            "pos": [
-                2.4846663769760875,
-                -0.010267216433785486
-            ]
-        }
-    },
-
-    "t2corollary": {
-
-        "detected_user_interaction_effect_DONE" : true,
-        "slider_sltime": {
-            "curtime" : 2.66910230194876
-        },
-        "stdModName": "common",
-        "media-mover": {
-            "achieved": {
-                "achieved": [
-                    47,
-                    611
-                ]
-            }
-        },
-        "B": {
-            "pos": [
-                2.7464803960376174,
-                0.9548511283420502
-            ]
-        },
-        "V": {
-            "pos": [
-                1.7909745226488514,
-                0.622656563014367
-            ]
-        },
-        "A": {
-            "pos": [
-                2.4846663769760875,
-                -0.010267216433785486
-            ]
-        }
-    },
-
-
-
-
-
-
-
-    "__amode2rgstate" :
-    [
-        [
-            "!ssF.mediaModelInitialized || amode.theorion === 'scholium' || amode.theorion === 'claim'",
-            {
-                "captured" : "initial-state",
-                "rg" :
-                {
-                }
-            }
-        ],
-
-        [
-            "amode.theorion === 'proof'",
-            {
-                "captured" : "proof-step-D",
-                "rg" :
-                {
-                }
-            }
-        ],
-
-        [
-            "( theorion === 'corollary' )",
-            {
-                "captured" : "t2corollary",
-                "rg" :
-                {
-                }
-            }
-        ]
-
-
-
-
-
-    ]
-}
 
 

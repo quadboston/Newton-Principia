@@ -303,7 +303,7 @@
                         ssD.__amode2rgstate = wwCond;
                         delete capture.__amode2rgstate;
                     } else {
-                        ssD.__amode2rgstate = [];
+                        sn( '__amode2rgstate', ssD, [] );
                     }
                     //---------------------------------------------------------
                     // \\// digesting app-mode to lemma conditions
@@ -412,7 +412,7 @@
             //todo do resolve this construct in CSS ... it may be make
             //extra specifity and removing this set will change this specifity and
             //damage the application
-            //ccc( fconf.dragPointDecoratorClasses );
+            //c cc( fconf.dragPointDecoratorClasses );
             return;
 
 
@@ -460,7 +460,6 @@
                         "default" : leafId,
                         duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
-                //ccc( 'checing dup ' + leafId + ' ' + mcat_id  + ' men=', men);
                 if( !men.duplicates[ leafId ] ) {
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;

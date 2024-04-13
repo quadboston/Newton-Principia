@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, eachprop,
-        sconf, ssF, ssD, toreg, rg,
+        sconf, ssF, ssD, sDomF, toreg, rg,
         amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -63,7 +63,25 @@
                 var kix             = pix-1;
                 var pkey            = 'kepltr-' + kix;
                 var ktr             = toreg( pkey )({ undisplay : true })();
+
+                var triangleOddness = '';
+                //this solution is not good:
+                //if( pix <=5 ) var triangleOddness = 'hidden';
                 var triangleOddness = pix%2 ? 'triangle-odd' : 'triangle-even';
+                switch (pix) {
+                    case 0: var triangleOddness = triangleOddness + ' tp-_s_a_b';
+                    break;
+                    case 1: var triangleOddness = triangleOddness + ' tp-_s_a_b';
+                    break;
+                    case 2: var triangleOddness = triangleOddness + ' tp-_s_b_c  ';
+                    break;
+                    case 3: var triangleOddness = triangleOddness + ' tp-_s_c_d';
+                    break;
+                    case 4: var triangleOddness = triangleOddness + ' tp-_s_d_e';
+                    break;
+                    case 5: var triangleOddness = triangleOddness + ' tp-_s_e_f';
+                    break;
+                }
                 var tpCls           = 'kepler-triangle';
 
                 //sets up model vertices for triangle
@@ -93,11 +111,13 @@
                 var pkey = 'freetr-' + kix;
                 var ktr = toreg( pkey )( { undisplay : true } )();
                 //paints Kepler's triangles rg[pkey] along the path:
-                let triang = paintTriangle( pkey, 'tofill', 'free-triangle theor1proof',
-                               'rgba( 100,255,100,0.2)' );
-                if( kix < 3 ) {
+                let triang = paintTriangle(
+                    pkey, 'tofill', 'free-triangle theor1proof',
+                    'rgba( 100,255,100,0.2)' );
+                if( kix < 4 ) {
                     ////todm don't create it at all or do coinside with decor
-                    ////other object, decor will take care of painting
+                    ////other object, decor will take care of painting, because
+                    ////of decor already has these objects
                     triang.svgel.style.display = 'none';
                 }
             }
@@ -116,10 +136,6 @@
 
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
-            var forces = rg.forces;
-            var fvectors = forces.vectors;
-            var fviews = sn( 'views', forces );
-
             if( pix > 0 ) {
 
                 //*****************************************
@@ -135,29 +151,41 @@
 
                 rgPos2rgMedia( ffkey0, {
                     fill:'transparent',
-                    tpclass : 'force',
+                    tpclass : 'force-_move hidden',
                 } );
                 //paints tip of the force in red
                 rgPos2rgMedia( ffkey1, {
                     //fill:'red',
                     cssClass:'tofill',
-                    tpclass : 'force',
-                    r : 6,
+                    tpclass : 'force-_move hidden',
+                    r : 6, //this is circle's radius
                 });
 
                 //----------------------------------
                 // //\\ makes red line segments for force
+                //      attached to points C, D, E, ...
+                //      not a sagittae,
                 //----------------------------------
                 var wwpname = fkey+'-applied';
-                var wwline = toreg( wwpname )({ undisplay : true })();
+                let pcolor = sDomF.getFixedColor( 'forceMove' )
+                var wwline = toreg( wwpname )
+                    ({ undisplay : true })
+
+                    ////patch for purpose of drawing a vector tip
+                    ( 'vectorTipIx', 1 )
+                    ( 'tipFraction', 0.4 )
+                    ( 'pcolor', pcolor )
+                    ( 'tipFill', pcolor )
+
+                    ();
                 pointies2line(
                     wwpname,
                     fview.pivots,
                     {
                         cssClass:'tostroke',
-                        'stroke-width': 5, //7,
+                        'stroke-width': 3,
                         //stroke:'transparent',
-                        tpclass : 'force',
+                        tpclass : 'forceMove',
                     }
                 );
                 //----------------------------------
@@ -169,9 +197,11 @@
 
                 //*****************************************
                 // //\\ paints forces attached to c, d, ...
-                //      "translated" forces
+                //      "translated" forces,
+                //      "short living on diagram",
                 //*****************************************
                 if( pix > 1 ) {
+                    ////makes short living
                     var kix = pix-2;
                     var fkey = 'translated-force-' + kix;
                     var fview = toreg( fkey )();
@@ -182,25 +212,27 @@
 
                     //defines base of force as invisible point:
                     rgPos2rgMedia( ffkey0, { fill:'transparent' } );
-                    //paints tip of the force in red
+                    //paints tip of the force as a red circle
                     rgPos2rgMedia( ffkey1, {
                         //fill:'red',
                         cssClass:'fill theor1proof',
-                        tpclass : 'force',
+                        tpclass : 'force-_move',
                         r : 4, //6,
                     });
 
-                    var wwpname = fkey+'-applied';
-                    var wwline = toreg( wwpname )({ undisplay : true })();
+                    var lineName = fkey+'-applied';
+                    toreg( lineName )({ undisplay : true })();
                     //makes red line segments for force
+                    //it is duplicated with decoration line, but
+                    //decor line is not in sync with it,
                     pointies2line(
-                        wwpname,
+                        lineName,
                         fview.pivots,
                         {
                             //stroke:'red',
                             cssClass:'tostroke theor1proof',
-                            'stroke-width':4, //5,
-                            tpclass : 'force',
+                            'stroke-width': 3,
+                            tpclass : 'forceMove',
                         }
                     );
                 }

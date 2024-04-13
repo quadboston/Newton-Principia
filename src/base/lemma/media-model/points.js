@@ -12,7 +12,7 @@
         },
     });
     var ix2origPoint = sn( 'ix2origPoint', sconf, [] );
-    ssF.rgPos2rgMedia = pos2pointy; //more sensible alias
+    ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom, more sensible alias
     var ownProp = Object.prototype.hasOwnProperty;
     return;
 
@@ -24,6 +24,7 @@
 
     //==============================================
     // //\\ Adds DOM and decorations to pointRack
+    //      creates or modifies svg-dom
     //==============================================
     ///Input:
     ///       required

@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, haff, haz,
+        sn, haff, hafff, haz,
         sconf, ssF,
         stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
@@ -37,8 +37,7 @@
         toreg( 'force' )
             ( 'lawPower', sconf.force[0][0] ) //-2
             ( 'lawConstant', sconf.force[0][1]
-               /(sconf.initialTimieStep*sconf.initialTimieStep) )
-            ;
+            );
 
         //awkward prop name. "pos"
         //area accelerating force
@@ -63,8 +62,8 @@
         toreg( 'keplerTrianglesAracc' )( 'pos', [] ); //awkward prop name. "pos"
 
         //forces have master-index, pi, offset  ... see media-model
-        toreg( 'forces' )( 'vectors', [] );
-        toreg( 'forcesAracc' )( 'vectors', [] );
+        toreg( 'impulses' )( 'vectors', [] );
+        toreg( 'impulsesAracc' )( 'vectors', [] );
 
         //spawnes path placeholder
         toreg( 'pathRacks' )( 'pathRacks', [] );
@@ -74,8 +73,8 @@
         //=========================================================
 
         ssF.doesSchedule_A_B_V_sliders_in_init_pars( stdMod );
-        stdMod.creates_delta_time_slider();
         stdMod.creates_sliderDomModel__4__time();
+        stdMod.creates_delta_time_slider();
     }
     //===================================================
     // \\// registers model pars into common scope
@@ -87,13 +86,15 @@
     //=========================================================
     function model_upcreate()
     {
-        ccc( rg.slider_sltime.curtime );
+        //for case if captured click does not have curtime set
+        stdMod.protects_curTime_ranges();
+
         ssF.solvesTrajectoryMath();
         //haff( stdMod, 'model_upcreate_addon' );
         //ssF.ABVpos_2_trajectory( stdMod );
 
         //apparently all of this is virtual
-        stdMod.traj2trshapes();
+        stdMod.path2rgModelPlaceholders();
         stdMod.traj2decs();
         stdMod.trajectoryShapes_2_groups();
     }

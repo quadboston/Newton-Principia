@@ -20,111 +20,11 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
-  "fixed-colors" :
-  {
-    "path"              : [0,   0,  100],
-    "path-change"       : [0,   0,  100, 1],
-    "kepler-triangle"   : [50,  50, 100],
-    "SABCD"             : [0,   0,  100],
-    "SABCDEF"           : [0,   0,  100],
-
-    "SAB"               : [0,   0,  100],
-
-    "SBC"               : [0,   0,  100],
-    "SCD"               : [0,   0,  100],
-    "SDE"               : [0,   0,  100],
-    "SEF"               : [0,   0,  100],
-    "SBc"               : [0, 100,  0],
-    "SCd"               : [0, 100,  0],
-    "SDe"               : [0, 100,  0],
-    "SEf"               : [0, 100,  0],
-
-    "A"                 : [0,   0,  100],
-    "B"                 : [0,   0,  100],
-    "C"                 : [0,   0,  100],
-    "D"                 : [0,   0,  100],
-    "E"                 : [0,   0,  100],
-    "F"                 : [0,   0,  100],
-
-    "AB"                : [0,   0,  100, 0],
-    "BC"                : [0,   0,  100],
-    "CD"                : [0,   0,  100],
-    "DE"                : [0,   0,  100],
-    "EF"                : [0,   0,  100],
-
-    "comment neutral colors"
-                        : [100,   0,  100],
-    "ABCV"              : [100,   0,  100],
-    "DEFZ"              : [100,   0,  100],
-    "SA"                : [100,   0,  100],
-
-    "Sb"                : [100,   0,  100],
-    "Sc"                : [100,   0,  100],
-    "Sd"                : [100,   0,  100],
-    "Se"                : [100,   0,  100],
-    "Sf"                : [100,   0,  100],
-
-    "xCc"                : [100,   0,  100],
-    "xDd"                : [100,   0,  100],
-    "xEe"                : [100,   0,  100],
-    "xFf"                : [100,   0,  100],
-
-
-    "field"             : [255,   0,  0, 0.5],
-    "force-center"      : [255,   0,  0, 0.5],
-    "S"                 : [255,   0,  0, 0.5],
-    "SB"                : [255,   0,  0, 0.3],
-    "SC"                : [255,   0,  0, 0.3],
-    "SD"                : [255,   0,  0, 0.3],
-    "SE"                : [255,   0,  0, 0.3],
-    "SF"                : [255,   0,  0, 0.3],
-
-    "BU"                : [255,   0,  0, 0.7],
-    "EW"                : [255,   0,  0, 0.7],
-    "AC"                : [0,   0,  100],
-    "DF"                : [0,   0,  100],
-
-
-    "force"             : [255,   0, 0, 1],
-    "Z"                 : [255, 100, 0, 1],
-    "V"                 : [255, 100, 0, 1],
-    "BV"                : [255, 100, 0, 1],
-    "EZ"                : [255, 100, 0, 1],
-    "SP"                : [200, 100, 0, 1],
-    "P"                 : [200, 100, 0, 1],
-    "T"                 : [200, 100, 0, 1],
-    "TP"                : [200, 100, 0, 1],
-
-    "free-path"         : [0,100,0],
-    "c"                 : [0,100,0],
-    "h"                 : [0,100,0],
-    "d"                 : [0,100,0],
-    "e"                 : [0,100,0],
-    "f"                 : [0,100,0],
-    "g"                 : [0,100,0],
-
-    "Bc"                : [0,100,0],
-    "Bh"                : [0,100,0],
-    "Ch"                : [255, 100, 0],
-
-    "Cd"                : [0,100,0],
-    "De"                : [0,100,0],
-
-    "Ef"                : [0,100,0],
-    "Eg"                : [0,100,0],
-    "Fg"                : [255, 100, 0],
-
-    "free-triangle"     : [0,100,0],
-    "speed-change"      : [0,100,0,1],
-
-    "time"              : [0,100,100,1],
-    "dt"                : [0,100,100,1]
-  }
+  "menuCaption" : "English"
 }
 *..*
 
-The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of ¦force¦forces¦¦, are contained in immobile planes and are proportional to the times.
+The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of forces, are contained in immobile planes and are proportional to the times.
 
 <br><br>
 <div book-reference-id="Donahue">Page 123.</div>
@@ -192,7 +92,7 @@ radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the ar
 
 
 <span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>, 
-let the centripetal force act with an ¦BV¦impulse¦¦
+let the centripetal force ¦force forceMove BV¦act¦¦ with an impulse
 that is single but great, and let it have the effect of making the body depart from the
 straight line ¦Bc¦Bc¦¦
 
@@ -220,7 +120,7 @@ therefore also to triangle ¦SAB¦¦.</span>
 
 
 By a similar argument,
-if the centripetal force should act successively at
+if the centripetal ¦force¦¦ ¦forceMove force¦should act¦¦ successively at
 
 <span class="captured-reference id-force-at-C">¦C¦C¦¦</span>,
 
@@ -254,7 +154,7 @@ in infinitum, and their ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦
 (by Corollary Four of Lemma Three)
 will be a curved line:
 
-and therefore the centripetal force, by with the body is perpetually drawn back from the
+and therefore the centripetal ¦force¦¦, by with the body is perpetually ¦forceMove Cc Dd Ee Ff¦drawn back from the¦¦
 tangent of this curve, will act without ceasing,
 
 while any described areas whatever ¦SABCD¦SADS¦¦,
@@ -333,7 +233,7 @@ description, will be proportional to those times in this case.
 *..*
 
 
-¦field¦force :¦¦¦¦
+¦force¦force :¦¦¦¦
 ¦dt¦time step :¦¦¦¦
 
 
@@ -342,8 +242,8 @@ description, will be proportional to those times in this case.
 
 ¦time¦t¦¦¦¦
 
-¦speed-change cssbold¦v¦¦¦¦
-¦speed-change¦initial speed :¦¦¦¦
+¦speed-change cssbold¦vxxxxxx¦¦¦¦
+¦Av¦initial speed :¦¦¦¦
 
 ¦path-change BC path cssbold¦r¦¦¦¦
 
@@ -368,45 +268,57 @@ description, will be proportional to those times in this case.
 
     <span class="captured-reference id-1-0">When body arrives from point A to point B</span>,
 
-    it circumscribes a ¦kepler-triangle¦"kepler-triangle-area"¦¦. <br><br> 
+    it circumscribes a ¦kepler-triangle SAB¦"kepler-triangle-area"¦¦. <br><br>
 
     Logical steps describing motion ¦BC¦BC¦¦ are:<br><br>
 
         <span class="captured-reference id-1-1">proof step 1. </span>
 
         if speed would not change, then 
-           body would move ¦free-path¦freely¦¦ from point B to point c,
-           making motion \(r_{Bc} = v_{AB} \Delta t \).
+           body will move ¦free-path¦freely¦¦ from point B to point c,
+           making motion ¦Bc¦𝗿<sub>Bc</sub>¦¦ = ¦Av¦v<sub>AB</sub>¦¦ ¦dt¦∆t¦¦.
 
-           The area of ¦free-triangle¦"free-movement-triangle-area"¦¦ is equal
-           to area of former ¦kepler-triangle¦"kepler-triangle"¦¦,<br><br>
+           The area of ¦free-triangle SBc¦"free-movement-triangle-area"¦¦ is equal
+           to area of former ¦kepler-triangle SAB¦"kepler-triangle"¦¦,<br><br>
 
 
         <span class="captured-reference id-1-2">proof step 2</span>.
-        the force \(f\) adds an impulse
-                \(p = f \Delta t\) to the speed:<br><br>
-
-                \[  v_{BC} = v_{AB} + p \]
-                or 
-                \[ \Delta v = f\Delta t \;\;\;  (*) \]
-            <br><br>
-
+        the ¦force¦force 𝗳¦¦ adds an impulse 𝗽 to the speed:
+          <div style="text-align:center;">
+            <div style="display:inline-block; text-align:left;">
+              𝗽 = 𝗳 ∆τ &nbsp;&nbsp;  <br>
+              𝘃<sub>BC</sub> = ¦Av¦𝘃<sub>AB</sub>¦¦ + 𝗽, <br>
+              ∆𝘃 = 𝘃<sub>C</sub> - ¦Av¦𝘃<sub>A</sub>¦¦ = 𝗽, <br>
+              where <br>
+              𝘃<sub>C</sub> = 𝘃<sub>BC</sub> <br>
+              ¦Av¦𝘃<sub>A</sub>¦¦ = 𝘃<sub>AB</sub> and<br>
+              ∆t is a time interval from A to B and<br>
+              from B to C and<br>
+              τ = 2¦time¦t¦¦. <br><br>
+          </div>
+         </div>
             <span class="captured-reference id-1-3">proof step 3.</span>
-            because of speed change ¦BC¦motion¦¦ becomes
-            \[
-               \Delta r = v \Delta t \;\; \;\; (**) \\
-               \Delta r = r_{BC} = v_{BC} \Delta t  = \\
-               v_{Bc} \Delta t + p \Delta t  = \\
-               r_{Bc} + r_{cC}
-            \]
+            because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
 
-            ¦free-triangle¦"free-movement-triangle-area"¦¦
-            is equal to new ¦kepler-triangle¦"kepler-triangle-area"¦¦,
-            <br><br>
+         <div style="text-align:center;">
+            <div style="display:inline-block; text-align:left;">
+              ¦BC AB¦∆𝗿¦¦ = ¦BC AB¦𝗿<sub>AC</sub>¦¦ = ¦AB Bc¦𝗿<sub>1</sub>¦¦ +
+              ¦Cc BV¦𝗿<sub>2</sub>¦¦ <br>
+              ¦AB Bc¦𝗿<sub>1</sub>¦¦ = ¦AB Bc¦𝗿<sub>Ac</sub>¦¦ =
+                                       ¦Av¦𝘃<sub>A</sub>¦¦∆τ, <br>
+              ¦Cc BV¦𝗿<sub>2</sub>¦¦ = ¦Cc BV¦𝗿<sub>cC</sub>¦¦ = ∆𝘃 / 2 ∆τ, <br>
+              Summands 𝗿<sub>1,2</sub> correcpondingly are: <br>
+              ¦BC AB¦∆𝗿¦¦ = ¦Av¦𝘃<sub>A</sub>¦¦∆τ + ¦Cc BV¦1/2 𝗳(∆τ)²¦¦ &nbsp;&nbsp;&nbsp; (**)
+              <br><br>
+          </div>
+         </div>
 
+         ¦free-triangle SBc¦"free-movement-triangle-area"¦¦
+         is equal to new ¦kepler-triangle SBC¦"kepler-triangle-area"¦¦,
+         <br><br>
 
         <span class="captured-reference id-1-4">proof step 4.</span>
-        previous and new ¦kepler-triangle¦"kepler-triangle-area"¦¦ are equal.<br><br>
+        previous and new ¦kepler-triangle SBC¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 
         Each of next motions, CD, DE, ... repeats steps 1, 2, 3, 4.<br><br><br>
@@ -425,7 +337,13 @@ description, will be proportional to those times in this case.
 
         Newton's computer brand was not estimated.
 
-        Point B dragger changes direction of initial speed and \( \Delta t\).
+To make speed and intial move distinct, we use these system simulation parameters, which also fit Book's lemma diagram:
+
+        \[ \\
+        \text{force :}          \; f = 3.47 / r^2 , \\
+        \text{time step :}      \; \Delta t = 0.75 ,\\
+        \text{initial speed :}  \; v_{0} = 1.33
+        \]
 
 <br>
 

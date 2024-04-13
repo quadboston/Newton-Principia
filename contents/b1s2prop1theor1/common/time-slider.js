@@ -33,7 +33,7 @@
         //=========================================
         // //\\ slider api pars
         //=========================================
-        var slCaption   = 'time';
+        var slCaption0   = 'time';
         var sliderId    = 'time';
 
         /// adds input pars to api
@@ -51,6 +51,13 @@
 
         //:spawns api pars
         var api_rgid    = 'slider_sl'   + sliderId;
+
+        //leaving this as toolsSliders breaks sliders, needs
+        //split from generic slider framework,
+        var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
+        var sliderIx        = toolsSliders_.length;
+        toolsSliders_.push( api_rgid );
+
         var start_rgid  = 'railsStart_' + sliderId;
         var end_rgid    = 'railsEnd_'   + sliderId;
         var rails_rgid  = 'slider_'     + sliderId;
@@ -70,9 +77,11 @@
                                          sconf.inn2mod_scale;
         var startY            = sconf.originY_onPicture
                                         - sconf.innerMediaHeight
-                                        + sconf.SLIDERS_LEGEND_HEIGHT
                                         + sconf.SLIDERS_OFFSET_Y
-                                        + customSliderShift
+                                        - ( sliderIx
+                                            //+ customSlidersAbove
+                                          ) * sconf.GENERIC_SLIDER_HEIGHT_Y
+                                        + sconf.SLIDERS_LEGEND_HEIGHT
                                 ;
         var startY            =  startY * sconf.inn2mod_scale;
         //----------------------------------------------------------------------------
@@ -93,7 +102,7 @@
         api.endX        = endX;
         api.railsLength = endX - startX; //in model units
         api.pcolor      = COLOR;
-        api.slCaption   = slCaption;
+        api.slCaption   = slCaption0;
 
         //-------------------------------------
         // //\\ adds helpers
@@ -177,7 +186,7 @@
         api.processDownEvent    = processDownEvent;
         api.modPos_2_GUI        = ssF.modPos_2_GUI;
         api.stdMod              = stdMod;
-        api.upd_sliderGUI8legend__8__unmask = upd_sliderGUI8legend__8__unmask;
+        api.upates_timeSlider8unmasksSvgDom = upates_timeSlider8unmasksSvgDom;
         //-------------------------------------
         // \\// slider api
         //--------------------------------------------------------
@@ -206,7 +215,7 @@
         ///recalculate the evolution, but 
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function upd_sliderGUI8legend__8__unmask()
+        function upates_timeSlider8unmasksSvgDom()
         {
             var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
@@ -218,6 +227,8 @@
                  railsStart.pos[0] + 
                  rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
+            api.slCaption = slCaption0 + ' = ' +
+                            api[ apiValueName ].toFixed(2);
 
             //at curr. ver., does what it says: pos to GUI
             api.modPos_2_GUI();
@@ -272,10 +283,25 @@
                             api.railsLength *
                             sconf.timeRange;
         //sets value:
-        var rawTime = stdMod.protects_curTime_ranges( newTime );
-        api[ api.apiValueName ] = rawTime;
-        //sets the rest:
-        api.upd_sliderGUI8legend__8__unmask();
+        stdMod.protects_curTime_ranges( newTime );
+
+        stdMod.media_upcreate();
+
+        //======================================================
+        //we don't need them, this slider does not affect
+        //path calculation
+        //stdMod.model_upcreate();
+        //we don't need this, we just need only to unhide svg-dom
+        //stdMod.media_upcreate();
+        //therefore, we run this:
+
+        //api.upates_timeSlider8unmasksSvgDom();
+
+        //above does:
+        //does unmasksVisib(): "deeply hidden job", (what a bad programming),
+        //  in that, it loops via legacy path-svg obkects and modern
+        //  svg decors objects (visualizes decs)
+        //======================================================
     }
 
 }) ();

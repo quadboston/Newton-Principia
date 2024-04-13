@@ -1,13 +1,13 @@
 ( function() {
     var {
-        mat,
+        mat, nspaste,
         sconf, sDomF, ssF,
         amode, studyMods,
     } = window.b$l.apptree({
         ssFExportList :
         {
             doesSchedule_A_B_V_sliders_in_init_pars,
-            //ABVpos_2_trajectory,
+            v2GUI,
         },
     });
     return;
@@ -27,15 +27,14 @@
         var toreg = stdMod.toreg;
         var rg = stdMod.rg;
 
-        //**************************************************************************
+        //**********************
         //initially does job which sliders do at run-time
-        toreg( 'slider_sltime' )( 'curtime', 1.75000001 ); //1.75000001 for first nice value in slider
+        toreg( 'slider_sltime' )( 'curtime',
+                sconf.timeMin0 * sconf.initialTimieStep );
         toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
         toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
-        toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep ); //patch todo
-        //patch todo
-        toreg( '' )( 'curtime', 2 ); //patch todo
-        //**************************************************************************
+        toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
+        //**********************
 
         //---------------------------------------------------
         //interface for B
@@ -100,27 +99,28 @@
     {
         stdMod      = stdMod || studyMods[ amode.submodel ];
         var toreg   = stdMod.toreg;
-        //var path_Av = mat.unitVector( mat.subV( newPos, rg.v.pos ) );
         var path_Av = mat.subV( newPos, rg.A.pos );
         var unitAv = mat.unitVector( path_Av );
-        if( unitAv.abs >= sconf.s0max ) {
-            ////decorational interaction restriction
-            ////prevents too big mouse move
-            return;
-        }
 
         // gets new speed, but speed abs value does not change
-        var newv0 = mat.scaleV( sconf.vabs0, unitAv.unitVec );
+        var newv0 = mat.scaleV( sconf.speed, unitAv.unitVec );
         toreg( 'speeds' )( 'pos', [ newv0 ] );
         toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
 
         //updates dragger position
-        //var newP = mat.addV( path_Av.unitVec, rg.v.pos );
         var newP = mat.addV( newv0, rg.A.pos );
         newPos[0] = newP[0];
         newPos[1] = newP[1];
 
         return true;
+    }
+
+    ///updates point v position from speed
+    function v2GUI()
+    {
+        let v = rg.speeds.pos[0];
+        var pos = mat.addV( v, rg.A.pos );
+        nspaste( rg.v.pos, pos );
     }
 
 
@@ -134,18 +134,20 @@
         var toreg               = stdMod.toreg;
         var rg                  = stdMod.rg;
         var tstep               = rg.rgslid_dt.val;
-        var tstep2              = tstep * tstep;
         var posB                = rg.B.pos;
         var posS                = rg.S.pos;
         var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );
         var bvNorm              = newBV.unitVec;
-        var newForce            = newBV.abs/tstep2; // newBV.abs = f*DT*DT
+        var newForceAbs         = newBV.abs/tstep;
         var BS                  = mat.unitVector( mat.subV( posB, posS ) );
         var bsNorm              = mat.scaleV( -1, BS.unitVec );
+
+        //1/r^2=
         var forceSpatialFactor  = Math.exp(
                                     rg.force.lawPower * Math.log( BS.abs )
                                   );
-        rg.force.lawConstant    = newForce/forceSpatialFactor;
+        //f=A/r^2 = newForceAbs
+        rg.force.lawConstant    = newForceAbs/forceSpatialFactor;
         //negative fDirection makes force repelling
         var fDirection          = bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
         rg.force.lawConstant   *= fDirection;

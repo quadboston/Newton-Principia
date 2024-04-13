@@ -1,18 +1,25 @@
 ( function() {
     var {
-        haff, eachprop,
-        sconf, ssF,
+        haff, has, eachprop, nspaste, capture, toreg,
+        sconf, ssF, sDomF, fixedColors,
         studyMods,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
-
-
-
-
-
-
+/*
+ *
+ * By a similar argument, --- must be a next step, not the "making the body describe"
+ * radii color = grey-violett
+ * increase disappearance time from 14 till many in such a way that
+ * ultimate perimeter ADF will be seen (for proof)
+ * whatever SADS, SAFS,
+ * bug: two arrows are seen: T.1. Corollary 1. The velocity of a
+ *
+ * T2 collolary
+ * bug: why deviation perpendicular is not othogonal to to the radii?
+ *
+ * */
 
 
 
@@ -28,6 +35,11 @@
         //point A    28x456 
         var pictureWidth = 687;
         var pictureHeight = 657;
+
+        {
+            let realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+            sconf.controlsScale = realSvgSize / sconf.standardSvgSize
+        }
 
         var modorInPicX = 47; //28; 
         var activeAreaOffsetOnPictureY = 0; 
@@ -79,11 +91,25 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        let initialTimieStep = 1;
-        let timeRange = 14;
-        let speed = 1;
+        //let legacyTimeStep = 0.75, //for case we do change initialTimieStep
+        let initialTimieStep = 0.75;
+        let dtMin = 0.08;
+        let timeRange = 14*initialTimieStep;
+        let timeMin0 = 1.75000001;
+
+        let speed = 1/initialTimieStep;
         to_sconf =
         {
+            hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
+            //nonhover_width    : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
+            //this collaborates with impulse line-segment, we are afraide to
+            //keep this "undefined",
+            nonhover_width : 5,
+
+            SLIDERS_OFFSET_Y : 0,
+            GENERIC_SLIDER_HEIGHT_Y : 30,
+            SLIDER_TEXT_POZ_Y_FACTOR : 0.7,
+
             default_tp_lightness : 30,
             mediaBgImage : "../common/img/b1s2p1t1.png",
             dontRun_ExpandConfig : true,
@@ -95,8 +121,8 @@
             [
                 //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
                 //f=Ar^n
-                [   -2,                  //=n
-                    3.9/initialTimieStep/initialTimieStep //=A
+                [   -2,                      //=n
+                   1.95 / initialTimieStep / initialTimieStep //=A
                 ],
 
                 [ -1, 0 ],
@@ -110,12 +136,13 @@
 
             speed,
             initialTimieStep,
+            dtMin,
             timeRange,
-
+            timeMin0,
             //maximum first path from A to B
             //too big values will allow user to place
             //point B on legend area ... will look strange ...
-            s0max : 1.4,    
+            //s0max : 1.4,
             //-----------
             // \\// model
             //-----------
@@ -184,11 +211,6 @@
                     uu[1]*inn2mod_scale / to_sconf.initialTimieStep, //* to_sconf.speed
             ];
             to_sconf.v0 = vmodel;
-
-            //why?
-            //to_sconf.vabs0 = Math.sqrt( ww[0]*ww[0] + ww[1]*ww[1] );
-            to_sconf.vabs0 = to_sconf.speed;
-
             //for Y:
             APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
 
@@ -206,24 +228,16 @@
                 (a[1] - modorInPicY ) * inn2mod_scale
             ];
 
-            //redundant ... v0 is enougth ... do fix later
+            //redundant ... v0 is enough ... do fix later
             ///creates point B position in model
             to_sconf.B = [
                 //1, 1 //insignificant
                 to_sconf.A[0] + vmodel[0] * initialTimieStep,
                 to_sconf.A[1] + vmodel[1] * initialTimieStep,
-                //was
-                //(b[0] - modorInPicX ) * inn2mod_scale,
-                //MONITOR_Y_FLIP *
-                //(b[1] - modorInPicY ) * inn2mod_scale
             ];
             to_sconf.v = [
                 to_sconf.A[0] + vmodel[0],
                 to_sconf.A[1] + vmodel[1],
-                //was
-                //(b[0] - modorInPicX ) * inn2mod_scale,
-                //MONITOR_Y_FLIP *
-                //(b[1] - modorInPicY ) * inn2mod_scale
             ];
         })();
         //----------------------------------
@@ -241,12 +255,389 @@
         // \\// copy-pastes to sconf
         //----------------------------------------------------
 
+        {
+            ////--------------------------------------------------
+            ////expands predefinedTopic colors into rg
+            ////--------------------------------------------------
+            let pt = predefinedTopics();
+            Object.keys( predefinedTopics() ).forEach( topicKey => {
+                toreg( topicKey )( 'pname', topicKey );
+                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                fixedColors[ tk ] = pt[ topicKey ];
+            });
+         }
+
         //this comes from theorem P2; this does not exist in P1;
-        haff( ssF, 'init_conf_addon' );
+        if( has( ssF, 'init_conf_addon' ) ) {
+            haff( ssF, 'init_conf_addon' );
+        } else {
+            makesProfessorsCaptureFootnotes();
+        }
     };
     //====================================================
     // \\// inits and sets config pars
     //====================================================
+    return;
 
+
+    ///sets captured states of the simulator,
+    ///used in by-click-actions in text,
+    ///jsobject has indices of this these actions,
+    function makesProfessorsCaptureFootnotes()
+    {
+        nspaste( capture, {
+
+            "1-0": {
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+                "speeds": {
+                    "pos": [
+                        [
+                            0.2618140190615299 / sconf.initialTimieStep,
+                            0.9651183447758357 / sconf.initialTimieStep
+                        ]
+                    ]
+                },
+                "A": {
+                    "pos": [
+                        2.4846663769760875,
+                        -0.010267216433785486
+                    ]
+                },
+
+                "slider_sltime": {
+                    "curtime": 1.75000001 * sconf.initialTimieStep
+                }
+            },
+
+            "1-1": {
+                "slider_sltime": {
+                    "curtime": 2.099161816013016 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+
+            "1-2": {
+                "slider_sltime": {
+                    "curtime": 2.448323622026032 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-3": {
+                "slider_sltime": {
+                    "curtime": 2.5752915514853103 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-4": {
+                "slider_sltime": {
+                    "curtime": 2.765743445674228 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "force-at-C": {
+                "slider_sltime": {
+                    "curtime": 3.3370991282409808 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "force-at-D": {
+                "slider_sltime": {
+                    "curtime": 4.352842563915209 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "force-at-E": {
+                "slider_sltime": {
+                    "curtime": 5.3685859995894365 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+
+            "motion-F": {
+                "slider_sltime": {
+                    "curtime": 5.63 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "more-triangles": {
+                "speeds": {
+                    "pos": [
+                        [
+                            0.15653007129470273/sconf.initialTimieStep,
+                            0.9876731933086345/sconf.initialTimieStep
+                        ]
+                    ]
+                },
+                "slider_sltime": {
+                    "curtime": sconf.timeRange * sconf.initialTimieStep / 2
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep / 4
+                },
+            },
+            "initial-state" : {
+                "A": {
+                    "pos": [
+                        2.4846663769760875,
+                        -0.010267216433785486
+                    ]
+                },
+                "slider_sltime": {
+                    "curtime": 5.995 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+
+            "corollary-1": {
+                "media-mover": {
+                    "achieved": {
+                        "achieved": [
+                            47,
+                            611
+                        ]
+                    }
+                },
+                 "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+                "slider_sltime": {
+                    "curtime": 4.50,
+                },
+
+                 "A": {
+                    "pos": [
+                        2.4846663769760875,
+                        -0.010267216433785486
+                    ]
+                }
+
+            },
+            "corollary-2": {
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+                "speeds": {
+                    "pos": [
+                        [
+                            0.2618140190615299/sconf.initialTimieStep,
+                            0.9651183447758357/sconf.initialTimieStep
+                        ]
+                    ]
+                },
+                "slider_sltime": {
+                    "curtime": 2.9897076114077104 * sconf.initialTimieStep
+                }
+            },
+            "corollary-4" : {
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+                "slider_sltime": {
+                    //"curtime": 6.961644376899696 * sconf.initialTimieStep
+                    //"curtime": sconf.timeRange, // * sconf.initialTimieStep
+                    "curtime": 4.50,
+                },
+                "speeds": {
+                    "pos": [
+                        [
+                            0.29155658394042205/sconf.initialTimieStep,
+                            0.9565535836329252/sconf.initialTimieStep
+                        ]
+                    ]
+                },
+            },
+
+
+            "corollary-3" : {
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+                "speeds": {
+                    "pos": [
+                        [
+                            0.2618140190615299/sconf.initialTimieStep,
+                            0.9651183447758357/sconf.initialTimieStep
+                        ]
+                    ]
+                },
+                "slider_sltime": {
+                    "curtime": 5.995 * sconf.initialTimieStep
+                }
+            },
+
+
+
+
+            "__amode2rgstate" :
+            [
+                [
+                    "!ssF.mediaModelInitialized",
+                    {
+                        "captured" : "initial-state",
+                        "rg" :
+                        {
+                        }
+                    }
+                ],
+                [
+                    "( theorion === 'proof' )",
+                    {
+                        "captured" : "1-0",
+                        "rg" :
+                        {
+                        }
+                    }
+                ],
+
+                [
+                    "( theorion === 'claim' && aspect !== 'model' )",
+                    {
+                        "captured" : "initial-state",
+                        "rg" :
+                        {
+                        }
+                    }
+                ],
+
+
+                [
+                    "( theorion === 'corollary' && submodel === 'common' )",
+                    {
+                        "captured" : "initial-state",
+                        "rg" :
+                        {
+                        }
+                    }
+                ],
+            ]
+        });
+    }
+
+    function predefinedTopics()
+    {
+        var freeMove = [0,100,0];
+        var force = [255, 0, 0];
+        var forceMove = [150,0,0];
+        var path = [0,0,100];
+        var time = [0,100,100,1];
+        return {
+            force,
+            forceMove,
+            time,
+            dt                  : time,
+            "path"              : path,
+            "path-change"       : [0,   0,  100, 1],
+            "kepler-triangle"   : [50,  50, 100],
+            "SABCD"             : path,
+            "SABCDEF"           : path,
+
+            "SBC"               : [0,0,100, 0.5, 0.8],
+            "SCD"               : [0,0,100, 0.5, 0.8],
+            "SDE"               : [0,0,100, 0.5, 0.8],
+            "SEF"               : [0,0,100, 0.5, 0.8],
+            "SAB"               : [0,0,100, 0.5, 0.8],
+
+            "SBc"               : [0, 100,  0,  0.5, 0.8],
+            "SCd"               : [0, 100,  0,  0.5, 0.8],
+            "SDe"               : [0, 100,  0,  0.5, 0.8],
+            "SEf"               : [0, 100,  0,  0.5, 0.8],
+
+            "A"                 : path,
+            "B"                 : path,
+            "C"                 : path,
+            "D"                 : path,
+            "E"                 : path,
+            "F"                 : path,
+
+            "AB"                : [0,   0,  100, 0],
+            "BC"                : path,
+            "CD"                : path,
+            "DE"                : path,
+            "EF"                : path,
+
+            "ABCV"              : forceMove,
+            "DEFZ"              : forceMove,
+            "SA"                : forceMove,
+
+            "Sb"                : forceMove,
+            "Sc"                : forceMove,
+            "Sd"                : forceMove,
+            "Se"                : forceMove,
+            "Sf"                : forceMove,
+
+            "Cc"                : forceMove,
+            "Dd"                : forceMove,
+            "Ee"                : forceMove,
+            "Ff"                : forceMove,
+
+
+            "field"             : [255,   0,  0, 0.5],
+            "force-center"      : [255,   0,  0, 0.5],
+            "S"                 : [255,   0,  0, 0.5],
+            "SB"                : [255,   0,  0, 0.3],
+            "SC"                : [255,   0,  0, 0.3],
+            "SD"                : [255,   0,  0, 0.3],
+            "SE"                : [255,   0,  0, 0.3],
+            "SF"                : [255,   0,  0, 0.3],
+
+            "BU"                : forceMove,
+            "EW"                : forceMove,
+            "AC"                : path,
+            "Av"                : path,
+            "DF"                : path,
+
+            force,
+            "Z"                 : [255, 100, 0, 1],
+            "V"                 : [255, 100, 0, 1],
+            "BV"                : forceMove,
+            "EZ"                : forceMove,
+            "SP"                : [200, 100, 0, 1],
+            "P"                 : [200, 100, 0, 1],
+            "T"                 : [200, 100, 0, 1],
+            "TP"                : [200, 100, 0, 1],
+
+            "free-path"         : freeMove,
+            "c"                 : freeMove,
+            "h"                 : freeMove,
+            "d"                 : freeMove,
+            "e"                 : freeMove,
+            "f"                 : freeMove,
+            "g"                 : freeMove,
+
+            "Bc"                : freeMove,
+            "Bh"                : freeMove,
+            "Ch"                : freeMove,
+
+            "Cd"                : freeMove,
+            "De"                : freeMove,
+
+            "Ef"                : freeMove,
+            "Eg"                : freeMove,
+            "Fg"                : [255, 100, 0],
+
+            "free-triangle"     : freeMove,
+            "speed-change"      : [0,100,0,1],
+        };
+    }
 }) ();
 

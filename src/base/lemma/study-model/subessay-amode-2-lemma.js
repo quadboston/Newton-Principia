@@ -35,7 +35,6 @@
         if( amodel2app_8_extraWork ) {
             doMinimizeTextMenus();
         }
-
         var { theorion, aspect, submodel, subessay } = amode;
         var stdMod  = studyMods[ submodel ];
         var rg = stdMod.rg;
@@ -76,13 +75,13 @@
         ///         context is a closure of running function:
         ///             { theorion, aspect, submodel, subessay ...
         ///
-        ///      ??? is this possible "__amode2rgstate" comes from JS module?
+        ///      "__amode2rgstate" can come from JS-module
         ///------------------------------------------------------------------
         ssD.__amode2rgstate.forEach( (cblock,ix) => {
             ///aka: "true", or "( theorion === 'claim' || ...
             var cond = cblock[0];
             if( eval( cond ) ) {
-                //ccc( submodel, 'cond='+cond, 'amode=', amode,  );
+                //c cc( submodel, 'cond='+cond, 'amode=', amode,  );
                 var instr = cblock[ 1 ];
                 ///latter "captured" in array overrides previous "captured"
                 captured = haz( instr, "captured" ) || captured;
@@ -96,7 +95,6 @@
                 }
             }
         });
-        //ccc( submodel, 'captured='+captured  );
         ///------------------------------------------------------------------
         /// \\// takes conditions scripted at the bottom of professor-script,
         ///------------------------------------------------------------------
@@ -108,7 +106,6 @@
             captured = ssF.amode2rgstate( captured );
         }
 
-        //ccc( ' amode, ',  amode, 'captured', captured );
         ///???for past-lemmas: lemma 1, lemma 2, ...
         //haf( stdMod, 'astate_ 2_rg8model' )(
         //also does execute "stdMod.model_upcreate",

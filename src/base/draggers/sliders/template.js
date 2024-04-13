@@ -250,14 +250,14 @@
             cy : api.medpos[1],
         });
         api.text_svg.setAttributeNS( null, 'x', api.medpos[0]-8 );
-        api.text_svg.setAttributeNS( null, 'y',
-             api.medpos[1] + 
-             sconf.GENERIC_SLIDER_HEIGHT_Y * 0.8
-        );
-
+        let txtPosY = sconf.GENERIC_SLIDER_HEIGHT_Y *
+                      ( haz( sconf, 'SLIDER_TEXT_POZ_Y_FACTOR' ) || 0.8 );
+        api.text_svg.setAttributeNS( null, 'y', api.medpos[1] + txtPosY );
+        //c cc( 'template finalizes=' +  api.slCaption );
         if( has( api, 'slCaption' ) ) {
             ///updates GUI caption
-            //api.text_svg.textContent = slCaption + '=' + (value_current-2).toFixed(0);
+            ///api.text_svg.textContent = slCaption + '=' +
+            ///(value_current-2).toFixed(0);
             api.text_svg.textContent = api.slCaption;
         }
     };

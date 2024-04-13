@@ -23,7 +23,8 @@
                 { src : '../common/path-2-media.js' },
                 { src : '../common/dec-2-media.js' },
                 { src : '../common/main-legend.js' },
-                { src : '../common/dom8model-sliders.js' },
+
+                { src : '../common/time-slider.js' },
                 { src : '../common/delta-time-slider.js' },
                 { src : '../common/state-capturer.js' },
                 { src : '../common/unmasks-visib.js' },

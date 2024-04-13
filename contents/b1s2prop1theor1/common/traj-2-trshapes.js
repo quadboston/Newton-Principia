@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            traj2trshapes,
+            path2rgModelPlaceholders,
         },
     });
     return;
@@ -18,7 +18,7 @@
 
 
     ///at current ver, runs at every model_upcreate
-    function traj2trshapes()
+    function path2rgModelPlaceholders()
     {
         var S               = rg.S.pos;
         var force           = rg.force.pos;
@@ -32,6 +32,7 @@
 
         var freePath        = rg.freePath.pos;
         var speeds          = rg.speeds.pos;
+        var dt              = rg.rgslid_dt.val;
 
         //=======================================================
         // //\\ spawns path to
@@ -53,7 +54,7 @@
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
-            if( pix > 0 ) {
+            if( pix >= 0 ) {
                 var kix = pix-1;
                 var pkey = 'kepltr-' + kix;
                 var ktr = toreg( pkey )({ undisplay : true })();
@@ -71,7 +72,7 @@
             if( pix > 1 ) {
                 var kix = pix-2;
 
-                //makes freeTriangles
+                //makes "model-points" for freeTriangles
                 //freeTriangles array master-index offset is pi = 2
                 var pkey = 'freetr-' + kix;
                 var ktr = toreg( pkey )( { undisplay : true } )();
@@ -86,13 +87,12 @@
         // //\\ path to spatial-model-forces
         //      and media-forces
         //---------------------------------------------------------
+        var fvectors    = rg.impulses.vectors;
+        var fviews      = sn( 'views', rg.impulses );
         path.forEach( (pt, pix) => {
 
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
-            var forces      = rg.forces;
-            var fvectors    = forces.vectors;
-            var fviews      = sn( 'views', forces );
             if( pix < 1 ) return;
 
             //*****************************************
@@ -106,8 +106,8 @@
             //applies force to pos0: just bare position
             var pos1 = [
                 ////we really draw paths, not forces
-                pos0[0]+fvectors[kix][0] * rg.rgslid_dt.val,
-                pos0[1]+fvectors[kix][1] * rg.rgslid_dt.val,
+                pos0[0]+fvectors[kix][0] * dt,
+                pos0[1]+fvectors[kix][1] * dt,
             ];
             var ffkey0 = fkey+'-0';
             var ffkey1 = fkey+'-1';
@@ -150,8 +150,8 @@
 
                 //applies force to pos0: just bare position
                 var pos1 = [
-                    pos0[0]+fvectors[kix][0] * rg.rgslid_dt.val,
-                    pos0[1]+fvectors[kix][1] * rg.rgslid_dt.val
+                    pos0[0]+fvectors[kix][0] * dt,
+                    pos0[1]+fvectors[kix][1] * dt
                 ];
                 //this section can be simplified ... but so far
                 //we have to create pointies to make line segments for forces,

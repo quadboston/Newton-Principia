@@ -1,6 +1,7 @@
 ( function() {
-    var { sconf, ssF } =
-    window.b$l.apptree({});
+    var { sconf, nspaste, capture, toreg,
+         ssF, sDomF, fixedColors,
+    } = window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     return;
 
@@ -13,7 +14,143 @@
     {
         sconf.mediaBgImage = "../../b1s2prop1theor1/common/img/b1s2p1t1.png";
         sconf.hide_perp_P_and_alike = true;
-    };
+        //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
 
+        {
+            ////--------------------------------------------------
+            ////expands predefinedTopic colors into rg
+            ////--------------------------------------------------
+            let pt = predefinedTopics();
+            Object.keys( predefinedTopics() ).forEach( topicKey => {
+                toreg( topicKey )( 'pname', topicKey );
+                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                fixedColors[ tk ] = pt[ topicKey ];
+            });
+         }
+
+        // //\\ makes capture
+        nspaste( capture, {
+    "proof-step-D": {
+        "slider_sltime": {
+            "curtime": 3.71 * sconf.initialTimieStep
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        }
+    },
+
+    "initial-state" : {
+        "slider_sltime": {
+            "curtime": 5.995 * sconf.initialTimieStep
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        }
+    },
+    "t2corollary": {
+
+        "detected_user_interaction_effect_DONE" : true,
+        "slider_sltime": {
+            "curtime" : 2.03
+        },
+                "rgslid_dt": {
+                "val": sconf.initialTimieStep
+        },
+        "stdModName": "common",
+        "media-mover": {
+            "achieved": {
+                "achieved": [
+                    47,
+                    611
+                ]
+            }
+        },
+        "A": {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        }
+    },
+
+
+
+
+
+
+
+    "__amode2rgstate" :
+    [
+        [
+            "!ssF.mediaModelInitialized || amode.theorion === 'scholium' || amode.theorion === 'claim'",
+            {
+                "captured" : "initial-state",
+                "rg" :
+                {
+                }
+            }
+        ],
+
+        [
+            "amode.theorion === 'proof'",
+            {
+                "rg" :
+                {
+                    "rgslid_dt" : { "val" : sconf.initialTimieStep },
+                    "slider_sltime": {
+                        "curtime": 3.2 //to capture dD, triangle SCD
+                    }
+                }
+            }
+        ],
+
+        [
+            "( theorion === 'corollary' )",
+            {
+                "captured" : "t2corollary",
+                "rg" :
+                {
+                }
+            }
+        ]
+    ]
+    });
+    // \\// makes capture
+    }
+
+    function predefinedTopics()
+    {
+        var forceMoveX = [150,0,0, 0.9];
+        return {
+            "SP"                : [200, 100, 0, 0],
+            "P"                 : [200, 100, 0, 0],
+            "T"                 : [200, 100, 0, 0],
+            "TP"                : [200, 100, 0, 0],
+            "Caracc"            : [100,   0,  100],
+            "CCaracc"           : [100,   0,  100],
+            "CParacc"           : [100,   0,  100],
+            "SBCaracc"          : [255,  100, 0, 0.5],
+            "cCaracc"           : [100,   0,  100],
+
+            "Varacc"            : forceMoveX,
+            "BVaracc"           : forceMoveX,
+            "VVaracc"           : forceMoveX,
+            "CParacc"           : forceMoveX,
+            "CaraccParacc"      : [100,   0,  100],
+
+            "j"                 : [0,100,0],
+            "e"                 : [0,100,0],
+            "f"                 : [0,100,0],
+
+            "Cj"                : [0,100,0],
+            "Dj"                : [255, 100, 0],
+        };
+    }
 }) ();
 

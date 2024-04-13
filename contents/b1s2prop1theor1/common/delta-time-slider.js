@@ -32,7 +32,7 @@
         var sliderId    = 'dt';
         var tpId        = sliderId;
         var tptpId      = 'tp-' + tpId;
-        var slCaption   = '∆t';
+        var slCaption0  = '∆t';
 
         ///will be overridden with tp-color if any:
         var COLOR = sDomF.getFixedColor( sliderId );
@@ -43,16 +43,22 @@
 
         //:spawns api pars
         var api_rgid    = 'rgslid_'   + sliderId;
+
+        //leaving this as toolsSliders breaks sliders, needs
+        //split from generic slider framework,
+        var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
+        var sliderIx        = toolsSliders_.length;
+        toolsSliders_.push( api_rgid );
+
         var api         = toreg( api_rgid )();
         var rgX         = api;
         var start_rgid  = 'railsStart_' + sliderId;
         var end_rgid    = 'railsEnd_'   + sliderId;
         var rails_rgid  = 'slider_'     + sliderId;
 
-
-        //--------------------------------------------------------------------------
+        //-------------------------------------------------------------------------
         // //\\ in model units and reference system
-        //--------------------------------------------------------------------------
+        //-------------------------------------------------------------------------
         var startX            = ( -sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
@@ -62,9 +68,11 @@
                                          sconf.inn2mod_scale;
         var startY            = sconf.originY_onPicture
                                         - sconf.innerMediaHeight
-                                        + sconf.SLIDERS_LEGEND_HEIGHT
                                         + sconf.SLIDERS_OFFSET_Y
-                                        + customSliderShift
+                                        - ( sliderIx
+                                            //+ customSlidersAbove
+                                          ) * sconf.GENERIC_SLIDER_HEIGHT_Y
+                                        + sconf.SLIDERS_LEGEND_HEIGHT
                                 ;
         var startY            =  startY * sconf.inn2mod_scale;
         //--------------------------------------------------------------------------
@@ -86,7 +94,7 @@
         api.endX        = endX;
         api.railsLength = endX - startX; //in model units
         api.pcolor      = COLOR;
-        api.slCaption   = slCaption;
+        api.slCaption   = slCaption0;
 
         //-------------------------------------
         // //\\ adds helpers
@@ -148,11 +156,7 @@
                 'font-family'   : 'helvetica, san-serif',
                 'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
                 'stroke-width'  : 1,
-                 //stroke         : COLOR,
-                 //fill           : COLOR,
             },
-            //stroke  : COLOR,
-            //fill    : COLOR,
         });
         //todmm ... patch ... adds tp dimming machinery
         $$.$( api.text_svg ).addClass( tptpId );
@@ -209,6 +213,8 @@
                  railsStart.pos[0] + 
                  rawDeltaT / sconf.initialTimieStep * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
+
+            api.slCaption = slCaption0 + ' = ' + api.val.toFixed(2);
             //at curr. ver., does what it says: pos to GUI
             ///updates media position of svg-shape from
             ///model position of this shape;
@@ -218,6 +224,9 @@
             // \\// corrects pos and updates slider's GUI
             //-----------------------------------------------------
 
+            //api.text_svg = sv.printText({
+            //    parent          : stdMod.mmedia,
+            //    text            : sliderId,
             //at the end of job, runs application-provided callback
             //stdMod.unmasksVisib();
             //stdMod.upcreate_mainLegend();
@@ -253,20 +262,19 @@
                             move_in_model[ 0 ] /
                             api.railsLength *
                             sconf.initialTimieStep;
-        newdt = Math.max( 0.01, Math.min( sconf.initialTimieStep, newdt ) );
+        newdt = Math.max( sconf.dtMin, Math.min( sconf.initialTimieStep, newdt ) );
         api.val = newdt;
         var posB = rg.path.pos[1];
-        var absAB = sconf.vabs0 * newdt;
+        var absAB = sconf.speed * newdt;
         var absB = Math.sqrt( posB[0]*posB[0] + posB[1]*posB[1] );
         var scale = absAB / absB;
         posB[0] = posB[0]*scale;
         posB[1] = posB[1]*scale;
 
-        //ssF.solvesTrajectoryMath();
         //sets the rest:
+        stdMod.protects_curTime_ranges();
         stdMod.model_upcreate();
         stdMod.media_upcreate();
-        //api.updates_sliderGUI();
     }
 
 }) ();

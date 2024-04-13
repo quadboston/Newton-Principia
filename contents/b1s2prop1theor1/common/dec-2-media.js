@@ -7,7 +7,7 @@
         stdModExportList :
         {
             paints_draggableDecPoints8Line,
-            dec2media,
+            dec2svg,
             dragPointPos_2_mediaOfDragKernels,
         },
         setModule,
@@ -30,7 +30,7 @@
         rgPos2rgMedia           = ssF.rgPos2rgMedia;
     }
 
-    function dec2media()
+    function dec2svg()
     {
         eachprop( stdMod.decor, (dec,pname) => {
             if( dec.isPoint ) {
@@ -54,10 +54,10 @@
         pWrap.pcolor        = pcolor;   //todm: overengineering ...
 
         if(
-            //all these points are not drawn here, because of
-            //they have special place in code where they are drawn as
-            //their representaion with white hole,
-            //this special place is dragPointPos_2_mediaOfDragKernels(),
+            ////all these points are not drawn here, because of
+            ////they have special place in code where they are drawn as
+            ////their representaion with white hole,
+            ////this special place is dragPointPos_2_mediaOfDragKernels(),
             pname !== 'v' && pname !== 'V' && pname !== 'A' &&
             pname !== 'v-white-filler' && pname !== 'V-white-filler' &&
             pname !== 'A-white-filler'
@@ -127,13 +127,13 @@
         if( dec.pivotNames.length === 2 ) {
             ///refreshes line position and presence
             ///for special lines
-            if( dec.pname === 'Av' ) {
+            //if( dec.pname === 'Av' ) {
                 ssF.pnames2line(
                     dec.pivotNames[0],
                     dec.pivotNames[1],
                     haz( dec, 'cssClass' ),
                 );
-            }
+            //}
             ///ssF.pnames2poly
         } else {
             dec.poly_2_updatedPolyPos8undisplay();
@@ -143,7 +143,7 @@
     // \\// updates decors with 'pivotNames':
     //==============================================
 
-
+    ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
     function paints_draggableDecPoints8Line()
     {
         //==========================================

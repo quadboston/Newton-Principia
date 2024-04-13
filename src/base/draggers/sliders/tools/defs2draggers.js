@@ -19,7 +19,7 @@
     {
         var toolsSliders = sn( 'toolsSliders',stdMod, [] );
         toolsSliders.forEach( slname => {
-            createDragger( medD8D, slname, stdMod )
+            createDragger( medD8D, slname, stdMod );
         });
     };
 
