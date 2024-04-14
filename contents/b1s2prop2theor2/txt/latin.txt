@@ -1,0 +1,48 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+
+*::*proof|latin
+{
+}
+*..*
+<img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+*::*corollary|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
+*::*scholium|latin
+{
+}
+*..*
+<img src="contents/b1s2prop2theor2/img/latin-t2.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+

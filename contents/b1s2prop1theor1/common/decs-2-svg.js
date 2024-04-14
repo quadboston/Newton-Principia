@@ -65,6 +65,9 @@
             var cls = 'tostroke tofill thickable';
             cssClass = haz( rgPoint, 'cssClass' );
             cls += cssClass && ( ' ' + cssClass );
+
+            //unlucky name: must be aka ssF.rgPos2svgPoint
+            //ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom, more sensible alias
             var pty = rgPos2rgMedia(
                 pname,
                 {
@@ -85,6 +88,10 @@
             var lpos = rgPoint.medpos.concat([]);
             ///letter quadrant sugar
             switch( pname ) {
+                case 'B' : lpos = [ lpos[0]+12, lpos[1]+5 ];
+                break;
+                case 'A' : lpos = [ lpos[0]+10, lpos[1]+20 ];
+                break;
                 case 'S' :
                 case 'Z' : lpos = [ lpos[0]-30, lpos[1]+20 ];
                 break;

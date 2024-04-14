@@ -1,0 +1,147 @@
+
+
+
+*::*claim|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">
+    <b>S˙</b> = const ⇔ [<b>ra</b>] = 0</a>.
+</a>
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+****************************************************************
+ This div is a patch which enables correct CSS for essay-topics.
+
+ This necessity is a flaw of framework. Declared
+ shapes must activate diagram colors by default, without
+ be referenced in text.
+****************************************************************
+
+-->
+<div style="display:none;">
+
+¦field¦force :¦¦¦¦
+¦dt¦time step :¦¦¦¦
+¦field cssbold¦f¦¦¦¦
+¦force cssbold¦p¦¦¦¦
+¦time¦t¦¦¦¦
+¦speed-change cssbold¦v¦¦¦¦
+¦speed-change¦initial speed :¦¦¦¦
+¦path-change BC path cssbold¦r¦¦¦¦
+
+¦kepler-triangle¦"kepler-triangle-area"¦¦
+¦BC¦BC¦¦
+¦free-path¦freely¦¦
+¦free-triangle¦"free-movement-triangle-area"¦¦
+
+</div> <!-- display=none -->
+
+
+
+
+
+
+
+
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
+
+Corollary 1. Consider component <b>v</b><sub>⟂</sub> of speed ¦Bc¦<b>v</b>¦¦,
+where <b>v</b><sub>⟂</sub> is orthogonal to acting ¦BV¦centripetal force¦¦.
+<br><br>
+
+Adding another force ¦VVaracc¦<b>f</b><sub>⟂</sub>¦¦ in the same direction as
+<b>v</b><sub>⟂</sub>
+will make ¦SBCaracc¦described area SBC'¦¦ greater than
+
+¦SBC¦original area SBC¦¦ because of ¦CaraccParacc¦height C'C''¦¦ will be greater than
+¦CParacc¦CC''¦¦.
+
+Area speed will constantly increase if <b>f</b><sub>⟂</sub> keeps adding at each path step.
+<br><br>
+Adding <b>f</b><sub>⟂</sub> in different direction decreases
+the height of ¦SBC¦triangle SBC¦¦ and decreases area speed.
+<br><br><br><br>
+
+
+
+
+
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
+Corollary 1.
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#corollary-1">
+    <b>S˙˙</b><sub>z</sub> ⇈ <b>S˙</b><sub>z</sub> ⇔
+    <b>a</b><sub>⟂</sub> ⇈ <b>v</b><sub>⟂</sub>.
+</a>
+
+    <br>
+
+
+Corollary 2.
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#corollary-2">
+<i>a</i><sub>⟂</sub> = -d + <i>f</i><sub>⟂</sub>.
+    </a>
+<br><br>
+
+
+
+
+
+
+*::*scholium|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#scholium">
+
+<b>a</b><sub>z</sub> does not contribute to area.
+
+</a>
+<br><br>
+
+
+<div book-reference-id="kvk"></div>
+
+
+
+

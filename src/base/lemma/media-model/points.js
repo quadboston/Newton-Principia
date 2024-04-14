@@ -12,6 +12,7 @@
         },
     });
     var ix2origPoint = sn( 'ix2origPoint', sconf, [] );
+    //unlucky name: must be aka ssF.rgPos2svgPoint
     ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom, more sensible alias
     var ownProp = Object.prototype.hasOwnProperty;
     return;
@@ -234,7 +235,6 @@
                 pos2pointy( fakeName, null, stdMod ); //updates
             }
         }
-
         if( rgX.doPaintPname && rgX.caption !== '' ) {
             var lpos = rgX.medpos.concat([]);
             var lposX = rgX.letterOffsetX + rgX.medpos[0];

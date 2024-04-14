@@ -30,7 +30,7 @@
         var pictureHeight = 657;
 
         {
-            let realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+            let realSvgSize = pictureWidth + pictureHeight;
             sconf.controlsScale = realSvgSize / sconf.standardSvgSize
         }
 
