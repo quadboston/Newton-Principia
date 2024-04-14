@@ -57,18 +57,18 @@
 
             div.bsl-approot svg .tp-kepler-triangle.triangle-odd {
                 fill : #6666ff;
-                opacity : 0.4;
+                opacity : 0.7;
             }
 
             div.bsl-approot svg .tp-kepler-triangle.triangle-even {
                 fill : #9999ff;
-                opacity : 0.4;
+                opacity : 0.7;
             }
 
             div.bsl-approot.theorion--claim svg .tp-kepler-triangle.triangle-odd,
             div.bsl-approot.theorion--claim svg .tp-kepler-triangle.triangle-even {
                 fill : #8888ff;
-                opacity : 0.4;
+                opacity : 0.7;
             }
             `,
             'global-css-overrider'

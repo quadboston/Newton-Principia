@@ -50,11 +50,11 @@
             C   : { decStart : 10, },
             D   : { decStart : 14, },
             E   : { decStart : 18, },
-            F   : { decStart : 22, },
+            F   : { decStart : 22 },
         };
         ///makes proof final points to disappear after a while
         eachprop( finalSteps_conf, (fs, kName) => {
-            fs.decEnd = finalSteps_conf.F.decStart+5;
+            fs.decEnd = sconf.numberOfManyBases*4 * 1.2;
         });
         //----------------------------------------------------
         // \\// proof final points
@@ -318,10 +318,6 @@
             { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
             { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
 
-            //{ nam : ['C', 'd'], cssClass : 'theor1proof', },
-            //{ nam : ['C', 'j'], cssClass : 'theor1proof theor2proof', },
-            //{ nam : ['D', 'j'], cssClass : 'theor1proof theor2proof', },
-
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
 
             { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
@@ -493,31 +489,6 @@
 
     function keplerPolyNames_2_rg8media(
     ){
-
-        ///decorations
-        [   ////these triangles override kepler-triangles attached to path
-            ////in path-2-media js-code,
-            ['S', 'A', 'B',],
-            ['S', 'B', 'C',],
-            ['S', 'C', 'D',],
-            ['S', 'D', 'E',],
-            ['S', 'E', 'F',],
-        ].forEach( pNames => {
-            var rgElem = ssF.pnames2poly(
-                pNames,
-                'theor1proof theor2proof tofill ',
-                null,
-                !!'undisplay',
-                !'tostroke',
-                stdMod,
-            );
-            decor[ rgElem.pname ] = rgElem;
-            var lp = rg[ pNames[ 2 ] ];
-            rgElem.decStart = lp.decStart;
-            rgElem.decEnd = lp.decEnd;
-        });
-
-
         [   ////these triangles override free triangles attached to path
             ////in path-2-media js-code,
             ['S', 'B', 'c',],
@@ -560,7 +531,7 @@
         ].forEach( pNames => {
             var rgElem = ssF.pnames2poly(
                 pNames,
-                'theor1proof tohidden tofill',
+                'theor1proof tofill',
                 null,
                 !!'undisplay',
                 !'tostroke',
@@ -569,7 +540,7 @@
             var lp = rg[ pNames[ pNames.length-1 ] ];
             decor[ rgElem.pname ] = rgElem;
             rgElem.decStart = lp.decStart;
-            rgElem.decEnd = lp.decEnd;
+            rgElem.decEnd = 4 * 1.2 * sconf.numberOfManyBases;
         });
     }
 

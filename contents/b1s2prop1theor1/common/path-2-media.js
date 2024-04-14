@@ -66,11 +66,10 @@
 
                 var triangleOddness = '';
                 //this solution is not good:
-                //if( pix <=5 ) var triangleOddness = 'hidden';
+                //if( pix <=5 ) {
+                //    var triangleOddness = 'hidden';
                 var triangleOddness = pix%2 ? 'triangle-odd' : 'triangle-even';
                 switch (pix) {
-                    case 0: var triangleOddness = triangleOddness + ' tp-_s_a_b';
-                    break;
                     case 1: var triangleOddness = triangleOddness + ' tp-_s_a_b';
                     break;
                     case 2: var triangleOddness = triangleOddness + ' tp-_s_b_c  ';

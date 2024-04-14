@@ -37,7 +37,7 @@
                     //todm ... make following line to follow from above line
                     $$.$(paintee.svgel).addClass( 'undisplay' );
                     let tipArrow$ = haz( paintee, 'vectorArrowSvg$' );
-                    //tipArrow$ && tipArrow$.addClass( 'hidden' );
+                    tipArrow$ && tipArrow$.addClass( 'undisplay' );
                 });
             });
         });

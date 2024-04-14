@@ -9,13 +9,6 @@
     return;
 /*
  *
- * By a similar argument, --- must be a next step, not the "making the body describe"
- * radii color = grey-violett
- * increase disappearance time from 14 till many in such a way that
- * ultimate perimeter ADF will be seen (for proof)
- * whatever SADS, SAFS,
- * bug: two arrows are seen: T.1. Corollary 1. The velocity of a
- *
  * T2 collolary
  * bug: why deviation perpendicular is not othogonal to to the radii?
  *
@@ -91,10 +84,13 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        //let legacyTimeStep = 0.75, //for case we do change initialTimieStep
+        let legacyTimeStep = 0.75; //for case we do change initialTimieStep
         let initialTimieStep = 0.75;
         let dtMin = 0.08;
-        let timeRange = 14*initialTimieStep;
+        let stepsRange = 14;
+        let timeRange = stepsRange*initialTimieStep;
+        let numberOfManyBases = stepsRange*2;
+        let timeStepOfManyBases = initialTimieStep/4;
         let timeMin0 = 1.75000001;
 
         let speed = 1/initialTimieStep;
@@ -137,6 +133,8 @@
             speed,
             initialTimieStep,
             dtMin,
+            numberOfManyBases,
+            timeStepOfManyBases,
             timeRange,
             timeMin0,
             //maximum first path from A to B
@@ -387,10 +385,11 @@
                     ]
                 },
                 "slider_sltime": {
-                    "curtime": sconf.timeRange * sconf.initialTimieStep / 2
+                    "curtime":
+                        sconf.numberOfManyBases * sconf.timeStepOfManyBases,
                 },
                 "rgslid_dt": {
-                    "val": sconf.initialTimieStep / 4
+                    "val": sconf.timeStepOfManyBases
                 },
             },
             "initial-state" : {
@@ -538,6 +537,7 @@
         var freeMove = [0,100,0];
         var force = [255, 0, 0];
         var forceMove = [150,0,0];
+        var diagram = [150,50,100];
         var path = [0,0,100];
         var time = [0,100,100,1];
         return {
@@ -548,14 +548,14 @@
             "path"              : path,
             "path-change"       : [0,   0,  100, 1],
             "kepler-triangle"   : [50,  50, 100],
-            "SABCD"             : path,
-            "SABCDEF"           : path,
+            "SABCD"             : [0,0,100, 0.01, 0.8],
+            "SABCDEF"           : [0,0,100, 0.01, 0.8],
 
-            "SBC"               : [0,0,100, 0.5, 0.8],
-            "SCD"               : [0,0,100, 0.5, 0.8],
-            "SDE"               : [0,0,100, 0.5, 0.8],
-            "SEF"               : [0,0,100, 0.5, 0.8],
-            "SAB"               : [0,0,100, 0.5, 0.8],
+            "SBC"               : [0,0,100, 0.5, 1],
+            "SCD"               : [0,0,100, 0.5, 1],
+            "SDE"               : [0,0,100, 0.5, 1],
+            "SEF"               : [0,0,100, 0.5, 1],
+            "SAB"               : [0,0,100, 0.5, 1],
 
             "SBc"               : [0, 100,  0,  0.5, 0.8],
             "SCd"               : [0, 100,  0,  0.5, 0.8],
@@ -577,13 +577,13 @@
 
             "ABCV"              : forceMove,
             "DEFZ"              : forceMove,
-            "SA"                : forceMove,
+            "SA"                : diagram,
 
-            "Sb"                : forceMove,
-            "Sc"                : forceMove,
-            "Sd"                : forceMove,
-            "Se"                : forceMove,
-            "Sf"                : forceMove,
+            "Sb"                : diagram,
+            "Sc"                : diagram,
+            "Sd"                : diagram,
+            "Se"                : diagram,
+            "Sf"                : diagram,
 
             "Cc"                : forceMove,
             "Dd"                : forceMove,
@@ -594,11 +594,11 @@
             "field"             : [255,   0,  0, 0.5],
             "force-center"      : [255,   0,  0, 0.5],
             "S"                 : [255,   0,  0, 0.5],
-            "SB"                : [255,   0,  0, 0.3],
-            "SC"                : [255,   0,  0, 0.3],
-            "SD"                : [255,   0,  0, 0.3],
-            "SE"                : [255,   0,  0, 0.3],
-            "SF"                : [255,   0,  0, 0.3],
+            "SB"                : diagram,
+            "SC"                : diagram,
+            "SD"                : diagram,
+            "SE"                : diagram,
+            "SF"                : diagram,
 
             "BU"                : forceMove,
             "EW"                : forceMove,
@@ -636,7 +636,6 @@
             "Fg"                : [255, 100, 0],
 
             "free-triangle"     : freeMove,
-            "speed-change"      : [0,100,0,1],
         };
     }
 }) ();

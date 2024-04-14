@@ -40,8 +40,9 @@
             ],
             "contents-list" :
             [
-                'texts.claim-proof.txt',
-                'texts.corollary-scholium.txt',
+                'txt/addendum-comment.txt',
+                'txt/latin.txt',
+                'txt/english.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : ``,

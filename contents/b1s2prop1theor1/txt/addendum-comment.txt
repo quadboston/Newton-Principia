@@ -1,206 +1,4 @@
 
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-
-<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English"
-}
-*..*
-
-The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of forces, are contained in immobile planes and are proportional to the times.
-
-<br><br>
-<div book-reference-id="Donahue">Page 123.</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*::*proof|latin
-
-<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-*::*proof|english
-{
-}
-*..*
-
-<span class="captured-reference id-1-0">Let the time be divided into equal parts</span>
-, and 
-in the first part of the time let the body,
-by its inherent force, describe the straight line ¦AB¦AB¦¦.
-<br><br>
-
-
-<span class="captured-reference id-1-1">In the second part of the time</span>,
-the same body, if nothing there to impede it, would pass on by means of a straight line
-to ¦c¦c¦¦ (by Law 1), describing the line ¦Bc¦Bc¦¦ equal to ¦AB¦AB¦¦, with the result that,
-radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the areas ¦SAB¦ASB¦¦,
-
-¦SBc¦BSc¦¦ would come out equal.
-<br><br>
-
-
-<span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>, 
-let the centripetal force ¦force forceMove BV¦act¦¦ with an impulse
-that is single but great, and let it have the effect of making the body depart from the
-straight line ¦Bc¦Bc¦¦
-
-
-<span class="captured-reference id-1-3">
-and continue in the straight line ¦BC¦BC¦¦.
-</span>
-<br><br>
-
-
-
-Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦,
-meeting ¦BC¦BC¦¦ at ¦C¦C¦¦; and,
-the second part of the time being completed, the body (by Corollary 1 of the Laws) will
-be located at ¦C¦C¦¦, in the same plane as the triangle ¦SA SB AB¦ASB¦¦.
-<br><br><br>
-
-Connect ¦SC¦SC¦¦, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
-triangle ¦SBC¦¦ will be equal to
-triangle ¦SBc¦¦, and
-<span class="captured-reference id-1-4">
-therefore also to triangle ¦SAB¦¦.</span>
-<br><br>
-
-
-
-By a similar argument,
-if the centripetal ¦force¦¦ ¦forceMove force¦should act¦¦ successively at
-
-<span class="captured-reference id-force-at-C">¦C¦C¦¦</span>,
-
-<span class="captured-reference id-force-at-D">¦D¦D¦¦</span>,
-
-<span class="captured-reference id-force-at-E">¦E¦E¦¦</span>,
-
-and so on,
-
-<span class="captured-reference id-motion-F">making the body describe</span>,
-the individual straight lines ¦CD¦CD¦¦, ¦DE¦DE¦¦, ¦EF¦EF¦¦, and so on,
-in the individual particles of the time,
-
-all these will lie in the same plane, and the triangle ¦SCD¦¦ will be equal
-to triangle
-¦SBC¦¦, and ¦SDE¦¦ to ¦SCD¦¦, and
-¦SEF¦¦ to ¦SDE¦¦.
-<br><br>
-
-Therefore, in equal times equal areas are described in a motionless plane; and
-componendo, any sums whatever of areas ¦SABCD¦SADS¦¦,
-¦SABCDEF¦SAFS¦¦
-are to one another as the times of description.
-<br><br>
-
-
-<span class="captured-reference id-more-triangles">Now let the number</span>,
-
-of the triangles be increased and their breadth decreased
-in infinitum, and their ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦
-(by Corollary Four of Lemma Three)
-will be a curved line:
-
-and therefore the centripetal ¦force¦¦, by with the body is perpetually ¦forceMove Cc Dd Ee Ff¦drawn back from the¦¦
-tangent of this curve, will act without ceasing,
-
-while any described areas whatever ¦SABCD¦SADS¦¦,
-¦SABCDEF¦SAFS¦¦,
-always proportional to the times of
-description, will be proportional to those times in this case.
-
-
-<br><br>
-<div book-reference-id="Donahue"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 *::*claim|model
@@ -242,7 +40,6 @@ description, will be proportional to those times in this case.
 
 ¦time¦t¦¦¦¦
 
-¦speed-change cssbold¦vxxxxxx¦¦¦¦
 ¦Av¦initial speed :¦¦¦¦
 
 ¦path-change BC path cssbold¦r¦¦¦¦
@@ -352,3 +149,78 @@ To make speed and intial move distinct, we use these system simulation parameter
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank" title="go to description"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+
+<span class="captured-reference id-corollary-1">T.1. Corollary 1. </span>
+        ¦SP¦r<sub>⟂</sub>¦¦v = const. <a target="_blank"  title="go to content"
+                href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#area-speed-vp">
+            Proof.
+            </a>
+<br><br>
+
+
+
+<span class="captured-reference id-corollary-2">T.1. Corollary 2. </span>
+
+<a target="_blank"  title="go to content"
+   href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
+From polynomial expansion at t₀ = ¦B¦¦ and ∆t = δ:
+</a>
+<br><br>
+    <div style="text-align:center;">
+            ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + 𝗼(δ²), <br>
+            ¦AB¦𝝙⁻¦¦ = ¦AB¦𝗿(t₀-δ) - 𝗿(t₀)¦¦. <br>
+   </div>
+<a name="sagitta" id="sagitta"></a>
+Sagitta 𝕻  bisecting "main" diagonal 𝕯  are correspondingly:
+    <div style="text-align:center;">
+        ¦BU¦𝕻¦¦ = (¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦)/2 =
+                𝗮₀/2δ² + 𝗼<sub>2</sub>(δ²), <br>
+
+         ¦AC¦𝕯¦¦ = ¦BC¦𝝙⁺¦¦ - ¦AB¦𝝙⁻¦¦,
+    </div>
+
+and
+
+    <div style="text-align:center;">
+        ¦BU¦𝕻¦¦ / δ² → 𝗮₀/2, &nbsp; &nbsp; &nbsp; (sagg)  <br>
+        ¦BU¦𝔓¦¦ / ¦AC¦𝔇²¦¦ → a₀/8v₀², <br>
+        when δ → 0.
+    </div>
+<br><br>
+
+
+
+
+
+
+<span class="captured-reference id-corollary-3">T.1. Corollary 3. </span>
+
+From (sagg):
+<br><br>
+    <div style="text-align:center;">
+        ¦EW¦𝔓<sub>e</sub>¦¦ / ¦BU¦𝔓<sub>b</sub>¦¦ =
+            ( ¦EW¦𝔓<sub>e</sub>¦¦ / δ² ) / ( ¦BU¦𝔓<sub>b</sub>¦¦ / δ² ) →
+            a<sub>e</sub>/a<sub>b</sub>, <br>
+        when δ → 0.
+   </div>
+<br><br>

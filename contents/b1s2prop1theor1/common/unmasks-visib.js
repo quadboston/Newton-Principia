@@ -115,7 +115,7 @@
                 $$.$(rgX.svgel)
                     .removeClass( 'undisplay' );
                 rgX.vectorArrowSvg$.removeClass( 'undisplay' );
-                rgX.vectorArrowSvg$.removeClass( 'hidden' );
+                //rgX.vectorArrowSvg$.removeClass( 'hidden' );
 
                 $$.$(rg[ tipKey ].svgel)
                     .removeClass( 'undisplay' );
@@ -174,10 +174,6 @@
             ){
                 dec.undisplay = false;
             }
-                let arrow$ = haz( decor, 'vectorArrowSvg$' );
-                if( arrow$ ) {
-                                        //ccc( decor.pname );
-                }
             if( dec.isPoint ) {
                 dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
                 if( dec.doPaintPname &&
