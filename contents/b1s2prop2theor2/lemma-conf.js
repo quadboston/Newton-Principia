@@ -8,6 +8,7 @@
 
     function lemmaConfig()
     {
+        let route = '../../b1s2prop1theor1/'
         return {
             codesList :
             [
@@ -16,26 +17,39 @@
                 { src : 'extra-images.js' },
                 { src : 'resize-main-scene.js' },
 
-                { src : '../../b1s2prop1theor1/common/global-css-overrider.js' },
-                { src : '../../b1s2prop1theor1/common/sconf.js' },
-                { src : '../../b1s2prop1theor1/common/decor-conf.js' },
-                { src : '../../b1s2prop1theor1/common/dec-2-media.js' },
-                { src : '../../b1s2prop1theor1/common/time-slider.js' },
-                { src : '../../b1s2prop1theor1/common/delta-time-slider.js' },
-                { src : '../../b1s2prop1theor1/common/main-legend.js' },
-                { src : '../../b1s2prop1theor1/common/masks-visib.js' },
-                { src : '../../b1s2prop1theor1/common/media-model.js' },
-                { src : '../../b1s2prop1theor1/common/model-groupify-steps.js' },
-                { src : '../../b1s2prop1theor1/common/model-of-ABV-sliders.js' },
-                { src : '../../b1s2prop1theor1/common/solves-trajectory-math.js' },
-                { src : '../../b1s2prop1theor1/common/path-2-media.js' },
-                { src : '../../b1s2prop1theor1/common/traj-2-trshapes.js' },
-                { src : '../../b1s2prop1theor1/common/traj-2-decs.js' },
-                { src : '../../b1s2prop1theor1/common/state-capturer.js' },
-                { src : '../../b1s2prop1theor1/common/study-model.js' },
-                { src : '../../b1s2prop1theor1/common/time-2-pos8media.js' },
-                { src : '../../b1s2prop1theor1/common/unmasks-visib.js' },
-                //{ src : 'finalizes-subessay-relaunch.js' },
+                  //configures initial constants
+                { src : route+'common/sconf.js' },
+                { src : route+'common/decs-conf.js' },
+                { src : route+'common/global-css-overrider.js' },
+
+                //structures core execution
+                { src : route+'common/sets-user-touch-detector.js' },
+                { src : route+'common/study-model.js' },
+                { src : route+'common/media-model.js' },
+
+                //model-media solving routine
+                { src : route+'common/solves-path.js' },
+                { src : route+'common/model-groupify-steps.js' },
+                { src : route+'common/path-2-decs-array.js' },
+                { src : route+'common/path-2-custom-decs.js' },
+                { src : route+'common/decs-array-2-svg.js' },
+                { src : route+'common/decs-2-svg.js' },
+                { src : route+'common/does-mask-all-svg.js' },
+                { src : route+'common/unmasks-visible-path-svg.js' },
+
+                //sliders
+                { src : route+'common/time-slider.js' },
+                { src : route+'common/delta-time-slider.js' },
+                { src : route+'common/model-of-ABV-sliders.js' },
+
+                //model and media subroutimes
+                { src : route+'common/model8media-lib.js' },
+                { src : route+'common/main-legend.js' },
+
+                //projectile model
+                { src : route+'projectile-model/sconf.js' },
+                { src : route+'projectile-model/study-model.js' },
+                { src : route+'projectile-model/media-model.js' },
             ],
 
             "contents-list" :

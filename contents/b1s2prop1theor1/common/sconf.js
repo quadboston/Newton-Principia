@@ -45,7 +45,6 @@
         var initialPath =
         [
             { name:'A', pos:[531, 613] },
-            //{ name:'B', pos:[582, 422.5 ] },
             { name:'B', pos:[582, 425 ] },
             /*
             { name:'C', pos:[546,264] },

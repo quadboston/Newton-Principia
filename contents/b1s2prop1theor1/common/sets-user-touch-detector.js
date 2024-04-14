@@ -27,8 +27,7 @@
         //this happens between "init_model_parameters" and "media_upcreate"
         //var showBookDiagram = ( amode.theorion === 'claim' && amode.aspect !== 'model' ) ||
         //                      ( amode.theorion !== 'corollary' )
-        var showBookDiagram = true;
-        sDomF.detected_user_interaction_effect( showBookDiagram );
+        sDomF.detected_user_interaction_effect( !!"showBookDiagram" );
     }
 
 }) ();

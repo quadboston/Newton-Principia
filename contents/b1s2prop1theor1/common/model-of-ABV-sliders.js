@@ -138,19 +138,28 @@
         var posS                = rg.S.pos;
         var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );
         var bvNorm              = newBV.unitVec;
-        var newForceAbs         = newBV.abs/tstep;
+        var newForceAbs         = newBV.abs;
         var BS                  = mat.unitVector( mat.subV( posB, posS ) );
         var bsNorm              = mat.scaleV( -1, BS.unitVec );
 
-        //1/r^2=
-        var forceSpatialFactor  = Math.exp(
-                                    rg.force.lawPower * Math.log( BS.abs )
+        //-------------------------------------
+        // //\\ gets abs value of lawConstant A
+        //-------------------------------------
+        //yes, we admit here that force law can be with an arbitrary power,
+        //but for simplicity, write comments here for this power = 2,
+        //r^2=
+        var r2                  = Math.exp(
+                                    -rg.force.lawPower * Math.log( BS.abs )
                                   );
-        //f=A/r^2 = newForceAbs
-        rg.force.lawConstant    = newForceAbs/forceSpatialFactor;
+        //newForceAbs = displacement = A/r^2 * 2dt^2  => A = move * r^2 / (2dt^2)
+        var dt22                = 0.5/(tstep*tstep)
+        rg.force.lawConstant    = newForceAbs * r2 * dt22;
+        //-------------------------------------
+        // \\// gets abs value of lawConstant A
+        //-------------------------------------
+
         //negative fDirection makes force repelling
-        var fDirection          = bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
-        rg.force.lawConstant   *= fDirection;
+        rg.force.lawConstant   *= bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
         return true;
     }
 
