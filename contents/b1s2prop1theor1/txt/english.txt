@@ -58,7 +58,7 @@ radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the ar
 <br><br>
 
 
-<span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>, 
+But when the body comes to ¦B¦B¦¦,
 let the centripetal force ¦force forceMove BV¦act¦¦ with an impulse
 that is single but great, and let it have the effect of making the body depart from the
 straight line ¦Bc¦Bc¦¦
@@ -195,7 +195,7 @@ these ¦BV EZ¦impulses¦¦.
 
 
 <span class="captured-reference id-corollary-4">T.1. Corollary 4.</span>
-The ¦BV EZ¦forces¦¦ by which any bodies in nonresisting spaces are drawn back from rectilinear motions and are deflected into curved orbits are to one another as those
+The forces by which any bodies in nonresisting spaces ¦BV EZ¦are drawn back¦¦ from rectilinear motions and are deflected into curved orbits are to one another as those
 ¦BU EW¦sagittae¦¦ of arcs described
 in equal times which converge to the ¦S¦center of forces¦¦ and bisect ¦AC DF¦the chords¦¦, when
 those arcs are diminished in infinitum. For these ¦BU EW¦sagittae¦¦ are

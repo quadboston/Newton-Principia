@@ -46,10 +46,10 @@
         var force           = rg.force;
         var path            = rg.path.pos;
         var pathAracc       = rg.pathAracc.pos;
-        var impulses          = rg.impulses.vectors;
-        var impulsesAracc     = rg.impulsesAracc.vectors;
+        var impulses        = rg.impulses.vectors;
+        var impulsesAracc   = rg.impulsesAracc.vectors;
         var freePath        = rg.freePath.pos;
-        var freePathAracc   = rg.freePathAracc.pos;
+        //var freePathAracc   = rg.freePathAracc.pos;
         var speeds          = rg.speeds.pos;
         var speedsAracc     = rg.speedsAracc.pos;
 
@@ -60,7 +60,7 @@
         speeds.length       = Math.min( speeds.length, sSteps-1 );
         speedsAracc.length  = Math.min( speedsAracc.length, sSteps-1 );
         freePath.length     = Math.min( freePath.length, sSteps-2 );
-        freePathAracc.length= Math.min( freePathAracc.length, sSteps-2 );
+        //freePathAracc.length= Math.min( freePathAracc.length, sSteps-2 );
 
         //***********************************************
         // //\\ calculates body's trajectory
@@ -80,8 +80,10 @@
                 // //\\ recalls current and former speed placeholders
                 //====================================================
                 //takes speed from previous step
-                var speed = speeds[pi-1]; //=== speed at A
-                var speedAracc = speedsAracc[ pi-1 ]; //=== speed at A
+                //===speed at A when pi = 1
+                var speed = speeds[pi-1];
+                var speedAracc = speedsAracc[ pi-1 ];
+
                 var formerSpeed = pi > 1 ? speeds[pi-2] : speed;
                 //var formerSpeedAracc = pi > 1 ? speedsAracc[pi-2] : speedAracc;
                 //====================================================
@@ -161,12 +163,15 @@
                 impulses[pi-1] = [fx,fy];
 
                 {
-                    //now, makes force impulsesAracc[ pi-1 ] normal to original force
+                    //now, makes force impulsesAracc[ pi-1 ]
+                    //normal to original force
                     let orts = mat.vector2normalOrts( impulses[pi-1] );
                     let df = -forceAbs * //pure forses timeStep *
                              rg.forceAracc.tangentialForcePerCentripetal_fraction;
                     var fAracc = [ df * orts.norm[ 0 ], df * orts.norm[ 1 ] ];
-                    impulsesAracc[ pi-1 ] = fAracc; //impulses
+
+                    //adds normal accelerating component to "legacy impulse"
+                    impulsesAracc[ pi-1 ] = [fx+fAracc[0],fy+fAracc[1]];
                 }
                 //====================================
                 // \\// calculates forces
@@ -183,10 +188,12 @@
                     speed[1]+fy,
                 ];
                 ///speeds with tangential acc. contribution
+                ///recall, impulses and speeds have different indices meaning,
+                ///base of impulse (, index = 0) is coincided with index 1 of speed
                 speedsAracc[pi] =
                 [
-                    speedAracc[0]+(fx + fAracc[ 0 ])*timeStep,
-                    speedAracc[1]+(fy + fAracc[ 1 ])*timeStep,
+                    speedAracc[0]+impulsesAracc[ pi-1 ][0],
+                    speedAracc[1]+impulsesAracc[ pi-1 ][1],
                 ];
                 //====================================
                 // \\// forces do change velocities

@@ -93,47 +93,38 @@
 
 
         var middleSteps_conf = {
+            // //\\ c,d,e,f
             c   : {
                 decStart : 8,
                 decEnd : finalSteps_conf.F.decStart, //22, //10,
                 cssClass : 'theor1proof theor2corollary',
             },
+            d   : { decStart : 12, decEnd : 22, //14,
+                cssClass : 'theor1proof theor2proof',
+            },
+            e   : { decStart : 16,
+                    decEnd : finalSteps_conf.F.decStart, //22, //18,
+                    cssClass : 'theor1proof theor2proof',
+            },
+            f   : { decStart : 20, decEnd : 22,
+                    cssClass : 'theor1proof theor2proof',
+            },
+            // \\// c,d,e,f
 
-            //c-col3
+            // //\\ c-col3
             h   : {
                 caption : 'c',
                 decStart : finalSteps_conf.C.decStart,
                 decEnd : finalSteps_conf.C.decEnd,
                 cssClass : 'theor1corollary theor2proof',
             },
-            d   : { decStart : 12, decEnd : 22, //14,
-                cssClass : 'theor1proof theor2proof',
-            },
-
-            //t2 proof, todm not sure we need it?
-            j   : {
-                caption : 'd', //will coinside with "d", so keep pos equal with "d"
-                decStart : finalSteps_conf.D.decStart,
-                decEnd : finalSteps_conf.F.decEnd,
-                cssClass : 'theor1proof theor2proof tohidden', //this uhides in Theor. 2
-            },
-
-            e   : { decStart : 16,
-                    decEnd : finalSteps_conf.F.decStart, //22, //18,
-                cssClass : 'theor1proof theor2proof',
-            },
-
-            f   : { decStart : 20, decEnd : 22,
-                cssClass : 'theor1proof theor2proof',
-            },
-
-            //f-col3
             g   : {
                 caption : 'f',
                 decStart : finalSteps_conf.F.decStart,
                 decEnd : finalSteps_conf.F.decEnd,
                 cssClass : 'theor1corollary',
             },
+            // \\// c-col3
         };
 
         var forceTip_conf = {
@@ -303,26 +294,23 @@
             },
             { nam : ['E', 'e'],
                 decStart : rg.E.decStart,
-                //decEnd : rg.F.decEnd,
                 cssClass : 'theor1proof theor2proof tp-force-_move',
             },
             { nam : ['F', 'f'],
                 decStart : rg.F.decStart,
                 cssClass : 'theor1proof theor2proof tp-force-_move',
             },
-
             { nam : ['B', 'c'],
-                cssClass : 'theor1proof xtheor2proof theor2corollary',
+                cssClass : 'theor1proof theor2corollary',
                 decEnd : rg.f.decStart,
             },
             { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
             { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
-
-            { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
-
-            { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
             { nam : ['E', 'g'], cssClass : 'theor1corollary', },
             { nam : ['F', 'g'], cssClass : 'theor1corollary', },
+
+            { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
+            { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
 
             { nam : ['C', 'V'], decStart : rg.C.decStart, },
             { nam : ['A', 'v'], decStart : -2, },

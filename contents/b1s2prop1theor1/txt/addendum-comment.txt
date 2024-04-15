@@ -79,7 +79,7 @@
            to area of former ¦kepler-triangle SAB¦"kepler-triangle"¦¦,<br><br>
 
 
-        <span class="captured-reference id-1-2">proof step 2</span>.
+        proof step 2.
         the ¦force¦force 𝗳¦¦ adds an impulse 𝗽 to the speed:
           <div style="text-align:center;">
             <div style="display:inline-block; text-align:left;">
@@ -104,7 +104,7 @@
               ¦AB Bc¦𝗿<sub>1</sub>¦¦ = ¦AB Bc¦𝗿<sub>Ac</sub>¦¦ =
                                        ¦Av¦𝘃<sub>A</sub>¦¦∆τ, <br>
               ¦Cc BV¦𝗿<sub>2</sub>¦¦ = ¦Cc BV¦𝗿<sub>cC</sub>¦¦ = ∆𝘃 / 2 ∆τ, <br>
-              Summands 𝗿<sub>1,2</sub> correcpondingly are: <br>
+              Summands 𝗿<sub>1,2</sub> correspondingly are: <br>
               ¦BC AB¦∆𝗿¦¦ = ¦Av¦𝘃<sub>A</sub>¦¦∆τ + ¦Cc BV¦1/2 𝗳(∆τ)²¦¦ &nbsp;&nbsp;&nbsp; (**)
               <br><br>
           </div>

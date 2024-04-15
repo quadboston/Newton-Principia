@@ -7,12 +7,6 @@
         ssFExportList : { init_conf }
     });
     return;
-/*
- *
- * T2 collolary
- * bug: why deviation perpendicular is not othogonal to to the radii?
- *
- * */
 
 
 
@@ -316,7 +310,7 @@
                     "val": sconf.initialTimieStep
                 },
             },
-
+            /*
             "1-2": {
                 "slider_sltime": {
                     "curtime": 2.448323622026032 * sconf.initialTimieStep
@@ -325,6 +319,7 @@
                     "val": sconf.initialTimieStep
                 },
             },
+            */
             "1-3": {
                 "slider_sltime": {
                     "curtime": 2.5752915514853103 * sconf.initialTimieStep
