@@ -89,6 +89,7 @@
         let speed = 1/initialTimieStep;
         to_sconf =
         {
+            FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
             hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
             //nonhover_width    : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
             //this collaborates with impulse line-segment, we are afraide to
@@ -398,6 +399,14 @@
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
+                },
+                "speeds": {
+                    "pos": [
+                        [
+                            0.2618140190615299 / sconf.initialTimieStep,
+                            0.9651183447758357 / sconf.initialTimieStep
+                        ]
+                    ]
                 },
             },
 

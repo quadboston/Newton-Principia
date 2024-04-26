@@ -54,7 +54,8 @@
         };
         ///makes proof final points to disappear after a while
         eachprop( finalSteps_conf, (fs, kName) => {
-            fs.decEnd = sconf.numberOfManyBases*4 * 1.2;
+            fs.decEnd = sconf.numberOfManyBases*4 *
+                        sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
         });
         //----------------------------------------------------
         // \\// proof final points
@@ -130,7 +131,7 @@
         var forceTip_conf = {
             Z   : {
                     decStart : 22,
-                    decEnd : 27,
+                    decEnd : finalSteps_conf.F.decEnd, //was 27,
                     cssClass : 'theor1corollary',
                   },
             V   : { decStart : -2, },

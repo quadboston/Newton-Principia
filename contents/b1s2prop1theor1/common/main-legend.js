@@ -167,7 +167,7 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'force', '<b>p</b>', null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'force', '<b>p=2f∆t</b>', null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'fx', 'px', null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'fy', 'py', null, null, !!'alignCaptionToRight', 'proof' );
         var row = $$.c('tr')

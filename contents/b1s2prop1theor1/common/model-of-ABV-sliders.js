@@ -104,6 +104,8 @@
 
         // gets new speed, but speed abs value does not change
         var newv0 = mat.scaleV( sconf.speed, unitAv.unitVec );
+        var newv0 = path_Av;
+        
         toreg( 'speeds' )( 'pos', [ newv0 ] );
         toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
 
