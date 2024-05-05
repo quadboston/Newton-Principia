@@ -138,7 +138,7 @@
                 ssF.pnames2line(
                     dec.pivotNames[0],
                     dec.pivotNames[1],
-                    haz( dec, 'cssClass' ),
+                    haz( dec, 'cssClass' ), //works: 'hidden'
                 );
             //}
             ///ssF.pnames2poly
@@ -274,17 +274,33 @@
             var ps         = rg[ pname ].pos;
             toreg( fakeName )
                 ( 'pos', [ ps[0], ps[1] ]  )
-                ( 'undisplay', true  )
+                //( 'undisplay', true  )
                 ;
-            rgPos2rgMedia(
-                fakeName,
-                {
-                    'stroke'        : '', //originalPoint.pointWrap.pcolor,
-                    'fill'          : 'white',
-                    'stroke-width'  : 2,
-                    r               : handleR,
-                }
-            );
+                
+            if( pname === 'V' ) {
+                rgPos2rgMedia(
+                    fakeName,
+                    {
+                        'stroke'        : sDomF.getFixedColor( 'force' ),
+                        'fill'          : 'white',
+                        'stroke-width'  : 4,
+                        r               : handleR+2,
+                    }
+                );
+                //rg[ fakeName ].svgel$.className = rg[ fakeName ].svgel.className  + ' tp-force';
+                rg[ fakeName ].svgel$.addClass( 'tp-force' );
+                //c cc( pname, fakeName, rg[ fakeName ] );
+            } else {
+                rgPos2rgMedia(
+                    fakeName,
+                    {
+                        'stroke'        : '', //originalPoint.pointWrap.pcolor,
+                        'fill'          : 'white',
+                        'stroke-width'  : 2,
+                        r               : handleR,
+                    }
+                );
+            }
         });
         //------------------------------------------------------
         // \\// non-standard patch,

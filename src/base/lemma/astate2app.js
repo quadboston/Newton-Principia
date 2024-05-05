@@ -32,6 +32,7 @@
             stdMod.astate_2_rg8model        = astate_2_rg8model;
             return;
 
+            ///seems wrong approach, should be model upcreate
             function astate_2_rg8model8media( astate4rg, )
             {
                 astate_2_rg8model( astate4rg, );
@@ -40,6 +41,7 @@
                 haff( stdMod, 'media_upcreate' );
             }
 
+            ///poor name, should be capture_2_rg8modelUpcreate
             function astate_2_rg8model( astate, dontRun_model_upcreate )
             {
                 if( astate ) {

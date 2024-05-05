@@ -64,7 +64,7 @@ that is single but great, and let it have the effect of making the body depart f
 straight line ¦Bc¦Bc¦¦
 
 
-<span class="captured-reference id-1-3">
+<span class="captured-reference id-1-B">
 and continue in the straight line ¦BC¦BC¦¦.
 </span>
 <br><br>
@@ -144,13 +144,10 @@ description, will be proportional to those times in this case.
 
 *::*corollary|english
 {
-  "subessayCaption" : "1,2,3,4",
-  "subessay" : "cor-1234"
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "cor-1"
 }
 *..*
-
-
-<span class="captured-reference id-initial-state">T.1. Corollary 1.</span>
 
 The velocity of a body attracted to an ¦S¦immobile centre¦¦ in
 nonresisting spaces is inversely as the ¦SP¦perpendicular¦¦ dropped from that center to
@@ -161,9 +158,12 @@ these bases are inversely as the perpendiculars dropped to them.
 <br><br><br>
 
 
-
-
-<span class="captured-reference id-corollary-2">T.1. Corollary 2.</span>
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "cor-2"
+}
+*..*
 
 If the chords, ¦AB¦AB¦¦, ¦BC¦BC¦¦ of two arcs described successively in equal
 times by the same body
@@ -173,9 +173,13 @@ position which it ultimately has when those arcs are diminished in infinitum,
 be produced in both directions, it will ¦SB¦pass through¦¦ the ¦S¦center of forces¦¦.
 <br><br><br>
 
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "cor-3"
+}
+*..*
 
-
-<span class="captured-reference id-initial-state">T.1. Corollary 3.</span>
 
 If the chords ¦AB¦AB¦¦, ¦BC¦BC¦¦, and ¦DE¦DE¦¦, ¦EF¦EF¦¦,
 of arcs described in equal times, in
@@ -194,7 +198,13 @@ these ¦BV EZ¦impulses¦¦.
 <br><br><br>
 
 
-<span class="captured-reference id-corollary-4">T.1. Corollary 4.</span>
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 4",
+  "subessay" : "cor-4"
+}
+*..*
+
 The forces by which any bodies in nonresisting spaces ¦BV EZ¦are drawn back¦¦ from rectilinear motions and are deflected into curved orbits are to one another as those
 ¦BU EW¦sagittae¦¦ of arcs described
 in equal times which converge to the ¦S¦center of forces¦¦ and bisect ¦AC DF¦the chords¦¦, when
@@ -246,10 +256,6 @@ Pages 123 - 141.
   "subessay" : "cor-6"
 }
 *..*
-
-
-
-
 
 T.1. Corollary 6.
 All the same things pertain, by Corollary 5 of the Laws, where the planes in which the

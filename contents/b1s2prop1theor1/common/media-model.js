@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, eachprop, has, haz, hafff,
+        ns, sn, $$, eachprop, has, haz, hafff, fmethods,
         sconf, ssF, sDomF, rg, exegs,
         amode, stdMod,
     } = window.b$l.apptree({
@@ -10,6 +10,7 @@
         },
     });
     var handleR = 5;
+    var pointsBCDE_events_are_assignend = false;
     return;
 
 
@@ -70,6 +71,49 @@
         hafff( rg.rgslid_dt, 'updates_sliderGUI' );
         //***********************************************************
 
+        //----------------------------------------------------        
+        // //\\ shows next move of the proof
+        //----------------------------------------------------        
+        if( !pointsBCDE_events_are_assignend ) {
+            ///launch time work
+            pointsBCDE_events_are_assignend = true;
+            rg.B.svgel.addEventListener( 'click', function() {
+                if( amode.theorion === 'proof' ) {
+                    fmethods.executeCapturedState( '1-B' );
+                }
+            });
+            rg.C.svgel.addEventListener( 'click', function() {
+                if( amode.theorion === 'proof' ) {
+                    fmethods.executeCapturedState( '1-C' );
+                }
+            });
+            rg.D.svgel.addEventListener( 'click', function() {
+                if( amode.theorion === 'proof' ) {
+                    fmethods.executeCapturedState( '1-D' );
+                }
+            });
+            rg.E.svgel.addEventListener( 'click', function() {
+                if( amode.theorion === 'proof' ) {
+                    fmethods.executeCapturedState( '1-E' );
+                }
+            });
+            ['B', 'C', 'D', 'E'].forEach( id => {
+                rg[id + 'title'] = $$.cNS( 'title' ).to( rg[id].svgel )();
+            });
+        }
+        var pointsAreOn = amode.theorion === 'proof';
+        ['B', 'C', 'D', 'E'].forEach( id => {
+                let rgX = rg[ id ];
+                rgX.svgel.setAttribute( 'r', pointsAreOn ? '8' : '4' );
+                rgX.svgel.style[ 'stroke-width' ] = pointsAreOn ? '5' : '2';
+                rgX.svgel.style[ 'fill' ] = pointsAreOn ?
+                    'white' : sDomF.getFixedColor( 'path' );
+                rg[ id + 'title' ].textContent = pointsAreOn ? 'show next move' : '';
+        });
+        //----------------------------------------------------        
+        // \\// shows next move of the proof
+        //----------------------------------------------------        
+        
         ssF.mediaModelInitialized = true;
     }
 

@@ -259,6 +259,7 @@
             });
          }
 
+        setsCommonT1andT2capture(); 
         //this comes from theorem P2; this does not exist in P1;
         if( has( ssF, 'init_conf_addon' ) ) {
             haff( ssF, 'init_conf_addon' );
@@ -272,6 +273,44 @@
     return;
 
 
+    function setsCommonT1andT2capture()
+    {
+        nspaste( capture, {
+            "1-B": {
+                "slider_sltime": {
+                    "curtime": 2.5752915514853103 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-C": {
+                "slider_sltime": {
+                    "curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-D": {
+                "slider_sltime": {
+                    "curtime": 3.45
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-E": {
+                "slider_sltime": {
+                    "curtime": 4.26
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+        });
+    }
+    
     ///sets captured states of the simulator,
     ///used in by-click-actions in text,
     ///jsobject has indices of this these actions,
@@ -300,30 +339,12 @@
 
                 "slider_sltime": {
                     "curtime": 1.75000001 * sconf.initialTimieStep
-                }
+                },
             },
 
             "1-1": {
                 "slider_sltime": {
                     "curtime": 2.099161816013016 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            /*
-            "1-2": {
-                "slider_sltime": {
-                    "curtime": 2.448323622026032 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            */
-            "1-3": {
-                "slider_sltime": {
-                    "curtime": 2.5752915514853103 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -387,6 +408,8 @@
                     "val": sconf.timeStepOfManyBases
                 },
             },
+            ///see also __amode2rgstate,
+            ///the very first generic statement
             "initial-state" : {
                 "A": {
                     "pos": [
@@ -408,6 +431,10 @@
                         ]
                     ]
                 },
+                "force" : {
+                    'lawPower' : sconf.force[0][0],
+                    'lawConstant' : sconf.force[0][1]
+                }
             },
 
             "corollary-1": {
@@ -431,8 +458,27 @@
                         2.4846663769760875,
                         -0.010267216433785486
                     ]
-                }
-
+                },
+                //---------------------------
+                // //\\ perpendicular
+                //---------------------------
+                "SP": {
+                    //normal step=stepIx4=23
+                    "decStart" :1, "decEnd" : 1111111111111
+                },
+                "TP": {
+                    //normal step=stepIx4=23
+                    "decStart" :1, "decEnd" : 1111111111111
+                },
+                "P": {
+                    "decStart" :1, "decEnd" : 1111111111111
+                },
+                "T": {
+                    "decStart" :1, "decEnd" : 1111111111111
+                },
+                //---------------------------
+                // \\// perpendicular
+                //---------------------------
             },
             "corollary-2": {
                 "rgslid_dt": {
@@ -453,6 +499,19 @@
             "corollary-4" : {
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
+                },
+                "AC": {
+                    //stepIx4=23
+                    "decStart" :10, "decEnd" :111111111111,
+                },
+                "DF": {
+                    "decStart" :21, "decEnd" :111111111111,
+                },
+                "BU": {
+                    "decStart" :10, "decEnd" :111111111111,
+                },
+                "EW": {
+                    "decStart" :21, "decEnd" :111111111111,
                 },
                 "slider_sltime": {
                     //"curtime": 6.961644376899696 * sconf.initialTimieStep
@@ -493,6 +552,59 @@
             "__amode2rgstate" :
             [
                 [
+                    "true",
+                    {
+                        //this clears up state for all lemmas and all subessays,
+                        //every time, even when capture-by-capture-toggler-in-text is clicked,
+                        //this block does its job:
+                        rg : {
+                            "V": {
+                                "decEnd" : 1,
+                            },
+                            'V-white-filler' : {
+                                "decStart" : -2,
+                            },
+                            "AC": {
+                                //normal step=stepIx4=23
+                                "decStart" :10, "decEnd" :1
+                            },
+                            "DF": {
+                                "decStart" :10, "decEnd" :1
+                            },
+                            //saggitas
+                            "BU": {
+                                "decStart" :10, "decEnd" :1
+                            },
+                            "EW": {
+                                "decStart" :10, "decEnd" :1
+                            },
+                 
+                            //---------------------------
+                            // //\\ perpendicular
+                            //---------------------------
+                            "SP": {
+                                //normal step=stepIx4=23
+                                "decStart" :10, "decEnd" :1
+                            },
+                            "TP": {
+                                //normal step=stepIx4=23
+                                "decStart" :10, "decEnd" :1
+                            },
+                            "P": {
+                                //normal step=stepIx4=23
+                                "decStart" :10, "decEnd" :1
+                            },
+                            "T": {
+                                //normal step=stepIx4=23
+                                "decStart" :10, "decEnd" :1
+                            },
+                            //---------------------------
+                            // \\// perpendicular
+                            //---------------------------
+                        }
+                    }
+                ], 
+                [
                     "!ssF.mediaModelInitialized",
                     {
                         "captured" : "initial-state",
@@ -507,6 +619,10 @@
                         "captured" : "1-0",
                         "rg" :
                         {
+                            "V": {
+                                "decEnd" : 11111111,
+                                "doPaintPname" : true,
+                            },
                         }
                     }
                 ],
@@ -520,8 +636,7 @@
                         }
                     }
                 ],
-
-
+                 
                 [
                     "( theorion === 'corollary' && submodel === 'common' )",
                     {
@@ -531,9 +646,184 @@
                         }
                     }
                 ],
+                [
+                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    "( subessay === 'cor-1' )",
+                    {
+                        "captured" : "corollary-1",
+                        "rg" : {
+                        }
+                    }
+                ],
+                [
+                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    "( subessay === 'cor-2' )",
+                    {
+                        "captured" : "corollary-2",
+                        "rg" : {
+                        }
+                    }
+                ],
+                [
+                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    "( subessay === 'cor-3' )",
+                    {
+                        "captured" : "corollary-3",
+                        "rg" : {
+                        }
+                    }
+                ],
+                [
+                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    "( subessay === 'cor-4' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "corollary-4",
+                        "rg" : {
+                        }
+                    }
+                ],
+                
+                //---------------------------
+                // //\\ redundant points
+                //---------------------------
+                [
+                    "( subessay === 'cor-2' || subessay === 'cor-3' || subessay === 'cor-4' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "Z": {
+                                "decEnd" : 11111111
+                            },
+                            "V": {
+                                "decEnd" : 11111111,
+                            },
+                            "ABCV": {
+                                "decEnd" : 11111111
+                            },
+                            "DEFZ" : {
+                                "decEnd" : 11111111
+                            },
+                        }
+                    }
+                ],
+                [
+                    "( subessay !== 'cor-2' && subessay !== 'cor-3' && subessay !== 'cor-4' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "Z" : {
+                                "decEnd" : 1
+                            },
+                            "ABCV": {
+                                "decEnd" : 1
+                            },
+                            "DEFZ" : {
+                                "decEnd" : 1
+                            },
+                        }
+                    }
+                ],
+                //---------------------------
+                // \\// redundant points
+                //---------------------------
+                 
+                [
+                    "( subessay !== 'cor-3' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "h": {
+                                "decEnd" : 1
+                            },
+                            "Bh": {
+                                "decEnd" : 1
+                            },
+                            "Ch": {
+                                "decEnd" : 1
+                            },
+                            "g": {
+                                "decEnd" : 1
+                            },
+                            "Eg": {
+                                "decEnd" : 1
+                            },
+                            "Fg": {
+                                "decEnd" : 1
+                            },
+                        }
+                    }
+                ],
+                [
+                    "( subessay === 'cor-3' )",
+                    {
+                        //we set here conditions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "h": {
+                                "decEnd" : 1111111111
+                            },
+                            "Bh": {
+                                "decEnd" : 1111111111
+                            },
+                            "Ch": {
+                                "decEnd" : 1111111111
+                            },
+                            "g": {
+                                "decEnd" : 1111111111
+                            },
+                            "Eg": {
+                                "decEnd" : 1111111111
+                            },
+                            "Fg": {
+                                "decEnd" : 1111111111
+                            },
+                        }
+                    }
+                ],
+                 
+                [
+                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    "( theorion === 'corollary' && aspect === 'model' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "corollary-4",
+                        "rg" : {
+                            //---------------------------
+                            // //\\ perpendicular
+                            //---------------------------
+                            "SP": {
+                                //normal step=stepIx4=23
+                                "decStart" :1, "decEnd" : 1111111111111
+                            },
+                            "TP": {
+                                //normal step=stepIx4=23
+                                "decStart" :1, "decEnd" : 1111111111111
+                            },
+                            "P": {
+                                "decStart" :1, "decEnd" : 1111111111111
+                            },
+                            "T": {
+                                "decStart" :1, "decEnd" : 1111111111111
+                            },
+                            //---------------------------
+                            // \\// perpendicular
+                            //---------------------------
+                        }
+                    }
+                ],
             ]
         });
-    }
+        }
 
     function predefinedTopics()
     {

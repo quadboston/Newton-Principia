@@ -93,6 +93,10 @@
                 "captured" : "initial-state",
                 "rg" :
                 {
+                    ///proliferation: repetition with T1
+                    'V-white-filler' : {
+                        "decStart" : -2,
+                    },
                 }
             }
         ],

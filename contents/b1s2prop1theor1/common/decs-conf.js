@@ -134,7 +134,7 @@
                     decEnd : finalSteps_conf.F.decEnd, //was 27,
                     cssClass : 'theor1corollary',
                   },
-            V   : { decStart : -2, },
+            V   : { decStart : 2, },
         };
 
         var mixedSteps_conf = {
@@ -152,6 +152,7 @@
                   },
             T   : { decStart : 28,
                     decEnd : -2,  //no end visibility
+                    doPaintPname : false,
                     cssClass : 'theor1corollary',
                     //undisplay : true,
                   },
@@ -337,8 +338,8 @@
                 decStart : rg.F.decStart,
             },
 
-            { nam : ['A', 'C'], cssClass : 'theor1corollary', },
-            { nam : ['D', 'F'], cssClass : 'theor1corollary', },
+            { nam : ['A', 'C'], cssClass : 'theor1corollary' },
+            { nam : ['D', 'F'], cssClass : 'theor1corollary' },
 
 
 

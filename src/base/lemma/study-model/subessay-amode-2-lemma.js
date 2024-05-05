@@ -98,7 +98,6 @@
         ///------------------------------------------------------------------
         /// \\// takes conditions scripted at the bottom of professor-script,
         ///------------------------------------------------------------------
-
         if( haz( ssF, 'amode2rgstate' ) ){
             //appar. can do this
             //ssF.amode2rgstate();
@@ -110,6 +109,8 @@
         //haf( stdMod, 'astate_ 2_rg8model' )(
         //also does execute "stdMod.model_upcreate",
 
+        //reminder: captured here is the last satisfied captured,
+        //the last after recent loop via code fragements above
         stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], );
 
         //=================================================================
@@ -123,7 +124,7 @@
             .removeClass( removeCls )
             .addClass( 'submodel--' + amode.submodel );
         /*
-        ccc( 'swapped:' +
+        c cc( 'swapped:' +
              '\nremoved=' + removeCls +
              '\nadded=' + fapp.fappRoot$._cls().match( smcls )[1]
         );

@@ -23,6 +23,7 @@
     fmethods.does_set_next_lemma_button_event    = does_set_next_lemma_button_event;
     fmethods.fullResize             = fullResize;
     fmethods.attachWeelToDomEl      = attachWeelToDomEl;
+    fmethods.executeCapturedState   = executeCapturedState;
     return;
 
 
@@ -39,15 +40,18 @@
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
             link.setAttribute( 'title', 'click to go to episode' );
             link.addEventListener( 'click', function() {
-                sDomF.detected_user_interaction_effect();
-                //match[1] is astateKey
-                //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
-                hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ match[1] ] );
+                executeCapturedState( match[1] );
             });
         });
     };
 
-
+    function executeCapturedState( captureKeyName ) {
+        sDomF.detected_user_interaction_effect();
+        //match[1] is astateKey
+        //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
+        hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ captureKeyName ] );
+    }
+    
     function setupEvents()
     {
         window.addEventListener( 'resize', fullResize );
