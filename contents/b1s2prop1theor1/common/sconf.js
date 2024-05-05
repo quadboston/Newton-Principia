@@ -656,7 +656,6 @@
                     }
                 ],
                 [
-                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
                     "( subessay === 'cor-2' )",
                     {
                         "captured" : "corollary-2",

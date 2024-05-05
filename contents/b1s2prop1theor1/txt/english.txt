@@ -80,8 +80,7 @@ be located at ¦C¦C¦¦, in the same plane as the triangle ¦SA SB AB¦ASB¦¦.
 Connect ¦SC¦SC¦¦, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
 triangle ¦SBC¦¦ will be equal to
 triangle ¦SBc¦¦, and
-<span class="captured-reference id-1-4">
-therefore also to triangle ¦SAB¦¦.</span>
+therefore also to triangle ¦SAB¦¦.
 <br><br>
 
 

@@ -134,7 +134,7 @@
                     decEnd : finalSteps_conf.F.decEnd, //was 27,
                     cssClass : 'theor1corollary',
                   },
-            V   : { decStart : 2, },
+            V   : { decStart : 2, decEnd : 1111111111 },
         };
 
         var mixedSteps_conf = {
@@ -314,7 +314,7 @@
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
             { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
 
-            { nam : ['C', 'V'], decStart : rg.C.decStart, },
+            //{ nam : ['C', 'V'], decStart : rg.C.decStart, },
             { nam : ['A', 'v'], decStart : -2, },
 
             { nam : ['S', 'P'], decStart : -2,
