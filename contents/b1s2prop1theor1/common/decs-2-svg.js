@@ -80,6 +80,7 @@
         }
 
         ///this compensates non-using of engine-template-function
+        ///for font position,
         ///doPaintLetter8kernel( pname )
         if(
             //todm can we? rgPoint.doPaintPname
@@ -88,14 +89,14 @@
             var lpos = rgPoint.medpos.concat([]);
             ///letter quadrant sugar
             switch( pname ) {
-                case 'B' : lpos = [ lpos[0]+12, lpos[1]+5 ];
+                case 'B' : lpos = [ lpos[0]+10, lpos[1]+22 ];
                 break;
                 case 'A' : lpos = [ lpos[0]+10, lpos[1]+20 ];
                 break;
                 case 'S' :
                 case 'Z' : lpos = [ lpos[0]-30, lpos[1]+20 ];
                 break;
-                case 'V' : lpos = [ lpos[0]-18, lpos[1]-15 ];
+                case 'V' : lpos = [ lpos[0]-30, lpos[1]-6 ];
                 break;
                 default: lpos = [ lpos[0]+8, lpos[1]-10 ];
             }

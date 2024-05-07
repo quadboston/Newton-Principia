@@ -88,11 +88,11 @@ therefore also to triangle ¦SAB¦¦.
 
 if the centripetal ¦force¦¦ ¦forceMove force¦should act¦¦ successively at
 
-<span class="captured-reference id-force-at-C">¦C¦C¦¦</span>,
+<span class="captured-reference id-1-C">¦C¦C¦¦</span>,
 
-<span class="captured-reference id-force-at-D">¦D¦D¦¦</span>,
+<span class="captured-reference id-1-D">¦D¦D¦¦</span>,
 
-<span class="captured-reference id-force-at-E">¦E¦E¦¦</span>,
+<span class="captured-reference id-1-E">¦E¦E¦¦</span>,
 
 and so on,
 

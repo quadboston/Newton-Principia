@@ -358,31 +358,6 @@
                     "val": sconf.initialTimieStep
                 },
             },
-            "force-at-C": {
-                "slider_sltime": {
-                    "curtime": 3.3370991282409808 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "force-at-D": {
-                "slider_sltime": {
-                    "curtime": 4.352842563915209 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "force-at-E": {
-                "slider_sltime": {
-                    "curtime": 5.3685859995894365 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-
             "motion-F": {
                 "slider_sltime": {
                     "curtime": 5.63 * sconf.initialTimieStep

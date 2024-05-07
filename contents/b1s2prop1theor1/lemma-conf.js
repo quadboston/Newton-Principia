@@ -23,9 +23,9 @@
                 //model-media solving routine
                 { src : '../common/solves-path.js' },
                 { src : '../common/model-groupify-steps.js' },
-                { src : '../common/path-2-decs-array.js' },
+                { src : '../common/path-2-path-model-racks.js' },
                 { src : '../common/path-2-custom-decs.js' },
-                { src : '../common/decs-array-2-svg.js' },
+                { src : '../common/path-model-racks-2-svg.js' },
                 { src : '../common/decs-2-svg.js' },
                 { src : '../common/does-mask-all-svg.js' },
                 { src : '../common/unmasks-visible-path-svg.js' },
