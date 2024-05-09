@@ -9,6 +9,7 @@
             paints_draggableDecPoints8Line,
             dec2svg,
             dragPointPos_2_mediaOfDragKernels,
+            fakePoints_2_svgPosition,
         },
         setModule,
     });
@@ -157,12 +158,15 @@
         //==========================================
         // //\\ S to media
         //==========================================
-        ssF.rgPos2rgMedia(
-            'S',
-              { 
-                cssClass: 'tofill tostroke',
-              }
-        );
+        //['S','B','C','D','E','F','V','Z'].forEach( pname => {
+        ['S'].forEach( pname => {
+            ssF.rgPos2rgMedia(
+                pname,
+                { 
+                    cssClass: 'tofill tostroke',
+                }
+            );
+        });    
         //==========================================
         // \\// S to media
         //==========================================
@@ -180,9 +184,9 @@
             {
                 'fill' : 'white',
                 'stroke' : sDomF.getFixedColor( 'path' ),
-                'stroke-width' : 3,
+                'stroke-width' : 1,  //static case, overrided by tp
                 r : 6,
-                cssClass : 'ppp-a',
+                cssClass : 'tofill tostroke',
             }
         );
         //-------------------------------------------------
@@ -207,7 +211,7 @@
 
                 'fill' : 'white',
                 'stroke' : 'blue',
-                'stroke-width' : 3,
+                'stroke-width' : 1,
                 r : 6,
             }
         );
@@ -234,7 +238,7 @@
 
                 'fill' : 'white',
                 'stroke' : sDomF.getFixedColor( 'field' ),
-                'stroke-width' : 3,
+                //'stroke-width' : 3,
                 r : 6,
             }
         );
@@ -260,22 +264,44 @@
         //-------------------------------------------------
     }
 
-
-
+    //=========================================
+    // //\\ V,v,A one-time and dynamic calls
+    //=========================================
+    //dynamic call for speeding up
+    function fakePoints_2_svgPosition()
+    {
+        //------------------------------------------------------
+        // //\\ non-standard patch,
+        //      white kernels over drag points 'V', 'v', 'A',
+        //------------------------------------------------------
+        [ 'V', 'v', 'A' ].forEach( pname => {
+            var ps = rg[ pname ].pos;
+            var pt = rg[ pname + '-white-filler' ];
+            pt.pos = [ ps[0], ps[1] ];
+            //if points are flagged as 'unscalable', then
+            //they are immune to scaling when user scales diagram with mouse
+            pt.medpos = haz( pt, 'unscalable' ) ?
+                ssF.mod2inn_original( pt.pos, stdMod ) :
+                ssF.mod2inn( pt.pos, stdMod );
+            pt.svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
+            pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
+        });
+    }
+    
+    
+    ///one-time call
+    ///move to media launch except pos setting
     function dragPointPos_2_mediaOfDragKernels()
     {
         //------------------------------------------------------
         // //\\ non-standard patch,
         //      white kernels over drag points 'V', 'v', 'A',
-        //      ???by master-point "undisplay" flag,
-        //      ???white kernels dec virt-vis and material media,
         //------------------------------------------------------
         [ 'V', 'v', 'A' ].forEach( pname => {
             var fakeName    = pname + '-white-filler';
             var ps         = rg[ pname ].pos;
             toreg( fakeName )
                 ( 'pos', [ ps[0], ps[1] ]  )
-                //( 'undisplay', true  )
                 ;
                 
             if( pname === 'V' ) {
@@ -284,20 +310,20 @@
                     {
                         'stroke'        : sDomF.getFixedColor( 'force' ),
                         'fill'          : 'white',
-                        'stroke-width'  : 4,
+                        //4, value 4 is removed to align with
+                        //tpstroke width = 1 for other points
+                        //which do not have "fakeName" twin filler,
+                        'stroke-width'  : 1,
                         r               : handleR+2,
                     }
                 );
-                //rg[ fakeName ].svgel$.className = rg[ fakeName ].svgel.className  + ' tp-force';
                 rg[ fakeName ].svgel$.addClass( 'tp-force' );
-                //c cc( pname, fakeName, rg[ fakeName ] );
             } else {
                 rgPos2rgMedia(
                     fakeName,
                     {
-                        'stroke'        : '', //originalPoint.pointWrap.pcolor,
                         'fill'          : 'white',
-                        'stroke-width'  : 2,
+                        //'stroke-width'  : 10, //no effect
                         r               : handleR,
                     }
                 );
@@ -307,6 +333,9 @@
         // \\// non-standard patch,
         //------------------------------------------------------
     }
+    //=========================================
+    // \\// V,v,A launch and dynamic calls
+    //=========================================
 
 
 

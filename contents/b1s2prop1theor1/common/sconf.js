@@ -807,6 +807,7 @@
         var diagram = [150,50,100];
         var path = [0,0,100];
         var time = [0,100,100,1];
+        var sagittaeChords = [100, 0, 100];
         return {
             force,
             forceMove,
@@ -815,6 +816,7 @@
             "path"              : path,
             "path-change"       : [0,   0,  100, 1],
             "kepler-triangle"   : [50,  50, 100],
+            "sagitta-chords"    : [100, 0, 100],
             "SABCD"             : [0,0,100, 0.01, 0.8],
             "SABCDEF"           : [0,0,100, 0.01, 0.8],
 
@@ -869,9 +871,9 @@
 
             "BU"                : forceMove,
             "EW"                : forceMove,
-            "AC"                : path,
+            "AC"                : sagittaeChords,
             "Av"                : path,
-            "DF"                : path,
+            "DF"                : sagittaeChords,
 
             force,
             "Z"                 : [255, 100, 0, 1],

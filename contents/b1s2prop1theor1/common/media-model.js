@@ -60,9 +60,13 @@
         //does not repeat creation ...A.svgel, ...
         stdMod.dec2svg();
 
-        ///drags holes, but then hides them (why?)
-        stdMod.dragPointPos_2_mediaOfDragKernels();
-
+        
+        if( pointsBCDE_events_are_assignend ) {
+            stdMod.fakePoints_2_svgPosition();
+        } else {
+            ///drags holes, but then hides them (why?)
+            stdMod.dragPointPos_2_mediaOfDragKernels();
+        }
         //***********************************************************
         //wraps remained tasks into d8d slider
         //if slider is already created ...
@@ -98,14 +102,20 @@
                 }
             });
             ['B', 'C', 'D', 'E'].forEach( id => {
-                rg[id + 'title'] = $$.cNS( 'title' ).to( rg[id].svgel )();
+                rg[id + 'title'] = $$
+                    .cNS( 'title' )
+                    .to( rg[id].svgel )
+                    .addClass( 'tpstroke' )
+                    .addClass( 'tpfill' )
+                    ();
             });
         }
         var pointsAreOn = amode.theorion === 'proof';
         ['B', 'C', 'D', 'E'].forEach( id => {
                 let rgX = rg[ id ];
-                rgX.svgel.setAttribute( 'r', pointsAreOn ? '8' : '4' );
-                rgX.svgel.style[ 'stroke-width' ] = pointsAreOn ? '5' : '2';
+                rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
+                //rgX.svgel$.addClass( 'tofill' ).addClass( 'tostroke' );
+                //rgX.svgel.style[ 'stroke-width' ] = pointsAreOn ? '5' : '2';
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
                     'white' : sDomF.getFixedColor( 'path' );
                 rg[ id + 'title' ].textContent = pointsAreOn ? 'show next move' : '';
