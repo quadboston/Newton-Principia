@@ -1,41 +1,12 @@
 
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-*::*proof|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
 *::*claim|english
 {
   "default" : "1",
   "menuCaption" : "English"
 }
 *..*
-
-
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
 ¦centripetal force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
-
-
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 463.
@@ -109,8 +80,6 @@ Page 465.
   "subessay" : "another-solution"
 }
 *..*
-
-
 Find the force that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
 come out proportional to the distance ¦PC¦CP¦¦. And hence
 (
@@ -130,82 +99,4 @@ centrifugal force, a body will move in the opposite branch of the hyperbola.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 465.
-
-
-
-
-
-
-*::*claim|addendum
-{
-  "menuCaption" : "---"
-}
-*..*
-
-
-*::*proof|addendum
-{
-  "menuCaption" : "Addendum",
-  "subessayCaption" : "model for non-similar curves"
-}
-*..*
-
-
-<b>In <><>CXX:</b><br><br>
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus, (F):</a>
-
-    <div style="text-align:center;">
-                𝑓 = 𝜎(M/r)²/ρ<sub>⟂</sub>. <br>
-    </div>
-<br><br><br>
-
-
-
-
-
-
-
-
-
-
-<b><i>Another Solution</i></b>
-<br>
-
-<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
-    Transitional formula (ft)</a> gives: 
-<br>
-
-    <div style="text-align:center;">
-        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
-            ρ<sub>𝛙</sub>⁻<sup>1</sup> ρ<sub>φ</sub>⁻² 𝘨³.
-    </div>
-
-
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">Taking solution for hyperbola center, (C)</a>
-
-    <div style="text-align:center;">
-                     𝑓<sub>𝛙</sub> = 𝑠M²α²β²ρ<sub>𝛙</sub>. <br>
-    </div>
-
-and <a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#ellipse">
-recalling conic's property (A),
-</a>
-    <div style="text-align:center;">
-                    𝘨  = 𝜎𝑠a 
-    </div>
-
-we obtain the inverse square law again:
-    <div style="text-align:center;">
-                    𝑓  = 𝑓 <sub>φ</sub> = 𝜎M²α²β²a³ ρ<sub>φ</sub>⁻² = 𝜎M²β²a r⁻² = 𝜎M²r⁻²/ρ<sub>⟂</sub> <br>
-    </div>
-<br><br>
-
-
-
-
-
-
-<div book-reference-id="kvk"></div>
-
-
 

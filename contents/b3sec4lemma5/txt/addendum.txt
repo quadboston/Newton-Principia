@@ -1,60 +1,3 @@
-
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-
-<img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English",
-  "fixed-colors" :
-  {
-    "given"          : [0,     50, 0,      1],
-    "experimental"   : [0,     0,   255,    1],
-    "approximator"   : [255,   0,   0,      1]
-  }
-}
-*..*
-
-
-<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="Motte-3rd"></div>
-
-
-*::*proof|latin
-
-<img src="contents/b3sec4lemma5/img/latin.jpg" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-*::*proof|english
-
-
-<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
-
-
-<br><br>
-<div book-reference-id="Motte-3rd"></div>
-
-
 *::*claim|model
 {
   "menuCaption" : "Addendum",
@@ -110,12 +53,12 @@ values ¦experimental¦y<sub>i</sub> = y(x<sub>i</sub>)¦¦ are known.
 
 
 
+
 *::*proof|model
 {
   "xxx  studylab" : true
 }
 *..*
-
 <b>Theorem.</b> In context of the model claim, we have to prove
 
 ¦given¦y<sup>n</sup>¦¦ = ¦approximator¦s<sup>n</sup>¦¦.
@@ -813,8 +756,3 @@ makes picture even worse.
         }
     }
 }
-
-
-
-
-

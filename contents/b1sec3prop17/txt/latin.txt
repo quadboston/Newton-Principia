@@ -1,0 +1,64 @@
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+
+¦D¦¦¦
+¦H¦¦¦
+¦S¦¦¦
+¦P¦¦¦
+¦p¦¦¦
+¦L,LL¦L¦¦¦
+
+¦SY¦¦¦
+¦QT¦¦¦
+¦SK¦¦¦
+¦PK¦¦¦
+¦PK²¦¦¦
+¦PK¦KP¦¦¦
+¦PK¦KP²¦¦¦
+¦PR¦¦¦
+¦CB¦BC¦¦¦
+¦CB¦BC²¦¦¦
+
+¦DH¦¦¦
+¦DS¦¦¦
+¦SP¦¦¦
+¦SP¦SP²¦¦¦
+¦PH¦¦¦
+¦PH¦PH²¦¦¦
+¦CS CH¦SH²¦¦¦
+¦CS CH¦SH¦¦¦
+¦CH¦¦¦
+¦CH¦CH²¦¦¦
+¦BH¦¦¦
+¦BH¦BH²¦¦¦
+
+¦PR PH¦RPH¦¦¦
+¦PR SP¦RPS¦¦¦
+
+<img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*corollary|latin
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*

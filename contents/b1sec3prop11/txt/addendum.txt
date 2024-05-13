@@ -1,0 +1,58 @@
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+<b>In <><>CXX:</b><br><br>
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">"Conic motion with force origin in conic's focus":</a>
+
+    <div style="text-align:center;">
+                𝑓 = M²r⁻²/ρ<sub>⟂</sub>. <br>
+    </div>
+<br><br><br>
+
+
+
+
+<b><i>Another Solution</i></b>
+<br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+    Transitional formula (ft)</a> gives: 
+<br>
+
+    <div style="text-align:center;">
+        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² 𝘨³   &nbsp;&nbsp;&nbsp;  (ft)
+    </div>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">Taking solution for ellipse center, (C)</a>
+
+    <div style="text-align:center;">
+                 𝑓<sub>φ</sub> = 𝑠M²α²β²ρ<sub>φ</sub>. <br>
+    </div>
+and recalling conic's property 𝘨  = 𝜎𝑠a,
+<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#ellipse">
+from "Interval between conjugate parallels", (A),
+</a>
+we obtain the inverse square law again: 𝑓  = 𝑓 <sub>𝛙</sub> and
+
+    <div style="text-align:center;">
+                    𝑓 = 𝜎M²α²β²a³ ρ<sub>𝛙</sub>⁻²  <br>
+    </div>
+Note: for ellipse and hyperbola inner-branch, 𝜎 = 1 and force is attracting, for hyperbola outer branch 𝜎 = -1 and force is repelling.
+<br><br>
+
+<div book-reference-id="kvk"></div>
+
+

@@ -1,41 +1,12 @@
 
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-*::*proof|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop13/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
 *::*claim|english
 {
   "default" : "1",
   "menuCaption" : "English"
 }
 *..*
-
 Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is required to find the law of
 the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
-
-
-
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 112.
@@ -90,21 +61,6 @@ because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. Q.
 Page 112.
 
 
-
-
-
-
-
-
-
-*::*corollary|latin
-{
-}
-*..*
-
-
-
-
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
@@ -153,48 +109,4 @@ case where the body descends straight down to a center.
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 113.
 
-
-*::*claim|addendum
-{
-  "menuCaption" : "---"
-}
-*..*
-
-
-
-*::*proof|addendum
-{
-  "menuCaption" : "Addendum"
-}
-*..*
-
-<b>In <><>CXX:</b><br><br>
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus, (F):</a>
-
-    <div style="text-align:center;">
-                𝑓 = (M/r)²/ρ<sub>⟂</sub>. <br>
-    </div>
-<br><br><br>
-
-<div book-reference-id="kvk"></div>
-
-
-
-
-*::*corollary|addendum
-{
-  "subessayCaption" : "Corollary 2",
-  "subessay" : "corollary2"
-}
-*..*
-<a name="cor2"></a>
-<b>Corollary 2.</b><br>
-
-<b>In <><>CXX:</b>
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus, (F'):</a>
-
-    <div style="text-align:center;">
-             ¦QR¦¦ =ᵘ ¦QR¦𝑓dt² / 2¦¦ =
-             ¦QT¦V²𝛺²dt²¦¦ / (2ρ<sub>⟂</sub>) =ᵘ ¦QT¦¦² / (2ρ<sub>⟂</sub>)  <br>
-    </div>
 

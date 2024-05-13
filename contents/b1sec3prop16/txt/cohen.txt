@@ -1,29 +1,4 @@
 
-*::*claim|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-*::*proof|latin
-{
-  "menuCaption" : "Latin"
-}
-*..*
-<img src="contents/b1sec3prop16/img/latin.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
 *::*claim|english
 {
   "default" : "1",
@@ -86,21 +61,6 @@ Page 114.
 
 
 
-
-*::*corollary|latin
-{
-  "menuCaption" : "---"
-}
-*..*
-
-*::*corollary|addendum
-{
-  "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
-}
-*..*
-
-<b>Corollary 1: <><>CXX:</b> <a target="_blank" href="?conf=sappId=b1sec3prop16,theorionId=proof,aspectId=addendum">see addendum for proof</a>
 
 
 
@@ -296,51 +256,4 @@ dropped from the common focus to the tangent of the conic.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 116.
-
-
-
-
-
-
-
-
-
-
-
-*::*claim|addendum
-{
-  "menuCaption" : "---"
-}
-*..*
-
-
-*::*proof|addendum
-{
-  "menuCaption" : "Addendum",
-  "subessayCaption" : "model for non-similar curves"
-}
-*..*
-<b>In <><>CXX:</b><br>
-
-Geometry: <a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
-
-    <div style="text-align:center;">
-        f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
-    </div>
-
-Physics: assuming 𝛾 = const and is the same for all orbits:
-    <div style="text-align:center;">
-        f = 𝜎𝛾/¦SP¦r¦¦²,
-    </div>
-
-Therefore:
-    <div style="text-align:center;">
-        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝛾 M² = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦² =
-        4/𝛾 ( ¦PR¦v¦¦ sin(ω) ¦SP¦r¦¦ )² = 4/𝛾 ( ¦PR¦v¦¦ ¦SY¦¦ )²
-    </div>
-
-
-<br><br>
-<div book-reference-id="kvk"></div>
-
 

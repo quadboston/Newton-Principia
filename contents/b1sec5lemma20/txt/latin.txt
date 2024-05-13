@@ -1,0 +1,64 @@
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec5lemma20/img/latin.jpg" style="width:100%">
+Following Latin texts is from Lemma 20. <br>
+Book I Section V.<br>
+
+<pre>
+LEMMA XX.
+Si parallelogrammum quodvis ASPQ angulis duobus oppositis A &amp; P tangit sectionem
+quamvis conicam in punctis A &amp; P; &amp; lateribus unius angulorum illorum infinite
+productis AQ, AS occurrit eidem sectioni conicae in B &amp; C; a punctis autem occursuum B
+&amp; C ad quintum quodvis si sectionis conicae punctum D agantur rectae duae BD, CD
+occurrentes alteris duobus infinite productis
+parallelogrammi lateribus PS, PQ in T &amp; R: erunt
+simper abscissae laterum partes PR &amp; PT ad invicem
+in data ratione. Et contra, si partes illae abscissae
+sunt ad invicem in data ratione, punctum D tanget
+sectionem conicam per puncta quatuor A, B, C, P
+transeuntem.
+Cas. I. Iungantur BP, CP &amp; a puncto D agantur
+rectae duae DG, DE, quarum prior DG ipsi AB
+parallela sit &amp; occurrat PB, PQ, CA in H, I, G; altera
+est DE parallela sit ipsi AC &amp; occurrat PC, PS, AB in F, K, E: &amp; erit (per Lem. XVII.)
+rectangulum DE DF × ad rectangulum DG DH × in ratione data. Sed est PQ ad DE (seu
+IQ) ut PB ad HB, ideoque ut PT ad DH; &amp; vicissim PQ ad PT ut DE ad DH. Est &amp; PR ad
+DF ut RC ad DC, ideo ut (IG vel) PS ad DG, &amp; vicissim PR ad PS ut VF ad DG; &amp;
+conjunctis rationibus sit rectangulum PQ PR × ad rectangulum PS PT × ut rectangulum
+DE DF × ad rectangulum DG DH × , atque ideo in data ratione. Sed dantur PQ &amp; PS, &amp;
+propterea ratio PR ad PT datur.
+Q E.D. 
+Isaac NEWTON: Philosophiae Naturalis Principia Mathematica. 3rd Ed.
+Book I Section V.
+Translated and Annotated by Ian Bruce. Page 184
+Cas. 2. Quod si PR &amp; P T ponantur in data ratione ad invicem tum simili ratiocinio
+regrediendo, sequetur esse rectangulum DE DF × ad rectangulum DG DH × in ratione
+data, ideoque punctum D (per Lem. XVIII.) contingere conicam sectionem transeuntem
+per puncta A, B, C, P.
+Q. E. D.
+Corol. I. Hinc si agatur BC secans PQ in r, &amp; in PT capiatur Pt in ratione ad Pr quam
+habet PT ad PR: erit Bt tangens conicae sectionis ad punctum B. Nam concipe punctum D
+coire cum puncto B, ita ut, chorda BD evanescente, B T tangens evadat; &amp; CD ac BT
+coincident cum CB &amp; Bt.
+Corol. 2. Et vice versa si Bt sit tangens, &amp; ad quodvis conicae sectionis punctum D
+conveniant BD., CD; erit R ad PT ut Pr ad Pt. Et contra, si sit PR ad PT ut Pr ad Pt:
+convenient, BD, CD ad conicae sectionis punctum aliquod D.
+Corol. 3. Conica sectio non secat conicam sectionem in punctis pluribus quam quatuor.
+Nam, si fieri potest, transeant duae conicae sectiones per quinque puncta A, B, C, P,O;
+easque secet recta BD in punctis D, d, &amp; ipsam PQ secet recta Cd in q. Ergo PR est ad
+PT ut Pq ad PT; unde PR &amp; Pq sibi invicem aequantur, contra hypothesin.
+</pre>
+
+
+<br><br>
+<div book-reference-id="IanBruce"></div>
+Book I Section V.<br>
+
+
+
+
+*::*proof|latin
+<img src="contents/b1sec5lemma20/img/latin.jpg" style="width:100%">

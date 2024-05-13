@@ -1,0 +1,11 @@
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">
+
+
+
+*::*proof|latin
+<img src="contents/b1sec5lemma21/img/latin.jpg" style="width:100%">

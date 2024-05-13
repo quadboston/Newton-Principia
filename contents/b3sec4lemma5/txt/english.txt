@@ -1,0 +1,27 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English",
+  "fixed-colors" :
+  {
+    "given"          : [0,     50, 0,      1],
+    "experimental"   : [0,     0,   255,    1],
+    "approximator"   : [255,   0,   0,      1]
+  }
+}
+*..*
+<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="Motte-3rd"></div>
+
+
+
+
+*::*proof|english
+<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+<br><br>
+<div book-reference-id="Motte-3rd"></div>
+
+
+
+

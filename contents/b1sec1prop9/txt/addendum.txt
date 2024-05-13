@@ -1,0 +1,36 @@
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+<b>From <><>CXX2E:</b><br><br>
+
+<a target="_blank" href="?conf=sappId=addd-kepler-task#logarithmic-spiral-motion">Logarithmic spiral motion</a>
+gives
+
+        <div style="text-align:center;">
+            ¦force¦𝑓¦¦ = r²ₒv²ₒ¦SP¦r¦¦⁻³.
+        </div>
+<br><br>
+
+In simple words, since curve will be "rotation-similar", then curvature κ ~ ¦SP¦r¦¦⁻<sup>1</sup>,
+𝛺 = const,
+v²~ M²¦SP¦r¦¦⁻²𝛺⁻², then
+        <div style="text-align:center;">
+            ¦force¦𝑓¦¦ ~ ¦SP¦r¦¦⁻³.
+        </div>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+

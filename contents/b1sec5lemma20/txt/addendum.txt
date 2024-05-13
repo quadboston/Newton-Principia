@@ -1,0 +1,76 @@
+*::*claim|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+
+For ¦ellipse¦ellipse¦¦ and points P,A,B,C on it's circumference, the ratio
+¦key-triangle¦PR/PT¦¦ will be constant when the point ¦generators¦D¦¦ moves along this circumference.
+
+<br><br>
+
+Where ¦tangent¦Bt¦¦ is a tangent erected to the ¦ellipse¦ellipse¦¦ and points ¦key-triangle¦R¦¦ and ¦key-triangle¦T¦¦ obtained by
+lines ¦generators¦BD¦¦ and ¦generators¦BC¦¦ corresponding crossing with lines ¦given-parallelogram¦PS¦¦ and ¦given-parallelogram¦PQ¦¦
+which are chosen parallel to
+¦base-figure¦AB¦¦ and ¦base-figure¦AC¦¦ correspondingly.
+<br><br>
+
+This claim can be used both ways: eigther move point T and keep point ¦key-triangle¦R¦¦ in proper propotion with T
+which makes point ¦generators¦D drawing¦¦ the ellipse, or, in other way, ¦generators¦draw point D¦¦ along the given ¦ellipse¦ellipse¦¦ which
+will move points T and ¦key-triangle¦R¦¦.
+<br><br>
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+
+<b>Numerical Model</b><br><br>
+
+¦ellipse¦a¦¦¦ ¦ellipse¦b¦¦¦
+Proof for ¦ellipse¦ellipse¦¦ \( x^2/a^2 + y^2/b^2 = 1 \).
+<br><br>
+
+
+¦key-triangle¦Triangle RPT¦¦ is <br>
+1) similar to ¦static-generator¦given triangle rPt¦¦;
+<br>
+therefore, the ratio ¦key-triangle¦PR/PT¦¦ is constant when point ¦generators¦D¦¦ moves along the ellipse.<br><br>
+
+
+Proof for (1):
+If ¦ellipse¦ellipse¦¦ is a circle, then comparision of angles implies that <br><br>
+1.2) triangles ¦similar-triangle¦CPB¦¦ and ¦key-triangle¦RPT¦¦ are similar;<br><br>
+therefore ¦key-triangle¦PR/PT¦¦ = ratio of sides PC/PB of given triangle, so this ratio is a constant, and
+therefore ¦key-triangle¦PR/PT¦¦ = ¦static-generator¦Pr/Pt¦¦ which implies the similartity in the proposition (1)
+<br><br>
+
+If given ellipse is not a circle, then if one rescales parameters of ¦ellipse¦ellipse¦¦ from their circular values ¦ellipse¦a=b=1¦¦ to given values, then
+<br><br>
+1.3) this preserves relation of parallelity and ¦tangent¦tangentiality¦¦,
+<br><br>
+so (1) still holds. 
+<br><br>
+(1.3) follows from equation of line r = n*t + r0: two lines r and r' are parallel iff n and n' are propotional: n=c n';
+changing coordinates from x to xa and from y to ya changes n to [nx/a, nx/b] and still leaves n and n' proportional
+and lines transform to lines;
+<br>
+¦tangent¦Tangentiality¦¦ is preserved because for line having two intersection points with ¦ellipse¦ellipse¦¦ does not change when scales change.
+<br><br>
+
+One who would like to follow original Newton's proof probably starts from 
+<a href="https://en.wikipedia.org/wiki/Apollonius_of_Perga#Book_III">Apollonius of Perga Book III</a>.
+<br><br>
+
+
+This essay is written by <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/">Konstantin Kirillov</a>
+

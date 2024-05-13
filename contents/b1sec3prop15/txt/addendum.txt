@@ -1,0 +1,56 @@
+*::*corollary|addendum
+{
+    "menuCaption" : "---"
+}
+*..*
+
+
+*::*corollary|english
+{
+}
+*..*
+Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in
+circles whose diameters are equal to the ¦A,AA¦major axes¦¦ of the ellipses.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+<b>In <><>CXX:</b><br>
+
+From "physics"
+<a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
+ assuming 𝛾 is the same for all orbits, (S)
+</a>
+
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 4/𝛾  S˙², <br>
+    </div>
+From geometry:
+    <div style="text-align:center;">
+        S² = (π¦A,AA¦a¦¦<!-- s -->¦B,BB¦b¦¦)² = π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦ <br>
+    </div>
+From "both":
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦T² = 4/𝛾  S˙²T² = 4/𝛾  S² = 4/𝛾  π²¦A,AA¦a¦¦³¦SL¦ρ<sub>⟂</sub>¦¦, <br>
+        T² = 4π²/𝛾  ¦A,AA¦a¦¦³ <br>
+    </div>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+

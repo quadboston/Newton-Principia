@@ -1,0 +1,47 @@
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+<b>In <><>CXX:</b><br>
+
+Geometry: <a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
+
+    <div style="text-align:center;">
+        f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
+    </div>
+
+Physics: assuming 𝛾 = const and is the same for all orbits:
+    <div style="text-align:center;">
+        f = 𝜎𝛾/¦SP¦r¦¦²,
+    </div>
+
+Therefore:
+    <div style="text-align:center;">
+        ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝛾 M² = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦² =
+        4/𝛾 ( ¦PR¦v¦¦ sin(ω) ¦SP¦r¦¦ )² = 4/𝛾 ( ¦PR¦v¦¦ ¦SY¦¦ )²
+    </div>
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+<b>Corollary 1: <><>CXX:</b> <a target="_blank" href="?conf=sappId=b1sec3prop16,theorionId=proof,aspectId=addendum">see addendum for proof</a>
+

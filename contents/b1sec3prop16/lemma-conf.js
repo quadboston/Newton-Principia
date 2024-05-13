@@ -12,7 +12,9 @@
             sappCodeReference : 'b1sec3prop12',
             "contents-list" :
             [
-                'texts.content.txt',
+                'txt/latin.txt',
+                'txt/cohen.txt',
+                'txt/addendum.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',
