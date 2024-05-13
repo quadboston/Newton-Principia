@@ -94,9 +94,9 @@ parts ¦Bc¦to which the motion tends¦¦.
 }
 *..*
 
-A body can be urged by a centipetal force componded of many forces.
+A body can be urged by a ¦force¦centipetal force¦¦ componded of many forces.
 In this case, the sense of proposition is that that force which is
-compounded of all of them tends to the point S.
+compounded of all of them tends to the point ¦S¦¦.
 
 <!-- Calculus XX, addendum -->
 Further, if some force

@@ -49,11 +49,11 @@
         var stepIx = rg.stepIx.value;
         var fullDtRev = 1/rg.rgslid_dt.val * 2;
         if( stepIx > 0 ) {
-            var force = rg.impulses.vectors[stepIx-1];
-            var fx = force[0]*fullDtRev;
-            var fy = force[1]*fullDtRev;
+            var impulse = rg.impulses.vectors[stepIx-1];
+            var fx = impulse[0]*fullDtRev;
+            var fy = impulse[1]*fullDtRev;
             var fabs = Math.sqrt( fx*fx + fy*fy );
-            ww.force.innerHTML = fabs.toFixed(3);
+            ww.impulse.innerHTML = fabs.toFixed(3);
             ww.fx.innerHTML = fx.toFixed(3);
             ww.fy.innerHTML = fy.toFixed(3);
         }
@@ -167,7 +167,7 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'force', '<b>p=2f∆t</b>', null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'impulse', 'p=2<span class="tp-force tocolor tobold">f</span>∆t', null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'fx', 'px', null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'fy', 'py', null, null, !!'alignCaptionToRight', 'proof' );
         var row = $$.c('tr')
@@ -207,7 +207,8 @@
     ///Makes:  magnitude's cluster in table,
     ///Effect: represents magnitude in html-table-row in 
     ///        form "mname = mvalue",
-    ///Input:  mname = magnitude name
+    ///Input:  mname = magnitude name, just an ID of a cell and
+    ///        tip for the css-class
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
                          alignCaptionToRight, claim0proof, noEqualSign )
     {

@@ -183,7 +183,7 @@ be produced in both directions, it will ¦SB¦pass through¦¦ the ¦S¦center o
 If the chords ¦AB¦AB¦¦, ¦BC¦BC¦¦, and ¦DE¦DE¦¦, ¦EF¦EF¦¦,
 of arcs described in equal times, in
 nonresisting spaces be completed into parallelograms ¦ABCV¦ABCV¦¦, ¦DEFZ¦DEFZ¦¦, the
-forces at B and E are to each other in the ultimate ratio of the
+forces at ¦B¦¦ and ¦E¦¦ are to each other in the ultimate ratio of the
 diagonals ¦BV¦¦, ¦EZ¦¦,
 where these arcs are diminished in infinitum.
 <br><br>
@@ -192,7 +192,7 @@ For the motions ¦BC¦BC¦¦ and ¦EF¦EF¦¦ of the body are (by Corollary 1 of
 composed of the motions
 ¦Bh¦Bc¦¦, ¦BV¦BV¦¦, and ¦Eg¦Ef¦¦, ¦EZ¦EZ¦¦, equal to ¦Ch¦Cc¦¦ and ¦Fg¦Ff¦¦, were in the
 demonstration of this proposition generated
-by the ¦BV EZ¦impulses¦¦ of the centripetal force at B and E, and therefore are proportional to
+by the ¦BV EZ¦impulses¦¦ of the centripetal force at ¦B¦¦ and ¦E¦¦, and therefore are proportional to
 these ¦BV EZ¦impulses¦¦.
 <br><br><br>
 

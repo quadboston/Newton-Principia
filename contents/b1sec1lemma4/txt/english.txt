@@ -1,0 +1,65 @@
+
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+If in two figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦,
+there be inscribed ¦left-bars right-bars¦two series of parallelograms¦¦ (as before),
+and if the number of the two be the same, and if, where the
+¦right-bars-breadths left-bars-breadths¦breadths¦¦ are diminished in
+infinitum, the ultimate ¦barsRatio¦ratios¦¦ of the individual parallelograms in one figure to the
+[corresponding] individual parallelograms in the other, be the same, I say that the two
+figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that same ¦figuresRatio¦ratio¦¦.
+
+<br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+
+*::*proof|english
+{
+      "APPARENTLY IS NOT IMPLEMENTED, LOADS, DOES NOT APPEAR mediaBgImage" : "l4-diagram.png"
+}
+*..*
+
+For as ¦left-bar-1¦individual parallelogram¦¦ is to ¦right-bar-1¦individual parallelogram¦¦,
+so, componendo, would the ¦leftBarsArea left-bars¦sum of them all¦¦
+be ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of them all¦¦,
+and thus the ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦figure¦¦: because
+by Lemma 3, the former figure stands to the former sum and the latter figure to the latter sum,
+in the ratio of equality.
+
+Q.E.D.
+<br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+<br><br>
+
+
+*::*corollary|english
+{
+}
+*..*
+
+Hence if two quantities of any kind whatever be divided into the same number of parts in any manner, and
+those parts, as their number is increased and their size is decreased in infinitum, attain* a given
+ratio to each other, the first to the first, the second to the second, and the rest to the rest
+in order, the wholes will be to each other in that same given ratio.
+
+For if in the figures of this lemma the parallelograms be taken to be to
+each other as the parts, the sums of the parts will always be as the sums of the
+parallelograms, and consequently, where the number of the parts and of the
+parallelograms be increased and the size to be decreased in infinitum, [the sums of the parts
+will be] in the ulitmate ratio of parallelogram to parallelogram, that is
+(by the hypothesis) in the ultimate ratio of part to part.
+
+

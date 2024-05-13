@@ -1,0 +1,202 @@
+
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "English"
+}
+*..*
+
+The evanescent ¦BD¦subtense¦¦ of the ¦AD curve-AB¦angle of contact¦¦, in all curves 
+¦AJ¦having a finite¦¦ curvature at the point of contact, is ultimately in the
+duplicate ratio of the ¦AB¦subtense¦¦ of the ¦arc-AB¦conterminous arc¦¦.
+<br><br>
+
+
+<div book-reference-id="Donahue"></div>
+
+
+
+
+
+
+
+*::*proof|english
+{
+}
+*..*
+
+CASE 1. Let that arc be ¦arc-AB¦AB¦¦, its tangent ¦AD¦¦,
+the subtense of the angle of contact perpendicular to the tangent ¦BD¦¦,
+subtense of the arc ¦AB¦¦.
+<br><br>
+
+Let ¦AG¦¦, ¦BG¦¦ be erected perpendicular to the latter subtense ¦AB¦¦ and to the
+tangent ¦AD¦¦,
+meeting at ¦G¦¦, and then let the points ¦D¦¦, ¦B¦¦, ¦G¦¦, come to the points
+¦d¦¦, ¦b¦¦, ¦g¦¦, and let ¦J¦¦ be
+the intersection of the lines ¦BG¦¦, ¦AG¦¦, occuring ultimately,
+where the points ¦D¦¦, ¦B¦¦ come all
+the way to ¦A¦¦.
+<br><br>
+
+
+It is obvious that the distance ¦GJ¦¦ can be less than any assigned [magnitude]
+you please. <!-- KVK: this is not obvious: this is the assumption of the theorem ===
+curve has finite curvature ~ the curve has limit J; or it can be a theorem on itself
+if define "finite curvature" different way like as "second order Taylor member is not zero"
+ -->
+<br><br>
+
+Now, by the nature of circles passing through the points ¦A B G¦ABG¦¦, ¦A b g¦Abg¦¦, square ¦AB¦¦
+is equal ¦AG¦¦ x ¦BD¦¦, and square ¦Ab¦¦ is equal to ¦Ag¦¦ x ¦bd¦¦, and therefore the
+ratio of square ¦AB¦¦ to square ¦Ab¦¦ is compounded of the ratios ¦AG¦¦ to ¦Ag¦¦
+and ¦BD¦¦ to ¦bd¦¦.
+<br><br>
+
+But seeing that ¦GJ¦¦ can be taken to be less than any assigned length
+you please, it can be taken to be less than any assigned length you please,
+
+it can happen
+<!-- KVK: weak wording; must say in "some neighbourhood of A,
+it happens" -->
+
+that the ratio ¦AG¦¦ to ¦Ag¦¦
+differ from
+the ratio of equality by less
+than any assigned difference you please, and therefore, that the 
+
+¦Ab2-AB2¦ratio¦¦ square ¦AB¦¦
+
+to square ¦Ab¦¦ ¦claimRatio¦differ from¦¦ the ¦bd-BD¦ratio¦¦ ¦BD¦¦ to ¦bd¦¦ by less than any assigned diffece you
+plase.
+<!-- KVK: this shows that in Lemma 1, the word "which" relates to ratios,
+not to nominator and denominator of the ratio -->
+<br><br>
+
+
+
+Therefore, by Lemma 1, the ultimate ratio of square ¦AB¦¦ to square ¦Ab¦¦ is the same as
+the ultimate ratio of ¦BD¦¦ to ¦bd¦¦.
+
+<!-- KVK:
+Interpretation 1:
+BD/bd is an arbitrarily chosen, it does not have ultimate ratio;
+the wording "eadem cum" must be not like above, but like:
+
+(BD/bd) / (ABxAB/(AbxAb)) has ulitmate ratio of equality; (*)
+
+secondary, this is a limit of a set: for all chors bd inside of BD, (*) holds
+
+Interpretation 2.
+Ratio AD/Ad is fixed. Then lemma is about of limit of function.
+( lim (ABxAB/(AbxAb)) ) = BD/bd =const
+-->
+<br>
+Q.E.D.
+<br><br><br>
+
+
+CASE 2. Now let ¦BD¦¦ be inclined to ¦AD¦¦ at any given angle you please, and
+the ratio ¦BD¦¦ to ¦bd¦¦ will always the same as before, and therefore will be
+the same as square ¦AB¦¦ to ¦Ab¦¦.
+<br>
+Q.E.D.
+<br><br><br>
+
+
+CASE 3. And even if the angle ¦AD BD¦D¦¦ not be given, but that the straight line
+¦BD¦¦ converge toward some given point, or ¦limitRatio¦be established by any other law
+whatever¦¦, nevertheless, the angles ¦AD BD¦D¦¦, ¦Ad bd¦d¦¦ being
+established by the law in common,
+will always converge to equality and will approach nearer to each other
+than by any assigned difference
+<!-- KVK: again clear epsilon-delta definition of limit/convergence -->
+
+you please, and therefore will ultimately be equal, by Lemma1; and on that account
+the lines ¦BD¦¦, ¦bd¦¦ are in the same ratio to each other as before.
+<br>
+Q.E.D.
+
+
+<br><br>
+<div book-reference-id="Donahue"></div>
+
+<br><br>
+
+
+*::*corollary|english
+{
+}
+*..*
+
+COR. 1. Hence, since the tangents ¦AD¦¦, ¦Ad¦¦,
+
+
+the arcs ¦arc-AB¦AB¦¦, ¦arc-Ab¦Ab¦¦, and their sines, ¦BC¦¦, ¦bc¦¦,
+become ultimately equal to the chords ¦AB¦¦, ¦Ab¦¦,
+their squares will also be ultimately as the subtenses ¦BD¦¦, ¦bd¦¦.
+<br><br><br>
+
+COR. 2. The squares of the same are also ultimately as the sagittae of the arcs which
+bisect the chords and converge to a given point. For these sagittae are as the subtenses
+BD, bd.
+<br><br><br>
+
+
+
+COR. 3. Therefore, the sagitta is in the duplicate ratio of the time in which
+a given body describes the arc with a given velocity.
+<br><br><br>
+
+COR. 4. The rectilinear triangles ADB, Adb are ultimately in the triplicate ratio of the sides AD, Ad,
+and in a sesquiplicate ratio of the sides DB, db; as being in the ratio compounded of the sides AD to DB,
+and of Ad to db.
+
+So also the triangles ABC, Abe
+are ultimately in the triplicate ratio of the sides BC, bc. What I call the sesquiplicate ratio is the subduplicate
+of the triplicate, as being compounded of the simple
+and subduplicate ratio.
+<br><br><br>
+
+COR. 5. And because DB, db are ultimately parallel
+and in the duplicate ratio of the lines AD, Ad, the
+ultimate curvilinear areas ADB, Adb will be (by the nature of the parabola)
+two thirds of the rectilinear triangles ADB, Adb and the segments
+AB, Ab will be
+one third
+
+<!-- KVK: does not make sense. This makes sense: AD ~ area^(1/3) -->
+
+of the same triangles. And thence those areas and those segments will be in the triplicite ratio as well of the tangents
+AD, Ad, as of the chords and arcs AB, AB.
+<br><br><br>
+
+
+<div style="font-size:10px;">
+    Sources: <br><br>
+
+    COR. 1, 2, 3.
+
+
+<br><br>
+    <div book-reference-id="Donahue"></div>
+    <br><br>
+
+    COR. 4 and COR. 5.
+
+
+<br><br>
+    <div book-reference-id="Motte-3rd"></div>
+</div>
+
+
+
+
+
+
+
+
+
