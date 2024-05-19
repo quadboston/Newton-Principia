@@ -136,14 +136,11 @@
         if( dec.pivotNames.length === 2 ) {
             ///refreshes line position and presence
             ///for special lines
-            //if( dec.pname === 'Av' ) {
-                ssF.pnames2line(
-                    dec.pivotNames[0],
-                    dec.pivotNames[1],
-                    haz( dec, 'cssClass' ), //works: 'hidden'
-                );
-            //}
-            ///ssF.pnames2poly
+            ssF.pnames2line(
+                dec.pivotNames[0],
+                dec.pivotNames[1],
+                haz( dec, 'cssClass' ), //works: 'hidden'
+            );
         } else {
             dec.poly_2_updatedPolyPos8undisplay();
         }
@@ -210,7 +207,7 @@
                 //tpclass : 'path',
 
                 'fill' : 'white',
-                'stroke' : 'blue',
+                'stroke' : sDomF.getFixedColor( 'speed' ),
                 'stroke-width' : 1,
                 r : 6,
             }

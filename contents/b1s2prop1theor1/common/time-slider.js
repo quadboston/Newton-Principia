@@ -227,8 +227,6 @@
                  railsStart.pos[0] + 
                  rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
-            api.slCaption = slCaption0 + ' = ' +
-                            api[ apiValueName ].toFixed(2);
 
             //at curr. ver., does what it says: pos to GUI
             api.modPos_2_GUI();
@@ -241,7 +239,13 @@
             //ssF.solvesTrajectoryMath();
 
             //apparently, only decoration like time labels
-            stdMod.time_2_displayTimeStrings();
+            stdMod.time_2_preparedForDisplay();
+
+            api.slCaption = slCaption0 + ' = ' +
+                            //discrete time:
+                            rg.displayTime.value;                                
+                            //continuous time: api[ apiValueName ].toFixed(2);
+
             //perpendicular and point "T"
             //they depend on slider-time, this is why their math model pos
             //updates here and not in model_upcreate()

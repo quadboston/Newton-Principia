@@ -10,7 +10,9 @@
         },
     });
     var handleR = 5;
-    var pointsBCDE_events_are_assignend = false;
+    var initialization_is_done = false;
+    //enables steps BC, CD, ... by clicks on B, C, ...
+    var POINTS_BCDE_ARE_ACTIVE = false;
     return;
 
 
@@ -61,7 +63,7 @@
         stdMod.dec2svg();
 
         
-        if( pointsBCDE_events_are_assignend ) {
+        if( initialization_is_done ) {
             stdMod.fakePoints_2_svgPosition();
         } else {
             ///drags holes, but then hides them (why?)
@@ -78,52 +80,60 @@
         //----------------------------------------------------        
         // //\\ shows next move of the proof
         //----------------------------------------------------        
-        if( !pointsBCDE_events_are_assignend ) {
+        if( !initialization_is_done ) {
             ///launch time work
-            pointsBCDE_events_are_assignend = true;
-            rg.B.svgel.addEventListener( 'click', function() {
-                if( amode.theorion === 'proof' ) {
-                    fmethods.executeCapturedState( '1-B' );
-                }
-            });
-            rg.C.svgel.addEventListener( 'click', function() {
-                if( amode.theorion === 'proof' ) {
-                    fmethods.executeCapturedState( '1-C' );
-                }
-            });
-            rg.D.svgel.addEventListener( 'click', function() {
-                if( amode.theorion === 'proof' ) {
-                    fmethods.executeCapturedState( '1-D' );
-                }
-            });
-            rg.E.svgel.addEventListener( 'click', function() {
-                if( amode.theorion === 'proof' ) {
-                    fmethods.executeCapturedState( '1-E' );
-                }
-            });
-            ['B', 'C', 'D', 'E'].forEach( id => {
-                rg[id + 'title'] = $$
-                    .cNS( 'title' )
-                    .to( rg[id].svgel )
-                    .addClass( 'tpstroke' )
-                    .addClass( 'tpfill' )
-                    ();
-            });
+            initialization_is_done = true;
+            if( POINTS_BCDE_ARE_ACTIVE ) {
+                rg.B.svgel.addEventListener( 'click', function() {
+                    if( amode.theorion === 'proof' ) {
+                        fmethods.executeCapturedState( '1-B' );
+                    }
+                });
+                rg.C.svgel.addEventListener( 'click', function() {
+                    if( amode.theorion === 'proof' ) {
+                        fmethods.executeCapturedState( '1-C' );
+                    }
+                });
+                rg.D.svgel.addEventListener( 'click', function() {
+                    if( amode.theorion === 'proof' ) {
+                        fmethods.executeCapturedState( '1-D' );
+                    }
+                });
+                rg.E.svgel.addEventListener( 'click', function() {
+                    if( amode.theorion === 'proof' ) {
+                        fmethods.executeCapturedState( '1-E' );
+                    }
+                });
+                ['B', 'C', 'D', 'E'].forEach( id => {
+                    rg[id + 'title'] = $$
+                        .cNS( 'title' )
+                        .to( rg[id].svgel )
+                        .addClass( 'tpstroke' )
+                        .addClass( 'tpfill' )
+                        ();
+                });
+            }
         }
-        var pointsAreOn = amode.theorion === 'proof';
+        var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
+                          amode.theorion === 'proof';
         ['B', 'C', 'D', 'E'].forEach( id => {
                 let rgX = rg[ id ];
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
-                //rgX.svgel$.addClass( 'tofill' ).addClass( 'tostroke' );
-                //rgX.svgel.style[ 'stroke-width' ] = pointsAreOn ? '5' : '2';
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                    'white' : sDomF.getFixedColor( 'path' );
-                rg[ id + 'title' ].textContent = pointsAreOn ? 'show next move' : '';
+                    '#cccccc' : sDomF.getFixedColor( 'path' );
+                if( POINTS_BCDE_ARE_ACTIVE ) {
+                    rg[ id + 'title' ].textContent =
+                        pointsAreOn ? 'show next move' : '';
+                }
         });
         //----------------------------------------------------        
         // \\// shows next move of the proof
         //----------------------------------------------------        
         
+        rg['main-legend'].tb.corollary.style.display =
+            ( amode.theorion === 'corollary' && amode.subessay === 'cor-1' ) ?
+            'table' : 'none';
+
         ssF.mediaModelInitialized = true;
     }
 

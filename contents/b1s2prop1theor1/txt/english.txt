@@ -152,7 +152,7 @@ The velocity of a body attracted to an ¦S¦immobile centre¦¦ in
 nonresisting spaces is inversely as the ¦SP¦perpendicular¦¦ dropped from that center to
 the ¦TP¦rectilinear tangent¦¦ of the orbit. For in those places ¦A¦¦, ¦B¦¦, ¦C¦¦,
 ¦D¦¦, ¦E¦¦, the
-velocity is as the bases of the equal triangles ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, and
+¦speed¦velocity¦¦ is as the bases of the equal triangles ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, and
 these bases are inversely as the perpendiculars dropped to them.
 <br><br><br>
 
@@ -192,8 +192,8 @@ For the motions ¦BC¦BC¦¦ and ¦EF¦EF¦¦ of the body are (by Corollary 1 of
 composed of the motions
 ¦Bh¦Bc¦¦, ¦BV¦BV¦¦, and ¦Eg¦Ef¦¦, ¦EZ¦EZ¦¦, equal to ¦Ch¦Cc¦¦ and ¦Fg¦Ff¦¦, were in the
 demonstration of this proposition generated
-by the ¦BV EZ¦impulses¦¦ of the centripetal force at ¦B¦¦ and ¦E¦¦, and therefore are proportional to
-these ¦BV EZ¦impulses¦¦.
+by the impulses of the centripetal force at ¦B¦¦ and ¦E¦¦, and therefore are proportional to
+these impulses.
 <br><br><br>
 
 

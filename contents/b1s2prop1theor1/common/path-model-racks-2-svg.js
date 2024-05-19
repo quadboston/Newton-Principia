@@ -23,7 +23,7 @@
     function trajectoryShapes_2_media()
     {
         var pointies2line   = ssF.pointies2line;
-        var rgPos2rgMedia   = ssF.rgPos2rgMedia;
+        var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;
 
         var S               = rg.S.pos;
@@ -45,7 +45,7 @@
             //---------------------------------------------------------
             var pkey = 'path-' + pix;
             pathRacks[ pix ].undisplay = true;
-            rgPos2rgMedia(
+            rg8pos_2_svg(
                 pkey,
                   {
                     'fill' : 'transparent',
@@ -148,12 +148,12 @@
                 toreg( ffkey0 )({ undisplay : true })();
                 toreg( ffkey1 )({ undisplay : true })();
 
-                rgPos2rgMedia( ffkey0, {
+                rg8pos_2_svg( ffkey0, {
                     fill:'transparent',
                     tpclass : 'force-_move hidden',
                 } );
                 //paints tip of the force in red
-                rgPos2rgMedia( ffkey1, {
+                rg8pos_2_svg( ffkey1, {
                     //fill:'red',
                     cssClass:'tofill',
                     tpclass : 'force-_move hidden',
@@ -210,9 +210,9 @@
                     toreg( ffkey1 )({ undisplay : true })();
 
                     //defines base of force as invisible point:
-                    rgPos2rgMedia( ffkey0, { fill:'transparent' } );
+                    rg8pos_2_svg( ffkey0, { fill:'transparent' } );
                     //paints tip of the force as a red circle
-                    rgPos2rgMedia( ffkey1, {
+                    rg8pos_2_svg( ffkey1, {
                         //fill:'red',
                         cssClass:'fill theor1proof',
                         tpclass : 'force-_move',
@@ -251,7 +251,7 @@
         freePath.forEach( (pt, pix) => {
             var pkey = 'freepath-' + pix;
             toreg( pkey )({ undisplay : true })();
-            rgPos2rgMedia(
+            rg8pos_2_svg(
                 pkey,
                   {
                     cssClass: 'tofill tostroke theor1proof',

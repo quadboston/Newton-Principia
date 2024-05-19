@@ -13,10 +13,24 @@
 
 
 
+    //indices
+    //coinside with paths for
+    // rg.pathRacks.pathRacks
+    //      'pathSegment-' + pix
+    // rg.speeds.pos
+    
+    //indices late by one unit for
+    // rg.impulses.vectors
+    //      for rg.impulses.views
+    // rgOblects: 'kepltr-' + kix;
 
-
-
-
+    //indices late by two units for
+    // rg.freePath.pos
+    // rgObj: 'freetr-' + kix
+    // rgObj: 'translated-force-' + kix
+    // rg.freePathRacks.freePathRacks
+    //      and their rgObj: 'freepath-' + pix;
+    //      'freePathSegment-' + pix 
     ///at current ver, runs at every model_upcreate
     function path2rgModelPlaceholders()
     {
@@ -54,7 +68,7 @@
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
-            if( pix >= 0 ) {
+            if( pix > 0 ) {
                 var kix = pix-1;
                 var pkey = 'kepltr-' + kix;
                 var ktr = toreg( pkey )({ undisplay : true })();
@@ -179,23 +193,6 @@
         var freePathRacks = freePath.map( (pt, pix) => {
             var pkey = 'freepath-' + pix;
             toreg( pkey )({ pos: pt, })();
-
-            // //\\ allocates positions for c,d,e,f
-            //      for c,d,e,f - "free" points
-            if( pix === Math.floor( rg.c.decStart/4 ) - 2 ) {
-                ns.paste( rg.c.pos, pt );
-            }
-            if( pix === Math.floor( rg.d.decStart/4 ) - 2 ) {
-                ns.paste( rg.d.pos, pt );
-            }
-            if( pix === Math.floor( rg.e.decStart/4 ) - 2 ) {
-                ns.paste( rg.e.pos, pt );
-            }
-            if( pix === Math.floor( rg.f.decStart/4 ) - 2 ) {
-                ns.paste( rg.f.pos, pt );
-            }
-            // \\// allocates positions for c,d,e,f
-
             return rg[pkey];
         });
         toreg( 'freePathRacks' )( 'freePathRacks', freePathRacks );

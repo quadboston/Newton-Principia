@@ -78,7 +78,7 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         let legacyTimeStep = 0.75; //for case we do change initialTimieStep
-        let initialTimieStep = 0.75;
+        let initialTimieStep = 1; //0.75;
         let dtMin = 0.08;
         let stepsRange = 14;
         let timeRange = stepsRange*initialTimieStep;
@@ -425,7 +425,7 @@
                     "val": sconf.initialTimieStep
                 },
                 "slider_sltime": {
-                    "curtime": 4.50,
+                    "curtime": 3.00,
                 },
 
                  "A": {
@@ -808,7 +808,9 @@
         var path = [0,0,100];
         var time = [0,100,100,1];
         var sagittaeChords = [100, 0, 100];
+        var speed = [130,100,0];
         return {
+            speed,
             force,
             forceMove,
             time,
@@ -872,7 +874,7 @@
             "BU"                : forceMove,
             "EW"                : forceMove,
             "AC"                : sagittaeChords,
-            "Av"                : path,
+            "Av"                : speed,
             "DF"                : sagittaeChords,
 
             force,
@@ -880,10 +882,13 @@
             "V"                 : [255, 100, 0, 1],
             "BV"                : forceMove,
             "EZ"                : forceMove,
+  
+            //perpendicular
             "SP"                : [200, 100, 0, 1],
             "P"                 : [200, 100, 0, 1],
-            "T"                 : [200, 100, 0, 1],
-            "TP"                : [200, 100, 0, 1],
+            //tangent
+            "T"                 : [0,   100, 0, 1],
+            "TP"                : [0,   100, 0, 1],
 
             "free-path"         : freeMove,
             "c"                 : freeMove,

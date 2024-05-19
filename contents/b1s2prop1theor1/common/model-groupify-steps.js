@@ -42,22 +42,21 @@
             // and then can be displayed depending on app-state,
             //
             var fGroups = [];
-
-            if( pix === 1 ) {
+            
+            if( pix === 0 ) {
+                ////empty grop for reached point A
                 var fgroup = [];
                 fGroups.push( fgroup );
-
+                
+            } else if( pix === 1 ) {
+                ////single grop for reached point B
+                var fgroup = [];
+                fGroups.push( fgroup );
                 fgroup.push( rgPathPoint );
-
-                //:"circumscribed" triangle
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
-                //:final path
                 fgroup.push( rg[ 'pathSegment-' + (pix-1) ] );
-            }
+                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
 
-
-            if( pix > 1 ) {
-
+            } else if( pix > 1 ) {
                 //0
                 //------------------------------------
                 // //\\ initial group
@@ -65,19 +64,10 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                //:previous kepler
-                fgroup.push( rg[ 'kepltr-' + (pix-2) ] );
-                //:current free path segment added
-                fgroup.push(
-                    rg[ 'freePathSegment-' + (pix-2) ]
-                );
-                //:current free path added
-                fgroup.push(
-                    rg[ 'freepath-' + (pix-2) ]
-                );
-                fgroup.push(
-                    rg[ 'freetr-' + (pix-2) ]
-                );
+                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
+                fgroup.push( rg[ 'freePathSegment-' + (pix-2) ] );
+                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
+                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
                 //------------------------------------
                 // \\// initial group
                 //------------------------------------
@@ -89,21 +79,16 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                //:previous added
+
+                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
                 fgroup.push( rg[ 'kepltr-' + (pix-2) ] );
-                fgroup.push(
-                    rg[ 'freePathSegment-' + (pix-2) ]
-                );   
-                fgroup.push(
-                    rg[ 'freepath-' + (pix-2) ]
-                );
-                fgroup.push(
-                    rg[ 'freetr-' + (pix-2) ]
-                );
+                fgroup.push( rg[ 'freePathSegment-' + (pix-2) ] );   
+                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
+                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
                 //:force appears
-                var fkey = 'force-' + (pix-2);
+                var fkey        = 'force-' + (pix-2);
                 var fappliedKey = fkey + '-applied';
-                var tipKey = fkey+'-1';
+                var tipKey      = fkey+'-1';
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
                 //------------------------------------
@@ -117,26 +102,20 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
+                //new kepler
+                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
                 //:previous added
                 fgroup.push( rg[ 'kepltr-' + (pix-2) ] );
-                fgroup.push(
-                    rg[ 'freePathSegment-' + (pix-2) ]
-                );   
-                fgroup.push(
-                    rg[ 'freepath-' + (pix-2) ]
-                );
-                fgroup.push(
-                    rg[ 'freetr-' + (pix-2) ]
-                );
+                //fgroup.push( rg[ 'kepltr-' +
+                //             (pix<pathRacks.length-1 ? pix:pix-1) ] );
+                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
+                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
                 //:force appears
-                var fkey = 'force-' + (pix-2);
+                var fkey        = 'force-' + (pix-2);
                 var fappliedKey = fkey + '-applied';
-                var tipKey = fkey+'-1';
+                var tipKey      = fkey+'-1';
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
-
-                //.new kepler
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
 
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
@@ -158,8 +137,12 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                //:previous kepler
+
+                //new kepler
+                //fgroup.push( rg[ 'kepltr-' +
+                //             (pix<pathRacks.length-1 ? pix:pix-1) ] );
                 fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
+
                 fgroup.push( pathRacks[ pix-1 ] );
                 fgroup.push( rg[ 'pathSegment-' + (pix-1) ] );
 
@@ -173,10 +156,6 @@
                 // \\// path finalized group
                 //------------------------------------
 
-            }
-            ///todm: what is this ... poor design?
-            if( !fGroups.length ) {
-                fGroups[0] = [];
             }
             return fGroups;
         });

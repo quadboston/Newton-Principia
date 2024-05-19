@@ -22,6 +22,27 @@
     function traj2decs()
     {
         var path            = rg.path.pos;
+        var freePath        = rg.freePath.pos;
+
+        //-----------------------------------------------------
+        // //\\ allocates positions for c,d,e,f
+        //-----------------------------------------------------
+        //      for c,d,e,f - "free" points
+        nspaste( rg.c.pos, freePath[0] );
+        nspaste( rg.d.pos, freePath[1] );
+        nspaste( rg.e.pos, freePath[2] );
+        nspaste( rg.f.pos, freePath[3] );
+        //-----------------------------------------------------
+        // \\// allocates positions for c,d,e,f
+        //-----------------------------------------------------
+        //-------------------------------------------------
+        // //\\ refills corollary pos
+        //-------------------------------------------------
+        nspaste( rg.h.pos, rg.c.pos );
+        nspaste( rg.g.pos, rg.f.pos );
+        //-------------------------------------------------
+        // \\// refills corollary pos
+        //-------------------------------------------------
 
         //-----------------------------------------------------
         // //\\ recalculates CDEF points pos
@@ -54,17 +75,6 @@
         // \\// recalculates sagittaes pos
         //-------------------------------------------------
 
-
-        //-------------------------------------------------
-        // //\\ refills corollary pos
-        //-------------------------------------------------
-        rg.h.pos[0] = rg.c.pos[0];
-        rg.h.pos[1] = rg.c.pos[1];
-        rg.g.pos[0] = rg.f.pos[0];
-        rg.g.pos[1] = rg.f.pos[1];
-        //-------------------------------------------------
-        // \\// refills corollary pos
-        //-------------------------------------------------
 
         //top of the accelerated kepler-triangle
         nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );

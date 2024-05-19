@@ -10,8 +10,9 @@
             create_digital_legend,
         },
     });
-    var clustersToUpdate = [];
-    var clustersToUpdate_claim = [];
+    var clustersToUpdate = {};
+    var clustersToUpdate_claim = {};
+    var clustersToUpdate_corollary = {};
     var tableCaptionFun;
     return;
 
@@ -28,7 +29,7 @@
     function create_digital_legend()
     {
         var mlegend = toreg( 'main-legend' )();
-        doCreateTable_proof( mlegend );
+        doCreateTables( mlegend );
     }
 
     //=========================================
@@ -42,20 +43,22 @@
 
         //c cc( 'does upcreate_mainLegend' );
         var ww = clustersToUpdate;
+        var wwc = clustersToUpdate_corollary;
         ww.time.innerHTML       = rg.displayTime.value;
-        ww.step.innerHTML       = rg.displayStep.value;
+        ww.step.innerHTML       = rg.stepIx.value + '';
         ww.thought.innerHTML    = rg.thoughtStep.value;
-
         var stepIx = rg.stepIx.value;
         var fullDtRev = 1/rg.rgslid_dt.val * 2;
         if( stepIx > 0 ) {
+            /*
             var impulse = rg.impulses.vectors[stepIx-1];
             var fx = impulse[0]*fullDtRev;
             var fy = impulse[1]*fullDtRev;
             var fabs = Math.sqrt( fx*fx + fy*fy );
             ww.impulse.innerHTML = fabs.toFixed(3);
-            ww.fx.innerHTML = fx.toFixed(3);
-            ww.fy.innerHTML = fy.toFixed(3);
+            //ww.fx.innerHTML = fx.toFixed(3);
+            //ww.fy.innerHTML = fy.toFixed(3);
+            */            
         }
         var speed = rg.speeds.pos[stepIx-1];
         if( speed ) {
@@ -64,8 +67,20 @@
             var vabs = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
         }
         ww.speed.innerHTML = vabs;
-        ww.vx.innerHTML = vx;
-        ww.vy.innerHTML = vy;
+        //ww.vx.innerHTML = vx;
+        //ww.vy.innerHTML = vy;
+        wwc.speed.innerHTML = vabs;
+        //------------------------
+        // //\\ perpendicular
+        //------------------------
+        {
+            let p = rg.P.p.abs;
+            wwc.SP.innerHTML = p.toFixed(3);
+            wwc.vd.innerHTML = (p*vabs).toFixed(2);
+        }
+        //------------------------
+        // \\// perpendicular
+        //------------------------
     }
     //=========================================
     // \\// updates values during simulation
@@ -79,12 +94,18 @@
     // //\\ creates proof table
     //      does one time work of html creation
     //=========================================
-    function doCreateTable_proof(mlegend)
+    function doCreateTables(mlegend)
     {
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
             .cls( 'main-legend proof' )
+            .to( stdMod.legendRoot$ )
+            ();
+
+        var tbc = mlegend.tb.corollary = $$
+            .c('table')
+            .cls( 'main-legend corollary' )
             .to( stdMod.legendRoot$ )
             ();
 
@@ -96,10 +117,28 @@
         var row = $$.c('tr')
             .addClass('proof row1')
             .addClass('tostroke')
-            .to(tb)();              
-        makeFormatterCell( row, 'speedv0', '111', 'firstx' );
-        makeFormatterCell( row, 'speedvx', '111', 'second' );
-        makeFormatterCell( row, 'power_step', '111', 'thirdx' );
+            .to(tb)();
+            
+        //apparently caption meaning has no importance    
+        makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'firstx' );
+        makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'second' );
+        makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'thirdx' );
+
+        //-------------------------------
+        // //\\ coroll table
+        //-------------------------------
+        var row = $$.c('tr')
+            .addClass('corollary row1')
+            .addClass('tostroke')
+            .to(tbc)();
+        makeFormatterCell( row, 'some1', '111', 'firstx' );
+        //we don't need it, but this is a way around to push
+        //contents from right to the left for nicer aligment:
+        makeFormatterCell( row, 'some2', '111', 'firstx' );
+        //-------------------------------
+        // \\// coroll table
+        //-------------------------------
+
         function makeFormatterCell( row, mcaption, val, id )
         {
             $$.c('td').html( mcaption ).to(row);
@@ -133,10 +172,9 @@
 
         // begins filling data rows
 
-        //===================
-        // //\\
-        //===================
-        //:time
+        //==========================
+        // //\\ time
+        //==========================
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
@@ -145,17 +183,12 @@
         //---------------------------------------
         //todm make sure this change is correct
         //makeCl( row, 'step' );
-        makeCl( row, 'step', 'motion', null, null, !!'alignCaptionToRight' );
+        makeCl( row, 'step', 'path step', null, null, !!'alignCaptionToRight' );
         //---------------------------------------
 
-        //makeCl( row, 'thought' );
-        // format( see below: ) row, mname, mcaption,
-        //                      spanIx, spanVal, alignCaptionToRight, 'claim' 
-        //                      mname - is a "vital" name: does indexing of cluster-to-update,
-        //                              seems goes to tp-"name" machinery,
         makeCl( row,
                 'thought',
-                'proof step', // mcaption,
+                'logical step', // mcaption,
                 null,         // spanIx,
                 null,         // spanVal,
                 'yes',        // alignCaptionToRight,
@@ -164,20 +197,63 @@
         );
         //makeCl( row, 'thought', 'py', null, null, !!'alignCaptionToRight', 'proof' );
 
+        
+        //==========================
+        // \\// time
+        //==========================
+        
+        /*
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
         makeCl( row, 'impulse', 'p=2<span class="tp-force tocolor tobold">f</span>∆t', null, null, !!'alignCaptionToRight', 'proof' );
+        */
+        //perhaps good for model
+        /*
         makeCl( row, 'fx', 'px', null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'fy', 'py', null, null, !!'alignCaptionToRight', 'proof' );
+        */
+
+        //-----------------------------------------------------
+        // //\\ speed
+        //-----------------------------------------------------
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'speed', null, null, null, !!'alignCaptionToRight', 'proof' );
+        makeCl( row, 'speed', 'velocity', null, null,
+                !!'alignCaptionToRight', 'proof' );
+        
+        //perhaps good for model
+        /*
         makeCl( row, 'vx', null, null, null, !!'alignCaptionToRight', 'proof' );
         makeCl( row, 'vy', null, null, null, !!'alignCaptionToRight', 'proof' );
+        */
+        //-----------------------------------------------------
+        // \\// speed
+        //-----------------------------------------------------
 
-        //===================
+        //-----------------------------------------------------
+        // //\\ perpendicular
+        //-----------------------------------------------------
+        //corollary:
+        var row = $$.c('tr')
+            .addClass('tostroke')
+            .to(tbc)();
+        makeCl( row, 'speed', 'velocity, v', null, null,
+                !!'alignCaptionToRight', 'corollary' );
+        var row = $$.c('tr')
+            .addClass('tostroke')
+            .to(tbc)();
+        makeCl( row, 'SP', 'perpendicular, d', null, null, !!'alignCaptionToRight', 'corollary' );
+        var row = $$.c('tr')
+            .addClass('tostroke')
+            .to(tbc)();
+        var row = $$.c('tr')
+            .addClass('tostroke')
+            .to(tbc)();
+        makeCl( row, 'vd', null, null, null, !!'alignCaptionToRight', 'corollary' );
+        //-----------------------------------------------------
+        // \\// perpendicular
         // \\//
         //===================
         return;
@@ -185,11 +261,11 @@
 
         function makeCl(
                 row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                claim0proof, noEqualSign
+                table_theorion, noEqualSign
          ) {
             return makeClBoth(
                 row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                'proof', noEqualSign );
+                table_theorion, noEqualSign );
         }
     }
     //=========================================
@@ -210,7 +286,7 @@
     ///Input:  mname = magnitude name, just an ID of a cell and
     ///        tip for the css-class
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
-                         alignCaptionToRight, claim0proof, noEqualSign )
+                         alignCaptionToRight, table_theorion, noEqualSign )
     {
         var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
 
@@ -241,10 +317,16 @@
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
         if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        if( claim0proof === 'claim' ) {
-            clustersToUpdate_claim[mname] = c$();
-        } else {
-            clustersToUpdate[mname] = c$(); //updateeCell;
+        switch ( table_theorion ) {
+            case 'claim':
+                clustersToUpdate_claim[mname] = c$();
+                break;
+            case 'corollary':
+                clustersToUpdate_corollary[mname] = c$();
+                break;
+            default:
+                clustersToUpdate[mname] = c$();
+                break;
         }
         return c$;
     }

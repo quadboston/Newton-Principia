@@ -88,7 +88,9 @@
             // //\\ makes visible already accomplished path
             //      by direct svg-undisplay
             //--------------------------------------------
-            $$.$(prack.svgel).removeClass( 'undisplay' );
+            //not used:
+            //$$.$(prack.svgel).removeClass( 'undisplay' );
+
             if( pix > 0 && pix < stepIx) {
                 $$.$( rg[ 'pathSegment-' + (pix-1) ].svgel)
                     .removeClass( 'undisplay' );
@@ -107,24 +109,18 @@
             //--------------------------------------------
             //if( 0 < pix && pix < stepIx - 1) {
             if( pix < stepIx - 1) {
+            //why? if( pix < stepIx ) {
                 //var fkey = 'force-' + (pix-1);
-                var fkey = 'force-' + pix;
+                var fkey        = 'force-' + pix;
                 var fappliedKey = fkey + '-applied';
-                var tipKey = fkey+'-1';
-                let rgX = rg[ fappliedKey ];
-                $$.$(rgX.svgel)
-                    .removeClass( 'undisplay' );
+                var tipKey      = fkey+'-1';
+                let rgX         = rg[ fappliedKey ];
+                $$.$(rgX.svgel).removeClass( 'undisplay' );
                 rgX.vectorArrowSvg$.removeClass( 'undisplay' );
-                //rgX.vectorArrowSvg$.removeClass( 'hidden' );
-
-                $$.$(rg[ tipKey ].svgel)
-                    .removeClass( 'undisplay' );
+                $$.$(rg[ tipKey ].svgel).removeClass( 'undisplay' );
             }
             //--------------------------------------------
             // \\// makes visible  'force-N' and
-            //--------------------------------------------
-            //if( pix > stepIx - 2 ) return; //draws only previous path
-            //--------------------------------------------
             // \\// makes visible already accomplished path
             //--------------------------------------------
         });
@@ -136,21 +132,20 @@
 
         //----------------------------------------------
         // //\\ makes visible last fragment's fgroup,
+        //      last steps where already displayed,
         //      by direct svg-undisplay,
         //      there can be less fgroups than 4
         //----------------------------------------------
         //.sets phase to latest fgroups index === substepIx
-        var fgroups = pathIx_2_pathSubsteps[ stepIx ];
+        var fgroups           = pathIx_2_pathSubsteps[ stepIx ];
         var fgroups_substepIx = Math.min( fgroups.length-1, substepIx );
-
-        var fgroup = fgroups[ fgroups_substepIx ];
+        var fgroup            = fgroups[ fgroups_substepIx ];
         if( !fgroup ) return;
-
-        //todo ... apparently this visualizes necessary fragments:
+        ///this visualizes necessary fragments:
         if( amode.aspect !== 'claim' ) {
+            //c cc( stepIx+','+fgroups_substepIx, fgroup );
             fgroup.forEach( (paintee, leafix) => {
-                $$.$(paintee.svgel)
-                .removeClass( 'undisplay' );
+                $$.$(paintee.svgel).removeClass( 'undisplay' );
             });
         }
         //----------------------------------------------

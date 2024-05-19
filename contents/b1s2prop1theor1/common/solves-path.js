@@ -55,8 +55,8 @@
 
         //:fixes lenghts to synch with new sSteps
         path.length         = Math.min( path.length, sSteps );
-        impulses.length       = Math.min( impulses.length, sSteps-1 );
-        impulsesAracc.length  = Math.min( impulsesAracc.length, sSteps-1 );
+        impulses.length     = Math.min( impulses.length, sSteps-1 );
+        impulsesAracc.length= Math.min( impulsesAracc.length, sSteps-1 );
         speeds.length       = Math.min( speeds.length, sSteps-1 );
         speedsAracc.length  = Math.min( speedsAracc.length, sSteps-1 );
         freePath.length     = Math.min( freePath.length, sSteps-2 );
@@ -83,9 +83,6 @@
                 //===speed at A when pi = 1
                 var speed = speeds[pi-1];
                 var speedAracc = speedsAracc[ pi-1 ];
-
-                var formerSpeed = pi > 1 ? speeds[pi-2] : speed;
-                //var formerSpeedAracc = pi > 1 ? speedsAracc[pi-2] : speedAracc;
                 //====================================================
                 // \\// recalls current and former speed placeholders
                 //====================================================
@@ -108,7 +105,8 @@
                 //path increment is added to path
                 path[pi] =
                 [
-                    path[pi-1][0]+step[0], //=== path at A + step === path at B
+                    //for example: (path at A + step) === path at B
+                    path[pi-1][0]+step[0],
                     path[pi-1][1]+step[1],
                 ];
                 ////recall pi = 0 maps to A, pi = 1 to B,
@@ -125,11 +123,13 @@
                 //force is applied)
                 if( pi > 1 ) {
                     ////"path > B" === C, or, D, or ...
-                    var freeSpeed = formerSpeed;
+                    let formerSpeed = speeds[pi-2];
+                    let formerPath = path[pi-1];
+                    //this thing index shifted by two units:
                     freePath[pi-2] =
                     [
-                        path[pi-1][0]+freeSpeed[0]*timeStep,
-                        path[pi-1][1]+freeSpeed[1]*timeStep,
+                        formerPath[0]+formerSpeed[0]*timeStep,
+                        formerPath[1]+formerSpeed[1]*timeStep,
                     ];
                 }
                 //====================================
@@ -160,8 +160,10 @@
                     * timeStep*2;
                 var fy = forceAbs * ruy
                     * timeStep*2;
+                    
+                //impulses begin with point B and, naturally,
+                //shifted in one unit from index of paht array
                 impulses[pi-1] = [fx,fy];
-
                 {
                     //now, makes force impulsesAracc[ pi-1 ]
                     //normal to original force
@@ -182,6 +184,9 @@
                 // //\\ forces do change velocities
                 //====================================
                 //force gives impulse to speed
+                //speed at index Ix is a speed with which
+                //body begins to travel in path point paths[Ix],
+                //for example speeds[1] = speed of departue from point B
                 speeds[pi] =
                 [
                     speed[0]+fx,

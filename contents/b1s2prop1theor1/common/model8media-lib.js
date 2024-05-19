@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            time_2_displayTimeStrings,
+            time_2_preparedForDisplay,
             doesPosition_PTandTheirLine,
             sliderTime_2_time8stepIndices,
             protects_curTime_ranges,
@@ -53,7 +53,6 @@
         //virtual thing, just stretches time to better subdivide stepIx
         var stepIx4 = Math.floor( ctime * 4 / rg.rgslid_dt.val );
         rg.stretchedFourTimes_stIx = stepIx4;
-
         //substep in its original meaning: one of the four substeps indices
         rg.substepIx    = stepIx4%4;
         //steps in its original meaning
@@ -68,29 +67,30 @@
 
     //=========================================================
     //=========================================================
-    function time_2_displayTimeStrings()
+    function time_2_preparedForDisplay()
     {
         var path        = rg.path.pos;
         var stepIx      = rg.stepIx.value;
         var substepIx   = rg.substepIx;
 
-        //========================================================================
+        //==================================================================
         // //\\ visualizes time offsets
-        //========================================================================
-        rg.displayStep.value = stepIx + '';
+        //==================================================================
         rg.thoughtStep.value = (substepIx+1) + '';
         //this sets granular time display increment
         //during last proof step
-        rg.displayTime.value = rg.slider_sltime.curtime.toFixed(2);
-        //was: why?: rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
+        var effectiveTime = rg.stepIx.value * rg.rgslid_dt.val;           
+                            //rg.slider_sltime.curtime.toFixed(2);        
+        rg.displayTime.value = effectiveTime.toFixed(2);
+            //was: why?: rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
 
-        if( stepIx === 1 ) {
+        //if( stepIx === 1 ) {
             ////before thought experiment, no indication of it is shown
-            rg.thoughtStep.value = "";
-        }
-        //========================================================================
+        //    rg.thoughtStep.value = "";
+        //}
+        //==================================================================
         // \\// visualizes time offsets
-        //========================================================================
+        //==================================================================
     }
 
 
@@ -103,7 +103,7 @@
         if( st >= path.length -1 ) return; //no second point
 
         //perpendicular to unseen lines looks awkward
-        st -= rg.substepIx < 2 ? 1 : 0;
+        //st -= rg.substepIx < 2 ? 1 : 0;
         var pos0    = path[ st-1 ];
         var pos1    = path[ st ];
         nspaste( rg.P.pos, mat.dropPerpendicular( rg.S.pos, pos0, pos1 ) );
@@ -121,6 +121,8 @@
         });
         ssF.pnames2line( 'S', 'P', );
         ssF.pnames2line( 'T', 'P', );
+        //rg.P.p is unit vector interface
+        rg.P.p = mat.p1_to_p2( rg.S.pos, rg.P.pos );
 
         // //\\ patch
         rgP = ssF.rgPos2rgMedia( 'v', );

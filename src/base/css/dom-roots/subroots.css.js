@@ -290,6 +290,7 @@ ret += `
     }
     */
 
+    .corollary.row1,
     .proof.row1 {
         opacity:0;
     }

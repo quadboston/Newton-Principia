@@ -10,6 +10,8 @@
         },
     });
     var decor = sn( 'decor', stdMod );
+    
+    var LOGIC = false; //true; //makes logic steps c and C clearer;
     return;
 
 
@@ -42,21 +44,29 @@
             //todo redundant
             B   : { decStart : -2, pos : sconf.B.concat() },
         };
+        Object.assign( decor, firstSteps_conf );
 
         //----------------------------------------------------
         // //\\ proof final points
         //----------------------------------------------------
-        var finalSteps_conf = {
+        var CDEF_conf = {
+            /*
             C   : { decStart : 10, },
             D   : { decStart : 14, },
             E   : { decStart : 18, },
             F   : { decStart : 22 },
+            */
+            C   : { decStart : 8, },
+            D   : { decStart : 12, },
+            E   : { decStart : 16, },
+            F   : { decStart : 20 },
         };
         ///makes proof final points to disappear after a while
-        eachprop( finalSteps_conf, (fs, kName) => {
+        eachprop( CDEF_conf, (fs, kName) => {
             fs.decEnd = sconf.numberOfManyBases*4 *
                         sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
         });
+        Object.assign( decor, CDEF_conf );
         //----------------------------------------------------
         // \\// proof final points
         //----------------------------------------------------
@@ -69,21 +79,21 @@
         var aracc_conf = {
             Caracc : {
                 caption : "C'",
-                decStart : 10,
-                decEnd : 10,
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
                 cssClass : 'theor2corollary',
             },
             //will be repositioned by algo
             Paracc : {
                 caption : "C''",
-                decStart : 10,
-                decEnd : 10,
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
                 cssClass : 'theor2corollary',
             },
             Varacc : {
                 caption : "V'",
-                decStart : 10,
-                decEnd : 10,
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
                 cssClass : 'theor2corollary',
             },
         };
@@ -96,18 +106,20 @@
         var middleSteps_conf = {
             // //\\ c,d,e,f
             c   : {
-                decStart : 8,
-                decEnd : finalSteps_conf.F.decStart, //22, //10,
+                decStart : LOGIC ? 8 : decor.C.decStart,
+                decEnd : decor.F.decStart+2, //22, //10,
                 cssClass : 'theor1proof theor2corollary',
             },
-            d   : { decStart : 12, decEnd : 22, //14,
+            d   : { decStart : LOGIC ? 12 : decor.D.decStart,
+                    decEnd : decor.F.decStart+2,
                 cssClass : 'theor1proof theor2proof',
             },
-            e   : { decStart : 16,
-                    decEnd : finalSteps_conf.F.decStart, //22, //18,
+            e   : { decStart : LOGIC ? 16 : decor.E.decStart,
+                    decEnd : decor.F.decStart+2,
                     cssClass : 'theor1proof theor2proof',
             },
-            f   : { decStart : 20, decEnd : 22,
+            f   : { decStart : LOGIC ? 20 : decor.F.decStart,
+                    decEnd : decor.F.decStart+2,
                     cssClass : 'theor1proof theor2proof',
             },
             // \\// c,d,e,f
@@ -115,14 +127,14 @@
             // //\\ c-col3
             h   : {
                 caption : 'c',
-                decStart : finalSteps_conf.C.decStart,
-                decEnd : finalSteps_conf.C.decEnd,
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decEnd,
                 cssClass : 'theor1corollary theor2proof',
             },
             g   : {
                 caption : 'f',
-                decStart : finalSteps_conf.F.decStart,
-                decEnd : finalSteps_conf.F.decEnd,
+                decStart : decor.F.decStart,
+                decEnd : decor.F.decEnd,
                 cssClass : 'theor1corollary',
             },
             // \\// c-col3
@@ -130,8 +142,8 @@
 
         var forceTip_conf = {
             Z   : {
-                    decStart : 22,
-                    decEnd : finalSteps_conf.F.decEnd, //was 27,
+                    decStart : decor.F.decStart,
+                    decEnd : decor.F.decEnd,
                     cssClass : 'theor1corollary',
                   },
             V   : { decStart : 2, decEnd : 1111111111 },
@@ -148,6 +160,7 @@
                   },
             P   : {
                     decStart : -2, //always visible
+                    doPaintPname : false,
                     cssClass : 'theor1corollary',
                   },
             T   : { decStart : 28,
@@ -158,16 +171,16 @@
                   },
             //sagittae ABC=middle sagitta in sagittae-parallelogram
             U   : {
-                    decStart : finalSteps_conf.C.decStart,
-                    decEnd : finalSteps_conf.C.decEnd,
+                    decStart : decor.C.decStart,
+                    decEnd : decor.C.decEnd,
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
                     cssClass : 'hidden',
             },
             //sagittae DEF=middle sagitta in sagittae-parallelogram
             W   : {
-                    decStart : finalSteps_conf.F.decStart,
-                    decEnd : finalSteps_conf.D.decEnd,
+                    decStart : decor.F.decStart,
+                    decEnd : decor.D.decEnd,
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
                     cssClass : 'hidden',
@@ -201,11 +214,9 @@
         //---------------------------------------------------
         // //\\ comprises decor
         //---------------------------------------------------
-        Object.assign( decor, firstSteps_conf );
         Object.assign( decor, middleSteps_conf );
         Object.assign( decor, forceTip_conf );
         Object.assign( decor, mixedSteps_conf );
-        Object.assign( decor, finalSteps_conf );
         Object.assign( decor, aracc_conf );
         //---------------------------------------------------
         // \\// comprises decor
@@ -251,7 +262,7 @@
         Object.assign( sconf.pname2point, mapp( forceTip_conf,      dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( mixedSteps_conf,    dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( middleSteps_conf,   dc => dc.pos ) );
-        Object.assign( sconf.pname2point, mapp( finalSteps_conf,    dc => dc.pos ) );
+        Object.assign( sconf.pname2point, mapp( decor,    dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( aracc_conf,         dc => dc.pos ) );
         //---------------------------------------------------
         // \\// synching rg and dec pos with pname2point
@@ -314,8 +325,7 @@
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
             { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
 
-            //{ nam : ['C', 'V'], decStart : rg.C.decStart, },
-            { nam : ['A', 'v'], decStart : -2, },
+            { nam : ['A', 'v'], decStart : -2, cssClass : 'tp-speed' },
 
             { nam : ['S', 'P'], decStart : -2,
                 cssClass : 'theor1corollary', }, //for perpendicular
@@ -356,7 +366,7 @@
         ].forEach( pNam => {
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
-                let pcolor = sDomF.getFixedColor( 'path' )
+                let pcolor = sDomF.getFixedColor( 'speed' )
                 let line = toreg( 'Av' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.15 )
@@ -432,7 +442,6 @@
         acceleratingArea_2_rg8media();
 
         toreg( 'displayTime' )( 'value', '' );
-        toreg( 'displayStep' )( 'value', '' );
         toreg( 'thoughtStep' )( 'value', '' );
 
         //---------------------------------------------------
