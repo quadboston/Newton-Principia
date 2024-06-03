@@ -278,15 +278,7 @@
     function setsCommonT1andT2capture()
     {
         nspaste( capture, {
-            "1-B": {
-                "slider_sltime": {
-                    //"curtime": 2.5752915514853103 * sconf.initialTimieStep
-                    "curtime": 2.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
+            //"1-B", replaced with 1-4
             "1-C": {
                 "slider_sltime": {
                     //"curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep

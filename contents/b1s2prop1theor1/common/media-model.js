@@ -95,7 +95,7 @@
             if( POINTS_BCDE_ARE_ACTIVE ) {
                 rg.B.svgel.addEventListener( 'click', function() {
                     if( amode.theorion === 'proof' ) {
-                        fmethods.executeCapturedState( '1-B' );
+                        fmethods.executeCapturedState( '1-4' );
                     }
                 });
                 rg.C.svgel.addEventListener( 'click', function() {

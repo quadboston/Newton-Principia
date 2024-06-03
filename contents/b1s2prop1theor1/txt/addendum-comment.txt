@@ -94,7 +94,7 @@
               τ = 2¦time¦t¦¦. <br><br>
           </div>
          </div>
-            <span class="captured-reference id-1-B">proof step 3.</span>
+            <span class="captured-reference id-1-4">proof step 3.</span>
             because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
 
          <div style="text-align:center;">
