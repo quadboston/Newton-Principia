@@ -32,17 +32,14 @@
         //reestablishes detecton to hide/unhide image for case the state
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
-        switch (haz( amode, 'userControl')) {
-            case 'text':
-                rg.c.decStart = 5;
-                rg.Bc.decStart = 5;
-                rg.SBc.decStart = 5;
-                break;
-            case 'diagram':
-            default:
-                rg.c.decStart = rg.C.decStart;
-                rg.Bc.decStart = rg.C.decStart;
-                rg.SBc.decStart = rg.C.decStart;
+        if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE || haz( amode, 'userControl') === 'text' ) {
+            rg.c.decStart = 5;
+            rg.Bc.decStart = 5;
+            rg.SBc.decStart = 5;
+        } else {
+            rg.c.decStart = rg.C.decStart;
+            rg.Bc.decStart = rg.C.decStart;
+            rg.SBc.decStart = rg.C.decStart;
         }
         
         //this is a "policy" ... should be in the state manager if any ...

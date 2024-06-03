@@ -90,6 +90,7 @@
         let speed = 1/initialTimieStep;
         to_sconf =
         {
+            TIMER_AND_LOGIC_STEPS_COINSIDE : false,
             FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
             hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
             //nonhover_width    : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
