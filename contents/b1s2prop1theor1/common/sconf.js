@@ -78,13 +78,14 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         let legacyTimeStep = 0.75; //for case we do change initialTimieStep
-        let initialTimieStep = 1; //0.75;
+        let initialTimieStep = 0.75;
         let dtMin = 0.08;
         let stepsRange = 14;
         let timeRange = stepsRange*initialTimieStep;
         let numberOfManyBases = stepsRange*2;
         let timeStepOfManyBases = initialTimieStep/4;
-        let timeMin0 = 1.75000001;
+        //let unitlessMinTime = 1.7500000;
+        let unitlessMinTime = 1.000001;
 
         let speed = 1/initialTimieStep;
         to_sconf =
@@ -130,7 +131,7 @@
             numberOfManyBases,
             timeStepOfManyBases,
             timeRange,
-            timeMin0,
+            unitlessMinTime,
             //maximum first path from A to B
             //too big values will allow user to place
             //point B on legend area ... will look strange ...
@@ -278,7 +279,8 @@
         nspaste( capture, {
             "1-B": {
                 "slider_sltime": {
-                    "curtime": 2.5752915514853103 * sconf.initialTimieStep
+                    //"curtime": 2.5752915514853103 * sconf.initialTimieStep
+                    "curtime": 2.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -286,7 +288,8 @@
             },
             "1-C": {
                 "slider_sltime": {
-                    "curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep
+                    //"curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep
+                    "curtime": 3.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -294,7 +297,8 @@
             },
             "1-D": {
                 "slider_sltime": {
-                    "curtime": 3.45
+                    //"curtime": 3.45
+                    "curtime": 4.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -302,7 +306,8 @@
             },
             "1-E": {
                 "slider_sltime": {
-                    "curtime": 4.26
+                    //"curtime": 4.26
+                    "curtime": 5.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -338,13 +343,15 @@
                 },
 
                 "slider_sltime": {
-                    "curtime": 1.75000001 * sconf.initialTimieStep
+                    //"curtime": 1.75000001 * sconf.initialTimieStep
+                    "curtime": 1.01  * sconf.initialTimieStep
                 },
             },
 
             "1-1": {
                 "slider_sltime": {
-                    "curtime": 2.099161816013016 * sconf.initialTimieStep
+                    //"curtime": 2.099161816013016 * sconf.initialTimieStep
+                    "curtime": 1.26 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -352,7 +359,8 @@
             },
             "1-4": {
                 "slider_sltime": {
-                    "curtime": 2.765743445674228 * sconf.initialTimieStep
+                    //"curtime": 2.765743445674228 * sconf.initialTimieStep
+                    "curtime": 1.751 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -360,7 +368,7 @@
             },
             "motion-F": {
                 "slider_sltime": {
-                    "curtime": 5.63 * sconf.initialTimieStep
+                    "curtime": 5.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -393,7 +401,7 @@
                     ]
                 },
                 "slider_sltime": {
-                    "curtime": 5.995 * sconf.initialTimieStep
+                    "curtime": 5.01 * sconf.initialTimieStep
                 },
                 "rgslid_dt": {
                     "val": sconf.initialTimieStep
@@ -900,7 +908,7 @@
 
             "Bc"                : freeMove,
             "Bh"                : freeMove,
-            "Ch"                : freeMove,
+            "Ch"                : forceMove,
 
             "Cd"                : freeMove,
             "De"                : freeMove,

@@ -50,16 +50,10 @@
         // //\\ proof final points
         //----------------------------------------------------
         var CDEF_conf = {
-            /*
-            C   : { decStart : 10, },
-            D   : { decStart : 14, },
-            E   : { decStart : 18, },
-            F   : { decStart : 22 },
-            */
-            C   : { decStart : 8, },
-            D   : { decStart : 12, },
-            E   : { decStart : 16, },
-            F   : { decStart : 20 },
+            C   : { decStart : 6, },
+            D   : { decStart : 10, },
+            E   : { decStart : 14, },
+            F   : { decStart : 18 },
         };
         ///makes proof final points to disappear after a while
         eachprop( CDEF_conf, (fs, kName) => {
@@ -106,19 +100,19 @@
         var middleSteps_conf = {
             // //\\ c,d,e,f
             c   : {
-                decStart : LOGIC ? 8 : decor.C.decStart,
+                decStart : LOGIC ? 5 : decor.C.decStart,
                 decEnd : decor.F.decStart+2, //22, //10,
                 cssClass : 'theor1proof theor2corollary',
             },
-            d   : { decStart : LOGIC ? 12 : decor.D.decStart,
+            d   : { decStart : LOGIC ? 9 : decor.D.decStart,
                     decEnd : decor.F.decStart+2,
                 cssClass : 'theor1proof theor2proof',
             },
-            e   : { decStart : LOGIC ? 16 : decor.E.decStart,
+            e   : { decStart : LOGIC ? 13 : decor.E.decStart,
                     decEnd : decor.F.decStart+2,
                     cssClass : 'theor1proof theor2proof',
             },
-            f   : { decStart : LOGIC ? 20 : decor.F.decStart,
+            f   : { decStart : LOGIC ? 17 : decor.F.decStart,
                     decEnd : decor.F.decStart+2,
                     cssClass : 'theor1proof theor2proof',
             },

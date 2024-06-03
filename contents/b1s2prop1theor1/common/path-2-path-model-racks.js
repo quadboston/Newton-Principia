@@ -1,3 +1,11 @@
+/*
+ * Apparently, the role of this module is to reserve rg-names for the subdetails 
+ * of geo objects. Not for the racks of path.
+ * Possibly redundant module. Using toreg, all this job can go to
+ * following value assigners.
+ * Or, following value assignems can use rg.XXX = instead of toreg.
+*/
+
 ( function() {
     var {
         ns, sn, haz, nspaste,
@@ -6,7 +14,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            path2rgModelPlaceholders,
+            path2rgModelPlaceholders__I,
         },
     });
     return;
@@ -32,7 +40,7 @@
     //      and their rgObj: 'freepath-' + pix;
     //      'freePathSegment-' + pix 
     ///at current ver, runs at every model_upcreate
-    function path2rgModelPlaceholders()
+    function path2rgModelPlaceholders__I()
     {
         var S               = rg.S.pos;
         var force           = rg.force.pos;
@@ -154,14 +162,13 @@
             // //\\ paints forces attached to c, d, ...
             //      "translated" forces
             //*****************************************
-            if( pix > 1 ) {
-                var kix = pix-2;
+            if( pix > 0 && pix-1 < freePath.length ) {
+                var kix = pix-1;
                 var fkey = 'translated-force-' + kix;
                 var fview = toreg( fkey )();
 
                 //bare position at the base of force
                 var pos0 = freePath[kix];
-
                 //applies force to pos0: just bare position
                 var pos1 = [
                     pos0[0]+fvectors[kix][0] * dt,
@@ -219,7 +226,6 @@
 
         //-------------------------------------------------
         // //\\ real path line segment,
-        //      apparently, segment after applying the force
         //-------------------------------------------------
         pathRacks.forEach( (prack, pix) => {
             if( pix === pathRacks.length - 1 ) return;

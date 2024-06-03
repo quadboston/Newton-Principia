@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, sv, globalCss,
+        sn, $$, sv, globalCss, haz,
         sconf, sDomF, ssF, ssD, toreg, rg,
         amode, stdMod,
     } = window.b$l.apptree({
@@ -206,11 +206,6 @@
 
 
 
-
-
-
-
-
         ///this function does "minor" update: it does not
         ///recalculate the evolution, but 
         ///  sets slider position and
@@ -219,32 +214,22 @@
         {
             var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
-            //-----------------------------------------------------
-            // //\\ corrects pos and updates slider's GUI
-            //-----------------------------------------------------
             //interpolates slider GUI position
             var sliderXpos =
                  railsStart.pos[0] + 
                  rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 
-            //at curr. ver., does what it says: pos to GUI
-            api.modPos_2_GUI();
-            //-----------------------------------------------------
-            // \\// corrects pos and updates slider's GUI
-            //-----------------------------------------------------
-
             //does what it says, no extra calculations
-            stdMod.sliderTime_2_time8stepIndices();
-            //ssF.solvesTrajectoryMath();
-
-            //apparently, only decoration like time labels
-            stdMod.time_2_preparedForDisplay();
+            slTime_2_stepIndice8tCaption();
 
             api.slCaption = slCaption0 + ' = ' +
                             //discrete time:
                             rg.displayTime.value;                                
                             //continuous time: api[ apiValueName ].toFixed(2);
+            //at curr. ver.,
+            //    does pos to GUI, does slCaption
+            api.modPos_2_GUI();
 
             //perpendicular and point "T"
             //they depend on slider-time, this is why their math model pos
@@ -262,7 +247,7 @@
     //----------------------------------------
     // \\// makes up time slider
     //----------------------------------------
-
+    
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
@@ -274,6 +259,7 @@
     function move_2_updates( move_in_model )
     {
         var api = this;
+        amode.userControl = 'diagram';
         sDomF.detected_user_interaction_effect();
 
         //this fixes missed model-decoration-points after user made an action,
@@ -290,22 +276,47 @@
         stdMod.protects_curTime_ranges( newTime );
 
         stdMod.media_upcreate();
-
-        //======================================================
-        //we don't need them, this slider does not affect
+        //we don't need this, this slider does not affect
         //path calculation
         //stdMod.model_upcreate();
-        //we don't need this, we just need only to unhide svg-dom
-        //stdMod.media_upcreate();
-        //therefore, we run this:
-
-        //api.upates_timeSlider8unmasksSvgDom();
-
-        //above does:
-        //does unmasksVisib(): "deeply hidden job", (what a bad programming),
-        //  in that, it loops via legacy path-svg obkects and modern
-        //  svg decors objects (visualizes decs)
         //======================================================
+    }
+    
+   
+    function slTime_2_stepIndice8tCaption()
+    {
+        var sp8ep   = haz( rg, 'slider_sltime' );
+        var ctime    = rg.slider_sltime.curtime;
+        //----------------------------------------
+        // //\\ establishes model step and substep
+        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
+        //      substepIx = 0,1,2,3,  0,1,2,3,  0,1, 2, 3, ...
+        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ... 
+        //      point     = A,A,A,A,  -,-,-,B,  -,-, C, C, ...
+        //----------------------------------------
+        //virtual thing, just stretches time to better subdivide stepIx
+        var stepIx4 = Math.floor( ctime * 4 / rg.rgslid_dt.val );
+        rg.stretchedFourTimes_stIx = stepIx4;
+        //substep in its original meaning: one of the four substeps indices
+        rg.substepIx    = stepIx4%4;
+        //steps in its original meaning
+        var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
+        stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
+        toreg( 'stepIx' )( 'value', stepIx );
+        /*
+            c cc( 'ctime=' + ctime +
+             ' ESTABLISH: stepIx4=' + stepIx4 +
+             ' substepIx=' + rg.substepIx +
+             ' stepIx=' + stepIx
+            );
+        */
+        //----------------------------------------
+        // \\// establishes model step and substep
+        //----------------------------------------
+        rg.thoughtStep.value = (rg.substepIx+1) + '';
+        //sets granular time display increment during last proof step
+        rg.displayTime.value = ( rg.stepIx.value * rg.rgslid_dt.val )
+                                .toFixed(2);
     }
 
 }) ();

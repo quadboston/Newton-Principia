@@ -40,6 +40,7 @@
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
             link.setAttribute( 'title', 'click to go to episode' );
             link.addEventListener( 'click', function() {
+                amode.userControl = 'text';
                 executeCapturedState( match[1] );
             });
         });

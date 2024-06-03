@@ -30,7 +30,7 @@
         //**********************
         //initially does job which sliders do at run-time
         toreg( 'slider_sltime' )( 'curtime',
-                sconf.timeMin0 * sconf.initialTimieStep );
+                sconf.unitlessMinTime * sconf.initialTimieStep );
         toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
         toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
         toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
@@ -206,7 +206,7 @@
         //V2forceParams( rg.V.pos, null, stdMod, !!'doEnforcePars' );
         //A2distanceToS( rg.A.pos, null, stdMod );
 
-        //ssF.solvesTrajectoryMath();
+        //ssF.solvesTrajectoryMath__O();
     }
     */
 }) ();

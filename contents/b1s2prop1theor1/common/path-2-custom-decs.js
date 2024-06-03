@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            traj2decs,
+            traj2decs__II,
         },
     });
     return;
@@ -19,7 +19,7 @@
 
 
     ///at current ver, runs at every model_upcreate
-    function traj2decs()
+    function traj2decs__II()
     {
         var path            = rg.path.pos;
         var freePath        = rg.freePath.pos;
@@ -45,16 +45,13 @@
         //-------------------------------------------------
 
         //-----------------------------------------------------
-        // //\\ recalculates CDEF points pos
+        // //\\ recalculates BCDEF points pos
         //-----------------------------------------------------
-        [ 'C', 'D', 'E', 'F' ].forEach( kname => {
-            var rgP = rg[ kname ];
-            var decStart = rgP.decStart;
-            nspaste( rgP.pos, path[ ( decStart - decStart%4 ) / 4 ] );
+        [ 'B', 'C', 'D', 'E', 'F' ].forEach( (kname,ix) => {
+            nspaste( rg[ kname ].pos, path[ ix + 1 ] );
         });
-        nspaste( rg.B.pos, path[1] );
         //-------------------------------------------------
-        // \\// recalculates CDEF points pos
+        // \\// recalculates BCDEF points pos
         //-------------------------------------------------
 
 

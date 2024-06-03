@@ -32,7 +32,19 @@
         //reestablishes detecton to hide/unhide image for case the state
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
-
+        switch (haz( amode, 'userControl')) {
+            case 'text':
+                rg.c.decStart = 5;
+                rg.Bc.decStart = 5;
+                rg.SBc.decStart = 5;
+                break;
+            case 'diagram':
+            default:
+                rg.c.decStart = rg.C.decStart;
+                rg.Bc.decStart = rg.C.decStart;
+                rg.SBc.decStart = rg.C.decStart;
+        }
+        
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
@@ -53,7 +65,7 @@
         ///because this thing does historical job, it updates core svg shapes
         ///along the path; but while program progressed, new decorations
         ///came up which need their own work
-        stdMod.trajectoryShapes_2_media();
+        stdMod.allPathRacks_2_unseenSVGs();
 
         ssF.v2GUI();
         stdMod.paints_draggableDecPoints8Line(); //changes svg

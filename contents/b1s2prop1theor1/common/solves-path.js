@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            solvesTrajectoryMath,
+            solvesTrajectoryMath__O,
         },
     });
     return;
@@ -32,7 +32,7 @@
     ///    is labeled with postfix "aracc".
     ///
     ///=================================================================
-    function solvesTrajectoryMath( stdMod )
+    function solvesTrajectoryMath__O( stdMod )
     {
         stdMod      = stdMod || studyMods[ amode.submodel ];
         var toreg   = stdMod.toreg;
@@ -60,7 +60,6 @@
         speeds.length       = Math.min( speeds.length, sSteps-1 );
         speedsAracc.length  = Math.min( speedsAracc.length, sSteps-1 );
         freePath.length     = Math.min( freePath.length, sSteps-2 );
-        //freePathAracc.length= Math.min( freePathAracc.length, sSteps-2 );
 
         //***********************************************
         // //\\ calculates body's trajectory

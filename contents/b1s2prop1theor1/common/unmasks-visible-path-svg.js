@@ -91,26 +91,24 @@
             //not used:
             //$$.$(prack.svgel).removeClass( 'undisplay' );
 
-            if( pix > 0 && pix < stepIx) {
+            if( pix > 0 && pix <= stepIx) {
                 $$.$( rg[ 'pathSegment-' + (pix-1) ].svgel)
                     .removeClass( 'undisplay' );
 
                 //makes visible all kepler triangles along the path,
                 //they will be in zebra-colors in proof to distinguish,
-                if( pix < stepIx-1 ) {
-                    $$.$( rg[ 'kepltr-' + pix ].svgel)
+                //if( stepIx < 6 || pix < stepIx-1 ) {
+                    $$.$( rg[ 'kepltr-' + (pix-1) ].svgel)
                         .removeClass( 'undisplay' );
-                }
+                //}
             }
             //--------------------------------------------
-            // //\\ makes visible  'force-N' and
+            // //\\ makes visible  previous forces
+            //      'force-N' and
             //      'force-N-1' shapes
             //      by direct svg-undisplay
             //--------------------------------------------
-            //if( 0 < pix && pix < stepIx - 1) {
             if( pix < stepIx - 1) {
-            //why? if( pix < stepIx ) {
-                //var fkey = 'force-' + (pix-1);
                 var fkey        = 'force-' + pix;
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
@@ -120,7 +118,7 @@
                 $$.$(rg[ tipKey ].svgel).removeClass( 'undisplay' );
             }
             //--------------------------------------------
-            // \\// makes visible  'force-N' and
+            // \\// makes visible  previous forces
             // \\// makes visible already accomplished path
             //--------------------------------------------
         });
@@ -140,12 +138,13 @@
         var fgroups           = pathIx_2_pathSubsteps[ stepIx ];
         var fgroups_substepIx = Math.min( fgroups.length-1, substepIx );
         var fgroup            = fgroups[ fgroups_substepIx ];
-        if( !fgroup ) return;
+        //if( !fgroup ) return;
         ///this visualizes necessary fragments:
         if( amode.aspect !== 'claim' ) {
-            //c cc( stepIx+','+fgroups_substepIx, fgroup );
             fgroup.forEach( (paintee, leafix) => {
                 $$.$(paintee.svgel).removeClass( 'undisplay' );
+                let vectorArrowSvg$ = haz( paintee, 'vectorArrowSvg$' );
+                vectorArrowSvg$ && vectorArrowSvg$.removeClass( 'undisplay' );
             });
         }
         //----------------------------------------------

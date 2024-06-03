@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            trajectoryShapes_2_media,
+            allPathRacks_2_unseenSVGs,
         },
     });
     return;
@@ -20,7 +20,7 @@
 
 
     ///this fun. completes the split model and media code,
-    function trajectoryShapes_2_media()
+    function allPathRacks_2_unseenSVGs()
     {
         var pointies2line   = ssF.pointies2line;
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
@@ -97,32 +97,6 @@
             //---------------------------------------------------------
             // \\// placifies keplerTriangles
             //---------------------------------------------------------
-
-            //-----------------------------------------------------------
-            // //\\ free triangles
-            //      ... are bound tgo C,c which are mapped tp pointIx = 2
-            //-----------------------------------------------------------
-            if( pix > 1 ) {
-                var kix = pix-2;
-
-                //makes freeTriangles
-                //freeTriangles array master-index offset is pi = 2
-                var pkey = 'freetr-' + kix;
-                var ktr = toreg( pkey )( { undisplay : true } )();
-                //paints Kepler's triangles rg[pkey] along the path:
-                let triang = paintTriangle(
-                    pkey, 'tofill', 'free-triangle theor1proof',
-                    'rgba( 100,255,100,0.2)' );
-                if( kix < 4 ) {
-                    ////todm don't create it at all or do coinside with decor
-                    ////other object, decor will take care of painting, because
-                    ////of decor already has these objects
-                    triang.svgel.style.display = 'none';
-                }
-            }
-            //---------------------------------------------------------
-            // \\// free triangles
-            //---------------------------------------------------------
         });
 
 
@@ -190,53 +164,6 @@
                 //----------------------------------
                 // \\// makes red line segments for force
                 // \\// paints forces attached to B, C, ...
-                //*****************************************
-
-
-
-                //*****************************************
-                // //\\ paints forces attached to c, d, ...
-                //      "translated" forces,
-                //      "short living on diagram",
-                //*****************************************
-                if( pix > 1 ) {
-                    ////makes short living
-                    var kix = pix-2;
-                    var fkey = 'translated-force-' + kix;
-                    var fview = toreg( fkey )();
-                    var ffkey0 = fkey+'-0';
-                    var ffkey1 = fkey+'-1';
-                    toreg( ffkey0 )({ undisplay : true })();
-                    toreg( ffkey1 )({ undisplay : true })();
-
-                    //defines base of force as invisible point:
-                    rg8pos_2_svg( ffkey0, { fill:'transparent' } );
-                    //paints tip of the force as a red circle
-                    rg8pos_2_svg( ffkey1, {
-                        //fill:'red',
-                        cssClass:'fill theor1proof',
-                        tpclass : 'force-_move',
-                        r : 4, //6,
-                    });
-
-                    var lineName = fkey+'-applied';
-                    toreg( lineName )({ undisplay : true })();
-                    //makes red line segments for force
-                    //it is duplicated with decoration line, but
-                    //decor line is not in sync with it,
-                    pointies2line(
-                        lineName,
-                        fview.pivots,
-                        {
-                            //stroke:'red',
-                            cssClass:'tostroke theor1proof',
-                            'stroke-width': 3,
-                            tpclass : 'forceMove',
-                        }
-                    );
-                }
-                //*****************************************
-                // \\// paints forces attached to c, d, ...
                 //*****************************************
             }
         });

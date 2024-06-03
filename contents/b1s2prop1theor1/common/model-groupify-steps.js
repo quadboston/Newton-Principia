@@ -5,7 +5,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            trajectoryShapes_2_groups,
+            trajectoryShapes_2_groups__III,
         },
     });
     return;
@@ -21,12 +21,12 @@
     //*******************************************
     // //\\ setsup show scenario
     //      called in media-model.js::media_upcreate()::
-    //                stdMod.trajectoryShapes_2_groups();
+    //                stdMod.trajectoryShapes_2_groups__III();
     //*******************************************
-    function trajectoryShapes_2_groups()
+    function trajectoryShapes_2_groups__III()
     {
         var pathRacks = rg.pathRacks.pathRacks;
-        ///pathIx_2_groups: pathIx -> fGroups = { fgroup1,
+        ///pathIx_2_groups: pathIx |-> fGroups = { fgroup1,
         rg.pathIx_2_pathSubsteps = pathRacks.map( (
             rgPathPoint,
             pix //=total index ~ (motion-step, logical-interaction-substep)
@@ -44,116 +44,74 @@
             var fGroups = [];
             
             if( pix === 0 ) {
-                ////empty grop for reached point A
+                ////logical group 0 = empty grop for reached point A
                 var fgroup = [];
                 fGroups.push( fgroup );
-                
-            } else if( pix === 1 ) {
-                ////single grop for reached point B
-                var fgroup = [];
-                fGroups.push( fgroup );
-                fgroup.push( rgPathPoint );
-                fgroup.push( rg[ 'pathSegment-' + (pix-1) ] );
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
-
-            } else if( pix > 1 ) {
-                //0
+            } else {
+                ////logical groups for C and beyond
                 //------------------------------------
-                // //\\ initial group
+                // //\\ logical group 0
                 //------------------------------------
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
-                fgroup.push( rg[ 'freePathSegment-' + (pix-2) ] );
-                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
-                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
                 //------------------------------------
-                // \\// initial group
+                // \\// logical group 0
                 //------------------------------------
 
-                //1
                 //------------------------------------
-                // //\\ added force group
+                // //\\ logical group 1
                 //------------------------------------
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
+                //------------------------------------
+                // \\// logical group 1
+                //------------------------------------
 
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
-                fgroup.push( rg[ 'kepltr-' + (pix-2) ] );
-                fgroup.push( rg[ 'freePathSegment-' + (pix-2) ] );   
-                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
-                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
+                //------------------------------------
+                // //\\ logical group 2 = force applied group
+                //------------------------------------
+                var fgroup = [];
+                fGroups.push( fgroup );   
+                fgroup.push( rgPathPoint );
+                if( pix<pathRacks.length-1 ) {
+                    ////new kepler
+                    fgroup.push( rg[ 'kepltr-' + pix ] );
+                }
                 //:force appears
-                var fkey        = 'force-' + (pix-2);
+                var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
-                //------------------------------------
-                // \\// added force group
-                //------------------------------------
-
-                //2
-                //------------------------------------
-                // //\\ force applied group
-                //------------------------------------
-                var fgroup = [];
-                fGroups.push( fgroup );   
-                fgroup.push( rgPathPoint );
-                //new kepler
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
-                //:previous added
-                fgroup.push( rg[ 'kepltr-' + (pix-2) ] );
-                //fgroup.push( rg[ 'kepltr-' +
-                //             (pix<pathRacks.length-1 ? pix:pix-1) ] );
-                fgroup.push( rg[ 'freepath-' + (pix-2) ] );
-                fgroup.push( rg[ 'freetr-' + (pix-2) ] );
-                //:force appears
-                var fkey        = 'force-' + (pix-2);
-                var fappliedKey = fkey + '-applied';
-                var tipKey      = fkey+'-1';
-                fgroup.push( rg[ fappliedKey ] );   
-                fgroup.push( rg[ tipKey ] );   
-
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
                 fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
-
-                //:still keep free path
-                fgroup.push( rg[ 'freePathSegment-' + (pix-2) ] );
-                //:shows force translated to the tip of free path segment
-                fgroup.push( rg[ 'translated-force-' + (pix-2) + '-applied' ] );
-                fgroup.push( rg[ 'translated-force-' + (pix-2) + '-1' ] );
                 //------------------------------------
-                // \\// force applied group
+                // \\// logical group 2 = force applied group
                 //------------------------------------
 
-                //3
                 //------------------------------------
-                // //\\ path finalized group
+                // //\\ logical group 3 = path finalized group
                 //------------------------------------
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
 
-                //new kepler
-                //fgroup.push( rg[ 'kepltr-' +
-                //             (pix<pathRacks.length-1 ? pix:pix-1) ] );
-                fgroup.push( rg[ 'kepltr-' + (pix-1) ] );
+                if( pix<pathRacks.length-1 ) {
+                  fgroup.push( rg[ 'kepltr-' + pix ] );
+                }
 
                 fgroup.push( pathRacks[ pix-1 ] );
                 fgroup.push( rg[ 'pathSegment-' + (pix-1) ] );
 
                 //:force still visible
-                var fkey = 'force-' + (pix-2);
-                var fappliedKey = fkey + '-applied';
-                var tipKey = fkey+'-1';
-                fgroup.push( rg[ fappliedKey ] );
-                fgroup.push( rg[ tipKey ] );
+                var fkey = 'force-' + (pix-1);
+                fgroup.push( rg[ fkey + '-applied' ] );
+                fgroup.push( rg[ fkey+'-1' ] );
                 //------------------------------------
-                // \\// path finalized group
+                // \\// logical group 3 = path finalized group
                 //------------------------------------
 
             }

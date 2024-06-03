@@ -32,7 +32,7 @@
         nspaste( capture, {
     "proof-step-D": {
         "slider_sltime": {
-            "curtime": 3.71 * sconf.initialTimieStep
+            "curtime": 4.01 * sconf.initialTimieStep
         },
         "A": {
             "pos": [
@@ -44,7 +44,7 @@
 
     "initial-state" : {
         "slider_sltime": {
-            "curtime": 5.995 * sconf.initialTimieStep
+            "curtime": 5.0001 * sconf.initialTimieStep
         },
         "A": {
             "pos": [
@@ -57,7 +57,7 @@
 
         "detected_user_interaction_effect_DONE" : true,
         "slider_sltime": {
-            "curtime" : 2.03
+            "curtime" : 6.000001/4 * sconf.initialTimieStep
         },
                 "rgslid_dt": {
                 "val": sconf.initialTimieStep

@@ -89,14 +89,14 @@
         //for case if captured click does not have curtime set
         stdMod.protects_curTime_ranges();
 
-        ssF.solvesTrajectoryMath();
-        //haff( stdMod, 'model_upcreate_addon' );
-        //ssF.ABVpos_2_trajectory( stdMod );
+        ssF.solvesTrajectoryMath__O();
+        //what is this? haff( stdMod, 'model_upcreate_addon' );
+        //what is this? ssF.ABVpos_2_trajectory( stdMod );
 
         //apparently all of this is virtual
-        stdMod.path2rgModelPlaceholders();
-        stdMod.traj2decs();
-        stdMod.trajectoryShapes_2_groups();
+        stdMod.path2rgModelPlaceholders__I();
+        stdMod.traj2decs__II();
+        stdMod.trajectoryShapes_2_groups__III();
     }
 
 }) ();

@@ -6,9 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            time_2_preparedForDisplay,
             doesPosition_PTandTheirLine,
-            sliderTime_2_time8stepIndices,
             protects_curTime_ranges,
         },
     });
@@ -29,69 +27,13 @@
         ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
         sl.curtime = ctime = Math.max(
             ctime,
-            sconf.timeMin0 * rg.rgslid_dt.val
+            sconf.unitlessMinTime * rg.rgslid_dt.val
         );
         return ctime;
     }
 
 
 
-    function sliderTime_2_time8stepIndices()
-    {
-        var sp8ep   = haz( rg, 'slider_sltime' );
-        var ctime    = rg.slider_sltime.curtime;
-        //ctime        = protects_curTime_ranges( ctime );
-        //----------------------------------------
-        // //\\ establishes model step and substep
-        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
-        //      substepIx = 0,1,2,3,  0,1,2,3,  0,1, 2, 3, ...
-        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ... 
-        //      point     = A,A,A,A,  -,-,-,B,  -,-, C, C, ...
-        //      lemma-launch-time =         *
-        //      T2Coroll-time =                      *
-        //----------------------------------------
-        //virtual thing, just stretches time to better subdivide stepIx
-        var stepIx4 = Math.floor( ctime * 4 / rg.rgslid_dt.val );
-        rg.stretchedFourTimes_stIx = stepIx4;
-        //substep in its original meaning: one of the four substeps indices
-        rg.substepIx    = stepIx4%4;
-        //steps in its original meaning
-        var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
-        stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
-        toreg( 'stepIx' )( 'value', stepIx );
-        //----------------------------------------
-        // \\// establishes model step and substep
-        //----------------------------------------
-    }
-
-
-    //=========================================================
-    //=========================================================
-    function time_2_preparedForDisplay()
-    {
-        var path        = rg.path.pos;
-        var stepIx      = rg.stepIx.value;
-        var substepIx   = rg.substepIx;
-
-        //==================================================================
-        // //\\ visualizes time offsets
-        //==================================================================
-        rg.thoughtStep.value = (substepIx+1) + '';
-        //this sets granular time display increment
-        //during last proof step
-        var effectiveTime = rg.stepIx.value * rg.rgslid_dt.val;           
-                            //rg.slider_sltime.curtime.toFixed(2);        
-        rg.displayTime.value = effectiveTime.toFixed(2);
-            //was: why?: rg.displayTime.value = (rg.displayTime.value-1).toFixed(2);
-
-        //if( stepIx === 1 ) {
-            ////before thought experiment, no indication of it is shown
-        //    rg.thoughtStep.value = "";
-        //}
-        //==================================================================
-        // \\// visualizes time offsets
-        //==================================================================
-    }
 
 
     ///points P and T do depend on time, so cannot be updated

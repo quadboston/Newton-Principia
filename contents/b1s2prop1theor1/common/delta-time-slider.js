@@ -228,8 +228,8 @@
             //    parent          : stdMod.mmedia,
             //    text            : sliderId,
             //at the end of job, runs application-provided callback
-            //stdMod.unmasksVisib();
-            //stdMod.upcreate_mainLegend();
+            //stdMod.unmasks Visib();
+            //stdMod.upcreate_ mainLegend();
             if( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }

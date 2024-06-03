@@ -110,8 +110,8 @@
           </div>
          </div>
 
-         ¦free-triangle SBc¦"free-movement-triangle-area"¦¦
-         is equal to new ¦kepler-triangle SBC¦"kepler-triangle-area"¦¦,
+         ¦SBc¦"free-movement-triangle-area"¦¦
+         is equal to new ¦SBC¦"kepler-triangle-area"¦¦,
          <br><br>
 
         <span class="captured-reference id-1-4">proof step 4.</span>
