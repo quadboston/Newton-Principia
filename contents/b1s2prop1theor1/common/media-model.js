@@ -41,7 +41,16 @@
             rg.Bc.decStart = rg.C.decStart;
             rg.SBc.decStart = rg.C.decStart;
         }
-        
+
+        // //\\ logical steps are requested to be hidden
+        let legendTrLogicalStep = document.querySelector( '.tr-logical-step' );
+        ///tabke may not yet exist, but it's possible next iterations will make it
+        if( legendTrLogicalStep ) {
+            legendTrLogicalStep.style.display =
+            amode.aspect === 'model' ? "table-row" : 'none';
+        }
+        // \\// logical steps are requested to be hidden
+
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 

@@ -82,6 +82,7 @@
         //----------------------------------------------
         // //\\ makes visible previous path
         //----------------------------------------------
+        let pathRacksLen1 = pathRacks.length-1;
         pathRacks.forEach( (prack, pix ) => {
 
             //--------------------------------------------
@@ -91,7 +92,7 @@
             //not used:
             //$$.$(prack.svgel).removeClass( 'undisplay' );
 
-            if( pix > 0 && pix <= stepIx) {
+            if( pix > 0 && pix <= stepIx && pix < pathRacksLen1 ) {
                 $$.$( rg[ 'pathSegment-' + (pix-1) ].svgel)
                     .removeClass( 'undisplay' );
 

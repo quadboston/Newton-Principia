@@ -75,19 +75,20 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                if( pix<pathRacks.length-1 ) {
-                    ////new kepler
-                    fgroup.push( rg[ 'kepltr-' + pix ] );
-                }
                 //:force appears
                 var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
+
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
-                fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
+                //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
+                fgroup.push( pathRacks[ pix ] );
+                if( pix < pathRacks.lengh-1 ) {
+                    fgroup.push( rg[ 'pathSegment-' + (pix) ] );
+                }
                 //------------------------------------
                 // \\// logical group 2 = force applied group
                 //------------------------------------
@@ -101,10 +102,9 @@
 
                 if( pix<pathRacks.length-1 ) {
                   fgroup.push( rg[ 'kepltr-' + pix ] );
+                  fgroup.push( rg[ 'pathSegment-' + (pix) ] );
                 }
-
-                fgroup.push( pathRacks[ pix-1 ] );
-                fgroup.push( rg[ 'pathSegment-' + (pix-1) ] );
+                fgroup.push( pathRacks[ pix ] );
 
                 //:force still visible
                 var fkey = 'force-' + (pix-1);

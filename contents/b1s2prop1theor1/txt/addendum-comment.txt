@@ -94,18 +94,18 @@
               τ = 2¦time¦t¦¦. <br><br>
           </div>
          </div>
-            <span class="captured-reference id-1-4">proof step 3.</span>
+            <span class="captured-reference id-1-3">proof step 2.</span>
             because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
 
          <div style="text-align:center;">
             <div style="display:inline-block; text-align:left;">
               ¦BC AB¦∆𝗿¦¦ = ¦BC AB¦𝗿<sub>AC</sub>¦¦ = ¦AB Bc¦𝗿<sub>1</sub>¦¦ +
-              ¦Cc BV¦𝗿<sub>2</sub>¦¦ <br>
+              ¦Cc force-0-applied¦𝗿<sub>2</sub>¦¦ <br>
               ¦AB Bc¦𝗿<sub>1</sub>¦¦ = ¦AB Bc¦𝗿<sub>Ac</sub>¦¦ =
                                        ¦Av¦𝘃<sub>A</sub>¦¦∆τ, <br>
-              ¦Cc BV¦𝗿<sub>2</sub>¦¦ = ¦Cc BV¦𝗿<sub>cC</sub>¦¦ = ∆𝘃 / 2 ∆τ, <br>
+              ¦Cc force-0-applied¦𝗿<sub>2</sub>¦¦ = ¦Cc force-0-applied¦𝗿<sub>cC</sub>¦¦ = ∆𝘃 / 2 ∆τ, <br>
               Summands 𝗿<sub>1,2</sub> correspondingly are: <br>
-              ¦BC AB¦∆𝗿¦¦ = ¦Av¦𝘃<sub>A</sub>¦¦∆τ + ¦Cc BV¦1/2 𝗳(∆τ)²¦¦ &nbsp;&nbsp;&nbsp; (**)
+              ¦BC AB¦∆𝗿¦¦ = ¦Av¦𝘃<sub>A</sub>¦¦∆τ + ¦Cc force-0-applied¦1/2 𝗳(∆τ)²¦¦ &nbsp;&nbsp;&nbsp; (**)
               <br><br>
           </div>
          </div>
@@ -114,7 +114,7 @@
          is equal to new ¦SBC¦"kepler-triangle-area"¦¦,
          <br><br>
 
-        <span class="captured-reference id-1-4">proof step 4.</span>
+        <span class="captured-reference id-1-3">proof step 4.</span>
         previous and new ¦kepler-triangle SBC¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 

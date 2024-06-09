@@ -58,18 +58,11 @@ radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the ar
 <br><br>
 
 
-But when the body comes to ¦B¦B¦¦,
-let the centripetal force ¦force forceMove BV¦act¦¦ with an impulse
+<span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>,
+let the centripetal force ¦force forceMove¦act¦¦ with an impulse
 that is single but great, and let it have the effect of making the body depart from the
-straight line ¦Bc¦Bc¦¦
-
-
-<span class="captured-reference id-1-4">
-and continue in the straight line ¦BC¦BC¦¦.
-</span>
+straight line ¦Bc¦Bc¦¦ and continue in the straight line ¦BC¦BC¦¦.
 <br><br>
-
-
 
 Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦,
 meeting ¦BC¦BC¦¦ at ¦C¦C¦¦; and,
@@ -77,7 +70,7 @@ the second part of the time being completed, the body (by Corollary 1 of the Law
 be located at ¦C¦C¦¦, in the same plane as the triangle ¦SA SB AB¦ASB¦¦.
 <br><br><br>
 
-Connect ¦SC¦SC¦¦, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
+<span class="captured-reference id-1-3">Connect ¦SC¦SC¦¦</span>, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
 triangle ¦SBC¦¦ will be equal to
 triangle ¦SBc¦¦, and
 therefore also to triangle ¦SAB¦¦.
@@ -167,7 +160,7 @@ these bases are inversely as the perpendiculars dropped to them.
 If the chords, ¦AB¦AB¦¦, ¦BC¦BC¦¦ of two arcs described successively in equal
 times by the same body
 in nonresisting spaces be completed into a parallelogram ¦ABCV¦ABCV¦¦,
-and its ¦BV¦diagonal¦¦, in that
+and its ¦force-0-applied¦diagonal¦¦, in that
 position which it ultimately has when those arcs are diminished in infinitum,
 be produced in both directions, it will ¦SB¦pass through¦¦ the ¦S¦center of forces¦¦.
 <br><br><br>
@@ -184,13 +177,13 @@ If the chords ¦AB¦AB¦¦, ¦BC¦BC¦¦, and ¦DE¦DE¦¦, ¦EF¦EF¦¦,
 of arcs described in equal times, in
 nonresisting spaces be completed into parallelograms ¦ABCV¦ABCV¦¦, ¦DEFZ¦DEFZ¦¦, the
 forces at ¦B¦¦ and ¦E¦¦ are to each other in the ultimate ratio of the
-diagonals ¦BV¦¦, ¦EZ¦¦,
+diagonals ¦force-0-applied¦BV¦¦, ¦force-3-applied¦EZ¦¦,
 where these arcs are diminished in infinitum.
 <br><br>
 
 For the motions ¦BC¦BC¦¦ and ¦EF¦EF¦¦ of the body are (by Corollary 1 of the Laws)
 composed of the motions
-¦Bh¦Bc¦¦, ¦BV¦BV¦¦, and ¦Eg¦Ef¦¦, ¦EZ¦EZ¦¦, equal to ¦Ch¦Cc¦¦ and ¦Fg¦Ff¦¦, were in the
+¦Bh¦Bc¦¦, ¦force-0-applied¦BV¦¦, and ¦Eg¦Ef¦¦, ¦force-3-applied¦EZ¦¦, equal to ¦Ch¦Cc¦¦ and ¦Fg¦Ff¦¦, were in the
 demonstration of this proposition generated
 by the impulses of the centripetal force at ¦B¦¦ and ¦E¦¦, and therefore are proportional to
 these impulses.
@@ -204,11 +197,11 @@ these impulses.
 }
 *..*
 
-The forces by which any bodies in nonresisting spaces ¦BV EZ¦are drawn back¦¦ from rectilinear motions and are deflected into curved orbits are to one another as those
+The forces by which any bodies in nonresisting spaces ¦force-0-applied force-3-applied¦are drawn back¦¦ from rectilinear motions and are deflected into curved orbits are to one another as those
 ¦BU EW¦sagittae¦¦ of arcs described
 in equal times which converge to the ¦S¦center of forces¦¦ and bisect ¦AC DF¦the chords¦¦, when
 those arcs are diminished in infinitum. For these ¦BU EW¦sagittae¦¦ are
-the halves of the ¦BV EZ¦diagonals¦¦ with which we have been concerned in Corollary 3.
+the halves of the ¦force-0-applied force-3-applied¦diagonals¦¦ with which we have been concerned in Corollary 3.
 
 <br><br>
 <div book-reference-id="Donahue"></div>

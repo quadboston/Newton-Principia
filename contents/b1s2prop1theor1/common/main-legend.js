@@ -181,11 +181,30 @@
         makeCl( row, 'time', 'time', null, null, !!'alignCaptionToRight' );
 
         //---------------------------------------
-        //todm make sure this change is correct
-        //makeCl( row, 'step' );
         makeCl( row, 'step', 'path step', null, null, !!'alignCaptionToRight' );
         //---------------------------------------
+        //==========================
+        // \\// time
+        //==========================
 
+        
+        
+        //=====================================
+        // //\\ alternative row
+        //=====================================
+        var row = $$.c('tr')
+            .addClass('tostroke')
+            .cls( 'tr-logical-step' )
+            .to(tb)();
+        makeCl( row,
+                'thought0',
+                ' ', // mcaption,
+                null,         // spanIx,
+                null,         // spanVal,
+                'yes',        // alignCaptionToRight,
+                'proof',      // 'claim'
+                !!'no equal sign'
+        );
         makeCl( row,
                 'thought',
                 'logical step', // mcaption,
@@ -195,12 +214,9 @@
                 'proof',      // 'claim'
                 //            // !'no equal sign'
         );
-        //makeCl( row, 'thought', 'py', null, null, !!'alignCaptionToRight', 'proof' );
-
-        
-        //==========================
-        // \\// time
-        //==========================
+        //=====================================
+        // \\// alternative row
+        //=====================================
         
         /*
         var row = $$.c('tr')

@@ -337,10 +337,6 @@
                 decStart : rg.F.decStart,
                 cssClass : 'hover-width theor1corollary'
             },
-            { nam : ['E', 'Z'],
-                cssClass : 'hover-width theor1corollary',
-                decStart : rg.F.decStart,
-            },
 
             { nam : ['A', 'C'], cssClass : 'theor1corollary' },
             { nam : ['D', 'F'], cssClass : 'theor1corollary' },
@@ -389,19 +385,10 @@
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 ////patch for purpose of drawing a vector tip
                 let line = toreg( 'BV' )
-                        ( 'vectorTipIx', 1 )
-                        ( 'tipFraction', 0.4 )
-                        ( 'pcolor', pcolorForce )
-                        ( 'tipFill', pcolorForce )
-                        ();
-            }
-            if( pNam.nam[0] === 'E' && pNam.nam[1] === 'Z' ) {
-                ////patch for purpose of drawing a vector tip
-                let line = toreg( 'EZ' )
-                        ( 'vectorTipIx', 1 )
-                        ( 'tipFraction', 0.4 )
-                        ( 'pcolor', pcolorForce )
-                        ( 'tipFill', pcolorForce )
+                        //( 'pcolor', pcolorForce )
+                        //( 'vectorTipIx', 1 )
+                        //( 'tipFraction', 0.4 )
+                        //( 'tipFill', pcolorForce )
                         ();
             }
             var rgElem = ssF.pnames2line(
@@ -410,6 +397,13 @@
                 haz( pNam, 'cssClass' ), //for tp-links
                 stdMod,
             );
+            if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
+                rgElem.svgel.style.strokeWidth = '1';
+                //rgElem.svgel.style.stroke = '#00ff00';
+                //rgElem.vectorArrowSvg.style.fill = '#00ff00';
+                //rgElem.vectorArrowSvg.style.stroke = '#00ff00';
+                //rgElem.vectorArrowSvg.style.strokeWidth = '1';
+            }
             decor[ rgElem.pname ] = rgElem;
             decor[ rgElem.pname ].isPoint = false;
 
@@ -420,8 +414,9 @@
             ///the same procedure happens with "end" setting
             var decEnd = has( pNam, 'decEnd' ) ?
                 pNam.decEnd : rg[ pNam.nam[1] ].decEnd;
-
-
+            if( pNam.nam[0] === 'S' && pNam.nam[1] === 'C' ) {
+                decStart = 7;
+            }
             rgElem.decStart = decStart;
             rgElem.decEnd = decEnd;
             ////---------------------------------------------------

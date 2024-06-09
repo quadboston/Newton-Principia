@@ -151,13 +151,12 @@
                     ( 'tipFill', pcolor )
 
                     ();
-                pointies2line(
+                let forceShape = pointies2line(
                     wwpname,
                     fview.pivots,
                     {
-                        cssClass:'tostroke',
+                        cssClass:'tostroke tp-' + wwpname,
                         'stroke-width': 3,
-                        //stroke:'transparent',
                         tpclass : 'forceMove',
                     }
                 );
@@ -230,7 +229,6 @@
                 !'wwPivots',
                 {
                     cssClass:'tostroke',
-                    //stroke:'blue',
                     tpclass : 'path',
                     'stroke-width':4
                 }

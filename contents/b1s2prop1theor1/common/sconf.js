@@ -350,7 +350,16 @@
                     "val": sconf.initialTimieStep
                 },
             },
-            "1-4": {
+            "1-2": {
+                "slider_sltime": {
+                    //"curtime": 2.099161816013016 * sconf.initialTimieStep
+                    "curtime": 1.51 * sconf.initialTimieStep
+                },
+                "rgslid_dt": {
+                    "val": sconf.initialTimieStep
+                },
+            },
+            "1-3": {
                 "slider_sltime": {
                     //"curtime": 2.765743445674228 * sconf.initialTimieStep
                     "curtime": 1.751 * sconf.initialTimieStep
@@ -861,6 +870,8 @@
             "Dd"                : forceMove,
             "Ee"                : forceMove,
             "Ff"                : forceMove,
+            "force-0-applied"   : forceMove,
+            "force-3-applied"   : forceMove,
 
 
             "field"             : [255,   0,  0, 0.5],
@@ -880,9 +891,8 @@
 
             force,
             "Z"                 : [255, 100, 0, 1],
-            "V"                 : [255, 100, 0, 1],
-            "BV"                : forceMove,
-            "EZ"                : forceMove,
+            "V"                 : force,
+            "BV"                : force,
   
             //perpendicular
             "SP"                : [200, 100, 0, 1],
