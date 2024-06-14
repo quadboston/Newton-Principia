@@ -266,6 +266,7 @@
 
         [
             { nam : ['A', 'B'], },
+            ////todm possibly redundant, isn't pathSegment-' + pix enougth?
             { nam : ['B', 'C'], },
             { nam : ['C', 'D'], },
             { nam : ['D', 'E'], },

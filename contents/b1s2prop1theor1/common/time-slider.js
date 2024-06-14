@@ -315,8 +315,9 @@
         //----------------------------------------
         rg.thoughtStep.value = (rg.substepIx+1) + '';
         //sets granular time display increment during last proof step
-        rg.displayTime.value = ( rg.stepIx.value * rg.rgslid_dt.val )
-                                .toFixed(2);
+        let nexStepDisplay = ( rg.substepIx === 3 ? 1 : 0 ) + rg.stepIx.value;
+        rg.displayTime.value = ( nexStepDisplay * rg.rgslid_dt.val ).toFixed(2);
+        rg.displayPathStep = { value:nexStepDisplay };
     }
 
 }) ();

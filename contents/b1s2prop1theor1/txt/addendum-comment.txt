@@ -79,7 +79,7 @@
            to area of former ¦kepler-triangle SAB¦"kepler-triangle"¦¦,<br><br>
 
 
-        proof step 2.
+        <span class="captured-reference id-1-2">proof step 2.</span>
         the ¦force¦force 𝗳¦¦ adds an impulse 𝗽 to the speed:
           <div style="text-align:center;">
             <div style="display:inline-block; text-align:left;">
@@ -94,8 +94,7 @@
               τ = 2¦time¦t¦¦. <br><br>
           </div>
          </div>
-            <span class="captured-reference id-1-3">proof step 2.</span>
-            because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
+            Because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
 
          <div style="text-align:center;">
             <div style="display:inline-block; text-align:left;">

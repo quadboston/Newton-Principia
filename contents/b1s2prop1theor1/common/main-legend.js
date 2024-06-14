@@ -45,7 +45,7 @@
         var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
         ww.time.innerHTML       = rg.displayTime.value;
-        ww.step.innerHTML       = rg.stepIx.value + '';
+        ww.step.innerHTML       = rg.displayPathStep.value + '';
         ww.thought.innerHTML    = rg.thoughtStep.value;
         var stepIx = rg.stepIx.value;
         var fullDtRev = 1/rg.rgslid_dt.val * 2;

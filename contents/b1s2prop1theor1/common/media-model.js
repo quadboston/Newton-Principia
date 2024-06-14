@@ -32,14 +32,54 @@
         //reestablishes detecton to hide/unhide image for case the state
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
-        if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE || haz( amode, 'userControl') === 'text' ) {
-            rg.c.decStart = 5;
-            rg.Bc.decStart = 5;
-            rg.SBc.decStart = 5;
+        if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+            haz( amode, 'userControl') === 'text' ) {
+            let last = 5
+            rg.c.decStart = last;
+            rg.Bc.decStart = last;
+            rg.SBc.decStart = last;
+            rg.BC.decStart = last+1; //rg.C.decStart;
+            rg.Cc.decStart = last+1; //rg.C.decStart;
+            rg.Sc.decStart = last+1; //rg.C.decStart;
         } else {
-            rg.c.decStart = rg.C.decStart;
-            rg.Bc.decStart = rg.C.decStart;
-            rg.SBc.decStart = rg.C.decStart;
+            last = 7
+            rg.C.decStart = last;
+            rg.c.decStart = last;
+            rg.Cc.decStart = last;
+            rg.Bc.decStart = last;
+            rg.BC.decStart = last;
+            rg.SC.decStart = last;
+            rg.Sc.decStart = last;
+            rg.SBc.decStart = last;
+            last += 4
+            rg.D.decStart = last;
+            rg.d.decStart = last;
+            rg.Dd.decStart = last;
+            rg.Cd.decStart = last;
+            rg.CD.decStart = last;
+            rg.SD.decStart = last;
+            rg.Sd.decStart = last;
+            rg.SCd.decStart = last;
+            rg.SABCD.decStart = last;
+            last += 4
+            rg.E.decStart = last;
+            rg.e.decStart = last;
+            rg.Ee.decStart = last;
+            rg.De.decStart = last;
+            rg.DE.decStart = last;
+            rg.SE.decStart = last;
+            rg.Se.decStart = last;
+            rg.SDe.decStart = last;
+            last += 4
+            rg.F.decStart = last;
+            rg.f.decStart = last;
+            rg.Ff.decStart = last;
+            rg.Ef.decStart = last;
+            rg.EF.decStart = last;
+            rg.SF.decStart = last;
+            rg.Sf.decStart = last;
+            rg.SEf.decStart = last;
+            rg.SABCDEF.decStart = last;
         }
 
         // //\\ logical steps are requested to be hidden

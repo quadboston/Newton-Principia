@@ -1,7 +1,7 @@
 ( function() {
     var {
-        rg,
-        stdMod,
+        haz, rg,
+        amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -75,19 +75,23 @@
                 var fgroup = [];
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
-                //:force appears
-                var fkey        = 'force-' + (pix-1);
-                var fappliedKey = fkey + '-applied';
-                var tipKey      = fkey+'-1';
-                fgroup.push( rg[ fappliedKey ] );   
-                fgroup.push( rg[ tipKey ] );   
-
-                //this is a blue thickable path line:
-                //we show it here in prelast proof-substep of motion-step
-                //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
-                fgroup.push( pathRacks[ pix ] );
-                if( pix < pathRacks.lengh-1 ) {
-                    fgroup.push( rg[ 'pathSegment-' + (pix) ] );
+                
+                if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+                    haz( amode, 'userControl') === 'text' ) {
+                    //:force appears
+                    var fkey        = 'force-' + (pix-1);
+                    var fappliedKey = fkey + '-applied';
+                    var tipKey      = fkey+'-1';
+                    fgroup.push( rg[ fappliedKey ] );   
+                    fgroup.push( rg[ tipKey ] );   
+                    //this is a blue thickable path line:
+                    //we show it here in prelast proof-substep of motion-step
+                    //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
+                    fgroup.push( pathRacks[ pix ] );
+                    if( pix < pathRacks.lengh-1 ) {
+                        ccc( 'xxx' );
+                        fgroup.push( rg[ 'pathSegment-' + (pix) ] );
+                    }
                 }
                 //------------------------------------
                 // \\// logical group 2 = force applied group
@@ -100,16 +104,20 @@
                 fGroups.push( fgroup );   
                 fgroup.push( rgPathPoint );
 
+                //:force still visible
+                var fkey = 'force-' + (pix-1);
+                var fappliedKey = fkey + '-applied';
+                var tipKey      = fkey+'-1';
+                fgroup.push( rg[ fkey + '-applied' ] );
+                fgroup.push( rg[ fkey+'-1' ] );
+                fgroup.push( rg[ fappliedKey ] );   
+                fgroup.push( rg[ tipKey ] );   
+
                 if( pix<pathRacks.length-1 ) {
                   fgroup.push( rg[ 'kepltr-' + pix ] );
                   fgroup.push( rg[ 'pathSegment-' + (pix) ] );
                 }
                 fgroup.push( pathRacks[ pix ] );
-
-                //:force still visible
-                var fkey = 'force-' + (pix-1);
-                fgroup.push( rg[ fkey + '-applied' ] );
-                fgroup.push( rg[ fkey+'-1' ] );
                 //------------------------------------
                 // \\// logical group 3 = path finalized group
                 //------------------------------------
