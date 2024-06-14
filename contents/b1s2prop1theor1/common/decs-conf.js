@@ -34,6 +34,7 @@
     function decShapes_conf()
     {
         var pcolorForce = sDomF.getFixedColor( 'force' )
+        var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
         //var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
         //------------------------------------
         // //\\ declares decorational points
@@ -370,8 +371,8 @@
                 let line = toreg( 'BU' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.2 )
-                        ( 'pcolor', pcolorForce )
-                        ( 'tipFill', pcolorForce )
+                        ( 'pcolor', pcolorForceMove )
+                        ( 'tipFill', pcolorForceMove )
                         ();
             }
             if( pNam.nam[0] === 'E' && pNam.nam[1] === 'W' ) {
@@ -379,17 +380,13 @@
                 let line = toreg( 'EW' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.4 )
-                        ( 'pcolor', pcolorForce )
-                        ( 'tipFill', pcolorForce )
+                        ( 'pcolor', pcolorForceMove )
+                        ( 'tipFill', pcolorForceMove )
                         ();
             }
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 ////patch for purpose of drawing a vector tip
                 let line = toreg( 'BV' )
-                        //( 'pcolor', pcolorForce )
-                        //( 'vectorTipIx', 1 )
-                        //( 'tipFraction', 0.4 )
-                        //( 'tipFill', pcolorForce )
                         ();
             }
             var rgElem = ssF.pnames2line(

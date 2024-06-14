@@ -813,7 +813,7 @@
     {
         var freeMove = [0,100,0];
         var force = [255, 0, 0];
-        var forceMove = [150,0,0];
+        var forceMove = [150,50,0];
         var diagram = [150,50,100];
         var path = [0,0,100];
         var time = [0,100,100,1];
@@ -892,7 +892,7 @@
             force,
             "Z"                 : [255, 100, 0, 1],
             "V"                 : force,
-            "BV"                : force,
+            "BV"                : forceMove,
   
             //perpendicular
             "SP"                : [200, 100, 0, 1],

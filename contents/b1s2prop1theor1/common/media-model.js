@@ -38,6 +38,7 @@
             rg.c.decStart = last;
             rg.Bc.decStart = last;
             rg.SBc.decStart = last;
+            rg.C.decStart = last+1;
             rg.BC.decStart = last+1; //rg.C.decStart;
             rg.Cc.decStart = last+1; //rg.C.decStart;
             rg.Sc.decStart = last+1; //rg.C.decStart;
