@@ -12,6 +12,10 @@
     var initialization_is_done = false;
     //enables steps BC, CD, ... by clicks on B, C, ...
     var POINTS_BCDE_ARE_ACTIVE = false;
+    
+    var lemmaP2coroll =
+        ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc' +
+         ' CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
     return;
 
 
@@ -83,6 +87,17 @@
             rg.SEf.decStart = last;
             rg.SABCDEF.decStart = last;
         }
+        //-------------------------------------------------------
+        // //\\ fixes logical step to 7 for corollary of P2
+        //-------------------------------------------------------
+        let CStart = rg.C.decStart;
+        lemmaP2coroll.forEach( pn => {
+            rg[pn].decStart = CStart;
+            rg[pn].decEnd = CStart+2;
+         });
+        //-------------------------------------------------------
+        // \\// fixes logical step to 7 for corollary of P2
+        //-------------------------------------------------------
         pathDelays2forceDraggers();
 
         // //\\ logical steps are requested to be hidden

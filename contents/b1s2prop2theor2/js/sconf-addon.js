@@ -57,7 +57,7 @@
 
         "detected_user_interaction_effect_DONE" : true,
         "slider_sltime": {
-            "curtime" : 6.000001/4 * sconf.initialTimieStep
+            "curtime": 7.0001/4 * sconf.initialTimieStep
         },
                 "rgslid_dt": {
                 "val": sconf.initialTimieStep
