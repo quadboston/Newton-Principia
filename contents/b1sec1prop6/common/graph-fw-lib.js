@@ -21,8 +21,11 @@
 
 
 
-
-
+    //***********************************************
+    //This is just a wrapper.
+    //Reall arrays to be graphed will be in
+    //stdMod.graphArray = forceGraphArray;
+    //***********************************************
     function doSetColorThreadArray()
     {
         //===========================================
@@ -103,7 +106,7 @@
             },
 
             {
-                text    : 'Force f, 1/r², and speed v per their maximums.',
+                text    : 'Force f, -1/r², and speed v per their maximums.',
                 x       : 250,
                 y       : 40,
                 style   : {
@@ -167,7 +170,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
+                pcaption : '-1/r²',
                 fontShiftX : 25,
                 fontShiftY : 15,
                 style : {

@@ -156,8 +156,17 @@
         //prepares force parameters
         var forceColor = sDomF.getFixedColor( 'force' );
         tableCaptionFun = function() {
-            var cap = 'Centripetal force f = ' +  rg.force.lawConstant.toFixed(2) +
-                    ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>';
+            let list = 'k<sub>B,C,D,E,F</sub>=';
+            let arr = rg.force.inarray;
+            rg.force.inarray.forEach( (f,fix) => {
+                list += f.lawConstant.toFixed(2);
+                if( fix<arr.length-1 ) {
+                    list += ', ';
+                }
+            })
+            var cap = 'Centripetal force f = k<sub>X</sub>' +
+                      ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>, ' +
+                      list + '.';
             tableCaption$.html( cap );
         }
         var row = $$.c('tr').to(tb)();

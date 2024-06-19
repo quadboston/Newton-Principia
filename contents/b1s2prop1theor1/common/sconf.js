@@ -90,6 +90,8 @@
         let speed = 1/initialTimieStep;
         to_sconf =
         {
+            NUMBER_OF_FORCE_HANDLES : 1, //5,
+            
             TIMER_AND_LOGIC_STEPS_COINSIDE : false,
             FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
             hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
@@ -112,9 +114,9 @@
             force :
             [
                 //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
-                //f=Ar^n
+                //f=kr^n
                 [   -2,                      //=n
-                   1.95 / initialTimieStep / initialTimieStep //=A
+                   1.95 / initialTimieStep / initialTimieStep //=k
                 ],
 
                 [ -1, 0 ],
@@ -874,7 +876,7 @@
             "force-3-applied"   : forceMove,
 
 
-            "field"             : [255,   0,  0, 0.5],
+            //"field"             : [255,   0,  0, 0.5],
             "force-center"      : [255,   0,  0, 0.5],
             "S"                 : [255,   0,  0, 0.5],
             "SB"                : diagram,

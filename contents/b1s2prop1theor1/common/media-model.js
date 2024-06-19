@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, eachprop, has, haz, hafff, fmethods,
-        sconf, ssF, sDomF, rg, exegs,
+        toreg, sconf, ssF, ssD, sDomF, rg, exegs,
         amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -9,7 +9,6 @@
             media_upcreate,
         },
     });
-    var handleR = 5;
     var initialization_is_done = false;
     //enables steps BC, CD, ... by clicks on B, C, ...
     var POINTS_BCDE_ARE_ACTIVE = false;
@@ -39,12 +38,14 @@
             rg.Bc.decStart = last;
             rg.SBc.decStart = last;
             rg.C.decStart = last+1;
+            rg.V.decStart = last+1;
             rg.BC.decStart = last+1; //rg.C.decStart;
             rg.Cc.decStart = last+1; //rg.C.decStart;
             rg.Sc.decStart = last+1; //rg.C.decStart;
         } else {
             last = 7
             rg.C.decStart = last;
+            rg.V.decStart = last;
             rg.c.decStart = last;
             rg.Cc.decStart = last;
             rg.Bc.decStart = last;
@@ -82,6 +83,7 @@
             rg.SEf.decStart = last;
             rg.SABCDEF.decStart = last;
         }
+        pathDelays2forceDraggers();
 
         // //\\ logical steps are requested to be hidden
         let legendTrLogicalStep = document.querySelector( '.tr-logical-step' );
@@ -119,14 +121,20 @@
 
         //these are the new generation decorational svg objects
         //does not repeat creation ...A.svgel, ...
+        //they may corrupt svg-zorder-for-dragging-handle-points
+        //if used non-properly, f.e. create and dress svg first,
         stdMod.dec2svg();
 
         
         if( initialization_is_done ) {
-            stdMod.fakePoints_2_svgPosition();
+            stdMod.hollowHandles_2_dynamicMedpos();
+            stdMod.hollowForceHandlers_2_dynamicMedpos();
         } else {
+            ///drags holes, take care for svg-elements are not
+            ///yet created,
             ///drags holes, but then hides them (why?)
-            stdMod.dragPointPos_2_mediaOfDragKernels();
+            stdMod.hollowHandles_2_rgPlaces8media();
+            stdMod.hollowForceHandlers_2_rgPlaces8media();
         }
         //***********************************************************
         //wraps remained tasks into d8d slider
@@ -196,5 +204,37 @@
         ssF.mediaModelInitialized = true;
     }
 
+    
+    function pathDelays2forceDraggers()
+    {
+        ['B','C','D','E','F'].forEach( (pname, ix) => {
+            let decEnd = rg.C.decEnd+ix*4;
+            let decStart = rg.C.decStart+ix*4;
+            let nam0 = 'VV'+ix;
+            let nam1 = 'VVV'+ix;
+            let nam1f = nam1+'-white-filler';
+            let doPaintPname = false;
+            Object.assign( rg[ nam0 ], {
+                decStart    : 111111111,
+                decEnd,
+                doPaintPname,
+                pointWrap : { doPaintPname },
+            });
+            Object.assign( rg[ nam1 ], {
+                decStart    : 111111111,
+                decEnd,
+                doPaintPname,
+                pointWrap : { doPaintPname },
+            });
+            Object.assign( rg[ nam1f ], {
+                decStart,
+                decEnd,
+                doPaintPname,
+                pointWrap : { doPaintPname },
+            });
+        });
+    }
+    
+    
 }) ();
 

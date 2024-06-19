@@ -41,9 +41,9 @@
         //      A,B are special d8d points
         //------------------------------------
         var firstSteps_conf = {
-            A   : { decStart : -2, pos : sconf.A.concat() },
+            A   : { decStart : -2, decEnd : 1111111111, pos : sconf.A.concat() },
             //todo redundant
-            B   : { decStart : -2, pos : sconf.B.concat() },
+            B   : { decStart : -2, decEnd : 1111111111, pos : sconf.B.concat() },
         };
         Object.assign( decor, firstSteps_conf );
 
@@ -144,7 +144,7 @@
             V   : { decStart : 2, decEnd : 1111111111 },
         };
 
-        var mixedSteps_conf = {
+        var mixedSteps_conf = ssD.mixedSteps_conf = {
             S   : {
                     pos      : [0,0],
                     decStart : -2, //always visible
@@ -188,15 +188,9 @@
                     doPaintPname : false,
                     pointWrap : { doPaintPname : false },
             },
-            'V-white-filler'   : {
-                    decStart    : forceTip_conf.V.decStart,
-                    decEnd      : forceTip_conf.V.decEnd,
-                    doPaintPname : false,
-                    pointWrap : { doPaintPname : false },
-            },
             'v-white-filler'   : {
-                    decStart    : forceTip_conf.V.decStart,
-                    decEnd      : forceTip_conf.V.decEnd, //todm too complex
+                    decStart    : firstSteps_conf.B.decStart,
+                    decEnd      : firstSteps_conf.B.decEnd, //todm too complex
                     //decStart    :  -2,
                     decEnd      : firstSteps_conf.A.decEnd, //todo patch
                     //decEnd      : firstSteps_conf.vB.decEnd,
@@ -204,14 +198,35 @@
                     pointWrap : { doPaintPname : false },
             },
         };
-
+        ['B','C','D','E','F'].forEach( (pname, ix) => {
+            let nam0 = 'VV'+ix;
+            let nam1 = 'VVV'+ix;
+            let nam1f = nam1+'-white-filler';
+            let doPaintPname = false;
+            let pcolor = sDomF.getFixedColor( 'force' )
+            mixedSteps_conf[ nam0 ] = {
+                doPaintPname,
+                pointWrap : { doPaintPname },
+                pcolor,
+            };
+            mixedSteps_conf[ nam1 ] = {
+                doPaintPname,
+                pointWrap : { doPaintPname },
+                pcolor,
+            };
+            mixedSteps_conf[ nam1f ] = {
+                doPaintPname,
+                pointWrap : { doPaintPname },
+                pcolor,
+            };
+        });
+        Object.assign( decor, mixedSteps_conf );
 
         //---------------------------------------------------
         // //\\ comprises decor
         //---------------------------------------------------
         Object.assign( decor, middleSteps_conf );
         Object.assign( decor, forceTip_conf );
-        Object.assign( decor, mixedSteps_conf );
         Object.assign( decor, aracc_conf );
         //---------------------------------------------------
         // \\// comprises decor
@@ -244,10 +259,15 @@
             });
             decor[ kName ] = rg[ kName ];
         });
+
+        ///syncs these points with hidden force-displacement-handles bases
+        ['B','C','D','E','F'].forEach( (name, ix) => {
+            let nam0='VV'+ix;
+            rg[nam0].pos = rg[name].pos;
+        });
         //---------------------------------------------------
         // \\// syncs decor and rg
         //---------------------------------------------------
-
 
         //---------------------------------------------------
         // //\\ synching rg and dec pos with pname2point
@@ -257,7 +277,7 @@
         Object.assign( sconf.pname2point, mapp( forceTip_conf,      dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( mixedSteps_conf,    dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( middleSteps_conf,   dc => dc.pos ) );
-        Object.assign( sconf.pname2point, mapp( decor,    dc => dc.pos ) );
+        Object.assign( sconf.pname2point, mapp( decor,              dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( aracc_conf,         dc => dc.pos ) );
         //---------------------------------------------------
         // \\// synching rg and dec pos with pname2point
@@ -342,8 +362,6 @@
 
             { nam : ['A', 'C'], cssClass : 'theor1corollary' },
             { nam : ['D', 'F'], cssClass : 'theor1corollary' },
-
-
 
             { nam : ['c','Caracc'], cssClass : 'theor2corollary', },
             { nam : ['C','Caracc'], cssClass : 'theor2corollary', },
@@ -552,7 +570,6 @@
         });
     }
 
-
-
+    
 }) ();
 

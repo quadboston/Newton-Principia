@@ -151,8 +151,9 @@
                 //calculate vector to center S
 
                 //applies force law
-                var forceByDistance = Math.exp( force.lawPower * Math.log( r ) );
-                var forceAbs = force.lawConstant * forceByDistance;
+                let {lawPower, lawConstant} = rg.force.inarray[ pi<6?pi-1:4 ];
+                var forceByDistance = Math.exp( lawPower * Math.log( r ) );
+                var forceAbs = lawConstant * forceByDistance;
 
                  //speed impuls of force over double-time-step
                 var fx = forceAbs * rux

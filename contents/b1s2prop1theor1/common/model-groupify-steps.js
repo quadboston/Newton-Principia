@@ -89,7 +89,6 @@
                     //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
                     fgroup.push( pathRacks[ pix ] );
                     if( pix < pathRacks.lengh-1 ) {
-                        ccc( 'xxx' );
                         fgroup.push( rg[ 'pathSegment-' + (pix) ] );
                     }
                 }

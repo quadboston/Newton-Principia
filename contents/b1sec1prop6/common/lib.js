@@ -66,7 +66,7 @@
 
             ///rebuilds forceGraphArray if yet solvable
             if( !graphArrRem ) {
-                var comparLaw = 1 / r2;
+                var comparLaw = -1 / r2;
                 var unitlessForce = 1/(R*r2*sinOmega);
                 var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
 
@@ -76,7 +76,7 @@
 
                 if( forceGraphArray.length === 0 ) {
                     var forceMax = forceSafe;
-                    var comparLawMax = comparLaw;
+                    var comparLawMin = comparLaw;
                     var speedMax = sectSpeedSafe;
                 }
 
@@ -86,8 +86,8 @@
                 if( forceMax < forceSafe ) {
                     var forceMax = forceSafe;
                 }
-                if( comparLawMax < comparLaw ) {
-                    var comparLawMax = comparLaw;
+                if( comparLawMin > comparLaw ) {
+                    var comparLawMin = comparLaw;
                 }
                 if( speedMax < sectSpeedSafe ) {
                     var speedMax = sectSpeedSafe;
@@ -116,7 +116,7 @@
             {
                 var far = forceGraphArray[ forceArrayIx ];
                 far.y[0] = far.y[0] / forceMax;
-                far.y[1] = far.y[1] / comparLawMax;
+                far.y[1] = far.y[1] / (-comparLawMin);
                 far.y[2] = far.y[2] / speedMax;
             }
         }

@@ -47,15 +47,34 @@
             pos: rg.v.pos,
         });
 
-        //---------------------------------------------------
-        //interface for V (for force)
-        //---------------------------------------------------
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            pname : 'V',
-            acceptPos : V2forceParams,
-            pos: rg.V.pos,
-        });
+        {
+            ////---------------------------------------------------
+            ////interfaces for force hanles
+            ////---------------------------------------------------
+            ['B','C','D','E','F'].forEach( (name, ix) => {
+                let nam1='VVV'+ix;
+                
+                //************************************
+                let pcolor = rg[ nam1 ].pcolor;
+                //because of params__2__rgX8dragwrap_gen_list
+                //breaks rgX in 
+                //sub ssF.upcreate__pars2rgShape({ pname, pos, stdMod })
+                //todm, make path around these two subs avoiding
+                //breakage of the entire legace code
+                //************************************
+
+                //rgX=ssF.declareGeomtric( {'pname':nam1} );
+                sDomF.params__2__rgX8dragwrap_gen_list({
+                    stdMod,
+                    pname : nam1,
+                    acceptPos : function( newVPos, dummyPar, stdMod, enforceNewPos ) {
+                        return V2forceParams(newVPos, dummyPar, stdMod, enforceNewPos, ix);
+                    },
+                    pos: rg[nam1].pos,
+                });
+                rg[ nam1 ].pcolor = pcolor;
+            });
+        }        
 
 
         //---------------------------------------------------
@@ -130,13 +149,15 @@
     ///when dragging point V, converts V pos change to force-law constant change,
     ///returns true which means newPos is allowed,
     ///=============================================================
-    function V2forceParams( newVPos, dummyPar, stdMod, enforceNewPos )
+    function V2forceParams( newVPos, dummyPar, stdMod, enforceNewPos, fix )
     {
+        let nam0='VV'+fix;
+        let nam1='VVV'+fix;
         stdMod                  = stdMod || studyMods[ amode.submodel ];
         var toreg               = stdMod.toreg;
         var rg                  = stdMod.rg;
         var tstep               = rg.rgslid_dt.val;
-        var posB                = rg.B.pos;
+        var posB                = rg[nam0].pos;
         var posS                = rg.S.pos;
         var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );
         var bvNorm              = newBV.unitVec;
@@ -149,19 +170,21 @@
         //-------------------------------------
         //yes, we admit here that force law can be with an arbitrary power,
         //but for simplicity, write comments here for this power = 2,
-        //r^2=
-        var r2                  = Math.exp(
-                                    -rg.force.lawPower * Math.log( BS.abs )
-                                  );
+        let lawPower = rg.force.inarray[ fix ].lawPower;
+        var r2 = Math.exp(
+                    -lawPower * Math.log( BS.abs )
+                 );
         //newForceAbs = displacement = A/r^2 * 2dt^2  => A = move * r^2 / (2dt^2)
         var dt22                = 0.5/(tstep*tstep)
-        rg.force.lawConstant    = newForceAbs * r2 * dt22;
+        let lawConstant         = newForceAbs * r2 * dt22;
         //-------------------------------------
         // \\// gets abs value of lawConstant A
         //-------------------------------------
 
         //negative fDirection makes force repelling
-        rg.force.lawConstant   *= bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
+        lawConstant   *= bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
+
+        rg.force.inarray[ fix ].lawConstant = lawConstant;
         return true;
     }
 

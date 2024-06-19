@@ -38,6 +38,12 @@
             ( 'lawPower', sconf.force[0][0] ) //-2
             ( 'lawConstant', sconf.force[0][1]
             );
+        rg.force.inarray = ['B','C','D','E','F'].map( (pname, fix) => {
+            return {
+                'lawPower' : sconf.force[0][0],
+                'lawConstant' : sconf.force[0][1],
+            };
+        });
 
         //awkward prop name. "pos"
         //area accelerating force
@@ -98,6 +104,6 @@
         stdMod.traj2decs__II();
         stdMod.trajectoryShapes_2_groups__III();
     }
-
+    
 }) ();
 

@@ -49,6 +49,7 @@
         //-----------------------------------------------------
         [ 'B', 'C', 'D', 'E', 'F' ].forEach( (kname,ix) => {
             nspaste( rg[ kname ].pos, path[ ix + 1 ] );
+            nspaste( rg[ 'VVV'+ix ].pos, rg[ 'force-' + ix + '-1' ].pos );
         });
         //-------------------------------------------------
         // \\// recalculates BCDEF points pos

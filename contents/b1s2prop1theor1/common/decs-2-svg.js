@@ -8,8 +8,10 @@
         {
             paints_draggableDecPoints8Line,
             dec2svg,
-            dragPointPos_2_mediaOfDragKernels,
-            fakePoints_2_svgPosition,
+            hollowHandles_2_rgPlaces8media,
+            hollowHandles_2_dynamicMedpos,
+            hollowForceHandlers_2_rgPlaces8media,
+            hollowForceHandlers_2_dynamicMedpos
         },
         setModule,
     });
@@ -27,8 +29,8 @@
 
     function setModule()
     {
-        pointies2line           = ssF.pointies2line;
-        rgPos2rgMedia           = ssF.rgPos2rgMedia;
+        pointies2line = ssF.pointies2line;
+        rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
     function dec2svg()
@@ -58,10 +60,10 @@
             ////all these points are not drawn here, because of
             ////they have special place in code where they are drawn as
             ////their representaion with white hole,
-            ////this special place is dragPointPos_2_mediaOfDragKernels(),
+            ////this special place is hollowHandles_2_rgPlaces8media(),
             pname !== 'v' && pname !== 'V' && pname !== 'A' &&
             pname !== 'v-white-filler' && pname !== 'V-white-filler' &&
-            pname !== 'A-white-filler'
+            pname !== 'A-white-filler' && !pname.match( /VVV\d-white-filler/ )
         ) {
             var cls = 'tostroke tofill thickable';
             cssClass = haz( rgPoint, 'cssClass' );
@@ -154,8 +156,9 @@
     {
         //==========================================
         // //\\ S to media
+        //      "Wrong code". Does not match this sub
+        //      definition.
         //==========================================
-        //['S','B','C','D','E','F','V','Z'].forEach( pname => {
         ['S'].forEach( pname => {
             ssF.rgPos2rgMedia(
                 pname,
@@ -173,13 +176,15 @@
 
         //-------------------------------------------------
         // //\\ updates point A
-        //      put this el-definition last to
+        //      Will be overriddeyput this el-definition last to
         //      override all other graphics
+        //
+        //      but, white core will be put even over this point
         //-------------------------------------------------
         rgPos2rgMedia(
             'A',
             {
-                'fill' : 'white',
+                'fill' : 'white', //? fake prop, no effect
                 'stroke' : sDomF.getFixedColor( 'path' ),
                 'stroke-width' : 1,  //static case, overrided by tp
                 r : 6,
@@ -222,7 +227,8 @@
         //-------------------------------------------------
         // //\\ updates medpos and svg el for point V to slide
         //      put this el-definition last to
-        //      override all other graphics
+        //      override all other graphics,
+        //      after force hales done, this sub has no effect,
         //-------------------------------------------------
         rgPos2rgMedia(
             'V',
@@ -234,7 +240,7 @@
                 //tpclass : 'path',
 
                 'fill' : 'white',
-                'stroke' : sDomF.getFixedColor( 'field' ),
+                'stroke' : sDomF.getFixedColor( 'force' ),
                 //'stroke-width' : 3,
                 r : 6,
             }
@@ -265,13 +271,13 @@
     // //\\ V,v,A one-time and dynamic calls
     //=========================================
     //dynamic call for speeding up
-    function fakePoints_2_svgPosition()
+    function hollowHandles_2_dynamicMedpos()
     {
         //------------------------------------------------------
         // //\\ non-standard patch,
         //      white kernels over drag points 'V', 'v', 'A',
         //------------------------------------------------------
-        [ 'V', 'v', 'A' ].forEach( pname => {
+        [ 'v', 'A' ].forEach( pname => {
             var ps = rg[ pname ].pos;
             var pt = rg[ pname + '-white-filler' ];
             pt.pos = [ ps[0], ps[1] ];
@@ -288,48 +294,80 @@
     
     ///one-time call
     ///move to media launch except pos setting
-    function dragPointPos_2_mediaOfDragKernels()
+    function hollowHandles_2_rgPlaces8media()
     {
         //------------------------------------------------------
         // //\\ non-standard patch,
         //      white kernels over drag points 'V', 'v', 'A',
         //------------------------------------------------------
-        [ 'V', 'v', 'A' ].forEach( pname => {
+        [ 'v', 'A' ].forEach( pname => {
             var fakeName    = pname + '-white-filler';
             var ps         = rg[ pname ].pos;
             toreg( fakeName )
                 ( 'pos', [ ps[0], ps[1] ]  )
                 ;
-                
-            if( pname === 'V' ) {
-                rgPos2rgMedia(
-                    fakeName,
-                    {
-                        'stroke'        : sDomF.getFixedColor( 'force' ),
-                        'fill'          : 'white',
-                        //4, value 4 is removed to align with
-                        //tpstroke width = 1 for other points
-                        //which do not have "fakeName" twin filler,
-                        'stroke-width'  : 1,
-                        r               : handleR+2,
-                    }
-                );
-                rg[ fakeName ].svgel$.addClass( 'tp-force' );
-            } else {
-                rgPos2rgMedia(
-                    fakeName,
-                    {
-                        'fill'          : 'white',
-                        //'stroke-width'  : 10, //no effect
-                        r               : handleR,
-                    }
-                );
-            }
+            rgPos2rgMedia(
+                fakeName,
+                {
+                    'fill'          : 'white',
+                    //'stroke-width'  : 10, //no effect
+                    r               : handleR,
+                }
+            );
         });
         //------------------------------------------------------
         // \\// non-standard patch,
         //------------------------------------------------------
     }
+    
+
+    
+    function hollowForceHandlers_2_dynamicMedpos()
+    {
+        ['B','C','D','E','F'].forEach( (pname, ix) => {
+            let nam1     = 'VVV'+ix;
+            var ps       = rg[ nam1 ].pos;
+            var fakeName = nam1 + '-white-filler';
+            var pt = rg[ fakeName ];
+            pt.pos = [ ps[0], ps[1] ];
+            //if points are flagged as 'unscalable', then
+            //they are immune to scaling when user scales diagram with mouse
+            pt.medpos = haz( pt, 'unscalable' ) ?
+                ssF.mod2inn_original( pt.pos, stdMod ) :
+                ssF.mod2inn( pt.pos, stdMod );
+            pt.svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
+            pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
+        });
+    }    
+    
+    ///one-time call
+    ///move to media launch except pos setting
+    function hollowForceHandlers_2_rgPlaces8media()
+    {
+        //------------------------------------------------------
+        // //\\ non-standard patch,
+        //      white kernels over drag points 'VVVN
+        //------------------------------------------------------
+        ['B','C','D','E','F'].forEach( (pname, ix) => {
+            let nam1='VVV'+ix;
+            var fakeName   =  nam1  + '-white-filler';
+            var ps         = rg[ nam1 ].pos;
+            rg[ fakeName ].pos = [ ps[0], ps[1] ];
+            rgPos2rgMedia(
+                fakeName,
+                {
+                    'fill'          : 'white',
+                    'stroke'        : sDomF.getFixedColor( 'force' ), //wrong, todm, killed tp-classes
+                    'stroke-width'  : 1,
+                    r               : handleR+2,
+                }
+            );
+            //rg[ fakeName ].svgel$.addClass( 'tp-force' );
+        });
+        //------------------------------------------------------
+        // \\// non-standard patch,
+        //------------------------------------------------------
+    }    
     //=========================================
     // \\// V,v,A launch and dynamic calls
     //=========================================
