@@ -154,7 +154,9 @@
                 let {lawPower, lawConstant} = rg.force.inarray[ pi<6?pi-1:4 ];
                 var forceByDistance = Math.exp( lawPower * Math.log( r ) );
                 var forceAbs = lawConstant * forceByDistance;
-
+                if( pi<6 ) {
+                    rg.force.inarray[ pi-1 ].forceAbs = forceAbs;
+                }
                  //speed impuls of force over double-time-step
                 var fx = forceAbs * rux
                     * timeStep*2;

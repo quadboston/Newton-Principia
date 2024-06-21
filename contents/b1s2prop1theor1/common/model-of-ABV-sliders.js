@@ -176,7 +176,8 @@
                  );
         //newForceAbs = displacement = A/r^2 * 2dt^2  => A = move * r^2 / (2dt^2)
         var dt22                = 0.5/(tstep*tstep)
-        let lawConstant         = newForceAbs * r2 * dt22;
+        let forceAbs = newForceAbs * dt22;
+        let lawConstant         = forceAbs * r2;
         //-------------------------------------
         // \\// gets abs value of lawConstant A
         //-------------------------------------

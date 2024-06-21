@@ -1,7 +1,7 @@
 ( function() {
     var {
         $$,
-        sDomN, sDomF, ssF,
+        amode, sDomN, sDomF, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -76,7 +76,7 @@
         {
             let p = rg.P.p.abs;
             wwc.SP.innerHTML = p.toFixed(3);
-            wwc.vd.innerHTML = (p*vabs).toFixed(2);
+            wwc.vp.innerHTML = (p*vabs).toFixed(2);
         }
         //------------------------
         // \\// perpendicular
@@ -155,18 +155,30 @@
         //===================
         //prepares force parameters
         var forceColor = sDomF.getFixedColor( 'force' );
-        tableCaptionFun = function() {
-            let list = 'k<sub>B,C,D,E,F</sub>=';
-            let arr = rg.force.inarray;
-            rg.force.inarray.forEach( (f,fix) => {
-                list += f.lawConstant.toFixed(2);
-                if( fix<arr.length-1 ) {
-                    list += ', ';
-                }
-            })
-            var cap = 'Centripetal force f = k<sub>X</sub>' +
-                      ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>, ' +
-                      list + '.';
+        tableCaptionFun = function( isAddendum ) {
+            var arr = rg.force.inarray;
+            if( amode.aspect === 'model' ) {
+                let list = 'k<sub>B,C,D,E,F</sub>=';
+                arr.forEach( (f,fix) => {
+                    list += f.lawConstant.toFixed(2);
+                    if( fix<arr.length-1 ) {
+                        list += ', ';
+                    }
+                });
+                var cap = 'Centripetal force f = k<sub>X</sub>' +
+                        ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>, ' +
+                        list + '.';
+            } else {
+                let list = 'f<sub>B,C,D,E,F</sub>=';
+                arr.forEach( (f,fix) => {
+                    list += arr[ fix ].forceAbs.toFixed(2);
+                    if( fix<arr.length-1 ) {
+                        list += ', ';
+                    }
+                })
+                var cap = 'Centripetal force ' +
+                          list + '.';
+            }
             tableCaption$.html( cap );
         }
         var row = $$.c('tr').to(tb)();
@@ -269,14 +281,14 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tbc)();
-        makeCl( row, 'SP', 'perpendicular, d', null, null, !!'alignCaptionToRight', 'corollary' );
+        makeCl( row, 'SP', 'perpendicular, p', null, null, !!'alignCaptionToRight', 'corollary' );
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tbc)();
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tbc)();
-        makeCl( row, 'vd', null, null, null, !!'alignCaptionToRight', 'corollary' );
+        makeCl( row, 'vp', null, null, null, !!'alignCaptionToRight', 'corollary' );
         //-----------------------------------------------------
         // \\// perpendicular
         // \\//
