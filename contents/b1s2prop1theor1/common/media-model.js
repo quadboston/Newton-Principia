@@ -93,11 +93,22 @@
         let CStart = rg.C.decStart;
         lemmaP2coroll.forEach( pn => {
             rg[pn].decStart = CStart;
-            rg[pn].decEnd = CStart+2;
+            rg[pn].decEnd = CStart+3;
          });
         ssD.logicalSteps.forEach( pn => {
             pn.decEnd = rg.f.decStart+3;
          });
+        if(
+            amode.subessay === 'cor-1' ||
+            amode.subessay === 'cor-6' ||
+            amode.theorion !== 'corollary'
+        ){
+            rg.V.decStart = 11111111;
+            rg.V.decEnd   = 1111111;
+        } else {
+            rg.V.decStart = 2;
+            rg.V.decEnd   = 1111111;
+        }
         //-------------------------------------------------------
         // \\// fixes logical step to 7 for corollary of P2
         //-------------------------------------------------------

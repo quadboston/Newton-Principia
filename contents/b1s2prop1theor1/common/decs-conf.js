@@ -141,7 +141,7 @@
                     decEnd : decor.F.decEnd,
                     cssClass : 'theor1corollary',
                   },
-            V   : { decStart : 2, decEnd : 1111111111,
+            V   : { decStart : 2, decEnd : 1111111,
                     cssClass : 'theor1corollary theor2corollary'
             },
         };

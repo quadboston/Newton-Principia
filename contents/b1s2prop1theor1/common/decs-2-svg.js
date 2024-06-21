@@ -226,9 +226,9 @@
 
         //-------------------------------------------------
         // //\\ updates medpos and svg el for point V to slide
-        //      put this el-definition last to
-        //      override all other graphics,
-        //      after force hales done, this sub has no effect,
+        //      , needed only if we redesign force handles by
+        //      making them in arbitrary time position and not
+        //      in point B,
         //-------------------------------------------------
         rgPos2rgMedia(
             'V',
@@ -239,10 +239,10 @@
                 //this possibly collides with white filling
                 //tpclass : 'path',
 
-                'fill' : 'white',
-                'stroke' : sDomF.getFixedColor( 'force' ),
+                'fill' : sDomF.getFixedColor( 'forceMove' ),
+                'stroke' : sDomF.getFixedColor( 'forceMove' ),
                 //'stroke-width' : 3,
-                r : 6,
+                r : 5,
             }
         );
         //-------------------------------------------------

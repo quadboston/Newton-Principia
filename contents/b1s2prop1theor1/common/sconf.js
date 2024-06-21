@@ -501,9 +501,7 @@
                     "decStart" :21, "decEnd" :111111111111,
                 },
                 "slider_sltime": {
-                    //"curtime": 6.961644376899696 * sconf.initialTimieStep
-                    //"curtime": sconf.timeRange, // * sconf.initialTimieStep
-                    "curtime": 4.50,
+                    "curtime": 4.8 * sconf.initialTimieStep,
                 },
                 "speeds": {
                     "pos": [
@@ -529,7 +527,7 @@
                     ]
                 },
                 "slider_sltime": {
-                    "curtime": 5.995 * sconf.initialTimieStep
+                    "curtime": 4.8 * sconf.initialTimieStep
                 }
             },
 
