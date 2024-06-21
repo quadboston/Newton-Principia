@@ -131,10 +131,10 @@
             .addClass('corollary row1')
             .addClass('tostroke')
             .to(tbc)();
-        makeFormatterCell( row, 'some1', '111', 'firstx' );
+        makeFormatterCell( row, 'some1xxxxxxxxxxxxxxx', '111', 'firstx' );
         //we don't need it, but this is a way around to push
         //contents from right to the left for nicer aligment:
-        makeFormatterCell( row, 'some2', '111', 'firstx' );
+        makeFormatterCell( row, 'some2xxxxxxxxxxxxxxx', '111', 'firstx' );
         //-------------------------------
         // \\// coroll table
         //-------------------------------
@@ -169,6 +169,9 @@
                         ' r<sup>' + rg.force.lawPower.toFixed(2) + '</sup>, ' +
                         list + '.';
             } else {
+                var cap = '';
+                /*
+                //shows all forces
                 let list = 'f<sub>B,C,D,E,F</sub>=';
                 arr.forEach( (f,fix) => {
                     list += arr[ fix ].forceAbs.toFixed(2);
@@ -178,6 +181,7 @@
                 })
                 var cap = 'Centripetal force ' +
                           list + '.';
+               */
             }
             tableCaption$.html( cap );
         }

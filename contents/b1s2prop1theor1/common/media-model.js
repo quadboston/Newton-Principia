@@ -95,6 +95,9 @@
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+2;
          });
+        ssD.logicalSteps.forEach( pn => {
+            pn.decEnd = rg.f.decStart+3;
+         });
         //-------------------------------------------------------
         // \\// fixes logical step to 7 for corollary of P2
         //-------------------------------------------------------
@@ -223,7 +226,7 @@
     function pathDelays2forceDraggers()
     {
         ['B','C','D','E','F'].forEach( (pname, ix) => {
-            let decEnd = rg.C.decEnd+ix*4;
+            let decEnd = rg.C.decEnd+(ix+10)*4;
             let decStart = rg.C.decStart+ix*4;
             let nam0 = 'VV'+ix;
             let nam1 = 'VVV'+ix;

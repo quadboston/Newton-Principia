@@ -464,6 +464,12 @@
         //---------------------------------------------------
         // \\// syncs decor and rg
         //---------------------------------------------------
+        ssD.logicalSteps = [
+            rg.C, rg.V, rg.c, rg.Cc, rg.Bc, rg.BC, rg.SC, rg.Sc, rg.SBc,
+            rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
+            rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe,
+            rg.F, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
+        ];
     }
     //----------------------------------------
     // \\// declares decorations
