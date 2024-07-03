@@ -58,14 +58,13 @@
         var submItem = sconf.asp8theor_menus.theorion.duplicates[ amode.theorion ];
         do_select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
 
-        //this does extra work ... skip this:
-        //var submItem = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ];
-        //do_ select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
-
         //:sets up aspect menu
-        var submItem = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ];
-        submItem.leafRk.li$.addClass( 'chosen' );
-        submItem.leafRk.decorOfShuttle$.a('class','shape shuttle shuttle-'+submItem.leafRk.ix);
+        //skip this, possibly does duplicate job,
+        //do_select_leaf__localfun( submItem.leafRk, !!'amodel2app_8_extraWork' );
+        //do only CSS job:
+        let lRk = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ].leafRk;
+        lRk.li$.addClass( 'chosen' );
+        lRk.decorOfShuttle$.a('class','litem shuttle shuttle-'+lRk.ix);
     }
     //====================================
     // \\// populate menu
@@ -112,13 +111,8 @@
         //------------------------------------
         // shuttle
         //------------------------------------
-        var decorationsContainer$ = $$
-            .dct( 'tleaf-decorations-container', teaf$ )
-            .ch( ( decorOfShuttle$ = $$.dc( 'shuttle shape' ) )
-                 .ch( fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ) )
-            );
-
-
+        //makes shuttle non-chosen and its position undefined
+        decorOfShuttle$ = $$.dct( 'litem shuttle', teaf$ );
         //------------------------------------
         // builds mencat own tree
         //------------------------------------
@@ -129,11 +123,10 @@
                 ix          : mitemIx,
                 mcat_id,
                 scat_id,
-                teaf$       : teaf$,
+                teaf$,
                 studylab    : mitem.studylab, //comes from essaion header
                 caption     : mitem.hasOwnProperty( 'caption' ) ? mitem.caption : scat_id,
-                decorOfShuttle$ : decorOfShuttle$,
-                decorationsContainer$ : decorationsContainer$,
+                decorOfShuttle$,
             };
             make_menu_leaf__onceLocFun( leafRk );
         });
@@ -150,7 +143,7 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     /// for single leafRk indexed with pair (mcat_id, scat_id),
     /// builds its togglable-menu-tab;
-    /// makes tab's components shadow and button;
+    /// makes tab's components button;
     function make_menu_leaf__onceLocFun( leafRk )
     {
         var scat_id     = leafRk.scat_id;   //sub category: theorion or aspect
@@ -159,25 +152,10 @@
         var caption     = leafRk.caption;
         var studylab    = leafRk.studylab;
         var teaf$       = leafRk.teaf$;
-        var decorOfShuttle$         = leafRk.decorOfShuttle$;
-        var decorationsContainer$   = leafRk.decorationsContainer$;
-        //--------------------------
-        // //\\ shuttle shadow
-        //--------------------------
-        leafRk.itemShadow$ = $$.dct( 'shadow shape', decorationsContainer$ )
-            .ch( fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ) );
-        if( studylab && mcat_id === 'aspect' ) {
-            leafRk.itemShadow$.addClass( 'studylab' );
-        }
-        //--------------------------
-        // \\// shuttle shadow
-        //--------------------------
+        var decorOfShuttle$ = leafRk.decorOfShuttle$;
 
         //--------------------------
         // //\\ fluid-html part
-        //--------------------------
-
-        //------------------------------
         // //\\ video-button placeholder
         //------------------------------
         //if( mcat_id === 'theorion' ) {
@@ -206,8 +184,11 @@
         //-------------------------------------------------------------------
         // //\\ builds clickable dom element to toggle essay-texts-menu-items
         //-------------------------------------------------------------------
+        let decor$ = $$.dct( 'decorated litem litem-'+leafRk.ix, teaf$ )
         var li$ = leafRk.li$ = $$
-            .dct( 'shape litem', teaf$ )
+            .dct( 'litem litem-'+leafRk.ix, teaf$ )
+            .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
+            .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
             .e('click', function( event ) {
                 if( mcat_id !== 'theorion' || !fconf.theorionTab_nonClickable ) {
 
@@ -221,7 +202,6 @@
                 }
             })
             .ch([
-                fconf.decorateTopMenuWithRadioCircle && $$.dc( 'radio-circle' ),
                 $$
                     .dc( 'caption' )
                     .ch( 
@@ -333,7 +313,7 @@
         //menu "button"
         leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag, but fails if omitted
         //flag to shuttle
-        decorOfShuttle$.a('class','shape shuttle shuttle-'+leafRk.ix);
+        decorOfShuttle$.a('class','litem shuttle shuttle-'+leafRk.ix);
         if( mcat_id === 'theorion' ) {
             ns.eachprop( exegs[ amode.theorion ], ( exegAsp, aspId ) => {
                 //updates left menu caption for theorions with omitted aspect texts

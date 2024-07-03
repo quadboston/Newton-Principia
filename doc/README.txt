@@ -85,6 +85,42 @@ lemma-main-menu
 
 aspect-menu submenu: subessays - vertical
 
+********************************************
+menu-dom-structure
+    fapp.fappRoot$.addClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
+        sDomN.essaionsRoot$ = $$.div().cls( bsl-text-widget leftside-menuholder )
+            leftSide_menuRotator$ = $$.dct( 'left-side-menu-rotator', ||| made in build_menu_top_leafs_placeholders()
+                sDomN.teafs$[ mcat_id ] = $$.dct( 'menu-teaf ' + mcat_id, ||| build_menu_top_leafs_placeholders()
+                    var teaf$ = sDomN.teafs$[ mcat_id ];
+                    //------------------------------------
+                    // shuttle
+                    //------------------------------------
+                    decorationsContainer$ = $$.dct( 'tleaf-decorations-container',   ||| build_teaf__localfun( mcat_id, subcatsMenu,
+                         decorOfShuttle$ = $$.dc( 'shuttle shape' )
+                         /// subcatsMenu.list.forEach( function( mitem, mitemIx ) {
+                         //leafRk.itemShadow$ = $$.dct( 'shadow shape', ||| make_menu_leaf__onceLocFun()
+                    li$ = leafRk.li$ = $$.dct( 'shape litem',   ||| make_menu_leaf__onceLocFun()
+                            .e('click', function( event ) {}
+                            .ch([
+                                $$
+                                    .dc( 'caption' )
+                                    .ch( 
+                                        [   videoPlaceholder$,
+                                            leafRk.mItemCaptionHtml$ = $$.span().html( caption )
+                                        ]
+                                    )
+                            ]);    
+CSS classes tree:
+    bsl-text-widget leftside-menuholder                         
+        left-side-menu-rotator
+            'menu-teaf ' + mcat_id
+                tleaf-decorations-container
+                    'shadow shape'
+                'litem'
+                    'caption'
+********************************************
+
+
 
 
 ********************************************

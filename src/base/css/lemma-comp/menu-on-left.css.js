@@ -1,16 +1,12 @@
 /*
     notes for menu items GUI: the tree is:
     menu-teath
-        tleaf-decorations-container
-            shape shuttle-...
-            shape
-            shape
+        shuttle-...
         litem
         litem
         litem
 
     * litem:hover brings border to the tab at user's mouse move
-    * tleaf-decorations-container contains "shadows", different shapes and shuttle
       which animate mouse moves,
 */
 
@@ -21,7 +17,8 @@
     var sn  = ns.sn;
     var sapp        = sn('sapp' ); 
     var sDomN       = sn('dnative', sapp);
-
+    var FOCUS_COLOR = '#888888';
+    var FOCUS_OFF_COLOR = '#888888';
 
     var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'menu-on-left';
@@ -33,37 +30,10 @@
 
 
 
-    //-------------------------------
-    // //\\ top of containers tree
-    //-------------------------------
+    //--------------------------------------
+    // //\\ top level geometrical-containers
+    //--------------------------------------
      var ret = `
-
-    /* theorion and aspection */
-    .leftside-menuholder
-    .menu-teaf {
-        position        :relative;
-        display         :inline-block;
-        padding         :0;
-        margin          :0;
-        vertical-align  :top;
-        white-space     :nowrap;
-        box-sizing      :border-box;
-    }
-
-    .leftside-menuholder
-    .menu-teaf {
-        display         :inline-block;
-    }
-    /*
-    // //|| toggles study teafs visibility
-    .bsl-approot .leftside-menuholder .studylab.menu-teaf {
-        display         :none;
-    }
-    .bsl-approot.studylab .leftside-menuholder .studylab.menu-teaf {
-        display         :inline-block;
-    }
-    // ||// toggles study teafs visibility
-    */
 
     /* aspection rotator to vertical direction */
     .left-side-menu-rotator {
@@ -76,23 +46,48 @@
         box-sizing  :border-box;
         transform-origin: 0px 0px;
     }
-
+     
+     
+    /*******************************************/
+    /* top-level geometrical sub-containers    */
+    /*******************************************/
+    /* geometrically contains all button-shapes and decorations */
+    /* theorion and aspection */
+    .menu-teaf {
+        position        :relative;
+        display         :inline-block;
+        padding         :0;
+        margin          :0;
+    }
+    .menu-teaf {
+        vertical-align  :top;
+        white-space     :nowrap;
+    }
+    
+    /*
+        // //|| toggles study teafs visibility
+        .bsl-approot .studylab.menu-teaf {
+            display         :none;
+        }
+        .bsl-approot.studylab .studylab.menu-teaf {
+            display         :inline-block;
+        }
+        // ||// toggles study teafs visibility
+    */
 
     /* aspection */
-    .leftside-menuholder
     .menu-teaf.aspect {
         width       : ${leftTopLeafLength}px;
     }
 
     /* theorion */
-    .leftside-menuholder
     .menu-teaf.theorion {
         width       : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH}px);
     }
     `
-    //-------------------------------
-    // \\// top of containers tree
-    //-------------------------------
+    //--------------------------------------
+    // \\// top level geometrical-containers
+    //--------------------------------------
 
     
 
@@ -102,29 +97,34 @@
     // //\\ common decorations
     //-------------------------------
     ret += `
-    /* common shape which makes litem, shadows, and handle aligned */
-    .leftside-menuholder
-    .menu-teaf
-    .shape {
+    .menu-teaf .litem {
+        position        :absolute;
         box-sizing      :border-box;
-        width           :${theorionChildWidth}%;
-        border          :1px solid #CCCCCC;
+        height          :20px;
         border-radius   :10px;
-        /* alignes with original-text border if any */
-        /* alignes with original-text border if any 
-        border-left     :1px solid black;
-        border-top      :1px solid black;
-        border-right    :1px solid black;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        */
+        border          :2px solid transparent;
+        border-color    :transparent;
+        margin          :0;
+        cursor          :pointer;
+        opacity         :1;
+        z-index         :30;
     }
-
-    .leftside-menuholder .menu-teaf.theorion .shape {
+    .menu-teaf.theorion .litem {
         width           :${theorionChildWidth}%;
     }
-    .leftside-menuholder .menu-teaf.aspect .shape {
+    .menu-teaf.aspect .litem {
         width           :${aspectionChildWidth}%;
+    }
+    .menu-teaf .litem.shuttle {
+        border           : 2px solid ${FOCUS_COLOR};
+        background-color : white;
+        box-shadow       : 0 0px 12px 0 rgba(32, 41, 54, 0.6);
+        z-index          : 20;
+    }
+    .menu-teaf .decorated.litem {
+        border          :2px solid ${FOCUS_OFF_COLOR};
+        box-shadow      : 0 0px 6px 0 rgba(32, 41, 54, 0.3);
+        z-index         :10;
     }
     `;
     //-------------------------------
@@ -143,26 +143,10 @@
     //-------------------------------
     ret += `
 
-    .leftside-menuholder
-    .shape.litem  {
-        border-color    :transparent;
-        background-color:transparent;
-        margin          :0;
-        cursor          :pointer;
-        opacity         :1;
-    }        
-
-    .leftside-menuholder
-    .shape.litem {
-        display:inline-block;
-        text-align:center;
-    }
-
-    .leftside-menuholder
     .litem .caption {
-        display         :inline-block;
-        width           :98%;
         position        :relative;
+        background-color:transparent;
+        width           :98%;
         font-size       :80%;
         font-weight     :bold;
         padding-right   :0;
@@ -170,38 +154,21 @@
         /* todm: this is hell-complex, but works making 
            caption vertically-centered in the radio-slot */
         top             :50%;
-        transform       :translate(0%, -17%);
+        transform       :translate(0%, -50%);
         text-align      :center;
-        color           :#AAAAAA;
+        color           :${FOCUS_OFF_COLOR};
     }
 
-    /* vertical shifts somehow different for theorion and aspec, so
-       this CSS-entry tries to adjust aspect-top-menu-node-caption */
-    .leftside-menuholder .aspect
-    .litem .caption {
-        /* todm: this is hell-complex, but works making 
-           caption vertically-centered in the radio-slot */
-        transform       :translate(0%, -10%);
+    /* //|| item is focused */
+    .menu-teaf .litem.chosen .caption,
+    .menu-teaf .litem:hover .caption {
+        color :${FOCUS_COLOR};
     }
-
-    /* //|| item is hovered */
-    /*      .litem is a menu-item-GUI */
-    .leftside-menuholder .menu-teaf
-    .litem:hover {
-        border          :1px solid black;
-        color           :black;
+    .menu-teaf .decorated.hovered {
+        border:2px solid ${FOCUS_COLOR};
+        box-shadow: 0 0px 16px 0 rgba(32, 41, 54, 0.6);
     }
-    .leftside-menuholder .menu-teaf
-    .litem:hover .caption
-    {
-        color           :#000000;
-    }
-    .leftside-menuholder .menu-teaf
-    .litem.chosen .caption
-    {
-        color           :#555555;
-    }
-    /* ||// item is hovered */
+    /* ||// item is focused */
     `;
     //-------------------------------
     // \\// fluid part = li-item
@@ -213,56 +180,14 @@
     //-----------------------------
     // //\\ animated-decorations
     //-----------------------------
-    /* /// todm what? ... was used to set background under shadow and handle
-       /// todm is redundant ... shadow and handle can use z-index < 0
-       /// holds shadow and handle
-    */
     ret += `
-
-    .leftside-menuholder
-    .tleaf-decorations-container {
-        box-sizing      :border-box;
-        position        :absolute;
-        left            :0;
-        top             :1px; /* makes litem top and bottom borders visible */
-        width           :100%;
-        background-color:transparent;
-        z-index         :0;
-        white-space     :nowrap;
-    }
-    `;
-
-
-    /* 
-       18px causes 1px bottom border overlap on hover,
-       20px hides all borders for chosen item and make it non-responsive,
-       17px reveals upper and bottom litem-borders even when chosen item is hovered,
-       see comment on this module's top
-    */
-    ret += `
-
-    .leftside-menuholder
-    .tleaf-decorations-container .shape {
-        height      :17px;
-    }
-
-    /* //|| shadow     */
-    .leftside-menuholder .shadow {
-        display         :inline-block;
-        background-color:#CCCCCC;
-        opacity         :0.5;
-        z-index         :1;
-    }
-    /* ||// shadow     */
-
-
 
     /* //|| toggles studylab     */
-    .bsl-approot.studylab .menu-teaf .shadow.shape.studylab,
+    .bsl-approot.studylab .menu-teaf .litem.studylab,
     .bsl-approot.studylab .menu-teaf .litem.studylab {
         display         :inline-block;
     }
-    .bsl-approot .menu-teaf .shadow.shape.studylab,
+    .bsl-approot .menu-teaf .litem.studylab,
     .bsl-approot .menu-teaf .litem.studylab {
         display : none;
     }
@@ -273,29 +198,33 @@
     //===========================
     // //\\ shuttle 
     //===========================
-    ret += `
-
-    .leftside-menuholder .shuttle {
-        position        :absolute;
-        background-color:white;
-        opacity         :1;
-        z-index         :10;
-    }
-    `;
     // //\\ setting up shuttle CSS for all possible menu leaf choices
     for( var ix=0; ix<sDomN.theorionMenuMembersCount; ix++ ) {
         ret += `
-            .leftside-menuholder .theorion .shuttle-${ix} {
+            .menu-teaf.theorion .decorated.litem-${ix},
+            .menu-teaf.theorion .litem-${ix},
+            .menu-teaf.theorion .shuttle-${ix} {
                 left       :${theorionChildWidth*ix}%;
+            }
+            .menu-teaf.theorion .shuttle-${ix} {
                 transition :top 0.3s ease-in-out, left 0.5s ease-in-out;
             }
         `;
     }
+    ret += `
+        .menu-teaf .litem .caption {
+            transition :color 0.3s ease-in-out;
+        }
+    `;
 
     for( var ix=0; ix<sDomN.aspectionMenuMembersCount; ix++ ) {
         ret += `
-            .leftside-menuholder .aspect .shuttle-${ix} {
+            .menu-teaf.aspect .decorated.litem-${ix},
+            .menu-teaf.aspect .litem-${ix},
+            .menu-teaf.aspect .shuttle-${ix} {
                 left       :${aspectionChildWidth*ix}%;
+            }
+            .menu-teaf.aspect .shuttle-${ix} {
                 transition :top 0.3s ease-in-out, left 0.5s ease-in-out;
             }
         `;

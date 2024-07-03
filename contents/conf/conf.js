@@ -59,7 +59,6 @@
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
         attach_menu_to_essaion_root : true,
-        decorateTopMenuWithRadioCircle : false,
 
         LEFT_SIDE_MENU_WIDTH : 40, //px
         LEFT_SIDE_MENU_OFFSET_X : 20, //px

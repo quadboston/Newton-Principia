@@ -29,7 +29,6 @@
             checkbox
             tabs
             dom-subroots
-            menu-on-top
             essaion-pane
             menu-on-left
         `

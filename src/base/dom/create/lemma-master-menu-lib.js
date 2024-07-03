@@ -36,7 +36,7 @@
                         border          :1px solid transparent;
                 }
                 .leftside-menuholder .menu-teaf.non-clickable
-                .shape.litem:hover
+                .litem:hover
                 {
                     border-color    :transparent;
                     background-color:transparent;
@@ -44,14 +44,14 @@
                     opacity         :1;
                 }
                 .leftside-menuholder .menu-teaf.non-clickable
-                .shape.litem:hover .caption
+                .litem:hover .caption
                 {
                     font-size       :80%;
                     font-weight     :bold;
                     color           :#AAAAAA;
                 }
                 .leftside-menuholder .menu-teaf.non-clickable
-                .shape.litem.chosen .caption
+                .litem.chosen .caption
                 {
                     font-size       :80%;
                     font-weight     :bold;
