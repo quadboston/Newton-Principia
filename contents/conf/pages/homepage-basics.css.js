@@ -1,11 +1,11 @@
-(function() {
-    var ns  = window.b$l;
-    var sn  = ns.sn;
-    var engCssMs = sn('engCssMs');
+//apparently this is an initial front-page-css whioh later can be overridden
+//with "home-pane"-modele css settings,
+( function() {
+    var {
+        ns, sn, userOptions, engCssMs,
+    } = window.b$l.apptree({
+    });
     var THIS_MODULE = 'homepage-basics';
-
-
-
 
     engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var colorMain = fconf.css['color-main'];
@@ -26,6 +26,17 @@
 
             .bsl-home-pane.is-hidden {
                 left : -130%;
+            }
+            
+            .${userOptions.BONUS_START} {
+                display : none;
+            }
+            .shows-bonus-features .${userOptions.BONUS_START} {
+                display : block;
+            }
+            
+            .non-displayed {
+                display : none;
             }
        `;
     };

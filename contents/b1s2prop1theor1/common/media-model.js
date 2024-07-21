@@ -78,6 +78,13 @@
             rg.SDe.decStart = last;
             last += 4
             rg.F.decStart = last;
+            rg.Z.decStart = last;
+            rg.W.decStart = last;
+            rg.EW.decStart = last;
+            rg.g.decStart = last;
+            rg.Eg.decStart = last;
+            rg.Fg.decStart = last;
+            rg.DF.decStart = last;
             rg.f.decStart = last;
             rg.Ff.decStart = last;
             rg.Ef.decStart = last;

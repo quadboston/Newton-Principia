@@ -20,19 +20,19 @@
         var borderRadius    = ccs['border-radius']; 
         var helpBoxOpacity  = fconf.appDecor.helpBox_opacity0 ? 0 : 1;
 
-var ret = `
+    var ret = `
 
     .top-media-controls {
         position : relative;
     }
 
     /*--------------------------------------
-        //|| master pagination button
+        //\\\\ master pagination button
       -------------------------------------*/
     .master-pagination-btn {
-        box-sizing: border-box;
         display:inline-block;
-
+        position:relative;
+        box-sizing: border-box;
         background-color: ${colorWhite};
         border-radius: ${borderRadius};
         cursor: pointer;
@@ -46,21 +46,25 @@ var ret = `
         padding: 5px 8px 2px 8px;
         transition: all .2s ease;
         z-index: 1002;
-
-
-
-
     }
-
+    .left-home-button {
+        font-size:15px;
+    }
     .master-pagination-btn img {
-        width : 7px;
         opacity : 0.5;
         margin-left: 5px;
         margin-right: 5px;
         vertical-align:middle;
     }
+    .master-pagination-btn.left img {
+        margin-left: 2px;
+    }
+    .master-pagination-btn.left img,
+    .master-pagination-btn.right img {
+        width: 7px;
+    }
 
-    /* //\\ effect of outstanding button in top menu */
+    /* //\\\\ effect of outstanding button in top menu */
     .master-pagination-btn:hover {
         transform: scale(1.1);
         box-shadow: 0 0px 12px 0 rgba(32, 41, 54, 0.2);
@@ -75,44 +79,52 @@ var ret = `
         transform: none;
         box-shadow: 0 0px 4px 0 rgba(32, 41, 54, 0.2);
     }
-    /* \\// effect of outstanding button in top menu */
+    /* \\\\// effect of outstanding button in top menu */
 
     .master-pagination-btn.non-displayed {
         display:none;
     }
-
+    
     .middle-subnav-bar {
+        display : inline-block;
         margin:auto;
     }
 
+    /* hides return-to-lemma-button if user has landed to dumb front-page */
+    .appid-home-pane .return-to-lemma-button {
+        display:none;
+    }
+    .return-to-lemma-button {
+        display:inline-block;
+    }
+    
+    .return-to-lemma-button,
     .home-button {
-        width               : 190px;
-        margin-left         : 35px;
-        font-weight         : bold;
-        color               : white;
-        background-color    : #303946;
+        margin-left         : 30px;
+        font-weight         : normal;
         z-index             : 1000000006;
     }
-
-    .home-button:hover {
-        background-color    : #404956;
-    }
-
-    .home-button.is-hidden:hover,
-    .home-button.is-hidden {
-        font-weight         : normal;
+    .home-button {
+        width               : 120px;
         color               : ${colorMediumGrey};
         background-color    : white;
     }
-
-
+    .return-to-lemma-button {
+        width               : 190px;
+        color               : white;
+        background-color    : #303946;
+    }
+    .return-to-lemma-button:hover {
+        color               : white;
+        background-color    : #606986;
+    }
     /*--------------------------------------
-        ||// master pagination button
+        \\\\// master pagination button
       -------------------------------------*/
 
 
     /*---------------------------------------------
-        //|| Hover over the diagram to interact
+        //\\\\ Hover over the diagram to interact
       --------------------------------------------*/
     .help-box {
         float           : left;
@@ -129,13 +141,13 @@ var ret = `
         margin-right: 8px;
     }
     /*---------------------------------------------
-        ||// Hover over the diagram to interact
+        \\\\// Hover over the diagram to interact
       --------------------------------------------*/
 
 
 
     /*---------------------------------------------
-        //|| study-lab buttons
+        //\\\\ study-lab buttons
       --------------------------------------------*/
     .bsl-approot.studylab  .capture-button,
     .bsl-approot.studylab  .change-model-data-button,
@@ -177,7 +189,7 @@ var ret = `
         color : black;
     }
     /*---------------------------------------------
-        ||// study-lab buttons
+        \\\\// study-lab buttons
       --------------------------------------------*/
 
 
@@ -194,11 +206,33 @@ var ret = `
     }
     /*********************************************/
 
-
-
+    .content-list {
+      border:2px solid #dddddd;
+      border-radius:25px;
+      padding:15px 20px 20px 0px;
+    }
+    .content-list>div {
+       height:400px;
+       padding-right:10px;
+       overflow: auto;
+    }
+    .content-list .lemma-item-title {
+        display : inline-block;
+        padding : 1px 8px 3px 1px;
+        border-radius : 10px;
+        border : 1px solid #cccccc;
+        background-color : white;
+    }
+    .content-list .lemma-item-title:hover {
+        transform : scale(1.1);
+        color : #ffffff;
+        background-color : #666666;
+   }
+   .home-button.master-pagination-btn:hover {
+        transform : scale(1.0);
+   }
+}
 `;
         return ret;
     };
 })();
-
-

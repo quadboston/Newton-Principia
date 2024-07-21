@@ -1,24 +1,20 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;
-    var engCssMs    = sn('engCssMs');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
+    var {
+        ns, sn, cssp, userOptions, engCssMs,
+        fconf,
+    } = window.b$l.apptree({
+    });
     engCssMs.dispatchesHome8LemmaCss = dispatchesHome8LemmaCss;
     return;
 
 
 
-
-
-
-
-
     function dispatchesHome8LemmaCss() 
     {
-
+        //presence of "reset" module as the first
+        //apparenlty indicates that "home" style tag will be before
+        //style tag with class "default"
+        
         //data-entry: put module names here in order
         `
             reset
@@ -28,12 +24,10 @@
             home-pane
             inner-page
         `
-
         .split(/\r\n|\n/g)
         .forEach( function( modname ) {
             modname = modname.replace(/\s+/g,'');
             if( modname ) {
-
                 //todm: the home and lemma styles are not yet completely separated;
                 //-----------------------------------------------------------
                 // //\\ this places reset and home-pane into 'home' styleTag;
@@ -44,31 +38,24 @@
                     modname === 'dom-roots' ||
                     modname === 'typography' ||
                     modname === 'homepage-basics' ||
-                    //modname === 'home-pane' ||
+                    //modname === 'home-pane' || //does put it in "home" style tag
                     modname === 'inner-page'
-
                     ? 'default' : 'home';
                 //-----------------------------------------------------------
                 // \\// this places reset and home-pane into 'home' styleTag;
                 //-----------------------------------------------------------
 
-                /*
+                //this creates rack for style tag, tags-precedence, but awaits for
+                //"click-function" which sets is front-pane visible or not,
                 ns.globalCss.addText(
                     decorateText( engCssMs[ modname ]( cssp, fconf ), modname ),
                     styleTag
                 );
-                */
-                ns.globalCss.update(
-                    decorateText( engCssMs[ modname ]( cssp, fconf ), modname ),
-                    styleTag
-                );
+                //this does not seem required:
+                //ns.globalCss.update(
             }
         });
     }
-
-
-
-
 
     function decorateText( text, modname )
     {

@@ -1,27 +1,17 @@
 ( function() {
-    var ns           = window.b$l;
-    var $$           = ns.$$;
-    var sn           = ns.sn;
-    var fapp         = ns.sn('fapp' ); 
-    var fconf        = ns.sn('fconf',fapp);
-    var userOptions  = sn('userOptions',fapp);
-    var sconf        = ns.sn('sconf',fconf);
-
-    var sapp         = sn('sapp');
-    var html         = sn('html');
-
+    var {
+        ns, sn, $$, userOptions,
+        fapp, fconf, sapp, sconf, html, stdMod,
+    } = window.b$l.apptree({
+    });
+    sapp.buildsListOfLemmas = buildsListOfLemmas;
     html.builds_homePane = builds_homePane;
     return;
 
 
-
-
-
-
-
     function builds_homePane()
     {
-        var subsiteImg  = fconf.pathToContentSiteImg;
+        var subsiteImg = fconf.pathToContentSiteImg;
 
         buildHeader();
         buildTableOfContents();
@@ -57,39 +47,9 @@
         //==================================================
         // //\\ table of contents
         //==================================================
-        function buildTableOfContents() {
-            var coreText = `
-                <h2>Table of contents</h2>
-                <ul>`;
-            var book = null;
-            var landingPath = window.location.pathname;
-            fconf.ix2lemmaDef.forEach(function (sappItem) {
-                if (sappItem.sappId === 'home-pane') return;
-                if (book === null || book !== sappItem.book) {
-                    book = sappItem.book;
-                    if (sappItem.annotation === userOptions.BONUS_START) {
-                        coreText += `<div id=` + userOptions.BONUS_START + `>`;
-                    }
-                    ////add title "Book ... " when list switches to the next book ...
-                    coreText += `
-                    <li><div class="content-book-title">
-                            <span class="table-title">${book}</span>
-                        </div>
-                    </li>
-                `;
-                }
-                coreText += `
-                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
-                    <span class="table-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
-                    </a>
-                </li>`;
-                if (sappItem.annotation === userOptions.BONUS_END) {
-                    coreText += `</div>`;
-                }
-            });
-            coreText += `
-             </ul>
-             <!--END table of contents-->`;
+         function buildTableOfContents()
+         {
+            var coreText = '<h2>Table of contents</h2>' + buildsListOfLemmas();
             $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
                 .html(coreText);
         }
@@ -197,6 +157,41 @@
         // \\// about wrapper
         //==================================================
 
+    }
+    function buildsListOfLemmas()
+    {
+        var landingPath = window.location.pathname;
+        var book = null;
+        var coreText = '';
+        fconf.ix2lemmaDef.forEach(function (sappItem) {
+            if (sappItem.sappId === 'home-pane') return;
+            if (book === null || book !== sappItem.book) {
+                if( book !== null ) {
+                    coreText += '</ul></div>';
+                }
+                book = sappItem.book;
+                let cls = sappItem.annotation === userOptions.BONUS_START ?
+                         ' class="' + userOptions.BONUS_START + '"' : '';
+                coreText += '<div' + cls  + `><ul>`;
+                ////add title "Book ... " when list switches to the next book ...
+                coreText += `
+                    <li><div class="content-book-title">
+                            <span class="table-title book-title">${book}</span>
+                        </div>
+                    </li>
+                `;
+            }
+            coreText += `
+                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
+                    <span class="table-title lemma-item-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
+                    </a>
+                </li>`;
+            if (sappItem.annotation === userOptions.BONUS_END) {
+                coreText += `</ul></div>`;
+            }
+        });
+        coreText += '\n</ul></div>';
+        return coreText;
     }
 }) ();
 

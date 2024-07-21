@@ -54,7 +54,6 @@
                 null,
                 tostroke
             ).UPDATE_MPOS_BEFORE_POLY = true;
-            ccc( rg );
             ssF.pnames2poly(
                 [ 'b', 'L', 'c', 'm' ],
                 cssClass,

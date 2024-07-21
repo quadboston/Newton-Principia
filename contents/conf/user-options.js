@@ -1,26 +1,24 @@
 ( function() {
-    var { userOptions, fconf, haz } = window.b$l.apptree({});
-    const LATIN = "latin", USE_BG_IMAGE = "use-background-image", BONUS = "bonus", CHANGED = "changed";
+    var { $$, userOptions, fconf, haz } = window.b$l.apptree({});
+    const LATIN = "latin",
+          USE_BG_IMAGE = "use-background-image",
+          BONUS = "bonus";
     if (!(LATIN in sessionStorage)) {
         // if LATIN has not been set, assume none are set, and set to default values
         sessionStorage.setItem(LATIN, false);
         sessionStorage.setItem(USE_BG_IMAGE, false);
         sessionStorage.setItem(BONUS, false);
-        sessionStorage.setItem(CHANGED, false);
     }
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.showingBonusFeatures = showingBonusFeatures;
-    userOptions.initializeOptions = initializeOptions;
-    userOptions.hasNewSettings = hasNewSettings
+    userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
     userOptions.BONUS_START = "bonus-section-start";
     userOptions.BONUS_END = "bonus-section-end";
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
-
-    function hasNewSettings() {
-        return sessionStorage.getItem(CHANGED) === 'true';
-    }
-
+    return;   
+    
+    
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
     }
@@ -33,41 +31,39 @@
         return sessionStorage.getItem(BONUS) === 'true';
     }
 
-    function initializeOptions() {
-        sessionStorage.setItem(CHANGED, false);
+    function userOptions_2_updatedGUI() {
+        //sessionStorage.setItem(CHANGED, false);
 
         let latinCB = document.getElementById("latinCheckbox");
         latinCB.checked = showingLatin();
         latinCB.onclick = () => {
-            changeOption(LATIN, !showingLatin());
+            doesStoreOption(LATIN, !showingLatin());
         };
 
         let fadeCB = document.getElementById("fadeCheckbox");
         fadeCB.checked = useBGimage();
         fadeCB.onclick = () => {
-            changeOption(USE_BG_IMAGE, !useBGimage());
+            doesStoreOption(USE_BG_IMAGE, !useBGimage());
         };
 
         let bonusCB = document.getElementById("bonusCheckbox");
         bonusCB.checked = showingBonusFeatures();
         bonusCB.onclick = () => {
-            changeOption(BONUS, !showingBonusFeatures());
+            doesStoreOption(BONUS, !showingBonusFeatures());
             updateBonusContentVisibility();
         };
         updateBonusContentVisibility();
 
-        function updateBonusContentVisibility() {
-            let element = document.getElementById(userOptions.BONUS_START);
-            if (showingBonusFeatures()) {
-                element.removeAttribute("hidden");
-            } else {
-                element.setAttribute("hidden", "hidden");
-            }
+        function updateBonusContentVisibility()
+        {
+            ////updates bonus list existance
+            let appRoot$ = $$.$(document.querySelector( '.bsl-approot' ));
+            appRoot$[ showingBonusFeatures() ? 'addClass' : 'removeClass'  ]
+                    ( "shows-bonus-features" );
         }
 
-        function changeOption(option, newValue) {
+        function doesStoreOption(option, newValue) {
             sessionStorage.setItem(option, newValue);
-            sessionStorage.setItem(CHANGED, true);
         }
     }
 

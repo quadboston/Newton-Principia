@@ -107,23 +107,23 @@
             },
             d   : { decStart : LOGIC ? 9 : decor.D.decStart,
                     decEnd : decor.F.decStart+2,
-                cssClass : 'theor1proof theor2proof',
+                cssClass : 'theor1proof theor2proof theor2corollary',
             },
             e   : { decStart : LOGIC ? 13 : decor.E.decStart,
                     decEnd : decor.F.decStart+2,
-                    cssClass : 'theor1proof theor2proof',
+                    cssClass : 'theor1proof theor2proof theor2corollary',
             },
             f   : { decStart : LOGIC ? 17 : decor.F.decStart,
                     decEnd : decor.F.decStart+2,
-                    cssClass : 'theor1proof theor2proof',
+                    cssClass : 'theor1proof theor2proof theor2corollary',
             },
             // \\// c,d,e,f
 
             // //\\ c-col3
             h   : {
                 caption : 'c',
-                decStart : decor.C.decStart,
-                decEnd : decor.C.decEnd,
+                decStart : decor.C.decStart+1,
+                decEnd : decor.F.decStart+4,
                 cssClass : 'theor1corollary theor2proof',
             },
             g   : {
@@ -325,11 +325,11 @@
             },
             { nam : ['E', 'e'],
                 decStart : rg.E.decStart,
-                cssClass : 'theor1proof theor2proof tp-force-_move',
+                cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
             { nam : ['F', 'f'],
                 decStart : rg.F.decStart,
-                cssClass : 'theor1proof theor2proof tp-force-_move',
+                cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
             { nam : ['B', 'c'],
                 cssClass : 'theor1proof theor2corollary',
@@ -497,6 +497,9 @@
             rgElem.decStart = rg[ pNames[leadPoint] ].decStart;
             rgElem.decEnd = rg[ pNames[leadPoint] ].decEnd;
         });
+        rg.ABCV.decStart = 7;
+        rg.DEFZ.decStart += 1;
+        rg.DEFZ.decEnd += 1;
     }
 
     function keplerPolyNames_2_rg8media(

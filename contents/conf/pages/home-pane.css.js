@@ -1,7 +1,15 @@
-(function() {
-    var ns  = window.b$l;
-    var sn  = ns.sn;
-    var engCssMs = sn('engCssMs');
+//This module has css which is used when front-page is being seen,
+//without page reload, it does replace style-tag "home" when
+//front-pane "home-pane" shifts to visiblility area and
+//after that, this tag replaced with ".dummy-style {",
+
+//This css does group wiht css-module "reset", which presets defaults for all browsers,
+
+( function() {
+    var {
+        ns, sn, userOptions, engCssMs,
+    } = window.b$l.apptree({
+    });
     var THIS_MODULE = 'home-pane';
     engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
@@ -13,12 +21,6 @@
         var colorStoneBlue = ccs['color-stone-blue']; 
         var colorLight = ccs['color-light']; 
         var borderRadius = ccs['border-radius']; 
-
-
-
-
-
-
 
 
         // //\\ css /////////////////////////////////////////

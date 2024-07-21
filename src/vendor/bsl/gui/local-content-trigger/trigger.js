@@ -28,7 +28,7 @@
         var divs = document.querySelectorAll( '.trigger-option' ).forEach( div =>
         {
             div.innerHTML = `
-                <img class="isclosed" src="${IMAGE_PATH}/content-book-closed.png" title="click to open local content">
+                <img class="isclosed" src="${IMAGE_PATH}/content-book-closed.png" title="Click to open local content.">
                 <img class="isopen" src="${IMAGE_PATH}/content-book-opened.png" title="click to close local content">
             ` + div.innerHTML;
         });

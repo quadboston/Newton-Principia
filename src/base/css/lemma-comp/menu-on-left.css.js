@@ -19,6 +19,9 @@
     var sDomN       = sn('dnative', sapp);
     var FOCUS_COLOR = '#888888';
     var FOCUS_OFF_COLOR = '#888888';
+    //var SHUTTLE_COLOR ='rgba(32, 41, 54, 0.4)';
+    var SHUTTLE_COLOR ='rgba(150, 175, 200'; //6,7,8 150, 175, 200//'rgba(70, 92, ad, 0.4)';
+    var SHUTTLE_BG_COLOR ='rgba(245, 245, 255)';
 
     var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'menu-on-left';
@@ -102,7 +105,7 @@
         box-sizing      :border-box;
         height          :20px;
         border-radius   :10px;
-        border          :2px solid transparent;
+        border          :1px solid transparent;
         border-color    :transparent;
         margin          :0;
         cursor          :pointer;
@@ -116,14 +119,13 @@
         width           :${aspectionChildWidth}%;
     }
     .menu-teaf .litem.shuttle {
-        border           : 2px solid ${FOCUS_COLOR};
-        background-color : white;
-        box-shadow       : 0 0px 12px 0 rgba(32, 41, 54, 0.6);
+        box-shadow       : 0 0px 10px 0 ${SHUTTLE_COLOR}, 0.4);
+        border           : 3px solid ${SHUTTLE_COLOR}, 1);
+        background-color : ${SHUTTLE_BG_COLOR};
         z-index          : 20;
     }
     .menu-teaf .decorated.litem {
-        border          :2px solid ${FOCUS_OFF_COLOR};
-        box-shadow      : 0 0px 6px 0 rgba(32, 41, 54, 0.3);
+        border          :1px solid ${FOCUS_OFF_COLOR};
         z-index         :10;
     }
     `;
@@ -165,8 +167,8 @@
         color :${FOCUS_COLOR};
     }
     .menu-teaf .decorated.hovered {
-        border:2px solid ${FOCUS_COLOR};
-        box-shadow: 0 0px 16px 0 rgba(32, 41, 54, 0.6);
+        border:1px solid ${FOCUS_COLOR};
+        box-shadow: 0 0px 14px 0 rgba(32, 41, 54, 0.6);
     }
     /* ||// item is focused */
     `;

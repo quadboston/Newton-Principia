@@ -1,11 +1,9 @@
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var cssp        = ns.CSS_PREFIX;
-    var sn          = ns.sn;
-    var engCssMs     = sn('engCssMs');
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
+    var {
+        ns, sn, cssp, userOptions, engCssMs,
+        fconf,
+    } = window.b$l.apptree({
+    });
     engCssMs.places_engineCSSes2styleTags = places_engineCSSes2styleTags;
     return;
 
@@ -23,7 +21,6 @@
         //            site-sapp
 
         //data-entry: put module names here in order
-
         `
             nav-bar-and-drawer
             checkbox
@@ -32,38 +29,34 @@
             essaion-pane
             menu-on-left
         `
-
         .split(/\r\n|\n/g)
         .forEach( function( modname ) {
             modname = modname.replace(/\s+/g,'');
             if( modname ) {
                 ////this list is prone to manual-errors, commas, etc
                 ////this is why this debug-style-coding
-                var wwFun = engCssMs[ modname ];
-                var ww = wwFun( cssp, fconf );
-                ns.globalCss.addText(
-                    decorateText( ww, modname )
+                var cssGenerator = engCssMs[ modname ];
+                var cssTxt = cssGenerator( cssp, fconf );
+                //update( moreText, htmlkey )
+                ns.globalCss.update( //addText(
+                    decorateText( cssTxt, modname ),
+                    'lemma-style'
                 );
             }
         });
     }
 
-
-
-
-
     function decorateText( text, modname )
     {
         return ` 
     /******************************************
-       //\\\\ css module = ${modname}
+       //\\\\ css lemma module = ${modname}
     ******************************************/
     ${text}        
     /******************************************
-       \\\\// css module = ${modname}
+       \\\\// css lemma module = ${modname}
     ******************************************/
     `;
     }
-
 }) ();
 

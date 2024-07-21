@@ -84,9 +84,10 @@
         if( fconf.sappId === 'home-pane' ) {
             //// home. apparently does not do any modules landing-load
             LANDING_VII___landingFlag_8_nextLemmaButtons();
-                sDomN.homeButton$().click();
+            sDomN.landingPage8Options_click( !!'goToFrontPage' );
             ns.doScrollToHash();
         } else {
+            sDomN.landingPage8Options_click( !'goToFrontPage' );
             if( !haz( fconf, 'lemmaHasHomeButton' ) ) {
                 sDomN.homeButton$.css( 'display', 'none' );
             }

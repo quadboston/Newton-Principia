@@ -1,3 +1,6 @@
+//possibly resets browser-specific-css-to-more-common-conventional-values
+//possibly very useless, because all the details prescribed specifically in
+//applicationo code anyway,
 (function() {
     var ns          = window.b$l;
     var sn          = ns.sn;
@@ -5,12 +8,7 @@
     var THIS_MODULE = 'reset';
     engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ccs = fconf.css;
-
-
-
-// //\\ css /////////////////////////////////////////
-var ret = `
-
+        var ret = `
 
     /* http://meyerweb.com/eric/tools/css/reset/
        v2.0 | 20110126
@@ -67,10 +65,7 @@ var ret = `
 
 
 
-`;
-// \\// css /////////////////////////////////////////
-
-
+    `;
 
 
         return ret;

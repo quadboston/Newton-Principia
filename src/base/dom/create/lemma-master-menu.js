@@ -113,6 +113,11 @@
         //------------------------------------
         //makes shuttle non-chosen and its position undefined
         decorOfShuttle$ = $$.dct( 'litem shuttle', teaf$ );
+        /*       
+                            .ch( $$.dc( 'shuttle-oval-body' ) )
+                            .ch( $$.dc( 'shuttle-shadow' ) )
+                            ;
+        */
         //------------------------------------
         // builds mencat own tree
         //------------------------------------

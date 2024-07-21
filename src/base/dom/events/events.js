@@ -98,9 +98,11 @@
                 var wwFullCaption = '';
             } 
             pager$.html( direction === 'right' ?
-                '<img src="' + fconf.engineImg + '/right-page-triangle.svg"> ' +
+                '<img src="' + fconf.engineImg +
+                '/right-page-triangle.svg"> ' +
                 wwFullCaption :
-                wwFullCaption + '<img src="' + fconf.engineImg + '/back-arrow-link.svg">' );
+                wwFullCaption + '<img ' +
+                                'src="' + fconf.engineImg + '/back-arrow-link.svg">' );
 
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );

@@ -1,19 +1,12 @@
 ( function() {
     var {
-        ns,
-        $$,
-        haz,
-        fapp,
-        sDomN,
-        html,
-        fconf,
-        userOptions
+        ns, $$, haz, userOptions,
+        fapp, sapp, sDomN, html, fconf, stdMod,
     } = window.b$l.apptree({
     });
     html.builds_body_4_home8lemma = builds_body_4_home8lemma;
+    sDomN.landingPage8Options_click = landingPage8Options_click;
     return;
-
-
 
 
     
@@ -86,58 +79,28 @@
             $$.dc( 'page-top-nav-bar' )
             .to( fapp.fappRoot$ )
             ;
-
         //==================================================
         // //\\ builds home button
         //==================================================
-        navBar$
-            .ch(    
-                sDomN.homeButton$ = $$
-                .dc( "master-pagination-btn home-button is-hidden" )
-                .html( fconf.homeButtonName )
-                .e( 'click', function() {
-                      if( fapp.homePage$().className.indexOf( 'is-hidden' ) > -1 ) {
-                            // user is viewing landing page
-                            userOptions.initializeOptions();
-                            ns.globalCss.update('','home');
-                            ////home-pane becomes visible
-                            fapp.homePage$.removeClass( 'is-hidden' );
-                            sDomN.homeButton$
-                                .html( fconf.appDecor.backButtonCaption )
-                                .removeClass( 'is-hidden' )
-                                ;
-                            fapp.fappRoot$.css( 'overflow', 'visible' );
-                            document.body.style.overflow = 'visible';
-                            $$.$( document.body ).addClass( 'contents' );
-                            //todm patch
-                            haz( sDomN , 'simSScene$' ) &&
-                                sDomN.simSScene$.css( 'display', 'none' );
-
-                      } else {
-                            // user is going back the lemmas
-                            if (userOptions.hasNewSettings()) {
-                                window.location.reload();
-                            } else {
-                                wipeFromHomeToLemma();
-                            }
-                      }
-                      return false;
-                })
-            )
-
-            function wipeFromHomeToLemma() {
-                ns.globalCss.clearStyleTag('home');
-                fapp.homePage$.addClass('is-hidden');
-                sDomN.homeButton$
-                    .html(fconf.homeButtonName)
-                    .addClass('is-hidden');
-                document.body.style.overflow = 'hidden';
-                $$.$(document.body).removeClass('contents');
-                //todm patch
-                sDomN.simSScene$.css('display', 'inline-block');
-            }
         //==================================================
         // \\// builds home button
+        //==================================================
+
+        //==================================================
+        // //\\ builds drop down button
+        //==================================================
+        navBar$
+            .ch( sDomN.homeButton$ = $$
+                .dc( "master-pagination-btn home-button" )
+            )
+            .ch( sDomN.returnToLemmaButton$ = $$
+                .dc( "master-pagination-btn return-to-lemma-button" )
+                .e( 'click', function() {
+                    return landingPage8Options_click();
+                 })
+            );
+        //==================================================
+        // \\// builds drop down button
         //==================================================
 
         navBar$
@@ -147,7 +110,7 @@
                 //==================================================
                 .ch(    
                     sDomN.leftButton$ = $$
-                    .dc( "master-pagination-btn" )
+                    .dc( "master-pagination-btn left" )
                     .a( 'title', 'Previous item of site content.' )
                 )
                 .ch(
@@ -158,7 +121,7 @@
                 )
                 .ch(    
                     sDomN.rightButton$ = $$
-                    .dc( "master-pagination-btn" )
+                    .dc( "master-pagination-btn right" )
                     .a( 'title', 'Next item of site content.' )
                 )
                 //==================================================
@@ -169,6 +132,8 @@
         // \\// page master menu
         //==================================================
 
+        sDomN.homeButton$.html( fillsLemmasList() );
+        sDomN.returnToLemmaButton$.html( fconf.appDecor.backButtonCaption );
 
         //==================================================
         // //\\ application version label
@@ -187,5 +152,82 @@
         //==================================================
 
     }
+    
+    function fillsLemmasList()
+    {
+        var coreText =
+        `
+            <div class="isclosed" style="position:absolute; text-align:left;">
+                <div class="trigger-option" style="text-align:left;">
+                    Contents
+                </div>
+                <div class="trigger-content content-list">
+                   <div>
+        `;
+        coreText += `
+                <div>
+                    <ul>
+                        <li><div
+                            class="content-book-title left-home- button">
+                               <span class="table-title book-title"
+                                     onclick="window.b$l.sapp.dnative.landingPage8Options_click();"
+                                     title="Go to front page and preferences."
+                               >🏠 🛠</span><!-- ⚙ -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        `;
+        coreText += sapp.buildsListOfLemmas() +
+        `
+                   </div>
+                </div>
+            </div>
+        `;
+        return coreText;
+    }
+    
+    function landingPage8Options_click( goToFrontPage )
+    {
+        userOptions.userOptions_2_updatedGUI();
+        
+        if( typeof goToFrontPage === 'undefined' ) {
+            goToFrontPage = fapp.homePage$().className.indexOf( 'is-hidden' ) > -1;
+        }
+        ////it does always click on landing of pure home page when
+        ////no lemmas called
+        if( goToFrontPage ) {
+            //(I) this replaces "erased css", whish was erased before,
+            //this creates exceptionally strong separation of styles of
+            //front-page-pane and lemma-pane without reloading the application,
+            ns.globalCss.update('','home');
 
+            fapp.homePage$.removeClass( 'is-hidden' );
+            sDomN.returnToLemmaButton$.removeClass( 'non-displayed' );
+            sDomN.homeButton$.addClass( 'non-displayed' );
+            
+            fapp.fappRoot$.css( 'overflow', 'visible' );
+            document.body.style.overflow = 'visible';
+            $$.$( document.body ).addClass( 'contents' );
+            //todm patch
+            haz( sDomN , 'simSScene$' ) &&
+                sDomN.simSScene$.css( 'display', 'none' );
+
+        } else {
+            //(I) this erases css of front-page-pane
+            ns.globalCss.clearStyleTag('home');
+            
+            fapp.homePage$.addClass( 'is-hidden' );
+            sDomN.returnToLemmaButton$.addClass( 'non-displayed' );
+            sDomN.homeButton$.removeClass('non-displayed');
+            
+            document.body.style.overflow = 'hidden';
+            $$.$(document.body).removeClass('contents');
+            //todm patch
+            let sce$ = haz( sDomN, 'simSScene$' );
+            if( sce$ ) {
+                sce$.css('display', 'inline-block');
+            }
+        }
+    }
 }) ();

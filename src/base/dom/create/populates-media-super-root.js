@@ -11,7 +11,6 @@
         rg,
         exegs, rgtools,
         studyMods,
-        userOptions
     } = window.b$l.apptree({
     });
 

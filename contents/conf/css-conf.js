@@ -27,7 +27,7 @@
         'color-light'       : 'white',      //'#FBFCFC',
  
         //:UI
-        'border-radius'     : '5px',
+        'border-radius'     : '20px',
         //=======================
         // \\// legacy CSS params
         //=======================

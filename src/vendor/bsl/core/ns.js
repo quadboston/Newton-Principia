@@ -989,7 +989,7 @@
 
 
 
-
+    ///rack is a fully decorated style-tag-unit,
     ///generates rack or returns rack if exists,
     ///rack is an apartment in repo,
     ///input:
