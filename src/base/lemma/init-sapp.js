@@ -73,7 +73,7 @@
             //sDomN.medRoot$().offsetTop=550;
             //fapp.homePage$().offsetTop=0;
             sDomN.midddleButton$.a( 'tabindex', '0');
-            sDomN.midddleButton$().focus();
+            //sDomN.midddleButton$().focus();
             //==============================================================
             // \\// shifted-landing-frames-fix-patch
             //==============================================================

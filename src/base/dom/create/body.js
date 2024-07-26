@@ -117,6 +117,8 @@
                     sDomN.midddleButton$ = $$
                     .dc( "master-pagination-btn current-lemma" )
                     .a( 'title', 'Currently chosen item of site content.' )
+                    //todo hard problem: why border is still black?
+                    .css( 'border', '3px solid rgba(150, 175, 200, 1)' )
                     .html( caption )
                 )
                 .ch(    
@@ -166,7 +168,7 @@
         `;
         coreText += `
                 <div>
-                    <ul>
+                    <ul style="margin-bottom:0; margin-top:0;">
                         <li><div
                             class="content-book-title left-home- button">
                                <span class="table-title book-title"

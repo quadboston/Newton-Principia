@@ -3,6 +3,7 @@
     var sn  = ns.sn;
     var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'inner-page';
+    var SHUTTLE_COLOR ='rgba(150, 175, 200'; //6,7,8 150, 175, 200//'rgba(70, 92, ad, 0.4)';
 
 
 
@@ -28,10 +29,14 @@
 
     /*--------------------------------------
         //\\\\ master pagination button
+        margin-bottom is perplexing, why
+        disbalance between home, left, current buttons?
       -------------------------------------*/
     .master-pagination-btn {
         display:inline-block;
         position:relative;
+        transform: none;
+        box-shadow: 0 0px 4px 0 rgba(32, 41, 54, 0.2);
         box-sizing: border-box;
         background-color: ${colorWhite};
         border-radius: ${borderRadius};
@@ -42,7 +47,7 @@
         text-align:center;
 
         height: 29px;
-        margin: 0 16px 0 16px;
+        margin: 0px 16px 0 16px;
         padding: 5px 8px 2px 8px;
         transition: all .2s ease;
         z-index: 1002;
@@ -63,7 +68,7 @@
     .master-pagination-btn.right img {
         width: 7px;
     }
-
+    
     /* //\\\\ effect of outstanding button in top menu */
     .master-pagination-btn:hover {
         transform: scale(1.1);
@@ -72,12 +77,12 @@
     }
     .master-pagination-btn.current-lemma:hover,
     .master-pagination-btn.current-lemma {
-        box-shadow: 0px 0 8px 0 rgba(32, 41, 54, 0.4);
         transform: scale(1.0);
-    }
-    .master-pagination-btn {
-        transform: none;
-        box-shadow: 0 0px 4px 0 rgba(32, 41, 54, 0.2);
+        box-shadow       : 0 0px 8px 0 ${SHUTTLE_COLOR}, 0.4);
+        border           : 3px solid ${SHUTTLE_COLOR}, 1);
+        padding          : 3px 8px 3px 8px;
+        margin-top       : 6px;
+        transform        : translate( 0px, 1px );
     }
     /* \\\\// effect of outstanding button in top menu */
 
@@ -106,6 +111,7 @@
     }
     .home-button {
         width               : 120px;
+        margin-top          : 6px;
         color               : ${colorMediumGrey};
         background-color    : white;
     }
@@ -218,7 +224,7 @@
     }
     .content-list .lemma-item-title {
         display : inline-block;
-        padding : 1px 8px 3px 1px;
+        padding : 4px 8px 2px 1px;
         border-radius : 10px;
         border : 1px solid #cccccc;
         background-color : white;

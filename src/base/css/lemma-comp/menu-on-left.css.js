@@ -98,12 +98,15 @@
 
     //-------------------------------
     // //\\ common decorations
+    //      padding-top :0px; does fix Chrome, but distorts FireFox
+    //      FireFox needs 1px; todm what is the problem?
     //-------------------------------
     ret += `
     .menu-teaf .litem {
         position        :absolute;
         box-sizing      :border-box;
         height          :20px;
+        padding-top     :0px;
         border-radius   :10px;
         border          :1px solid transparent;
         border-color    :transparent;

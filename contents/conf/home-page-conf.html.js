@@ -158,6 +158,7 @@
         //==================================================
 
     }
+    
     function buildsListOfLemmas()
     {
         var landingPath = window.location.pathname;
@@ -181,9 +182,10 @@
                     </li>
                 `;
             }
+            let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             coreText += `
-                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}">
-                    <span class="table-title lemma-item-title">&nbsp;&nbsp;&nbsp;${sappItem.caption}</span>
+                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}"
+                    class="table-title lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
             if (sappItem.annotation === userOptions.BONUS_END) {

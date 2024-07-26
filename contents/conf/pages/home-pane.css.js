@@ -21,13 +21,10 @@
         var colorStoneBlue = ccs['color-stone-blue']; 
         var colorLight = ccs['color-light']; 
         var borderRadius = ccs['border-radius']; 
-
-
-        // //\\ css /////////////////////////////////////////
         var ret = `
 
     /*====================================================== 
-       //|| home page generics
+       //\\\\ home page generics
       ======================================================*/
 
     .hp-section-wrap {
@@ -42,7 +39,7 @@
         margin-bottom: 24px;
     }
     /*====================================================== 
-       ||// home page generics
+       \\\\// home page generics
       ======================================================*/
 
 
@@ -50,7 +47,7 @@
 
 
     /*====================================================== 
-       //|| home-page header
+       //\\\\ home-page header
       ======================================================*/
     header {
       position:relative;  
@@ -61,7 +58,7 @@
 
 
     /*====================================================== 
-       //|| front-page master caption and read first button
+       //\\\\ front-page master caption and read first button
       ======================================================*/
     .landing-text {
       padding-top: 0px;
@@ -72,7 +69,7 @@
 
 
     /*====================================================== 
-       //|| front-page master caption
+       //\\\\ front-page master caption
       ======================================================*/
     .landing-title {
       font-family: "essonnes-display", 'Garamond','Times', serif;
@@ -96,13 +93,13 @@
       .landing-subtitle span {
         font-style: italic; }
     /*====================================================== 
-       ||// front-page master caption
+       \\\\// front-page master caption
       ======================================================*/
 
 
 
     /*====================================================== 
-       ||// front-page master caption and read first button
+       \\\\// front-page master caption and read first button
       ======================================================*/
     .newton-img {
       position: absolute;
@@ -110,12 +107,13 @@
       z-index: -1;
       right: 96px; }
     /*====================================================== 
-       ||// home-page header
+       \\\\// home-page header
       ======================================================*/
 
 
     /*====================================================== 
-       //|| table of contents
+       //\\\\ table of contents
+       good: transform : scale(1.1, 1.0);
       ======================================================*/
         .landing-table-of-contents {
           position: relative;
@@ -128,40 +126,48 @@
       .landing-table-of-contents ul a {
         color: white;
         font-size: 17px;
+        line-height:1.1;
         font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-        display: flex;
-        justify-content: space-between;
-        transition: all .6s;
-        width: 100%;
+        xxxxjustify-content: space-between;
+        transition: all .1s;
       }
       .landing-table-of-contents .content-book-title {
         font-size: 19px;
       }
 
-      .landing-table-of-contents ul a {
+      .xxxxlanding-table-of-contents ul a {
         padding-top: 0px;
         padding-bottom: 5px;
       }
-
       .landing-table-of-contents .content-book-title {
         padding-top: 15px;
         padding-bottom: 10px;
       }
-
-
-        .landing-table-of-contents ul a:hover {
-          border-bottom: 1px solid white;
-          transition: all .2s; }
       .landing-table-of-contents ul .table-tag {
         font-family: 'Helvetica', sans-serif;
         font-size: 14px;
         font-weight: 300; }
-      .landing-table-of-contents ul .disabled {
-        opacity: .5; }
-        .landing-table-of-contents ul .disabled:hover {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+
+        `;
+        
+        
+    ret += `
+       .landing-table-of-contents .lemma-item-title {
+            display: inline-block;
+            padding : 4px 10px 2px 1px;
+            border-radius : 10px;
+            border : 1px solid transparent;
+        }
+        .landing-table-of-contents li .chosen.lemma-item-title,
+        .landing-table-of-contents .lemma-item-title:hover {
+            background-color : #506677;
+            border : 1px solid #cccccc;
+        }
+        .landing-table-of-contents ul a {
+            padding-bottom : 0px;
+        }
     /*====================================================== 
-       ||// table of contents
+       \\\\// table of contents
       ======================================================*/
 
 
@@ -169,7 +175,7 @@
 
 
     /*====================================================== 
-       //|| how to
+       //\\\\ how to
       ======================================================*/
     .how-to {
       padding: 64px 0;
@@ -195,7 +201,7 @@
           font-size: 24px;
           color: ${colorMain} !important; }
     /*====================================================== 
-       ||// how to
+       \\\\// how to
       ======================================================*/
 
 
@@ -204,7 +210,7 @@
 
 
     /*====================================================== 
-       //|| about
+       //\\\\ about
       ======================================================*/
     .about {
       color: ${colorWhite};
@@ -257,13 +263,13 @@
           color: white;
     }
     /*====================================================== 
-       ||// about
+       \\\\// about
       ======================================================*/
 
 
       
     /*====================================================== 
-      //|| options
+      //\\\\ options
      ======================================================*/
     .options {
       color: ${colorWhite};
@@ -273,7 +279,7 @@
     .option__text {
       font-size: 18px; }
     /*====================================================== 
-      ||// options
+      \\\\// options
      ======================================================*/
 
 
@@ -313,11 +319,6 @@ Media Queries
         clip-path: ellipse(72px 72px at center); } }
 
 `;
-// \\// css /////////////////////////////////////////
-
-
-
-
         return ret;
     };
 })();
