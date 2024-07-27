@@ -216,6 +216,7 @@
       border:2px solid #dddddd;
       border-radius:25px;
       padding:15px 20px 20px 0px;
+      cursor: default;
     }
     .content-list>div {
        height:400px;
@@ -229,10 +230,16 @@
         border : 1px solid #cccccc;
         background-color : white;
     }
+    .content-list .lemma-item-title.go-to-front-page {
+        padding-left : 6px;
+        padding-bottom : 4px;
+        cursor: pointer;
+    }
+    
     .content-list .lemma-item-title:hover {
         transform : scale(1.1);
         color : #ffffff;
-        background-color : #666666;
+        background-color : #999999;
    }
    .home-button.master-pagination-btn:hover {
         transform : scale(1.0);

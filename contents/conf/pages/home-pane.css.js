@@ -128,7 +128,6 @@
         font-size: 17px;
         line-height:1.1;
         font-family: 'Goudy Old Style', 'Garamond','Times', serif;
-        xxxxjustify-content: space-between;
         transition: all .1s;
       }
       .landing-table-of-contents .content-book-title {

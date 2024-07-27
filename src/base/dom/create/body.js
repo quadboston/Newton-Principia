@@ -154,28 +154,26 @@
         //==================================================
 
     }
-    
+    ///inserts itself into sDomN.homeButton$.html
     function fillsLemmasList()
     {
         var coreText =
         `
-            <div class="isclosed" style="position:absolute; text-align:left;">
+            <div class="lemma-list-opener isclosed" style="position:absolute; text-align:left;">
                 <div class="trigger-option" style="text-align:left;">
                     Contents
                 </div>
                 <div class="trigger-content content-list">
                    <div>
-        `;
+        `;//rid content-book-title, content-book-title left-home- button
         coreText += `
                 <div>
                     <ul style="margin-bottom:0; margin-top:0;">
-                        <li><div
-                            class="content-book-title left-home- button">
-                               <span class="table-title book-title"
+                        <li><div class="lemma-item-title go-to-front-page"
                                      onclick="window.b$l.sapp.dnative.landingPage8Options_click();"
                                      title="Go to front page and preferences."
-                               >🏠 🛠</span><!-- ⚙ -->
-                            </div>
+                               >🏠 🛠
+                              </div><!-- ⚙ -->
                         </li>
                     </ul>
                 </div>
@@ -186,7 +184,27 @@
                 </div>
             </div>
         `;
+        fapp.fappRoot$.e( 'click', function( event ) {
+            //ccc( 'event.target=',event.target);
+            //ccc( 'event.currentTarget=',event.currentTarget, 'this, el=', this );
+            stepUp( event.target )
+        });
         return coreText;
+    }
+    ///recurses up till button found or nothing found,
+    ///if button found, does nothing,
+    ///if not, then closes list,
+    function stepUp( el ) {
+        if( !el || !el.className ) {
+            ////c cc( 'reached the top of dom tree' );
+            let b = document.body.querySelector(
+                '.master-pagination-btn.home-button div' );
+            $$.$( b ).removeClass( 'isopen' ).addClass( 'isclosed' );
+            return;
+        }
+        if( el.className.indexOf('trigger-option') < 0 ) {
+            stepUp( el.parentNode );
+        }
     }
     
     function landingPage8Options_click( goToFrontPage )

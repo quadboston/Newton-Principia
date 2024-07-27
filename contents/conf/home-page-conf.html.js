@@ -177,7 +177,7 @@
                 ////add title "Book ... " when list switches to the next book ...
                 coreText += `
                     <li><div class="content-book-title">
-                            <span class="table-title book-title">${book}</span>
+                            <span class="book-title">${book}</span>
                         </div>
                     </li>
                 `;
@@ -185,7 +185,7 @@
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}"
-                    class="table-title lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
+                    class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
             if (sappItem.annotation === userOptions.BONUS_END) {
