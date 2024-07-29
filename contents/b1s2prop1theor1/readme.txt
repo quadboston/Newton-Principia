@@ -10,7 +10,7 @@ Lemma architecture:
 
 
     This css overrides standard app CSS:
-        { src : '../common/global-css.js' },
+        { src : '../js/global-css.js' },
 
 
 

@@ -26,7 +26,7 @@
         hideSingleItemContentMenus : true,
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
-        timeToShowOriginalDiagram  : 5000, //ms
+        timeToShowOriginalDiagram  : 3600000, //ms
 
         //we adopt strategy when svg x-scale is unchanged and set as
         //sconf.mod2inn_scale, but y-scale can have additional factor,

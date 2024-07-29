@@ -11,33 +11,33 @@
             codesList :
             [
                 //configures initial constants
-                { src : '../common/sconf.js' },
-                { src : '../common/decs-conf.js' },
-                { src : '../common/global-css-overrider.js' },
+                { src : '../js/sconf.js' },
+                { src : '../js/decs-conf.js' },
+                { src : '../js/global-css-overrider.js' },
 
                 //structures core execution
-                { src : '../common/sets-user-touch-detector.js' },
-                { src : '../common/study-model.js' },
-                { src : '../common/media-model.js' },
+                { src : '../js/sets-user-touch-detector.js' },
+                { src : '../js/study-model.js' },
+                { src : '../js/media-model.js' },
 
                 //model-media solving routine
-                { src : '../common/solves-path.js' },
-                { src : '../common/model-groupify-steps.js' },
-                { src : '../common/path-2-path-model-racks.js' },
-                { src : '../common/path-2-custom-decs.js' },
-                { src : '../common/path-model-racks-2-svg.js' },
-                { src : '../common/decs-2-svg.js' },
-                { src : '../common/does-mask-all-svg.js' },
-                { src : '../common/unmasks-visible-path-svg.js' },
+                { src : '../js/solves-path.js' },
+                { src : '../js/model-groupify-steps.js' },
+                { src : '../js/path-2-path-model-racks.js' },
+                { src : '../js/path-2-custom-decs.js' },
+                { src : '../js/path-model-racks-2-svg.js' },
+                { src : '../js/decs-2-svg.js' },
+                { src : '../js/does-mask-all-svg.js' },
+                { src : '../js/unmasks-visible-path-svg.js' },
 
                 //sliders
-                { src : '../common/time-slider.js' },
-                { src : '../common/delta-time-slider.js' },
-                { src : '../common/model-of-ABV-sliders.js' },
+                { src : '../js/time-slider.js' },
+                { src : '../js/delta-time-slider.js' },
+                { src : '../js/model-of-ABV-sliders.js' },
 
                 //model and media subroutimes
-                { src : '../common/model8media-lib.js' },
-                { src : '../common/main-legend.js' },
+                { src : '../js/model8media-lib.js' },
+                { src : '../js/main-legend.js' },
 
                 //projectile model
                 { src : '../projectile-model/sconf.js' },

@@ -35,7 +35,7 @@ refers to
 
 <b><i>Used axiomatic frameworks</i></b>
 <br>
-We use two frameworks, "Euclid" and "CalculusXX".
+We compare two frameworks, "Euclid" and "CalculusXX".
 <a name="Eframework"></a>
 <br><br><br><br>
 

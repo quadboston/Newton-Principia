@@ -8,7 +8,7 @@
 
     function lemmaConfig()
     {
-        var sm = '../common/'; //study model path
+        var sm = '../js/'; //study model path
         return {
             codesList :
             [

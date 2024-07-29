@@ -105,7 +105,7 @@
             SLIDER_TEXT_POZ_Y_FACTOR : 0.7,
 
             default_tp_lightness : 30,
-            mediaBgImage : "../common/img/b1s2p1t1.png",
+            mediaBgImage : "../js/img/b1s2p1t1.png",
             dontRun_ExpandConfig : true,
 
             //-----------

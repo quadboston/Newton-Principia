@@ -18,33 +18,33 @@
                 { src : 'resize-main-scene.js' },
 
                   //configures initial constants
-                { src : route+'common/sconf.js' },
-                { src : route+'common/decs-conf.js' },
-                { src : route+'common/global-css-overrider.js' },
+                { src : route+'js/sconf.js' },
+                { src : route+'js/decs-conf.js' },
+                { src : route+'js/global-css-overrider.js' },
 
                 //structures core execution
-                { src : route+'common/sets-user-touch-detector.js' },
-                { src : route+'common/study-model.js' },
-                { src : route+'common/media-model.js' },
+                { src : route+'js/sets-user-touch-detector.js' },
+                { src : route+'js/study-model.js' },
+                { src : route+'js/media-model.js' },
 
                 //model-media solving routine
-                { src : route+'common/solves-path.js' },
-                { src : route+'common/model-groupify-steps.js' },
-                { src : route+'common/path-2-path-model-racks.js' },
-                { src : route+'common/path-2-custom-decs.js' },
-                { src : route+'common/path-model-racks-2-svg.js' },
-                { src : route+'common/decs-2-svg.js' },
-                { src : route+'common/does-mask-all-svg.js' },
-                { src : route+'common/unmasks-visible-path-svg.js' },
+                { src : route+'js/solves-path.js' },
+                { src : route+'js/model-groupify-steps.js' },
+                { src : route+'js/path-2-path-model-racks.js' },
+                { src : route+'js/path-2-custom-decs.js' },
+                { src : route+'js/path-model-racks-2-svg.js' },
+                { src : route+'js/decs-2-svg.js' },
+                { src : route+'js/does-mask-all-svg.js' },
+                { src : route+'js/unmasks-visible-path-svg.js' },
 
                 //sliders
-                { src : route+'common/time-slider.js' },
-                { src : route+'common/delta-time-slider.js' },
-                { src : route+'common/model-of-ABV-sliders.js' },
+                { src : route+'js/time-slider.js' },
+                { src : route+'js/delta-time-slider.js' },
+                { src : route+'js/model-of-ABV-sliders.js' },
 
                 //model and media subroutimes
-                { src : route+'common/model8media-lib.js' },
-                { src : route+'common/main-legend.js' },
+                { src : route+'js/model8media-lib.js' },
+                { src : route+'js/main-legend.js' },
 
                 //projectile model
                 { src : route+'projectile-model/sconf.js' },

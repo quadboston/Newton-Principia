@@ -25,7 +25,7 @@
 *::*corollary|latin
 
 
-<img src="contents/b1s2prop1theor1/common/img/p1-latin.png" style="width:100%">
+<img src="contents/b1s2prop1theor1/js/img/p1-latin.png" style="width:100%">
 
 
 <br><br>
