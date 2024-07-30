@@ -14,7 +14,7 @@
 
         and have sides ¦Bb¦¦, ¦Cc¦¦, ¦Dd¦¦, ...
         parallel to the ¦wall¦side Aa¦¦ of the figure;
-        and if the parallelograms ¦inscribed-rectangles insc-txt¦aKbl, bLcm, cMdn¦¦, ... are completed;
+        and if the parallelograms ¦a--K--b--l b--L--c--m c--M--d--n d--D--E--o¦aKbl, bLcm, cMdn¦¦, ... are completed;
         if then the ¦AB BC CD¦width¦¦ of these parallelograms is diminished and their number increased indefinitely,
 
         I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AKbLcMdD¦¦,
