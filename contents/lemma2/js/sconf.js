@@ -430,7 +430,7 @@
             },
 
             { Kb : {
-                        pcolor : predT.difference,
+                        pcolor : predT.given,
                    },
             },
 
