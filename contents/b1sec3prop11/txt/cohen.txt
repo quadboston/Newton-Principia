@@ -15,7 +15,7 @@ Page 462.
 *::*proof|english
 {
   "menuCaption" : "English",
-  "subessayCaption" : "<i>[Solution</i>]",
+  "subessayCaption" : "<i>Solution</i>",
   "subessay" : "solution"
 }
 *..*
@@ -34,11 +34,6 @@ be to L x ¦Pv¦P𝑣¦¦
 
 as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AO¦AC¦¦ to ¦PO¦PC¦¦; and
 L x ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ x ¦Pv¦𝑣P¦¦ as
-<br><br>
-
-a. For a gloss on this proposition see <i>Source</i>, the Guide, §10.9.
-<br><br>
-
 L to ¦vG¦G𝑣¦¦; and<sup>b</sup>
  ¦vG¦G𝑣¦¦ x ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
  as PC² to CD²; and
