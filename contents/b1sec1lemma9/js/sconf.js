@@ -15,9 +15,6 @@
 
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
         //----------------------------------
@@ -28,7 +25,6 @@
         // \\// study model parameters
         //----------------------------------
 
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -38,9 +34,8 @@
         // \\// subapp regim switches
         //====================================================
 
-
         //----------------------------------
-        // //\\ original material parameters
+        // //\\ paper diagram parameters
         //----------------------------------
         var pictureWidth    = 504;
         var pictureHeight   = 495;
@@ -52,15 +47,56 @@
         var modorInPicY = pointA[1]; 
         //.set it from graph editor
         var pictureActiveArea = pointA[1] - 46;
-        //----------------------------------
-        // \\// original material parameters
-        //----------------------------------
+ 
         var mod2inn_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
         var originX_onPicture = pointA[0];
         var originY_onPicture = pointA[1];
+        //----------------------------------
+        // \\// paper diagram parameters
+        //----------------------------------
 
+        //***************************************************************
+        // //\\ decorational parameters
+        //***************************************************************
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
 
+        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //gives bar full range of opacity for tp machine
+        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
+        //makes idle bars brighter
+        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
+        //making size to better fit lemma's diagram
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r= 3;
 
+        //--------------------------------------
+        // //\\ does override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
+        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
+        defaultLineWidth        = Math.floor( 1 * controlsScale ),
+        handleRadius            = Math.floor( 3 * controlsScale ),
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+        //this makes hanle's border nicely thin
+        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+
+        //make effect apparently only for line-captions,
+        //not for point-captions bs
+        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
+        sconf.text_hover_width      = 1.5;
+        // \\// principal tp-css pars
+
+        sconf.default_tp_lightness = 30;
+        //--------------------------------------
+        // \\// does override engine defaults,
+        // \\// decorational parameters
+        //***************************************************************
 
 
         //----------------------------------------------------
@@ -70,7 +106,6 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        sconf.default_tp_lightness = 30;
         var given   = [0,     150, 0,      ]; //0.5];
         var proof   = [0,     0,   255,    ]; //0.5];
         var result  = [200,   40,  0,      ]; //0.5];
@@ -327,9 +362,5 @@
         // \\// copy-pastes to sconf
         //----------------------------------------------------
     };
-    //====================================================
-    // \\// inits and sets config pars
-    //====================================================
-
 }) ();
 
