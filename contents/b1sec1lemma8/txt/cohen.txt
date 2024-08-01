@@ -11,7 +11,7 @@ If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the arc ¦arc-A
 its chord ¦AB¦¦,
 and the tangent ¦AD¦¦, constitute three triangles
 ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦, and ¦AR RD AD¦RAD¦¦, and if
-then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the triangles as they vanish
+then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the ¦AR AB BR arc-AB RD AD¦ trirangles ¦¦ as they vanish
 are similar in their ultimate form, and that their ultimate ratio is one of equality.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
