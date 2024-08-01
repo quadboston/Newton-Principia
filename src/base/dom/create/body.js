@@ -195,7 +195,7 @@
     ///if button found, does nothing,
     ///if not, then closes list,
     function stepUp( el ) {
-        if( !el || !el.className ) {
+        if( !el || !el.className || typeof el.className !== 'string' ) {
             ////c cc( 'reached the top of dom tree' );
             let b = document.body.querySelector(
                 '.master-pagination-btn.home-button div' );

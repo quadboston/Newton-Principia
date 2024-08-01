@@ -17,13 +17,12 @@
     //====================================================
     function init_conf()
     {
-        sconf.rgShapesVisible = true;
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
         sconf.enableTools               = false;
+        sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -38,6 +37,55 @@
 
         var originX_onPicture = 58; //for model's axis x
         var originY_onPicture = 60; //for model's axis y
+
+        //***************************************************************
+        // //\\ decorational parameters
+        //***************************************************************
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
+
+        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //gives bar full range of opacity for tp machine
+        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
+        //makes idle bars brighter
+        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
+        //making size to better fit lemma's diagram
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        //overrides "global", lemma.conf.js::sconf
+
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r= 3;
+        sconf.pointDecoration.r= 5;
+
+        //--------------------------------------
+        // //\\ do override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
+        sconf.default_tp_lightness = 22;
+        sconf.default_tp_lightness = 30;
+        sconf.default_tp_stroke_width = 8;
+        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
+        defaultLineWidth        = Math.floor( 1 * controlsScale ),
+        handleRadius            = Math.floor( 3 * controlsScale ),
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+
+  
+        //this makes hanle's border nicely thin
+        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        //sconf.text_nonhover_width = 1;
+        //sconf.nonhover_width = 4;
+
+        sconf.text_hover_width = 2; //needs hover-width cls at svg-text-el,
+                                    //aka for: Δsin(φ),
+
+        //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
+                                    //aka for: Δsin(φ),
+        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        //--------------------------------------
+        // \\// do override engine defaults,
+        //--------------------------------------
 
         var A = [originX_onPicture, originY_onPicture];
         var D = [321, A[1]];
@@ -58,7 +106,6 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-        sconf.default_tp_lightness = 30;
         var predefinedTopics =
         {
             given,

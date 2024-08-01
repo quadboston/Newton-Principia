@@ -1,6 +1,6 @@
 
 ( function() {
-    var { //import from apptree
+    var {
         ns, sn, mat, eachprop,
         fconf,
         sconf, rg, stdMod,
@@ -18,29 +18,33 @@
 
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
+        //----------------------------------
+        // //\\ study model parameters
+        //----------------------------------
+        //sets cinematics
+        op.Kepler_v_initial   = 0.1536;
+        op.Kepler_v           = op.Kepler_v_initial;
+        op.angleOmega         = 2.255644;  //Math.PI - Math.asin( omega );
+        op.angleOmega_initial = op.angleOmega;
+        //----------------------------------
+        // \\// study model parameters
+        //----------------------------------
+
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
         sconf.enableTools               = true;
         sconf.rgShapesVisible           = true;
-        //fconf.timeToShowOriginalDiagram = 11111111;
         //====================================================
         // \\// subapp regim switches
         //====================================================
 
-
-        //sets cinematics
-        op.Kepler_v_initial   = 0.1536;
-        op.Kepler_v           = op.Kepler_v_initial;
-        op.angleOmega         = 2.255644;  //Math.PI - Math.asin( omega );
-        op.angleOmega_initial = op.angleOmega;
-
+        //----------------------------------
+        // //\\ paper diagram parameters
+        //----------------------------------
         if( fconf.sappId === 'b1sec8prop41' ) {
             switch ( fconf.sappId ) {
             case "b1sec8prop41" :
@@ -75,6 +79,9 @@
                   break;
             }
         }
+        //----------------------------------
+        // \\// paper diagram parameters
+        //----------------------------------
 
         //***************************************************************
         // //\\ decorational parameters
@@ -538,9 +545,6 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
     }
 }) ();
 
