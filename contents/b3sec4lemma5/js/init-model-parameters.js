@@ -1,14 +1,14 @@
 ( function() {
     var at = window.b$l.apptree({
-        expoMod :
-        {
-            model_upcreate,
+        stdModExportList : {
+            updateExperimentalFunction,
             init_model_parameters,
             toggleData : toggleExperimentalFunction,
-        },
+        }
     });
     var sDomF = at.sDomF;
-
+    //at.stdMod.updateExperimentalFunction = updateExperimentalFunction;
+    
     //=================================================
     // //\\ configures repo of "experimental" functions
     //=================================================
@@ -82,6 +82,7 @@
     //===================================================
     function init_model_parameters()
     {
+        ccc( at.stdMod.updateExperimentalFunction );
         var toreg = at.toreg;
         var rg = at.rg;
         toreg( 'chosenExperimentalFunction' )( 'value', 0 );
@@ -111,75 +112,6 @@
         at.stdMod.toggleData( !!"don't run model yet" );
         sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
-
-
-    function model_upcreate()
-    {
-        var rg = at.rg;
-
-        updateExperimentalFunction();
-        //above rebuilds at.sconf.basePairs[ i ][0/1].pos
-        //which changes rg.approximator_curve in body of current function;
-
-        //----------------------------------------------------------
-        // //\\ calculates and stores approximator curve
-        //----------------------------------------------------------
-        var xy = [];
-        var m = rg.m.value;
-        for( i=0; i<m; i++ ) {
-            xy[ i ] = [ at.sconf.basePairs[ i ][0].pos[0], at.sconf.basePairs[ i ][1].pos[1] ];
-        }
-        at.toreg( 'approximator_curve' )( 'value', xy );
-        //sets the function:
-        rg.approximator_curve.dividedDifferences = at.mat.calculate_divided_differences( xy );
-
-        //takes care about single poit (S,R) which approximeates curve at abscissa S
-        //.gets point of approximation R
-        var pointApproxim = at.sconf.basePairs[ at.sconf.basePairs.length-1 ][1];
-        //.calculates ordinate of R by supplying abscissa of R
-        pointApproxim.pos[1] = rg.approximator_curve
-            .dividedDifferences
-             //.supplies abscissa of R
-            .calculate_polynomial( pointApproxim.pos[0] );
-        //----------------------------------------------------------
-        // \\// calculates and stores approximator curve
-        //----------------------------------------------------------
-    }
-
-
-
-
-
-
-
-
-    function toggleExperimentalFunction( dontRunModel )
-    {
-        at.rg.chosenExperimentalFunction.value =
-            ( at.rg.chosenExperimentalFunction.value + 1 ) % repoConf.length;
-        !dontRunModel && at.stdMod.model8media_upcreate();
-    }
-
-    function updateExperimentalFunction()
-    {
-        var rg = at.rg;
-        var chosen = repoConf[ rg.chosenExperimentalFunction.value ];
-        var fun = chosen.fun;
-        var n = at.sconf.basePairs.length-1;
-        for( i=0; i<n; i++ ) {
-            //// this context does:
-            //// the master data points are in
-            //// sconf.pname2point[ pname ].pos;
-            //// do change them and this will change an experimental data points;
-
-            var rp = at.sconf.basePairs[ i ];
-            var xx = rp[0].pos[0];
-            rp[1].pos[1] = fun( xx );
-        }
-        rg.experimental.expFunction = chosen.fun;
-        rg.experimental.fname = chosen.fname;
-    }
-
 
     //----------------------------------------------------------
     // //\\ calculates original function and
@@ -219,6 +151,33 @@
     // \\// calculates original function and
     //----------------------------------------------------------
 
+    function toggleExperimentalFunction( dontRunModel )
+    {
+        at.rg.chosenExperimentalFunction.value =
+            ( at.rg.chosenExperimentalFunction.value + 1 ) % repoConf.length;
+        !dontRunModel && at.stdMod.model8media_upcreate();
+    }
 
+    function updateExperimentalFunction()
+    {
+        var rg = at.rg;
+        var chosen = repoConf[ rg.chosenExperimentalFunction.value ];
+        var fun = chosen.fun;
+        var n = at.sconf.basePairs.length-1;
+        for( i=0; i<n; i++ ) {
+            //// this context does:
+            //// the master data points are in
+            //// sconf.pname2point[ pname ].pos;
+            //// do change them and this will change an experimental data points;
+
+            var rp = at.sconf.basePairs[ i ];
+            var xx = rp[0].pos[0];
+            rp[1].pos[1] = fun( xx );
+        }
+        rg.experimental.expFunction = chosen.fun;
+        rg.experimental.fname = chosen.fname;
+    }
+
+    
 }) ();
 

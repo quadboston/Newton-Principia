@@ -96,15 +96,12 @@
         ssFExportList,   //removes need to import var ssF into calling module
         sDomFExportList,
         sDomNExportList,
-        expoMod,
         expoFun,
     }) {
 
         ssFExportList && Object.assign( ssF, ssFExportList );
 
-        expoMod = expoMod || stdModExportList,
         expoFun = expoFun || ssFExportList,
-        stdModExportList = expoMod;
         expoFun = ssFExportList;
 
         //-------------------------------------------------------------

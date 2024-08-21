@@ -12,12 +12,13 @@
             codesList :
             [
                 { src:'sconf.js' },
-                { src:'models/study-model.js' },
-                { src:'models/media-model.js' },
-                { src:'models/main-legend.js' },
-                { src:'models/dom8model-sliders.js' },
-                { src:'models/d8d-sliders.js' },
-                { src:'models/state-capturer.js' },
+                { src:'init-model-parameters.js' },
+                { src:'media-upcreate.js' },
+                { src:'model-upcreate.js' },
+                { src:'main-legend.js' },
+                { src:'dom8model-sliders.js' },
+                { src:'complete-sliders-creation.js' },
+                { src:'state-capturer.js' },
             ],
             "contents-list" :
             [
