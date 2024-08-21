@@ -12,9 +12,6 @@
 
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
         //====================================================
@@ -27,9 +24,6 @@
         // \\// subapp regim switches
         //====================================================
 
-        //--------------------------------------
-        // //\\ geometics parameters
-        //--------------------------------------
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -42,7 +36,6 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
         //makes idle bars brighter
@@ -50,9 +43,6 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
-
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
         sconf.pointDecoration.r= 5;
 
         //--------------------------------------
@@ -64,21 +54,23 @@
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3 * controlsScale ),
+
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
-
-  
         //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        //sconf.text_nonhover_width = 1;
         //sconf.nonhover_width = 4;
+        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        //sconf.hover_width = 114;  //needs hover-width cls at svg-text-el,
+                                    //aka for: Δsin(φ),
 
+        //make effect apparently only for line-captions,
+        //not for point-captions bs
+        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        //sconf.text_nonhover_width = 1;
         sconf.text_hover_width = 2; //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
-
-        //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
-                                    //aka for: Δsin(φ),
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
         //--------------------------------------
@@ -514,9 +506,6 @@
             pictureHeight,
             mod2inn_scale,
         });
-        //--------------------------------------
-        // \\// geometics parameters
-        //--------------------------------------
     }
 }) ();
 

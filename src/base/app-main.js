@@ -266,6 +266,7 @@
                     eachprop( studyMods, stdMod => {
                         haff( stdMod, 'init_conf' );
                         //expansion patch: todm: make function for this:
+                        //unscaled mediaSize = originalMod2inn_scale * modelSize, 
                         stdMod.sconf.originalMod2inn_scale = stdMod.sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
                         !haz( stdMod.sconf, 'dontRun_ExpandConfig' ) &&

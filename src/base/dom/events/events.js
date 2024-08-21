@@ -89,7 +89,8 @@
             var nextSapp = fconf.ix2lemmaDef[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=' +
-                ( userOptions.showingBonusFeatures() ? 'basicSiteFeatures=no,' : '' ) +
+                //preserves bonus in "previous" versions without user-session, 
+                //( userOptions.showingBonusFeatures() ? 'basicSiteFeatures=no,' : '' ) +
                 'sappId=' + nextSapp.sappId;
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){

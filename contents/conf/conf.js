@@ -18,6 +18,20 @@
     fconf.engineImg             = 'engine-img';
     fconf.pathToContents        = fconf.pathToContentSite + '/contents';
 
+    //----------------------------------------------------
+    // //\\ sets width fractions for text and sim-scene
+    //----------------------------------------------------
+    //prevents text box srtring from being too wide,
+    //otherwise, hard to move eye from string to string,
+    fconf.MAX_ESS_WIDTH = 600;
+    //should be this:
+    //var ESS_MIN_WIDTH           = 370;
+    //var MODEL_MIN_WIDTH         = 300; //when dragging
+    //var RIGHT_WORKAREA_MARGIN   = 0.015; //fraction
+    //----------------------------------------------------
+    // \\// sets width fractions for text and sim-scene
+    //----------------------------------------------------
+    
     //====================================================
     // //\\ put configuration parameters here
     //====================================================
@@ -50,7 +64,7 @@
         //--------------------
 
 
-        ESSAY_FRACTION_IN_WORKPANE : 0.33,  //default
+        ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
         //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
 
         //.below this value, JS considers the device as a mobile
@@ -101,7 +115,8 @@
         // \\// page-wide
         //--------------------
 
-        rgShapesVisible : true,
+        rgShapesVisible : true, //initial visibility of rg elements with pname
+                                //when subessay relaunches
 
 
 

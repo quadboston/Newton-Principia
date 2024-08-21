@@ -69,7 +69,8 @@
             pt.pname                = pName;
             //optional attrs
             pt.stroke               = han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
-            pt.fill                 = han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
+            pt.fill                 = haz( pt, 'fill' ) ||
+                                      han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
             pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;
@@ -84,13 +85,13 @@
                 cx : pt.medpos[0],
                 cy : pt.medpos[1],
                 r  : pt.initialR * sconf.thickness,
+                style : haz(pt, 'style'),
             });
             var svgel$ = pt.svgel$ = $$.$( pt.svgel );
 
             //todm patch which overrides tp-opacity model for points only,
             //but patches only for lemmas covered with this subroutine and this patch,
             svgel$().style[ 'fill-opacity' ] = '1';
-
             var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS( null, 'class', wwClass );
@@ -243,7 +244,6 @@
             var strokeCol   = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
             var fillCol     = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
 
-
             var txtstyle = {
                     'font-size' : rgX.fontSize.toFixed() + 'px',
                     'line-height' : '1',
@@ -279,8 +279,8 @@
             // \\// textLineTurn can be applied ...
             //--------------------------------------------------------------------------
 
-
-            $$.$( rgX.pnameLabelsvg ).tgcls(
+            let $$$svg = $$.$( rgX.pnameLabelsvg );
+            $$$svg.tgcls(
                 'undisplay',
                 rgX.hideCaption ||
                 (
@@ -289,6 +289,11 @@
                 )
             );
 
+            let txtclass = haz( rgX, 'classmark' );
+            if( txtclass ) {
+                $$$svg.addClass( txtclass );
+            }
+            
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {

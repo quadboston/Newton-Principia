@@ -32,6 +32,7 @@
 
     ///to inject slider near bottom of svgScene, below svgDiagram,
     function sliderTemplate({
+        //apparently comes from word "magnitude" or "value"
         magnit,             //=pname of magnit_api = rg[ magnit ];
         sliderCaption,
         cssClsKey,

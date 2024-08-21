@@ -198,11 +198,15 @@
         ////here we try to fullfill this requirement,
         ////ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
         var essayWidth = Math.max( ESS_MIN_WIDTH, winW - proposed_rightW );
+        //if( !draggerMove && draggerMove !== 0 && has( fconf, 'MAX_ESS_WIDTH' ) ) {
+        if( !draggerMove && draggerMove !== 0 ) {
+            ////supposes user resets to default scenario
+            essayWidth = Math.min( essayWidth, fconf.MAX_ESS_WIDTH );
+        }
         proposed_rightW = winW - essayWidth;
         //========================================
         // \\// phase 2. calculates new values
         //========================================
-
 
         //==========================================================
         // //\\ phase 3. synchs results with dividor-slider states

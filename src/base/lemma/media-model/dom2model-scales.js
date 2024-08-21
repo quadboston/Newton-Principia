@@ -83,7 +83,7 @@
 
     ///converts dom-pos to media pos
     ///for lemma1, drag_surface = sDomN.medRoot
-    function outparent2inn( outparent )
+    function outparent2inn( outparent ) //css2media_converter (with offset)
     {
         var moffset = sconf.mediaOffset;
         var c2m     = sDomF.out2inn();
@@ -100,7 +100,7 @@
     //===============================
 
 
-    function out2inn()
+    function out2inn() //css2media_scale
     {
         var stdMod = studyMods[ amode.submodel ];
         //returns fake scale for landing mode for draggers creation,

@@ -26,7 +26,7 @@
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        //ccc( 'starts create_digital_legend' );
+        //c cc( 'starts create_digital_legend' );
         var mlegend = toreg( 'main-legend' )();
         doCreateTable_proof( mlegend );
     }
@@ -46,14 +46,18 @@
         ww[ 'a' ].innerHTML = rg.a.value.toFixed(3);
         ww[ 'b' ].innerHTML = rg.b.value.toFixed(3);
 
+        var wwT=rg.T.pos;
+
         //todm this is a patch: do use Pr/Pt
-        var g = Math.abs( rg.g.value ) < 1e-20 ? 1 : rg.g.value;
-        ww[ 'g' ].innerHTML = g.toFixed(3);
+        var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
 
-        ww[ 'beta' ].innerHTML = rg.beta.value.toFixed(3);
-        ww[ 'alpha' ].innerHTML = rg.alpha.value.toFixed(3);
-
-        //ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
+        var wwR=rg.R.pos;
+        var wwP=rg.P.pos;
+        var PR = mat.unitVector( [wwR[0]-wwP[0], wwR[1]-wwP[1] ] ).abs;
+        var PR_PT = (PR/PT);
+        ww[ 'PT' ].innerHTML = PT.toFixed(3);
+        ww[ 'PR' ].innerHTML = PR.toFixed(3);
+        ww[ 'PR-PT' ].innerHTML     = PR_PT.toFixed(3);
     }
     //=========================================
     // \\// updates values during simulation
@@ -115,27 +119,19 @@
         //===================
         // //\\
         //===================
+        //:time
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'a', 'c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
-        makeCl( row, 'b', '1-c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
+        makeCl( row, 'a', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
+        makeCl( row, 'b', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
 
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'g', 'g', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'g-parameter' );
-
-        var row = $$.c('tr')
-            .to(tb)();
-        makeCl( row, 'alpha', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
-        makeCl( row, 'beta', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
-
-        /*
-        var row = $$.c('tr')
-            .to(tb)();
-        makeCl( row, 'media_scale', 'scale', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'media_scale' );
-        */
+        makeCl( row, 'PT', 'PT', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
+        makeCl( row, 'PR', 'PR', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
+        makeCl( row, 'PR-PT', 'PR/PT', null, null,  !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
         //===================
         // \\//
         //===================
@@ -201,13 +197,9 @@
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
         if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        //var updateeCell = tr( 'td-'+mname, 'domel', c$() );
         if( claim0proof === 'claim' ) {
-            //var updateeCell = tr( 'claim-number-'+mname, 'domel', c$() );
-            //clustersToUpdate_claim[mname] = updateeCell;
             clustersToUpdate_claim[mname] = c$();
         } else {
-            //var updateeCell = tr( 'number-'+mname, 'domel', c$() );
             clustersToUpdate[mname] = c$(); //updateeCell;
         }
         return c$;

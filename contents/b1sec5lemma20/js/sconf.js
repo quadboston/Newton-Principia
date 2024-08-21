@@ -4,10 +4,7 @@
         mat,
         fapp, sconf,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
-            init_conf
-        },
+        ssFExportList : { init_conf }
     });
     return;
 
@@ -16,79 +13,413 @@
 
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
-        //----------------------------------
-        // //\\ original material parameters
-        //----------------------------------
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.enableStudylab            = false;
+        //for some standard sliders
+        sconf.enableTools               = true;
+        sconf.hideProofSlider           = true; //todo
+        //sconf.rgShapesVisible         = true;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
+
         var pictureWidth = 2000;
         var pictureHeight = 1660;
+        //offset of eccentricy slider in picture-space
+        var originX_onPicture = 821;
+        var originY_onPicture = 906;
 
-        var modorInPicX = 821;
-        var modorInPicY = 906;
+        let slider_a_start=pictureWidth*0.05;
+        let slider_a_end=pictureWidth*0.7;
+        let slider_aX=532;
+        let slider_aY=pictureHeight*0.9;
+        let pointRadius = 12;
+        
+        //***************************************************************
+        // //\\ decorational parameters
+        //***************************************************************
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        var pictureActiveArea;
+        //gives bar full range of opacity for tp machine
+        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
+        //makes idle bars brighter
+        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
+        //making size to better fit lemma's diagram
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
 
-        var pointsOnPicture =
+        //--------------------------------------
+        // //\\ does override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
+        sconf.default_tp_lightness = 30;
+        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
+        defaultLineWidth        = Math.floor( 1 * controlsScale ),
+        handleRadius            = Math.floor( 4 * controlsScale ),
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r = handleRadius;
+
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+        //this makes hanle's border nicely thin
+        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+
+        //make effect apparently only for line-captions,
+        //not for point-captions bs
+        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
+        sconf.text_hover_width      = 1.5;
+        // \\// principal tp-css pars
+        // \\// does override engine defaults,
+        // \\// decorational parameters
+        //***************************************************************
+        
+        var predefinedTopics =
         {
-            P : [996, 570],
-            A : [623, 1232],
-            B : [1497, 1230],
-            C : [509,383],
-            O : [modorInPicX, modorInPicY],
+            "key-triangle"          : [255,   0, 0, 1],
+            "key-parts"             : [255,   0, 0, 1],
+            "similar-triangle"      : [0,     0, 255, 1],
+
+            "PT"                    : [255,   0, 0, 1],
+
+            "base-figure"           : [0,     0, 255, 1],
+            "static-generator"      : [255,   0, 255, 1],
+            "ellipse"               : [0,   150, 0, 1],
+            "tangent"               : [0,   150, 0, 1],
+            "given-parallelogram"   : [0,   200, 255, 1],
+            "generators"            : [200, 150, 0, 1]
+        };
+        
+        
+        var originalPoints =
+        {
+            P : { pos: [996, 570],
+                  pcolor: predefinedTopics["key-triangle"],
+                  cssClass: 'tp-key-triangle',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+            A : { pos: [623, 1232],
+                  pcolor: predefinedTopics['base-figure'],
+                  cssClass: 'tp-base-figure',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+            B : { pos: [1497, 1230],
+                  pcolor: predefinedTopics['base-figure'],
+                  cssClass: 'tp-base-figure',
+                  //style: {fill: '#ffffff'}, works
+                  initialR: pointRadius,
+                },
+            C : { pos: [509,383],
+                  pcolor: predefinedTopics['base-figure'],
+                  cssClass: 'tp-base-figure',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+  
+            ///-------------------------------------------------
+            ///builds center point first to be used in ellipse
+            ///-------------------------------------------------
+            O : { pos: [originX_onPicture, originY_onPicture],
+                  cssClass: 'aspect--model tp-aspect-model tp-base-figure',
+                  r : pointRadius,
+                  letterRotRadius : 20,
+                },
 
             //derived points, should not be used in model
-            Q : [1077, 1231],
-            t : [1511, 574],
-            r : [1028, 830],
+            Q : { pos: [1077, 1231],
+                  pcolor: predefinedTopics['base-figure'],
+                  cssClass: 'tp-base-figure',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+            t : { pos: [1511, 574],
+                  pcolor: predefinedTopics['static-generator'],
+                  cssClass: 'tp-static-generator',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+            r : { pos: [1028, 830],
+                  pcolor: predefinedTopics['static-generator'],
+                  cssClass: 'tp-static-generator',
+                  initialR: pointRadius,
+                },
 
-            D : [1410, 965],
-            T : [1283, 572],
-            R : [1010, 712],
-            S : [532,561],
+            D : { pos: [1410, 965],
+                  pcolor: predefinedTopics['generators'],
+                  cssClass: 'tp-generators',
+                  initialR: pointRadius,
+                  letterRotRadius : 20,
+                },
+            R : { pos: [1010, 712],
+                  pcolor: predefinedTopics['key-triangle'],
+                  cssClass: 'tp-key-triangle',
+                  initialR: pointRadius,
+                  letterAngle : -10,
+                  letterRotRadius : 20,
+                },
+            S : { pos: [532,561],
+                  pcolor: predefinedTopics['base-figure'],
+                  cssClass: 'tp-base-figure',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
 
+            //============================================
+            // //\\ sliders
+            //============================================
+            T : { pos: [1283, 572],
+                  draggableX : true,
+                  pcolor: predefinedTopics['key-triangle'],
+                  style: {fill: '#ffffff'},
+                  cssClass: 'tp-key-triangle',
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                  //initialR: 8, //overrides handle radius if any
+                },
+            a : {
+                    caption : 'semiaxis a',
+                    draggableX : true,
+                    draggableY : false,
+                    
+                    pos: [slider_aX,slider_aY],
+                    pcolor : predefinedTopics.ellipse,
+    
+                    letterAngle : 90,
+                    letterRotRadius : 20,
+                    //makes display independent on user action
+                    displayAlways : true,
+                    unscalable : true,
+                },
+            //rails
+            aStart : {
+                pos : [ slider_a_start, slider_aY ],
+                pcolor : predefinedTopics.ellipse,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+            aEnd : {
+                pos : [ slider_a_end, slider_aY ],
+                pcolor : predefinedTopics.ellipse,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+            //============================================
+            // \\// sliders
+            //============================================
         };
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
 
+        
+        var linesArray =
+        [
+           //-------------------------
+           // //\\ base-figure
+           //-------------------------
+           { 'CA' : {
+                        pcolor : predefinedTopics["base-figure"],
+                        cssClass : 'tp-base-figure',
+                    }
+           },
+           { 'BC' : {
+                        pcolor : predefinedTopics["base-figure"],
+                        cssClass : 'tp-base-figure',
+                    }
+           },
+           { 'BA' : {
+                        pcolor : predefinedTopics["base-figure"],
+                        cssClass : 'tp-base-figure',
+                    }
+           },
+           { 'PB' : {
+                        pcolor : predefinedTopics["base-figure"],
+                        cssClass : 'tp-base-figure',
+                    }
+           },
+           { 'PC' : {
+                        pcolor : predefinedTopics["base-figure"],
+                        cssClass : 'tp-base-figure',
+                    }
+           },
+           //-------------------------
+           // \\// base-figure
+           //-------------------------
+  
+           { 'PT' : {
+                        pcolor : predefinedTopics["key-triangle"],
+                        'stroke-width' : 10,
+                        cssClass : 'tp-key-triangle tp-key-parts',
+                    }
+           },
+           { 'PR' : {
+                        pcolor : predefinedTopics["key-triangle"],
+                        'stroke-width' : 10,
+                        cssClass : 'tp-key-triangle tp-key-parts',
+                    }
+           },
+           { 'RT' : {
+                        pcolor : predefinedTopics["key-triangle"],
+                        'stroke-width' : 10,
+                        cssClass : 'tp-key-triangle',
+                    }
+           },
 
 
-        (function() {
-            var pp = pointsOnPicture;
+  
+            //-------------------------
+            // //\\ given parallelogram
+            //-------------------------
+            { 'PQ' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            { 'AS' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            { 'AQ' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            { 'QA' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            /*
+            { 'rQ' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            */
+            { 'PS' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            //-------------------------
+            // \\// given parallelogram
+            //-------------------------
 
-            var OO = pp.O;
-            var PP = pp.P;
-            var AA = pp.A;
-            var BB = pp.B;
-            var CC = pp.C;
-            var P = [ PP[0] - OO[0], PP[1] - OO[1] ];
-            var A = [ AA[0] - OO[0], AA[1] - OO[1] ];
-            var B = [ BB[0] - OO[0], BB[1] - OO[1] ];
-            var C = [ CC[0] - OO[0], CC[1] - OO[1] ];
-            var O = [ 0, 0 ];
-            //ccc( 'P=',mat.unitVector(P),  'P=',mat.unitVector(A), 'B=', mat.unitVector(B) ); 
-            pictureActiveArea = mat.unitVector(P).abs;
+            //------------------------
+            // //\\ linear-generators
+            //------------------------
+            { 'BT' : {
+                        pcolor : predefinedTopics["generators"],
+                        cssClass : 'tp-generators',
+                    }
+            },
+            { 'CR' : {
+                        pcolor : predefinedTopics["generators"],
+                        cssClass : 'tp-generators',
+                    }
+            },
+            { 'BD' : {
+                        pcolor : predefinedTopics["generators"],
+                        cssClass : 'tp-generators',
+                    }
+            },
+            { 'CD' : {
+                        pcolor : predefinedTopics["generators"],
+                        cssClass : 'tp-generators',
+                    }
+            },
+            { 'Bt' : {
+                        pcolor : predefinedTopics["ellipse"],
+                        cssClass : 'tp-tangent',
+                    }
+            },
+            //------------------------
+            // \\// linear-generators
+            //------------------------
 
-        })();
+            //------------------------
+            // //\\ static triangle
+            //------------------------
+            { 'rt' : {
+                        pcolor : predefinedTopics["static-generator"],
+                        cssClass : 'tp-static-generator',
+                    }
+            },
+            { 'Pr' : {
+                        pcolor : predefinedTopics["static-generator"],
+                        cssClass : 'tp-static-generator',
+                    }
+            },
+            { 'Pt' : {
+                        pcolor : predefinedTopics["static-generator"],
+                        cssClass : 'tp-static-generator',
+                    }
+            },
+            //------------------------
+            // \\// static triangle
+            //------------------------
 
+            //------------------------
+            // //\\ similar triangles
+            //      in circle case
+            //------------------------
+            { 'CP' : {
+                        pcolor : predefinedTopics["similar-triangle"],
+                        cssClass : 'tp-similar-triangle',
+                    }
+            },
+            { 'BP' : {
+                        pcolor : predefinedTopics["similar-triangle"],
+                        cssClass : 'tp-similar-triangle',
+                    }
+            },
+            { 'BC' : {
+                        pcolor : predefinedTopics["similar-triangle"],
+                        cssClass : 'tp-similar-triangle',
+                    }
+            },
+            //------------------------
+            // \\// similar triangles
+            //------------------------
+
+            { 'aStart,aEnd' : {
+                        pcolor : predefinedTopics["ellipse"],
+                        cssClass : 'ellipse',
+                    }
+            },
+
+        ];
 
         //----------------------------------
         // //\\ app view parameters
         //----------------------------------
-        //  application coordinate Y
-        //  -1 if it goes in opposite-to-screen
-        //      direction starting from
-        //      modorInPicY
-        //  1  codirectional with the screen
-        //     which means from screen-top to
-        //      screen bottom
-        var MONITOR_Y_FLIP = -1;
+        var pictureActiveArea;
+        {
+            let pp = originalPoints;
+            let OO = pp.O.pos;
+            let PP = pp.P.pos;
+            let P = [ PP[0] - OO[0], PP[1] - OO[1] ];
+            pictureActiveArea = mat.unitVector(P).abs;
+        }
+        //mediaSize = mod2inn_scale * modelSize, 
         var mod2inn_scale = pictureActiveArea;
-        var activeAreaOffsetOnPictureY = modorInPicY;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -99,14 +430,16 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
-        sconf.default_tp_lightness = 30;
         to_sconf =
         {
+            predefinedTopics,
+            originalPoints,
+            linesArray,
             mediaBgImage : "l20.jpg",
-            dontRun_ExpandConfig : true,
-            initialPoints : pointsOnPicture,
+            //dontRun_ExpandConfig : true,
 
             a : 2.03,
+            aMax : 10,
             b : 1,
             rotationRads : Math.PI*0.19,
 
@@ -126,54 +459,28 @@
             //LEGEND_NUMERICAL_SCALE : 100,
             LEGEND_NUMERICAL_SCALE : 1,
 
-            MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
+            pictureActiveArea,
+            originX_onPicture,
+            originY_onPicture,
+            pictureHeight,
+            pictureWidth,
 
-            pictureActiveArea   : pictureActiveArea,
-            originY_onPicture   : modorInPicY,
-
-            modorInPicX,
-            modorInPicY,
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
-
-            thickness           : 2,
+            thickness : 2,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
 
-            //----------------------------------
-            // //\\ scenario
-            //----------------------------------
-            hideProofSlider : true, //false,
-            enableStudylab : false,
-            enableTools : true,
-            //----------------------------------
-            // \\// scenario
-            //----------------------------------
-
-            default_tp_stroke_opacity : 0.5,
-            default_tp_stroke_width : 20,
-            //default_tp_lightness : 50, //50 is full lightness
-            //default_tp_lightness : 40, //50 is full lightness
-            defaultLineWidth : 3,
-
-            //:for tools sliders: todo proliferation
-            originX_onPicture : modorInPicX, //0,
-            originY_onPicture : modorInPicY, //0,
+            //default_tp_stroke_opacity : 0.5,
+            default_tp_stroke_width, // : 20,
+            defaultLineWidth, // : 3,
         };
 
-
-        //todo proliferation in each lemma:
+        //todm proliferation in each lemma:
         //----------------------------------
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
             var inn2mod_scale = 1/mod2inn_scale;
-
-            //for Y:
-            APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
-
-            to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
             to_sconf.mod2inn_scale = mod2inn_scale;
             to_sconf.inn2mod_scale = inn2mod_scale;
         })();

@@ -314,6 +314,10 @@
                 if( has( op, 'dragDecorColor' ) ) {
                     rgX.dragDecorColor = op.dragDecorColor;
                 }
+                if( has( op, 'fill' ) ) {
+                    rgX.fill = op.fill;
+                }
+                rgX.style = haz( op, 'style' );
 
                 if( has( op, 'individual_zindex' ) ) {
                     rgX.individual_zindex = op.individual_zindex;
@@ -351,7 +355,9 @@
                 if( has( op, 'undisplayAlways' ) ) {
                     rgX.undisplayAlways = op.undisplayAlways;
                 }
-                if( has( op, 'classmark' ) ) {
+                if( has( op, 'cssClass' ) ) {
+                    rgX.classmark = op.cssClass;
+                } else if( has( op, 'classmark' ) ) {
                     rgX.classmark = op.classmark;
                 }
                 if( has( op, 'displayAlways' ) ) {

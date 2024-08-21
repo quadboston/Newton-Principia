@@ -1,57 +1,20 @@
 ( function() {
     var {
         sn, mat,
-        sconf, ssD, ssF, sapp,
-        amode, stdMod, rg, toreg,
+        stdMod, rg, sconf, ssF,
     } = window.b$l.apptree({
         stdModExportList :
         {
             model_upcreate,
-            init_model_parameters,
+            setRgPoint,
+            baseParams_2_extendedParams,
             calculateConicPoint_algo,
+            //deriveParameters,
         },
     });
+    var DID_INITIALIZED = false;
     return;
-
-
-
-
-
-
-
-    //===================================================
-    // //\\ registers model pars into common scope
-    //===================================================
-    function init_model_parameters()
-    {
-        //:primary params
-        var a = toreg( 'a' )( 'value', sconf.a )( 'value' );
-        toreg( 'alpha' )( 'value', sconf.alpha );
-        toreg( 'beta' )( 'value', sconf.beta );
-        toreg( 'gamma' )( 'value', sconf.gamma );
-        toreg( 'O' )( 'pos', [0,0] );
-        toreg( 'H' )( 'pos', [0,0] );
-
-        //dependent parameters
-        toreg( 'nB' )( 'value', [ 1, 0 ] );
-        toreg( 'nA' )( 'value', [ -1, 0 ] );
-
-        //variable parameter
-        toreg( 'g' )( 'value', sconf.initial_g );
-
-        //decorations:
-        toreg( 'gN' )( 'value', sconf.initial_gN );
-
-        setRgPoint( 'A', [ -rg.a.value, 0 ] )
-        setRgPoint( 'B', [ 1-rg.a.value, 0 ] )
-
-        toreg( 'b' );
-        baseParams_2_extendedParams();
-        //dev tool:
-        //ellipsePar_create8paint( 1.50 )
-    }
-
-
+    
 
 
     //***************************************************
@@ -64,8 +27,6 @@
         setRgPoint( 'D', D );
         setRgPoint( 'G', G );
         setRgPoint( 'AA', AA );
-
-
         //decorations:
         var N = [
             rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
@@ -161,7 +122,9 @@
             Ptangent[1] = tangent[1];
         }
         return rg[ nameP ];
-    } 
+    }
 
 }) ();
+
+ 
 

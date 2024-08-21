@@ -45,7 +45,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
         //makes idle bars brighter

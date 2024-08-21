@@ -1,34 +1,20 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
-  "fixed-colors" :
-  {
-    "key-triangle"          : [255,   0, 0, 1],
-    "similar-triangle"      : [0,     0, 255, 1],
-
-    "PT"                    : [255,   0, 0, 1],
-
-    "base-figure"           : [0,     0, 255, 1],
-    "static-generator"      : [255,   0, 255, 1],
-    "ellipse"               : [0,   150, 0, 1],
-    "tangent"               : [0,   150, 0, 1],
-    "given-parallelogram"   : [0,   200, 255, 1],
-    "generators"            : [200, 150, 0, 1]
-  }
+  "menuCaption" : "English"
 }
 *..*
 
 
- If in some parallelogram ASPQ, the two opposite angles A and P touch the section of
-a cone at the points A and P ; and with the sides of one of the angles AQ and AS
-produced indefinitely, meeting the same section of the cone at B and C ; moreover from
-the meeting points B and C to some fifth point D of the conic section, the two right lines
-BD and CD are drawn meeting the other two sides of the parallelogram ¦given-parallelogram¦PS¦¦ and ¦given-parallelogram¦PQ¦¦
-produced indefinitely at T &amp; R: the parts ¦key-triangle¦PR¦¦ and ¦key-triangle¦PT¦¦ of the sides [ of the parallelogram]
+If in some ¦given-parallelogram¦parallelogram ASPQ¦¦, the two opposite angles ¦A¦¦ and ¦P¦¦ touch the section of
+a cone at the points ¦A¦¦ and ¦P¦¦ ; and with the sides of one of the angles ¦AQ¦¦ and ¦AS¦¦
+produced indefinitely, meeting the same section of the cone at ¦B¦¦ and ¦C¦¦ ; moreover from
+the meeting points ¦B¦¦ and ¦C¦¦ to some fifth point ¦D¦¦ of the conic section, the two right lines
+¦BD¦¦ and ¦CD¦¦ are drawn meeting the other two sides of the ¦given-parallelogram¦parallelogram¦¦ ¦PS¦¦ and ¦PQ¦¦
+produced indefinitely at ¦T¦¦ &amp; ¦R¦¦: the ¦key-parts¦parts¦¦ ¦PR¦¦ and ¦PT¦¦ of the sides [ of the parallelogram]
 will always be cut in turn in a given ratio. And conversely, if these cut parts are in turn in
-a given ratio, the point D touches the section of the cone passing through the four points
-A, B, C, P.
+a given ratio, the point ¦D¦¦ touches the section of the cone passing through the four points
+¦A¦¦, ¦B¦¦, ¦C¦¦, ¦P¦¦.
 <br><br>
 
 <pre style="font-size:11px">

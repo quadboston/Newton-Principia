@@ -39,7 +39,7 @@
     ///     required:
     ///         pName - kname of line in rg,
     ///         pivots - as in args or in rg[ pName ], specifically:
-    ///                     pivots[0].medpos, pivots[1].medpos
+    ///                     pivots[0].medpos, pv1.medpos
     ///
     ///     optional:
     ///         line as toreg( pName )
@@ -64,13 +64,19 @@
         var vectorTipIx = haz( line, 'vectorTipIx' );
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
         line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
-        if( haz( pivots[0], 'unscalable' ) ) {
-            pivots[0].medpos = ssF.mod2inn_original( pivots[0].pos, stdMod );
+        let pv0 = pivots[0];
+        let pv1 = pivots[1];
+        if( haz( pv0, 'unscalable' ) ) {
+            pv0.medpos = ssF.mod2inn_original( pv0.pos, stdMod );
+        } else if( !has(pv0, 'medpos' ) ) {
+            pv0.medpos = ssF.mod2inn( pv0.pos, stdMod );
         }
-        if( haz( pivots[1], 'unscalable' ) ) {
-            pivots[1].medpos = ssF.mod2inn_original( pivots[1].pos, stdMod );
+        if( haz( pv1, 'unscalable' ) ) {
+            pv1.medpos = ssF.mod2inn_original( pv1.pos, stdMod );
+        } else if( !has(pv1, 'medpos' ) ) {
+            pv1.medpos = ssF.mod2inn( pv1.pos, stdMod );
         }
-        var pivotsMedPos= [ pivots[0].medpos, pivots[1].medpos ];
+        var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
         ///this property helps to optimize svg painting
         var dressed = ownProp.call( line, 'pointIsAlreadyDressed' );
@@ -87,7 +93,7 @@
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
-            line.pivotNames     = [ pivots[0].pname, pivots[1].pname ];
+            line.pivotNames     = [ pv0.pname, pv1.pname ];
             line.svgel = sv.polyline({
                 svgel   : ns.haz( line, 'svgel' ),
                 stroke,
@@ -121,7 +127,7 @@
         }
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
-        line.pivots = [ pivots[0], pivots[1] ];
+        line.pivots = [ pv0, pv1 ];
 
 
         //=================================================

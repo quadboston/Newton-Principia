@@ -101,9 +101,13 @@
         }
         if( ns.h( this, 'mediaMover' ) ) {
             //// non-ordinary case:
-            //// dragging media as a whole 
+            //// dragging model as a whole "inside media"
+
+            //sconf.originX_onPicture - original position remains intact
+            //stdMod.sconf.modorInPicX - moves as user does "move model origin"
             stdMod.sconf.modorInPicX = this.achieved.achieved[0] + dragMove[0];
             stdMod.sconf.modorInPicY = this.achieved.achieved[1] + dragMove[1];
+
             this.medpos[0] = mouseOnSurf[0];
             this.medpos[1] = mouseOnSurf[1];
             this.svgel.setAttributeNS( null, 'cx', this.medpos[0] );

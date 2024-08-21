@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
-        fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture,
+        fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
         topics, studyModsActivated, fixedColors, references, exegs,
         studyMods, amode, userOptions
     } = window.b$l.apptree({
@@ -531,6 +531,7 @@
                 //*************************************************************
                 if( !userOptions.usingBackgroundImage() ) {
                     //essayHeader.mediaBgImage = null; //disables it for definitness
+                    rg.detected_user_interaction_effect_DONE = true;
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
                     return;
                 }

@@ -50,7 +50,7 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
         sconf.rgShapesVisible = true;
 

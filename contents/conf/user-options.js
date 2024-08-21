@@ -7,8 +7,14 @@
         // if LATIN has not been set, assume none are set, and set to default values
         sessionStorage.setItem(LATIN, false);
         sessionStorage.setItem(USE_BG_IMAGE, false);
-        sessionStorage.setItem(BONUS, false);
+        sessionStorage.setItem(BONUS, !fconf.basicSiteFeatures);
     }
+    ///if some call requests bonus features, then they are set in store, and
+    ///the next call to different lemma will preserve the bonus,
+    if( !fconf.basicSiteFeatures ) {
+        sessionStorage.setItem(BONUS, !fconf.basicSiteFeatures);
+    }
+    userOptions.doesStoreOption = doesStoreOption; //only for URL-query for bonusOpt.
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.showingBonusFeatures = showingBonusFeatures;
@@ -62,11 +68,12 @@
                     ( "shows-bonus-features" );
         }
 
-        function doesStoreOption(option, newValue) {
-            sessionStorage.setItem(option, newValue);
-        }
     }
 
+    function doesStoreOption(option, newValue) {
+        sessionStorage.setItem(option, newValue);
+    }
+    
     //decides whether an entire subessay-menu should be visible
     function shouldShowSubessayMenu(...args) {
         if (args.length > 1) {

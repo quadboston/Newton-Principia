@@ -225,17 +225,6 @@
             caption : 'Kepler Task.',
             annotation : userOptions.BONUS_END,
         },
-
-
-
-
     ];
-    //if( !has( fconf, 'basicSiteFeatures' ) ){
-    //     fconf.basicSiteFeatures = true;
-    //}
-    //if(fconf.basicSiteFeatures) {
-    //    fconf.ix2lemmaDef = fconf.ix2lemmaDef.filter(content => content.book !== 'Appendix');
-    //}
-
 }) ();
 

@@ -1,9 +1,8 @@
 
 ( function() {
     var {
-        ns, sn, mat, eachprop,
-        fconf,
-        sconf, rg, stdMod,
+        sn, mat, eachprop, nspaste,
+        fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
@@ -37,7 +36,7 @@
         //====================================================
         sconf.enableStudylab            = false;
         sconf.enableTools               = true;
-        sconf.rgShapesVisible           = true;
+        //sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -90,23 +89,24 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
         //makes idle bars brighter
         sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
 
         //--------------------------------------
-        // //\\ do override engine defaults,
+        // //\\ does override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
+        sconf.default_tp_lightness = 30;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3 * controlsScale ),
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r = handleRadius;
+
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -119,12 +119,7 @@
         sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
         sconf.text_hover_width      = 1.5;
         // \\// principal tp-css pars
-
-        sconf.default_tp_lightness = 30;
-        //--------------------------------------
-        // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
+        // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
 
@@ -239,18 +234,13 @@
             draggableY  : true,
             doPaintPname : false,
         }));
-
-        var originalPoints =
-        {
-            curvePivots,
-        };
         //---------------------------------------------------
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
 
 
-        let singlePoints = {
-
+        let originalPoints = {
+            curvePivots,
             nonSolvablePoint : {
                 pos: [666,444], //will be calculated
                 caption : 'Force is out of considered range.',
@@ -421,12 +411,11 @@
                 letterAngle : 120,
             },
         };
-        eachprop( singlePoints, sp => {
+        eachprop( originalPoints, sp => {
             sp.letterRotRadius = 20;
         });
-        singlePoints.c.letterAngle = 45;
-        singlePoints.x.letterAngle = 45;
-        Object.assign( originalPoints, singlePoints );
+        originalPoints.c.letterAngle = 45;
+        originalPoints.x.letterAngle = 45;
 
         var linesArray =
         [
@@ -529,7 +518,7 @@
         ];
 
         //stdMod.init_sliders_conf();
-        ns.paste( sconf, {
+        nspaste( sconf, {
             mediaBgImage : "diagram.jpg",
             predefinedTopics,
             originalPoints,
@@ -544,7 +533,6 @@
             defaultLineWidth,
             handleRadius,
         });
-        sconf.pointDecoration.r = sconf.handleRadius;
     }
 }) ();
 

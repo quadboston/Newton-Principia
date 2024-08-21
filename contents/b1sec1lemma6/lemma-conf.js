@@ -14,7 +14,7 @@
                 //todm: automate this list
                 { src:'sconf.js' },
                 { src:'model-functions.js' },
-                { src:'study-model.js' },
+                { src:'init-model-parameters.js' },
                 { src:'media-upcreate.js' },
                 { src:'state-capturer.js' },
                 { src:'main-legend.js' },

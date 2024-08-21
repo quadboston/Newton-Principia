@@ -15,7 +15,6 @@
         stdModExportList :
         {
             model_upcreate,
-            init_model_parameters,
         },
     });
     return;
@@ -27,20 +26,12 @@
 
 
 
-    ///=============================================================
-    /// at landing, copies study-model-pars from config to app model
-    ///=============================================================
-    function init_model_parameters()
-    {
-        ssD.curvePivots   = sconf.curvePivots.concat([]);
-        ssD.tC            = sconf.tC;
-        ssD.claimRatio    = sconf.claimRatio;
-        toreg( 'tiltRatio' )( 'value', sconf.tiltRatio );
-    }
 
-    //=========================================================
-    // //\\ updates figure (and creates if none)
-    //=========================================================
+
+    ///****************************************************
+    /// model scenario
+    /// is required; to skip define as ()=>{};
+    ///****************************************************
     function model_upcreate()
     {
         //:study-pars

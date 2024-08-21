@@ -1,26 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
-  "fixed-colors" :
-  {
-    "gamma"                 : [255,   0, 0, 1],
-    "g-parameter"           : [255,   0, 0, 1],
-    "balance-parameters"    : [255,   0, 0, 1],
-    "CB"                    : [255,   0, 0, 1],
-
-    "PT"                    : [255,   0, 0, 1],
-
-    "base-figure"           : [0,     0, 255, 1],
-    "angle-alpha"           : [255,   0, 0, 1],
-    "angle-beta"            : [255,   0, 0, 1],
-
-    "static-generator"      : [255,   0, 255, 1],
-    "ellipse"               : [0,   150, 0, 1],
-    "tangent"               : [0,   150, 0, 1],
-    "given-parallelogram"   : [0,   200, 255, 1],
-    "generators"            : [0,   0,   255, 1]
-  }
+  "menuCaption" : "English"
 }
 *..*
 to be entered

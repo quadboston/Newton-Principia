@@ -12,10 +12,11 @@
             codesList :
             [
                 { src:'sconf.js' },
-                { src:'models/study-model.js' },
-                { src:'models/media-model.js' },
-                { src:'models/main-legend.js' },
-                { src:'models/d8d-sliders.js' },
+                { src:'init-model-parameters.js' },
+                { src:'model-upcreate.js' },
+                { src:'media-upcreate.js' },
+                { src:'completes-sliders-creation.js' },
+                { src:'main-legend.js' },
             ],
             "contents-list" :
             [

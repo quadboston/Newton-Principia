@@ -134,8 +134,7 @@
         //      width is a scapegoat for failing width adjustment
         //-------------------------------------------------------------
         //this patch is against breakage when tool-sliders are on
-        var l6patch = 40 +
-            (
+        var l6patch =
                 (
                     fconf.sappId === 'b3sec4lemma5' ||
                     fconf.sappId === 'b1sec1lemma6' ||
@@ -145,13 +144,13 @@
                 essayWidth * 160 / 800
                 :
                 0
-            );
+        ;
         var essW_str  = ( essayWidth
             // manual safety patch
             // decrease essay to give more space for fluind media and legend
             //- 20    //fails, todm
-            //- 40    //works
-            - l6patch
+            - 40       //works
+            //- l6patch
 
             ).toFixed()+'px';
         var essH_str = ( SSceneH
@@ -224,7 +223,7 @@
         // //\\ video preparations
         //.todm why 0.8? box-sizing model?
         //var videoW    = textPaneW_perc / 100 * bgImgW * 0.8;
-        var videoW      = essayWidth * 0.8;
+        var videoW      = essayWidth; // * 0.8;
         var videoH      = videoW*10/16;
         var videoW_px   = videoW.toFixed(2) + 'px';
         var videoH_px   = videoH.toFixed(2) + 'px';

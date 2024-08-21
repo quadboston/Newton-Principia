@@ -30,6 +30,7 @@
 
     //==========================================
     // //\\ inits drag model
+    //      createsFW === ? FrameWork
     //==========================================
     function createsFW__8__executes_dragWr_gens_list( stdMod )
     {

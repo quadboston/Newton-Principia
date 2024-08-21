@@ -28,6 +28,7 @@
         //====================================================
         sconf.enableStudylab            = false;
         sconf.enableTools               = true;
+        sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -39,13 +40,6 @@
         //for graphical-media work-area if not supplied:
         var pictureWidth = 630;
         var pictureHeight = 400;
-
-        var originX_onPicture = 117; //for model's axis x
-        var originY_onPicture = 322; //for model's axis y
-
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
@@ -55,20 +49,18 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        sconf.default_tp_lightness = 30;
-        sconf.rgShapesVisible = true;
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
         //makes idle bars brighter
         sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
-
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
-
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -89,6 +81,8 @@
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
+
+        sconf.default_tp_lightness = 30;
         //--------------------------------------
         // \\// do override engine defaults,
         //--------------------------------------
@@ -97,6 +91,15 @@
         //***************************************************************
 
 
+        //=============================================
+        // //\\ points reused in config
+        //=============================================
+        //sconf.diagramOrigin = [ 0, 0 ];
+        var originX_onPicture = 117; //for model's axis x
+        var originY_onPicture = 322; //for model's axis y
+        //=============================================
+        // \\// points reused in config
+        //=============================================
 
         //***************************************************************
         // //\\ geometics parameters

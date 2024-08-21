@@ -51,7 +51,7 @@
         // //\\ decorational parameters
         //***************************************************************
         sconf.default_tp_lightness = 30;
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
         sconf.rgShapesVisible = true;
 
