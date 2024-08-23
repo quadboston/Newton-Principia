@@ -39,6 +39,15 @@
     ///Splits bodyscript-of-exegesis into array of "active"-fragments.
     ///Attaches this array to exegesis.
     ///Fragments which is active is parsed into object.
+    ///After this, the lowest node in exegs construct is
+    ///subexeg = {
+    ///     activeFrags //"physical content"
+    ///     bodyscript { subessay : "text string, non-structured physical content" }
+    ///
+    ///     essayHeader
+    ///     classStr
+    ///     ...
+    ///}
     ///===================================================================
     function exegs_2_frags()
     {
@@ -56,8 +65,8 @@
                     //-----------------------------------------------------
                     var bodySplit = subexeg.bodyscript.split( ACTION_SPLITTER );
 
-                    //Creates subexeg.activeFrags.
-                    //They are atomic fragments which are either text or
+                    //Creates array of subexeg.activeFrags.
+                    //Elements of this array are atomic fragments which are either text or
                     //JSON object which sets digram2text-action.
                     //The action defines what fragment displays:
                     //the action looks for application state and by this state

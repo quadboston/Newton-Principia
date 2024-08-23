@@ -18,6 +18,7 @@
         //====================================================
         // //\\ subapp regim switches
         //====================================================
+        sconf.insertDelayedBatch        = true;
         sconf.enableStudylab            = false;
         //for some standard sliders
         sconf.enableTools               = true;

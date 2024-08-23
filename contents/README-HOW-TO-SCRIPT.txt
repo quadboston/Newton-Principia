@@ -67,7 +67,7 @@ Essay's structure
     In essay-script, activity areas are separated with character "¿".
 
     If activity-area begins with character "?", then it is "activity-json which
-    is writtne in JSON format.
+    is written in JSON format.
     If no character "?" is present at the beginning of activity-area, then
     it active fragmen is a plain text.
 

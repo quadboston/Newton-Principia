@@ -4,11 +4,21 @@
   "menuCaption" : "English"
 }
 *..*
+<!-- to set "text-keywords match (i.e. Meta parsing)",
+     do add sconf.insertDelayedBatch = true -->
 <!--
     //\\ Meta parsing
-    Meta parsing block can be inserted in any essay and has global effect on all lemma's essays.
+    Meta parsing block can be inserted in any essay and has
+    global effect on all lemma's essays.
     Meta parsing is a text preporcessor.
     Meta parsing spawns key-phrases by finding "caption-key" in texts.
+            (for depth, see JS-source code in FR-II-dom8css---lib.js
+                   //these subs are the KINGs of processing the Book:
+                   //  doesInsertSiteHTMLMacros( fragBody_raw )
+                   //  insertDelayedBatch( fragBody_raw )
+                   //fragBody_raw = UTF-string of minimal(i.e. atomic)
+                   //Book-text-fragment
+            )
     Batch key-phrases: |paint-keys|caption-key|||
     meta parsing goes before parsing,
     1) caption-key must have no reserved reg-ex-chars: [ ] { } ( ) \ ^ $ . | ? * +
@@ -16,7 +26,7 @@
        f.e. in text "...ABFD XXX ..." won't work for controls
             |v2graph VSarea|ABFD| |some|XXX|| because space between ABFD and XXX will be used by ABFD,
             (do double space in this example,)
-    3) caption-key is separated with spacers and with \n \r [ ] ( ) { } + . * - ,
+    3) caption-key is separated with spacers and with \n \r [ ] ( ) { } + . * - , It is not separated with "¦".
        caption-key must be not caught inside of key-phrases already existing in text,
        Not like this: |MM ABFD MM|some ABFD some||. This will insert "ABFD" inside other key-phrase and
        corrupt parser.

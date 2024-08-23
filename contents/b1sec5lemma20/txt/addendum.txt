@@ -36,7 +36,6 @@ will move points T and ¦key-triangle¦R¦¦.
 
 <b>Numerical Model</b><br><br>
 
-¦ellipse¦a¦¦¦ ¦ellipse¦b¦¦¦
 Proof for ¦ellipse¦ellipse¦¦ \( x^2/a^2 + y^2/b^2 = 1 \).
 <br><br>
 

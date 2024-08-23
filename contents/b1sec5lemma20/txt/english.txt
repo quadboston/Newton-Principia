@@ -1,20 +1,21 @@
 *::*claim|english
 {
-  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
+<!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
+¦BP¦¦¦ ¦BP¦PB¦¦¦
+¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
+¦B¦¦¦ ¦C¦¦¦ ¦D¦¦¦ ¦T¦¦¦ ¦R¦¦¦
 
-
-If in some ¦given-parallelogram¦parallelogram ASPQ¦¦, the two opposite angles ¦A¦¦ and ¦P¦¦ touch the section of
-a cone at the points ¦A¦¦ and ¦P¦¦ ; and with the sides of one of the angles ¦AQ¦¦ and ¦AS¦¦
-produced indefinitely, meeting the same section of the cone at ¦B¦¦ and ¦C¦¦ ; moreover from
-the meeting points ¦B¦¦ and ¦C¦¦ to some fifth point ¦D¦¦ of the conic section, the two right lines
-¦BD¦¦ and ¦CD¦¦ are drawn meeting the other two sides of the ¦given-parallelogram¦parallelogram¦¦ ¦PS¦¦ and ¦PQ¦¦
-produced indefinitely at ¦T¦¦ &amp; ¦R¦¦: the ¦key-parts¦parts¦¦ ¦PR¦¦ and ¦PT¦¦ of the sides [ of the parallelogram]
-will always be cut in turn in a given ratio. And conversely, if these cut parts are in turn in
-a given ratio, the point ¦D¦¦ touches the section of the cone passing through the four points
-¦A¦¦, ¦B¦¦, ¦C¦¦, ¦P¦¦.
+If in some ¦given-parallelogram¦parallelogram ASPQ¦¦, the two opposite angles ¦A¦¦ and P touch the ¦ellipse¦section of a cone¦¦ at the points ¦A¦¦ and P ; and with the sides of one of the angles AQ and AS
+produced indefinitely, meeting the same ¦ellipse¦section of the cone¦¦ at B and ¦C¦¦; moreover from
+the meeting points B and C to some fifth point D of ¦ellipse¦the conic section¦¦, the two right lines
+BD and CD are drawn meeting the other two sides of the ¦given-parallelogram¦parallelogram¦¦ PS and PQ
+produced indefinitely at T &amp; ¦R¦¦: the ¦key-parts¦parts¦¦ PR and PT of the sides [of ¦given-parallelogram¦the parallelogram¦¦]
+will always be cut in turn in a given ratio. And conversely, if these ¦key-parts¦cut parts¦¦ are in turn in
+a given ratio, the point D touches the ¦ellipse¦section of the cone¦¦ passing through the four points
+¦A¦¦, B, C, P.
 <br><br>
 
 <pre style="font-size:11px">
@@ -27,11 +28,16 @@ Book I Section V.
 
 
 *::*proof|english
+{
+  "default" : "1"
+}
+*..*
 
-¦key-triangle¦PR¦¦¦
+¦CA¦¦¦ in ¦H¦¦¦, ¦G¦¦¦ ¦DE¦¦¦ ¦Bt¦¦¦
+
 Case I. BP and CP are joined together and from the point D the two right lines DG and
 DE are acting , the first of which DG shall be parallel to AB itself and meets PB and PQ
-and CA in H, I and G; the other shall be DE parallel to AC itself and meeting PC and PS
+and CA in H, ¦I¦¦ and G; the other shall be DE parallel to AC itself and meeting PC and PS
 and AB in F, K and E: and the rectangle DE DF × will be (by Lem. XVII.) in a given
 ratio to the rectangle DG DH × . But PQ to DE (or IQ) shall be as PB to HB, and thus as
 PT to DH; and in turn PQ to PT as DE to DH. And there is PR to DF as RC to DC, thus

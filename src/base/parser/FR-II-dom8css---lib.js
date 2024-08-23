@@ -68,7 +68,9 @@
     ///*************************************************************
     ///Used: in landing parser and in user-console-messages.
     ///Inputs: text string, rawActFrValue
+    ///
     ///Does nothing to change acriveFrag, its text, or its HTML.
+    ///     acriveFrag contains the "core-semantical-text-content"
     ///Collects
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
@@ -287,6 +289,10 @@
             akey
         ) => {
 
+            //these subs are the KINGs of processing the Book
+            //  doesInsertSiteHTMLMacros( fragBody_raw )
+            //  insertDelayedBatch( fragBody_raw )
+            //fragBody_raw = UTF-string of minimal Book-text-fragment
 
             //***************************************************
             // //\\ Macros filter
@@ -481,12 +487,13 @@
     }
 
 
-    ///replaces raw words with value from value found in collection of collectedDelayedLinks
+    ///replaces raw words with value from value found in
+    ///collection of collectedDelayedLinks
     ///runs before tp machine parses fragBody_raw
     function insertDelayedBatch( fragBody_raw ) {
         if( Object.keys( collectedDelayedLinks ).length ) {
             var regEx = '';
-            eachprop( collectedDelayedLinks, (lnk,keyName) => {
+            eachprop( collectedDelayedLinks, (lnk) => {
                 //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not exist in replaceeKey:
                 //see https://javascript.info/regexp-escaping
                 //replaceeKey is a "raw word caption": made before as:
@@ -494,8 +501,10 @@
                 //      must have no destroy-reg-ex-chars = [ ] { } ( ) \ ^ $ . | ? * +
                 regEx += (regEx ? '|' : '') + lnk.replaceeKey;
             });
+            //***************************************************************
             //matchinig keyword in text must be separated by spacer,brackets,
             //some punctuation chars,
+            //***************************************************************
             //in reg.ex., don't do (...)+ for dividors, apparently
             //JS-replce machinery does not remember more than one dividor:
             regEx = new RegExp ('(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)(' + regEx +
