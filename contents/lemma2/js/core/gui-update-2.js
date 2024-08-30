@@ -129,6 +129,7 @@
             var view = sdata.view;
 	        setsVisGap(dr.InscrRects, view.isInscribed);
 	        setsVisGap(dr.circRects, view.isCircumscribed);
+	        setsVisGap(dr.differenceRects, view.isCircumscribed);
         }
 
 

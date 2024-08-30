@@ -157,11 +157,15 @@
     //========================================
     // //\\ possibly move to gui-update module
     //========================================
-    function updatesRect(rectDom,width,x,y,nextX,nextY)
+    function updatesRect(rectDom,width,x,y,height)
     {
         var fb  = dr.figureParams;
         var yRef = dr.yVariations.yRef;
-        guiup.xywh2svg( rectDom, x, y, width, yRef-y );
+        if( typeof height === 'undefined' ) {
+            guiup.xywh2svg( rectDom, x, y, width, yRef-y );
+        } else {
+            guiup.xywh2svg( rectDom, x, y, width, height );
+        }
     }
     function updatePts(i, x)
     {
@@ -185,9 +189,11 @@
             let insY = insYar[i];
             let cirY = cirYar[i];
    	        var width = dr.partitionWidths[i];
-	        updatesRect( dr.circRects.list[i], width, x, cirY, x + width );
-	        updatesRect( dr.InscrRects.list[i], width, x, insY, x + width );
-	        updatePts(i, x);
+	        updatesRect( dr.circRects.list[i], width, x, cirY, );
+	        updatesRect( dr.InscrRects.list[i], width, x, insY, );
+            updatesRect( dr.differenceRects.list[i], width, x, cirY,
+                         insY-cirY );
+            updatePts(i, x);
         }
         updatePts( basN, fb.maxX);
         gui.drawsWidestRect( dr.basePts.list[basN].dom,false, sdata.view );
@@ -369,7 +375,7 @@
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
         ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
-        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
+        //ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
 
         // //\\ majorant rect
         var xoff = sconf.originX_onPicture;

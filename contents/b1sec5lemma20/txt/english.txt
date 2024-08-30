@@ -6,23 +6,13 @@
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
 ¦BP¦¦¦ ¦BP¦PB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
-¦B¦¦¦ ¦C¦¦¦ ¦D¦¦¦ ¦T¦¦¦ ¦R¦¦¦
+¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦
 
-If in some ¦given-parallelogram¦parallelogram ASPQ¦¦, the two opposite angles ¦A¦¦ and P touch the ¦ellipse¦section of a cone¦¦ at the points ¦A¦¦ and P ; and with the sides of one of the angles AQ and AS
-produced indefinitely, meeting the same ¦ellipse¦section of the cone¦¦ at B and ¦C¦¦; moreover from
-the meeting points B and C to some fifth point D of ¦ellipse¦the conic section¦¦, the two right lines
-BD and CD are drawn meeting the other two sides of the ¦given-parallelogram¦parallelogram¦¦ PS and PQ
-produced indefinitely at T &amp; ¦R¦¦: the ¦key-parts¦parts¦¦ PR and PT of the sides [of ¦given-parallelogram¦the parallelogram¦¦]
-will always be cut in turn in a given ratio. And conversely, if these ¦key-parts¦cut parts¦¦ are in turn in
-a given ratio, the point D touches the ¦ellipse¦section of the cone¦¦ passing through the four points
-¦A¦¦, B, C, P.
-<br><br>
+If any ¦given-parallelogram¦parallelogram ASPQ¦¦ touches ¦ellipse¦a conic¦¦ in points ¦A¦¦ and P with two of its opposite angles ¦A¦¦ and P, and if the sides AQ and AS, indefinitely produced, ¦CA BA¦of one of these angles¦¦ meet the ¦ellipse¦said conic¦¦ in B and C, two straight lines BD and CD are drawn to any fifth point ¦D¦¦ of ¦ellipse¦the conic¦¦, meeting the other two indefinitely produced sides PS and PQ of the paralellogram in T and R; then PR and PT, the parts which are cut off the sides, will always be to each other in a given ratio. And conversely, if the ¦key-parts¦parts¦¦ which are cut off to each other in a given ratio, the point ¦D¦¦ will touch ¦ellipse¦a conic¦¦ passing through the four points ¦A¦¦, B, C, and P.
 
-<pre style="font-size:11px">
-</pre>
 <br><br>
-<div book-reference-id="IanBruce"></div>
-Book I Section V.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 485.
 
 
 
@@ -33,54 +23,34 @@ Book I Section V.
 }
 *..*
 
-¦CA¦¦¦ in ¦H¦¦¦, ¦G¦¦¦ ¦DE¦¦¦ ¦Bt¦¦¦
+¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦
+¦DG¦¦¦ ¦DE¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦
+¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦
 
-Case I. BP and CP are joined together and from the point D the two right lines DG and
-DE are acting , the first of which DG shall be parallel to AB itself and meets PB and PQ
-and CA in H, ¦I¦¦ and G; the other shall be DE parallel to AC itself and meeting PC and PS
-and AB in F, K and E: and the rectangle DE DF × will be (by Lem. XVII.) in a given
-ratio to the rectangle DG DH × . But PQ to DE (or IQ) shall be as PB to HB, and thus as
-PT to DH; and in turn PQ to PT as DE to DH. And there is PR to DF as RC to DC, thus
-as (IG or) PS to DG, and in turn PR to PS as VF to DG; and with the ratios joined the
-rectangle PQ PR × shall be to the rectangle PS PT × as the rectangle DE DF × to the
-rectangle DG DH × , and thus in a given ratio. But PQ and PS are given, and therefore
-the ratio PR to PT is given. Q E.D.
+Case I. Join BP and also CP, and from point ¦D¦¦ draw two straight lines DG and DE, the first if which (DG) is parallel to AB and meets PB, PQ, and CA at H, ¦I¦¦, and G, while the second (DE) is parallel to AC and meets PC, PS, and AB at F, K, and ¦E¦¦; then (by lem. 17) the rectangle DE x DF will be to rectangle DG x DH in a given ratio. But PQ is to DE (or IQ) as PB to HB and thus PT to DH; and by alternation [or alternando] PQ is to PT as DE to DH. Additionally, PR is to DF as RC to DC and hence as (IG or) PS to DG; and when the ratios are combined, the rectangle PQ x PR comes to be to the rectangle PS x PT as the rectangle DE x DF to the rectangle DG x DH, and hence in a given ratio. But PQ and PS are given, and therefore the ratio of PR to PT is given. Q.E.D.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 485.
+
+
 <br><br>
 
 
-Case 2. Because if PR and PT may be put in place in a given ratio in turn, then by
-retracing the reasoning, it follows that the rectangle DE DF × to be in a given ratio to the
-rectangle DG DH × , and thus the point D (by Lem. XVIII.) touches the conic section
-passing through the points A, B, C and P.
-Q. E. D.
+Case 2. 
+
+
+.........
+.........
+.........
 <br><br>
-Corol. I. Hence if BC acts cutting PQ in r, &amp; on PT there may be taken Pt in the ratio to
-Pr that PT has to PR, Bt will be a tangent of the conic section at the point B. For consider
-the point D to coalesce with the point B, thus so that, as with the chord BD vanishing, BT
-may become a tangent; and CD and BT coincide with CB and Bt.
-Corol. 2. And in turn if Bt shall be a tangent, and at some point D of the conic section BD
-and CD may come together; R will be to PT as Pr to Pt. And counter wise, if there shall
-be PR to PT as Pr to Pt: BD and CD may come together at some point D of the conic
-section.
+Corol. I. 
+
 <br><br>
 
 
-Corol. 3. A conic section does not cut a conic section in more than four points. For, it
-were possible to happen, the two conic sections may pass through each other in the five
-points A, B, C, P, O; and these may cut the right line BD in the points D, d, and PQ itself
-may cut the right line Cd in q. Hence PR is to PT as Pq to PT; from which PR and Pq in
-turn themselves may be equal, contrary to the hypothesis.
-[The following lemma, related to the above, shows how to describe a branch of a
-hyperbola without making use of the focus, using points on the curve only, as well as a
-reference line on which related points and angles may be defined. Note the positions of
-the points A, B, C, D and P in the diagrams relating to these lemmas, where the hyperbola
-in the latter can be viewed as an inverted form of the ellipse in the former. Newton has
-not followed with a like proof, but has introduced a new way of drawing a conic section.]
-
+Corol. 3. 
 
 <br><br>
-<div book-reference-id="IanBruce"></div>
-Book I Section V.
-<br>
 
 

@@ -326,7 +326,7 @@
                                 //module can be a blank stub and function is missed
                                 var css = ns.haf( cssmod, cssName )( cssp, fconf );
                                 //if stub is valid, does add css
-                                css && ns.globalCss.add8update( css );
+                                css && ns.globalCss.add8update( css, 'csslist' );
                             });
                             //...........................................................
 

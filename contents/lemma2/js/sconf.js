@@ -78,7 +78,7 @@
                 'a--K--b--l'                : difference,
                 'b--L--c--m'                : difference,
                 'c--M--d--n'                : difference,
-                'd--D--E--o'                : difference,
+                //'d--D--E--o'                : difference,
             };
         }
         //todm: this disables functionality ... not only CSS:

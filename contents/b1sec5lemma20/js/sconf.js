@@ -85,16 +85,17 @@
         {
             "key-triangle"          : [255,   0, 0, 1],
             "key-parts"             : [255,   0, 0, 1],
-            "similar-triangle"      : [0,     0, 255, 1],
+            "similar-triangle"      : [0,     200, 255, 1],
 
             "PT"                    : [255,   0, 0, 1],
 
-            "base-figure"           : [0,     0, 255, 1],
-            "static-generator"      : [255,   0, 255, 1],
+            "base-figure"           : [0,     200, 255, 1],
+            "static-generator"      : [255,   255, 200, 1],
             "ellipse"               : [0,   150, 0, 1],
             "tangent"               : [0,   150, 0, 1],
             "given-parallelogram"   : [0,   200, 255, 1],
-            "generators"            : [200, 150, 0, 1]
+            "generators"            : [200, 150, 0, 1],
+            "aux-dots"              : [200, 0, 200, 1],
         };
         
         
@@ -128,6 +129,56 @@
                   letterRotRadius : 20,
                 },
   
+            // //\\ aux points
+            G : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : 45,
+                 },
+            I : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : -125,
+                   letterRotRadius : 20,
+                 },
+            H : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : -90,
+                   letterRotRadius : 20,
+                 },
+            E : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : -125,
+                   letterRotRadius : 20,
+                 },
+            K : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : 90,
+                   letterRotRadius : 20,
+                },
+            F : {
+                   pcolor : predefinedTopics["aux-dots"],
+                   cssClass : 'theorion--proof',
+                   letterAngle : 0,
+                   letterRotRadius : 20,
+                },
+            t : { pos: [1511, 574],
+                  pcolor : predefinedTopics["aux-dots"],
+                  cssClass : 'theorion--proof',
+                  initialR: pointRadius,
+                  letterAngle : 45,
+                  letterRotRadius : 20,
+                },
+            r : { pos: [1028, 830],
+                  pcolor : predefinedTopics["aux-dots"],
+                  cssClass : 'theorion--proof',
+                  initialR: pointRadius,
+                },
+            // \\// aux points
+  
             ///-------------------------------------------------
             ///builds center point first to be used in ellipse
             ///-------------------------------------------------
@@ -145,19 +196,6 @@
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
-            t : { pos: [1511, 574],
-                  pcolor: predefinedTopics['static-generator'],
-                  cssClass: 'tp-static-generator',
-                  initialR: pointRadius,
-                  letterAngle : 45,
-                  letterRotRadius : 20,
-                },
-            r : { pos: [1028, 830],
-                  pcolor: predefinedTopics['static-generator'],
-                  cssClass: 'tp-static-generator',
-                  initialR: pointRadius,
-                },
-
             D : { pos: [1410, 965],
                   pcolor: predefinedTopics['generators'],
                   cssClass: 'tp-generators',
@@ -297,6 +335,11 @@
                         cssClass : 'tp-given-parallelogram',
                     }
             },
+            { 'AC' : {
+                        pcolor : predefinedTopics["given-parallelogram"],
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
             { 'AQ' : {
                         pcolor : predefinedTopics["given-parallelogram"],
                         cssClass : 'tp-given-parallelogram',
@@ -346,21 +389,74 @@
                         cssClass : 'tp-generators',
                     }
             },
-            { 'Bt' : {
-                        pcolor : predefinedTopics["ellipse"],
-                        cssClass : 'tp-tangent',
-                    }
-            },
             //------------------------
             // \\// linear-generators
             //------------------------
 
+            
+            //------------------------
+            // //\\ aux-lines
+            //------------------------
+            { 'DG' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                     }
+            },
+            { 'DI' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                     }
+            },
+            { 'DE' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                     }
+            },
+            { 'DK' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                     }
+            },
+            { 'Bt' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            { 'CF' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            { 'HB' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            { 'DH' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            { 'DF' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            { 'IQ' : {
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
+                    }
+            },
+            //------------------------
+            // \\// aux-lines
+            //------------------------
+            
             //------------------------
             // //\\ static triangle
             //------------------------
             { 'rt' : {
-                        pcolor : predefinedTopics["static-generator"],
-                        cssClass : 'tp-static-generator',
+                        pcolor : predefinedTopics["aux-dots"],
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'Pr' : {

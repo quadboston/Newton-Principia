@@ -46,11 +46,32 @@
 
         //intersection of two lines CR and BT has to be found:
         //q*uCR + C = q'*uBT + B needs to be solved against q,q' to find D
-        var Dpos = mat.linesCross( CR.unitVec, C, BT.unitVec, B );
-        setRgPoint( 'D', Dpos );
+        var D = mat.linesCross( CR.unitVec, C, BT.unitVec, B );
+        setRgPoint( 'D', D );
         //------------------------------------
         // \\// thread from T to D
         //------------------------------------
+        var A = rg.A.pos;
+        var AB = [ B[0]-A[0], B[1]-A[1] ];
+        var AC = [ C[0]-A[0], C[1]-A[1] ];
+        var PB = [ P[0]-B[0], P[1]-B[1] ];
+        var PC = [ P[0]-C[0], P[1]-C[1] ];
+
+        var G = mat.linesCross( AB, D, AC, A );
+        setRgPoint( 'G', G );
+        var DG = [ D[0]-G[0], D[1]-G[1] ];
+
+        var AC = [ C[0]-A[0], C[1]-A[1] ];
+        var I = mat.linesCross( AB, D, AC, P );
+        setRgPoint( 'I', I );
+        var E = mat.linesCross( AB, A, AC, D );
+        setRgPoint( 'E', E );
+        var K = mat.linesCross( AB, P, AC, D );
+        setRgPoint( 'K', K );
+        var H = mat.linesCross( PB, P, DG, D );
+        setRgPoint( 'H', H );
+        var F = mat.linesCross( PC, P, AC, D );
+        setRgPoint( 'F', F );
     }
 
 

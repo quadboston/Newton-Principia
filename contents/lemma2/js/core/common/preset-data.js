@@ -20,6 +20,8 @@
         curvPts         : {offset:1, visOffset:0, list:[]},
         circRects       : {offset:0, visOffset:0, list:[]},
         InscrRects       : {offset:0, visOffset:0, list:[]},
+        differenceRects  : {offset:0, visOffset:0, list:[]},
+        
         //baseLabels      : {offset:1, visOffset:0, list:[]},
         curvLabels      : {offset:0, visOffset:0, list:[]},
         leftLabels      : {offset:0, visOffset:0, list:[]},

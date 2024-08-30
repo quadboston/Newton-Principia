@@ -21,7 +21,8 @@
         //can be either like const IMAGE_PATH = '../../local-content-trigger';
 
         let crHTML = document.createElement( 'div' );
-        crHTML.innerHTML = creditsHTML();
+        crHTML.innerHTML = '<div class="show-picture-credit">' +
+                            creditsHTML() + '</div>';
         document.body.appendChild( crHTML );
 
         ///distributes images

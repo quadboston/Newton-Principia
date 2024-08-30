@@ -507,8 +507,9 @@
             //***************************************************************
             //in reg.ex., don't do (...)+ for dividors, apparently
             //JS-replce machinery does not remember more than one dividor:
-            regEx = new RegExp ('(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)(' + regEx +
-                                ')(\\s|\\n|\\r|\\[|\\]|\\(|\\)|\\{|\\}|\\+|\\.|\\*|-|,)', 'ug' );
+            let dividors = '(\\s|\\n|\\r|\\[|\\]|\\(|\\)|' +
+                           '\\{|\\}|\\+|\\.|\\*|-|;|,)';
+            regEx = new RegExp ( dividors + '(' + regEx + ')' + dividors, 'ug' );
             fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
                 ///returns full-replacer = full match which
                 ///        is match=leadingDividor+|config|caption||+trailingDividor,

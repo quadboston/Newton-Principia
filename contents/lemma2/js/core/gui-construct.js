@@ -48,6 +48,7 @@
     {
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
         makes_rects( dr.InscrRects, "tp-inscribed-rectangles inscribed");
+        makes_rects( dr.differenceRects, "tp-difference difference");
     }
     function makes_rects( listWrap, classStyle )
     {

@@ -3,6 +3,14 @@
 
     var st = ns.$$.c( 'style' )
         .html( `
+        
+            body .show-picture-credit {
+                display : none;
+            }               
+            body.contents .show-picture-credit {
+                display : block;
+            }               
+        
             .bsl-bg-image {
                 position : absolute;
                 width   : 100%;
