@@ -74,6 +74,7 @@
             fapp,
             fconf,
             sconf,
+            nsconf : ns.conf,
         };
         return ret;
     }

@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, userOptions, fconf, haz } = window.b$l.apptree({});
+    var { $$, userOptions, fconf, haz, nsconf } = window.b$l.apptree({});
     const LATIN = "latin",
           USE_BG_IMAGE = "use-background-image",
           BONUS = "bonus";
@@ -9,10 +9,10 @@
         sessionStorage.setItem(USE_BG_IMAGE, false);
         sessionStorage.setItem(BONUS, !fconf.basicSiteFeatures);
     }
-    ///if some call requests bonus features, then they are set in store, and
-    ///the next call to different lemma will preserve the bonus,
-    if( !fconf.basicSiteFeatures ) {
-        sessionStorage.setItem(BONUS, !fconf.basicSiteFeatures);
+    if( haz( nsconf, 'showAddendums' ) ) {
+        ////if some call requests bonus features, then they are set in store, and
+        ////the next call to different lemma will preserve the bonus,
+        sessionStorage.setItem(BONUS, true);
     }
     userOptions.doesStoreOption = doesStoreOption; //only for URL-query for bonusOpt.
     userOptions.showingLatin = showingLatin;

@@ -472,7 +472,6 @@
     ///to student's console,
     function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
     {
-        ///formerly !fconf.basicSiteFeatures === userOptions.showingBonusFeatures()
         if( userOptions.showingBonusFeatures() ) {
             let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
             let sea = '?conf=sappId=';
@@ -480,7 +479,7 @@
             anchors.forEach( anch => {
                 if( anch.search.indexOf( sea ) === 0 ) {
                     anch.search = anch.search.replace(
-                        reg, '?conf=basicSiteFeatures=no,sappId=' );
+                        reg, '?conf=showAddendums=yes,sappId=' );
                 }
             });
         }

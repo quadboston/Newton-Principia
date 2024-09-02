@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, userOptions,
+        ns, sn, $$, haz, userOptions,
         fapp, fconf, sapp, sconf, html, stdMod,
     } = window.b$l.apptree({
     });
@@ -164,7 +164,7 @@
         var landingPath = window.location.pathname;
         var book = null;
         var coreText = '';
-        fconf.ix2lemmaDef.forEach(function (sappItem) {
+        fconf.ix2lemmaDefAllowed.forEach(function (sappItem) {
             if (sappItem.sappId === 'home-pane') return;
             if (book === null || book !== sappItem.book) {
                 if( book !== null ) {

@@ -10,7 +10,7 @@
   }
 }
 *..*
-<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+<img src="contents/b3lemma5/img/english.jpg" style="width:100%">
 <br><br>
 <div book-reference-id="Motte-3rd"></div>
 
@@ -18,7 +18,7 @@
 
 
 *::*proof|english
-<img src="contents/b3sec4lemma5/img/english.jpg" style="width:100%">
+<img src="contents/b3lemma5/img/english.jpg" style="width:100%">
 <br><br>
 <div book-reference-id="Motte-3rd"></div>
 

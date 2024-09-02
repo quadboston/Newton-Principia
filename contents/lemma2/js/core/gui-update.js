@@ -1,6 +1,6 @@
 ( function () {
     var {
-        sn, $$,
+        sn, $$, userOptions,
         fapp, fconf, sconf, sDomN, ssF,
         amode,
     } = window.b$l.apptree({
@@ -147,6 +147,13 @@
             sDomN.essaionsRoot$.removeClass( 'active-right' );
             sDomN.essaionsRoot$.addClass( 'active-left' );
         }
+        if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
+            sDomN.essaionsRoot$.removeClass( 'active-higlight-do' );
+            sDomN.essaionsRoot$.addClass( 'active-no-higlight-do' );
+        } else {
+            sDomN.essaionsRoot$.removeClass( 'active-no-higlight-do' );
+            sDomN.essaionsRoot$.addClass( 'active-higlight-do' );
+        }
         // \\// resets app modes
     }
 
@@ -209,6 +216,17 @@
         //-----------------------------------------------------
         // \\// legend amounts
         //-----------------------------------------------------
+
+        //-----------------------------------------------------
+        // //\\ Do points update
+        //-----------------------------------------------------
+        //let insY = insYar[basN-1];
+        //let cirY = cirYar[basN-1];
+        //rg.e.pos[0] = rg.d.pos[0];
+        //rg.e.pos[1] = rg.d.pos[1] + insY - cirY;
+        //-----------------------------------------------------
+        // \\// Do points update
+        //-----------------------------------------------------
     }
 
     function normalizedStr( amt )
@@ -269,7 +287,6 @@
                     rg[ pnameTop_ ].pos[0] = posCx;
                     //rg[ 'C' ].pos[0];
                     rg[ pnameTop_ ].pos[1] = cirPy;
-
                     break;
             case 2 : var pname = 'C';
                      ////optional names
@@ -291,9 +308,29 @@
                      var pnameLow_ = 'G'; //min of the interval
                      rg[ pnameLow_ ].pos[0] = posDx;
                      rg[ pnameLow_ ].pos[1] = insPy;
+                     
+                     //--------------------------------------------
+                     // //\\ making low boundary of difference-rect
+                     //--------------------------------------------
+                     rg.e.pos[0] = posDx;
+                     rg.e.pos[1] = insPy;
+                     //--------------------------------------------
+                     // \\// making low boundary of difference-rect
+                     //--------------------------------------------
                      break;
-            case 4 : //if( dr.basesN > 4 ) {
+            case 4 :
                      var pname = 'E';
+                     //--------------------------------------------
+                     // //\\ making low boundary of difference-rect
+                     //--------------------------------------------
+                     rg.p.pos[0] = posEx;
+                     //this fails: bases are too low:
+                     //( blist[4].y - yoff )  / scale;
+                     //insPy;
+                     rg.p.pos[1] = rg.e.pos[1];
+                     //--------------------------------------------
+                     // \\// making low boundary of difference-rect
+                     //--------------------------------------------
                      break;
             }
         }
@@ -372,10 +409,6 @@
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
-        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'a--K--b--l' ] );
-        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'b--L--c--m' ] );
-        ssF.poly_2_updatedPolyPos8undisplay( rg[ 'c--M--d--n' ] );
-        //ssF.poly_2_updatedPolyPos8undisplay( rg[ 'd--D--E--o' ] );
 
         // //\\ majorant rect
         var xoff = sconf.originX_onPicture;

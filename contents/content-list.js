@@ -177,15 +177,17 @@
             book : 'Book 1',
             caption : 'Sec. 5. Lemma 20.',
             annotation : "",
+            inAddendum : true,
         },
 
         {   sappId : 'b1sec5lemma21',
             book : 'Book 1',
             caption : 'Sec. 5. Lemma 21.',
             annotation : "",
+            inAddendum : true,
         },
 
-        {   sappId : 'b3sec4lemma5',
+        {   sappId : 'b3lemma5',
             book : 'Book 3',
             caption : 'Sec. 4. Lemma 5.',
             annotation : "",

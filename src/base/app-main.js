@@ -61,9 +61,8 @@
         //ns.url2conf( fconf );
         //sn( 'pathToContentSite', fconf, '.' );
         sn( 'sappId', fconf, 'home-pane' );
-        ssF.spawns_lemsDefArr(); //converts ix to id, lemma ix "is well established"
+        ssF.spawns_lemsDefArr();
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
-        sapp.ix             = fapp.lemmaDef.ix;
         document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
         //=========================

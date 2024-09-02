@@ -42,42 +42,6 @@
 
         //----------------------------------------------
         // //\\ fits lemma to modern framework
-        //----------------------------------------------
-        {
-            //tp-difference is a color set in sconf in predefinedTopics
-            let cssClass = 'tofill tp-difference';
-            let tostroke = ''; //tostroke causes no stroke
-            ssF.pnames2poly(
-                [ 'a', 'K', 'b', 'l', ],
-                cssClass,
-                !!'correctJoin',
-                null,
-                tostroke
-            ).UPDATE_MPOS_BEFORE_POLY = true;
-            ssF.pnames2poly(
-                [ 'b', 'L', 'c', 'm' ],
-                cssClass,
-                !!'correctJoin',
-                null,
-                tostroke
-            ).UPDATE_MPOS_BEFORE_POLY = true;
-            ssF.pnames2poly(
-                [ 'c', 'M', 'd', 'n' ],
-                cssClass,
-                !!'correctJoin',
-                null,
-                tostroke
-            ).UPDATE_MPOS_BEFORE_POLY = true;
-            ssF.pnames2poly(
-                [ 'd', 'D', 'E', 'o' ],
-                cssClass,
-                !!'correctJoin',
-                null,
-                tostroke
-            ).UPDATE_MPOS_BEFORE_POLY = true;
-        }
-
-        //---------------------------------------------
         // //\\ trick
         //---------------------------------------------
         //forces generic-fw-points to be initiated under specific points,

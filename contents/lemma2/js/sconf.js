@@ -75,10 +75,9 @@
                 "insc-txt"                  : [100,  0, 100, 0.7, 1],
                 "widt-txt"                  : [0,  0, 100, 0.7, 1],
                 'a--K--b--l'                : difference,
-                'a--K--b--l'                : difference,
                 'b--L--c--m'                : difference,
                 'c--M--d--n'                : difference,
-                //'d--D--E--o'                : difference,
+                'd--e--p--o'                : difference,
             };
         }
         //todm: this disables functionality ... not only CSS:
@@ -295,6 +294,18 @@
             },
 
             o : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            e : {
+                pcolor      : predT.given,
+                letterAngle : 45,
+                initialR    : 3,
+            },
+
+            p : {
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 3,

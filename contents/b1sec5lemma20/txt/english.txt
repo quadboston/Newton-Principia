@@ -6,7 +6,11 @@
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
 ¦BP¦¦¦ ¦BP¦PB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
+¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦
+¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦
+
 ¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦
+¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦
 
 If any ¦given-parallelogram¦parallelogram ASPQ¦¦ touches ¦ellipse¦a conic¦¦ in points ¦A¦¦ and P with two of its opposite angles ¦A¦¦ and P, and if the sides AQ and AS, indefinitely produced, ¦CA BA¦of one of these angles¦¦ meet the ¦ellipse¦said conic¦¦ in B and C, two straight lines BD and CD are drawn to any fifth point ¦D¦¦ of ¦ellipse¦the conic¦¦, meeting the other two indefinitely produced sides PS and PQ of the paralellogram in T and R; then PR and PT, the parts which are cut off the sides, will always be to each other in a given ratio. And conversely, if the ¦key-parts¦parts¦¦ which are cut off to each other in a given ratio, the point ¦D¦¦ will touch ¦ellipse¦a conic¦¦ passing through the four points ¦A¦¦, B, C, and P.
 
@@ -19,38 +23,29 @@ Page 485.
 
 *::*proof|english
 {
-  "default" : "1"
+  "default" : "1",
+  "subessayCaption" : "Case 1",
+  "subessay" : "case1"
 }
 *..*
 
-¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦
-¦DG¦¦¦ ¦DE¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦
-¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦
-
-Case I. Join BP and also CP, and from point ¦D¦¦ draw two straight lines DG and DE, the first if which (DG) is parallel to AB and meets PB, PQ, and CA at H, ¦I¦¦, and G, while the second (DE) is parallel to AC and meets PC, PS, and AB at F, K, and ¦E¦¦; then (by lem. 17) the rectangle DE x DF will be to rectangle DG x DH in a given ratio. But PQ is to DE (or IQ) as PB to HB and thus PT to DH; and by alternation [or alternando] PQ is to PT as DE to DH. Additionally, PR is to DF as RC to DC and hence as (IG or) PS to DG; and when the ratios are combined, the rectangle PQ x PR comes to be to the rectangle PS x PT as the rectangle DE x DF to the rectangle DG x DH, and hence in a given ratio. But PQ and PS are given, and therefore the ratio of PR to PT is given. Q.E.D.
+Join BP and also CP, and from point ¦D¦¦ draw two straight lines DG and DE, the first if which (DG) is parallel to AB and meets PB, PQ, and CA at H, ¦I¦¦, and G, while the second (DE) is parallel to AC and meets PC, PS, and AB at F, K, and ¦E¦¦; then (by lem. 17) the rectangle DE x DF will be to rectangle DG x DH in a given ratio. But PQ is to DE (or IQ) as PB to HB and thus PT to DH; and by alternation [or alternando] PQ is to PT as DE to DH. Additionally, PR is to DF as RC to DC and hence as (IG or) PS to DG; and when the ratios are combined, the rectangle PQ x PR comes to be to the rectangle PS x PT as the rectangle DE x DF to the rectangle DG x DH, and hence in a given ratio. But PQ and PS are given, and therefore the ratio of PR to PT is given. Q.E.D.
 
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 485.
 
+*::*proof|english
+{
+  "subessayCaption" : "Case 2",
+  "subessay" : "case2"
+}
+*..*
+
+But if PR and PT are supposed in a given ratio to each other, then on working backward with a similar argument, it will follow that the retangle DE x DF is to the rectangle DG x DH in a given ratio and consequently that point D (by lem. 18) lies in a conic passing through points ¦A¦¦, B, C and P. Q.E.D.
 
 <br><br>
-
-
-Case 2. 
-
-
-.........
-.........
-.........
-<br><br>
-Corol. I. 
-
-<br><br>
-
-
-Corol. 3. 
-
-<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 486.
 
 

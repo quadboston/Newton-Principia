@@ -75,22 +75,23 @@
 
     function does_set_next_lemma_button_event( direction )
     {
-        var pager$ = direction === 'right' ? sDomN.rightButton$ : sDomN.leftButton$;
+        var pager$ = direction === 'right' ? sDomN.rightButton$ :       
+                     sDomN.leftButton$;
 
         var mList = fconf.sappId2lemmaDef[ fconf.sappId ];
-        sapp.ix = mList.ix;
-        var next = direction === 'right' ? next = sapp.ix + 1 : sapp.ix - 1;
-        if( next >= fconf.ix2lemmaDef.length || next < 0 ||
-            fconf.ix2lemmaDef[ next ].sappId === 'home-pane' ||
-            (fconf.ix2lemmaDef[ next ].annotation === userOptions.BONUS_START && !userOptions.showingBonusFeatures())
+        let allowedIx = mList.allowedIx;
+        //sapp.ix
+        //todm get rid of sapp.ix; this is a poor naming;
+        var next = direction === 'right' ? next = allowedIx + 1 : allowedIx - 1;
+        if( next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
+            fconf.ix2lemmaDefAllowed[ next ].sappId === 'home-pane' ||
+            (fconf.ix2lemmaDefAllowed[ next ].annotation === userOptions.BONUS_START && !userOptions.showingBonusFeatures())
         ) {
             pager$.addClass( 'non-displayed' );
         } else {
-            var nextSapp = fconf.ix2lemmaDef[ next ];
+            var nextSapp = fconf.ix2lemmaDefAllowed[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=' +
-                //preserves bonus in "previous" versions without user-session, 
-                //( userOptions.showingBonusFeatures() ? 'basicSiteFeatures=no,' : '' ) +
                 'sappId=' + nextSapp.sappId;
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){

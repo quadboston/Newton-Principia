@@ -136,7 +136,7 @@
         //this patch is against breakage when tool-sliders are on
         var l6patch =
                 (
-                    fconf.sappId === 'b3sec4lemma5' ||
+                    fconf.sappId === 'b3lemma5' ||
                     fconf.sappId === 'b1sec1lemma6' ||
                     fconf.sappId === 'b1sec1lemma7'
                 )
