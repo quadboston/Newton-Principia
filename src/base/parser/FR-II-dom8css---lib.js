@@ -12,7 +12,7 @@
             fragment__collectsRawTpLinks,
             rawFragments2htmlText,
             builtFrags_2_dom8mj,
-            updateFrameWorkAnchors_2_basicSiteFeatures,
+            //updateFrameWorkAnchors_2_basicSiteFeatures,
         },
     });
     var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
@@ -446,7 +446,9 @@
         // \\// inserts book-references in DOM
         //-----------------------------------------------------------------------
 
-        updateFrameWorkAnchors_2_basicSiteFeatures();
+        //removed because of emulated by user-options.
+        //updateFrameWorkAnchors_2_basicSiteFeatures();
+
         //does delayed anchors
         !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
         //do later: ssF.puts_delayed_tp_anch_in_syblings( bFrag.dom$() );
@@ -464,6 +466,11 @@
         return rawActFrValue;
     }
 
+    /*
+    //**************************************************************************
+    ///This function duplicates functionality of user-options.
+    ///This function is not required at given app version.
+    //==========================================================================
     ///if we want to keep link-to-link browsing instead of framework with
     ///addendums added to original text, then we have to update static
     ///links referred to Addendums,
@@ -484,7 +491,8 @@
             });
         }
     }
-
+    //**************************************************************************
+    */
 
     ///replaces raw words with value from value found in
     ///collection of collectedDelayedLinks

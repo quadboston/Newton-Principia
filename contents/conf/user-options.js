@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, userOptions, fconf, haz, nsconf } = window.b$l.apptree({});
+    var { ns, $$, userOptions, fconf, has, haz, nsconf } = window.b$l.apptree({});
     const LATIN = "latin",
           USE_BG_IMAGE = "use-background-image",
           BONUS = "bonus";
@@ -55,8 +55,27 @@
         let bonusCB = document.getElementById("bonusCheckbox");
         bonusCB.checked = showingBonusFeatures();
         bonusCB.onclick = () => {
-            doesStoreOption(BONUS, !showingBonusFeatures());
-            updateBonusContentVisibility();
+            var isOn = showingBonusFeatures();
+            doesStoreOption(BONUS, !isOn);
+            var relanded = false;
+            if( has( ns.conf, 'showAddendums' ) ) {
+                ////if user changes URL-induced mode, the entire
+                ////set of URL options wipes out for simplicity, and
+                ////user relands
+                //c cc( 'showAddendums=' + ns.conf.showAddendums );
+                if( (ns.conf.showAddendums && isOn ) ||
+                    (!ns.conf.showAddendums && !isOn ) ) {
+                    //c cc( 'removing search' );
+                    window.location.search = '';
+                    relanded = true;
+                }
+            }
+            //c cc( 'relanding the same=' + window.location );
+            if( !relanded ) {
+                window.location = window.location;
+            }
+            //redundant because of complete relaning on the way
+            //updateBonusContentVisibility();
         };
         updateBonusContentVisibility();
 
@@ -67,7 +86,6 @@
             appRoot$[ showingBonusFeatures() ? 'addClass' : 'removeClass'  ]
                     ( "shows-bonus-features" );
         }
-
     }
 
     function doesStoreOption(option, newValue) {

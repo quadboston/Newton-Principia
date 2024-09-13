@@ -303,12 +303,14 @@
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 3,
+                hideCaption  : true,
             },
 
             p : {
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 3,
+                hideCaption  : true,
             },
 
             /*

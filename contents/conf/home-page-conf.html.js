@@ -138,7 +138,7 @@
                     <p class="about__author__text">
                         <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
                             concept, production, programming, video<br>
-                        <span class="dd-label"><a href="http://landkey.net/">Konstantin Kirillov:</a></span>
+                        <span class="dd-label"><a href="https://bastyon.com/konstantin_kirillov">Konstantin Kirillov:</a></span>
                             lead programming, addenda, UI<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>

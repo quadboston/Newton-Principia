@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, nspaste, capture, toreg,
+        ns, sn, nspaste, userOptions, capture, toreg,
         sDomF, ssD, ssF, fconf,
         studyMods, amode, rg, sconf,
     } = window.b$l.apptree({
@@ -56,14 +56,24 @@
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
+
+        rg.S.pos[0] = -sconf.ellipseFocus;
+        rg.S.pos[1] = 0;
+        rg.SS.undisplay = true;
+        if( userOptions.showingBonusFeatures() ) {
+            rg.SS.undisplay = false;
+            rg.SS.pos[0] = -sconf.ellipseFocus;
+            rg.SS.pos[1] = 0;
+        }
+
         nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
+        //gets angle of P
+        stdMod.correctsPos8angle2angle( 'P', rg.P.pos );
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
 
-        rg.S.pos[0] = -sconf.ellipseFocus;
-        rg.S.pos[1] = 0;
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 

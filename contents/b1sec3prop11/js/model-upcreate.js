@@ -7,6 +7,7 @@
         stdModExportList :
         {
             model_upcreate,
+            correctsPos8angle2angle,
         },
     });
     return;
@@ -329,6 +330,26 @@
                     intervalT,
         };
     }
-
+    
+    
+    
+    //-------------------------------------------------------------------
+    // //\\ corrects approximate mouse point to exact point on the circle
+    //-------------------------------------------------------------------
+    function correctsPos8angle2angle( pname, newPos, angle ) {
+        let rgX = rg[pname];
+        let pos = rgX.pos;
+        if( typeof angle === 'undefined' ) {
+            angle =  stdMod.pos2t( newPos );
+        }
+        if( angle < Math.PI*0.01 || angle > sconf.curveParFiMax ) {
+            angle = ( angle + sconf.curveParFiMax ) % sconf.curveParFiMax;
+        } //  return false;
+        rgX.angle = angle;
+        var newP = rg[ 'approximated-curve' ].t2xy( angle );
+        pos[0] = newP[0];
+        pos[1] = newP[1];
+        return pos;
+    }
 }) ();
 

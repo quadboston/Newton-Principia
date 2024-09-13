@@ -1,7 +1,7 @@
 
 ( function() {
     var { //import from apptree
-        ns,
+        ns, userOptions,
         fconf,
         sconf,
     } = window.b$l.apptree({ //export to apptree
@@ -108,10 +108,11 @@
         var originY_onPicture = C[1]; //for model's axis y
 
         sconf.eccentricity  = 0.59498295;
-        var wwLambda = Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) );
         sconf.ellipseA  = 1.07;
-        sconf.ellipseB  = wwLambda * sconf.ellipseA; //0.86;
-
+        sconf.ellipseAOriginal  = sconf.ellipseA;
+        sconf.ellipseB  =
+            Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
+            * sconf.ellipseA; //0.86;
         var PparT       = 0.250 * Math.PI;
         var curveParA   = -0.64;
         var curveParFi0 = 0.0 * Math.PI;
@@ -188,7 +189,7 @@
                 pcolor : context,
                 caption : 'C',
                 pos: C,
-                letterAngle : 120,
+                letterAngle : 155,
                 letterRotRadius : 35,
             },
 
@@ -344,6 +345,12 @@
                 letterAngle : 100,
                 letterRotRadius : 20,
             },
+            SS : { //focus
+                caption : 'Sₛ',
+                pcolor : result,
+                letterAngle : -45,
+                letterRotRadius : 35,
+            },
             //----------------------------------------
             // \\// Prop. 11
             //----------------------------------------
@@ -357,7 +364,7 @@
                 letterAngle : -115,
                 letterRotRadius : 35,
                 draggableX  : true,
-                draggableY  : true,
+                draggableY  : userOptions.showingBonusFeatures(),
             },
 
             P : {
@@ -380,7 +387,6 @@
             // \\// draggable points
             //---------------------------------------
         });
-
 
         var linesArray =
         [
