@@ -7,7 +7,7 @@
         // if LATIN has not been set, assume none are set, and set to default values
         sessionStorage.setItem(LATIN, false);
         sessionStorage.setItem(USE_BG_IMAGE, false);
-        sessionStorage.setItem(BONUS, !fconf.basicSiteFeatures);
+        sessionStorage.setItem(BONUS, false); //!fconf.basicSiteFeatures);
     }
     if( haz( nsconf, 'showAddendums' ) ) {
         ////if some call requests bonus features, then they are set in store, and

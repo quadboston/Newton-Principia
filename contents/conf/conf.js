@@ -1,12 +1,12 @@
 // //\\// site-wide conf
 ( function() {
     var {
-        ns, url2conf,
+        ns, url2conf,userOptions,
         fconf,
     } = window.b$l.apptree({
     });
 
-    fconf.basicSiteFeatures = true;
+    //fconf.basicSiteFeatures = true;
     url2conf( fconf );
 
     //apparently, we can do '.' because "contents" is moved levels up
