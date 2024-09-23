@@ -43,8 +43,8 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-        ww[ 'a' ].innerHTML = rg.a.value.toFixed(3);
-        ww[ 'b' ].innerHTML = rg.b.value.toFixed(3);
+        ww[ 'a' ].innerHTML = rg.a.value.toFixed(2);
+        ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
 
         var wwT=rg.T.pos;
 
@@ -55,9 +55,9 @@
         var wwP=rg.P.pos;
         var PR = mat.unitVector( [wwR[0]-wwP[0], wwR[1]-wwP[1] ] ).abs;
         var PR_PT = (PR/PT);
-        ww[ 'PT' ].innerHTML = PT.toFixed(3);
-        ww[ 'PR' ].innerHTML = PR.toFixed(3);
-        ww[ 'PR-PT' ].innerHTML     = PR_PT.toFixed(3);
+        ww[ 'PT' ].innerHTML = PT.toFixed(2);
+        ww[ 'PR' ].innerHTML = PR.toFixed(2);
+        ww[ 'PR-PT' ].innerHTML     = PR_PT.toFixed(2);
     }
     //=========================================
     // \\// updates values during simulation
@@ -88,9 +88,9 @@
             .addClass('proof row1')
             .addClass('tostroke')
             .to(tb)();              
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
+        makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
+        makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
+        makeFormatterCell( row, 'xxx', '11111', 'xxxxxxxxx' );
         function makeFormatterCell( row, mcaption, val, id )
         {
             $$.c('td').html( mcaption ).to(row);
@@ -108,7 +108,7 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Model Data')
+                  .html(' ')
                   .to(row);
         //===================
         // \\// table caption
@@ -123,8 +123,8 @@
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'a', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
-        makeCl( row, 'b', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
+        makeCl( row, 'a', 'semi a', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
+        makeCl( row, 'b', 'semi b', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
 
         var row = $$.c('tr')
             //.addClass('tostroke')

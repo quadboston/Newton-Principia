@@ -22,10 +22,10 @@ Given parameters are: <br><br>
 ¦gamma¦gamma = BOM¦¦, <br>
 ¦angle-alpha¦alpha = BCA¦¦,<br>
 ¦angle-beta¦beta = CBA¦¦<br>
-¦balance-parameters¦c = CO¦¦, ¦CB¦CB=1¦¦, <br>
+¦core¦c = CO¦¦, ¦CB¦CB=1¦¦, <br>
 <br>
 Parameter ¦g-parameter¦g¦¦ = ¦g-parameter¦OM¦¦ varies. <br>
-When ¦g-parameter¦g¦¦ changes, point ¦generators¦D¦¦ runs along ¦ellipse¦conic curve¦¦.<br>
+When ¦g-parameter¦g¦¦ changes, point ¦constructors¦D¦¦ runs along ¦ellipse¦conic curve¦¦.<br>
 <br><br>
 
 

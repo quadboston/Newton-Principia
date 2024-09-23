@@ -17,6 +17,7 @@
         //====================================================
         // //\\ subapp regim switches
         //====================================================
+        sconf.insertDelayedBatch        = true;
         sconf.enableStudylab            = false;
         //for some standard sliders
         sconf.enableTools               = true;
@@ -82,25 +83,25 @@
 
         var predefinedTopics =
         {
-            "gamma"                 : [255,   0, 0, 1],
-            "g-parameter"           : [255,   0, 0, 1],
-            "balance-parameters"    : [255,   0, 0, 1],
-            "CB"                    : [255,   0, 0, 1],
+            "static"                : [0,     200, 255, 1],
+  
+            //with half opacity
+            "static-half"           : [0,     200, 255, 0.5],
 
-            "PT"                    : [255,   0, 0, 1],
+            "core"                  : [255,   0, 0, 1],
+            "core-half"             : [255,   0, 0, 0.5],
 
-            "base-figure"           : [0,     0, 255, 1],
-            "base-point"            : [0, 0, 200, 1],
-            "angle-alpha"           : [255,   0, 0, 1],
-            "angle-beta"            : [255,   0, 0, 1],
-
-            "static-generator"      : [255,   0, 255, 1],
+            "aux"                   : [255,   0, 255, 1],
+            "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
-            "tangent"               : [0,   150, 0, 1],
-            "given-parallelogram"   : [0,   200, 255, 1],
-            "generators"            : [0,   0,   255, 1]
         };
         let pt = predefinedTopics;
+        pt[ "gamma" ] = pt[ "core" ];
+        pt[ "g-parameter" ] = pt[ "core" ];
+        pt[ "angle-alpha" ] = pt[ "static-half" ];
+        pt[ "angle-beta" ] = pt[ "static-half" ];
+        pt[ "angle-alpha-core" ] = pt[ "core-half" ];
+        pt[ "angle-beta-core" ] = pt[ "core-half" ];
 
         var pointsOnPicture =
         {
@@ -116,7 +117,7 @@
   
             O : [originX_onPicture, originY_onPicture],
             H : [originX_onPicture, originY_onPicture],
-            AA : [568, 244],
+            A : [568, 244],
         };
         
         ///bigger diagram
@@ -142,7 +143,7 @@
             var O = pp.O;
             var M = pp.M;
             var N = pp.N;
-            var AA = pp.AA;
+            var A = pp.A;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
             mod2inn_scale = mat.unitVector(BC).abs;
             var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
@@ -162,12 +163,12 @@
             var ON = [ N[0] - O[0], N[1] - O[1] ];
             initial_Nunit = mat.unitVector(ON);
 
-            var BAA = mat.p1_to_p2( B, AA );
+            //var BAA = mat.p1_to_p2( B, A );
             //beta = -Math.asin( BAA.unitVec[1] ); 
             beta = 0.863;
 
             //c cc( 'beta fraction=' + (beta/Math.PI).toFixed(3) );
-            var CAA = mat.p1_to_p2( C, AA );
+            //var CAA = mat.p1_to_p2( C, A );
             //alpha = -Math.asin( CAA.unitVec[1] ); 
             alpha = 0.528;
 
@@ -184,83 +185,80 @@
         let pop = pointsOnPicture;
         var originalPoints =
         {
-            A : {
-                  caption: 'C',
+            C : {
                   pos: [0,0], //fake pos
-                  pcolor: pt['base-point'],
-                  cssClass: 'tp-base-figure tp-_C',
+                  pcolor: pt.static,
+                  cssClass: 'tp-static tp-_C',
                   initialR: pointRadius,
                   letterAngle : -90,
                   letterRotRadius : 20,
             },
             B : {
-                  caption: 'E',
                   pos: pop.B,
-                  pcolor: pt['base-point'],
-                  cssClass: 'tp-base-figure',
+                  pcolor: pt.static,
+                  cssClass: 'tp-static',
                   initialR: pointRadius,
                   letterAngle : -90,
                   letterRotRadius : 20,
             },
-            /*
-            C : {
-                  pos: pop.C,
-                  pcolor: pt['ellipse'],
-                  //cssClass: 'tp-base-figure',
-                  initialR: pointRadius,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
-            },
-            */
             D : {
-                  pcolor: pt[ "g-parameter" ],
-                  cssClass: 'tp-g-parameter',
+                  pcolor: pt[ "constructors" ],
+                  //cssClass: 'tp-g-parameter',
                   initialR: pointRadius,
-                  letterAngle : 0,
+                  letterAngle : 180,
                   letterRotRadius : 20,
             },
             O : {
                   pos: pop.O,
                   //pcolor: pt[ "g-parameter" ],
-                  //cssClass: 'tp-base-figure',
+                  //cssClass: 'tp-static',
+                  //cssClass : 'theorion--proof',
+                  cssClass: 'aspect--model',
                   initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
                   doPaintPname:false,
             },
             P : {
-                  pos: pop.P,
-                  pcolor: pt['base-point'],
+                  cssClass: 'theorion--proof',
+                  pcolor: pt.static,
                   initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
-            /*
-            M : {
-                  pos: pop.M,
-                  pcolor: pt['base-point'],
-                  initialR: pointRadius,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
-            },
-            */
             N : {
                   pos: pop.N,
-                  pcolor: pt['base-point'],
+                  pcolor: pt.static,
                   initialR: pointRadius,
-                  letterAngle : 0,
+                  letterAngle : -45,
+                  letterRotRadius : 20,
+            },
+            n : {
+                  cssClass: 'subessay--converse-proof',
+                  pcolor: pt.core,
+                  initialR: pointRadius,
+                  letterAngle : -45,
+                  letterRotRadius : 20,
+            },
+            p : {
+                  cssClass: 'subessay--converse-proof',
+                  pcolor: pt.constructors,
+                  initialR: pointRadius,
+                  letterAngle : 180,
                   letterRotRadius : 20,
             },
             T : {
+                  cssClass: 'subessay--direct-proof',
                   pos: pop.T,
-                  pcolor: pt['base-point'],
+                  pcolor: pt.core,
                   initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
             R : {
+                  cssClass: 'subessay--direct-proof',
                   pos: pop.R,
-                  pcolor: pt['base-point'],
+                  pcolor: pt.core,
                   initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
@@ -268,14 +266,13 @@
             //============================================
             // //\\ sliders
             //============================================
-            AA : {
-                  caption: 'A',
+            A : {
                   draggableX : true,
                   draggableY : true,
-                  pos: pop.AA,
-                  pcolor: pt['base-point'],
+                  pos: pop.A,
+                  pcolor: pt.static,
                   style: {fill: '#ffffff'},
-                  cssClass: 'tp-base-figure',
+                  cssClass: 'tp-static',
                   initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
@@ -284,23 +281,22 @@
                   draggableX : true,
                   pos: pop.H,
                   //pcolor: pt[ "g-parameter" ],
-                  pcolor: pt['base-point'],
+                  pcolor: pt.static,
                   style: {fill: '#ffffff'},
-                  cssClass: 'tp-base-figure',
+                  cssClass: 'tp-static',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
+                  doPaintPname:false,
             },
-            G : {
-                  caption: 'M',
+            M : {
                   draggableY : true,
-                  //pos: pop.G,
-                  pcolor: pt['base-point'],
+                  pcolor: pt.core,
                   style: {fill: '#ffffff'},
-                  cssClass: 'tp-base-figure',
+                  cssClass: 'tp-static',
                   initialR: pointRadius,
-                  letterAngle : -70,
-                  letterRotRadius : 20,
+                  letterAngle : 225,
+                  letterRotRadius : 25,
             },
             //============================================
             // \\// sliders
@@ -310,38 +306,33 @@
         var linesArray =
         [
             //-------------------------
-            // //\\ base-figure
+            // //\\ static
             //-------------------------
             {
                 //-------------------------------------------------
                 // \\// given static angles alpha, beta
                 //-------------------------------------------------
                 //'AABAangleA
-                'AA,B' :
-                {   //good
-                    pcolor : [222,0, 0], // predefinedTopics["base-figure"],
+                'AB' :
+                {
+                    pcolor : pt.static,
                     cssClass : 'tp-angle-beta',
                 },
             },
             {
+                'BA' :
+                {
+                    pcolor : pt.static,
+                },
+            },
+            {
                //'AABAangleAA'
-               'AB' :
+               'CB' :
                {
-                    pcolor : [222,0, 0], //predefinedTopics["base-figure"],
+                    pcolor : pt.static,
                     cssClass : 'tp-angle-beta',
                },
             },
-
-            /*
-            {
-               //'AABAangleAA'
-               'BA' :
-               {
-                    pcolor : [222, 0, 0], //predefinedTopics["base-figure"],
-                    cssClass : 'tp-CB',
-               },
-            },
-            */
             //-------------------------------------------------
             // \\// given static angles alpha, beta
             //-------------------------------------------------
@@ -350,17 +341,17 @@
             // //\\ decorates draggers
             //-----------------------------------------------
             {
-                'GB' :
+                'MB' :
                 {
-                    pcolor : predefinedTopics["base-figure"],
-                    cssClass : 'tp-generators',
+                    pcolor : pt[ "core" ],
+                    cssClass : 'tp-constructors',
                 },
             },
             {
-                'GA' :
+                'MC' :
                 {
-                    pcolor : predefinedTopics["base-figure"],
-                    cssClass : 'tp-generators',
+                    pcolor : pt[ "core" ],
+                    cssClass : 'tp-constructors',
                 },
             },
             //-----------------------------------------------
@@ -373,57 +364,133 @@
             {
                 'BH' :
                 {
-                    pcolor : pt[ "gamma" ],
+                    pcolor : pt.static,
                 },
             },
             {
-                'GH' :
+                'MH' :
                 {
-                    pcolor : pt[ "gamma" ],
+                    cssClass: 'subessay--direct-proof',
+                    pcolor : pt[ "core" ],
                 },
             },
             {
-                'NG' :
+                'MN' :
                 {
-                    pcolor : pt[ "generators" ],
+                    pcolor : pt[ "core" ],
                 },
             },
-            /*
+  
             {
-                'CH' :
+                nN :
                 {
-                    pcolor : pt[ "balance-parameters" ],
+                    pcolor : pt.core,
+                    cssClass: 'subessay--converse-proof',
                 },
             },
-  */
             {
-                'BA' :
+                Cn :
                 {
-                    pcolor : pt[ "base-figure" ],
+                    pcolor : pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+  
+            {
+                Bn :
+                {
+                    pcolor : pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+  
+
+  
+            {
+                Cp :
+                {
+                    pcolor : pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+  
+            {
+                Bp :
+                {
+                    pcolor : pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+  
+            {
+                'BC' :
+                {
+                    pcolor : pt.static,
+                    cssClass:'tp-angle-alpha tp-angle-beta',
+                },
+            },
+            {
+                'BN' :
+                {
+                    pcolor : pt.static,
+                },
+            },
+            {
+                'CN' :
+                {
+                    pcolor : pt.static,
                 },
             },
             {
                 'BD' :
                 {
-                    pcolor : pt[ "generators" ],
+                    pcolor : pt[ "constructors" ],
                 },
             },
             {
-                'AD' :
+                CR : {
+                    cssClass: 'subessay--direct-proof',
+                    pcolor: pt[ "constructors" ],
+                },
+            },
+            {
+                BT : {
+                      cssClass: 'subessay--direct-proof',
+                      pcolor: pt[ "constructors" ],
+                },
+            },
+            {
+                'CD' :
                 {
-                    pcolor : pt[ "generators" ],
+                    pcolor : pt[ "constructors" ],
                 },
             },
             {
-                'A,AA' :
+                'PT' :
                 {
-                    pcolor : pt[ "base-figure" ],
+                    cssClass: 'subessay--direct-proof',
+                    pcolor : pt[ "core" ],
                 },
             },
             {
-                'B,AA' :
-                {//good
-                    pcolor : [0,222, 0, 1], //pt[ "base-figure" ],
+                'PR' :
+                {
+                    cssClass: 'subessay--direct-proof',
+                    pcolor : pt[ "core" ],
+                },
+            },
+            {
+                'PC' :
+                {
+                    cssClass: 'theorion--proof',
+                    pcolor : pt[ "static" ],
+                },
+            },
+            {
+                'PB' :
+                {
+                    cssClass: 'theorion--proof',
+                    pcolor : pt[ "static" ],
                 },
             },
             //-------------------------------------------------
@@ -436,18 +503,18 @@
             //-------------------------------------------------
             //'AAABangleA',
             {
-                'AA,A' :
+                'AC' : //line AC
                 {
-                    pcolor : pt[ "base-figure" ],
+                    pcolor : pt[ "static" ],
                     cssClass:'tp-angle-alpha',
                 },
             },
             //AAABangleB
             {
-                'A,B' :
+                'AB' :
                 {
-                    pcolor : pt[ "base-figure" ],
-                    cssClass:'tp-angle-alpha',
+                    pcolor : pt[ "static" ],
+                    cssClass:'tp-angle-beta',
                 },
             },
             //-------------------------------------------------

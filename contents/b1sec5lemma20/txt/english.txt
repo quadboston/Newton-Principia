@@ -1,13 +1,14 @@
 *::*claim|english
 {
+  "default" : "1",
   "menuCaption" : "English"
 }
 *..*
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
-¦BP¦¦¦ ¦BP¦PB¦¦¦
+¦BP¦¦¦ ¦BP¦PB¦¦¦ ¦BC¦¦¦ ¦Pt¦¦¦ ¦Pr¦¦¦ ¦BT¦¦¦ ¦BC¦CB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
-¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦
-¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦
+¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦ ¦IG¦¦¦ ¦CR¦RC¦¦¦ ¦CD¦DC¦¦¦ 
+¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦HB¦¦¦
 
 ¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦
 ¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦
@@ -23,7 +24,6 @@ Page 485.
 
 *::*proof|english
 {
-  "default" : "1",
   "subessayCaption" : "Case 1",
   "subessay" : "case1"
 }
@@ -49,3 +49,40 @@ But if PR and PT are supposed in a given ratio to each other, then on working ba
 Page 486.
 
 
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+Hence, if BC is drawn cutting PQ in r, and if Pt is taken
+on PT in the ratio to Pr which PT has to PR, Bt will be a tangent of the
+¦ellipse¦conic¦¦ at point B. For conceive of point ¦D¦¦ as coming together with point B
+in such a way that, as chord BD vanishes, BT becomes a tangent; then CD
+and BT will coincide with CB and Bt.
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+And vice versa, if Bt is a tangent and BD and CD meet
+in any point ¦D¦¦ of the ¦ellipse¦conic¦¦, PR will be to PT as Pr to Pt. And conversely,
+if PR is to PT as Pr to Pt, BD and CD will meet in some point ¦D¦¦ of the
+¦ellipse¦conic¦¦.
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+One ¦ellipse¦conic¦¦ does not intersect another conic in more than
+four points. For, if it can be done, let two conies pass through five points ¦A¦¦,
+B, C, P, and O, and let the straight line BD cut these conies in points ¦D¦¦ and
+d, and let the straight line ¦Cd¦¦ cut PQ in q. Then PR is to PT as Pq to PT;
+hence PR and Pq are equal to each other, contrary to the hypothesis.

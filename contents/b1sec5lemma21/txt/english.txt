@@ -4,11 +4,76 @@
   "menuCaption" : "English"
 }
 *..*
-to be entered
 
+¦AC¦CA¦¦¦ ¦BC¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦PC¦CP¦¦¦ ¦PC¦¦¦ ¦PB¦¦¦ ¦PB¦BP¦¦¦
 
+¦PT¦¦¦ ¦BT¦¦¦ ¦CR¦¦¦
+¦PR¦¦¦ ¦MC¦CM¦¦¦ ¦MB¦BM¦¦¦ ¦CB¦¦¦ 
+¦BN¦¦¦ ¦MN¦¦¦ ¦MN¦NM¦¦¦ ¦CN¦¦¦ ¦CN¦NC¦¦¦
+¦nN¦¦¦
 
+¦B¦¦¦ ¦C¦¦¦ ¦P¦¦¦ ¦T¦¦¦ ¦R¦¦¦
+¦H¦¦¦ ¦N¦¦¦ ¦M¦¦¦ ¦n¦¦¦ ¦p¦¦¦
+
+¦ellipse¦conic¦¦¦
+¦angle-beta-core¦MBD¦¦¦ ¦angle-beta-core¦DBM¦¦¦
+¦angle-alpha-core¦MCD¦¦¦ ¦angle-alpha-core¦DCM¦¦¦
+
+¦angle-beta¦ABC¦¦¦ ¦angle-alpha¦ACB¦¦¦
+
+If two movable and infinite straight lines BM and CM, drawn through given points B and C as poles, describe by their meeting-point M a third straight line MN given in position, and if two other infinite straight lines BD and CD are drawn, making ¦angle-alpha angle-beta¦given¦¦ angles MBD and MCD with the first two lines at those given points B and C; then I say that the point ¦D¦¦, where these two lines BD and CD meet, will describe a conic passing through points B and C. And conversely, if the point ¦D¦¦, where the straight lines BD and CD meet, describes a conic passing through the given points B, C, and ¦A¦¦, and the angle DBM is always equal to the given angle ABC, and the angle DCM is always equal to the given angle ACB; then point M will lie in a ¦MN¦straight line¦¦ given in position.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 486.
 
 
 *::*proof|english
-to be entered
+{
+  "menuCaption" : "English",
+  "subessayCaption" : "Direct proof",
+  "subessay" : "direct-proof"
+}
+*..*
+
+For let point N be given in the straight line MN; and when the movable point M falls on the stationary point N, let the movable point ¦D¦¦ fall on the stationary point P. Draw CN, BN, CP, and BP, and from point P draw the straight lines PT and PR meeting BD and CD in T and R and forming an angle ¦PT PB¦BPT¦¦ equal to the given angle ¦BN MN¦BNM¦¦, and an angle ¦PR PC¦CPR¦¦ equal to the given angle ¦CN MN¦CNM¦¦. Since therefore (by hypothesis) angles MBD and ¦BN PB¦NBP¦¦ are equal, as are also angles MCD and ¦CN PC¦NCP¦¦,
+
+take away the angles ¦BD BN¦NBD¦¦ and ¦CD CN¦NCD¦¦ that are common, and there will remain the equal angles ¦MB BN¦NBM¦¦ and ¦BT PB¦PBT¦¦,
+
+
+¦MC CN¦NCM¦¦ and ¦CR PC¦PCR¦¦;
+
+and therefore triangles ¦MN BN/MB¦NBM¦¦ and ¦PT PB/BT¦PBT¦¦ are similar, as are also triangles ¦MC CN/NM¦NCM¦¦ and ¦PR PC/CR¦PCR¦¦.
+
+And therefore PT is to NM as PB to ¦BN¦NB¦¦, and PR is to NM as PC to NC. But the points B, C, N, and P are stationary. Therefore, PT and PR have a given ratio to NM and accordingly a given ratio to each other; and thus
+
+(<a target="_blank" href="?conf=sappId=b1sec5lemma20">by lem. 20</a>)
+
+the point ¦D¦¦, the perpetual meeting-point of the movable straight lines BT and CR, lies in a conic passing through points B, C, and P. Q.E.D.
+
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 487.
+
+
+*::*proof|english
+{
+  "menuCaption" : "English",
+  "subessayCaption" : "Converse proof",
+  "subessay" : "converse-proof"
+}
+*..*
+
+
+And conversely, if the movable point ¦D¦¦ lies in a conic passing through the given points B, C, and ¦A¦¦; and if angle DBM is always equal to the given angle ABC, and the angle DCM is always equal to the given angle ACB; and if, when point ¦D¦¦ falls successively on any two stationary points p and P of the conic, the movable point M falls successively on the two stationary points n and N; then through these same points n and N draw the straight line nN, and this will be the perpetual locus of the movable point M. For, if it can be done, let point M move in some curved line. Then the point ¦D¦¦ will lie in a conic passing through the five points B, C, ¦A¦¦, p, and P when the point M perpetually lies in a curved line. But from what has already been demonstrated, point ¦D¦¦ will also lie in a conic passing through the same five points B, C, ¦A¦¦, p, and P when point M perpetually lies in a straight line. Therefore, two conies will pass through the same five points, contrary to
+ 
+<a target="_blank" href="?conf=sappId=b1sec5lemma20,theorionId=corollary,aspectId=english,subessayId=corollary3">
+lem. 20, corol. 3.</a>
+
+Therefore, it is absurd to suppose the point M to be moving in a curved line. Q.E.D. 
+
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 487.

@@ -32,11 +32,29 @@
                 /*      proof vs claim                                    */
                 /*========================================================*/
                 .bsl-approot.theorion--proof .theorion--claim,
-                .bsl-approot.theorion--claim .theorion--proof {
+                .bsl-approot.theorion--proof .theorion--corollary,
+                .bsl-approot.theorion--claim .theorion--proof,
+                .bsl-approot.theorion--claim .theorion--corollary
+                {
                     visibility:hidden;
                 }    
                 .bsl-approot.theorion--claim .theorion--claim,
-                .bsl-approot.theorion--proof .theorion--proof {
+                .bsl-approot.theorion--corollary .theorion--corollary,
+                .bsl-approot.theorion--proof .theorion--proof
+                {
+                    visibility:visible;
+                }    
+                .bsl-approot.aspect--english .aspect--model,
+                .bsl-approot.aspect--english .aspect--latin,
+                .bsl-approot.aspect--latin .aspect--english
+                .bsl-approot.aspect--latin .aspect--model
+                {
+                    visibility:hidden;
+                }    
+                .bsl-approot.aspect--model .aspect--model,
+                .bsl-approot.aspect--english .aspect--english,
+                .bsl-approot.aspect--latin .aspect--latin
+                {
                     visibility:visible;
                 }    
                 /*========================================================*/

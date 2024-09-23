@@ -47,11 +47,12 @@
         ww[ 'b' ].innerHTML = rg.b.value.toFixed(3);
 
         //todm this is a patch: do use Pr/Pt
-        var g = Math.abs( rg.g.value ) < 1e-20 ? 1 : rg.g.value;
-        ww[ 'g' ].innerHTML = g.toFixed(3);
+        let grad = '<sup>ᵒ</sup>';
+        let rad2grad = 180/Math.PI;
+        ww[ 'eta' ].innerHTML = (rg.angleBCM*rad2grad).toFixed(1) + grad;
 
-        ww[ 'beta' ].innerHTML = rg.beta.value.toFixed(3);
-        ww[ 'alpha' ].innerHTML = rg.alpha.value.toFixed(3);
+        ww[ 'beta' ].innerHTML = (rg.beta.value*rad2grad).toFixed(1) + grad;
+        ww[ 'alpha' ].innerHTML = (rg.alpha.value*rad2grad).toFixed(1) + grad;
 
         //ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
     }
@@ -84,9 +85,9 @@
             .addClass('proof row1')
             .addClass('tostroke')
             .to(tb)();              
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxxxxxx', '11111', 'xxxxxxxxx' );
+        makeFormatterCell( row, 'angle.BCM xxx', '1111', 'xxxxx' );
+        makeFormatterCell( row, 'angle.BCM.xxx', '1111', 'xxxxx' );
+        makeFormatterCell( row, 'dummy', 'dummy', 'xxxxx' );
         function makeFormatterCell( row, mcaption, val, id )
         {
             $$.c('td').html( mcaption ).to(row);
@@ -104,7 +105,7 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html('Model Data')
+                  .html('')
                   .to(row);
         //===================
         // \\// table caption
@@ -117,19 +118,21 @@
         //===================
         var row = $$.c('tr')
             //.addClass('tostroke')
-            .to(tb)();
-        makeCl( row, 'a', 'c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
-        makeCl( row, 'b', '1-c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'balance-parameters' );
+            .to(tb)
+            .addClass( 'aspect--model' )
+            ();
+        makeCl( row, 'a', 'c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'core' );
+        makeCl( row, 'b', '1-c', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'core' );
 
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'g', 'g', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'g-parameter' );
+        makeCl( row, 'eta', 'angle BCM', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'eta' );
 
         var row = $$.c('tr')
             .to(tb)();
-        makeCl( row, 'alpha', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
-        makeCl( row, 'beta', null, null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
+        makeCl( row, 'alpha', 'angle ACB', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-alpha' );
+        makeCl( row, 'beta', 'angle ABC', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'angle-beta' );
 
         /*
         var row = $$.c('tr')

@@ -24,6 +24,7 @@
                 'txt/english.txt',
                 'txt/addendum.txt',
             ],
+            /*
             //optional additional reference html
             referencesForAllLemmaEssays : `
                 <br><br>
@@ -36,6 +37,7 @@
                      License: public domain.
                 </a>
             `,
+            */
         };
     }
 

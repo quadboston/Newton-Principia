@@ -13,9 +13,9 @@
     
     function completesSlidersCreation()
     {
-        rg.G.acceptPos = function( newPos )
+        rg.M.acceptPos = function( newPos )
         {
-            var G = rg.G;
+            var M = rg.M;
             var newValue = pos2Gpar( newPos )
             //protects drag from going outside the window
             if( newValue < -6.5 || newValue > 2.5 ) return;
@@ -34,9 +34,8 @@
         }
         
         
-        rg.AA.acceptPos = function( newPos )
+        rg.A.acceptPos = function( newPos )
         {
-            var AA = rg.AA;
             var { alpha, beta } = pos2alpha8beta( newPos )
             rg.alpha.value = alpha;
             rg.beta.value = beta;
@@ -44,13 +43,13 @@
 
             function pos2alpha8beta( pos )
             {
-                var BA = mat.p1_to_p2( rg.B.pos, pos );
-                var cosBeta = -BA.unitVec[0];
-                var beta = Math.acos( cosBeta ) * ( BA.unitVec[1] < 0 ? -1 : 1 );
+                var BC = mat.p1_to_p2( rg.B.pos, pos );
+                var cosBeta = -BC.unitVec[0];
+                var beta = Math.acos( cosBeta ) * ( BC.unitVec[1] < 0 ? -1 : 1 );
 
-                var A_AA = mat.p1_to_p2( rg.A.pos, pos );
-                var cosAlpha = A_AA.unitVec[0];
-                var alpha = Math.acos( cosAlpha ) * ( A_AA.unitVec[1] < 0 ? -1 : 1 );
+                var A_A = mat.p1_to_p2( rg.C.pos, pos );
+                var cosAlpha = A_A.unitVec[0];
+                var alpha = Math.acos( cosAlpha ) * ( A_A.unitVec[1] < 0 ? -1 : 1 );
                 return { alpha, beta };
             }            
         }
@@ -58,8 +57,8 @@
         
         rg.H.acceptPos = function( newPos )
         {
-            var H = rg.H;
-            rg.a.value = newPos[0] - rg.A.pos[0];
+            //var H = rg.H;
+            rg.a.value = newPos[0] - rg.C.pos[0];
             return true;
         }
         

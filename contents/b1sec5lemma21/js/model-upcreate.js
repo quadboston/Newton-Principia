@@ -1,7 +1,7 @@
 ( function() {
     var {
-        sn, mat,
-        stdMod, rg, sconf, ssF,
+        sn, mat, nspaste,
+        amode, stdMod, rg, sconf, ssF,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -23,16 +23,38 @@
     function model_upcreate()
     {
         baseParams_2_extendedParams();
-        var {D,G,AA} = calculateConicPoint_algo( rg.g.value );
+        var {D,M,A,P, angleBCM} = calculateConicPoint_algo( rg.g.value );
+        rg.angleBCM = angleBCM;
         setRgPoint( 'D', D );
-        setRgPoint( 'G', G );
-        setRgPoint( 'AA', AA );
+        setRgPoint( 'M', M );
+        setRgPoint( 'A', A );
+        setRgPoint( 'P', P );
         //decorations:
         var N = [
             rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
             -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
         ];
         setRgPoint( 'N', N );
+
+        if( amode.subessay === 'converse-proof' ) {
+            let np = rg.n.pos;
+            nspaste( np, mat.dropLine( 1.4, rg.N.pos, rg.M.pos, ) );
+            {
+                //point p
+                let alpha = rg.alpha.value;
+                let beta = rg.beta.value;
+                let B = rg.B.pos;
+                let C = rg.C.pos;
+                let BN = mat.p1_to_p2( B, np ).vector;
+                let CN = mat.p1_to_p2( C, np ).vector;
+                //rotates sides of triangle n to cross them into point p
+                let Bp = mat.rotatesVect( BN, -beta );
+                let Cp = mat.rotatesVect( CN, alpha );
+                nspaste( rg.p.pos, mat.linesCross( Bp, B, Cp, C ) );
+                //point M
+                rg.M.pos[0] += 0.1;
+            }
+        }
     }
     //***************************************************
     // \\// updates figure (and creates if none)
@@ -48,23 +70,23 @@
     function baseParams_2_extendedParams()
     {
         rg.b.value = 1- rg.a.value;
-        setRgPoint( 'H', [ rg.A.pos[0] + rg.a.value, rg.O.pos[1] ] );
+        setRgPoint( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
     }
 
 
-    ///input:   parameter g, along the model line OG
+    ///input:   parameter g, along the model line OM (former OG)
     function calculateConicPoint_algo( g )
     {
-        var a = rg.a.value;
-        var b = rg.b.value;
+        var a = rg.a.value; //AH = a
+        var b = rg.b.value; //BH = b
         var gamma = rg.gamma.value;
         var alpha = rg.alpha.value;
         var beta = rg.beta.value;
-        var A = rg.A.pos;
+        var C = rg.C.pos;
         var B = rg.B.pos;
 
         //explanation:
-        //triangle ABG sines theorem: b*sin(BS) = g*sin(BS+G)
+        //triangle ABM sines theorem: b*sin(BS) = g*sin(BS+G)
         //(b-g*cosG)tgBS = gsinG;
         var cosG = Math.cos(gamma);
         var sinG = Math.sin(gamma);
@@ -90,16 +112,28 @@
         }
         var addAngleAlpha = alpha-AS;
         var rayA = [ Math.cos( addAngleAlpha ), Math.sin( addAngleAlpha ) ];
-        var D = mat.linesCross( rayA, A, rayB, B );
-        var G = [ g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1] ];
+        var D = mat.linesCross( rayA, C, rayB, B );
+        var M = [ g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1] ]; //was point G
 
-        // //\\ point AA
+        // //\\ point A
         var rayB = [ -Math.cos( beta ), Math.sin( beta ) ];
         var rayA = [ Math.cos( alpha ), Math.sin( alpha ) ];
-        var AA = mat.linesCross( rayA, A, rayB, B );
-        // \\// point AA
+        var A = mat.linesCross( rayA, C, rayB, B );
+        // \\// point A
 
-        return { D, G, AA };
+        // //\\ point P
+        {
+            let BN = mat.p1_to_p2( rg.B.pos, rg.N.pos ).vector;
+            let CN = mat.p1_to_p2( rg.C.pos, rg.N.pos ).vector;
+            let Bp = mat.rotatesVect( BN, -beta );
+            let Cp = mat.rotatesVect( CN, alpha );
+            var P = mat.linesCross( Bp, B, Cp, C );
+        }
+        // \\// point P
+
+        let angleBCM = Math.asin( mat.p1_to_p2(
+                                  rg.C.pos, rg.M.pos ).unitVec[1] );
+        return { D, M, A, P, angleBCM };
     }
     //===================================================
     // \\// registers model pars into common scope

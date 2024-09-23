@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, nssvg, has, haz, mat,
-        sconf, sDomF, sDomN, ssD, ssF,
+        amode, sconf, sDomF, sDomN, ssD, ssF,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         ssFExportList :
@@ -39,6 +39,12 @@
         //this is a "policy" ... should be in the state manager if any ...
         rg.detected_user_interaction_effect_DONE = false;
         rg.allLettersAreHidden = false; //!rg.detected_user_interaction_effect_DONE;
+
+        ///creates addendum points non-visibility machinery
+        fapp.fappRoot$.removeClass( 'subessay--direct-proof' );
+        fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
+        fapp.fappRoot$.removeClass( 'subessay--0' );
+        fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
     }
 
     //=========================================================
@@ -82,12 +88,12 @@
                 start:start_g,
                 step,
                 curve:function( g ) {
-                    var { D, G, AA } = calculateConicPoint_algo( g );
+                    var { D, M, A } = calculateConicPoint_algo( g );
                     var med = ssF.mod2inn( D );
                     return { x:med[0], y:med[1] };
                 },
                 parent : stdMod.mmedia,
-                'stroke-width':1,
+                'stroke-width':3,
                 stroke  : ns.arr2rgba( ssD['fixed-colors'][ "ellipse" ] ),
                 dontClose : true,
             });
@@ -97,9 +103,25 @@
 
         //---------------------------------------
         // //\\ angles alpha and beta
+        //      , static angles
         //---------------------------------------
         var ANGLE_SIZE = 0.1;
-        //var B_AA = mat.p1_to_p2(rg.B.pos, rg.AA.pos );
+        
+         rg.alpha.angleSvg = nssvg.ellipseSector({
+            stepsCount : 20,
+            x0 : rg.C.medpos[0],
+            y0 : rg.C.medpos[1],
+            a  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
+            t0 : 0,
+            t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
+            svgel : rg.alpha.angleSvg,
+            parent : stdMod.mmedia,
+            fill : 'transparent',
+            'stroke-width':1,
+        });
+        $$.$(rg.alpha.angleSvg).cls( 'tp-angle-alpha tofill' );
+        
         rg.beta.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             // //\\ todm ... mod2inn_scale must be incapsulated in model
@@ -109,20 +131,20 @@
             //todm ... do a better programming
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            a  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
+            b  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
             t0 : Math.PI-rg.beta.value*sconf.MONITOR_Y_FLIP,
             // \\// todm ... mod2inn_scale must be incapsulated in model
 
             t1 : Math.PI,
             svgel : rg.beta.angleSvg,
             parent : stdMod.mmedia,
-            //fill : 'rgba( 255, 0, 0, 0.1 )',
             fill : 'transparent',
             'stroke-width':1,
             //a, b, t0, t1
         });
-        $$.$(rg.beta.angleSvg).cls( 'tp-angle-beta tostroke' );
+        //static angle
+        $$.$(rg.beta.angleSvg).cls( 'tp-angle-beta tofill' );
 
         /*
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,31 +169,16 @@
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         */
 
-        var A_AA = mat.p1_to_p2(rg.A.pos, rg.AA.pos );
-        rg.alpha.angleSvg = nssvg.ellipseSector({
-            stepsCount : 20,
-            x0 : rg.A.medpos[0],
-            y0 : rg.A.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
-            t0 : 0,
-            t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
-            svgel : rg.alpha.angleSvg,
-            parent : stdMod.mmedia,
-            fill : 'transparent',
-            'stroke-width':1,
-        });
-        $$.$(rg.alpha.angleSvg).cls( 'tp-angle-alpha tostroke' );
-
         // //\\ applied angles
+        //      , algorithm core-angles
         // //\\ applied alpha
-        var AG = mat.p1_to_p2(rg.A.pos, rg.G.pos );
-        var cosAlphaS = AG.unitVec[0];
-        var alphaS = Math.acos( cosAlphaS ) * ( AG.unitVec[1] < 0 ? -1 : 1 );
+        var CM = mat.p1_to_p2(rg.C.pos, rg.M.pos );
+        var cosAlphaS = CM.unitVec[0];
+        var alphaS = Math.acos( cosAlphaS ) * ( CM.unitVec[1] < 0 ? -1 : 1 );
         rg.alpha.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
-            x0 : rg.A.medpos[0],
-            y0 : rg.A.medpos[1],
+            x0 : rg.C.medpos[0],
+            y0 : rg.C.medpos[1],
             //a  : sconf.mod2inn_scale*AG.abs*0.3,
             //b  : sconf.mod2inn_scale*AG.abs*0.3,
             a  : sconf.mod2inn_scale*ANGLE_SIZE,
@@ -184,12 +191,13 @@
             stroke: 'transparent',
             'stroke-width':1,
         });
-        $$.$(rg.alpha.appliedAngleSvg).cls( 'tp-angle-alpha tofill' );
+        //MCD
+        $$.$(rg.alpha.appliedAngleSvg).cls( 'tp-angle-alpha-core tofill' );
         // \\// applied alpha
         // //\\ applied beta
-        var BG = mat.p1_to_p2(rg.B.pos, rg.G.pos );
-        var cosBetaS = BG.unitVec[0];
-        var betaS = Math.acos( cosBetaS ) * ( BG.unitVec[1] < 0 ? -1 : 1 );
+        var BM = mat.p1_to_p2(rg.B.pos, rg.M.pos );
+        var cosBetaS = BM.unitVec[0];
+        var betaS = Math.acos( cosBetaS ) * ( BM.unitVec[1] < 0 ? -1 : 1 );
         rg.beta.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.B.medpos[0],
@@ -204,7 +212,8 @@
             stroke: 'transparent',
             'stroke-width':1,
         });
-        $$.$(rg.beta.appliedAngleSvg).cls( 'tp-angle-beta tofill' );
+        //MBD
+        $$.$(rg.beta.appliedAngleSvg).cls( 'tp-angle-beta-core tofill' );
         // \\// applied alpha
         // \\// applied angles
         //---------------------------------------

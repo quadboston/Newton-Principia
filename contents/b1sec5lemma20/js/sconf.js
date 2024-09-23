@@ -61,7 +61,7 @@
         sconf.default_tp_lightness = 30;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4 * controlsScale ),
+        handleRadius            = Math.floor( 3.5 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
@@ -83,46 +83,48 @@
         
         var predefinedTopics =
         {
-            "key-triangle"          : [255,   0, 0, 1],
-            "key-parts"             : [255,   0, 0, 1],
-            "similar-triangle"      : [0,     200, 255, 1],
-
-            "PT"                    : [255,   0, 0, 1],
-
-            "base-figure"           : [0,     200, 255, 1],
-            "static-generator"      : [255,   255, 200, 1],
+            "static"                : [0,     200, 255, 1],
+            "core"                  : [255,   0, 0, 1],
+            "aux"                   : [255,   0, 255, 1],
+            "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
-            "tangent"               : [0,   150, 0, 1],
-            "given-parallelogram"   : [0,   200, 255, 1],
-            "generators"            : [200, 150, 0, 1],
-            "aux-dots"              : [200, 0, 200, 1],
         };
-        
+        let pt = predefinedTopics;   
+        pt[ "key-triangle" ] = pt.core;
+        pt[ "key-parts" ] = pt.core;
+        pt[ "similar-triangle" ] = pt.static;
+        pt.PT = pt.core;
+        pt[ "base-figure" ] = pt.core;
+        pt[ "static-generator" ] = pt[ "constructors" ];
+        pt[ "given-parallelogram" ] = pt.static;
+        pt[ "generators" ] = pt[ "constructors" ];
+        pt[ "tangent" ] = pt[ "constructors" ];
+        pt[ "aux-dots" ] = pt.aux;
         
         var originalPoints =
         {
             P : { pos: [996, 570],
-                  pcolor: predefinedTopics["key-triangle"],
+                  pcolor: pt.static,
                   cssClass: 'tp-key-triangle',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             A : { pos: [623, 1232],
-                  pcolor: predefinedTopics['base-figure'],
+                  pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             B : { pos: [1497, 1230],
-                  pcolor: predefinedTopics['base-figure'],
+                  pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   //style: {fill: '#ffffff'}, works
                   initialR: pointRadius,
                 },
             C : { pos: [509,383],
-                  pcolor: predefinedTopics['base-figure'],
+                  pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   initialR: pointRadius,
                   letterAngle : 45,
@@ -131,49 +133,49 @@
   
             // //\\ aux points
             G : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : 45,
                  },
             I : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             H : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : -90,
                    letterRotRadius : 20,
                  },
             E : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             K : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : 90,
                    letterRotRadius : 20,
                 },
             F : {
-                   pcolor : predefinedTopics["aux-dots"],
+                   pcolor : pt.aux,
                    cssClass : 'theorion--proof',
                    letterAngle : 0,
                    letterRotRadius : 20,
                 },
             t : { pos: [1511, 574],
-                  pcolor : predefinedTopics["aux-dots"],
+                  pcolor : pt.aux,
                   cssClass : 'theorion--proof',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             r : { pos: [1028, 830],
-                  pcolor : predefinedTopics["aux-dots"],
+                  pcolor : pt.aux,
                   cssClass : 'theorion--proof',
                   initialR: pointRadius,
                 },
@@ -183,14 +185,14 @@
             ///builds center point first to be used in ellipse
             ///-------------------------------------------------
             O : { pos: [originX_onPicture, originY_onPicture],
-                  cssClass: 'aspect--model tp-aspect-model tp-base-figure',
+                  cssClass: 'aspect--model tp-base-figure',
                   r : pointRadius,
                   letterRotRadius : 20,
                 },
 
             //derived points, should not be used in model
             Q : { pos: [1077, 1231],
-                  pcolor: predefinedTopics['base-figure'],
+                  pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   initialR: pointRadius,
                   letterAngle : 45,
@@ -210,7 +212,7 @@
                   letterRotRadius : 20,
                 },
             S : { pos: [532,561],
-                  pcolor: predefinedTopics['base-figure'],
+                  pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   initialR: pointRadius,
                   letterAngle : 45,
@@ -230,7 +232,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'semiaxis a',
+                    caption : 'semi a (semiaxis a)',
                     draggableX : true,
                     draggableY : false,
                     
@@ -269,31 +271,39 @@
         
         var linesArray =
         [
+            { 'KS' : {
+                        pcolor : pt.aux,
+                    }
+            },
+            { 'AE' : {
+                        pcolor : pt.aux,
+                    }
+            },
            //-------------------------
            // //\\ base-figure
            //-------------------------
            { 'CA' : {
-                        pcolor : predefinedTopics["base-figure"],
+                        pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
            },
            { 'BC' : {
-                        pcolor : predefinedTopics["base-figure"],
+                        pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
            },
            { 'BA' : {
-                        pcolor : predefinedTopics["base-figure"],
+                        pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
            },
            { 'PB' : {
-                        pcolor : predefinedTopics["base-figure"],
+                        pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
            },
            { 'PC' : {
-                        pcolor : predefinedTopics["base-figure"],
+                        pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
            },
@@ -326,39 +336,32 @@
             // //\\ given parallelogram
             //-------------------------
             { 'PQ' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
             { 'AS' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
             { 'AC' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
             { 'AQ' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
             { 'QA' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
-            /*
-            { 'rQ' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
-                        cssClass : 'tp-given-parallelogram',
-                    }
-            },
-            */
             { 'PS' : {
-                        pcolor : predefinedTopics["given-parallelogram"],
+                        pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
             },
@@ -370,22 +373,22 @@
             // //\\ linear-generators
             //------------------------
             { 'BT' : {
-                        pcolor : predefinedTopics["generators"],
+                        pcolor : pt[ "constructors" ],
                         cssClass : 'tp-generators',
                     }
             },
             { 'CR' : {
-                        pcolor : predefinedTopics["generators"],
+                        pcolor : pt[ "constructors" ],
                         cssClass : 'tp-generators',
                     }
             },
             { 'BD' : {
-                        pcolor : predefinedTopics["generators"],
+                        pcolor : pt[ "constructors" ],
                         cssClass : 'tp-generators',
                     }
             },
             { 'CD' : {
-                        pcolor : predefinedTopics["generators"],
+                        pcolor : pt[ "constructors" ],
                         cssClass : 'tp-generators',
                     }
             },
@@ -398,52 +401,58 @@
             // //\\ aux-lines
             //------------------------
             { 'DG' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                      }
             },
+            { 'IG' : {
+                        pcolor : pt.aux,
+                        cssClass : 'theorion--proof',
+                     }
+            },
+
             { 'DI' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                      }
             },
             { 'DE' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                      }
             },
             { 'DK' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                      }
             },
             { 'Bt' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
             { 'CF' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
             { 'HB' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
             { 'DH' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
             { 'DF' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
             { 'IQ' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
@@ -455,7 +464,7 @@
             // //\\ static triangle
             //------------------------
             { 'rt' : {
-                        pcolor : predefinedTopics["aux-dots"],
+                        pcolor : pt.aux,
                         cssClass : 'theorion--proof',
                     }
             },
