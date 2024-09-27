@@ -1,7 +1,7 @@
 ( function() {
     var {
-        ns, $$, nssvg, has, haz, globalCss,
-        sconf, sDomF, sDomN, ssD, ssF,
+        ns, $$, nssvg, has, haz,
+        amode, sconf, sDomF, sDomN, ssD, ssF,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -32,20 +32,6 @@
         pointies2line   = ssF.pointies2line;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
-        ///creates addendum points non-visibility machinery
-        globalCss.replace( `
-                .bsl-approot svg .aspect--model
-                {
-                    display : none;
-                }
-
-                .bsl-approot.aspect--model svg .aspect--model
-                {
-                    display : block;
-                }
-            `,
-                'global-css-overrider'
-        );
     }
 
     function media_upcreate___before_basic()
@@ -59,6 +45,15 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic() //media_upcreate()
     {
+        
+        ///creates addendum points non-visibility machinery
+        fapp.fappRoot$.removeClass( 'subessay--case1' );
+        fapp.fappRoot$.removeClass( 'subessay--case2' );
+        fapp.fappRoot$.removeClass( 'subessay--corollary3' );
+        fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
+        fapp.fappRoot$.removeClass( 'subessay--0' );
+        fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
+        
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();

@@ -36,11 +36,17 @@
         var Pr_by_Pt = Pr.abs/Pt.abs;
 
         var PR = rg.T.pos2Tpar( rg.T.pos ) * Pr_by_Pt;
+        var qScale = 1.4;
+        var Pq = PR * qScale;
         var Rpos = [ P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR ]; 
+        var qpos = [ P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq ]; 
         var R = setRgPoint( 'R', Rpos ).pos;
+        var q = setRgPoint( 'q', qpos ).pos;
 
         var C = rg.C.pos;
         var CR = mat.p1_to_p2( C,R );
+        var Cq = mat.p1_to_p2( C,q );
+        
         var B = rg.B.pos;
         var BT = mat.p1_to_p2( B,rg.T.pos );
 
@@ -48,6 +54,10 @@
         //q*uCR + C = q'*uBT + B needs to be solved against q,q' to find D
         var D = mat.linesCross( CR.unitVec, C, BT.unitVec, B );
         setRgPoint( 'D', D );
+
+        var d = mat.linesCross( Cq.unitVec, C, BT.unitVec, B );
+        setRgPoint( 'd', d );
+
         //------------------------------------
         // \\// thread from T to D
         //------------------------------------

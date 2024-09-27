@@ -179,6 +179,16 @@
                   cssClass : 'theorion--proof',
                   initialR: pointRadius,
                 },
+            q : { pos: [1028, 830],
+                  pcolor : pt.aux,
+                  cssClass : 'subessay--corollary3',
+                  initialR: pointRadius,
+                },
+            d : { pos: [1028, 830],
+                  pcolor : pt.aux,
+                  cssClass : 'subessay--corollary3',
+                  initialR: pointRadius,
+                },
             // \\// aux points
   
             ///-------------------------------------------------
@@ -478,6 +488,16 @@
                         cssClass : 'tp-static-generator',
                     }
             },
+            { 'Cd' : {
+                        pcolor : predefinedTopics["aux"],
+                        cssClass : 'subessay--corollary3',
+                    }
+            },
+            { 'Pq' : {
+                        pcolor : predefinedTopics["aux"],
+                        cssClass : 'subessay--corollary3',
+                    }
+            },
             //------------------------
             // \\// static triangle
             //------------------------
@@ -486,11 +506,6 @@
             // //\\ similar triangles
             //      in circle case
             //------------------------
-            { 'CP' : {
-                        pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'tp-similar-triangle',
-                    }
-            },
             { 'BP' : {
                         pcolor : predefinedTopics["similar-triangle"],
                         cssClass : 'tp-similar-triangle',

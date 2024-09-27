@@ -167,12 +167,6 @@
             annotation : "",
         },
 
-        {   sappId : 'b1sec8prop41',
-            book : 'Book 1',
-            caption : 'Sec. 8. Proposition 41. Problem 28.',
-            annotation : "",
-        },
-
         {   sappId : 'b1sec5lemma20',
             book : 'Book 1',
             caption : 'Sec. 5. Lemma 20.',
@@ -185,6 +179,12 @@
             caption : 'Sec. 5. Lemma 21.',
             annotation : "",
             //inAddendum : true,
+        },
+
+        {   sappId : 'b1sec8prop41',
+            book : 'Book 1',
+            caption : 'Sec. 8. Proposition 41. Problem 28.',
+            annotation : "",
         },
 
         {   sappId : 'b3lemma5',

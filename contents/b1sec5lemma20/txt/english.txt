@@ -8,10 +8,10 @@
 ¦BP¦¦¦ ¦BP¦PB¦¦¦ ¦BC¦¦¦ ¦Pt¦¦¦ ¦Pr¦¦¦ ¦BT¦¦¦ ¦BC¦CB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
 ¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦ ¦IG¦¦¦ ¦CR¦RC¦¦¦ ¦CD¦DC¦¦¦ 
-¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦HB¦¦¦
+¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦PC¦CP¦¦¦ ¦HB¦¦¦
 
-¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦
-¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦
+¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦  ¦q¦¦¦
+¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦  ¦d¦¦¦
 
 If any ¦given-parallelogram¦parallelogram ASPQ¦¦ touches ¦ellipse¦a conic¦¦ in points ¦A¦¦ and P with two of its opposite angles ¦A¦¦ and P, and if the sides AQ and AS, indefinitely produced, ¦CA BA¦of one of these angles¦¦ meet the ¦ellipse¦said conic¦¦ in B and C, two straight lines BD and CD are drawn to any fifth point ¦D¦¦ of ¦ellipse¦the conic¦¦, meeting the other two indefinitely produced sides PS and PQ of the paralellogram in T and R; then PR and PT, the parts which are cut off the sides, will always be to each other in a given ratio. And conversely, if the ¦key-parts¦parts¦¦ which are cut off to each other in a given ratio, the point ¦D¦¦ will touch ¦ellipse¦a conic¦¦ passing through the four points ¦A¦¦, B, C, and P.
 
@@ -42,7 +42,7 @@ Page 485.
 }
 *..*
 
-But if PR and PT are supposed in a given ratio to each other, then on working backward with a similar argument, it will follow that the retangle DE x DF is to the rectangle DG x DH in a given ratio and consequently that point D (by lem. 18) lies in a conic passing through points ¦A¦¦, B, C and P. Q.E.D.
+But if PR and PT are supposed in a given ratio to each other, then on working backward with a similar argument, it will follow that the retangle DE x DF is to the rectangle DG x DH in a given ratio and consequently that point ¦D¦¦ (by lem. 18) lies in a conic passing through points ¦A¦¦, B, C and P. Q.E.D.
 
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
@@ -80,9 +80,11 @@ if PR is to PT as Pr to Pt, BD and CD will meet in some point ¦D¦¦ of the
   "subessay" : "corollary3"
 }
 *..*
+¦q¦¦¦ ¦d¦¦¦
+¦Cd¦¦¦ ¦Pq¦¦¦
 
 One ¦ellipse¦conic¦¦ does not intersect another conic in more than
 four points. For, if it can be done, let two conies pass through five points ¦A¦¦,
 B, C, P, and O, and let the straight line BD cut these conies in points ¦D¦¦ and
-d, and let the straight line ¦Cd¦¦ cut PQ in q. Then PR is to PT as Pq to PT;
+d, and let the straight line Cd cut PQ in q. Then PR is to PT as Pq to PT;
 hence PR and Pq are equal to each other, contrary to the hypothesis.

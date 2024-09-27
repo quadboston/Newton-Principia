@@ -1,6 +1,6 @@
 ( function() {
     var {
-        mat,
+        mat, globalCss,
         sconf, stdMod, toreg, sData,
     } = window.b$l.apptree({
         stdModExportList :
@@ -23,6 +23,26 @@
     //===================================================
     function init_model_parameters()
     {
+        ///creates addendum points non-visibility machinery
+        globalCss.replace( `
+            .bsl-approot svg .aspect--model,
+            .bsl-approot svg .subessay--0,
+            .bsl-approot svg .subessay--corollary3
+            {
+                display : none;
+            }
+            .bsl-approot.subessay--corollary3 svg .subessay--corollary3
+            {
+                display : block;
+            }
+            .bsl-approot.aspect--model svg .aspect--model
+            {
+                display : block;
+            }
+            `,
+            'lemma-css-overrider'
+        );
+
         //:primary params
         toreg( 'a' )( 'value', sconf.a );
         toreg( 'b' )( 'value', sconf.b );
