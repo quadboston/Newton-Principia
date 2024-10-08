@@ -12,8 +12,6 @@
     var conics = sn( 'conics', mat );
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
-
-    sconf.REPELLING_DISTANCE = 0.01;
     return;
 
 
@@ -88,43 +86,17 @@
             ////apparently, there is no arg at this version,
             ////            and useless "function.this" === rg.Q
             sData.r_normal= [ -rg.P.ee[1], rg.P.ee[0] ];
-            var Qpos      = mat.sm( rg.Q.pos, -1, rg.P.pos );
-            sData.Qpos    = Qpos;
-            var proj      = Qpos[0]*sData.r_normal[0] + Qpos[1]*sData.r_normal[1];
-            sData.proj2dq = op.sagittaDelta_q / proj;
+            rg.P.angle = mat.atan2PI( rg.P.pos );
         };
 
         rg.Q.acceptPos = ( newPos, dragMove ) => {
-            var Qpos = [ sData.Qpos[0] + dragMove[0], sData.Qpos[1] - dragMove[1] ];
-
-            if( Math.abs( Qpos ) > 1 ) return;
-
-            var proj = Qpos[0]*sData.r_normal[0] + Qpos[1]*sData.r_normal[1];
-
-            //patch: validation based on slider exceeding model unit
-            if( Math.abs( proj ) > 2 ) return;
-
-            var new_dq = sData.proj2dq * proj;
-            var qabs = Math.abs( new_dq );
-
-            //patch: validation based on exceeding an angule
-            if( qabs > Math.PI*0.4 ) return;
-
+            let Qangle = mat.atan2PI( newPos );
+            var new_dq = Qangle - rg.P.angle;
             ///defloats dq
-            if( qabs < 0.0000001 ) {
+            if( Math.abs( new_dq ) < 0.0000001 ) {
                 new_dq = 0.0000001 * ( new_dq >=0 ? 1:-1 );
             }
-            let q = rg.P.q;
-
-            // overlaps with "//\\ validates sagitta q" in "model-upcreate.js"
-            if( !dQisInBranch( new_dq, q ) ) return;
-
-            let newQP = rg[ 'approximated-curve' ].t2xy( q+new_dq );
-            var shift2 = [ newQP[0] - rg.P.pos[0], newQP[1] - rg.P.pos[1] ];
-
-            //patch: validation based on exceeding model unit for hyperbola and parabola
-            if( shift2[0]*shift2[0]+shift2[1]*shift2[1] > 2 ) return;
-
+            if( !dQisInBranch( new_dq, rg.P.q ) ) return;
             op.sagittaDelta_q = new_dq;
             stdMod.model8media_upcreate();
         }
@@ -707,7 +679,7 @@
         nspaste( rg.omegaHandle.pos, np );
     }
 
-
+    ///newQ and q are in the same branch => returns true
     function dQisInBranch( dq, q )
     {
         var newQ = q + dq;

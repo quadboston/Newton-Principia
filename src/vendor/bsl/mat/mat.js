@@ -12,9 +12,10 @@
             powersOf2[i] = p;
         }
         mat.powersOf2 = powersOf2;
+        mat.atan2PI = atan2PI;
     })();
 
-
+    
 
     ///Returns:  [] if no solutions
     ///          [ number ] if one solution
@@ -85,6 +86,13 @@
         return { x, y, cos, sin, tangent:[tanX,tanY], args};
     }
 
+    ///Returns atan between 0 and 2PI
+    function atan2PI( vector )
+    {
+        let angle = Math.atan2( vector[1], vector[0] );
+        return angle < 0 ?  2 * Math.PI + angle : angle;
+    }
+    
 }) ();
 
 

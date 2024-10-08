@@ -12,6 +12,8 @@
 
 ¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦  ¦q¦¦¦
 ¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦  ¦d¦¦¦
+¦q¦¦¦ ¦d¦¦¦
+¦Cd¦¦¦ ¦Pq¦¦¦
 
 If any ¦given-parallelogram¦parallelogram ASPQ¦¦ touches ¦ellipse¦a conic¦¦ in points ¦A¦¦ and P with two of its opposite angles ¦A¦¦ and P, and if the sides AQ and AS, indefinitely produced, ¦CA BA¦of one of these angles¦¦ meet the ¦ellipse¦said conic¦¦ in B and C, two straight lines BD and CD are drawn to any fifth point ¦D¦¦ of ¦ellipse¦the conic¦¦, meeting the other two indefinitely produced sides PS and PQ of the paralellogram in T and R; then PR and PT, the parts which are cut off the sides, will always be to each other in a given ratio. And conversely, if the ¦key-parts¦parts¦¦ which are cut off to each other in a given ratio, the point ¦D¦¦ will touch ¦ellipse¦a conic¦¦ passing through the four points ¦A¦¦, B, C, and P.
 
@@ -56,7 +58,7 @@ Page 486.
 }
 *..*
 
-Hence, if BC is drawn cutting PQ in r, and if Pt is taken
+Hence, if BC is drawn cutting PQ in ¦r¦¦, and if Pt is taken
 on PT in the ratio to Pr which PT has to PR, Bt will be a tangent of the
 ¦ellipse¦conic¦¦ at point B. For conceive of point ¦D¦¦ as coming together with point B
 in such a way that, as chord BD vanishes, BT becomes a tangent; then CD
@@ -80,8 +82,7 @@ if PR is to PT as Pr to Pt, BD and CD will meet in some point ¦D¦¦ of the
   "subessay" : "corollary3"
 }
 *..*
-¦q¦¦¦ ¦d¦¦¦
-¦Cd¦¦¦ ¦Pq¦¦¦
+
 
 One ¦ellipse¦conic¦¦ does not intersect another conic in more than
 four points. For, if it can be done, let two conies pass through five points ¦A¦¦,

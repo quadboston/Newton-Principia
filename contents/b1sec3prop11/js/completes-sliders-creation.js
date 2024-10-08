@@ -68,6 +68,13 @@
                 sconf.REPELLING_DISTANCE,
                 stdMod.pos2t( [newPos0,newPos1] ) - stdMod.pos2t( rg.P.pos )
             );
+            /*
+            if( Math.abs(mat.atan2PI( newPos ) - rg.P.angle) >
+                1.5*Math.PI ) return false;
+            rg.Q.pos[0] = newPos[0];
+            rg.Q.pos[1] = newPos[1];
+            stdMod.model8media_upcreate();
+            */
             if( sForSagitta_val > Math.PI/3 ) return false;
             rg.sForSagitta.val = sForSagitta_val;
             newPos[0] = newPos0;
