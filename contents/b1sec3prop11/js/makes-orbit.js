@@ -112,13 +112,14 @@
         }
     }
 
-
+    ///pos to "virtual" andle
     function pos2t( newPos )
     {
         return mat.pos2angle([
             (newPos[0] - sconf.diagramOrigin[0])/sconf.ellipseA,
             (newPos[1] - sconf.diagramOrigin[1])/sconf.ellipseB,
-        ])-sconf.curveParFi0;
+        ])-sconf.curveParFi0; //sconf.curveParFi0 is not a real angle, but
+                              //"virtueal" angle fi0
     }
 
 }) ();

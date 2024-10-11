@@ -144,9 +144,13 @@
             rg.DO.undisplay = hideExtras;
             rg.BO.undisplay = hideExtras;
             rg[ 'PC' ].undisplay = hideExtras;
-            rg[ 'P,tCircleCenter' ].undisplay = hideExtras;
-            rg.tCircleCenter.undisplay = hideExtras;
-            rg.tangentCircle.undisplay = hideExtras;
+            
+            // //\\ we don't know why one needs chorde-scribed circle
+            //      so we disable it forever here
+            rg[ 'P,tCircleCenter' ].undisplay = true; //hideExtras;
+            rg.tCircleCenter.undisplay = true; //hideExtras;
+            rg.tangentCircle.undisplay = true; //hideExtras;
+            // \\// we don't know why one needs chorde-scribed circle
 
             rg.HI.undisplay = hideExtras;
             rg.PH.undisplay = hideExtras;

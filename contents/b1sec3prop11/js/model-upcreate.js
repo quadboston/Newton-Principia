@@ -41,7 +41,7 @@
 
         // **api-input---plane-curve-derivatives
         var diff = mcurve.planeCurveDerivatives({
-            fun,
+            fun, //r = a*cos(q), b*sin(q) === ellipse
             q : parP,
             rrc,
         });

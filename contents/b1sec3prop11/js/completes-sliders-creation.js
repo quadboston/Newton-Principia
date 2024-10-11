@@ -118,6 +118,7 @@
                         stashedPos[0] = newPos[0];
                         newPos[1] = stashedPos[1];
                         sconf.ellipseFocus = -stashedPos[0];
+                        rg.H.pos[0] = sconf.ellipseFocus;
                         let ellA2 = sconf.ellipseFocus*sconf.ellipseFocus +
                                     sconf.ellipseB*sconf.ellipseB;
                         sconf.ellipseA = Math.sqrt( ellA2 );
