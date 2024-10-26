@@ -22,7 +22,7 @@
 *..*
             <dense class='orig';>For let ¦AF¦¦ be equal to the greatest width,
             and let the ¦widest-rectangular widt-txt¦parallelogram FAaf¦¦ be completed. 
-            This parallelogram will be greater than the difference of 
+            This parallelogram will be greater than the ¦difference¦¦ of 
             the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
             but if its width ¦AF¦¦ is diminished indefinitely,
             it will become less than any given rectangle.  Q.E.D.</dense>
@@ -32,6 +32,29 @@
 
 
 
+*::*corollaries|english
+{
+}
+*..*
 
+COROLLARY 1. Hence the ultimate sum of
+the vanishing parallelograms coincides with the curvilinear ¦figure¦AacE¦¦ in its every
+part.
+<br><br>
+
+COROLLARY 2. And, all the more, the rectilinear figure that is comprehended 
+by the chords of the vanishing arcs ab, bc, cd, ... coincides ultimately with the curvilinear ¦figure¦AacE¦¦.
+<br><br>
+
+COROLLARY 3. And it is the same for the circumscribed rectilinear figure
+that is comprehended by the tangents of those same arcs.
+<br><br>
+
+COROLLARY 4. And therefore these ultimate figures (with respect to their
+perimeters acE) are not rectilinear, but curvilinear limits of rectilinear figures.
+<br><br>
+
+
+ <br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
