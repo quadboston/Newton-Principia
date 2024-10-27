@@ -1,7 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
@@ -14,7 +14,7 @@ Page 462.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
   "subessay" : "solution"
 }
@@ -80,7 +80,7 @@ Page 462.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution"
 }

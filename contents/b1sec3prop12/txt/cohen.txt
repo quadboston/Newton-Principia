@@ -2,7 +2,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
@@ -17,7 +17,7 @@ Page 463.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
   "subessay" : "solution"
 }
@@ -84,7 +84,7 @@ Page 465.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution"
 }

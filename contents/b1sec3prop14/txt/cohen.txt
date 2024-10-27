@@ -2,7 +2,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 
@@ -22,7 +22,7 @@ Page 113.
 
 *::*proof|english
 {
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 

@@ -2,7 +2,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png"
 }
 *..*

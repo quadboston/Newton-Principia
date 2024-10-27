@@ -1,7 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,

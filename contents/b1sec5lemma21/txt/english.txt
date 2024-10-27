@@ -1,7 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 
@@ -30,7 +30,7 @@ Page 486.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "Direct proof",
   "subessay" : "direct-proof"
 }
@@ -59,7 +59,7 @@ Page 487.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "Converse proof",
   "subessay" : "converse-proof"
 }
