@@ -9,18 +9,16 @@
 }
 *..*
 
-If in two figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦,
-there be inscribed ¦left-bars right-bars¦two series of parallelograms¦¦ (as before),
-and if the number of the two be the same, and if, where the
-¦right-bars-breadths left-bars-breadths¦breadths¦¦ are diminished in
-infinitum, the ultimate ¦barsRatio¦ratios¦¦ of the individual parallelograms in one figure to the
-[corresponding] individual parallelograms in the other, be the same, I say that the two
-figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that same ¦figuresRatio¦ratio¦¦.
+If in two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ ¦left-bars right-bars¦two series of parallelograms¦¦ are inscribed (as
+above) and the number of parallelograms in both series is the same; and if, when
+their ¦right-bars-breadths left-bars-breadths¦widths¦¦ are diminished indefinitely, the ultimate ¦barsRatio¦ratios¦¦ of the parallelograms
+in one figure to the corresponding parallelograms in the other are the same; then
+I say that the two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ are to each other in that same ¦figuresRatio¦ratio¦¦.
 
 <br><br>
 
 
-<div book-reference-id="Donahue"></div>
+ <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 *::*proof|english
@@ -29,20 +27,29 @@ figures ¦acE Aa AE¦AacE¦¦, ¦prT Pp PT¦PprT¦¦, are to one another in that
 }
 *..*
 
-For as ¦left-bar-1¦individual parallelogram¦¦ is to ¦right-bar-1¦individual parallelogram¦¦,
-so, componendo, would the ¦leftBarsArea left-bars¦sum of them all¦¦
+For as ¦left-bar-1¦individual parallelogram¦¦ is to 
+¦right-bar-1¦individual parallelogram¦¦,
+so, componendo, would the 
+¦leftBarsArea left-bars¦sum of them all¦¦
 be ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of them all¦¦,
 and thus the ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦figure¦¦: because
 by Lemma 3, the former figure stands to the former sum and the latter figure to the latter sum,
 in the ratio of equality.
-
-Q.E.D.
 <br><br>
 
 
-<div book-reference-id="Donahue"></div>
-
+For as the ¦left-bar-1¦individual parallelograms in the one figure¦¦ are to the corresponding 
+¦right-bar-1¦individual parallelograms in the other¦¦, 
+so (by composition [or componendo]) will the 
+¦leftBarsArea left-bars¦sum of all the parallelograms in the one¦¦ 
+become ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of all the parallelograms in the other¦¦, 
+and so also the one ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦other¦¦—the 
+first figure, of course, being (by lem. 3) to the first sum,
+and the second figure to the second sum, in a ratio of equality. &nbsp;&nbsp;&nbsp;Q.E.D.
 <br><br>
+
+
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 
 
 *::*corollary|english
@@ -51,7 +58,7 @@ Q.E.D.
 *..*
 
 Hence if two quantities of any kind whatever be divided into the same number of parts in any manner, and
-those parts, as their number is increased and their size is decreased in infinitum, attain* a given
+those parts, as their number is increased and their size is decreased in infinitum, attain a given
 ratio to each other, the first to the first, the second to the second, and the rest to the rest
 in order, the wholes will be to each other in that same given ratio.
 
@@ -61,5 +68,6 @@ parallelograms, and consequently, where the number of the parts and of the
 parallelograms be increased and the size to be decreased in infinitum, [the sums of the parts
 will be] in the ulitmate ratio of parallelogram to parallelogram, that is
 (by the hypothesis) in the ultimate ratio of part to part.
+<br><br>
 
-
+<div book-reference-id="Donahue"></div>
