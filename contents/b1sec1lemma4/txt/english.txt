@@ -27,17 +27,6 @@ I say that the two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ are t
 }
 *..*
 
-For as ¦left-bar-1¦individual parallelogram¦¦ is to 
-¦right-bar-1¦individual parallelogram¦¦,
-so, componendo, would the 
-¦leftBarsArea left-bars¦sum of them all¦¦
-be ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of them all¦¦,
-and thus the ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦figure¦¦: because
-by Lemma 3, the former figure stands to the former sum and the latter figure to the latter sum,
-in the ratio of equality.
-<br><br>
-
-
 For as the ¦left-bar-1¦individual parallelograms in the one figure¦¦ are to the corresponding 
 ¦right-bar-1¦individual parallelograms in the other¦¦, 
 so (by composition [or componendo]) will the 
