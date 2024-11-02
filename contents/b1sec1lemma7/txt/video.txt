@@ -66,4 +66,6 @@ we know that the ¦AB arc-AB AD¦vanishing components¦¦ will likewise coincide
 }
 *..*
 
+Videos are not provided for these corollaries.
+
 <br>

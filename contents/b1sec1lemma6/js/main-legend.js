@@ -104,11 +104,11 @@
 
             //third table row
                 //first cell
-                'arc-AB,arcAB&nbsp;=&nbsp;,rg.AB.arcLen' +
+                'arc-AB,arc&nbsp;ACB&nbsp;=&nbsp;,rg.AB.arcLen' +
 
                 ' ' +
                 //second cell
-                'conterminousRatio,arcAB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
+                'conterminousRatio,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
         ]
     };
     //--------------------------
