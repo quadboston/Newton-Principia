@@ -313,10 +313,10 @@
             cssText                 : `
                 position            : absolute;
                 width               : 250px;
-                height              : 130px;
-                top                 : 55%;
+                height              : 90px;
+                top                 : 30%;
                 padding             : 10px;
-                left                : 70%;
+                left                : 10%;
                 border-radius       : 20%;
                 border              : 5px outset #cccccc;
                 font-size           : 18px;
