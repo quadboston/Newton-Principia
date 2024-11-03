@@ -270,6 +270,7 @@
             let sagg_t = sData.tForSagitta0 + deltaQ;
             //prevents too small saggita
             if( sagg_t < 0.01 ) return false;
+            ccc( 'sagg_t='+ sagg_t);
             rg.tForSagitta.val = sagg_t;
             //--------------------------------------------------------------------
             // \\// sets delta t

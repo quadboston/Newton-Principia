@@ -29,27 +29,9 @@
     ///****************************************************
     function init_model_parameters()
     {
-        //=================================================
-        // //\\ model parameters,
-        //      these are independent parameters,
-        //      to be varied by sliders
-        //=================================================
-        //curve //varied by pivotsPos
-        //      //pivot 'P' is attached to initial spped V,
-        //      it is already in registry,
-
-        //projection of speed to static tangent vector uu
-        //at all points P used for differentiation,
-        //body moves backward on x,
-        toreg( 'vt' )( 'val', -1 );
         //interval of t to construct an arc for
         //Newton's sagitta
-        toreg( 'tForSagitta' )( 'val', 0.210 );
-        //center 'S'
-        //      it is already in registry,
-        //=================================================
-        // \\// model parameters,
-        //=================================================
+        toreg( 'tForSagitta' )( 'val', sconf.tForSagitta0 );
 
         if( sconf.APPROX === 'D' ) {    
             //sets and paints initial orbit
@@ -70,8 +52,6 @@
                 var wwCols = ns.builds_zebraNColors_array({
                     maxColors : 10,
                     SATUR       : sconf.DEFAULT_TP_SATUR,  //site setting
-
-                    //40 seems better than 40 for distinct graph lines
                     LIGHT       : 40,  //sconf.default_tp_lightness ||
                     OPACITY     : 0.8, //apparently irrelevant; sconf.DEFAULT_TP_OPACITY,
                     zebraNumber : 4,
@@ -91,51 +71,40 @@
         //too early: overriden later by sconf.rgShapesVisible
         //rg[ 'S,nonSolvablePoint' ].undisplay = true;
         
-        {
+        {   ///curve pars
             let ocp = sconf.originalPoints.curvePivots;
             let pivotsPos = bezier.pivotsPos = ocp.map( (cp,cpix) => {
                 let pos = rg[ 'curvePivots-' + cpix ].pos;
                 return [ pos[0], pos[1] ];
             });
-            bezier.startPos = { pos : nspaste( [], rg[ 'curvePivots-' + 0 ].pos ) };
-            bezier.endPos = { pos : nspaste( [], rg[ 'curvePivots-' + (ocp.length-1) ].pos ) };
+            let startX = rg[ 'curvePivots-' + 0 ].pos[0];
+            let endPosX = rg[ 'curvePivots-' + (ocp.length-1) ].pos[0];
             if( sconf.APPROX === 'D' ) {
                 bezier.fun = rg[ 'approximated-curve' ].t2xy;
-                bezier.start_q = bezier.startPos.pos[0];
-                bezier.end_q = bezier.endPos.pos[0];
-                rg.P.q = (rg.P.pos[0]-bezier.startPos.pos[0])
-                         / (bezier.endPos.pos[0] - bezier.startPos.pos[0]);
+                bezier.start_q = startX;
+                bezier.end_q = endPosX;
+                rg.P.q = (rg.P.pos[0]-startX) / (endPosX - startX);
             } else {
                 let start_q = bezier.start_q = 0;
                 let end_q = bezier.end_q = 1;
-                let startX = bezier.startPos.pos[0];
-                let endX = bezier.endPos.pos[0];
                 let pivotsPos = bezier.pivotsPos = bezier.pivotsPos.map( (pos,cpix) => {
                     let scale = 1.2;
-                    /*
+                    let scaleX = 1;
                     switch (cpix)
                     {
-                        case 1 : scale = 1.25;
+                        case 1 : scale = 1.4;
+                                 scaleX = 1.02;
                         break;
-                        case 2 : scale = 1.4;
+                        case 4 : scale = 1.12;
                         break;
-                        case 3 : scale = 1.18;
-                        break;
-                        case 4 : scale = 0.95;
-                        break;
-                        case 5 : scale = 1.275;
-                        break;
-                        case 6 : scale = 1.15;
-                        break;
-                        case 7 : scale = 1.02;
+                        case 7 : scale = 1.38;
+                                 scaleX = 1.1;
                         break;
                     }
-                    */
                     rg[ 'curvePivots-' + cpix ].q = cpix / (bezier.pivotsPos.length-1);
-                    return [ pos[0], pos[1]*scale ];
+                    return [ pos[0]*scaleX, pos[1]*scale ];
                 }); //map
-                rg.P.q = (rg.P.pos[0]-bezier.startPos.pos[0])
-                            / (bezier.endPos.pos[0] - bezier.startPos.pos[0]);
+                rg.P.q = sconf.rgPq;
                 var parT2point = bezier.parT2point;
                 bezier.fun = fun;
                 function fun( q )
@@ -143,12 +112,13 @@
                     return parT2point( q, pivotsPos );
                 }
             }
-        }
+        }   ///curve pars
         var { bk } = mcurve.planeCurveDerivatives({
             fun : bezier.fun,
             q : bezier.start_q,
             rrc : rg.S.pos,
         });
+        rg.A.pos = rg[ 'curvePivots-0' ].pos;
     }
 
 }) ();

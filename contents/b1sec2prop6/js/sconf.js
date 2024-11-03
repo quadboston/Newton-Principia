@@ -157,15 +157,6 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
         var curvePivots =
         [
             A,
@@ -178,7 +169,9 @@
             [102,184],
             [51,238 ],
         ];
+        sconf.tForSagitta0 = 0.168;
         if( sconf.APPROX === 'B' ) {
+            sconf.rgPq = 0.270;
             curvePivots.push( [22,315] );
         }
         curvePivots = curvePivots.map( pivot => ({

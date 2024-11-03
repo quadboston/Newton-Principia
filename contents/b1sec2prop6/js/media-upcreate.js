@@ -47,23 +47,17 @@
             mmedia  : stdMod.svgScene,
             fun     : bezier.fun,
             rgName  : 'timearc',
-            //pointA  : rg.rrminus,
-            //pointB  : rg.Q,
-            stepsCount : 100,
+            stepsCount : 50,
             start   : rg.Q.q_minus,
-            step     : (rg.Q.q - rg.Q.q_minus ) / 100,
+            step     : (rg.Q.q - rg.Q.q_minus ) / 50,
         });
-        //updates Newton's decorational curve
-        
         ssF.paintsCurve({
             mmedia  : stdMod.svgScene,
             fun     : bezier.fun,
             rgName  : 'APQ',
-            //pointA  : rg.A,
-            //pointB  : rg.Q,
-            stepsCount : 100,
+            stepsCount : 50,
             start   : 0,
-            step     : rg.Q.q / 100,
+            step     : rg.Q.q / 50,
         });
     }
     //=========================================================

@@ -36,7 +36,6 @@
             rrc,
         });
         var sectSpeed0 = staticSectorialSpeed_rrrOnUU;
-        
         rg.P.pos = fun( rg.P.q );
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
@@ -66,6 +65,7 @@
             var rrplus = rr;
             var sidePlus = side;
             rg.Q.q = Qq;
+            ccc( Qq );
         }
         var { rr, side, Qq } = deltaT_2_arc(
             -rg.tForSagitta.val,    //t for arc
