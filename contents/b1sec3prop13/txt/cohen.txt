@@ -2,7 +2,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is required to find the law of

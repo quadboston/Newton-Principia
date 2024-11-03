@@ -43,9 +43,10 @@
                     William H Donahue cited
                 </div>
                 <div class="trigger-content">
-                    in the book "Newton Principia. The Central Argument."<br>
-                    by Dana Densmore. Published by Green Lion Press 2003, 2010. <br>
-                    We did not find year and name for book by William H Donahue.
+                    Dana Densmore and William H. Donahue (2003, 2010).<br>
+                    <a href="https://www.greenlion.com/books/NewtonPrincipia.html" target="_blank">
+                    <i>Newton’s Principia: The Central Argument</i> (3rd ed.)</a><br>
+                    Green Lion Press.<br>
                 </div>
             </div>
         `,

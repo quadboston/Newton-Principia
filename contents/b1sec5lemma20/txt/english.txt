@@ -1,7 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->

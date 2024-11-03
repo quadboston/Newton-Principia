@@ -2,7 +2,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 
@@ -35,7 +35,7 @@ Page 459.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution"
 }
@@ -78,7 +78,7 @@ Page 459.
 
 *::*proof|english
 {
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution"
 }
@@ -114,7 +114,7 @@ Page 459.
 
 *::*corollary|english
 {
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 
@@ -150,7 +150,7 @@ the equality of the direct and inverse ratios) in the ratio of equality.
 
 *::*scholium|english
 {
-  "menuCaption" : "English"
+  "menuCaption" : "Text"
 }
 *..*
 

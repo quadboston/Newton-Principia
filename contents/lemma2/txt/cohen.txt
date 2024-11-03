@@ -1,7 +1,7 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "English",
+  "menuCaption" : "Text",
   "mediaBgImage" : "lemma-23-3rd-ed.png"
 }
 *..*
