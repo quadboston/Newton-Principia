@@ -18,7 +18,9 @@
 
 
 
-    ///Calculates point on n-points, m-dimentional Bezier curve
+    ///Calculates point on n-points, m-dimentional Bezier curve,
+    ///m - dimension of enclosing space,
+    ///Constracts Bernstein's polynomial with Newton Binomial coefficients,
     ///Input:  dim = m
     ///        pivotPoints = points, pivotPoints.length = n
     ///        tt = point parameter <- [0,1]

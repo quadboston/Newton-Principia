@@ -169,7 +169,7 @@
         function buildsPlot()
         {
             var medpoints = curvePoints.map( cp => {
-                return ssF.mod2inn( cp, stdMod )
+                return ssF.mod2inn( cp, stdMod );
             });
             //ccc( curvePoints, medpoints );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({

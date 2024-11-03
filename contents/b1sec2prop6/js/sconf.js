@@ -105,6 +105,10 @@
         // //\\ geometics parameters
         //***************************************************************
 
+        //chose approximation of the curve
+        sconf.APPROX = 'D'; //divided differences';
+        sconf.APPROX = 'B'; //Beizier
+        
         //=============================================
         // //\\ points reused in config
         var S = [originX_onPicture, originY_onPicture];
@@ -112,7 +116,7 @@
         var Q = [346, 134];
         var Y = [263,66];
         //var A = [540, 338];
-        var A = [555, 338];
+        var A = sconf.APPROX === 'B' ? [540, 338] : [555, 338];
         //var A = [560, 338];
         //var A = [555, 338];
         //=============================================
@@ -149,42 +153,27 @@
         // \\// topic group colors,
         //-----------------------------------
 
+        
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
         var curvePivots =
         [
             A,
-            //[ 538,306 ],
-            //[ 537,300 ],
-            //[ 533,285 ],
-            //[ 519,251 ],
-
-            [ 517,248 ],
+            [ 527,248 ],
             [ 485,203 ],
-            //[ 484,203 ],
             //P,
             [ 396, 148 ],
-
-            //[346, 134], //near Q
             [300, 130], //near Q
-
             [217,132],
             [102,184],
             [51,238 ],
-
-            //[58,228],
-            //[24,317],
         ];
+        sconf.tForSagitta0 = 0.168;
+        if( sconf.APPROX === 'B' ) {
+            sconf.rgPq = 0.270;
+            curvePivots.push( [22,315] );
+        }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
             pcolor      : given,

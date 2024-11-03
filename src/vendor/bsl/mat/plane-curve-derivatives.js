@@ -91,6 +91,7 @@
         var R = c < INFINITY_PROTECTOR ? 1/INFINITY_PROTECTOR : 1/c;
         //vector from body to curvature circle center
         var RR = [ nn[0]*R, nn[1]*R ];
+        //curvature circle center
         var RC = [ RR[0]+rr[0], RR[1]+rr[1], ];
 
 
@@ -119,13 +120,14 @@
         angleRV = cosOmega > 0 ? angleRV :
             angleRV > 0 ? Math.PI-angleRV : -Math.PI-angleRV;
 
-        //: gets chord second point V, which
-        // is a point V in Newton's Prop6, Theor 5,
-        // gets projection of RR on ee:
+        //:gets "chord second point V", which is
+        //a point V in Newton's Prop6, Theor 5,
+        //      projection-of-radius-of-curvature-to-radius-vector
+        //      = projection of RR on ee:
         var ww = ee[0]*RR[0] + ee[1]*RR[1];
-        // gets chord's vector = ww taken twice:
+        //      projection-of-diameter-of-curvature-to-radius-vector,
         var ww = [ ee[0]*ww*2, ee[1]*ww*2 ];
-        //this is point V:
+        //      this is a point V:
         var curvatureChordSecondPoint = [ ww[0]+rr[0], ww[1]+rr[1] ];
 
 
@@ -144,7 +146,8 @@
         //  gets projection of rrr to normal
         //  var staticSectorialSpeed_rrrOnUU = -rrr[0]*nn[0] - rrr[1]*nn[1];
 
-        //this does not depend on direction of normal
+        //sect. speed if ds/dt === 1:
+        //(this does not depend on direction of normal)
         var staticSectorialSpeed_rrrOnUU = rrr[0]*uu[1] - rrr[1]*uu[0];
         //------------------------------------------------
         // \\// static Sectorial Speed = [rrr,uu]

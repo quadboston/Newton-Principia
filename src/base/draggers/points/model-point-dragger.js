@@ -91,8 +91,9 @@
         //see: pWrap.move_2_updates(
         //"fullMoveInsideMathModel",
         //is in model units except for media-mover(-as-a-whole)
-        dragMove,
+        dragMove,  //possibly upside down along vertical axis
 
+        //possibly in media units, not im model units,
         mouseOnSurf
     ){
         var stdMod = studyMods[ amode.submodel ];
