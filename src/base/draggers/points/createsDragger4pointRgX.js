@@ -117,7 +117,7 @@
                     //is in model units except for media-mover(-as-a-whole)
                     scaledMove, 
 
-                    mouseOnSurf,
+                    mouseOnSurf, //possibly in media units, not im model units,
                 );
                 break;
         }

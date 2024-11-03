@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, nsmethods, nssvg, mcurve, integral, mat, has,
+        sn, $$, nsmethods, nssvg, mcurve, integral, mat, bezier, has,
         ssF, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -13,81 +13,88 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
     function model_upcreate()
     {
-        var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
-
-        // **api-input---plane-curve-derivatives
-        var diff = mcurve.planeCurveDerivatives({
-            fun : rg[ 'approximated-curve' ].t2xy,
-            q : rr0[0],
+        var fun = bezier.fun;
+        if( sconf.APPROX !== 'D' ) {
+            bezier.pivotsPos.map( (pos,cpix) => {
+                let cp = rg[ 'curvePivots-' + cpix ];
+                let posNew = fun( cp.q );
+                //cp.pos[0] = pos[0];
+                //cp.pos[1] = pos[1];
+                cp.pos[0] = posNew[0];
+                cp.pos[1] = posNew[1];
+            });
+        }
+        var { staticSectorialSpeed_rrrOnUU, } = mcurve.planeCurveDerivatives({
+            fun,
+            q : bezier.start_q,
             rrc,
         });
+        var sectSpeed0 = staticSectorialSpeed_rrrOnUU;
+        
+        rg.P.pos = fun( rg.P.q );
+        var rr0 = rg.P.pos;
+        var rrc = rg.S.pos;
+        // **api-input---plane-curve-derivatives
+        var curveP = sData.curveP = mcurve.planeCurveDerivatives({
+            fun,
+            q : rg.P.q,
+            rrc,
+        });;
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uu,
             rr,
-            //staticSectorialSpeed_rrrOnUU,
-        } = diff;
-        rr0[1]      = rr[1]; //=g[ 'approximated-curve' ].t2xy( rr0[0] )[1];
+        } = curveP;
         var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-        var { rr, side } = deltaT_2_arc(
-            rr0,                    //P
-            rg.vt.val,              //v0
-            rg.tForSagitta.val,     //t for arc
-        );
         var rrplus = null
         var rrminus = null;
-        var wwlen1 = sconf.originalPoints.curvePivots.length-1;
-        if( rr[0] > rg[ 'curvePivots-' + wwlen1 ].pos[0] ) {
+        var { rr, side, Qq } = deltaT_2_arc(
+            rg.tForSagitta.val,     //t for arc
+            sectSpeed0,
+        );
+        if( Qq < bezier.end_q ) {
             var rrplus = rr;
             var sidePlus = side;
+            rg.Q.q = Qq;
         }
-        var { rr, side } = deltaT_2_arc(
-            rr0,                    //P
-            rg.vt.val,              //v0
-            -rg.tForSagitta.val,   //t for arc
+        var { rr, side, Qq } = deltaT_2_arc(
+            -rg.tForSagitta.val,    //t for arc
+            sectSpeed0,
         );
-        if( rr[0] < rg[ 'curvePivots-0' ].pos[0] ) {
+        if( Qq > bezier.start_q ) {
             var rrminus = rr;
             var sideMinus = side;
+            rg.Q.q_minus = Qq;
         }
-
+        ////validator and corrector
         ///creative user may move Q beyond curve x-limits, don't let trouble to happen
         if( !rrminus || !rrplus ) {
-            ////rolls back, rolls only Q and P which may be changed in sliding,
-            rg.tForSagitta.val = rg.tForSagitta.former_val;
-            rg.Q.pos[0] = rg.Q.formerPos[0];
-            rg.Q.pos[1] = rg.Q.formerPos[1];
-            rg.P.pos[0] = rg.formerP[0];
-            rg.P.pos[1] = rg.formerP[1];
+            if( has( rg.Q, 'formerPos' ) ) {
+                ////rolls back, rolls only Q and P which may be changed in sliding,
+                rg.tForSagitta.val = rg.tForSagitta.former_val;
+                rg.Q.pos[0] = rg.Q.formerPos[0];
+                rg.Q.pos[1] = rg.Q.formerPos[1];
+                rg.P.q = rg.former_Pq;
+                rg.P.pos[0] = rg.formerP[0];
+                rg.P.pos[1] = rg.formerP[1];
+                rg.Q.q = rg.Q.former_q;
+            }
             return;
         }
 
         ///continues completing model peacefully
+        let Qpos = bezier.fun( rg.Q.q );
+        rg.Q.pos[0] = 
         rg.Q.pos[0] = rrplus[0];
         rg.Q.pos[1] = rrplus[1];
 
@@ -95,8 +102,10 @@
         rg.Q.formerPos = [ rg.Q.pos[0], rg.Q.pos[1] ];
         rg.tForSagitta.former_val = rg.tForSagitta.val;
         rg.formerP = [ rg.P.pos[0], rg.P.pos[1] ];
-
-
+        rg.former_Pq = rg.P.q;
+        rg.Q.former_q = rg.Q.q;
+        rg.Q.former_q_minus = rg.Q.q_minus;
+        //todm: rid:
         rg.rrminus.pos[0] = rrminus[0];
         rg.rrminus.pos[1] = rrminus[1];
         /*
@@ -205,56 +214,50 @@
 
     //builds two arcs, after and before instant position of moving body P
     function deltaT_2_arc(
-        rr0,        //rg.P.pos[0],
-        vt0,
-        intervalT   //rg.tForSagitta.val
+        intervalT,   //rg.tForSagitta.val
+        sectSpeed0,
     ){
         const INTEGRATION_STEPS = 40;
         const STEP_T = intervalT / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
+        const fun = bezier.fun;
+        var q = rg.P.q;
+        rr0 = fun(q);
 
         //: integration starting values
-        var x = rr0[0];
         var {
-                uu,
+                v,
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
-                q : x,
+                fun : bezier.fun,
+                q,
                 rrc,
             });
-        var ux = uu[0];
-        var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU
-
             //"fake" speed, no relation to actual speed,
             //real speed must change from point P to point P,
             //this speed only indicates negative direction of speed,
             //speed multiplied here for performance,
-            * vt0; 
+            //* vt0; 
 
         for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
             //doing step from old values
-            var xstep = STEP_T * ux
-
-                    //=vt=tangential speed
-                    * sectorialSpeed0
+            var qstep = STEP_T
+                    / v //v=ds/dt
+                    * sectSpeed0
                     / staticSectorialSpeed_rrrOnUU;
-
-            var x = x + xstep;
-            //calculating new values
-            var rr = rg[ 'approximated-curve' ].t2xy( x );
+            q += qstep;
             var {
-                uu,
+                rr,
+                v,
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
-                q : x,
+                fun,
+                q,
                 rrc,
             });
-            var ux = uu[0];
         }
         var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
-        return { rr, side };
+        return { rr, side, Qq:q };
     }
 
 }) ();

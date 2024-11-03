@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, mcurve,
+        sn, $$, mcurve, bezier,
         stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -28,28 +28,37 @@
         //too many steps, todm: make analytical validation or
         //make program simpler than planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
-        var STEPS    = 10000;
-        var xStart   = rg[ 'curvePivots-' +
-                           ( sconf.originalPoints.curvePivots.length-1 ) ].pos[0];
-        var xEnd     = rg[ 'curvePivots-0' ].pos[0];
+        var STEPS = 10000;
+        var STEPS = 1000;
+        var end_q = bezier.end_q;
+        var start_q = bezier.start_q;
+        
         var rrc      = rg.S.pos;
         var solvable = true;
-        var fun      = rg[ 'approximated-curve' ].t2xy;
+        var fun      = bezier.fun;
         var forceGraphArray = [];
-        var FORCE_ARRAY_FREQUEN = 20; //gives STEPS/FORCE_ARRAY_FREQUEN points for graph
+        //how rare we will output graph points on svg
+        //ba
+        var FORCE_ARRAY_PERIOD = 20; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
+        var FORCE_ARRAY_PERIOD = 2; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
+        var stepScale=( end_q - start_q ) / STEPS;
         for (var solix=0; solix<=STEPS; solix++ )
         {
-            var graphArrRem = solix % FORCE_ARRAY_FREQUEN;
-            var q = xStart + solix * ( xEnd - xStart ) / STEPS;
+            var graphArrRem = solix % FORCE_ARRAY_PERIOD;
+            //grows from small to big
+            //curve paramter is coordinate x:
+            var q = start_q + solix * stepScale;
             var {
                 rr,
                 r, //from chosen rrc
                 r2,
                 R,
+                bk,
+                //cosOmega,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
+                fun,
                 q,
                 rrc,
             });
@@ -63,11 +72,10 @@
             }
 
 
-
             ///rebuilds forceGraphArray if yet solvable
             if( !graphArrRem ) {
                 var comparLaw = -1 / r2;
-                var unitlessForce = 1/(R*r2*sinOmega);
+                var unitlessForce = -1/(R*r2*sinOmega)*bk;
                 var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
 
                 var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
@@ -95,7 +103,6 @@
                 //-----------------------------------------------------------
                 // \\// builds coefficients at maximum |force|
                 //-----------------------------------------------------------
-
                 forceGraphArray.push({
                     x : r,
                     y : [
@@ -127,9 +134,9 @@
 
         function pos2qix( pos )
         {
-            var q = rg.P.pos[0];
+            var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;
-            var qix = Math.floor(    ( q - xStart ) / ( xEnd - xStart ) * qixMax   );
+            var qix = Math.floor(    ( q - start_q ) / ( end_q - start_q ) * qixMax   );
             return  Math.max( 0, Math.min( qixMax, qix ) );
         }
     }
