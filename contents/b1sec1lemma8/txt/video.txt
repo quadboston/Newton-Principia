@@ -1,209 +1,93 @@
-
-*::*claim|latin
+*::*claim|video
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Video"
 }
 *..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025811811"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
 
-<img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
-*::*proof|latin
-
-<img src="contents/b1sec1lemma8/img/txt.png" style="width:100%">
-
-<br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
-*::*claim|english
-{
-  "default" : "1",
-  "menuCaption" : "English"
-}
-*..*
-
-If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the ¦arc-AB¦arc ACB¦¦,
-its ¦AB¦chord AB¦¦,
-and the ¦AD¦tangent AD¦¦, constitute three triangles
-¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦, and ¦AR RD AD¦RAD¦¦, and if
-then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the triangles as they vanish
-are similar in their ultimate form, and that their ultimate ratio is one of equality.
-
-
-
-
-*::*claim|model
-{
-  "menuCaption" : "---"
-}
-*..*
-
-
-
-
-*::*proof|english
-{
-  "subessayCaption" : "Interpretation 1. Bounded triangles.",
-  "subessay" : "interpretation1"
-}
-*..*
-
-For while point ¦B¦¦ approaches
-point ¦A¦¦, let ¦AB¦¦, ¦AD¦¦, and ¦AR¦¦ be
-understood always to be produced
-to the distant points ¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
-¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
-and let ¦arc-Ab¦arc Acb¦¦ be always similar
-to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
-¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
-
-vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
-¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
-and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
-also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
-and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
-to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
-*::*proof|english
-{
-  "subessayCaption" : "Interpretation 2. Unbounded triangles.",
-  "subessay" : "interpretation2"
-}
-*..*
-1 For while point ¦B¦¦ approaches
-point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
-understood always to be produced
-to the distant points ¦b¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
-¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
-and let ¦arc-Ab¦arc Acb¦¦ be always similar
-to ¦arc-AB¦arc ACB¦¦. Then as points ¦A¦¦ and
-¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
-
-vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
-¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
-and ¦imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
-also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
-and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
-to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
-
-
-*::*proof|model
-{
-  "menuCaption" : "Addendum",
-  "subessayCaption" : "Interpretation 1. Bounded triangles.",
-  "subessay" : "interpretation1"
-}
-*..*
-
-<b>In <><>CXX:</b><br><br>
-
-If curve
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
-is continuously differentiable,
-</a>
-
-then
-    <div style="text-align:center;">
-        ds / ¦AR¦r¦¦ = |d𝗿| / ¦AR¦r¦¦ = vdq / ¦AR¦r¦¦. &nbsp;&nbsp;&nbsp;(*)
-    </div>
 <br>
 
-Returning from <><>CXX2E, let q be such a curve parameter that
+Lemma 8 makes a claim about 3 related triangles (which you can see 
+¦AR BR AB¦here¦¦, 
+¦AR BR arc-AB¦here¦¦, 
+and ¦AR RD AD¦here¦¦). 
+These triangles are related to each other in that all 3 are bounded by these 
+¦AR RD¦2 lines¦¦. Their 3rd side is either this 
+¦arc-AB¦arc¦¦, this 
+¦AB¦chord¦¦, or this 
+¦AD¦tangent¦¦ which touches the 
+¦arc-AB¦arc¦¦ at an ¦A¦endpoint¦¦ of the 
+¦AB¦chord¦¦. Lemma 8 claims that when the ¦AB¦chord¦¦’s ¦A B¦endpoints¦¦ approach each other along the 
+¦arc-AB¦arc¦¦ and meet, that the area of these 
+¦AR RD AD AB arc-AB¦triangles¦¦ ultimately have ratios of equality. 
 
-    <div style="text-align:center;">
-        (¦AD¦𝘃∆q¦¦ - ¦AB¦∆𝗿¦¦) // to constant vector
-        ¦imageOfR,imageOfD¦𝗵 ¦¦ = ¦imageOfR,imageOfD¦'rd'¦¦.
-    </div>
-This is equivalent to,
-
-    <div style="text-align:center;">
-        (¦AD¦𝘃∆q¦¦ - ¦AB¦∆𝗿¦¦) ⊺ ¦rd¦𝗵 ¦¦ = 0, and ∆q = ∆𝗿⊺𝗵 / 𝘃⊺𝗵.
-    </div>
-Using
-    <div style="text-align:center;">
-        ∆𝗿 = 𝘃∆q + 𝗼(∆q)
-    </div>
-implies ultimate similarity of underlined triangles. For example, ratios to r
-will be:
-    <div style="text-align:center;">
-        ¦AB¦∆𝗿¦¦ / ¦AR¦r¦¦ = ¦AD¦𝘃∆q¦¦ / ¦AR¦r¦¦ + 𝗼(∆q), <br>
-        ¦arc-AB¦∆s¦¦ / ¦AR¦r¦¦ + o<sub>1</sub>(∆q) =<br>
-        ¦AB¦|∆𝗿|¦¦ / ¦AR¦r¦¦ + o<sub>2</sub>(∆q) =<br>
-        ¦AD¦v∆q¦¦ / ¦AR¦r¦¦ + o<sub>3</sub>(∆q). &nbsp;&nbsp;&nbsp;(**)
-    </div>
-which is a finite form of above differential equalities (*).
-
-
-
-
-*::*proof|model
-{
-  "menuCaption" : "Addendum",
-  "subessayCaption" : "Interpretation 2. Unbounded triangles.",
-  "subessay" : "interpretation2"
-}
-*..*
-
-<b>In <><>CXX:</b><br><br>
-
-
-If curve
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
-is continuously differentiable,
-</a>
-
-then above equalities (*) do hold.
 <br><br>
-
-Returning to the Book here, we define parameter q like in case with "Bounded triangles", but for different vector 𝗵
-which in this case will be
-
-    <div style="text-align:center;">
-        ¦BR¦𝗵¦¦ = ¦AR¦𝗿¦¦ + ¦AB¦∆𝗿¦¦ = ¦BR¦RB¦¦.
-    </div>
-
-This analogically implies ultimate similarity of underlined triangles. For example, ratios to r
-(**) will still hold.
+Notice the lemma does not require the 
+¦AR RD AD AB arc-AB¦triangles¦¦ to have any particular properties beyond how they are related to each other. For instance, the 
+¦AR RD AD¦large triangle¦¦ bounded by the tangent can be a right triangle as in Newton’s illustration, 
+or it can be acute, 
+or it can be obtuse. You can drag point φ to have the model show any of these situations.
 
 
 
-*::*corollary|latin
-*..*
 
 
-*::*corollary|english
+*::*proof|video
 {
+  "menuCaption" : "Video"
 }
 *..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025811816"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<br>
+To prove lemma 8’s claim, we start by enlarging each item in the claim such that the enlarged item 
+is similar to the original. All the enlarged items share a 
+¦A¦vertex¦¦ with an 
+¦A¦endpoint¦¦ of the 
+¦AB¦original chord¦¦. Here’s the 
+¦arc-Ab¦enlarged arc¦¦ which is similar to the 
+¦arc-AB¦original arc¦¦. Here are the 
+¦Ar Ad rd Ab arc-Ab¦enlarged triangles¦¦ which are similar to the 
+¦AR RD AD AB arc-AB¦original triangles¦¦.
+
+<br><br>
+Now as the ¦AB¦chord¦¦
+¦A B¦endpoints¦¦ approach each other along the 
+¦arc-AB¦arc¦¦, we leave the 
+¦Ar rd Ad¦largest enlarged triangle¦¦ unchanged, and we keep all enlarged items similar to their diminishing counterpart. As the 
+¦A B¦chord¦¦ 
+¦A B¦endpoints¦¦ meet, 
+¦Ab Ad¦this angle¦¦ must diminish to 0. When it does, these 
+¦Ar Ad rd Ab arc-Ab¦3 enlarged triangles¦¦ must coincide and be equal. Since the 
+¦AR RD AD AB arc-AB¦diminishing triangles¦¦ are always similar to their 
+¦Ar Ad rd Ab arc-Ab¦larger counterparts¦¦, they too must ultimately become similar and equal to each other.
 
 
 
-And hence ¦AR AB BR arc-AB RD AD¦those triangles¦¦ can be used for one another interchangeably in any argumentation concerning ultimate ratios.
 
 
-*::*corollary|model
+
+*::*corollary|video
 {
-  "menuCaption" : "---"
+  "menuCaption" : "Video"
 }
 *..*
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025811814"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
 
-
+<br>
+As those ¦AR RD AD AB arc-AB¦triangles¦¦ are ultimately equal, they can be used interchangeably when we discuss ultimate ratios.
