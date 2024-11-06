@@ -40,7 +40,7 @@
         Donahue : `
             <div class="isclosed">
                 <div class="trigger-option">
-                    William H Donahue cited
+                    The <i>Principia</i>, Donahue translation
                 </div>
                 <div class="trigger-content">
                     Dana Densmore and William H. Donahue (2003, 2010).<br>

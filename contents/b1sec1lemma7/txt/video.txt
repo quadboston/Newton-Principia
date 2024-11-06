@@ -65,5 +65,54 @@ we know that the ¦AB arc-AB AD¦vanishing components¦¦ will likewise coincide
   "menuCaption" : "Video"
 }
 *..*
-
+<span class="captured-reference id-colollary-1">Corollary 1</span>
+draws a 
+¦BF¦new line¦¦ parallel to the 
+¦AD¦tangent¦¦ line from one of the 
+¦AB¦chord¦¦’s 
+¦B¦endpoints¦¦, then uses these lines to construct a 
+¦AD BD AF BF¦parallelogram¦¦ by connecting these lines together.
+Because the 
+¦BF¦side¦¦ of the parallelogram which is opposite the 
+tangent line is always the same length as the tangent line, 
+it will also ultimately have a ratio of equality with the vanishing 
+¦arc-AB¦arc¦¦.
 <br>
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025918231"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<br><br>
+
+<span class="captured-reference id-colollary-2">Corollary 2</span>
+observes that had this 
+¦AD BD AF BF¦parallelogram¦¦ been made with a 
+¦AE¦shorter¦¦ or 
+¦AD¦longer¦¦ tangent line, that the 
+¦AE¦new tangent¦¦ line, along with its 
+¦BG¦opposite side¦¦ in the parallelogram, would also ultimately have 
+¦conterminousRatio¦ratios¦¦ of equality with the 
+¦AB¦chord¦¦, 
+¦arc-AB¦arc¦¦, the 
+¦AD¦original tangent¦¦ line, and its 
+¦BF¦opposite side¦¦.
+<br>
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025918218"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<br><br>
+
+Corollary 3 observes that therefore 
+¦AD BF AB arc-AB¦all these lines¦¦ can be used interchangeably when discussing ultimate ratios.
+<br>
+<div style="padding:56.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/1025918235"
+    allow="fullscreen; picture-in-picture;"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
