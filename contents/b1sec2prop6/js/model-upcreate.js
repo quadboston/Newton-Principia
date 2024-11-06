@@ -65,7 +65,6 @@
             var rrplus = rr;
             var sidePlus = side;
             rg.Q.q = Qq;
-            ccc( Qq );
         }
         var { rr, side, Qq } = deltaT_2_arc(
             -rg.tForSagitta.val,    //t for arc
@@ -184,7 +183,9 @@
         if( !has( stdMod, 'graphArray' ) ) {
             stdMod.curveIsSolvable();
         }
-        stdMod.graphFW.drawGraph_wrap();
+        if( has( stdMod, 'graphArray' ) ) {
+            stdMod.graphFW.drawGraph_wrap();
+        }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------

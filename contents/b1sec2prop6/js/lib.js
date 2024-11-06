@@ -68,6 +68,7 @@
             cosAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
                 solvable = false;
+                //c cc( 'not solvable q='+q+ ' solix='+solix );
                 break;
             }
 
@@ -140,9 +141,5 @@
             return  Math.max( 0, Math.min( qixMax, qix ) );
         }
     }
-
-
-
-
 }) ();
 

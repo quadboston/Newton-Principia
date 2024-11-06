@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, bezier, mat,
-        sData,
+        ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -59,8 +59,10 @@
                 if( sconf.APPROX === 'D' ) {    
                     stdMod.pointsArr_2_singleDividedDifferences();
                 }
-                nsp.undisplay = true;
-                nsl.undisplay = true;
+                setTimeout( function() {
+                    nsp.undisplay = true;
+                    nsl.undisplay = true;
+                }, 3000 );
             };
 
             cp.rgX.acceptPos = (newPos, move) => {
@@ -112,8 +114,14 @@
 
                             //corrects y-position of point P on new curve
                             //rg.P.pos[1] = rg[ 'approximated-curve' ].t2xy( rg.P.pos[0] )[1];
-                            nsp.undisplay = true;
-                            nsl.undisplay = true;
+                            //nsp.undisplay = true;
+                            //nsl.undisplay = true;
+                            if( !nsp.undisplay ) {
+                                setTimeout( function() {
+                                    nsp.undisplay = true;
+                                    nsl.undisplay = true;
+                                }, 3000 );
+                            }
                         } else {
                             //pos1[0] = stashedPos[0];
                             //pos1[1] = stashedPos[1];
@@ -123,8 +131,6 @@
                             nsp.undisplay = false;
                             nsl.undisplay = false;
                             //stdMod.model8media_upcreate();
-                            //ccc( 'keeps former: ' + stashedPos[0].toFixed(3) + ', ' +
-                            //     stashedPos[1].toFixed(3) );
                         }
                         //returnValue = solvable;
                     } else {
@@ -132,14 +138,22 @@
                         let pos = bezier.pivotsPos[cpix];
                         pos[0] +=move[0]/4;
                         pos[1] -=move[1]/4;
+                        ssD.bezier.updatesPivot( pos, cpix );
                         var { solvable, rr } = stdMod.curveIsSolvable();
                         if( solvable ) {
                             stashedPos = [ pos[0], pos[1] ];
-                            nsp.undisplay = true;
-                            nsl.undisplay = true;
+                            //nsp.undisplay = true;
+                            //nsl.undisplay = true;
+                            if( !nsp.undisplay ) {
+                                setTimeout( function() {
+                                    nsp.undisplay = true;
+                                    nsl.undisplay = true;
+                                }, 3000 );
+                            }
                         } else {
-                            pos[0] = stashedPos[0];
-                            pos[1] = stashedPos[1];
+                            //pos[0] = stashedPos[0];
+                            //pos[1] = stashedPos[1];
+                            ssD.bezier.updatesPivot( stashedPos, cpix );
                             nsp.pos[0] = rr[0];
                             nsp.pos[1] = rr[1];
                             nsp.undisplay = false;
@@ -270,7 +284,6 @@
             let sagg_t = sData.tForSagitta0 + deltaQ;
             //prevents too small saggita
             if( sagg_t < 0.01 ) return false;
-            ccc( 'sagg_t='+ sagg_t);
             rg.tForSagitta.val = sagg_t;
             //--------------------------------------------------------------------
             // \\// sets delta t

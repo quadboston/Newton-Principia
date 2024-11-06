@@ -14,9 +14,132 @@
     bezier.bezier2upper     = bezier2upper;
     bezier.bezier2lower     = bezier2lower;
     bezier.t_2_3Dpoint      = t_2_3Dpoint;
+    
+    bezier.preparesOptimizedBezier = preparesOptimizedBezier;
     return;
 
+    ///performance-optimized
+    ///standalone framework for multidimensional Beizier pivots
+    function preparesOptimizedBezier( pivots )
+    {
+        let rack = {};
+        rack.pivots = pivots;
+        rack.dimension = 1;
+        if( Array.isArray(pivots[0]) ) {
+            rack.dimension = pivots[0].length;
+        }
+        let dim = rack.dimension;
+        let factorial = [1];
+        let rank = pivots.length-1;
+        let rankBase = 0;
+        {
+            let fraction = rank;
+            while( fraction >1 ) {
+                rankBase++;
+                fraction /= 2;
+            }
+        }
+        rack.rankBase = rankBase;
+        for( i=1; i<=rank; i++ ) {
+            factorial[i] = factorial[i-1]*i;
+        }
+        let binom = rack.binom = [];
+        let coefficients = rack.coefficients = [];
+        for( i=0; i<=rank; i++ ) {
+            binom[i] = factorial[rank]
+                / (factorial[rank-i] * factorial[i]);
+            if( dim === 1 ) {
+                coefficients[i] = pivots[i] * binom[i];
+            } else {
+                coefficients[i] = [];
+                for( j=0; j<dim; j++ ) {
+                    coefficients[i][j] = pivots[i][j] * binom[i];
+                }
+            }
+        }
+        rack.fun = fun;
+        rack.updatesPivot = updatesPivot;
+        rack.updatesArrayOfPoints = updatesArrayOfPoints;
+        return rack;
+        
+        
+        function fun( t )
+        {
+            let pivots = rack.pivots;
+            let rank = pivots.length-1
+            let dim = rack.dimension;
+            if( dim === 1 ) {
+                var result = 0;
+            } else {
+                var result = [];
+                for( j=0; j<dim; j++ ) {
+                    result[j] = 0;
+                }
+            }
 
+            ///flag for subalgorithm to prevent loss of
+            ///accuracy in summation from small polinom members,
+            ///will change the order of summation,
+            var large_t = t > 0.5;
+            
+            let rankBase = rack.rankBase;
+            var polScale = large_t ? t : (1-t);
+            var multiplier = (1-polScale)/polScale;
+            for( var i=0; i<rankBase; i++ ) {
+                polScale *=polScale;
+            }
+
+            let coefficients = rack.coefficients;
+            for( let ii=0; ii<=rank; ii++ ) {
+                //changes order of summation to from small members first
+                let i = large_t ? ii : rank-ii; 
+                ////algo: Poly = ((( a*x + b)*x+...
+                if( dim === 1 ) {
+                    result = result * multiplier + coefficients[i];
+                } else {
+                    for( j=0; j<dim; j++ ) {
+                        result[j] = result[j] * multiplier + coefficients[i][j];
+                    }
+                }
+            }
+            if( dim === 1 ) {
+                result *= polScale;
+            } else {
+                for( j=0; j<dim; j++ ) {
+                    result[j]  *= polScale;
+                }
+            }
+            return result;
+        }
+
+        function updatesPivot( pivot, i )
+        {
+            let pivots = rack.pivots;
+            let coefficients = rack.coefficients;
+            let binom = rack.binom;
+            if( dim === 1 ) {
+                pivots[i] = pivot;
+                coefficients[i] = pivot * binom[i];
+            } else {
+                for( j=0; j<dim; j++ ) {
+                    pivots[i][j] = pivot[j];
+                    coefficients[i][j] = pivot[j] * binom[i];
+                }
+            }
+        }
+        ///"sugar-function"
+        ///makes points uniformely distributed
+        function updatesArrayOfPoints( arr, n )
+        {
+            arr.length = 0;
+            let step = 1/(n-1);
+            let fun = rack.fun;
+            for(i=0; i<n; i++ ) {
+                arr.push( fun(i*step) );
+            }
+        }
+    }
+    
 
     ///Calculates point on n-points, m-dimentional Bezier curve,
     ///m - dimension of enclosing space,

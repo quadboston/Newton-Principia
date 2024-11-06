@@ -143,6 +143,7 @@
             hidden,
             context,
             curvature,
+            curvatureCircle : curvature,
             body,
             orbit   : given,
             timearc : proof,
@@ -288,8 +289,8 @@
                 pos: [0,0], //will be calculated
 
                 //caption : '!',
-                caption : 'Centrepetal force does not exist ' +
-                          'for neighborhood of this point.',
+                caption : 'Central force does not exist ' +
+                          'in this point neighborhood.',
                 fontSize : '20',
 
                 /*
