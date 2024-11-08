@@ -105,17 +105,10 @@
                     return [ pos[0]*scaleX, pos[1]*scale ];
                 }); //map
                 rg.P.q = sconf.rgPq;
-                //var parT2point = bezier.parT2point;
                 ssD.bezier = bezier.preparesOptimizedBezier(                
                                     bezier.pivotsPos );
-                bezier.fun = ssD.bezier.fun; //fun;
-                /*
-                function fun( q )
-                {
-                    return parT2point( q, pivotsPos );
-                }
-                */
-            }
+                bezier.fun = ssD.bezier.fun;
+            } //bezier end
         }   ///curve pars
         var { bk } = mcurve.planeCurveDerivatives({
             fun : bezier.fun,

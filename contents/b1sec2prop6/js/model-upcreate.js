@@ -24,8 +24,6 @@
             bezier.pivotsPos.map( (pos,cpix) => {
                 let cp = rg[ 'curvePivots-' + cpix ];
                 let posNew = fun( cp.q );
-                //cp.pos[0] = pos[0];
-                //cp.pos[1] = pos[1];
                 cp.pos[0] = posNew[0];
                 cp.pos[1] = posNew[1];
             });
@@ -218,7 +216,7 @@
         intervalT,   //rg.tForSagitta.val
         sectSpeed0,
     ){
-        const INTEGRATION_STEPS = 40;
+        const INTEGRATION_STEPS = 20; //10 works as well
         const STEP_T = intervalT / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
         const fun = bezier.fun;
@@ -251,6 +249,8 @@
                 rr,
                 v,
                 staticSectorialSpeed_rrrOnUU,
+                //todm this is a redundant step, graphArray is already
+                //built and can be used
             } = mcurve.planeCurveDerivatives({
                 fun,
                 q,

@@ -28,7 +28,6 @@
         //too many steps, todm: make analytical validation or
         //make program simpler than planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
-        var STEPS = 10000;
         var STEPS = 1000;
         var end_q = bezier.end_q;
         var start_q = bezier.start_q;
@@ -39,8 +38,8 @@
         var forceGraphArray = [];
         //how rare we will output graph points on svg
         //ba
-        var FORCE_ARRAY_PERIOD = 20; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
-        var FORCE_ARRAY_PERIOD = 2; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
+        var FORCE_ARRAY_PERIOD = 100; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
+        var FORCE_ARRAY_PERIOD = 5; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
         var stepScale=( end_q - start_q ) / STEPS;
         for (var solix=0; solix<=STEPS; solix++ )
         {

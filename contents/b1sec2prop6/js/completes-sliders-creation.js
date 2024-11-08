@@ -37,7 +37,6 @@
 
         pivs.forEach( (cp,cpix) => {
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
-            //var pos1 = bezier.pivotsPos;
             var stashedPos = null;
             var stashedCurveP = null;
 
@@ -46,7 +45,7 @@
                     let pos = rg[ 'curvePivots-' + cpix ].pos;                
                     stashedPos = [ pos[0], pos[1] ];
                 } else {
-                    let pos = bezier.pivotsPos[cpix];
+                    let pos = bezier.fun( ssD.bezier.ix2parameter[cpix] );
                     stashedPos = [ pos[0], pos[1] ];
                 }
             };
@@ -76,7 +75,6 @@
                 var nextPoint = cpix+1;
                 var nextPoint = (nextPoint === pivs.length ) ? null : nextPoint;
                 var previousPoint = (previousPoint < 0 ) ? null : previousPoint;
-                
                 
                 if( sconf.APPROX === 'D' ) {   
                     if(
@@ -135,13 +133,18 @@
                         //returnValue = solvable;
                     } else {
                         ////sconf.APPROX === 'B'
+                        let dpos0 = newPos[0]-stashedPos[0];//bezier.pivotsPos[cpix];
+                        let dpos1 = newPos[1]-stashedPos[1];//bezier.pivotsPos[cpix];
                         let pos = bezier.pivotsPos[cpix];
-                        pos[0] +=move[0]/4;
-                        pos[1] -=move[1]/4;
+                        let bpos0 = pos[0];
+                        let bpos1 = pos[1];
+                        let c2p = ssD.bezier.curvePivots2bezierPivots[cpix];
+                        pos[0] += dpos0*c2p;
+                        pos[1] += dpos1*c2p;
                         ssD.bezier.updatesPivot( pos, cpix );
                         var { solvable, rr } = stdMod.curveIsSolvable();
                         if( solvable ) {
-                            stashedPos = [ pos[0], pos[1] ];
+                            stashedPos = [ newPos[0], newPos[1] ];
                             //nsp.undisplay = true;
                             //nsl.undisplay = true;
                             if( !nsp.undisplay ) {
@@ -151,9 +154,7 @@
                                 }, 3000 );
                             }
                         } else {
-                            //pos[0] = stashedPos[0];
-                            //pos[1] = stashedPos[1];
-                            ssD.bezier.updatesPivot( stashedPos, cpix );
+                            ssD.bezier.updatesPivot( [bpos0,bpos1], cpix );
                             nsp.pos[0] = rr[0];
                             nsp.pos[1] = rr[1];
                             nsp.undisplay = false;

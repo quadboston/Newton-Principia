@@ -45,7 +45,9 @@
         }
         let binom = rack.binom = [];
         let coefficients = rack.coefficients = [];
+        let ix2parameter = [];
         for( i=0; i<=rank; i++ ) {
+            ix2parameter.push( i/rank );
             binom[i] = factorial[rank]
                 / (factorial[rank-i] * factorial[i]);
             if( dim === 1 ) {
@@ -57,9 +59,11 @@
                 }
             }
         }
+        rack.ix2parameter = ix2parameter;
         rack.fun = fun;
         rack.updatesPivot = updatesPivot;
         rack.updatesArrayOfPoints = updatesArrayOfPoints;
+        rack.curvePivots2bezierPivots = curvePivots2bezierPivots();
         return rack;
         
         
@@ -127,6 +131,33 @@
                 }
             }
         }
+        
+        ///calculates partial derivatives d(BezierPivot)/d(CurvePivot),
+        ///their dependency is actually linear
+        function curvePivots2bezierPivots()
+        {
+            let binom = rack.binom;
+            let rank = pivots.length-1;
+            let ix2parameter = rack.ix2parameter;
+            let step = 1/rank;
+            var res = Array(rank+1);
+            for( var tix=0; tix<=rank; tix++ ) {
+                var t = ix2parameter[tix];
+                if( tix===rank ) {
+                    res[tix] = 1;
+                } else {
+                    let ct = 1-t;
+                    let rs = binom[tix]*Array(rank).keys().reduce(acc => (acc * ct),1);
+                    let multiplier = t/ct;
+                    for( var j=0; j<tix; j++ ) {
+                         rs *=multiplier;
+                    }
+                    res[tix]=1/rs;
+                }
+            }
+            return res;
+        }
+        
         ///"sugar-function"
         ///makes points uniformely distributed
         function updatesArrayOfPoints( arr, n )
@@ -140,7 +171,9 @@
         }
     }
     
-
+    ///Here is another work platform, based on recurrent formula
+    ///for calculation.
+    ///
     ///Calculates point on n-points, m-dimentional Bezier curve,
     ///m - dimension of enclosing space,
     ///Constracts Bernstein's polynomial with Newton Binomial coefficients,
