@@ -67,10 +67,7 @@
         //==================================================
         // \\// decoration graph 
         //==================================================
-
-        //too early: overriden later by sconf.rgShapesVisible
-        //rg[ 'S,nonSolvablePoint' ].undisplay = true;
-        
+       
         {   ///curve pars
             let ocp = sconf.originalPoints.curvePivots;
             let pivotsPos = bezier.pivotsPos = ocp.map( (cp,cpix) => {
@@ -108,13 +105,16 @@
                 ssD.bezier = bezier.preparesOptimizedBezier(                
                                     bezier.pivotsPos );
                 bezier.fun = ssD.bezier.fun;
+                ssD.initialPivots = nspaste( [], bezier.pivotsPos );
             } //bezier end
         }   ///curve pars
+        /*
         var { bk } = mcurve.planeCurveDerivatives({
             fun : bezier.fun,
             q : bezier.start_q,
             rrc : rg.S.pos,
         });
+        */
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
     }
 

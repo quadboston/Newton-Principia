@@ -27,9 +27,6 @@
     ///****************************************************
     function completesSlidersCreation()
     {
-        var nsp = rg.nonSolvablePoint;
-        var nsl = rg[ 'S,nonSolvablePoint' ];
-
         //=========================================================================
         // //\\ curve pivotsPos sliders
         //=========================================================================
@@ -53,15 +50,9 @@
             cp.rgX.processOwnUpEvent = () => {
                 pos1[0] = stashedPos[0];
                 pos1[1] = stashedPos[1];
-                //ccc( cpix + ' up: ' + stashedPos[0].toFixed(3) + ', ' +
-                //     stashedPos[1].toFixed(3) );
                 if( sconf.APPROX === 'D' ) {    
                     stdMod.pointsArr_2_singleDividedDifferences();
                 }
-                setTimeout( function() {
-                    nsp.undisplay = true;
-                    nsl.undisplay = true;
-                }, 3000 );
             };
 
             cp.rgX.acceptPos = (newPos, move) => {
@@ -104,33 +95,10 @@
 
                         ///apparently validates if point is valid and
                         ///if not, shows a warning, and stashes most possible value
-                        var { solvable, rr } = stdMod.curveIsSolvable();
-                        if( solvable ) {
+                        stdMod.curveIsSolvable();
+                        if( !ssD.foldPoints.length ) {    
                             stashedPos = [ pos1[0], pos1[1] ];
-                            //ccc( 'new: ' + stashedPos[0].toFixed(3) + ', ' +
-                            //     stashedPos[1].toFixed(3) );
-
-                            //corrects y-position of point P on new curve
-                            //rg.P.pos[1] = rg[ 'approximated-curve' ].t2xy( rg.P.pos[0] )[1];
-                            //nsp.undisplay = true;
-                            //nsl.undisplay = true;
-                            if( !nsp.undisplay ) {
-                                setTimeout( function() {
-                                    nsp.undisplay = true;
-                                    nsl.undisplay = true;
-                                }, 3000 );
-                            }
-                        } else {
-                            //pos1[0] = stashedPos[0];
-                            //pos1[1] = stashedPos[1];
-                            //stdMod.pointsArr_2_singleDividedDifferences();
-                            nsp.pos[0] = rr[0];
-                            nsp.pos[1] = rr[1];
-                            nsp.undisplay = false;
-                            nsl.undisplay = false;
-                            //stdMod.model8media_upcreate();
                         }
-                        //returnValue = solvable;
                     } else {
                         ////sconf.APPROX === 'B'
                         let dpos0 = newPos[0]-stashedPos[0];//bezier.pivotsPos[cpix];
@@ -142,24 +110,16 @@
                         pos[0] += dpos0*c2p;
                         pos[1] += dpos1*c2p;
                         ssD.bezier.updatesPivot( pos, cpix );
-                        var { solvable, rr } = stdMod.curveIsSolvable();
-                        if( solvable ) {
-                            stashedPos = [ newPos[0], newPos[1] ];
-                            //nsp.undisplay = true;
-                            //nsl.undisplay = true;
-                            if( !nsp.undisplay ) {
-                                setTimeout( function() {
-                                    nsp.undisplay = true;
-                                    nsl.undisplay = true;
-                                }, 3000 );
-                            }
-                        } else {
-                            ssD.bezier.updatesPivot( [bpos0,bpos1], cpix );
-                            nsp.pos[0] = rr[0];
-                            nsp.pos[1] = rr[1];
-                            nsp.undisplay = false;
-                            nsl.undisplay = false;
-                            return false;
+                        stdMod.curveIsSolvable();
+                        stashedPos = [ newPos[0], newPos[1] ];
+                        if( ssD.foldPoints.length ) {    
+                            //these works in connection,
+                            //one can run stdMod.model8media_upcreate(); and
+                            //not set return false to skip automatic 
+                            //stdMod.model8media_upcreate(); which runs in 
+                            //src/base/draggers/points/model-point-dragger.js
+                            //stdMod.model8media_upcreate()
+                            return true; //false;
                         }
                     }
                 }
@@ -241,7 +201,6 @@
         };
 
         rg.Q.acceptPos = newPos => {
-
             var REPELLING_DISTANCE = 0.00001;
             var deltaX = newPos[0] - rg.P.pos[0];
             //prevents dragged point to go beyond P
@@ -313,22 +272,13 @@
             rg.S.processOwnUpEvent = () => {
                 sp[0] = stashedPos[0];
                 sp[1] = stashedPos[1];
-                nsp.undisplay = true;
-                nsl.undisplay = true;
             };
 
             rg.S.acceptPos = newPos => {
-                var { solvable, rr } = stdMod.curveIsSolvable();
-                if( !solvable ) {
-                    nsp.pos[0] = rr[0];
-                    nsp.pos[1] = rr[1];
-                    nsp.undisplay = false;
-                    nsl.undisplay = false;
-                } else {
+                stdMod.curveIsSolvable();
+                if( !ssD.foldPoints.length ) {
                     stashedPos[0] = newPos[0];
                     stashedPos[1] = newPos[1];
-                    nsp.undisplay = true;
-                    nsl.undisplay = true;
                 }
                 return true;
             }

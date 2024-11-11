@@ -27,7 +27,10 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
+
+        //true enables framework zoom
         sconf.enableTools               = true;
+
         sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
@@ -134,7 +137,7 @@
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
+        var invalid = [200,   0,  100,     1];
         var predefinedTopics =
         {
             given,

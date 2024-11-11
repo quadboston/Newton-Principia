@@ -147,7 +147,10 @@
                     res[tix] = 1;
                 } else {
                     let ct = 1-t;
-                    let rs = binom[tix]*Array(rank).keys().reduce(acc => (acc * ct),1);
+                    //fails on Safari:
+                    //let rs = binom[tix]*Array(rank).keys().reduce(acc => (acc * ct),1);
+                    let rs = binom[tix]*((new Array(rank)).fill(1)).reduce(acc => (acc * ct),1);
+                    new Array(4).fill(1)
                     let multiplier = t/ct;
                     for( var j=0; j<tix; j++ ) {
                          rs *=multiplier;

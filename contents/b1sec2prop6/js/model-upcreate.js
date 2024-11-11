@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, nssvg, mcurve, integral, mat, bezier, has,
-        ssF, sData,
+        ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -9,6 +9,7 @@
             model_upcreate,
         },
     });
+    //ssD.stashedVisibility = null;
     return;
 
 
@@ -85,17 +86,25 @@
                 rg.P.pos[0] = rg.formerP[0];
                 rg.P.pos[1] = rg.formerP[1];
                 rg.Q.q = rg.Q.former_q;
+                rg.Q.q_minus = rg.Q.former_q_minus;
+                var sideMinus = rg.former_sideMinus;
+                var sidePlus = rg.former_sidePlus;
             }
-            return;
+            //return;
         }
 
         ///continues completing model peacefully
         let Qpos = bezier.fun( rg.Q.q );
-        rg.Q.pos[0] = 
-        rg.Q.pos[0] = rrplus[0];
-        rg.Q.pos[1] = rrplus[1];
-
-        //:stashes rollback data for case user-sliders go crazy
+        rg.Q.pos[0] = Qpos[0]; //rrplus[0];
+        rg.Q.pos[1] = Qpos[1]; //rrplus[1];
+        let Qminus = bezier.fun( rg.Q.q_minus );
+        rg.rrminus.pos[0] = Qminus[0];
+        rg.rrminus.pos[1] = Qminus[1];
+        
+        //-----------------------------------------
+        // //\\ stashes rollback data
+        //      for case user-sliders go crazy
+        //-----------------------------------------
         rg.Q.formerPos = [ rg.Q.pos[0], rg.Q.pos[1] ];
         rg.tForSagitta.former_val = rg.tForSagitta.val;
         rg.formerP = [ rg.P.pos[0], rg.P.pos[1] ];
@@ -103,14 +112,13 @@
         rg.Q.former_q = rg.Q.q;
         rg.Q.former_q_minus = rg.Q.q_minus;
         //todm: rid:
-        rg.rrminus.pos[0] = rrminus[0];
-        rg.rrminus.pos[1] = rrminus[1];
-        /*
-        ccc( 'new: dx+=' + (rg.Q.pos[0]-rg.P.pos[0]).toFixed(3) +
-             ' dx-=' + (rrminus[0]-rg.P.pos[0]).toFixed(3) +
-             ' dt=' + rg.tForSagitta.val.toFixed(3)
-        );
-        */
+        rg.Q.former_q = rg.Q.q;
+        rg.rrminus.former_q_minus = rg.Q.q_minus;
+        rg.former_sideMinus = sideMinus;
+        rg.former_sidePlus = sidePlus;
+        //-----------------------------------------
+        // \\// stashes rollback data
+        //-----------------------------------------
 
         var sagitta2 = [ sidePlus[0] + sideMinus[0], sidePlus[1] + sideMinus[1], ];
         var sagitta = [ sagitta2[0]*0.5+rr0[0], sagitta2[1]*0.5+rr0[1], ];
@@ -178,12 +186,9 @@
         // //\\ graph
         //------------------------------------------------
         ///for initial launch only
-        if( !has( stdMod, 'graphArray' ) ) {
-            stdMod.curveIsSolvable();
-        }
-        if( has( stdMod, 'graphArray' ) ) {
-            stdMod.graphFW.drawGraph_wrap();
-        }
+        //if( has( stdMod, 'graphArray' ) ) {
+        stdMod.graphFW.drawGraph_wrap();
+        //}
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
@@ -201,6 +206,78 @@
         //------------------------------------------------
         // \\// PZ
         // \\// decorations
+        //================================================
+
+
+        //================================================
+        // //\\ hides/shows non-existing elements
+        //      for non-Kepler curve
+        //================================================
+        {
+            let nsp = rg.nonSolvablePoint;
+            let nsl = rg[ 'S,nonSolvablePoint' ];
+            if( ssD.foldPoints.length ) {
+                nsp.pos[0] = ssD.foldPoints[0][0];
+                nsp.pos[1] = ssD.foldPoints[0][1];
+                nsp.undisplay = false;
+                nsl.undisplay = false;
+            } else {
+                nsp.undisplay = true;
+                nsl.undisplay = true;
+            }
+        }    
+        if( ssD.solvable ) {
+            if( ssD.stashedVisibility ) {
+                ////restores visibility which has been stashed
+                ////when curve became non-Kepler
+                let sv = ssD.stashedVisibility;
+                Object.keys(ssD.stashedVisibility).forEach( okey => {
+                    let val = sv[ okey ];
+                    switch(okey) {
+                        case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
+                        break;
+                        case 'Q.d8d_find_is_LOCKED' : rg.Q.d8d_find_is_LOCKED = val;
+                        break;
+                        default : rg[ okey ].undisplay = val;
+                    }
+                });
+                ssD.stashedVisibility = null;
+            }
+        } else if( !ssD.stashedVisibility ) {
+            ////visibility has been not yet stashed;
+            ////therefore, doing stashing now,
+            ssD.stashedVisibility = {
+                'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
+                'P,rrminus'             : rg[ 'P,rrminus' ].undisplay,
+                'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
+                'Q'                     : rg.Q.undisplay,
+                'APQ'                   : rg.APQ.undisplay,
+                'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
+                'Q.d8d_find_is_LOCKED'  : rg.Q.d8d_find_is_LOCKED,
+                'R'                     : rg.R.undisplay,
+                'QR'                    : rg.QR.undisplay,
+                'QP'                    : rg.QP.undisplay,
+                'SQ'                    : rg.SQ.undisplay,
+                'T'                     : rg.T.undisplay,
+                'QT'                    : rg.QT.undisplay,
+                'rrminus'               : rg.rrminus.undisplay,
+                'timearc'               : rg.timearc.undisplay,
+                'sagitta'               : rg.sagitta.undisplay,
+                'curvatureCircle'       : rg.curvatureCircle.undisplay,
+            };
+            Object.keys(ssD.stashedVisibility).forEach( okey => {
+                switch(okey) {
+                    case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
+                    break;
+                    case 'Q.d8d_find_is_LOCKED' : rg.Q.d8d_find_is_LOCKED = true;
+                    break;
+                    default : rg[ okey ].undisplay = true;
+                }
+            });
+        }
+        //================================================
+        // \\// hides/shows non-existing elements
+        //      for non-Kepler curve
         //================================================
     }
 

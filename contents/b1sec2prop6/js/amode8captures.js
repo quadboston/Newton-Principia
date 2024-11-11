@@ -1,6 +1,7 @@
 ( function() {
     var {
-        ns, sn, paste, capture, amode, toreg,
+        ns, sn, nspaste, paste, capture, bezier,
+        amode, toreg,
         studyMods, rg, sDomF, ssD, ssF, fconf,
     } = window.b$l.apptree({
         ssFExportList :
@@ -48,7 +49,6 @@
     {
         var { theorion, aspect, submodel, subessay } = amode;
         var stdMod = studyMods[ submodel ];
-
 
         //----------------------------------
         // //\\ common values
@@ -143,7 +143,6 @@
                     ast
                 )
             );
-            ccc( captured )
             */
             if( theorion === 'proof' ){
                 rg.QP.undisplay = false;
@@ -203,7 +202,6 @@
             rg.V.undisplay = false;
             rg.PV.undisplay = false;
             rg[ 'P,sagitta' ].undisplay = true;
-            //rg[ 'sagitta' ].undisplay = true;
 
             rg.Y.undisplay = false;
             rg.SY.undisplay = false;
@@ -235,24 +233,16 @@
             rg[ 'QP' ].undisplay = true;
             rg[ 'P,rrminus' ].undisplay = true;
             rg.APQ.undisplay = true;
-
-            /*
-            if( aspect === 'addendum' ) {
-                rg.VQ.undisplay = false;
-                rg.SY.undisplay = true;
-                rg.Y.undisplay = true;
-                rg.PY.undisplay = false;
-                rg.QP.undisplay = false;
-                rg.V.undisplay = false;
-                rg.PV.undisplay = false;
-                rg.curvatureCircle.undisplay = false;
-            } 
-            */
-
         } else {
             rg.media_scale.value = 1;
             ssF.scaleValue2app( rg.media_scale.value, stdMod );
         }
+        if( sconf.APPROX !== 'D' ) {
+            ////this refreshes scnenario of
+            ////non-Kepler shapes visibility
+            ssD.stashedVisibility = null;
+        }
+        stdMod.curveIsSolvable();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }

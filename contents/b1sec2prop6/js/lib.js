@@ -1,6 +1,7 @@
 ( function() {
     var {
         sn, $$, mcurve, bezier,
+        ssD,
         stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -36,6 +37,8 @@
         var solvable = true;
         var fun      = bezier.fun;
         var forceGraphArray = [];
+        var foldPoints = [];
+        
         //how rare we will output graph points on svg
         //ba
         var FORCE_ARRAY_PERIOD = 100; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
@@ -67,12 +70,15 @@
             cosAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
                 solvable = false;
+                var nonSolvablePoint = [ rr[0], rr[1] ];
+                foldPoints.push( [ rr[0], rr[1] ] );
                 //c cc( 'not solvable q='+q+ ' solix='+solix );
-                break;
+                ////////break;
             }
 
 
             ///rebuilds forceGraphArray if yet solvable
+            //if point falls on the graph grid, do the job:
             if( !graphArrRem ) {
                 var comparLaw = -1 / r2;
                 var unitlessForce = -1/(R*r2*sinOmega)*bk;
@@ -115,7 +121,7 @@
             }
         }
         ///resets forceGraphArray if solvable
-        if( solvable ){
+        // // //if( solvable ){
             stdMod.graphArray = forceGraphArray;
             var arrLen = forceGraphArray.length;
             ///renorms 1/r2 graph for better comparision
@@ -126,10 +132,11 @@
                 far.y[1] = far.y[1] / (-comparLawMin);
                 far.y[2] = far.y[2] / speedMax;
             }
-        }
+        // // //}
         stdMod.pos2qix = pos2qix;
-        return { solvable, rr };
-
+        ssD.solvable = solvable;
+        ssD.foldPoints = foldPoints;
+        return;
 
 
         function pos2qix( pos )
