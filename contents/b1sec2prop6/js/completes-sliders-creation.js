@@ -101,8 +101,8 @@
                         }
                     } else {
                         ////sconf.APPROX === 'B'
-                        let dpos0 = newPos[0]-stashedPos[0];//bezier.pivotsPos[cpix];
-                        let dpos1 = newPos[1]-stashedPos[1];//bezier.pivotsPos[cpix];
+                        let dpos0 = newPos[0]-stashedPos[0];
+                        let dpos1 = newPos[1]-stashedPos[1];
                         let pos = bezier.pivotsPos[cpix];
                         let bpos0 = pos[0];
                         let bpos1 = pos[1];
@@ -137,46 +137,40 @@
         //=========================================================================
         rg.P.processOwnDownEvent = () => {
             sData.stashed_curveP = sData.curveP;
+            let curvePix = Math.floor( (rg.P.q - bezier.start_q )*bezier.q2ix );
+            sData.stashed_curvePP = ssD.curve[curvePix];
         };
         rg.P.acceptPos = (newPos, move) => {
-
-            //prevents dragged point to go outside of curve tips x
-            //if( newPos[0] > rg[ 'curvePivots-' + ( 0 ) ].pos[0] ) return false;
-            //if( newPos[0] < rg[ 'curvePivots-' + ( pivs.length-1 ) ].pos[0] ) return false;
-
-            /*
-            //--------------------------------------------------------------------
-            // //\\ to separate dragging pivotsPos and moving body,
-            //      prevents moving body come too close to pivotsPos
-            //--------------------------------------------------------------------
-            var REPELLING_DISTANCE = 0.01; //0.005; still draggable too
-            var returnValue = true;
-            sconf.originalPoints.curvePivots.forEach( (cp2,cpix2) => {
-                var pos2 = rg[ 'curvePivots-' + cpix2 ].pos;
-                if( REPELLING_DISTANCE > Math.abs( newPos[0] - pos2[0] ) ) {
-                    returnValue = false;
-                    return;
-                }
-            });
-            if( !returnValue ) return false;
-            //--------------------------------------------------------------------
-            // \\// to separate dragging pivotsPos and moving body,
-            //--------------------------------------------------------------------
-            */
-            
-            
+            let REPELLING_DISTANCE = 0.02;
+            let returnValue = true;
             if( sconf.APPROX === 'D' ) {            
                 //calculates new ordinate y(x)
                 newPos[1] = rg[ 'approximated-curve' ].t2xy( newPos[0] )[1];
             } else {
-                let { v, uu, q } = sData.stashed_curveP;
-                let delta_q = (uu[0]*move[0] - uu[1]*move[1])/v;
-                q = q + delta_q;
-                //proposedPos = bezier.fun( 
-                if( q<0 || q>1 ) return false;
-                rg.P.q = q;
+                let curvePP = sData.stashed_curvePP;
+                let { v, uu, rr, curveIx } = curvePP;
+                let move0 = newPos[0]-rr[0];
+                let move1 = newPos[1]-rr[1];
+                let delta_curveIx = Math.floor( (uu[0]*move0 + uu[1]*move1)/v*bezier.q2ix );
+                curveIx = curveIx + delta_curveIx;
+                curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
+                let stashed_curvePP = ssD.curve[ curveIx ];
+                
+                ///validates
+                sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                    let rgX = rg[ 'curvePivots-' + cpix ];
+                    if( REPELLING_DISTANCE > Math.abs( stashed_curvePP.q - rgX.q ) ) {
+                        returnValue = false;
+                        return;
+                    }
+                });
+                
+                if( returnValue ) {
+                    sData.stashed_curvePP = stashed_curvePP;
+                    rg.P.q = sData.stashed_curvePP.q;
+                }
             }
-            return true;
+            return returnValue;
         };
         //=========================================================================
         // \\// point P slider
@@ -189,45 +183,15 @@
         //      for delta t
         //=========================================================================
         rg.Q.processOwnDownEvent = function() {
-            ////apparently, there is no arg at this version,
-            ////            and useless "function.this" === rg.Q
-
-            //because deltaX may already changed, resets scale for delta X,
-            //this is a decorational constant for mouse drag,
-            sData.deltaX2deltaT = rg.tForSagitta.val / (rg.P.pos[0]-rg.Q.pos[0]);
-            sData.tForSagitta0 = rg.tForSagitta.val;
-            sData.Qpos0 = rg.Q.pos[0];
-            sData.Qpos1 = rg.Q.pos[1];
+            //this is for user mouse motion,
+            //remember, mouse motion and Q.pos motions are
+            //different,
+            ssD.QnewPos0_stashed = rg.Q.pos[0];
+            ssD.QnewPos1_stashed = rg.Q.pos[1];
         };
 
         rg.Q.acceptPos = newPos => {
-            var REPELLING_DISTANCE = 0.00001;
-            var deltaX = newPos[0] - rg.P.pos[0];
-            //prevents dragged point to go beyond P
-            if( deltaX > -REPELLING_DISTANCE ) return false;
-            //deltaX is negative, Q+ is on the left from P,
-
-
-            //prevents dragged point to go outside of curve tips x
-            //... this moved in to study-model.js::model...
-            //var wwRightLim = rg[ 'curvePivots-' + ( 0 ) ].pos[0] - REPELLING_DISTANCE;
-
-            //--------------------------------------------------------------------
-            // //\\ to separate dragging pivotsPos and moving body,
-            //      prevents moving body come too close to pivotsPos
-            //--------------------------------------------------------------------
-            var returnValue = true;
-            sconf.originalPoints.curvePivots.forEach( (cp2,cpix2) => {
-                var pos2 = rg[ 'curvePivots-' + cpix2 ].pos;
-                if( REPELLING_DISTANCE > Math.abs( newPos[0] - pos2[0] ) ) {
-                    returnValue = false;
-                    return;
-                }
-            });
-            if( !returnValue ) return false;
-            //--------------------------------------------------------------------
-            // \\// to separate dragging pivotsPos and moving body,
-            //--------------------------------------------------------------------
+            var REPELLING_DISTANCE = 0.01;
 
             //--------------------------------------------------------------------
             // //\\ sets delta t
@@ -236,14 +200,42 @@
             //this is a time interval to build a chord for suggitae,
             //rg.tForSagitta.val = Math.abs( deltaX ) * sData.deltaX2deltaT;
             let deltaPos = [
-                newPos[0]-sData.Qpos0,
-                newPos[1]-sData.Qpos1,
+                newPos[0]-ssD.QnewPos0_stashed,
+                newPos[1]-ssD.QnewPos1_stashed,
             ];
-            let { v, uu } = sData.curveP;
+            let { v, uu } = rg.Q.Qparams;
             let deltaQ = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
-            let sagg_t = sData.tForSagitta0 + deltaQ;
+            let new_q = rg.Q.q + deltaQ;
+            
+            //this is resundant: this is validated in model
+            //if( new_q <=0 || new_q >= 1 ) return false; 
+
+            let delta_t = deltaQ / rg.Q.dt2dq
+            let sagg_t = rg.tForSagitta.val + delta_t;
             //prevents too small saggita
             if( sagg_t < 0.01 ) return false;
+            //--------------------------------------------------------------------
+            // //\\ to separate dragging pivotsPos and moving body,
+            //      druring building a chord tip point,
+            //      prevents moving body come too close to pivotsPos
+            //--------------------------------------------------------------------
+            var returnValue = true;
+            
+            ///this is a partial validation,
+            ///because of overlapping can happen during
+            //moving of P
+            sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                let rgX = rg[ 'curvePivots-' + cpix ];
+                if( REPELLING_DISTANCE > Math.abs( new_q - rgX.q ) ) {
+                    returnValue = false;
+                    return;
+                }
+            });
+            if( !returnValue ) return false;
+            //--------------------------------------------------------------------
+            // \\// to separate dragging pivotsPos and moving body,
+            //--------------------------------------------------------------------
+            
             rg.tForSagitta.val = sagg_t;
             //--------------------------------------------------------------------
             // \\// sets delta t
@@ -251,6 +243,10 @@
 
             //lets validators to do the job
             stdMod.model8media_upcreate();
+            ssD.QnewPos0_stashed = newPos[0];
+            ssD.QnewPos1_stashed = newPos[1];
+
+            //"false" prevents model8media_upcreate() from running second time
             return false;
         }
         //=========================================================================
@@ -263,23 +259,12 @@
         // //\\ point S slider
         //=========================================================================
         {
-            let stashedPos = null;
-            let sp = rg.S.pos;
-            rg.S.processOwnDownEvent = () => {
-                stashedPos = [ sp[0], sp[1] ];
-            };
-
-            rg.S.processOwnUpEvent = () => {
-                sp[0] = stashedPos[0];
-                sp[1] = stashedPos[1];
-            };
-
+            //rg.S.processOwnDownEvent = () => {};
+            //rg.S.processOwnUpEvent = () => {};
             rg.S.acceptPos = newPos => {
+                //does this for decorational purposes
                 stdMod.curveIsSolvable();
-                if( !ssD.foldPoints.length ) {
-                    stashedPos[0] = newPos[0];
-                    stashedPos[1] = newPos[1];
-                }
+                //this permits an orbitrary move
                 return true;
             }
         }

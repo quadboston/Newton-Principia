@@ -9,6 +9,7 @@
             curveIsSolvable,
         },
     });
+    ssD.curveSTEPS = 1000;
     return;
 
 
@@ -29,7 +30,7 @@
         //too many steps, todm: make analytical validation or
         //make program simpler than planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
-        var STEPS = 1000;
+        var STEPS = ssD.curveSTEPS;
         var end_q = bezier.end_q;
         var start_q = bezier.start_q;
         
@@ -38,6 +39,7 @@
         var fun      = bezier.fun;
         var forceGraphArray = [];
         var foldPoints = [];
+        var curve = ssD.curve = (new Array(STEPS+1)).fill({});
         
         //how rare we will output graph points on svg
         //ba
@@ -50,6 +52,11 @@
             //grows from small to big
             //curve paramter is coordinate x:
             var q = start_q + solix * stepScale;
+            var curvePars = mcurve.planeCurveDerivatives({
+                fun,
+                q,
+                rrc,
+            });
             var {
                 rr,
                 r, //from chosen rrc
@@ -59,12 +66,10 @@
                 //cosOmega,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q,
-                rrc,
-            });
-
+            } = curvePars;
+            curvePars.curveIx = solix;
+            curve[solix] = curvePars;
+            
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
             cosAbs = Math.abs( sinOmega );

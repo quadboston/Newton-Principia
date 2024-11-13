@@ -51,9 +51,9 @@
             mmedia  : stdMod.svgScene,
             fun     : bezier.fun,
             rgName  : 'timearc',
-            stepsCount : 21,
+            stepsCount : 101,
             start   : rg.Q.q_minus,
-            step     : (rg.Q.q - rg.Q.q_minus ) / 20,
+            step     : (rg.Q.q - rg.Q.q_minus ) / 100,
         });
         //todm this is a redundant step, graphArray is already
         //built and can be used
@@ -61,9 +61,9 @@
             mmedia  : stdMod.svgScene,
             fun     : bezier.fun,
             rgName  : 'APQ',
-            stepsCount : 21,
+            stepsCount : 101,
             start   : 0,
-            step     : rg.Q.q / 20,
+            step     : rg.Q.q / 100,
         });
     }
     //=========================================================

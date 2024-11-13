@@ -69,6 +69,7 @@
         //==================================================
        
         {   ///curve pars
+            ///sconf is insufficient, there is a fine tuneup,
             let ocp = sconf.originalPoints.curvePivots;
             let pivotsPos = bezier.pivotsPos = ocp.map( (cp,cpix) => {
                 let pos = rg[ 'curvePivots-' + cpix ].pos;
@@ -107,14 +108,8 @@
                 bezier.fun = ssD.bezier.fun;
                 ssD.initialPivots = nspaste( [], bezier.pivotsPos );
             } //bezier end
+            bezier.q2ix = 1/(bezier.end_q-bezier.start_q)*ssD.curveSTEPS;
         }   ///curve pars
-        /*
-        var { bk } = mcurve.planeCurveDerivatives({
-            fun : bezier.fun,
-            q : bezier.start_q,
-            rrc : rg.S.pos,
-        });
-        */
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
     }
 

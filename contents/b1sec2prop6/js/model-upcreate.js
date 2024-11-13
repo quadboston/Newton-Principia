@@ -56,7 +56,7 @@
         //================================================
         var rrplus = null
         var rrminus = null;
-        var { rr, side, Qq } = deltaT_2_arc(
+        var { rr, side, Qq, Qparams, dt2dq } = deltaT_2_arc(
             rg.tForSagitta.val,     //t for arc
             sectSpeed0,
         );
@@ -64,8 +64,10 @@
             var rrplus = rr;
             var sidePlus = side;
             rg.Q.q = Qq;
+            rg.Q.Qparams = Qparams;
+            rg.Q.dt2dq = dt2dq;
         }
-        var { rr, side, Qq } = deltaT_2_arc(
+        var { rr, side, Qq, Qparams } = deltaT_2_arc(
             -rg.tForSagitta.val,    //t for arc
             sectSpeed0,
         );
@@ -77,14 +79,13 @@
         ////validator and corrector
         ///creative user may move Q beyond curve x-limits, don't let trouble to happen
         if( !rrminus || !rrplus ) {
-            if( has( rg.Q, 'formerPos' ) ) {
+            if( has( rg.Q, 'former_q' ) ) {
                 ////rolls back, rolls only Q and P which may be changed in sliding,
                 rg.tForSagitta.val = rg.tForSagitta.former_val;
-                rg.Q.pos[0] = rg.Q.formerPos[0];
-                rg.Q.pos[1] = rg.Q.formerPos[1];
                 rg.P.q = rg.former_Pq;
                 rg.P.pos[0] = rg.formerP[0];
                 rg.P.pos[1] = rg.formerP[1];
+                rg.Q.Qparams = rg.Q.frormerQparams;
                 rg.Q.q = rg.Q.former_q;
                 rg.Q.q_minus = rg.Q.former_q_minus;
                 var sideMinus = rg.former_sideMinus;
@@ -97,6 +98,7 @@
         let Qpos = bezier.fun( rg.Q.q );
         rg.Q.pos[0] = Qpos[0]; //rrplus[0];
         rg.Q.pos[1] = Qpos[1]; //rrplus[1];
+        rg.Q.caption = 'Q, Δt=' + rg.tForSagitta.val.toFixed(3);
         let Qminus = bezier.fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
         rg.rrminus.pos[1] = Qminus[1];
@@ -105,10 +107,11 @@
         // //\\ stashes rollback data
         //      for case user-sliders go crazy
         //-----------------------------------------
-        rg.Q.formerPos = [ rg.Q.pos[0], rg.Q.pos[1] ];
+        //rg.Q.formerPos = [ rg.Q.pos[0], rg.Q.pos[1] ];
         rg.tForSagitta.former_val = rg.tForSagitta.val;
         rg.formerP = [ rg.P.pos[0], rg.P.pos[1] ];
         rg.former_Pq = rg.P.q;
+        rg.Q.frormerQparams = rg.Q.Qparams; 
         rg.Q.former_q = rg.Q.q;
         rg.Q.former_q_minus = rg.Q.q_minus;
         //todm: rid:
@@ -216,6 +219,16 @@
         {
             let nsp = rg.nonSolvablePoint;
             let nsl = rg[ 'S,nonSolvablePoint' ];
+            let fpp = ssD.foldPoints;
+            sconf.originalPoints.foldPoints.forEach( (fp,fpix) => {
+                let rgfp = rg[ 'foldPoints-' + fpix ];
+                if( fpix < fpp.length ) {
+                    rgfp.pos = fpp[fpix];
+                    rgfp.undisplay = false;
+                } else {
+                    rgfp.undisplay = true;
+                }
+            });
             if( ssD.foldPoints.length ) {
                 nsp.pos[0] = ssD.foldPoints[0][0];
                 nsp.pos[1] = ssD.foldPoints[0][1];
@@ -317,25 +330,23 @@
 
         for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
             //doing step from old values
-            var qstep = STEP_T
-                    / v //v=ds/dt
-                    * sectSpeed0
-                    / staticSectorialSpeed_rrrOnUU;
+            //v //v=ds/dt
+            var dt2dq = sectSpeed0 / v / staticSectorialSpeed_rrrOnUU;
+            var qstep = dt2dq * STEP_T;
             q += qstep;
-            var {
-                rr,
-                v,
-                staticSectorialSpeed_rrrOnUU,
-                //todm this is a redundant step, graphArray is already
-                //built and can be used
-            } = mcurve.planeCurveDerivatives({
+            var Qparams = mcurve.planeCurveDerivatives({
                 fun,
                 q,
                 rrc,
             });
+            var {
+                rr,
+                v,
+                staticSectorialSpeed_rrrOnUU,
+            } = Qparams;
         }
         var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
-        return { rr, side, Qq:q };
+        return { rr, side, Qq:q, Qparams, dt2dq };
     }
 
 }) ();

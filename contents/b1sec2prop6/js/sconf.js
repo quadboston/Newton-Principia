@@ -187,11 +187,16 @@
             doPaintPname : false,
         }));
 
+        var foldPoints  = (new Array(50)).fill({}).map( fp => ({
+            pcolor      : invalid,
+            doPaintPname : false,
+        }));
 
         //---------------------------------------------------
         var originalPoints =
         {
             curvePivots,
+            foldPoints,
         };
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
@@ -293,7 +298,7 @@
 
                 //caption : '!',
                 caption : 'Central force does not exist ' +
-                          'in this point neighborhood.',
+                          'in this neighborhood(s).',
                 fontSize : '20',
 
                 /*
