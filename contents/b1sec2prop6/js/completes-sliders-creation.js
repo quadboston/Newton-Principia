@@ -136,10 +136,12 @@
         // //\\ point P slider
         //=========================================================================
         rg.P.processOwnDownEvent = () => {
+            ssD.PdragInitiated = true;
             sData.stashed_curveP = sData.curveP;
             let curvePix = Math.floor( (rg.P.q - bezier.start_q )*bezier.q2ix );
             sData.stashed_curvePP = ssD.curve[curvePix];
         };
+        rg.P.processOwnUpEvent = () => { ssD.PdragInitiated = false; };
         rg.P.acceptPos = (newPos, move) => {
             let REPELLING_DISTANCE = 0.02;
             let returnValue = true;

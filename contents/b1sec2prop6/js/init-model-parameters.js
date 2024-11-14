@@ -111,6 +111,7 @@
             bezier.q2ix = 1/(bezier.end_q-bezier.start_q)*ssD.curveSTEPS;
         }   ///curve pars
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
+        ssD.PdragInitiated = false;
     }
 
 }) ();

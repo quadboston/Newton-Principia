@@ -51,53 +51,66 @@
         } = curveP;
         var Rc = R; //curvature radius
 
-        //================================================
-        // //\\ arc, sagittae and related
-        //================================================
-        var rrplus = null
-        var rrminus = null;
-        var { rr, side, Qq, Qparams, dt2dq } = deltaT_2_arc(
-            rg.tForSagitta.val,     //t for arc
-            sectSpeed0,
-        );
-        if( Qq < bezier.end_q ) {
-            var rrplus = rr;
-            var sidePlus = side;
-            rg.Q.q = Qq;
+        
+        if( ssD.PdragInitiated ) {
+
+            var { rplus, rminus, sidePlus, sideMinus, qplus, qminus, Qparams, dt2dq, dt } =
+                  deltaQ_2_arc( sectSpeed0 );
+            rg.Q.q = qplus;
+            rg.Q.q_minus = qminus;
             rg.Q.Qparams = Qparams;
             rg.Q.dt2dq = dt2dq;
-        }
-        var { rr, side, Qq, Qparams } = deltaT_2_arc(
-            -rg.tForSagitta.val,    //t for arc
-            sectSpeed0,
-        );
-        if( Qq > bezier.start_q ) {
-            var rrminus = rr;
-            var sideMinus = side;
-            rg.Q.q_minus = Qq;
-        }
-        ////validator and corrector
-        ///creative user may move Q beyond curve x-limits, don't let trouble to happen
-        if( !rrminus || !rrplus ) {
-            if( has( rg.Q, 'former_q' ) ) {
-                ////rolls back, rolls only Q and P which may be changed in sliding,
-                rg.tForSagitta.val = rg.tForSagitta.former_val;
-                rg.P.q = rg.former_Pq;
-                rg.P.pos[0] = rg.formerP[0];
-                rg.P.pos[1] = rg.formerP[1];
-                rg.Q.Qparams = rg.Q.frormerQparams;
-                rg.Q.q = rg.Q.former_q;
-                rg.Q.q_minus = rg.Q.former_q_minus;
-                var sideMinus = rg.former_sideMinus;
-                var sidePlus = rg.former_sidePlus;
+            rg.tForSagitta.val =dt;
+            
+        } else {
+            //================================================
+            // //\\ arc, sagittae and related
+            //================================================
+            var rrplus = null
+            var rrminus = null;
+            var { rr, side, Qq, Qparams, dt2dq } = deltaT_2_arc(
+                rg.tForSagitta.val,     //t for arc
+                sectSpeed0,
+            );
+            if( Qq < bezier.end_q ) {
+                var rrplus = rr;
+                var sidePlus = side;
+                rg.Q.q = Qq;
+                rg.Q.Qparams = Qparams;
+                rg.Q.dt2dq = dt2dq;
             }
-            //return;
+            var { rr, side, Qq, Qparams } = deltaT_2_arc(
+                -rg.tForSagitta.val,    //t for arc
+                sectSpeed0,
+            );
+            if( Qq > bezier.start_q ) {
+                var rrminus = rr;
+                var sideMinus = side;
+                rg.Q.q_minus = Qq;
+            }
+            ////validator and corrector
+            ///creative user may move Q beyond curve x-limits, don't let trouble to happen
+            if( !rrminus || !rrplus ) {
+                if( has( rg.Q, 'former_q' ) ) {
+                    ////rolls back, rolls only Q and P which may be changed in sliding,
+                    rg.tForSagitta.val = rg.tForSagitta.former_val;
+                    rg.P.q = rg.former_Pq;
+                    rg.P.pos[0] = rg.formerP[0];
+                    rg.P.pos[1] = rg.formerP[1];
+                    rg.Q.Qparams = rg.Q.frormerQparams;
+                    rg.Q.q = rg.Q.former_q;
+                    rg.Q.q_minus = rg.Q.former_q_minus;
+                    var sideMinus = rg.former_sideMinus;
+                    var sidePlus = rg.former_sidePlus;
+                }
+            }
+            let chord = rg.chord = [ sidePlus[0] - sideMinus[0], sidePlus[1] - sideMinus[1], ];
+            rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
         }
-
         ///continues completing model peacefully
-        let Qpos = bezier.fun( rg.Q.q );
-        rg.Q.pos[0] = Qpos[0]; //rrplus[0];
-        rg.Q.pos[1] = Qpos[1]; //rrplus[1];
+        //let Qpos = bezier.fun( rg.Q.q );
+        rg.Q.pos[0] = rg.Q.Qparams.rr[0];
+        rg.Q.pos[1] = rg.Q.Qparams.rr[1];
         rg.Q.caption = 'Q, Δt=' + rg.tForSagitta.val.toFixed(3);
         let Qminus = bezier.fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
@@ -122,7 +135,6 @@
         //-----------------------------------------
         // \\// stashes rollback data
         //-----------------------------------------
-
         var sagitta2 = [ sidePlus[0] + sideMinus[0], sidePlus[1] + sideMinus[1], ];
         var sagitta = [ sagitta2[0]*0.5+rr0[0], sagitta2[1]*0.5+rr0[1], ];
         rg.sagitta.pos[0] = sagitta[0];
@@ -302,11 +314,107 @@
 
 
     //builds two arcs, after and before instant position of moving body P
+    function deltaQ_2_arc(
+        sectSpeed0,
+    ){
+        const chord2 = rg.chord2;
+        //c cc( 'ini chord2='+chord2.toFixed(3) + ' dt='+rg.tForSagitta.val.toFixed(3) );
+        const INTEGRATION_STEPS = 200;
+        const STEP_T = rg.tForSagitta.val / INTEGRATION_STEPS;
+        const rrc = rg.S.pos;
+        const fun = bezier.fun;
+        var q = rg.P.q;
+
+        //: integration starting values
+        var Qparams = mcurve.planeCurveDerivatives({
+            fun : bezier.fun,
+            q,
+            rrc,
+        });
+        var {
+            v,
+            rr,
+            staticSectorialSpeed_rrrOnUU,
+        } = Qparams;
+
+        let rr0 = rr;
+        let chordT2 = 0;
+        let vplus = v;
+        let vminus = v;
+        let rplus = rr0;
+        let rminus = rr0;
+        let secSpeedPlus = staticSectorialSpeed_rrrOnUU;
+        let secSpeedMinus = staticSectorialSpeed_rrrOnUU;
+        let qplus = q;
+        let qminus = q;
+        let dummmyCounter = 0;
+        let dt = 0;
+        do {
+            //doing step from old values
+            //v=ds/dt
+            var Qparams = mcurve.planeCurveDerivatives({
+                fun,
+                q : qplus,
+                rrc,
+            });
+            var {
+                rr,
+                v,
+                staticSectorialSpeed_rrrOnUU,
+            } = Qparams;
+            vplus = v;
+            rplus = rr;
+            secSpeedPlus = staticSectorialSpeed_rrrOnUU;
+            var dt2dq_plus = sectSpeed0 / ( vplus * secSpeedPlus );
+            var qstep = dt2dq_plus * STEP_T;
+            var qplus2 = qplus + qstep;
+            
+            var QparamsMinus = mcurve.planeCurveDerivatives({
+                fun,
+                q : qminus,
+                rrc,
+            });
+            var {
+                rr,
+                v,
+                staticSectorialSpeed_rrrOnUU,
+            } = QparamsMinus;
+            vminus = v;
+            rminus = rr;
+            secSpeedMinus = staticSectorialSpeed_rrrOnUU;
+            var dt2dqMinus = sectSpeed0 / ( vminus * secSpeedMinus );
+            var qstep = -dt2dqMinus * STEP_T;
+            var qminus2 = qminus + qstep;
+
+            chordTV = [rplus[0]-rminus[0], rplus[1]-rminus[1]];
+            chordT2 = chordTV[0]*chordTV[0] + chordTV[1]*chordTV[1];
+            
+            if( chordT2 < chord2 && qplus2 <= 1 && qminus2 >= 0 ) {
+                qplus = qplus2;
+                qminus = qminus2;
+                dt += STEP_T; 
+            } else {
+                //dt += STEP_T/2; //kitchen algo
+                break;
+            }
+            dummmyCounter++;
+        } while( dummmyCounter < INTEGRATION_STEPS*10 );
+        var sidePlus = [ rplus[0] - rr0[0], rplus[1] - rr0[1] ];
+        var sideMinus = [ rminus[0] - rr0[0], rminus[1] - rr0[1] ];
+        return { rr:rplus, rplus, rminus, sidePlus, sideMinus,
+                 qplus, qminus, Qparams, dt2dq:dt2dq_plus, dt:Math.max( 0.001, dt ),
+               };
+    }
+
+
+    
+    
+    //builds two arcs, after and before instant position of moving body P
     function deltaT_2_arc(
         intervalT,   //rg.tForSagitta.val
         sectSpeed0,
     ){
-        const INTEGRATION_STEPS = 20; //10 works as well
+        const INTEGRATION_STEPS = 200;
         const STEP_T = intervalT / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
         const fun = bezier.fun;
@@ -348,6 +456,7 @@
         var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
         return { rr, side, Qq:q, Qparams, dt2dq };
     }
-
+    
+    
 }) ();
 
