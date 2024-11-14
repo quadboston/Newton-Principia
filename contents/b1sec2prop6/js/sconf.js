@@ -112,6 +112,8 @@
         sconf.APPROX = 'D'; //divided differences';
         sconf.APPROX = 'B'; //Beizier
         
+        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING_P = true;
+        
         //=============================================
         // //\\ points reused in config
         var S = [originX_onPicture, originY_onPicture];
