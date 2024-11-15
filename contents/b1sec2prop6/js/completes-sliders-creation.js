@@ -136,7 +136,7 @@
         // //\\ point P slider
         //=========================================================================
         rg.P.processOwnDownEvent = () => {
-            if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING_P ) {
+            if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                 ssD.PdragInitiated = true;
             }
             sData.stashed_curveP = sData.curveP;
@@ -161,14 +161,15 @@
                 let stashed_curvePP = ssD.curve[ curveIx ];
                 
                 ///validates
-                sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
-                    let rgX = rg[ 'curvePivots-' + cpix ];
-                    if( REPELLING_DISTANCE > Math.abs( stashed_curvePP.q - rgX.q ) ) {
-                        returnValue = false;
-                        return;
-                    }
-                });
-                
+                if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
+                    sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                        let rgX = rg[ 'curvePivots-' + cpix ];
+                        if( REPELLING_DISTANCE > Math.abs( stashed_curvePP.q - rgX.q ) ) {
+                            returnValue = false;
+                            return;
+                        }
+                    });
+                }
                 if( returnValue ) {
                     sData.stashed_curvePP = stashed_curvePP;
                     rg.P.q = sData.stashed_curvePP.q;
@@ -225,17 +226,19 @@
             //--------------------------------------------------------------------
             var returnValue = true;
             
-            ///this is a partial validation,
-            ///because of overlapping can happen during
-            //moving of P
-            sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
-                let rgX = rg[ 'curvePivots-' + cpix ];
-                if( REPELLING_DISTANCE > Math.abs( new_q - rgX.q ) ) {
-                    returnValue = false;
-                    return;
-                }
-            });
-            if( !returnValue ) return false;
+            if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
+                ///this is a partial validation,
+                ///because of overlapping can happen during
+                //moving of P
+                sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                    let rgX = rg[ 'curvePivots-' + cpix ];
+                    if( REPELLING_DISTANCE > Math.abs( new_q - rgX.q ) ) {
+                        returnValue = false;
+                        return;
+                    }
+                });
+                if( !returnValue ) return false;
+            }
             //--------------------------------------------------------------------
             // \\// to separate dragging pivotsPos and moving body,
             //--------------------------------------------------------------------
@@ -263,7 +266,12 @@
         // //\\ point S slider
         //=========================================================================
         {
-            //rg.S.processOwnDownEvent = () => {};
+            rg.S.processOwnDownEvent = () => {
+                if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
+                    ssD.SdragInitiated = true;
+                }
+            };
+            rg.S.processOwnUpEvent = () => { ssD.SdragInitiated = false; };
             //rg.S.processOwnUpEvent = () => {};
             rg.S.acceptPos = newPos => {
                 //does this for decorational purposes

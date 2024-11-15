@@ -270,7 +270,8 @@
 
         // //\\ DOM wrap
         //      for chains
-        //      simple replacement of jQuery
+        //      simple jQuery replacement, which
+        //      can coexist with jQuery,
         var $$ = ns.$$ =
         ( function() {
 

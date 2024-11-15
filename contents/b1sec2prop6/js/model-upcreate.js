@@ -52,7 +52,7 @@
         var Rc = R; //curvature radius
 
         
-        if( ssD.PdragInitiated ) {
+        if( ssD.PdragInitiated || ssD.SdragInitiated ) {
 
             var { rplus, rminus, sidePlus, sideMinus, qplus, qminus, Qparams, dt2dq, dt } =
                   deltaQ_2_arc( sectSpeed0 );
@@ -225,22 +225,38 @@
 
 
         //================================================
-        // //\\ hides/shows non-existing elements
-        //      for non-Kepler curve
+        // //\\ hides/shows split points
         //================================================
         {
+            let pp = sconf.originalPoints.foldPoints;
+            let foldps = ssD.foldPoints;
+            let flen = foldps.length;
+            let pastlen = ssD.pastFoldPoints;
+            //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
+            if( has( ssD, 'pastFoldPoints' ) ) {
+                //todm for( let i=foldps.length; i<flen; i++ ) {
+                for( let i=0; i<pastlen; i++ ) {
+                    pp[i].rgX.undisplay = true;  
+                }
+            }
+            ////otherwise, cannot display all separation points;
+            ////therfore, displays nothing,
+            if( foldps.length <= pp.length ) {
+                 for( let i=0; i<flen; i++ ){
+                     if( i=== 199 )
+                         ccc('haaa' );
+                    let fp = foldps[i];
+                    let rgX = pp[i].rgX;
+                    rgX.pos = fp;
+                    rgX.undisplay = false;
+                };
+                ssD.pastFoldPoints = flen;
+            } 
+        }
+        {
+            ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
             let nsl = rg[ 'S,nonSolvablePoint' ];
-            let fpp = ssD.foldPoints;
-            sconf.originalPoints.foldPoints.forEach( (fp,fpix) => {
-                let rgfp = rg[ 'foldPoints-' + fpix ];
-                if( fpix < fpp.length ) {
-                    rgfp.pos = fpp[fpix];
-                    rgfp.undisplay = false;
-                } else {
-                    rgfp.undisplay = true;
-                }
-            });
             if( ssD.foldPoints.length ) {
                 nsp.pos[0] = ssD.foldPoints[0][0];
                 nsp.pos[1] = ssD.foldPoints[0][1];
@@ -250,7 +266,15 @@
                 nsp.undisplay = true;
                 nsl.undisplay = true;
             }
-        }    
+        }
+        //================================================
+        // \\// hides/shows split points
+        //================================================
+
+        //================================================
+        // //\\ hides/shows non-existing elements
+        //      for non-Kepler curve
+        //================================================
         if( ssD.solvable ) {
             if( ssD.stashedVisibility ) {
                 ////restores visibility which has been stashed
@@ -319,7 +343,7 @@
     ){
         const chord2 = rg.chord2;
         //c cc( 'ini chord2='+chord2.toFixed(3) + ' dt='+rg.tForSagitta.val.toFixed(3) );
-        const INTEGRATION_STEPS = 200;
+        const INTEGRATION_STEPS = 1200;
         const STEP_T = rg.tForSagitta.val / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
         const fun = bezier.fun;

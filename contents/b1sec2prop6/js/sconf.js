@@ -36,6 +36,14 @@
         // \\// subapp regim switches
         //====================================================
 
+        //chose approximation of the curve
+        sconf.APPROX = 'D'; //divided differences';
+        sconf.APPROX = 'B'; //Beizier
+        
+        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = true;
+        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -108,17 +116,11 @@
         // //\\ geometics parameters
         //***************************************************************
 
-        //chose approximation of the curve
-        sconf.APPROX = 'D'; //divided differences';
-        sconf.APPROX = 'B'; //Beizier
-        
-        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING_P = true;
-        
         //=============================================
         // //\\ points reused in config
         var S = [originX_onPicture, originY_onPicture];
         var P = [453, 177];
-        var Q = [346, 134];
+        //var Q = [346, 134];
         var Y = [263,66];
         //var A = [540, 338];
         var A = sconf.APPROX === 'B' ? [540, 338] : [555, 338];
@@ -134,12 +136,12 @@
         //-----------------------------------
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
+        var result  = [250,   0,  0,      1];
         var curvature  = [200,   40,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
-        var invalid = [200,   0,  100,     1];
+        var invalid = [200,   150,  0,     1];
         var predefinedTopics =
         {
             given,
@@ -175,10 +177,30 @@
             [102,184],
             [51,238 ],
         ];
-        sconf.tForSagitta0 = 0.168;
         if( sconf.APPROX === 'B' ) {
             sconf.rgPq = 0.270;
             curvePivots.push( [22,315] );
+        }
+        sconf.tForSagitta0 = 0.168;
+        if( sconf.BESIER_PIVOTS === 5 ) {
+            ////adjustements of initial positions
+            sconf.tForSagitta0 = 0.172;
+            sconf.rgPq = 0.28;
+            let wwcp = [];
+            for( var i=0; i<curvePivots.length; i++ ) {
+                if( (i-1)%2 ) {
+                    let cp = curvePivots[i];
+                    if( i!==0 && i!==curvePivots.length-1 ) {
+                        let x = cp[0] - originX_onPicture;
+                        let y = cp[1] - originY_onPicture;
+                        x *=1.1
+                        y *= i==6 ? 1.45 : ( i==4 ? 1.05 : 1.1 );
+                        cp=[ x+originX_onPicture, y+originY_onPicture  ];
+                    }
+                    wwcp.push( cp );
+                }
+            }
+            curvePivots = wwcp;
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
@@ -189,7 +211,7 @@
             doPaintPname : false,
         }));
 
-        var foldPoints  = (new Array(50)).fill({}).map( fp => ({
+        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
             pcolor      : invalid,
             doPaintPname : false,
         }));
@@ -230,7 +252,7 @@
             },
 
             Q : {
-                pos: Q,
+                //pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
@@ -244,7 +266,7 @@
             },
 
             R : {
-                pos: Q,
+                //pos: Q,
                 pcolor : proof,
                 letterAngle : 45,
             },
@@ -257,7 +279,7 @@
 
             rrminus : {
                 caption : 'Q-',
-                pos: Q,
+                //pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
@@ -265,7 +287,7 @@
 
             sagitta : {
                 caption : 'I',
-                pos: Q,
+                //pos: Q,
                 pcolor : proof,
                 letterAngle : 270,
                 letterRotRadius : 35,
@@ -275,7 +297,7 @@
 
 
             Y : {
-                pos: Q,
+                //pos: Q,
                 pcolor : proof,
                 letterAngle : 80,
             },
@@ -297,12 +319,8 @@
 
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
-
-                //caption : '!',
-                caption : 'Central force does not exist ' +
-                          'in this neighborhood(s).',
+                caption : 'Orbit split point(s)',
                 fontSize : '20',
-
                 /*
                 //no dice:
                 title : 'Kepler force does not exist ' +

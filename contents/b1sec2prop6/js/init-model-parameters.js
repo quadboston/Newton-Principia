@@ -2,7 +2,7 @@
     var {
         ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral,
         mat, bezier,
-        ssF, ssD, sData,
+        ssF, ssD, sData, sDomN,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -111,7 +111,71 @@
             bezier.q2ix = 1/(bezier.end_q-bezier.start_q)*ssD.curveSTEPS;
         }   ///curve pars
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
+        
+        //-----------------------------------------
+        // //\\ partially draggers and decoration
+        //      are initiated here
+        //      todm: not very consistent,
+        //-----------------------------------------
         ssD.PdragInitiated = false;
+        ssD.SdragInitiated = false;
+        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+            fp.rgX = rg[ 'foldPoints-' + ppix ];
+            fp.rgX.undisplay = true;
+        });
+        //-----------------------------------------
+        // \\// partially draggers and decoration
+        //-----------------------------------------
+
+        //=========================================
+        // //\\ chordmode radio-input control
+        //=========================================
+        //scene.addElement( ssD.radioWrack );
+        sDomN.radioDiv$ = $$.c( 'div' )
+            .html( 'while reshaping, preserve ' )
+            .css( 'display', 'inline-block' )
+            .css( 'float', 'left' )
+            .css( 'padding-left', '16px' )
+            .to( sDomN.topMediaControls$ )
+        ;        
+        sDomN.chordmodeChord$ = $$.c( 'input' )
+            .addClass( 'preserves-chord' )
+            .a( 'type', 'radio')
+            .a( 'name', 'chordmode')
+            .to( sDomN.radioDiv$ )
+        ;        
+        $$.c( 'span' )
+            .html( 'chord length' )
+            .to( sDomN.radioDiv$ )
+        ;        
+        sDomN.chordmodeTime$ = $$.c( 'input' )
+            .addClass( 'preserves-time' )
+            .a( 'type', 'radio')
+            .a( 'name', 'chordmode')
+            .to( sDomN.radioDiv$ )
+        ;        
+        $$.c( 'span' )
+            .html( 'chord time' )
+            .to( sDomN.radioDiv$ )
+        ;
+        if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
+            sDomN.chordmodeChord$.a( 'checked', 'yes' );
+        } else {
+            sDomN.chordmodeTime$( 'checked', 'yes' );
+        }
+        document.querySelectorAll('input[name="chordmode"]').forEach((elem) => {
+            elem.addEventListener("change", function(event) {
+                //c cc( $$.$(event.target)._a( 'class' ) );
+                //c cc( event.target );
+                //c cc( event.target.value );
+                sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING =
+                    sDomN.chordmodeChord$().checked;
+                //c cc( 'chord set=' + sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING );
+            });
+        });
+        //=========================================
+        // \\// chordmode radio-input control
+        //=========================================
     }
 
 }) ();

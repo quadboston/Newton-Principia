@@ -49,6 +49,10 @@
     {
         var { theorion, aspect, submodel, subessay } = amode;
         var stdMod = studyMods[ submodel ];
+        
+        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+            fp.rgX.undisplay = true;
+        });
 
         //----------------------------------
         // //\\ common values
