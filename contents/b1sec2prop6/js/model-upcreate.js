@@ -52,7 +52,7 @@
         var Rc = R; //curvature radius
 
         
-        if( ssD.PdragInitiated || ssD.SdragInitiated ) {
+        if( ssD.PdragInitiated || ssD.SdragInitiated || ssD.PivotDragInitiated ) {
 
             var { rplus, rminus, sidePlus, sideMinus, qplus, qminus, Qparams, dt2dq, dt } =
                   deltaQ_2_arc( sectSpeed0 );
@@ -261,7 +261,7 @@
                 nsp.pos[0] = ssD.foldPoints[0][0];
                 nsp.pos[1] = ssD.foldPoints[0][1];
                 nsp.undisplay = false;
-                nsl.undisplay = false;
+                //nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;

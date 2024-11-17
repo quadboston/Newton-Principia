@@ -38,6 +38,9 @@
             var stashedCurveP = null;
 
             cp.rgX.processOwnDownEvent = () => {
+                if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
+                    ssD.PivotDragInitiated = true;
+                }
                 if( sconf.APPROX === 'D' ) {   
                     let pos = rg[ 'curvePivots-' + cpix ].pos;                
                     stashedPos = [ pos[0], pos[1] ];
@@ -53,6 +56,7 @@
                 if( sconf.APPROX === 'D' ) {    
                     stdMod.pointsArr_2_singleDividedDifferences();
                 }
+                ssD.PivotDragInitiated = false;
             };
 
             cp.rgX.acceptPos = (newPos, move) => {

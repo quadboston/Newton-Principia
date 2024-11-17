@@ -489,7 +489,7 @@ Equality Definition gives a method to compare two ratios. But as it "was dicover
 2000 years later" (Dedekind 1863-1872), cuts comprise more than a method of comparing ratios, cuts do form numeric system ℝ<sup>+</sup> and when being extended to negative numbers, do form an ordered field of real numbers ℝ.
 <br><br>
 
-Further we will analyze a relation betwen M and ℝ.
+Further we will analyze a relation betwen M and ℝ<sup>+</sup>.
 <br><br><br>
 
 

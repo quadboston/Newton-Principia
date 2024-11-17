@@ -126,56 +126,8 @@
         //-----------------------------------------
         // \\// partially draggers and decoration
         //-----------------------------------------
-
-        //=========================================
-        // //\\ chordmode radio-input control
-        //=========================================
-        //scene.addElement( ssD.radioWrack );
-        sDomN.radioDiv$ = $$.c( 'div' )
-            .html( 'while reshaping, preserve ' )
-            .css( 'display', 'inline-block' )
-            .css( 'float', 'left' )
-            .css( 'padding-left', '16px' )
-            .to( sDomN.topMediaControls$ )
-        ;        
-        sDomN.chordmodeChord$ = $$.c( 'input' )
-            .addClass( 'preserves-chord' )
-            .a( 'type', 'radio')
-            .a( 'name', 'chordmode')
-            .to( sDomN.radioDiv$ )
-        ;        
-        $$.c( 'span' )
-            .html( 'chord length' )
-            .to( sDomN.radioDiv$ )
-        ;        
-        sDomN.chordmodeTime$ = $$.c( 'input' )
-            .addClass( 'preserves-time' )
-            .a( 'type', 'radio')
-            .a( 'name', 'chordmode')
-            .to( sDomN.radioDiv$ )
-        ;        
-        $$.c( 'span' )
-            .html( 'chord time' )
-            .to( sDomN.radioDiv$ )
-        ;
-        if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
-            sDomN.chordmodeChord$.a( 'checked', 'yes' );
-        } else {
-            sDomN.chordmodeTime$( 'checked', 'yes' );
-        }
-        document.querySelectorAll('input[name="chordmode"]').forEach((elem) => {
-            elem.addEventListener("change", function(event) {
-                //c cc( $$.$(event.target)._a( 'class' ) );
-                //c cc( event.target );
-                //c cc( event.target.value );
-                sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING =
-                    sDomN.chordmodeChord$().checked;
-                //c cc( 'chord set=' + sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING );
-            });
-        });
-        //=========================================
-        // \\// chordmode radio-input control
-        //=========================================
+        
+        stdMod.createsChordModeRadioControl();
     }
 
 }) ();

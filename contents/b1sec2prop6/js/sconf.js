@@ -142,6 +142,7 @@
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
         var invalid = [200,   150,  0,     1];
+        var white = [255,   255,  255,     1];
         var predefinedTopics =
         {
             given,
@@ -319,13 +320,14 @@
 
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
-                caption : 'Orbit split point(s)',
-                fontSize : '20',
+                caption : 'Orbits are disconnected.',
+                fontSize : '25',
                 /*
                 //no dice:
                 title : 'Kepler force does not exist ' +
                         'in neighborhood of this point.',
                 */
+                undisplayAlways : true,
                 pcolor : invalid,
                 letterAngle : 90,
 
