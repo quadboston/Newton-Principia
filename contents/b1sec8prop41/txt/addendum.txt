@@ -287,11 +287,10 @@ Newton's diagram is so good that, one can draw ¦v2graph Z2graph¦potential well
 The upper cover of this ¦v2graph Z2graph¦well¦¦ is "kineic energy ¦v2graph¦v²¦¦ and the bottom boundary is "rotation energy" ¦Z2graph¦v<sub>⟂</sub>²¦¦.
 <br><br>
 
-For some values of ¦V,v¦v<sub>o</sub>¦¦, this ¦v2graph Z2graph¦well¦¦ is has upper and lower boundary points ρ which are "turning" points of the ¦orbit¦¦.
+For some values of ¦V,v¦v<sub>o</sub>¦¦, this ¦v2graph Z2graph¦well¦¦ has upper and lower boundary points ρ which are "turning" points of the ¦orbit¦¦.
 <br><br>
 
-Newton's diagram fits diligently diagram which we reproduced here
-by estimating Newton's initial values and making numerical calculation of second degree differential equation by computer.
+One can see, that Newton's diagram fits impressively accurate to numerical diagram which we produced by estimating Newton's initial values and making numerical calculation of second degree differential equation by computer.
 
 
 <br><br>

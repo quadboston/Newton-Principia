@@ -106,140 +106,139 @@
             rg.Q.hideD8Dpoint = true;
             rg.Q.d8d_find_is_LOCKED = true;
 
-            return captured;
-        }
+        } else {
 
+            if( theorion === 'claim' || theorion === 'proof' ){
 
-        if( theorion === 'claim' || theorion === 'proof' ){
+                rg.media_scale.value = 1;
 
-            rg.media_scale.value = 1;
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-            ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                rg.A.undisplay = true;
+                rg.T.undisplay = true;
+                rg.QT.undisplay = true;
+                rg.V.undisplay = true;
+                rg.PV.undisplay = true;
+                rg.PR.undisplay = true;
+                rg.PZ.undisplay = true;
+                rg.Z.undisplay = true;
 
-            rg.A.undisplay = true;
-            rg.T.undisplay = true;
-            rg.QT.undisplay = true;
-            rg.V.undisplay = true;
-            rg.PV.undisplay = true;
-            rg.PR.undisplay = true;
-            rg.PZ.undisplay = true;
-            rg.Z.undisplay = true;
+                rg.R.undisplay = true;
+                rg.QR.undisplay = true;
+                rg.QP.undisplay = true;
+                rg.SQ.undisplay = true;
+                rg.Y.undisplay = true;
+                rg.PV.undisplay = true;
+                rg.SY.undisplay = true;
+                rg.PY.undisplay = true;
+                rg.curvatureCircle.undisplay = true;
+                rg.C.undisplay = true;
+                rg.PC.undisplay = true;
+                rg[ 'Q,rrminus' ].undisplay = false;
+                /*
+                fapp.captureState(
+                    ns.paste(
+                        {
+                            curvePivots_points : cpPoints,
+                            curveRightPivots_points : rpPoints,
+                        },
+                        ast
+                    )
+                );
+                */
+                if( theorion === 'proof' ){
+                    rg.QP.undisplay = false;
+                    rg[ 'Q,rrminus' ].undisplay = false;
+                    rg[ 'P,rrminus' ].undisplay = false;
+                }
+            } else if( theorion === 'corollary' && aspect === 'addendum' &&
+                    subessay === 'corollary1' ){
+                rg.SY.undisplay = true;
+                rg.Y.undisplay = true;
+                rg.PY.undisplay = true;
+                rg.V.undisplay = true;
+                rg.PV.undisplay = true;
 
-            rg.R.undisplay = true;
-            rg.QR.undisplay = true;
-            rg.QP.undisplay = true;
-            rg.SQ.undisplay = true;
-            rg.Y.undisplay = true;
-            rg.PV.undisplay = true;
-            rg.SY.undisplay = true;
-            rg.PY.undisplay = true;
-            rg.curvatureCircle.undisplay = true;
-            rg.C.undisplay = true;
-            rg.PC.undisplay = true;
-            rg[ 'Q,rrminus' ].undisplay = false;
-            /*
-            fapp.captureState(
-                ns.paste(
-                    {
-                        curvePivots_points : cpPoints,
-                        curveRightPivots_points : rpPoints,
-                    },
-                    ast
-                )
-            );
-            */
-            if( theorion === 'proof' ){
-                rg.QP.undisplay = false;
+                rg.curvatureCircle.undisplay = true;
+                rg.C.undisplay = true;
+                rg.PC.undisplay = true;
                 rg[ 'Q,rrminus' ].undisplay = false;
                 rg[ 'P,rrminus' ].undisplay = false;
-            }
-        } else if( theorion === 'corollary' && aspect === 'addendum' &&
-                   subessay === 'corollary1' ){
-            rg.SY.undisplay = true;
-            rg.Y.undisplay = true;
-            rg.PY.undisplay = true;
-            rg.V.undisplay = true;
-            rg.PV.undisplay = true;
 
-            rg.curvatureCircle.undisplay = true;
-            rg.C.undisplay = true;
-            rg.PC.undisplay = true;
-            rg[ 'Q,rrminus' ].undisplay = false;
-            rg[ 'P,rrminus' ].undisplay = false;
+            } else if( theorion === 'corollary' && subessay === 'corollary1' ){
+                rg.SY.undisplay = true;
+                rg.Y.undisplay = true;
+                rg.PY.undisplay = true;
+                rg.V.undisplay = true;
+                rg.PV.undisplay = true;
 
-        } else if( theorion === 'corollary' && subessay === 'corollary1' ){
-            rg.SY.undisplay = true;
-            rg.Y.undisplay = true;
-            rg.PY.undisplay = true;
-            rg.V.undisplay = true;
-            rg.PV.undisplay = true;
+                rg.curvatureCircle.undisplay = true;
+                rg.C.undisplay = true;
+                rg.PC.undisplay = true;
+                rg[ 'Q,rrminus' ].undisplay = false;
+                rg[ 'rrminus' ].undisplay = false;
+                //rg.sagitta.undisplay = false;
+                rg[ 'P,sagitta' ].undisplay = false;
+                rg[ 'P,rrminus' ].undisplay = false;
 
-            rg.curvatureCircle.undisplay = true;
-            rg.C.undisplay = true;
-            rg.PC.undisplay = true;
-            rg[ 'Q,rrminus' ].undisplay = false;
-            rg[ 'rrminus' ].undisplay = false;
-            //rg.sagitta.undisplay = false;
-            rg[ 'P,sagitta' ].undisplay = false;
-            rg[ 'P,rrminus' ].undisplay = false;
+            } else if( theorion === 'corollary' && subessay === 'corollary3'
+            ){
+                if( aspect === 'addendum' ) {
+                    rg.Q.hideD8Dpoint = true;
+                    rg.Q.d8d_find_is_LOCKED = true;
+                    rg.Q.undisplay = true;
+                    rg.QP.undisplay = true;
+                    rg.QR.undisplay = true;
+                    rg.R.undisplay = true;
+                } else {
+                    rg.Q.hideD8Dpoint = false;
+                    rg.Q.d8d_find_is_LOCKED = false;
+                    rg.Q.undisplay = false;
+                    rg.QP.undisplay = false;
+                    rg.QR.undisplay = false;
+                    rg.R.undisplay = false;
+                }
 
-        } else if( theorion === 'corollary' && subessay === 'corollary3'
-        ){
-            if( aspect === 'addendum' ) {
-                rg.Q.hideD8Dpoint = true;
-                rg.Q.d8d_find_is_LOCKED = true;
-                rg.Q.undisplay = true;
-                rg.QP.undisplay = true;
-                rg.QR.undisplay = true;
-                rg.R.undisplay = true;
+                rg.APQ.undisplay = true;
+                rg.Z.undisplay = true;
+                rg.V.undisplay = false;
+                rg.PV.undisplay = false;
+                rg[ 'P,sagitta' ].undisplay = true;
+
+                rg.Y.undisplay = false;
+                rg.SY.undisplay = false;
+                rg.SQ.undisplay = true;
+                rg.T.undisplay = true;
+                rg.QT.undisplay = true;
+                rg[ 'Q,rrminus' ].undisplay = true;
+                rg[ 'rrminus' ].undisplay = true;
+                rg.timearc.undisplay = true;
+
+
+            } else if( theorion === 'corollary' && subessay === 'corollary5' ){
+                rg.SY.undisplay = true;
+                rg.Y.undisplay = true;
+                rg.PY.undisplay = false;
+                rg.V.undisplay = true;
+                rg.PV.undisplay = true;
+                rg.SQ.undisplay = true;
+                //rg.sagitta.undisplay = true;
+                rg[ 'P,sagitta' ].undisplay = true;
+                rg.PZ.undisplay = true;
+                rg.Z.undisplay = true;
+
+                rg.curvatureCircle.undisplay = true;
+                rg.C.undisplay = true;
+                rg.PC.undisplay = true;
+                rg[ 'rrminus' ].undisplay = true;
+                rg[ 'Q,rrminus' ].undisplay = true;
+                rg[ 'QP' ].undisplay = true;
+                rg[ 'P,rrminus' ].undisplay = true;
+                rg.APQ.undisplay = true;
             } else {
-                rg.Q.hideD8Dpoint = false;
-                rg.Q.d8d_find_is_LOCKED = false;
-                rg.Q.undisplay = false;
-                rg.QP.undisplay = false;
-                rg.QR.undisplay = false;
-                rg.R.undisplay = false;
+                rg.media_scale.value = 1;
+                ssF.scaleValue2app( rg.media_scale.value, stdMod );
             }
-
-            rg.APQ.undisplay = true;
-            rg.Z.undisplay = true;
-            rg.V.undisplay = false;
-            rg.PV.undisplay = false;
-            rg[ 'P,sagitta' ].undisplay = true;
-
-            rg.Y.undisplay = false;
-            rg.SY.undisplay = false;
-            rg.SQ.undisplay = true;
-            rg.T.undisplay = true;
-            rg.QT.undisplay = true;
-            rg[ 'Q,rrminus' ].undisplay = true;
-            rg[ 'rrminus' ].undisplay = true;
-            rg.timearc.undisplay = true;
-
-
-        } else if( theorion === 'corollary' && subessay === 'corollary5' ){
-            rg.SY.undisplay = true;
-            rg.Y.undisplay = true;
-            rg.PY.undisplay = false;
-            rg.V.undisplay = true;
-            rg.PV.undisplay = true;
-            rg.SQ.undisplay = true;
-            //rg.sagitta.undisplay = true;
-            rg[ 'P,sagitta' ].undisplay = true;
-            rg.PZ.undisplay = true;
-            rg.Z.undisplay = true;
-
-            rg.curvatureCircle.undisplay = true;
-            rg.C.undisplay = true;
-            rg.PC.undisplay = true;
-            rg[ 'rrminus' ].undisplay = true;
-            rg[ 'Q,rrminus' ].undisplay = true;
-            rg[ 'QP' ].undisplay = true;
-            rg[ 'P,rrminus' ].undisplay = true;
-            rg.APQ.undisplay = true;
-        } else {
-            rg.media_scale.value = 1;
-            ssF.scaleValue2app( rg.media_scale.value, stdMod );
         }
         if( sconf.APPROX !== 'D' ) {
             ////this refreshes scnenario of

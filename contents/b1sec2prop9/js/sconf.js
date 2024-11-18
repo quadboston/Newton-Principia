@@ -215,7 +215,7 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
-                draggableY  : fconf.sappId === 'b1sec1prop7',
+                draggableY  : fconf.sappId === 'b1sec2prop7',
             },
 
             Z : {

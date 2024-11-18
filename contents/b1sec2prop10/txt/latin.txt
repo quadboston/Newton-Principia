@@ -4,7 +4,7 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop10/img/latin.png" style="width:100%">
 <br><br>
 <div book-reference-id="latin"></div>
 
@@ -15,7 +15,7 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop10/img/latin.png" style="width:100%">
 <br><br>
 <div book-reference-id="latin"></div>
 
@@ -26,7 +26,7 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop10/img/latin.png" style="width:100%">
 <br><br>
 <div book-reference-id="latin"></div>
 
@@ -36,6 +36,6 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop10/img/latin.png" style="width:100%">
 <br><br>
 <div book-reference-id="latin"></div>

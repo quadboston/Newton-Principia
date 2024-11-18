@@ -62,7 +62,7 @@ are proportional to these, are also equal. Multiply these equals by , and
 L x ¦SP¦¦²
  will become equal to . Therefore
 
-(<a target="_blank" href="?conf=sappId=b1sec1prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
+(<a target="_blank" href="?conf=sappId=b1sec2prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
 </a>)
 
 
@@ -90,7 +90,7 @@ Page 462.
 The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦orbit¦the ellipse¦¦, and by which
 ¦P¦body P¦¦ can revolve in ¦orbit¦that ellipse¦¦, is
 
-(<a target="_blank" href="?conf=sappId=b1sec1prop10,theorionId=corollary,aspectId=english">(by prop. 10, corol. 1)</a>)
+(<a target="_blank" href="?conf=sappId=b1sec2prop10,theorionId=corollary,aspectId=english">(by prop. 10, corol. 1)</a>)
 
 as the distance ¦PO¦CP¦¦
 of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
@@ -98,7 +98,7 @@ the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at
 which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
 will
  
-(<a target="_blank" href="?conf=sappId=b1sec1prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
+(<a target="_blank" href="?conf=sappId=b1sec2prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
 (by prop. 7, corol. 3)</a>)
 
 

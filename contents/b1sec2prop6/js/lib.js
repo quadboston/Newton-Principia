@@ -124,31 +124,32 @@
                 });
             }
         }
-        ///resets forceGraphArray if solvable
-        // // //if( solvable ){
-            stdMod.graphArray = forceGraphArray;
-            var arrLen = forceGraphArray.length;
-            ///renorms 1/r2 graph for better comparision
-            for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
-            {
-                var far = forceGraphArray[ forceArrayIx ];
-                far.y[0] = far.y[0] / forceMax;
-                far.y[1] = far.y[1] / (-comparLawMin);
-                far.y[2] = far.y[2] / speedMax;
-            }
-        // // //}
+        ///resets forceGraphArray
+        stdMod.graphArray = forceGraphArray;
+        var arrLen = forceGraphArray.length;
+        ///renorms 1/r2 graph for better comparision
+        for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
+        {
+            var far = forceGraphArray[ forceArrayIx ];
+            far.y[0] = far.y[0] / forceMax;
+            far.y[1] = far.y[1] / (-comparLawMin);
+            far.y[2] = far.y[2] / speedMax;
+        }
         stdMod.pos2qix = pos2qix;
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
         return;
 
-
+        ///todm fix or rename to q2qix,
+        ///this function must be initiated out of scope isSolvable()
+        ///     these vars must be done in small closure:
+        ///     start_q ) / ( end_q - start_q ) * qixMax
         function pos2qix( pos )
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;
             var qix = Math.floor(    ( q - start_q ) / ( end_q - start_q ) * qixMax   );
-            return  Math.max( 0, Math.min( qixMax, qix ) );
+            return Math.max( 0, Math.min( qixMax, qix ) );
         }
     }
 }) ();

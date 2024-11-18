@@ -4,7 +4,7 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop9/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop9/img/latin.png" style="width:100%">
 <br>
 <div book-reference-id="latin"></div>
 
@@ -13,6 +13,6 @@
   "menuCaption" : "Latin"
 }
 *..*
-<img src="contents/b1sec1prop9/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop9/img/latin.png" style="width:100%">
 <br><br>
 <div book-reference-id="latin"></div>

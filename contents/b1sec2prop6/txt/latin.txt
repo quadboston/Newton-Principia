@@ -6,7 +6,7 @@
 *..*
 
 
-<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop6/img/latin.png" style="width:100%">
 
 
 <br><br>
@@ -21,7 +21,7 @@
 *..*
 
 
-<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop6/img/latin.png" style="width:100%">
 
 
 <br><br>
@@ -31,7 +31,7 @@
 *::*corollary|latin
 
 
-<img src="contents/b1sec1prop6/img/latin.png" style="width:100%">
+<img src="contents/b1sec2prop6/img/latin.png" style="width:100%">
 
 
 <br><br>
