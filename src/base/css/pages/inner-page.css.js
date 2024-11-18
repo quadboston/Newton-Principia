@@ -3,11 +3,9 @@
     var sn  = ns.sn;
     var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'inner-page';
-    var SHUTTLE_COLOR ='rgba(150, 175, 200'; //6,7,8 150, 175, 200//'rgba(70, 92, ad, 0.4)';
-
-
-
-
+    
+    //todm crude patch
+    var SHUTTLE_COLOR = ns.SHUTTLE_COLOR = 'rgba(150, 175, 200';
 
     engCssMs[THIS_MODULE] = function( cssp, fconf ) {
         var ccs             = fconf.css;

@@ -1,7 +1,7 @@
 
 ( function() {
     var { //import from apptree
-        ns,
+        ns, haz,
         fconf,
         sconf,
     } = window.b$l.apptree({ //export to apptree
@@ -136,13 +136,16 @@
         //-----------------------------------
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
-        var result  = [250,   0,  0,      1];
+        var result  = [200,150,0,1];
         var curvature  = [200,   40,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
-        var invalid = [200,   150,  0,     1];
-        var white = [255,   255,  255,     1];
+        var invalid = [255,0,0,1];
+        if( haz( sconf, 'showAddendums' ) ) {
+            invalid = [200,150,0,1];
+            result = [255,0,0,1];
+        }
         var predefinedTopics =
         {
             given,
@@ -329,7 +332,7 @@
                 */
                 undisplayAlways : true,
                 pcolor : invalid,
-                letterAngle : 90,
+                letterAngle : 0,
 
                 //already toggled by amode8captures
                 //undisplay : true,

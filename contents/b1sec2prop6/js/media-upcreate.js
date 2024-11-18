@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, sn, nspaste, bezier, globalCss,
+        ns, $$, sn, haz, nspaste, bezier, globalCss,
         ssF, ssD, sDomN,
         amode, rg, toreg, sconf, stdMod,
     } = window.b$l.apptree({
@@ -71,11 +71,17 @@
         if( rg[ 'foldPoints-' + 1 ].svgel$ ) {
            if( !foldPointsRemovedFromTp ) {
                foldPointsRemovedFromTp = true;
+               
+               ///todm needs this into amode2lemma
+               let gapColor = haz( sconf, 'showAddendums' ) ?
+                              '#ffffff' : '#ff0000';
+                              
+               rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
                sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
                     fp.rgX.svgel$
                         .removeClass( 'tp-fold_points-'+ppix )
-                        .css( 'fill', 'white' )
-                        .css( 'stroke', 'white' )
+                        .css( 'fill', gapColor )
+                        .css( 'stroke', gapColor )
                     ;
                });
             }
@@ -112,15 +118,24 @@
         const heightInner = Math.floor( HEIGHT*3/5 )+1;
         const leftInner = Math.max( 2, Math.floor((width-widthInner )/2) )-1;
         const topInner = Math.max( 1, Math.floor((HEIGHT-heightInner )/3) );
-        const handleH = Math.floor( HEIGHT*4/5 )-3;
+        const handleH = Math.floor( HEIGHT*4/5 )-4;
         const hanleShiftLeft = 1;
         const hanleShiftRight = leftInner+widthInner-handleH-3;
         
         $$.c( 'span' )
             .addClass( 'lengthlabel' )
+            .css( 'padding-top', '2px' )
             .html( 'length ' )
             .to( sDomN.radioDiv$ )
         ;
+
+        //todm later fit to site styles
+        //var SHUTTLE_COLOR = ns.SHUTTLE_COLOR; // = 'rgba(150, 175, 200';
+        //var SHUTTLE_BG_COLOR = ns.SHUTTLE_BG_COLOR; // = 'rgba(245, 245, 255)';
+
+        var lightBGcolor = 'rgba(225, 235, 250)';
+        var middleBGcolor = ns.SHUTTLE_COLOR; //'rgba(111, 150, 150)';
+        var darkBGcolor = 'rgba(80, 120, 140)';
         let binaryRadio$ = $$.c( 'div' )
             .addClass( 'chordmode-binary-radio' )
             .css( 'display', 'inline-block' )
@@ -129,23 +144,11 @@
             .css( 'box-sizing','border-box')
             .css( 'height', HEIGHT + 'px' )
             .css( 'width', width + 'px' )
-            .css( 'border', '1px solid #555555' )
+            .css( 'border', '4px solid ' + middleBGcolor )
             .css( 'border-radius', handleH + 'px' )
-            .css( 'background-color', '#aaaaaa' )
+            .css( 'margin-top', '2px' )
+            .css( 'background-color', lightBGcolor )
             .to( sDomN.radioDiv$ )
-        ;
-        let innerRadio$ = $$.c( 'div' )
-            .addClass( 'chordmode-inner' )
-            .css( 'position', 'relative' )
-            .css( 'box-sizing','border-box')
-            .css( 'height', heightInner + 'px' )
-            .css( 'width', widthInner + 'px' )
-            .css( 'top', topInner + 'px' )
-            .css( 'left', leftInner + 'px' )
-            //.css( 'border', '1px solid #555555' )
-            .css( 'border-radius', heightInner + 'px' )
-            .css( 'background-color', '#dddddd' )
-            .to( binaryRadio$ )
         ;
         let handle$ = $$.c( 'div' )
             .addClass( 'chordmode-handle' )
@@ -156,11 +159,12 @@
             .css( 'top', '0px' )
             .css( 'border-radius', handleH + 'px' )
             .css( 'border', '1px solid #ffffff' )
-            .css( 'background-color', '#333333' )
-            .to( innerRadio$ )
+            .css( 'background-color', darkBGcolor )
+            .to( binaryRadio$ )
         ;
         $$.c( 'span' )
             .addClass( 'timelabel' )
+            .css( 'padding-top', '2px' )
             .html( ' time' )
             .to( sDomN.radioDiv$ )
         ;

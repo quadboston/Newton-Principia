@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, nspaste, paste, capture, bezier,
+        ns, sn, nspaste, haz, paste, capture, bezier,
         amode, toreg,
         studyMods, rg, sDomF, ssD, ssF, fconf,
     } = window.b$l.apptree({
@@ -65,9 +65,10 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        rg[ 'S,nonSolvablePoint' ].undisplay = true;
-        rg[ 'nonSolvablePoint' ].undisplay = true;
-
+        if( haz( sconf, 'showAddendums' ) ) {
+            rg[ 'S,nonSolvablePoint' ].undisplay = true;
+            rg[ 'nonSolvablePoint' ].undisplay = true;
+        }
         rg[ 'Q,rrminus' ].undisplay = true;
         rg[ 'P,rrminus' ].undisplay = true;
         rg.APQ.undisplay = false;

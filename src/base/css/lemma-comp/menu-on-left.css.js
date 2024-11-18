@@ -19,10 +19,11 @@
     var sDomN       = sn('dnative', sapp);
     var FOCUS_COLOR = '#888888';
     var FOCUS_OFF_COLOR = '#888888';
-    //var SHUTTLE_COLOR ='rgba(32, 41, 54, 0.4)';
-    var SHUTTLE_COLOR ='rgba(150, 175, 200'; //6,7,8 150, 175, 200//'rgba(70, 92, ad, 0.4)';
-    var SHUTTLE_BG_COLOR ='rgba(245, 245, 255)';
-
+    
+    //todm crude patch
+    var SHUTTLE_COLOR = ns.SHUTTLE_COLOR = 'rgba(150, 175, 200';
+    var SHUTTLE_BG_COLOR = ns.SHUTTLE_BG_COLOR = 'rgba(245, 245, 255)';
+    
     var engCssMs = sn('engCssMs');
     var THIS_MODULE = 'menu-on-left';
     engCssMs[THIS_MODULE] = function( cssp, fconf ) {

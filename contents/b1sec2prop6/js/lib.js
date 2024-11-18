@@ -74,10 +74,7 @@
             cosAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
                 solvable = false;
-                var nonSolvablePoint = [ rr[0], rr[1] ];
                 foldPoints.push( [ rr[0], rr[1] ] );
-                //c cc( 'not solvable q='+q+ ' solix='+solix );
-                ////////break;
             }
 
 

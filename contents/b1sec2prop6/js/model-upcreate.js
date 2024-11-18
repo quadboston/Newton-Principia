@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, nsmethods, nssvg, mcurve, integral, mat, bezier, has,
+        sn, $$, nsmethods, haz, nssvg, mcurve, integral, mat, bezier, has,
         ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -257,11 +257,15 @@
             ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
             let nsl = rg[ 'S,nonSolvablePoint' ];
-            if( ssD.foldPoints.length ) {
-                nsp.pos[0] = ssD.foldPoints[0][0];
-                nsp.pos[1] = ssD.foldPoints[0][1];
-                nsp.undisplay = false;
-                //nsl.undisplay = false;
+            let len = ssD.foldPoints.length;
+            if( len ) {
+                ////displays last fold point
+                nsp.pos[0] = ssD.foldPoints[len-1][0];
+                nsp.pos[1] = ssD.foldPoints[len-1][1];
+                if( !haz( sconf, 'showAddendums' ) ) {
+                    nsp.undisplay = false;
+                    nsl.undisplay = false;
+                }
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;
