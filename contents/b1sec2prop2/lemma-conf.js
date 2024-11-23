@@ -8,7 +8,7 @@
 
     function lemmaConfig()
     {
-        let route = '../../b1s2prop1theor1/'
+        let route = '../../b1sec2prop1/'
         return {
             codesList :
             [

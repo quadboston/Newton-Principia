@@ -75,13 +75,13 @@
             annotation : "",
         },
 
-        {   sappId : 'b1s2prop1theor1',
+        {   sappId : 'b1sec2prop1',
             book : 'Book 1',
             caption : 'Sec. 2, Proposition 1',
             annotation : "",
         },
 
-        {   sappId : 'b1s2prop2theor2',
+        {   sappId : 'b1sec2prop2',
             book : 'Book 1',
             caption : 'Sec. 2, Proposition 2',
             annotation : "",
@@ -189,7 +189,7 @@
 
         {   sappId : 'b3lemma5',
             book : 'Book 3',
-            caption : 'Sec. 4, Lemma 5',
+            caption : 'Lemma 5',
             annotation : "",
         },
 

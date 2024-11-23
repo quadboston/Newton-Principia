@@ -25,7 +25,7 @@ ratio of the time].
 
 For the ¦P,sagitta¦the sagitta¦¦ in the given time is as the ¦force¦¦
 
-(<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
+(<a target="_blank" href="?conf=sappId=b1sec2prop1,theorionId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
 
 and by increasing the time in any ratio you please, because ¦timearc¦the arc¦¦
 increases in the same ratio, the ¦P,sagitta¦the sagitta¦¦ is increased in the

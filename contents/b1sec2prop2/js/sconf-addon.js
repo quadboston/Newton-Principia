@@ -12,7 +12,7 @@
     ///====================================================
     function init_conf_addon()
     {
-        sconf.mediaBgImage = "../../b1s2prop1theor1/js/img/b1s2p1t1.png";
+        sconf.mediaBgImage = "../../b1sec2prop1/js/img/b1s2p1t1.png";
         sconf.hide_perp_P_and_alike = true;
         //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
 
