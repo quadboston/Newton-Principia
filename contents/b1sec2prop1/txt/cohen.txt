@@ -1,5 +1,4 @@
 
-
 *::*claim|english
 {
   "default" : "1",
@@ -7,27 +6,11 @@
 }
 *..*
 
-The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyros] describe by radii drawn to an immobile ¦S¦centre¦¦ of forces, are contained in immobile planes and are proportional to the times.
+The ¦kepler-triangle¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
+¦S¦center¦¦ of forces lie in unmoving planes and are proportional to the times.
 
 <br><br>
-<div book-reference-id="Donahue">Page 123.</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444</div>
 
 
 
@@ -42,89 +25,59 @@ The ¦kepler-triangle¦areas¦¦, which bodies driven in ¦path¦orbits¦¦ [gyr
 }
 *..*
 
-<span class="captured-reference id-1-0">Let the time be divided into equal parts</span>
-, and 
-in the first part of the time let the body,
-by its inherent force, describe the straight line ¦AB¦AB¦¦.
+Let the time be divided into equal parts, and in 
+<span class="captured-reference id-1-0">the first part of the time</span> let a body by its inherent force describe the straight line ¦AB¦¦.
 <br><br>
 
-
-<span class="captured-reference id-1-1">In the second part of the time</span>,
-the same body, if nothing there to impede it, would pass on by means of a straight line
-to ¦c¦c¦¦ (by Law 1), describing the line ¦Bc¦Bc¦¦ equal to ¦AB¦AB¦¦, with the result that,
-radii ¦SA¦AS¦¦, ¦SB¦BS¦¦, ¦Sc¦cS¦¦ being drawn to the center, the areas ¦SAB¦ASB¦¦,
-
-¦SBc¦BSc¦¦ would come out equal.
+In <span class="captured-reference id-1-1">the second part of the time</span>, if nothing hindered it, this body would (by law 1)
+go straight on to ¦c¦¦, describing line ¦Bc¦¦ equal to ¦AB¦¦, so that－when radii ¦SA¦AS¦¦,
+¦SB¦BS¦¦, and ¦Sc¦cS¦¦ were drawn to the center－the equal areas ¦SAB¦ASB¦¦ and ¦SBc¦BSc¦¦ would
+be described.
 <br><br>
 
-
-<span class="captured-reference id-1-2">But when the body comes to ¦B¦B¦¦</span>,
-let the centripetal force ¦force forceMove¦act¦¦ with an impulse
-that is single but great, and let it have the effect of making the body depart from the
-straight line ¦Bc¦Bc¦¦ and continue in the straight line ¦BC¦BC¦¦.
+But <span class="captured-reference id-1-2">when the body comes to ¦B¦¦</span>,
+let a ¦force forceMove¦centripetal force¦¦ act with
+a single but great impulse and make the body deviate from the straight line
+¦Bc¦¦ and proceed in the straight line ¦BC¦¦.
 <br><br>
 
-Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦,
-meeting ¦BC¦BC¦¦ at ¦C¦C¦¦; and,
-the second part of the time being completed, the body (by Corollary 1 of the Laws) will
-be located at ¦C¦C¦¦, in the same plane as the triangle ¦SA SB AB¦ASB¦¦.
-<br><br><br>
-
-<span class="captured-reference id-1-3">Connect ¦SC¦SC¦¦</span>, and, because of the parallels ¦SB¦SB¦¦, ¦Cc¦Cc¦¦,
-triangle ¦SBC¦¦ will be equal to
-triangle ¦SBc¦¦, and
-therefore also to triangle ¦SAB¦¦.
+Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦ and
+meet ¦BC¦BC¦¦ at ¦C¦¦; then, when the second part of the time has been completed,
+the body (by corol. 1 of the laws) will be found at ¦C¦¦ in the same plane as
+triangle ¦SA SB AB¦ASB¦¦.
 <br><br>
 
+<span class="captured-reference id-1-3">Join ¦SC¦¦</span>; and because ¦SB¦¦ and ¦Cc¦¦ are parallel, triangle ¦SBC¦¦
+will be equal to triangle ¦SBc¦¦ and thus also to triangle ¦SAB¦¦.
+<br><br>
 
-<span class="captured-reference id-motion-F">By a similar argument,</span>
-
-if the centripetal ¦force¦¦ ¦forceMove force¦should act¦¦ successively at
-
+By a similar
+argument, if the ¦forceMove¦centripetal force¦¦ acts successively at 
 <span class="captured-reference id-1-C">¦C¦C¦¦</span>,
-
-<span class="captured-reference id-1-D">¦D¦D¦¦</span>,
-
-<span class="captured-reference id-1-E">¦E¦E¦¦</span>,
-
-and so on,
-
-making the body describe,
-the individual straight lines ¦CD¦CD¦¦, ¦DE¦DE¦¦, ¦EF¦EF¦¦, and so on,
-in the individual particles of the time,
-
-all these will lie in the same plane, and the triangle ¦SCD¦¦ will be equal
-to triangle
-¦SBC¦¦, and ¦SDE¦¦ to ¦SCD¦¦, and
-¦SEF¦¦ to ¦SDE¦¦.
+<span class="captured-reference id-1-D">¦D¦D¦¦</span>, 
+<span class="captured-reference id-1-E">¦E¦E¦¦</span>, 
+..., making
+the body in each of the individual particles of time describe the individual
+straight lines ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, ..., all these lines will lie in the same plane;
+and triangle ¦SCD¦¦ will be equal to triangle ¦SBC¦¦, ¦SDE¦¦ to ¦SCD¦¦, and ¦SEF¦¦ to
+¦SDE¦¦. 
 <br><br>
 
-Therefore, in equal times equal areas are described in a motionless plane; and
-componendo, any sums whatever of areas ¦SABCD¦SADS¦¦,
-¦SABCDEF¦SAFS¦¦
-are to one another as the times of description.
+Therefore, in equal times equal areas are described in an unmoving
+plane; and by composition, any sums ¦SAB SBC SCD¦SADS¦¦ and ¦SAB SBC SCD SDE SEF¦SAFS¦¦ of
+the areas are to each other as the times of description.
 <br><br>
 
-
-<span class="captured-reference id-more-triangles">Now let the number</span>,
-
-of the triangles be increased and their breadth decreased
-in infinitum, and their ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦
-(by Corollary Four of Lemma Three)
-will be a curved line:
-
-and therefore the centripetal ¦force¦¦, by with the body is perpetually ¦forceMove Cc Dd Ee Ff¦drawn back from the¦¦
-tangent of this curve, will act without ceasing,
-
-while any described areas whatever ¦SABCD¦SADS¦¦,
-¦SABCDEF¦SAFS¦¦,
-always proportional to the times of
-description, will be proportional to those times in this case.
-
-
+Now <span class="captured-reference id-more-triangles">let the number
+of triangles be increased and their width decreased</span> indefinitely, and their
+ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦ will (by lem. 3, corol. 4) be a curved line; and
+thus the ¦forceMove¦centripetal force¦¦ by which the body is continually drawn back from
+the tangent of this curve will act uninterruptedly, while any areas described,
+¦SAB SBC SCD¦SADS¦¦ and ¦SAB SBC SCD SDE SEF¦SAFS¦¦, which are always proportional to the times of description,
+will be proportional to those times in this case.
 <br><br>
-<div book-reference-id="Donahue"></div>
 
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444</div>
 
 
 
