@@ -1,7 +1,7 @@
 ( function() {
     var {
-        ns, $$, sn, haz, nspaste, bezier, globalCss,
-        ssF, ssD, sDomN,
+        $$, sn, has, bezier, globalCss, userOptions,
+        ssF, ssD, sDomN, sDomF,
         amode, rg, toreg, sconf, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -68,14 +68,12 @@
             step     : rg.Q.q / 100,
         });
         
-        if( rg[ 'foldPoints-' + 1 ].svgel$ ) {
+        if( has( rg[ 'foldPoints-' + 1 ], 'svgel$' ) ){
            if( !foldPointsRemovedFromTp ) {
                foldPointsRemovedFromTp = true;
-               
-               ///todm needs this into amode2lemma
-               let gapColor = haz( sconf, 'showAddendums' ) ?
+
+               let gapColor = userOptions.showingBonusFeatures() ?
                               '#ffffff' : '#ff0000';
-                              
                rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
                sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
                     fp.rgX.svgel$
@@ -96,6 +94,7 @@
     
     function createsChordModeRadioControl()
     {
+        let bonus = userOptions.showingBonusFeatures();
         //=========================================
         // //\\ chordmode radio-input control
         //=========================================
@@ -115,26 +114,23 @@
         const HEIGHT = 20;
         const width = Math.floor( HEIGHT*5/2 );
         const widthInner = Math.floor( width*4/5 );
-        const heightInner = Math.floor( HEIGHT*3/5 )+1;
         const leftInner = Math.max( 2, Math.floor((width-widthInner )/2) )-1;
-        const topInner = Math.max( 1, Math.floor((HEIGHT-heightInner )/3) );
         const handleH = Math.floor( HEIGHT*4/5 )-4;
         const hanleShiftLeft = 1;
         const hanleShiftRight = leftInner+widthInner-handleH-3;
-        
+        const timeColor = sDomF.getFixedColor( 'dtime' );
+        const chordColor = sDomF.getFixedColor( 'chord' );
+
         $$.c( 'span' )
             .addClass( 'lengthlabel' )
+            .addClass( 'tp-chord' )
             .css( 'padding-top', '2px' )
-            .html( 'length ' )
+            .html( bonus ? '|QQ₋| ' : 'length ' )
             .to( sDomN.radioDiv$ )
         ;
 
-        //todm later fit to site styles
-        //var SHUTTLE_COLOR = ns.SHUTTLE_COLOR; // = 'rgba(150, 175, 200';
-        //var SHUTTLE_BG_COLOR = ns.SHUTTLE_BG_COLOR; // = 'rgba(245, 245, 255)';
-
         var lightBGcolor = 'rgba(225, 235, 250)';
-        var middleBGcolor = ns.SHUTTLE_COLOR; //'rgba(111, 150, 150)';
+        var middleBGcolor = fconf.SHUTTLE_COLOR;
         var darkBGcolor = 'rgba(80, 120, 140)';
         let binaryRadio$ = $$.c( 'div' )
             .addClass( 'chordmode-binary-radio' )
@@ -164,26 +160,20 @@
         ;
         $$.c( 'span' )
             .addClass( 'timelabel' )
+            .addClass( 'tp-dtime' )
             .css( 'padding-top', '2px' )
-            .html( ' time' )
+            .html( bonus ? ' Δt' : ' time' )
             .to( sDomN.radioDiv$ )
         ;
-        
+
         globalCss.update(
         `
         .lengthlabel {
-            color : #aaaaaa;
+            color : ${chordColor};
         }
         .timelabel {
-            color : #000000;
+            color : ${timeColor};
         }
-        .preserves-length .lengthlabel {
-            color : #000000;
-        }
-        .preserves-length .timelabel {
-            color : #aaaaaa;
-        }
-
         .chordmode-handle {
             left : ${hanleShiftRight}px;
             transition : left 0.2s ease-in-out;

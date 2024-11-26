@@ -163,10 +163,14 @@
                     }
                 `;
 
-                ///boldifies svg-text at topic highlight
+                ///boldifies svg-text at topic highlight,
+                ///boldifies span-text,
                 summaryCss += `
                     .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid} {
                         font-weight:bold;
+                    }
+                    .${cssp}-approot.tp-${tplink_ix} span.tp-${tpid} {
+                        font-weight : bold;
                     }
                 `;
             });

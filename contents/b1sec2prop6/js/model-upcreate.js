@@ -1,6 +1,7 @@
 ( function() {
     var {
-        sn, $$, nsmethods, haz, nssvg, mcurve, integral, mat, bezier, has,
+        sn, $$, nsmethods, nssvg, mcurve, integral,
+        mat, bezier, has, userOptions,
         ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -20,6 +21,7 @@
     ///****************************************************
     function model_upcreate()
     {
+        const bonus = userOptions.showingBonusFeatures();
         var fun = bezier.fun;
         if( sconf.APPROX !== 'D' ) {
             bezier.pivotsPos.map( (pos,cpix) => {
@@ -29,12 +31,8 @@
                 cp.pos[1] = posNew[1];
             });
         }
-        var { staticSectorialSpeed_rrrOnUU, } = mcurve.planeCurveDerivatives({
-            fun,
-            q : bezier.start_q,
-            rrc,
-        });
-        var sectSpeed0 = staticSectorialSpeed_rrrOnUU;
+        var sectSpeed0 = ssD.sectSpeed0;
+
         rg.P.pos = fun( rg.P.q );
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
@@ -111,7 +109,9 @@
         //let Qpos = bezier.fun( rg.Q.q );
         rg.Q.pos[0] = rg.Q.Qparams.rr[0];
         rg.Q.pos[1] = rg.Q.Qparams.rr[1];
-        rg.Q.caption = 'Q, Δt=' + rg.tForSagitta.val.toFixed(3);
+        //rg.Q.caption = 
+        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(4);
+        rg.QtimeDecor.pos = rg.Q.pos;
         let Qminus = bezier.fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
         rg.rrminus.pos[1] = Qminus[1];
@@ -200,10 +200,15 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        ///for initial launch only
-        //if( has( stdMod, 'graphArray' ) ) {
-        stdMod.graphFW.drawGraph_wrap();
-        //}
+        stdMod.findsFiniteSagitta();
+        stdMod.graphFW_lemma.drawGraph_wrap({
+            //drawDecimalY : true,
+            //drawDecimalX : false,
+            printAxisXDigits : bonus,
+            //printAxisYDigits : true,
+        });
+        stdMod.graphFW_lemma.graphArrayMask[1] =
+               ssD.solvable;
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
@@ -243,8 +248,6 @@
             ////therfore, displays nothing,
             if( foldps.length <= pp.length ) {
                  for( let i=0; i<flen; i++ ){
-                     if( i=== 199 )
-                         ccc('haaa' );
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;
@@ -262,8 +265,8 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
-                if( !haz( sconf, 'showAddendums' ) ) {
-                    nsp.undisplay = false;
+                nsp.undisplay = false;
+                if( !userOptions.showingBonusFeatures() ) {
                     nsl.undisplay = false;
                 }
             } else {
@@ -297,6 +300,9 @@
                 ssD.stashedVisibility = null;
             }
         } else if( !ssD.stashedVisibility ) {
+            ////===========================================
+            ////this block hides shapes when orbit splits
+            ////===========================================
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
@@ -304,6 +310,7 @@
                 'P,rrminus'             : rg[ 'P,rrminus' ].undisplay,
                 'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
+                'QtimeDecor'            : rg.QtimeDecor.undisplay,
                 'APQ'                   : rg.APQ.undisplay,
                 'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
                 'Q.d8d_find_is_LOCKED'  : rg.Q.d8d_find_is_LOCKED,
@@ -318,6 +325,7 @@
                 'sagitta'               : rg.sagitta.undisplay,
                 'curvatureCircle'       : rg.curvatureCircle.undisplay,
             };
+            ///heres is an actual code which hides shapes
             Object.keys(ssD.stashedVisibility).forEach( okey => {
                 switch(okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;

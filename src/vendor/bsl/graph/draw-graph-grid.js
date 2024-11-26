@@ -30,6 +30,9 @@
         marginX,
         marginY,
         printAxisDigits,
+            printAxisXDigits,
+            printAxisYDigits,
+        
         drawDecimalX,
         drawDecimalY,
         rangeY,
@@ -100,9 +103,6 @@
         // \\// axisX, axisY API
         //------------------------------------------------------
 
-
-
-
         if( drawDecimalY && rangeY > 1e-100 ) {
             drawX0Ygrid({
                 gridAlongY : true,
@@ -165,6 +165,22 @@
         }){
             var style = {};
 
+            ////Nesessity for legacy code makes this "if"
+            ////so complex.
+            if( gridAlongY ) {
+                if( typeof printAxisYDigits === 'undefined' ){
+                    var prnDigitalSymbols = printAxisDigits;
+                } else {
+                    var prnDigitalSymbols = printAxisYDigits;
+                }
+            } else {
+                if( typeof printAxisXDigits === 'undefined' ){
+                    var prnDigitalSymbols = printAxisDigits;
+                } else {
+                    var prnDigitalSymbols = printAxisXDigits;
+                }
+            }
+            
             var decUnitlog     = Math.max(
                 Math.floor( Math.log10( rangeA ) ),
                 Math.floor( Math.log10( Math.abs( minA ) ) - 13 ),
@@ -172,7 +188,8 @@
             var decUnit    = Math.pow( 10, decUnitlog );
             decUnit        = decUnit > rangeA * 0.5 ? decUnit * 0.1 : decUnit;
             style.stroke = 'rgba( 0,0,0, ' + ( brightenGrid.toFixed(3) ) + ')';
-            drawGrid8Axes_aux({ prnAxisDigits : printAxisDigits });
+
+            drawGrid8Axes_aux({ prnAxisDigits : prnDigitalSymbols });
             if( subDecimal ) {
                 var decUnit  = decUnit * 0.1;
 
@@ -310,6 +327,7 @@
     /// generic: draws x or y grid and axes
     ///======================================================
     function drawToolline({
+        polylines,
         graphFM_self,
         graphArray,
         abscissaIxValue,
@@ -358,6 +376,7 @@
         //======================================================
         if( numberMarks ) {
             if( !Array.isArray( numberMarks ) ) {
+                ///can make space array
                 numberMarks = graphElement.y.map( (yEl,yix) => (
                     //number Marks api
                     {
@@ -370,7 +389,9 @@
                     }
                 ));
             }
-            numberMarks.forEach( nm => {
+            ///prints labels only on live numberMarks
+            numberMarks.forEach( (nm,nmix) => {
+                if( !polylines[nmix] ) return;
                 var gix = nm.graphIx;
                 var decimalDigits = nm.decimalDigits;
                 var nmVal = graphElement.y[ gix ];

@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste,
+        ns, sn, paste, mat, nspaste, userOptions,
         sconf, fconf, ssF, ssD, sDomF, sData,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -168,6 +168,10 @@
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
+                
+                if( !userOptions.showingBonusFeatures() ) {
+                    nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
+                }
                 return true;
 
                 function adjust_new_unrotatedParameterX_asNeccesary() {

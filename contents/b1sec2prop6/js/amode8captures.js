@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, nspaste, haz, paste, capture, bezier,
+        ns, sn, nspaste, has, paste, capture, bezier, userOptions,
         amode, toreg,
         studyMods, rg, sDomF, ssD, ssF, fconf,
     } = window.b$l.apptree({
@@ -10,6 +10,7 @@
         },
     });
     setCapture();
+    foldPointsRemovedFromTp = false;
     return;
 
 
@@ -65,7 +66,7 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        if( haz( sconf, 'showAddendums' ) ) {
+        if( !userOptions.showingBonusFeatures() ) {
             rg[ 'S,nonSolvablePoint' ].undisplay = true;
             rg[ 'nonSolvablePoint' ].undisplay = true;
         }

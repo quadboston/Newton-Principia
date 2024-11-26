@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, capture, nspaste,
+        ns, sn, paste, capture, nspaste, userOptions,
         fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
         studyMods, amode, toreg, rg,
     } = window.b$l.apptree({
@@ -491,12 +491,23 @@
                 ssF.scaleValue2app( rg.media_scale.value, stdMod );
             }
 
-
-
-
-            if(
-                aspect !== 'model'
-            ) {
+            
+            if( theorion === 'corollary' ) {
+                [
+                    'curve-AB',
+                    'left-curve-AB',
+                    'arc-AB',
+                    'AD',
+                    'BD',
+                    'D',
+                    'C',
+                ].forEach( gname => { rg[ gname ].undisplay = false; });
+                if( subessay === 'cor-1' ) {
+                    captured = "colollary-1";
+                } else if( subessay === 'cor-2' || subessay === 'cor-3' ) {
+                    captured = "colollary-2";
+                }
+            } else if( aspect !== 'model' ) {
                 sDomF.detected_user_interaction_effect( 'doUndetected' );
                 captured = "L-equal-d";
                 rg.media_scale.value = 1;
@@ -580,7 +591,7 @@
                 'fi',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
 
-            if( amode.theorion === 'claim' ) {
+            if( theorion === 'claim' ) {
                 [
                     'c',
                     'rd',
@@ -592,8 +603,6 @@
                     'imageOfR,b',
                     'imageOfR,imageOfD',
                 ].forEach( gname => { rg[ gname ].undisplay = true; });
-                rg.B.hideD8Dpoint   = false;
-                rg.R.hideD8Dpoint   = false;
             } else if( theorion === 'proof' ) {
                 [
                     'c',
@@ -615,9 +624,23 @@
                     'arc-Ab',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
+            if( theorion === 'claim' || theorion === 'corollary' ) {
+                if( userOptions.showingBonusFeatures() ) {
+                    rg.B.hideD8Dpoint   = false;
+                    rg.R.hideD8Dpoint   = false;
+                } else {
+                    rg.B.hideD8Dpoint   = false;
+                    rg.R.hideD8Dpoint   = true;
+                }
+            }    
             if( subessay === 'interpretation1' ) {
-                rg.B.hideD8Dpoint   = true;
-                rg.R.hideD8Dpoint   = false;
+               if( userOptions.showingBonusFeatures() ) {
+                   rg.B.hideD8Dpoint   = true;
+                   rg.R.hideD8Dpoint   = false;
+               } else {
+                   rg.B.hideD8Dpoint   = false;
+                   rg.R.hideD8Dpoint   = true;
+               }
             } else if( subessay === 'interpretation2' ) {
                 rg.B.hideD8Dpoint   = false;
                 rg.R.hideD8Dpoint   = true;

@@ -1,9 +1,7 @@
 ( function() {
     var {
-        ns,
         nsmethods,
         haz,
-        ha,
         nssvg,
         $$,
     } = window.b$l.nstree();
@@ -47,7 +45,12 @@
         /// API engine
         ///==========================================
         function drawGraph({
+                //first array mast be enabled
+                graphArrayMask,
+
+                //first index along the path, next=number of plots
                 graphArray,
+                
                 colorThreadArray,
                 style,
 
@@ -66,6 +69,9 @@
                 drawDecimalX,
                 doSideAxes,
                 printAxisDigits,
+                    printAxisXDigits,
+                    printAxisYDigits,
+                
                 axisX,      //optional, set to default if missed, API is as in default below
                 axisY,      //optional, set to default if missed, API is as in default below
                 axisYLegend,
@@ -79,7 +85,6 @@
                 doDrawToolline,
                 brightenGrid,
         }){
-
             style = style || {};
             //nonefyDom();
             //creates_svgDomEl();
@@ -101,20 +106,19 @@
             // //\\ finds number of polylines
             //      plotsScaffold - format definition
             //----------------------------------------------
-            //if( drawAllAxes ) {
             var plotsScaffold = [];
             graphArray.forEach( (points,pix) => {
                 //"undefined", '' skipped
                 //they are skipped anyway:
                 //if( !points ) return;
                 points.y.forEach( (pointY,yix) => {
+                    if( graphArrayMask && !graphArrayMask[yix] ) return;
                     plotsScaffold[ yix ] = plotsScaffold[ yix ] || [];
                     // plotsScaffold - format definition
                     plotsScaffold[ yix ].push( [points.x, pointY] );
                 });
             });
             var plotsCount = plotsScaffold.length;
-            //}
             plotsCount = plotsCount_overrider || plotsCount;
             var plotCurvesCount = plotsCount;
             //----------------------------------------------
@@ -160,6 +164,7 @@
 
                     if( find_y ) {
                         points.y.forEach( (pointY,yix) => {
+                            if( graphArrayMask && !graphArrayMask[yix] ) return;
                             if( find_yMin && yMin > pointY ) {
                                 yMin = pointY;
                             }
@@ -216,10 +221,13 @@
                 var dimX_withMarg = dimX;
             }
 
-            ///converts graphArray to polylines
+            //==================================================
+            // //\\ converts graphArray to polylines
+            //==================================================
+            ///effective polylines - masked lines are erased,
+            ///
             ///note: this must work for sparse array too
             graphArray.forEach( (points,pix) => {
-
                 //"undefined", null, '' skipped
                 if( !points ) return;
 
@@ -229,17 +237,26 @@
                     if( x < xRangeFilter.min ) return;
                     if( x > xRangeFilter.max ) return;
                 }
+                //masks makes polylines[ yix ] undefined where yix has empty mask
                 points.y.forEach( (pointY,yix) => {
+                    
+                    //creates holes in polylines array
+                    if( graphArrayMask && !graphArrayMask[yix] ) return;
+
                     if( plotCurvesCount <= yix ) return;
                     if( doTruncateOutOfRangeY && ( pointY < yMin || pointY > yMax ) ) {
                         return;
                     }
                     var mediaY = marginY + dimY_withMarg -
                                  ( pointY - yMin ) / rangeY * dimY_withMarg;
+                    //makes holes in array:
                     polylines[ yix ] = polylines[ yix ] || [];
                     polylines[ yix ].push( [ mediaX, mediaY ] );
                 });
             });
+            //==================================================
+            // \\// converts graphArray to polylines
+            //==================================================
 
             if( !graphFM_self.gridIsPainted ) {
                 nsmethods.drawGrid8Axes({
@@ -248,6 +265,10 @@
                     marginX,
                     marginY,
                     printAxisDigits,
+
+                    printAxisXDigits,
+                    printAxisYDigits,
+                    
                     drawDecimalX,
                     drawDecimalY,
                     rangeY,
@@ -281,38 +302,59 @@
             }
 
             //======================================================
-            // //\\ draws plots
+            // //\\ draws svg-plots from polylines
             //======================================================
+            let gMedia = graphFM_self.gmedia$();
             polylines.forEach( (pl,plix) => {
+                if( !pl ) return;
                 var effStyle = Object.assign( {}, style );
                 effStyle.stroke = colorThreadArray[ plix ];
                 var plotStyle = haz( plotsPars && plotsPars[ plix ], 'plotStyle' );
                 if( plotStyle ) {
                     Object.assign( effStyle, plotStyle );
                 }
-                if( plotIx2plotSvg[ plix ] ) {
-                    ////adding plot created at the previous graph call
-                    graphFM_self.gmedia$().appendChild( plotIx2plotSvg[ plix ] );
-                }
-                plotIx2plotSvg[ plix ] = nssvg.polyline({
-                    svgel : plotIx2plotSvg[ plix ],
+                let svg = plotIx2plotSvg[ plix ];
+                svg = plotIx2plotSvg[ plix ] = nssvg.polyline({
+                    svgel : svg,
                     pivots  : pl,
-                    parent  : graphFM_self.gmedia$(),
+                    parent  : gMedia,
                     style   : effStyle,
                 });
+                if( !svg.parentNode ) {
+                    //todo why parent is always lost?
+                    //ccc( plix+' lost' );
+                    //if( svg ) {
+                    ////todm why?
+                    ////???? adding plot created at the previous graph call
+                    gMedia.appendChild( svg );
+                }
+                /*
+                if( plix === 0 ) {
+                    if( svg.parentNode !== pervParent ) {
+                        ccc( 'not equal' );
+                    }
+                    pervParent = svg.parentNode;
+                }
+                */
             });
+            //ccc( plotIx2plotSvg );
             //======================================================
-            // \\// draws plots
+            // \\// draws svg-plots from polylines
             //======================================================
 
 
+            //======================================================
+            // //\\ user plotPars to legens and more
+            //======================================================
+            ///unmasked, full length array for all plots
             if( plotsPars ) {
                 plotsPars.forEach( (pp,pix) => {
                     var ownPolyline = polylines[ pix ];
 
                     //occasionally and conveniently there can be more labels,
                     //just skip them:
-                    if( typeof ownPolyline === 'undefined' ) return;
+                    //if( typeof ownPolyline === 'undefined' ) return;
+                    if( !ownPolyline ) return;
 
                     var xIndex = Math.floor( ( ownPolyline.length - 0.001 ) * pp.fraqX );
                     xIndex = Math.min( ownPolyline.length-1, xIndex );
@@ -335,11 +377,12 @@
                 });
             }
             //======================================================
-            // \\// draws plotsLegends
+            // \\// user plotPars to legens and more
             //======================================================
 
             if( doDrawToolline ) {
                 nsmethods.drawToolline({
+                    polylines,
                     graphFM_self,
                     graphArray,
 

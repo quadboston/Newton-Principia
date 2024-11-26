@@ -140,7 +140,8 @@
         var projectionOfCenterOnTangent = [ ww[0]+rr[0], ww[1]+rr[1] ];
 
         //------------------------------------------------
-        // //\\ static Sectorial Speed = [rrr,uu]
+        // //\\ "static" Sectorial Speed as = [rrr,uu]
+        //      assuming ds/dt = 1 and omitting 1/2
         //------------------------------------------------
         //bound to fail: depend on direction of normal:
         //  gets projection of rrr to normal
@@ -150,7 +151,7 @@
         //(this does not depend on direction of normal)
         var staticSectorialSpeed_rrrOnUU = rrr[0]*uu[1] - rrr[1]*uu[0];
         //------------------------------------------------
-        // \\// static Sectorial Speed = [rrr,uu]
+        // \\// "static" Sectorial Speed as = [rrr,uu]
         //------------------------------------------------
 
         return {
@@ -158,7 +159,7 @@
             // **api-output---plane-curve-derivatives
             rr, //body pos in respect to coord system origin
             rOrAbs,
-
+  
             //in respect to chosen polar center rrc, if rrc presented
             rrr,
             r2,

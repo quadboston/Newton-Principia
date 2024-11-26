@@ -18,6 +18,7 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one anoth
 
 
 *::*proof|english
+*..*
 <!--some italic text (especially "d") gets cut off on some mobile browsers unless followed by a space; hence space after italics-->
 For while point ¦B¦¦ <span class="captured-reference id-true-convergence-1">approaches</span> point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood
 always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d&hairsp;&hairsp;¦¦</i>; and let <i>¦bd ¦¦</i> be drawn
@@ -35,29 +36,39 @@ have to one another an ultimate ratio of equality. &nbsp; Q.E.D.
 
 
 
-
-
-
-
-
-
 *::*corollary|english
+{
+  "subessayCaption" : "corollary 1",
+  "subessay" : "cor-1"
+}
 *..*
-<span class="captured-reference id-colollary-1">COROLLARY 1.</span>
 Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦
 and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦
 will ultimately have a ratio of equality to the vanishing arc ¦arc-AB¦ACB¦¦, because, if
 parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ always has a ratio of equality to ¦AD¦¦.
 <br><br>
 
-<span class="captured-reference id-colollary-2">COROLLARY 2.</span>
+
+*::*corollary|english
+{
+  "subessayCaption" : "corollary 2",
+  "subessay" : "cor-2"
+}
+*..*
 And if through ¦B¦¦ and ¦A¦¦ additional straight lines ¦BE¦¦,
 ¦BD¦¦, ¦AF¦¦, and ¦AG¦¦ are drawn cutting the tangent ¦AD¦¦ and its parallel ¦BF¦¦, the
 ¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦
 and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 <br><br>
 
-COROLLARY 3. And therefore all these lines can be used for one another
+
+*::*corollary|english
+{
+  "subessayCaption" : "corollary 3",
+  "subessay" : "cor-3"
+}
+*..*
+And therefore all these lines can be used for one another
 interchangeably in any argumentation concerning ultimate ratios.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>

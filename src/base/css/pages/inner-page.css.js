@@ -1,13 +1,13 @@
-(function() {
-    var ns  = window.b$l;
-    var sn  = ns.sn;
-    var engCssMs = sn('engCssMs');
-    var THIS_MODULE = 'inner-page';
+( function() {
+    var {
+        sn, engCssMs,
+        fconf, sapp, sDomN,
+    } = window.b$l.apptree({});
+    engCssMs['inner-page'] = setsInnerPageCss;
+    return;
     
-    //todm crude patch
-    var SHUTTLE_COLOR = ns.SHUTTLE_COLOR = 'rgba(150, 175, 200';
-
-    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
+    function setsInnerPageCss( cssp, fconf ) {
+        var SHUTTLE_COLOR = fconf.SHUTTLE_COLOR;
         var ccs             = fconf.css;
         var colorMain       = ccs['color-main'];
         var colorWhite      = ccs['color-white'];

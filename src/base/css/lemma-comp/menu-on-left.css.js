@@ -11,28 +11,27 @@
 */
 
 
-
-(function() {
-    var ns  = window.b$l;
-    var sn  = ns.sn;
-    var sapp        = sn('sapp' ); 
-    var sDomN       = sn('dnative', sapp);
+( function() {
+    var {
+        engCssMs,
+        fconf, sDomN,
+    } = window.b$l.apptree({});
     var FOCUS_COLOR = '#888888';
     var FOCUS_OFF_COLOR = '#888888';
+    var SHUTTLE_COLOR = fconf.SHUTTLE_COLOR = 'rgba(150, 175, 200';
+    var SHUTTLE_BG_COLOR = fconf.SHUTTLE_BG_COLOR = 'rgba(245, 245, 255)';
+    engCssMs['menu-on-left'] = createsMenuCss;
+    return;
+
+
+
+
     
-    //todm crude patch
-    var SHUTTLE_COLOR = ns.SHUTTLE_COLOR = 'rgba(150, 175, 200';
-    var SHUTTLE_BG_COLOR = ns.SHUTTLE_BG_COLOR = 'rgba(245, 245, 255)';
-    
-    var engCssMs = sn('engCssMs');
-    var THIS_MODULE = 'menu-on-left';
-    engCssMs[THIS_MODULE] = function( cssp, fconf ) {
+    function createsMenuCss( cssp, fconf ) {
         var theorionChildWidth = (100 / sDomN.theorionMenuMembersCount).toFixed();
         var aspectionChildWidth = (100 / sDomN.aspectionMenuMembersCount).toFixed();
         var leftTopLeafLength =
             ( sDomN.aspectionMenuMembersCount * fconf.LEFT_SIDE_MENU_ITEM_LENGTH ).toFixed();
-
-
 
     //--------------------------------------
     // //\\ top level geometrical-containers

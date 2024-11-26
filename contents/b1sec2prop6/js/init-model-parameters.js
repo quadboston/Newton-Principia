@@ -63,7 +63,8 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        //stdMod.createsGraphFW( stdMod.legendRoot$ );
+        stdMod.graphFW_lemma = stdMod.createsGraphFW_lemma({ digramParentDom$:stdMod.legendRoot$ });
         //==================================================
         // \\// decoration graph 
         //==================================================
@@ -119,6 +120,7 @@
         //-----------------------------------------
         ssD.PdragInitiated = false;
         ssD.SdragInitiated = false;
+        ssD.PivotDragInitiated = false;
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX = rg[ 'foldPoints-' + ppix ];
             fp.rgX.undisplay = true;

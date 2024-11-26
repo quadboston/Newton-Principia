@@ -1,11 +1,17 @@
 
 *::*claim|addendum
-{
-  "menuCaption" : "---"
-}
-*..*
 
+Minor precaution: word "bisects" in English in "which bisects the chord" or in Latin
+<br><br>
 
+"S arcum quemvis jamjam nascentem tempore quam minimo describat, S sagitta arcus duci intelligatur, quae chordam bisecet,"
+<br><br>
+
+does not mean that the cord is based on two equal subchord legs on both sides of the point.
+Length of subchords is based on equal times. (See excentric circular motion f.e.)
+<br><br>
+
+In simple words, "one cannot construct the chord" simply from curve's shape without "taking time into account".
 
 
 
@@ -32,7 +38,7 @@ where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
 <a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
-<br>
+<br><br>
 
 
 

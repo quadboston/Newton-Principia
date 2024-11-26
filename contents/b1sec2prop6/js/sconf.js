@@ -1,7 +1,7 @@
 
 ( function() {
     var { //import from apptree
-        ns, haz,
+        ns, userOptions,
         fconf,
         sconf,
     } = window.b$l.apptree({ //export to apptree
@@ -138,14 +138,17 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,150,0,1];
         var curvature  = [200,   40,  200, 1];
+        var timeColor  = [200,  0,  255, 1];
         var body    = [0,     150,  200,   1];
+        var dtime   = [0,     150,  200,  1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
         var invalid = [255,0,0,1];
-        if( haz( sconf, 'showAddendums' ) ) {
-            invalid = [200,150,0,1];
+        if( userOptions.showingBonusFeatures() ) {
             result = [255,0,0,1];
         }
+        //var chord = [0,0,255, 0.5]; //no dice
+        var chord = [0,0,255, 1];
         var predefinedTopics =
         {
             given,
@@ -154,12 +157,15 @@
             hidden,
             context,
             curvature,
+            dtime,
+            time    : timeColor,
             curvatureCircle : curvature,
             body,
             orbit   : given,
             timearc : proof,
             APQ     : given,
             force   : result,
+            chord,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -261,6 +267,16 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
+            },
+            QtimeDecor : {
+                undisplayAlways : true,
+                //pos: will be as Q, 
+                cssClass : 'tp-dtime',
+                pcolor : dtime, //proof,
+                fontSize : 20,
+                letterAngle : 225,
+                letterShift : [10,0],
+                letterRotRadius : 40,
             },
 
             T : {

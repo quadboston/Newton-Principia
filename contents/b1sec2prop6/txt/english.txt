@@ -9,7 +9,7 @@
 
 If a ¦P body¦body¦¦ revolve in any ¦orbit¦¦ whatever about an inmobile center ¦S¦¦
 in a non-resisting space, and describe any ¦timearc¦arc¦¦ you please just now nanscent, in the
-least possible time, and the ¦P,sagitta¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus¦the chord¦¦ and being produced passes through ¦S¦the center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦ will be as
+¦dtime¦least possible time¦¦, and the ¦P,sagitta¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus chord¦the chord¦¦ and being produced passes through ¦S¦the center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦ will be as
 ¦P,sagitta¦the sagitta¦¦ directly and the time twice inversely [i.e in the duplicate
 ratio of the time].
 <br><br>
@@ -23,19 +23,19 @@ ratio of the time].
 }
 *..*
 
-For the ¦P,sagitta¦the sagitta¦¦ in the given time is as the ¦force¦¦
+For the ¦P,sagitta¦the sagitta¦¦ in the ¦dtime¦given time¦¦ is as the ¦force¦¦
 
 (<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
 
-and by increasing the time in any ratio you please, because ¦timearc¦the arc¦¦
+and by increasing ¦dtime¦the time¦¦ in any ratio you please, because ¦timearc¦the arc¦¦
 increases in the same ratio, the ¦P,sagitta¦the sagitta¦¦ is increased in the
 duplicate of that ratio
 
 (<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
 
-Therefore, it is as the ¦force¦¦ once and the time twice. Let the duplicate ratio of
-the time be removed on both sides, and the ¦force¦¦ comes out to be as the sagitta
-directly and the time twice inversely.
+Therefore, it is as the ¦force¦¦ once and ¦dtime¦the time¦¦ twice. Let the duplicate ratio of
+¦dtime¦the time¦¦ be removed on both sides, and the ¦force¦¦ comes out to be as the sagitta
+directly and the ¦dtime¦time¦¦ twice inversely.
 <br><br>
 Q.E.D.
 <br><br>
@@ -67,8 +67,8 @@ which it has ultimately, when the points ¦P¦¦ and ¦Q¦¦ come
 together. For ¦QR¦¦ is equal to the ¦P,sagitta¦sagitta¦¦ of
 ¦timearc¦double the arc QP¦¦ at whose
 middle ¦P¦¦ is; and twice the triangle ¦SQ QP SP¦SQP¦¦, or ¦SP¦¦x¦QT¦¦, is propotional
-to the time in which that ¦timearc¦double arc¦¦ is described; and therefore may be
-used to represent the time.
+to ¦dtime¦the time¦¦ in which that ¦timearc¦double arc¦¦ is described; and therefore may be
+used to represent the ¦dtime¦time¦¦.
 
 
 
