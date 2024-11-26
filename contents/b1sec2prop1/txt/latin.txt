@@ -5,7 +5,7 @@
 }
 *..*
 
-<img src="contents/b1s2prop1theor1/js/img/p1-latin.png" style="width:100%">
+<img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
 
 
 <br><br>
@@ -22,7 +22,7 @@
 
 *::*proof|latin
 
-<img src="contents/b1s2prop1theor1/js/img/p1-latin.png" style="width:100%">
+<img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
 
 
 <br><br>
@@ -38,7 +38,7 @@
 *::*corollary|latin
 
 
-<img src="contents/b1s2prop1theor1/js/img/p1-latin.png" style="width:100%">
+<img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
 
 
 <br><br>

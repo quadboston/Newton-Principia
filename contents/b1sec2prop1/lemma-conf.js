@@ -47,7 +47,7 @@
             "contents-list" :
             [
                 'txt/latin.txt',
-                'txt/english.txt',
+                'txt/cohen.txt',
                 'txt/addendum-comment.txt',
             ],
             //optional additional reference html

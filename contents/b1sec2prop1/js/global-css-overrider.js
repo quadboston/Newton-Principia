@@ -32,24 +32,24 @@
                 display : none;
             }
 
-            .bsl-approot.appid-b1s2prop1theor1.theorion--claim svg .theor1claim,
-            .bsl-approot.appid-b1s2prop1theor1.theorion--corollary svg .theor1corollary,
-            .bsl-approot.appid-b1s2prop2theor2.theorion--corollary svg .theor2corollary,
-            .bsl-approot.appid-b1s2prop2theor2.theorion--proof svg .theor2proof,
-            .bsl-approot.appid-b1s2prop1theor1.theorion--proof svg .theor1proof
+            .bsl-approot.appid-b1sec2prop1.theorion--claim svg .theor1claim,
+            .bsl-approot.appid-b1sec2prop1.theorion--corollary svg .theor1corollary,
+            .bsl-approot.appid-b1sec2prop2.theorion--corollary svg .theor2corollary,
+            .bsl-approot.appid-b1sec2prop2.theorion--proof svg .theor2proof,
+            .bsl-approot.appid-b1sec2prop1.theorion--proof svg .theor1proof
             {
                 display : block;
             }
 
-            .bsl-approot.appid-b1s2prop1theor1.theorion--claim
+            .bsl-approot.appid-b1sec2prop1.theorion--claim
                 svg .theor1claim.undisplay,
-            .bsl-approot.appid-b1s2prop1theor1.theorion--corollary
+            .bsl-approot.appid-b1sec2prop1.theorion--corollary
                 svg .theor1corollary.undisplay,
-            .bsl-approot.appid-b1s2prop2theor2.theorion--corollary
+            .bsl-approot.appid-b1sec2prop2.theorion--corollary
                 svg .theor2corollary.undisplay,
-            .bsl-approot.appid-b1s2prop2theor2.theorion--proof
+            .bsl-approot.appid-b1sec2prop2.theorion--proof
                 svg .theor2proof.undisplay,
-            .bsl-approot.appid-b1s2prop1theor1.theorion--proof
+            .bsl-approot.appid-b1sec2prop1.theorion--proof
                 svg .theor1proof.undisplay
             {
                 display : none;

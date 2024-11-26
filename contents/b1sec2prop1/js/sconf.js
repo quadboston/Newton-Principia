@@ -632,7 +632,7 @@
                     }
                 ],
                 [
-                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                     "( subessay === 'cor-1' )",
                     {
                         "captured" : "corollary-1",
@@ -649,7 +649,7 @@
                     }
                 ],
                 [
-                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                     "( subessay === 'cor-3' )",
                     {
                         "captured" : "corollary-3",
@@ -658,7 +658,7 @@
                     }
                 ],
                 [
-                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                     "( subessay === 'cor-4' )",
                     {
                         //we set here condisions of cor4, but saggita will depend on time
@@ -775,7 +775,7 @@
                 ],
                  
                 [
-                    //"( fconf.sappId === 'b1s2prop1theor1' && subessay === 'cor-4' )",
+                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                     "( theorion === 'corollary' && aspect === 'model' )",
                     {
                         //we set here condisions of cor4, but saggita will depend on time

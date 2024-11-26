@@ -36,7 +36,7 @@ Force
 
 where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
+<a target="_blank" href="?conf=sappId=b1sec2prop1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 <br><br>
 
@@ -65,7 +65,7 @@ Force
 
 where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1s2prop1theor1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
+<a target="_blank" href="?conf=sappId=b1sec2prop1,theorionId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 
 M/2 is "Kepler constant" for constant sectorial speed:

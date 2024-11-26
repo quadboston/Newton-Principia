@@ -41,7 +41,9 @@ Page 459.
 }
 *..*
 
-Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, ¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conicsᵃ) be to ¦Qv¦Q𝑣¦¦²
+Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
+¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
+then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
 
 as ¦PO¦PC¦¦² to ¦DO¦CD¦¦², and
 
@@ -63,10 +65,6 @@ means together, ¦QT¦¦² x ¦PO¦PC¦¦² / ¦QR¦¦ will become equal to 2¦B
 
 is (because 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² is given), as 1/¦PO¦PC¦¦ inversely, that is, as the distance ¦PO¦PC¦¦
 directly. Q.E.I.
-
-
-<br><br>
-a. Concerning this reference to "the Conics" see the <i>Source</i>, Guide, §10.10.
 
 
 <br><br>
