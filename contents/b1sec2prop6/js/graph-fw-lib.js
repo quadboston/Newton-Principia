@@ -30,8 +30,8 @@
         });
         //first array mast be enabled
         graphFW.graphArrayMask = bonus ?
-            [ 'force', 'sagitta', !'time', 'sample-force', 'body' ] :
-            [ 'force', 'sagitta', 'time', !'sample-force', !'body' ];
+            [ 'force', 'sagitta', 'sample-force', 'body' ] :
+            [ 'force', 'sagitta', !'sample-force', !'body' ];
         return graphFW;
 
         
@@ -40,7 +40,6 @@
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
                 sDomF.getFixedColor( 'proof' ), //sagitta
-                sDomF.getFixedColor( 'time' ),  //time
                 sDomF.getFixedColor( 'context' ),
                 sDomF.getFixedColor( 'body' ),
             ];
@@ -99,7 +98,7 @@
                 {
                     text    : bonus ?
                                 'Force f, sagitta s, -1/r², and speed v per their max.' :
-                                'Force f, sagitta s, per their max, time t.',
+                                'Force f, sagitta s, per their max.',
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -115,7 +114,7 @@
 
                 {
                     text    :  bonus ?
-                                    'Distance from force center, r' : 'Path along orbit', 
+                                    'Distance from force center, r' : 'Arc AP length', 
                     x       : -700,
                     y       : 25,
                     style   : {

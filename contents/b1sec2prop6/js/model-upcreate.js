@@ -22,6 +22,8 @@
     function model_upcreate()
     {
         const bonus = userOptions.showingBonusFeatures();
+        //const DDD = 0.0000001;
+        const DDD = 1e-7;
         var fun = bezier.fun;
         if( sconf.APPROX !== 'D' ) {
             bezier.pivotsPos.map( (pos,cpix) => {
@@ -41,7 +43,8 @@
             fun,
             q : rg.P.q,
             rrc,
-        });;
+            DDD,
+        });
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uu,
@@ -53,7 +56,7 @@
         if( ssD.PdragInitiated || ssD.SdragInitiated || ssD.PivotDragInitiated ) {
 
             var { rplus, rminus, sidePlus, sideMinus, qplus, qminus, Qparams, dt2dq, dt } =
-                  deltaQ_2_arc( sectSpeed0 );
+                  deltaQ_2_arc( sectSpeed0, DDD );
             rg.Q.q = qplus;
             rg.Q.q_minus = qminus;
             rg.Q.Qparams = Qparams;
@@ -80,6 +83,7 @@
             var { rr, side, Qq, Qparams } = deltaT_2_arc(
                 -rg.tForSagitta.val,    //t for arc
                 sectSpeed0,
+                DDD,
             );
             if( Qq > bezier.start_q ) {
                 var rrminus = rr;
@@ -110,7 +114,7 @@
         rg.Q.pos[0] = rg.Q.Qparams.rr[0];
         rg.Q.pos[1] = rg.Q.Qparams.rr[1];
         //rg.Q.caption = 
-        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(4);
+        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(7);
         rg.QtimeDecor.pos = rg.Q.pos;
         let Qminus = bezier.fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
@@ -201,6 +205,7 @@
         // //\\ graph
         //------------------------------------------------
         stdMod.findsFiniteSagitta();
+        stdMod.graphFW_lemma.graphArrayMask[1] = !ssD.doMaskSagitta;       
         stdMod.graphFW_lemma.drawGraph_wrap({
             //drawDecimalY : true,
             //drawDecimalX : false,
@@ -352,9 +357,9 @@
     //builds two arcs, after and before instant position of moving body P
     function deltaQ_2_arc(
         sectSpeed0,
+        DDD,
     ){
         const chord2 = rg.chord2;
-        //c cc( 'ini chord2='+chord2.toFixed(3) + ' dt='+rg.tForSagitta.val.toFixed(3) );
         const INTEGRATION_STEPS = 1200;
         const STEP_T = rg.tForSagitta.val / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
@@ -363,9 +368,10 @@
 
         //: integration starting values
         var Qparams = mcurve.planeCurveDerivatives({
-            fun : bezier.fun,
+            fun,
             q,
             rrc,
+            DDD,
         });
         var {
             v,
@@ -392,6 +398,7 @@
                 fun,
                 q : qplus,
                 rrc,
+                DDD,
             });
             var {
                 rr,
@@ -409,6 +416,7 @@
                 fun,
                 q : qminus,
                 rrc,
+                DDD,
             });
             var {
                 rr,
@@ -449,6 +457,7 @@
     function deltaT_2_arc(
         intervalT,   //rg.tForSagitta.val
         sectSpeed0,
+        DDD,
     ){
         const INTEGRATION_STEPS = 200;
         const STEP_T = intervalT / INTEGRATION_STEPS;
@@ -465,6 +474,7 @@
                 fun : bezier.fun,
                 q,
                 rrc,
+                DDD,
             });
             //"fake" speed, no relation to actual speed,
             //real speed must change from point P to point P,
@@ -482,6 +492,7 @@
                 fun,
                 q,
                 rrc,
+                DDD,
             });
             var {
                 rr,

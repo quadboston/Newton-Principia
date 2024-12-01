@@ -219,10 +219,15 @@
             //this is resundant: this is validated in model
             //if( new_q <=0 || new_q >= 1 ) return false; 
 
-            let delta_t = deltaQ / rg.Q.dt2dq
-            let sagg_t = rg.tForSagitta.val + delta_t;
+            //let delta_t = deltaQ / rg.Q.dt2dq
+            let sagg_t = rg.tForSagitta.val + deltaQ / rg.Q.dt2dq;
             //prevents too small saggita
-            if( sagg_t < 0.0001 ) return false;
+            //if( sagg_t < 0.0001 ) return false;
+            const ACCURACY = 1e-6;
+            if( sagg_t < ACCURACY ) {
+                sagg_t = ACCURACY;
+            }
+            if( sagg_t > 0.17 ) return false;
             //--------------------------------------------------------------------
             // //\\ to separate dragging pivotsPos and moving body,
             //      druring building a chord tip point,

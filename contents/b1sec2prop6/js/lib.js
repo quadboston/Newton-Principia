@@ -60,6 +60,7 @@
         var i2q = stepScale;
         var path = 0;
         var time = 0;
+        const DDD = 1e-7; 
         for (var solix=0; solix<=STEPS; solix++ )
         {
             var graphArrRem = solix % FORCE_ARRAY_PERIOD;
@@ -70,8 +71,7 @@
                 fun,
                 q,
                 rrc,
-                DDD:0.000001
-                //DDD:0.5,
+                DDD,
             });
             var {
                 v,
@@ -80,7 +80,6 @@
                 r2,
                 R,
                 bk,
-                //cosOmega,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
             } = curvePars;
@@ -134,7 +133,6 @@
                     y : [
                         unitlessForce, //actual
                         path, //sagitta
-                        time, //time
                         comparLaw,
                         //=vt=tangent speed
                         sectSpeedSafe,
@@ -157,7 +155,6 @@
             if( !bonus ) f = Math.abs(f);
             far.y[0] = f;
             //1 sagg
-            far.y[2] = far.y[2] / timeMax;
             far.y[3] = far.y[3] / (-comparLawMin);
             far.y[4] = far.y[4] / speedMax;
         }
@@ -185,38 +182,83 @@
     ///finite sagitta is normalized by its sMax,
     function findsFiniteSagitta()
     {
-        let bonus = userOptions.showingBonusFeatures();
-        let fun = bezier.fun;
-        let c = ssD.curve;
-        let garr = stdMod.graphFW_lemma.graphArray;
-        let len = garr.length;
-        let dt = rg.tForSagitta.val;
-        let sectSpeed0 = c[0].staticSectorialSpeed_rrrOnUU; //*1 = dv0/dt
+        const DDD = 1e-6; //0.00000001;
+        const bonus = userOptions.showingBonusFeatures();
+        const fun = bezier.fun;
+        const c = ssD.curve;
+        const garr = stdMod.graphFW_lemma.graphArray;
+        const len = garr.length;
+        const dt = rg.tForSagitta.val;
+        const sectSpeed0 = c[0].staticSectorialSpeed_rrrOnUU; //*1 = dv0/dt
+        const rrc = rg.S.pos;
+
         
-        let sMax = 0.000001;
+        let sMax = 1e-100;
+        let dt2 = dt*0.5;
         let ssigned = [];
         for (let gix = 0; gix<len; gix++ ) {
             let far = garr[ gix ];
             let cpoint = c[far.ix];
-            let v = cpoint.v;
-            let rr = cpoint.rr;
-            let rrr = cpoint.rrr;
-            let uu = cpoint.uu;
-            let bk = cpoint.bk;
+            //var v = cpoint.v;
+            //let rrr = cpoint.rrr;
             let q = cpoint.q;
-            let dt2dq = sectSpeed0 / v / cpoint.staticSectorialSpeed_rrrOnUU;
-            let dq = dt2dq * dt;
+            
+            var curvePars = mcurve.planeCurveDerivatives({
+                fun,
+                q,
+                rrr,
+                DDD,
+            });
+            var { rr, v,staticSectorialSpeed_rrrOnUU,} = curvePars;
+            let center = rr;
+            let dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            /*
+            // crude single interval
             let qmin = q - dq;
             let qmax = q + dq;
             let rmax = fun(qmax);
             let rmin = fun(qmin);
+            */
             
+            // //\\ splits integration path to more poits
+            let dq = dt2dq * dt2;
+            let qmin = q - dq;
+            let qmax = q + dq;
+            var { v,staticSectorialSpeed_rrrOnUU,} = mcurve.planeCurveDerivatives({
+                fun,
+                q:qmax,
+                DDD,
+            });
+            dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            qmax += dt2dq * dt2;
+            rmax = fun(qmax);
+            //-- min ----
+            var { v,staticSectorialSpeed_rrrOnUU,} = mcurve.planeCurveDerivatives({
+                fun,
+                q:qmin,
+                DDD,
+            });
+            dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            qmin -= dt2dq * dt2;
+            rmin = fun(qmin);
+            // \\// splits integration path to more poits
             let sagitta0 = (rmax[0] + rmin[0])*0.5 - rr[0];
             let sagitta1 = (rmax[1] + rmin[1])*0.5 - rr[1];
             let scalarProduct = rrr[0]*sagitta0 + rrr[1]*sagitta1;
             let sign =  Math.sign( scalarProduct );
             let sagittaAbs = Math.sqrt(sagitta0*sagitta0+sagitta1*sagitta1);
             ssigned[gix] = sign * sagittaAbs;
+            //***************************************************
+            /*
+            if( sMax < sagittaAbs ) {
+                ccc( gix + ' abs=' + sagittaAbs.toFixed(3) +
+                    ' dt='+rg.tForSagitta.val.toFixed(2)
+                    + ' qmin='+qmin.toFixed(2) +
+                    ' qmax='+qmax.toFixed(2) + ' q='+q.toFixed(2)
+                );
+            }
+            */
+            //***************************************************
             sMax = sMax < sagittaAbs ? sagittaAbs : sMax;
         }
         ///normalizes sagitta
@@ -225,7 +267,8 @@
             let tograph = ssigned[gix];
             tograph = bonus ? tograph : Math.abs( tograph );
             garr[ gix ].y[1] = tograph/sMax;
-        }   
+        }
+        ssD.doMaskSagitta = sMax > 2;
     }
     
 }) ();
