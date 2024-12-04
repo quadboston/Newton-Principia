@@ -70,7 +70,7 @@
             if( sagg_t < ACCURACY ) {
                 sagg_t = ACCURACY;
             }
-            if( sagg_t > 0.17 ) return false;
+            if( sagg_t > 2 ) return false;
             //--------------------------------------------------------------------
             // //\\ to separate dragging pivotsPos and moving body,
             //      druring building a chord tip point,

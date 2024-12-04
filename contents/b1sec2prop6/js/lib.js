@@ -263,7 +263,7 @@
             tograph = bonus ? tograph : Math.abs( tograph );
             garr[ gix ].y[1] = tograph/sMax;
         }
-        ssD.doMaskSagitta = sMax > 2 || stdMod.graphFW_lemma.forceMax > 1000000;
+        ssD.doMaskSagitta = sMax > 1e+18 || stdMod.graphFW_lemma.forceMax > 1e+18;
     }
     
 }) ();
