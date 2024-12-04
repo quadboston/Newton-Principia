@@ -12,7 +12,6 @@
         //circle
         fun             : (x) => Math.sqrt( Math.abs( 1 - x*x ) ),
     });
-    ccc( der )
     */
     //----------------------------------------------------
     // \\// test
@@ -56,6 +55,7 @@
 
         var DDD1    = 1/DDD;
         var DDD2    = 0.5 * DDD1;
+        var DDDA    = DDD1 * DDD1;
         //radius-vector in respect to coord. syst. origin:
         var rr      = fun( q );
         var rOrAbs  = Math.sqrt( rr[0]*rr[0] + rr[1]*rr[1] );
@@ -67,9 +67,14 @@
         var v       = Math.sqrt( v2 );
         //unit speed
         var uu      = [ vv[0]/v, vv[1]/v, ];
+        
+        //aa is exaclty a sagitta*2 divided to (dt)^2 and
+        //is exaclty an acceleration,
+        //this sagitta is a sagitta of chord taken
+        //from rmin to rmax
         var aa      = [
-                        (rplus[0]+rminus[0]-2*rr[0])*DDD1*DDD1,
-                        (rplus[1]+rminus[1]-2*rr[1])*DDD1*DDD1,
+                        (rplus[0]+rminus[0]-2*rr[0])*DDDA,
+                        (rplus[1]+rminus[1]-2*rr[1])*DDDA,
                       ];
         var a2      = aa[0]*aa[0] + aa[1]*aa[1];
         var a       = Math.sqrt( a2 );
@@ -89,6 +94,7 @@
         //curvature vector
         var cc = [nn[0]*c, nn[1]*c];
         var R = c < INFINITY_PROTECTOR ? 1/INFINITY_PROTECTOR : 1/c;
+
         //vector from body to curvature circle center
         var RR = [ nn[0]*R, nn[1]*R ];
         //curvature circle center
@@ -101,7 +107,7 @@
         //*********************************************************
         // //\\// adjusts radius vector to offset rrc: rrr = rr-rrc
         //        if offset rrc is supplied
-        rrr         = rrc ? [ rr[0]-rrc[0], rr[1]-rrc[1] ] : rr;
+        var rrr     = rrc ? [ rr[0]-rrc[0], rr[1]-rrc[1] ] : rr;
         //*********************************************************
         var r2      = rrr[0]*rrr[0] + rrr[1]*rrr[1];
         var r       = Math.sqrt( r2 );
@@ -153,7 +159,11 @@
         //------------------------------------------------
         // \\// "static" Sectorial Speed as = [rrr,uu]
         //------------------------------------------------
-
+        
+        //****************************************************
+        //excellent debug trick
+        //if( mat.doPrint ) { c cc( 'm a t: ' + matt.do Print + 
+        //****************************************************
         return {
             q,
             // **api-output---plane-curve-derivatives
@@ -184,10 +194,9 @@
             projectionOfCenterOnTangent,
             staticSectorialSpeed_rrrOnUU, //=sectorialSpeedDividedByArcSpeed
 
-            //angle between norm n and radius vector rrr
-            angleRV,
-            sinOmega,   //in respect to origin radius vector
-            cosOmega,   //in respect to origin radius vector
+            angleRV,    //in respect to center rrc
+            sinOmega,   //in respect to center rrc
+            cosOmega,   //in respect to center rrc
 
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };

@@ -23,7 +23,7 @@
     {
         const bonus = userOptions.showingBonusFeatures();
         //const DDD = 0.0000001;
-        const DDD = 1e-7;
+        const DDD = 1e-5;
         var fun = bezier.fun;
         if( sconf.APPROX !== 'D' ) {
             bezier.pivotsPos.map( (pos,cpix) => {
@@ -114,7 +114,7 @@
         rg.Q.pos[0] = rg.Q.Qparams.rr[0];
         rg.Q.pos[1] = rg.Q.Qparams.rr[1];
         //rg.Q.caption = 
-        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(7);
+        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(5);
         rg.QtimeDecor.pos = rg.Q.pos;
         let Qminus = bezier.fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
@@ -204,16 +204,15 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        stdMod.findsFiniteSagitta();
-        stdMod.graphFW_lemma.graphArrayMask[1] = !ssD.doMaskSagitta;       
+        stdMod.findsFiniteSagitta(DDD);
+        stdMod.graphFW_lemma.graphArrayMask[1] =
+               ssD.solvable && !ssD.doMaskSagitta;
         stdMod.graphFW_lemma.drawGraph_wrap({
             //drawDecimalY : true,
             //drawDecimalX : false,
             printAxisXDigits : bonus,
             //printAxisYDigits : true,
         });
-        stdMod.graphFW_lemma.graphArrayMask[1] =
-               ssD.solvable;
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------

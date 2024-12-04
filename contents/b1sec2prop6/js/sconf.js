@@ -40,7 +40,7 @@
         sconf.APPROX = 'D'; //divided differences';
         sconf.APPROX = 'B'; //Beizier
         
-        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = true;
+        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
         sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
         sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 

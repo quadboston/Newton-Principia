@@ -95,6 +95,10 @@
     function createsChordModeRadioControl()
     {
         let bonus = userOptions.showingBonusFeatures();
+        
+        /*
+        //finely tuned up control
+        
         //=========================================
         // //\\ chordmode radio-input control
         //=========================================
@@ -204,6 +208,7 @@
         //=========================================
         // \\// chordmode radio-input control
         //=========================================
+        */
     }
     
     

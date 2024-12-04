@@ -176,22 +176,6 @@
                     //},
                 },
                 {
-                    fraqX : 0.6,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 't',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[2],
-                        //'fill' : colorThreadArray[0],
-                    },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
-                },
-                {
                     fraqX : 0.8,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
                     pcaption : '-1/r²',
@@ -225,8 +209,7 @@
                 switch(pix) {
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
                     case 1: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
-                    case 2: pl && $$.$(pl).addClass( 'tp-time tostroke' ); break;
-                    case 4: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
+                    case 3: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
                 }
             });
         }

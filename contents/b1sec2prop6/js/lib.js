@@ -28,6 +28,7 @@
     function curveIsSolvable()
     {
         var bonus = userOptions.showingBonusFeatures();
+        const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.01;
         //too many steps, todm: make analytical validation or
         //make program simpler than planeCurveDerivatives,
@@ -42,13 +43,14 @@
         {   ////sets initial secrtorial speed as [𝗿𝘃]/2 where v===1
             let { staticSectorialSpeed_rrrOnUU, } = mcurve.planeCurveDerivatives({
                 fun,
-                q : 0,
+                q : start_q,
                 rrc,
             });
-            //
             ssD.sectSpeed0 = staticSectorialSpeed_rrrOnUU;
         }
-
+        //no need for f/fmax
+        let sectSpeed0 = ssD.sectSpeed0;
+        
         var forceGraphArray = [];
         var foldPoints = [];
         var curve = ssD.curve = (new Array(STEPS+1)).fill({});
@@ -59,14 +61,13 @@
         var stepScale=( end_q - start_q ) / STEPS;
         var i2q = stepScale;
         var path = 0;
-        var time = 0;
-        const DDD = 1e-7; 
         for (var solix=0; solix<=STEPS; solix++ )
         {
             var graphArrRem = solix % FORCE_ARRAY_PERIOD;
             //grows from small to big
             //curve paramter is coordinate x:
             var q = start_q + solix * i2q;
+            
             var curvePars = mcurve.planeCurveDerivatives({
                 fun,
                 q,
@@ -76,9 +77,11 @@
             var {
                 v,
                 rr,
+                rrr,
+                aa,
                 r, //from chosen rrc
                 r2,
-                R,
+                a,
                 bk,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
@@ -95,35 +98,40 @@
                 curvePars.solvablePoint = solvable;
             }
 
-
             ///rebuilds forceGraphArray if yet solvable
             //if point falls on the graph grid, do the job:
             if( !graphArrRem ) {
+                var sectSpeedSafe1 = 1e-100 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
+                                     1e+100 : 1/staticSectorialSpeed_rrrOnUU;
                 var comparLaw = -1 / r2;
-                var unitlessForce = -1/(R*r2*sinOmega)*bk;
-                var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
+                let speed = sectSpeed0*sectSpeedSafe1;
+                let speedAbs = Math.abs( speed );
 
-                var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
-                        1e+150 : 1/staticSectorialSpeed_rrrOnUU;
-                sectSpeedSafe = Math.abs( sectSpeedSafe );
+                let dq_dt = speed/v;
+                //var force = -1/(R*r2*sinOmega3)*bk
+                //            * (sectSpeed0 * sectSpeed0);
+                var force = a * dq_dt * dq_dt;
+                let sign = Math.sign( rrr[0]*aa[0] + rrr[1]*aa[1] );
+                var fAbs = Math.abs( force );
+                force = sign * fAbs;
 
                 if( forceGraphArray.length === 0 ) {
-                    var forceMax = forceSafe;
+                    var forceMax = fAbs;
                     var comparLawMin = comparLaw;
-                    var speedMax = sectSpeedSafe;
+                    var speedMax = speedAbs;
                 }
 
                 //-----------------------------------------------------------
                 // //\\ builds coefficients at maximum |force|
                 //-----------------------------------------------------------
-                if( forceMax < forceSafe ) {
-                    var forceMax = forceSafe;
+                if( forceMax < fAbs ) {
+                    var forceMax = fAbs;
                 }
                 if( comparLawMin > comparLaw ) {
                     var comparLawMin = comparLaw;
                 }
-                if( speedMax < sectSpeedSafe ) {
-                    var speedMax = sectSpeedSafe;
+                if( speedMax < speedAbs ) {
+                    var speedMax = speedAbs;
                 }
                 //-----------------------------------------------------------
                 // \\// builds coefficients at maximum |force|
@@ -131,19 +139,18 @@
                 forceGraphArray.push({
                     x : bonus ? r : path,
                     y : [
-                        unitlessForce, //actual
-                        path, //sagitta
+                        force,
+                        'dummy', //sagitta
                         comparLaw,
-                        //=vt=tangent speed
-                        sectSpeedSafe,
+                        speed,
                     ],
                     ix : solix,
                 });
                 path += v*stepScale;
-                time += stepScale/v;
             }
         }
-        var timeMax = time;
+        
+        stdMod.graphFW_lemma.forceMax = forceMax;
         ///resets forceGraphArray
         stdMod.graphFW_lemma.graphArray = forceGraphArray;
         var arrLen = forceGraphArray.length;
@@ -155,8 +162,8 @@
             if( !bonus ) f = Math.abs(f);
             far.y[0] = f;
             //1 sagg
-            far.y[3] = far.y[3] / (-comparLawMin);
-            far.y[4] = far.y[4] / speedMax;
+            far.y[2] = far.y[2] / (-comparLawMin);
+            far.y[3] = far.y[3] / speedMax;
         }
         stdMod.pos2qix = pos2qix;
         ssD.solvable = solvable;
@@ -180,48 +187,44 @@
     ///finds and fills finite sagitta in the
     ///stdMod.graphFW_lemma.graphArray
     ///finite sagitta is normalized by its sMax,
-    function findsFiniteSagitta()
+    function findsFiniteSagitta(DD)
     {
-        const DDD = 1e-6; //0.00000001;
+        const DDD = DD || 1e-5;
         const bonus = userOptions.showingBonusFeatures();
         const fun = bezier.fun;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.graphArray;
         const len = garr.length;
         const dt = rg.tForSagitta.val;
-        const sectSpeed0 = c[0].staticSectorialSpeed_rrrOnUU; //*1 = dv0/dt
+        const sectSpeed0 = ssD.sectSpeed0;
         const rrc = rg.S.pos;
 
         
         let sMax = 1e-100;
-        let dt2 = dt*0.5;
         let ssigned = [];
         for (let gix = 0; gix<len; gix++ ) {
-            let far = garr[ gix ];
-            let cpoint = c[far.ix];
-            //var v = cpoint.v;
-            //let rrr = cpoint.rrr;
+            let cpoint = c[garr[ gix ].ix];
             let q = cpoint.q;
-            
+            let rr = cpoint.rr;
             var curvePars = mcurve.planeCurveDerivatives({
                 fun,
                 q,
-                rrr,
+                rrc,
                 DDD,
             });
-            var { rr, v,staticSectorialSpeed_rrrOnUU,} = curvePars;
-            let center = rr;
-            let dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
-            /*
+            var { v,rrr, staticSectorialSpeed_rrrOnUU,} = curvePars;
             // crude single interval
+            let dq_dt0 = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            let dq = dq_dt0 * dt;
             let qmin = q - dq;
             let qmax = q + dq;
             let rmax = fun(qmax);
             let rmin = fun(qmin);
-            */
             
-            // //\\ splits integration path to more poits
-            let dq = dt2dq * dt2;
+            // //\\ splits integration path to more points
+            /*
+            let dq_dt0 = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            let dq = dq_dt0 * dt; //dt2;
             let qmin = q - dq;
             let qmax = q + dq;
             var { v,staticSectorialSpeed_rrrOnUU,} = mcurve.planeCurveDerivatives({
@@ -229,38 +232,30 @@
                 q:qmax,
                 DDD,
             });
-            dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
-            qmax += dt2dq * dt2;
-            rmax = fun(qmax);
+            let dq_dt_plus = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            let dqfull_plus = dq+dq_dt_plus * 0.000001 * 0.5; //dt2;
+            rmax = fun(q+dqfull_plus);
             //-- min ----
             var { v,staticSectorialSpeed_rrrOnUU,} = mcurve.planeCurveDerivatives({
                 fun,
                 q:qmin,
                 DDD,
             });
-            dt2dq = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
-            qmin -= dt2dq * dt2;
-            rmin = fun(qmin);
-            // \\// splits integration path to more poits
+            let dq_dt_minus = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            let dqfull_minus = dq + dq_dt_minus * 0.000001 * 0.5; //* dt2;
+            rmin = fun(q-dqfull_minus);
+            */
+            // \\// splits integration path to more points
+
             let sagitta0 = (rmax[0] + rmin[0])*0.5 - rr[0];
             let sagitta1 = (rmax[1] + rmin[1])*0.5 - rr[1];
             let scalarProduct = rrr[0]*sagitta0 + rrr[1]*sagitta1;
-            let sign =  Math.sign( scalarProduct );
+            let sign = Math.sign( scalarProduct );
             let sagittaAbs = Math.sqrt(sagitta0*sagitta0+sagitta1*sagitta1);
             ssigned[gix] = sign * sagittaAbs;
-            //***************************************************
-            /*
-            if( sMax < sagittaAbs ) {
-                ccc( gix + ' abs=' + sagittaAbs.toFixed(3) +
-                    ' dt='+rg.tForSagitta.val.toFixed(2)
-                    + ' qmin='+qmin.toFixed(2) +
-                    ' qmax='+qmax.toFixed(2) + ' q='+q.toFixed(2)
-                );
-            }
-            */
-            //***************************************************
             sMax = sMax < sagittaAbs ? sagittaAbs : sMax;
         }
+
         ///normalizes sagitta
         for (let gix = 0; gix<len; gix++ )
         {
@@ -268,7 +263,7 @@
             tograph = bonus ? tograph : Math.abs( tograph );
             garr[ gix ].y[1] = tograph/sMax;
         }
-        ssD.doMaskSagitta = sMax > 2;
+        ssD.doMaskSagitta = sMax > 2 || stdMod.graphFW_lemma.forceMax > 1000000;
     }
     
 }) ();
