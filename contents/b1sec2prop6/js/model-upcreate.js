@@ -22,7 +22,6 @@
     function model_upcreate()
     {
         const bonus = userOptions.showingBonusFeatures();
-        //const DDD = 0.0000001;
         const DDD = 1e-5;
         var fun = bezier.fun;
         if( sconf.APPROX !== 'D' ) {

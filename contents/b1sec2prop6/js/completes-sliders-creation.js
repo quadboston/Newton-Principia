@@ -32,8 +32,8 @@
         // //\\ point Q slider
         //      for delta t
         //=========================================================================
-        rg.Q.dragPriority = 100;
-        rg.Q.DRAGGEE_HALF_SIZE = 10;
+        //rg.Q.dragPriority = 100;
+        //rg.Q.DRAGGEE_HALF_SIZE = 10;
         rg.Q.processOwnDownEvent = function() {
             //this is for user mouse motion,
             //remember, mouse motion and Q.pos motions are
@@ -116,8 +116,8 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
-        rg.P.dragPriority = 50;
-        rg.P.DRAGGEE_HALF_SIZE = 15;
+        //rg.P.dragPriority = 50;
+        //rg.P.DRAGGEE_HALF_SIZE = 15;
         rg.P.processOwnDownEvent = () => {
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                 ssD.PdragInitiated = true;
@@ -185,7 +185,7 @@
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
             var stashedCurveP = null;
-            cp.rgX.DRAGGEE_HALF_SIZE = 15;
+            //cp.rgX.DRAGGEE_HALF_SIZE = 15;
             cp.rgX.processOwnDownEvent = () => {
                 if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                     ssD.PivotDragInitiated = true;
