@@ -165,6 +165,7 @@
             timearc : proof,
             APQ     : given,
             force   : result,
+            sagitta : chord,
             chord,
         };
         //-----------------------------------

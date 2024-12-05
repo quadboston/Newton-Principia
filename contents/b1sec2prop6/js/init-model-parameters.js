@@ -128,7 +128,7 @@
         //-----------------------------------------
         // \\// partially draggers and decoration
         //-----------------------------------------
-        
+
         //stdMod.createsChordModeRadioControl();
     }
 

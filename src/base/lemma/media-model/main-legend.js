@@ -44,6 +44,7 @@
         updatesDataInCell,
         updatesCaptionCluster,
         updatesTableTitle,
+        createsIdleFirstRow_forFormat,
     }){
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
@@ -65,7 +66,8 @@
         cellsVisibilityCondition = cellsVisibilityCondition || (()=>true);
 
         createsTablePlaceholder();
-        createsIdleFirstRow_forFormat();
+        createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat || createsIdleFirstRow_forFormat_default;
+        createsIdleFirstRow_forFormat( tb, theorion );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
@@ -114,7 +116,7 @@
         ///=====================
         /// first row for format
         ///=====================
-        function createsIdleFirstRow_forFormat()
+        function createsIdleFirstRow_forFormat_default( tb, theorion )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout

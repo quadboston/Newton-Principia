@@ -175,7 +175,7 @@
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
         ///     start_q ) / ( end_q - start_q ) * qixMax
-        function pos2qix( pos )
+        function pos2qix()
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;

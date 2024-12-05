@@ -1,12 +1,8 @@
 ( function() {
     var {
         ns, sn, $$,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+        sconf, sDomF, ssF, sData,
+        rg, stdMod, toreg, amode,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -25,14 +21,21 @@
 
     function create_digital_legend()
     {
-        return;
-        //see lemma 11 for the sample
         create_digital_legend_for_theorion( 'proof' );
-        create_digital_legend_for_theorion( 'corollary' );
+        return;
+        //create_digital_legend_for_theorion( 'corollary' );
     }
 
     function create_digital_legend_for_theorion( theorion )
     {
+        let forceColor = sDomF.getFixedColor( 'force' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+        let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+        let dtimeColor = sDomF.getFixedColor( 'dtime' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+
+        let tool_qix = stdMod.pos2qix();
+        let tool_pointP = stdMod.graphFW_lemma.graphArray[tool_qix];
+        let f_fmax = tool_pointP.y[0].toFixed(4);
+        let s_smax = tool_pointP.y[1].toFixed(4);
         //--------------------------
         // //\\ data source scenario
         //--------------------------
@@ -46,32 +49,12 @@
             ////
             ////see: function dataSourceParsed1__2__makesBodyCluster({
             ////
-            ////'_' is replaced with ' ' in caption,
             ////**********************************************************************************
-
-
-             //first table row
-            'none,,null none,,"left&nbsp;area:"        ' +
-            'none,,"right&nbsp;area:"        ' +
-            'none,,"left&nbsp;/&nbsp;right&nbsp;ratio:"',
-
-
-             //second table row
-            'none,,"bar&nbsp;to&nbsp;bar&nbsp;ratio:" ' +
-            'none,,""        ' +
-            'none,,""        ' +
-            'none,,"min:"+rg.barRatioMin.val+"&nbsp;&nbsp;"+' +
-                   '"max:"+rg.barRatioMax.val',
-
-             //third table row
-            'none,,"bars&nbsp;sum:"    leftBarsArea,,rg.leftBarsArea.value        ' +
-            'rightBarsArea,,rg.rightBarsArea.value        ' +
-            'barsRatio,,rg.leftBarsArea.value/rg.rightBarsArea.value',
-
-             //third table row
-            'none,,"figure:"  acE,,rg.leftFunction.funArea  ' +
-            'prT,,rg.rightFunction.funArea  ' +
-            'figuresRatio,,rg.leftFunction.funArea/rg.rightFunction.funArea',
+            'dtime,Δt__:,(rg.tForSagitta.val*2).toFixed(4)',
+            'P<>sagitta,Estimated_force_s_at_P_(per_smax)__:,stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[1].toFixed(4)',
+            'force,Force_f_at_P_(per_fmax)__:,stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)',
+            'none,_,"<_>"', //dummy row for spacing at foot
+            'none,_,"<_>"' //dummy row for spacing at foot
         ];
 
         ///spawns configuration
@@ -89,8 +72,8 @@
         //--------------------------
 
         ssF.createTheorionLegend({
-            tableCaption    : 'Areas and Ratios',
-            noTableTitle    : false,
+            tableCaption    : '',
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             theorion,
             rowsCount,
@@ -99,46 +82,11 @@
             //updatesCaptionCluster, //optional
             makesBodyCluster,
             updatesDataInCell,
+            createsIdleFirstRow_forFormat,
         })
         return;
 
 
-
-        /*
-        //no dice for caption row
-        ///================================================
-        ///================================================
-        function makesCaptionCluster({
-            row,
-            clusterIx,
-        }){
-            var rowIx = 'caprow';
-            var id = rowIx+'-' + clusterIx + '-letter';
-            return {
-                style               :
-                [
-                    [
-                        ['border-left', '1px solid grey'],
-                        ['padding-left', '6px'],
-                    ],
-                ],
-                clusterKey: id,
-                //clusterCaption: '', //will be filled dynamically
-                tpCssName: 'experimental ' + id,
-                noEqualSign : true,
-                //fillerAfterValue : '&nbsp;',
-            };
-        }
-
-        ///================================================
-        /// updates captions
-        ///================================================
-        function updatesCaptionCluster({ clusterIx, })
-        {
-            var capt = [ 'left', '', 'right', '', 'left / right', '' ][ clusterIx ];
-            return { columnCaptionTitle : capt, clusterCellIx:0  };
-        }
-        */
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({
@@ -146,7 +94,7 @@
                 clusterIx,
                 legendScriptParsed,
                 //noEqualSign : true,
-                //alignCaptionToRight : false,
+                alignCaptionToRight : true,
             })
         }
 
@@ -159,6 +107,29 @@
                 noEqualSignInNumber : true,
             })
         }
+        
+        function createsIdleFirstRow_forFormat( tb, theorion )
+        {
+            //=====================================================
+            // //\\ idle first row to format table for fixed-layout
+            //=====================================================
+            var row = $$.c('tr')
+                //vital ... removes global css which corrupts table
+                //aka .addClass( 'proof row1 tostroke' )
+                .addClass( theorion +' tostroke')
+
+                .css( 'visibility', 'hidden' ) //todm ... tmp fix
+                .to(tb)
+                ();
+            //:todm ... kitchen ... non-reliable
+            $$.c('td').html( 'Estimated-force-s--at-P-(per-smax)xxxxxxx' ).to(row);
+            $$.c('td').html( '-0.333' ).to(row);
+            $$.c('td').html( '-0.333xxx' ).to(row);
+            //=====================================================
+            // \\// idle first row to format table for fixed-layout
+            //=====================================================
+        }
+        
     }
     //=========================================
     // \\// creates theorion table

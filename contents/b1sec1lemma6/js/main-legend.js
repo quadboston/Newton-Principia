@@ -218,7 +218,7 @@
                 clusterIx,
                 legendScriptParsed,
                 //noEqualSign : true,
-                //alignCaptionToRight : false,
+                //alignCaptionToRight : true,
             })
         }
 
