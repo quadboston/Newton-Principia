@@ -229,6 +229,11 @@
                 style,
         }){
             tpCssName = sDomF.topicIdUpperCase_2_underscore( tpCssName || clusterKey );
+            tpCssName = tpCssName.replace( /<_>/g, ' ' );
+            var dataMonospace = tpCssName.indexOf( 'data-monospace' ) > -1;
+            if( dataMonospace ) {
+                tpCssName = tpCssName.replace( /(\s+data-monospace)/,'' );
+            }
             var cells$ = [];
             //========================================================
             // //\\ cell = value title
@@ -266,10 +271,11 @@
 
             //========================================================
             // //\\ cell = value placeholder
+            //      , cell of data,
             //========================================================
             var valuePlaceholder$ = $$.c( 'td' )
                .cls( 'value' )
-               .cls( 'tostroke tocolor tobold tp-'+tpCssName )
+               .cls( 'tostroke tocolor tobold tp-'+tpCssName + (dataMonospace ? ' monospace' : '') )
                .css( 'padding-right', '4px' )
                .css( 'padding-left', '0px' )
                .to( row );

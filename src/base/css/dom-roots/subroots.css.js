@@ -228,6 +228,9 @@ ret += `
     .main-legend td {
         text-align:center;
     }
+    .main-legend td.monospace {
+        font-family : monospace;
+    }
 
     .main-legend.hidden {
         display:none;
@@ -278,6 +281,7 @@ ret += `
     /*------------*/
     /* //\\ proof */
     /*------------*/
+    .main-legend.claim,
     .main-legend.proof {
         border-collapse: separate;
         border-spacing: 10px 0px;
@@ -294,6 +298,7 @@ ret += `
     .proof.row1 {
         opacity:0;
     }
+    /*
     .proof.row1 td:nth-child(4),
     .proof.row1 td:nth-child(1) {
         width:12%;
@@ -311,6 +316,7 @@ ret += `
     .proof.row1 td:nth-child(7) {
         width:22%;
     }
+    */
     /*------------*/
     /* \\// proof */
     /*------------*/
@@ -322,6 +328,7 @@ ret += `
     .claim.row1 {
         opacity:0;
     }
+    /*
     .claim.row1 td:nth-child(1) {
         width:52.5%;
     }
@@ -332,8 +339,9 @@ ret += `
         width:22.5%;
     }
     .main-legend.claim {
-        width:140px;
+        what was it? width:140px;
     }
+     */
     /*------------*/
     /* \\// claim */
     /*------------*/
@@ -346,10 +354,6 @@ ret += `
 
 //.changes legend font size by browser-window-width
 ret +=`
-
-    .xxxxxxbsl-simscene.main-legend-disabled .main-legend {
-        display:none;
-    }
 
     .main-legend td {
         font-size:14px;

@@ -22,20 +22,15 @@
     function create_digital_legend()
     {
         create_digital_legend_for_theorion( 'proof' );
-        return;
-        //create_digital_legend_for_theorion( 'corollary' );
+        create_digital_legend_for_theorion( 'claim' );
+        create_digital_legend_for_theorion( 'corollary' );
     }
 
     function create_digital_legend_for_theorion( theorion )
     {
-        let forceColor = sDomF.getFixedColor( 'force' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
-        let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
-        let dtimeColor = sDomF.getFixedColor( 'dtime' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+        //sample:
+        //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
 
-        let tool_qix = stdMod.pos2qix();
-        let tool_pointP = stdMod.graphFW_lemma.graphArray[tool_qix];
-        let f_fmax = tool_pointP.y[0].toFixed(4);
-        let s_smax = tool_pointP.y[1].toFixed(4);
         //--------------------------
         // //\\ data source scenario
         //--------------------------
@@ -50,9 +45,9 @@
             ////see: function dataSourceParsed1__2__makesBodyCluster({
             ////
             ////**********************************************************************************
-            'dtime,Δt__:,(rg.tForSagitta.val*2).toFixed(4)',
-            'P<>sagitta,Estimated_force_s_at_P_(per_smax)__:,stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[1].toFixed(4)',
-            'force,Force_f_at_P_(per_fmax)__:,stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)',
+            'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(rg.tForSagitta.val*2).toFixed(4)',
+            'P<>sagitta<_>data-monospace,Estimated_force_s_at_P_(per_smax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[1].toFixed(4)',
+            'force<_>data-monospace,Force_f_at_P_(per_fmax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)',
             'none,_,"<_>"', //dummy row for spacing at foot
             'none,_,"<_>"' //dummy row for spacing at foot
         ];
