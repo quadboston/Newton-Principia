@@ -142,10 +142,9 @@
                             lead programming, addenda, UI<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
-                        <span class="dd-label"><a href="http://darien.io/">Darien Dodson:</a></span>
-                            UI<br>
+
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
-                            open source, MIT license. Version 0.${fapp.version}<br>
+                            open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
                         <!-- todm fix these <br> by css not by markup -->
                         <br><br><br><br>
                     </p>
