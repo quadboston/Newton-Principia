@@ -174,7 +174,7 @@
     }
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
-    $versionPattern = "\n    fapp.version =  $next_version; //application version";
+    $versionPattern = "\n    fapp.version = $next_version; //application version";
     $new_content = preg_replace( 
             $version_re,
             $versionPattern,
@@ -183,6 +183,27 @@
     //echo $new_content;
     //=====================================================
     // \\// gets version
+    //=====================================================
+
+
+
+
+
+    //=====================================================
+    // //\\ updates build date
+    //=====================================================
+    $oldBuildDatePattern = '#' . 
+                    'fapp.buildDateString\s*=\s*"\d*-\d*-\d*";\s' .
+                    '//build date description#';
+    $today = date('Y-m-d', time());
+    $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date description';
+    $new_content = preg_replace( 
+            $oldBuildDatePattern,
+            $newBuildDatePattern,
+            $new_content
+    );
+    //=====================================================
+    // \\// updates build date
     //=====================================================
 
 
