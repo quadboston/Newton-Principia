@@ -21,8 +21,10 @@
     ///****************************************************
     function model_upcreate()
     {
-        const bonus = userOptions.showingBonusFeatures();
         const DDD = 1e-5;
+        stdMod.findsFiniteSagitta(DDD);
+
+        const bonus = userOptions.showingBonusFeatures();
         var fun = bezier.fun;
         if( sconf.APPROX !== 'D' ) {
             bezier.pivotsPos.map( (pos,cpix) => {
@@ -82,7 +84,6 @@
             var { rr, side, Qq, Qparams } = deltaT_2_arc(
                 -rg.tForSagitta.val,    //t for arc
                 sectSpeed0,
-                DDD,
             );
             if( Qq > bezier.start_q ) {
                 var rrminus = rr;
@@ -105,6 +106,45 @@
                     var sidePlus = rg.former_sidePlus;
                 }
             }
+
+            /*
+            //----------------------------------------------------------------------
+            // //\\ this is a sandbox to fine tune sagitta mismatch in this
+            //----------------------------------------------------------------------
+            ///     module when intetrating dq=Idq/dt dt and
+            ///     between simplified sagitta in curve module
+            let sagittaAr = [(sidePlus[0] + sideMinus[0])/2, (sidePlus[1] + sideMinus[1])/2];
+            let s2abs = Math.sqrt( sagittaAr[0]*sagittaAr[0] + sagittaAr[1]*sagittaAr[1] );
+            let forceAverage = 2*s2abs/(rg.tForSagitta.val*rg.tForSagitta.val);
+            
+            let garr= stdMod.graphFW_lemma.graphArray;
+            let gix = stdMod.pos2qix(); //about rg.P.q
+            let far = garr[gix];
+
+            ccc( '\n****' );
+            //ccc( 'curve  f/fMax=' + far.y[0].toFixed(4) );
+            ccc( 'curve  ds/dtdt=' + far.force.toFixed(4) );
+            ccc( 'model  ds/dtdt=' + forceAverage.toFixed(4) );
+
+            ccc( 'model    sag=' + s2abs.toFixed(11) );
+            ccc( 'curve    sag=' + ssD.ssigned[gix].toFixed(11) );
+            ccc( 'model    s=', sagittaAr );
+            ccc( 'curve    s=', far.sagittaArr );
+
+            let modDq = rg.Q.q - rg.Q.q_minus;
+            let curDq = far.qmax - far.qmin;
+            //ccc( 'in model: qmax=' + rg.Q.q.toFixed(6) + ' qmin='+rg.Q.q_minus.toFixed(6) );
+            //ccc( 'in curve: qmax=' + (far.qmax.toFixed(6)) +
+            //     ' qmin='+   (far.qmin.toFixed(6)) );
+            ccc( ' modDq=' + modDq );    
+            ccc( ' curDq=' + curDq );
+            ccc( ' mod_q=' + rg.P.q.toFixed(4) );
+            ccc( ' cur_q=' + far.q.toFixed(4) );
+            //----------------------------------------------------------------------
+            // \\// this is a sandbox to fine tune sagitta mismatch in this
+            //----------------------------------------------------------------------
+            */
+
             let chord = rg.chord = [ sidePlus[0] - sideMinus[0], sidePlus[1] - sideMinus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
         }
@@ -203,7 +243,6 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        stdMod.findsFiniteSagitta(DDD);
         stdMod.graphFW_lemma.graphArrayMask[1] =
                ssD.solvable && !ssD.doMaskSagitta;
         stdMod.graphFW_lemma.drawGraph_wrap({
@@ -455,9 +494,9 @@
     function deltaT_2_arc(
         intervalT,   //rg.tForSagitta.val
         sectSpeed0,
-        DDD,
     ){
-        const INTEGRATION_STEPS = 200;
+        const DDD = 1e-5;
+        const INTEGRATION_STEPS = 100;
         const STEP_T = intervalT / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
         const fun = bezier.fun;
@@ -481,11 +520,9 @@
             //* vt0; 
 
         for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
-            //doing step from old values
-            //v //v=ds/dt
-            var dt2dq = sectSpeed0 / v / staticSectorialSpeed_rrrOnUU;
-            var qstep = dt2dq * STEP_T;
-            q += qstep;
+            //v //v=ds/dq
+            var dq_dt = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
+            q += dq_dt * STEP_T;
             var Qparams = mcurve.planeCurveDerivatives({
                 fun,
                 q,
@@ -499,7 +536,7 @@
             } = Qparams;
         }
         var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
-        return { rr, side, Qq:q, Qparams, dt2dq };
+        return { rr, side, Qq:q, Qparams, dt2dq:dq_dt };
     }
     
     

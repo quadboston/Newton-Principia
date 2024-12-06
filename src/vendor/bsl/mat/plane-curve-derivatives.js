@@ -72,10 +72,9 @@
         //is exaclty an acceleration,
         //this sagitta is a sagitta of chord taken
         //from rmin to rmax
-        var aa      = [
-                        (rplus[0]+rminus[0]-2*rr[0])*DDDA,
-                        (rplus[1]+rminus[1]-2*rr[1])*DDDA,
-                      ];
+        var sagitta2x= (rplus[0]-rr[0])+(rminus[0]-rr[0]);
+        var sagitta2y= (rplus[1]-rr[1])+(rminus[1]-rr[1]);
+        var aa      = [ sagitta2x*DDDA, sagitta2y*DDDA ];
         var a2      = aa[0]*aa[0] + aa[1]*aa[1];
         var a       = Math.sqrt( a2 );
 
@@ -198,6 +197,7 @@
             sinOmega,   //in respect to center rrc
             cosOmega,   //in respect to center rrc
 
+            //sagitta2 : [sagitta2x, sagitta2y],
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }

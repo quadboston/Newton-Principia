@@ -279,7 +279,7 @@ ret += `
 
     
     /*------------*/
-    /* //\\ proof */
+    /* //\\ mix   */
     /*------------*/
     .main-legend.claim,
     .main-legend.proof {
@@ -287,64 +287,16 @@ ret += `
         border-spacing: 10px 0px;
     }
 
-    /* was 370px */
-    /*
-    .main-legend.proof {
-        width:470px;
-    }
-    */
-
+    .claim.row1,
     .corollary.row1,
     .proof.row1 {
         opacity:0;
     }
-    /*
-    .proof.row1 td:nth-child(4),
-    .proof.row1 td:nth-child(1) {
-        width:12%;
-    }
-    .proof.row1 td:nth-child(8),
-    .proof.row1 td:nth-child(5),
-    .proof.row1 td:nth-child(2) {
-        width:4%;
-    }
-    .proof.row1 td:nth-child(9),
-    .proof.row1 td:nth-child(6),
-    .proof.row1 td:nth-child(3) {
-        width:14%;
-    }
-    .proof.row1 td:nth-child(7) {
-        width:22%;
-    }
-    */
     /*------------*/
-    /* \\// proof */
+    /* \\// mix   */
     /*------------*/
 
 
-    /*------------*/
-    /* //\\ claim */
-    /*------------*/
-    .claim.row1 {
-        opacity:0;
-    }
-    /*
-    .claim.row1 td:nth-child(1) {
-        width:52.5%;
-    }
-    .claim.row1 td:nth-child(2) {
-        width:15%;
-    }
-    .claim.row1 td:nth-child(3) {
-        width:22.5%;
-    }
-    .main-legend.claim {
-        what was it? width:140px;
-    }
-     */
-    /*------------*/
-    /* \\// claim */
-    /*------------*/
 
 
     /*====================================*/

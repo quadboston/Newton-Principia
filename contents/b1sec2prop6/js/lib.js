@@ -31,6 +31,7 @@
         const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.01;
         //too many steps, todm: make analytical validation or
+        var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
         //make program simpler than planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
         var STEPS = ssD.curveSTEPS;
@@ -57,7 +58,6 @@
         
         //how rare we will output graph points on svg
         //ba
-        var FORCE_ARRAY_PERIOD = 5; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
         var stepScale=( end_q - start_q ) / STEPS;
         var i2q = stepScale;
         var path = 0;
@@ -145,6 +145,11 @@
                         speed,
                     ],
                     ix : solix,
+                    
+                    //mostly for debug or sandbox
+                        q : q,
+                        force : force,
+                        
                 });
                 path += v*stepScale;
             }
@@ -201,7 +206,7 @@
 
         
         let sMax = 1e-100;
-        let ssigned = [];
+        let ssigned = ssD.ssigned = [];
         for (let gix = 0; gix<len; gix++ ) {
             let cpoint = c[garr[ gix ].ix];
             let q = cpoint.q;
@@ -218,6 +223,11 @@
             let dq = dq_dt0 * dt;
             let qmin = q - dq;
             let qmax = q + dq;
+
+            //mostly for degub or sandbox
+            garr[ gix ].qmin = qmin;
+            garr[ gix ].qmax = qmax;
+            
             let rmax = fun(qmax);
             let rmin = fun(qmin);
             
@@ -249,13 +259,15 @@
 
             let sagitta0 = (rmax[0] + rmin[0])*0.5 - rr[0];
             let sagitta1 = (rmax[1] + rmin[1])*0.5 - rr[1];
+            garr[gix].sagittaArr = [sagitta0,sagitta1];
             let scalarProduct = rrr[0]*sagitta0 + rrr[1]*sagitta1;
             let sign = Math.sign( scalarProduct );
             let sagittaAbs = Math.sqrt(sagitta0*sagitta0+sagitta1*sagitta1);
             ssigned[gix] = sign * sagittaAbs;
             sMax = sMax < sagittaAbs ? sagittaAbs : sMax;
         }
-
+        ssD.sagittaMax = sMax;
+        
         ///normalizes sagitta
         for (let gix = 0; gix<len; gix++ )
         {
