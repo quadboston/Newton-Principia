@@ -45,9 +45,8 @@
             ////see: function dataSourceParsed1__2__makesBodyCluster({
             ////
             ////**********************************************************************************
-            'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(rg.tForSagitta.val*2).toFixed(4)',
-            'P<>sagitta<_>data-monospace,Estimated_force_s_at_P_(per_smax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[1].toFixed(4)',
-            'force<_>data-monospace,Force_f_at_P_(per_fmax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)',
+            'P<>sagitta<_>data-monospace,Estimated_force_at_P_(per_smax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[1].toFixed(4)',
+            'force<_>data-monospace,Actual_force_at_P_(per_fmax)&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)',
             'none,_,"<_>"', //dummy row for spacing at foot
             'none,_,"<_>"' //dummy row for spacing at foot
         ];

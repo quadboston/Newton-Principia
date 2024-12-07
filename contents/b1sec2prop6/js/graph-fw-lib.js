@@ -146,12 +146,13 @@
                 {
                     fraqX : 0.2,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'f',
+                    pcaption : 'Actual force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
+                        //'display' : bonus ? 'block' : 'none',
                         //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
@@ -160,9 +161,9 @@
                     //},
                 },
                 {
-                    fraqX : 0.4,
+                    fraqX : 0.6,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 's',
+                    pcaption : 'Estimated force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -223,7 +224,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.pos2qix(),
-                numberMarks : true, 
+                numberMarks : false, //true, 
             };
         }
 
