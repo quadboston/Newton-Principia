@@ -69,6 +69,7 @@
 
         //.below this value, JS considers the device as a mobile
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 800,
+        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 800,
 
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
@@ -183,7 +184,6 @@
     //====================================================
     // \\// put configuration parameters here
     //====================================================
-
 
 
     ///spawns config to its final place

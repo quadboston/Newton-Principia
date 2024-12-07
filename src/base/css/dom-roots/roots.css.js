@@ -112,11 +112,9 @@
             /* ||// media pane                */
             /*================================*/
 
-
-
-
-            @media only screen and (max-width :
-                ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
+            /* todm non-consistent style set, must be dynamic by box-tester as for other parts */
+            @media screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px), 
+                    screen and (max-height: ${fconf.MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD}px) {
 
                 /*================================*/
                 /* //|| position flow             */

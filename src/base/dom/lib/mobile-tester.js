@@ -10,9 +10,10 @@
 ( function() {
     var ns          = window.b$l;
     var $$          = ns.$$;
-    var sn          = ns.sn;    
+    var sn          = ns.sn;
+    var fapp        = sn('fapp' ); 
+    var fconf       = sn('fconf',fapp);
     var cssp        = ns.CSS_PREFIX;
-
     ns.widthThresholds = {};
     ns.create_mobile_tester = create_mobile_tester;
     return;
@@ -23,8 +24,25 @@
 
 
 
-    ///=========================================================
-    /// Creates media query, test-probe-div, and test-method.
+    ///=============================================================
+    /// Creates test-probe-div accoring to device screen dimensions.
+    /// test-probe-div contains a flag which can be probed
+    /// by js code at any time.
+    /// The "probe function" is ns.widthThresholds[ thresId ]()
+    ///     return value === true for
+    ///         mobile dimensions
+    /// and has
+    ///     a call back with arg with the similar values
+    /*
+        These dimensions in "logic of OR" are preset in fconf:
+        MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : xxxx,
+        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : yyyy,
+
+            tester.box().width; which is either 100 or 200 px,
+            if( testWidth <150; ) then application uses mobile
+            scenatio for code and for css
+    */
+    /// (Creates media query and test-method.)
     ///=========================================================
     function create_mobile_tester( domElToAttachTo, mediaThreshold )
     {
@@ -42,16 +60,19 @@
                 .${cls} {
                     width:200px;
                 }
-                @media only screen and (max-width: ${mediaThreshold}px) {
+           
+                @media screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px), 
+                       screen and (max-height: ${fconf.MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD}px) {
                     .${cls} {
                         width:100px;
                     }
                 }
            `);
-        
+
         ns.widthThresholds[ thresId ] = function( cb )
         {
             var testWidth = tester.box().width;
+            //c cc( 'testWidth '+testWidth, tester() );
             var mobile = testWidth <150;
             cb && cb(mobile);
             return mobile;
