@@ -80,7 +80,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
+            var xColor      = bonus ? 'rgba(0,0,0,1)':'rgba(56,132,79,1)'; //'rgba(0,0,255,1)';
 
             var axisYLegend =
             [
@@ -98,7 +98,7 @@
                 {
                     text    : bonus ?
                                 'Force f, sagitta s, -1/r², and speed v per their max.' :
-                                'Force f, sagitta s, per their max.',
+                                'Actual and Estimated forces (per their max)',
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -114,8 +114,8 @@
 
                 {
                     text    :  bonus ?
-                                    'Distance from force center, r' : 'Arc AP length', 
-                    x       : -700,
+                                    'Distance from force center, r' : 'Distance along arc', 
+                    x       : bonus ? -700 : -520,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -146,7 +146,7 @@
                 {
                     fraqX : 0.2,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'Actual force',
+                    //pcaption : 'Actual force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -163,7 +163,7 @@
                 {
                     fraqX : 0.6,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'Estimated force',
+                    //pcaption : 'Estimated force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
