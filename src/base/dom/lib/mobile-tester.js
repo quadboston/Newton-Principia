@@ -8,12 +8,11 @@
     of test enabled: boolean test value return and callback.
 */
 ( function() {
-    var ns          = window.b$l;
-    var $$          = ns.$$;
-    var sn          = ns.sn;
-    var fapp        = sn('fapp' ); 
-    var fconf       = sn('fconf',fapp);
-    var cssp        = ns.CSS_PREFIX;
+    var {
+        ns, sn, cssp, $$, globalCss,
+        fconf,
+    } = window.b$l.apptree({
+    });
     ns.widthThresholds = {};
     ns.create_mobile_tester = create_mobile_tester;
     return;
@@ -54,6 +53,9 @@
            .css( 'position', 'absolute' )
            .css( 'visibility', 'hidden' );
 
+        //we can use globalCss.update(,
+        //but like "vanilla js solution" and
+        //don't like named style tag
         $$ .style()
            .to( document.head )
            .html( `
