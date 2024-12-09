@@ -72,6 +72,8 @@
 
         function setsGraphAxes()
         {
+            let n2c = sDomF.getFixedColor; //name to color
+            
             //==================================================
             // //\\ calls api
             //==================================================
@@ -80,31 +82,50 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = bonus ? 'rgba(0,0,0,1)':'rgba(56,132,79,1)'; //'rgba(0,0,255,1)';
-
+            var xColor      = bonus ? 'rgba(0,0,0,1)':n2c( 'orbit' );
+            //                'rgba(56,132,79,1)';
             var axisYLegend =
             [
                 {
-                    text    : 'Force',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                     x       : 40,
                     y       : 25,
                     style   : {
                                 'font-size' : 28 + 'px',
-                                'stroke' : yColor,
-                                'fill'   : yColor,
+                                //'stroke' : yColor,
+                                //'fill'   : yColor,
                     },
                 },
 
                 {
                     text    : bonus ?
                                 'Force f, sagitta s, -1/r², and speed v per their max.' :
-                                'Actual and Estimated forces (per their max)',
+
+                                '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
+
+                                '<tspan class="tp-_p_-sagitta tofill tostroke tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+n2c( 'sagitta' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
+
+                                '<tspan> forces (per their max)</tspan>' +
+                                '</text>',
                     x       : 250,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
-                                'stroke' : 'black',
-                                'fill'   : 'black',
+                                //'stroke' : 'black',
+                                //'fill'   : 'black',
                     },
                 },
 

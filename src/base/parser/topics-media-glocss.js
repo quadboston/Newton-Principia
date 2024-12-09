@@ -65,6 +65,7 @@
 
             totalCss += `
                 /* special for svg-text */
+                .${cssp}-approot svg tspan.tp-${tpid},
                 .${cssp}-approot svg text.tp-${tpid} {
                     fill-opacity : ${tpOpacityHigh_str};
                 }
@@ -79,7 +80,25 @@
             //high-opacity = 1:
             var thc = topi_c.rgba_high; //takes possibly fully-defined color
 
+            
+            //excessive, possibly not required
+            //                .bsl-approot .tp-force.tocolor {
+            //                .bsl-simscene svg text
+            /*
+                .bsl-simscene svg text.tofill.tp-${tpid},
+                .bsl-simscene svg tspan.tofill.tp-${tpid}
+                {
+                   fill : ${thc};
+                }
+                .bsl-simscene svg text.tostroke.tp-${tpid},
+                .bsl-simscene svg tspan.tostroke.tp-${tpid}
+                {
+                   stroke : ${thc};
+                }
+            */
+            
             totalCss += `
+                  
                 .${cssp}-approot .tp-${tpid}.tocolor {
                    color : ${thc};
                 }
@@ -96,6 +115,8 @@
                 .${cssp}-approot svg .tp-${tpid}.hover-width {
                     stroke-width:${ sconf.nonhover_width }px;
                 }
+                
+                .${cssp}-approot svg tspan.tp-${tpid}.hover-width,
                 .${cssp}-approot svg text.tp-${tpid}.hover-width {
                     stroke-width:${ sconf.text_nonhover_width }px;
                 }
@@ -152,12 +173,14 @@
                         stroke-width:${ sconf.hover_width }px;
                     }
 
+                    .${cssp}-approot.tp-${tplink_ix} svg tspan.tp-${tpid}.tostroke.hover-width,
                     .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid}.tostroke.hover-width {
                         stroke-width:${ sconf.text_hover_width }px;
                     }
 
                     /* special for svg-text */
                     /* highlighted */
+                    .${cssp}-approot.tp-${tplink_ix} svg tspan.tp-${tpid},
                     .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid} {
                         fill-opacity : ${tpOpacityHigh_str};
                     }
@@ -166,7 +189,9 @@
                 ///boldifies svg-text at topic highlight,
                 ///boldifies span-text,
                 summaryCss += `
-                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid} {
+                    .${cssp}-approot.tp-${tplink_ix} svg text.tp-${tpid},
+                    .${cssp}-approot.tp-${tplink_ix} svg tspan.tp-${tpid}
+                    {
                         font-weight:bold;
                     }
                     .${cssp}-approot.tp-${tplink_ix} span.tp-${tpid} {

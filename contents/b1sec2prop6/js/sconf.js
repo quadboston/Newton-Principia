@@ -89,8 +89,11 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        sconf.text_nonhover_width   = 1000;
-        sconf.text_hover_width      = 2000;
+        
+        //overrides hover_width for texts
+        //for activation, needs class "hover-width" in element
+        sconf.text_nonhover_width   = 0.2;
+        sconf.text_hover_width      = 0.5; 
         // \\// principal tp-css pars
 
         sconf.default_tp_lightness = 30;
