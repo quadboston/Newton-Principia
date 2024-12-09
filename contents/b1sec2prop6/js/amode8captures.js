@@ -70,6 +70,8 @@
             rg[ 'S,nonSolvablePoint' ].undisplay = true;
             rg[ 'nonSolvablePoint' ].undisplay = true;
         }
+        
+        rg[ 'QP' ].undisplay = true;
         rg[ 'Q,rrminus' ].undisplay = true;
         rg[ 'P,rrminus' ].undisplay = true;
         rg.APQ.undisplay = false;
@@ -127,7 +129,6 @@
 
                 rg.R.undisplay = true;
                 rg.QR.undisplay = true;
-                rg.QP.undisplay = true;
                 rg.SQ.undisplay = true;
                 rg.Y.undisplay = true;
                 rg.PV.undisplay = true;
@@ -149,9 +150,7 @@
                 );
                 */
                 if( theorion === 'proof' ){
-                    rg.QP.undisplay = false;
                     rg[ 'Q,rrminus' ].undisplay = false;
-                    rg[ 'P,rrminus' ].undisplay = false;
                 }
             } else if( theorion === 'corollary' && aspect === 'addendum' &&
                     subessay === 'corollary1' ){
@@ -181,7 +180,6 @@
                 rg[ 'rrminus' ].undisplay = false;
                 //rg.sagitta.undisplay = false;
                 rg[ 'P,sagitta' ].undisplay = false;
-                rg[ 'P,rrminus' ].undisplay = false;
 
             } else if( theorion === 'corollary' && subessay === 'corollary3'
             ){
@@ -235,7 +233,6 @@
                 rg[ 'rrminus' ].undisplay = true;
                 rg[ 'Q,rrminus' ].undisplay = true;
                 rg[ 'QP' ].undisplay = true;
-                rg[ 'P,rrminus' ].undisplay = true;
                 rg.APQ.undisplay = true;
             } else {
                 rg.media_scale.value = 1;
