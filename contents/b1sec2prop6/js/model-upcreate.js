@@ -230,7 +230,8 @@
             r : RRmedpos,
         });
         $$.$( rgCurvatureCircle.svgel ).addClass(
-            'tp-' + nsmethods.camelName2cssName( curvatureCircleName )
+            'tp-' + nsmethods.camelName2cssName( curvatureCircleName ) +
+            ' tostroke'
         );
         rgCurvatureCircle.svgel.style.display =
             rgCurvatureCircle.undisplay ? 'none' : 'block';
