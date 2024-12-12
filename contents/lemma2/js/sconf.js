@@ -22,7 +22,7 @@
     {
         //as of Ap/13 2023 sets data in preset-data.js
 
-        sconf.ITEM_OPACITY_INSTEAD_OF_OWN_SHAPE_in_low8high = true;
+        sconf.TP_OPACITY_FROM_fixed_colors = true;
 
         //----------------------------------
         // //\\ original material parameters

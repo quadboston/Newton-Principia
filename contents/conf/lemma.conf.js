@@ -38,14 +38,15 @@
   
         //topics:
         DEFAULT_TP_SATUR : 99,
+        TP_SATUR_FROM_fixed_colors : true,//false, 
   
         //---------------------------------------------------
         // //\\ tp color opacity
         //---------------------------------------------------
         //affects only ssF.topics__2__topicsColorModel and  ssF.colorArray_2_rgba
-        OWN_SHAPE_OPACITY : 0.6, //not used at current version
-        OWN_SHAPE_OPACITY_HIGH : 1,
-        ITEM_OPACITY_INSTEAD_OF_OWN_SHAPE_in_low8high : false,
+        TP_OPACITY_LOW : 0.6, //not used at current version
+        TP_OPACITY_HIGH : 1,
+        TP_OPACITY_FROM_fixed_colors : false,
         //---------------------------------------------------
         // \\// tp color opacity
         // \\// tp color

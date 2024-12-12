@@ -520,7 +520,7 @@
             //speed multiplied here for performance,
             //* vt0; 
 
-        for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
+        for( var ix = 0; ix < INTEGRATION_STEPS; ix++ ) {
             //v //v=ds/dq
             var dq_dt = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
             q += dq_dt * STEP_T;

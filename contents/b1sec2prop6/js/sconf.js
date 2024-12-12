@@ -64,6 +64,8 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
+        sconf.TP_SATUR_FROM_fixed_colors = true;
+        sconf.TP_OPACITY_FROM_fixed_colors = true;
         //gives bar full range of opacity for tp machine
         sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
         //makes idle bars brighter

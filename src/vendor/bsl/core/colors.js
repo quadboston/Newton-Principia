@@ -11,7 +11,7 @@
         'i'
     );
     ns.builds_zebraNColors_array = builds_zebraNColors_array;
-    ns.hslo_2_low8high = hslo_2_low8high;
+    ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
     ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
 
@@ -299,7 +299,7 @@
                 //was a protection: hue = hue % 360;    //othewise "grey colors" may appear
 
                 //returns high opacity = 1:
-                var lh = hslo_2_low8high(
+                var lh = hslo_2_rgba_low8high(
                     hue,
                     SATUR,
 
@@ -321,7 +321,7 @@
 
     ///creates twin-colors: argument lowOpacity goes to rgba_low,
     ///        highOpacity goes to rgba_high,
-    function hslo_2_low8high( hue, sat, light, lowOpacity, highOpacity )
+    function hslo_2_rgba_low8high( hue, sat, light, lowOpacity, highOpacity )
     {
         highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
         //ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )

@@ -1,7 +1,7 @@
 /*
  * "low8high" "interface signature" { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
  * following functions do return it:
- *      ns.hslo_2_low8high
+ *      ns.hslo_2_rgba_low8high
  *      ssF.colorArray_2_rgba,
  * 
  *      ns.builds_zebraNColors_array (returns array of signatures)
@@ -70,26 +70,27 @@
                 ////***********************************************
                 ////color is predefined in "fixed-color" dictionary
                 ////***********************************************
-                ////builds low and high colors from this dictionary,
-                ////fc[3],fc[4] === low,high opacity,
+                ////builds lowOpacity and highOpacity colors from this dictionary,
+                ////fc[3],fc[4] === lowOpacity,highOpacity opacity,
                 ////    otherwise, defaults are used,
-                var lh = colorArray_2_rgba( fc )
+                var lh = colorArray_2_rgba( fc );
+                //c cc( topicId, topi_c, 'effect lh=', lh );
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
                 //// todm: don in colors.js ... do replace this ...
                 ////***********************************************
-                ////with OWN_SHAPE_OPACITY
+                ////with TP_OPACITY_LOW
                 var rem = tcount%2;
                 var zebra = rem ? (tcount-rem)/2 : tcount/2 + Math.floor( allTopicsCount / 2 );
                 var hue = 359 / allTopicsCount * zebra; // topicsCount * zebra;
 
-                var lh = ns.hslo_2_low8high(
+                var lh = ns.hslo_2_rgba_low8high(
                     hue,
                     sconf.DEFAULT_TP_SATUR, // SATUR,
                     sconf.default_tp_lightness,
-                    sconf.OWN_SHAPE_OPACITY,
-                    sconf.OWN_SHAPE_OPACITY_HIGH,
+                    sconf.TP_OPACITY_LOW,
+                    sconf.TP_OPACITY_HIGH,
                 );
             }
             //lh==={ rgba_low, rgba_high, lowOpacity, highOpacity }
@@ -107,40 +108,54 @@
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
     ){
         var hsl_lh = ns.rgbaArr2hsla( colorArray );
-        if( sconf.ITEM_OPACITY_INSTEAD_OF_OWN_SHAPE_in_low8high && colorArray ) {
+        if( sconf.TP_OPACITY_FROM_fixed_colors && colorArray ) {
             if( colorArray[3] || colorArray[3]===0 ) {
-                var low = colorArray[3]; 
+                var lowOpacity = colorArray[3]; 
             } else {
-                var low = sconf.OWN_SHAPE_OPACITY; 
+                var lowOpacity = sconf.TP_OPACITY_LOW; 
             }
             if( colorArray[4] || colorArray[4]===0 ) {
-                var high = colorArray[4]; 
+                var highOpacity = colorArray[4]; 
             } else {
-                var high = sconf.OWN_SHAPE_OPACITY_HIGH; 
+                var highOpacity = sconf.TP_OPACITY_HIGH; 
             }
         } else {
-            var low = sconf.OWN_SHAPE_OPACITY;
-            var high = sconf.OWN_SHAPE_OPACITY_HIGH;
+            var lowOpacity = sconf.TP_OPACITY_LOW;
+            var highOpacity = sconf.TP_OPACITY_HIGH;
+            //c cc( lowOpacity, highOpacity );
         }
-        
-        return ns.hslo_2_low8high(
+        if( sconf.TP_SATUR_FROM_fixed_colors ) {
+            let rgb = ns.arr2rgb_a(
+                colorArray[0], colorArray[1], colorArray[2]
+            );
+            let rgba_low = ns.arr2rgb_a(
+                colorArray[0], colorArray[1], colorArray[2], lowOpacity
+            );
+            let rgba_high = ns.arr2rgb_a(
+                colorArray[0], colorArray[1], colorArray[2], highOpacity
+            );
+            var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
 
-            //hue
-            hsl_lh[ 0 ],
+        } else {
+            var result = ns.hslo_2_rgba_low8high(
+                //hue
+                hsl_lh[ 0 ],
 
-            //satur,
-            //for grey or black color: we set satur to 0 manually
-            hsl_lh[1] === 0 ? 0 : sconf.DEFAULT_TP_SATUR,
+                //satur,
+                //for grey or black color: we set satur to 0 manually
+                hsl_lh[1] === 0 ? 0 : sconf.DEFAULT_TP_SATUR,
 
-            //light
-            sconf.default_tp_lightness,
+                //light
+                sconf.default_tp_lightness,
 
-            //opacityLow,
-            low,
-            
-            //opacityHigh,
-            high,
-        );
+                //opacityLow,
+                lowOpacity,
+                
+                //opacityHigh,
+                highOpacity,
+            );
+        }
+        return result;
     }
 
 

@@ -68,7 +68,7 @@
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
         var fixedCol = haz( tplink, 'fixed-color' );
         if( fixedCol ) {
-            //note: high opacity is taken as sconf.OWN_SHAPE_OPACITY_HIGH in this ver
+            //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba( fixedCol );
         } else if( tpIDs.length === 0 ) {
             ////safety case: no topics exist in collection,
