@@ -145,6 +145,7 @@
 
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
                             open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
+                        <span class="dd-label"><a href="javascript:showChangeLog()">What's New</a></span> 
                         <!-- todm fix these <br> by css not by markup -->
                         <br><br><br><br>
                     </p>

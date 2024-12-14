@@ -136,7 +136,7 @@
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $path_to_version_file = "version.js";
+    $path_to_version_file = "changelog/version.js";
     $list = glob( $path_to_version_file );
     if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
@@ -194,9 +194,9 @@
     //=====================================================
     $oldBuildDatePattern = '#' . 
                     'fapp.buildDateString\s*=\s*"\d*-\d*-\d*";\s' .
-                    '//build date description#';
+                    '//build date#';
     $today = date('Y-m-d', time());
-    $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date description';
+    $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date';
     $new_content = preg_replace( 
             $oldBuildDatePattern,
             $newBuildDatePattern,
