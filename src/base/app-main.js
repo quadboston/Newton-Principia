@@ -6,6 +6,7 @@
     var {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
+        fixedColorsOriginal,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
         ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
@@ -295,14 +296,21 @@
                             //then additional topics will be extracted from exegs
                             var wwCase = sDomF.topicIdUpperCase_2_underscore;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            // //\\ central step
+                            //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             //pastes ssD['fixed-colors'] into lcaseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
                             //lcaseId2allLemTopics is empty at this moment,
-                            eachprop( ssD['fixed-colors'], ( colorArray, topicId_ ) => {
-                                lcaseId2allLemTopics[ wwCase( topicId_ ) ] = {
+                            eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
+                                var lowtpId = wwCase( camelId );
+                                lcaseId2allLemTopics[ lowtpId ] = {
                                     'fixed-color' : colorArray,
+                                    camelId,
+                                    lowtpId, 
                                 }
                             });
+                            //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            // \\// central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
 
                             ////executes loaded "proferssor's scripts"

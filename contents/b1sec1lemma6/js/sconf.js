@@ -36,10 +36,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        //gives bar full range of opacity for tp machine
-        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-        //makes idle bars brighter
-        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
+        sconf.TP_OPACITY_LOW_POINT = 1;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
@@ -134,11 +131,12 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var context = [0,     0,   0,      0.6];
-        var given   = [0,     150, 0,      0.6];
-        var proof   = [0,     0,   255,    0.6];
-        var result  = [200,   40,  0,      0.6];
-        var hidden  = [0,     0,   0,      0];
+        var context = [0,     0,   0 ];
+        var given   = [0,     150, 0 ];
+        
+        var proof   = [0,     0,   255];
+        var result  = [200,   40,  0];
+        var hidden  = [0,     0,   0];
 
 
         var predefinedTopics =

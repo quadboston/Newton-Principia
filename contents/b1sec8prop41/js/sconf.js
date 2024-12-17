@@ -89,10 +89,6 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        //gives bar full range of opacity for tp machine
-        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-        //makes idle bars brighter
-        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
@@ -101,6 +97,13 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
+        sconf.TP_SATUR_FROM_fixed_colors = true;
+        sconf.TP_OPACITY_FROM_fixed_colors = true;
+        TP_OPACITY_LOW = 0.3;
+        TP_OPACITY_LOW_POINT = 1;
+        TP_OPACITY_HIGH = 1;
+        TP_OPACITY_FROM_fixed_colors = false;
+
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3 * controlsScale ),
@@ -147,7 +150,10 @@
 
         var result    = [200,   40,  0,      1];
         var hidden    = [0,     0,   0,      0];
-        var shadow    = [150,  150,  150,    1];
+
+        //var shadow    = [150,  150,  150,    1];
+        var shadow    = [50,  50,  50,    1];
+        
         var invalid   = [200,  150,  0,      1];
         var force     = [200,  0,  200,      1];
 
@@ -160,12 +166,16 @@
         var ro        = [60, 20, 0, 1  ];
 
         var vSolid    = given;
-        var vgraph    = [0,  140, 0, 0.01]; //visible=[0,  140, 0, 0.3];
-        var v2graph   = [0,  140, 0, 0.4];
-        var VSarea    = [0,  140, 0, 0.2, 0.4];
+        //var vgraph    = [0,  140, 0, 0.01]; //visible=[0,  140, 0, 0.3];
+        var vgraph    = [0,  140, 0, 0.1]; //visible=[0,  140, 0, 0.3];
+        //var v2graph   = [0,  140, 0, 0.4];
+        var v2graph   = [0,  140, 0, 0.6];
+        //var VSarea    = [0,  140, 0, 0.2, 0.4];
+        var VSarea    = [0,  140, 0, 0.4, 0.7];
 
         var Tkernel   = [110, 90, 0, 1  ];
-        var Tarea     = [110, 90, 0, 0.2, 0.4];
+        //var Tarea     = [110, 90, 0, 0.2, 0.4];
+        var Tarea     = [110, 90, 0, 0.01, 0.7];
 
         var predefinedTopics =
         {
@@ -202,8 +212,10 @@
             'D𝑐𝑥E' : [0,  0,  150,   0.01, 0.3],
             'D𝑏𝑧E' : [110, 90,  0,   0.01, 0.3],
             VIC : [110, 90, 0, 0.001, 0.5 ],
-            ICK : [110, 90, 0, 0.001, 0.5 ],
-
+  
+            //needs color model working:
+            //ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
+            ICK : [110, 90, 0, 0.2, 1 ], //visible, but initially annoying,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -425,7 +437,8 @@
             },
 
             { VM : {
-                    pcolor : [100,  0, 20, 0.01, 1],
+                    //pcolor : [100,  0, 20, 0.01, 1],
+                    pcolor : [100,  0, 20, 0.5, 1],
                     vectorTipIx : 1 },
             },
 
@@ -486,7 +499,7 @@
             },
 
             { CX : {
-                    pcolor : shadow,
+                    pcolor : [50,  50,  50,    1] //shadow,
                 },
             },
 

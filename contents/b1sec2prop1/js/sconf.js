@@ -1,7 +1,7 @@
 ( function() {
     var {
         haff, has, eachprop, nspaste, capture, toreg,
-        sconf, ssF, sDomF, fixedColors,
+        sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
         studyMods,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
@@ -241,6 +241,15 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
 
+        
+        to_sconf.originalPoints = {
+            A : {
+            },
+            S : {
+            },
+        };    
+        
+        
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
@@ -260,6 +269,9 @@
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
                 fixedColors[ tk ] = pt[ topicKey ];
+                
+                //compensates missing of "extend-confib" in engine core
+                fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
             });
          }
 
@@ -875,8 +887,8 @@
 
 
             //"field"             : [255,   0,  0, 0.5],
-            "force-center"      : [255,   0,  0, 0.5],
-            "S"                 : [255,   0,  0, 0.5],
+            "force-center"      : [255,   0,  0],
+            "S"                 : [255,   0,  0],
             "SB"                : diagram,
             "SC"                : diagram,
             "SD"                : diagram,

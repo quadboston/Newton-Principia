@@ -28,14 +28,15 @@
     ///*************************************************
     function establishes__unhighlightedTopicsGlobalCss()
     {
-        //var nonfocusOp  = sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS + '';
-        //var focusOp     = sconf.TOPIC_FILL_OPACITY_IN_FOCUS + '';
         var totalCss = '';
         eachprop( topics.lcaseId2allLemTopics, ( topi_c, tpid ) => {
 
-            var { tpOpacityLow, tpOpacityHigh } = topi_c;
-            var tpOpacityLow_str  = tpOpacityLow.toFixed(3); 
-            var tpOpacityHigh_str = tpOpacityHigh.toFixed(3);
+            var { highOpacity, lowOpacity, } = topi_c;
+            var tpOpacityLow_str  = lowOpacity.toFixed(3); 
+            var tpOpacityHigh_str = highOpacity.toFixed(3);
+            //high-opacity = 1:
+            var thc = topi_c.rgba_high; //takes possibly fully-defined color
+            var tlc = topi_c.rgba_low; //takes possibly fully-defined color
 
             //*******************************************
             // //\\ creates unhovered highlighting
@@ -62,7 +63,7 @@
                     opacity : ${ sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY };
                 }
             `;
-
+            //text grows by bodl
             totalCss += `
                 /* special for svg-text */
                 .${cssp}-approot svg tspan.tp-${tpid},
@@ -77,8 +78,6 @@
             //*********************************
             // //\\ creates colors per tpid
             //*********************************
-            //high-opacity = 1:
-            var thc = topi_c.rgba_high; //takes possibly fully-defined color
 
             
             //excessive, possibly not required
@@ -96,7 +95,8 @@
                    stroke : ${thc};
                 }
             */
-            
+            /*
+             * bugs:
             totalCss += `
                   
                 .${cssp}-approot .tp-${tpid}.tocolor {
@@ -111,6 +111,31 @@
                 .${cssp}-approot svg .tp-${tpid}.tostroke {
                    stroke-linecap : round;
                    stroke : ${thc};
+                }
+                .${cssp}-approot svg .tp-${tpid}.hover-width {
+                    stroke-width:${ sconf.nonhover_width }px;
+                }
+                
+                .${cssp}-approot svg tspan.tp-${tpid}.hover-width,
+                .${cssp}-approot svg text.tp-${tpid}.hover-width {
+                    stroke-width:${ sconf.text_nonhover_width }px;
+                }
+            `;
+            */
+            totalCss += `
+                  
+                .${cssp}-approot .tp-${tpid}.tocolor {
+                   color : ${tlc};
+                }
+                .${cssp}-approot .tp-${tpid}.tobg {
+                   background-color : ${tlc};
+                }
+                .${cssp}-approot svg .tp-${tpid}.tofill {
+                   fill : ${tlc};
+                }
+                .${cssp}-approot svg .tp-${tpid}.tostroke {
+                   stroke-linecap : round;
+                   stroke : ${tlc};
                 }
                 .${cssp}-approot svg .tp-${tpid}.hover-width {
                     stroke-width:${ sconf.nonhover_width }px;
@@ -144,10 +169,11 @@
             Object.keys( tplink.tpid2true ).forEach( tpid => {
 
                 var topi_c = topics.lcaseId2allLemTopics[ tpid ];
-                var { tpOpacityLow, tpOpacityHigh } = topi_c;
-                var tpOpacityLow_str  = tpOpacityLow.toFixed(3); 
-                var tpOpacityHigh_str   = tpOpacityHigh.toFixed(3);
-
+                var { highOpacity, lowOpacity, } = topi_c;
+                var tpOpacityLow_str  = lowOpacity.toFixed(3); 
+                var tpOpacityHigh_str = highOpacity.toFixed(3);
+                var thc = topi_c.rgba_high; //takes possibly fully-defined color
+                var tlc = topi_c.rgba_low; //takes possibly fully-defined color
                 summaryCss += `
                     .${cssp}-approot.tp-${tplink_ix} .tp-${tpid} {
                         opacity: 1;
@@ -198,6 +224,25 @@
                         font-weight : bold;
                     }
                 `;
+                
+
+                //todo experiment
+                summaryCss += `
+                    .${cssp}-approot .tp-${tpid}.tocolor {
+                    color : ${thc};
+                    }
+                    .${cssp}-approot .tp-${tpid}.tobg {
+                    background-color : ${thc};
+                    }
+                    .${cssp}-approot svg .tp-${tpid}.tofill {
+                    fill : ${thc};
+                    }
+                    .${cssp}-approot svg .tp-${tpid}.tostroke {
+                    stroke-linecap : round;
+                    stroke : ${thc};
+                    }
+                `;
+                
             });
         });
         globalCss.add8update( summaryCss,

@@ -1090,15 +1090,15 @@
     };
 
     ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( topicId )
+    function topicIdUpperCase_2_underscore( camelId )
     {
-        return camelName2cssName( topicId );
+        return camelName2cssName( camelId );
     }
 
     ///converts "A" -> "_a",  ... and "," to "_-"
-    function camelName2cssName( topicId )
+    function camelName2cssName( camelId )
     {
-        return topicId.replace( /([A-Z,])/g,
+        return camelId.replace( /([A-Z,])/g,
             ( match, key1 ) => ( key1 === ',' ? '_-' : '_' + key1.toLowerCase() )
         );
     }

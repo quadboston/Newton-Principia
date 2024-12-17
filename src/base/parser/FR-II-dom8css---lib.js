@@ -2,7 +2,7 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        lcaseId2allLemTopics,
+        fixedColors, lcaseId2allLemTopics,
         id2tplink, ix2tplink,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
@@ -74,8 +74,8 @@
     ///Collects
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
-    ///     tplink.tpid2true                 [ tpid_lowcase ] = true;
-    ///     lcaseId2allLemTopics[ tpid_lowcase ]
+    ///     tplink.tpid2true                 [ lowtpId ] = true;
+    ///     lcaseId2allLemTopics[ lowtpId ]
     ///Returns: collectedTpLinks
     ///*************************************************************
     function fragment__collectsRawTpLinks(
@@ -192,7 +192,7 @@
                     } else if( tpid_user.match( ANCH_COLOR_CAT_rg ) ) {
                         var ww = tplink.colorCateg = tpid_user.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                        tplink[ 'fixed-color' ] = haz( ssD['fixed-colors'], ww[1] );
+                        tplink[ 'fixed-color' ] = haz( fixedColors, ww[1] );
                         return;
                     }
                     //..........................................................
@@ -200,14 +200,14 @@
                     //..........................................................
 
 
-                    var tpid_lowcase = nsmethods.topicIdUpperCase_2_underscore( tpid_user );
+                    var lowtpId = nsmethods.topicIdUpperCase_2_underscore( tpid_user );
                     //tplink has collection of topics,
                     //here is how this collection is populated:
-                    tplink.tpid2true[ tpid_lowcase ] = true;
+                    tplink.tpid2true[ lowtpId ] = true;
 
                     //if topicId keyName is missed, then an empty object created
                     //for this keyName,
-                    sn( tpid_lowcase, lcaseId2allLemTopics );
+                    sn( lowtpId, lcaseId2allLemTopics );
                 });
                 //=========================================
                 // \\// indexes topics locally and globally

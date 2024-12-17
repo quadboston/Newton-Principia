@@ -9,7 +9,7 @@
         (topics__2__topicsColorModel builds following:)
  *      lcaseId2allLemTopics dictionary has elements with signature:
              *topi_c properties*:
-                topicId //aka "circ-txt"
+                lowtpId //aka "circ-txt"
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
                 tpOpacityHigh //used in topic-media-glocss
@@ -26,8 +26,8 @@
 
 ( function() {
     var {
-        ns, sn, $$, nsmethods, haz, eachprop,
-        sconf, sDomF, topics, lcaseId2allLemTopics,
+        ns, sn, $$, nsmethods, haz, has, eachprop,
+        sconf, sDomF, topics, lcaseId2allLemTopics, originalPoints,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -35,7 +35,7 @@
             topics__2__topicsColorModel,
         },
     });
-    sDomF.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    sDomF.topicIdUpperCase_2_underscore = nsmethods.camelName2cssName;
     return;
 
 
@@ -64,8 +64,9 @@
     function topics__2__topicsColorModel()
     {
         eachprop( lcaseId2allLemTopics,
-                  ( topi_c, topicId, tcount, allTopicsCount ) => {
+                  ( topi_c, lowtpId, tcount, allTopicsCount ) => {
             var fc = haz( topi_c, 'fixed-color' );
+            var isPoint = !!has( originalPoints, topi_c.camelId );
             if( fc ) {
                 ////***********************************************
                 ////color is predefined in "fixed-color" dictionary
@@ -73,8 +74,12 @@
                 ////builds lowOpacity and highOpacity colors from this dictionary,
                 ////fc[3],fc[4] === lowOpacity,highOpacity opacity,
                 ////    otherwise, defaults are used,
-                var lh = colorArray_2_rgba( fc );
-                //c cc( topicId, topi_c, 'effect lh=', lh );
+                var lh = colorArray_2_rgba(
+                    fc,
+                    sconf.TP_SATUR_FROM_fixed_colors,
+                    sconf.TP_OPACITY_FROM_fixed_colors,
+                    isPoint,
+                );
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
@@ -87,18 +92,14 @@
 
                 var lh = ns.hslo_2_rgba_low8high(
                     hue,
-                    sconf.DEFAULT_TP_SATUR, // SATUR,
+                    sconf.DEFAULT_TP_SATUR,
                     sconf.default_tp_lightness,
-                    sconf.TP_OPACITY_LOW,
+                    isPoint ? sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_HIGH,
                 );
             }
             //lh==={ rgba_low, rgba_high, lowOpacity, highOpacity }
             Object.assign( topi_c, lh, );
-            //circumscribed-rectangles
-            Object.assign( topi_c, topic_opacity( fc ) );
-            //see *topi_c properties*
-            topi_c.topicId = topicId;
         });
     }
 
@@ -106,13 +107,18 @@
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }
     function colorArray_2_rgba(
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
+        saturFromColorArray,
+        opacityFromColorArray,
+        isPoint,
     ){
         var hsl_lh = ns.rgbaArr2hsla( colorArray );
-        if( sconf.TP_OPACITY_FROM_fixed_colors && colorArray ) {
+        const sconfOPACITY_LOW = isPoint ?
+            sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
+        if( opacityFromColorArray && colorArray ) {
             if( colorArray[3] || colorArray[3]===0 ) {
                 var lowOpacity = colorArray[3]; 
             } else {
-                var lowOpacity = sconf.TP_OPACITY_LOW; 
+                var lowOpacity = sconfOPACITY_LOW; 
             }
             if( colorArray[4] || colorArray[4]===0 ) {
                 var highOpacity = colorArray[4]; 
@@ -120,11 +126,11 @@
                 var highOpacity = sconf.TP_OPACITY_HIGH; 
             }
         } else {
-            var lowOpacity = sconf.TP_OPACITY_LOW;
+            var lowOpacity = sconfOPACITY_LOW;
             var highOpacity = sconf.TP_OPACITY_HIGH;
             //c cc( lowOpacity, highOpacity );
         }
-        if( sconf.TP_SATUR_FROM_fixed_colors ) {
+        if( saturFromColorArray && colorArray ) {
             let rgb = ns.arr2rgb_a(
                 colorArray[0], colorArray[1], colorArray[2]
             );
@@ -157,38 +163,6 @@
         }
         return result;
     }
-
-
-
-    ///returns JS-object { lowOpacity, highOpacity }
-    function topic_opacity(
-        colorArray, //== [r,g,b,opacityLow,opacityHigh]
-    ){
-        return {
-            tpOpacityLow :
-            colorArray && ( colorArray[ 3 ] || colorArray[ 3 ] === 0 ) ?
-                colorArray[ 3 ] :
-                //professor did not define color, using default:
-                sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS,
-
-            tpOpacityHigh :
-            colorArray && ( colorArray[ 4 ] || colorArray[ 4 ] === 0 ) ?
-                colorArray[ 4 ] :
-                //professor did not define color, using default:
-                sconf.TOPIC_FILL_OPACITY_IN_FOCUS,
-        };
-    }
-
-
-
-
-
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( topicId )
-    {
-        return nsmethods.camelName2cssName( topicId );
-    }
-
 
 }) ();
 

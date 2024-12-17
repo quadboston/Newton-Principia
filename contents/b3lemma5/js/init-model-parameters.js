@@ -82,7 +82,6 @@
     //===================================================
     function init_model_parameters()
     {
-        ccc( at.stdMod.updateExperimentalFunction );
         var toreg = at.toreg;
         var rg = at.rg;
         toreg( 'chosenExperimentalFunction' )( 'value', 0 );

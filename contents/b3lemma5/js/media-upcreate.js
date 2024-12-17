@@ -4,7 +4,7 @@
         sconf,
         rg,
         ssF, ssD,
-        sDomF,
+        sDomF, fixedColors,
         amode, stdMod, toreg,
     } = window.b$l.apptree({
         setModule,
@@ -76,7 +76,7 @@
         //-------------------------------------------------
         // //\\ colors
         //-------------------------------------------------
-        var wwfc        = ns.haz( ssD, 'fixed-colors' );
+        var wwfc        = fixedColors;
         var arr2rgba    = ns.arr2rgba;
         var wwex        = wwfc[ "experimental" ];
         var wwap        = wwfc[ "approximator" ];

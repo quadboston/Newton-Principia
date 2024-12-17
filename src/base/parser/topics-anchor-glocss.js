@@ -69,27 +69,33 @@
         var fixedCol = haz( tplink, 'fixed-color' );
         if( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
-            var { rgb, rgba_high, } = ssF.colorArray_2_rgba( fixedCol );
+            var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
+                    [fixedCol[0],fixedCol[1],fixedCol[2],0.7, 1],
+                    sconf.TP_SATUR_FROM_fixed_colors,
+                    sconf.TP_OPACITY_FROM_fixed_colors
+            );
         } else if( tpIDs.length === 0 ) {
             ////safety case: no topics exist in collection,
             ////setting default anchor color
             var rgba_high = 'rgba( 150, 0, 150, 1 )';
-            var rgb = 'rgba( 150, 0, 150)';
-
         } else {
             ////tplink which comprised of more than one topics,
             //.gets color of the first topic in link's topics collection
             var topi_c = topics.lcaseId2allLemTopics[ tpIDs[0] ];
             // see *topi_c properties*
-            var { rgb, rgba_high, } = topi_c;
+            //var { rgb, rgba_high, } = topi_c;
+            var rgba_high = topi_c.rgba_high;
         }
+        var rgb_low = rgba_high.replace( /,[^,]+$/, ',0.7)' );
+        var rgba_high = rgba_high.replace( /,[^,]+$/, ',1)' );
+        //c cc( rgb_low, rgba_high );
 
         //  apparently padding highlighted anchor does bloat MathJax font,
         //  so, padding is disabled
         let tplink_str = 'a.tl-'+tplink_ix;
         
         //todm needs more work to proofcheck other texts:
-        let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb : rgba_high;
+        let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb_low : rgba_high;
 
         //if( tpIDs[0] === 'circ-txt' ) {
             //ccc( tplink_ix + ' col='+ rgba_high + ` ${rgba_high} ${tplink_str}` + ' ids=', tpIDs, topi_c );

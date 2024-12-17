@@ -1,8 +1,8 @@
 
 ( function() {
     var {
-        sn, haz, has, eachprop, own,
-        fconf, ssF, sDomF, fixedColors,
+        sn, haz, has, eachprop, own, nsmethods,
+        fconf, ssF, sDomF, fixedColors, fixedColorsOriginal, originalPoints_cssNames,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -83,6 +83,7 @@
         //allocates missed placeholders
         lines = lines || sn( 'lines', sconf, [] );
         originalPoints = originalPoints || sn( 'originalPoints', sconf );
+        Object.assign( sconf.originalPoints, originalPoints );
 
         //todo: this thing also gets more members from "dragger engine": poor job,
         var pname2point = sn( 'pname2point', sconf );
@@ -165,6 +166,7 @@
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
                 fixedColors[ tk ] = predefinedTopics[ topicKey ];
+                fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
             });
 
             //--------------------------------------------------
@@ -224,7 +226,8 @@
                 if( has( gshape, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = gshape.pcolor;
-                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
+                    fixedColorsOriginal[ pname ] = fixedColors[ tk ];
+                   rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
                     rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.getFixedColor( pname );
@@ -247,8 +250,6 @@
                     rgX.undisplay = gshape.undisplay;
                 }
 
-                //start here: add tp classes, tp shadows for rules and slider handles ...
-
                 rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
                 rgX.notp        = haz( gshape, 'notp' );
                 rgX.cssClass    = haz( gshape, 'cssClass' );
@@ -269,6 +270,10 @@
 
             function expandsOrPoints( op, pname )
             {
+                originalPoints_cssNames[
+                    nsmethods.camelName2cssName( pname )
+                ] = op;
+                
                 //todo ... non-readable: it tranfers properties from ??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
@@ -380,6 +385,7 @@
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     fixedColors[ tk ] = op.pcolor;
+                    fixedColorsOriginal[ pname ] = fixedColors[ tk ];
                     rgX.pcolor = sDomF.getFixedColor( op.pcolor );
                     rgX.opaqueColor = sDomF.getFixedColor( op.pcolor, !!'makeOpacity1' );
                 } else {

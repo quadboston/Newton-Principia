@@ -63,20 +63,19 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        //gives bar full range of opacity for tp machine
-        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-        //makes idle bars brighter
-        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+        //sconf.pointDecoration.r= 3;
+        sconf.pointDecoration.r= 4;
 
         //--------------------------------------
         // //\\ does override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
+        sconf.TP_SATUR_FROM_fixed_colors = true;
+        sconf.TP_OPACITY_FROM_fixed_colors = true;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3 * controlsScale ),
@@ -105,10 +104,10 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      ]; //0.5];
-        var proof   = [0,     0,   255,    ]; //0.5];
-        var result  = [200,   40,  0,      ]; //0.5];
-        var hidden  = [0,     0,   0,      ]; //0];
+        var given   = [0,     150, 0, ];
+        var proof   = [0,     0,   255, ];
+        var result  = [200,   40,  0,  ];
+        var hidden  = [0,     0,   0,  ];
 
 
         var predefinedTopics =
@@ -169,6 +168,7 @@
             'D' : { 
                 pcolor      : given,
                 letterAngle : 215,
+                initialR : 4,
             },
             'E' : { 
                 pcolor      : given,
@@ -222,9 +222,9 @@
             { 'Ab' : { pcolor : proof } },
             { 'Ac' : { pcolor : proof } },
             { 'Ad' : { pcolor : result } },
-            { 'Ae' : { pcolor : result, 'stroke-width' : 3, } },
+            { 'Ae' : { pcolor : result, 'stroke-width' : 4 } },
 
-            { 'Ag' : { pcolor : result, 'stroke-width' : 3, } },
+            { 'Ag' : { pcolor : result, 'stroke-width' : 4, } },
 
             { 'ec' : { pcolor : proof } },
             { 'db' : { pcolor : proof } },
@@ -232,7 +232,8 @@
             { 'AB' : { pcolor : given } },
             { 'AC' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'AE' : { pcolor : given, 'stroke-width' : 3, } },
+            { 'AE' : { pcolor : given, 
+                'stroke-width' : 1, } },
             { 'AG' : { pcolor : given } },
             { 'EC' : { pcolor : given } },
             { 'DB' : { pcolor : given } },
@@ -323,7 +324,7 @@
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
 
-            thickness           : 4,
+            //thickness           : 400,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

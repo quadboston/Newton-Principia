@@ -52,32 +52,22 @@
             return ssF.mod2inn( pos, stdMod );
         });
 
-        var pointA     = pos2pointy4lemma9( 'A',  null
-                                      , 'skipSVG'
-                                    );
-        var pointD     = pos2pointy4lemma9( 'D', null
-                                      , 'skipSVG'
-                         );
-        var pointE     = pos2pointy4lemma9( 'E',  null
-                          , 'skipSVG'
-                          );
-        var pointB     = pos2pointy4lemma9( 'B',  null
-                          , 'skipSVG'
-                          );
-        var pointC     = pos2pointy4lemma9( 'C',  null
-                          , 'skipSVG'
-                         );
+        var pointA     = rg.A;
+        var pointD     = rg.D;
+        var pointE     = rg.E;
+        var pointB     = rg.B;
+        var pointC     = rg.C;
+        
+        rg.B.doWhiteKernel = true;
+        rg.C.doWhiteKernel = true;
+        rg.E.doWhiteKernel = true;
 
-        pointB.doWhiteKernel = true;
-        pointC.doWhiteKernel = true;
-        pointE.doWhiteKernel = true;
-
-        var pointOd     = pos2pointy4lemma9('d', {cssClass:'tofill tostroke op1' }, 'skipSVG' );
-        var pointOe     = pos2pointy4lemma9('e', {cssClass:'tofill tostroke op1' }, 'skipSVG'  );
-        var pointOb     = pos2pointy4lemma9('b', {cssClass:'tofill tostroke op1' }, 'skipSVG'  );
-        var pointOc     = pos2pointy4lemma9('c', {cssClass:'tofill tostroke op1' }, 'skipSVG'  );
-        var pointOg     = pos2pointy4lemma9('g', {cssClass:'tofill tostroke op1' }, 'skipSVG'  );
-        var pointOf     = pos2pointy4lemma9('f', {cssClass:'tofill tostroke op1' }, 'skipSVG'  );
+        var pointOd     = rg.d;
+        var pointOe     = rg.e;
+        var pointOb     = rg.b;
+        var pointOc     = rg.c;
+        var pointOg     = rg.g;
+        var pointOf     = rg.f;
         //===================================================
         // \\// spawns study model from main parameters ssD
         //===================================================
@@ -294,15 +284,22 @@
         ///converts model-pos and attributes to pointy
         function pos2pointy4lemma9( pName, attrs, skipSVG, customSWidth, medPosKnown )
         {
-            var pt              = toreg( pName )();
+            return pt              = toreg( pName )();
+            /*
             pt.pname            = pName;
             if( !medPosKnown ) {
                 var pos         = rg[ pName ].pos;
                 pt.pos          = pos;
                 pt.medpos       = ssF.mod2inn( pt.pos );
             }
-            if( skipSVG ) return pt;
+            return pt;
+            */
 
+            /*
+             
+            //delete this later, this is a sample
+            
+            if( skipSVG ) return pt;
             pt.svgel = nssvg.u({
                 svgel   : pt.svgel,
                 parent  : stdMod.mmedia,
@@ -319,6 +316,7 @@
             var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
             $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.topicIdUpperCase_2_underscore( pName ) );
             return pt;
+            */
         }
         //==========================================
         // \\// paint helpers
