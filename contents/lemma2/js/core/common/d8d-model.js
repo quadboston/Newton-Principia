@@ -101,7 +101,8 @@
                 achieved        : achieved,
                 nospinner      : nospinner,
                 update_decPoint : decorator,
-                orientation     : pointWrap.type !== 'base' ? 'rotate' : false,
+                orientation     : pointWrap.type !== 'base' ? 
+                        ( pwix === 4 ? 'axis-x' : 'rotate' ) : false,
             });
         }
 
@@ -229,7 +230,10 @@
             var index = item.index;
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
-                item.y = ach.achieved.y + move[1];
+                
+                //makes point E vertically fixed at 0 level
+                item.y = ach.achieved.y + (index === 4 ? 0 :  move[1]);
+
                 /*
                 if( item.index === 0 || item.index === 4 ) {
                     stdMod.syncPoints();
