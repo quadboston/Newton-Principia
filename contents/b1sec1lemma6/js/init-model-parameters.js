@@ -169,7 +169,7 @@
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 
-                if( !userOptions.showingBonusFeatures() ) {
+                if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
                     nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
                 }
                 return true;
@@ -251,7 +251,6 @@
             rg.fi.processOwnDownEvent = function() {
                 sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
             };
-
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
                 pname : 'fi',
