@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD,
+        sconf, sDomF, sDomN, ssF, ssD, lcaseId2allLemTopics,
         studyMods, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -68,25 +68,35 @@
             }
             pt.pname                = pName;
             //optional attrs
-            pt.stroke               = han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
+            pt.stroke               = haz( pt, 'stroke' ) ||
+                                      han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
             pt.fill                 = haz( pt, 'fill' ) ||
                                       han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
             pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;
             pt.svgel                = null;
-            pt.svgel = nssvg.u({
+
+            var argsvg = {
                 svgel   : pt.svgel,
                 parent  : pt.media,
                 type    : 'circle',
-                fill    : pt.fill,
-                stroke  : pt.stroke,
                 'stroke-width' : pt.initialStrokeWidth * sconf.thickness,
                 cx : pt.medpos[0],
                 cy : pt.medpos[1],
                 r  : pt.initialR * sconf.thickness,
                 style : haz(pt, 'style'),
-            });
+            };
+
+            ///shapes without pName presribed in Topics do
+            ///paint colors in own atributes
+            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var tpactive = haz( lcaseId2allLemTopics, lowId );
+            if( !tpactive ) {
+                argsvg.fill = pt.fill;
+                argsvg.stroke = pt.stroke;
+            };
+            pt.svgel = nssvg.u( argsvg );
             var svgel$ = pt.svgel$ = $$.$( pt.svgel );
 
             //todm patch which overrides tp-opacity model for points only,

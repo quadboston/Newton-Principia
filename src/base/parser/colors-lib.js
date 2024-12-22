@@ -7,9 +7,9 @@
  *      ns.builds_zebraNColors_array (returns array of signatures)
  *      
         (topics__2__topicsColorModel builds following:)
- *      lcaseId2allLemTopics dictionary has elements with signature:
+ *      l caseId2allLemTopics dictionary has elements with signature:
              *topi_c properties*:
-                lowtpId //aka "circ-txt"
+                lowId //aka "circ-txt"
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
                 tpOpacityHigh //used in topic-media-glocss
@@ -64,22 +64,22 @@
     function topics__2__topicsColorModel()
     {
         eachprop( lcaseId2allLemTopics,
-                  ( topi_c, lowtpId, tcount, allTopicsCount ) => {
+                  ( topi_c, lowId, tcount, allTopicsCount ) => {
             var fc = haz( topi_c, 'fixed-color' );
             var isPoint = !!has( originalPoints, topi_c.camelId );
+            topi_c.tcount = tcount;
             if( fc ) {
-                ////***********************************************
-                ////color is predefined in "fixed-color" dictionary
-                ////***********************************************
-                ////builds lowOpacity and highOpacity colors from this dictionary,
-                ////fc[3],fc[4] === lowOpacity,highOpacity opacity,
-                ////    otherwise, defaults are used,
-                var lh = colorArray_2_rgba(
-                    fc,
-                    sconf.TP_SATUR_FROM_fixed_colors,
-                    sconf.TP_OPACITY_FROM_fixed_colors,
-                    isPoint,
-                );
+                if( fconf.tpversion === 2 ) {
+                    colArray_2_flags( topi_c );
+                    return;
+                } else {
+                    var lh = colorArray_2_rgba(
+                        fc,
+                        sconf.TP_SATUR_FROM_fixed_colors,
+                        sconf.TP_OPACITY_FROM_fixed_colors,
+                        isPoint,
+                    );
+                }
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
@@ -100,10 +100,57 @@
             }
             //lh==={ rgba_low, rgba_high, lowOpacity, highOpacity }
             Object.assign( topi_c, lh, );
+            
+            //to coexist with version2, rid later
+            topi_c.rgba_own = topi_c.rgba_low;
         });
     }
 
 
+    function colArray_2_flags( topi_c )
+    {
+        var colorArray = haz( topi_c, 'fixed-color' );
+        var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
+        var ownHighOp = colorArray[4];
+        var ownFlag = !!(ownHighOp || ownHighOp === 0);
+        topi_c.forAnchor = rgba; //patch
+        if( ownFlag ) {
+            ////low and high opacity do exist,
+            ////moves them in global css,
+            ////(and removes them from own color)
+            topi_c.highOpacity = ownHighOp;
+            topi_c.lowOpacity = colorArray[3];
+            topi_c.rgba_own = rgb;
+        } else {
+            ////high opacity does not exist,
+            ////preserves own color and takes
+            ////opacities from global setting
+            topi_c.highOpacity = sconf.TP_OPACITY_HIGH;
+            topi_c.lowOpacity = sconf.TP_OPACITY_LOW;
+            topi_c.rgba_own = rgba;
+        };
+        
+        var rgX = haz( rg, topi_c.camelId );
+        topi_c.strokeOpacity = 1;
+        topi_c.fillOpacity = 1;
+
+        var classmark = haz( rgX, 'classmark' );
+        if( classmark ) {
+            //legacy rubbish, rid
+            let tofill = !!classmark.match( /(\s+|^)tofill(\s+|$)/ );
+            let tostroke = !!classmark.match( /(\s+|^)tostroke(\s+|$)/ );
+            
+            if( tofill && !tostroke ) {
+                topi_c.strokeOpacity = 0;
+            }
+            if( !tofill && tostroke ) {
+                topi_c.fillOpacity = 0;
+            }
+        }
+    }
+    
+    
+    
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }
     function colorArray_2_rgba(
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
@@ -111,7 +158,6 @@
         opacityFromColorArray,
         isPoint,
     ){
-        var hsl_lh = ns.rgbaArr2hsla( colorArray );
         const sconfOPACITY_LOW = isPoint ?
             sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
         if( opacityFromColorArray && colorArray ) {
@@ -142,7 +188,10 @@
             );
             var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
 
+            
+            
         } else {
+            var hsl_lh = ns.rgbaArr2hsla( colorArray );
             var result = ns.hslo_2_rgba_low8high(
                 //hue
                 hsl_lh[ 0 ],

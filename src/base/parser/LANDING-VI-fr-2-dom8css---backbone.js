@@ -45,16 +45,20 @@
         //***********************************************************
         // styles
         //-----------------------------------------------------------
-        var styleStr                    = ssF.css_4_hidden8frag8active8delayed();
+        var styleStr = ssF.css_4_hidden8frag8active8delayed();
 
         ///Frag. step IV. Text anchors.
-        var { styleAnchors, tplinks }   = ssF.topics_anchor_css();
+        var { styleAnchors, tplinks } = ssF.topics_anchor_css();
 
         ///Frag. step V. Unhighlighted global CSS.
-        ssF.establishes__unhighlightedTopicsGlobalCss();
-
-        ///Frag. step VI. Highlighted global CSS.
-        ssF.establishes__highlightedTopicsGlobalCss( tplinks, );
+        if( fconf.tpversion === 2 ) {
+            ssF.v2_establishes__unhighlightedTopicsGlobalCss();
+            ///Frag. step VI. Highlighted global CSS.
+            ssF.v2_establishes__highlightedTopicsGlobalCss( tplinks, );
+        } else {
+            ssF.establishes__unhighlightedTopicsGlobalCss();
+            ssF.establishes__highlightedTopicsGlobalCss( tplinks, );
+        }
         //inserts tp-highlight-machinery css into html-document
         globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
         globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
@@ -64,14 +68,11 @@
     }
 
 
-
-
-
     ///apparently this thing ruins performance and pollutes css
     function digestsSingleMessage_2_topics( messageDomEl, singleMessageText, dontDoMathJax )
     {
         //Frag. step I.
-        //collects and adds more entries into lcaseId2allLemTopics,
+        //collects and adds more entries into l caseId2allLemTopics,
         //var collectedTpLinks = 
         ssF.fragment__collectsRawTpLinks( singleMessageText );
         //  link = {
@@ -84,7 +85,7 @@
         //                raw_tpIDs,
 
         //Frag. step Ib. Colors.
-        //Repeates the job which was done for all lcaseId2allLemTopics,
+        //Repeates the job which was done for all l caseId2allLemTopics,
         //If some topics are "zerbra-generated", then colors distribution is
         // "condenced" more.
         ssF.topics__2__topicsColorModel();

@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, haz, userOptions,
+        sn, haz, ha, userOptions,
         fconf, ssF,
     } = window.b$l.apptree({
     });
@@ -27,6 +27,9 @@
             ix2lemmaDefAllowed.push( ld );
             sn( 'caption', ld, 'Undefined Caption' );
             fconf.sappId2lemmaDef[ ld.sappId ] = ld;
+            if( fconf.sappId === ld.sappId ) {
+                fconf.tpversion = ha( ld, 'tpversion', 1 );
+            }
         });
     }
 

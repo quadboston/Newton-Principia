@@ -298,16 +298,16 @@
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             // //\\ central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                            //pastes ssD['fixed-colors'] into lcaseId2allLemTopics
+                            //pastes ssD['fixed-colors'] into l caseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
-                            //lcaseId2allLemTopics is empty at this moment,
+                            //l caseId2allLemTopics is empty at this moment,
                             eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
-                                var lowtpId = wwCase( camelId );
-                                lcaseId2allLemTopics[ lowtpId ] = {
+                                var lowId = wwCase( camelId );
+                                lcaseId2allLemTopics[ lowId ] = {
                                     'fixed-color' : colorArray,
                                     camelId,
-                                    lowtpId, 
-                                }
+                                    lowId, 
+                                };
                             });
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             // \\// central step

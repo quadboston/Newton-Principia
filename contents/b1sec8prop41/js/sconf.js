@@ -142,38 +142,39 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given     = [0,     140, 0,      1];
-        var body      = [0,     150,  200,   1];
+        var given     = [0,     140, 0];
+        var body      = [0,     150,  200];
         var orbit     = body;
         //var orbitarea = [0,     150, 0,    0.001, 0.5];
-        var proof     = [0,     0,   255,    1];
+        var proof     = [0,     0,   255];
 
-        var result    = [200,   40,  0,      1];
-        var hidden    = [0,     0,   0,      0];
+        var result    = [200,   40,  0];
+        var hidden    = [0,     0,   0];
 
         //var shadow    = [150,  150,  150,    1];
-        var shadow    = [50,  50,  50,    1];
+        var shadow    = [50,  50,  50];
         
-        var invalid   = [200,  150,  0,      1];
-        var force     = [200,  0,  200,      1];
+        var invalid   = [200,  150,  0];
+        var force     = [200,  0,  200];
 
         var fi        = [0,  0,  150,   0.1, 0.4 ];
-        var Fkernel   = [0,  0,  150,   1];
+        //var Fkernel   = [0,  0,  150,   0.1, 0.6 ];
+        var Fkernel   = [0,  0,  150,   0.5, 1 ];
         var fiArea    = [0,  0,  150,   0.1, 0.3];
 
         var Zgraph    = [100,  0, 20, 0.01,  1]; //visible=[100,  0, 20, 0.08,  1];
         var Z2graph   = [100,  0, 20, 0.4,  1]; //[100, 50, 0, 0.2];
-        var ro        = [60, 20, 0, 1  ];
+        var ro        = [60, 20, 0];
 
         var vSolid    = given;
         //var vgraph    = [0,  140, 0, 0.01]; //visible=[0,  140, 0, 0.3];
-        var vgraph    = [0,  140, 0, 0.1]; //visible=[0,  140, 0, 0.3];
+        var vgraph    = [0,  140, 0, 0.1, 1]; //visible=[0,  140, 0, 0.3];
         //var v2graph   = [0,  140, 0, 0.4];
-        var v2graph   = [0,  140, 0, 0.6];
+        var v2graph   = [0,  140, 0, 0.6, 1];
         //var VSarea    = [0,  140, 0, 0.2, 0.4];
         var VSarea    = [0,  140, 0, 0.4, 0.7];
 
-        var Tkernel   = [110, 90, 0, 1  ];
+        var Tkernel   = [110, 90, 0];
         //var Tarea     = [110, 90, 0, 0.2, 0.4];
         var Tarea     = [110, 90, 0, 0.01, 0.7];
 
@@ -204,7 +205,7 @@
             'NK' : Fkernel,
             'ECircle' : Fkernel,
             'DCircle' : Fkernel,
-            'MainCircle' : Fkernel,
+            'MainCircle' : [0,  0,  150,   0.5, 1 ], //Fkernel,
             'YX' : Fkernel,
 
             XCY : [0,  0,    150, 0.03,  0.5 ],
@@ -214,8 +215,8 @@
             VIC : [110, 90, 0, 0.001, 0.5 ],
   
             //needs color model working:
-            //ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
-            ICK : [110, 90, 0, 0.2, 1 ], //visible, but initially annoying,
+            ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
+            //ICK : [110, 90, 0, 0.1, 1 ], //visible, but initially annoying,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -264,7 +265,7 @@
             C : {
                 pcolor : ro,
                 letterAngle : -90,
-            },
+             },
 
             //-------------------------
             // //\\ given
@@ -340,6 +341,7 @@
                 caption : 'F, ~dv²/dρ',
                 pcolor : force,
                 letterAngle : -45,
+                cssClass : 'tostroke',
             },
 
             D : {
@@ -437,8 +439,7 @@
             },
 
             { VM : {
-                    //pcolor : [100,  0, 20, 0.01, 1],
-                    pcolor : [100,  0, 20, 0.5, 1],
+                    pcolor : [100,  0, 20, 0.01, 1],
                     vectorTipIx : 1 },
             },
 

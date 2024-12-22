@@ -216,7 +216,7 @@
             ///apparently non-unified with shapes-points, points have more properties
             eachprop( lines, ( gshape, pname ) => {
                 var rgX = toreg( pname )( 'pname', pname )();
-
+                rgX.tostroke = true;
                 //todm: mess: lines array elements attributes go into
                 //line-maker in lemma-linerars-machine lineAttr
                 //, but this is done via "str2line" which ignores "everything" except
@@ -290,10 +290,10 @@
                 // \\// todm: automate property transfer
 
                 var pos = pname2point[ pname ] = !pictureP ?
-                            [0,0] :
-                            [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
-                              ( pictureP[1] - originY_onPicture ) * factor,
-                            ];
+                    [0,0] :
+                    [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
+                      ( pictureP[1] - originY_onPicture ) * factor,
+                    ];
                 //creates rgX or reuses existing one
                 var rgX = op.rgX = ssF.declareGeomtric({
                     pname, pos, caption : haz( op, 'caption' ),

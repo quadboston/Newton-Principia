@@ -153,7 +153,8 @@
                 //must be transparent bs stroke or fill are often exclusive
 
             fill    : arg.fill || 'transparent',
-            'stroke-width' : arg[ 'stroke-width' ] || 1
+            'stroke-width' : arg[ 'stroke-width' ] || 1,
+            'stroke-linecap' : arg[ 'stroke-linecap' ] || 'round',
         });
 
         function rep( match1, match2 ) {

@@ -43,7 +43,7 @@ take away the angles ¦BD BN¦NBD¦¦ and ¦CD CN¦NCD¦¦ that are common, and 
 
 ¦MC CN¦NCM¦¦ and ¦CR PC¦PCR¦¦;
 
-and therefore triangles ¦MN BN/MB¦NBM¦¦ and ¦PT PB/BT¦PBT¦¦ are similar, as are also triangles ¦MC CN/NM¦NCM¦¦ and ¦PR PC/CR¦PCR¦¦.
+and therefore triangles ¦MN BN/MB¦NBM¦¦ and ¦PT PB/BT¦PBT¦¦ are similar, as are also triangles ¦MC CN/MN¦NCM¦¦ and ¦PR PC/CR¦PCR¦¦.
 
 And therefore PT is to NM as PB to ¦BN¦NB¦¦, and PR is to NM as PC to NC. But the points B, C, N, and P are stationary. Therefore, PT and PR have a given ratio to NM and accordingly a given ratio to each other; and thus
 
