@@ -18,6 +18,10 @@
         buildHowTo();
         buildOptions();
         buildAbout();
+        buildLegal();
+        //buildTranslations();
+        buildFeedbackAndTip();
+        padBottom();
 
 
         //==================================================
@@ -30,10 +34,7 @@
                     <h1 class="landing-title">${fconf.appDecor.homePageCaption}</h1>
                     <br><br>
                     <p class="landing-subtitle">${fconf.appDecor.homePageSubCaption}</p>
-                    <!--
-                    <p class="sub-title"> 
-                    </p>
-                    -->
+                    <p class="sub-title">${fconf.appDecor.homePageSubtitle}</p>
                 </div>
             </div>
             <img class="newton-img"
@@ -64,35 +65,51 @@
         function buildHowTo() {
             var coreText = `
             <div class="hp-section-wrap">
-                <h2>Usage Guide</h2>
+                <h2>Tips</h2>
                 <div class=" how-to-grid">
-                <div class="how-to__cell">
-                    <div class="how-to__cell__image">
-                        <img style="width:150px; height:150px;"
-                             src="${subsiteImg}/menu-buttons.mkv.gif">
-                    </div>
+                
+                    <div class="how-to__cell">
+                        <p>Hover over labels to highlight corresponding items in the diagram</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/hilight.gif">
+                        </div>
+                    </div><!--END cell-->
 
-                    <h4>Text</h4>
-                    <p>Click on the tab corresponding to the text you want to view.</p>
-                </div><!--END cell-->
-                <div class="how-to__cell">
-                    <div class="how-to__cell__image">
-                        <img style="width:221px; height:150px;"
-                             src="${subsiteImg}/draggable-model.mkv.gif">
-                    </div>
-                    <h4>Model</h4>
-                    <p>Drag sliders and hollow points to interact with the model.</p>
-                </div><!--END cell-->
-                <div class="how-to__cell">
-                    <div class="how-to__cell__image">
-                            <!-- apparently flex allows both % and px here for this image -->
-                            <img style="width:260px; height:150px;"
-                             src="${subsiteImg}/text-model2.mkv.gif">
-                    </div>
-                    <h4>Text-Model Interaction</h4>
-                    <p>Hover over colored text to easily find the corresponding
-                       item in the model.</p>
-                </div><!--END cell-->
+                    <div class="how-to__cell">
+                        <p>Drag hollow points to manipulate the models</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/manipulate.gif">
+                        </div>
+                    </div><!--END cell-->
+
+                    <div class="how-to__cell">
+                        <p>Step through complicated proofs step-by-step</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/steps.gif">
+                        </div>
+                    </div><!--END cell-->
+
+                    <div class="how-to__cell">
+                        <p>View qualitative data as you manipulate the models</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/data.gif">
+                        </div>
+                    </div><!--END cell-->
+
+                    <div class="how-to__cell">
+                        <p>Switch horizontal tabs to focus on only what is needed for a claim, proof, or corollary</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/horiz-tabs.gif">
+                        </div>
+                    </div><!--END cell-->
+
+                    <div class="how-to__cell">
+                        <p>Switch vertial tabs to watch an explanation, or to read the original text</p>
+                        <div class="how-to__cell__image">
+                            <img src="${subsiteImg}/vert-tabs.gif">
+                        </div>
+                    </div><!--END cell-->
+
                 </div>
             </div>`;
             $$.c('div').addClass('how-to').to(fapp.homePage$())
@@ -121,7 +138,6 @@
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
                 .html(coreText);
-            //return coreText;
         }
         //==================================================
         // \\// options
@@ -135,7 +151,7 @@
             var coreText = `
                 <div class="about__author">
                     <h2>About</h2>
-                    <p class="about__author__text">
+                    <p class="hp-text-section-body">
                         <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
                             concept, production, programming, video<br>
                         <span class="dd-label"><a href="https://bastyon.com/konstantin_kirillov">Konstantin Kirillov:</a></span>
@@ -146,18 +162,102 @@
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
                             open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
                         <span class="dd-label"><a href="javascript:showChangeLog()">What's New</a></span> 
-                        <!-- todm fix these <br> by css not by markup -->
-                        <br><br><br><br>
                     </p>
                 </div>`;
-            $$.c('div').addClass('about hp-section-wrap').to(fapp.homePage$())
+            $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
                 .html(coreText);
         }
         //==================================================
         // \\// about wrapper
         //==================================================
 
+
+        //==================================================
+        // //\\ legal wrapper
+        //==================================================
+        function buildLegal() {
+            var coreText = `
+                <div>
+                    <h2>Legal</h2>
+                    <p class="hp-text-section-body">
+                        This website contains copyrighted material used under the 'fair use' provisions of copyright law (17 U.S.C. § 107) for the purpose of scholarship. No copyright infringement is intended.
+                    </p>
+                </div>`;
+            $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+        }
+        //==================================================
+        // \\// legal wrapper
+        //==================================================
+
+        //==================================================
+        // //\\ translattion wrapper
+        //==================================================
+        function buildTranslations() {
+            var coreText = `
+                <div>
+                    <h2>Translations</h2>
+                    <p class="hp-text-section-body">
+                        This site draws upon 2 excellent English translations of Newton’s Principia. As each translation was written with a different aim, they have different strengths. The 2 translations are by Cohen and Donahue.
+                        <br>
+                        In general, Cohen’s translation has been preferred. For purposes of this site, it has these strengths:
+                        <ul>
+                            <li> it typically favors clarity over adherence to what would now be archaic language or notation. For example, what Donahue translates as “subduplicate ratio” is translated by Cohen as “square root”. While both are correct, the clarity of the modern term “square root” is preferred for this site.</li>
+                            <li> it’s a complete translation of the entire Principia. Should this software be expanded to cover text not translated by Donahue, Cohen’s text can serve as a source.</li>
+                        </ul>
+
+However, Donahue’s translation (as published by Densmore) is used when its strengths better align with this site.
+* sometimes Donahue’s text impresses as more clear. For example, what Cohen translates as “secant” (using a less-familiar meaning of the word), Donahue translates as “intersecting line” without any loss of meaning.
+* Donahue argues a careful reading of lemma 4’s corollary leads to using “obtain” rather than Cohen’s “maintain”, and as “obtain” better fits the proof’s logic, Donahue’s translation has been used for lemma 4.
+
+Occasionally a mix of both translations are used.
+                    </p>
+                </div>`;
+            $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+        }
+        //==================================================
+        // \\// legal wrapper
+        //==================================================
+
+        //==================================================
+        // //\\ feedback wrapper
+        //==================================================
+        function buildFeedbackAndTip() {
+            var coreText = 
+                `
+                <div class="feedback">
+                    <span class="feedback-label"><a href="javascript:decryptEmail('ZmVlZGJhY2tAc2NpZW5jZWhpa2UuY29t');">Feedback</a></span> welcome, as well as donations:
+                
+                    &nbsp;<a href='https://ko-fi.com/L4L618688P' target='_blank'><img height='24' style='border:0px;height:24px;' 
+                    src='https://storage.ko-fi.com/cdn/kofi1.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                </div>
+                `;
+            $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
+        }
+        //==================================================
+        // \\// feedback wrapper
+        //==================================================
+        
+
+        //==================================================
+        // //\\ pad bottom
+        //      (Without padding at the bottom of the homepage, desktop Safari 18.1.1 cuts off text.
+        //      Chrome and Edge are fine, so for them this just adds innocuous space.)
+        //==================================================
+        function padBottom() {
+            // todm fix this by css not by markup
+            var coreText = `<div class="hp-text-section"></div>`;
+            $$.c('div').to(fapp.homePage$())
+                .html(coreText);
+        }
+        //==================================================
+        // \\// pad bottom
+        //==================================================
     }
+
+
     
     function buildsListOfLemmas()
     {

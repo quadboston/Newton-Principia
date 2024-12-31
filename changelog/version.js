@@ -22,3 +22,8 @@ function showChangeLog() {
             }
    }).catch((e) => console.error(e));
 }
+
+function decryptEmail(encoded) {
+    var address = atob(encoded);
+    window.location.href = "mailto:" + address;
+}
