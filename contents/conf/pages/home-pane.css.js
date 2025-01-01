@@ -92,6 +92,10 @@
       grid-area: title; }
       .landing-subtitle span {
         font-style: italic; }
+      .landing-subtitle a {
+        color: ${colorWhite};
+        text-decoration: underline;
+      }
 
     .sub-title {
       font-family: "essonnes-display", 'Garamond','Times', serif;
@@ -118,7 +122,7 @@
       ======================================================*/
     .newton-img {
       position: absolute;
-      top: 72px;
+      top: 0px;
       z-index: -1;
       right: 96px; }
     /*====================================================== 

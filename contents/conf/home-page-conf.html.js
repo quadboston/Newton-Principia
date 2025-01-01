@@ -4,7 +4,7 @@
         fapp, fconf, sapp, sconf, html, stdMod,
     } = window.b$l.apptree({
     });
-    sapp.buildsListOfLemmas = buildsListOfLemmas;
+    sapp.buildsListOfLemmas = buildListOfLemmas;
     html.builds_homePane = builds_homePane;
     return;
 
@@ -14,8 +14,8 @@
         var subsiteImg = fconf.pathToContentSiteImg;
 
         buildHeader();
-        buildTableOfContents();
         buildHowTo();
+        buildTableOfContents();
         buildOptions();
         buildAbout();
         buildLegal();
@@ -38,7 +38,8 @@
                 </div>
             </div>
             <img class="newton-img"
-                 src="${subsiteImg}/${fconf.appDecor.landingImage}">`);
+                 src="${subsiteImg}/${fconf.appDecor.landingImage}">
+            `);
         }
         //==================================================
         // \\// header
@@ -50,7 +51,7 @@
         //==================================================
          function buildTableOfContents()
          {
-            var coreText = '<h2>Table of contents</h2>' + buildsListOfLemmas();
+            var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas();
             $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
                 .html(coreText);
         }
@@ -65,7 +66,7 @@
         function buildHowTo() {
             var coreText = `
             <div class="hp-section-wrap">
-                <h2>Tips</h2>
+                <h2>Usage Tips</h2>
                 <div class=" how-to-grid">
                 
                     <div class="how-to__cell">
@@ -104,7 +105,7 @@
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
-                        <p>Switch vertial tabs to watch an explanation, or to read the original text</p>
+                        <p>Switch vertical tabs to watch an explanation, or to read the original text</p>
                         <div class="how-to__cell__image">
                             <img src="${subsiteImg}/vert-tabs.gif">
                         </div>
@@ -259,7 +260,7 @@ Occasionally a mix of both translations are used.
 
 
     
-    function buildsListOfLemmas()
+    function buildListOfLemmas()
     {
         var landingPath = window.location.pathname;
         var book = null;
