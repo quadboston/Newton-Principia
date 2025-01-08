@@ -22,7 +22,7 @@ Page 455.
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
 point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
-revolving in the circumference, ¦Q¦the place¦¦ to which it will move
+revolving in the circumference, ¦Q¦Q the place¦¦ to which it will move
 next, and ¦PR PZ P,Zminus¦PRZ the tangent¦¦ of
 the circle at the ¦P¦previous place¦¦.
 Through ¦S¦point S¦¦ draw ¦PV¦chord PV¦¦;
@@ -33,11 +33,13 @@ the circle has been drawn, join
 ¦QT¦¦, which when ¦ZQ¦produced¦¦ meets the ¦PR PZ P,Zminus¦tangent PR¦¦ at ¦Z¦¦;
 and finally through
 point ¦Q¦¦ draw ¦RL¦LR¦¦ parallel to ¦SP¦¦ and meeting both the circle at ¦L¦¦ and the
-tangent ¦PZ¦¦ at ¦R¦¦. Then because the triangles ¦ZQ QR ZR¦ZQR¦¦,
+tangent ¦PZ¦¦ at ¦R¦¦.<br><br>
+
+Then because the triangles ¦ZQ QR ZR¦ZQR¦¦,
 ¦ZQ QT PZ PT¦ZTP¦¦, and ¦PV AP AV¦VPA¦¦ are
 similar,
 
-¦PR¦RP²¦¦ (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT²¦¦ as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
+¦PR¦RP¦¦² (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
 
 And therefore QR x RL x PV² / SP² is equal to QT².
 
