@@ -32,7 +32,8 @@
     function parsesTopicScenarios()
     {
         //https://stackoverflow.com/questions/32116312/javascript-regex-special-characters
-        //makes most sense: https://javascript.info/regexp-escaping
+        //makes most sense: https://javascript.info/regexp-escaping:
+        //                  [ ] { } ( ) \ ^ $ . | ? * +
         var SPLIT_STATES = /\|\|\s/gu;
         var SPLIT_EVENTS = /\+\s/gu;
         var EMPTY = /^(\s|\n|\r)*|(\s|\n|\r)*$/g;

@@ -3,8 +3,8 @@
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version = 13126; //application version
-    fapp.buildDateString = "2025-01-01"; //build date
+    fapp.version = 13168; //application version
+    fapp.buildDateString = "2025-01-08"; //build date
     // \\// updated automatically. Don't edit these strings.
 
     }) ();
@@ -24,6 +24,5 @@ function showChangeLog() {
 }
 
 function decryptEmail(encoded) {
-    var address = atob(encoded);
-    window.location.href = "mailto:" + address;
+    window.location.href = "mailto:" + atob(encoded);
 }

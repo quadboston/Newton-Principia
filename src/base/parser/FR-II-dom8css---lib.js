@@ -2,7 +2,7 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        lcaseId2allLemTopics,
+        fixedColors, lcaseId2allLemTopics,
         id2tplink, ix2tplink,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
@@ -26,7 +26,8 @@
     //: lemma-wise constructs
     //var topicsCount = 0; //indexes shapes lemma-wise
 
-    var SPACE_reg = /(\s|\/)+/; //todo needs global test because "/" is added to space divider
+    //var SPACE_reg = /(\s|\/)+/; //this version has a flaw: adds seps to split
+    var SPACE_reg = /\s+|\//;
 
     //todo: these regexes do proliferate in two files
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -74,8 +75,8 @@
     ///Collects
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
-    ///     tplink.tpid2true                 [ tpid_lowcase ] = true;
-    ///     lcaseId2allLemTopics[ tpid_lowcase ]
+    ///     tplink.tpid2true                 [ lowId ] = true;
+    ///     lcaseId2allLemTopics[ lowId ]
     ///Returns: collectedTpLinks
     ///*************************************************************
     function fragment__collectsRawTpLinks(
@@ -175,7 +176,6 @@
                 // splits anchor-configuration to smaller tokens, each
                 // token for separate topic or for reserved-command
                 tplink.raw_tpIDs = tplinkConf.split( SPACE_reg );
-
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
                 /// loops via separate topic IDs
                 tplink.raw_tpIDs.forEach( tpid_user => {
@@ -192,7 +192,7 @@
                     } else if( tpid_user.match( ANCH_COLOR_CAT_rg ) ) {
                         var ww = tplink.colorCateg = tpid_user.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                        tplink[ 'fixed-color' ] = haz( ssD['fixed-colors'], ww[1] );
+                        tplink[ 'fixed-color' ] = haz( fixedColors, ww[1] );
                         return;
                     }
                     //..........................................................
@@ -200,14 +200,21 @@
                     //..........................................................
 
 
-                    var tpid_lowcase = nsmethods.topicIdUpperCase_2_underscore( tpid_user );
+                    var lowId = nsmethods.topicIdUpperCase_2_underscore( tpid_user );
                     //tplink has collection of topics,
                     //here is how this collection is populated:
-                    tplink.tpid2true[ tpid_lowcase ] = true;
-
-                    //if topicId keyName is missed, then an empty object created
-                    //for this keyName,
-                    sn( tpid_lowcase, lcaseId2allLemTopics );
+                    if( lowId  && lowId.replace( / /g, '' ) ) {
+                        tplink.tpid2true[ lowId ] = true;
+                        //if topicId keyName is missed, then an empty object created
+                        if( !has( lcaseId2allLemTopics, lowId ) ){
+                            ////todm: add this warning to GUI:
+                            ccc( 'Topic "'+lowId +'" ' +
+                                 'is missed in js-code, check your texts or code.'
+                            );
+                            //for this keyName, 'fixed-colors' is a flag and is = 'undefined'
+                            sn( lowId, lcaseId2allLemTopics );
+                        }
+                    }
                 });
                 //=========================================
                 // \\// indexes topics locally and globally

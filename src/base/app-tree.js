@@ -36,6 +36,7 @@
 
     var rgtools     = sn('tools',ssD);
     var fixedColors = sn('fixed-colors',ssD);
+    var fixedColorsOriginal = sn('fixed-colors-original-id',ssD);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var exegs       = sn('exegs', ssD);
     var references  = sn('references', ssD);
@@ -44,6 +45,9 @@
     var lcaseId2allLemTopics= sn('lcaseId2allLemTopics', topics);
     var id2tplink   = sn('id2tplink', topics);
     var ix2tplink   = sn('ix2tplink', topics, []);
+    var originalPoints = sn( 'originalPoints', sconf );
+    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
+
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
@@ -207,11 +211,13 @@
 
             ss,
             ssF,
-            ssD, fixedColors,
+            ssD, fixedColors, fixedColorsOriginal,
             actionsList_coded,
             actionsList_default,
             //ario,
             arios,
+            originalPoints,
+            originalPoints_cssNames,            
 
             rg    : stdMod.rg,
             topos : stdMod.topos,

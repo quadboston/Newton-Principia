@@ -55,11 +55,6 @@
 
         sconf.rgShapesVisible = true;
 
-        //gives bar full range of opacity for tp machine
-        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-        //makes idle bars brighter
-        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
-
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
 

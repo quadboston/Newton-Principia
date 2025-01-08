@@ -1,7 +1,7 @@
 ( function() {
     var {
-        ns, sn, $$, sv, han, haz, has, mat,
-        sconf, ssF, ssD, sDomF, sDomN,
+        ns, sn, $$, sv, nsmethods, han, haz, has, mat,
+        sconf, ssF, ssD, sDomF, sDomN, lcaseId2allLemTopics,
         amode, studyMods,
     } = window.b$l.apptree({
         ssFExportList :
@@ -94,9 +94,9 @@
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
             line.pivotNames     = [ pv0.pname, pv1.pname ];
-            line.svgel = sv.polyline({
+            
+            var argsvg = {
                 svgel   : ns.haz( line, 'svgel' ),
-                stroke,
 
                 parent  : stdMod.mmedia,
                 //todm everywhere in this module:
@@ -104,8 +104,18 @@
 
                 pivots      : pivotsMedPos,
                 'stroke-width' : line.finalStrokeWidth.toFixed(4),
-            });
+                'stroke-linecap' : 'round'
+            }
+            ///shapes without pName presribed in Topics do
+            ///paint colors in own atributes
+            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var tpactive = haz( lcaseId2allLemTopics, lowId );
+            if( !tpactive ) {
+                argsvg.stroke = line.stroke;
+            };
+            line.svgel = sv.polyline(argsvg);
             var svgel$ = line.svgel$ = $$.$(line.svgel);
+
             svgel$.cls( line.finalCssClass );
 
         } else {

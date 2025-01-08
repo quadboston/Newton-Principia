@@ -6,6 +6,7 @@
     var {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
+        fixedColorsOriginal,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
         ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
@@ -295,14 +296,21 @@
                             //then additional topics will be extracted from exegs
                             var wwCase = sDomF.topicIdUpperCase_2_underscore;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                            //pastes ssD['fixed-colors'] into lcaseId2allLemTopics
+                            // //\\ central step
+                            //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            //pastes ssD['fixed-colors'] into l caseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
-                            //lcaseId2allLemTopics is empty at this moment,
-                            eachprop( ssD['fixed-colors'], ( colorArray, topicId_ ) => {
-                                lcaseId2allLemTopics[ wwCase( topicId_ ) ] = {
+                            //l caseId2allLemTopics is empty at this moment,
+                            eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
+                                var lowId = wwCase( camelId );
+                                lcaseId2allLemTopics[ lowId ] = {
                                     'fixed-color' : colorArray,
-                                }
+                                    camelId,
+                                    lowId, 
+                                };
                             });
+                            //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            // \\// central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
 
                             ////executes loaded "proferssor's scripts"

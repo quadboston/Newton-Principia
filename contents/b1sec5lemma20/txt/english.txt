@@ -8,7 +8,7 @@
 ¦BP¦¦¦ ¦BP¦PB¦¦¦ ¦BC¦¦¦ ¦Pt¦¦¦ ¦Pr¦¦¦ ¦BT¦¦¦ ¦BC¦CB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
 ¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦ ¦IG¦¦¦ ¦CR¦RC¦¦¦ ¦CD¦DC¦¦¦ 
-¦CA¦¦¦ ¦DH¦¦¦ ¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦PC¦CP¦¦¦ ¦HB¦¦¦
+¦CA¦¦¦ ¦DH¦¦¦ ¦BA¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦PC¦CP¦¦¦ ¦HB¦¦¦
 
 ¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦  ¦q¦¦¦
 ¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦  ¦d¦¦¦

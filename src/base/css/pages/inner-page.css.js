@@ -1,9 +1,10 @@
 ( function() {
     var {
-        sn, engCssMs,
-        fconf, sapp, sDomN,
+        sn, engCssMs, cssp,
+        fconf, sapp, sDomN, ssF,
     } = window.b$l.apptree({});
     engCssMs['inner-page'] = setsInnerPageCss;
+    ssF.css_4_hidden8frag8active8delayed = css_4_hidden8frag8active8delayed;
     return;
     
     function setsInnerPageCss( cssp, fconf ) {
@@ -246,4 +247,44 @@
 `;
         return ret;
     };
+    
+    
+    ///todo: this sub. must be outside of topics-module
+    function css_4_hidden8frag8active8delayed()
+    {
+        var ROOT = '.' + cssp + '-approot';
+        ///generic "tohidden"
+        styleStr = `
+            ${ROOT} .tohidden {
+                visibility: hidden;
+            }
+        `;
+
+        ///generic hidden and visible fragments in content:
+        //this works by toggling css-class in application code like:
+        //      sDomN.essaionsRoot$.removeClass( 'active-left' );
+        //      sDomN.essaionsRoot$.addClass( 'active-right' );
+        //      apparenlty these marks are from the same set:
+        //          'active-right', .active-static, ...
+        //          they are a part of do-feedback-from-diagram-model-to-Book-text,
+        styleStr += `
+            .${cssp}-text-widget .exeg-frag {
+                display : none;
+            }
+            .${cssp}-text-widget .active-static {
+                display : inline;
+            }
+        `;
+
+        ///?hidden? delayed anchor
+        styleStr += `
+            .${cssp}-text-widget .delayed-far,
+            .${cssp}-text-widget .delayed-anchor {
+                display : none;
+            }
+        `;
+        return styleStr;
+    }
+    
+    
 })();

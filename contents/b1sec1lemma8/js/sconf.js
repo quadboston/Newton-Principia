@@ -17,6 +17,7 @@
     //====================================================
     function init_conf()
     {
+        sconf.TP_OPACITY_LOW_POINT = 1;
         sconf.default_tp_lightness = 22;
         sconf.rgShapesVisible = false;
         sconf.default_tp_stroke_width = 8;
@@ -62,12 +63,12 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var context = [0,     0,   0,      0.6];
-        var given   = [0,     150, 0,      0.6];
-        var proof   = [0,     0,   255,    0.6];
-        var result  = [200,   40,  0,      0.6];
-        var shadow  = [150,  150,  150,    1];
-        var hidden  = [0,     0,   0,      0];
+        var context = [0,     0,   0];
+        var given   = [0,     150, 0];
+        var proof   = [0,     0,   255];
+        var result  = [200,   40,  0];
+        var shadow  = [150,  150,  150];
+        var hidden  = [0,     0,   0,     0];
 
 
         var predefinedTopics =

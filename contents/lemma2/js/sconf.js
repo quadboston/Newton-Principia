@@ -22,7 +22,7 @@
     {
         //as of Ap/13 2023 sets data in preset-data.js
 
-        sconf.TP_OPACITY_FROM_fixed_colors = true;
+        //sconf.TP_OPACITY_FROM_fixed_colors = true;
 
         //----------------------------------
         // //\\ original material parameters
@@ -88,10 +88,6 @@
         //own css independent of rectangulars:
         //then so, we can decreas opacities below for nicer diagram:
 
-        //apparently goes right into color opacity
-        //sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.5;
-        //sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-        
         //these are additional over high and low opacities in color itself:
         sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
         sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;

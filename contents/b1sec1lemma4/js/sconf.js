@@ -82,12 +82,6 @@
 
         sconf.rgShapesVisible = true;
 
-        //gives bar full range of opacity for tp machine
-        sconf.TOPIC_FILL_OPACITY_IN_FOCUS = 1;
-
-        //makes idle bars brighter
-        sconf.TOPIC_FILL_OPACITY_NOT_IN_FOCUS = 0.6;
-
         sconf.DONT_PAINT_BARS_MORE_THAN = 200;
 
         sconf.ZEBRA_COLORS = 6;

@@ -27,7 +27,7 @@
     /*
         todm: dom and menu are messed with links and topics
                     tplink.tpid2true[ tpid_lowcase ] = true;
-                    sn( tpid_lowcase, lcaseId2allLemTopics );
+                    sn( tpid_lowcase, l caseId2allLemTopics );
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
     {

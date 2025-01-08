@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, nssvg, has, haz,
-        amode, sconf, sDomF, sDomN, ssD, ssF,
+        amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -83,7 +83,7 @@
             parent          : stdMod.mmedia,
 
             'stroke-width':5,
-            stroke  : ns.arr2rgba( ssD['fixed-colors'][ "ellipse" ] ),
+            stroke  : ns.arr2rgba( fixedColors[ "ellipse" ] ),
         });
         $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
     }

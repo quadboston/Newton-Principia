@@ -2,7 +2,7 @@
     var {
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, studyModsActivated, fixedColors, references, exegs,
+        topics, studyModsActivated, fixedColors, fixedColorsOriginal, references, exegs,
         studyMods, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -273,8 +273,9 @@
                     var wwfc = haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
-                            var tk = nsmethods.topicIdUpperCase_2_underscore( topicKey );
+                            var tk = nsmethods.camelName2cssName( topicKey );
                             fixedColors[ tk ] = wwfc[ topicKey ];
+                            fixedColorsOriginal[ topicKey ]= fixedColors[ tk ];
                         });
                     }
                     //---------------------------------------------------------------
@@ -583,21 +584,24 @@
         }
     }
 
-    ///input: ptype - optional,
+    ///todm: should be named ptype0colorArray_2_rgba
+    ///converts these two things
+    ///
+    ///input: ptype - optional, is an id in "fixed-colors",
     ///               if falsy, then "rgba(0,0,0,1)" color is returned,
     ///               if string, then converted to array first,
     ///               if captilized-string, then converts to low-case-topic-style
     ///               if array, converted as array to color
+    ///       makeOpacity1 - means "do make opacity equal to 1",
     ///returns fixed color or black,
-    ///todm: call as tptype2tpcolorRgba
     function getFixedColor( ptype0colorArray, makeOpacity1 )
     {
         if( typeof ptype0colorArray === 'string' ) {
             //returns blank, ' ' if ptype0colorArray is falsy
-            var cleared = nsmethods.topicIdUpperCase_2_underscore( ptype0colorArray || ' ' );
+            var cleared = nsmethods.camelName2cssName( ptype0colorArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
-            var colorArray = haz( ssD[ 'fixed-colors' ], cleared );
+            var colorArray = haz( fixedColors, cleared );
         } else {
             var colorArray = ptype0colorArray;
         }

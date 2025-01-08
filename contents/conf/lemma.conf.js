@@ -38,33 +38,22 @@
   
         //topics:
         DEFAULT_TP_SATUR : 99,
-        TP_SATUR_FROM_fixed_colors : true,//false, 
+        TP_SATUR_FROM_fixed_colors : false, 
   
         //---------------------------------------------------
         // //\\ tp color opacity
         //---------------------------------------------------
         //affects only ssF.topics__2__topicsColorModel and  ssF.colorArray_2_rgba
-        TP_OPACITY_LOW : 0.6, //not used at current version
+        TP_OPACITY_LOW : 0.6,
+        TP_OPACITY_LOW_POINT : 1,
         TP_OPACITY_HIGH : 1,
-        TP_OPACITY_FROM_fixed_colors : false,
+        TP_OPACITY_FROM_fixed_colors : true, //false,
         //---------------------------------------------------
         // \\// tp color opacity
         // \\// tp color
         //===================================================
 
         SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
-
-        //---------------------------------------------------------------
-        // //\\ global tp svg opacity
-        //---------------------------------------------------------------
-        //goes only to tpOpacityLow through topics__2__topicsColorModel(),
-        //which is global tp-css
-        TOPIC_FILL_OPACITY_NOT_IN_FOCUS : 0.6,
-        TOPIC_FILL_OPACITY_IN_FOCUS : 0.9, //controls mutual visibility overlapped areas,
-                                           //apparently, 1.0 is for bully overlapping
-        //---------------------------------------------------------------
-        // \\// global tp svg opacity
-        //---------------------------------------------------------------
 
         default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
   
