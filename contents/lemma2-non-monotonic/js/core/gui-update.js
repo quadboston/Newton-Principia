@@ -1,6 +1,6 @@
 ( function () {
     var {
-        ns, sn, $$, userOptions,
+        sn, $$, userOptions,
         fapp, fconf, sconf, sDomN, ssF,
         amode,
     } = window.b$l.apptree({
@@ -78,31 +78,27 @@
 
 
 
-    //todo why it does calculate curve twice?
-    //because ? micropoints do this twice for
-    //monotonity-turn-points calr?
+
     function paints_curve8axes()
     {
         var ff = numModel.f;
+
         ///calculates curve with horizontal increment = delta
         var delta           = 3;
         var curveMicroPts   = [];
-        var curveMicroPtsRounded = [];
         var fb              = dr.figureParams;
         for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
 	        var yy = ff( xx );
 	        curveMicroPts.push([xx,yy]);
-            curveMicroPtsRounded.push([xx.toFixed(2),yy.toFixed(2)]);
         }
 
         //:paints curve
         var yy = ff( fb.maxX );
         //this does not collect
-        curveMicroPts.push([fb.maxX, yy]);
-        curveMicroPtsRounded.push([fb.maxX.toFixed(2),yy.toFixed(2)]);
+        curveMicroPts.push([fb.maxX,yy]);
 
         var wwPL = document.getElementById( 'polylineCurve' );
-        wwPL.setAttribute( "points",curveMicroPtsRounded.join(" ") );
+        wwPL.setAttribute( "points",curveMicroPts.join(" ") );
         //:paints axes
         //var yy = fb.baseY;
         var yy = dr.yVariations.yRef;
@@ -115,20 +111,20 @@
         //apparently, vertical axis y = x2
         xy2lineShape( dr.wallR,x2,yy,x2, ff(x2) );
 
+
         //=============================================
         // //\\ builds bottom part of curve area string
         //=============================================
+        //var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
         var wfirstPoint = curveMicroPts[0];
         var wlastPoint = curveMicroPts[curveMicroPts.length-1];
         //.this code connects four points two tips on base and first and end
         //.points on curve making base as a part of area perimeter
-        var figureInternalAreaStr = curveMicroPtsRounded.concat([
-            [wlastPoint[0].toFixed(2) ,yy.toFixed(2)],
-            [wfirstPoint[0].toFixed(2) ,yy.toFixed(2)]
-        ]);        
-        figureInternalAreaStr = figureInternalAreaStr.join(" ");
+        var figureInternalArea = curveMicroPts.concat([
+            [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy]
+        ]);
+        var figureInternalAreaStr = figureInternalArea.join(" ");
         dr.figureInternalArea.setAttribute( "points",figureInternalAreaStr );
-        $$.$(dr.figureInternalArea).addClass( "debug-curve-svg-points" );
         //=============================================
         // \\// builds bottom part of curve area string
         //=============================================
@@ -219,6 +215,17 @@
             normalizedStr( dr.areaCir, dr.figureArea);
         //-----------------------------------------------------
         // \\// legend amounts
+        //-----------------------------------------------------
+
+        //-----------------------------------------------------
+        // //\\ Do points update
+        //-----------------------------------------------------
+        //let insY = insYar[basN-1];
+        //let cirY = cirYar[basN-1];
+        //rg.e.pos[0] = rg.d.pos[0];
+        //rg.e.pos[1] = rg.d.pos[1] + insY - cirY;
+        //-----------------------------------------------------
+        // \\// Do points update
         //-----------------------------------------------------
     }
 
@@ -334,11 +341,13 @@
             ////not in gemetrical-model-space;
             rg[ pname ].pos[0] = (item.x - xoff) / scale;
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
+
             ////optional names
             if( pnameFun ) {
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
                 rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
             }
+
         }
     }
 

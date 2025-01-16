@@ -1,25 +1,22 @@
 ( function () {
     var {
-        ns, sn, mat, nspaste, nsmethods, has,
-        fapp, sconf, ssF,
+        sn,
+        fapp, sconf,
     } = window.b$l.apptree({
     });
-    var curveFW = sn( 'curveFW', ssF );
-    curveFW.integCreated = null;
-    curveFW.buildsIntegrFW  = buildsIntegrFW;
+
 
     var stdL2       = sn('stdL2', fapp );
     var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var study       = sn('study', stdL2 );
-    
+
     Object.assign( study,
     {
         calculates_monotIntervals8ref,
         calculatesWidestRect,
         calculates_microPoints8curveArea,
         calculates_inscr8circums,
-        buildsIntegrFW,
     });
     //==================================
     // //\\ declares data
@@ -38,7 +35,7 @@
     // //\\ exports methods
     //==================================
     Object.assign( numModel, {
-        f: function(x) { return ssF.curveFW.curveFun(x) }, //todo preserve to switches f,
+        f: f,
         ctrlPt_2_maxIx,
         ctrlPt_2_minIx,
         recalculates_Bases8maxWidth,
@@ -154,9 +151,7 @@
     // \\// calculates mediawidths
     //==================================
 
-    //*****************************************
-    // calculates curve points x,y
-    //*****************************************
+
     function calculates_microPoints8curveArea()
     {
         //part I: intervals
@@ -176,10 +171,6 @@
         fb.minX             = dr.ctrlPts[min].x;
         fb.maxX             = dr.ctrlPts[max].x;
         let oldY            = 2 * baseY-ff(fb.minX);
-        
-        ///**********************************************    
-        ///calculates curve
-        ///**********************************************
         for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
             let yy = ff( xx );
             curveMicroPts.push([xx,yy]);
@@ -305,7 +296,8 @@
         let fb = dr.figureParams;
         let max = numModel.ctrlPt_2_maxIx();
         let min = numModel.ctrlPt_2_minIx();
-        let baseY = fb.baseY = sconf.originY_onPicture;
+        let baseY = fb.baseY = sconf.originY_onPicture; //was: ctrlPts[0].y;
+
         let changes = [];
         let p = dr.curveMicroPts;
         let ix = 0;
@@ -363,8 +355,6 @@
         let yVar = dr.yVariations;
         if( yVar.areMany ) { //3 elements == two intervals
             //c cc( (yVar.changes.length-1) + ' monotonity intervals' );
-            //apparently, we do artificially assign majorant bar to the
-            //left side of the diagram,
             var left = fp.minX; //x of control point
             var right = left + dr.widest;
             var top = yVar.maxY - yVar.maximumDeltaF;
@@ -391,79 +381,6 @@
         };
     }
 
-    function buildsIntegrFW()
-    {
-        ///function for debug
-        function doPaintArray( step, arr, arr2 )
-        {
-            var arrayToPaint= [];
-            arr.forEach( (a,i) => {
-                var y = [a];
-                arr2&&( y[1]=arr2[i] );
-                arrayToPaint.push({x : i*step,y,});
-            })
-            if( !curveFW.doPaintArrayFW ) {
-                let gr = document.querySelector( '.bsl-approot' );
-                curveFW.doPaintArrayFW = nsmethods.createsAutoGraphFW({
-                    arrayToPaint,
-                    domParent : gr, 
-                });
-                let ac = document.querySelector( '.autograph-container' );
-                ac.style.position = 'absolute';
-                ac.style.top = '0px';
-                ac.style.left = '0px';
-                ac.style.width = '400px';
-            }
-            curveFW.doPaintArrayFW.paintGraph({arrayToPaint});
-        }
-        
-        {    
-            curveFW.doPaintArray = doPaintArray;
-            var derivative = [];
-            var len = 200;
-            //var step = 1/len;
-
-            let YRange = 222;
-            for( var i = 0; i<len; i++ ) {
-                let y = YRange/2.62 + YRange * 1.83 *
-                        ( i>len*0.85 ? 1.2 : 1 ) * i*i/(len*len);
-                derivative.push(y);
-            }
-            
-            let x2ix = curveFW.x2ix = function( x )
-            {
-                var cp = sconf.ctrlPtXYs_js;
-                var x0 = cp[0].x;
-                var xMax = cp[sconf.ctrlPtXYs_js.length-1].x;
-                let xRange = (xMax-x0);
-                let xRange1 = 1/xRange;
-                let ix = Math.min( len-1, Math.floor( len*(x-x0)*xRange1 ) );
-                return Math.max(0,ix);
-            }
-            
-            curveFW.curveFun = function( x ) {
-                if( curveFW.integCreated === null ) {
-                    ssF.curveFW.fw = mat.integral.creates_monoFrameWork({
-                        //start points in the left top corner in
-                        //svg context
-                        F0 : sconf.modorInPicY,
-                        derivative,
-                    });
-                    curveFW.integCreated = 'done';
-                    sconf.ctrlPtXYs_js.forEach( (cp,ii) => {
-                        let y = curveFW.fw.newInteg[ x2ix( cp.x ) ];
-                        //todm not in two places: garbage:
-                        dr.ctrlPts[ii].y = y;
-                        cp.y = y;
-                    });
-                }
-                //let ix = x2ix( 248-x );
-                let ix = x2ix( x );
-                let ret = curveFW.fw.newInteg[ ix ];
-                return ret;
-            };
-        }
-    }
 
 }) ();
 

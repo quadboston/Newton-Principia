@@ -13,7 +13,7 @@
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
                 tpOpacityHigh //used in topic-media-glocss
-                              //by establishes__unhighlightedTopicsGlobalCss, ...
+                              //by topics_2_unhighCss, ...
                 tpOpacityLow  //"
 
                 rgb,          //used in assigns_color_to_anchor
@@ -27,7 +27,7 @@
 ( function() {
     var {
         ns, sn, $$, nsmethods, haz, has, eachprop,
-        sconf, sDomF, topics, lcaseId2allLemTopics, originalPoints,
+        sconf, sDomF, topics, lowId2topics, originalPoints,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -63,7 +63,7 @@
     ///     { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
     function topics__2__topicsColorModel()
     {
-        eachprop( lcaseId2allLemTopics,
+        eachprop( lowId2topics,
                   ( topi_c, lowId, tcount, allTopicsCount ) => {
             var fc = haz( topi_c, 'fixed-color' );
             var isPoint = !!has( originalPoints, topi_c.camelId );

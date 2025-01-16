@@ -26,7 +26,7 @@
     function topics_anchor_css( domEl )
     {
         var styleStr = '';
-        var tplinks = [];
+        var nextTplinks = [];
 
         domEl = domEl || fapp.fappRoot$();
         var allAnchors = domEl.querySelectorAll( 'a' );
@@ -45,12 +45,12 @@
                 var tplink    = topics.ix2tplink[ tplink_ix ];
                 assigns_color_to_anchor({ tplink, anchors__cssHighlighter, });
                 setsAnchor_mouseHighlightEvents( anchor, tplink_ix );
-                tplinks.push({ tplink_ix,  tplink });
+                nextTplinks[tplink_ix] = tplink;
             });
             //anchor colors
             styleStr += anchors__cssHighlighter.value;
         }
-        return { styleAnchors:styleStr, tplinks };
+        return { styleAnchors:styleStr, nextTplinks };
     }
 
 
@@ -67,7 +67,7 @@
         var notfocusOp_str = sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS.toFixed(3);
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
         var fixedCol = haz( tplink, 'fixed-color' );
-        var topi_c = topics.lcaseId2allLemTopics[ tpIDs[0] ];       
+        var topi_c = topics.lowId2topics[ tpIDs[0] ];       
         if( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(

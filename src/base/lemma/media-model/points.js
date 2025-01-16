@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lcaseId2allLemTopics,
+        sconf, sDomF, sDomN, ssF, ssD, lowId2topics,
         studyMods, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -91,7 +91,7 @@
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
             var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lcaseId2allLemTopics, lowId );
+            var tpactive = haz( lowId2topics, lowId );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;

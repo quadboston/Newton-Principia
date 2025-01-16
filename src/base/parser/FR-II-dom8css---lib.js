@@ -2,7 +2,7 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        fixedColors, lcaseId2allLemTopics,
+        fixedColors, lowId2topics,
         id2tplink, ix2tplink,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
@@ -76,7 +76,7 @@
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
     ///     tplink.tpid2true                 [ lowId ] = true;
-    ///     lcaseId2allLemTopics[ lowId ]
+    ///     lowId2topics[ lowId ]
     ///Returns: collectedTpLinks
     ///*************************************************************
     function fragment__collectsRawTpLinks(
@@ -206,13 +206,14 @@
                     if( lowId  && lowId.replace( / /g, '' ) ) {
                         tplink.tpid2true[ lowId ] = true;
                         //if topicId keyName is missed, then an empty object created
-                        if( !has( lcaseId2allLemTopics, lowId ) ){
+                        if( !has( lowId2topics, lowId ) ){
                             ////todm: add this warning to GUI:
                             ccc( 'Topic "'+lowId +'" ' +
-                                 'is missed in js-code, check your texts or code.'
+                                 'is missed in js-code. ' +
+                                 'If not to be automated, check your texts or code.'
                             );
                             //for this keyName, 'fixed-colors' is a flag and is = 'undefined'
-                            sn( lowId, lcaseId2allLemTopics );
+                            sn( lowId, lowId2topics );
                         }
                     }
                 });

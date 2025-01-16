@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- //\\ dependencies -->
+    <script src="../../../core/ns.js"></script>
+    <script src="../../../ns-tree.js"></script>
+    <!-- \\// dependencies -->
+
+    <!-- //\\ decorations -->
+    <script src="../../../core/svg.js"></script>
+    <script src="../../../core/colors.js"></script>
+    <script src="../../../graph/auto-graph.js"></script>
+    <script src="../../../graph/draw-graph.js"></script>
+    <script src="../../../graph/draw-graph-grid.js"></script>
+    <script src="../../../graph/draw-graph-legend.js"></script>
+    <!-- \\// decorations -->
+
+    <script src="./monotonic-fun.js"></script>
+    <script>
+    {
+        let {
+            mat, nsmethods, nspaste,
+        } = window.b$l.nstree();
+        window.addEventListener('DOMContentLoaded', function() {
+            var derivative = [];
+            var PI = Math.PI;
+            var len = 100;
+            var ampl = 1;
+            var step = 1/len;
+            for( var i = 0; i<len; i++ ) {
+                derivative.push( ampl*Math.sin( i*step*Math.PI ) );
+            }
+            let F0 = 0;
+            var fw = mat.integral.creates_monoFrameWork({F0, derivative, TAIL:0.15, step:null});
+            var first = nspaste( {}, fw ); 
+
+            var change = fw.changesFunction({ ix:30, deltaF:-0.05 });
+            var second = nspaste( {}, fw ); 
+            if( change.invalidRequest ) {
+                ccc( change.invalidRequest );
+                doPaintArray( first.step, first.newDeriv );
+                doPaintArray( first.step, first.newInteg );
+            } else {
+                doPaintArray( first.step, first.newDeriv, second.newDeriv );
+                doPaintArray( first.step, first.newInteg, second.newInteg );
+            }
+            return;
+
+
+            function doPaintArray( step, arr, arr2 )
+            {
+                var arrayToPaint= [];
+                arr.forEach( (a,i) => {
+                    var y = [a];
+                    arr2&&( y[1]=arr2[i] );
+                    arrayToPaint.push({x : i*step,y,});
+                })
+                nsmethods.createsAutoGraphFW({
+                    arrayToPaint,
+                    domParent : document.body,
+                });
+            }
+       });
+    }
+    </script>
+  </head>
+  <body></body>
+</html>

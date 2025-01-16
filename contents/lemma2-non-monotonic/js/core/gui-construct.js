@@ -98,10 +98,6 @@
             pt.y = ctrlPtXYs_js[i].y;
             ctrlPts.push( pt );
         }
-        
-        let cp = dr.ctrlPts[2];
-        guiup.xy2shape( cp.dom, "cx", cp.x, "cy", cp.y );
-        
         reset_hollowPoints({ onCurve:true, onBase:false });
     }
 

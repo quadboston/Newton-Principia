@@ -42,7 +42,7 @@
     var references  = sn('references', ssD);
     var capture     = sn( 'capture', ssD );
     var topics      = sn('topics', ssD);
-    var lcaseId2allLemTopics= sn('lcaseId2allLemTopics', topics);
+    var lowId2topics= sn('lowId2topics', topics);
     var id2tplink   = sn('id2tplink', topics);
     var ix2tplink   = sn('ix2tplink', topics, []);
     var originalPoints = sn( 'originalPoints', sconf );
@@ -228,7 +228,7 @@
             studyModsActivated,
             capture,
             topics,
-            lcaseId2allLemTopics,
+            lowId2topics,
             id2tplink,
             ix2tplink,
 

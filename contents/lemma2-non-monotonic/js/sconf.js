@@ -462,7 +462,6 @@
             mod2inn_scale : pictureActiveArea, //todo,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
-            modorInPicY, //tofm rid later
         });
         //=====================================
         // \\// patch for quick slider creation

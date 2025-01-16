@@ -48,23 +48,21 @@
         var styleStr = ssF.css_4_hidden8frag8active8delayed();
 
         ///Frag. step IV. Text anchors.
-        var { styleAnchors, tplinks } = ssF.topics_anchor_css();
+        var { styleAnchors, nextTplinks } = ssF.topics_anchor_css();
 
         ///Frag. step V. Unhighlighted global CSS.
         if( fconf.tpversion === 2 ) {
-            ssF.v2_establishes__unhighlightedTopicsGlobalCss();
+            ssF.v2_topics_2_unhighCss();
             ///Frag. step VI. Highlighted global CSS.
-            ssF.v2_establishes__highlightedTopicsGlobalCss( tplinks, );
+            ssF.v2_tplinks_2_highlightCss( nextTplinks, );
         } else {
-            ssF.establishes__unhighlightedTopicsGlobalCss();
-            ssF.establishes__highlightedTopicsGlobalCss( tplinks, );
+            ssF.topics_2_unhighCss();
+            ssF.tplinks_2_highlightCss( nextTplinks, );
         }
         //inserts tp-highlight-machinery css into html-document
         globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
         globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
         //***********************************************************
-
-        //outdated: sDomN.topicModelInitialized = true;
     }
 
 
@@ -112,16 +110,23 @@
         // Frag. steps IV, V, VI
         //===========================================================
         //Frag. step IV. Text anchors. Only for new anchors.
-        var { styleAnchors, tplinks } = ssF.topics_anchor_css( messageDomEl );
-        //Frag. step V. Unhighlighted global CSS.
-        //reestablishes an entire style tag again,
-        ssF.establishes__unhighlightedTopicsGlobalCss(); //ruins css
-        //Frag. step VI. Highlighted global CSS,
-        //only for new tplinks
-        ssF.establishes__highlightedTopicsGlobalCss( tplinks,
-            'fresh-tp-links-' + newlyDigestedStyleId );
+        var { styleAnchors, nextTplinks } = ssF.topics_anchor_css( messageDomEl );
+        if( fconf.tpversion === 2 ) {
+            //ssF.v2_topics_2_unhighCss();
+            ///Frag. step VI. Highlighted global CSS.
+            ssF.v2_tplinks_2_highlightCss( nextTplinks, );
+        } else {
+            //Frag. step V. Unhighlighted global CSS.
+            //reestablishes an entire style tags again,
+            //did ruin css before 2025, should not for now:
+            //ssF.topics_2_unhighCss();
+
+            //Frag. step VI. Highlighted global CSS,
+            //only for new nextTplinks
+            ssF.tplinks_2_highlightCss( nextTplinks, );
+        }
         //inserts tp-highlight-machinery css into html-document,
-        //only for new tplinks
+        //only for new nextTplinks
         styleAnchors && globalCss.update( styleAnchors, 'style8afrag8media8anchors-'+
             newlyDigestedStyleId  );
         //***********************************************************

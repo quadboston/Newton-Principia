@@ -5,8 +5,8 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            v2_establishes__highlightedTopicsGlobalCss,
-            v2_establishes__unhighlightedTopicsGlobalCss,
+            v2_tplinks_2_highlightCss,
+            v2_topics_2_unhighCss,
         },
     });
     var tpid2cssColor = {};
@@ -26,13 +26,12 @@
     /// CSS decorations and opacity for mouse non-hover,
     /// creates and updates,
     ///*************************************************
-    function v2_establishes__unhighlightedTopicsGlobalCss()
+    function v2_topics_2_unhighCss()
     {
         var totalCss = '';
-        eachprop( topics.lcaseId2allLemTopics, ( topi_c, tpid ) => {
+        eachprop( topics.lowId2topics, ( topi_c, lowId ) => {
             var { fillOpacity, strokeOpacity, rgba_own } = topi_c;
-            var Rtp = ROOT + ' .tp-' + tpid;
-
+            var Rtp = ROOT + ' .tp-' + lowId;
             var tpOpacityLow_str = topi_c.lowOpacity.toFixed(3); 
             var ts = '';
             ts += `
@@ -59,10 +58,10 @@ ${Rtp}.tobg {
             //todm move to shape html-element:
             //add on for svg <image>, Oct 23, 2021
             ts += `
-${ROOT} svg image.tp-${tpid} {
+${ROOT} svg image.tp-${lowId} {
     opacity : ${ sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY };
 }
-${ROOT} svg .tp-${tpid}.hover-width {
+${ROOT} svg .tp-${lowId}.hover-width {
     stroke-width:${ sconf.nonhover_width }px;
 }
             `;
@@ -75,58 +74,52 @@ ${Rtp}.tobg {
     background-color : ${rgba_own};
 }
             `;
-            globalCss.replace( ts, 'globalcss-'+tpid );
+            globalCss.replace( ts, 'glocss-'+lowId );
         });
     }
     
-    
-    function v2_establishes__highlightedTopicsGlobalCss( tplinks, newlyDigestedStyleId_str )
-    {
-        if( !tplinks || tplinks.length === 0 ) return;
-        var summaryCss  = '';
 
-        tplinks.forEach( tplinkRack => {
-            var tplink_ix   = tplinkRack.tplink_ix;
-            var tplink      = tplinkRack.tplink;
-            
-            Object.keys( tplink.tpid2true ).forEach( tpid => {
-                var Rtp = ROOT + ' .tp-' + tpid;
+    function v2_tplinks_2_highlightCss( nextTplinks )
+    {
+        nextTplinks.forEach( (tplink,tplink_ix) => {
+            Object.keys( tplink.tpid2true ).forEach( lowId => {
+                var Rtp = ROOT + ' .tp-' + lowId;
                 var Rix = ROOT + '.tp-' + tplink_ix;
-                var topi_c = topics.lcaseId2allLemTopics[ tpid ];
+                var topi_c = topics.lowId2topics[ lowId ];
                 var ts = '';
                 var { highOpacity, rgba_own} = topi_c;
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
                 ts += `
-${Rix} .tp-${tpid} {
+${Rix} .tp-${lowId} {
     opacity: ${tpOpacityHigh_str};
 }
                      `;
                     //competes with tobold, do we need all of them?
                     ts += `
-${Rix} .tp-${tpid}.tobold,
+${Rix} .tp-${lowId}.tobold,
 
-${Rix} svg text.tp-${tpid},
-${Rix} svg tspan.tp-${tpid},
-${Rix} span.tp-${tpid} {
+${Rix} svg text.tp-${lowId},
+${Rix} svg tspan.tp-${lowId},
+${Rix} span.tp-${lowId} {
     font-weight : bold;
 }
                     `;
                         ///todm: very crude and wordy stroke width control
                      ts += `
-${Rix} svg .tp-${tpid}.tostroke {
+${Rix} svg .tp-${lowId}.tostroke {
     stroke-width:${ sconf.default_tp_stroke_width }px;
 }
-${Rix} svg .tp-${tpid}.tostroke.hover-width {
+${Rix} svg .tp-${lowId}.tostroke.hover-width {
     stroke-width:${ sconf.hover_width }px;
 }
                     `;
                     //todm: can be done via tpOpacityLow = 0;
                     ts += `
-${Rix} .tohidden.tp-${tpid} {
+${Rix} .tohidden.tp-${lowId} {
     visibility:visible;
 }
                 `;
-                globalCss.update( ts, 'globalcss-'+tpid );
+                globalCss.update( ts, 'glocss-id-' + lowId + '-glocss-ix-'+tplink_ix );
             });
         });
     }

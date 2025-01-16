@@ -1,14 +1,13 @@
 // //\\// application-level d8d module
 ( function () {
     var {
-        sn, dpdec, d8dp, fmethods, globalCss, nspaste,
+        sn, dpdec, d8dp, fmethods, globalCss,
         fapp, sconf, sDomN, sDomF, ssF,
         fconf,
         amode, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
-    var curveFW = sn( 'curveFW', ssF );
     var stdL2 = sn('stdL2', fapp );
     var datareg = sn('datareg', stdL2 );
     return;
@@ -49,16 +48,11 @@
 
         function processMouseDown( cPW )
         {
-            //if(cPW.index !==1  ) return;
-            
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
             //prevents jerking when non-monotonity is encountered
             cPW.lastMove = [0,0];
-            dr.ctrlPts.forEach( item => {
-                if( item.index === 0 || item.index === 4 ) return;
-                item.achieved.achieved = { x:item.x, y:item.y };
-            });
+
             ///apparently, d8dp.crePointFW_BSLd8d1CHAMBER does this
             //if( !rg.detected_user_interaction_effect_DONE ) {
                 //sDomF.detected_user_interaction_effect();
@@ -82,20 +76,8 @@
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
             } else {
-                if( pwix === 0 || pwix === 4 ) {
-                    pointWrap.dom.style.display = 'none'; 
-                    return;
-                }
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
                 pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
-                var achieved = { x:pointWrap.x, y:pointWrap.y };
-
-                //todm for some reason hole point does not update
-                //at launch time and hole point is not aligned with
-                //curve on svg,
-                //this is a patch for this flaw
-                let cp = pointWrap;
-                guiup.xy2shape( cp.dom, "cx", cp.x, "cy", cp.y );
             }
             if( typeof pointWrap.x === 'number' ) {
                 decorator = Update_decPoint( pointWrap )
@@ -120,11 +102,8 @@
                 nospinner      : nospinner,
                 update_decPoint : decorator,
                 orientation     : pointWrap.type !== 'base' ? 
-                        ( pwix === 4 ?
-                              'axis-x'     //not in use jan 14, 2024
-                            : 'axis-y' ) : false,
+                        ( pwix === 4 ? 'axis-x' : 'rotate' ) : false,
             });
-            //ccc( 'pointWrap=', pointWrap, 'achieved=',pointWrap.achieved );
         }
 
 
@@ -133,11 +112,6 @@
         {
             var pw = pointWrap;
             return ( function( decPoint ) {
-                
-                if( decPoint.id === 'ctrl3' ) {
-                    ccc( decPoint, pw.y );
-                }
-                
                 if( pw.x || pw.x === 0 ) {
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
@@ -151,69 +125,43 @@
 
         function doProcess( arg )
         {
-            let fw = curveFW.fw;
-            if( arg.down_move_up === 'down' ) {
-                arg.pointWrap.lastMove = 0;
-                dr.ctrlPts.forEach( item => {
-                    if( item.index === 0 || item.index === 4 ) return;
-                    item.achieved.achieved = { x:item.x, y:item.y };
-                });
-            } else if( arg.down_move_up === 'up' ) {
-                fw.deriv = fw.newDeriv;
-                fw.integ = fw.newInteg;
-            } else if( arg.down_move_up === 'move' ) {
+            if( arg.down_move_up === 'move' ) {
                 var pw = arg.pointWrap;
                 if( pw.type === 'base' ) {
                     move2js( pw, [arg.surfMove[0],0], pw.achieved );
-                    guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
-                    ssF.media_upcreate_generic();
                 } else {
-                    var moveY = arg.surfMove[1];
-                    let ix = curveFW.x2ix( pw.x );
-                    
-                    let userY = pw.achieved.achieved.y+moveY;
-                    //if( fw.area*0.85 < userY ) return;
-                    /*
-                    ccc( '\nuser: '
-                            + 'arch F=' + pw.achieved.achieved.y.toFixed(3)
-                            + ' DF='+moveY.toFixed(3)
-                            + ' newF=' + userY.toFixed(3)
-                    );
-                    */
-                    let changed = curveFW.fw.changesFunction({ ix, deltaF:moveY });
-                    if( changed.invalidRequest ) {
-                        //c cc( changed.invalidRequest );
-                        return;
-                    }
-                    let ctrlIndex = arg.pointWrap.index;
-                    let y = dr.ctrlPts[ctrlIndex].y = fw.newInteg[ix];
-                    let x = dr.ctrlPts[ctrlIndex].x;
-                    //curveFW.doPaintArray( fw.step, fw.newDeriv, fw.newInteg,);
-                    
-                    var newInteg = fw.newInteg;
-                    var x2ix = curveFW.x2ix;
-                    dr.ctrlPts.forEach( item => {
-                        let y = newInteg[x2ix( item.x )];
-                        item.y = y;
-                        //todm why media_upcreate_generic does not
-                        //do this:
-                        guiup.xy2shape(
-                            item.dom,
-                            "cx", item.x,
-                            "cy", item.y,
-                        );
-                    });
-
-                    // //\\ alternative code from the past
-                    ////reverts everything back
-                    //move2js( pw, pw.lastMove, pw.achieved );
-                    //guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
-                    ////apparently a free move
-                    //pw.lastMove = [ arg.surfMove[0], arg.surfMove[1] ];
-                    // \\// alternative code from the past
-
+                    //reshapes the curve
+                    move2js( pw, arg.surfMove, pw.achieved );
+                    // recent framework
                     ssF.media_upcreate_generic();
+
+                    ///prevents non-monotonic curve to happen,
+                    ///usually ignored for modern calculus
+                    if( dr.yVariations.areMany &&
+                        ( sconf.ONLY_MONOTONIC_CURVE &&
+                          amode.aspect !== 'xixcentury'
+                        )
+                    ) {
+                        move2js( pw, pw.lastMove, pw.achieved );
+                        guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
+                    } else {
+                        pw.lastMove = [ arg.surfMove[0], arg.surfMove[1] ];
+                    }
                 }
+                guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
+
+                // //\\ recent framework
+                ssF.media_upcreate_generic();
+                //instead of following:
+
+                /*
+                if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
+                    //.this is a duty of contributor to provide:
+                    //.if( studyMods[ ww ] ) {
+                    studyMods[ amode['submodel'] ].model8media_upcreate();
+                }
+                */
+                // \\// recent framework
             }
         }
 
@@ -275,7 +223,7 @@
         //======================================
         // //\\ event to js
         //======================================
-        function move2js( pointWrap, move, ach )
+        function move2js( pointWrap,move, ach )
         {
             var item = pointWrap;
             let pw = item;

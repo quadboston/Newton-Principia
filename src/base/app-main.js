@@ -9,7 +9,7 @@
         fixedColorsOriginal,
         srg_modules, studyMods, studyModsActivated, amode,
         //:nearly a patch
-        ssD, ssF, cssmod, wrkwin, lcaseId2allLemTopics,
+        ssD, ssF, cssmod, wrkwin, lowId2topics,
     } = window.b$l.apptree({
     });
 
@@ -303,7 +303,7 @@
                             //l caseId2allLemTopics is empty at this moment,
                             eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
                                 var lowId = wwCase( camelId );
-                                lcaseId2allLemTopics[ lowId ] = {
+                                lowId2topics[ lowId ] = {
                                     'fixed-color' : colorArray,
                                     camelId,
                                     lowId, 

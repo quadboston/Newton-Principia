@@ -2,13 +2,12 @@
 
 (function() {
     var {
-        sn, eachprop, haff, mat, nspaste, nsmethods,
+        sn, eachprop, haff,
         fapp, sapp, ssF, sDomF,
         studyModsActivated, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
-    var curveFW     = sn( 'curveFW', ssF );
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
@@ -62,7 +61,6 @@
         guicon.constructsCurve8Area(); //do on top of ancestors
         guicon.constructBasePts_domParless(dr.basePts);
         guicon.constructsControlPoints();
-        curveFW.buildsIntegrFW();
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
         //see:     ///modern approach ... abandoned
