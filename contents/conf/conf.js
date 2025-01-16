@@ -67,9 +67,10 @@
         ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
         //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
 
-        //.below this value, JS considers the device as a mobile
-        MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 800,
-        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 600,
+        //at either of these values or lower, device is given mobile layout,
+        //resulting in vertically stacked text-model-data areas
+        MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790,
+        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 610,
 
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
@@ -131,7 +132,15 @@
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
             homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
-                                      'These models make it easier.',
+                                      'These <a href="#model-list">models</a> make it easier.<br><br>',
+            homePageSubtitle        : 'A supplement to resources such as<br>' +
+                                      '* Joseph Gallant’s <a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook"><span>Newton’s Principia for the Modern Student</span></a><br>' +
+                                      '* Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><span>Newton’s Principia: The Central Argument</span></a><br>' +
+                                      '* L. Bernard Cohen’s <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><span>A Guide to Newton’s Principia</span></a>',
+                                        /*'<ul>' +
+                                            '<li>Joseph Gallant’s <i>Newton’s Principia for the Modern Student</i></li>' +
+                                            '<li>Dana Densmore’ <i>Newton’s Principia for the Modern Student</i></li>' +
+                                        '</ul>',*/
             helpButtonCaption       : 'Hover over the diagram or text to interact',
 
             //todm: this disables functionality ... not only CSS:

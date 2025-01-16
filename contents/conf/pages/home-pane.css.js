@@ -92,6 +92,25 @@
       grid-area: title; }
       .landing-subtitle span {
         font-style: italic; }
+      .landing-subtitle a {
+        color: ${colorWhite};
+        text-decoration: underline;
+      }
+
+    .sub-title {
+      font-family: "essonnes-display", 'Garamond','Times', serif;
+      font-size: 19px;
+      color: ${colorWhite};
+      letter-spacing: 1.32px;
+      line-height: 32px;
+      grid-area: title; }
+      .sub-title span {
+        font-style: italic; }
+      .sub-title a {
+        color: ${colorWhite};
+        text-decoration: underline;
+      }
+
     /*====================================================== 
        \\\\// front-page master caption
       ======================================================*/
@@ -103,7 +122,7 @@
       ======================================================*/
     .newton-img {
       position: absolute;
-      top: 72px;
+      top: 0px;
       z-index: -1;
       right: 96px; }
     /*====================================================== 
@@ -132,11 +151,6 @@
       }
       .landing-table-of-contents .content-book-title {
         font-size: 19px;
-      }
-
-      .xxxxlanding-table-of-contents ul a {
-        padding-top: 0px;
-        padding-bottom: 5px;
       }
       .landing-table-of-contents .content-book-title {
         padding-top: 15px;
@@ -186,16 +200,25 @@
         text-align: left; }
       .how-to-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 12px; }
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 52px; }
       .how-to__cell {
-        padding: 0 24px; }
+        p {
+          font-size: 20px;
+        }
+        padding: 0 14px; }
         .how-to__cell__image {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 160px;
-          margin-bottom: 12px; }
+          height: auto;
+          margin-top: 16px;
+          margin-bottom: 66px; 
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        }
         .how-to__cell h4 {
           font-size: 24px;
           color: ${colorMain} !important; }
@@ -207,11 +230,10 @@
 
 
 
-
     /*====================================================== 
-       //\\\\ about
+       //\\\\ home page plain text sections
       ======================================================*/
-    .about {
+    .hp-text-section {
       color: ${colorWhite};
       font-family: 'Goudy Old Style', 'Garamond','Times', serif;
       margin-top: 128px; }
@@ -232,19 +254,15 @@
         color: ${colorWhite};
       }
 
-        .about__author__text {
-          font-size: 18px; }
-        .about__author__image {
-          color: ${colorWhite};
-          clip-path: ellipse(72px 72px at center);
-          -moz-clip-path: ellipse(72px 72px at center);
-          -webkit-clip-path: ellipse(72px 72px at center); }
+      .hp-text-section-body {
+        padding: 8px;
+        font-size: 18px; }
 
 
     .dd-label {
       font-family: 'Goudy Old Style', 'Garamond','Times', serif;
       color: rgba(255, 255, 255, 0.6);
-      padding: 8px; }
+      }
       .dd-label a {
         color: rgba(255, 255, 255, 0.8);
         text-decoration: underline; }
@@ -253,16 +271,16 @@
 
     /* todm ... not very clear why we need this patch, but it is vital;
          possibly a precedence thing;
-        .about is a vital specifity thing;
+        .hp-text-section is a vital specifity thing;
     */
-    .about .dd-label a {
+    .hp-text-section .dd-label a {
           color: rgba(255, 255, 255, 0.7);
      }
-    .about .dd-label a:hover {
+    .hp-text-section .dd-label a:hover {
           color: white;
     }
     /*====================================================== 
-       \\\\// about
+       \\\\// home page plain text sections
       ======================================================*/
 
 
@@ -281,6 +299,27 @@
       \\\\// options
      ======================================================*/
 
+    /*====================================================== 
+      //\\\\ feedback
+     ======================================================*/
+      .feedback {
+        font-size: 20px;
+        width: 100%;
+        margin-top:20px;
+        color: ${colorWhite};
+      }
+      .feedback-label {
+      font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+      color: rgba(255, 255, 255, 0.6);
+      }
+      .feedback-label a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: underline; }
+        .feedback-label a:hover {
+          color: white; }
+    /*====================================================== 
+      \\\\// feedback
+     ======================================================*/
 
 @keyframes mousemove {
   0% {
@@ -297,13 +336,12 @@ Media Queries
 ~~~~~~~~~~~~~~~~~~~~*/
 @media only screen and (max-width: 720px) {
 
-  .sub-title {
-    width: 100%; }
+
   .how-to-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-column-gap: 12px;
-    grid-row-gap: 80px; }
+    grid-row-gap: 20px; }
 
 
   .about {
@@ -313,9 +351,7 @@ Media Queries
     .about .about__author {
       width: 100%;
       text-align: left; }
-      .about .about__author__image {
-        transform: scale(0.8);
-        clip-path: ellipse(72px 72px at center); } }
+  }
 
 `;
         return ret;

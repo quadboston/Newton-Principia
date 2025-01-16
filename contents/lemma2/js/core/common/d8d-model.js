@@ -278,13 +278,13 @@
         function move2js( pointWrap, move, ach )
         {
             var item = pointWrap;
-            let pw = item;
             var index = item.index;
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
                 
                 //makes point E vertically fixed at 0 level
-                item.y = ach.achieved.y + (index === 4 ? 0 :  move[1]);
+                let lastHandleIndex = sconf.ctrlPtXYs_js.length - 1;
+                item.y = ach.achieved.y + (index === lastHandleIndex ? 0 :  move[1]);
 
                 /*
                 if( item.index === 0 || item.index === 4 ) {

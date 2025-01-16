@@ -127,11 +127,12 @@
             //user-adjustable points
             ctrlPtXYs_js    :
             [
-                {x:modorInPicX,             y: modorInPicY},
-                {x:85,          y: 51.5},
-                {x:139,         y: 89.0},
-                {x:193,         y: 148.5 },
-                {x:248,         y: 259.5 }
+                {x:modorInPicX, y: modorInPicY},
+                {x:68,          y: 45},
+                {x:116,         y: 73},
+                {x:175,         y: 121},
+                {x:218,         y: 184},
+                {x:248,         y: 259.5}
             ],
 
             ////GUI
