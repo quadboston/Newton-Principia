@@ -1,10 +1,9 @@
 ( function() {
     var {
-        ns, sn, mat,
-        haz,
+        sn, mat,
     } = window.b$l.nstree();
     var integral = sn( 'integral', mat );
-    integral.creates_monoFrameWork = creates_monoFrameWork;
+    integral.creates_monoFrameWork_linear = creates_monoFrameWork_linear;
     return;
 
 
@@ -15,27 +14,60 @@
 
 
 
-    ///
-    ///
-    function creates_monoFrameWork({
+    function creates_monoFrameWork_linear({
         F0,
         derivative,
         step,
     }) {
         const fw = {};
-        F0 = F0 || 0;
-        step = step || 1/derivative.length
-        const LEN = derivative.length;
-        let {integ, area} = integrates(derivative, F0);
-        fw.F0 = F0;
-        fw.step = step;
+
         fw.newDeriv = derivative;
-        fw.newInteg = integ; 
         fw.deriv = fw.newDeriv;
-        fw.integ = fw.newInteg;
-        let initialArea = area;
+        F0 = F0 || 0;
+        fw.F0 = F0;
+        const LEN = derivative.length;
+        step = step || 1/LEN
+        fw.step = step;
+        let initialArea = integral(1, derivative);
+        let minDerivBlock = initialArea * 0.0001;
+
         fw.changesFunction = changesFunction;
+        fw.integral = integral;
         return fw;
+
+        ///input
+        /// x - fraction of realXRange
+        function integral( x,deriv_argr,F0,ix )
+        {
+            var der = deriv_argr || fw.newDeriv;
+            var sum = F0 || 0;
+            var len = LEN;
+            if( typeof ix === 'undefined' ) {            
+                var xNum = x*len;
+                var ix = Math.floor( xNum-0.5 );
+            } else {
+                var xNum = ix+1;
+            }
+            
+            if( xNum <= 0.5 ) {
+                sum += der[0]*step*xNum;
+            } else {
+                sum += xNum < 1.5 ? der[0]*step*0.5 : der[ix]*step*0.5;
+                for( var i=0; i<ix; i++ ) {
+                    sum += der[i]*step;
+                }
+                let reminderX = xNum - ix - 0.5;
+                var reminderArea =
+                    reminderX * step *
+                    (der[ix] +
+                      ( xNum >= len-1 + 0.5 ?
+                        0 : 0.5 * reminderX * (der[ix+1]-der[ix])
+                      )
+                    );
+                sum += reminderArea;
+            }
+            return sum;
+        }
         
         function changesFunction({
             x, //alternative to ix and preferenced than ix
@@ -46,101 +78,90 @@
             if( typeof x !== 'undefined' ) {
                 ix = Math.floor( x/step );
             }
-            var len = fw.deriv.length;
+            var len = LEN;
             var ar = fw.deriv.concat();
             var stashedDeriv = fw.deriv;
-            var origF = fw.integ[ix];
-            var minDerivBlock = initialArea/(len*step)*0.03;
+            var origF = null;
 
-            var integUp = integrates(ar,0, ix, len).area;
-            var integDown = integrates(ar,0, 0, ix).area;
-            var ret = '';
-            if( deltaF >= 0 ) {
-                if( deltaF > integUp*0.95 ) {
-                    ret = { invalidRequest:'increase is too big: deltaF='+deltaF };
-                } else {
-                    var coeffUp = (integUp-deltaF)/integUp;
-                    var coeffDown = (deltaF+integDown)/integDown;
-                }
-            } else {
-                if( deltaF < -integDown*0.95 ) {
-                    ret = { invalidRequest:'decrease abs is too big: deltaF='+(-deltaF) };
-                } else {
-                    var coeffUp = (integUp-deltaF)/integUp;
-                    var coeffDown = (deltaF+integDown)/integDown;
-                }
-            }
-            if( ret ) {
-                return ret;
-            }
-            for( var ii=0; ii<ix; ii++ ) {
-                ar[ii] *= coeffDown;
-            }
-            for( var ii=ix+1; ii<len; ii++ ) {
-                ar[ii] *= coeffUp;
-                ar[ii] = Math.max(minDerivBlock,ar[ii]);
-            }
-            let middleDeriv = (ar[ix-1]+ar[ix+1])*0.5;
-            let middeDeviation = ar[ix]-middleDeriv;
-            ar[ix] = middleDeriv;
-
-            // //\\ does smoothing
-            for( var incr = -1; incr<=1; incr+=2 ) {
-                var lim = incr < 0 ? 0 : len;
-                for( var ii=ix+incr; (ii-lim)*incr<0; ii+=incr ) {
-                    let current = ar[ii-incr];
-                    let nextVal = ar[ii];
-                    if( incr*(nextVal-current) >= 0 ) break;
-                    let dif = (nextVal-current)*0.5;
-                    ar[ii] -= dif;
-                    ar[ii-1] += dif;
-                }
-            }
-            // \\// does smoothing
-            
+            var ret = changeIteration({ix, deltaF, ar, minDerivBlock})
+            if( ret.invalidRequest ) return ret;
+        
             //normalizes: hides flaws of program algorithm
-            var changed = integrates(ar,F0);
-            var coeff = initialArea/integrates(ar,F0).area;
+            var coeff = initialArea/integral(1,ar);
             for( var i=0; i<len; i++ ) {
                 ar[i] *=coeff;
             }
-            
-            var newRes = integrates(ar, F0);
+
+            var coeff2 = initialArea/integral(1,ar);
+            for( var i=0; i<len; i++ ) {
+                ar[i] *=coeff2;
+            }
+            var newRes = integral(1, ar);
             fw.newDeriv = ar;
-            fw.newInteg = newRes.integ;
-            fw.newArea = newRes.area;
             
             //control
-            var newF = newRes.integ[ix];
-            var newDF = newF - origF;
-            var coeff2 = fw.newArea/initialArea;
-            /*
-            c cc(
-                'DF='+newDF.toFixed(3)
-                + ' F='+newF.toFixed(3)
-                + ' c1=' + coeff.toFixed(5) + ' coeff='+ coeff2.toFixed(5)
-            );
-            */
+            var coeff3 = newRes/initialArea;
             //sugar extra output:
-            return { newDeriv:fw.newDeriv, newInteg:fw.newInteg};
+            return { newDeriv:fw.newDeriv };
         }
         
-        function integrates(newDer,F0,start,end)
+        function changeIteration({ix, deltaF, ar, minDerivBlock })
         {
-            var area = F0 || 0;
-            var ar = newDer;
-            var len = ar.length;
-            var integ = [area];
-            start = start || 0;
-            end = end || len;
-            for( var i=start; i<end; i++ ) {
-                area += ar[i]*step;
-                integ[i+1] = area;
+            let left = integral( ix/LEN, ar, 0 );
+            let full = integral( 1, ar, 0 );
+            let right = full - left;
+            /*
+            c cc( 'ix='+ix
+                 + ' left='+left.toFixed(3)
+                 + ' right=' + right.toFixed(3)
+                 + ' full=' + full.toFixed(3)
+                 + ' initialArea=' + initialArea.toFixed(3)
+            );
+            */
+            let increase = deltaF/step;
+            var twin = 1;
+            var minim = [ix+1, LEN-1];
+            if( increase < 0 ) {
+                var minim = [0, ix];
+                ix +=1;
+                increase *= -1;
             }
-            return {step,area,integ};
+            var reminder = 0;
+            for( var ii=minim[0]; ii<=minim[1]; ii++ ) {
+                reminder += ar[ii];
+            }
+            //todm do message-flag
+            if( reminder-minDerivBlock < increase ) {
+                return { invalidRequest :
+                    'abs value of change is too big:'
+                    + ' abs='+increase.toFixed(3)
+                    + ' reminder='+reminder.toFixed(3)
+                    
+                };
+            }
+            ar[ix] += increase;
+            var coeff = (reminder-increase)/reminder;
+            for( var ii=minim[0]; ii<=minim[1]; ii++ ) {
+                ar[ii] *=coeff;
+            }
+            /*    
+            switch(ix) {
+                case 0: ar[0] += increase;
+                        ar[1] -= increase;
+                break;
+                case 1: ar[1] += increase;
+                        ar[2] -= increase;
+                break;
+                case 2: ar[2] += increase;
+                        ar[3] -= increase;
+                break;
+            }
+            */
+            return {invalidRequest:null};
         }
     }
 
+    
 }) ();
 
 

@@ -72,7 +72,7 @@
             var decorator;
             if( pointWrap.type === 'base' ) {
                 if( pwix === 0 ) return; //point A is "unmovable"
-                if( fconf.sappId === 'lemma2' ) return; //base is "dead" in lemma2
+                if( fconf.sappId.indexOf('lemma2') === 0 ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
             } else {
@@ -153,7 +153,6 @@
                 // //\\ recent framework
                 ssF.media_upcreate_generic();
                 //instead of following:
-
                 /*
                 if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
                     //.this is a duty of contributor to provide:
@@ -232,7 +231,9 @@
                 item.x = ach.achieved.x + move[0];
                 
                 //makes point E vertically fixed at 0 level
-                item.y = ach.achieved.y + (index === 4 ? 0 :  move[1]);
+                //item.y = ach.achieved.y + (index === 4 ? 0 :  move[1]);
+
+                item.y = ach.achieved.y + move[1];
 
                 /*
                 if( item.index === 0 || item.index === 4 ) {

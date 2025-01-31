@@ -1,0 +1,56 @@
+*::*claim|video
+{
+  "menuCaption" : "Video"
+}
+*..*
+        <div style="padding:56.25% 0 0 0;position:relative;">
+          <iframe src="https://player.vimeo.com/video/810737558"
+            allow="fullscreen; picture-in-picture"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          </iframe></div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+
+        <br>
+        Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦wall¦side¦¦.
+        Its ¦base¦base¦¦ can be divided into any number of equal-length bases
+        for ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
+        If we increase the number of these rectangles indefinitely,
+        then the areas of the ¦figure¦¦, the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, and the
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦ all converge to the
+        ¦figure-area¦same value¦¦.
+
+
+
+
+
+*::*proof|video
+*..*
+        <div style="padding:56.25% 0 0 0;position:relative;">
+          <iframe src="https://player.vimeo.com/video/818990900"
+            allow="fullscreen; picture-in-picture"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          </iframe></div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        
+        <br>
+        The difference in area between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
+        is equal to the area of the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦. 
+        That's because the ¦difference¦part¦¦ of each ¦circumscribed-rectangles circ-txt¦circumscribed rectangle¦¦
+        that sticks out above the ¦inscribed-rectangles insc-txt¦inscribed rectangle¦¦ below it is the difference 
+        between that pair of rectangles. All those ¦difference¦parts¦¦ added together amount to the difference in area
+        between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
+        If you compare those individual ¦difference¦parts¦¦ to the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦, 
+        you'll notice that the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦ could be split
+        up into those ¦difference¦parts¦¦. So the ¦difference¦¦ between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
+        is equal to the area of the ¦widest-rectangular widt-txt¦largest circumscribed rectangle¦¦.<br><br>
+
+        As the number of rectangles is increased indefinitely, the width of each
+        decreases indefinitely, including the ¦widest-rectangular widt-txt¦rectangle¦¦ just mentioned.
+        Since its width decreases indefinitely,
+        its area decreases indefinitely, becoming as close to 0 as we like. So the difference between the areas of the
+        ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, the
+        ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦, and the ¦figure-area¦figure¦¦ in between them becomes
+        ultimately equal.

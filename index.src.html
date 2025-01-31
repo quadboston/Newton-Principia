@@ -10,22 +10,8 @@
     <link rel="stylesheet" href="https://use.typekit.net/tdy5xyj.css">
     -->
 
-    <!-- //\\ MathJax ************************************************* -->
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-          CommonHTML: { linebreaks: { automatic: true } },
-          "HTML-CSS": { linebreaks: { automatic: true } },
-          SVG:        { linebreaks: { automatic: true } }
-        });
-    </script>
-    <script type="text/javascript" async
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" 
-    >
-    </script>
-    <!-- \\// MathJax ************************************************* -->
-
-    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
-
+    <!-- MathJax ************************************************* -->
+    <script src="./src/vendor/mathjax/configs-and-loads-mj.js" async></script>
 
     <!-- //\\ replace with prod script -->
     <!-- //\\ vendor -->
@@ -58,6 +44,9 @@
     <script src="src/vendor/bsl/mat/integral.js"></script>
     <script src="src/vendor/bsl/mat/curve-integrals.js"></script>
     <script src="src/vendor/bsl/mat/monotonic/monotonic-fun.js"></script>
+
+    <!-- this module is usually for unused version -->
+    <script src="src/vendor/bsl/mat/monotonic/monotonic-fun-array.js"></script>
 
     <script src="src/vendor/bsl/mat/approximation.js"></script>
     <script src="src/vendor/bsl/mat/geom-shapes.js"></script>

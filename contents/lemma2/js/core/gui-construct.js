@@ -44,9 +44,12 @@
     //======================================================
     // //\\ rects
     //======================================================
+    //apparently makes "emptu junk" "without numbers there"
     function constructsRects_tillExtraOffset_parlessDom()
     {
+        //this is just an empty list
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
+
         makes_rects( dr.InscrRects, "tp-inscribed-rectangles inscribed");
         makes_rects( dr.differenceRects, "tp-difference difference");
         $$.$(dr.differenceRects.list[0]).addClass( 'tp-a--_k--b--l' );
@@ -54,6 +57,9 @@
         $$.$(dr.differenceRects.list[2]).addClass( 'tp-c--_m--d--n' );
         $$.$(dr.differenceRects.list[3]).addClass( 'tp-d--e--p--o' );
     }
+    //listWrap can hold an empt arry
+    //reserves "empty junk" and includes
+    //cells 0,...,listWrap.offset-1 there.
     function makes_rects( listWrap, classStyle )
     {
         classStyle += ' rect tofill';
@@ -61,6 +67,7 @@
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
         for (var i=0; i<len; i++){
+            //"makes an empty junk"
             list.push( makeSType( "rect", classStyle ) );
         }
     }
@@ -76,32 +83,29 @@
     //======================================================
     ///builds list of control points, dr.ctrlPts and updates construction of
     ///bookkeeper dr.movables,
+    ///This is the last time we use "sconf.ctrlPtXYs_js".
     function constructsControlPoints()
     {
         // control points
         var ctrlPts = dr.ctrlPts;
         for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
-            var ctrlPtXYs_js = sconf.ctrlPtXYs_js;
+            var cp = sconf.ctrlPtXYs_js;
             //pt = dr.movables[ type + i ]
             var pt = makeDragP_tpl( "ctrl", i );
             var pdom = pt.dom;
 
             pdom.setAttributeNS(null, "class", "movable ctrlPt");
-            pdom.setAttributeNS(null, "cx", ctrlPtXYs_js[i].x);
-            pdom.setAttributeNS(null, "cy", ctrlPtXYs_js[i].y);
+            pdom.setAttributeNS(null, "cx", cp[i].x);
+            pdom.setAttributeNS(null, "cy", cp[i].y);
             pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
             //.todm patch
             //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
             //pdom.style.stroke = sDomF.getFixedColor( 'curve' );
             pdom.style[ 'stroke-width' ] = '1px';
-            pt.x = ctrlPtXYs_js[i].x;
-            pt.y = ctrlPtXYs_js[i].y;
+            pt.x = cp[i].x;
+            pt.y = cp[i].y;
             ctrlPts.push( pt );
         }
-        
-        let cp = dr.ctrlPts[2];
-        guiup.xy2shape( cp.dom, "cx", cp.x, "cy", cp.y );
-        
         reset_hollowPoints({ onCurve:true, onBase:false });
     }
 
@@ -116,9 +120,8 @@
         // control points
         var ctrlPts = dr.ctrlPts;
         if( onCurve ) {
-            for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
+            for (var i=0, len=dr.ctrlPts.length; i < len; i++) {
                 //if( i===4 ) functionYes = false; //continue;
-                let ctrlPtXYs_js = sconf.ctrlPtXYs_js;
                 //pt = dr.movables[ type + i ]
                 let pt = ctrlPts[i];
                 let pdom = pt.dom;
@@ -187,6 +190,7 @@
     //==================================================
     // //\\ common shape
     //      dom without numeric parameters
+    //      "makes an empty junk"
     //==================================================
     function makeSType( shapeType, classStyle )
     {

@@ -37,7 +37,7 @@
     //====================================================
     to_fconf =
     {
-        hideSingleItemContentMenus : true,
+        hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
         timeToShowOriginalDiagram  : 3600000, //ms

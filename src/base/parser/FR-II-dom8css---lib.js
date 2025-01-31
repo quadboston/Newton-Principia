@@ -225,37 +225,48 @@
         //return { collectedTpLinks, collectedDelayedLinks };
     }
 
-
     function BodyMathJax_2_HTML( domEl, no_domEl_pretransformation, cbAfterMathJax )
     {
+        {
+            //skips text block without MathJax
+            let iH = domEl.innerHTML;
+            //todm a bit risky detection of MJ text
+            if( iH.indexOf( '\\(' ) < 0 && iH.indexOf( '\\[' ) < 0 ) return;
+        }
+        var count = 0;
         mathJax_2_HTML();
         ///===============================================
         /// waits for MathJax and fires it up over domEl
         ///===============================================
         function mathJax_2_HTML()
         {
-            if( !window.MathJax ) {
-                //c cc( 'Still waiting for MathJax. Timestamp=' + Date.now() );
-                //.no way to avoid this ... mj doc does not help:
-                setTimeout( mathJax_2_HTML, 100 );
+            count++;
+            if( count > 20 ) return;
+            //c onsole.log( count + ' ' + Date.now() + ' MathJax=',MathJax );
+            if( !window.MathJax_is_fully_loaded_flag ){
+                console.log( 'Still waiting for MathJax. Timestamp=' + Date.now() );
+                setTimeout( mathJax_2_HTML, 500 );
                 return;
             }
-            //c cc( 'MathJax is loaded. ' + Date.now() );
-
-            if( no_domEl_pretransformation ) {
-                if( cbAfterMathJax ) {
-                    MathJax.Hub.Queue([ "Typeset",MathJax.Hub,domEl ],
-                                      [ cbAfterMathJax,domEl ] );
-                } else {
-                    MathJax.Hub.Queue([ "Typeset",MathJax.Hub,domEl ]);
-                }
-            } else {
-                //MathJax.Hub.Typeset() 
-                //MathJax.Hub.Queue(["Typeset",MathJax.Hub,"script"]);
-                //function hideFlicker() { contentDom.style.visibility = 'hidden'; }
-                //function unhideAfterFlicker() { contentDom.style.visibility = 'visible'; }
-                MathJax.Hub.Queue( ["Typeset",MathJax.Hub,domEl],
-                    [ ssF.finalizes_delayed_anchors, domEl ] );
+            //todm possibly need own MJ promise?:
+            //MathJax.startup.promise,
+            //https://docs.mathjax.org/en/latest/web/typeset.html#typeset-async
+            let promise = Promise.resolve();
+            function typeset(code) {
+                promise = promise
+                    .then(() => MathJax.typesetPromise(code()))
+                    .catch((err) => console.log('Typeset failed: ' + err.message));
+                return promise;
+            }
+            let ret = typeset(() => {
+                //ccc( domEl.innerHTML );
+                if( !no_domEl_pretransformation ) {
+                    ssF.finalizes_delayed_anchors(domEl);
+                }  
+                return [domEl];
+            })
+            if( no_domEl_pretransformation && cbAfterMathJax ) {                
+                ret.then( cbAfterMathJax );
             }
         }
     }

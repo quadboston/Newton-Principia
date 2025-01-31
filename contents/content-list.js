@@ -23,9 +23,32 @@
 
         {   sappId : 'lemma2',
             book : 'Book 1',
-            caption : 'Sec. 1, Lemma 2',
+            caption : 'Sec. 1, Lemma 2. Selected interval. Draft.',
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
+
+        {   sappId : 'lemma2-monotonic',
+            book : 'Book 1',
+            caption : 'Sec. 1, Lemma 2. Monotonic function. Draft.',
+            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
+        },
+
+        //legacy version:  
+        {   sappId : 'lemma2-non-monotonic',
+            //book : 'In Development',
+            book : 'Book 1',
+            caption : 'Lemma 3. Darboux and Riemann.',
+            inAddendum : true,
+        },
+
+        /*
+        //suspended version development:  
+        {   sappId : 'lemma2-12-handles',
+            book : 'Book 1',
+            caption : 'Sec. 1, Lemma 2. Programmed with function as an array with 12 handes.',
+            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
+        },
+        */
 
         {   sappId : 'lemma3',
             book : 'Book 1',
@@ -195,36 +218,36 @@
         },
 
         {   sappId : 'addd-fw',
-            book : 'Appendix',
-            caption : 'Logical frameworks.',
+            book : 'Addendum',
+            caption : 'Logical extensions.',
             annotation : userOptions.BONUS_START,
         },
 
         {   sappId : 'addd-prel',
-            book : 'Appendix',
+            book : 'Addendum',
             caption : 'Euclid-Dedekind Ratios.',
             annotation : "Comments to the Book",
         },
 
         {   sappId : 'addd-prel-curve',
-            book : 'Appendix',
+            book : 'Addendum',
             caption : 'Euclid. Curves.',
             annotation : "Comments to the Book",
         },
         {   sappId : 'addd-prel-curveXX',
-            book : 'Appendix',
+            book : 'Addendum',
             caption : 'Calculus XX. Curves.',
             annotation : "Comments to the Book",
         },
 
         {   sappId : 'addd-conics',
-            book : 'Appendix',
+            book : 'Addendum',
             caption : 'Conics.',
             annotation : "...",
         },
 
         {   sappId : 'addd-kepler-task',
-            book : 'Appendix',
+            book : 'Addendum',
             caption : 'Kepler Task.',
             annotation : userOptions.BONUS_END,
         },

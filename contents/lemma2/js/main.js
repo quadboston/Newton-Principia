@@ -2,13 +2,12 @@
 
 (function() {
     var {
-        sn, eachprop, haff, mat, nspaste, nsmethods,
+        sn, eachprop, haff,
         fapp, sapp, ssF, sDomF,
         studyModsActivated, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
-    var curveFW     = sn( 'curveFW', ssF );
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
@@ -26,10 +25,10 @@
     {
         //:fitting early lemmas to modern framework
         stdMod.init_model_parameters = () => {};
-        let f = sapp.init_sapp;
+        let stashed = sapp.init_sapp;
         sapp.init_sapp = function() {
             init_sapp();
-            f();
+            stashed();
         };
 
         sapp.finish_sapp_UI = finish_sapp_UI;
@@ -47,9 +46,12 @@
         //---------------------------------------------
         //forces generic-fw-points to be initiated under specific points,
         //specific points will be initiated later,
+        //this call is from core engine, not from lemma-code:
+        //it will not call stdMod.media_upcreate___before_basic because this
+        //function does not exist in engine core:
         ssF.media_upcreate_generic();
 
-        //we do this because of refreshSVG_master may play role of model, so all the
+        //we do this because of r efreshSVG_master may play role of model, so all the
         //stuff for gui must be created before framework's media update
         stdMod.media_upcreate___before_basic = stdMod.refreshSVG_master;
         //---------------------------------------------
@@ -59,16 +61,19 @@
 
         guicon.constructsWidestRect();
         guicon.constructsRects_tillExtraOffset_parlessDom();
+        
+        //numberless:
         guicon.constructsCurve8Area(); //do on top of ancestors
+
         guicon.constructBasePts_domParless(dr.basePts);
+        
+        //sets their positions:
         guicon.constructsControlPoints();
-        curveFW.buildsIntegrFW();
+        //now, this call does "r efreshSVG_master"
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
         //see:     ///modern approach ... abandoned
         //createsBaseSlider();
-
-        study.eventHandlers.toggleChangeFigure();
 
         gui.buildSlider();
         sDomF.detected_user_interaction_effect( 'doUndetected' );

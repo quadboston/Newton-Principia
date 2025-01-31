@@ -1,6 +1,6 @@
 ( function () {
     var {
-        ns, sn, $$, userOptions,
+        sn, $$, userOptions,
         fapp, fconf, sconf, sDomN, ssF,
         amode,
     } = window.b$l.apptree({
@@ -78,34 +78,29 @@
 
 
 
-    //todo why it does calculate curve twice?
-    //because ? micropoints do this twice for
-    //monotonity-turn-points calr?
+
     function paints_curve8axes()
     {
-        var ff = numModel.f;
+        var ff = numModel.curveFun;
+
         ///calculates curve with horizontal increment = delta
         var delta           = 3;
         var curveMicroPts   = [];
-        var curveMicroPtsRounded = [];
         var fb              = dr.figureParams;
         for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
 	        var yy = ff( xx );
 	        curveMicroPts.push([xx,yy]);
-            curveMicroPtsRounded.push([xx.toFixed(2),yy.toFixed(2)]);
         }
 
         //:paints curve
         var yy = ff( fb.maxX );
         //this does not collect
-        curveMicroPts.push([fb.maxX, yy]);
-        curveMicroPtsRounded.push([fb.maxX.toFixed(2),yy.toFixed(2)]);
+        curveMicroPts.push([fb.maxX,yy]);
 
         var wwPL = document.getElementById( 'polylineCurve' );
-        wwPL.setAttribute( "points",curveMicroPtsRounded.join(" ") );
+        wwPL.setAttribute( "points",curveMicroPts.join(" ") );
         //:paints axes
-        //var yy = fb.baseY;
-        var yy = dr.yVariations.yRef;
+        var yy = sconf.originY_onPicture;
         var x1 = fb.minX;
         var x2 = fb.maxX;
         //apparently, horizontal axis x
@@ -115,20 +110,20 @@
         //apparently, vertical axis y = x2
         xy2lineShape( dr.wallR,x2,yy,x2, ff(x2) );
 
+
         //=============================================
         // //\\ builds bottom part of curve area string
         //=============================================
+        //var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
         var wfirstPoint = curveMicroPts[0];
         var wlastPoint = curveMicroPts[curveMicroPts.length-1];
         //.this code connects four points two tips on base and first and end
         //.points on curve making base as a part of area perimeter
-        var figureInternalAreaStr = curveMicroPtsRounded.concat([
-            [wlastPoint[0].toFixed(2) ,yy.toFixed(2)],
-            [wfirstPoint[0].toFixed(2) ,yy.toFixed(2)]
-        ]);        
-        figureInternalAreaStr = figureInternalAreaStr.join(" ");
+        var figureInternalArea = curveMicroPts.concat([
+            [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy]
+        ]);
+        var figureInternalAreaStr = figureInternalArea.join(" ");
         dr.figureInternalArea.setAttribute( "points",figureInternalAreaStr );
-        $$.$(dr.figureInternalArea).addClass( "debug-curve-svg-points" );
         //=============================================
         // \\// builds bottom part of curve area string
         //=============================================
@@ -170,8 +165,7 @@
     //========================================
     function updatesRect(rectDom,width,x,y,height)
     {
-        var fb  = dr.figureParams;
-        var yRef = dr.yVariations.yRef;
+        var yRef = dr.yVariations.maxY;
         if( typeof height === 'undefined' ) {
             guiup.xywh2svg( rectDom, x, y, width, yRef-y );
         } else {
@@ -180,23 +174,21 @@
     }
     function updatePts(i, x)
     {
-        var fb  = dr.figureParams;
-        var yRef = dr.yVariations.yRef; //fb.baseY
+        var yRef = dr.yVariations.yRef;
         if (!appstate.movingBasePt) {
 	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
         }
     }
     function updatePtsRectsLabelsAreas()
     {
-        var fb  = dr.figureParams;
-        var x = fb.minX;
+        var x = dr.yVariations.x_start;
         var basN = dr.basesN;
-        var basXar = dr.basePts.basXar;
+        var baseBarsLefts = dr.basePts.baseBarsLefts;
         var insYar = dr.basePts.inscribedY;
         var cirYar = dr.basePts.circumscribedY;
-        var yRef = dr.yVariations.yRef; //?fb.base
+        var yRef = dr.yVariations.yRef;
         for (var i=0; i<basN; i++) {
-            let x = basXar[i];
+            let x = baseBarsLefts[i];
             let insY = insYar[i];
             let cirY = cirYar[i];
    	        var width = dr.partitionWidths[i];
@@ -206,7 +198,7 @@
                          insY-cirY );
             updatePts(i, x);
         }
-        updatePts( basN, fb.maxX);
+        updatePts( basN, dr.yVariations.x_end);
         gui.drawsWidestRect( dr.basePts.list[basN].dom,false, sdata.view );
         //-----------------------------------------------------
         // //\\ legend amounts
@@ -219,6 +211,17 @@
             normalizedStr( dr.areaCir, dr.figureArea);
         //-----------------------------------------------------
         // \\// legend amounts
+        //-----------------------------------------------------
+
+        //-----------------------------------------------------
+        // //\\ Do points update
+        //-----------------------------------------------------
+        //let insY = insYar[basN-1];
+        //let cirY = cirYar[basN-1];
+        //rg.e.pos[0] = rg.d.pos[0];
+        //rg.e.pos[1] = rg.d.pos[1] + insY - cirY;
+        //-----------------------------------------------------
+        // \\// Do points update
         //-----------------------------------------------------
     }
 
@@ -246,7 +249,7 @@
             var iIx = item.index;
             let blist = dr.basePts.list;
             let insPy = -( insYar[iIx] - yoff ) / scale;
-            let cirPy = -( cirYar[iIx] - yoff ) / scale;
+            var cirPy = -( cirYar[iIx] - yoff ) / scale;
             let posAx = ( blist[0].x - xoff )  / scale;
             let posBx = ( blist[1].x - xoff )  / scale;
             let posCx = ( blist[2].x - xoff )  / scale;
@@ -330,14 +333,20 @@
         if( pname ) {
             var iY = item.type === 'base' ? dr.yVariations.yRef : item.y;
             ////apparently convert from svg-space to model-space
-            ////apparently program and numModel.f made in svg-space and
+            ////apparently program and numModel.curveFun made in svg-space and
             ////not in gemetrical-model-space;
             rg[ pname ].pos[0] = (item.x - xoff) / scale;
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
+
             ////optional names
             if( pnameFun ) {
+                if( pnameFun === 'a' || pnameFun === 'b') {
+                    ////sets upper boundary of the bar
+                    rg[ pnameFun ].pos[1] = cirPy;
+                } else {
+                    rg[ pnameFun ].pos[1] = -( numModel.curveFun( item.x ) - yoff ) / scale;
+                }
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
-                rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
             }
         }
     }
@@ -373,9 +382,16 @@
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
         rg.gG.undisplay = doset;
-        rg.dM.undisplay = doset;
-        rg.cL.undisplay = doset;
-        rg["K,bk"].undisplay = doset;
+        rg.dM.undisplay = true; //doset;
+        rg.cL.undisplay = true; // doset;
+
+        //some were missed in program
+        rg["K,bk"].undisplay = true; // doset;
+        rg["Kb"].undisplay = true;
+        //rg["dm"].undisplay = true;
+        //rg["cd"].undisplay = true;
+        //rg["lm"].undisplay = true;
+
         rg.AK.undisplay = doset;
         rg.LB.undisplay = doset;
         rg.MC.undisplay = doset;
@@ -388,9 +404,9 @@
         rg.n.undisplay = doset;
         rg.o.undisplay = doset;
         rg.la.undisplay = doset;
-        rg["m,bk"].undisplay = doset;
-        rg.nc.undisplay = doset;
-        rg.od.undisplay = doset;
+        rg["m,bk"].undisplay = true; // doset;
+        rg.nc.undisplay = true; //doset;
+        rg.od.undisplay = true; //doset;
         //right sides:
         rg.lB.undisplay = doset;
         rg.mC.undisplay = doset;
@@ -411,7 +427,7 @@
         rg.E.pos[1] = -( dr.yVariations.yRef - yoff ) / scale;
         var { left, right, bottom, top, } = dr.widestRect;
         rg.f.pos[1] = -( top - yoff ) / scale;
-        if( dr.figureParams.deltaOnLeft || dr.yVariations.areMany ) {
+        if( dr.figureParams.deltaOnLeft ) {
             rg.F.pos[0] = ( right - xoff ) / scale;
             rg.f.pos[0] = ( right - xoff ) / scale;
         } else {
@@ -425,7 +441,7 @@
         // //\\ majorant
         //--------------------------------------
         {
-            let l2 = fconf.sappId === 'lemma2';
+            let l2 = fconf.sappId.indexOf('lemma2') === 0;
             let checked = amode.theorion !== 'claim';
             rg.F.undisplay = !checked || videoMode || onlyFig || l2;
             rg.f.undisplay = !checked || videoMode || onlyFig || l2;

@@ -37,15 +37,15 @@
         //======================================
         // //\\ exports module
         //======================================
-        //stdMod.model8media_upcreate = refreshSVG_master;
+        //stdMod.model8media_upcreate = r efreshSVG_master;
 
         //----------------------------------------------
         // //\\ fits lemma to modern framework
         //----------------------------------------------
-        //we do this because of refreshSVG_master may play role of model, so all the
+        //we do this because of r efreshSVG_master may play role of model, so all the
         //stuff for gui must be created before framework's media update
-        //        stdMod.media_upcreate___before_basic = refreshSVG_master;
-        //stdMod.media_upcreate___part_of_medupcr_basic = refreshSVG_master;
+        //        stdMod.media_upcreate___before_basic = r efreshSVG_master;
+        //stdMod.media_upcreate___part_of_medupcr_basic = r efreshSVG_master;
         //----------------------------------------------
         // \\// fits lemma to modern framework
         //----------------------------------------------
@@ -76,11 +76,13 @@
             dr.figureParams.minX= dr.ctrlPts[min].x;
             dr.figureParams.maxX= dr.ctrlPts[max].x;
 
-            numModel.recalculates_Bases8maxWidth();
-            study.calculates_microPoints8curveArea();
-            study.calculates_monotIntervals8ref();
+            study.calculates_microPoints(); //solid
+            study.calculates_monotIntervals8ref(); //solid
+            numModel.addsNewBases_8_calculatesMaxWidth(); //solid
+
+            study.calcsMonotIntervalArea();
             study.calculates_inscr8circums();
-            study.calculatesWidestRect();
+            study.calculatesMajorantRect();
 	        guiup.paints_curve8axes();
             guiup.updatePtsRectsLabelsAreas();
             let medD8D = haz( stdMod, 'medD8D' );

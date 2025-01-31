@@ -253,7 +253,7 @@
             var iIx = item.index;
             let blist = dr.basePts.list;
             let insPy = -( insYar[iIx] - yoff ) / scale;
-            let cirPy = -( cirYar[iIx] - yoff ) / scale;
+            var cirPy = -( cirYar[iIx] - yoff ) / scale;
             let posAx = ( blist[0].x - xoff )  / scale;
             let posBx = ( blist[1].x - xoff )  / scale;
             let posCx = ( blist[2].x - xoff )  / scale;
@@ -344,10 +344,14 @@
 
             ////optional names
             if( pnameFun ) {
+                if( pnameFun === 'a' || pnameFun === 'b') {
+                    ////sets upper boundary of the bar
+                    rg[ pnameFun ].pos[1] = cirPy;
+                } else {
+                    rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
+                }
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
-                rg[ pnameFun ].pos[1] = -( numModel.f( item.x ) - yoff ) / scale;
             }
-
         }
     }
 
@@ -382,9 +386,16 @@
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
         rg.gG.undisplay = doset;
-        rg.dM.undisplay = doset;
-        rg.cL.undisplay = doset;
-        rg["K,bk"].undisplay = doset;
+        rg.dM.undisplay = true; //doset;
+        rg.cL.undisplay = true; // doset;
+
+        //some were missed in program
+        rg["K,bk"].undisplay = true; // doset;
+        rg["Kb"].undisplay = true;
+        //rg["dm"].undisplay = true;
+        //rg["cd"].undisplay = true;
+        //rg["lm"].undisplay = true;
+
         rg.AK.undisplay = doset;
         rg.LB.undisplay = doset;
         rg.MC.undisplay = doset;
@@ -397,9 +408,9 @@
         rg.n.undisplay = doset;
         rg.o.undisplay = doset;
         rg.la.undisplay = doset;
-        rg["m,bk"].undisplay = doset;
-        rg.nc.undisplay = doset;
-        rg.od.undisplay = doset;
+        rg["m,bk"].undisplay = true; // doset;
+        rg.nc.undisplay = true; //doset;
+        rg.od.undisplay = true; //doset;
         //right sides:
         rg.lB.undisplay = doset;
         rg.mC.undisplay = doset;
@@ -434,7 +445,7 @@
         // //\\ majorant
         //--------------------------------------
         {
-            let l2 = fconf.sappId === 'lemma2';
+            let l2 = fconf.sappId.indexOf('lemma2') === 0;
             let checked = amode.theorion !== 'claim';
             rg.F.undisplay = !checked || videoMode || onlyFig || l2;
             rg.f.undisplay = !checked || videoMode || onlyFig || l2;

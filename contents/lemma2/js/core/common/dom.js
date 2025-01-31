@@ -56,6 +56,7 @@
         //====================================================================
         // //\\ paints preliminary elements
         //====================================================================
+        //creates some ellipse, what is it for?
         $$.cNS( 'ellipse' )
             .aNS( 'id', 'outline' )
             .aNS( 'stroke', "#ff88ff" )
@@ -71,28 +72,25 @@
             .css( "position", "absolute" )
             .to(svg)
             ;
-
-        $$.cNS( 'line' )
+        //creates "shallow axis line"
+        dr.baseAxis = $$.cNS( 'line' )
             .aNS( 'id', 'baseAxis' )
             .aNS( 'class', "tp-figure tp-base figure outline tostroke" )
             .to(svg)
-            ;
+            ();
 
-        $$.cNS( 'line' )
+        //creates "shallow wallL line"
+        dr.wallL = $$.cNS( 'line' )
             .aNS( 'id', 'wallL' )
             .aNS( 'class', "tp-figure tp-wall figure outline tostroke" )
             .to(svg)
-            ;
+            ();
 
-        $$.cNS( 'line' )
+        dr.wallR = $$.cNS( 'line' )
             .aNS( 'id', 'wallR' )
             .aNS( 'class', "tp-figure figure outline tostroke" )
             .to(svg)
-            ;
-        //tod? right:
-        dr.baseAxis = document.getElementById( 'baseAxis' );
-        dr.wallL = document.getElementById( 'wallL' );
-        dr.wallR = document.getElementById( 'wallR' );
+            ();
         //====================================================================
         // \\// paints preliminary elements
         //====================================================================

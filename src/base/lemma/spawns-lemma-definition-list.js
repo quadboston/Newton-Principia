@@ -17,7 +17,7 @@
                 if( fconf.sappId === ld.sappId ){
                     //// reestablished addendum mode on PC because of
                     //// addendum-lemma is called
-                    userOptions.showingBonusFeatures();
+                    userOptions.setsBonus();
                 } else {
                     return;
                 }

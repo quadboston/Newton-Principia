@@ -1,27 +1,29 @@
 
-*::*frameworks|introduction
+*::*extensions|introduction
 {
   "menuCaption" : "Introduction",
-  "subessayCaption" : "Logical Frameworks",
-  "subessay" : "logical-frameworks"
+  "xxxsubessayCaption" : "Addendums",
+  "subessay" : "logical-extensions"
 }
 *..*
 
 
-
-<br>
-
-<b><i>Relation to Originals</i></b>
-<br>
-
-In this Appendix, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
+⦁ Addendums contain logical extensions and logical context which is inspired by Principia. These do not pretend to be comments and interpretations. They are tried to be self contained.
 <br><br>
 
-⦁  We do not do any claims these facts are known to Newton or Euclid. We do not insist on what Newton or Euclid intended to say. This may be discussed in Addendums under original Lemma or Proposition.
+⦁ Reader should build addendums relationship to Principia by the work of own thought when returning to Principia total content. However doing so may helps to understand what Newton really meant without relying heavily on translation of words.
 <br><br>
 
-⦁  References to original text lemma are in parenthesises.
-For example,
+⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it CalculusXIX.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadratures in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
+<br><br>
+
+By the way, Books context feels as an extension of Geomtry, like adding three axioms (force laws) to the Geometry. The same way as reaxiomatizing Geometry in General Relativiy. What a coincidence.
+<br><br>
+
+Addendum may also include anything interesting like programming details or problems related to the Book.
+<br><br>
+
+⦁  References to original text lemma are in parenthesises. For example,
 
 <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
 
@@ -29,133 +31,4 @@ refers to
 
 <a target="_blank" href="?conf=sappId=b1sec2prop2,theorionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
 
- 
-<br><br><br><br>
-
-
-<b><i>Used axiomatic frameworks</i></b>
-<br>
-We compare two frameworks, "Euclid" and "CalculusXX".
-<a name="Eframework"></a>
-<br><br><br><br>
-
-
-<div style="background-color:#eeeeee;"><b>"Euclid"</b> framework<br></div>
-
-derives Geometrical and Ratio
-properties from "Euclid's Elements".
-
-<a target="_blank" href="?conf=sappId=addd-prel">
-Although real numbers are apparently logically follow from E.V.5</a>
-and therefore are contained in Euclid framework, this framework pretends to ignore them
-restricting itself with 
-<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
-"Legacy proportions and ratios"</a>,
-for which we use geometrical language or assume them as axioms for non-geometrical objects like time or force.
-<br><br>
-
-Fundamental logical sequence: Geometry, ratio axioms, rational numbers --&gt; Geometry-based Calculus for magnitudes and possibly fluxions-based Calculus[1] for "numbers" --&gt; Physics
-
-<a name="Cframework"></a>
-<br><br><br><br>
-
-
-
-
-<div style="background-color:#eeeeee;"><b>"CalculusXX"</b> framework<br></div>
-
-is Calculus which is built in XIX-XX centuries.
-<br><br>
-
-Fundamental logical sequence: Axioms of Set theory --&gt; Number theory --&gt; Rational and Real numbers --&gt; the rest, Calculus, Analytic Geometry, ... --&gt; Physics
-<br><br>
-
-This sequence is more effective, than Geometry-based in Euclid framework.
-
-<a target="_blank" href="?conf=sappId=addd-prel#legacy-proportions">
-Legacy proportions</a>
-are ignored in favor of concise Real number operations.
-<br><br>
-<br><br>
-
-
-
-[1]<br>
-The Method of Fluxions and Infinite Series: With Its Application to the Geometry of Curve-lines. By Sir Isaac Newton, Translated from the Author's Latin Original Not Yet Made Publick. To which is Subjoin'd, a Perpetual Comment Upon the Whole Work, By John Colson, Sir Isaac Newton. Henry Woodfall; and sold by John Nourse, 1736
-<br>
-<a href="https://en.wikipedia.org/wiki/Method_of_Fluxions">In Wikipedia</a><br>
-<a href="https://books.google.com/books?id=WyQOAAAAQAAJ">In Google books</a><br>
-
-
-
-
-*::*frameworks|introduction
-{
-  "menuCaption" : "Introduction",
-  "subessayCaption" : "Notations",
-  "subessay" : "notations"
-}
-*..*
-
-
-
-
-<br>
-                                            <div style="text-align:center;">
-                                            <table class="essay-normal">
-
-
-                                            <tr><!-- begin -->
-                                            <td colspan="10" style="text-align:center">
-Notations adopted in Addendums
-                                            </td>
-                                            </tr>
-
-
-                                            <tr><!-- begin -->
-                                            <td>
-Bold Notation
-                                            </td>
-                                            <td>
-Logical meaning
-                                            </td>
-                                            <td>
-Comment
-                                            </td>
-                                            </tr>
-
-                                            <tr><!-- begin -->
-                                            <td> 
-<b>=</b>
-                                            </td>
-                                            <td>
-\( \; \overset{df} = \; \)
-                                            </td>
-                                            <td>
-equal by definition
-                                            </td>
-                                            </tr>
-
-
-                                            <tr><!-- begin -->
-                                            <td> 
-<b>⇔</b>
-                                            </td>
-                                            <td>
-\( \; \overset{df} \iff \; \)
-                                            </td>
-                                            <td>
-equivalent by definition
-                                            </td>
-                                            </tr>
-
-
-                                            </tr></table>
-                                            </div>
-
-
-<br><br>
 <div book-reference-id="kvk"></div>
-
-
-

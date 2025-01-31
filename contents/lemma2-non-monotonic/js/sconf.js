@@ -46,7 +46,7 @@
         var SLIDERS_LEGEND_HEIGHT = 0;
 
         sconf.default_tp_lightness = 30;
-        sconf.ONLY_MONOTONIC_CURVE = true;
+        sconf.ONLY_MONOTONIC_CURVE = false;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {
@@ -67,7 +67,7 @@
                 "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
 
                 //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-                "widest-rectangular"      : fconf.sappId === 'lemma2' ?
+                "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
                                                     [0,  0, 100, 0.0, 0.7] :
                                                     [0,  0, 100, 0.4, 0.7],
 
@@ -99,7 +99,7 @@
         //=====================================
         Object.assign( sconf,
         {
-            dontDoMathJax : true,
+            dontDoMathJax : false, //true,
             skipGenDragList : true,
             //====================================================
             // //\\ subapp regim switches
@@ -368,6 +368,7 @@
             //lower
             { "K,bk" : {
                         pcolor : predT.given,
+                        //undisplayAlways : true,
                    },
             },
             { cL : {
@@ -440,6 +441,8 @@
 
             { Kb : {
                         pcolor : predT.given,
+                        //undisplayAlways : true,
+                        //undisplay : true,
                    },
             },
 

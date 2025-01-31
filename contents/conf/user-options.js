@@ -22,8 +22,16 @@
     userOptions.BONUS_START = "bonus-section-start";
     userOptions.BONUS_END = "bonus-section-end";
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
+    userOptions.setsBonus = setsBonus;
     return;   
     
+    ///created for lemmas which labeled as inAddendum and
+    ///user did land exactly on one of these
+    function setsBonus() {
+        doesStoreOption(BONUS, true);
+        //check box may be not ready
+        //userOptions_2_updatedGUI();        
+    }
     
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';

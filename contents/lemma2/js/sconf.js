@@ -1,6 +1,6 @@
 ( function () {
     var {
-        nspaste,
+        sn, nspaste,
         fapp, fconf, sconf,
         sapp,
     } = window.b$l.apptree({
@@ -9,10 +9,42 @@
             init_conf,
         },
     });
+    
+    var stdL2       = sn('stdL2', fapp );
+    var study       = sn('study', stdL2 );
+    var sdata       = sn('sdata', study );
+    var dr          = sn('datareg', stdL2 );
+    var appstate    = sn('appstate', stdL2 );
+
+    //=====================================
+    // //\\ presets data
+    //=====================================
+    Object.assign( dr,
+    {
+        basePts         : {offset:1, visOffset:0, list:[]},
+        curvPts         : {offset:1, visOffset:0, list:[]},
+        circRects       : {offset:0, visOffset:0, list:[]},
+        InscrRects       : {offset:0, visOffset:0, list:[]},
+        differenceRects  : {offset:0, visOffset:0, list:[]},
+        
+        //baseLabels      : {offset:1, visOffset:0, list:[]},
+        curvLabels      : {offset:0, visOffset:0, list:[]},
+        leftLabels      : {offset:0, visOffset:0, list:[]},
+        //righLabels      : {offset:0, visOffset:0, list:[]},
+        //deltaOnLeft historically means "virtual majoranta-rectangle"
+        //is on the right
+        figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
+        ctrlPts         : [],
+        partitionWidths      : [1],
+        basesN         : 4,
+        movables        : {} //key-value for movable jswrap
+    });
+    appstate.movingBasePt = false;
+    sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
+    //=====================================
+    // \\// presets data
+    //=====================================    
     return;
-
-
-
 
 
 
@@ -46,7 +78,7 @@
         var SLIDERS_LEGEND_HEIGHT = 0;
 
         sconf.default_tp_lightness = 30;
-        sconf.ONLY_MONOTONIC_CURVE = true;
+        sconf.ONLY_MONOTONIC_CURVE = false;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {
@@ -67,7 +99,7 @@
                 "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
 
                 //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-                "widest-rectangular"      : fconf.sappId === 'lemma2' ?
+                "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
                                                     [0,  0, 100, 0.0, 0.7] :
                                                     [0,  0, 100, 0.4, 0.7],
 
@@ -99,7 +131,7 @@
         //=====================================
         Object.assign( sconf,
         {
-            dontDoMathJax : true,
+            dontDoMathJax : false, //true,
             skipGenDragList : true,
             //====================================================
             // //\\ subapp regim switches
@@ -127,12 +159,11 @@
             //user-adjustable points
             ctrlPtXYs_js    :
             [
-                {x:modorInPicX, y: modorInPicY},
-                {x:68,          y: 45},
-                {x:116,         y: 73},
-                {x:175,         y: 121},
-                {x:218,         y: 184},
-                {x:248,         y: 259.5}
+                {x:modorInPicX,             y: modorInPicY},
+                {x:85,          y: 51.5},
+                {x:139,         y: 89.0},
+                {x:193,         y: 148.5 },
+                {x:248,         y: 259.5 }
             ],
 
             ////GUI
@@ -146,7 +177,8 @@
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
 
             default_tp_stroke_width : 8,
-            dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
+            //rubbish: 
+            //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
 
         //=====================================
@@ -369,6 +401,7 @@
             //lower
             { "K,bk" : {
                         pcolor : predT.given,
+                        //undisplayAlways : true,
                    },
             },
             { cL : {
@@ -441,6 +474,8 @@
 
             { Kb : {
                         pcolor : predT.given,
+                        //undisplayAlways : true,
+                        //undisplay : true,
                    },
             },
 
@@ -463,7 +498,6 @@
             mod2inn_scale : pictureActiveArea, //todo,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
-            modorInPicY, //tofm rid later
         });
         //=====================================
         // \\// patch for quick slider creation

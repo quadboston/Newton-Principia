@@ -18,7 +18,6 @@
                 {  src:"css/slider.css.js" },
                 {  src:"css/model.css.js" },
                 {  src:"css/inner-page.css.js" },
-                {  src:"core/common/preset-data.js" },
                 {  src:"core/common/dom.js" },
                 {  src:"core/common/d8d-model.js" },
                 {  src:"core/gui-construct.js" },
@@ -27,14 +26,15 @@
                 {  src:"core/gui-update-2.js" },
                 {  src:"core/gui-update-widest.js" },
                 {  src:"core/model.js" },
+                {  src:"core/model-aux.js" },
                 {  src:"core/common/event-handlers.js" },
                 {  src:"core/amode2captures.js" }
             ],
             "contents-list" :
             [
-                "txt/latin.txt",
-                "txt/cohen.txt",
-                "txt/video.txt",
+                "../lemma2/txt/latin.txt",
+                "../lemma2/txt/cohen.txt",
+                "../lemma2/txt/video.txt",
             ],
 
         };
