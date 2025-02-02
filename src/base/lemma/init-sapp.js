@@ -50,6 +50,7 @@
             //makes importan choice:
             //      media_upcreate          -       for non-standard, past lemmas
             //      media_upcreate_generic    -     for modern, half-automated lemmas
+            ccc( 'in init-sapp: emulating media_upcreate if missed' ); 
             stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
                                     ssF.media_upcreate_generic;
             //------------------------------------------------------------------
@@ -103,6 +104,7 @@
             ssF.in_subessay_launch____amode2lemma();
             haff( stdMod, 'sliders_value2pos' );
             if( stdMod.SUB_MODEL !== ssD.DEFAULT_STUDY_MODEL_NAME ) {
+                ccc( 'init supp. trying. model8media_upcreate does exist' );
                 haff( stdMod, 'model8media_upcreate' );
             } else {
                 stdMod.media_upcreate(); //todm apparently needed for
@@ -127,6 +129,7 @@
             //=======================================================
 
             if( has( stdMod, 'model8media_upcreate' ) ) {
+                ccc( 'init supp. end. model8media_upcreate does exist' );
                 ////to=200 feels choppy,
                 ////to=100 helps,
                 stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 20 );

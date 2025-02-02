@@ -173,6 +173,7 @@
 
                     !ns.h( stdModExportList, 'model8media_upcreate' )
                 ) {
+                    ccc( 'in app-tree: model_upcreate does exist, creating model8media_upcreate' );
                     stdMod.model8media_upcreate = () => {
                         stdMod.model_upcreate();
                         ns.haff( stdMod, 'media_upcreate' );

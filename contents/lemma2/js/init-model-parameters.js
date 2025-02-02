@@ -7,6 +7,10 @@
         studyModsActivated, stdMod,
     } = window.b$l.apptree({
         setModule,
+        stdModExportList :
+        {
+            init_model_parameters,
+        },
     });
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
@@ -23,19 +27,14 @@
 
     function setModule()
     {
-        //:fitting early lemmas to modern framework
-        stdMod.init_model_parameters = () => {};
-        let stashed = sapp.init_sapp;
-        sapp.init_sapp = function() {
-            init_sapp();
-            stashed();
-        };
-
+        ///this thing works in context of
+        ///LANDING_IV___loadLemmaJSCodes() after
+        ///and overrided setModule of Landing II
         sapp.finish_sapp_UI = finish_sapp_UI;
     }
 
-
-    function init_sapp()
+    ///one of the first thing called in app-wide sapp.init_sapp
+    function init_model_parameters()
     {
         // dom z-order patch
         haff( ssF, 'continue_create_8_prepopulate_svg' );
@@ -51,9 +50,12 @@
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
 
+        //*************************************************************
+        //this completes media_upcreate_generic and media_upcreate
+        //*************************************************************
         //we do this because of r efreshSVG_master may play role of model, so all the
         //stuff for gui must be created before framework's media update
-        stdMod.media_upcreate___before_basic = stdMod.refreshSVG_master;
+        stdMod.media_upcreate___before_basic = stdMod.media_upcreate___before_basic_L2;
         //---------------------------------------------
         // \\// trick
         // \\// fits lemma to modern framework
@@ -70,6 +72,7 @@
         //sets their positions:
         guicon.constructsControlPoints();
         //now, this call does "r efreshSVG_master"
+        stdMod.model_upcreate();
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
         //see:     ///modern approach ... abandoned

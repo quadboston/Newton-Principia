@@ -38,7 +38,7 @@
                 astate_2_rg8model( astate4rg, );
                 haff( stdMod, 'sliders_value2pos' );
                 //haff is for lemmas from the past: l1, l2, ...
-                haff( stdMod, 'media_upcreate' );
+                haff( stdMod, 'media_upcreate' ); //todm swap to ...generic
             }
 
             ///poor name, should be capture_2_rg8modelUpcreate

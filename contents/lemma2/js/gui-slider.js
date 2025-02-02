@@ -64,7 +64,7 @@
 	        dr.basesN = newBases;
 	        showBasesNumberInGui( sliderOutput, baseLabel );
 
-            ssF.media_upcreate_generic();
+            stdMod.model8media_upcreate();
       	}
 
         function aduptPartitionChange( newBases, basePts, undef) {

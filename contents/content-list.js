@@ -27,12 +27,6 @@
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
 
-        {   sappId : 'lemma2-monotonic',
-            book : 'Book 1',
-            caption : 'Sec. 1, Lemma 2. Monotonic function. Draft.',
-            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
-        },
-
         //legacy version:  
         {   sappId : 'lemma2-non-monotonic',
             //book : 'In Development',
@@ -250,6 +244,13 @@
             book : 'Addendum',
             caption : 'Kepler Task.',
             annotation : userOptions.BONUS_END,
+        },
+
+        {   sappId : 'lemma2-mono-stashed-program',
+            book : 'Programmer Guide',
+            caption : 'S1Lemma2. How to code derivative sliders.',
+            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
+            inAddendum : true,
         },
     ];
 }) ();

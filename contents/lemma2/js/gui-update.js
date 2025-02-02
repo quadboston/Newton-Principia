@@ -194,6 +194,9 @@
    	        var width = dr.partitionWidths[i];
 	        updatesRect( dr.circRects.list[i], width, x, cirY, );
 	        updatesRect( dr.InscrRects.list[i], width, x, insY, );
+            if( insY-cirY <= 0 ) {
+                ccc( i, insY,cirY );
+            }
             updatesRect( dr.differenceRects.list[i], width, x, cirY,
                          insY-cirY );
             updatePts(i, x);

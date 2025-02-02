@@ -177,7 +177,9 @@
 
                     ///developer: to see algo nicely: turn display derivatives on
                     ///by this call:
-                    ///curveFW.doPaintArray( fw.step, fw.newDeriv );
+                    curveFW.doPaintArray( fw.step, fw.newDeriv,
+                                          //fw.integral_of_derivative
+                                         );
 
                     /*
                     let userY = pw.achieved.achieved.y+moveY;

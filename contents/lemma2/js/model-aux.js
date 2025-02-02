@@ -172,15 +172,18 @@
     //==================================
     function calcsMonotIntervalArea()
     {
+        let ff = numModel.curveFun;
         let dv = dr.yVariations;
-        let integ = dr.curveMicroIntegral;
-        dr.figureArea = (integ[ dv.mp_end_ix ] - integ[ dv.mp_start_ix ]) * dv.stepx;
-        dr.figureArea = dv.complimentaryAreaBar-dr.figureArea;
-        /*
-        ccc( 'area::::till=' + (integ[ dv.mp_end_ix ]*step).toFixed(4),
-             "step="+step.toFixed(4) + 
-             " figure="+ dr.figureArea.toFixed() + " width="+dv.chosenWidth.toFixed() );
-        */
+        let x_start = dv.x_start;
+        let chosenWidth = dv.chosenWidth;
+        let len = sconf.BASE_MAX_NUM;
+        let step = chosenWidth/len;
+        let sum = 0;
+        for( var ii=0; ii<len; ii++ ) {
+            sum += ff(ii*step+x_start);
+        }
+        sum *= step;
+        dr.figureArea = dv.complimentaryAreaBar-sum;
     }
     ///must run after finding maxWidth
     function calculatesMajorantRect()
@@ -205,11 +208,13 @@
         var insYar = sn( 'inscribedY', dr.basePts, [] );
         var cirYar = sn( 'circumscribedY', dr.basePts, [] );
         var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
+        var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
         var ib2mix = sn( 'ib2mix', dr.basePts, [] );
         var ib2next_ib_mix = sn( 'ib2next_ib_mix', dr.basePts, [] );
         insYar.length = 0;
         cirYar.length = 0;
         baseBarsLefts.length = 0;
+        baseBarsRights.length = 0;
         ib2mix.length = 0;
         ib2next_ib_mix.length = 0;
         var pwidths = dr.partitionWidths;
@@ -224,6 +229,7 @@
         for( var ib = 0; ib < basesN; ib++ ) {
             baseBarsLefts[ib] = bbl;
             bbl += pwidths[ib];
+            baseBarsRights[ib] = bbl;
         }
 
         // //\\ calculates microindices which are covered
@@ -231,8 +237,8 @@
         var micrIx = 0;
         for( var ib = 0; ib < basesN; ib++ ) {
             if( ib ) {
+                var newIx = null;
                 for( im = micrIx; im < micLen; im++ ) {
-                    var newIx = null;
                     if( micPs[im][0] >= baseBarsLefts[ib] ) {
                         ////microindex has been chosen when it
                         ////goes above base point,
@@ -241,36 +247,39 @@
                     }
                 }
                 //in case bars smaller than micropoints:
-                micrIx = newIx === null ? micrIx : newIx;
+                micrIx = newIx === null ? micLen-1 : newIx;
                 //todo still a danger: both ix are equal, and delta index === 0
-                ib2next_ib_mix[ib-1] = Math.max( ib2mix[ib-1], micrIx );
+                ib2next_ib_mix[ib-1] = micrIx;
             }
             ib2mix[ib] = micrIx;
-            if( ib === basesN-1 ) {
-                ib2next_ib_mix[ib] = micLen-1;
-            }
+            
+            
         }
         // \\// calculates microindices which are covered
 
         
         // //\\ calculates min and max on separate bases
-        let p = micPs;
-        for( var ib = 0; ib < basesN; ib++ ) {
-            var micrIx = ib2mix[ib];
-            var micrNext = ib2next_ib_mix[ib];
-            var ymin = p[micrIx][1];
-            var ymax = p[micrIx][1];
-            for( im = micrIx; im <= micrNext; im++ ) {
-                if( ymax < p[im][1] ) {
-                    ymax = p[im][1];
-                }
-                if( ymin > p[im][1] ) {
-                    ymin = p[im][1];
-                }
-            }
+        {
+            let ff = numModel.curveFun;
             let yRef = dr.yVariations.yRef;
-            insYar[ib] = Math.min(ymax, yRef);
-            cirYar[ib] = Math.min(ymin, yRef);
+            let dir = dr.yVariations.chchosen.dir;
+            for( var ib = 0; ib < basesN; ib++ ) {
+                let ymin = ff(baseBarsLefts[ib]);
+                let ymax = ff(baseBarsRights[ib]);
+                if( dir <=0 ) {
+                    let d = ymin;
+                    ymin = ymax;
+                    ymax = d;
+                }
+                ymax = Math.min(ymax, yRef*0.9999999);
+                if( ymin>=ymax ) {
+                    ////otherwise negative heights
+                    ////happens at svg
+                    ymin = ymax < 0 ? ymax*1.0000001 : ymax * 0.999999;
+                }
+                insYar[ib] = ymax;
+                cirYar[ib] = ymin;
+            }
         }
         // \\// calculates min and max on separate bases
 
@@ -287,14 +296,6 @@
         let dv = dr.yVariations;
         dr.areaCir = dv.complimentaryAreaBar - areaCir;
         dr.areaIns = dv.complimentaryAreaBar - areaIns;
-        /*
-        ccc( 
-               ' enclosing bar='+dv.complimentaryAreaBar.toFixed()
-             + ' ins=' + dr.areaIns.toFixed()
-             + ' cir=' + dr.areaCir.toFixed() + ' before='+areaCir.toFixed()
-             + ' figure=' + dr.figureArea.toFixed()
-        );
-        */
         // \\// calculates min and max on separate bases
     }
     //***********************************************

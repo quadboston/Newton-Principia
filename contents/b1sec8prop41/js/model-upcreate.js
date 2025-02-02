@@ -28,6 +28,7 @@
     ///****************************************************
     function model_upcreate()
     {
+        ccc( 'mod 44' );
         stdMod.quadratures();
         //if( !stdMod.drop8pointE() ) {
             ////must not happen

@@ -136,18 +136,7 @@
                     pw.lastMove = [ arg.surfMove[0], arg.surfMove[1] ];
                 }
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
-
-                // //\\ recent framework
-                ssF.media_upcreate_generic();
-                //instead of following:
-                /*
-                if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
-                    //.this is a duty of contributor to provide:
-                    //.if( studyMods[ ww ] ) {
-                    studyMods[ amode['submodel'] ].model8media_upcreate();
-                }
-                */
-                // \\// recent framework
+                stdMod.model8media_upcreate();
             }
         }
 

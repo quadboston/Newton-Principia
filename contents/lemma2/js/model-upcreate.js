@@ -3,6 +3,10 @@
         sn,
         fapp, sconf,
     } = window.b$l.apptree({
+        stdModExportList :
+        {
+             model_upcreate,
+        },
     });
     var stdL2       = sn('stdL2', fapp );
     var dr          = sn('datareg', stdL2 );
@@ -19,9 +23,21 @@
 
 
 
+    function model_upcreate()
+    {
+        let max = numModel.ctrlPt_2_maxIx();
+        let min = numModel.ctrlPt_2_minIx();
+        dr.figureParams.minX= dr.ctrlPts[min].x;
+        dr.figureParams.maxX= dr.ctrlPts[max].x;
 
+        study.calculates_microPoints();
+        study.calculates_monotIntervals8ref();
+        numModel.addsNewBases_8_calculatesMaxWidth();
 
-
+        study.calcsMonotIntervalArea();
+        study.calculates_inscr8circums();
+        study.calculatesMajorantRect();
+    }
 
 
     function calculates_microPoints()
@@ -30,22 +46,22 @@
         let fb = dr.figureParams;
         let max = numModel.ctrlPt_2_maxIx();
         let min = numModel.ctrlPt_2_minIx();
-        fb.minX = dr.ctrlPts[min].x;
-        fb.maxX = dr.ctrlPts[max].x;
+        let minX = fb.minX = dr.ctrlPts[min].x;
+        let maxX = fb.maxX = dr.ctrlPts[max].x;
+        let xRange = fb.maxX - fb.minX;
         let curveMicroPts = dr.curveMicroPts = [];
-        let micI = dr.curveMicroIntegral = [];
         let curveFun = numModel.curveFun;
-        let delta           = 1;
-        micI[0]             = 0;
+        let len = sconf.BASE_MAX_NUM;
+        let step = xRange/len;
         ///calculates curve
-        for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
+        for (var ii = 0; ii < len; ii++) {
+            let xx = minX+ii*step;
             let yy = curveFun( xx );
             let cix = curveMicroPts.length;
             curveMicroPts.push([xx,yy]);
-            micI[cix+1] = micI[cix]+yy;
         }
-        let yy = curveFun( fb.maxX );
-        curveMicroPts.push([fb.maxX,yy]);
+        let yy = curveFun( maxX );
+        curveMicroPts.push([maxX,yy]);
     }
 
     
