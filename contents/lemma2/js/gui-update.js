@@ -364,7 +364,13 @@
         let onlyFig = !isIn&&!isCir;
         {
             let s = videoMode || onlyFig;
-            [ 'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', 'E',
+            [ 'a', 'b', 'c', 'd', 
+
+                    //not mentioned points in text,
+                    //so hard to spot in code,
+                    'p', 'e', 
+  
+                    'A', 'B', 'C', 'D', 'E',
             ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
                     rg[ l ].doPaintPname = !s;
@@ -372,10 +378,9 @@
             [ 'AE', 'AB', 'BC', 'CD' ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
             });
-            [ 'Bb', 'Cc', 'Dd', 'oE' ].forEach( function( l ) {
+            [ 'Bb', 'Cc', 'Dd', 'oE', 'Aa' ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
             });
-            rg.Aa.undisplay = videoMode || (!isCir && isIn && !isFig);
             if( !isFig && isIn && !isCir ) {
                 rg["a"].undisplay = true;
             }
@@ -446,9 +451,12 @@
         {
             let l2 = fconf.sappId.indexOf('lemma2') === 0;
             let checked = amode.theorion !== 'claim';
-            rg.F.undisplay = !checked || videoMode || onlyFig || l2;
-            rg.f.undisplay = !checked || videoMode || onlyFig || l2;
-            rg.AF.undisplay = !checked;
+            let undisplay = !checked || videoMode || onlyFig;
+            rg.F.undisplay = undisplay||l2;
+            rg.f.undisplay = undisplay||l2;
+            rg.AF.undisplay = undisplay||l2;
+            //majorant bar:
+            $$.$(dr.faaf).css( 'display', undisplay ? 'none' : 'block' );
         }
         //--------------------------------------
         // \\// majorant

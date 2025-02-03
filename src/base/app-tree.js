@@ -269,11 +269,6 @@
     {
         return ( function media_upcreate()
         {
-            /*
-            if( !ssF.mediaModelInitialized ) {
-                stdMod.declaresMediaDecorationElements();
-            }
-            */
             //refreshes detectability
             ssF.toogle_detectablilitySliderPoints4Tools( stdMod,);
             createMedia0updateMediaAUX();

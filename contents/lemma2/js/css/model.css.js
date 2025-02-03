@@ -48,7 +48,7 @@ var ret = `
   color: ${colorMain};
   /*r:2.4;*/ }
 
-.outline {
+.outline-cls {
   fill: transparent;
   stroke-width: 2; }
 
@@ -97,18 +97,6 @@ svg text {
 .slider {
   width: 80%; }
 
-
-#widest-visib-toggler-wrap {  /* row in legend line for widthes rectangle */
-  display: flex;
-}
-
-#lemma2.bsl-approot #widest-visib-toggler-wrap,
-.bsl-approot.theorion--claim #widest-visib-toggler-wrap,
-.widest-rectangular.invisible,
-.bsl-approot.theorion--claim .widest-rectangular {
-    display:none;
-}
-
 /* legend */
 .areas .highlighted {
     font-weight :bold;
@@ -118,10 +106,12 @@ svg text {
 /* //\\ subapplication (lemma 2, 3 specific) fix;
         removes hidden rects from topic engine
 */
-.inscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
-.circumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
+/*
+.xxxinscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
+.xxxxcircumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
     visibility:hidden;
 }
+*/
 /* \\//  subapplication (lemma 2, 3 specific) fix; */
 
 `;

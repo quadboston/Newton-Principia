@@ -37,7 +37,7 @@
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         $$.cNS( 'polyline' )
             .aNS( 'id', 'polylineCurve' )
-            .aNS( 'class', "tp-figure tp-curve figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-curve figure outline-cls tostroke" )
             .to(svg)
             ;
         sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
@@ -56,9 +56,10 @@
         //====================================================================
         // //\\ paints preliminary elements
         //====================================================================
+        /*
         //creates some ellipse, what is it for?
         $$.cNS( 'ellipse' )
-            .aNS( 'id', 'outline' )
+            .aNS( 'id', 'eloutline' )
             .aNS( 'stroke', "#ff88ff" )
             .aNS( 'stroke-opacity', "1" )
             .aNS( 'stroke-width', "2px" )
@@ -72,23 +73,24 @@
             .css( "position", "absolute" )
             .to(svg)
             ;
+        */
         //creates "shallow axis line"
         dr.baseAxis = $$.cNS( 'line' )
             .aNS( 'id', 'baseAxis' )
-            .aNS( 'class', "tp-figure tp-base figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-base figure outline-cls tostroke" )
             .to(svg)
             ();
 
         //creates "shallow wallL line"
         dr.wallL = $$.cNS( 'line' )
             .aNS( 'id', 'wallL' )
-            .aNS( 'class', "tp-figure tp-wall figure outline tostroke" )
+            .aNS( 'class', "tp-figure tp-wall figure outline-cls tostroke" )
             .to(svg)
             ();
 
         dr.wallR = $$.cNS( 'line' )
             .aNS( 'id', 'wallR' )
-            .aNS( 'class', "tp-figure figure outline tostroke" )
+            .aNS( 'class', "tp-figure figure outline-cls tostroke" )
             .to(svg)
             ();
         //====================================================================
@@ -100,6 +102,11 @@
 
 
     ///====================================================================
+    /// create_digital_legend
+    /// Don't mix this with stdMod.create_digital_legend.
+    /// Current function has specific to lemma construction,
+    /// events, and updater.
+    ///
     /// this dom is apparently handled in /lemma-2-3/core/event-handlers.js
     /// the names to which events are attached may be hard to find in code
     /// because the attachment is handled like a "batch":

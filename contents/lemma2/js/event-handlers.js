@@ -65,9 +65,9 @@
                 var checked = document.getElementById('checkbox_4').checked;
                 sdata.view.isFigureChecked = checked;
                 if(checked)  {
-                    //$('.outline').toggle();
-                    $$.qa( '.outline' )().forEach( outlinee => {
-                        $$.$(outlinee).removeClass( 'hidden' );
+                    //$('.outline-cls').toggle();
+                    $$.qa( '.outline-cls' )().forEach( outlinee => {
+                        $$.$(outlinee).removeClass( 'xxxxhidden' );
                         //outlinee.style.visibility =
                         // 'visible'; //todm ... is this a right action?
                     });
@@ -82,9 +82,9 @@
                         sdata.view.isFigureChecked = true;
                         return;
                     }
-                    $$.qa( '.outline' )().forEach( outlinee => {
+                    $$.qa( '.outline-cls' )().forEach( outlinee => {
                         //outlinee.style.visibility = 'hidden';
-                        $$.$(outlinee).cls( 'hidden' );
+                        $$.$(outlinee).cls( 'xxxxhidden' );
                     });
                 }
                 ssF.media_upcreate_generic();

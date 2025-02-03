@@ -1,14 +1,11 @@
 ( function() {
     var {
         ns, sn, $$, sv,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, fixedColors,
-        amode, stdMod, toreg,
+        sconf, ssF, ssD, sDomF, fixedColors,
+        rg, amode, stdMod, toreg,
     } = window.b$l.apptree({
-        setModule,
-        stdModExportList :
+        setModule, //delayed till mods loaded
+        stdModExportList : //delayed till mods loaded
         {
         },
     });

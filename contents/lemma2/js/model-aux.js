@@ -209,18 +209,12 @@
         var cirYar = sn( 'circumscribedY', dr.basePts, [] );
         var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
         var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
-        var ib2mix = sn( 'ib2mix', dr.basePts, [] );
-        var ib2next_ib_mix = sn( 'ib2next_ib_mix', dr.basePts, [] );
         insYar.length = 0;
         cirYar.length = 0;
         baseBarsLefts.length = 0;
         baseBarsRights.length = 0;
-        ib2mix.length = 0;
-        ib2next_ib_mix.length = 0;
         var pwidths = dr.partitionWidths;
         var basesN = dr.basesN;
-        let micPs = dr.curveMicroPts;
-        let micLen = micPs.length;
 
         ///creates baseBarsLefts points of base partion
         //we make them by adding already known widths
@@ -231,32 +225,6 @@
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
         }
-
-        // //\\ calculates microindices which are covered
-        //      by base interval
-        var micrIx = 0;
-        for( var ib = 0; ib < basesN; ib++ ) {
-            if( ib ) {
-                var newIx = null;
-                for( im = micrIx; im < micLen; im++ ) {
-                    if( micPs[im][0] >= baseBarsLefts[ib] ) {
-                        ////microindex has been chosen when it
-                        ////goes above base point,
-                        newIx = im;
-                        break;
-                    }
-                }
-                //in case bars smaller than micropoints:
-                micrIx = newIx === null ? micLen-1 : newIx;
-                //todo still a danger: both ix are equal, and delta index === 0
-                ib2next_ib_mix[ib-1] = micrIx;
-            }
-            ib2mix[ib] = micrIx;
-            
-            
-        }
-        // \\// calculates microindices which are covered
-
         
         // //\\ calculates min and max on separate bases
         {

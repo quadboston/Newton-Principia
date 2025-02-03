@@ -5,7 +5,7 @@
         rg,
         ssF, ssD,
         sDomF, amode,
-        studyMods, toreg,
+        studyMods, toreg, stdMod, rg,
         exegs,
     } = window.b$l.apptree({
         setModule,
@@ -43,24 +43,27 @@
     ///overrides lemma's stdMod.media_upcreate if missed
     function media_upcreate_generic()
     {
-        var stdMod = studyMods[ amode.submodel ];
+        //var stdMod = studyMods[ amode.submodel ];
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
-
         haff( stdMod, 'media_upcreate___before_basic' );
-        /*
-        if( !ssF.mediaModelInitialized ) {
-            stdMod.declaresMediaDecorationElements();
-        }
-        */
+
         //:updates subessay menu
         var exAspect = exegs[ amode.theorion ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
-        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );
-        //preliminary setting for painting lines,
-        //no points painting at this moment,
-        setsPointsMedPos();
+        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );//"optional"
+
+        {
+            ////preliminary setting for painting lines,
+            ////no points painting at this moment,
+            //let stdMod      = stdMod || studyMods[ amode.submodel ];
+            //let rg          = stdMod.rg;
+            eachprop( sconf.pname2point, (point,pname) => {
+                var pointRg = rg[ pname ];
+                pointRg.medpos = ssF.mod2inn( pointRg.pos, stdMod );
+            });
+        }
 
         ///paints default curve if no custom exists
         if(
@@ -106,8 +109,14 @@
         //=============================================
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
-        ssF.doPaintPoints(); //appar. for preemptive svg-position. and z-order,
+        //sunday service: start here:
+        
+        //appar. for preemptive svg-position. and z-order,
+        //if( !p2p ) return;
+        ssF.doPaintPoints();
+        
         if( ssF.mediaModelInitialized ) {
+            //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
 
@@ -135,8 +144,15 @@
         if( !ssF.mediaModelInitialized ) {
             haff( stdMod, 'create_digital_legend' );
         }
+        
+        //**************************************************
+        // //\\ note, former lemmas
+        //**************************************************
+        // may have create_digital_legend
+        //ini ssF, so thet skip this block
         if( ns.h( stdMod, 'create_digital_legend' ) ) {
             var tlegend = ns.haz( rg[ 'main-legend' ], amode.theorion );
+            ccc( 'stdMod.cr_dig_leg' );
             if( ns.h( stdMod, 'upcreate_mainLegend' ) ){
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:
@@ -147,6 +163,9 @@
                 ns.haf( ssF, 'upcreate_mainLegend' );
             }
         }
+        //**************************************************
+        // \\// note, former lemmas
+        //**************************************************
 
         haff( stdMod, 'media_upcreate___after_basic' );
         ssF.mediaModelInitialized = true;
@@ -154,21 +173,6 @@
     //=========================================================
     // \\// updater helper
     //=========================================================
-
-
-
-
-    function setsPointsMedPos( stdMod )
-    {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var rg          = stdMod.rg;
-        eachprop( sconf.pname2point, (point,pname) => {
-            var pointRg = rg[ pname ];
-            pointRg.medpos = ssF.mod2inn( pointRg.pos, stdMod );
-        });
-    }
-
-
 
 }) ();
 

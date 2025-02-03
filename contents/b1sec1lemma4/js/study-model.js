@@ -190,8 +190,6 @@
         ) {
             ////functions are is invalid, revert pivots
             stdMod.restoresPivots8functions();
-            //ccc( 'restored back because of function is too low' );
-            ////forbid GUI update
             stdMod.media_update_is_forbidden = true;
             return;
         }
