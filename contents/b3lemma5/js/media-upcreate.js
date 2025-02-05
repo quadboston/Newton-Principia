@@ -35,6 +35,8 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
+    ///a candidate for replacement with 
+    ///media_upcreate___before_basic
     function media_upcreate()
     {
         if( !ssF.mediaModelInitialized ) {

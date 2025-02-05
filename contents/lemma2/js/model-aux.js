@@ -188,12 +188,17 @@
     ///must run after finding maxWidth
     function calculatesMajorantRect()
     {
-        let yVar = dr.yVariations;
-        let chchosen = yVar.chchosen;
-        var left = chchosen.pstart[0];
-        var right = left + dr.widestSize;
-        var top = yVar.minY;
-        var bottom = yVar.maxY;
+        let dv = dr.yVariations;
+        let chchosen = dv.chchosen;
+        if( dv.chchosen.dir > 0 ) {
+            var left = dv.x_start;
+            var right = left + dr.widestSize;
+        } else {
+            var right = dv.x_end;
+            var left = right - dr.widestSize;
+        }
+        var top = dv.minY;
+        var bottom = dv.maxY;
         dr.widestRect = {
             left,
             right,

@@ -206,14 +206,6 @@
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
                 item.y = ach.achieved.y + move[1];
-
-                /*
-                if( item.index === 0 || item.index === 4 ) {
-                    stdMod.syncPoints();
-                } else {
-                    stdMod.syncPoint( item );
-                }
-                */
 	            appstate.movingBasePt = false;
 
             } else if( index > 0 && index < dr.basesN ) {

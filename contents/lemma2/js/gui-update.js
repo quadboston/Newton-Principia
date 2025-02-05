@@ -2,7 +2,7 @@
     var {
         sn, $$, userOptions,
         fapp, fconf, sconf, sDomN, ssF,
-        amode,
+        amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -81,77 +81,89 @@
 
     function paints_curve8axes()
     {
-        var ff = numModel.curveFun;
-
-        ///calculates curve with horizontal increment = delta
-        var delta           = 3;
-        var curveMicroPts   = [];
-        var fb              = dr.figureParams;
-        for (var xx = fb.minX; xx < fb.maxX; xx+=delta) {
-	        var yy = ff( xx );
-	        curveMicroPts.push([xx,yy]);
+        var curveFun = numModel.curveFun;
+        var mpRounded = [];
+        var dv = dr.yVariations;
+        var mp = dr.curveMicroPts;
+        var mp_start_ix  = dv.mp_start_ix;
+        var mp_end_ix = dv.mp_end_ix;
+        var maxY= dv.maxY;
+        var x_start = dv.x_start;
+        var x_end = dv.x_end;
+        var mp_len1 = mp.length-1;
+        for( var ix = mp_start_ix ; ix < mp_end_ix; ix++ ) {
+            var yy = mp[ix][1];
+            var xx = mp[ix][0];
+            mpRounded.push([xx.toFixed(2),yy.toFixed(2)]);
         }
-
-        //:paints curve
-        var yy = ff( fb.maxX );
-        //this does not collect
-        curveMicroPts.push([fb.maxX,yy]);
-
-        var wwPL = document.getElementById( 'polylineCurve' );
-        wwPL.setAttribute( "points",curveMicroPts.join(" ") );
+        sDomN.curve_middle$.a( "points", mpRounded.join(" ") );
         //:paints axes
-        var yy = sconf.originY_onPicture;
-        var x1 = fb.minX;
-        var x2 = fb.maxX;
-        //apparently, horizontal axis x
-        xy2lineShape( dr.baseAxis,x1,yy,x2,yy );
-        //apparently, vertical axis y = x1
-        xy2lineShape( dr.wallL,x1,yy,x1, ff(x1) );
-        //apparently, vertical axis y = x2
-        xy2lineShape( dr.wallR,x2,yy,x2, ff(x2) );
-
-
+        //horizontal axis x
+        xy2lineShape( dr.baseAxis, x_start, maxY, x_end, maxY );
+        //vertical axis x = x_start
+        xy2lineShape( dr.wallL, x_start, maxY, x_start, curveFun(x_start) );
+        //vertical axis x = x_end
+        xy2lineShape( dr.wallR, x_end, maxY, x_end, curveFun(x_end) );
         //=============================================
         // //\\ builds bottom part of curve area string
         //=============================================
-        //var figureInternalArea = curveMicroPts.concat([[x1,yy]]);
-        var wfirstPoint = curveMicroPts[0];
-        var wlastPoint = curveMicroPts[curveMicroPts.length-1];
-        //.this code connects four points two tips on base and first and end
+        //.this code connects two tips on base and first and end
         //.points on curve making base as a part of area perimeter
-        var figureInternalArea = curveMicroPts.concat([
-            [wlastPoint[0] ,yy], [wfirstPoint[0] ,yy]
-        ]);
-        var figureInternalAreaStr = figureInternalArea.join(" ");
-        dr.figureInternalArea.setAttribute( "points",figureInternalAreaStr );
+        var figAreaStr = mpRounded.concat([
+            [x_end.toFixed(2) ,maxY.toFixed(2)],
+            [x_start.toFixed(2) ,maxY.toFixed(2)]
+        ]);        
+        figAreaStr = figAreaStr.join(" ");
+        dr.figureInternalArea.setAttribute( "points",figAreaStr );
         //=============================================
         // \\// builds bottom part of curve area string
         //=============================================
 
+        ///calculates red curves
+        if( dv.changes.length > 1 ) {
+            let pre_Rounded = [];
+            for( let ix = 0; ix < mp_start_ix; ix++ ) {
+                let mpt = mp[ix];
+                pre_Rounded.push(
+                    [mpt[0].toFixed(2),mpt[1].toFixed(2)]
+                );
+            }
+            let past_Rounded = [];
+            for( let ix = mp_end_ix; ix < mp_len1; ix++ ) {
+                let mpt = mp[ix];
+                past_Rounded.push(
+                    [mpt[0].toFixed(2),mpt[1].toFixed(2)]
+                );
+            }
+            sDomN.curve_pre$.a( "points", pre_Rounded.join(" ") );
+            sDomN.curve_past$.a( "points", past_Rounded.join(" ") );
+        } else {
+            sDomN.curve_pre$.a( "points", '' );
+            sDomN.curve_past$.a( "points", '' );
+        }
 
-        // //\\ sets curves type
-        stdL2.adjustVisibilityForBaseDelta();
+        if (appstate.showRectPts) {
+            setsVisibleRange(dr.curvPts,1);
+        }
+        setsVisibleRange(dr.basePts,1);
+        shows_rects();
 
         // //\\ resets app modes
-        var wfirst = curveMicroPts[0];
-        var wlast = curveMicroPts[curveMicroPts.length-1];
-        //:note: y axis is apparently flipped, bottom > top
-        //:dr.figureParams.deltaOnLeft is already calculated and
-        //:can be used
-        //:and means decresing function witm max on left
-        if( wfirst[1] > wlast[1] ) {
-            sDomN.essaionsRoot$.removeClass( 'active-left' );
-            sDomN.essaionsRoot$.addClass( 'active-right' );
+        let remove = sDomN.essaionsRoot$.removeClass;
+        let add = sDomN.essaionsRoot$.addClass;
+        if( dr.figureParams.deltaOnLeft ) {
+            remove( 'active-right' );
+            add( 'active-left' );
         } else {
-            sDomN.essaionsRoot$.removeClass( 'active-right' );
-            sDomN.essaionsRoot$.addClass( 'active-left' );
+            remove( 'active-left' );
+            add( 'active-right' );
         }
         if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
-            sDomN.essaionsRoot$.removeClass( 'active-higlight-do' );
-            sDomN.essaionsRoot$.addClass( 'active-no-higlight-do' );
+            remove( 'active-higlight-do' );
+            add( 'active-no-higlight-do' );
         } else {
-            sDomN.essaionsRoot$.removeClass( 'active-no-higlight-do' );
-            sDomN.essaionsRoot$.addClass( 'active-higlight-do' );
+            remove( 'active-no-higlight-do' );
+            add( 'active-higlight-do' );
         }
         // \\// resets app modes
     }
@@ -181,7 +193,6 @@
     }
     function updatePtsRectsLabelsAreas()
     {
-        var x = dr.yVariations.x_start;
         var basN = dr.basesN;
         var baseBarsLefts = dr.basePts.baseBarsLefts;
         var insYar = dr.basePts.inscribedY;
@@ -194,9 +205,6 @@
    	        var width = dr.partitionWidths[i];
 	        updatesRect( dr.circRects.list[i], width, x, cirY, );
 	        updatesRect( dr.InscrRects.list[i], width, x, insY, );
-            if( insY-cirY <= 0 ) {
-                ccc( i, insY,cirY );
-            }
             updatesRect( dr.differenceRects.list[i], width, x, cirY,
                          insY-cirY );
             updatePts(i, x);
@@ -215,17 +223,6 @@
         //-----------------------------------------------------
         // \\// legend amounts
         //-----------------------------------------------------
-
-        //-----------------------------------------------------
-        // //\\ Do points update
-        //-----------------------------------------------------
-        //let insY = insYar[basN-1];
-        //let cirY = cirYar[basN-1];
-        //rg.e.pos[0] = rg.d.pos[0];
-        //rg.e.pos[1] = rg.d.pos[1] + insY - cirY;
-        //-----------------------------------------------------
-        // \\// Do points update
-        //-----------------------------------------------------
     }
 
     function normalizedStr( amt )
@@ -242,76 +239,85 @@
     /// framework points with L2/3 legacy
     /// code points (with rg[ name ].pos)
     ///======================================
-    function syncPoint( item ) {
+    function syncPoint( item )
+    {
+        var dv = dr.yVariations;
         var xoff = sconf.originX_onPicture;
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
         var cirYar = dr.basePts.circumscribedY;
         var insYar = dr.basePts.inscribedY;
         if( item.type === 'base' ) {
-            var iIx = item.index;
             let blist = dr.basePts.list;
+            var bN = dr.basesN;
+            var iIx = item.index;
+
             let insPy = -( insYar[iIx] - yoff ) / scale;
             var cirPy = -( cirYar[iIx] - yoff ) / scale;
-            let posAx = ( blist[0].x - xoff )  / scale;
-            let posBx = ( blist[1].x - xoff )  / scale;
-            let posCx = ( blist[2].x - xoff )  / scale;
-            let posDx = ( blist[3].x - xoff )  / scale;
-            let posEx = ( blist[4].x - xoff )  / scale;
+            let posAx = blist[0].x;
+            let posBx = blist[1].x;
+            let posCx = blist[2].x;
+            let posDx = blist[3].x;
+            let posEx = blist[4].x;
+
             switch( iIx ) {
             case 0 : var pname = 'A';
+                        var itemx = posAx;
                         var pnameFun = 'a'; //right on the curve
                         var pnameLow_ = 'K'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = posAx;
+                        rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
                         //rg[ pname ].pos[0];
                         rg[ pnameLow_ ].pos[1] = insPy;
 
                         var pnameLow_ = 'bk'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = posBx;
+                        rg[ pnameLow_ ].pos[0] = (posBx - xoff) / scale;
                         //rg[ 'B' ].pos[0];
                         rg[ pnameLow_ ].pos[1] = insPy;
 
                         var pnameTop_ = 'l'; //min of the interval
-                        rg[ pnameTop_ ].pos[0] = posBx;
+                        rg[ pnameTop_ ].pos[0] = (posBx - xoff) / scale;
                         rg[ pnameTop_ ].pos[1] = cirPy;
                      break;
             case 1 : var pname = 'B';
+                     var itemx = posBx;
                      ////optional names
                      var pnameFun = 'b'; //right on the curve
                      var pnameLow_ = 'L'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = posBx;
+                     rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
                      rg[ pnameLow_ ].pos[1] = insPy;
 
                     var pnameTop_ = 'm'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = posCx;
+                    rg[ pnameTop_ ].pos[0] = (posCx - xoff) / scale;
                     //rg[ 'C' ].pos[0];
                     rg[ pnameTop_ ].pos[1] = cirPy;
                     break;
             case 2 : var pname = 'C';
+                     var itemx = posCx;
                      ////optional names
                      var pnameFun = 'c';
                      var pnameLow_ = 'M'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = posCx;
+                     rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
                      rg[ pnameLow_ ].pos[1] = insPy;
 
                     var pnameTop_ = 'n'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = posDx;
+                    rg[ pnameTop_ ].pos[0] = (posDx - xoff) / scale;
                     rg[ pnameTop_ ].pos[1] = cirPy;
                     break;
             case 3 : var pname = 'D';
+                    var itemx = posDx;
                      ////optional names   
                      var pnameFun = 'd';
                     var pnameTop_ = 'o'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = posEx;
+                    rg[ pnameTop_ ].pos[0] = (posEx - xoff) / scale;
                     rg[ pnameTop_ ].pos[1] = cirPy;
                      var pnameLow_ = 'G'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = posDx;
+                     rg[ pnameLow_ ].pos[0] = (posDx - xoff) / scale;
                      rg[ pnameLow_ ].pos[1] = insPy;
                      
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
                      //--------------------------------------------
-                     rg.e.pos[0] = posDx;
+                     rg.e.pos[0] = (posDx - xoff) / scale;
                      rg.e.pos[1] = insPy;
                      //--------------------------------------------
                      // \\// making low boundary of difference-rect
@@ -319,10 +325,11 @@
                      break;
             case 4 :
                      var pname = 'E';
+                     var itemx = posEx;
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
                      //--------------------------------------------
-                     rg.p.pos[0] = posEx;
+                     rg.p.pos[0] = (itemx - xoff) / scale;
                      //this fails: bases are too low:
                      //( blist[4].y - yoff )  / scale;
                      //insPy;
@@ -334,11 +341,11 @@
             }
         }
         if( pname ) {
-            var iY = item.type === 'base' ? dr.yVariations.yRef : item.y;
+            var iY = item.type === 'base' ? dv.maxY : item.y;
             ////apparently convert from svg-space to model-space
             ////apparently program and numModel.curveFun made in svg-space and
             ////not in gemetrical-model-space;
-            rg[ pname ].pos[0] = (item.x - xoff) / scale;
+            rg[ pname ].pos[0] = (itemx - xoff) / scale;
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
 
             ////optional names
@@ -347,7 +354,7 @@
                     ////sets upper boundary of the bar
                     rg[ pnameFun ].pos[1] = cirPy;
                 } else {
-                    rg[ pnameFun ].pos[1] = -( numModel.curveFun( item.x ) - yoff ) / scale;
+                    rg[ pnameFun ].pos[1] = -( numModel.curveFun( itemx ) - yoff ) / scale;
                 }
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
             }
@@ -390,12 +397,17 @@
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
         rg.gG.undisplay = doset;
+
+        //:true is because of not in use in text
         rg.dM.undisplay = true; //doset;
-        rg.cL.undisplay = true; // doset;
+        rg.cL.undisplay = true; //doset;
+        rg["m,bk"].undisplay = true; // doset;
+        rg.nc.undisplay = true; //doset;
+        rg.od.undisplay = true; //doset;
 
         //some were missed in program
-        rg["K,bk"].undisplay = true; // doset;
-        rg["Kb"].undisplay = true;
+        rg["K,bk"].undisplay = doset;
+        rg["Kb"].undisplay = doset;
         //rg["dm"].undisplay = true;
         //rg["cd"].undisplay = true;
         //rg["lm"].undisplay = true;
@@ -412,9 +424,6 @@
         rg.n.undisplay = doset;
         rg.o.undisplay = doset;
         rg.la.undisplay = doset;
-        rg["m,bk"].undisplay = true; // doset;
-        rg.nc.undisplay = true; //doset;
-        rg.od.undisplay = true; //doset;
         //right sides:
         rg.lB.undisplay = doset;
         rg.mC.undisplay = doset;
@@ -430,21 +439,16 @@
         //yoff is equal to 0 in "numerical space" of "rg.point.pos"
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
-
-        rg.F.pos[1] = -( dr.yVariations.yRef - yoff ) / scale;
-        rg.E.pos[1] = -( dr.yVariations.yRef - yoff ) / scale;
+        let dv = dr.yVariations;
+        
+        rg.F.pos[1] = -( dv.maxY - yoff ) / scale;
+        rg.E.pos[1] = -( dv.maxY - yoff ) / scale;
         var { left, right, bottom, top, } = dr.widestRect;
         rg.f.pos[1] = -( top - yoff ) / scale;
-        if( dr.figureParams.deltaOnLeft ) {
-            rg.F.pos[0] = ( right - xoff ) / scale;
-            rg.f.pos[0] = ( right - xoff ) / scale;
-        } else {
-            rg.F.pos[0] = ( left - xoff ) / scale;
-            rg.f.pos[0] = ( left - xoff ) / scale;
-        }
+        rg.F.pos[0] = ( right - xoff ) / scale;
+        rg.f.pos[0] = ( right - xoff ) / scale;
         rg.g.pos[0] = rg.E.pos[0];
         rg.g.pos[1] = rg.G.pos[1];
-
         //--------------------------------------
         // //\\ majorant
         //--------------------------------------
@@ -461,6 +465,42 @@
         //--------------------------------------
         // \\// majorant
         //--------------------------------------
+        ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity();
+        //stdMod.swapMonotonity();
     }
+
+    //======================================
+    // //\\ manages visibility
+    //======================================
+    ///shows vis. for Labels, Points, Rects
+    ///only decorational and non-positional settings
+    ///fills visibility in items.list by value vis:
+    ///     in this range: items.visOffset <= ii && ii < items.visOffset+dr.basesN,
+    ///     the rest is filled with "hidden",
+    function setsVisibleRange( items, vis )
+    {
+        let list = items.list;
+        let len = list.length;
+        var end = Math.min( len, dr.basesN+items.offset);
+        let offset = items.visOffset;
+        for( ix=0; ix<len; ix++ ) {
+            let item = list[ix];
+            var visib = ( offset <= ix && ix < end && vis ) ? "visible" : "hidden";
+            ( item.dom || item ).style.visibility = visib; //vital line
+        }
+    }
+
+    function shows_rects()
+    {
+        var view = sdata.view;
+        setsVisibleRange(dr.InscrRects, view.isInscribed);
+        setsVisibleRange(dr.circRects, view.isCircumscribed);
+        setsVisibleRange(dr.differenceRects, view.isCircumscribed);
+    }
+    //======================================
+    // \\// manages visibility
+    //======================================
+    
+    
 }) ();
 

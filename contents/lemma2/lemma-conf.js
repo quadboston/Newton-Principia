@@ -28,6 +28,7 @@
                 {  src:"media-upcreate.js" },
                 {  src:"gui-update.js" },
                 {  src:"gui-update-widest.js" },
+                {  src:"gui-swap-monotonity.js" },
                 {  src:"event-handlers.js" },
                 {  src:"amode2captures.js" }
             ],

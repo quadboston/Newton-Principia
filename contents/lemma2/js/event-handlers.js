@@ -64,15 +64,7 @@
                 //no good: if($('.figur').is(':checked'))  {
                 var checked = document.getElementById('checkbox_4').checked;
                 sdata.view.isFigureChecked = checked;
-                if(checked)  {
-                    //$('.outline-cls').toggle();
-                    $$.qa( '.outline-cls' )().forEach( outlinee => {
-                        $$.$(outlinee).removeClass( 'xxxxhidden' );
-                        //outlinee.style.visibility =
-                        // 'visible'; //todm ... is this a right action?
-                    });
-                    //sDomN.figureInternalArea$.removeClass('hidden');
-                }else{
+                if(!checked)  {
                     let view = sdata.view;
                     let isFig = view.isFigureChecked;
                     let isIn = view.isInscribed;
@@ -82,10 +74,6 @@
                         sdata.view.isFigureChecked = true;
                         return;
                     }
-                    $$.qa( '.outline-cls' )().forEach( outlinee => {
-                        //outlinee.style.visibility = 'hidden';
-                        $$.$(outlinee).cls( 'xxxxhidden' );
-                    });
                 }
                 ssF.media_upcreate_generic();
             }

@@ -28,12 +28,11 @@
 
 // //\\ css /////////////////////////////////////////
 var ret = `
+   
 
-    
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/* _model.scss                    */
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* todm outdated? remove?_model.scss     */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
 
@@ -52,20 +51,15 @@ var ret = `
   fill: transparent;
   stroke-width: 2; }
 
-
-.flex {
-  display: flex !important; }
-
 .circumscribed {
   stroke: ${colorMain};
   fill: transparent;
   color: ${colorMain}; }
 
-
  /* apparently for letter-labels for lemma 2 */
- .circumscribed.label
+ .xxxxxcircumscribed.label
  {
-    fill: ${colorMain};
+    fill: red; /*${colorMain}; */
  }
 
 .inscribed {
@@ -102,16 +96,6 @@ svg text {
     font-weight :bold;
 }
 
-
-/* //\\ subapplication (lemma 2, 3 specific) fix;
-        removes hidden rects from topic engine
-*/
-/*
-.xxxinscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
-.xxxxcircumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
-    visibility:hidden;
-}
-*/
 /* \\//  subapplication (lemma 2, 3 specific) fix; */
 
 `;

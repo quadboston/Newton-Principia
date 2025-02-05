@@ -35,7 +35,17 @@
     function constructsCurve8Area()
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
-        $$.cNS( 'polyline' )
+        sDomN.curve_pre$ = $$.cNS( 'polyline' )
+            .aNS( 'class', "outline-cls polylineCurve_pre" )
+            .css( 'stroke', 'red' )
+            .to(svg)
+            ;
+        sDomN.curve_past$ =$$.cNS( 'polyline' )
+            .aNS( 'class', "outline-cls polylineCurve_past" )
+            .css( 'stroke', 'red' )
+            .to(svg)
+            ;
+        sDomN.curve_middle$ = $$.cNS( 'polyline' )
             .aNS( 'id', 'polylineCurve' )
             .aNS( 'class', "tp-figure tp-curve figure outline-cls tostroke" )
             .to(svg)
@@ -56,24 +66,6 @@
         //====================================================================
         // //\\ paints preliminary elements
         //====================================================================
-        /*
-        //creates some ellipse, what is it for?
-        $$.cNS( 'ellipse' )
-            .aNS( 'id', 'eloutline' )
-            .aNS( 'stroke', "#ff88ff" )
-            .aNS( 'stroke-opacity', "1" )
-            .aNS( 'stroke-width', "2px" )
-            .aNS( 'fill', "red" )
-            .aNS( 'fill-opacity', "1" )
-            .aNS( 'cx', "100" )
-            .aNS( 'cy', "100" )
-            .aNS( 'rx', "2" )
-            .aNS( 'ry', "2" )
-            .aNS( 'display', "none" )
-            .css( "position", "absolute" )
-            .to(svg)
-            ;
-        */
         //creates "shallow axis line"
         dr.baseAxis = $$.cNS( 'line' )
             .aNS( 'id', 'baseAxis' )
