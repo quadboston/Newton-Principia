@@ -52,10 +52,12 @@
 
         makes_rects( dr.InscrRects, "tp-inscribed-rectangles inscribed");
         makes_rects( dr.differenceRects, "tp-difference difference");
+        /*
         $$.$(dr.differenceRects.list[0]).addClass( 'tp-a--_k--b--l' );
         $$.$(dr.differenceRects.list[1]).addClass( 'tp-b--_l--c--m' );
         $$.$(dr.differenceRects.list[2]).addClass( 'tp-c--_m--d--n' );
         $$.$(dr.differenceRects.list[3]).addClass( 'tp-d--e--p--o' );
+        */
     }
     //listWrap can hold an empt arry
     //reserves "empty junk" and includes

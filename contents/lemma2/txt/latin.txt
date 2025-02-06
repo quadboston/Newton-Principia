@@ -5,12 +5,12 @@
 *..*
 
         Si in figura quavis ¦figure¦AacE¦¦
-        rectis ¦wall¦Aa¦¦, ¦base¦AE¦¦, &amp; ¦curve¦curva acE¦¦ comprehensa,
+        rectis ¦Aa¦¦, ¦base¦AE¦¦, &amp; ¦curve¦curva acE¦¦ comprehensa,
         inscribantur parallelogramma quotcunq; ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦,
         &amp;c. sub basibus ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, &amp;c. æqualibus,
 
         &amp; lateribus ¦Bb¦¦, ¦Cc¦¦, ¦Dd¦¦, &amp;c.
-        figuræ ¦wall¦lateri Aa¦¦ parallelis contenta;
+        figuræ ¦Aa¦lateri Aa¦¦ parallelis contenta;
         &amp; compleantur parallelogramma aKbl, bLcm, cMdn, &amp;c.
         Dein horum parallelogrammorum latitudo minuatur, &amp; numerus augeatur in infinitum:
 

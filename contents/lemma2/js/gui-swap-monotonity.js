@@ -7,11 +7,17 @@
         stdModExportList :
         {
             swapMonotonity,
+            setsDifferenceBarsMonotonity,
+            removeOutdatedClasses,
         },
     });
     var stdL2       = sn('stdL2', fapp );
     var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
+    var swap = [
+        [ 'tp-a--_k--b--l', 'tp-d--e--p--o' ],
+        [ 'tp-b--_l--c--m', 'tp-c--_m--d--n' ],
+    ];
     return;
 
 
@@ -51,6 +57,50 @@
                let newX = bl[ bN - ix ];
                rg[pt].pos[0] =  ( newX.x - xoff ) / scale;
             });
+        }
+    }
+
+
+    function removeOutdatedClasses()
+    {
+        let dv = dr.yVariations;
+        let dl = dr.differenceRects.list;
+        let bN = dr.basesN;
+        let dir = dv.chchosen.dir > 0;
+        for( var ii=0; ii<4; ii++ ) {
+            swap.forEach( sw => {
+                sw.forEach( sw2 => {
+                    
+                     //why this carefully made block misses cleanup?
+                     //dir && $$.$( dl[ii] ).removeClass( sw2 );
+                     //(!dir) && $$.$( dl[bN - 4 + ii] ).removeClass( sw2 );
+                    
+                     $$.$( dl[ii] ).removeClass( sw2 );
+                     $$.$( dl[bN - 4 + ii] ).removeClass( sw2 );
+                });
+            });
+        }
+    }
+    
+    function setsDifferenceBarsMonotonity()
+    {
+        removeOutdatedClasses();
+        
+        let dv = dr.yVariations;
+        let dl = dr.differenceRects.list;
+        var bN = dr.basesN;
+        let dir = dv.chchosen.dir > 0;
+        for( var ii=0; ii<2; ii++ ) {
+            let pair = swap[ii];
+            let direct1 = dir ? pair[0] : pair[1];
+            let direct2 = dir ? pair[1] : pair[0];
+            let low = dir ? ii : bN - 4 + ii;
+            let high = dir ? 4 - ii - 1 : bN-ii-1;
+            //$$.$( dl[low] ).removeClass( direct2 ).addClass( direct1 );
+            //$$.$( dl[high] ).removeClass( direct1 ).addClass( direct2 );
+
+            $$.$( dl[low] ).addClass( direct1 );
+            $$.$( dl[high] ).addClass( direct2 );
         }
     }
     

@@ -78,7 +78,7 @@
 
 
 
-
+    ///rather redigitizes model for curves and more
     function paints_curve8axes()
     {
         var curveFun = numModel.curveFun;
@@ -100,10 +100,6 @@
         //:paints axes
         //horizontal axis x
         xy2lineShape( dr.baseAxis, x_start, maxY, x_end, maxY );
-        //vertical axis x = x_start
-        xy2lineShape( dr.wallL, x_start, maxY, x_start, curveFun(x_start) );
-        //vertical axis x = x_end
-        xy2lineShape( dr.wallR, x_end, maxY, x_end, curveFun(x_end) );
         //=============================================
         // //\\ builds bottom part of curve area string
         //=============================================
@@ -138,6 +134,7 @@
             sDomN.curve_pre$.a( "points", pre_Rounded.join(" ") );
             sDomN.curve_past$.a( "points", past_Rounded.join(" ") );
         } else {
+            ////hides red branches
             sDomN.curve_pre$.a( "points", '' );
             sDomN.curve_past$.a( "points", '' );
         }
@@ -391,12 +388,16 @@
             if( !isFig && isIn && !isCir ) {
                 rg["a"].undisplay = true;
             }
+            if( isFig ) {
+                rg["Aa"].undisplay = false;
+            } else if( !isCir ) {
+                rg["Aa"].undisplay = true;
+            }
         }
         let doset = videoMode || !isIn;
         rg.K.undisplay = doset;
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
-        rg.gG.undisplay = doset;
 
         //:true is because of not in use in text
         rg.dM.undisplay = true; //doset;
@@ -416,7 +417,7 @@
         rg.LB.undisplay = doset;
         rg.MC.undisplay = doset;
         rg.GD.undisplay = doset;
-        rg.gE.undisplay = doset;
+        rg.gE.undisplay = true; //doset;
 
         doset = videoMode || !isCir;
         rg.l.undisplay = doset;
@@ -429,6 +430,14 @@
         rg.mC.undisplay = doset;
         rg.nD.undisplay = doset;
         rg.oE.undisplay = doset;
+
+        rg.gG.undisplay = true;
+        rg.g.undisplay = true;
+        rg.G.undisplay = true;
+        rg["m,bk"].undisplay = true;
+        rg["K,bk"].undisplay = true;
+        rg.gE.undisplay = true;
+        rg.GD.undisplay = true;
 
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
@@ -465,8 +474,8 @@
         //--------------------------------------
         // \\// majorant
         //--------------------------------------
+        stdMod.setsDifferenceBarsMonotonity();
         ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity();
-        //stdMod.swapMonotonity();
     }
 
     //======================================
