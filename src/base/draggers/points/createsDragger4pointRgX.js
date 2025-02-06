@@ -66,8 +66,10 @@
 
         // Move handler to the top of the svg so it never disappears when it is overlapped by other elements
         const svg = document.querySelector('svg.bsl--svgscene');
-        const handler = document.querySelector('.tp-_b-kernel')
-        svg.appendChild(handler); 
+        const handlers = document.querySelectorAll('circle[fill="white"]');
+        handlers.forEach((element) => {
+          svg.appendChild(element); 
+        });
     }
 
     //todo check note in buffer: slider
