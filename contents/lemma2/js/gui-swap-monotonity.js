@@ -36,7 +36,7 @@
         let bl = dr.basePts.list;
         var bN = dr.basesN;
         {
-            [ 'a', 'b', 'c', 'd', ].forEach( (pt,ix) => {
+            [ 'a', 'b', 'c', 'd', 'e' ].forEach( (pt,ix) => {
                let newX = bl[ bN - ix ];
                rg[pt].pos[0] =  ( newX.x - xoff ) / scale;
                rg[pt].pos[1] =  -( numModel.curveFun( newX.x ) - yoff ) / scale;
@@ -96,9 +96,6 @@
             let direct2 = dir ? pair[1] : pair[0];
             let low = dir ? ii : bN - 4 + ii;
             let high = dir ? 4 - ii - 1 : bN-ii-1;
-            //$$.$( dl[low] ).removeClass( direct2 ).addClass( direct1 );
-            //$$.$( dl[high] ).removeClass( direct1 ).addClass( direct2 );
-
             $$.$( dl[low] ).addClass( direct1 );
             $$.$( dl[high] ).addClass( direct2 );
         }

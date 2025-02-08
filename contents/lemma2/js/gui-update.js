@@ -266,11 +266,6 @@
                         //rg[ pname ].pos[0];
                         rg[ pnameLow_ ].pos[1] = insPy;
 
-                        var pnameLow_ = 'bk'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = (posBx - xoff) / scale;
-                        //rg[ 'B' ].pos[0];
-                        rg[ pnameLow_ ].pos[1] = insPy;
-
                         var pnameTop_ = 'l'; //min of the interval
                         rg[ pnameTop_ ].pos[0] = (posBx - xoff) / scale;
                         rg[ pnameTop_ ].pos[1] = cirPy;
@@ -307,9 +302,9 @@
                     var pnameTop_ = 'o'; //min of the interval
                     rg[ pnameTop_ ].pos[0] = (posEx - xoff) / scale;
                     rg[ pnameTop_ ].pos[1] = cirPy;
-                     var pnameLow_ = 'G'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = (posDx - xoff) / scale;
-                     rg[ pnameLow_ ].pos[1] = insPy;
+                     //var pnameLow_ = 'G'; //min of the interval
+                     //rg[ pnameLow_ ].pos[0] = (posDx - xoff) / scale;
+                     //rg[ pnameLow_ ].pos[1] = insPy;
                      
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
@@ -326,11 +321,11 @@
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
                      //--------------------------------------------
-                     rg.p.pos[0] = (itemx - xoff) / scale;
+                     ////rg.p.pos[0] = (itemx - xoff) / scale;
                      //this fails: bases are too low:
                      //( blist[4].y - yoff )  / scale;
                      //insPy;
-                     rg.p.pos[1] = rg.e.pos[1];
+                     ////rg.p.pos[1] = rg.e.pos[1];
                      //--------------------------------------------
                      // \\// making low boundary of difference-rect
                      //--------------------------------------------
@@ -369,12 +364,7 @@
         {
             let s = videoMode || onlyFig;
             [ 'a', 'b', 'c', 'd', 
-
-                    //not mentioned points in text,
-                    //so hard to spot in code,
-                    'p', 'e', 
-  
-                    'A', 'B', 'C', 'D', 'E',
+              'A', 'B', 'C', 'D', 'E',
             ].forEach( function( l ) {
                     rg[ l ].undisplay = s;
                     rg[ l ].doPaintPname = !s;
@@ -399,31 +389,13 @@
         rg.L.undisplay = doset;
         rg.M.undisplay = doset;
 
-        //:true is because of not in use in text
-        rg.dM.undisplay = true; //doset;
-        rg.cL.undisplay = true; //doset;
-        rg["m,bk"].undisplay = true; // doset;
-        rg.nc.undisplay = true; //doset;
-        rg.od.undisplay = true; //doset;
-
         //some were missed in program
-        rg["K,bk"].undisplay = doset;
         rg["Kb"].undisplay = doset;
-        //rg["dm"].undisplay = true;
-        //rg["cd"].undisplay = true;
-        //rg["lm"].undisplay = true;
-
         rg.AK.undisplay = doset;
         rg.LB.undisplay = doset;
         rg.MC.undisplay = doset;
-        rg.GD.undisplay = doset;
-        rg.gE.undisplay = true; //doset;
 
         doset = videoMode || !isCir;
-        rg.l.undisplay = doset;
-        rg.m.undisplay = doset;
-        rg.n.undisplay = doset;
-        rg.o.undisplay = doset;
         rg.la.undisplay = doset;
         //right sides:
         rg.lB.undisplay = doset;
@@ -431,13 +403,18 @@
         rg.nD.undisplay = doset;
         rg.oE.undisplay = doset;
 
-        rg.gG.undisplay = true;
-        rg.g.undisplay = true;
-        rg.G.undisplay = true;
-        rg["m,bk"].undisplay = true;
-        rg["K,bk"].undisplay = true;
-        rg.gE.undisplay = true;
-        rg.GD.undisplay = true;
+        rg.l.undisplay = doset;
+        rg.m.undisplay = doset;
+        rg.n.undisplay = doset;
+        rg.o.undisplay = doset;
+
+        //:true is because of not in use in text
+        rg.e.undisplay = true;
+        rg.dM.undisplay = true;
+        rg.cL.undisplay = true;
+        rg.nc.undisplay = true;
+        rg.od.undisplay = true;
+        
 
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
@@ -456,8 +433,6 @@
         rg.f.pos[1] = -( top - yoff ) / scale;
         rg.F.pos[0] = ( right - xoff ) / scale;
         rg.f.pos[0] = ( right - xoff ) / scale;
-        rg.g.pos[0] = rg.E.pos[0];
-        rg.g.pos[1] = rg.G.pos[1];
         //--------------------------------------
         // //\\ majorant
         //--------------------------------------

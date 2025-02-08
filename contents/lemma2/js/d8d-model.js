@@ -50,9 +50,6 @@
         {
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
-            //prevents jerking when non-monotonity is encountered
-            cPW.lastMove = [0,0];
-
             ///apparently, d8dp.crePointFW_BSLd8d1CHAMBER does this
             //if( !rg.detected_user_interaction_effect_DONE ) {
                 //sDomF.detected_user_interaction_effect();
@@ -133,7 +130,6 @@
                     move2js( pw, arg.surfMove, pw.achieved );
                     // recent framework
                     ssF.media_upcreate_generic();
-                    pw.lastMove = [ arg.surfMove[0], arg.surfMove[1] ];
                 }
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
                 stdMod.model8media_upcreate();
@@ -198,18 +194,21 @@
         //======================================
         // //\\ event to js
         //======================================
-        function move2js( pointWrap,move, ach )
+        function move2js( pointWrap, move, ach )
         {
+            let scale = sDomF.out2inn();
+            let move0 = move[0]*scale;
+            let move1 = move[1]*scale;
             var item = pointWrap;
             let pw = item;
             var index = item.index;
             if ( "ctrl" === item.type ) {
-                item.x = ach.achieved.x + move[0];
-                item.y = ach.achieved.y + move[1];
+                item.x = ach.achieved.x + move0;
+                item.y = ach.achieved.y + move1;
 	            appstate.movingBasePt = false;
 
             } else if( index > 0 && index < dr.basesN ) {
-	            var newX = ach.achieved.x + move[0];
+	            var newX = ach.achieved.x + move0;
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
                 var lst         = dr.basePts.list;

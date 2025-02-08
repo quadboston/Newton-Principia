@@ -159,9 +159,18 @@
             ctrlPtXYs_js    :
             [
                 {x:modorInPicX,             y: modorInPicY},
-                {x:85,          y: 51.5},
-                {x:139,         y: 89.0},
-                {x:193,         y: 148.5 },
+                
+                //four middle handles:
+                {x: 74.8, y: 45.97726888798351},
+                {x: 118.1, y: 72.70148453700233},
+                {x: 161.4, y: 109.92474464283467},
+                {x: 204.7, y: 166.52378909964816},
+                
+                //three middle handles
+                //{x:85,          y: 51.5},
+                //{x:139,         y: 89.0},
+                //{x:193,         y: 148.5 },
+
                 {x:248,         y: 259.5 }
             ],
 
@@ -273,15 +282,6 @@
             },
 
             //invizible point
-            bk : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 30,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-
             c : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -293,22 +293,6 @@
                 letterAngle : 45,
                 initialR    : 3,
             },
-
-            g : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-            G : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             m : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -333,22 +317,6 @@
                 initialR    : 3,
                 hideCaption  : true,
             },
-
-            p : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                hideCaption  : true,
-            },
-
-            /*
-            baseSlider : {
-                pos         : [0,0.1],
-                pcolor      : [255,0,0],
-                letterAngle : 90,
-                draggableX  : true,
-            },
-            */
         };
 
         //AB, BC, CD
@@ -387,31 +355,13 @@
                         pcolor : predT.given,
                    },
             },
-            { GD : {
-                        pcolor : predT.given,
-                   },
-            },
-            { gE : {
-                        pcolor : predT.given,
-                   },
-            },
-
             // //\\ top rect sides
             //lower
-            { "K,bk" : {
-                        pcolor : predT.given,
-                        //undisplayAlways : true,
-                   },
-            },
             { cL : {
                         pcolor : predT.given,
                    },
             },
             { dM : {
-                        pcolor : predT.given,
-                   },
-            },
-            { gG : {
                         pcolor : predT.given,
                    },
             },
@@ -436,10 +386,6 @@
 
             //upper
             { od : {
-                        pcolor : predT.given,
-                   },
-            },
-            { "m,bk" : {
                         pcolor : predT.given,
                    },
             },
@@ -479,11 +425,6 @@
             },
 
         ];
-
-
-        //rects predT.difference
-
-
 
         nspaste( sconf, {
             predefinedTopics : predT,

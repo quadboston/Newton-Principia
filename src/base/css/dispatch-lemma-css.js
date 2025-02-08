@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, cssp, userOptions, engCssMs,
+        ns, sn, cssp, engCssMs,
         fconf,
     } = window.b$l.apptree({
     });
