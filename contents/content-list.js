@@ -23,7 +23,7 @@
 
         {   sappId : 'lemma2',
             book : 'Book 1',
-            caption : 'Sec. 1, Lemma 2. Selected interval. Draft.',
+            caption : 'Sec. 1, Lemma 2.',
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
 

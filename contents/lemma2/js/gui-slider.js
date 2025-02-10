@@ -56,6 +56,7 @@
         showBasesNumberInGui( sliderOutput, baseLabel );
 
         slider.oninput = function() {
+            stdMod.removeOutdatedClasses();
             appstate.movingBasePt = false; // better way?
 	        var newBases = interpretSlider( this.value );
             //dr.basesN === basesAmount

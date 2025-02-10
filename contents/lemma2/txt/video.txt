@@ -11,7 +11,7 @@
         <script src="https://player.vimeo.com/api/player.js"></script>
 
         <br>
-        Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦wall¦side¦¦.
+        Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦Aa¦side¦¦.
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
         for ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
         If we increase the number of these rectangles indefinitely,

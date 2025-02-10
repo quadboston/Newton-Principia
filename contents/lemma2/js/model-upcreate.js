@@ -119,7 +119,8 @@
         for(let ch=0; ch<changes.length; ch++ ) {
             let change = changes[ ch ];
             let widthx = changes[ ch ].widthx;
-            if( change.dir > 0 && gapXMax < widthx ) {
+            //if( change.dir > 0 && gapXMax < widthx ) {
+            if( gapXMax < widthx ) {
                 ////well, bigger gap is found
                 gapXMax = widthx;
                 gapX_ix = ch;

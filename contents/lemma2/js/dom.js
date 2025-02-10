@@ -36,26 +36,24 @@
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         sDomN.curve_pre$ = $$.cNS( 'polyline' )
-            .aNS( 'class', "outline-cls polylineCurve_pre" )
+            .aNS( 'class', "outline-cls" )
             .css( 'stroke', 'red' )
             .to(svg)
             ;
         sDomN.curve_past$ =$$.cNS( 'polyline' )
-            .aNS( 'class', "outline-cls polylineCurve_past" )
+            .aNS( 'class', "outline-cls" )
             .css( 'stroke', 'red' )
             .to(svg)
             ;
         sDomN.curve_middle$ = $$.cNS( 'polyline' )
-            .aNS( 'id', 'polylineCurve' )
             .aNS( 'class', "tp-figure tp-curve figure outline-cls tostroke" )
             .to(svg)
             ;
         sDomN.figureInternalArea$ = $$.cNS( 'polyline' )
-            .aNS( 'id', 'figureInternalArea' )
             .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
             .to(svg)
             ;
-        dr.figureInternalArea = document.getElementById( 'figureInternalArea' );
+        dr.figureInternalArea = sDomN.figureInternalArea$();
     }
 
 
@@ -68,21 +66,7 @@
         //====================================================================
         //creates "shallow axis line"
         dr.baseAxis = $$.cNS( 'line' )
-            .aNS( 'id', 'baseAxis' )
             .aNS( 'class', "tp-figure tp-base figure outline-cls tostroke" )
-            .to(svg)
-            ();
-
-        //creates "shallow wallL line"
-        dr.wallL = $$.cNS( 'line' )
-            .aNS( 'id', 'wallL' )
-            .aNS( 'class', "tp-figure tp-wall figure outline-cls tostroke" )
-            .to(svg)
-            ();
-
-        dr.wallR = $$.cNS( 'line' )
-            .aNS( 'id', 'wallR' )
-            .aNS( 'class', "tp-figure figure outline-cls tostroke" )
             .to(svg)
             ();
         //====================================================================

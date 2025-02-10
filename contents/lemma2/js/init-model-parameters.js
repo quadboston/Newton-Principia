@@ -2,7 +2,7 @@
 
 (function() {
     var {
-        sn, eachprop, haff,
+        sn, eachprop, haff, numModel,
         fapp, sapp, ssF, sDomF,
         studyModsActivated, stdMod,
     } = window.b$l.apptree({
@@ -15,8 +15,9 @@
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
-    var guicon      = sn('guiConstruct', gui );
     var dr          = sn('datareg', stdL2 );
+    var numModel    = sn('numModel', stdL2 );
+    var guicon      = sn('guiConstruct', gui );
     return;
 
 
@@ -38,7 +39,7 @@
     {
         // dom z-order patch
         haff( ssF, 'continue_create_8_prepopulate_svg' );
-
+        
         //----------------------------------------------
         // //\\ fits lemma to modern framework
         // //\\ trick
@@ -71,6 +72,20 @@
         
         //sets their positions:
         guicon.constructsControlPoints();
+        /*
+         * //remove when approved
+        {
+            let newY = [];
+            let a = sconf.ctrlPtXYs_js;
+            sconf.ctrlPtXYs_js.forEach( (item,ix) => {
+                if( ix===0 || ix===4 ) return;
+                let x = a[0].x + ix*(a[a.length-1].x- a[0].x)/5
+                let y = numModel.curveFun( x ); 
+            });
+            let x = a[0].x + 4*(a[a.length-1].x- a[0].x)/5
+            let y = numModel.curveFun( x ); 
+        }
+        */
         //now, this call does "r efreshSVG_master"
         stdMod.model_upcreate();
         ssF.media_upcreate_generic(); //vital, perhaps for synch

@@ -38,12 +38,12 @@
 *..*
 
 COROLLARY 1. Hence the ultimate sum of
-the vanishing parallelograms coincides with the curvilinear ¦figure¦AacE¦¦ in its every
+the vanishing parallelograms coincides with the curvilinear ¦figure Aa¦AacE¦¦ in its every
 part.
 <br><br>
 
 COROLLARY 2. And, all the more, the rectilinear figure that is comprehended 
-by the chords of the vanishing arcs ab, bc, cd, ... coincides ultimately with the curvilinear ¦figure¦AacE¦¦.
+by the chords of the vanishing arcs ab, bc, cd, ... coincides ultimately with the curvilinear ¦figure Aa¦AacE¦¦.
 <br><br>
 
 COROLLARY 3. And it is the same for the circumscribed rectilinear figure
