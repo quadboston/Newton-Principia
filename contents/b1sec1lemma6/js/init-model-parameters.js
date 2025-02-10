@@ -84,16 +84,15 @@
                     amode.subessay === 'sine derivative' ||
                     amode.subessay === 'vector-derivative'
                 ) {
-                    if( fullAngle < -0.2 ) {
+                    if( fullAngle < -0.3 ) {
                         ///this is lowest allowed L-position on the screen
                         ////otherwise, function y(x) is not well-defined
-                        fullAngle = -0.2;
+                        fullAngle = -0.3;
                     }
                 } else {
-                    //if( fullAngle < -0.5 ) {
-                    if( fullAngle < -0.15 ) {
+                    if( fullAngle < rg.AB.angle ) {
                         ///this is lowest allowed L-position on the screen
-                        fullAngle = -0.15;
+                        fullAngle = rg.AB.angle;
                     }
                 }
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
