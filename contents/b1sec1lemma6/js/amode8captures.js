@@ -222,7 +222,7 @@
       }
       //ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
       ns.paste(rg.curveEnd.pos, [ssD.curveEndInitialPos[0], 0]);
-      ["curve-AB", "left-curve-AB", "arc-AB", "AD", "D", "C"].forEach(
+      ["curve-AB", "left-curve-AB", "arc-AB", "AD", "D", "C", "AM"].forEach(
         (gname) => {
           rg[gname].undisplay = false;
         }
