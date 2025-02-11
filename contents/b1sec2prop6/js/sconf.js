@@ -135,6 +135,8 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
+        var estimatedForce = [200,0,200];
+        var sagitta = estimatedForce;
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
         var result  = [200,150,0,1];
@@ -152,6 +154,7 @@
         var chord = [0,0,255, 1];
         var predefinedTopics =
         {
+            estimatedForce,
             given,
             proof,
             result,
@@ -166,7 +169,7 @@
             timearc : proof,
             APQ     : given,
             force   : result,
-            sagitta : chord,
+            sagitta,
             chord,
         };
         //-----------------------------------
@@ -310,7 +313,7 @@
             sagitta : {
                 caption : 'I',
                 //pos: Q,
-                pcolor : proof,
+                pcolor : sagitta,
                 letterAngle : 270,
                 letterRotRadius : 35,
                 //initial setting does not work well bs poor code design
@@ -381,7 +384,7 @@
             { 'PC' : { pcolor : curvature }, },
             { 'Q,rrminus' : { pcolor : proof }, },
             { 'P,rrminus' : { pcolor : proof }, },
-            { 'P,sagitta' : { pcolor : proof, vectorTipIx : 1 } },
+            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
