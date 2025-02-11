@@ -39,7 +39,7 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-                sDomF.getFixedColor( 'proof' ), //sagitta
+                sDomF.getFixedColor( 'estimatedForce' ), //sagitta
                 sDomF.getFixedColor( 'context' ),
                 sDomF.getFixedColor( 'body' ),
             ];

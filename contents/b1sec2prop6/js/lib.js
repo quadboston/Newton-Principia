@@ -29,7 +29,7 @@
     {
         var bonus = userOptions.showingBonusFeatures();
         const DDD = 1e-5; 
-        var NON_SOLVABLE_THRESHOLD = 0.01;
+        var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
         var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
         //make program simpler than planeCurveDerivatives,

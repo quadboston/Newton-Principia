@@ -7,17 +7,22 @@
 }
 *..*
 
-
-⦁ Addendums contain logical extensions and logical context which is inspired by Principia. These do not pretend to be comments and interpretations. They are tried to be self contained.
+⦁ In this Appendix, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
 <br><br>
 
-⦁ Reader should build addendums relationship to Principia by the work of own thought when returning to Principia total content. However doing so may helps to understand what Newton really meant without relying heavily on translation of words.
+⦁ We provide them "as they are from their inner logic" and do not do any preferences between times hundred or thousand years before and modern times approach. Every time is equal, difference is only in logic. We do not assume today we know more or less.
 <br><br>
 
-⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it CalculusXIX.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadratures in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
+⦁ When these alternative logical constructs developed enough, the readers can themselves apply them to the Book and may conclude what Newton or Euclid really meant without relying on translation and words too much.
 <br><br>
 
-By the way, Books context feels as an extension of Geomtry, like adding three axioms (force laws) to the Geometry. The same way as reaxiomatizing Geometry in General Relativiy. What a coincidence.
+⦁ We do not do any claims these facts are known to Newton or Euclid. We do not insist on what Newton or Euclid intended to say. This may be discussed in Addendums under original Lemma or Proposition. 
+<br><br>
+
+⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum occasionally may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it CalculusXIX.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadrature in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
+<br><br>
+
+By the way, Book's context feels as an extension of Geomtry, like adding three axioms (force laws) to the Geometry. The same way as reaxiomatizing Geometry in General Relativiy. What a coincidence.
 <br><br>
 
 Addendum may also include anything interesting like programming details or problems related to the Book.

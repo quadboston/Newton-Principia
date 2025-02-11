@@ -3,7 +3,7 @@
     var {
         sn,
         $$,
-        ssF,
+        ssF, ssD,
         sDomN,
         sData,
         stdMod,
@@ -28,7 +28,8 @@
         noTopicScenario,
             scenarioEventOnClick,   //aka 'graph-is-plotted'
     }){
-        var butt = sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
+        var butt = ssD.lastPopupButton =
+            sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
             .addClass( buttonUniversalId )
             .csst( cssText )
             .to( sDomN.simSScene$ )

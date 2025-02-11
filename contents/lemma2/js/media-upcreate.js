@@ -1,7 +1,7 @@
 ( function () {
     var {
         sn, haz,
-        fapp,
+        fapp, ssD,
         sapp, sDomN,
         amode, SUB_MODEL, stdMod,
     } = window.b$l.apptree({
@@ -59,6 +59,12 @@
             onCurve:true,
             onBase:true,
         });
+
+        if( dr.yVariations.changes.length > 1 ) {
+            ssD.lastPopupButton.dom$.css( 'display', 'block' );
+        } else {
+            ssD.lastPopupButton.dom$.css( 'display', 'none' );
+        }
     }
     //======================================
     // \\// view top-manager

@@ -152,7 +152,6 @@
         //ini ssF, so thet skip this block
         if( ns.h( stdMod, 'create_digital_legend' ) ) {
             var tlegend = ns.haz( rg[ 'main-legend' ], amode.theorion );
-            ccc( 'stdMod.cr_dig_leg' );
             if( ns.h( stdMod, 'upcreate_mainLegend' ) ){
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:

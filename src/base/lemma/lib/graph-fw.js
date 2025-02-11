@@ -243,6 +243,10 @@
             drawDecimalX,
             printAxisXDigits,
             printAxisYDigits,
+            xMin,
+            xMax,
+            yMin,
+            yMax,
         }){
             drawDecimalY = typeof drawDecimalY === 'undefined' ? true : drawDecimalY;
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
@@ -304,6 +308,10 @@
                     numberMarks : true, 
                 },
                 brightenGrid : 0.3,
+                xMin,
+                xMax,
+                yMin,
+                yMax,
             });
             graphFW__self.fw.gmedia$.addClass( 'ph-graph' );
             //==================================================
