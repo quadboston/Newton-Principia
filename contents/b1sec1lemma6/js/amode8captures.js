@@ -606,6 +606,8 @@
         rg.B.hideD8Dpoint = false;
         rg.R.hideD8Dpoint = true;
       }
+
+      rg['AM'].undisplay = false;
     }
     //*****************************************************************************
     // \\// lemma 8
