@@ -437,6 +437,8 @@
 
           "AL",
           "L",
+
+          "AM"
         ].forEach((gname) => {
           rg[gname].undisplay = false;
         });
@@ -504,6 +506,8 @@
           rg.L.hideD8Dpoint = false;
         }
       }
+
+      rg['AM'].undisplay = false;
     }
     //*****************************************************************************
     // \\// lemma 7
