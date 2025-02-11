@@ -76,11 +76,11 @@
 
 *::*corollary|model
 {
-  "menuCaption" : "Addendum"
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Euclid-framework",
+  "subessay" : "cor-euc"
 }
 *..*
-
-<b>In <a href="&#63;conf=sappId=addd-fw#Eframework">Euclid-framework</a>:</b><br><br>
 
 Corollary 1. Consider component <b>v</b><sub>⟂</sub> of speed ¦Bc¦<b>v</b>¦¦,
 where <b>v</b><sub>⟂</sub> is orthogonal to acting ¦BV¦centripetal force¦¦.
@@ -99,13 +99,18 @@ Adding <b>f</b><sub>⟂</sub> in different direction decreases
 the height of ¦SBC¦triangle SBC¦¦ and decreases area speed.
 <br><br><br><br>
 
+<b><a target="_blank" href="&#63;conf=sappId=addd-fw#Cframework">≺α≻</a></b><br><br>
 
 
+*::*corollary|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Vector Calculus framework",
+  "subessay" : "cor-calc"
+}
+*..*
 
 
-
-<b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
 Corollary 1.
     <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#corollary-1">
     <b>S˙˙</b><sub>z</sub> ⇈ <b>S˙</b><sub>z</sub> ⇔
@@ -121,10 +126,10 @@ Corollary 2.
     </a>
 <br><br>
 
+<img src="contents/b1sec2prop2/img/lemma-theoremII-corollary1.jpg" style="width:100%">
 
-
-
-
+<b><a target="_blank" href="&#63;conf=sappId=addd-fw#Cframework">≺α≻</a></b><br><br>
+<!-- ἀξίωμα (axíōma) -->
 
 *::*scholium|model
 {

@@ -62,6 +62,7 @@
                 xMax,
                 yMin,
                 yMax,
+                //yRangeFromAverageY //todm a flage to set meaningful y-max,
 
                 xRangeFilter,   //optional, restricts data arrays: ignores abscissas out of
                                 //prescribed range

@@ -49,8 +49,8 @@
             .css( 'position', 'absolute' )
             .a( 'src',
                 fconf.pathToContentSite +
-                //'/contents/' + fconf.sappId + '/img/' + 'red-pipe.png'
-                '/contents/b1s2proptheor2/img/lemma-theoremII-corollary1.jpg'
+                '/contents/' + fconf.sappId + '/img/lemma-theoremII-corollary1.jpg'
+                //'/contents/b1sec2prop2/img/lemma-theoremII-corollary1.jpg'
             )
             .to( sDomN.commonAnimRoot$ )
             ;
