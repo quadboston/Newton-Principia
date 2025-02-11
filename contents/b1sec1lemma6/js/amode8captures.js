@@ -507,7 +507,9 @@
         }
       }
 
-      rg['AM'].undisplay = false;
+      ['AM', 'left-curve-AB'].forEach((gname) => {
+        rg[gname].undisplay = false;
+      })
     }
     //*****************************************************************************
     // \\// lemma 7
@@ -607,7 +609,9 @@
         rg.R.hideD8Dpoint = true;
       }
 
-      rg['AM'].undisplay = false;
+      ['AM', 'left-curve-AB'].forEach((gname) => {
+        rg[gname].undisplay = false;
+      })
     }
     //*****************************************************************************
     // \\// lemma 8
