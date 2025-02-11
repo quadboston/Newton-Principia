@@ -241,15 +241,6 @@
         ["AL", "Ad", "L"].forEach((gname) => {
           rg[gname].undisplay = false;
         });
-        ///hides differential tangent row in data table
-        globalCss.update(
-          `
-                    .main-legend.proof tr:nth-child(4)
-                    {
-                        display : none;
-                    }`,
-          "table-patch"
-        );
       }
 
       if (
@@ -268,16 +259,6 @@
           rg.L.undisplay = false;
           rg.L.hideCaption = false;
           rg.L.doPaintPname = true;
-
-          ///shows differential tangent row in data table
-          globalCss.update(
-            `
-                        .main-legend.proof tr:nth-child(4)
-                        {
-                            display : table-row;
-                        }`,
-            "table-patch"
-          );
         } else {
           rg.L.undisplay = true;
           rg.L.hideCaption = true;
@@ -295,6 +276,18 @@
           }
           
           .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5)
+          {
+            text-align: left;
+          }
+
+          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(2),
+          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(3),
+          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(4)
+          {
+            display: none;
+          }
+          
+          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5)
           {
             text-align: left;
           }
