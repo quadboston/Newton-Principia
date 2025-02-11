@@ -55,7 +55,6 @@
     /// Output: adds pivots-media-positions to line
     function pointies2line( pName, pivots, lineAttr, stdMod )
     {
-      console.debug(':::::', pName, pivots, lineAttr, stdMod )
         stdMod          = stdMod || studyMods[ amode.submodel ];
         var toreg       = stdMod.toreg;
         var rg          = stdMod.rg;

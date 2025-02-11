@@ -294,11 +294,14 @@
                 pcolor      : given,
             },
 
+            curveStart  : {
+                pos : [ A[0]-80, 0 ],
+            },
             curveEnd : {
                 pos : [B[0]+50,0],
             },
-            curveStart  : {
-                pos : [ A[0]-80, 0 ],
+            curveLeftEnd : {
+                pos : [250,100],
             },
 
             //lemma 7, coroll 1
