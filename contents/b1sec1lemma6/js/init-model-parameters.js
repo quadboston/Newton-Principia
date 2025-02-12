@@ -142,13 +142,15 @@
 
                 ////implements team agreed feature of preventing point B
                 ////entering area above line AL for core essays
+                const angleBAM = mat.angleBetweenLines([
+                  [rg.A.pos, cpos ],
+                  [rg.A.pos, rg.L.pos],
+                ]).angle
+                
                 if( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
                     ( !(amode.aspect === 'model') && amode.theorion === 'proof' ) && 
-                    mat.angleBetweenLines([
-                        [rg.A.pos, cpos ],
-                        [rg.A.pos, rg.L.pos],
-                    ]).angle < 0
+                    (angleBAM < 0 || cpos[1] > -0.01)
                 ){
                     adjust_new_unrotatedParameterX_asNeccesary();
                     sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
