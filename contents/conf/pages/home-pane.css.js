@@ -83,6 +83,12 @@
       .landing-title span {
         font-style: italic; }
 
+    @media only screen and (min-width: 1100px) {
+        .landing-title {
+            margin-left: 150px;
+        }
+    }
+
     .landing-subtitle {
       font-family: "essonnes-display", 'Garamond','Times', serif;
       font-size: 25px;
@@ -125,6 +131,14 @@
       top: 0px;
       z-index: -1;
       right: 96px; }
+
+      @media only screen and (min-width: 1100px) {
+        .newton-img {
+            right: auto;
+            left: 30px;
+            height: 156px;
+        }
+      }
     /*====================================================== 
        \\\\// home-page header
       ======================================================*/
@@ -139,6 +153,19 @@
           grid-area: lemmas;
           padding: 80px 0;
           padding-top: 80px;
+        }
+
+        @media only screen and (min-width: 1100px) {
+            .landing-table-of-contents {
+                position: absolute;
+                width: 40%;
+                height: 438px;
+                top: 20px;
+                right: 0;
+            }
+            .landing-table-of-contents #model-list {
+                display: none;
+            }
         }
 
       .landing-table-of-contents .content-book-title,
@@ -160,6 +187,11 @@
         font-family: 'Helvetica', sans-serif;
         font-size: 14px;
         font-weight: 300; }
+        
+        .landing-table-of-contents .column {
+            width: 50%;
+            display: inline-block;
+        }
 
         `;
         

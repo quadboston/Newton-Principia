@@ -37,7 +37,7 @@
                     <p class="sub-title">${fconf.appDecor.homePageSubtitle}</p>
                 </div>
             </div>
-            <img class="newton-img"
+            <img class="newton-img" alt="portrait of Newton"
                  src="${subsiteImg}/${fconf.appDecor.landingImage}">
             `);
         }
@@ -72,42 +72,42 @@
                     <div class="how-to__cell">
                         <p>Hover over labels to highlight corresponding items in the diagram</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/hilight.gif">
+                            <img src="${subsiteImg}/hilight.gif" alt="label highlight">
                         </div>
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
                         <p>Drag hollow points to manipulate the models</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/manipulate.gif">
+                            <img src="${subsiteImg}/manipulate.gif" alt="manipulate points">
                         </div>
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
                         <p>Step through complicated proofs step-by-step</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/steps.gif">
+                            <img src="${subsiteImg}/steps.gif" alt="step through">
                         </div>
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
                         <p>View qualitative data as you manipulate the models</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/data.gif">
+                            <img src="${subsiteImg}/data.gif" alt="qualitative data">
                         </div>
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
                         <p>Switch horizontal tabs to focus on only what is needed for a claim, proof, or corollary</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/horiz-tabs.gif">
+                            <img src="${subsiteImg}/horiz-tabs.gif" alt="horizontal tabs">
                         </div>
                     </div><!--END cell-->
 
                     <div class="how-to__cell">
                         <p>Switch vertical tabs to watch an explanation, or to read the original text</p>
                         <div class="how-to__cell__image">
-                            <img src="${subsiteImg}/vert-tabs.gif">
+                            <img src="${subsiteImg}/vert-tabs.gif" alt="vertical tabs">
                         </div>
                     </div><!--END cell-->
 
@@ -129,11 +129,11 @@
                 <h2>Options</h2>
                 <div>
                     <p class="option__text">      
-                        <input type="checkbox" id="latinCheckbox"> 
+                        <input type="checkbox" id="latinCheckbox" aria-label="latin"> 
                             Latin tabs (in progress)<br>
-                        <input type="checkbox" id="fadeCheckbox"> 
+                        <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
                             overlay original diagrams<br>
-                        <input type="checkbox" id="bonusCheckbox"> 
+                        <input type="checkbox" id="bonusCheckbox" aria-label="bonus"> 
                             addendums and additional interpetations by Konstantin Krillov 
                     </p>
                 </div>`;
@@ -274,7 +274,7 @@ Occasionally a mix of both translations are used.
                 book = sappItem.book;
                 let cls = sappItem.annotation === userOptions.BONUS_START ?
                          ' class="' + userOptions.BONUS_START + '"' : '';
-                coreText += '<div' + cls  + `><ul>`;
+                coreText += '<div class="column"><div' + cls  + `><ul>`;
                 ////add title "Book ... " when list switches to the next book ...
                 coreText += `
                     <li><div class="content-book-title">
@@ -291,9 +291,11 @@ Occasionally a mix of both translations are used.
                 </li>`;
             if (sappItem.annotation === userOptions.BONUS_END) {
                 coreText += `</ul></div>`;
+            } else if (sappItem.sappId === "b1sec2prop9") {
+                coreText += `</ul></div></div><div class="column"><div><ul>`;
             }
         });
-        coreText += '\n</ul></div>';
+        coreText += '\n</ul></div></div>';
         return coreText;
     }
 }) ();
