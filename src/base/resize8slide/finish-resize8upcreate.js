@@ -135,7 +135,7 @@
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
             legendHeight += 20; //todm: patch: adds gap at bottom page
-            if (fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3')
+            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' )
                 legendHeight += 20; //todm: patch: adds gap at bottom page
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
@@ -242,7 +242,7 @@
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if ( 
+        if( 
             //never wide if ...FIXED...
             !STATIC_LEGEND
             &&
@@ -251,7 +251,7 @@
                 ////narrow screen,
                 //if legend aspect ratio is too small, then
                 //doesn't give right side space to legend: will look silly,
-                simSceneH / proposedRightW < 3 * legendHeight / consideredLegendWidth
+                simSceneH/proposedRightW < 3*legendHeight/consideredLegendWidth
             )
         ) {
             ////wide screen
@@ -461,5 +461,5 @@
     {
         return false;
     }
-})();
+}) ();
 
