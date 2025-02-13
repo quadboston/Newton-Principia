@@ -52,8 +52,16 @@
     header {
       position:relative;  
       grid-area: header;
-      padding: 0 0;
-      margin-bottom: 56px;
+      padding: 0 0;    
+      margin-top: 5vh;
+      margin-bottom: 4vh;
+      min-height: 450px;
+    }      
+
+    @media only screen and (min-width: 1000px) {
+        header {    
+            max-height: 65vh;
+        }
     }
 
 
@@ -74,18 +82,20 @@
     .landing-title {
       font-family: "essonnes-display", 'Garamond','Times', serif;
       font-weight: 300;
-      font-size: 58px;
+      font-size: 6vw;
       color: ${colorWhite};
       letter-spacing: 1.32px;
-      line-height: 78px;
+      line-height: 9vw;
       margin-bottom: 16px;
+      margin-left: 150px;
       grid-area: title; }
       .landing-title span {
         font-style: italic; }
 
-    @media only screen and (min-width: 1100px) {
+    @media only screen and (min-width: 1000px) {
         .landing-title {
-            margin-left: 150px;
+            font-size: 58px;
+            line-height: 78px;
         }
     }
 
@@ -95,6 +105,7 @@
       color: ${colorWhite};
       letter-spacing: 1.32px;
       line-height: 36px;
+      padding-bottom: 3vh;
       grid-area: title; }
       .landing-subtitle span {
         font-style: italic; }
@@ -129,16 +140,12 @@
     .newton-img {
       position: absolute;
       top: 0px;
+      right: auto;
+      left: 30px;
+      height: 156px;
       z-index: -1;
       right: 96px; }
-
-      @media only screen and (min-width: 1100px) {
-        .newton-img {
-            right: auto;
-            left: 30px;
-            height: 156px;
-        }
-      }
+      
     /*====================================================== 
        \\\\// home-page header
       ======================================================*/
@@ -151,7 +158,7 @@
         .landing-table-of-contents {
           position: relative;
           grid-area: lemmas;
-          padding: 80px 0;
+          padding: 0;
           padding-top: 80px;
         }
 
@@ -160,8 +167,9 @@
                 position: absolute;
                 width: 40%;
                 height: 438px;
-                top: 20px;
+                top: 7vh;
                 right: 0;
+                padding-top: 0;
             }
             .landing-table-of-contents #model-list {
                 display: none;
@@ -223,7 +231,7 @@
        //\\\\ how to
       ======================================================*/
     .how-to {
-      padding: 64px 0;
+      padding: 5vh 0;
       text-align: center;
       background: #E9E2DA;
       grid-area: howTo; }

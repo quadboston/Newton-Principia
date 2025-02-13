@@ -124,7 +124,7 @@
                 { 
                     height      : auto;
                     /* for case to make visible absolute overflow over auto-page */
-                    overflow-y  : auto;
+                    overflow-y  : hidden;
                 }
                 .bsl-approot
                 {
@@ -133,7 +133,7 @@
                        xxxxxxpadding-bottom:40px;
                     */
                     /* todo fix: bs helps to make legend visibe, makes double scroll */
-                    overflow-y    : visible;
+                    /* overflow-y    : visible; */
                 }
                 .bsl-text-widget {
                     width           : 94%;
