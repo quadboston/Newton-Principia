@@ -327,8 +327,8 @@
             },
 
             fi : {
-                caption : "φ",
-                pcolor : shadow,
+                caption : "",
+                pcolor : given,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,

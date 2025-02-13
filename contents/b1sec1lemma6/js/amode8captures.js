@@ -528,7 +528,7 @@
 
       nspaste(rg.R.pos, rg.R.originalPos);
       rg.fi.pos[0] = rg.R.pos[0];
-      rg.fi.pos[1] = rg.R.pos[1] * 1.2;
+      rg.fi.pos[1] = rg.R.pos[1];
 
       rg.media_scale.value = 1;
       ssF.scaleValue2app(rg.media_scale.value, stdMod);

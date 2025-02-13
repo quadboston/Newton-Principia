@@ -173,6 +173,10 @@
                 if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
                     nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
                 }
+
+                rg.fi.pos[0] = rg.R.pos[0];
+                rg.fi.pos[1] = rg.R.pos[1];
+
                 return true;
 
                 function adjust_new_unrotatedParameterX_asNeccesary() {
@@ -251,6 +255,12 @@
         if( fconf.sappId === "b1sec1lemma8" ) {
             rg.fi.processOwnDownEvent = function() {
                 sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
+                document.querySelectorAll('svg circle.tp-fi').forEach((element) => element.style.display = 'none')
+            };
+            rg.fi.processOwnUpEvent = function() {
+                rg.fi.pos[0] = rg.R.pos[0];
+                rg.fi.pos[1] = rg.R.pos[1];
+                document.querySelectorAll('svg circle.tp-fi').forEach((element) => element.style.display = 'block')
             };
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
