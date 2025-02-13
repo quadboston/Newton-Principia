@@ -67,10 +67,9 @@
         ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
         //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
 
-        //at either of these values or lower, device is given mobile layout,
+        //at this value or lower, device is given mobile layout,
         //resulting in vertically stacked text-model-data areas
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790,
-        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 610,
 
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
