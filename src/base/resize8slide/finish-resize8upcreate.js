@@ -227,7 +227,7 @@
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
 
-        var svgW_Leg = (simSceneH - legendHeight) / stdMod.simSceSvg_narrowestAsp;
+        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
         //but, really available width can be smaller:
 
         //***************************************************************************
@@ -242,7 +242,7 @@
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if (
+        if ( 
             //never wide if ...FIXED...
             !STATIC_LEGEND
             &&
@@ -308,9 +308,9 @@
 
         if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
             sliderGroup$
-                .css('top', svgSceneH.toFixed() + 'px')
-                .css('width', '300px') //todm patch
-                .css('left', ((simSceneW - 300) / 2).toFixed() + 'px')
+                .css( 'top', svgSceneH.toFixed() + 'px' )
+                .css( 'width', '300px' ) //todm patch
+                .css( 'left', (( simSceneW - 300 ) / 2 ).toFixed() + 'px' )
                 ;
         }
         //===============================================
@@ -436,27 +436,29 @@
     /// expands media playable area to margins
     /// be aware: this can damage shrink to mobile: do cleanup in mobile,
     ///=============================================================================
-    function makes_svgViewBox() {
-        var stdMod = studyMods[amode.submodel];
-        var offset_x = stdMod.svgVB_offsX.toFixed(4);
-        var offset_y = '0';
-        var width = stdMod.svgVB_W.toFixed(4);
-        var height = stdMod.svgVB_H.toFixed(4);
+    function makes_svgViewBox()
+    {
+        var stdMod      = studyMods[ amode.submodel ];
+        var offset_x    = stdMod.svgVB_offsX.toFixed(4);
+        var offset_y    = '0';
+        var width       = stdMod.svgVB_W.toFixed(4);
+        var height      = stdMod.svgVB_H.toFixed(4);
         // **api svg viewable area horizontal legend
         // |x=offset_x < 0 ------------------- |x=0---------------x=width-1|
         // |<-------------- offset_x -------- >|<----narrow width -------->|
         // |<--------------------- width --------------------------------->|
         // |<---beginning-of-view-----------------------------end-of-view->| 
 
-        var viewBox =
+        var viewBox = 
             offset_x + ' ' + offset_y + ' ' +
-            width + ' ' + height;
+            width +    ' ' + height;
         stdMod.mmedia.setAttributeNS(
             null, 'viewBox', viewBox,
         );
     }
 
-    function gets_LEGEND_FIXED_FRACTION() {
+    function gets_LEGEND_FIXED_FRACTION()
+    {
         return false;
     }
 })();
