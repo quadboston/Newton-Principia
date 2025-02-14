@@ -61,10 +61,9 @@
         ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
         //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
 
-        //at either of these values or lower, device is given mobile layout,
+        //at this value or lower, device is given mobile layout,
         //resulting in vertically stacked text-model-data areas
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790,
-        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 610,
 
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
@@ -126,7 +125,7 @@
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
             homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
-                                      'These <a href="#model-list">models</a> make it easier.<br><br>',
+                                      'These <a href="#model-list">models</a> make it easier.<br>',
             homePageSubtitle        : 'A supplement to resources such as<br>' +
                                       '* Joseph Gallant’s <a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook"><span>Newton’s Principia for the Modern Student</span></a><br>' +
                                       '* Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><span>Newton’s Principia: The Central Argument</span></a><br>' +
