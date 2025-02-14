@@ -113,8 +113,7 @@
             /*================================*/
 
             /* todm non-consistent style set, must be dynamic by box-tester as for other parts */
-            @media screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px), 
-                    screen and (max-height: ${fconf.MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD}px) {
+            @media screen and (max-width: ${fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD}px) {
 
                 /*================================*/
                 /* //|| position flow             */
@@ -125,15 +124,6 @@
                     height      : auto;
                     /* for case to make visible absolute overflow over auto-page */
                     overflow-y  : auto;
-                }
-                .bsl-approot
-                {
-                    /* solves the problem of double y-scroll-bar and truncated legend:
-                       todm: needs other solution, padding is a patch ...
-                       xxxxxxpadding-bottom:40px;
-                    */
-                    /* todo fix: bs helps to make legend visibe, makes double scroll */
-                    overflow-y    : visible;
                 }
                 .bsl-text-widget {
                     width           : 94%;

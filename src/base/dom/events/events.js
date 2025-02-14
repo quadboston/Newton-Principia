@@ -100,10 +100,10 @@
                 var wwFullCaption = '';
             } 
             pager$.html( direction === 'right' ?
-                '<img src="' + fconf.engineImg +
+                '<img alt="forward arrow" src="' + fconf.engineImg +
                 '/right-page-triangle.svg"> ' +
                 wwFullCaption :
-                wwFullCaption + '<img ' +
+                wwFullCaption + '<img alt="back arrow"' +
                                 'src="' + fconf.engineImg + '/back-arrow-link.svg">' );
 
             pager$.a( 'title', "Go to " + nextSapp.caption );

@@ -1,5 +1,5 @@
 // //\\// site-wide conf
-( function() {
+(function() {
     var {
         ns, url2conf,userOptions,
         fconf,
@@ -18,20 +18,6 @@
     fconf.engineImg             = 'engine-img';
     fconf.pathToContents        = fconf.pathToContentSite + '/contents';
 
-    //----------------------------------------------------
-    // //\\ sets width fractions for text and sim-scene
-    //----------------------------------------------------
-    //prevents text box srtring from being too wide,
-    //otherwise, hard to move eye from string to string,
-    fconf.MAX_ESS_WIDTH = 600;
-    //should be this:
-    //var ESS_MIN_WIDTH           = 370;
-    //var MODEL_MIN_WIDTH         = 300; //when dragging
-    //var RIGHT_WORKAREA_MARGIN   = 0.015; //fraction
-    //----------------------------------------------------
-    // \\// sets width fractions for text and sim-scene
-    //----------------------------------------------------
-    
     //====================================================
     // //\\ put configuration parameters here
     //====================================================
@@ -63,14 +49,21 @@
         // //\\ view
         //--------------------
 
+        //prevents text box string from being too wide,
+        //otherwise, hard to move eye from string to string,
+        ESSAY_MAX_WIDTH: 600,
+        ESSAY_MIN_WIDTH: 370,
+
+        MODEL_MIN_WIDTH: 300, //when dragging
+        RIGHT_WORKAREA_MARGIN: 0.015, //fraction
+
 
         ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
         //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
 
-        //at either of these values or lower, device is given mobile layout,
+        //at this value or lower, device is given mobile layout,
         //resulting in vertically stacked text-model-data areas
         MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790,
-        MOBILE_MEDIA_QUERY_HEIGHT_THRESHOLD : 610,
 
         model_float_dir : 'right', //vs left
         ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
@@ -85,7 +78,7 @@
 
         //setting this to "false" does hide slider
         //decoration spinning arrows
-        NAVIGATION_DECORATIONS_ALWAYS_VISIBLE : false,
+        NAVIGATION_DECORATIONS_ALWAYS_VISIBLE: false,
 
         //since ver 1931 was automated from contents
         //as of ver 2955 is created automatically in content2exegs.js
@@ -132,7 +125,7 @@
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
             homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
-                                      'These <a href="#model-list">models</a> make it easier.<br><br>',
+                                      'These <a href="#model-list">models</a> make it easier.<br>',
             homePageSubtitle        : 'A supplement to resources such as<br>' +
                                       '* Joseph Gallant’s <a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook"><span>Newton’s Principia for the Modern Student</span></a><br>' +
                                       '* Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><span>Newton’s Principia: The Central Argument</span></a><br>' +
@@ -177,19 +170,7 @@
         //------------------------------------------------------
     };
 
-
-    /*
-    //inactive
-    if( to_fconf.MODEL_MIN_WIDTH + to_fconf.ESS_MIN_WIDTH  >
-        to_fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD - 100 ) {
-        alert( 'wrong config settings: ' +
-               'MODEL_MIN_WIDTH + ESS_MIN_WIDTH > mobile size' );
-            ////todm: we cannot put min media and min essay together because of
-            ////window's width is too small, do resort to mobile one
-            ////"one column" solution
-            //return; //isMobile = true;
-    }
-    */
+    
     //====================================================
     // \\// put configuration parameters here
     //====================================================

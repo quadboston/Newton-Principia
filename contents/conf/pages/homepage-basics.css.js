@@ -14,7 +14,6 @@
                 position        : absolute;
                 width           : 100%;
                 height          : 100vh;
-                padding-top     : 80px;
                 top             : 0;
                 left            : 0;
                 transition      : left 1s ease;
