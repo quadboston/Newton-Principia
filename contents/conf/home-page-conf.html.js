@@ -28,7 +28,8 @@
         // //\\ header
         //==================================================
         function buildHeader() {
-            $$.c('header').to(fapp.homePage$()).html(`
+            let hClass = userOptions.showingBonusFeatures() ? "bonusShowing" : "default";
+            $$.c('header').addClass(hClass).to(fapp.homePage$()).html(`
             <div class="hp-section-wrap">
                 <div class="landing-text">
                     <h1 class="landing-title">${fconf.appDecor.homePageCaption}</h1>
@@ -51,9 +52,14 @@
         //==================================================
          function buildTableOfContents()
          {
-            var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas();
-            $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
-                .html(coreText);
+            var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas(true);
+            if (userOptions.showingBonusFeatures()) {
+                $$.c('div').addClass('landing-table-of-contents bonusTOC hp-section-wrap').to(fapp.homePage$())
+                    .html(coreText);
+            } else {
+                $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
+                    .html(coreText);
+            }
         }
         //==================================================
         // \\// table of contents
@@ -259,8 +265,8 @@ Occasionally a mix of both translations are used.
     }
 
 
-    
-    function buildListOfLemmas()
+    // param: true if building for homepage, false if building for Contents button
+    function buildListOfLemmas(isHomepage)
     {
         var landingPath = window.location.pathname;
         var book = null;
@@ -274,7 +280,9 @@ Occasionally a mix of both translations are used.
                 book = sappItem.book;
                 let cls = sappItem.annotation === userOptions.BONUS_START ?
                          ' class="' + userOptions.BONUS_START + '"' : '';
-                coreText += '<div class="column"><div' + cls  + `><ul>`;
+                let cls2 = book === "Book 1" ? ' class="column"' : '';
+                coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
+
                 ////add title "Book ... " when list switches to the next book ...
                 coreText += `
                     <li><div class="content-book-title">
@@ -289,10 +297,18 @@ Occasionally a mix of both translations are used.
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if (sappItem.annotation === userOptions.BONUS_END) {
-                coreText += `</ul></div>`;
-            } else if (sappItem.sappId === "b1sec2prop9") {
-                coreText += `</ul></div></div><div class="column"><div><ul>`;
+            if(isHomepage) {
+                if (userOptions.showingBonusFeatures()) {
+                    if (sappItem.annotation === userOptions.BONUS_END) {
+                        coreText += `</ul></div>`;
+                    } else {
+                        if (sappItem.sappId === "b1sec3prop14") {
+                            coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
+                        }  
+                    } 
+                } else if (sappItem.sappId === "b1sec2prop9") {
+                    coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
+                }
             }
         });
         coreText += '\n</ul></div></div>';

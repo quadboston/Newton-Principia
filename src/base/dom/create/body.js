@@ -178,7 +178,7 @@
                     </ul>
                 </div>
         `;
-        coreText += sapp.buildsListOfLemmas() +
+        coreText += sapp.buildsListOfLemmas(false) +
         `
                    </div>
                 </div>

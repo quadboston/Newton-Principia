@@ -55,12 +55,15 @@
       padding: 0 0;    
       margin-top: 5vh;
       margin-bottom: 4vh;
-      min-height: 450px;
-    }      
+    } 
 
-    @media only screen and (min-width: 1000px) {
-        header {    
-            max-height: 65vh;
+    header.default {
+      min-height: 450px;    
+    }
+
+    @media only screen and (min-width: 1100px) {
+        header.bonusShowing {
+            min-height: 550px; 
         }
     }
 
@@ -166,13 +169,15 @@
             .landing-table-of-contents {
                 position: absolute;
                 width: 40%;
-                height: 438px;
                 top: 7vh;
                 right: 0;
                 padding-top: 0;
             }
-            .landing-table-of-contents #model-list {
+            .landing-table-of-contents #model-list { /* heading */
                 display: none;
+            }
+            .bonusTOC {
+                top: 0 !important;
             }
         }
 
@@ -199,6 +204,7 @@
         .landing-table-of-contents .column {
             width: 50%;
             display: inline-block;
+            vertical-align: top;
         }
 
         `;
