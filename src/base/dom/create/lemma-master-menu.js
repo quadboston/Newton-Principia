@@ -377,7 +377,10 @@
         ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
 
         if( amodel2app_8_extraWork ) {
-            haff( stdMod, 'sliders_value2pos' );
+            haff(stdMod, 'sliders_value2pos');
+            
+            //Tab (text or video) changed so load the following.
+            wrkwin.loadPosPartitionHandle();
 
             //.todm code proliferation ... model runs twice?
             var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
