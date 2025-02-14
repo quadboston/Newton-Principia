@@ -107,7 +107,7 @@
         // //\\ we need good names ...
         //================================================================
         var modorInPicX = 140;
-        var modorInPicY = 61;
+        var modorInPicY = 20;
         //================================================================
         // \\// we need good names ...
         //================================================================
@@ -121,6 +121,7 @@
         var D = [474, modorInPicY];
         var d = [778, modorInPicY];
         var b = [514, 254];
+        var M = [50, modorInPicY];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
         var ytop = [-151, 50];
@@ -309,6 +310,12 @@
                 pcolor      : given,
             },
 
+            M : {
+                pos: M,
+                letterAngle : 90,
+                pcolor      : given,
+            },
+
             //proof
             b : {
                 pos: b,
@@ -329,11 +336,15 @@
                 pcolor      : proof,
             },
 
+            curveStart  : {
+                pos : [ A[0]-80, 0 ],
+            },
+
             curveEnd : {
                 pos : [B[0]+50,0],
             },
-            curveStart  : {
-                pos : [ A[0]-80, 0 ],
+            curveLeftEnd : {
+                pos : [250,100],
             },
 
             //lemma 7, coroll 1
@@ -434,6 +445,7 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
+            { 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------
@@ -455,10 +467,10 @@
         [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
-            //[86,75],
-            //[135,64],
-            //[100,75],
-            //[10,151],
+            // [86,75],
+            // [135,64],
+            // [100,75],
+            // [10,151],
 
             [148,62],
             [161,64],

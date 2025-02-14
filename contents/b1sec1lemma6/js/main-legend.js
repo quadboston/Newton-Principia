@@ -60,7 +60,7 @@
     legendScript.proof = legendScript.claim.concat([
         //second table row
              //first cell
-            'L,differential&nbsp;tangent&nbsp;angle&nbsp;=&nbsp;,""' +
+            'L,rectilinear&nbsp;angle&nbsp;=&nbsp;,""' +
 
             ' ' +
             //second cell
