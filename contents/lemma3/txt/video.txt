@@ -53,3 +53,8 @@ So as with lemma 2,
 the areas of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ rectangles 
 converge on the area of the ¦figure-area¦figure¦¦ as we increase the number of ¦base¦bases¦¦, 
 even though we are not requiring the ¦base¦bases¦¦ to be of equal width.
+
+
+
+*::*corollaries|video
+There are no videos for these corollaries.
