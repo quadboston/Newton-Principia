@@ -1,5 +1,5 @@
 
-*::*claim|english
+*::*Problem 8|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -15,7 +15,7 @@ Page 112.
 
 
 
-*::*proof|english
+*::*Solution|english
 {
   "menuCaption" : "English",
   "subessayCaption" : "<i>[Solution</i>]",
@@ -61,7 +61,7 @@ because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. Q.
 Page 112.
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1"
@@ -87,7 +87,7 @@ Page 113.
 
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2"

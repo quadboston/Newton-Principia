@@ -1,4 +1,4 @@
-*::*claim|english
+*::*Problem 6|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -12,7 +12,7 @@ it is required to find the law of the centripetal
 Page 462.
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
@@ -78,7 +78,7 @@ Page 462.
 
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
