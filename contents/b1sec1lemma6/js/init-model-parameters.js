@@ -172,10 +172,11 @@
                 
                 if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
                     nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
+
+                    rg.fi.pos[0] = rg.R.pos[0];
+                    rg.fi.pos[1] = rg.R.pos[1];
                 }
 
-                rg.fi.pos[0] = rg.R.pos[0];
-                rg.fi.pos[1] = rg.R.pos[1];
 
                 return true;
 
