@@ -2,8 +2,36 @@
  
  
 ## Upcoming
-* Allow nonmonotonic curves for lemmas 2 and 3, with model constrained to monotonic section
+* Proposition 9: improved data section
+
  
+## 2025-2-14 [0.13350]
+### Improved
+* Homepage
+    * models accessible without scrolling (except on narrow screens)
+    * accessibility metadata
+
+* Lemmas 2 and 3:
+    * non-monotonic curves allowed for improved interaction, with rectangles applied to largest monotonic region
+
+* Lemma 7, proof tab
+    * rectilinar angle reported
+    * greater rectilinear angle range
+    * fixed B being being able to pass rectilinear angle
+
+* Lemma 8
+    * R combined with Φ to simplify presentation
+
+* Proposition 6
+    * graph vertical scale always 0 to 100% to better convey minimal force changes
+
+* Proposition 7
+    * more text syncs with model
+
+* Models (general)
+    * text-model partition placement persists across models and behaves when browser resized
+    * where appropriate, tabs renamed "Problem [n]" and "Solution(s)"
+
 
 ## 2025-1-8 [0.13169]
  
