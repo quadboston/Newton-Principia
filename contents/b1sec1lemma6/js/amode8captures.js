@@ -11,7 +11,6 @@
     sDomF,
     ssD,
     ssF,
-    globalCss,
     sData,
     studyMods,
     amode,
@@ -265,48 +264,6 @@
           rg.L.doPaintPname = false;
         }
       }
-
-      globalCss.update(
-        `
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(1) {
-            display: none;
-          }
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(2),
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(3),
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(4)
-          {
-            display: none;
-          }
-          
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5)
-          {
-            text-align: left;
-          }
-
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(2),
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(3),
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(4)
-          {
-            display: none;
-          }
-          
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5)
-          {
-            text-align: left;
-          }
-          
-          .appid-b1sec1lemma6 .main-legend tr td:nth-child(1)
-          {
-            text-align: right;
-          }
-
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5),
-          .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5) {
-            text-align: right;
-            font-family: Lucida Console;
-          }
-        `
-      );
     } else {
       
     }

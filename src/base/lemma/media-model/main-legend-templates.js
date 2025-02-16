@@ -47,7 +47,7 @@
             clusterKey          : id,
             clusterCaption,
             noEqualSign         : typeof noEqualSign === 'undefined' ? true : noEqualSign,
-            fillerAfterValue    : '&nbsp;&nbsp;&nbsp;&nbsp;',
+            fillerAfterValue    : ' ',
             alignCaptionToRight,
         };
     }
