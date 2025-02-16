@@ -303,6 +303,7 @@
           .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5),
           .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5) {
             text-align: right;
+            font-family: Lucida Console;
           }
         `
       );
