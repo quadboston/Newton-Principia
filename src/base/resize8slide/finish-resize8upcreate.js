@@ -14,12 +14,6 @@
     //allowed to be overriden
     ssF.gets_LEGEND_FIXED_FRACTION = gets_LEGEND_FIXED_FRACTION;
 
-    //:spatial adjustments
-    //ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
-    var ESS_MIN_WIDTH           = 370;
-    var MODEL_MIN_WIDTH         = 300; //when dragging
-    var RIGHT_WORKAREA_MARGIN   = 0.015; //fraction
-
     /// chain-dispatches callback "resizeHappened"
     ( function() {
         var hazR = haz( fmethods, 'resizeHappened' );
@@ -98,7 +92,7 @@
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
-        var winW        = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
+        var winW        = window.innerWidth * (1-fconf.RIGHT_WORKAREA_MARGIN);
         var SSceneH     = window.innerHeight -
                           ( fconf.doDisplayPageTopNavigatMenu ?
                             sDomN.pageNavTopBar$.box().height : 0
@@ -111,62 +105,38 @@
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH +=35; //nicer
-            sDomN.sliderGroup$
-                .css( 'position', 'absolute' )
-                ;
+            sDomN.sliderGroup$.css('position', 'absolute');
         }
 
         //-------------------------------------------
         // //\\ calculates legend
         //-------------------------------------------
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
+        let legendWidth = 0, legendHeight = 0;
         if( STATIC_LEGEND ) {
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
-            var legendHeight = SSceneH * STATIC_LEGEND;
+            legendHeight = SSceneH * STATIC_LEGEND;
             //for start, simply takes remainder from txt
-            var legendWidth = winW - ESS_MIN_WIDTH;
+            legendWidth = winW - fconf.ESSAY_MIN_WIDTH;
         } else {
-            var legendWidth = 0;
-            var legendHeight = 0;
             //measures container legend box children
-            stdMod.legendRoot$.children( child => {
-                var box = child.getBoundingClientRect();
-                var wWidth = box.width;
-                var wHeight = box.height;
-                //ccc( 'box.width = ' + box.width.toFixed() +
-                //     'box.height = ' + box.height.toFixed() );
-                if( legendWidth < wWidth ) {
-                    legendWidth = wWidth;
-                }
-                if( legendHeight < wHeight ) {
-                    legendHeight = wHeight;
-                }
+            stdMod.legendRoot$.children(child => {
+                var boxChild = child.getBoundingClientRect();
+                legendWidth = Math.max(legendWidth, boxChild.width);
+                legendHeight = Math.max(legendHeight, boxChild.height);
             });
+
             //measures container legend box itself
-            var wLegBox = stdMod.legendRoot$().getBoundingClientRect();
-            var wWidth = wLegBox.width;
-            if( legendWidth < wWidth ) {
-                legendWidth = wWidth;
-            }
+            const boxLegend = stdMod.legendRoot$().getBoundingClientRect();
+            legendWidth = Math.max(legendWidth, boxLegend.width);
+
             legendHeight += 20; //todm: patch: adds gap at bottom page
-            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' )
                 legendHeight += 20; //todm: patch: adds gap at bottom page
-            }
-            var wHeight = wLegBox.height;
-            if( legendHeight < wHeight ) {
-                legendHeight = wHeight;
-            }
-            //ccc( 'lbox.width = ' + wWidth.toFixed() +
-            //     'lbox.height = ' + wHeight.toFixed() );
+            legendHeight = Math.max(legendHeight, boxLegend.height);
         }
-        if( legendWidth + ESS_MIN_WIDTH > winW ) {
-            //ccc( 'Legend width = ' + legendWidth + ' and is too big for ' +
-            //     'screen width = ' + winW );
-            var consideredLegendWidth = winW - ESS_MIN_WIDTH;
-        } else {
-            var consideredLegendWidth = legendWidth;
-        }
+        const consideredLegendWidth = Math.min(legendWidth, winW - fconf.ESSAY_MIN_WIDTH);
         //-------------------------------------------
         // \\// calculates legend
         // \\// phase 1. detects parameters
@@ -176,31 +146,52 @@
         //========================================
         // //\\ phase 2. calculates new values
         //========================================
-        //// here we distribute the widths
-        if( !draggerMove && draggerMove !== 0 ) {
-            var frac = dividorFractions;
-            proposed_rightW = frac[1]/(frac[0]+frac[1])*winW;
+        //Distribute the window width between the essay/text area, and the area to the right of it.
+        //Note that essay/text area constraints have priority.
+
+        //Compute the desired width of the right area.
+        let proposedRightW = 0;
+        if (draggerMove == null) {
+            //Partition handle was NOT moved (eg. window resize, tab pressed).
+            //Frac represents partition handle's current position.
+            const frac = dividorFractions;
+            proposedRightW = frac[1] / (frac[0] + frac[1]) * winW;
         } else {
-            var frac = wrkwin.dividor.achieved.achieved;
-            var proposed_rightW = frac[1]/(frac[0]+frac[1])*winW
-                    //when dragging left, then media area increases, so "-move" is below:
-                    - draggerMove;
+            //Partition handle was moved (draggerMove is the x offset from where it started).
+            //Frac represents partition handle's starting position (before dragging).
+            const frac = wrkwin.dividor.achieved.achieved;
+            //When dragging the media area width changes, so offset by draggerMove.
+            proposedRightW = frac[1] / (frac[0] + frac[1]) * winW - draggerMove;
         }
-        proposed_rightW = Math.max(
+        proposedRightW = Math.max(
             STATIC_LEGEND ? 0 : consideredLegendWidth,
-            MODEL_MIN_WIDTH,
-            proposed_rightW
+            fconf.MODEL_MIN_WIDTH,
+            proposedRightW
         );
 
-        ////here we try to fullfill this requirement,
-        ////ESS_MIN_WIDTH has priority over MODEL_MIN_WIDTH
-        var essayWidth = Math.max( ESS_MIN_WIDTH, winW - proposed_rightW );
-        //if( !draggerMove && draggerMove !== 0 && has( fconf, 'MAX_ESS_WIDTH' ) ) {
-        if( !draggerMove && draggerMove !== 0 ) {
-            ////supposes user resets to default scenario
-            essayWidth = Math.min( essayWidth, fconf.MAX_ESS_WIDTH );
+        //Compute the essayWidth.
+        let essayWidth = Math.max(fconf.ESSAY_MIN_WIDTH, winW - proposedRightW);
+        if (draggerMove == null) {
+            //As the browser is widened, the text and model areas maintain a specific ratio
+            //until the text reaches a max-width, after which all extra space is allocated
+            //to the model area. The following ensures the same happens in reverse.
+            //
+            //If essayWidth would be above it's maximum set it to that, and don't update
+            //wrkwin.dividor.achieved.achieved so that the desired ratio is remembered.
+            //Otherwise when decreasing both areas would decrease at a new ratio.  Note
+            //that wrkwin.dividor is still updated.
+            const frac = wrkwin.dividor.achieved.achieved;
+            const essayWidthNoMax = frac[0] / (frac[0] + frac[1]) * winW;
+            if (essayWidthNoMax > fconf.ESSAY_MAX_WIDTH) {
+                essayWidth = fconf.ESSAY_MAX_WIDTH;
+                doDividorSynch = false;
+            }
         }
-        proposed_rightW = winW - essayWidth;
+        //Constrain to ensure not above maximum.
+        essayWidth = Math.min(essayWidth, fconf.ESSAY_MAX_WIDTH);
+
+        //Finally calculate width of the right area.
+        proposedRightW = winW - essayWidth;
         //========================================
         // \\// phase 2. calculates new values
         //========================================
@@ -208,13 +199,17 @@
         //==========================================================
         // //\\ phase 3. synchs results with dividor-slider states
         //==========================================================
-        dividorFractions[0] = essayWidth/winW;
-        dividorFractions[1] = (winW - essayWidth) / winW;
-        if( doDividorSynch ) {
-            //todm get rid of this: use down event for dividor to set this:
-            wrkwin.dividor.achieved.achieved = nspaste( [], dividorFractions )
+        const fracLeft = essayWidth / winW;
+        dividorFractions[0] = fracLeft;
+        dividorFractions[1] = 1 - fracLeft;
+        if (doDividorSynch) {
+            //Refer to "As the browser is widened..." comment (phase 2), for more detail on when 
+            //achieved needs to be set here.
+            wrkwin.dividor.achieved.achieved = nspaste([], dividorFractions)
             fmethods.panesD8D.updateAllDecPoints();
         }
+        //Store the following (when resizing the window or dragging the partition handle).
+        wrkwin.storePosPartitionHandle();
         //==========================================================
         // \\// phase 3. synchs results with dividor-slider states
         //==========================================================
@@ -235,8 +230,8 @@
         //***************************************************************************
         //svgW_min and svgH_min are narrowestASP-synched narrowest dimensions
         var svgW_min = Math.min(
-                            proposed_rightW - sconf.main_horizontal_dividor_width_px,
-                            svgW_Leg );
+            proposedRightW - sconf.main_horizontal_dividor_width_px,
+            svgW_Leg);
         var svgH_min = svgW_min * stdMod.simSceSvg_narrowestAsp;
         //***************************************************************************
 
@@ -249,17 +244,17 @@
             !STATIC_LEGEND
             &&
             (
-                svgW_Leg + consideredLegendWidth < proposed_rightW &&
+                svgW_Leg + consideredLegendWidth < proposedRightW &&
                 ////narrow screen,
                 //if legend aspect ratio is too small, then
                 //doesn't give right side space to legend: will look silly,
-                simSceneH/proposed_rightW < 3*legendHeight/consideredLegendWidth
+                simSceneH/proposedRightW < 3*legendHeight/consideredLegendWidth
             )
         ) {
             ////wide screen
             var wideScreen_flag = true;
             //now we calculate H-restriction again
-            var svgW            = proposed_rightW
+            var svgW            = proposedRightW
                                     - sconf.main_horizontal_dividor_width_px
                                     - consideredLegendWidth
                                     - 10; //given gap before legend
@@ -270,8 +265,8 @@
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
             var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
             var simSceneW       = bgImgOffset * 2 +
-                                  bgImgW; // + Math.max( 0, proposed_rightW - medSupW );
-            var svgSceneW       = svgW; //proposed_rightW - legendWidth;
+                                  bgImgW; // + Math.max( 0, proposedRightW - medSupW );
+            var svgSceneW       = svgW; //proposedRightW - legendWidth;
             var svgSceneH       = simSceneH;
         //-------------------------------------------------------------
         // \\// wide screen,
@@ -297,14 +292,14 @@
                 var legendMargin = 0;
             } else {
                 var legendMargin = Math.max( 0,
-                    ( ( proposed_rightW - consideredLegendWidth
+                    ( ( proposedRightW - consideredLegendWidth
                     ) ) / 2 );
             }
-            var bgImgOffset = Math.max( 0,
-                ( ( proposed_rightW - bgImgW 
-                //- 20    //todm:
-                ) ) / 2 );
-            var simSceneW = proposed_rightW; // bgImgOffset * 2 + bgImgW;
+            var bgImgOffset = Math.max(0,
+                ((proposedRightW - bgImgW
+                    //- 20    //todm:
+                )) / 2);
+            var simSceneW = proposedRightW; // bgImgOffset * 2 + bgImgW;
             var svgSceneW = simSceneW;
         }
 
@@ -389,8 +384,7 @@
     ///========================================
     function preparesMobile()
     {
-        var wid             = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
-
+        var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN);
         stdMod.bgImgW       = wid;
         //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;

@@ -101,7 +101,7 @@
                 fun         : ssD.repoConf[2].fun,
 
                 pointA      : rg.A,
-                pointB      : rg.curveEnd,
+                pointB      : rg.curveLeftEnd,
                 mmedia      : stdMod.mmedia,
                 addToStepCount : 1,
         });

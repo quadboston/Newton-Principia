@@ -1,5 +1,5 @@
 
-*::*claim|english
+*::*Problem 4|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -17,7 +17,7 @@ the ¦S¦center of the spiral¦¦.
 Page 458.
 
 
-*::*proof|english
+*::*Solutions|english
 {
 }
 *..*

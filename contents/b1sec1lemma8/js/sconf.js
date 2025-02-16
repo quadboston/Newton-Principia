@@ -50,12 +50,16 @@
         var pictureHeight = 566;
         var modorInPicX = 166;
         var modorInPicY = 63;
-                                 //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = 239; //was?: originalPoints.R.pos[1] - originalPoints.A.pos[1];
 
+        //model's spacial unit in pixels of the picture:
+        var mod2inn_scale = 239; //was?: originalPoints.R.pos[1] - originalPoints.A.pos[1];
+        
         var A = [modorInPicX, modorInPicY];
         var B = [358, 165];
         var D = [496, modorInPicY];
+
+        var M = [140, modorInPicY];
+
         sconf.b_per_B_original = 1.931578947;
 
 
@@ -182,6 +186,8 @@
             },
 
 
+
+
             "y0" : {
                 caption     : 'yₒ',
                 letterAngle : 225,
@@ -271,6 +277,12 @@
             },
 
 
+            M : {
+              pos: M,
+              letterAngle : 90,
+              pcolor      : given,
+            },
+
             /*
             'B-kernelx' : {
                cssClass : 'hover-width',
@@ -282,11 +294,14 @@
                 pcolor      : given,
             },
 
+            curveStart  : {
+                pos : [ A[0]-80, 0 ],
+            },
             curveEnd : {
                 pos : [B[0]+50,0],
             },
-            curveStart  : {
-                pos : [ A[0]-80, 0 ],
+            curveLeftEnd : {
+                pos : [250,100],
             },
 
             //lemma 7, coroll 1
@@ -312,8 +327,8 @@
             },
 
             fi : {
-                caption : "φ",
-                pcolor : shadow,
+                caption : "",
+                pcolor : given,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,
@@ -406,6 +421,8 @@
             { 'AE' : { pcolor : given } },
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
+            
+            { 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------

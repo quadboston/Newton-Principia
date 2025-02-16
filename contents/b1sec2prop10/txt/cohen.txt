@@ -1,5 +1,5 @@
 
-*::*claim|english
+*::*Problem 5|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -33,7 +33,7 @@ Page 459.
 
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
@@ -74,7 +74,7 @@ Page 459.
 
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
@@ -110,7 +110,7 @@ Page 459.
 
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "menuCaption" : "Text"
 }
@@ -146,7 +146,7 @@ the equality of the direct and inverse ratios) in the ratio of equality.
 
 
 
-*::*scholium|english
+*::*Scholium|english
 {
   "menuCaption" : "Text"
 }

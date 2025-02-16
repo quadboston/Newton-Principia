@@ -1,4 +1,4 @@
-*::*claim|english
+*::*Problem 28|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -96,22 +96,13 @@ Page 529.
 
 
 
-*::*proof|english
+*::*Solution|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution"
 }
 *..*
-
-
-
-
-
-<br><br>
-<span style="font-size:10px;">a. For a gloss on this proposition see the Guide, §10.12.</span>
-<br><br>
-
 Let any force tend toward a center ¦C¦¦; and let it be required to find the
 trajectory VIK𝑘. Let the circle ¦MainCircle¦VR¦¦ be given, described about the center C
 with any radius CV; and about the same center let there be described any

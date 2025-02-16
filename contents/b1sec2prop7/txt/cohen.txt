@@ -1,24 +1,22 @@
 
-*::*claim|english
+*::*Problem 2|english
 {
   "default" : "1",
   "menuCaption" : "Text"
 }
 *..*
-
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
-
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 455.
 
-*::*proof|english
+
+
+*::*Solutions|english
 {
 }
 *..*
-
-
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
 point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
@@ -41,15 +39,15 @@ similar,
 
 ¦PR¦RP¦¦² (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
 
-And therefore QR x RL x PV² / SP² is equal to QT².
+And therefore ¦QR¦¦ x ¦RL¦¦ x ¦PV¦¦² / ¦AV¦¦² is equal to ¦QT¦¦².
 
-Multiply these equals by SP²/QR and, the points P and Q coming together, write ¦PV¦¦ for ¦RL¦¦.
+Multiply these equals by ¦SP¦¦²/¦QR¦¦ and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
 
-Thus SP² x PV³ / AV² will become equal to SP² x QT² / QR.
+Thus ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will become equal to ¦SP¦¦² x ¦QT¦¦² / ¦QR¦¦.
 
 Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is inversely as
 
-¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / AV², that is (because AV² is given), inversely as the square of the
+¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / ¦AV¦¦², that is (because ¦AV¦¦² is given), inversely as the square of the
 distance or altitude ¦SP¦¦ and the cube of the chord jointly. Q.E.I.
 <br><br><br>
 
@@ -62,11 +60,11 @@ distance or altitude ¦SP¦¦ and the cube of the chord jointly. Q.E.I.
 Draw ¦SY¦¦ perpendicular to the tangent ¦PR¦¦ produced; then, because triangles ¦SY PY SP¦SYP¦¦ and ¦PV AP AV¦VPA¦¦
 
 are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
-SP x PV / AV will be equal to ¦SY¦¦, and
-SP² x PV³ / AV² will be equal to SY² x PV.
+¦SP¦¦ x ¦PV¦¦ / ¦AV¦¦ will be equal to ¦SY¦¦, and
+¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will be equal to ¦SY¦¦² x ¦PV¦¦.
 
 And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
-as SP² x PV³ / AV², that is, because ¦AV¦¦ is given, inversely as
+as ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦², that is, because ¦AV¦¦ is given, inversely as
 
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. Q.E.I.
 
@@ -76,7 +74,7 @@ Page 455.
 <br><br>
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1"
@@ -94,7 +92,7 @@ always tends is located in the circumference of this circle, say at ¦V¦¦, the
 Page 456.
 <br><br>
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2"
@@ -113,8 +111,8 @@ from the ¦S¦first center of forces S¦¦ to the
 ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
 
 For by the construction of this proposition the ¦force¦first force¦¦ is
-to the second force as RP² x PT³ to SP² x PV³,
-that is, as SP x RP² to SP³ x PV³ / PT³,
+to the second force as ¦RP¦¦² x ¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
+that is, as ¦SP¦¦ x ¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦PT¦¦³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
 
@@ -126,7 +124,7 @@ Page 456.
 
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
@@ -136,7 +134,7 @@ Page 456.
 The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
 the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
 in the same orbit and in the same periodic time around any other
-¦Rcol2¦center of forces R¦¦ as the solid SP x RP² - contained under ¦SP¦the distance of the body¦¦
+¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ x ¦PR¦RP¦¦² - contained under ¦SP¦the distance of the body¦¦
 from the first ¦S¦center of forces S¦¦ and the square of ¦Rcol2,P¦its distance from the second
 center of forces R¦¦ - to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
 the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to

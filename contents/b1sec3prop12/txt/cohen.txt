@@ -1,5 +1,5 @@
 
-*::*claim|english
+*::*Problem 7|english
 {
   "default" : "1",
   "menuCaption" : "Text"
@@ -15,7 +15,7 @@ Page 463.
 
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
@@ -82,7 +82,7 @@ Page 465.
 
 
 
-*::*proof|english
+*::*Solutions|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
