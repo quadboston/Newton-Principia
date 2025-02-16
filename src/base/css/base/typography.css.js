@@ -55,29 +55,24 @@
       {
         display: none;
       }
-      
       .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5)
       {
         text-align: left;
       }
-
       .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(2),
       .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(3),
       .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(4)
       {
         display: none;
       }
-      
       .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5)
       {
         text-align: left;
       }
-      
       .appid-b1sec1lemma6 .main-legend tr td:nth-child(1)
       {
         text-align: right;
       }
-
       .appid-b1sec1lemma6 .main-legend tr:nth-child(3) td:nth-child(5),
       .appid-b1sec1lemma6 .main-legend tr:nth-child(4) td:nth-child(5) {
         text-align: right;
@@ -93,6 +88,18 @@
       }
       .appid-b1sec1lemma7 .main-legend tr td:nth-child(2),
       .appid-b1sec1lemma7 .main-legend tr td:nth-child(5) {
+        font-family: Lucida Console;
+      }
+
+      .appid-b1sec1lemma8 .main-legend tr:nth-child(1) {
+        display: none;
+      }
+      .appid-b1sec1lemma8 .main-legend tr td:nth-child(1),
+      .appid-b1sec1lemma8 .main-legend tr td:nth-child(4) {
+        text-align: right;
+      }
+      .appid-b1sec1lemma8 .main-legend tr td:nth-child(2),
+      .appid-b1sec1lemma8 .main-legend tr td:nth-child(5) {
         font-family: Lucida Console;
       }
     `;
