@@ -291,6 +291,11 @@
           {
             text-align: left;
           }
+          
+          .appid-b1sec1lemma6 .main-legend tr td:nth-child(1)
+          {
+            text-align: right;
+          }
         `
       );
     } else {

@@ -17,8 +17,6 @@
     });
 
 
-
-
     ////**********************************************************************************
     ////legendScript-format:
     ////clusters separated with <space>:
@@ -69,6 +67,8 @@
             '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*' +
             '180/Math.PI).toFixed()+"ᵒ"'
     ]);
+
+    console.debug(":::", legendScript.proof)
     //--------------------------
     // \\// proof's script
     // \\// lemma 6 scripts
@@ -162,6 +162,7 @@
     // \\// corollary's script
     // \\// lemma 7 scripts
     //==========================
+
     return;
 
 
