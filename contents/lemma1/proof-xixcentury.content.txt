@@ -3,7 +3,6 @@
   "mediaBgImage" : "lemma1-proof.png",
   "comment mediaBgImage" : null,
   "menuCaption" : "Addendum",
-  "submodel" : "proof-xix",
   "default" : "0",
   "dataLegend":"0"
 }

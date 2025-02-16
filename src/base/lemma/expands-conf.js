@@ -2,7 +2,9 @@
 ( function() {
     var {
         sn, haz, has, eachprop, own, nsmethods,
-        fconf, ssF, sDomF, fixedColors, fixedColorsOriginal, originalPoints_cssNames,
+        fconf, sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
+        originalPoints_cssNames, toreg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -25,10 +27,8 @@
     ///                     1. expands sconf and
     //                      2. expnds sconf into rg
     ///==============================================
-    function doExpandConfig( stdMod ) 
+    function doExpandConfig() 
     {
-        var toreg = stdMod.toreg;
-        var sconf = stdMod.sconf;
         var {
             predefinedTopics,
             originalPoints,
@@ -51,7 +51,7 @@
             svgModel_height,
 
             mod2inn_scale,
-        } = stdMod.sconf;
+        } = sconf;
 
 
         //-----------------------------------------------------------
@@ -297,8 +297,6 @@
                 //creates rgX or reuses existing one
                 var rgX = op.rgX = ssF.declareGeomtric({
                     pname, pos, caption : haz( op, 'caption' ),
-                    //stdMod, //don't supply ... bs converters pick up
-                    //coefficients from engine-level stdMod
                 });
 
                 // //\\ todm: automate property transfer

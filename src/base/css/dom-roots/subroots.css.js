@@ -2,7 +2,6 @@
     var {
         sn, globalCss, eachprop,
         fconf, sconf, engCssMs,
-        studyMods,
     } = window.b$l.apptree({
     });
 
@@ -64,22 +63,17 @@
     */
     var ww = `
             .bsl-approot .bsl--svgscene .undisplay,
-            .bsl-simscene,
             .display-none {
                 display : none;
             }
     `;
-    eachprop( studyMods, ( stdMod, modName ) => {
-        ww += `
-           .bsl-approot.submodel--${modName} .bsl-simscene.submodel--${modName},
-        `;
-    });
-    ret += ww +
-        `
-            .xxxdummy {
-            display : block;
-        }
-    `;
+    ret += ww;
+    
+    //this was an outdated code, but it may give a clue
+    //.bsl-approot.submodel--common .bsl-simscene.submodel--common,
+    //todo why do we need make it displayed explicityly?
+    //because of it was: .bsl-simscene, {display : none;}
+    //ret += `.bsl-approot .bsl-simscene { display : block;}`;
     //=======================================
     // \\// visib
     //=======================================
@@ -492,18 +486,6 @@ ret +=`
         `,
         'svg-text-special'
     );
-
-
-    /*
-    ///submodel visibilities
-    ret += `
-        .submodel---flag {
-            display : none;
-        }
-    `;
-    */
-
-
 
 return ret;
 };

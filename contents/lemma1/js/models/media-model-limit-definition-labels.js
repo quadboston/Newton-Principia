@@ -3,7 +3,6 @@
         $$, nssvg, cssp,
         stdMod, rg,
     } = window.b$l.apptree({
-        SUB_MODEL : 'limit-definition',
         stdModExportList :
         {
             upcreateMediaLables

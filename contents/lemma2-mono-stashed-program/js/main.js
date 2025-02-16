@@ -2,9 +2,9 @@
 
 (function() {
     var {
-        sn, eachprop, haff, mat, nspaste, nsmethods,
+        sn, eachprop, haff, mat, nspaste, nsmethods, rg,
         fapp, sapp, ssF, sDomF,
-        studyModsActivated, stdMod,
+        stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -89,7 +89,7 @@
             orientation : 'axis-x',
             acceptPos : newPos =>
             {
-                var drX = stdMod.rg[ pname ];
+                var drX = rg[ pname ];
                 drX.pos[0] = newPos[0];
                 newPos[1] = drX.pos[1];
                 return !!'move permitted';

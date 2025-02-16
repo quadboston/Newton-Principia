@@ -6,11 +6,9 @@
         fmethods,
         sDomF, sDomN,
         amode,
-        studyModsActivated,
         ssF,
-        rg,
+        stdMod, rg,
         exegs, rgtools,
-        studyMods,
     } = window.b$l.apptree({
     });
 
@@ -64,8 +62,7 @@
                     } else {
                         fapp.fappRoot$.removeClass( 'rgtools' );
                     }
-                    var wwsm = ns.haf( studyMods[ amode['submodel'] ],
-                                       'model8media_upcreate' );
+                    var wwsm = ns.haf( stdMod, 'model8media_upcreate' );
                     if( wwsm ) {
                         wwsm();
                     } else {
@@ -91,7 +88,7 @@
                 .to( topMediaControls$() )
                 //.css( 'display', 'block' )
                 .e( 'click', () => {
-                    ns.haf( studyMods[ amode['submodel'] ], 'toggleData' )();
+                    ns.haf( stdMod, 'toggleData' )();
                 })
                 ;
         }
@@ -111,12 +108,10 @@
                 //.css( 'display', 'block' )
                 .e( 'click', () => {
                     if( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
-                        var stdMod = ns.haz( studyMods, amode.submodel );
-
                         //------------------------------------------------
                         // //\\ do wrap into capture-method or refactor
                         //------------------------------------------------
-                        var ast = { stdModName : stdMod.SUB_MODEL };
+                        var ast = {};
                         ///non-rg property: media center:
                         ///todm: legalize;
                         var mcenter = ns.haz( rg, 'media-mover' );
@@ -293,21 +288,14 @@
 
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
-        eachprop( studyMods, stdMod => {
-            createsMediaRoot( stdMod, bgImagesAreLoaded_cb );
-        });
+        createsMediaRoot( bgImagesAreLoaded_cb );
     }
 
 
-    function createsMediaRoot( stdMod, bgImagesAreLoaded_cb )
+    function createsMediaRoot( bgImagesAreLoaded_cb )
     {
-        var stdModName  = stdMod.SUB_MODEL;
-        //var medRoot     = stdMod.simScene;
-        //var medRoot$    = stdMod.simScene$;
-
-
         //..............................
-        // //\\ study image and submodel
+        // //\\ study image and s ubmodel
         //..............................
         var images = {};
         //top mode CSS: bsl-approot theorion--claim aspect--video
@@ -327,23 +315,16 @@
                     /// does images and CSS-visibility-machine for root of subexeg,
                     ///      meaningly: only for first subexeg,
                     ///============================================================
-                    var headSubMod = subexeg.essayHeader.submodel;
-                    var stdMod = studyMods[ headSubMod ];
                     var imgRk = stdMod.imgRk;
-                    if( headSubMod !== stdModName ||
-                        has( imgRk, 'src' ) //checks flag
-                        //exegId !== 0
-                    ) {
-                        return;
-                    }
+                    if( has( imgRk, 'src' ) ) return;
                     imgRk.src = stdMod.imgRk.srcParsed;
                     var cssId = imgRk.cssId;
 
                     if( !imgRk.onloadStarted ) {
                         imgRk.onloadStarted = true;
                         imgRk.dom$().onload = function() {
-                            if( studyModsActivated.length === ++actuallyLoaded ) {
-                                ////assumes that each stdMod has bg. image to download
+                            if( 1 === ++actuallyLoaded ) {
+                                ////assumes that stdMod has bg. image to download
                                 //setTimeout( bgImagesAreLoaded_cb, 1000 );
                                 //without this call, app landing must crash:
                                 bgImagesAreLoaded_cb();
@@ -351,15 +332,15 @@
                         };
                         imgRk.dom$
                             .cls( imgCss + ' ' + cssId )
-                            .a( 'src', imgRk.src )
                             .a( 'draggable', 'false' )
                             .to( stdMod.simScene )
+                            .a( 'src', imgRk.src )
                             ;
                     }
 
 
                     //***************************************************************
-                    // //\\ makes submodel visible in relevant egreg-GUI
+                    // //\\ makes s ubmodel visible in relevant egreg-GUI
                     //      the first css is for image,
                     //      the second is for svg,
                     //***************************************************************
@@ -370,7 +351,7 @@
                         }
                     `;
                     //***************************************************************
-                    // \\// makes submodel visible in relevant egreg-GUI
+                    // \\// makes s ubmodel visible in relevant egreg-GUI
                     //***************************************************************
                 });
             });
@@ -379,7 +360,7 @@
         //ns.globalCss.addText( css );
         ns.globalCss.update( css );
         //..............................
-        // \\// study image and submodel
+        // \\// study image and s ubmodel
         //..............................
 
         //.disabled ... effect is too strong

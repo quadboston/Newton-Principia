@@ -1,8 +1,8 @@
 ( function() {
     var {
         mat,
-        sconf, sDomF, ssF,
-        amode, studyMods,
+        sconf, sDomF, ssF, toreg, rg,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -32,12 +32,8 @@
     ///    is labeled with postfix "aracc".
     ///
     ///=================================================================
-    function solvesTrajectoryMath__O( stdMod )
+    function solvesTrajectoryMath__O()
     {
-        stdMod      = stdMod || studyMods[ amode.submodel ];
-        var toreg   = stdMod.toreg;
-        var rg      = stdMod.rg;
-
         //:study-pars
         var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
                               / rg.rgslid_dt.val);

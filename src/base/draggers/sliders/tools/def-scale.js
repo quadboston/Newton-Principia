@@ -1,8 +1,8 @@
 ( function() {
     var {
         haz,
-        sconf, ssF,
-        studyMods, amode,
+        sconf, ssF, rg, toreg,
+        stdMod, amode,
     } = window.b$l.apptree({
         setModule,
         ssFExportList : {
@@ -33,11 +33,11 @@
     /// creates slider only once per
     /// app model creation;
     ///----------------------------------------
-    function createSliderPlaceholder_media_scale( stdMod, )
+    function createSliderPlaceholder_media_scale()
     {
         var magnit = 'media_scale';
-        var media_scale_value = haz( stdMod.rg[ magnit ], 'value' ) || 1;
-        stdMod.toreg( magnit )( 'value', media_scale_value );
+        var media_scale_value = haz( rg[ magnit ], 'value' ) || 1;
+        toreg( magnit )( 'value', media_scale_value );
 
         ssF.sliderTemplate({
             magnit,
@@ -47,11 +47,10 @@
             min_magnit      : 0.2,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
-            stdMod,
         });
     }
 
-    function magnitude2app( magnit_api, newValue, stdMod )
+    function magnitude2app( magnit_api, newValue,)
     {
         // //\\ todm: fullLength patch,
         //            to fit CB in window
@@ -60,13 +59,13 @@
         //magnit_api.value = newValue * fullLength;
 
         magnit_api.value = newValue;
-        scaleValue2app( magnit_api.value, stdMod );
+        scaleValue2app( magnit_api.value, );
         // \\// todm: fullLength patch
     }
 
 
-    function scaleValue2app( svalue, stdMod ) {
-        var sc = stdMod.sconf;
+    function scaleValue2app( svalue, ) {
+        var sc = sconf;
         sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
         sc.inn2mod_scale = 1 / sc.mod2inn_scale;
     }

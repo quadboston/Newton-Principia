@@ -1,8 +1,8 @@
 ( function() {
     var {
         ns, sn, nspaste, has, paste, capture, bezier, userOptions,
-        amode, toreg,
-        studyMods, rg, sDomF, ssD, ssF, fconf,
+        sDomF, ssD, ssF, fconf,
+        sconf, amode, toreg, stdMod, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -48,8 +48,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod = studyMods[ submodel ];
+        var { theorion, aspect, subessay } = amode;
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
@@ -116,7 +115,7 @@
 
                 rg.media_scale.value = 1;
 
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                ssF.scaleValue2app( rg.media_scale.value, );
 
                 rg.A.undisplay = true;
                 rg.T.undisplay = true;
@@ -236,7 +235,7 @@
                 rg.APQ.undisplay = true;
             } else {
                 rg.media_scale.value = 1;
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                ssF.scaleValue2app( rg.media_scale.value, );
             }
         }
         if( sconf.APPROX !== 'D' ) {

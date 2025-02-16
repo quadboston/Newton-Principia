@@ -32,7 +32,7 @@
     function model_upcreate_addon()
     {
         //this patch amends this css
-        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.submodel-common
+        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.s ubmodel-common
 
         //img competes with: .bsl-approot.theorion--scholium.aspect--english .bg0,
         //todm: inconsistent: .main-legend.proof should not need this CSS, it

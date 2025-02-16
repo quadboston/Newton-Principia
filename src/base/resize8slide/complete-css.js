@@ -2,7 +2,7 @@
     var {
         sn, $$, haz, has, fmethods, eachprop,
         fconf, sconf, sDomN, wrkwin,
-        studyMods,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -22,9 +22,8 @@
 
 
 
-    function buildsMobile({
-        stdMod,
-    }) {
+    function buildsMobile({})
+    {
         //------------------------------------------------------------------
         // //\\ essays css
         // //\\ very tedious way to get the necessary height of visible text
@@ -112,7 +111,6 @@
 
 
     function buildsNonMobile({
-        stdMod,
         wideScreen_flag,
         SSceneH,
         essayWidth,

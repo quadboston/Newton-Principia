@@ -7,33 +7,41 @@
 }
 *..*
 
-⦁ In this Appendix, we provide logical facts which are inspired or implied by Newton's Principia and Euclid's Elements.
+
+⦁ The purpose of these Addendums is to mine logical truth based on logic itself.
 <br><br>
 
-⦁ We provide them "as they are from their inner logic" and do not do any preferences between times hundred or thousand years before and modern times approach. Every time is equal, difference is only in logic. We do not assume today we know more or less.
+⦁ The content is inspired by Newton's Principia and Euclid's Elements. We hope this helps reader to discover what Newton meant with minimal reliance on translation and words.
 <br><br>
 
-⦁ When these alternative logical constructs developed enough, the readers can themselves apply them to the Book and may conclude what Newton or Euclid really meant without relying on translation and words too much.
+⦁ We do not pretend that nowadays our knowledge is more advanced assuming all times are equal and only logic is important.
+<br><br>
+
+⦁  So, any significant logical constructions, for example, Euclid's Geometry, The Principia, Modern Vector Calculus are treated "on equal foot".
 <br><br>
 
 ⦁ We do not do any claims these facts are known to Newton or Euclid. We do not insist on what Newton or Euclid intended to say. This may be discussed in Addendums under original Lemma or Proposition. 
 <br><br>
 
-⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum occasionally may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it CalculusXIX.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadrature in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
+⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum occasionally may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it Vector Calculus.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadrature in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
 <br><br>
 
 By the way, Book's context feels as an extension of Geomtry, like adding three axioms (force laws) to the Geometry. The same way as reaxiomatizing Geometry in General Relativiy. What a coincidence.
 <br><br>
 
-Addendum may also include anything interesting like programming details or problems related to the Book.
+Addendum, in Programming Guide, may also include anything interesting like programming details or problems related to the Book.
 <br><br>
 
 ⦁  References to original text lemma are in parenthesises. For example,
+<br><br>
 
 <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
+<br><br>
 
 refers to
+<br><br>
 
 <a target="_blank" href="?conf=sappId=b1sec2prop2,theorionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
+<br><br>
 
 <div book-reference-id="kvk"></div>

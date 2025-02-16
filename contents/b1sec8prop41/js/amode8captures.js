@@ -2,7 +2,7 @@
     var {
         ns, sn, has, nspaste, capture, toreg, mat,
         sDomF, ssD, ssF, fconf,
-        studyMods, amode, rg, sconf,
+        stdMod, amode, rg, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -49,8 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod = studyMods[ submodel ];
+        var { theorion, aspect, subessay } = amode;
 
         //------------------------------------------------
         // //\\ returns diagram back at every menu click

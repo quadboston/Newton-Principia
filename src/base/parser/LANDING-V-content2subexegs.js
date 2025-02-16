@@ -2,8 +2,8 @@
     var {
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, studyModsActivated, fixedColors, fixedColorsOriginal, references, exegs,
-        studyMods, amode, userOptions
+        topics, fixedColors, fixedColorsOriginal, references, exegs,
+        stdMod, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -155,33 +155,9 @@
                     //assumes if wHeader exists, it must be valid JSON,
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
-                    //---------------------------------------------------------------
-                    // //\\ validates submodel
-                    essayHeader.submodel = haz( essayHeader, 'submodel' ) ||
-                        ssD.DEFAULT_STUDY_MODEL_NAME;
-                    if( !has( studyMods, essayHeader.submodel ) ) {
-                        alert( 'Wrong submodel "' + essayHeader.submodel +
-                               '" prescipted in essay ' + theorion_id + '/' + aspect_id +
-                               " This submodel does not exist in lemma`s modules."
-                        );
-                        //todm ... why this return crashes app? ...
-                        //         this return just skips bad essay,
-                        return;
-                    }
-                    // \\// validates submodel
-                    //---------------------------------------------------------------
-
                     //===============================================================
                     // //\\ sets initial amode
                     //===============================================================
-                    //.todm: patch: missed submodel property does default to 'common'
-                    //              empty string denotes absence of submodel
-
-                    // already done ... code prolifiration
-                    //essayHeader.submodel = has( essayHeader, 'submodel' ) ?
-                    //                       essayHeader.submodel :
-                    //                       'common';
-
                     sn( theorion_id, exegs );
                     var aspExeg     = sn( aspect_id, exegs[ theorion_id ] );
 
@@ -237,7 +213,6 @@
                             //sets 'default' for case it will be missed in all text
                             essayHeader[ 'default' ] = '1';
                         }
-                        ami.submodel = essayHeader.submodel;
                         //**********************************
                         //at least from now, amode is set
                         //**********************************
@@ -525,23 +500,15 @@
             //      see this below: stdMod.imgRk.srcParsed = src,
             //******************************************************
             function doesAddStudyModelIfNew( essayHeader, subex ) {
-                var stdMod = studyMods[ essayHeader.submodel ];
-                var stdModActivatedIx = haz( stdMod, 'stdModActivatedIx' );
-                if( !stdModActivatedIx && stdModActivatedIx !== 0) {
-                    ////todm, is forgotten why there is an
-                    ////array of flags studyModsActivated additional to
-                    ////studyMods, but keep it here
-                    stdMod.stdModActivatedIx = studyModsActivated.length;
-                    studyModsActivated.push( stdMod );
-                }
-                stdMod.imgRk.cssId = 'bg' + stdMod.stdModActivatedIx;
+                stdMod.imgRk.cssId = 'bg0';
                 //*************************************************************
-                //first new-submodel header must have img if submodel needs it,
-                //      bg image is per submodel
+                //first new-s ubmodel header must have img if s ubmodel needs it,
+                //      bg image is per s ubmodel
                 //*************************************************************
                 if( !userOptions.usingBackgroundImage() ) {
                     //essayHeader.mediaBgImage = null; //disables it for definitness
                     rg.detected_user_interaction_effect_DONE = true;
+                    ccc( 'Landing V: ' + rg.detected_user_interaction_effect_DONE );
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
                     return;
                 }
@@ -549,7 +516,7 @@
 
                 // //\\ establishes image source file name
                 var headerHasImage = has( essayHeader, 'mediaBgImage' );
-                var imgInSconf = haz( studyMods[ essayHeader.submodel ].sconf, 'mediaBgImage' );
+                var imgInSconf = haz( sconf, 'mediaBgImage' );
                 if( headerHasImage ) {
                     let imgInHeader = essayHeader.mediaBgImage;
                     var imgId = imgInHeader === null || imgInHeader === '' ?

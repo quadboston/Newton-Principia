@@ -2,7 +2,7 @@
     var {
         ns, sn, paste, capture, nspaste, userOptions,
         fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
-        studyMods, amode, toreg, rg,
+        stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -181,9 +181,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod = studyMods[ submodel ];
-
+        var { theorion, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline

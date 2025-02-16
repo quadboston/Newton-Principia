@@ -3,27 +3,17 @@
 
 ( function() {
     var nsvars = window.b$l.nstree();
-    var {
-        ns,
-        sn,
-        haz,
-    } = nsvars;
-
-    ns.app          = apptree;
+    var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
     var engCssMs    = sn('engCssMs');
-
     var fapp        = sn('fapp' ); 
     var fmethods    = sn('methods',fapp);
-
     var fconf       = sn('fconf',fapp);
-    var sconf       = sn('sconf',fconf);
 
     //lemma-independent lemma-subapplication (aka lemma-class-functions in Java)
     //this layer, ss, should be invisible in lemmas, but
     //this invisibility is not yet done in many praxis sites,
-    var ss          = sn('ss', fapp);
-
+    var ss          = sn('ss', fapp);   //todm remove ss later
     var cssmod      = sn('ssCssModules',ss);
     var ssCssOrder  = sn('ssCssOrder',ss);
     var ssF         = sn('ssFunctions',ss);
@@ -51,11 +41,11 @@
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
+    var sconf       = sn('sconf', sapp);
+    var stdMod      = sn('stdMod', sapp);
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
     var sData       = sn('sappDat',sapp);
-    var studyMods   = sn('studyMods', sapp);
-    var studyModsActivated = sn('studyModsActivated', sapp, [] );
     var amode       = sapp.mode = {};
 
     var dividorFractions = sn('dividorFractions', wrkwin, []);
@@ -81,13 +71,11 @@
 
     function setsEngineDefaults()
     {
-        ssD.DEFAULT_STUDY_MODEL_NAME = 'common';
         //these are pre-professorscripts values: at engine level
         amode.theorion = '';
         amode.aspect = '';
         amode.subessay = '';
         //todm: poor? name: to be "amode.stdmod" //study model
-        amode.submodel = ssD.DEFAULT_STUDY_MODEL_NAME;
     }
 
 
@@ -95,7 +83,6 @@
         //optional variables
         modName,   //default: ''+mCount.count
         setModule,
-        SUB_MODEL,
         stdModExportList,
         ssFExportList,   //removes need to import var ssF into calling module
         sDomFExportList,
@@ -109,33 +96,8 @@
         expoFun = ssFExportList;
 
         //-------------------------------------------------------------
-        // //\\ module and submodel sugar
+        // //\\ module and s ubmodel sugar
         //-------------------------------------------------------------
-        //:binds to submodel for case there is a need for this
-        SUB_MODEL           = SUB_MODEL || ssD.DEFAULT_STUDY_MODEL_NAME;
-        var stdMod          = sn( SUB_MODEL, studyMods );
-        stdMod.SUB_MODEL    = SUB_MODEL;
-
-
-        ///synchronizes sconf, not transfers its contents,
-        ///as of this version, transfer is done in app-main.js after
-        ///lemma-js-modules are loaded,
-        if( !haz( stdMod, 'toreg' ) ) {
-            stdMod.rg       = {};
-            stdMod.sconf    = {};
-            stdMod.toreg    = ssF.toregUnbound.bind( stdMod.rg );
-            if( SUB_MODEL === ssD.DEFAULT_STUDY_MODEL_NAME ) {
-                //obsolete
-                ssF.rg    = stdMod.rg;
-                ssF.toreg = stdMod.toreg;
-                ssF.rg.detected_user_interaction_effect_DONE = false;
-                stdMod.sconf = sconf;
-            }
-            stdMod.rg.stdModName= SUB_MODEL;
-            // legacy specific case of property "pos":
-            stdMod.topos        = ssF.makes_toreg4pos( stdMod );
-        }
-
         //:advances modules registry
         var mCount      = sn('modulesCount', sapp);
         mCount.count    = mCount.count ? mCount.count + 1 : 1;
@@ -189,7 +151,7 @@
         };
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
-        // \\// module and submodel sugar
+        // \\// module and s ubmodel sugar
         //-------------------------------------------------------------
 
 
@@ -207,8 +169,7 @@
             fapp,
             fmethods,
             fconf,
-            sconf   : stdMod.sconf, //===fconf.sconf for default, 
-            commonsconf : sconf,
+            sconf,
 
             ss,
             ssF,
@@ -220,13 +181,12 @@
             originalPoints,
             originalPoints_cssNames,            
 
-            rg    : stdMod.rg,
-            topos : stdMod.topos,
-            toreg : stdMod.toreg,
+            rg    : sapp.rg,
+            topos : sapp.topos,
+            toreg : sapp.toreg,
 
             rgtools, wrkwin, exegs, references,
 
-            studyModsActivated,
             capture,
             topics,
             lowId2topics,
@@ -234,7 +194,6 @@
             ix2tplink,
 
             sapp,
-            studyMods,
             amode,
             sDomN,
             sDomF,
@@ -249,7 +208,6 @@
 
             //sugar variables
             mCount,
-            SUB_MODEL,
             modName,
             stdMod,
         });
@@ -265,12 +223,12 @@
     //      stdMod.createMedia0updateMediaAUX must exist
     //      at time of inner function call
     //=========================================================
-    function create_media_upcreate( ssF, stdMod, createMedia0updateMediaAUX )
+    function create_media_upcreate( ssF, createMedia0updateMediaAUX )
     {
         return ( function media_upcreate()
         {
             //refreshes detectability
-            ssF.toogle_detectablilitySliderPoints4Tools( stdMod,);
+            ssF.toogle_detectablilitySliderPoints4Tools();
             createMedia0updateMediaAUX();
             if( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();

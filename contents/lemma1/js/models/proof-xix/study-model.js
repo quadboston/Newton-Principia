@@ -2,7 +2,6 @@
     var {
         stdMod,
     } = window.b$l.apptree({
-        SUB_MODEL : 'proof-xix',
         stdModExportList :
         {
             model8media_upcreate,

@@ -413,7 +413,6 @@
                 pNam.nam[0],
                 pNam.nam[1],
                 haz( pNam, 'cssClass' ), //for tp-links
-                stdMod,
             );
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 rgElem.svgel.style.strokeWidth = '1';
@@ -489,7 +488,6 @@
                 null,
                 !!'undisplay',
                 null,
-                stdMod,
             );
             decor[ rgElem.pname ] = rgElem;
             //lead Point defines range and ix
@@ -517,7 +515,6 @@
                 null,
                 !!'undisplay',
                 !'tostroke',
-                stdMod,
             );
             decor[ rgElem.pname ] = rgElem;
             var lp = rg[ pNames[ 2 ] ];
@@ -550,7 +547,6 @@
                 null,
                 !!'undisplay',
                 !'tostroke',
-                stdMod,
             );
             var lp = rg[ pNames[ pNames.length-1 ] ];
             decor[ rgElem.pname ] = rgElem;
@@ -572,7 +568,6 @@
                 null,
                 !!'undisplay',
                 !'tostroke',
-                stdMod,
             );
             var lp = rg[ pNames[ pNames.length-1 ] ];
             decor[ rgElem.pname ] = rgElem;

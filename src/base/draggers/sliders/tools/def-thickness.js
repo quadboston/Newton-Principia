@@ -1,7 +1,8 @@
 ( function() {
     var {
         globalCss,
-        sconf, ssF,
+        sconf, ssF, rg, toreg,
+        stdMod,
     } = window.b$l.apptree({
         setModule,
         ssFExportList : {
@@ -25,10 +26,10 @@
 
 
 
-    function createSliderPlaceholder_thickness( stdMod, )
+    function createSliderPlaceholder_thickness()
     {
         var magnit = 'thickness';
-        stdMod.toreg( magnit )( 'value', 2 );
+        toreg( magnit )( 'value', 2 );
 
         ssF.sliderTemplate({
             magnit,

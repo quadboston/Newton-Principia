@@ -183,7 +183,6 @@
         ssF.rgXSlider__2__dragwrap_gen_list({
             rgX,
             orientation         : 'axis-x',
-            stdMod,
         });
         return;
 

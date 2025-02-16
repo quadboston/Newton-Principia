@@ -2,7 +2,7 @@
     var {
         $$, nssvg, haz, mat,
         sDomF, ssF,
-        stdMod, sconf,
+        rg, stdMod, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {

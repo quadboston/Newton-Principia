@@ -2,6 +2,7 @@
     var {
         sn, has,
         sDomF,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList : {
             rgXSlider__2__dragwrap_gen_list,
@@ -24,7 +25,6 @@
         rgX,
         orientation,
         nospinner,
-        stdMod,
     }) {
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {

@@ -2,7 +2,7 @@
     var {
         ns, sn, nspaste, userOptions, capture, toreg,
         sDomF, ssD, ssF, fconf,
-        studyMods, amode, rg, sconf,
+        stdMod, amode, rg, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -49,9 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod = studyMods[ submodel ];
-
+        var { theorion, aspect, subessay } = amode;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );

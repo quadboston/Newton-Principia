@@ -1,7 +1,7 @@
 ( function() {
     var {
         mat, globalCss,
-        sconf, stdMod, toreg, sData,
+        sconf, rg, stdMod, toreg, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {

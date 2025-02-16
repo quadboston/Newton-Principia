@@ -3,7 +3,7 @@
         ns, $$, fmethods, haff, haz, has, nspaste, eachprop,
         wrkwin,
         fconf, sconf, ssD, ssF, sDomN, dividorFractions,
-        studyMods, amode,
+        stdMod, amode,
     } = window.b$l.apptree({
         sDomNExportList :
         {
@@ -53,8 +53,6 @@
              draggerMove,
              doDividorSynch,
     ) {
-        var stdMod      = studyMods[ amode.submodel ];
-
         //-------------------------------------------------------------
         // todm: do we ever need this?
         // asp
@@ -64,7 +62,7 @@
         //           "picture..." dims,
         //           ??? see // **api innerMediaHeight
         //var bgImg       = stdMod.imgRk.dom$();
-        //stdMod.bgImgAsp = haz( stdMod.sconf, 'bgImgAsp' ) ||
+        //stdMod.bgImgAsp = haz( sconf, 'bgImgAsp' ) ||
         //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
 
@@ -100,7 +98,6 @@
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
-        var stdMod      = studyMods[ amode.submodel ];
         var winW        = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
         var SSceneH     = window.innerHeight -
                           ( fconf.doDisplayPageTopNavigatMenu ?
@@ -359,10 +356,9 @@
         // //\\ phase 5. finalizes widths and heights
         //===============================================
         makes_svgViewBox();
-        doesTopContainersSizing( stdMod );
+        doesTopContainersSizing();
 
         wrkwin.buildsNonMobile({
-            stdMod,
             wideScreen_flag,
             SSceneH,
             essayWidth,
@@ -393,7 +389,6 @@
     ///========================================
     function preparesMobile()
     {
-        var stdMod          = studyMods[ amode.submodel ];
         var wid             = window.innerWidth * (1-RIGHT_WORKAREA_MARGIN);
 
         stdMod.bgImgW       = wid;
@@ -416,14 +411,12 @@
                 ;
         }
         makes_svgViewBox();
-        doesTopContainersSizing( stdMod );
-        wrkwin.buildsMobile({
-            stdMod,
-        });
+        doesTopContainersSizing();
+        wrkwin.buildsMobile({});
     }
 
 
-    function doesTopContainersSizing( stdMod )
+    function doesTopContainersSizing()
     {
         sDomN.simSScene$
             .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
@@ -443,7 +436,6 @@
     ///=============================================================================
     function makes_svgViewBox()
     {
-        var stdMod      = studyMods[ amode.submodel ];
         var offset_x    = stdMod.svgVB_offsX.toFixed(4);
         var offset_y    = '0';
         var width       = stdMod.svgVB_W.toFixed(4);

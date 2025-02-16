@@ -152,14 +152,6 @@
 
                 // //\\ recent framework
                 ssF.media_upcreate_generic();
-                //instead of following:
-                /*
-                if( ns.h( amode, 'submodel' ) && amode['submodel'] ) {
-                    //.this is a duty of contributor to provide:
-                    //.if( studyMods[ ww ] ) {
-                    studyMods[ amode['submodel'] ].model8media_upcreate();
-                }
-                */
                 // \\// recent framework
             }
         }

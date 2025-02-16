@@ -129,7 +129,7 @@
                 sDomF.detected_user_interaction_effect();
                 var new_m = [
                         ach.achieved[0] + arg.surfMove[0] *
-                            ( 1 / stdMod.sconf.originalMod2inn_scale ) *
+                            ( 1 / sconf.originalMod2inn_scale ) *
                             sDomF.out2inn(),
                         ach.achieved[1] //unchanged => only abscissa move
                     ];

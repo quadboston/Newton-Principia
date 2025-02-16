@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, haz, userOptions,
-        fapp, sapp, sDomN, html, fconf, stdMod,
+        fapp, sapp, sDomN, html, fconf,
     } = window.b$l.apptree({
     });
     html.builds_body_4_home8lemma = builds_body_4_home8lemma;

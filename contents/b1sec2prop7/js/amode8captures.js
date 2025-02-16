@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, nspaste, capture, amode, toreg,
-        studyMods, rg, sDomF, ssD, ssF, fconf,
+        stdMod, rg, sDomF, ssD, ssF, fconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -48,9 +48,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod = studyMods[ submodel ];
-
+        var { theorion, aspect, subessay } = amode;
 
         //----------------------------------
         // //\\ common values

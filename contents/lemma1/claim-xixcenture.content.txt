@@ -3,7 +3,6 @@
 *::*claim|xixcentury
 { "dataLegend":"0",
   "mediaBgImage" : null,
-  "submodel" : "limit-definition",
   "default" : "0",
   "menuCaption" : "Addendum"
 }

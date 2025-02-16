@@ -2,7 +2,7 @@
     var {
         $$, eachprop, has,
         fconf, fmethods, exegs, sDomN,
-        amode, stdMod, rg,
+        amode, rg,
     } = window.b$l.apptree({
     });
     fmethods.create_video_help_manager = create_video_help_manager;
@@ -65,7 +65,7 @@
             [ 'videoicon-placeholder', 'videoicon-placeholder-aspect' ]
                 .forEach( iconClass => {
                     eachprop( rg[ iconClass ], function( iconRg$, iid ) {
-                        if( iid === 'rgId' || iid === 'stdModName' ) return;
+                        if( iid === 'rgId' ) return;
                         iconRg$.html('');
                     });
                 });

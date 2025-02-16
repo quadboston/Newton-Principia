@@ -34,7 +34,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
 
         /*
         //fails:

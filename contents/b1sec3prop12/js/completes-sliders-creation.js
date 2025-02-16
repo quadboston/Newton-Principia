@@ -127,7 +127,7 @@
         };
 
         rg.L.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
 
             var newPos0 = dragMove[0] + sData.Lpos0;
             var newPos1 = -dragMove[1] + sData.Lpos1;
@@ -217,7 +217,7 @@
         };
 
         rg.f.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             var newPos0 = dragMove[0] *
                           0.5 //decreases slider sensetivity
                          + sData.Lpos0_g;
@@ -330,7 +330,7 @@
         };
 
         rg.vb.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             var newPos0  = dragMove[0] + sData.vbpos[0];
             var newPos1  = -dragMove[1] + sData.vbpos[1];
             //-------------------------------------------------------------------
@@ -431,7 +431,7 @@
         };
 
         rg.omegaHandle.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             //-------------------------------------------------------------------
             // //\\ corrects approximate mouse point to exact point on the circle
             //-------------------------------------------------------------------
@@ -549,7 +549,7 @@
         };
 
         rg.vSample.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             const pp      = rg.p.pos;
             let np        = nspaste( [], [
                                 dragMove[0] + sData.pos_r[0],

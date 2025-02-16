@@ -2,7 +2,7 @@
     var {
         $$, fmethods, cssp,
         fapp, fconf, wrkwin, sDomN, sDomF,
-        amode, studyMods, rg,
+        stdMod, amode, rg,
     } = window.b$l.apptree({
     });
 
@@ -64,7 +64,7 @@
             setTimeout(
                 () => {
                     doesShowDiagram( false ),
-                    studyMods[ amode.submodel ].media_upcreate();
+                    stdMod.media_upcreate();
                 },
                 fconf.timeToShowOriginalDiagram_effective
             );
@@ -72,7 +72,7 @@
     }
     function doesShowDiagram( doShowDiagram ) { 
         rg.detected_user_interaction_effect_DONE = !doShowDiagram;
-        studyMods[ amode.submodel ].imgRk.dom$
+        stdMod.imgRk.dom$
            [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
         rg.allLettersAreHidden = doShowDiagram;
     }

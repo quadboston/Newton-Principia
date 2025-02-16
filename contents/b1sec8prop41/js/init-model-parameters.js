@@ -38,6 +38,8 @@
         stdMod.pointsArr_2_singleDividedDifferences(
             false, 'force', false, false, 'swap' );
 
+        //this sub is half-standardized: it is not in src/base, but
+        //apparently similar to what is in many lemmas,
         stdMod.completesSlidersCreation();      //in-diagram sliders
 
         let omega = Math.sin( op.angleOmega );

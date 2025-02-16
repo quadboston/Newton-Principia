@@ -1,7 +1,8 @@
 ( function() {
     var {
         sn,
-        sconf, ssF, sDomF,
+        sconf, ssF, sDomF, rg,
+        stdMod,
     } = window.b$l.apptree({});
     ssF.inits_tools_sliders = inits_tools_sliders;
     return;
@@ -15,20 +16,19 @@
     ///==========================================
     /// inits drag points
     ///==========================================
-    function inits_tools_sliders( medD8D, stdMod )
+    function inits_tools_sliders( medD8D, )
     {
         var toolsSliders = sn( 'toolsSliders',stdMod, [] );
         toolsSliders.forEach( slname => {
-            createDragger( medD8D, slname, stdMod );
+            createDragger( medD8D, slname, );
         });
     };
 
 
 
-    function createDragger( medD8D, magnitude, stdMod )
+    function createDragger( medD8D, magnitude, )
     {
-        //ccc( 'ready? ' + stdMod.SUB_MODEL, magnitude, stdMod.rg[ magnitude ] );
-        var pointWrap = stdMod.rg[ magnitude ];
+        var pointWrap = rg[ magnitude ];
         //:sets dragger handle color
         pointWrap.spinnerClsId = 'tp-' + magnitude;
         //todm ... not straight
@@ -73,7 +73,7 @@
                     //ns.d('mv: comm-tools');
 
                     sDomF.detected_user_interaction_effect();
-                    var mscale = sDomF.out2inn() / stdMod.sconf.originalMod2inn_scale;
+                    var mscale = sDomF.out2inn() / sconf.originalMod2inn_scale;
                     var move_in_model = [ //move in model units
                             arg.surfMove[0] * mscale,
                             arg.surfMove[1] * mscale,

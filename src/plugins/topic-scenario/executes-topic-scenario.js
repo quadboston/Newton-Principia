@@ -10,7 +10,6 @@
         exegs, actionsList_coded, actionsList_default,
         ssF, ssD, amode,
         rg,
-        studyMods,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -79,14 +78,13 @@
             return;
         }
 
-        var { theorion, aspect, submodel, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
         if( runOnSubessay ) {
             subessay = runOnSubessay;
         }
         var subessayRack    = exegs[ theorion ][ aspect ].subessay2subexeg[ subessay ];
         var stateId2state   = subessayRack.stateId2state;
         var scenarioState   = haz( stateId2state, subessayRack.scenario_stateId );
-        var stdMod          = studyMods[ submodel ];
         if( !scenarioState ) {
             ////todm: this is better run in parser after all states are parsed
             executesMessageAction(

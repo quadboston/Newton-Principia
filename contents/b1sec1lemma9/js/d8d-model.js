@@ -7,7 +7,6 @@
         sconf,
         sDomF,
         sDomN,
-        studyMods,
         amode,
         ssD,
         ssF,
@@ -78,7 +77,7 @@
                         ssD.claimRatio = newDy/Ey;
                         //c cc( 'new: claimRatio=' + ssD.claimRatio + ' Dy=' +
                         //      ( ssD.claimRatio * Ey ) );
-                        studyMods[ amode['submodel'] ].model8media_upcreate();
+                        stdMod.model8media_upcreate();
                     break;
                 }
             }
@@ -119,7 +118,7 @@
                                        );
                          newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
                          rg.tiltRatio.value = newEy/Epy;
-                         studyMods[ amode['submodel'] ].model8media_upcreate();
+                         stdMod.model8media_upcreate();
                     break;
                 }
             }
@@ -211,7 +210,7 @@
                         newMx = Math.max( newMx, sconf.tanA_min * newMy )
                         pv[0] = newMx;
                         pv[1] = newMy;
-                        studyMods[ amode['submodel'] ].model8media_upcreate();
+                        stdMod.model8media_upcreate();
                     break;
                 }
             }
@@ -253,7 +252,7 @@
 
                         pv[0] = newX;
                         pv[1] = newY;
-                        studyMods[ amode['submodel'] ].model8media_upcreate();
+                        stdMod.model8media_upcreate();
                     break;
                 }
             }

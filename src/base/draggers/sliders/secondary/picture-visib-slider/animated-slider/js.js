@@ -3,7 +3,7 @@
     var {
         ns, sn, $$,
         fconf, sconf, ssF, ssD,
-        stdMod, rg,
+        rg,
     } = window.b$l.apptree({
     });
     var anslider    = sn('animated-slider');

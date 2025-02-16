@@ -118,7 +118,7 @@
         // //\\ instant point's "r"
         //=========================================================================
         rg.D.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             //var stash = [ newPos[0], newPos[1] ];
             var inc = pointEisIncluded( newPos[1] );
             inc = inc && newPos[1] < rg.V.pos[1];
@@ -149,7 +149,7 @@
         };
 
         rg.v.acceptPos = ( newPos, dragMove ) => {
-            var { theorion, aspect, submodel, subessay } = amode;
+            var { theorion, aspect, subessay } = amode;
             var newPos0  = dragMove[0] + sData.vbpos[0];
             var newPos1  = -dragMove[1] + sData.vbpos[1];
             //-------------------------------------------------------------------

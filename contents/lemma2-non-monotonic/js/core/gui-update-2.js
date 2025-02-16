@@ -2,8 +2,7 @@
     var {
         sn, haz,
         fapp,
-        sapp,
-        amode, SUB_MODEL, stdMod,
+        sapp, rg, amode, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -68,9 +67,6 @@
         //======================================
         function refreshSVG_master() {
             rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-            
-            stdMod.mmedia$.cls( 'submodel-' + SUB_MODEL );
-
             let max = numModel.ctrlPt_2_maxIx();
             let min = numModel.ctrlPt_2_minIx();
             dr.figureParams.minX= dr.ctrlPts[min].x;

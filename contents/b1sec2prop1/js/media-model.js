@@ -144,7 +144,7 @@
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         //todm ... generalize in one spot
-        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );
+        ssF.toogle_detectablilitySliderPoints4Tools();
 
         ///why apparently duplicate tr 2 shapes?
         ///because this thing does historical job, it updates core svg shapes

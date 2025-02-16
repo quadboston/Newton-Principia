@@ -2,7 +2,6 @@
     var {
         sn, has,
         sapp, fconf, sconf, ssF,
-        studyModsActivated,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -29,14 +28,10 @@
         //======================================
         // //\\ inits model and it's view
         //======================================
-        studyModsActivated.forEach( stdMod => {
-            if( has( stdMod, 'model8media_upcreate' ) ) {
-                stdMod.model8media_upcreate();
-                if( stdMod.SUB_MODEL === 'limit-definition' ) {
-                    stdMod.initDragModel()
-                }
-            }
-        });
+        if( has( stdMod, 'model8media_upcreate' ) ) {
+            stdMod.model8media_upcreate();
+            stdMod.initDragModel()
+        }
         sapp.updatesLemmaCss();
         //======================================
         // \\// inits model and it's view

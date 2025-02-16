@@ -1,8 +1,8 @@
 ( function() {
     var {
         sn, haz,
-        sconf, ssF, sDomF, sDomN, 
-        studyMods, amode,
+        sconf, ssF, sDomF, sDomN, rg, toreg,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -22,12 +22,9 @@
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
     ///which is GUI-geometrical shape - visula representation thing;
-    function upcreate__pars2rgShape({ pname, pos, wtype, stdMod })
+    function upcreate__pars2rgShape({ pname, pos, wtype, })
     {
         var rgX = null;
-        stdMod = stdMod || studyMods[ amode.submodel ];
-        var sconf = stdMod.sconf;
-        var toreg = stdMod.toreg;
         switch ( wtype )
         {
             default:
@@ -78,12 +75,7 @@
         wtype,          //optional, default is a point
         pos,            //optional
         caption,        //optional
-        stdMod,
     }){
-        var stdMod = stdMod || studyMods[ amode.submodel ];
-        var rg    = stdMod.rg;
-        var toreg = stdMod.toreg;
-        var sconf = stdMod.sconf;
         var rgX   = null;
         switch ( wtype )
         {
@@ -110,7 +102,7 @@
                 sn( 'pname2point', sconf );
                 //preserves pos reference if exists
                 sconf.pname2point[ pname ] = pos;
-                rgX.medpos = ssF.mod2inn( pos, stdMod );
+                rgX.medpos = ssF.mod2inn( pos, );
                 rgX.caption = caption;
 
             break;

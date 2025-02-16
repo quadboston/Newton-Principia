@@ -4,7 +4,6 @@
         fconf, sconf, sDomF, rg, ssD,
         stdMod,
     } = window.b$l.apptree({
-        SUB_MODEL : 'proof-xix',
         stdModExportList :
         {
             initDragModel,

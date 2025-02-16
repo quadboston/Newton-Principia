@@ -2,7 +2,7 @@
     var {
         ns, sn, ow, $$, sv, haz,
         sconf, ssF, ssD, sDomF, sDomN, rg, toreg,
-        amode, studyMods,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -122,8 +122,6 @@
         drawExternalSector,
         stepsCount,
     }){
-        var stdMod = studyMods[ amode.submodel ];
-
         ANGLE_SIZE = ANGLE_SIZE || 0.1;
         ///"manually" created polyline which formes ellipse's sector,
         ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
@@ -156,7 +154,7 @@
 
 
             svgel : rgX.svgel,
-            parent : ns.sapp.studyMods[ amode['submodel'] ].mmedia,
+            parent : ns.sapp.stdMod.mmedia,
             //fill : 'rgba( 255, 0, 0, 0.1 )',
             fill : fill || 'transparent',
             stroke : stroke || 'transparent',

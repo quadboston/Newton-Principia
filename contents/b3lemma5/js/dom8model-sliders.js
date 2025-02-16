@@ -2,7 +2,7 @@
     var {
         $$, nssvg,
         fconf, sconf, ssF, ssD,
-        stdMod, rg,
+        stdMod, rg, topos,
     } = window.b$l.apptree({
         setModule
     });
@@ -80,8 +80,8 @@
 
         // //\\ slider object
         //sets registry
-        stdMod.topos( 'sliderStart_' + sliderId, startPos );
-        stdMod.topos( 'sliderEnd_' + sliderId, endPos );
+        topos( 'sliderStart_' + sliderId, startPos );
+        topos( 'sliderEnd_' + sliderId, endPos );
 
         var sliderStart = pos2pointy( 'sliderStart_' + sliderId,
             { fill : '#9999dd', tpclass:sliderId, cssClass : 'tofill tostroke', } );
