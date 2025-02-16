@@ -2,7 +2,6 @@
     var {
         haff, has, eachprop, nspaste, capture, toreg,
         sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
-        studyMods,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
@@ -635,7 +634,7 @@
                 ],
                  
                 [
-                    "( theorion === 'corollary' && submodel === 'common' )",
+                    "( theorion === 'corollary' )",
                     {
                         "captured" : "initial-state",
                         "rg" :

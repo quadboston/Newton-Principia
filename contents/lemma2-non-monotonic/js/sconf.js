@@ -1,8 +1,8 @@
 ( function () {
     var {
         nspaste,
-        fapp, fconf, sconf,
-        sapp,
+        fapp, fconf,
+        sapp,  sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -244,7 +244,7 @@
             bk : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 30,
+                initialR    : 3,
                 undisplayAlways : true,
                 doPaintPname : false,
             },

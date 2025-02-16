@@ -4,7 +4,6 @@
         sconf, ssD,
         stdMod,  toreg,
     } = window.b$l.apptree({
-        SUB_MODEL : 'limit-definition',
         stdModExportList :
         {
             model_upcreate,

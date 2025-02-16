@@ -40,9 +40,11 @@
                 { src : '../js/main-legend.js' },
 
                 //projectile model
+                /*
                 { src : '../projectile-model/sconf.js' },
                 { src : '../projectile-model/study-model.js' },
                 { src : '../projectile-model/media-model.js' },
+                */
             ],
             "contents-list" :
             [

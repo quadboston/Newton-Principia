@@ -7,8 +7,6 @@
         ssF, ssD,
         sDomF, sDomN, amode,
         exegs,
-        studyMods,
-        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {

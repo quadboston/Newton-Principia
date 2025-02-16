@@ -1,10 +1,10 @@
-//todm: apparently vital to merge this module with proper submodel
+//todm: apparently vital to merge this module with proper s ubmodel
 
 ( function() {
     var {
         ns, $$, sn, haz, haff,
         ssF, sconf, fconf,
-        sDomF, sDomN, studyMods, amode,
+        stdMod, sDomF, sDomN, amode,
     } = window.b$l.apptree({
         setModule,
     });
@@ -46,22 +46,21 @@
     ///         (rgX = this)
     ///
     ///===================================================
-    function pname__2__rgX8dragwrap_gen_list( pname,  stdMod )
+    function pname__2__rgX8dragwrap_gen_list( pname,)
     { 
-        return params__2__rgX8dragwrap_gen_list({ pname, stdMod });
+        return params__2__rgX8dragwrap_gen_list({ pname,});
     }
     function params__2__rgX8dragwrap_gen_list({
-        pname, acceptPos, orientation, pos, nospinner, stdMod,
+        pname, acceptPos, orientation, pos, nospinner,
     }) {
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
-        var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, stdMod })
+        var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
         //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
         rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
-
         orientation = orientation ||
         ( haz( rgX, 'draggableY' ) && haz( rgX, 'draggableX' ) ?
             'rotate' :
@@ -96,7 +95,6 @@
         //possibly in media units, not im model units,
         mouseOnSurf
     ){
-        var stdMod = studyMods[ amode.submodel ];
         if( haz( sconf, 'dragHidesPictures' ) ){
             sDomF.detected_user_interaction_effect();
         }
@@ -105,9 +103,9 @@
             //// dragging model as a whole "inside media"
 
             //sconf.originX_onPicture - original position remains intact
-            //stdMod.sconf.modorInPicX - moves as user does "move model origin"
-            stdMod.sconf.modorInPicX = this.achieved.achieved[0] + dragMove[0];
-            stdMod.sconf.modorInPicY = this.achieved.achieved[1] + dragMove[1];
+            //sconf.modorInPicX - moves as user does "move model origin"
+            sconf.modorInPicX = this.achieved.achieved[0] + dragMove[0];
+            sconf.modorInPicY = this.achieved.achieved[1] + dragMove[1];
 
             this.medpos[0] = mouseOnSurf[0];
             this.medpos[1] = mouseOnSurf[1];
@@ -133,7 +131,6 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        var stdMod = studyMods[ amode.submodel ];
         if( ns.haz( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
@@ -165,12 +162,9 @@
 
     function processUpEvent( arg )
     {
-        var stdMod = studyMods[ amode.submodel ];
         if( ns.haz( this, 'mediaMover' ) ) {
-
-            var stdMod = studyMods[ amode.submodel ];
-            this.achieved.achieved[ 0 ] = stdMod.sconf.modorInPicX; 
-            this.achieved.achieved[ 1 ] = stdMod.sconf.modorInPicY; 
+            this.achieved.achieved[ 0 ] = sconf.modorInPicX; 
+            this.achieved.achieved[ 1 ] = sconf.modorInPicY; 
 
             //// non-ordinary case:
             this.undisplay = true;

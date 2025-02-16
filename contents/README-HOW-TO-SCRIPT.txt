@@ -141,9 +141,9 @@ this contains another JSON, not a JSON for active fragments
     ------
         *::*claim|xixcentury
         {
+          "theorionCaption" : "This is problem 2",
           "dataLegend":"0",
           "mediaBgImage" : null,
-          "submodel" : "limit-definition",
 
           "adding-any-new-key-to-this-JSON-does-not-affect-other-key-pairs-functionality. Like adding this key." : "This keypair is just a comment",
 
@@ -155,14 +155,12 @@ this contains another JSON, not a JSON for active fragments
 
 
     description of above JSON
-    -------------------------    
+    ------------------------- 
+        "theorionCaption" : "This is problem 2",- makes GUI caption (usually for horizontal menu),
         "default" : "1",                        - makes this essay default at site-landing,
         "mediaBgImage" : null,                  - loads empty image,
         "mediaBgImage" : 'my-bg-image.png',     - loads contents/.../img/my-bg-image.png,
         missed "mediaBgImage" :                 - loads common image,
-
-        "submodel" : "limit-definition",        - loads this submodel for given essay,
-
         "studylab" : true                       - makes this essay hidden if "lab" is not on
                                                   note: incompatible with "default",
 

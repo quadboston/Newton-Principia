@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, has, haz, sv,
-        sconf, ssF, rgtools,
+        sconf, ssF, rgtools, topos,
         stdMod, rg,
     } = window.b$l.apptree({
         modName : 'mediaModel_create',
@@ -40,7 +40,6 @@
         min_magnit,
         SUGGESTED_COLOR,
         magnitude2app,
-        stdMod,
     }) {
         var range_magnit    = max_magnit - min_magnit;
         var toolsSliders    = sn( 'toolsSliders',stdMod, [] );
@@ -85,18 +84,16 @@
         // //\\ slider object
         //----------------------------------------------------------------------------
         //sets registry
-        stdMod.topos( 'sliderStart_' + magnit, startPos );
-        stdMod.topos( 'sliderEnd_' + magnit, endPos );
+        topos( 'sliderStart_' + magnit, startPos );
+        topos( 'sliderEnd_' + magnit, endPos );
 
         var sliderStart_rg = pos2pointy(
                 'sliderStart_' + magnit,
                 { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', },
-                stdMod,
         );
         var sliderEnd_rg = pos2pointy(
                 'sliderEnd_' + magnit,
                 { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', },
-                stdMod,
         );
         ///draws rails
         var slider_rg = pointies2line(
@@ -141,7 +138,6 @@
                 r               : 5,
                 tpclass         : magnit,
             },
-            stdMod,
         );
         //-------------------------------------------------
         // \\// pos to pointy
@@ -171,7 +167,7 @@
         //----------------------------------------------------------------------------
         // //\\ slider methods api
         //----------------------------------------------------------------------------
-        ///this function restricts itself to SUB_MODEL === 'common',
+        ///this function restricts itself to S UB_MODEL === 'common',
         ///not very obvious design
         magnit_api.model8media_upcreate = stdMod_model8media_upcreate;
 
@@ -201,7 +197,7 @@
                              railsLength + min_magnit;
             if( newValue < min_magnit || newValue > max_magnit ) return;
 
-            magnitude2app( magnit_api, newValue, stdMod );
+            magnitude2app( magnit_api, newValue, );
 
             magnit_api.pos[0] = new_modelPos[0];
             //no vertical movement from rails: magnit_api.pos[1] = new_modelPos[1];
@@ -243,7 +239,7 @@
     {
         api = api || this;
         var stdMod = api.stdMod;
-        api.medpos = ssF.mod2inn_original( api.pos, stdMod );
+        api.medpos = ssF.mod2inn_original( api.pos, );
         sv.u({
             svgel   : api.svgel,
             parent  : stdMod.mmedia,
@@ -265,7 +261,7 @@
 
 
     ///fixes slider pointer detectibility upon mode
-    function toogle_detectablilitySliderPoints4Tools( stdMod, )
+    function toogle_detectablilitySliderPoints4Tools()
     {
         var toolsSliders = sn( 'toolsSliders',stdMod, [] );
         toolsSliders.forEach( slname => {

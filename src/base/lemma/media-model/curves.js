@@ -1,7 +1,7 @@
 ( function() {
     const {
         ns, sn, haz, $$,
-        sconf, ssF, sDomF,
+        sconf, ssF, sDomF, rg,
         stdMod,
     } = window.b$l.apptree({
         ssFExportList :
@@ -90,7 +90,6 @@
         //-----------------------------------------------------------------
         // //\\ rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
-        var rg = stdMod.rg;
         stepsCount = stepsCount || 85;
         if( pointA && pointB ) {
             rgName              = rgName || 'arc-' + pointA.pname + pointB.pname;
@@ -194,7 +193,6 @@
                             caption : captionFunct({
                                 pointParam, pointIndex : aix, pointPos : pos
                             }),
-                            stdMod,
                 });
                 rgAnn.undisplay = haz( rgX, 'undisplay' );
                 letterPars && Object.assign( rgAnn, letterPars );

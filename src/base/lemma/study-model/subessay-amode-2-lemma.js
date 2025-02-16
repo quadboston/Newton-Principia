@@ -6,8 +6,8 @@
         // list them here:
         //============================================================
         sn, $$, nspaste, eachprop, has, haz, hazz, haff,
-        fapp, fconf, sconf, ssF, ssD, sDomN, sDomF, exegs,
-        studyMods, amode,
+        fapp, fconf, sconf, ssF, ssD, sDomN, sDomF, exegs, rg,
+        stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
         ssFExportList :
@@ -27,7 +27,7 @@
     ///===================================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
-    ///     after init_model_parameters in init-sapp.js::init_sapp...studyMods,
+    ///     after init_model_parameters in init-sapp.js::init_sapp...s tudyMods,
     ///     more comments are in: ver/excluded/code-overview/init-params-tips.txt
     ///===================================================================
     function in_subessay_launch____amode2lemma( amodel2app_8_extraWork,  )
@@ -35,10 +35,7 @@
         if( amodel2app_8_extraWork ) {
             doMinimizeTextMenus();
         }
-        var { theorion, aspect, submodel, subessay } = amode;
-        var stdMod  = studyMods[ submodel ];
-        var rg = stdMod.rg;
-
+        var { theorion, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ sets "undefined" flag
         //      for registry rg members with defined pname,
@@ -73,7 +70,7 @@
         /// //\\ takes conditions scripted at the bottom of professor-script,
         ///      loops via these conditions and executes them,
         ///         context is a closure of running function:
-        ///             { theorion, aspect, submodel, subessay ...
+        ///             { theorion, aspect, subessay ...
         ///
         ///      "__amode2rgstate" can come from JS-module
         ///------------------------------------------------------------------
@@ -81,7 +78,6 @@
             ///aka: "true", or "( theorion === 'claim' || ...
             var cond = cblock[0];
             if( eval( cond ) ) {
-                //c cc( submodel, 'cond='+cond, 'amode=', amode,  );
                 var instr = cblock[ 1 ];
                 ///latter "captured" in array overrides previous "captured"
                 captured = haz( instr, "captured" ) || captured;
@@ -114,15 +110,14 @@
         stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], );
 
         //=================================================================
-        // //\\ makes submodel displayed
+        // //\\ makes s ubmodel displayed
         //=================================================================
-        var rootCls = fapp.fappRoot$._cls();
-        var smcls = /\b(submodel\-\-\S+)\b/;
-        var clsMatch = rootCls.match( smcls );
-        var removeCls = ( clsMatch && clsMatch[1] ) || '';
-        fapp.fappRoot$
-            .removeClass( removeCls )
-            .addClass( 'submodel--' + amode.submodel );
+        //var rootCls = fapp.fappRoot$._cls();
+        //var smcls = /\b(s ubmodel\-\-\S+)\b/;
+        //var clsMatch = rootCls.match( smcls );
+        //var removeCls = ( clsMatch && clsMatch[1] ) || '';
+        //fapp.fappRoot$
+        //    .removeClass( removeCls )
         /*
         c cc( 'swapped:' +
              '\nremoved=' + removeCls +
@@ -130,7 +125,7 @@
         );
         */
         //=================================================================
-        // \\// makes submodel displayed
+        // \\// makes s ubmodel displayed
         //=================================================================
 
         var wwLaunch = haz( stdMod, 'subessayLaunch_definedInLemma_universal' );

@@ -1,15 +1,12 @@
 //registry is used for study-model-elements or media-model-elements
 ( function() {
-    var ns          = window.b$l;
-    var sn          = ns.sn;
-    var fapp        = sn('fapp'); 
-    var fconf       = sn('fconf',fapp);
-    var ssTmp       = sn('ss', fapp);   //todm remove ss later
-    var ssF         = sn('ssFunctions',ssTmp);
-
-    ssF.toregUnbound    = toreg;
-    ssF.makes_toreg4pos = makes_toreg4pos;
-
+    var { sn } = window.b$l.nstree();
+    var sapp   = sn('sapp');
+    var rg     = sn('rg', sapp);
+    sapp.toreg = toreg;
+    sapp.topos = topos; // legacy specific case of property "pos"
+    return;
+    
     //test
     /*
     var myumbr = toreg('my')
@@ -37,7 +34,6 @@
         });
     console.log( 'myfun=', myfun('k5','v5')() );
     */
-    return;
 
 
 
@@ -53,20 +49,14 @@
     ///     generates/reuses rg[ kname ],
     ///     assigns val to rg[ kname ].pos,
     ///     returns val
-    function makes_toreg4pos( stdMod )
-    { return (
-                function( kname, val ) {
-                    var rg = this;
-                    rg[ kname ] = rg.hasOwnProperty( kname ) ?
-                        rg[ kname ] :
-                        {
-                            rgId : kname,
-                            stdModName : rg.stdModName,
-                        }
-                    ;
-                    return ( rg[ kname ].pos = val );
-                }
-             ).bind( stdMod.rg );
+    function topos( kname, val ) {
+        rg[ kname ] = rg.hasOwnProperty( kname ) ?
+            rg[ kname ] :
+            {
+                rgId : kname,
+            }
+        ;
+        return ( rg[ kname ].pos = val );
     }
 
 
@@ -88,9 +78,7 @@
     */
     function toreg( id )
     {
-        rg = this;
-        rg[ id ] = rg.hasOwnProperty( id ) ?
-            rg[ id ] : { rgId : id, stdModName : rg.stdModName };
+        rg[ id ] = rg.hasOwnProperty( id ) ? rg[ id ] : { rgId : id, };
         return updateMe;
 
         function updateMe( key, val ) {

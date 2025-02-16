@@ -25,7 +25,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, submodel, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
 
         //hides all proof material, proof is already done in lemma 9
         [

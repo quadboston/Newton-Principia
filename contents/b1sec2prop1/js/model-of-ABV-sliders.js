@@ -1,8 +1,8 @@
 ( function() {
     var {
         mat, nspaste,
-        sconf, sDomF, ssF,
-        amode, studyMods,
+        sconf, sDomF, ssF, rg, toreg,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -22,11 +22,8 @@
 
 
     ///executes one time
-    function doesSchedule_A_B_V_sliders_in_init_pars( stdMod )
+    function doesSchedule_A_B_V_sliders_in_init_pars()
     {
-        var toreg = stdMod.toreg;
-        var rg = stdMod.rg;
-
         //**********************
         //initially does job which sliders do at run-time
         toreg( 'slider_sltime' )( 'curtime',
@@ -40,7 +37,6 @@
         //interface for B
         //---------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
             pname : 'v',
             acceptPos : v2params,
             orientation : 'rotate',
@@ -63,12 +59,10 @@
                 //breakage of the entire legace code
                 //************************************
 
-                //rgX=ssF.declareGeomtric( {'pname':nam1} );
                 sDomF.params__2__rgX8dragwrap_gen_list({
-                    stdMod,
                     pname : nam1,
-                    acceptPos : function( newVPos, dummyPar, stdMod, enforceNewPos ) {
-                        return V2forceParams(newVPos, dummyPar, stdMod, enforceNewPos, ix);
+                    acceptPos : function( newVPos, dummyPar, enforceNewPos ) {
+                        return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
                     },
                     pos: rg[nam1].pos,
                 });
@@ -88,7 +82,6 @@
         ///remember medpos still has to be created and updated,
         ///this does not create medpos:
         sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
             pname : 'A',
             acceptPos : A2distanceToS,
             pos: rg.A.pos,
@@ -114,10 +107,8 @@
     /// estimates speed direction in the first step and
     /// resets speed direction;
     ///=============================================================
-    function v2params( newPos, dummyPar, stdMod )
+    function v2params( newPos, dummyPar, )
     {
-        stdMod      = stdMod || studyMods[ amode.submodel ];
-        var toreg   = stdMod.toreg;
         var path_Av = mat.subV( newPos, rg.A.pos );
         var unitAv = mat.unitVector( path_Av );
 
@@ -149,13 +140,10 @@
     ///when dragging point V, converts V pos change to force-law constant change,
     ///returns true which means newPos is allowed,
     ///=============================================================
-    function V2forceParams( newVPos, dummyPar, stdMod, enforceNewPos, fix )
+    function V2forceParams( newVPos, dummyPar, enforceNewPos, fix )
     {
         let nam0='VV'+fix;
         let nam1='VVV'+fix;
-        stdMod                  = stdMod || studyMods[ amode.submodel ];
-        var toreg               = stdMod.toreg;
-        var rg                  = stdMod.rg;
         var tstep               = rg.rgslid_dt.val;
         var posB                = rg[nam0].pos;
         var posS                = rg.S.pos;
@@ -192,11 +180,8 @@
     ///==============================================================
     /// when dragging, changes initial distance: distance from A to S
     ///==============================================================
-    function A2distanceToS( newAPos, dummyPar, stdMod )
+    function A2distanceToS( newAPos, dummyPar, )
     {
-        stdMod      = stdMod || studyMods[ amode.submodel ];
-        var toreg   = stdMod.toreg;
-        var rg      = stdMod.rg;
         var posS    = rg.S.pos;
         var newAS   = mat.unitVector( mat.subV( newAPos, posS ) );
         //A is too close to S, forbid this configuration
@@ -220,15 +205,11 @@
     ///      or none of them
     ///=========================================================
     /*
-    function ABVpos_2_trajectory( stdMod )
+    function ABVpos_2_trajectory()
     {
-        stdMod      = stdMod || studyMods[ amode.submodel ];
-        var toreg   = stdMod.toreg;
-        var rg      = stdMod.rg;
-
-        //v2params( rg.B.pos, null, stdMod );
-        //V2forceParams( rg.V.pos, null, stdMod, !!'doEnforcePars' );
-        //A2distanceToS( rg.A.pos, null, stdMod );
+        //v2params( rg.B.pos, null, );
+        //V2forceParams( rg.V.pos, null,  !!'doEnforcePars' );
+        //A2distanceToS( rg.A.pos, null, );
 
         //ssF.solvesTrajectoryMath__O();
     }

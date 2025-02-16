@@ -284,8 +284,8 @@
             //if points are flagged as 'unscalable', then
             //they are immune to scaling when user scales diagram with mouse
             pt.medpos = haz( pt, 'unscalable' ) ?
-                ssF.mod2inn_original( pt.pos, stdMod ) :
-                ssF.mod2inn( pt.pos, stdMod );
+                ssF.mod2inn_original( pt.pos, ) :
+                ssF.mod2inn( pt.pos, );
             pt.svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
             pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
         });
@@ -333,8 +333,8 @@
             //if points are flagged as 'unscalable', then
             //they are immune to scaling when user scales diagram with mouse
             pt.medpos = haz( pt, 'unscalable' ) ?
-                ssF.mod2inn_original( pt.pos, stdMod ) :
-                ssF.mod2inn( pt.pos, stdMod );
+                ssF.mod2inn_original( pt.pos, ) :
+                ssF.mod2inn( pt.pos, );
             pt.svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
             pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
         });

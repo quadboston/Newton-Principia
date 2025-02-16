@@ -2,7 +2,7 @@
     var {
         ns, sn, toreg, mcurve,
         fapp, fconf, sData,
-        studyMods, amode, sconf, rg,
+        amode, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {

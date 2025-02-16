@@ -139,7 +139,6 @@
     function virtualSubessayClick( subexeg )
     {
         amode.subessay = subexeg.essayHeader.subessay;
-        amode.submodel = subexeg.essayHeader.submodel;
 
         //sets state === user had seen menu-item and clicked on it
         subexeg.domEl$

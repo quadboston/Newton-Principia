@@ -1,11 +1,9 @@
 ( function() {
     var {
-        SUB_MODEL,
         ns, sn, $$, mat, nssvg,
         sconf, ssF, ssD,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
-        SUB_MODEL : 'limit-definition',
         stdModExportList :
         {
             media_upcreate,
@@ -48,7 +46,6 @@
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
         } else {
-            stdMod.mmedia$.cls( 'submodel-' + SUB_MODEL );
             globalStyle$ = $$.style().to( document.head );
         }
         limDemo = sn( 'limDemo', mat );

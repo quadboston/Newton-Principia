@@ -4,7 +4,6 @@
         fconf, sconf, ssD, sDomF, rg,
         amode, stdMod,
     } = window.b$l.apptree({
-        SUB_MODEL : 'limit-definition',
         stdModExportList :
         {
             initDragModel,
@@ -94,11 +93,7 @@
                                     / norm
                                     ;
                         ssD.delta_fraction = Math.max( Math.min( newDx, 1 ), 0.0001 );
-                        if( has( amode, 'submodel' ) && amode['submodel'] ) {
-                            //.this is a duty of contributor to provide:
-                            //.if( studyMods[ ww ] ) {
-                            stdMod.model8media_upcreate();
-                        }
+                        stdMod.model8media_upcreate();
                      break;
             }
         }

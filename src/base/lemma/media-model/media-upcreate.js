@@ -5,7 +5,7 @@
         rg,
         ssF, ssD,
         sDomF, amode,
-        studyMods, toreg, stdMod, rg,
+        stdMod, toreg, rg,
         exegs,
     } = window.b$l.apptree({
         setModule,
@@ -43,7 +43,6 @@
     ///overrides lemma's stdMod.media_upcreate if missed
     function media_upcreate_generic()
     {
-        //var stdMod = studyMods[ amode.submodel ];
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
 
@@ -52,16 +51,13 @@
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
-        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, );//"optional"
-
+        ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
         {
             ////preliminary setting for painting lines,
             ////no points painting at this moment,
-            //let stdMod      = stdMod || studyMods[ amode.submodel ];
-            //let rg          = stdMod.rg;
             eachprop( sconf.pname2point, (point,pname) => {
                 var pointRg = rg[ pname ];
-                pointRg.medpos = ssF.mod2inn( pointRg.pos, stdMod );
+                pointRg.medpos = ssF.mod2inn( pointRg.pos, );
             });
         }
 

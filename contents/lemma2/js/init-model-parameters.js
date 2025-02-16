@@ -3,8 +3,8 @@
 (function() {
     var {
         sn, eachprop, haff, numModel,
-        fapp, sapp, ssF, sDomF,
-        studyModsActivated, stdMod,
+        fapp, sapp, ssF, sDomF, rg,
+        stdMod,
     } = window.b$l.apptree({
         setModule,
         stdModExportList :
@@ -86,7 +86,8 @@
         //*************************************************************
         //this completes media_upcreate_generic and media_upcreate
         //*************************************************************
-        //we do this because of r efreshSVG_master may play role of model, so all the
+        //we do this because of this sub
+        //may play role of model, so all the
         //stuff for gui must be created before framework's media update
         stdMod.media_upcreate___before_basic = stdMod.media_upcreate___before_basic_L2;
         //---------------------------------------------
@@ -104,22 +105,11 @@
         
         //sets their positions:
         guicon.constructsControlPoints();
-        /*
-         * //remove when approved
-        {
-            let newY = [];
-            let a = sconf.ctrlPtXYs_js;
-            sconf.ctrlPtXYs_js.forEach( (item,ix) => {
-                if( ix===0 || ix===4 ) return;
-                let x = a[0].x + ix*(a[a.length-1].x- a[0].x)/5
-                let y = numModel.curveFun( x ); 
-            });
-            let x = a[0].x + 4*(a[a.length-1].x- a[0].x)/5
-            let y = numModel.curveFun( x ); 
-        }
-        */
-        //now, this call does "r efreshSVG_master"
+        //guicon.constructsCtrPoints();
+
         stdMod.model_upcreate();
+        //now, this call does
+        //stdMod.media_upcreate___before_basic_L2
         ssF.media_upcreate_generic(); //vital, perhaps for synch
 
         //see:     ///modern approach ... abandoned
@@ -145,7 +135,7 @@
             orientation : 'axis-x',
             acceptPos : newPos =>
             {
-                var drX = stdMod.rg[ pname ];
+                var drX = rg[ pname ];
                 drX.pos[0] = newPos[0];
                 newPos[1] = drX.pos[1];
                 return !!'move permitted';

@@ -62,7 +62,6 @@
                 "rgslid_dt": {
                 "val": sconf.initialTimieStep
         },
-        "stdModName": "common",
         "media-mover": {
             "achieved": {
                 "achieved": [

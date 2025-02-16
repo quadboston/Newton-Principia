@@ -212,7 +212,7 @@
         rg.Y.pos[0] = projectionOfCenterOnTangent[0];
         rg.Y.pos[1] = projectionOfCenterOnTangent[1];
 
-        var RCmedpos = ssF.mod2inn( RC, stdMod );
+        var RCmedpos = ssF.mod2inn( RC, );
         var RRmedpos = sconf.mod2inn_scale * Rc;
 
         //todo nearly bug: why create svg and set cls every time?

@@ -18,8 +18,7 @@
         fmethods,
         ssF,
         sDomF, sDomN,
-        studyMods,
-        amode,
+        stdMod, amode,
         wrkwin,
         exegs,
         toreg,
@@ -280,7 +279,6 @@
         var subexeg0        = exAspect.subexegs[ 0 ];
         var subexeg         = ns.haz( exAspect, "default" ) || subexeg0;
         amode.subessay      = subexeg.essayHeader.subessay;
-        amode.submodel      = subexeg.essayHeader.submodel;
         //**************************************************************
         //**************************************************************
         // \\// makes model change
@@ -297,7 +295,6 @@
         fapp.fappRoot$.addClass(
             'theorion--' + amode.theorion + ' aspect--' + amode.aspect
         );
-        //ccc( 'new cls: ' + amode.submodel + ' rootCls=' + fapp.fappRoot$._cls() );
 
         //flag to content-text-components
         if( userOptions.shouldShowSubessayMenu(exAspect) ) {
@@ -371,7 +368,6 @@
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
-        var stdMod = studyMods[ amode.submodel ];
 
         //possibly for lemmas from the past: lemma1, l2, ...
         ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );

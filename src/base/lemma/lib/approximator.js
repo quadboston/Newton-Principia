@@ -17,7 +17,7 @@
             stdMod.pointsArr_2_doubledDividedDifferences();        
 
         var curvePoints = trange2points({ tStart:0, tEnd:9, stepsCount:180 });
-        var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
+        var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, ) );
         var psvg = nssvg.polyline({
             pivots  : medpoints, 
             svgel   : psvg,
@@ -169,7 +169,7 @@
         function buildsPlot()
         {
             var medpoints = curvePoints.map( cp => {
-                return ssF.mod2inn( cp, stdMod );
+                return ssF.mod2inn( cp, );
             });
             //ccc( curvePoints, medpoints );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({

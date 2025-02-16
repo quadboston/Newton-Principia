@@ -1,8 +1,8 @@
-//todm: apparently vital to merge this module with proper submodel
+//todm: apparently vital to merge this module with proper s ubmodel
 ( function() {
     var {
         ns, $$, sn, ssF, sconf, fconf,
-        sDomF, sDomN,
+        stdMod, sDomF, sDomN,
     } = window.b$l.apptree({
         setModule,
     });
@@ -28,12 +28,11 @@
     //===================================================
     //interface for media-mover
     //===================================================
-    function creates_mediaMover_in_rgX8dragWrapGenList( stdMod )
+    function creates_mediaMover_in_rgX8dragWrapGenList()
     {
         var pname = 'media-mover';
         var pos = [ -11111, -11111 ]; //fake
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
             pname,
             pos, 
             acceptPos : () => true,
@@ -44,8 +43,8 @@
         {
             achieved :
             [
-                stdMod.sconf.modorInPicX,
-                stdMod.sconf.modorInPicY,
+                sconf.modorInPicX,
+                sconf.modorInPicY,
             ]
         };
 
@@ -62,7 +61,6 @@
                 'stroke-width' : 3,
                 r : 6,
             },
-            stdMod,
         );
     }
 

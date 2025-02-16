@@ -1,8 +1,8 @@
 ( function() {
     var {
         ns, sn, $$, sv, nsmethods, han, haz, has, mat,
-        sconf, ssF, ssD, sDomF, sDomN, lowId2topics,
-        amode, studyMods,
+        sconf, ssF, ssD, sDomF, sDomN, lowId2topics, rg, toreg,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -50,14 +50,10 @@
     ///
     ///     used external:
     ///         sconf.thickness
-    ///         amode.submodel.mmedia
     ///
     /// Output: adds pivots-media-positions to line
-    function pointies2line( pName, pivots, lineAttr, stdMod )
+    function pointies2line( pName, pivots, lineAttr )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         var lineAttr    = lineAttr || {};
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
@@ -67,14 +63,14 @@
         let pv0 = pivots[0];
         let pv1 = pivots[1];
         if( haz( pv0, 'unscalable' ) ) {
-            pv0.medpos = ssF.mod2inn_original( pv0.pos, stdMod );
+            pv0.medpos = ssF.mod2inn_original( pv0.pos );
         } else if( !has(pv0, 'medpos' ) ) {
-            pv0.medpos = ssF.mod2inn( pv0.pos, stdMod );
+            pv0.medpos = ssF.mod2inn( pv0.pos );
         }
         if( haz( pv1, 'unscalable' ) ) {
-            pv1.medpos = ssF.mod2inn_original( pv1.pos, stdMod );
+            pv1.medpos = ssF.mod2inn_original( pv1.pos );
         } else if( !has(pv1, 'medpos' ) ) {
-            pv1.medpos = ssF.mod2inn( pv1.pos, stdMod );
+            pv1.medpos = ssF.mod2inn( pv1.pos );
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
@@ -100,7 +96,7 @@
 
                 parent  : stdMod.mmedia,
                 //todm everywhere in this module:
-                //parent  : studyMods[ amode['submodel' ].mmedia,
+                //parent  : stdMod.mmedia,
 
                 pivots      : pivotsMedPos,
                 'stroke-width' : line.finalStrokeWidth.toFixed(4),
@@ -133,7 +129,7 @@
             });
         }
         if( vectorTipIx || vectorTipIx === 0 ) {
-            paintsVectorTips({ vectorTipIx, pivots, line, stdMod });
+            paintsVectorTips({ vectorTipIx, pivots, line, });
         }
         line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
@@ -217,7 +213,7 @@
     }
 
 
-    function paintsVectorTips({ vectorTipIx, pivots, line, stdMod })
+    function paintsVectorTips({ vectorTipIx, pivots, line, })
     {
         let tipFraction = haz( line, 'tipFraction' );
         var TIP_FRACTION = Math.abs( tipFraction ) ||  0.2;
@@ -267,11 +263,8 @@
 
     ///a bit of proliferation
     ///adds "sugar" to pointies2line: point names
-    function pointnames2line( name1, name2, cssClass, stdMod )
+    function pointnames2line( name1, name2, cssClass, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         //line_rg =
         return pointies2line(
             'line-' + name1 + name2,
@@ -287,11 +280,8 @@
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function pnames2line( name1, name2, tpCssClass, stdMod )
+    function pnames2line( name1, name2, tpCssClass, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         return pointies2line(
             name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],
@@ -300,17 +290,13 @@
                                    ( tpCssClass ? ' ' + tpCssClass : '' ),
                 'stroke-width'  : 2,
             },
-            stdMod,
         );
     }
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function str2line( str, cssClass, lineAttr, caption, stdMod )
+    function str2line( str, cssClass, lineAttr, caption, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
         var lpoints = str.split( splitToken );
         cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
@@ -348,11 +334,7 @@
         correctJoin, //fix all lemmas and remove this par. then
         undisplay,   //optional
         tostroke,
-        stdMod,
     ){
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         var CLOSED_POLYLINE = true;
 
         var pName = pNames.join( correctJoin ? '--' : '');
@@ -408,11 +390,7 @@
     ///api: if poly is not supplied, then it must be "this",
     ///does update "undisplay",
     ///switch poly.UPDATE_MPOS_BEFORE_POLY does update mpos before pivots
-    function poly_2_updatedPolyPos8undisplay( poly, stdMod ) {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
-
+    function poly_2_updatedPolyPos8undisplay( poly, ) {
         poly = poly || this;
         var CLOSED_POLYLINE = true;
         var pNames = poly.pNames;
@@ -437,15 +415,12 @@
     ///Input:   triang = rg[ triangleId ]
     ///         triang.vertices
     ///         cssCls can be for 'theorion--proof'
-    function paintTriangle( triangleId, cssCls, tpclass, defaultFill, stdMod )
+    function paintTriangle( triangleId, cssCls, tpclass, defaultFill, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
         var triang = rg[ triangleId ];
         var mod2inn = ssF.mod2inn;
         var vertices = triang.vertices.map( pos => {
-            return mod2inn( pos, stdMod );
+            return mod2inn( pos, );
         });
         var dressed = ownProp.call( triang, 'shapeIsAlreadyDressed' );
         if( !dressed ) {

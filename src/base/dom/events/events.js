@@ -11,7 +11,6 @@
         wrkwin,
         ssF, ssD,
         amode,
-        studyMods,
         sDomN,
         sDomF,
         userOptions
@@ -117,7 +116,7 @@
     }
     
 
-    function attachWeelToDomEl( domel$, stdMod )
+    function attachWeelToDomEl( domel$, )
     {
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
         domel$.e( 'wheel', wheelHandler );
@@ -146,7 +145,7 @@
             if( !validated ) return;
             rg.media_scale.value = newScale;
             rg.media_scale.stdMod = stdMod;
-            ssF.scaleValue2app( newScale, stdMod ); //resets applic. state to new scale
+            ssF.scaleValue2app( newScale, ); //resets applic. state to new scale
             rg.media_scale.modPos_2_GUI();
             stdMod.model8media_upcreate();
         };

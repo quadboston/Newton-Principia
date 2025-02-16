@@ -27,7 +27,7 @@
 ( function() {
     var {
         ns, sn, $$, nsmethods, haz, has, eachprop,
-        sconf, sDomF, topics, lowId2topics, originalPoints,
+        sconf, rg, sDomF, topics, lowId2topics, originalPoints,
     } = window.b$l.apptree({
         ssFExportList :
         {

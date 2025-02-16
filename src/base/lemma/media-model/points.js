@@ -1,8 +1,8 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowId2topics,
-        studyMods, amode,
+        sconf, sDomF, sDomN, ssF, ssD, lowId2topics, rg, toreg,
+        stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -41,19 +41,15 @@
     ///Twins: doPaintLetter8kernel( pname )
     ///       which does more work for this function
     ///Returns: rg[ pName ]
-    function pos2pointy( pName, attrs, stdMod )
+    function pos2pointy( pName, attrs, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
-
         attrs = attrs || {};
         var pt = rg[ pName ];
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
-        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos, stdMod ) :
-                                              ssF.mod2inn( pt.pos, stdMod );
+        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos, ) :
+                                              ssF.mod2inn( pt.pos, );
         var dressed = ownProp.call( pt, 'pointIsAlreadyDressed' );
         if( !dressed ) {
 
@@ -178,13 +174,8 @@
     ///-----------------------------------------------
     /// paints latin letters for points
     ///-----------------------------------------------
-    function doPaintLetter8kernel( pname, stdMod )
+    function doPaintLetter8kernel( pname, )
     {
-        stdMod          = stdMod || studyMods[ amode.submodel ];
-        var toreg       = stdMod.toreg;
-        var rg          = stdMod.rg;
-
-        var stdMod = studyMods[ amode.submodel ];
         var rgX = rg[ pname ];
 
         ///adds fake points over draggable points to
@@ -236,14 +227,13 @@
                                           ' tp-' + fakeName + //possibly new feature
                                           ' tostroke hover-width'
                     },
-                    stdMod,
                 );
             } else {
                 ////...updates
                 rgXX.pos[0] = wp[0];
                 rgXX.pos[1] = wp[1];
                 rgXX.undisplay = undisplay;
-                pos2pointy( fakeName, null, stdMod ); //updates
+                pos2pointy( fakeName, null, ); //updates
             }
         }
         if( rgX.doPaintPname && rgX.caption !== '' ) {
@@ -337,9 +327,8 @@
     // //\\ adds to points their media position
     //      and sets point's color
     //-------------------------------------------------
-    function doPaintPoints( stdMod )
+    function doPaintPoints()
     {
-        stdMod  = stdMod || studyMods[ amode.submodel ];
         var p2p = haz( sconf, 'pname2point' );
         if( !p2p ) return;
         if( ix2origPoint.length ) {
@@ -347,15 +336,15 @@
             ix2origPoint.forEach( op => {
                 var pname = haz( op, 'kName' );
                 if( !pname ) return;
-                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, stdMod, );
-                doPaintLetter8kernel( pname, stdMod, );
+                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, );
+                doPaintLetter8kernel( pname, );
             });
         } else {
             ////legacy paint with no svg-z-order,
             ////legacy preserves legacy projects,
             Object.keys( p2p ).forEach( pname => {
-                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, stdMod, );
-                doPaintLetter8kernel( pname, stdMod, );
+                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, );
+                doPaintLetter8kernel( pname, );
             });
         }
     }

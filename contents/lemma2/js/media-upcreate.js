@@ -3,7 +3,7 @@
         sn, haz,
         fapp, ssD,
         sapp, sDomN,
-        amode, SUB_MODEL, stdMod,
+        rg, amode, stdMod,
     } = window.b$l.apptree({
         setModule,
         stdModExportList :
@@ -38,8 +38,6 @@
     //======================================
     function media_upcreate___before_basic_L2() {
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-        stdMod.mmedia$.cls( 'submodel-' + SUB_MODEL );
-        
         guiup.paints_curve8axes();
         guiup.updatePtsRectsLabelsAreas();
         let medD8D = haz( stdMod, 'medD8D' );

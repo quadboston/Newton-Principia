@@ -2,8 +2,8 @@
     var {
         ns, sn,
         mat, bezier,
-        sconf,
-        rg, toreg, topos, ssF, ssD,
+        sconf, topos,
+        rg, toreg, ssF, ssD,
         stdMod,
     } = window.b$l.apptree({
         ssFExportList :

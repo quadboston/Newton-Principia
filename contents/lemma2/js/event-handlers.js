@@ -126,7 +126,7 @@
             }
 	        sdata.view.isInscribed^=1;
 	        //stdL2.shows_rects();
-            //stdMod.r efreshSVG_master();
+            //has: stdMod.media_upcreate___before_basic_L2
             ssF.media_upcreate_generic();
         }
 

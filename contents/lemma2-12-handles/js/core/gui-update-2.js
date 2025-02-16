@@ -3,7 +3,7 @@
         sn, haz,
         fapp,
         sapp,
-        amode, SUB_MODEL, stdMod,
+        amode, stdMod,
     } = window.b$l.apptree({
         setModule,
     });
@@ -67,10 +67,9 @@
         // //\\ view top-manager
         //======================================
         function refreshSVG_master() {
-            rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
             
-            stdMod.mmedia$.cls( 'submodel-' + SUB_MODEL );
-
+            ccc( 'rg=========', rg );
+            rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
             let max = numModel.ctrlPt_2_maxIx();
             let min = numModel.ctrlPt_2_minIx();
             dr.figureParams.minX= dr.ctrlPts[min].x;

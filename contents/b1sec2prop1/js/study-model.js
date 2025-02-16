@@ -78,7 +78,7 @@
         // \\// placeholders for body states along trajectory,
         //=========================================================
 
-        ssF.doesSchedule_A_B_V_sliders_in_init_pars( stdMod );
+        ssF.doesSchedule_A_B_V_sliders_in_init_pars();
         stdMod.creates_sliderDomModel__4__time();
         stdMod.creates_delta_time_slider();
     }
@@ -97,7 +97,7 @@
 
         ssF.solvesTrajectoryMath__O();
         //what is this? haff( stdMod, 'model_upcreate_addon' );
-        //what is this? ssF.ABVpos_2_trajectory( stdMod );
+        //what is this? ssF.ABVpos_2_trajectory();
 
         //apparently all of this is virtual
         stdMod.path2rgModelPlaceholders__I();

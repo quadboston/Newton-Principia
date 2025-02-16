@@ -1,8 +1,7 @@
 ( function() {
     const {
         ns, sn, $$,
-        fconf, sconf, sDomF, sDomN, ssD,
-        studyMods,
+        stdMod, fconf, sconf, sDomF, sDomN, ssD,
     } = window.b$l.apptree({
     });
     sDomF.cre_simscene8svg8legendIIslider = cre_simscene8svg8legendIIslider;
@@ -14,28 +13,24 @@
 
 
 
-    function cre_simscene8svg8legendIIslider( stdMod )
+    function cre_simscene8svg8legendIIslider()
     {
-        var stdModName = stdMod.SUB_MODEL;
-
         //..........................
         // //\\ media root
         //..........................
         var simScene$ = $$
             .c( 'div' )
-            .addClass( 'bsl-simscene highlight-text-disabled submodel--' +
-                       stdModName )
+            .addClass( 'bsl-simscene highlight-text-disabled' )
             .addClass( 'model' )
             .to( sDomN.simSScene$ )
             ;
         var simScene        = simScene$();
         stdMod.medRoot$     = stdMod.simScene$ = simScene$;
         stdMod.medRoot      = stdMod.simScene  = simScene;
-
-        if( stdModName === ssD.DEFAULT_STUDY_MODEL_NAME ) {
-            sDomN.medRoot$ = simScene$;
-            sDomN.medRoot  = simScene;
-        }
+        //todo rid redundancy
+        sDomN.medRoot$ = simScene$;
+        sDomN.medRoot  = simScene;
+        //}
         if( fconf.NAVIGATION_DECORATIONS_ALWAYS_VISIBLE ) {
             stdMod.simScene$.addClass( 'active-tip' );
         }
@@ -90,7 +85,7 @@
 
         if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
             ////l2 patch:
-            sliderGroupLemma2( stdMod );
+            sliderGroupLemma2();
         }
 
         stdMod.legendRoot$ = $$
@@ -101,7 +96,7 @@
     }
 
 
-    function sliderGroupLemma2( stdMod )
+    function sliderGroupLemma2()
     {
         sDomN.sliderGroup$ = $$.c('div')
             .addClass("slider-group")

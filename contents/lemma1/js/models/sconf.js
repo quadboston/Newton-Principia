@@ -1,10 +1,8 @@
 ( function() {
     var {
         nspaste,
-        commonsconf,
         stdMod,
     } = window.b$l.apptree({
-        SUB_MODEL : 'limit-definition',
         stdModExportList :
         {
             init_conf,
@@ -25,7 +23,6 @@
     //====================================================
     function init_conf()
     {
-        nspaste( stdMod.sconf, commonsconf );
     };
     //====================================================
     // \\// inits and sets config pars

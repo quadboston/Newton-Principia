@@ -46,10 +46,12 @@
                 { src : route+'js/model8media-lib.js' },
                 { src : route+'js/main-legend.js' },
 
+                /*
                 //projectile model
                 { src : route+'projectile-model/sconf.js' },
                 { src : route+'projectile-model/study-model.js' },
                 { src : route+'projectile-model/media-model.js' },
+                */
             ],
 
             "contents-list" :

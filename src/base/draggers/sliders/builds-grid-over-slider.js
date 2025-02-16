@@ -3,7 +3,7 @@
     var {
         sn, $$, eachprop, nssvg,
         sconf,
-        stdMod, rg,
+        rg,
     } = window.b$l.apptree({
         stdModExportList : {
             buildsGridOverTheSlider,

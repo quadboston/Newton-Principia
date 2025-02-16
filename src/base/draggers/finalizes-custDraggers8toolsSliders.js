@@ -6,7 +6,7 @@
         fmethods,
         ssF,
         sapp, sDomN, sDomF,
-        amode, studyMods,
+        stdMod, amode,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
         setModule
@@ -32,18 +32,17 @@
     // //\\ inits drag model
     //      createsFW === ? FrameWork
     //==========================================
-    function createsFW__8__executes_dragWr_gens_list( stdMod )
+    function createsFW__8__executes_dragWr_gens_list()
     {
         ///creates tools for the first time and only once
         if( sconf.enableTools ) {
-            ssF.createSliderPlaceholder_media_scale( stdMod, );
-            ssF.createSliderPlaceholder_thickness( stdMod, );
+            ssF.createSliderPlaceholder_media_scale();
+            ssF.createSliderPlaceholder_thickness();
             fmethods.attachWeelToDomEl(
-                stdMod.svgScen$, stdMod,
+                stdMod.svgScen$,
             );
         }
 
-        //must be loop via stdMods: not only for this single-common
         ///****************************************************************
         /// creates a framework, medD8D,
         /// to which arbitrary drag8droppers can be attached from different
@@ -73,7 +72,7 @@
         /// attaches drag8droppers to medD8D
         /// see other lemmas for search-token customDraggers_list
         stdMod.customDraggers_list.forEach( dcreator => { dcreator( medD8D ); });
-        ssF.inits_tools_sliders( medD8D, stdMod );
+        ssF.inits_tools_sliders( medD8D, );
         ///***********************************************************************
         ns.globalCss.update(); //for decorator
     }; 
@@ -118,15 +117,6 @@
         var unfoundDragger = null;
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;
-
-            if( has( dragPoint, 'stdModName' ) &&
-                dragPoint.stdModName !== amode.submodel ) {
-                //ccc( dragPoint, dragPoint.rgId, 'amode.submodel='+amode.submodel +
-                //        ' stdModName='+dragPoint.stdModName
-                //);
-                return;
-            }
-
             if( ns.haz( dragPoint, 'unfound' ) ) {
                 unfoundDragger = dragWrap;
                 return;

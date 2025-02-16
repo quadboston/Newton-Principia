@@ -212,7 +212,6 @@ Pages 123 - 141.
 
 * : : *corollary|english
 {
-  "submodel" : "projectile_model",
   "subessayCaption" : "Corollary 5",
   "subessay" : "cor-5"
 }

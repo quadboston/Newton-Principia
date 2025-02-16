@@ -7,9 +7,9 @@
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
         fixedColorsOriginal,
-        srg_modules, studyMods, studyModsActivated, amode,
+        srg_modules, amode,
         //:nearly a patch
-        ssD, ssF, cssmod, wrkwin, lowId2topics,
+        stdMod, ssD, ssF, cssmod, wrkwin, lowId2topics,
     } = window.b$l.apptree({
     });
 
@@ -249,30 +249,22 @@
                     //==========================================================
                     // //\\ init_conf for models
                     //==========================================================
-                    eachprop( studyMods, stdMod => {
-                        //pastes default lemma.conf.js::fconf.sconf into stdMod.sconf
-                        nspaste( stdMod.sconf, sconf );
-                    });
-                    //note: for non-common module, there cannot be
-                    //      ssF.init_conf, only stdMod.init_conf,
-                    //      for common - the only ssF.init_conf,
-
                     //adds common-module data to fconf.sconf
                     ssF.init_conf();
                     //modifies appearance effect depending on user options
                     fconf.timeToShowOriginalDiagram_effective =
                         userOptions.usingBackgroundImage() ? fconf.timeToShowOriginalDiagram : 1;
 
-                    eachprop( studyMods, stdMod => {
+                    {ccc( 'doin scale' );
                         haff( stdMod, 'init_conf' );
                         //expansion patch: todm: make function for this:
                         //unscaled mediaSize = originalMod2inn_scale * modelSize, 
-                        stdMod.sconf.originalMod2inn_scale = stdMod.sconf.mod2inn_scale;
+                        sconf.originalMod2inn_scale = sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
-                        !haz( stdMod.sconf, 'dontRun_ExpandConfig' ) &&
-                                ssF.doExpandConfig( stdMod );
-                        ns.url2conf( stdMod.sconf );
-                    });
+                        !haz( sconf, 'dontRun_ExpandConfig' ) &&
+                                ssF.doExpandConfig();
+                        ns.url2conf( sconf );
+                    }
                     ns.url2conf( fconf ); //overriding url-query one more time
                     //==========================================================
                     // \\// init_conf for models
@@ -281,10 +273,7 @@
 
                     sDomF.creates_mainWorkspace_domRoots();
                     fmethods.populate_mediaSuperRoot(); //rename: ?? popul sim Super Scene
-
-                    eachprop( studyMods, (stdMod,stdModId) => {
-                        sDomF.cre_simscene8svg8legendIIslider( stdMod );
-                    });
+                    sDomF.cre_simscene8svg8legendIIslider();
 
                     ///loads Book
                     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
@@ -445,32 +434,30 @@
 
     function stdModPatch()
     {
-        studyModsActivated.forEach( stdMod => {
-            //======================================================
-            // todm: patch: generates pars needed possibly for
-            //       d8d creation and decorational points
-            //       before first resize set these pars
-            //       appar. needed for:
-            //              dom2model-scales.js::out2inn() and 
-            //              dom2model-scales.js::inn2outparent()
-            stdMod.bgImgOffset = sDomN.bgImgOffset;
-            stdMod.bgImgW = sDomN.bgImgW;
-            //======================================================
+        //======================================================
+        // todm: patch: generates pars needed possibly for
+        //       d8d creation and decorational points
+        //       before first resize set these pars
+        //       appar. needed for:
+        //              dom2model-scales.js::out2inn() and 
+        //              dom2model-scales.js::inn2outparent()
+        stdMod.bgImgOffset = sDomN.bgImgOffset;
+        stdMod.bgImgW = sDomN.bgImgW;
+        //======================================================
 
-            //================================================================
-            // **api simSceSvg_narrowestAsp
-            //Asp when scene svg is shrinked to minimal possible value,
-            //when svg-width fits bg image width:
-            //todo rename with simSceSvg_narrowestAsp
-            stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
-                            ( haz( stdMod.sconf, 'innerMediaHeight' ) ||
-                              sconf.innerMediaHeight )
-                            /
-                            ( haz( stdMod.sconf, 'innerMediaWidth' ) ||
-                              sconf.innerMediaWidth )
-                            ;
-            //================================================================
-        });
+        //================================================================
+        // **api simSceSvg_narrowestAsp
+        //Asp when scene svg is shrinked to minimal possible value,
+        //when svg-width fits bg image width:
+        //todo rename with simSceSvg_narrowestAsp
+        stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
+                        ( haz( sconf, 'innerMediaHeight' ) ||
+                            sconf.innerMediaHeight )
+                        /
+                        ( haz( sconf, 'innerMediaWidth' ) ||
+                            sconf.innerMediaWidth )
+                        ;
+        //================================================================
     }
 
 }) ();

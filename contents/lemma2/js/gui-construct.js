@@ -90,6 +90,11 @@
     {
         // control points
         var ctrlPts = dr.ctrlPts;
+        var scale = 1/sconf.originalMod2inn_scale;
+        var offsetX = sconf.originX_onPicture;
+        var offsetY = sconf.originY_onPicture;
+        var flipY1 = sconf.MONITOR_Y_FLIP;
+        
         for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
             var cp = sconf.ctrlPtXYs_js;
             //pt = dr.movables[ type + i ]
@@ -106,11 +111,15 @@
             pdom.style[ 'stroke-width' ] = '1px';
             pt.x = cp[i].x;
             pt.y = cp[i].y;
+            
+            pt.posx = (cp[i].x - offsetX)*scale;
+            pt.posy = (cp[i].y - offsetY)*scale*flipY1;
             ctrlPts.push( pt );
         }
         reset_hollowPoints({ onCurve:true, onBase:false });
     }
-
+    
+    
     function reset_hollowPoints({ onCurve, onBase })
     {
         let view = sdata.view;

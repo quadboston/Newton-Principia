@@ -45,7 +45,7 @@
     function model_upcreate()
     {
         //this patch amends this css
-        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.submodel-common
+        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.s ubmodel-common
 
         //img competes with: .bsl-approot.theorion--scholium.aspect--english .bg0,
         //todm: inconsistent: .main-legend.proof should not need this CSS, it
@@ -57,8 +57,6 @@
             div.bsl-approot
             .bsl-sim-superscene
             .bsl-simscene
-            .bsl--svgscene.submodel-common,
-
             .bsl-sim-superscene .bsl-simscene img.bsl-bg-image.bg0,
 
             .main-legend.proof

@@ -6,7 +6,6 @@
         sconf,
         sDomF,
         sDomN,
-        studyMods,
         ssD,
         ssF,
         rg,

@@ -3,7 +3,7 @@
     var {
         sn, $$, eachprop, nssvg, mat,
         ssF,
-        stdMod, rg, sconf,
+        rg, sconf,
     } = window.b$l.apptree({
         stdModExportList : {
             buildsGridOverParametrizedCurve,
@@ -135,7 +135,7 @@
 
             var t = ( gline - studyStart ) / studyRange * ( tB - tA );
             var gridPos = curveFun( t );
-            var gridMedpos = ssF.mod2inn( gridPos, stdMod );
+            var gridMedpos = ssF.mod2inn( gridPos, );
 
             //----------------------------------
             // //\\ creates grade radial lines
@@ -144,8 +144,8 @@
             var GRID_LETTER_WIDTH = 0.03;
 
             var norm = getsCurveNormal( t, tA, tB );
-            var normMedpos = ssF.mod2inn( norm, stdMod );
-            var medpos = ssF.mod2inn( [0,0], stdMod );
+            var normMedpos = ssF.mod2inn( norm, );
+            var medpos = ssF.mod2inn( [0,0], );
             var medNorm = [ (normMedpos[0]-medpos[0])*GRID_WIDTH,
                             (normMedpos[1]-medpos[1])*GRID_WIDTH,
             ];

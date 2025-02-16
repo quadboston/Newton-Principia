@@ -6,6 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
+            //these are standard template-names in core of src/base
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         },

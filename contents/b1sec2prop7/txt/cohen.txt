@@ -1,6 +1,7 @@
 
-*::*Problem 2|english
+*::*proof|english
 {
+  "theorionCaption" : "Problem 2",
   "default" : "1",
   "menuCaption" : "Text"
 }
