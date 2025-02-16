@@ -265,8 +265,8 @@
                     yMax = Math.max( yMax, yy );
                 }
                 let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
+                //graphArg.yMax = Math.max( yMax, averageY*1.5 );
+                //graphArg.yMin = 0;
             }
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
