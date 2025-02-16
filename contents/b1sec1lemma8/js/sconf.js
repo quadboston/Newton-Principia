@@ -58,7 +58,7 @@
         var B = [358, 165];
         var D = [496, modorInPicY];
 
-        var M = [140, modorInPicY];
+        //var M = [140, modorInPicY];
 
         sconf.b_per_B_original = 1.931578947;
 
@@ -276,13 +276,13 @@
                 pcolor      : given,
             },
 
-
+            /*
             M : {
               pos: M,
               letterAngle : 90,
               pcolor      : given,
             },
-
+            */
             /*
             'B-kernelx' : {
                cssClass : 'hover-width',
@@ -422,7 +422,7 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             
-            { 'AM' : { pcolor : given, 'stroke-width' : 2 } },
+            //{ 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------

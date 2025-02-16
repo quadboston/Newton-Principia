@@ -121,7 +121,7 @@
         var D = [474, modorInPicY];
         var d = [778, modorInPicY];
         var b = [514, 254];
-        var M = [50, modorInPicY];
+        //var M = [50, modorInPicY];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
         var ytop = [-151, 50];
@@ -310,12 +310,14 @@
                 pcolor      : given,
             },
 
+            ///what is this point for? in l6 and l8? it is never used,
+            /*
             M : {
                 pos: M,
                 letterAngle : 90,
                 pcolor      : given,
             },
-
+            */
             //proof
             b : {
                 pos: b,
@@ -445,7 +447,7 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'AM' : { pcolor : given, 'stroke-width' : 2 } },
+            //{ 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------
