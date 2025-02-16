@@ -68,7 +68,6 @@
             '180/Math.PI).toFixed()+"ᵒ"'
     ]);
 
-    console.debug(":::", legendScript.proof)
     //--------------------------
     // \\// proof's script
     // \\// lemma 6 scripts
@@ -88,7 +87,7 @@
         [
             //first table row
                 //first cell
-                'AB,AB&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.AB.abs' +
+                'AB,AB&nbsp;=&nbsp;,rg.AB.abs' +
 
                 ' ' +
                 //second cell
