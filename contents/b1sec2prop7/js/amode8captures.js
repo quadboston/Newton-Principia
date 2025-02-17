@@ -129,7 +129,6 @@
         rg.QP.undisplay = yes0not;
         rg.Q.undisplay = yes0not;
         rg.Y.undisplay = yes0not;
-        rg.K.undisplay = yes0not;
         rg.L.undisplay = yes0not;
         rg.R.undisplay = yes0not;
         rg.Z.undisplay = yes0not;
@@ -138,7 +137,6 @@
         rg.QR.undisplay = yes0not;
         rg.QT.undisplay = yes0not;
         rg.PT.undisplay = yes0not;
-        rg.PK.undisplay = yes0not;
         rg.ZQ.undisplay = yes0not;
         rg.RL.undisplay = yes0not;
         rg.SY.undisplay = yes0not;

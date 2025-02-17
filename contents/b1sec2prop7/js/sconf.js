@@ -206,11 +206,6 @@
                 letterAngle : 180,
             },
 
-            K : {
-                pcolor : proof,
-                letterAngle : -90,
-            },
-
             R : {
                 pcolor : proof,
                 letterAngle : 45,
@@ -307,7 +302,6 @@
 
             { 'PR' : { pcolor : body }, },
             { 'ZQ' : { pcolor : body }, },
-            { 'PK' : { pcolor : proof }, },
 
 
             { 'RL' : { pcolor : proof }, },
