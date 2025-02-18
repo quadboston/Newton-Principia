@@ -91,8 +91,11 @@
                     }
                 } else {
                     if( fullAngle < rg.AB.angle ) {
-                        ///this is lowest allowed L-position on the screen
-                        fullAngle = rg.AB.angle;
+                      ///this is lowest allowed L-position on the screen
+                      fullAngle = rg.AB.angle;
+                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
+                    } else {
+                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
                     }
                 }
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
