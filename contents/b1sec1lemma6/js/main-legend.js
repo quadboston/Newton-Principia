@@ -17,8 +17,6 @@
     });
 
 
-
-
     ////**********************************************************************************
     ////legendScript-format:
     ////clusters separated with <space>:
@@ -69,6 +67,7 @@
             '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*' +
             '180/Math.PI).toFixed()+"ᵒ"'
     ]);
+
     //--------------------------
     // \\// proof's script
     // \\// lemma 6 scripts
@@ -88,7 +87,7 @@
         [
             //first table row
                 //first cell
-                'AB,AB&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.AB.abs' +
+                'AB,AB&nbsp;=&nbsp;,rg.AB.abs' +
 
                 ' ' +
                 //second cell
@@ -162,6 +161,7 @@
     // \\// corollary's script
     // \\// lemma 7 scripts
     //==========================
+
     return;
 
 
