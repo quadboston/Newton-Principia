@@ -45,6 +45,11 @@
     margin-bottom: 24px;
 }
 
+.bsl-home-pane ol,
+.bsl-home-pane ul {
+    list-style: none;
+}
+
 
 /*====================================================== 
 //\\\\ home-page header

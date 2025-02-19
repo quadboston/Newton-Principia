@@ -17,8 +17,6 @@
         
         //data-entry: put module names here in order
         `
-            reset
-            typography
             inner-page
         `
         .split(/\r\n|\n/g)
