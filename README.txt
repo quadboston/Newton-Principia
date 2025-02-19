@@ -1,3 +1,33 @@
+Contributor Guidelines
+
+Note: The examples here use the git cli for clarity and consistency, 
+but you can also perform these actions using the VSCode GUI.
+
+1. Clone master branch to your local workspace
+    git clone https://github.com/quadboston/Newton-Principia
+
+2. Create a new branch for your assigned task 
+    git fetch origin
+    git checkout master
+    git checkout -b new-branch-name
+    git push -u origin new-branch-name
+
+3. Stage all changes and commit to your new branch
+    git add .
+    git commit -m "Meaningful commit message"
+    git push origin your-branch-name
+
+4. Before creating a pull request, fetch and merge any changes from master and resolve conflicts before committing
+    git fetch origin 
+    git merge origin/master
+    git commit -m "Merging changes from master"
+
+5. When your changes are ready for review, push changes to GitHub create a pull request
+    git push origin your-branch-name
+    In GitHub, switch to your branch and click "New pull request" button. Ensure base branch is master.
+    Include a descriptive title and detailed description of changes, then click "Create pull request" button.
+
+
 
 Deployment.
 
