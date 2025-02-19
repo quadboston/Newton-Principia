@@ -17,7 +17,7 @@
         
         //data-entry: put module names here in order
         `
-            inner-page
+            
         `
         .split(/\r\n|\n/g)
         .forEach( function( modname ) {

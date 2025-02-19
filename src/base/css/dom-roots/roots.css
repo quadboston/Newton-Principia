@@ -6,7 +6,9 @@
     --color-stone-blue: #8091A8;
     --color-light: white;
     --border-radius: 20px;
-    --main_horizontal_dividor_width_px : 21px; /* corresponds to const in contents\conf\lemma.conf.js */
+    --main_horizontal_dividor_width_px : 21px; /* from contents\conf\lemma.conf.js */
+    --SHUTTLE_COLOR : rgba(150, 175, 200); /* from src\base\css\pages\inner-page.css */
+    --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; */
 }
 
 html, body { 
