@@ -24,7 +24,8 @@ but you can also perform these actions using the VSCode GUI.
 
 5. When your changes are ready for review, push changes to GitHub create a pull request
     git push origin your-branch-name
-    In GitHub, switch to your branch and click "New pull request" button. Ensure base branch is master.
+
+    In GitHub, switch to your branch and click "Compare and pull request" button. Ensure base branch is master.
     Include a descriptive title and detailed description of changes, then click "Create pull request" button.
 
 
