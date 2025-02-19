@@ -18,7 +18,6 @@
         //data-entry: put module names here in order
         `
             reset
-            dom-roots
             typography
             inner-page
         `
