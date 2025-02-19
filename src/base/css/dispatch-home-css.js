@@ -20,8 +20,6 @@
             reset
             dom-roots
             typography
-            homepage-basics
-            home-pane
             inner-page
         `
         .split(/\r\n|\n/g)
