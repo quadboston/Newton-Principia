@@ -17,7 +17,6 @@
 
         //data-entry: put module names here in order
         `
-            dom-subroots
             menu-on-left
         `
         .split(/\r\n|\n/g)
@@ -94,6 +93,6 @@
 
         return ret;
     }
-    
+
 }) ();
 
