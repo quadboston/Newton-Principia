@@ -56,8 +56,8 @@
 .master-pagination-btn.current-lemma:hover,
 .master-pagination-btn.current-lemma {
     transform: scale(1.0);
-    box-shadow       : 0 0px 8px 0 var(--SHUTTLE_COLOR), 0.4;
-    border           : 3px solid var(--SHUTTLE_COLOR), 1;
+    box-shadow       : 0 0px 8px 0 var(--SHUTTLE_COLOR_FAINT);
+    border           : 3px solid var(--SHUTTLE_COLOR);
     padding          : 3px 8px 3px 8px;
     margin-top       : 6px;
     transform        : translate( 0px, 1px );
