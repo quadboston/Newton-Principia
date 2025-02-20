@@ -310,14 +310,6 @@
                 pcolor      : given,
             },
 
-            ///what is this point for? in l6 and l8? it is never used,
-            /*
-            M : {
-                pos: M,
-                letterAngle : 90,
-                pcolor      : given,
-            },
-            */
             //proof
             b : {
                 pos: b,
@@ -447,7 +439,6 @@
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            //{ 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------
