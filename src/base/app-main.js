@@ -255,7 +255,7 @@
                     fconf.timeToShowOriginalDiagram_effective =
                         userOptions.usingBackgroundImage() ? fconf.timeToShowOriginalDiagram : 1;
 
-                    {ccc( 'doin scale' );
+                    {
                         haff( stdMod, 'init_conf' );
                         //expansion patch: todm: make function for this:
                         //unscaled mediaSize = originalMod2inn_scale * modelSize, 

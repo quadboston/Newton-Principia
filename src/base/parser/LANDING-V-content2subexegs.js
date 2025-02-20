@@ -508,7 +508,7 @@
                 if( !userOptions.usingBackgroundImage() ) {
                     //essayHeader.mediaBgImage = null; //disables it for definitness
                     rg.detected_user_interaction_effect_DONE = true;
-                    ccc( 'Landing V: ' + rg.detected_user_interaction_effect_DONE );
+                    //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
                     return;
                 }

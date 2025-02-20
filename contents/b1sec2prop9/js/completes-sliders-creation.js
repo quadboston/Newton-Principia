@@ -37,8 +37,12 @@
             //-------------------------------------------------------------------
             var t =  stdMod.pos2t( newPos );
             if( t < Math.PI*0.01 || t > sconf.curveParFiMax ) {
-                t = ( t + sconf.curveParFiMax ) % sconf.curveParFiMax;
-            } //  return false;
+
+                //cycling: removed:
+                //t = ( t + sconf.curveParFiMax ) % sconf.curveParFiMax;
+
+                return false; //stops dragging beyound curve tips
+            }
             var newP = rg[ 'approximated-curve' ].t2xy( t );
             newPos[0] = newP[0];
             newPos[1] = newP[1];
