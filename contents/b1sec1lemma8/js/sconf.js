@@ -276,18 +276,6 @@
                 pcolor      : given,
             },
 
-            /*
-            M : {
-              pos: M,
-              letterAngle : 90,
-              pcolor      : given,
-            },
-            */
-            /*
-            'B-kernelx' : {
-               cssClass : 'hover-width',
-            },
-            */
             D : {
                 pos: D,
                 letterAngle : 90,
@@ -421,8 +409,6 @@
             { 'AE' : { pcolor : given } },
             { 'BE' : { pcolor : given } },
             { 'AB' : { pcolor : given } },
-            
-            //{ 'AM' : { pcolor : given, 'stroke-width' : 2 } },
         ]
 
         //----------------------------------

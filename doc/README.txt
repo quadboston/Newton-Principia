@@ -17,10 +17,21 @@ ns = window[ APP_NAME ]
 
 $$ - This is a home made jquery. Once there was a client who forbade using jquery. Because of it is hard to use dom objects directly, this object wraps basic calls to dom.
      It is constructed in file ns.js.
-sn - handy function, sn( string, object ) returns object[ string ] if this is a proper property of object, if not, then assigns object[ string ] = {} and returns
-     if object is missed, then ns is used instead;
-     main purpose make application's objects declaration and import independent on sequence of <script> files in index.html.
-     To ease index.html management along with function call window.b$l.apptree({...
+
+sn - handy function, sn( string, object, default ) returns 
+        a) object[ string ] if it does exist,
+        b) othewise, assigns to object[ string ] = default and returns it,
+           if optional default is omitted, then default={} is used.
+        main purpose of this function is make extension of namespaces independent on
+        module execution order in index.html, ajax calls, and function calls.
+
+These names are remnants of original overengineering:
+fconf - "full config", namespace for full-application,
+sconf - "subapplication config", namespace for lemma,
+        sconf = fconf.sconf.
+
+//they are storages of configuration: fconf, full config is intended for framework switches,
+//sconf - for lemma; just to ease name conflicts;
 
 haff - conveniece function, for example
     see comment in ns.js
@@ -37,10 +48,6 @@ similar idea have functions
     ns.hafff = hafff;
     ...
 
-fconf, sconf - remnants of original overengineering:
-sconf = fconf.sconf
-//they are storages of configuration: fconf, full config is intended for framework switches,
-//sconf - for lemma; just to ease name conflicts;
 
 sDomF, sDomN, - additional namespaces for lemma model; F stands for functions, N stands for data
 ssF, ssD, - the same for them; possibly redundant constructs;
@@ -50,6 +57,16 @@ rgtools - possibly relates for batton "lab" for some model options, choice of fu
 rg - stands for registry, often used for geometrical object: dots, lines, ...
 
 amode - keeps current model state: var { theorion, aspect, submodel, subessay } = amode;
+
+theorion usually takes values as strings "proof", "clame", "corollary", so has semantics of fragment of logical text,
+
+aspect usually takes values as "english", "latin", "exercise", 'comment" - is a languge or cosmetic  form of own theorion,
+
+Precisely strings "proof", "claim", ... "latin", "english" are assigned to theorion_id and aspect_id
+correcspondingly in code. These string are keys in Book-text segments in form:
+*::*claim|english
+...
+
 
 exegs - array of compiled essays of lemma
 //its structure is seen from the following itetrator:

@@ -49,7 +49,7 @@
         //makes importan choice:
         //      media_upcreate          -       for non-standard, past lemmas
         //      media_upcreate_generic    -     for modern, half-automated lemmas
-        ccc( 'media_upcreate exists = ' + !!haz( stdMod, 'media_upcreate' ) ); 
+        //ccc( 'Remodel: media_upcreate exists = ' + !!haz( stdMod, 'media_upcreate' ) ); 
         stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
                                 ssF.media_upcreate_generic;
         //------------------------------------------------------------------
