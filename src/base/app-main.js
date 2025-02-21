@@ -73,7 +73,6 @@
         //===============================
         // //\\ preconstructs home8lemmas
         //===============================
-        //engCssMs.dispatchesHome8LemmaCss();
         html.builds_body_4_home8lemma();
         html.builds_homePane();
         //===============================
@@ -306,9 +305,8 @@
                             //=======================================
                             // //\\ html and css
                             //=======================================
-                            //breaks left-menu if placed before professor-scripts ...
-                            //todm why?
-                            engCssMs.places_engineCSSes2styleTags();
+                            //set up css that requires js vars
+                            engCssMs.dispatches_css();
 
                             //todm: unclear: which part of content
                             //      this sesction uses, why not full content? ...
