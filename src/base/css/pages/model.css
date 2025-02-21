@@ -1,0 +1,97 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* model.css                      */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.rect {
+    stroke-width: 1;
+    /* fill-opacity: 0.15; */
+    stroke-opacity: 1; 
+}
+  
+.figure {
+    stroke: var(--color-main);
+    fill: var(--color-main);
+    color: var(--color-main);
+    /*r:2.4;*/ 
+}
+  
+.outline, .outline-cls {
+    fill: transparent;
+    stroke-width: 2; 
+}  
+  
+.flex {
+    display: flex !important; 
+}
+  
+.circumscribed {
+    stroke: var(--color-main);
+    fill: transparent;
+    color: var(--color-main); 
+}  
+  
+/* apparently for letter-labels for lemma 2 */
+.circumscribed.label {
+    fill: var(--color-main);
+}
+  
+.inscribed {
+    stroke: var(--color-main);
+    fill: transparent;
+    color: var(--color-main); 
+}
+
+.inscribed.label {
+    fill: var(--color-main); 
+}
+  
+.label {
+    stroke-width: .6; 
+}
+  
+.number {
+    text-align: right;
+    font-family: Lucida Console;
+    min-width: 48px;
+    width: 100%;
+    max-width: 64px;
+    margin-right: 8px; 
+}
+  
+svg text {
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: "essonnes-display",serif; 
+}
+  
+.slider {
+    width: 80%; 
+}  
+  
+#widest-visib-toggler-wrap {  /* row in legend line for widthes rectangle */
+    display: flex;
+}
+
+#lemma2.bsl-approot #widest-visib-toggler-wrap,
+.bsl-approot.theorion--claim #widest-visib-toggler-wrap,
+.widest-rectangular.invisible,
+.bsl-approot.theorion--claim .widest-rectangular {
+    display:none;
+}
+  
+/* legend */
+.areas .highlighted {
+    font-weight :bold;
+}  
+  
+/* //\\ subapplication (lemma 2, 3 specific) fix;
+        removes hidden rects from topic engine
+*/
+.inscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
+.circumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
+    visibility:hidden;
+}
+/* \\//  subapplication (lemma 2, 3 specific) fix; */
