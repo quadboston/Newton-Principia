@@ -435,7 +435,7 @@
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : pictureActiveArea, //todo,
+            mod2inn_scale : 1, //pictureActiveArea, //todo,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
         });
