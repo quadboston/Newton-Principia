@@ -309,13 +309,11 @@
                 letterAngle : 90,
                 pcolor      : given,
             },
-            /*
             DLeft : {
                 letterAngle : 90,
                 pcolor      : given,
                 doPaintPname : false,
             },
-            */
 
             //proof
             b : {
