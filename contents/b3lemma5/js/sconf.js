@@ -194,8 +194,8 @@
 
             mod2inn_scale : mod2inn_scale,
             inn2mod_scale : inn2mod_scale,
-            mod2inn_scale_initial : mod2inn_scale,
-            inn2mod_scale_initial : inn2mod_scale,
+            //mod2inn_scale_initial : mod2inn_scale,
+            //inn2mod_scale_initial : inn2mod_scale,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
         //----------------------------------

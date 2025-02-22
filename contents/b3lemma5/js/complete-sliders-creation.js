@@ -67,6 +67,7 @@
 
     function doProcess_slider_point( arg )
     {
+        ccc( 'doProcess_slider_point' );
         var p = arg.pointWrap;
         var ach = arg.pointWrap.achieved;
 

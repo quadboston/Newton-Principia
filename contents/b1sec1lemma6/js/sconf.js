@@ -309,6 +309,13 @@
                 letterAngle : 90,
                 pcolor      : given,
             },
+            /*
+            DLeft : {
+                letterAngle : 90,
+                pcolor      : given,
+                doPaintPname : false,
+            },
+            */
 
             //proof
             b : {
@@ -406,6 +413,7 @@
 
             //cirle radius
             { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
+            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
 
             //cirle radius
             { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
