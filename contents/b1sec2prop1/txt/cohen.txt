@@ -70,7 +70,7 @@ the areas are to each other as the times of description.
 
 Now <span class="captured-reference id-more-triangles">let the number
 of triangles be increased and their width decreased</span> indefinitely, and their
-ultimate perimeter ¦AB BC CD DE EF¦ADF¦¦ will (by lem. 3, corol. 4) be a curved line; and
+ultimate perimeter ¦AB BC CD DE EF path¦ADF¦¦ will (by lem. 3, corol. 4) be a curved line; and
 thus the ¦forceMove¦centripetal force¦¦ by which the body is continually drawn back from
 the tangent of this curve will act uninterruptedly, while any areas described,
 ¦SAB SBC SCD¦SADS¦¦ and ¦SAB SBC SCD SDE SEF¦SAFS¦¦, which are always proportional to the times of description,
