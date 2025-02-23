@@ -225,6 +225,17 @@
         '<!-- \\\\\\\\// replace with prod script -->' .
         '#s';
     $landing_text = file_get_contents( $tpl_landing_file );
+    
+    // //\\ gets addendum landing file text if
+    //addendum file pattern name does exist
+    $addendum_file = preg_replace( 
+            '/index\\.src\\.html$/',
+            'addendum.src.html', //replacer
+            $tpl_landing_file
+    );
+    $addendum_text = file_get_contents( $addendum_file );
+    // \\// gets addendum landing file text if
+    
     $matches = array();
     //http://php.net/manual/en/function.preg-match.php    
     $test = preg_match( 
@@ -285,9 +296,6 @@
     //=============================
     // \\// spawns to party-folders
     //=============================
-
-
-
 
 
     //==========================================
@@ -357,6 +365,16 @@
                         $link_indent .
                         '<script src="' . $prod_min_engine . '"></script>',
                         'index.prod.html', '' );
+    
+    ///adds addendum to production if its src does exist
+    if( !!$addendum_text ) {
+        spawn_landing_file( $addendum_text,
+                        $links_tpl_re,
+                        $production_css_link .
+                        $link_indent .
+                        '<script src="' . $prod_min_engine . '"></script>',
+                        'addendum.prod.html', '' );
+    }
     //========================================
     // \\// makes index.prod.html and saves it
     //========================================
