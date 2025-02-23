@@ -3,7 +3,7 @@
         sn, haz,
         fapp,
         sapp,
-        amode, stdMod,
+        rg, amode, stdMod,
     } = window.b$l.apptree({
         setModule,
     });

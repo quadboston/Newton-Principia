@@ -9,7 +9,15 @@
         sessionStorage.setItem(USE_BG_IMAGE, false);
         sessionStorage.setItem(BONUS, false); //!fconf.basicSiteFeatures);
     }
-    if( haz( nsconf, 'showAddendums' ) ) {
+    if( 
+        //the presence of keyword "addendum" at the ending of
+        //landing file path is preferred:
+        window.location.pathname.match( /addendum[^\/]+$/ )
+
+        //in the presence of keyword "showAddendums" in URL config,
+        //but this does not preseve links to other lemmas:
+        || haz( nsconf, 'showAddendums' ) ) {
+
         ////if some call requests bonus features, then they are set in store, and
         ////the next call to different lemma will preserve the bonus,
         sessionStorage.setItem(BONUS, true);
