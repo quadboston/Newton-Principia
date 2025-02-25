@@ -79,6 +79,9 @@
 
         sconf.default_tp_lightness = 30;
         sconf.ONLY_MONOTONIC_CURVE = false;
+        sconf.mediaMoverPointDisabled = false;
+        sconf.skipGenDragList = false; //false is for media mover,
+        sconf.enableTools     = true;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {
@@ -131,12 +134,10 @@
         Object.assign( sconf,
         {
             dontDoMathJax : false, //true,
-            skipGenDragList : true,
             //====================================================
             // //\\ subapp regim switches
             //====================================================
             enableStudylab  : false,
-            enableTools     : false,
             //====================================================
             // \\// subapp regim switches
             //====================================================
@@ -435,7 +436,7 @@
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : pictureActiveArea, //todo,
+            mod2inn_scale : 1, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
         });

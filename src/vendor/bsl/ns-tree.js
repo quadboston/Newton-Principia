@@ -4,14 +4,14 @@
 ( function() {
     var ns          = window.b$l;
     var sn          = ns.sn;
-    var mat         = sn('mat');
-    ns.nstree       = nstree;
-
     //simplifies adding test-modules designed for
     //master b$l application,
+    var mat         = sn('mat');
     fapp            = sn('fapp' );
     fconf           = sn('fconf',fapp);
     sconf           = sn('sconf',fconf);
+
+    ns.nstree       = nstree;
     return;
 
 
@@ -74,7 +74,7 @@
             fapp,
             fconf,
             sconf,
-            nsconf : ns.conf,
+            nsconf : sn( 'conf' ),
         };
         return ret;
     }

@@ -312,7 +312,34 @@
                 // \\// splits the singleSubessay ...
                 //--------------------------------------
             });
-            //=========================================================
+
+            //---------------------------------------------
+            // //\\ adds dummy aspects (placeholders)
+            //---------------------------------------------
+            ///     letting other therorions to script
+            ///     this aspect_id in book's text
+            eachprop( exegs, (exeg, exeg_id) => {
+                eachprop( exeg, (aspect, asp_id) => {
+                    eachprop( exegs, (exegToFill, fill_id) => {
+                        if( has( exegToFill, asp_id ) ) return;
+                        let aspExeg = exegToFill[asp_id] = {};
+                        var subexegsIx  = 0;
+                        var essayHeader = { subessay : subexegsIx + '' };
+                        var subexeg =
+                        {
+                            bodyscript : '',
+                            essayHeader,
+                        };
+                        var subessay2subexeg = sn( 'subessay2subexeg', aspExeg );
+                        subessay2subexeg[ essayHeader.subessay ] = subexeg;
+                        var subessayName2subexegIx = sn( 'subessayName2subexegIx', aspExeg );
+                        subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
+                        aspExeg.subexegs = [ subexeg ];
+                    });
+                });
+            });
+            //---------------------------------------------
+            // \\// adds dummy aspects (placeholders)
             // \\// splits text to subessays
             //=========================================================
 

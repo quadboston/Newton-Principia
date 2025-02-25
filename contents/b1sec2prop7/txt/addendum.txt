@@ -1,13 +1,3 @@
-*::*claim|addendum
-{
-  "menuCaption" : "---"
-}
-*..*
-
-
-
-
-
 
 *::*proof|addendum
 {
@@ -16,19 +6,27 @@
 }
 *..*
 
-
-<b>From <><>CXX2E</b>
-<br><br>
-
 <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
-    "Excentric circular motion", (EC)</a> gives: 
-<br><br>
-        ¦force¦𝑓¦¦ = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ.
-<br><br>
+In Vector Calculus for Excentric circular motion,</a> 
 
-        ¦PV¦Leg¦¦ / ¦AV¦hypotenuse¦¦ = ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
-        ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦. Hence <br><br>
-        ¦force¦𝑓¦¦ = 2M² ¦AV¦¦² ¦SP¦¦⁻² ¦PV¦¦⁻³.
+        <br><br>
+        ¦force¦𝑓¦¦ = const₁ / (r² 𝛺<sub>𝛙</sub>³),
+        <br>
+        where const₁ = M² / ρ.
+        <br><br>
+
+        In Book notations, the ratio
+        <br>
+        ¦PV¦Leg¦¦ / ¦AV¦hypotenuse¦¦ =
+        <br>
+        ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
+        ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦.
+        <br><br>
+
+        Hence <br><br>
+        ¦force¦𝑓¦¦ = const₂ / (¦SP¦¦² ¦PV¦¦³),
+        <br>
+        where const₂ = 2M² ¦AV¦¦².
 <br><br>
 
 
@@ -36,27 +34,24 @@
 
 *::*corollary|addendum
 {
+  "theorionCaption" : "Corollaries",
   "menuCaption" : "Addendum",
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1"
 }
 *..*
 
-
-<b>In <><>CXX.</b>
+In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
+    for force center on circle</a>,
 <br><br>
-
-For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
-    "Excentric circular motion"</a> gives: 
-<br>
 
  ¦force¦𝑓¦¦ = 8M²ρ²r⁻⁵.
 
 
 
-
 *::*corollary|addendum
 {
+  "theorionCaption" : "Corollaries",
   "menuCaption" : "---",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
@@ -64,11 +59,8 @@ For force center on circle, <a target="_blank" href="?conf=sappId=addd-kepler-ta
 *..*
 
 
-<b>In <><>CXX2E.</b>
-<br><br>
-
-<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
-    "Two force fields ... ", (ft)</a> gives: 
+In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+    section "Two force fields ... ", (ft)</a> gives: 
 <br>
 
     <div style="text-align:center;">

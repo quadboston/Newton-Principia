@@ -282,6 +282,12 @@
                 pcolor      : given,
             },
 
+            DLeft : {
+                letterAngle : 90,
+                pcolor      : given,
+                doPaintPname : false,
+            },
+  
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
             },
@@ -351,6 +357,7 @@
             { 'Ab' : { pcolor : proof } },
             { 'AR' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
+            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
 
             //l7
             { 'BD' : { pcolor : given } },  //lemma 7, coroll 1

@@ -648,6 +648,7 @@
         // \\// lemma 8
         //*****************************************************************************
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
+        rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }
 

@@ -29,7 +29,8 @@
 
 
     //----------------------------------------
-    // //\\ param m slider
+    // //\\ param m slider,
+    //      apparenlty only along straight line,
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------

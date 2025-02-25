@@ -35,6 +35,12 @@
     function createsFW__8__executes_dragWr_gens_list()
     {
         ///creates tools for the first time and only once
+
+        ///******************************************************
+        /// todm,
+        /// nearly a bug, thickness and wheel scaling are coupled
+        /// unnecessarily
+        ///******************************************************
         if( sconf.enableTools ) {
             ssF.createSliderPlaceholder_media_scale();
             ssF.createSliderPlaceholder_thickness();
