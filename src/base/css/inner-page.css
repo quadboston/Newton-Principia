@@ -257,6 +257,10 @@
     display : none;
 }
 
+.bsl-text-widget svg text {
+    font-family : MJXc-TeX-math-I, MJXc-TeX-math-Ix, MJXc-TeX-math-Iw;
+}
+
 
 /*---------------------------------------------
     From src/vendor/bsl/gui/local-content-trigger

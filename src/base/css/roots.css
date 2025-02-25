@@ -15,6 +15,9 @@
     --SHUTTLE_COLOR_FAINT : rgba(150, 175, 200, 0.4);
     --SHUTTLE_BG_COLOR : rgba(245, 245, 255);
     --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
+    --font-serif : "essonnes-display", 'Garamond','Times', serif;
+    --font-sans : 'Helvetica', sans-serif;
+    --font-mono : monospace;
 
     /* variables; these default values may be changed by dispatch-css.js module */
     --main_horizontal_dividor_width_px : 21px;
@@ -39,7 +42,7 @@ html, body {
 
 body {
     color: var(--color-medium-grey);
-    font-family: 'Helvetica', sans-serif;
+    font-family: var(--font-serif);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -86,7 +89,7 @@ table {
 h1, h2, h3, h4, h5, h6{
     color: var(--color-main);
     font-weight: 200;
-    font-family: 'Goudy Old Style', 'Garamond','Times', serif;
+    font-family: var(--font-serif);
 }
 
 h1 {
@@ -193,7 +196,7 @@ b {
 
 .bsl-simscene {
     text-align  : center;
-    font-family : Montserrat,arial,helvetica,san-serif;
+    font-family : var(--font-serif);
 }
 
 .bsl--svgscene {

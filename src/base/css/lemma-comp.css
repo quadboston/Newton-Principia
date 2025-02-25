@@ -254,9 +254,7 @@ div.leftside-menuholder div.original-text.chosen {
 }
 
 .original-text {
-    /* is this font really a fit? font-family :
-        'Goudy Old Style', 'Garamond', Montserrat, 'Times', serif; */
-    font-family : 'Helvetica',sans-serif;
+    font-family : var(--font-sans);
     color       : var(--color-medium-grey);
     line-height : 1.3;
 }

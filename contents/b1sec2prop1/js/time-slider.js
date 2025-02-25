@@ -164,7 +164,7 @@
            'stroke-width'   : 1,
             style           :
             {
-                'font-family'   : 'helvetica, san-serif',
+                'font-family'   : 'var(--font-serif)',
                 'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
                 'stroke-width'  : 1,
             },
