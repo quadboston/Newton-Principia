@@ -35,19 +35,20 @@
     var lowId2topics= sn('lowId2topics', topics);
     var id2tplink   = sn('id2tplink', topics);
     var ix2tplink   = sn('ix2tplink', topics, []);
-    var originalPoints = sn( 'originalPoints', sconf );
-    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
 
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
-    var sconf       = sn('sconf', sapp);
     var stdMod      = sn('stdMod', sapp);
     var sDomF       = sn('dfunctions',sapp);
     var sDomN       = sn('dnative',sapp);
     var sData       = sn('sappDat',sapp);
     var amode       = sapp.mode = {};
-
+    
+    var sconf       = sn('sconf', sapp);
+    var originalPoints = sn( 'originalPoints', sconf );
+    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
+    
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     //non-consistent: srg should be under fapp or sapp, not both:
