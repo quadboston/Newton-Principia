@@ -174,7 +174,7 @@
                 domStore.digitalClockCells[ ix ] = $$.c( 'td' )
                     .addClass( clockId + '-cell' )
 
-                    .css('font-family', 'var(--font-serif)' )
+                    .css('font-family', 'var(--default-font)' )
 
                     .css('fontSize',  fontSize.toFixed(2) + 'px' )
                     .html( ' ' )

@@ -51,7 +51,7 @@
   
 .number {
     text-align: right;
-    font-family: var(--font-mono);
+    font-family: var(--data-numerical-font);
     font-size: 16px;
     min-width: 48px;
     width: 100%;
@@ -65,7 +65,7 @@ svg text {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
 }
   
 .slider {

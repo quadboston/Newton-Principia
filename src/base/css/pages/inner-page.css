@@ -48,7 +48,7 @@
 }
 
 .desc__header-title {
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     font-size: 16px;
     font-weight: bold;
     margin: 0px;
@@ -60,12 +60,12 @@
 }
 
 .desc--areas h2 {
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     font-size: 1rem; 
 }
 
 .areas__checkboxes {
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     font-size: 1rem; 
 }
 

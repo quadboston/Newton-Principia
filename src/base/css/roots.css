@@ -15,9 +15,16 @@
     --SHUTTLE_COLOR_FAINT : rgba(150, 175, 200, 0.4);
     --SHUTTLE_BG_COLOR : rgba(245, 245, 255);
     --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
+
     --font-serif : "essonnes-display", 'Garamond','Times', serif;
     --font-sans : 'Helvetica', sans-serif;
     --font-mono : monospace;
+
+    --default-font: var(--font-sans);
+    --homepage-font: var(--font-serif);
+    --text-tab-font: var(--font-serif);
+    --video-tab-font: var(--font-sans);
+    --data-numerical-font: var(--font-mono);
 
     /* variables; these default values may be changed by dispatch-css.js module */
     --main_horizontal_dividor_width_px : 21px;
@@ -42,7 +49,7 @@ html, body {
 
 body {
     color: var(--color-medium-grey);
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -61,8 +68,8 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
+    /* font-size: 100%;
+    font: inherit; */
     vertical-align: baseline;
     line-height: 1;
 }
@@ -89,7 +96,7 @@ table {
 h1, h2, h3, h4, h5, h6{
     color: var(--color-main);
     font-weight: 200;
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
 }
 
 h1 {
@@ -153,6 +160,7 @@ b {
     margin          : 0;
     overflow-y      : auto;
     overflow-x      : hidden; /*patch for css-opacity-transition*/
+    background-color: white;
 }
 
 /* fixes media by making margins dynamically in-line */
@@ -182,21 +190,12 @@ b {
 
 
 /*================================*/
-/* //|| essay pane                */
-/*================================*/
-
-.bsl-text-widget {
-    background-color: white;
-}
-
-
-/*================================*/
 /* //|| media pane                */
 /*================================*/
 
 .bsl-simscene {
     text-align  : center;
-    font-family : var(--font-serif);
+    font-family : var(--default-font);
 }
 
 .bsl--svgscene {

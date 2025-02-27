@@ -90,7 +90,7 @@ header.default {
 ======================================================*/
 
 .landing-title {
-    font-family: var(--font-serif);
+    font-family: var(--homepage-font);
     font-weight: 300;
     font-size: 6vw;
     color: var(--color-white);
@@ -113,7 +113,7 @@ header.default {
 }
 
 .landing-subtitle {
-    font-family: var(--font-serif);
+    font-family: var(--homepage-font);
     font-size: 25px;
     color: var(--color-white);
     letter-spacing: 1.32px;
@@ -132,7 +132,7 @@ header.default {
 }
 
 .sub-title {
-    font-family: var(--font-serif);
+    font-family: var(--homepage-font);
     font-size: 19px;
     color: var(--color-white);
     letter-spacing: 1.32px;
@@ -198,7 +198,7 @@ good: transform : scale(1.1, 1.0);
     color: white;
     font-size: 17px;
     line-height:1.1;
-    font-family: var(--font-sans);
+    font-family: var(--text-tab-font);
     transition: all .1s;
 }
 
@@ -212,7 +212,7 @@ good: transform : scale(1.1, 1.0);
 }
 
 .landing-table-of-contents ul .table-tag {
-    font-family: var(--font-sans);
+    font-family: var(--text-tab-font);
     font-size: 14px;
     font-weight: 300; 
 }
@@ -249,6 +249,7 @@ good: transform : scale(1.1, 1.0);
     text-align: center;
     background: #E9E2DA;
     grid-area: howTo; 
+    font-family: var(--default-font);
 }
 
 .how-to h2 {
@@ -292,7 +293,7 @@ good: transform : scale(1.1, 1.0);
 
 .hp-text-section {
     color: var(--color-white);
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     margin-top: 128px; 
 }
 
@@ -323,7 +324,7 @@ good: transform : scale(1.1, 1.0);
 }
 
 .dd-label {
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -353,7 +354,7 @@ good: transform : scale(1.1, 1.0);
 ======================================================*/
 .options {
     color: var(--color-white);
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     margin-top: 128px;
 }
 
@@ -373,7 +374,7 @@ good: transform : scale(1.1, 1.0);
 }
 
 .feedback-label {
-    font-family: var(--font-serif);
+    font-family: var(--default-font);
     color: rgba(255, 255, 255, 0.6);
 }
 

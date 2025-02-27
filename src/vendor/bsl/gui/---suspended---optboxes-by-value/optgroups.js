@@ -279,7 +279,7 @@
                 border          : ${bsize}px solid grey;
                 font-weight     : bold;
                 font-size       : ${fsize}px;
-                font-family     : var(--font-serif);
+                font-family     : var(--default-font);
                 color           : #aaaaaa;
                 user-select     : none;
                 margin-right    : ${bpadding}px;

@@ -18,10 +18,11 @@
     border-radius: var(--border-radius);
     cursor: pointer;
     white-space : nowrap;
+    font-family: var(--text-tab-font);
     text-align:center;
     height: 29px;
     margin: 0px 16px 0 16px;
-    padding: 5px 8px 2px 8px;
+    padding: 6px 8px 2px 8px;
     transition: all .2s ease;
     z-index: 1002;
 }
@@ -86,6 +87,7 @@
     margin-left         : 30px;
     font-weight         : normal;
     z-index             : 1000000006;
+    font-family: var(--default-font);
 }
 
 .home-button {
@@ -268,7 +270,9 @@
   --------------------------------------------*/
 
 div.trigger-option {
-    cursor : pointer;  
+    cursor : pointer;     
+    display : inline-block;
+    white-space : normal; 
 }
 img.isopen,
 img.isclosed {
@@ -294,8 +298,4 @@ img.isclosed {
     background-color:#efefef;
     margin-left:20px;
     padding:5px;
-}
-div.trigger-option {
-    display : inline-block;
-    white-space : normal;
 } 
