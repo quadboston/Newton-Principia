@@ -79,9 +79,9 @@
 
         sconf.default_tp_lightness = 30;
         sconf.ONLY_MONOTONIC_CURVE = false;
-        sconf.mediaMoverPointDisabled = false;
-        sconf.skipGenDragList = false; //false is for media mover,
-        sconf.enableTools     = true;
+        sconf.mediaMoverPointDisabled = !false;
+        sconf.skipGenDragList = !false; //false is for media mover,
+        sconf.enableTools     = !true;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {

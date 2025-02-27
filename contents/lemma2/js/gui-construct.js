@@ -90,7 +90,7 @@
     {
         // control points
         var ctrlPts = dr.ctrlPts;
-        dr.ctrlPts_unscaled = [];
+        //dr.ctrlPts_unscaled = [];
         var scale = 1/sconf.originalMod2inn_scale;
         var offsetX = sconf.originX_onPicture;
         var offsetY = sconf.originY_onPicture;
@@ -113,10 +113,8 @@
             pt.x = cp[i].x;
             pt.y = cp[i].y;
             
-            //pt.posx = (cp[i].x - offsetX)*scale;
-            //pt.posy = (cp[i].y - offsetY)*scale*flipY1;
             ctrlPts.push( pt );
-            dr.ctrlPts_unscaled.push( [pt.x, pt.y] );
+            //dr.ctrlPts_unscaled.push( [pt.x, pt.y] );
         }
         reset_hollowPoints({ onCurve:true, onBase:false });
     }

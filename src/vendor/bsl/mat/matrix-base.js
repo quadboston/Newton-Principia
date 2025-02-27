@@ -308,7 +308,7 @@
 
         return linesCross( u,v,us,vs );
     }
-    //start here:
+
     function dropPerpendicularDetails( S, A, B )
     {
         //direction of line AB = line segment from start point A to end point B

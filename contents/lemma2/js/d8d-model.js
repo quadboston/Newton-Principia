@@ -163,6 +163,7 @@
                     sconf.DRAGGEE_HALF_SIZE;
             var basesN = dr.basesN;
             var closestPoint = null;
+            
             if(
                 //.excludes excess of non-used points
                 pointWrap.type === 'base' && pointWrap.index >= basesN
@@ -206,6 +207,11 @@
                 item.x = ach.achieved.x + move0;
                 item.y = ach.achieved.y + move1;
 	            appstate.movingBasePt = false;
+                // //\\ rescaling
+                //let mscale = sconf.mod2inn_scale;
+                //dr.ctrlPts_unscaled[pw.ix][0] = item.x/mscale;
+                //dr.ctrlPts_unscaled[pw.ix][1] = item.y/mscale;
+                // \\// rescaling
 
             } else if( index > 0 && index < dr.basesN ) {
 	            var newX = ach.achieved.x + move0;
