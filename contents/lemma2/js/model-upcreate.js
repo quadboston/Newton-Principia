@@ -28,11 +28,13 @@
         // //\\ rescaling
         //      patch where only dr.ctrlPts_unscaled
         //      is a model,
-        let mscale = sconf.mod2inn_scale;
+        //let mscale = sconf.mod2inn_scale;
+        /*
         dr.ctrlPts_unscaled.forEach( (pt,ix) => {
             dr.ctrlPts[ix].x = pt[0]*mscale;
             dr.ctrlPts[ix].y = pt[1]*mscale;
         });
+        */
         // \\// rescaling
 
         let max = numModel.ctrlPt_2_maxIx();

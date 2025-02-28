@@ -64,7 +64,8 @@
         };
         medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
 
-        // Move handler to the top of the svg so it never disappears when it is overlapped by other elements
+        // Move handler to the top of the svg so it never
+        // disappears when it is overlapped by other elements
         const svg = document.querySelector('svg.bsl--svgscene');
         const handlers = document.querySelectorAll('circle[fill="white"]');
         handlers.forEach((element) => {
