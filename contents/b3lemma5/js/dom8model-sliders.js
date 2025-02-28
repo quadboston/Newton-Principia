@@ -180,7 +180,7 @@
                 svgel   : m.text_svg,
                'stroke-width' : 1,
                 style   : { 'font-size' : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
-                            'font-family' : 'helvetica, san-serif',
+                            'font-family' : 'var(--default-font)',
                              color : COLOR,
                 },
                 stroke  : COLOR,

@@ -14,10 +14,6 @@
                 { src:'sconf.js' },
                 { src:'main.js' },
 
-                {  src:"css/css-order.js" },
-                {  src:"css/slider.css.js" },
-                {  src:"css/model.css.js" },
-                {  src:"css/inner-page.css.js" },
                 {  src:"core/common/preset-data.js" },
                 {  src:"core/common/dom.js" },
                 {  src:"core/common/d8d-model.js" },

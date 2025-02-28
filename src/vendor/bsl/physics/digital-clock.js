@@ -45,12 +45,6 @@
         offsetX,         //cell x offset
         offsetY,         //cell y offset
 
-
-
-        //.no good ... 1 is as 7
-        //.css('font-family', "Montserrat, 
-        fontFamily,
-
         // \\// css
 
     }) {
@@ -180,12 +174,7 @@
                 domStore.digitalClockCells[ ix ] = $$.c( 'td' )
                     .addClass( clockId + '-cell' )
 
-                    // no good ... 1 is as 7
-                    // css('font-family', "Montserrat, 
-                    // good to prove Nunito works
-                    // css('font-family', "Nunito, 'Monospace',
-                    // 'Helvetica Neue', Helvetica, Arial, sans-serif" )
-                    .css('font-family', fontFamily )
+                    .css('font-family', 'var(--default-font)' )
 
                     .css('fontSize',  fontSize.toFixed(2) + 'px' )
                     .html( ' ' )

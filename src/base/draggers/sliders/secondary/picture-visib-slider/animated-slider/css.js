@@ -85,7 +85,7 @@
                 top:0px;
                 text-align:center;
                 font-size:10px;
-                font-family:helvetica, san-serif;
+                font-family:var(--default-font);
                 color:#aaaaaa;
             }
 
@@ -100,7 +100,7 @@
 
                 font-size:8px;
                 text-align:center;
-                font-family:helvetica, san-serif;
+                font-family:var(--default-font);
                 color:black;
                 background-color:#dddddd;
                 z-index:1000;
