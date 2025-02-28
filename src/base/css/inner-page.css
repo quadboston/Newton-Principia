@@ -59,7 +59,7 @@
     transform: scale(1.0);
     box-shadow       : 0 0px 8px 0 var(--SHUTTLE_COLOR_FAINT);
     border           : 3px solid var(--SHUTTLE_COLOR);
-    padding          : 3px 8px 3px 8px;
+    padding          : 4px 8px 3px 8px;
     margin-top       : 6px;
     transform        : translate( 0px, 1px );
 }
@@ -205,7 +205,7 @@
 
 .content-list .lemma-item-title {
     display : inline-block;
-    padding : 4px 8px 2px 1px;
+    padding : 4px 8px 4px 1px;
     border-radius : 10px;
     border : 1px solid #cccccc;
     background-color : white;
@@ -273,6 +273,7 @@ div.trigger-option {
     cursor : pointer;     
     display : inline-block;
     white-space : normal; 
+    font-family: var(--default-font);
 }
 img.isopen,
 img.isclosed {

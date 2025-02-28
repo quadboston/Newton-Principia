@@ -230,10 +230,12 @@ Styles for the mobile tabs
 
 .english {
     font-family : var(--text-tab-font);
+    font-size : 16px;
 }
 
 .video {
     font-family : var(--video-tab-font);
+    font-size : 16px;
 }
 
 /*  this takes higher specifity to override generic display:none property:

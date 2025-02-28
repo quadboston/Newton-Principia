@@ -16,9 +16,9 @@
     --SHUTTLE_BG_COLOR : rgba(245, 245, 255);
     --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
 
-    --font-serif : "essonnes-display", 'Garamond','Times', serif;
-    --font-sans : 'Helvetica', sans-serif;
-    --font-mono : monospace;
+    --font-serif : 'Times New Roman', serif;
+    --font-sans : 'Arial', sans-serif;
+    --font-mono : 'Courier New', monospace;
 
     --default-font: var(--font-sans);
     --homepage-font: var(--font-serif);
