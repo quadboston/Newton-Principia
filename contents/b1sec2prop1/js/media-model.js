@@ -37,15 +37,20 @@
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
         if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
             haz( amode, 'userControl') === 'text' ) {
+            //The following code is run when the user clicks text in the text area.  For example on the proof tab in the 2nd paragraph where
+            //decStart = 5 corresponds to clicking “the second part of the time”, and decStart = 6 to clicking “when the body comes to B”.
             let last = 5
             rg.c.decStart = last;
             rg.Bc.decStart = last;
             rg.SBc.decStart = last;
+            //There was a bug where hovering the mouse over “cS”, only made that line visible starting with “when the body comes to B” rather
+            //than “the second part of the time”.  Therefore decStart was switched to the following from last+1 (6).
+            rg.Sc.decStart = last;
+
             rg.C.decStart = last+1;
             rg.V.decStart = last+1;
             rg.BC.decStart = last+1; //rg.C.decStart;
             rg.Cc.decStart = last+1; //rg.C.decStart;
-            rg.Sc.decStart = last+1; //rg.C.decStart;
         } else {
             last = 7
             rg.C.decStart = last;
