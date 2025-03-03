@@ -99,6 +99,18 @@
             rg.SEf.decStart = last;
             rg.SABCDEF.decStart = last;
         }
+
+        //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
+        [
+            rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
+            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
+            rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
+            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
+        ].forEach( pn => {
+            pn.decEnd = rg.f.decStart+3;
+        });
+
+
         //-------------------------------------------------------
         // //\\ fixes logical step to 7 for corollary of P2
         //-------------------------------------------------------
@@ -106,9 +118,6 @@
         lemmaP2coroll.forEach( pn => {
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+3;
-         });
-        ssD.logicalSteps.forEach( pn => {
-            pn.decEnd = rg.f.decStart+3;
          });
         if(
             amode.subessay === 'cor-1' ||
