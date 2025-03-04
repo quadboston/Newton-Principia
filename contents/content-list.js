@@ -116,6 +116,12 @@
             annotation : "",
         },
 
+        {   sappId : 'b1sec2prop7-progress',
+            book : 'Book 1',
+            caption : 'Sec. 2, Proposition 7 in progress',
+            annotation : "",
+        },
+
         {   sappId : 'b1sec2prop9',
             book : 'Book 1',
             caption : 'Sec. 2, Proposition 9',
