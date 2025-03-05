@@ -48,7 +48,7 @@
         Object.assign( decor, firstSteps_conf );
 
         //----------------------------------------------------
-        // //\\ proof final points
+        // //\\ proof points initial settings
         //----------------------------------------------------
         var CDEF_conf = {
             C   : { decStart : 6, },
@@ -56,14 +56,14 @@
             E   : { decStart : 14, },
             F   : { decStart : 18 },
         };
-        ///makes proof final points to disappear after a while
+        ///makes proof points disappear after a while
         eachprop( CDEF_conf, (fs, kName) => {
             fs.decEnd = sconf.numberOfManyBases*4 *
                         sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
         });
         Object.assign( decor, CDEF_conf );
         //----------------------------------------------------
-        // \\// proof final points
+        // \\// proof points initial settings
         //----------------------------------------------------
 
 
@@ -463,12 +463,6 @@
         //---------------------------------------------------
         // \\// syncs decor and rg
         //---------------------------------------------------
-        ssD.logicalSteps = [
-            rg.C, rg.V, rg.c, rg.Cc, rg.Bc, rg.BC, rg.SC, rg.Sc, rg.SBc,
-            rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
-            rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe,
-            rg.F, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
-        ];
     }
     //----------------------------------------
     // \\// declares decorations
