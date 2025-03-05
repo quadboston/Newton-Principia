@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 :root {
     /* constants */
     --color-main : #202936;
@@ -18,7 +20,7 @@
 
     --font-serif : 'Times New Roman', serif;
     --font-sans : 'Arial', sans-serif;
-    --font-mono : 'Courier New', monospace;
+    --font-mono : 'Roboto Mono', monospace;
 
     --default-font: var(--font-sans);
     --homepage-font: var(--font-serif);
