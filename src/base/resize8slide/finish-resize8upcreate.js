@@ -101,10 +101,10 @@
         ///slider group patch for lemmas 2 and 3
         ///-------------------------------------------
         var lemma2_slidersH = 0;
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if (fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3') {
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
-            lemma2_slidersH +=35; //nicer
+            lemma2_slidersH += 35; //nicer
             sDomN.sliderGroup$.css('position', 'absolute');
         }
 
@@ -113,7 +113,7 @@
         //-------------------------------------------
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
-        if( STATIC_LEGEND ) {
+        if (STATIC_LEGEND) {
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
