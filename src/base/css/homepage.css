@@ -1,0 +1,426 @@
+/*====================================================== 
+//\\\\ home page generics
+======================================================*/
+
+.hp-section-wrap {
+    width: calc(100vw - 80px);
+    margin: auto;
+}
+
+.bsl-home-pane {
+    position        : absolute;
+    width           : 100%;
+    height          : 100vh;
+    top             : 0;
+    left            : 0;
+    transition      : left 1s ease;
+    background-color: var(--color-main);
+    overflow-x      : hidden;
+    overflow-y      : scroll;
+    z-index         : 1000000005;
+}
+
+.bsl-home-pane.is-hidden {
+    left : -130%;
+}
+
+.bonus-section-start {
+    display : none;
+}
+
+.shows-bonus-features .bonus-section-start {
+    display : block;
+}
+
+.non-displayed {
+    display : none;
+}
+
+.bsl-home-pane h1, .bsl-home-pane h2 {
+    color: var(--color-white);
+}
+
+.bsl-home-pane h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+}
+
+.bsl-home-pane ol,
+.bsl-home-pane ul {
+    list-style: none;
+}
+
+
+/*====================================================== 
+//\\\\ home-page header
+======================================================*/
+
+header {
+    position:relative;  
+    grid-area: header;
+    padding: 0 0;    
+    margin-top: 5vh !important;
+    margin-bottom: 4vh !important;
+} 
+
+header.default {
+    min-height: 450px;    
+}
+
+@media only screen and (min-width: 1100px) {
+    header.bonusShowing {
+        min-height: 550px; 
+    }
+}
+
+
+/*====================================================== 
+//\\\\ front-page master caption and read first button
+======================================================*/
+
+.landing-text {
+    padding-top: 0px;
+    position: relative;
+    width: 100%;
+}
+
+
+/*====================================================== 
+//\\\\ front-page master caption
+======================================================*/
+
+.landing-title {
+    font-family: var(--homepage-font);
+    font-weight: 300;
+    font-size: 6vw;
+    color: var(--color-white);
+    letter-spacing: 1.32px;
+    line-height: 9vw;
+    margin-bottom: 16px;
+    margin-left: 150px;
+    grid-area: title; 
+}
+
+.landing-title span {
+    font-style: italic; 
+}
+
+@media only screen and (min-width: 1000px) {
+    .landing-title {
+        font-size: 58px;
+        line-height: 78px;
+    }
+}
+
+.landing-subtitle {
+    font-family: var(--homepage-font);
+    font-size: 25px;
+    color: var(--color-white);
+    letter-spacing: 1.32px;
+    line-height: 36px;
+    padding-bottom: 3vh;
+    grid-area: title; 
+}
+
+.landing-subtitle span {
+    font-style: italic; 
+}
+
+.landing-subtitle a {
+    color: var(--color-white);
+    text-decoration: underline;
+}
+
+.sub-title {
+    font-family: var(--homepage-font);
+    font-size: 19px;
+    color: var(--color-white);
+    letter-spacing: 1.32px;
+    line-height: 32px;
+    grid-area: title; 
+}
+
+.sub-title span {
+    font-style: italic; 
+}
+
+.sub-title a {
+    color: var(--color-white);
+    text-decoration: underline;
+}
+
+
+/*====================================================== 
+\\\\// front-page master caption and read first button
+======================================================*/
+
+.newton-img {
+    position: absolute;
+    top: 0px;
+    right: auto;
+    left: 30px;
+    height: 156px;
+    z-index: -1;
+    right: 96px; 
+}
+
+
+/*====================================================== 
+//\\\\ table of contents
+good: transform : scale(1.1, 1.0);
+======================================================*/
+
+.landing-table-of-contents {
+    position: relative;
+    grid-area: lemmas;
+    padding: 0;
+    padding-top: 80px;
+}
+
+@media only screen and (min-width: 1100px) {
+    .landing-table-of-contents {
+        position: absolute;
+        width: 40%;
+        top: 7vh;
+        right: 0;
+        padding-top: 0;
+    }
+    .landing-table-of-contents #model-list { /* heading */
+        display: none;
+    }
+    .bonusTOC {
+        top: 0 !important;
+    }
+}
+
+.landing-table-of-contents .content-book-title,
+.landing-table-of-contents ul a {
+    color: white;
+    font-size: 17px;
+    line-height:1.1;
+    font-family: var(--text-tab-font);
+    transition: all .1s;
+}
+
+.landing-table-of-contents .content-book-title {
+    font-size: 19px;
+}
+
+.landing-table-of-contents .content-book-title {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.landing-table-of-contents ul .table-tag {
+    font-family: var(--text-tab-font);
+    font-size: 14px;
+    font-weight: 300; 
+}
+
+.landing-table-of-contents .column {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.landing-table-of-contents .lemma-item-title {
+    display: inline-block;
+    padding : 4px 10px 2px 1px;
+    border-radius : 10px;
+    border : 1px solid transparent;
+}
+
+.landing-table-of-contents li .chosen.lemma-item-title,
+.landing-table-of-contents .lemma-item-title:hover {
+    background-color : #506677;
+    border : 1px solid #cccccc;
+}
+.landing-table-of-contents ul a {
+    padding-bottom : 0px;
+}
+
+
+/*====================================================== 
+//\\\\ how to
+======================================================*/
+
+.how-to {
+    padding: 5vh 0;
+    text-align: center;
+    background: #E9E2DA;
+    grid-area: howTo; 
+    font-family: var(--default-font);
+}
+
+.how-to h2 {
+    color: var(--color-main) !important;
+    text-align: left; }
+    .how-to-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 52px; 
+}
+
+.how-to__cell {
+    p {
+        font-size: 20px;
+    }
+    padding: 0 14px; 
+}
+
+.how-to__cell__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-top: 16px;
+    margin-bottom: 66px; 
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.how-to__cell h4 {
+    font-size: 24px;
+    color: var(--color-main) !important; 
+}
+
+
+/*====================================================== 
+//\\\\ home page plain text sections
+======================================================*/
+
+.hp-text-section {
+    color: var(--color-white);
+    font-family: var(--default-font);
+    margin-top: 128px; 
+}
+
+.about__text {
+    width: 100%;
+    margin-right: 10%; 
+}
+
+.about__text p {
+    font-size: 18px;
+    line-height: 1.5; 
+}
+
+.about__text h2 {
+    margin-bottom: 12px;
+    color: var(--color-white); 
+}
+
+.about__author {
+    width: 100%;
+    margin-top:20px;
+    color: var(--color-white);
+}
+
+.hp-text-section-body {
+    padding: 8px;
+    font-size: 18px; 
+}
+
+.dd-label {
+    font-family: var(--default-font);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dd-label a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline; 
+}
+
+.dd-label a:hover {
+    color: white; 
+}
+
+/* todm ... not very clear why we need this patch, but it is vital;
+    possibly a precedence thing;
+.hp-text-section is a vital specifity thing;
+*/
+.hp-text-section .dd-label a {
+    color: rgba(255, 255, 255, 0.7);
+}
+.hp-text-section .dd-label a:hover {
+    color: white;
+}
+
+
+/*====================================================== 
+//\\\\ options
+======================================================*/
+.options {
+    color: var(--color-white);
+    font-family: var(--default-font);
+    margin-top: 128px;
+}
+
+.option__text {
+    font-size: 18px; 
+}
+
+/*====================================================== 
+//\\\\ feedback
+======================================================*/
+
+.feedback {
+    font-size: 20px;
+    width: 100%;
+    margin-top:20px;
+    color: var(--color-white);
+}
+
+.feedback-label {
+    font-family: var(--default-font);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.feedback-label a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline; 
+}
+
+.feedback-label a:hover {
+    color: white; 
+}
+
+
+@keyframes mousemove {
+    0% {
+        transform: translateY(0px);
+        opacity: 0; 
+    }
+    25% {
+        opacity: 1; 
+    }
+    100% {
+        transform: translateY(200px);
+        opacity: 0; 
+    } 
+}
+
+/*~~~~~~~~~~~~~~~~~~~~
+Media Queries
+~~~~~~~~~~~~~~~~~~~~*/
+
+@media only screen and (max-width: 720px) {
+    .how-to-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 12px;
+        grid-row-gap: 20px; 
+    }
+    .about {
+        flex-direction: column; 
+    }
+    .about .about__text {
+        width: 100%; 
+    }
+    .about .about__author {
+        width: 100%;
+        text-align: left; 
+    }
+}

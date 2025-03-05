@@ -1,0 +1,502 @@
+/************************************************
+    //\\\\ css lemma module = nav-bar-and-drawer
+************************************************/
+
+.page-top-nav-bar {
+    background:     transparent;
+    display:        var(--doDisplayPageTopNavigatMenu);
+    align-items:    flex-start;
+    width:          100%;
+    padding-top:    20px;
+    padding-bottom: 20px;
+    top:            0px;
+    z-index:        1010;
+}
+
+.page-top-nav-bar ul {
+    padding: 0.5rem 2rem;
+}
+
+
+/************************************************
+    //\\\\ css lemma module = checkbox
+************************************************/
+
+.checkbox-wrap input[type="checkbox"] {
+    opacity: 0;
+    display: none; 
+}      
+
+/* //\\\\ this block creates nice fancy checkboxes in data-legend */    
+
+.checkbox-wrap label::before {
+    background-color: var(--color-pale-blue);
+    border: 2px solid var(--color-light-grey);
+    border-radius: 2px;
+    content: "";
+    cursor: pointer;
+    display: inline-block;
+    height: 14px;
+    width: 14px; 
+}
+
+/* this thing apparently makes these corner-like-rotated-borders
+    simulating a check-mark */
+.checkbox-wrap label::after {
+    content: "";
+    display: inline-block;
+    height: 4px;
+    width: 8px;
+    border-left: 2px solid var(--color-white); /* short part of checkmark */
+    border-bottom: 2px solid var(--color-white); /* long part of checkmark */
+    transform: rotate(-45deg); 
+}
+
+.checkbox-wrap label {
+    position: relative; 
+}
+
+.checkbox-wrap label::after {
+    position: absolute; 
+}
+
+/*Checkmark*/
+.checkbox-wrap label::after {
+    left: 4px;
+    top: 0px; 
+}
+
+/*Hide the checkmark by default*/
+.checkbox-wrap input[type="checkbox"] + label::after {
+    content: none; 
+}
+
+/*Unhide the checkmark on the checked state*/
+.checkbox-wrap input[type="checkbox"]:checked + label::after {
+    content: ""; 
+}
+
+/*Make check box color change on the checked state*/
+.checkbox-wrap input[type="checkbox"]:checked + label::before {
+    background-color: var(--color-main);
+    border: 2px solid var(--color-main); 
+}
+
+/*Adding focus styles on the checkbox*/
+.checkbox-wrap input[type="checkbox"]:focus + label::before {
+    outline: #3b99fc auto 5px; 
+}
+
+
+/************************************************
+    //\\\\ css lemma module = tabs
+************************************************/
+
+/*~~~~~~~~~~~~~~~~~~~~
+Exegesis-tabs.
+Styles for the mobile tabs
+~~~~~~~~~~~~~~~~~~~~*/
+
+/* area-tab is invisible in desktop */
+.tabs .tab-areadesk {
+    display:none;
+}
+
+@media (max-width: 800px) {
+    /* area-tab is visible in mobile */
+    .tabs .tab-areadesk {
+        display:inline-block;
+    }
+}
+
+.tab-section {
+    width: calc(100%);
+    order:2;
+    height:40px;
+    padding:0;
+    grid-area: tabs;
+}
+
+.tab-section.desc__text{
+    padding-bottom: 128px;
+}
+
+.tab-section__header{
+    display:none;
+}
+
+.desc-tab {
+    background-color: var(--color-white);
+    padding: 16px;
+    display: none;
+    height: 100%;
+    margin-bottom: 0;
+    overflow: scroll;        
+}
+
+.tabs {
+    position: relative;
+    background-color: #fff;
+    border-bottom:1px solid var(--color-light-grey);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tabs:after {
+    content: ' ';
+    display: table;
+    clear: both;
+}
+
+.tabs__tab {
+    float: left;
+    text-align: center;
+}
+
+.tabs__tab:first-child.active ~ .tabs__indicator{
+    left: 0;
+}
+
+.tabs__indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 1px;
+    background-color: var(--color-main);
+    transition: left .32s;
+}
+
+/*------------------------*/
+/* //\\ adjusts for media */
+/*------------------------*/
+.tabs__tab {
+    width: 50%;
+}
+.tabs__tab:nth-child(2).active ~ .tabs__indicator {
+    left: 0%;
+}
+.tabs__tab:nth-child(3).active ~ .tabs__indicator {
+    left: 50%;
+}
+.tabs__indicator {
+    width: 50%;
+}
+@media (max-width: 800px) {
+    .tabs__tab {
+        width: 33.333%;
+    }
+    .tabs__tab:nth-child(2).active ~ .tabs__indicator {
+        left: 33.333%;
+    }
+    .tabs__tab:nth-child(3).active ~ .tabs__indicator {
+        left: calc(33.333% * 2);
+    }
+    .tabs__indicator {
+        width: 33.333%;
+    }
+}
+/*------------------------*/
+/* \\// adjusts for media */
+/*------------------------*/
+
+.Tab > a {
+    /* //display: block; */
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--color-light-grey);
+    transition: color .15s;
+}
+
+.Tab.active > a {
+    color: var(--color-main);
+}
+
+.Tab:hover > a {
+    color: rgba(var(--color-main), .8);
+}
+
+
+/************************************************
+    //\\\\ css lemma module = essaion-pane
+************************************************/
+
+/* original text */
+.original-text {
+    display     : none;
+    color       : var(--color-medium-grey);
+    line-height : 1.3;
+}
+
+.english {
+    font-family : var(--text-tab-font);
+    font-size : 18px;
+    background-color: #FCF5E5;
+    margin-top: 1rem;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+}
+
+.video {
+    font-family : var(--video-tab-font);
+    font-size : 17px;
+}
+
+/*  this takes higher specifity to override generic display:none property:
+    all the troubles it takes is to make text unfading up slowly
+    div.leftside-menuholder
+*/
+div.original-text.chosen {
+    /* inline-block (vs block) makes left-menu floating nicer */
+    display : inline-block;
+}
+
+.leftside-menuholder .original-text {
+    box-sizing      :border-box;
+    width           :calc(100% - (var(--LEFT_SIDE_MENU_WIDTH) + 10px));
+    padding         :20px;
+    vertical-align  :top;
+}
+
+div.leftside-menuholder div.original-text {
+    opacity:0;
+}
+
+div.leftside-menuholder div.original-text.chosen {
+    position:relative;
+    opacity:1;
+    /* todm make this happen: */
+    transition :opacity 1s ease-in-out;
+}
+
+.original-text h2, .original-text h1 {
+    margin  :0;
+    font-weight:200;
+    color: var(--color-main);
+}
+
+.captured-reference {
+    cursor : pointer;
+    color : #555555;
+    background-color : #dddddd;
+}
+
+.captured-reference:hover {
+    color : #000000;
+}
+
+/* //subessay-toggler
+//it shifts itself from the left menu by own margin 20px;
+//but essaying text shifts itself by of a parent padding 20px;
+//this is why "+50px" here: */
+
+.subessay-menu-container {
+    width           : calc(100% - (var(--LEFT_SIDE_MENU_WIDTH) + 50px));
+    margin-top      : 13px;
+    padding         : 5px;
+    margin-left     : 20px;
+    border-radius   : 10px;
+    border          : 1px solid #aaaaaa;
+    background-color: #fefefe;
+}
+
+.subessay-menu-container {
+    display         : none;
+}
+
+.subessay-menu-container.chosen {
+    display         : inline-block;
+}
+
+.subessay-toggler {
+    display         : inline-block;
+    padding         : 3px 8px;
+    margin-bottom   : 2px;
+    border-radius   : 10px;
+    cursor          : pointer;
+}
+
+.subessay-toggler {
+    color           : #888888;
+    background-color: white;
+}
+
+.subessay-toggler.subexeg-toggler-chosen,
+.subessay-toggler.user-untouched:hover,
+.subessay-toggler:hover {
+    color           : #444444;
+    background-color: #cccccc;
+}
+
+.subessay-toggler.user-untouched {
+    color           : #888888;
+    background-color: white;
+}
+
+/* ///from "essaion-pane.css.js"
+///relates to activity-scenario,
+///keeps some divs hidden until user clicks on activity,
+///
+///.subessay-had-user-clicked is a state of subessay,
+///
+///problem is that at least one activity is defined by default,
+///which is non-permitted for some tutorials,
+/// */
+
+.user-clicked-sensitive {
+    display : none;
+}
+
+.subessay-had-user-clicked .user-clicked-sensitive {
+    display : inline-block;
+}
+
+
+/************************************************
+    //\\\\ css lemma module = menu-on-left
+************************************************/
+
+/* aspection rotator to vertical direction */
+.left-side-menu-rotator {
+    position    :relative;
+    left        :var(--LEFT_SIDE_MENU_OFFSET_X);
+    float       :left;
+    width       :var(--LEFT_SIDE_MENU_WIDTH);
+    height      :300px;
+    transform   :rotate(90deg);
+    box-sizing  :border-box;
+    transform-origin: 0px 0px;
+}
+    
+    
+/*******************************************/
+/* top-level geometrical sub-containers    */
+/*******************************************/
+/* geometrically contains all button-shapes and decorations */
+/* theorion and aspection */
+.menu-teaf {
+    position        :relative;
+    display         :inline-block;
+    padding         :0;
+    margin          :0;
+}
+.menu-teaf {
+    vertical-align  :top;
+    white-space     :nowrap;
+}
+
+/*
+    // //|| toggles study teafs visibility
+    .bsl-approot .studylab.menu-teaf {
+        display         :none;
+    }
+    .bsl-approot.studylab .studylab.menu-teaf {
+        display         :inline-block;
+    }
+    // ||// toggles study teafs visibility
+*/
+
+/* aspection */
+.menu-teaf.aspect {
+    width       : calc(var(--leftTopLeafLength) * 1px);
+}
+
+/* theorion */
+.menu-teaf.theorion {
+    width       : calc(100% - var(--LEFT_SIDE_MENU_WIDTH));
+}
+
+/* //-------------------------------
+// //\\ common decorations
+//      padding-top :0px; does fix Chrome, but distorts FireFox
+//      FireFox needs 1px; todm what is the problem?
+//-------------------------------  */
+
+.menu-teaf .litem {
+    position        :absolute;
+    box-sizing      :border-box;
+    height          :20px;
+    padding-top     :0px;
+    border-radius   :10px;
+    border          :1px solid transparent;
+    border-color    :transparent;
+    margin          :0;
+    cursor          :pointer;
+    opacity         :1;
+    z-index         :30;
+}
+
+.menu-teaf.theorion .litem {
+    width           :calc(var(--theorionChildWidth) * 1%);
+}
+
+.menu-teaf.aspect .litem {
+    width           :calc(var(--aspectionChildWidth) * 1%);
+}
+
+.menu-teaf .litem.shuttle {
+    box-shadow       : 0 0px 10px 0 var(--SHUTTLE_COLOR_FAINT);
+    border           : 3px solid var(--SHUTTLE_COLOR);
+    background-color : var(--SHUTTLE_BG_COLOR);
+    z-index          : 20;
+}
+
+.menu-teaf .decorated.litem {
+    border          :1px solid var(--FOCUS_OFF_COLOR);
+    z-index         :10;
+}
+
+
+/* //-------------------------------
+// //\\ fluid part = li-item
+//------------------------------- */
+
+.litem .caption {
+    position        :relative;
+    background-color:transparent;
+    width           :98%;
+    font-size       :80%;
+    font-weight     :bold;
+    padding-right   :0;
+    font-family     :var(--default-font);
+
+    /* todm: this is hell-complex, but works making 
+        caption vertically-centered in the radio-slot */
+    top             :50%;
+    transform       :translate(0%, -50%);
+    text-align      :center;
+    color           :var(--FOCUS_OFF_COLOR);
+}
+
+/* //|| item is focused */
+.menu-teaf .litem.chosen .caption,
+.menu-teaf .litem:hover .caption {
+    color :var(--FOCUS_COLOR);
+}
+
+.menu-teaf .decorated.hovered {
+    border:1px solid var(--FOCUS_COLOR);
+    box-shadow: 0 0px 14px 0 rgba(32, 41, 54, 0.6);
+}
+
+/* //-----------------------------
+// //\\ animated-decorations
+//----------------------------- */
+
+/* //|| toggles studylab     */
+.bsl-approot.studylab .menu-teaf .litem.studylab,
+.bsl-approot.studylab .menu-teaf .litem.studylab {
+    display         :inline-block;
+}
+.bsl-approot .menu-teaf .litem.studylab,
+.bsl-approot .menu-teaf .litem.studylab {
+    display : none;
+}
+
+/* //===========================
+// //\\ shuttle 
+//=========================== */
+
+.menu-teaf .litem .caption {
+    transition :color 0.3s ease-in-out;
+}
+

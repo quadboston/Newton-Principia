@@ -14,10 +14,6 @@
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
 
-                {  src:"css/css-order.js" },
-                {  src:"css/slider.css.js" },
-                {  src:"css/model.css.js" },
-                {  src:"css/inner-page.css.js" },
                 {  src:"dom.js" },
                 {  src:"d8d-model.js" },
                 {  src:"gui-construct.js" },

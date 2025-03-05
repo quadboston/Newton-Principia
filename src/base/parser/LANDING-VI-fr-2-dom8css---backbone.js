@@ -45,7 +45,7 @@
         //***********************************************************
         // styles
         //-----------------------------------------------------------
-        var styleStr = ssF.css_4_hidden8frag8active8delayed();
+        //var styleStr = ssF.css_4_hidden8frag8active8delayed();
 
         ///Frag. step IV. Text anchors.
         var { styleAnchors, nextTplinks } = ssF.topics_anchor_css();
@@ -60,7 +60,7 @@
             ssF.tplinks_2_highlightCss( nextTplinks, );
         }
         //inserts tp-highlight-machinery css into html-document
-        globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
+        //globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
         globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
         //***********************************************************
     }
