@@ -2,7 +2,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Theorem 8"
 }
 *..*
 
@@ -27,7 +28,9 @@ Page 114.
 
 *::*proof|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Proof"
+  
 }
 *..*
 
@@ -67,7 +70,8 @@ Page 114.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -85,7 +89,8 @@ Page 114.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 2",
-  "subessay" : "corollary2"
+  "subessay" : "corollary2",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -105,7 +110,8 @@ Page 114.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 3",
-  "subessay" : "corollary3"
+  "subessay" : "corollary3",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -126,7 +132,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 4",
-  "subessay" : "corollary4"
+  "subessay" : "corollary4",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -152,7 +159,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 5",
-  "subessay" : "corollary5"
+  "subessay" : "corollary5",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 In the same figure, or even in different figures whose
@@ -170,7 +178,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 6",
-  "subessay" : "corollary6"
+  "subessay" : "corollary6",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -192,7 +201,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 7",
-  "subessay" : "corollary7"
+  "subessay" : "corollary7",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -217,7 +227,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 8",
-  "subessay" : "corollary8"
+  "subessay" : "corollary8",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -239,7 +250,8 @@ Page 115.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 9",
-  "subessay" : "corollary9"
+  "subessay" : "corollary9",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

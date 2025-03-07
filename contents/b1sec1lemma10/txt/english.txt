@@ -3,7 +3,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -18,7 +19,7 @@ the very beginning of the motion in the ¦AD2PerAE2¦duplicated ratio of the tim
 
 *::*proof|english
 {
-  "menuCaption" : "Text"
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -40,7 +41,8 @@ Q.E.D.
 
 *::*corollary|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

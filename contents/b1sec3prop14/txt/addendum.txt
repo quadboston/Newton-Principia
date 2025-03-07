@@ -34,35 +34,15 @@ Returning from <><>CXX2E, for fixed interval time Δt,
 
 
 
-*::*corollary|english
-{
-  "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
-}
-*..*
-
-Hence the ¦orbitarea¦total area¦¦ of the ¦orbit¦ellipse¦¦ and, proportional to it,
-the rectangle contained by the axes is as the square root of the ¦L,LL¦latus rectum¦¦
-and as the periodic time. For the ¦orbitarea¦total area¦¦ is as
-¦instanttriangle¦the area¦¦ ¦QT¦¦ x ¦SP¦¦, which is
-described in a given time, multiplied by the periodic time.
-
-<!-- Apparently, Krylov's translation is incorrect here:
-Должно быть: Следовательно площадь эллипса и пропорциональная ей прямоугольника на осях, пропорциональна квадратному корню ...
-вместо
-Так как площадь эллипса ...
--->
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
-Page 113.
-
 
 *::*claim|addendum
 {
   "menuCaption" : "---"
 }
 *..*
+
+
+
 
 
 *::*proof|addendum

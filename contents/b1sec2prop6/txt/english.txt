@@ -3,7 +3,8 @@
 *::*claim|english
 {
   "menuCaption" : "Text",
-  "default" : "1"
+  "default" : "1",
+  "textSectionCaption" : "Theorem 5"
 }
 *..*
 
@@ -20,6 +21,7 @@ ratio of the time].
 
 *::*proof|english
 {
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -52,7 +54,8 @@ The same thing is also easily demonstrated
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

@@ -1,7 +1,8 @@
-*::*Problem 6|english
+*::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 6"
 }
 *..*
 Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
@@ -12,11 +13,12 @@ it is required to find the law of the centripetal
 Page 462.
 
 
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
-  "subessay" : "solution"
+  "subessay" : "solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 
@@ -78,11 +80,12 @@ Page 462.
 
 
 
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
-  "subessay" : "another-solution"
+  "subessay" : "another-solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 

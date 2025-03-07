@@ -1,7 +1,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -32,7 +33,8 @@ Page 486.
 {
   "menuCaption" : "Text",
   "subessayCaption" : "Direct proof",
-  "subessay" : "direct-proof"
+  "subessay" : "direct-proof",
+  "textSectionCaption" : "Proof"
 }
 *..*
 
