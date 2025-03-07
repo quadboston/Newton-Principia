@@ -78,11 +78,11 @@
             return;
         }
 
-        var { theorion, aspect, subessay } = amode;
+        var { textSection, aspect, subessay } = amode;
         if( runOnSubessay ) {
             subessay = runOnSubessay;
         }
-        var subessayRack    = exegs[ theorion ][ aspect ].subessay2subexeg[ subessay ];
+        var subessayRack    = exegs[ textSection ][ aspect ].subessay2subexeg[ subessay ];
         var stateId2state   = subessayRack.stateId2state;
         var scenarioState   = haz( stateId2state, subessayRack.scenario_stateId );
         if( !scenarioState ) {
@@ -255,13 +255,13 @@
     function restylifyUserConsole({
         subessay,
         style,
-        theorion,   //optional, if missed taken from state
+        textSection,   //optional, if missed taken from state
         aspect,     //optional, if missed taken from state
     }){
-        theorion = theorion || amode.theorion;
+        textSection = textSection || amode.textSection;
         aspect = aspect || amode.aspect;
         cssPath = '.original-text' +
-                  '.' + theorion +
+                  '.' + textSection +
                   '.' + aspect +
                   '.subessay-' + subessay +
                   ' .model-user-feedback';

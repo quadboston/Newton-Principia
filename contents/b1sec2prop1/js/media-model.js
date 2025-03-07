@@ -122,7 +122,7 @@
         if(
             amode.subessay === 'cor-1' ||
             amode.subessay === 'cor-6' ||
-            amode.theorion !== 'corollary'
+            amode.textSection !== 'corollary'
         ){
             rg.V.decStart = 11111111;
             rg.V.decEnd   = 1111111;
@@ -152,7 +152,7 @@
         }
 
         //:updates subessay menu
-        var exAspect = exegs[ amode.theorion ][ amode.aspect ];
+        var exAspect = exegs[ amode.textSection ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         ////reveals subessay in menu and in text
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
@@ -202,22 +202,22 @@
             initialization_is_done = true;
             if( POINTS_BCDE_ARE_ACTIVE ) {
                 rg.B.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-4' );
                     }
                 });
                 rg.C.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-C' );
                     }
                 });
                 rg.D.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-D' );
                     }
                 });
                 rg.E.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-E' );
                     }
                 });
@@ -232,7 +232,7 @@
             }
         }
         var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
-                          amode.theorion === 'proof';
+                          amode.textSection === 'proof';
         ['B', 'C', 'D', 'E'].forEach( id => {
                 let rgX = rg[ id ];
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
@@ -248,7 +248,7 @@
         //----------------------------------------------------        
         
         rg['main-legend'].tb.corollary.style.display =
-            ( amode.theorion === 'corollary' && amode.subessay === 'cor-1' ) ?
+            ( amode.textSection === 'corollary' && amode.subessay === 'cor-1' ) ?
             'table' : 'none';
 
         ssF.mediaModelInitialized = true;

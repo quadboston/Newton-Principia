@@ -25,9 +25,9 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect } = amode;
+        var { textSection, aspect } = amode;
         if(
-            theorion === 'claim'
+            textSection === 'claim'
         ) {
             [
                 'b',

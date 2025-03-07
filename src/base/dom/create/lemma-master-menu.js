@@ -1,8 +1,8 @@
 /*
         vital jargon:
-            mcat_id = "theorion", "aspect"
+            mcat_id = "textSection", "aspect"
             menu tree is like:
-                mcat_id = "theorion"
+                mcat_id = "textSection"
                               scat_id = claim, proof, ...           
                 mcat_id = "aspect"
                               scat_id = latin, english, video, ...           
@@ -53,8 +53,8 @@
             build_teaf__localfun( mcat_id, subcatsMenu,
             );
         });
-        //:sets up a state and theorion-menu
-        var submItem = sconf.asp8theor_menus.theorion.duplicates[ amode.theorion ];
+        //:sets up a state and textSection-menu
+        var submItem = sconf.asp8theor_menus.textSection.duplicates[ amode.textSection ];
         do_select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
 
         //:sets up aspect menu
@@ -82,7 +82,7 @@
             );
         }
 
-        ['aspect','theorion'].forEach( function( mcat_id ) {
+        ['aspect','textSection'].forEach( function( mcat_id ) {
             sDomN.teafs$[ mcat_id ] = $$.dct(
                 'menu-teaf ' + mcat_id,
                 fconf.attach_menu_to_essaion_root ?
@@ -91,8 +91,8 @@
             );
         });
 
-        if( haz( fconf, 'theorionTab_nonClickable' ) ){
-            sDomF.makes_theorionTab_nonClickable();
+        if( haz( fconf, 'textSectionTab_nonClickable' ) ){
+            sDomF.makes_textSectionTab_nonClickable();
         }
     }
 
@@ -150,8 +150,8 @@
     /// makes tab's components button;
     function make_menu_leaf__onceLocFun( leafRk )
     {
-        var scat_id     = leafRk.scat_id;   //sub category: theorion or aspect
-        var mcat_id     = leafRk.mcat_id;   //main category: theorion or aspect
+        var scat_id     = leafRk.scat_id;   //sub category: textSection or aspect
+        var mcat_id     = leafRk.mcat_id;   //main category: textSection or aspect
         var mitemIx     = leafRk.ix;
         var caption     = leafRk.caption;
         var studylab    = leafRk.studylab;
@@ -162,9 +162,9 @@
         // //\\ fluid-html part
         // //\\ video-button placeholder
         //------------------------------
-        //if( mcat_id === 'theorion' ) {
+        //if( mcat_id === 'textSection' ) {
         ///this thing participate in creation placeholder inside
-        ///theorion tab-tags-buttons
+        ///textSection tab-tags-buttons
         var iconClass = 'videoicon-placeholder' +
             ( mcat_id === 'aspect' ? '-aspect' : '' );
         var videoPlaceholder$ = toreg( iconClass )( scat_id,
@@ -194,7 +194,7 @@
             .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
             .e('click', function( event ) {
-                if( mcat_id !== 'theorion' || !fconf.theorionTab_nonClickable ) {
+                if( mcat_id !== 'textSection' || !fconf.textSectionTab_nonClickable ) {
 
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
@@ -240,7 +240,7 @@
         var scat_id         = leafRk.scat_id;
         var mcat_id         = leafRk.mcat_id;
         var decorOfShuttle$ = leafRk.decorOfShuttle$;
-        var exAspect        = exegs[ amode.theorion ][ amode.aspect ];
+        var exAspect        = exegs[ amode.textSection ][ amode.aspect ];
 
         //todm: with this lemma 2 looks bad ... why? ... missed resize?
         //if( amode[ mcat_id ] === scat_id ) return; //click is idempotent
@@ -252,7 +252,7 @@
         leafRk.li$.removeClass( 'chosen' );
 
         //sets fappRoot flags
-        fapp.fappRoot$.removeClass( 'theorion--' + amode.theorion +
+        fapp.fappRoot$.removeClass( 'textSection--' + amode.textSection +
             ' aspect--' + amode.aspect );
         //sets content-text visibility
         if( userOptions.shouldShowSubessayMenu(exAspect) ) {
@@ -274,7 +274,7 @@
         //**************************************************************
         //**************************************************************
         amode[ mcat_id ]    = scat_id;
-        var exAspect        = exegs[ amode.theorion ][ amode.aspect ];
+        var exAspect        = exegs[ amode.textSection ][ amode.aspect ];
         //if no default, always selects only the first essay
         var subexeg0        = exAspect.subexegs[ 0 ];
         var subexeg         = ns.haz( exAspect, "default" ) || subexeg0;
@@ -293,7 +293,7 @@
         //==================================================
         //flag to root
         fapp.fappRoot$.addClass(
-            'theorion--' + amode.theorion + ' aspect--' + amode.aspect
+            'textSection--' + amode.textSection + ' aspect--' + amode.aspect
         );
 
         //flag to content-text-components
@@ -316,9 +316,9 @@
         leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag, but fails if omitted
         //flag to shuttle
         decorOfShuttle$.a('class','litem shuttle shuttle-'+leafRk.ix);
-        if( mcat_id === 'theorion' ) {
-            ns.eachprop( exegs[ amode.theorion ], ( exegAsp, aspId ) => {
-                //updates left menu caption for theorions with omitted aspect texts
+        if( mcat_id === 'textSection' ) {
+            ns.eachprop( exegs[ amode.textSection ], ( exegAsp, aspId ) => {
+                //updates left menu caption for textSections with omitted aspect texts
                 var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
                 menItem.leafRk.mItemCaptionHtml$.html(
                     exegAsp.subexegs[ 0 ].essayHeader.menuCaption ||
@@ -417,7 +417,7 @@
         ////real human acted on app,
         ////because of this, human activity state-machines are being
         ////informed in this block,
-        eachprop( exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg,
+        eachprop( exegs[ amode.textSection ][ amode.aspect ].subessay2subexeg,
                   (subessayRack, sname) => {
 
             ///this is flag of presense of activity-script for this subessay
@@ -432,7 +432,7 @@
         });
 
         var subessayRack =
-            exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg[ amode.subessay ];
+            exegs[ amode.textSection ][ amode.aspect ].subessay2subexeg[ amode.subessay ];
         if( haz( subessayRack, 'stateId2state' ) ) {
             ////adds state "start" to avoid entering the state machine in ambiguous state
             ////in plain words, every "user click" is "start over"
