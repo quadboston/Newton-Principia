@@ -2,7 +2,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Theorem 2"
 }
 *..*
 
@@ -12,16 +13,13 @@ in a straight line, describes ¦kepler-triangle¦areas¦¦ about that point prop
 times, is urged by a centripetal force ¦forceMove¦tending to the same¦¦ ¦S¦point¦¦.
 <br><br>
 
-
-
 <div book-reference-id="Donahue"></div>
-
-<br><br>
 
 
 
 *::*proof|english
 {
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -62,7 +60,8 @@ its ¦S¦point S¦¦, uniformly in a straight line.
 
 *::*corollary|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -91,6 +90,7 @@ parts ¦Bc¦to which the motion tends¦¦.
 
 *::*scholium|english
 {
+  "textSectionCaption" : "Scholium"
 }
 *..*
 

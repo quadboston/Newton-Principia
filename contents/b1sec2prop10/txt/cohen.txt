@@ -1,8 +1,9 @@
 
-*::*Problem 5|english
+*::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 5"
 }
 *..*
 
@@ -21,23 +22,12 @@ Page 459.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution"
+  "subessay" : "solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 
@@ -74,11 +64,12 @@ Page 459.
 
 
 
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
-  "subessay" : "another-solution"
+  "subessay" : "another-solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 
@@ -110,9 +101,10 @@ Page 459.
 
 
 
-*::*Corollaries|english
+*::*corollary|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -146,9 +138,10 @@ the equality of the direct and inverse ratios) in the ratio of equality.
 
 
 
-*::*Scholium|english
+*::*scholium|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Scholium"
 }
 *..*
 
@@ -174,7 +167,3 @@ the ordinates is changed in any way while the periodic time remains the
 same, the ¦forces¦¦ tending toward any center located in the abscissa are, for
 each individual ordinate, increased or decreased in the ratio of the distances
 from the center.
-
-
-
-

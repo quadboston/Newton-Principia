@@ -1,7 +1,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 9"
 }
 *..*
 Supposing that the centripetal force is inversely proportional to the square of the
@@ -20,7 +21,8 @@ Page 116.
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution"
+  "subessay" : "solution",
+  "textSectionCaption" : "Solution"
 }
 *..*
 
@@ -92,7 +94,8 @@ Page 116.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -107,5 +110,99 @@ dividendo], becomes DS to DH as 4¦DS¦¦ — L to L.
 <div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
 Page 117.
 
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+Hence, given the velocity of a body in the principal vertex
+D, the orbit will be found expeditiously, namely, by taking its ¦L,LL¦latus rectum¦¦ to
+twice the distance DS as the square of the ratio of this given ¦P,vb¦velocity¦¦ to the
+velocity of a body revolving in a circle at a distance DS (by prop. 16, corol.
+3), and then taking DH to DS as the ¦L,LL¦latus rectum¦¦ to the difference between
+the ¦L,LL¦latus rectum¦¦ and 4¦DS¦¦.
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 117.
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+Hence also, if a body moves in any conic whatever and
+is forced out of its orbit by any impulse, the orbit in which it will afterward
+pursue its course can be found. For by compounding the body's own motion
+with that motion which the impulse alone would generate, there will be
+found the motion with which the body will go forth from the given place of
+impulse along a straight line given in position.
+
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 4",
+  "subessay" : "corollary4"
+}
+*..*
+
+And if the body is continually perturbed by some force
+impressed from outside, its trajectory can be determined very nearly, by noting the changes which the force introduces at certain points and estimating
+from the order of the sequence the continual changes at intermediate placesᵃ.
+
+<br><br><br>
+
+ᵃ. The sense of corol. 4 is that Newton can determine "the changes which the [impressed] force
+will make at certain points" and, by interpolation, estimate the changes continually made at intermediary points.
+
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
+
+
+
+
+*::*scholium|english
+{
+  "textSectionCaption" : "Scholium"
+}
+*..*
+
+If a body P, under the action of a centripetal force tending toward any given
+point R, moves in the perimeter of any
+
+<img src="contents/b1sec3prop17/img/diagram-scholium.png" style="width:50%; float:right;">
+
+given conic whatever, whose center is
+C, and the law of the centripetal force
+is required, let CG be drawn parallel to
+the radius RP and meeting the tangent
+PG of the orbit at G; then the force
+(by prop. 10, corol. 1 and schol.; and
+
+prop. 7, corol. 3) will be as
+CG³/RP².
+
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 118.
 
 
