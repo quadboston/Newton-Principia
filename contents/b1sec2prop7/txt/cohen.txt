@@ -1,7 +1,7 @@
 
 *::*proof|english
 {
-  "theorionCaption" : "Problem 2",
+  "textSectionCaption" : "Problem 2",
   "default" : "1",
   "menuCaption" : "Text"
 }

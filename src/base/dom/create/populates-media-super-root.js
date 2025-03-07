@@ -298,7 +298,7 @@
         // //\\ study image and s ubmodel
         //..............................
         var images = {};
-        //top mode CSS: bsl-approot theorion--claim aspect--video
+        //top mode CSS: bsl-approot textSection--claim aspect--video
         var imgCss = 'bsl-bg-image';
 
         // //\\ hides all media before visualizing in relevant egreg-GUI
@@ -344,7 +344,7 @@
                     //      the first css is for image,
                     //      the second is for svg,
                     //***************************************************************
-                    var ww = `.${cssp}-approot.theorion--${tkey}.aspect--${akey}`;
+                    var ww = `.${cssp}-approot.textSection--${tkey}.aspect--${akey}`;
                     css += `
                         ${ww} .${cssId} {
                             display :inline;

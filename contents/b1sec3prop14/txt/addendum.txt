@@ -6,7 +6,7 @@
 
 
 <b>In <><>CXX:</b><br>
-<a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
+<a target="_blank" href="?conf=sappId=b1sec3prop14,textSectionId=proof,aspectId=addendum">
 From proof addendum (S):
 </a>
 

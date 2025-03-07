@@ -36,7 +36,7 @@ will be changed (by lem. 11) as the square of ¦PR¦¦ or ¦QT¦¦. Therefore,
 will remain the same as before, that is, as ¦SP¦¦. And therefore ¦QT¦¦² x ¦SP¦¦² / ¦QR¦¦
 is as ¦SP¦¦³, and thus
 
-<a target="_blank" href="?conf=sappId=b1sec2prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">
+<a target="_blank" href="?conf=sappId=b1sec2prop6,textSectionId=corollary,aspectId=english,subessayId=corollary1">
 (by prop. 6, corols. 1 and 5)
 </a>,
 
@@ -53,7 +53,7 @@ are to the distance ¦SP¦¦ in given ratios;
 and thus ¦SP¦¦³ is as ¦SY¦¦² x ¦PV¦¦,
 that is
 
-<a target="_blank" href="?conf=sappId=b1sec2prop6,theorionId=corollary,aspectId=english,subessayId=corollary3">
+<a target="_blank" href="?conf=sappId=b1sec2prop6,textSectionId=corollary,aspectId=english,subessayId=corollary3">
 (by prop. 6, corols. 3 and 5)
 </a>,
 

@@ -53,12 +53,12 @@
 
     /* text area horizontal and vertical tab buttons */
     function createsMenuCss( cssp, fconf ) {
-        var theorionChildWidth = (100 / sDomN.theorionMenuMembersCount).toFixed();
+        var textSectionChildWidth = (100 / sDomN.textSectionMenuMembersCount).toFixed();
         var aspectionChildWidth = (100 / sDomN.aspectionMenuMembersCount).toFixed();
         var leftTopLeafLength =
             ( sDomN.aspectionMenuMembersCount * fconf.LEFT_SIDE_MENU_ITEM_LENGTH ).toFixed();
 
-        root.style.setProperty('--theorionChildWidth', theorionChildWidth);
+        root.style.setProperty('--textSectionChildWidth', textSectionChildWidth);
         root.style.setProperty('--aspectionChildWidth', aspectionChildWidth);
         root.style.setProperty('--leftTopLeafLength', leftTopLeafLength);
 
@@ -67,14 +67,14 @@
         //===========================
         // //\\ setting up shuttle CSS for all possible menu leaf choices
         var ret;
-        for( var ix=0; ix<sDomN.theorionMenuMembersCount; ix++ ) {
+        for( var ix=0; ix<sDomN.textSectionMenuMembersCount; ix++ ) {
             ret += `
-                .menu-teaf.theorion .decorated.litem-${ix},
-                .menu-teaf.theorion .litem-${ix},
-                .menu-teaf.theorion .shuttle-${ix} {
-                    left       :${theorionChildWidth*ix}%;
+                .menu-teaf.textSection .decorated.litem-${ix},
+                .menu-teaf.textSection .litem-${ix},
+                .menu-teaf.textSection .shuttle-${ix} {
+                    left       :${textSectionChildWidth*ix}%;
                 }
-                .menu-teaf.theorion .shuttle-${ix} {
+                .menu-teaf.textSection .shuttle-${ix} {
                     transition :top 0.3s ease-in-out, left 0.5s ease-in-out;
                 }
             `;

@@ -14,7 +14,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            createTheorionLegend,
+            createtextSectionLegend,
         },
     });
     return;
@@ -28,12 +28,12 @@
 
 
     //=========================================
-    // //\\ creates theorion table
+    // //\\ creates textSection table
     //      does one time work of html creation
     //=========================================
-    function createTheorionLegend({
+    function createtextSectionLegend({
         stdMod_given,
-        theorion,
+        textSection,
         rowsCount,
         clustersCount,
         tableCaption,
@@ -48,11 +48,11 @@
     }){
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
-            ( theorion,     {
+            ( textSection,     {
                                 upcreate_mainLegend,
                             }
             );
-        var rgTeoTab = rg[ 'main-legend' ][ theorion ];
+        var rgTeoTab = rg[ 'main-legend' ][ textSection ];
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
@@ -67,7 +67,7 @@
 
         createsTablePlaceholder();
         createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat || createsIdleFirstRow_forFormat_default;
-        createsIdleFirstRow_forFormat( tb, theorion );
+        createsIdleFirstRow_forFormat( tb, textSection );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
@@ -88,9 +88,9 @@
             tb = $$
                 .c('table')
                 .to( stdMod.legendRoot$ )
-                .cls( 'main-legend ' + theorion )
+                .cls( 'main-legend ' + textSection )
 
-                //removes set of .main-legend.]theorion[ {
+                //removes set of .main-legend.]textSection[ {
                 .css( 'border-collapse', 'collapse' )
                 ()
                 //css( 'table-layout', 'auto' ) //makes problem ... table moves out of pane ...
@@ -116,7 +116,7 @@
         ///=====================
         /// first row for format
         ///=====================
-        function createsIdleFirstRow_forFormat_default( tb, theorion )
+        function createsIdleFirstRow_forFormat_default( tb, textSection )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -124,7 +124,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( theorion +' tostroke')
+                .addClass( textSection +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)
