@@ -1,8 +1,9 @@
 
-*::*Problem 7|english
+*::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 7"
 }
 *..*
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
@@ -15,11 +16,12 @@ Page 463.
 
 
 
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
-  "subessay" : "solution"
+  "subessay" : "solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦hyperbola¦¦, ¦GP¦PG¦¦ and ¦DK¦KD¦¦ other
@@ -82,11 +84,12 @@ Page 465.
 
 
 
-*::*Solutions|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
-  "subessay" : "another-solution"
+  "subessay" : "another-solution",
+  "textSectionCaption" : "Solutions"
 }
 *..*
 Find the force that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will

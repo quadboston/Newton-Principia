@@ -1,7 +1,8 @@
-*::*Problem 28|english
+*::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 28"
 }
 *..*
 <!-- to set "text-keywords match (i.e. Meta parsing)",
@@ -96,11 +97,12 @@ Page 529.
 
 
 
-*::*Solution|english
+*::*proof|english
 {
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution"
+  "subessay" : "solution",
+  "textSectionCaption" : "Solution"
 }
 *..*
 Let any force tend toward a center ¦C¦¦; and let it be required to find the
@@ -197,7 +199,8 @@ Pages 530 - 531.
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -234,6 +237,7 @@ Page 530.
 
 
 
+
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 3",
@@ -241,8 +245,7 @@ Page 530.
 }
 *..*
 
-<!--
-************ Corollary 3 is not yet proofchecked:
+************ Corollary 3 is not yet proofchecked:<br><br>
 
 If with center C
 and principal vertex V any conic VRS
@@ -285,6 +288,5 @@ the finding of which, as being easy enough, I omit for the sake of brevity.
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 530.
 
--->
 
 

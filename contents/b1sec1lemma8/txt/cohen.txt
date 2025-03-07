@@ -3,7 +3,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -23,7 +24,8 @@ are similar in their ultimate form, and that their ultimate ratio is one of equa
 *::*proof|english
 {
   "subessayCaption" : "Interpretation 1. Bounded triangles.",
-  "subessay" : "interpretation1"
+  "subessay" : "interpretation1",
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -50,7 +52,8 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 {
   "isBonus" : "true",
   "subessayCaption" : "Interpretation 2. Unbounded triangles.",
-  "subessay" : "interpretation2"
+  "subessay" : "interpretation2",
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -79,6 +82,7 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 
 *::*corollary|english
 {
+  "textSectionCaption" : "Corollary"
 }
 *..*
 

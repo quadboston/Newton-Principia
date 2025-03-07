@@ -1,7 +1,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,
@@ -18,7 +19,11 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one anoth
 
 
 *::*proof|english
+{
+  "textSectionCaption" : "Proof"
+}
 *..*
+
 <!--some italic text (especially "d") gets cut off on some mobile browsers unless followed by a space; hence space after italics-->
 For while point ¦B¦¦ <span class="captured-reference id-true-convergence-1">approaches</span> point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood
 always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d&hairsp;&hairsp;¦¦</i>; and let <i>¦bd ¦¦</i> be drawn
@@ -39,7 +44,8 @@ have to one another an ultimate ratio of equality. &nbsp; Q.E.D.
 *::*corollary|english
 {
   "subessayCaption" : "corollary 1",
-  "subessay" : "cor-1"
+  "subessay" : "cor-1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦

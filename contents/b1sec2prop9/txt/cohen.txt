@@ -1,8 +1,9 @@
 
-*::*Problem 4|english
+*::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Problem 4"
 }
 *..*
 
@@ -17,11 +18,11 @@ the ¦S¦center of the spiral¦¦.
 Page 458.
 
 
-*::*Solutions|english
+*::*proof|english
 {
+  "textSectionCaption" : "Solutions"
 }
 *..*
-
 
 Let the indefinitely small angle ¦SP SQ¦PSQ¦¦ be given, and because all the angles
 are given, the species [i.e., the ratio of all the parts] of the figure ¦SP SQ QR QT¦SPRQT¦¦
