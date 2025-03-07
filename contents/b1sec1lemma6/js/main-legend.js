@@ -83,32 +83,33 @@
     // //\\ lemma 7 scripts
     // //\\ claim's script
     //--------------------------
+    // each row has 3 cells: tpCssName, clusterCaption, value
+    // cells within a row are referred to as a "cluster"
     var legendScript7 =  {
         claim : 
         [
             //first table row
                 //first cell
-                'AB,AB&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.AB.abs' +
-
-                ' ' +
-                //second cell
-                'conterminousRatio,,""',
+                'AB,AB&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.AB.abs',
 
             //second table row
                 //first cell
-                'AD,AD&nbsp;=&nbsp;,rg.AD.abs' +
-
-                ' ' +
-                //second cell
-                'conterminousRatio,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)',
+                'AD,AD&nbsp;=&nbsp;,rg.AD.abs',
 
             //third table row
                 //first cell
-                'arc-AB,arc&nbsp;ACB&nbsp;=&nbsp;,rg.AB.arcLen' +
+                'arc-AB,arc&nbsp;ACB&nbsp;=&nbsp;,rg.AB.arcLen',
 
-                ' ' +
-                //second cell
-                'conterminousRatio,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
+            //small space
+                ',, ,,',
+
+            //fourth table row
+                //first cell
+                'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)',
+
+            //fifth table row
+                //first cell
+                'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
         ]
     };
     //--------------------------
@@ -120,8 +121,50 @@
     //--------------------------
     // //\\ proof's script
     //--------------------------
-    legendScript7.proof = legendScript7.claim.concat([
-    ]);
+    legendScript7.proof = [
+        //first table row
+            //first cell
+            'AB,AB&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.AB.abs' +
+
+            ' ' +
+            //second cell
+            'Ab,Ab&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rg.Ab.abs',
+
+        //second table row
+            //first cell
+            'AD,AD&nbsp;=&nbsp;,rg.AD.abs' +
+
+            ' ' +
+            //second cell
+            'Ad,Ad&nbsp;=&nbsp;,rg.Ad.abs',
+
+        //third table row
+            //first cell
+            'arc-AB,arc&nbsp;ACB&nbsp;=&nbsp;,rg.AB.arcLen' +
+
+            ' ' +
+            //second cell
+            'arc-Acb,arc&nbsp;Acb&nbsp;=&nbsp;,rg.Ab.arcLen',
+
+        //small space
+        ',, ,,',
+
+        //fourth table row
+            //first cell
+            'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)' +
+
+            ' ' +
+            //second cell
+            'Ad-Ab,Ad&nbsp;/&nbsp;Ab&nbsp;=&nbsp;,(rg.Ad.abs/rg.Ab.abs).toFixed(3)',
+
+        //fifth table row
+            //first cell
+            'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)' +
+
+            ' ' +
+            //second cell
+            'arc-Ab,arc&nbsp;Acb&nbsp;/&nbsp;Ab&nbsp;=&nbsp;,(rg.Ab.arcLen/rg.Ab.abs).toFixed(3)',
+    ];
     //--------------------------
     // \\// proof's script
     //--------------------------
@@ -184,10 +227,11 @@
     {
         ///spawns configuration
         ///returns array-of-lines, line = array-of-clusters, cluster=array-of-tokens,
+        // splits long strings defined above to 2d array of rows and cells
         var legendScriptParsed = theorionLegend.map( (line,lix) => {
-            var lparsed = line.split(/\s+/);
+            var lparsed = line.split(/\s+/); // split at space chars
             return lparsed.map( clusterToken => {
-                return clusterToken.split(',');
+                return clusterToken.split(','); 
             });
         });
         var rowsCount       = legendScriptParsed.length;

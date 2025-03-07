@@ -566,6 +566,9 @@
         ssF.line2abs( 'AD' );
         ssF.line2abs( 'AE' );
         ssF.line2abs( 'BF' );
+        
+        ssF.line2abs( 'Ab' );
+        ssF.line2abs( 'Ad' );
         //=================================================
         // \\// intervals for legend in lemma7
         //=================================================
@@ -579,6 +582,22 @@
                 funIsAVector    : true,
                 calculationAccuracy : 1e-4*rg.AB.abs,
             });
+
+            // todo: this curveLength function is returning the wrong value, why?
+            // rg.Ab.arcLen = mat.integral.curveLength({
+            //     fun             : ssD.repoConf[0].fun,
+            //     curveStartParam : rg.A.pos[0],
+            //     curveEndParam   : rg.b.pos[0],
+            //     funIsAVector    : true,
+            //     calculationAccuracy : 1e-4*rg.Ab.abs,
+            // });
+
+            // John's "cheater" method
+            if(rg.AB.abs > 0) {
+                rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
+            } else {
+
+            }
         }
         ///decorations
         //if( fconf.sappId === "b1sec1lemma8" ) {
