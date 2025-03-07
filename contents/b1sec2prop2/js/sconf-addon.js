@@ -138,12 +138,12 @@
             "Caracc"            : [100,   0,  100],
             "CCaracc"           : [100,   0,  100],
             "CParacc"           : [100,   0,  100],
-            "SBCaracc"          : [255,  100, 0, 0.5],
+            "SBCaracc"          : [255,  100, 0, 0.5],  // triangle SBC area description accelerated
             "cCaracc"           : [100,   0,  100],
 
             "Varacc"            : forceMoveX,
-            "BVaracc"           : forceMoveX,
-            "VVaracc"           : forceMoveX,
+            "BVaracc"           : forceMoveX,   // force at B deviated toward V; area description accelerated
+            "VVaracc"           : forceMoveX,   // force vector at V displaced to V'; area description accelerated
             "CParacc"           : forceMoveX,
             "CaraccParacc"      : [100,   0,  100],
 
