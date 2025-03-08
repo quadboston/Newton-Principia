@@ -118,7 +118,7 @@
         function updatesDataInCell({ rowIx, clusterIx, })
         {
             //patch: disables second row of the table, the raw of dt
-            rg[ 'main-legend' ][ theorion ].tableDom.children[1].style.display = 'none';
+            rg[ 'main-legend' ][ textSection ].tableDom.children[1].style.display = 'none';
             
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
@@ -128,7 +128,7 @@
             })
         }
         
-        function createsIdleFirstRow_forFormat( tb, theorion )
+        function createsIdleFirstRow_forFormat( tb, textSection )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -136,7 +136,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( theorion +' tostroke')
+                .addClass( textSection +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)
