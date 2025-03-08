@@ -10,18 +10,6 @@
             model_upcreate,
         },
     });
-    return;
-
-
-
-
-
-
-
-
-
-
-
 
     ///****************************************************
     /// model initiation
@@ -347,9 +335,6 @@
 
     }
 
-
-
-
     ///****************************************************
     /// model scenario
     ///****************************************************
@@ -595,8 +580,6 @@
             // John's "cheater" method
             if(rg.AB.abs > 0) {
                 rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
-            } else {
-
             }
         }
         ///decorations
@@ -606,8 +589,6 @@
             nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
         //}
     }
-
-
 
     function builds__NewtonTangentAtA_8_L()
     {
@@ -636,7 +617,6 @@
         );
         return newRpos;
     }
-
 
 }) ();
 

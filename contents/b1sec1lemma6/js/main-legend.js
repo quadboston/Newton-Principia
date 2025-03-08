@@ -16,9 +16,6 @@
         },
     });
 
-
-
-
     ////**********************************************************************************
     ////legendScript-format:
     ////clusters separated with <space>:
@@ -29,7 +26,6 @@
     ////
     ////'_' is replaced with ' ' in caption,
     ////**********************************************************************************
-
 
     //==========================
     // //\\ lemma 6 scripts
@@ -48,10 +44,16 @@
                 '-rg.AB.angleGrad.toFixed()+"ᵒ"'
         ]
     };
+
+    // var legendScript =  {
+    //     claim : [
+    //         [ 'angleBAD', 'angle BAD :', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]                
+    //     ]
+    // };
+
     //--------------------------
     // \\// claim's script
     //--------------------------
-
 
 
     //--------------------------
@@ -73,10 +75,6 @@
     // \\// proof's script
     // \\// lemma 6 scripts
     //==========================
-
-
-
-
 
 
     //==========================
@@ -105,17 +103,16 @@
 
             //fourth table row
                 //first cell
-                'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)',
+                'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)',
 
             //fifth table row
                 //first cell
-                'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
+                'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)',
         ]
     };
     //--------------------------
     // \\// claim's script
     //--------------------------
-
 
 
     //--------------------------
@@ -151,7 +148,7 @@
 
         //fourth table row
             //first cell
-            'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)' +
+            'AD,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' +
 
             ' ' +
             //second cell
@@ -159,7 +156,7 @@
 
         //fifth table row
             //first cell
-            'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)' +
+            'arc-AB,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' +
 
             ' ' +
             //second cell
@@ -205,14 +202,6 @@
     // \\// corollary's script
     // \\// lemma 7 scripts
     //==========================
-    return;
-
-
-
-
-
-
-
 
 
     function create_digital_legend()
@@ -248,13 +237,7 @@
             //updatesCaptionCluster, //optional
             makesBodyCluster,
             updatesDataInCell,
-        })
-        return;
-
-
-
-
-
+        });
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({
@@ -264,6 +247,13 @@
                 //noEqualSign : true,
                 //alignCaptionToRight : true,
             })
+
+            // return {
+            //     tpCssName: theorionLegend[0][0],
+            //     clusterKey: rowIx + '-' + clusterIx + '-cell',
+            //     clusterCaption: theorionLegend[0][1],
+            //     alignCaptionToRight: true
+            // };
         }
 
         function updatesDataInCell({ rowIx, clusterIx, })

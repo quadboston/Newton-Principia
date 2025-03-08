@@ -2,15 +2,6 @@
 ( function() {
     var { ns, fconf, sconf } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
-
-
-
-
-
-
-
-
 
     function init_conf()
     {
@@ -79,7 +70,7 @@
         //can be any number from -oo to +oo
         sconf.BXBE_per_BY = 0.5;
         //todm ... bug: when decreasing then ratio begins worse:
-        sconf.NON_ZERO_A_PREVENTOR = 0.01;
+        sconf.NON_ZERO_A_PREVENTOR = 0.0001;
         //--------------------------------------
         // \\// lemma 7
         //--------------------------------------
