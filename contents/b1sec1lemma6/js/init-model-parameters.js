@@ -65,7 +65,7 @@
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
         //-------------------------------------------------
-        // //\\ dragger L
+        // //\\ dragger L for the rectilinear angle
         //-------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
@@ -84,10 +84,10 @@
                     amode.subessay === 'sine derivative' ||
                     amode.subessay === 'vector-derivative'
                 ) {
-                    if( fullAngle < -0.3 ) {
+                    if( fullAngle < -0.2 ) {
                         ///this is lowest allowed L-position on the screen
                         ////otherwise, function y(x) is not well-defined
-                        fullAngle = -0.3;
+                        fullAngle = -0.2;
                     }
                 } else {
                     if( fullAngle < rg.AB.angle ) {
