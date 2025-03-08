@@ -54,11 +54,11 @@
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
-        eachprop( exegs, ( theorionAspects, theorion_id ) => {
-            eachprop( theorionAspects, ( exAspect, aspect_id ) => {
+        eachprop( exegs, ( textSectionAspects, textSection_id ) => {
+            eachprop( textSectionAspects, ( exAspect, aspect_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     //dirt: subexeg.domComponents  = [];
-                    subexeg.classStr       = 'original-text ' + theorion_id + ' ' + aspect_id +
+                    subexeg.classStr       = 'original-text ' + textSection_id + ' ' + aspect_id +
                                              ' subessay-' + subexeg.essayHeader.subessay;
                     //-----------------------------------------------------
                     // //\\ preliminary prepasing to extract active content

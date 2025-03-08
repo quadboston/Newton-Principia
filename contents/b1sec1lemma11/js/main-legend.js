@@ -25,11 +25,11 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_theorion( 'proof' );
-        create_digital_legend_for_theorion( 'corollary' );
+        create_digital_legend_for_textSection( 'proof' );
+        create_digital_legend_for_textSection( 'corollary' );
     }
 
-    function create_digital_legend_for_theorion( theorion )
+    function create_digital_legend_for_textSection( textSection )
     {
         //--------------------------
         // //\\ data source scenario
@@ -55,9 +55,9 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createTheorionLegend({
+        ssF.createtextSectionLegend({
             stdMod_given : stdMod,
-            theorion,
+            textSection,
             rowsCount,
             clustersCount,
             noTableTitle : true,
@@ -88,7 +88,7 @@
         }
     }
     //=========================================
-    // \\// creates theorion table
+    // \\// creates textSection table
     //=========================================
 
 }) ();

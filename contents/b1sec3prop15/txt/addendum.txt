@@ -5,17 +5,6 @@
 *..*
 
 
-*::*corollary|english
-{
-}
-*..*
-Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in
-circles whose diameters are equal to the ¦A,AA¦major axes¦¦ of the ellipses.
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
-Page 114.
-
 
 *::*claim|addendum
 {
@@ -33,7 +22,7 @@ Page 114.
 <b>In <><>CXX:</b><br>
 
 From "physics"
-<a target="_blank" href="?conf=sappId=b1sec3prop14,theorionId=proof,aspectId=addendum">
+<a target="_blank" href="?conf=sappId=b1sec3prop14,textSectionId=proof,aspectId=addendum">
  assuming 𝛾 is the same for all orbits, (S)
 </a>
 

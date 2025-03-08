@@ -14,8 +14,6 @@
     //this layer, ss, should be invisible in lemmas, but
     //this invisibility is not yet done in many praxis sites,
     var ss          = sn('ss', fapp);   //todm remove ss later
-    var cssmod      = sn('ssCssModules',ss);
-    var ssCssOrder  = sn('ssCssOrder',ss);
     var ssF         = sn('ssFunctions',ss);
     var ssD         = sn('ssData',ss);
     const ts        = sn( 'activityScenario', ss );
@@ -73,7 +71,7 @@
     function setsEngineDefaults()
     {
         //these are pre-professorscripts values: at engine level
-        amode.theorion = '';
+        amode.textSection = '';
         amode.aspect = '';
         amode.subessay = '';
         //todm: poor? name: to be "amode.stdmod" //study model
@@ -164,9 +162,6 @@
         Object.assign( nsvars,
         {
             engCssMs,
-
-            cssmod,
-            ssCssOrder,
 
             fapp,
             fmethods,

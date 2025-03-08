@@ -175,16 +175,16 @@
     function create_digital_legend()
     {
         var lsX = fconf.sappId === "b1sec1lemma6" ? legendScript : legendScript7;
-        eachprop( lsX, (theorionLegend, theoName) => {
-            creAUX( theoName, theorionLegend );
+        eachprop( lsX, (textSectionLegend, theoName) => {
+            creAUX( theoName, textSectionLegend );
         });
     }
 
-    function creAUX( theoName, theorionLegend )
+    function creAUX( theoName, textSectionLegend )
     {
         ///spawns configuration
         ///returns array-of-lines, line = array-of-clusters, cluster=array-of-tokens,
-        var legendScriptParsed = theorionLegend.map( (line,lix) => {
+        var legendScriptParsed = textSectionLegend.map( (line,lix) => {
             var lparsed = line.split(/\s+/);
             return lparsed.map( clusterToken => {
                 return clusterToken.split(',');
@@ -193,11 +193,11 @@
         var rowsCount       = legendScriptParsed.length;
         var clustersCount   = legendScriptParsed[0].length;
 
-        ssF.createTheorionLegend({
+        ssF.createtextSectionLegend({
             tableCaption    : '', //'Areas and Ratios',
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            theorion        : theoName,
+            textSection        : theoName,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -233,7 +233,7 @@
         }
     }
     //=========================================
-    // \\// creates theorion table
+    // \\// creates textSection table
     //=========================================
 
 }) ();

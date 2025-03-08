@@ -49,7 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { textSection, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline
@@ -338,7 +338,7 @@
             rg.L.hideD8Dpoint = false;
             stdMod.imgRk.dom$.css( 'visibility', 'visible' );
             stdMod.svgScene$.css( 'visibility', 'visible' );
-            if( theorion === 'corollary' ) {
+            if( textSection === 'corollary' ) {
                 if( subessay === "corollary1" ) {
                     ////latus on others: swaps latus and speed
                     rg.vb.hideD8Dpoint = false;
@@ -449,7 +449,7 @@
                 rg.omegaHandle.hideD8Dpoint = false;
                 rg.f.caption = '𝛾';
             }
-            if( theorion === 'scholium' ||
+            if( textSection === 'scholium' ||
                     ( amode.subessay === 'corollary3' || amode.subessay === 'corollary4' )
             ){
                 var imgVisib = 'hidden';
@@ -464,7 +464,7 @@
             }
             stdMod.imgRk.dom$.css( 'visibility', imgVisib );
             stdMod.svgScene$.css( 'visibility', imgVisib );
-            if( theorion === 'corollary' && amode.subessay === 'corollary2' ){
+            if( textSection === 'corollary' && amode.subessay === 'corollary2' ){
                 rg.vSample.hideD8Dpoint = true;
             }
             //-------------------------------------------------
@@ -495,7 +495,7 @@
         stdMod.establishesEccentricity( op.initialEccentricity )
         if( fconf.sappId === "b1sec3prop17" ) {
             op.PparQ_initial = op.PparQ_initial_essay
-            if( theorion === 'corollary' &&
+            if( textSection === 'corollary' &&
                 ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' )
             ){
                 op.PparQ_initial = 0;
@@ -546,7 +546,7 @@
             //-------------------------------------------------
             op.cosOmega = op.cosOmega_initial;
             op.om       = op.om_initial;
-            if( theorion === 'corollary' &&
+            if( textSection === 'corollary' &&
                 ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' )
             ){
                 op.om = 1;
@@ -578,7 +578,7 @@
             sop.Kepler_v = sop.Kepler_v_initial;
             sop.cosOmega = sop.cosOmega_initial;
             sop.om       = sop.om_initial;
-            if( theorion === 'corollary' && amode.subessay === 'corollary2' ){
+            if( textSection === 'corollary' && amode.subessay === 'corollary2' ){
                 sop.om = 1;
                 sop.cosOmega = 0;
                 sop.latus = sop.corII_DVect.abs;

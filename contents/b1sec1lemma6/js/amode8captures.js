@@ -181,7 +181,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { textSection, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline
@@ -234,7 +234,7 @@
         if( fconf.sappId === "b1sec1lemma6" ) {
             rg.L.doPaintPname = false;
             captured = "reset-to-origin";
-            if( theorion === 'claim' ) {
+            if( textSection === 'claim' ) {
                  captured = 'L-equal-d';
             }
             //ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
@@ -248,7 +248,7 @@
                 'C',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
             if(
-                theorion === 'proof' || theorion === 'claim' 
+                textSection === 'proof' || textSection === 'claim' 
             ) {
                 sDomF.detected_user_interaction_effect( 'doUndetected' );
                 [
@@ -260,7 +260,7 @@
 
             //below we do add points and lines which are absent in N. proof
             if(
-                theorion === 'proof'
+                textSection === 'proof'
             ) {
                 rg.L.hideCaption = true;
                 [
@@ -279,7 +279,7 @@
             }
 
             if(
-                ( theorion === 'proof' || theorion === 'claim' ) && aspect === 'model'
+                ( textSection === 'proof' || textSection === 'claim' ) && aspect === 'model'
             ) {
                 [
                     'arc-Ab',
@@ -294,7 +294,7 @@
 
                 ///this still needs user action to replace Book's letters with
                 ///pop up app. letters
-                if( theorion === 'proof' ) {
+                if( textSection === 'proof' ) {
                     rg.curveRotationAngle.angle = ANGLE_AUTH;
                     sDomF.detected_user_interaction_effect( !'doUndetected' );
                     rg.L.undisplay = false;
@@ -490,7 +490,7 @@
             }
 
             
-            if( theorion === 'corollary' ) {
+            if( textSection === 'corollary' ) {
                 [
                     'curve-AB',
                     'left-curve-AB',
@@ -521,7 +521,7 @@
                     'curve-AB',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
 
-                if( theorion === 'proof' ) {
+                if( textSection === 'proof' ) {
                     sDomF.detected_user_interaction_effect( 'doUndetected' );
                     [
                         'c',
@@ -589,7 +589,7 @@
                 'fi',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
 
-            if( theorion === 'claim' ) {
+            if( textSection === 'claim' ) {
                 [
                     'c',
                     'rd',
@@ -601,7 +601,7 @@
                     'imageOfR,b',
                     'imageOfR,imageOfD',
                 ].forEach( gname => { rg[ gname ].undisplay = true; });
-            } else if( theorion === 'proof' ) {
+            } else if( textSection === 'proof' ) {
                 [
                     'c',
                     //'d',
@@ -622,7 +622,7 @@
                     'arc-Ab',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
-            if( theorion === 'claim' || theorion === 'corollary' ) {
+            if( textSection === 'claim' || textSection === 'corollary' ) {
                 if( userOptions.showingBonusFeatures() ) {
                     rg.B.hideD8Dpoint   = false;
                     rg.R.hideD8Dpoint   = false;

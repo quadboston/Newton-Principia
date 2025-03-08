@@ -1,12 +1,12 @@
 
-
 *::*claim|english
 {
-  "theorionCaption" : "Problem 2",
+  "textSectionCaption" : "Problem 2",
   "default" : "1",
   "menuCaption" : "Text"
 }
 *..*
+
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
 <br><br>
@@ -17,9 +17,10 @@ Page 455.
 
 *::*proof|english
 {
-  "theorionCaption" : "Solutions"
+  "textSectionCaption" : "Solutions"
 }
 *..*
+
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
 point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
@@ -81,7 +82,8 @@ Page 455.
 {
   "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

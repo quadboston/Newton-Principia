@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+    /* constants */
+    --color-main : #202936;
+    --color-white : #ffffff;
+    --color-medium-grey : #626D7E;
+    --color-light-grey : #C5CAD4;
+    --color-pale-blue: #F4F6F9;
+    --color-stone-blue: #8091A8;
+    --color-light: white;
+    --border-radius: 20px;
+    --exegesisBackgroundColor : 'white';
+    --FOCUS_COLOR : #888888;
+    --FOCUS_OFF_COLOR : #888888;
+    --SHUTTLE_COLOR : rgba(150, 175, 200); 
+    --SHUTTLE_COLOR_FAINT : rgba(150, 175, 200, 0.4);
+    --SHUTTLE_BG_COLOR : rgba(245, 245, 255);
+    --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
+
+    --font-serif : 'Times New Roman', serif;
+    --font-sans : 'Arial', sans-serif;
+    --font-mono : 'Roboto Mono', monospace;
+
+    --default-font: var(--font-sans);
+    --homepage-font: var(--font-serif);
+    --text-tab-font: var(--font-serif);
+    --video-tab-font: var(--font-sans);
+    --data-numerical-font: var(--font-mono);
+
+    /* variables; these default values may be changed by dispatch-css.js module */
+    --main_horizontal_dividor_width_px : 21px;
+    --doDisplayPageTopNavigatMenu : flex; 
+    --LEFT_SIDE_MENU_WIDTH : 40px; /* from contents\conf\conf.js */
+    --LEFT_SIDE_MENU_OFFSET_X: 20px;
+    --textSectionChildWidth : 1;
+    --aspectionChildWidth : 1;
+    --leftTopLeafLength : 1;
+}
+
+html, body { 
+    border      : none;
+    font-size   : 15px; /*this defines what 1rem is */
+    background-color : var(--color-light);
+    width       : 100%;
+    height      : 100vh;
+    overflow    : hidden;
+    padding     : 0;
+    margin      : 0;      
+}
+
+body {
+    color: var(--color-medium-grey);
+    font-family: var(--default-font);
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* font-size: 100%;
+    font: inherit; */
+    vertical-align: baseline;
+    line-height: 1;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: var(--color-main);
+    font-weight: 200;
+    font-family: var(--default-font);
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+/* home page::user-guide-paragraphs */
+.how-to__cell p {
+    line-height: 1.2;
+}
+
+b {
+    font-weight : bold;
+}
+
+/*================================*/
+/* //|| position flow             */
+/*================================*/
+
+.bsl-approot {
+    position    : relative;
+    width       : 100%;
+    margin      : 0;
+    padding     : 0;
+    /* todo patch, just to hide accidental misfits, but there
+       must be no misfits
+    */
+    /* ?? todo why needed for shift-up-bug-making-hidden? */
+    overflow    : hidden;
+ }
+
+.bsl-sim-superscene {
+    position    : relative;
+    display     : inline-block;
+    float       : left;
+    box-sizing  : border-box;
+    padding     : 0;
+    margin      : 0;
+    overflow    : visible;
+}
+
+.bsl-text-widget {
+    position        : relative; /* does not help ... no difference */
+    float           : left;
+    padding         : 10px;
+    padding-left    : 5px;
+    padding-right   : 20px;
+    margin          : 0;
+    overflow-y      : auto;
+    overflow-x      : hidden; /*patch for css-opacity-transition*/
+    background-color: white;
+}
+
+/* fixes media by making margins dynamically in-line */
+.bsl-simscene {
+    position    : relative;
+    clear       : both; /* clears against media-top-controls */
+    left        : var(--main_horizontal_dividor_width_px);
+    overflow    : visible;
+    padding     : 0;
+    margin      : 0;
+    box-sizing  : border-box;
+}
+
+/* browser-controlled height ends here: next components
+   may take absolute positioning
+*/
+.bsl--svgscene {
+    position    : absolute;
+    left        : 0;
+    top         : 0;
+    box-sizing  : border-box;
+}
+
+.bsl-legend-root {
+    position    : absolute;
+}
+
+
+/*================================*/
+/* //|| media pane                */
+/*================================*/
+
+.bsl-simscene {
+    text-align  : center;
+    font-family : var(--default-font);
+}
+
+.bsl--svgscene {
+    opacity     : 1;
+    z-index     : 10;
+}
+
+
+/* todm non-consistent style set, must be dynamic by box-tester as for other parts */
+/* This corresponds with MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790 as defined in contents/conf/conf.js */
+@media screen and (max-width: 790px) {
+    /*================================*/
+    /* //|| position flow             */
+    /*================================*/
+    html, body { 
+        height      : auto;
+        /* for case to make visible absolute overflow over auto-page */
+        overflow-y  : auto;
+    }
+    .bsl-text-widget {
+        width           : 94%;
+        margin-right    : 3%;
+        margin-left     : 2%;
+        margin-bottom   : 20px;
+    }
+    .bsl-sim-superscene {
+        width       : 94%;
+        margin-left : 3%;
+        margin-right: 3%;
+        float       : none;
+    }
+    .bsl-simscene {
+        /* no "width and left" for d8d dividor in mobile */
+        width   : 100%;
+        left    : 0px;
+    }
+    .bsl--svgscene,
+    .bsl-legend-root {
+        position : relative;
+        width    : 100%;
+    }
+}
+
+@media only screen and (max-width:720px){
+    .btn--how-to{
+        display: none !important; /* tod? */
+    } 
+}
+
+
+/************************************************
+    //\\\\ originally from site.css.js
+************************************************/
+
+body .show-picture-credit {
+    display : none;
+} 
+              
+body.contents .show-picture-credit {
+    display : block;
+}               
+
+.bsl-bg-image {
+    position : absolute;
+    width   : 100%;
+    left    : 0;
+    top     : 0;
+    z-index : 9;
+}
+
+table.essay-normal {
+    display         : inline-block;
+    text-align      : left;
+    border-collapse : collapse;
+    border          : 1px solid black;
+}
+
+table.essay-normal td {
+    padding : 5px;
+    border  : 1px solid black;
+}
+
+table.essay-columns td {
+    padding : 5px;
+    border  : 1px solid grey;
+    border-top : none;
+    border-bottom : none;
+}
+
+table.essay-no-border {
+    border-collapse : collapse;
+    display         : inline-block;
+    text-align      : left;
+    border          : none;
+}
+
+table.essay-no-border td {
+    padding         : 5px;
+    border          : none;
+}
+
+table.essay-minimal-td td {
+    padding         : 0px 0px 0px 10px;
+    border          : none;
+}
+
+table.matrix-determinant {
+    border          : none;
+    border-left     : 2px solid #626D7E;
+    border-right    : 2px solid #626D7E;
+}
+
+table.matrix-determinant td {
+    text-align      : center;
+    border-collapse : collapse;
+    border          : none;
+    padding         : 0px;
+}

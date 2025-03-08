@@ -2,7 +2,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Theorem 7"
 }
 *..*
 
@@ -19,7 +20,8 @@ Page 114.
 
 *::*proof|english
 {
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Proof"
 }
 *..*
 
@@ -41,4 +43,14 @@ Page 114.
 
 
 
+*::*corollary|english
+{
+  "textSectionCaption" : "Corollary"
+}
+*..*
+Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in
+circles whose diameters are equal to the ¦A,AA¦major axes¦¦ of the ellipses.
 
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 114.

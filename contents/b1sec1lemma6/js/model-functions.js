@@ -51,7 +51,7 @@
                 fun : function(x) {
                         //patch:
                         if( fconf.sappId === "b1sec1lemma6" &&
-                            amode.aspect === 'model' && amode.theorion === 'proof'
+                            amode.aspect === 'model' && amode.textSection === 'proof'
                         ) {
                             var anRack = rg.curveRotationAngle;
                         } else {

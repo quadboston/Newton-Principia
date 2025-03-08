@@ -5,11 +5,11 @@
 ( function() {
     var {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
-        userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, ssCssOrder, sDomF, sDomN,
+        userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
         fixedColorsOriginal,
         srg_modules, amode,
         //:nearly a patch
-        stdMod, ssD, ssF, cssmod, wrkwin, lowId2topics,
+        stdMod, ssD, ssF, wrkwin, lowId2topics,
     } = window.b$l.apptree({
     });
 
@@ -73,7 +73,6 @@
         //===============================
         // //\\ preconstructs home8lemmas
         //===============================
-        engCssMs.dispatchesHome8LemmaCss();
         html.builds_body_4_home8lemma();
         html.builds_homePane();
         //===============================
@@ -306,24 +305,9 @@
                             //=======================================
                             // //\\ html and css
                             //=======================================
-                            //breaks left-menu if placed before professor-scripts ...
-                            //todm why?
-                            engCssMs.places_engineCSSes2styleTags();
+                            //set up css that requires js vars
+                            engCssMs.dispatches_css();
 
-                            //todm: unclear: which part of content
-                            //      this sesction uses, why not full content? ...
-
-                            //...........................................................
-                            //seems as obsolete and hard to remember design,
-                            //this is different from default ssCssOrder and css-modules
-                            //only for lemma2
-                            ssCssOrder.list.forEach( function( cssName ) {
-                                //we do first check existence of the function because of
-                                //module can be a blank stub and function is missed
-                                var css = ns.haf( cssmod, cssName )( cssp, fconf );
-                                //if stub is valid, does add css
-                                css && ns.globalCss.add8update( css, 'csslist' );
-                            });
                             //...........................................................
 
                             //=======================================

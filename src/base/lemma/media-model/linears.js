@@ -418,7 +418,7 @@
     //==========================================
     ///Input:   triang = rg[ triangleId ]
     ///         triang.vertices
-    ///         cssCls can be for 'theorion--proof'
+    ///         cssCls can be for 'textSection--proof'
     function paintTriangle( triangleId, cssCls, tpclass, defaultFill, )
     {
         var triang = rg[ triangleId ];

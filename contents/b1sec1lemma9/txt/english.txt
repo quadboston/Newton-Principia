@@ -4,7 +4,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -31,6 +32,10 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 
 
 *::*proof|english
+{
+  "textSectionCaption" : "Proof"
+}
+*..*
 
 For while points ¦B¦¦ and ¦C¦¦ approach point ¦A¦¦,
 let ¦AD¦AD¦¦ be understood always to be produced to the distant points ¦d¦¦ and ¦e¦¦,

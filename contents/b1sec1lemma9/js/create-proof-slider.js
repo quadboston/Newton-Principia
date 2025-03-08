@@ -48,7 +48,7 @@
             sliderClassId       :'simple',
             captionScale        :captionScale,
             railsLegend         :'Process proof by decreasing AC:',
-            ancestorClassToHideSlider   :'theorion--claim',
+            ancestorClassToHideSlider   :'textSection--claim',
 
 
             dataInMove:         function( dataArg, draggee ) {

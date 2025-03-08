@@ -3,7 +3,8 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png"
+  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -18,8 +19,10 @@
 
 *::*proof|english
 {
+  "textSectionCaption" : "Proof"
 }
 *..*
+
             <dense class='orig';>For let ¦AF¦¦ be equal to the greatest width,
             and let the ¦widest-rectangular widt-txt¦parallelogram FAaf¦¦ be completed. 
             This parallelogram will be greater than the ¦difference¦¦ of 
@@ -34,6 +37,7 @@
 
 *::*corollaries|english
 {
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

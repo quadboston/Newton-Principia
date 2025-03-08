@@ -99,6 +99,18 @@
             rg.SEf.decStart = last;
             rg.SABCDEF.decStart = last;
         }
+
+        //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
+        [
+            rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
+            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
+            rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
+            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
+        ].forEach( pn => {
+            pn.decEnd = rg.f.decStart+3;
+        });
+
+
         //-------------------------------------------------------
         // //\\ fixes logical step to 7 for corollary of P2
         //-------------------------------------------------------
@@ -107,13 +119,10 @@
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+3;
          });
-        ssD.logicalSteps.forEach( pn => {
-            pn.decEnd = rg.f.decStart+3;
-         });
         if(
             amode.subessay === 'cor-1' ||
             amode.subessay === 'cor-6' ||
-            amode.theorion !== 'corollary'
+            amode.textSection !== 'corollary'
         ){
             rg.V.decStart = 11111111;
             rg.V.decEnd   = 1111111;
@@ -143,7 +152,7 @@
         }
 
         //:updates subessay menu
-        var exAspect = exegs[ amode.theorion ][ amode.aspect ];
+        var exAspect = exegs[ amode.textSection ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         ////reveals subessay in menu and in text
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
@@ -193,22 +202,22 @@
             initialization_is_done = true;
             if( POINTS_BCDE_ARE_ACTIVE ) {
                 rg.B.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-4' );
                     }
                 });
                 rg.C.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-C' );
                     }
                 });
                 rg.D.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-D' );
                     }
                 });
                 rg.E.svgel.addEventListener( 'click', function() {
-                    if( amode.theorion === 'proof' ) {
+                    if( amode.textSection === 'proof' ) {
                         fmethods.executeCapturedState( '1-E' );
                     }
                 });
@@ -223,7 +232,7 @@
             }
         }
         var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
-                          amode.theorion === 'proof';
+                          amode.textSection === 'proof';
         ['B', 'C', 'D', 'E'].forEach( id => {
                 let rgX = rg[ id ];
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
@@ -239,7 +248,7 @@
         //----------------------------------------------------        
         
         rg['main-legend'].tb.corollary.style.display =
-            ( amode.theorion === 'corollary' && amode.subessay === 'cor-1' ) ?
+            ( amode.textSection === 'corollary' && amode.subessay === 'cor-1' ) ?
             'table' : 'none';
 
         ssF.mediaModelInitialized = true;

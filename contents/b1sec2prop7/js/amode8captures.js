@@ -48,7 +48,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { textSection, aspect, subessay } = amode;
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
         });

@@ -21,12 +21,12 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_theorion( 'proof' );
-        create_digital_legend_for_theorion( 'claim' );
-        create_digital_legend_for_theorion( 'corollary' );
+        //see lemma 11 for the sample
+        create_digital_legend_for_textSection( 'proof' );
+        create_digital_legend_for_textSection( 'corollary' );
     }
 
-    function create_digital_legend_for_theorion( theorion )
+    function create_digital_legend_for_textSection( textSection )
     {
         //sample:
         //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
@@ -88,11 +88,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createTheorionLegend({
-            tableCaption    : '',
-            noTableTitle    : true,
+        ssF.createtextSectionLegend({
+            tableCaption    : 'Areas and Ratios',
+            noTableTitle    : false,
             stdMod_given    : stdMod,
-            theorion,
+            textSection,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -152,7 +152,7 @@
         
     }
     //=========================================
-    // \\// creates theorion table
+    // \\// creates textSection table
     //=========================================
 
 }) ();
