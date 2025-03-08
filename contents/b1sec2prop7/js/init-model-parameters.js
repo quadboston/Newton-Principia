@@ -45,12 +45,17 @@
         // \\// model parameters,
         //=================================================
 
-        toreg( 'approximated-curve' );
+        var rgCurve = toreg( 'approximated-curve' )();
+        //interval of t to construct an arc for
+        //Newton's sagitta
+        toreg( 'tForSagitta' )( 'val', sconf.tForSagitta0 );
+
+        //sets and paints initial orbit
+        //was:  stdMod.pointsArr_2_singleDividedDifferences();        
         stdMod.creates_orbitRack();
+        rgCurve.q2ix = 1/(rgCurve.tEnd-rgCurve.tStart)*ssD.curveSTEPS;
 
-        //var t =  stdMod.pos2t( rt.P.pos );
-        //var newP = rg[ 'approximated-curve' ].t2xy( t );
-
+        rg.P.q = stdMod.pos2t( rg.P.pos );
         stdMod.completesSlidersCreation();
 
         //creates placeholder
@@ -79,7 +84,8 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        //stdMod.createsGraphFW( stdMod.legendRoot$ );
+        stdMod.graphFW_lemma = stdMod.createsGraphFW_lemma({ digramParentDom$:stdMod.legendRoot$ });
         //==================================================
         // \\// decoration graph 
         //==================================================
@@ -87,7 +93,25 @@
         //too early: overriden later by sconf.rgShapesVisible
         //rg[ 'S,nonSolvablePoint' ].undisplay = true;
 
+        //-----------------------------------------
+        // //\\ partially draggers and decoration
+        //      are initiated here
+        //      todm: not very consistent,
+        //-----------------------------------------
+        ssD.PdragInitiated = false;
+        ssD.SdragInitiated = false;
+        //ssD.PivotDragInitiated = false;
+        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+            fp.rgX = rg[ 'foldPoints-' + ppix ];
+            fp.rgX.undisplay = true;
+        });
+        //-----------------------------------------
+        // \\// partially draggers and decoration
+        //-----------------------------------------
+
         rg.allLettersAreHidden = true;
+        //todo needed? why?
+        stdMod.curveIsSolvable(); //to create "graph array"
     }
 
 }) ();

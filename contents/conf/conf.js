@@ -37,7 +37,7 @@
         doDisplayPageTopNavigatMenu : true,
         lemmaHasHomeButton          : true,
         homeButtonName              : 'Contents',
-        theorionTab_nonClickable    : false,
+        textSectionTab_nonClickable    : false,
 
         //:data
         svgNS : ns.svgNS,

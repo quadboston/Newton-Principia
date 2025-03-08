@@ -33,7 +33,7 @@
     --doDisplayPageTopNavigatMenu : flex; 
     --LEFT_SIDE_MENU_WIDTH : 40px; /* from contents\conf\conf.js */
     --LEFT_SIDE_MENU_OFFSET_X: 20px;
-    --theorionChildWidth : 1;
+    --textSectionChildWidth : 1;
     --aspectionChildWidth : 1;
     --leftTopLeafLength : 1;
 }

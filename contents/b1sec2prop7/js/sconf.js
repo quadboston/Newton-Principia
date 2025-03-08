@@ -1,7 +1,7 @@
 
 ( function() {
     var { //import from apptree
-        ns,
+        ns, userOptions,
         fconf,
         sconf,
     } = window.b$l.apptree({ //export to apptree
@@ -22,14 +22,23 @@
     //====================================================
     function init_conf()
     {
+
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
+
+        //true enables framework zoom
         sconf.enableTools               = true;
+
+        sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
+
+        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
         //***************************************************************
         // //\\ geometical scales
@@ -38,28 +47,26 @@
         //for graphical-media work-area if not supplied:
         var pictureWidth = 892; //630;  //892, 1.4158
         var pictureHeight = 840; //400; //840, 2.1
-
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
+
+
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        sconf.rgShapesVisible = true;
-
+        sconf.TP_SATUR_FROM_fixed_colors = true;
+        sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
-
-
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -77,8 +84,13 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        sconf.text_nonhover_width   = 1000;
-        sconf.text_hover_width      = 2000;
+        //overrides hover_width for texts
+        //for activation, needs class "hover-width" in element
+
+        //sconf.text_nonhover_width   = 1000; //todm why such a big value?
+        //sconf.text_hover_width      = 2000;
+        sconf.text_nonhover_width   = 1;
+        sconf.text_hover_width      = 1;
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
@@ -92,6 +104,7 @@
         //***************************************************************
         // //\\ geometics parameters
         //***************************************************************
+
         //=============================================
         // //\\ points reused in config
         //=============================================
@@ -124,27 +137,45 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
+        var estimatedForce = [100,50,0];
+        var sagitta = [100,0,100];
+        var orbit   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
+        var timeColor  = [200,  0,  255, 1];
         var body    = [0,     150,  200,   1];
+        var dtime   = [0,     150,  200,  1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
+
+        var invalid = [255,    0,  0,      1];
+        var force   = [200,  150,  0,      1];
+        if( userOptions.showingBonusFeatures() ) {
+            ////swaps colors
+            var force = [255,    0,  0,      1];
+            var invalid = [0,     0,   0,      1];;
+        }
+        
+        //var chord = [0,0,255, 0.5]; //no dice
+        var chord = [0,0,255, 1];
         var predefinedTopics =
         {
-            given,
+            estimatedForce,
+            body,
+            force,
+            sagitta,
+            chord,
+            invalid,
             proof,
-            result,
             hidden,
             context,
             curvature,
-            body,
-            orbit   : given,
+            dtime,
+            time    : timeColor,
+            curvatureCircle : curvature,
+            orbit,
             timearc : proof,
-            APQ     : given,
-            force   : result,
+            APQ     : orbit,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -162,27 +193,36 @@
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
         */
+        sconf.tForSagitta0 = 0.168;
+        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+            pcolor      : invalid,
+            doPaintPname : false,
+        }));
+
+        //---------------------------------------------------
         var originalPoints =
         {
+            foldPoints,
         };
+        // \\// points to approximate and draw original curve
+        //---------------------------------------------------
 
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : given,
+                pcolor : orbit,
                 //letterAngle : -90,
                 //undisplayAlways : true,
                 //doPaintPname : false,
             },
 
-
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : force,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
-                //initialR    : 5 * controlsScale,
+                initialR    : 5,
             },
 
             P : {
@@ -199,6 +239,16 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : fconf.sappId === 'b1sec2prop7',
+            },
+            QtimeDecor : {
+                undisplayAlways : true,
+                //pos: will be as Q, 
+                cssClass : 'tp-dtime',
+                pcolor : dtime, //proof,
+                fontSize : 30,
+                letterAngle : 225,
+                letterShift : [30,0],
+                letterRotRadius : 180,
             },
 
             T : {
@@ -234,7 +284,8 @@
 
             sagitta : {
                 caption : 'I',
-                pcolor : proof,
+                //pos: Q,
+                pcolor : sagitta,
                 letterAngle : 270,
                 letterRotRadius : 35,
                 //initial setting does not work well bs poor code design
@@ -267,6 +318,19 @@
                 letterAngle : -45,
             },
 
+            nonSolvablePoint : {
+                pos: [0,0], //will be calculated
+                caption : 'Orbits are disconnected.',
+                fontSize : '25',
+                /*
+                //no dice:
+                title : 'Kepler force does not exist ' +
+                        'in neighborhood of this point.',
+                */
+                undisplayAlways : true,
+                pcolor : invalid,
+                letterAngle : 0,
+            },
 
             //col2
             Tcol2 : {
@@ -292,7 +356,7 @@
         [
             { 'PV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : result }, },
+            { 'SP' : { pcolor : orbit }, },
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : body }, },
@@ -315,15 +379,16 @@
 
             { 'PC' : { pcolor : curvature }, },
             { 'P,rrminus' : { pcolor : proof }, },
-            { 'P,sagitta' : { pcolor : proof, vectorTipIx : 1 } },
+            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
             { 'Q,rrminus' : { pcolor : proof }, },
 
             //col2
-            { 'Rcol2,P' : { pcolor : proof }, },
+            { 'Rcol2,P' : { pcolor : [150, 0, 150] }, },
             { 'Rcol2,Tcol2' : { pcolor : proof }, },
             { 'Tcol2,V' : { pcolor : proof }, },
             { 'Gcol2,S' : { pcolor : proof }, },
             { 'Gcol2,P' : { pcolor : proof }, },
+            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
         ns.paste( sconf, {

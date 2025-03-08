@@ -1,0 +1,51 @@
+This document is intended to reduce the time needed to make changes to the code, while simultaneously improving it.  It was created after learning about and making changes to the Proposition 1 code.  Specifically when making numerous changes to when different decorations (lines, points etc.) are visible or highlighted.  It’s important to note that other content (propositions, lemmas) may be setup differently.  This document can be updated as needed to reflect new insights.
+
+
+____________________________________________________________
+Section 1) Overview
+
+For Proposition 1, as the time slider moves or text in the text area is clicked, different decorations are shown or hidden in the model area.  The visibility settings for each decoration are set then modified in many different locations, in many different files, in many different ways.  Therefore it’s important to be careful when making changes to avoid causing problems elsewhere.
+
+=====What “decStart”, “decEnd”, and step refer to=====
+Moving the time slider or clicking text in the text area, such as “the second part of the time” under the proof tab, determine what the current “step” is.  The current “step” is an integer number, and as an analogy can be thought of as the current frame (think of a movie) or slide (think of a presentation).  The variables “decStart” and “decEnd” refer to the range of steps that a decoration should be visible for in the model area.  Specifically “decStart” means the step where the decoration visibility starts, and “decEnd” the step where its visibility ends.
+
+
+____________________________________________________________
+Section 2) Meta parsing, adjusting and finding "paint-keys"
+
+To adjust which decorations are highlighted when the mouse hovers over text, the first place to start is the essay text displayed in the text area (for Proposition 1 refer to “contents\b1sec2prop1\txt\cohen.txt”).  Also refer to document “doc\README-scripting-batch-tp-caption-keys” for more details on meta parsing blocks.
+
+Suppose for example when mousing over “ADF” only some line segments are highlighted, however the desired behavior is that the entire perimeter should be highlighted.  Imagine the meta parsing block is initially “¦AB BC CD DE EF¦ADF¦¦”.  Given that the perimeter extends far beyond those line segments the paint-keys “AB BC CD DE EF” will need to be adjusted.  In this case it turns out that “path” is the desired one, and adjusting the meta parsing block to include it will solve the issue.
+
+One possible way to find the correct paint-key is to check which ones are already in use.  Look through the different tabs (claim, proof etc.) in the web browser, and mouse over the text to see which decorations become highlighted in the model area.  For the previous example, it turns out that under the claim tab in the first paragraph, “orbits” highlights the entire perimeter.  Referring to the relevant meta parsing block “¦path¦orbits¦¦” in the “cohen.txt” file, the paint-key “path” is seen.  Note that there may also be other ways to find paint-keys that could be added to this document.
+
+
+____________________________________________________________
+Section 3) How to find the correct location(s) in code to modify
+
+Relevant code can often be found in many different locations, in many different files, in many different ways.  Therefore it’s important to carefully find and check these location(s) before making changes, to avoid causing problems elsewhere.
+
+=====Keyword search limitations to find relevant code=====
+One possible way to find code relevant to specific decorations is to perform a keyword search (eg. Edit -> Find in Files, in Vs Code).  Suppose for example a change to when line “Cc” is visible was desired.  If a keyword search for “Cc” is performed, it will reveal some locations in the code in some files that are relevant.  While this is partly beneficial, there is at least one location that  ̶w̶i̶l̶l̶ ̶n̶o̶t̶ ̶b̶e̶ ̶ was not revealed because the characters are separated in an array (“contents\b1sec2prop1\js\decs-conf.js” ~line 319 “...['C', 'c'], decStart : rg.C.decStart,...”).  As it’s difficult to know every possible keyword to search for, it’s unlikely that this type of search will reveal every relevant location in the code. UPDATE: comments have been added to that particular section so that a search will turn up "Cc" (and others) in that file. However, the overall point holds for other situations. As we come across such code, let's add comments to make search easier.
+
+=====Determine which folders contain relevant files=====
+The main folder to find relevant files, is the one specific to the particular content (for Proposition 1 “contents\b1sec2prop1”).  However note that when going through the code for Proposition 1, references to Proposition 2 are found (“contents\b1sec2prop1\js\media-model.js” ~line 100-134 section “fixes logical step to 7 for corollary of P2”).  This means that changes to Proposition 1 can change Proposition 2.  Also keep in mind that if changes to Proposition 2 are desired, looking beyond the “contents\b1sec2prop2” folder is critical.
+
+There are a few ways to help determine if relevant files are located outside the folder specific to the particular content.  One way is to visually inspect content in the web browser.  It’s clear that Proposition 1 and 2 look very similar, therefore it follows that they may share some code, and files in both folders should be checked.  Another way is to perform a keyword search for the entire project, rather than a specific folder or files (eg. Edit -> Find in Files, in VS Code, leave “files to include” and “files to exclude” blank).  Next take a look at all the results to see which ones are relevant.  For example when searching for “decStart” results are found in both “contents\b1sec2prop1” and “contents\b1sec2prop2”.
+
+=====How to check if the correct location(s) have been found=====
+One helpful way to determine if a location found in the code is correct, is to set “decStart” for a decoration to an arbitrary value not seen elsewhere eg. “73956”.  Its value in “rg” can then be checked with a temporary console.log or break point as mentioned in the next section.  If the decoration’s “decStart” value matches this arbitrary value, it’s likely that the location where it was set is correct.  However as mentioned below, sometimes there are multiple locations in the code that set the visibility settings for the same step.
+
+Suppose point “C” is visible for a certain range of steps and a change to where its visibility starts is desired.  After locations relevant to the decoration have been located in the relevant files, it’s time to determine which one needs to be modified.  It’s important to note that each part of the code is run under different conditions.  For example in “media-model.js” there is an if statement ~line 38 vs ~line 98.  Its first block is run when the user clicks text in the text area such as “when the body comes to B”, while the second block is run when the time slider is moved.  Therefore if the “decStart” value for point “C” is different in the first block vs the second, its visibility will be different for the exact same step depending on the user’s action.
+
+
+____________________________________________________________
+Section 4) How the code is structured and where decorations are shown or hidden
+
+Proposition 1 has settings which determine when each decoration should be visible.  They are stored in the “rg” variable, and synced with “stdMod.decor” (therefore it contains a subset of what “rg” contains).  Each decoration has a “decStart” and “decEnd” variable which determine the range of steps where their visibility starts and ends.  These settings are ultimately used to show or hide decorations in the “unmasksVisib” function in “contents\b1sec2prop1\js\unmasks-visible-path-svg.js”.
+
+=====How to adjust decoration visibility=====
+Suppose for example both point “c” and “S” are visible for a certain range of steps.  However when mousing over line “cS” it’s highlighted for some of those steps but not others.  Now imagine the desired behavior is to ensure the line is highlighted for any steps where its points are visible.  The settings for each decoration (eg. line, point etc.) are set separately in “rg”.  Given that “rg.Sc” is for line “cS”, this means the “rg.Sc.decStart” and/or “rg.Sc.decEnd” values need to be adjusted to match the values used for the points.
+
+=====Where decorations are shown or hidden=====
+For Proposition 1, the part of the code that’s ultimately responsible for showing and hiding decorations is the “unmasksVisib” function in “contents\b1sec2prop1\js\unmasks-visible-path-svg.js”.  There are many sections within it, however the main one “visualizes decs” is located at the bottom.  This part of the code loops through the different graphical objects data, where “dec” corresponds to each decoration as it loops through them.  Their “decStart” and “decEnd” values are checked against “stepIx4”, to determine if they should be shown or hidden.  Note that the variable “stepIx4” stores the integer value for the current step.  Therefore this is a great place to add a temporary console.log or break point when debugging, to check the values for decoration visibility or the current step.

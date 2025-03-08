@@ -1,7 +1,8 @@
 *::*claim|english
 {
   "default" : "1",
-  "menuCaption" : "Text"
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
 }
 *..*
 
@@ -29,6 +30,10 @@ vanish.
 
 
 *::*proof|english
+{
+  "textSectionCaption" : "Proof"
+}
+*..*
 
     For if that ¦angleBAD AB AD *anch-color*given¦angle¦¦ does not vanish, 
     the angle contained by the arc ¦arc-AB¦ACB¦¦ 

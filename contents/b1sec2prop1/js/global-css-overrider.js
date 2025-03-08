@@ -19,7 +19,7 @@
         //1. .triangle-odd competes with
         //      .bsl-approot svg .tp-kepler-triangle.tofill
         //      we have to add more idle selectors into CSS-path,
-        //2.  overriding mask for theorion--claim ... .theor1proof
+        //2.  overriding mask for textSection--claim ... .theor1proof
         //      display ... none
         //--------------------------------------------------------
         globalCss.replace( `
@@ -32,24 +32,24 @@
                 display : none;
             }
 
-            .bsl-approot.appid-b1sec2prop1.theorion--claim svg .theor1claim,
-            .bsl-approot.appid-b1sec2prop1.theorion--corollary svg .theor1corollary,
-            .bsl-approot.appid-b1sec2prop2.theorion--corollary svg .theor2corollary,
-            .bsl-approot.appid-b1sec2prop2.theorion--proof svg .theor2proof,
-            .bsl-approot.appid-b1sec2prop1.theorion--proof svg .theor1proof
+            .bsl-approot.appid-b1sec2prop1.textSection--claim svg .theor1claim,
+            .bsl-approot.appid-b1sec2prop1.textSection--corollary svg .theor1corollary,
+            .bsl-approot.appid-b1sec2prop2.textSection--corollary svg .theor2corollary,
+            .bsl-approot.appid-b1sec2prop2.textSection--proof svg .theor2proof,
+            .bsl-approot.appid-b1sec2prop1.textSection--proof svg .theor1proof
             {
                 display : block;
             }
 
-            .bsl-approot.appid-b1sec2prop1.theorion--claim
+            .bsl-approot.appid-b1sec2prop1.textSection--claim
                 svg .theor1claim.undisplay,
-            .bsl-approot.appid-b1sec2prop1.theorion--corollary
+            .bsl-approot.appid-b1sec2prop1.textSection--corollary
                 svg .theor1corollary.undisplay,
-            .bsl-approot.appid-b1sec2prop2.theorion--corollary
+            .bsl-approot.appid-b1sec2prop2.textSection--corollary
                 svg .theor2corollary.undisplay,
-            .bsl-approot.appid-b1sec2prop2.theorion--proof
+            .bsl-approot.appid-b1sec2prop2.textSection--proof
                 svg .theor2proof.undisplay,
-            .bsl-approot.appid-b1sec2prop1.theorion--proof
+            .bsl-approot.appid-b1sec2prop1.textSection--proof
                 svg .theor1proof.undisplay
             {
                 display : none;
@@ -65,8 +65,8 @@
                 opacity : 0.7;
             }
 
-            div.bsl-approot.theorion--claim svg .tp-kepler-triangle.triangle-odd,
-            div.bsl-approot.theorion--claim svg .tp-kepler-triangle.triangle-even {
+            div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-odd,
+            div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-even {
                 fill : #8888ff;
                 opacity : 0.7;
             }

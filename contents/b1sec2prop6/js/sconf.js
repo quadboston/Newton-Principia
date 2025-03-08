@@ -146,10 +146,16 @@
         var dtime   = [0,     150,  200,  1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
-        var invalid = [255,0,0,1];
+
+        var invalid = [255,    0,  0,      1];
+        var force   = [200,  150,  0,      1];
         if( userOptions.showingBonusFeatures() ) {
+            ////swaps colors
+            var force = invalid;
+            var invalid = [0,     0,   0,      1];;
             result = [255,0,0,1];
         }
+        
         //var chord = [0,0,255, 0.5]; //no dice
         var chord = [0,0,255, 1];
         var predefinedTopics =
@@ -168,7 +174,8 @@
             orbit   : given,
             timearc : proof,
             APQ     : given,
-            force   : result,
+            force,
+            invalid,
             sagitta,
             chord,
         };

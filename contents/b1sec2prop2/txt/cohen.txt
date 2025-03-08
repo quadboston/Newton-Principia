@@ -1,0 +1,101 @@
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Theorem 2"
+}
+*..*
+
+Every body that moves in some ¦path¦curved line¦¦ described in a plane and, by a radius
+drawn to a ¦S¦point¦¦, either unmoving or moving uniformly forward with a rectilinear
+motion, describes ¦kepler-triangle¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
+¦forceMove¦centripetal force¦¦ tending toward that same ¦S¦point¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>
+
+
+*::*proof|english
+{
+  "textSectionCaption" : "Proof"
+}
+*..*
+
+CASE 1. For every body that moves in a curved line is ¦Cc Dd Ee Ff¦deflected¦¦ from
+a ¦Bc Cd De Ef¦rectilinear course¦¦ by some ¦forceMove¦force¦¦ acting upon it (by law 1). And that ¦forceMove¦force¦¦
+by which the body is deflected from a ¦Bc Cd De Ef¦rectilinear course¦¦ and in equal times
+is made to describe, about an immobile point ¦S¦¦, the equal minimally small
+triangles ¦SAB¦¦, ¦SBC¦¦, ¦SCD¦¦, ... , acts in place ¦B¦¦ along a line parallel to ¦Cc¦cC¦¦ (by
+<a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookI/propI40.html">
+book 1, prop. 40, of the Elements</a>,
+and law 2), that is, along the ¦SB¦line BS¦¦; and
+in place ¦C¦¦, the force acts along a line parallel to ¦Dd¦dD¦¦, that is, along the line
+¦SC¦¦, . . . . Therefore it always acts along lines tending toward that unmoving
+point ¦S¦¦. Q.E.D.
+<br><br>
+CASE 2. And, by corol. 5 of the laws, it makes no difference whether
+the surface on which the body describes a ¦path¦curvilinear figure¦¦ is at rest or
+whether it moves uniformly straight forward, together with the body, the
+¦path¦figure described¦¦, and the point ¦S¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>
+
+
+
+
+*::*corollary|english
+{
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Corollaries"
+}
+*..*
+
+COROLLARY 1.
+In nonresisting spaces or mediums, if the areas are not
+proportional to the times, the ¦BVaracc¦forces do not tend¦¦ toward the ¦S¦point¦¦ where the
+radii meet but ¦VVaracc¦deviate¦¦ forward [or in consequentia] from it, that is, in the
+direction toward which the motion takes place, provided that the ¦SBCaracc¦description
+of the areas¦¦ is accelerated; but if it is retarded, they deviate backward [or in
+antecedentia, i.e., in a direction contrary to that in which the motion takes
+place].
+<br><br>
+COROLLARY 2.
+In resisting mediums also, if the ¦SBCaracc¦description
+of areas¦¦ is
+accelerated, the ¦BVaracc¦directions of the forces¦¦ ¦VVaracc¦deviate¦¦ from the point where the radii
+meet in the direction toward which the motion takes place.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 447</div>
+
+
+
+
+*::*scholium|english
+{
+  "textSectionCaption" : "Scholium"
+}
+*..*
+
+A body can be urged by a ¦forceMove¦centipetal force¦¦ compounded of several forces.
+In this case the meaning of the proposition is that the force which is compounded
+of all the forces tends toward point ¦S¦¦. Further, if some force acts
+continually along a line perpendicular to the surface described, it will cause
+the body to deviate from the plane of its motion, but it will neither increase
+nor decrease the quantity of the surface-area described and is therefore to be
+ignored in the compounding of forces.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 447</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---rrrrrrrrrrrrrrrrrrrrrrr-->

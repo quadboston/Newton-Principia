@@ -1,7 +1,7 @@
 ( function() {
     var {
-        ns, sn, nspaste, capture, amode, toreg,
-        stdMod, rg, sDomF, ssD, ssF, fconf,
+        ns, sn, nspaste, capture, userOptions,
+        amode, toreg, stdMod, rg, sDomF, ssD, ssF, fconf, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -48,14 +48,19 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { textSection, aspect, subessay } = amode;
+        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+            fp.rgX.undisplay = true;
+        });
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
+        rg[ 'sagitta' ].undisplay = true;
+        rg.curvatureCircle.undisplay = false;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        ssF.scaleValue2app( rg.media_scale.value );
 
         //interval of t to construct an arc for
         //Newton's sagitta
@@ -65,9 +70,11 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
+        if( !userOptions.showingBonusFeatures() ) {
+            rg[ 'S,nonSolvablePoint' ].undisplay = true;
+            rg[ 'nonSolvablePoint' ].undisplay = true;
+        }
 
-        rg.Q.hideD8Dpoint = false;
-        rg.Q.d8d_find_is_LOCKED = false;
 
         rg.SQ.undisplay = true;
         rg[ 'sagitta' ].undisplay = true;
@@ -78,6 +85,8 @@
         rg.C.undisplay = false;
         rg.PC.undisplay = true;
         rg.timearc.undisplay = true;
+        rg.Q.hideD8Dpoint = false;
+        rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -119,6 +128,10 @@
             }
             sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
         }
+
+        ssD.stashedVisibility = null;
+        stdMod.curveIsSolvable();
+        sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
 

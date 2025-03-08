@@ -1,30 +1,42 @@
 
-*::*proof|addendum
+*::*claim|addendum
 {
   "menuCaption" : "Addendum",
   "subessayCaption" : "model for non-similar curves"
 }
 *..*
 
-<a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">
-In Vector Calculus for Excentric circular motion,</a> 
+<b>Unscripting Book's logic,</b> we do:
+<br><br>
 
+¦estimatedForce¦Estimated force fₑ¦¦ ~ ¦P,sagitta QR sagitta¦move¦¦/time² =
+¦P,sagitta¦sagitta¦¦/(Δt)²~ᵘ       <br>
+¦QR¦¦/area² ~ ¦QR¦¦/(¦QT¦¦*¦SP¦¦)² .  <br><br>
+
+From triangles similarity ¦QR¦¦ = ¦PR¦RP¦¦²/¦RL¦¦ <br>
+From triangles similarity ¦PR¦RP¦¦ = ¦QT¦¦ * ¦AV¦¦/¦PV¦¦ and
+<br><br>
+
+¦estimatedForce¦fₑ¦¦~1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦²/¦AV¦¦² ) ~ 1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦² )   &nbsp;&nbsp;&nbsp;&nbsp; (*)      
+<br><br>
+
+and ultimately: <br>
+¦force¦f¦¦~ 1/( ¦SP¦¦² * ¦PV¦¦³/¦AV¦¦³ ) = ¦SP¦r¦¦⁻² sin⁻³¦PR SP¦ω¦¦
+in following notations:
+<br><br><br>
+
+
+
+<b>From Vector Calculus</b> <a target="_blank" href="?conf=sappId=addd-kepler-task#excentric-circular-motion">(see section "Excentric circular motion"),</a> one can find proportionality coefficients:
         <br><br>
-        ¦force¦𝑓¦¦ = const₁ / (r² 𝛺<sub>𝛙</sub>³),
-        <br>
-        where const₁ = M² / ρ.
+        ¦force¦𝑓¦¦ = const₁ ¦SP¦r¦¦⁻² sin⁻³¦PR SP¦ω¦¦, &nbsp;&nbsp;&nbsp;
+        where const₁ = M²/¦AV¦ρ¦¦.  &nbsp;&nbsp;&nbsp; (**)
         <br><br>
 
-        In Book notations, the ratio
-        <br>
-        ¦PV¦Leg¦¦ / ¦AV¦hypotenuse¦¦ =
-        <br>
-        ¦A P¦𝛺 = 𝛺<sub>𝛙</sub>¦¦ =
-        ¦PV¦¦ / ¦AV¦¦, 2ρ = ¦AV¦¦, r = ¦SP¦¦.
-        <br><br>
+        The ratio ¦PV¦leg¦¦ / ¦AV¦hypotenuse¦¦ = ¦PR SP¦sin(ω)¦¦ = <br>
+        ¦PV¦¦/¦AV¦¦, ¦AV¦2ρ¦¦ = ¦AV¦¦, ¦SP¦r¦¦ = ¦SP¦¦. Hence <br><br>
 
-        Hence <br><br>
-        ¦force¦𝑓¦¦ = const₂ / (¦SP¦¦² ¦PV¦¦³),
+        ¦force¦𝑓¦¦ = const₂ ¦SP¦¦⁻²¦PV¦¦⁻³,
         <br>
         where const₂ = 2M² ¦AV¦¦².
 <br><br>
@@ -32,9 +44,21 @@ In Vector Calculus for Excentric circular motion,</a>
 
 
 
+<b>It is striking that</b> Newton's mathematical model of the lemma is agnostic to the nature of the force, nor concerned on the mechanics of creation or application of the force.
+<br><br>
+
+For example, the same lemma's circular motion of the body can be created via "smart impact radar", or "roller coaster", or rocket engine operator.
+<br><br>
+
+Imagine a "smart impact radar" which to control the body in the circular trajectory, imposes the force with inverse square proportinality of the measured distance r and with a multiplier of deviation angle ¦PR SP¦ω¦¦ of the body from the direction from radar. In this case, there should be just a multiplier sin⁻³¦PR SP¦ω¦¦ in formulae (**).
+<br><br>
+
+
+
+
 *::*corollary|addendum
 {
-  "theorionCaption" : "Corollaries",
+  "textSectionCaption" : "Corollaries",
   "menuCaption" : "Addendum",
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1"
@@ -51,7 +75,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excent
 
 *::*corollary|addendum
 {
-  "theorionCaption" : "Corollaries",
+  "textSectionCaption" : "Corollaries",
   "menuCaption" : "---",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
@@ -59,7 +83,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excent
 *..*
 
 
-In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,textSectionId=proof,aspectId=addendum,subessayId=force-center-change">
     section "Two force fields ... ", (ft)</a> gives: 
 <br>
 

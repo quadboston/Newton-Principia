@@ -74,6 +74,8 @@
             //-------------------------------------
             var val = arg[ key ];
             if( val || val === 0 ) {
+                        if( typeof val === 'string' && val.indexOf('NaN')> 0 )
+                            ccc( val );
                 // //\\ adds a piece of sugar into CSS:
                 //      removes excessive digits from CSS:
                 //      assuming that scale of svg will be > 100px

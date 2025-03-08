@@ -35,13 +35,13 @@ Addendum, in Programming Guide, may also include anything interesting like progr
 ⦁  References to original text lemma are in parenthesises. For example,
 <br><br>
 
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#theorem-2">"Lemma (Theorem II)"</a>
 <br><br>
 
 refers to
 <br><br>
 
-<a target="_blank" href="?conf=sappId=b1sec2prop2,theorionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
+<a target="_blank" href="?conf=sappId=b1sec2prop2,textSectionId=proof,aspectId=english">"Book 1. Section II. Proposition II. Theorem II".</a>
 <br><br>
 
 <div book-reference-id="kvk"></div>

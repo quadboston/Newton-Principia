@@ -288,91 +288,95 @@
 
 
         [
-            { nam : ['A', 'B'], },
+            { nam : ['A', 'B'], },  // AB
             ////todm possibly redundant, isn't pathSegment-' + pix enougth?
-            { nam : ['B', 'C'], },
-            { nam : ['C', 'D'], },
-            { nam : ['D', 'E'], },
-            { nam : ['E', 'F'], },
+            { nam : ['B', 'C'], },  // BC
+            { nam : ['C', 'D'], },  // CD
+            { nam : ['D', 'E'], },  // DE
+            { nam : ['E', 'F'], },  // EF
 
-            { nam : ['S', 'A'], },
-            { nam : ['S', 'B'], },
-            { nam : ['S', 'C'], },
-            { nam : ['S', 'D'], },
-            { nam : ['S', 'E'], },
-            { nam : ['S', 'F'], },
+            { nam : ['S', 'A'], },  // SA
+            { nam : ['S', 'B'], },  // SB
+            { nam : ['S', 'C'], },  // SC
+            { nam : ['S', 'D'], },  // SD
+            { nam : ['S', 'E'], },  // SE
+            { nam : ['S', 'F'], },  // SF
 
-            { nam : ['S', 'c'],
+            { nam : ['S', 'c'],     // Sc
                 cssClass : 'theor1proof',
             },
-            { nam : ['S', 'd'],
+            { nam : ['S', 'd'],     // Sd
                 cssClass : 'theor1proof',
             },
-            { nam : ['S', 'e'],
+            { nam : ['S', 'e'],     // Se
                 cssClass : 'theor1proof',
             },
-            { nam : ['S', 'f'],
+            { nam : ['S', 'f'],     // Sf
                 cssClass : 'theor1proof',
             },
 
             //this is a thin line, which remains after thick line goes away,
-            { nam : ['C', 'c'], decStart : rg.C.decStart,
+            { nam : ['C', 'c'], decStart : rg.C.decStart,   // Cc
                 cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            { nam : ['D', 'd'],
+            { nam : ['D', 'd'],                             // Dd
                 decStart : rg.D.decStart,
                 cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            { nam : ['E', 'e'],
+            { nam : ['E', 'e'],                             // Ee
                 decStart : rg.E.decStart,
                 cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            { nam : ['F', 'f'],
+            { nam : ['F', 'f'],                             // Ff
                 decStart : rg.F.decStart,
                 cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
             },
-            { nam : ['B', 'c'],
-                cssClass : 'theor1proof theor2corollary',
+            { nam : ['B', 'c'],                             // Bc
+                cssClass : 'theor1proof theor2proof theor2corollary',
                 decEnd : rg.f.decStart,
             },
-            { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
-            { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
-            { nam : ['E', 'g'], cssClass : 'theor1corollary', },
-            { nam : ['F', 'g'], cssClass : 'theor1corollary', },
+            { nam : ['C', 'd'],                             // Cd
+                cssClass : 'theor1proof theor2proof',
+                decEnd : rg.f.decStart,
+            },
+            { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },    // Bh
+            { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },    // Ch
+            { nam : ['E', 'g'], cssClass : 'theor1corollary', },                // Eg
+            { nam : ['F', 'g'], cssClass : 'theor1corollary', },                // Fg
 
-            { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },
-            { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },
+            { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
+            { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
 
-            { nam : ['A', 'v'], decStart : -2, cssClass : 'tp-speed' },
+            { nam : ['A', 'v'], decStart : -2, cssClass : 'tp-speed' },         // Av
 
-            { nam : ['S', 'P'], decStart : -2,
+            { nam : ['S', 'P'], decStart : -2,                                  // SP
                 cssClass : 'theor1corollary', }, //for perpendicular
-            { nam : ['T', 'P'], decStart : -2,
+            { nam : ['T', 'P'], decStart : -2,                                  // TP
                 cssClass : 'theor1corollary', }, //for tangent
 
-            { nam : ['B', 'U'], //saggitae at B
+            { nam : ['B', 'U'], //saggitae at B                                 // BU
                 cssClass : 'hover-width theor1corollary' //for specaial width at hover
             },
-            { nam : ['B', 'V'],
+            { nam : ['B', 'V'],                                                 // BV
               cssClass : 'hover-width theor1corollary theor1proof'
             },
 
-            { nam : ['E', 'W'],  //saggitae at E
+            { nam : ['E', 'W'],  //saggitae at E                                // EW
                 decStart : rg.F.decStart,
                 cssClass : 'hover-width theor1corollary'
             },
 
-            { nam : ['A', 'C'], cssClass : 'theor1corollary' },
-            { nam : ['D', 'F'], cssClass : 'theor1corollary' },
+            { nam : ['A', 'C'], cssClass : 'theor1corollary' },                 // AC
+            { nam : ['D', 'F'], cssClass : 'theor1corollary' },                 // DF
 
-            { nam : ['c','Caracc'], cssClass : 'theor2corollary', },
-            { nam : ['C','Caracc'], cssClass : 'theor2corollary', },
-            { nam : ['S','Caracc'], cssClass : 'theor2corollary', },
-            { nam : ['B','Caracc'], cssClass : 'theor2corollary', },
-            { nam : ['B','Paracc'], cssClass : 'theor2corollary', },
-            { nam : ['C','Paracc'], cssClass : 'theor2corollary', },
-            { nam : ['V','Varacc'], cssClass : 'theor2corollary', },
-            { nam : ['B','Varacc'], cssClass : 'theor2corollary', },
+            { nam : ['c','Caracc'], cssClass : 'theor2corollary', },        // cCaracc
+            { nam : ['C','Caracc'], cssClass : 'theor2corollary', },        // CCaracc
+            { nam : ['S','Caracc'], cssClass : 'theor2corollary', },        // SCaracc
+            { nam : ['B','Caracc'], cssClass : 'theor2corollary', },        // BCaracc
+            { nam : ['B','Paracc'], cssClass : 'theor2corollary', },        // BParacc
+            { nam : ['C','Paracc'], cssClass : 'theor2corollary', },        // CParacc
+            { nam : ['V','Varacc'], cssClass : 'theor2corollary', },        // VVaracc
+            { nam : ['B','Varacc'], cssClass : 'theor2corollary', },        // BVaracc
             { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },
 
         ].forEach( pNam => {

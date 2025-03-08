@@ -1,108 +1,171 @@
 ( function() {
     var {
-        sn, mcurve,
-        stdMod, rg
+        sn, mcurve, ssD,
+        amode, stdMod, rg, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
             buildsforceGraphArray,
-            pos2qix,
         },
     });
     return;
 
-
-    function buildsforceGraphArray()
+    function buildsforceGraphArray() ///legacy force sample, rid later
     {
-        var xStart   = 0.;
-        var xEnd     = Math.PI*2;
+        const addendum = amode.aspect === 'addendum';
+        // //\\ graph
+        //------------------------------------------------
+        //first array mast be enabled
+        stdMod.graphFW_lemma.graphArrayMask = addendum ?
+            [   'force',
+  
+                //yet broke
+                false && ssD.solvable && !ssD.doMaskSagitta, //'sagitta',
+                '-1/r^2', !'body', 'estimated force', !!'-1/r^5'
+            ]
+        :
+            [ 'force',
+              !'sagitta', !'sample-force', !'body',
+              'estimated force',
+              !'-1/r^5'
+            ];
 
-        var rrc      = rg.S.pos;
-        var fun      = rg[ 'approximated-curve' ].t2xy;
-        var forceGraphArray = [];
-        var FORCE_ARRAY_LEN = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
-        {
-            var q = xStart + forceArrayIx * ( xEnd - xStart ) / FORCE_ARRAY_LEN;
-            var {
-                rr,
-                r, //from chosen rrc
-                r2,
-                R,
-                sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
-                staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
-                q,
-                rrc,
-            });
-
-            sinOmega = Math.max( 1e-100, sinOmega );
-            // Kepler's motion: rvₜcos(w) = M
-            // f = M²/(Rr²cos³(w))
-            var sinOmega2 = sinOmega*sinOmega;
-
-            //M is excluded in following lines:
-            var comparLaw = 8/(R*R*r2*r2*r);
-            var unitlessForce = 1/(R*r2*sinOmega*sinOmega2);
-            var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
-
-            var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
-                    1e+150 : 1/staticSectorialSpeed_rrrOnUU;
-            sectSpeedSafe = Math.abs( sectSpeedSafe );
-
-            //-----------------------------------------------------------
-            // //\\ builds coefficients at maximum |force|
-            //-----------------------------------------------------------
-            if( forceArrayIx === 0 ) {
-                var forceMax        = forceSafe;
-                var comparLawMax    = comparLaw;
-                var speedMax = sectSpeedSafe;
-            }
-            if( forceMax < forceSafe ) {
-                var forceMax = forceSafe;
-            }
-            if( comparLawMax < comparLaw ) {
-                var comparLawMax = comparLaw;
-            }
-            if( speedMax < sectSpeedSafe ) {
-                var speedMax = sectSpeedSafe;
-            }
-            //-----------------------------------------------------------
-            // \\// builds coefficients at maximum |force|
-            //-----------------------------------------------------------
-
-            forceGraphArray[ forceArrayIx ] = {
-                x : Math.log( r/R ),
-                y : [
-                        unitlessForce,  //actual
-                        comparLaw,      //for comparision
-                        //=vt=tangent speed
-                        sectSpeedSafe,
-                ],
-            };
+        let graphArg = {
+            //drawDecimalY : true,
+            //drawDecimalX : false,
+            printAxisXDigits : addendum,
+            //printAxisYDigits : true,
         }
+        
+        let prop7R = sconf.prop7R;
+        let ga = stdMod.graphFW_lemma.graphArray;
+        let glen = ga.length;
+        var forceMin;
+        var estimatedMin;
+        var eLaw5Min;
+        var eLaw2Min;
+        var sagittaMin;
+        var xMin;
+        var xMax;
+        var globalRelativeMax = 0;
+        var globalRelativeMin;
+        for( ix = 0; ix<glen; ix++ ) {
+            let gaix = ga[ix];
+            var ssagitta = ssD.ssigned[ix]; //gaix.y[1];
+            let cP = ssD.curve[gaix.ix];
+            let r = cP.r;
+            let sinw = cP.sinOmega;
+            let graphX = r/prop7R;//normed distance
+            gaix.x = graphX; 
+            var r2 = cP.r2;
+            var r5 = r2*r2;
+            r5 *= r;
+            let r5m = 1/r5;
+            let r2m = 1/r2;
+            let PV = 2*prop7R*sinw;
+            let qQP = rg.Q.q - rg.P.q;
+            let qQL = cP.angleRV-qQP;
 
-        var arrLen = forceGraphArray.length;
-        stdMod.graphArray = [];
-        for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
-        {
-            var far = forceGraphArray[ forceArrayIx ];
-            far.y[0] = Math.log( far.y[0] / forceMax );
-            far.y[1] = Math.log( far.y[1] / comparLawMax );
-            far.y[2] = Math.log( far.y[2] / speedMax );
+            let RL = 2*prop7R*Math.abs( Math.sin(qQL) );
+            //todo wrong, uses sagitta instead of real RQ
+            RL += Math.abs( Math.abs(ssagitta) );
+            //we are going to override the already calculated
+            //"differential" force(coded in prop6), replacing it with
+            //exact formulae for circular orbit,
+            //(for curiocity reasons, we can compare them
+            //later if time allows)
+            var force = 1/(r2*PV*PV*PV);
+            /*
+            ccc( ix, 
+                    'r='+r.toFixed(2)+
+                    ' PV/r='+(PV/r).toFixed(3) + ' r2m='+(r2m).toFixed(3),
+                    'r5m='+(r5m).toFixed(3) + 
+                ' f='+force.toFixed(4)
+            );
+            */
+            var estimatedForce = 1/(r2*RL*PV*PV);
+
+            var sagitta = Math.abs( ssagitta );
+            if( ix === 0 || sagittaMin > sagitta ) {
+                sagittaMin = sagitta;
+            }
+            if( ix === 0 || forceMin > force ) {
+                forceMin = force;
+            }
+            if( ix === 0 || estimatedMin > estimatedForce ) {
+                estimatedMin = estimatedForce;
+            }
+            if( ix === 0 || eLaw5Min > r5m ) {
+                eLaw5Min = r5m;
+            }
+            if( ix === 0 || eLaw2Min > r2m ) {
+                eLaw2Min = r2m;
+            }
+
+            if( ix === 0 || xMin > graphX ) {
+                xMin = graphX;
+            }
+            if( ix === 0 || xMax < graphX ) {
+                xMax = graphX;
+            }
+            var fsignum = Math.sign(gaix.y[0]);
+            if( addendum ) {
+                force *= fsignum;
+                estimatedForce *= fsignum;
+            } else {
+                //this is inaccurate: but this is a requirement:
+                var estimatedForce = 1/(r2*RL*RL*RL);
+            }
+            gaix.y[0] = force;
+            gaix.y[1] = ssD.ssigned[ix];
+            gaix.y[2] = -r2m;
+            gaix.y[4] = estimatedForce;
+            gaix.y[5] = -r5m;
         }
-        stdMod.graphArray = forceGraphArray;
+        let xMargin = (xMax-xMin)*0.05;
+        graphArg.xMax = xMax + xMargin;
+        graphArg.xMin = xMin - xMargin;
+        if( addendum ) {
+            for( ix = 0; ix<glen; ix++ ) {
+                let gaix = ga[ix];
+                gaix.y[0] /= forceMin;
+                gaix.y[1] = ssD.ssigned[ix] / sagittaMin;
+                gaix.y[2] /= eLaw2Min;
+                gaix.y[4] /= estimatedMin;
+                gaix.y[5] /= eLaw5Min;
+                globalRelativeMax = Math.max(
+                    globalRelativeMax,
+                    Math.abs(gaix.y[0]),
+                    Math.abs(gaix.y[1]),
+                    Math.abs(gaix.y[2]),
+                    Math.abs(gaix.y[4]),
+                    Math.abs(gaix.y[5]),
+                );
+                /*
+                let globalRelativeMin_ = Math.min(
+                    Math.abs(gaix.y[0]),
+                    Math.abs(gaix.y[1]),
+                    Math.abs(gaix.y[2]),
+                    Math.abs(gaix.y[4]),
+                    Math.abs(gaix.y[5]),
+                );
+                globalRelativeMin = ix ? Math.min( globalRelativeMin_,
+                                     globalRelativeMin ) :
+                                     globalRelativeMin_;
+                */
+            }
+            graphArg.yMax = -0.95; //globalRelativeMin*0.98;
+            graphArg.yMin = -Math.min( globalRelativeMax, 10 );
+        } else {
+            ////if !addenum
+            graphArg.yMax = 10;
+            graphArg.yMin = 0;
+        }
+        rg.estimatedForce = rg.estimatedForce;
+        stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+        //------------------------------------------------
+        // \\// graph
+        //------------------------------------------------
     }
-
-
-    function pos2qix( pos )
-    {
-        var q = stdMod.pos2t( rg.P.pos );
-        var qixMax = stdMod.graphArray.length-1;
-        var qix = Math.floor(   qixMax * q / Math.PI / 2   ); //=angle Ix,
-        return Math.max( 0, Math.min( qixMax, qix ) );
-    }
-
 }) ();
 

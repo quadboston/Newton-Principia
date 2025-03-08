@@ -175,18 +175,18 @@ sup {
 }
 
 /*todm: should be automated */
-.theorion--claim .main-legend.proof,
-.theorion--corollary .main-legend.proof {
+.textSection--claim .main-legend.proof,
+.textSection--corollary .main-legend.proof {
     display:none;
 }
 /* visibility per model-mode */
-.theorion--corollary .main-legend.claim,
-.theorion--proof .main-legend.claim {
+.textSection--corollary .main-legend.claim,
+.textSection--proof .main-legend.claim {
     display:none;
 }
 /* visibility per model-mode */
-.theorion--claim .main-legend.corollary,
-.theorion--proof .main-legend.corollary {
+.textSection--claim .main-legend.corollary,
+.textSection--proof .main-legend.corollary {
     display:none;
 }
 

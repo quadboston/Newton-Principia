@@ -45,9 +45,9 @@
     function model_upcreate()
     {
         //this patch amends this css
-        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.s ubmodel-common
+        //.bsl-approot.textSection--corollary.aspect--english .bsl--svgscene.s ubmodel-common
 
-        //img competes with: .bsl-approot.theorion--scholium.aspect--english .bg0,
+        //img competes with: .bsl-approot.textSection--scholium.aspect--english .bg0,
         //todm: inconsistent: .main-legend.proof should not need this CSS, it
         //      is designed to remove itself by class ".proof",
         var wwCss =

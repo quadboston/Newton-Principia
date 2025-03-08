@@ -47,7 +47,7 @@
         haff( stdMod, 'media_upcreate___before_basic' );
 
         //:updates subessay menu
-        var exAspect = exegs[ amode.theorion ][ amode.aspect ];
+        var exAspect = exegs[ amode.textSection ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
@@ -147,7 +147,7 @@
         // may have create_digital_legend
         //ini ssF, so thet skip this block
         if( ns.h( stdMod, 'create_digital_legend' ) ) {
-            var tlegend = ns.haz( rg[ 'main-legend' ], amode.theorion );
+            var tlegend = ns.haz( rg[ 'main-legend' ], amode.textSection );
             if( ns.h( stdMod, 'upcreate_mainLegend' ) ){
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:

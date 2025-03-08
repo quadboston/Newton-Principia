@@ -372,7 +372,7 @@ div.leftside-menuholder div.original-text.chosen {
 /* top-level geometrical sub-containers    */
 /*******************************************/
 /* geometrically contains all button-shapes and decorations */
-/* theorion and aspection */
+/* textSection and aspection */
 .menu-teaf {
     position        :relative;
     display         :inline-block;
@@ -400,8 +400,8 @@ div.leftside-menuholder div.original-text.chosen {
     width       : calc(var(--leftTopLeafLength) * 1px);
 }
 
-/* theorion */
-.menu-teaf.theorion {
+/* textSection */
+.menu-teaf.textSection {
     width       : calc(100% - var(--LEFT_SIDE_MENU_WIDTH));
 }
 
@@ -425,8 +425,8 @@ div.leftside-menuholder div.original-text.chosen {
     z-index         :30;
 }
 
-.menu-teaf.theorion .litem {
-    width           :calc(var(--theorionChildWidth) * 1%);
+.menu-teaf.textSection .litem {
+    width           :calc(var(--textSectionChildWidth) * 1%);
 }
 
 .menu-teaf.aspect .litem {

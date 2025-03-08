@@ -3,7 +3,8 @@
 *::*claim|english
 {
   "menuCaption" : "Text",
-  "default" : "1"
+  "default" : "1",
+  "textSectionCaption" : "Theorem 5"
 }
 *..*
 
@@ -20,18 +21,19 @@ ratio of the time].
 
 *::*proof|english
 {
+  "textSectionCaption" : "Proof"
 }
 *..*
 
 For the ¦P,sagitta¦the sagitta¦¦ in the ¦dtime¦given time¦¦ is as the ¦force¦¦
 
-(<a target="_blank" href="?conf=sappId=b1sec2prop1,theorionId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
+(<a target="_blank" href="?conf=sappId=b1sec2prop1,textSectionId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
 
 and by increasing ¦dtime¦the time¦¦ in any ratio you please, because ¦timearc¦the arc¦¦
 increases in the same ratio, the ¦P,sagitta¦the sagitta¦¦ is increased in the
 duplicate of that ratio
 
-(<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
+(<a target="_blank" href="?conf=sappId=b1sec1lemma11,textSectionId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
 
 Therefore, it is as the ¦force¦¦ once and ¦dtime¦the time¦¦ twice. Let the duplicate ratio of
 ¦dtime¦the time¦¦ be removed on both sides, and the ¦force¦¦ comes out to be as the ¦P,sagitta¦sagitta¦¦
@@ -41,7 +43,7 @@ Q.E.D.
 <br><br>
 The same thing is also easily demonstrated
 
-(<a target="_blank" href="?conf=sappId=b1sec1lemma10,theorionId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
+(<a target="_blank" href="?conf=sappId=b1sec1lemma10,textSectionId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
 
 <br><br>
 <div book-reference-id="Donahue"></div>
@@ -52,7 +54,8 @@ The same thing is also easily demonstrated
 *::*corollary|english
 {
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 

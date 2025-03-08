@@ -1,11 +1,12 @@
 
-*::*proof|english
+*::*claim|english
 {
-  "theorionCaption" : "Problem 2",
+  "textSectionCaption" : "Problem 2",
   "default" : "1",
   "menuCaption" : "Text"
 }
 *..*
+
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
 <br><br>
@@ -14,10 +15,12 @@ Page 455.
 
 
 
-*::*Solutions|english
+*::*proof|english
 {
+  "textSectionCaption" : "Solutions"
 }
 *..*
+
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
 point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
@@ -75,10 +78,12 @@ Page 455.
 <br><br>
 
 
-*::*Corollaries|english
+*::*corollary|english
 {
+  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 1",
-  "subessay" : "corollary1"
+  "subessay" : "corollary1",
+  "textSectionCaption" : "Corollaries"
 }
 *..*
 
@@ -93,8 +98,9 @@ always tends is located in the circumference of this circle, say at ¦V¦¦, the
 Page 456.
 <br><br>
 
-*::*Corollaries|english
+*::*corollary|english
 {
+  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2"
 }
@@ -112,8 +118,8 @@ from the ¦S¦first center of forces S¦¦ to the
 ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
 
 For by the construction of this proposition the ¦force¦first force¦¦ is
-to the second force as ¦RP¦¦² x ¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
-that is, as ¦SP¦¦ x ¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦PT¦¦³,
+to the second force as ¦PR¦RP¦¦² x ¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
+that is, as ¦SP¦¦ x ¦PR¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦PT¦¦³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
 
@@ -125,8 +131,9 @@ Page 456.
 
 
 
-*::*Corollaries|english
+*::*corollary|english
 {
+  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
 }
