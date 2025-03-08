@@ -1,13 +1,8 @@
 ( function() {
     var {
-        ns, sn,
-        rg,
-        ssF, ssD,
-        sconf,
-        amode,
-        toreg,
-        stdMod,
-        
+        ns, sn, has, userOptions,
+        sconf, ssF, ssD,
+        amode, rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -15,6 +10,7 @@
             media_upcreate___before_basic,
         },
     });
+    let foldPointsRemovedFromTp = false;
     return;
 
 
@@ -36,21 +32,42 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg({});
+        let rgCurve = rg[ 'approximated-curve' ];
+        rgCurve.poly2svg({});
 
         //arc updates
         ssF.paintsCurve({
             mmedia  : stdMod.svgScene,
-            fun     : rg[ 'approximated-curve' ].t2xy,        
+            fun     : rgCurve.t2xy,        
             rgName  : 'timearc',
             start   : stdMod.pos2t( rg.P.pos ) + rg.Q.intervalSMinus,
             step    : (rg.Q.intervalS-rg.Q.intervalSMinus)/100,
-            stepsCount : 101,
+            stepsCount : rgCurve.stepsCount, //101,
         });
+        
+        /*
+        ///possibly redundant because gap points are good
+        if( has( rg[ 'foldPoints-' + 1 ], 'svgel$' ) ){
+           if( !foldPointsRemovedFromTp ) {
+               foldPointsRemovedFromTp = true;
+
+               let gapColor = userOptions.showingBonusFeatures() ?
+                              '#ffffff' : '#ff0000';
+               rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
+               sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+                    fp.rgX.svgel$
+                        .removeClass( 'tp-fold_points-'+ppix )
+                        .css( 'fill', gapColor )
+                        .css( 'stroke', gapColor )
+                    ;
+               });
+            }
+        }
+        */
     }
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-
+    
 }) ();
 

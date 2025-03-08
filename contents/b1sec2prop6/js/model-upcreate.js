@@ -327,9 +327,8 @@
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
                 nsp.undisplay = false;
-                if( !userOptions.showingBonusFeatures() ) {
-                    nsl.undisplay = false;
-                }
+                //nsl.undisplay = !!userOptions.showingBonusFeatures();
+                nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;

@@ -73,7 +73,11 @@
             pv1.medpos = ssF.mod2inn( pv1.pos );
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
-
+        
+        //this is a wrong place for changing a model of a
+        //line interval, so removing from media manager:
+        //line.vector = mat.p1_to_p2(pv0,pv1);
+        
         ///this property helps to optimize svg painting
         var dressed = ownProp.call( line, 'pointIsAlreadyDressed' );
         if( !dressed ) {

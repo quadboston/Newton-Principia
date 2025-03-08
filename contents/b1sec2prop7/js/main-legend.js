@@ -1,12 +1,8 @@
 ( function() {
     var {
         ns, sn, $$,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+        sconf, sDomF, ssF, sData,
+        rg, stdMod, toreg, amode,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -25,14 +21,16 @@
 
     function create_digital_legend()
     {
-        return;
-        //see lemma 11 for the sample
         create_digital_legend_for_theorion( 'proof' );
+        create_digital_legend_for_theorion( 'claim' );
         create_digital_legend_for_theorion( 'corollary' );
     }
 
     function create_digital_legend_for_theorion( theorion )
     {
+        //sample:
+        //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+
         //--------------------------
         // //\\ data source scenario
         //--------------------------
@@ -46,32 +44,34 @@
             ////
             ////see: function dataSourceParsed1__2__makesBodyCluster({
             ////
-            ////'_' is replaced with ' ' in caption,
             ////**********************************************************************************
+            
+            ///how this can be a topic? dtime<_>data-monospace
+            ///is not dtime a topic only,
+            ///
+            ///yes commend does mislead, the first token is tpCssName
+            ///and goes to css-class after <_> is replaced with space,
+            
+            ///but still misleads, "data-monospace" used nowhere, it is just 
+            ///deleted, but other token are not and will go to css-class,
+            ///just append any number of them separated with <_>
+            
+            'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(rg.tForSagitta.val*2).toFixed(4)',
 
-
-             //first table row
-            'none,,null none,,"left&nbsp;area:"        ' +
-            'none,,"right&nbsp;area:"        ' +
-            'none,,"left&nbsp;/&nbsp;right&nbsp;ratio:"',
-
-
-             //second table row
-            'none,,"bar&nbsp;to&nbsp;bar&nbsp;ratio:" ' +
-            'none,,""        ' +
-            'none,,""        ' +
-            'none,,"min:"+rg.barRatioMin.val+"&nbsp;&nbsp;"+' +
-                   '"max:"+rg.barRatioMax.val',
-
-             //third table row
-            'none,,"bars&nbsp;sum:"    leftBarsArea,,rg.leftBarsArea.value        ' +
-            'rightBarsArea,,rg.rightBarsArea.value        ' +
-            'barsRatio,,rg.leftBarsArea.value/rg.rightBarsArea.value',
-
-             //third table row
-            'none,,"figure:"  acE,,rg.leftFunction.funArea  ' +
-            'prT,,rg.rightFunction.funArea  ' +
-            'figuresRatio,,rg.leftFunction.funArea/rg.rightFunction.funArea',
+            '_s_p,SP&nbsp;:,"&nbsp;"+rg.SP.vector.abs.toFixed(4)',
+            '_r_l,RL&nbsp;:,"&nbsp;"+rg.RL.vector.abs.toFixed(4)',
+            '_p_v,PV&nbsp;:,"&nbsp;"+rg.PV.vector.abs.toFixed(4)',
+  
+            'estimated_force<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[4].toFixed(4)'
+            ,
+  
+            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)'
+            ,
+  
+            'none,_,"<_>"'
+             
+            , //dummy row for spacing at foot
+            'none,_,"<_>"' //dummy row for spacing at foot
         ];
 
         ///spawns configuration
@@ -89,8 +89,8 @@
         //--------------------------
 
         ssF.createTheorionLegend({
-            tableCaption    : 'Areas and Ratios',
-            noTableTitle    : false,
+            tableCaption    : '',
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             theorion,
             rowsCount,
@@ -99,46 +99,11 @@
             //updatesCaptionCluster, //optional
             makesBodyCluster,
             updatesDataInCell,
-        })
+            createsIdleFirstRow_forFormat,
+        });
         return;
 
 
-
-        /*
-        //no dice for caption row
-        ///================================================
-        ///================================================
-        function makesCaptionCluster({
-            row,
-            clusterIx,
-        }){
-            var rowIx = 'caprow';
-            var id = rowIx+'-' + clusterIx + '-letter';
-            return {
-                style               :
-                [
-                    [
-                        ['border-left', '1px solid grey'],
-                        ['padding-left', '6px'],
-                    ],
-                ],
-                clusterKey: id,
-                //clusterCaption: '', //will be filled dynamically
-                tpCssName: 'experimental ' + id,
-                noEqualSign : true,
-                //fillerAfterValue : '&nbsp;',
-            };
-        }
-
-        ///================================================
-        /// updates captions
-        ///================================================
-        function updatesCaptionCluster({ clusterIx, })
-        {
-            var capt = [ 'left', '', 'right', '', 'left / right', '' ][ clusterIx ];
-            return { columnCaptionTitle : capt, clusterCellIx:0  };
-        }
-        */
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({
@@ -146,12 +111,15 @@
                 clusterIx,
                 legendScriptParsed,
                 //noEqualSign : true,
-                //alignCaptionToRight : false,
+                alignCaptionToRight : true,
             })
         }
 
         function updatesDataInCell({ rowIx, clusterIx, })
         {
+            //patch: disables second row of the table, the raw of dt
+            rg[ 'main-legend' ][ theorion ].tableDom.children[1].style.display = 'none';
+            
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,
@@ -159,6 +127,29 @@
                 noEqualSignInNumber : true,
             })
         }
+        
+        function createsIdleFirstRow_forFormat( tb, theorion )
+        {
+            //=====================================================
+            // //\\ idle first row to format table for fixed-layout
+            //=====================================================
+            var row = $$.c('tr')
+                //vital ... removes global css which corrupts table
+                //aka .addClass( 'proof row1 tostroke' )
+                .addClass( theorion +' tostroke')
+
+                .css( 'visibility', 'hidden' ) //todm ... tmp fix
+                .to(tb)
+                ();
+            //:todm ... kitchen ... non-reliable
+            $$.c('td').html( 'Estimated-force-s--at-P-(per-smax)xxxxxxx' ).to(row);
+            $$.c('td').html( '-0.333' ).to(row);
+            $$.c('td').html( '-0.333xxx' ).to(row);
+            //=====================================================
+            // \\// idle first row to format table for fixed-layout
+            //=====================================================
+        }
+        
     }
     //=========================================
     // \\// creates theorion table

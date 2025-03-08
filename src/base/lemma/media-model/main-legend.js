@@ -66,7 +66,8 @@
         cellsVisibilityCondition = cellsVisibilityCondition || (()=>true);
 
         createsTablePlaceholder();
-        createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat || createsIdleFirstRow_forFormat_default;
+        createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat ||
+                                        createsIdleFirstRow_forFormat_default;
         createsIdleFirstRow_forFormat( tb, theorion );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();

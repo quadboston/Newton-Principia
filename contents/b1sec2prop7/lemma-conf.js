@@ -21,14 +21,14 @@
                 { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
-                { src: sm + 'lib-prop7.js' },
+                { src: sm + 'lib.js' },
                 { src: sm + 'graph-array.js' },
                 { src: sm + 'graph-fw-lib.js' },
             ],
             "contents-list" :
             [
                 'txt/latin.txt',
-                'txt/cohen.txt',
+                'txt/english.txt',
                 'txt/addendum.txt',
             ],
             //optional additional reference html
