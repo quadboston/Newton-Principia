@@ -122,7 +122,7 @@
                                 '</tspan>' +
                                 '</text>'
                                 
-                                :
+                                :   // Actual and Estimated forces
                                 
                                 
                                 '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
@@ -143,7 +143,7 @@
   
   
   
-                    x       : 250,
+                    x       : addendum ? 250 : 310,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
@@ -157,8 +157,8 @@
             [
 
                 {
-                    text    : 'Distance from force center, r/R', 
-                    x       : bonus ? -700 : -520,
+                    text    : 'Distance from force (SP / AV)', 
+                    x       : bonus ? -700 : -600,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
