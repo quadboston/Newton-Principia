@@ -35,18 +35,18 @@
             [[ 'AD', 'AD : ', 'rg.AD.abs' ]],
             [[ 'arc-AB', 'arc ACB : ', 'rg.AB.arcLen' ]],
             [[ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', '(rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]],
-            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', '(rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]], //todo: why removing space chars from this one break formatting?
+            [[ 'AD', 'AD / AB : ', 'isNaN((rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]],
+            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', 'isNaN((rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]], //todo: why removing space chars from this one break formatting?
         ],
         proof : [
             [[ 'AB', 'AB :    ', 'rg.AB.abs' ], [ 'Ab', 'Ab&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 'rg.Ab.abs' ]],
-            [[ 'AD', 'AD : ', 'rg.AD.abs' ], [ 'Ad', 'Ad : ', 'rg.Ad.abs' ]],
-            [[ 'arc-AB', 'arc ACB : ', 'rg.AB.arcLen' ], [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;:&nbsp;', 'rg.Ab.arcLen' ]],
+            [[ 'AD', 'AD : ', 'rg.AD.abs' ], [ 'Ad', 'Ad : ', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ad.abs' ]],
+            [[ 'arc-AB', 'arc ACB : ', 'rg.AB.arcLen' ], [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;:&nbsp;', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ab.arcLen' ]],
             [[ '', '', '' ], [ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', '(rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
-                [ 'Ad', 'Ad / Ab : ', '(rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]],
-            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', '(rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
-                [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;/&nbsp;Ab&nbsp;:&nbsp;', '(rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]], 
+            [[ 'AD', 'AD / AB : ', 'isNaN((rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
+                [ 'Ad', 'Ad / Ab : ', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]],
+            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', 'isNaN((rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
+                [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;/&nbsp;Ab&nbsp;:&nbsp;', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]], 
         ]
     };
     
