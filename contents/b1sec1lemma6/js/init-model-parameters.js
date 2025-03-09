@@ -65,7 +65,7 @@
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
         //-------------------------------------------------
-        // //\\ dragger L
+        // //\\ dragger L for the rectilinear angle
         //-------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
@@ -84,10 +84,10 @@
                     amode.subessay === 'sine derivative' ||
                     amode.subessay === 'vector-derivative'
                 ) {
-                    if( fullAngle < -0.3 ) {
+                    if( fullAngle < -0.2 ) {
                         ///this is lowest allowed L-position on the screen
                         ////otherwise, function y(x) is not well-defined
-                        fullAngle = -0.3;
+                        fullAngle = -0.2;
                     }
                 } else {
                     if( fullAngle < rg.AB.angle ) {
@@ -175,12 +175,7 @@
                 
                 if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
                     nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
-
-                    rg.fi.pos[0] = rg.R.pos[0];
-                    rg.fi.pos[1] = rg.R.pos[1];
                 }
-
-
                 return true;
 
                 function adjust_new_unrotatedParameterX_asNeccesary() {
@@ -259,12 +254,6 @@
         if( fconf.sappId === "b1sec1lemma8" ) {
             rg.fi.processOwnDownEvent = function() {
                 sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
-                document.querySelectorAll('svg circle.tp-fi').forEach((element) => element.style.display = 'none')
-            };
-            rg.fi.processOwnUpEvent = function() {
-                rg.fi.pos[0] = rg.R.pos[0];
-                rg.fi.pos[1] = rg.R.pos[1];
-                document.querySelectorAll('svg circle.tp-fi').forEach((element) => element.style.display = 'block')
             };
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
