@@ -41,7 +41,9 @@
         let ga = stdMod.graphFW_lemma.graphArray;
         let glen = ga.length;
         var forceMin;
+        var forceMax;
         var estimatedMin;
+        var estimatedMax;
         var eLaw5Min;
         var eLaw2Min;
         var sagittaMin;
@@ -89,11 +91,17 @@
             if( ix === 0 || sagittaMin > sagitta ) {
                 sagittaMin = sagitta;
             }
+            if( ix === 0 || forceMax < force ) {
+                forceMax = force;
+            }
             if( ix === 0 || forceMin > force ) {
                 forceMin = force;
             }
             if( ix === 0 || estimatedMin > estimatedForce ) {
                 estimatedMin = estimatedForce;
+            }
+            if( ix === 0 || estimatedMax < estimatedForce ) {
+                estimatedMax = estimatedForce;
             }
             if( ix === 0 || eLaw5Min > r5m ) {
                 eLaw5Min = r5m;
@@ -158,7 +166,12 @@
             graphArg.yMin = -Math.min( globalRelativeMax, 10 );
         } else {
             ////if !addenum
-            graphArg.yMax = 10;
+            graphArg.yMax =
+                Math.max( 
+                    estimatedMax,
+                    forceMax,
+                    1
+                ); //10;
             graphArg.yMin = 0;
         }
         rg.estimatedForce = rg.estimatedForce;
