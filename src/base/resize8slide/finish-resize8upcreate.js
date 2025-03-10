@@ -101,7 +101,9 @@
         ///slider group patch for lemmas 2 and 3
         ///-------------------------------------------
         var lemma2_slidersH = 0;
-        if (fconf.sappId === 'lemma2' || fconf.sappId === 'lemma3') {
+
+        // for lemmas 2 and 3, plus variations on lemma 2
+        if (fconf.sappId === 'lemma2' || fconf.sappId.indexOf('lemma2-') === 0 || fconf.sappId === 'lemma3') {
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH += 35; //nicer
