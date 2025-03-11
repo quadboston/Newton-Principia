@@ -116,8 +116,8 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
-        rg.P.dragPriority = 50;
-        rg.P.DRAGGEE_HALF_SIZE = 20;
+        rg.P.dragPriority = 60;
+        rg.P.DRAGGEE_HALF_SIZE = 40;
         rg.P.processOwnDownEvent = () => {
             const rgCurve = rg[ 'approximated-curve' ];
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
