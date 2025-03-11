@@ -16,88 +16,77 @@
     });
 
     var lemma6Data =  {
-        claim : [[
-            [ 'angleBAD', 'angle BAD : ', '""' ],
-            [ 'angleBAD', '', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]
-        ]],
-        proof : [[
-            [ 'angleBAD',  'angle BAD : ', '""' ],
-            [ 'angleBAD', '', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]
-        ],[
-            [ 'L', 'rectilinear angle : ', '""' ],
-            [ 'L', '', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]
-        ]]
+        claim : [
+            [[ 'angleBAD', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
+        ],
+        proof : [
+            [[ 'angleBAD',  'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
+            [[ 'L', 'rectilinear angle : ', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
+        ]
     };
 
     var lemma7Data =  {
         claim : [
-            [[ 'AB', 'AB :    ', 'rg.AB.abs' ]],
+            [[ 'AB', 'AB : ', 'rg.AB.abs' ]],
             [[ 'AD', 'AD : ', 'rg.AD.abs' ]],
             [[ 'arc-AB', 'arc ACB : ', 'rg.AB.arcLen' ]],
             [[ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', 'isNaN((rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]],
-            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', 'isNaN((rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ]], //todo: why removing space chars from this one break formatting?
-        ],
-        proof : [
-            [[ 'AB', 'AB :    ', 'rg.AB.abs' ], [ 'Ab', 'Ab&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 'rg.Ab.abs' ]],
-            [[ 'AD', 'AD : ', 'rg.AD.abs' ], [ 'Ad', 'Ad : ', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ad.abs' ]],
-            [[ 'arc-AB', 'arc ACB : ', 'rg.AB.arcLen' ], [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;:&nbsp;', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ab.arcLen' ]],
-            [[ '', '', '' ], [ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', 'isNaN((rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AD.abs.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
-                [ 'Ad', 'Ad / Ab : ', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]],
-            [[ 'arc-AB', 'arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;:&nbsp;', 'isNaN((rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? "at limit" : (rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)' ], 
-                [ 'arc-Ab', 'arc&nbsp;Acb&nbsp;/&nbsp;Ab&nbsp;:&nbsp;', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]], 
+            [[ 'AD', 'AD / AB : ', getLineRatio('AD', 'AB') ]],
+            [[ 'arc-AB', 'arc ACB / AB : ', getArcRatio() ]],
         ]
     };
-    
-    lemma7Data.corollary = lemma7Data.claim; //todo: temp
 
-    // lemma7Data.corollary = lemma7Data.proof.concat(
-    //     fconf.sappId === "b1sec1lemma8" ?
-    //     [] :
-    //     [
-    //         //third+1 table row
-    //             //first cell
-    //             'BF,BF&nbsp;=&nbsp;,rg.BF.abs' +
+    lemma7Data.proof = [
+        [lemma7Data.claim[0][0], [ 'Ab', 'Ab : ', 'rg.Ab.abs' ]],
+        [lemma7Data.claim[1][0], [ 'Ad', 'Ad : ', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ad.abs' ]],
+        [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb : ', 'rg.AB.abs <= 0.01 ? rg.Ab.abs : rg.Ab.arcLen' ]],
+        [[ '', '', '' ], [ '', '', '' ]], //small space
+        [lemma7Data.claim[4][0], [ 'Ad', 'Ad / Ab : ', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]],
+        [lemma7Data.claim[5][0], [ 'arc-Ab', 'arc Acb / Ab : ', 'rg.AB.abs <= 0.01 ? 1.000 : (rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)' ]], 
+    ];
 
-    //             ' ' +
-    //             //second cell
-    //             'conterminousRatio,BF&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.BF.abs/rg.AB.abs).toFixed(3)',
+    lemma7Data.corollary = [
+        [lemma7Data.claim[0][0], [ '', '', '' ]],
+        [lemma7Data.claim[1][0], lemma7Data.claim[4][0]],
+        [lemma7Data.claim[2][0], lemma7Data.claim[5][0]],
+        [[ 'BF', 'BF : ', 'rg.BF.abs' ], [ 'BF', 'BF / AB : ', getLineRatio('BF', 'AB') ]], 
+        [[ 'AE', 'AE : ', 'rg.AE.abs'], [ 'AE', 'AE / AB : ', getLineRatio('AE', 'AB') ]],
+        [[ 'BG', 'BG : ', 'rg.BG.abs' ], [ 'BG', 'BG / AB : ', getLineRatio('BG', 'AB') ]], 
+    ];    
 
-    //         //fourth+1 table row
-    //             //first cell
-    //             'AE,AE&nbsp;=&nbsp;,rg.AE.abs' +
+    // coding this as strings is bad practice, but necessary for now to play nice with framework
+    // specifically, rg is not available when this module is initiated,
+    // and data is parsed with eval() in main-legend-templates.js, so it would throw errors
+    function getLineRatio(p1, p2) {
+        return `
+            isNaN((rg.${p1}.abs.toFixed(3)/rg.${p2}.abs.toFixed(3)).toFixed(3)) ?
+            "<span class='limit'>at limit<span>" : 
+            (rg.${p1}.abs.toFixed(3)/rg.${p2}.abs.toFixed(3)).toFixed(3)
+        `;
+    }
 
-    //             ' ' +
-    //             //second cell
-    //             'conterminousRatio,AE&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AE.abs/rg.AB.abs).toFixed(3)',
-
-    //         //fifth+1 table row
-    //             //first cell
-    //             'BG,BG&nbsp;=&nbsp;,rg.BG.abs' +
-
-    //             ' ' +
-    //             //second cell
-    //             'conterminousRatio,BG&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.BG.abs/rg.AB.abs).toFixed(3)'
-    // ]);
+    function getArcRatio() {
+        return `
+            isNaN((rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)) ? 
+            "<span class='limit'>at limit<span>" : 
+            (rg.AB.arcLen.toFixed(3)/rg.AB.abs.toFixed(3)).toFixed(3)
+        `;
+    }
 
 
     // called once per page load
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         var data = fconf.sappId === "b1sec1lemma6" ? lemma6Data : lemma7Data;
         eachprop( data, (tableData, key) => {
             createTable( key, tableData ); // key = "claim", "proof", etc
         });
     }
 
-    function createTable( key, tableData )
-    {
+    function createTable( key, tableData ) {
         var legendScriptParsed = tableData;
-        var rowsCount       = legendScriptParsed.length;
-        var clustersCount   = legendScriptParsed[0].length;
+        var rowsCount = legendScriptParsed.length;
+        var clustersCount = legendScriptParsed[0].length;
 
-        // called from
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createtextSectionLegend({
             tableCaption    : '', //'Areas and Ratios',
@@ -113,7 +102,7 @@
         });
 
         // called once per clustersCount from /media-model/main-legend.js
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,
@@ -123,8 +112,8 @@
             })
         }
 
-        function updatesDataInCell({ rowIx, clusterIx, })
-        {
+        // called whenever data changes (user moves point B)
+        function updatesDataInCell({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,
