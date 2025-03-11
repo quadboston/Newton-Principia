@@ -33,7 +33,7 @@
         //      for delta t
         //=========================================================================
         rg.Q.dragPriority = 100;
-        rg.Q.DRAGGEE_HALF_SIZE = 50;
+        rg.Q.DRAGGEE_HALF_SIZE = 20;
         rg.Q.processOwnDownEvent = function() {
             //this is for user mouse motion,
             //remember, mouse motion and Q.pos motions are
@@ -117,7 +117,7 @@
         // //\\ point P slider
         //=========================================================================
         rg.P.dragPriority = 50;
-        rg.P.DRAGGEE_HALF_SIZE = 50;
+        rg.P.DRAGGEE_HALF_SIZE = 20;
         rg.P.processOwnDownEvent = () => {
             const rgCurve = rg[ 'approximated-curve' ];
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
