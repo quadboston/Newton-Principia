@@ -36,10 +36,14 @@
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
         if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-            haz( amode, 'userControl') === 'text' ) {
-            //The following code is run when the user clicks text in the text area.  For example on the proof tab in the 2nd paragraph where
-            //decStart = 5 corresponds to clicking “the second part of the time”, and decStart = 6 to clicking “when the body comes to B”.
-            let last = 5
+            (haz( amode, 'textSection') === 'proof' && fconf.sappId === "b1sec2prop1") ) {
+            //Adjust when the following decorations start becoming visible for the P1 proof tab.
+
+            //There was a bug where even though the step’s value was the same, decoration visibility was different depending on whether the 
+            //user clicked text in the text area vs the time slider.  Therefore they are now both set with the exact same code below.
+
+            //decStart = 5 corresponds to clicking “the second part of the time” in the 2nd paragraph.
+            const last = 5
             rg.c.decStart = last;
             rg.Bc.decStart = last;
             rg.SBc.decStart = last;
@@ -47,68 +51,23 @@
             //than “the second part of the time”.  Therefore decStart was switched to the following from last+1 (6).
             rg.Sc.decStart = last;
 
+            //decStart = 6 corresponds to clicking “when the body comes to B” in the 2nd paragraph.
             rg.C.decStart = last+1;
             rg.V.decStart = last+1;
             rg.BC.decStart = last+1; //rg.C.decStart;
             rg.Cc.decStart = last+1; //rg.C.decStart;
         } else {
-            last = 7
+            const last = 7
+            rg.c.decStart = last;
+            rg.Bc.decStart = last;
+            rg.SBc.decStart = last;
+            rg.Sc.decStart = last;
+
             rg.C.decStart = last;
             rg.V.decStart = last;
-            rg.c.decStart = last;
-            rg.Cc.decStart = last;
-            rg.Bc.decStart = last;
             rg.BC.decStart = last;
-            rg.SC.decStart = last;
-            rg.Sc.decStart = last;
-            rg.SBc.decStart = last;
-            last += 4
-            rg.D.decStart = last;
-            rg.d.decStart = last;
-            rg.Dd.decStart = last;
-            rg.Cd.decStart = last;
-            rg.CD.decStart = last;
-            rg.SD.decStart = last;
-            rg.Sd.decStart = last;
-            rg.SCd.decStart = last;
-            rg.SABCD.decStart = last;
-            last += 4
-            rg.E.decStart = last;
-            rg.e.decStart = last;
-            rg.Ee.decStart = last;
-            rg.De.decStart = last;
-            rg.DE.decStart = last;
-            rg.SE.decStart = last;
-            rg.Se.decStart = last;
-            rg.SDe.decStart = last;
-            last += 4
-            rg.F.decStart = last;
-            rg.Z.decStart = last;
-            rg.W.decStart = last;
-            rg.EW.decStart = last;
-            rg.g.decStart = last;
-            rg.Eg.decStart = last;
-            rg.Fg.decStart = last;
-            rg.DF.decStart = last;
-            rg.f.decStart = last;
-            rg.Ff.decStart = last;
-            rg.Ef.decStart = last;
-            rg.EF.decStart = last;
-            rg.SF.decStart = last;
-            rg.Sf.decStart = last;
-            rg.SEf.decStart = last;
-            rg.SABCDEF.decStart = last;
+            rg.Cc.decStart = last;
         }
-
-        //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
-        [
-            rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
-            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
-            rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
-            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
-        ].forEach( pn => {
-            pn.decEnd = rg.f.decStart+3;
-        });
 
 
         //-------------------------------------------------------
