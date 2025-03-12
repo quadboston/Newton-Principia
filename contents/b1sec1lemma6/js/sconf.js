@@ -70,7 +70,7 @@
         //can be any number from -oo to +oo
         sconf.BXBE_per_BY = 0.5;
         //todm ... bug: when decreasing then ratio begins worse:
-        sconf.NON_ZERO_A_PREVENTOR = 0.0001;
+        sconf.NON_ZERO_A_PREVENTOR = 0.01;
         //--------------------------------------
         // \\// lemma 7
         //--------------------------------------
