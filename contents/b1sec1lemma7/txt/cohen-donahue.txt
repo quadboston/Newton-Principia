@@ -9,12 +9,7 @@ With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc�
 the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one another ¦¦ are ratios of equality.
 
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
-
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 
@@ -24,20 +19,12 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one anoth
 }
 *..*
 
-<!--some italic text (especially "d") gets cut off on some mobile browsers unless followed by a space; hence space after italics-->
-For while point ¦B¦¦ <span class="captured-reference id-true-convergence-1">approaches</span> point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood
-always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d&hairsp;&hairsp;¦¦</i>; and let <i>¦bd ¦¦</i> be drawn
-parallel to secant ¦BD¦¦. And let arc ¦arc-Ab¦A<i>cb </i>¦¦ be always similar to arc ¦arc-AB¦ACB¦¦. Then as
-points ¦A¦¦ and ¦B¦¦ come together, the angle
-¦Ab Ad *anch-color*proof¦<i>d</i>A<i>b </i>¦¦ will vanish (by lem. 6), and thus the
-straight lines ¦Ab¦A<i>b</i> ¦¦ and ¦Ad¦A<i>d&hairsp;&hairsp;</i> ¦¦ 
-(which are always finite) and the intermediate arc ¦arc-Ab¦A<i>cb </i>¦¦
-will coincide and therefore will be equal. Hence, the straight lines ¦AB¦¦ and
-¦AD¦¦ and the intermediate arc ¦arc-AB¦ACB¦¦ (which are always proportional to the
-lines ¦Ab¦A<i>b </i>¦¦ and ¦Ad¦A<i>d </i>¦¦ and the arc ¦arc-Ab¦A<i>cb </i>¦¦ respectively) will also vanish and will
-have to one another an ultimate ratio of equality. &nbsp; Q.E.D.
+For as the point ¦B¦¦ approaches the point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d¦¦</i>, and let <i>¦bd ¦¦</i> be drawn parallel to the intersecting line ¦BD¦¦. And let the arc ¦arc-Ab¦A<i>cb </i>¦¦ be always similar to the arc ¦arc-AB¦ACB¦¦. And, the points ¦A¦¦, ¦B¦¦, coming together, the angle ¦Ab Ad *anch-color*proof¦<i>d</i>A<i>b</i>¦¦, by
+the 
+<a target="_blank" href="?conf=sappId=b1sec1lemma6">previous lemma</a>,
+ vanishes; and therefore the straight lines ¦Ab¦A<i>b</i>¦¦, ¦Ad¦A<i>d</i>¦¦, always finite, and the arc ¦arc-Ab¦A<i>cb</i>¦¦ lying between them, coincide, and therefore will be equal. Therefore, both the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying between, will vanish, and will have the ultimate ratio of equality. &nbsp; Q.E.D.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Donahue">Page 83</div>
 
 
 
@@ -53,6 +40,7 @@ and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦
 will ultimately have a ratio of equality to the vanishing arc ¦arc-AB¦ACB¦¦, because, if
 parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ always has a ratio of equality to ¦AD¦¦.
 <br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 *::*corollary|english
@@ -66,6 +54,7 @@ And if through ¦B¦¦ and ¦A¦¦ additional straight lines ¦BE¦¦,
 ¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦
 and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 <br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 *::*corollary|english
@@ -77,4 +66,4 @@ and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 And therefore all these lines can be used for one another
 interchangeably in any argumentation concerning ultimate ratios.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>

@@ -13,7 +13,7 @@
             "contents-list" :
             [
                 'txt/latin.txt',
-                'txt/cohen.txt',
+                'txt/cohen-donahue.txt',
                 'txt/video.txt',
                 'txt/addendum-comment.txt',
             ],
