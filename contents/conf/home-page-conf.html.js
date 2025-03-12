@@ -18,8 +18,7 @@
         buildTableOfContents();
         buildOptions();
         buildAbout();
-        buildLegal();
-        //buildTranslations();
+        buildTranslations();
         buildFeedbackAndTip();
         padBottom();
 
@@ -204,20 +203,19 @@
             var coreText = `
                 <div>
                     <h2>Translations</h2>
-                    <p class="hp-text-section-body">
-                        This site draws upon 2 excellent English translations of Newton’s Principia. As each translation was written with a different aim, they have different strengths. The 2 translations are by Cohen and Donahue.
-                        <br>
-                        In general, Cohen’s translation has been preferred. For purposes of this site, it has these strengths:
-                        <ul>
-                            <li> it typically favors clarity over adherence to what would now be archaic language or notation. For example, what Donahue translates as “subduplicate ratio” is translated by Cohen as “square root”. While both are correct, the clarity of the modern term “square root” is preferred for this site.</li>
-                            <li> it’s a complete translation of the entire Principia. Should this software be expanded to cover text not translated by Donahue, Cohen’s text can serve as a source.</li>
-                        </ul>
-
-However, Donahue’s translation (as published by Densmore) is used when its strengths better align with this site.
-* sometimes Donahue’s text impresses as more clear. For example, what Cohen translates as “secant” (using a less-familiar meaning of the word), Donahue translates as “intersecting line” without any loss of meaning.
-* Donahue argues a careful reading of lemma 4’s corollary leads to using “obtain” rather than Cohen’s “maintain”, and as “obtain” better fits the proof’s logic, Donahue’s translation has been used for lemma 4.
-
-Occasionally a mix of both translations are used.
+                    <p>
+                        This website contains copyrighted material used under the 'fair use' provisions of copyright law (17 U.S.C. § 107) for the purpose of scholarship. No copyright infringement is intended.
+                        <br><br>
+                        This site draws upon two English translations of Newton’s Principia, each with unique strengths: L. Bernard Cohen’s <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><em>A Guide to Newton’s Principia</em></a> and Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><em>Newton’s Principia: The Central Argument</em></a>.
+                        <br><br>
+                        Cohen’s translation is the primary choice for this site due to:<br>
+                        ✔ Modernized clarity – It favors readability over strict adherence to archaic terminology. For instance, Cohen translates “subduplicate ratio” as “square root,” making the concept clearer.<br>
+                        ✔ Completeness – It covers the entire Principia, allowing for future expansion beyond Donahue’s coverage.
+                        <br><br>
+                        Donahue’s translation is preferred when it enhances clarity or accuracy:<br>
+                        ✔ Simplified terminology – Cohen’s “secant” (in an uncommon sense) is more intuitively rendered by Donahue as “intersecting line.”<br>
+                        ✔ Logical precision – In Lemma 4’s corollary, Donahue translates “obtain” instead of Cohen’s “maintain,” which better aligns with the proof’s reasoning.<br><br>
+                        In some cases, elements of both translations are combined.
                     </p>
                 </div>`;
             $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
