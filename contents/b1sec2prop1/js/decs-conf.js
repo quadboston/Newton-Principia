@@ -467,6 +467,34 @@
         //---------------------------------------------------
         // \\// syncs decor and rg
         //---------------------------------------------------
+
+
+
+        //Update decStart for the following decorations if needed, to ensure they start becoming visible for the specified steps.
+        if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
+            rg.SC.decStart = 7;
+
+            [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd, rg.SABCD ].forEach( pn => {
+                pn.decStart = rg.SC.decStart + 4;
+            });
+            [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
+                pn.decStart = rg.SC.decStart + 8;
+            });
+            [ rg.F, rg.Z, rg.W, rg.EW, rg.g, rg.Eg, rg.Fg, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF ].forEach( pn => {
+                pn.decStart = rg.SC.decStart + 12;
+            });
+        }
+
+
+        //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
+        [
+            rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
+            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
+            rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
+            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
+        ].forEach( pn => {
+            pn.decEnd = rg.f.decStart + 3;
+        });
     }
     //----------------------------------------
     // \\// declares decorations
