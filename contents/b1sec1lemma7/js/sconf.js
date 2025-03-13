@@ -70,7 +70,7 @@
         //can be any number from -oo to +oo
         sconf.BXBE_per_BY = 0.5;
         //todm ... bug: when decreasing then ratio begins worse:
-        sconf.NON_ZERO_A_PREVENTOR = 0.005;
+        sconf.NON_ZERO_A_PREVENTOR = 0.0001;
         //--------------------------------------
         // \\// lemma 7
         //--------------------------------------
@@ -479,7 +479,7 @@
               ( opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
-                modorInPicY - 61.085869
+                modorInPicY - 61.08569
 
               ) * ww_factor,
             ]
