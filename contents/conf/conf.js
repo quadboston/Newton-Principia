@@ -127,9 +127,9 @@
             homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
                                       'These models make it easier.<br>',
             homePageSubtitle        : 'A supplement to resources such as<br>' +
-                                      '* Joseph Gallant’s <a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook"><span>Newton’s Principia for the Modern Student</span></a><br>' +
-                                      '* Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><span>Newton’s Principia: The Central Argument</span></a><br>' +
-                                      '* L. Bernard Cohen’s <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><span>A Guide to Newton’s Principia</span></a>',
+                                      '* Joseph Gallant’s <span class="dd-label"><a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook">Newton’s Principia for the Modern Student</span></a><br>' +
+                                      '* Dana Densmore’s <span class="dd-label"><a href="https://www.greenlion.com/books/NewtonPrincipia.html">Newton’s Principia: The Central Argument</span></a><br>' +
+                                      '* L. Bernard Cohen’s <span class="dd-label"><a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">A Guide to Newton’s Principia</span></a>',
                                         /*'<ul>' +
                                             '<li>Joseph Gallant’s <i>Newton’s Principia for the Modern Student</i></li>' +
                                             '<li>Dana Densmore’ <i>Newton’s Principia for the Modern Student</i></li>' +

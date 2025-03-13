@@ -206,7 +206,7 @@
                     <p class="hp-text-section-body">
                         This website contains copyrighted material used under the 'fair use' provisions of copyright law (17 U.S.C. § 107) for the purpose of scholarship. No copyright infringement is intended.
                     </p><p class="hp-small-text-section-body">
-                        This site draws upon two English translations of Newton’s Principia, each with unique strengths: L. Bernard Cohen’s <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><em>A Guide to Newton’s Principia</em></a> and Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><em>Newton’s Principia: The Central Argument</em></a>.
+                        This site draws upon two English translations of Newton’s Principia, each with unique strengths: L. Bernard Cohen’s <span class="dd-label"><a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><em>A Guide to Newton’s Principia</em></a></span> and Dana Densmore’s <span class="dd-label"><a href="https://www.greenlion.com/books/NewtonPrincipia.html"><em>Newton’s Principia: The Central Argument</em></a></span>.
                         <br><br>
                         Cohen’s translation is the primary choice for this site due to:<br>
                         ✔ Modernized clarity – It favors readability over strict adherence to archaic terminology. For instance, Cohen translates “subduplicate ratio” as “square root,” making the concept clearer.<br>
