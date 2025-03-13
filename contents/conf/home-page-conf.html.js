@@ -203,9 +203,9 @@
             var coreText = `
                 <div>
                     <h2>Translations</h2>
-                    <p>
+                    <p class="hp-text-section-body">
                         This website contains copyrighted material used under the 'fair use' provisions of copyright law (17 U.S.C. § 107) for the purpose of scholarship. No copyright infringement is intended.
-                        <br><br>
+                    </p><p class="hp-small-text-section-body">
                         This site draws upon two English translations of Newton’s Principia, each with unique strengths: L. Bernard Cohen’s <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"><em>A Guide to Newton’s Principia</em></a> and Dana Densmore’s <a href="https://www.greenlion.com/books/NewtonPrincipia.html"><em>Newton’s Principia: The Central Argument</em></a>.
                         <br><br>
                         Cohen’s translation is the primary choice for this site due to:<br>

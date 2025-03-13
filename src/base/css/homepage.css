@@ -323,6 +323,10 @@ good: transform : scale(1.1, 1.0);
     font-size: 18px; 
 }
 
+.hp-small-text-section-body {
+    padding: 8px;
+}
+
 .dd-label {
     font-family: var(--default-font);
     color: rgba(255, 255, 255, 0.6);
