@@ -1,11 +1,12 @@
+// This module independently complements similar default module
+// bsl/d8d/d8d-framework.js
+// They have different findDraggee and findDraggee_default
+// functions, for example.
 ( function() {
     var {
         ns, sn, has, haz, eachprop, d8dp,
-        sconf,
-        fconf,
-        fmethods,
-        ssF,
-        sapp, sDomN, sDomF,
+        sapp, sconf, fconf, fmethods,
+        ssF, sDomN, sDomF,
         stdMod, amode,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
@@ -60,6 +61,7 @@
             dragSurface                         : stdMod.simScene,
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
             inn2outparent                       : sDomF.inn2outparent,
+            doCreateDynamicSpinners             : true,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -92,12 +94,13 @@
 
     //====================
     // //\\ finds draggee
+    //      overrides default finder
     //====================
     ///Uses:    sDomF.outparent2inn( testPoint );
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
-    function findDraggee( point_on_dragSurf, dragWraps ) //, dragSurface )
+    function findDraggee( point_on_dragSurf, dragWraps )
     {
         /*
         //vital-for-mobile
@@ -105,7 +108,6 @@
             ( dragWraps[0] && dragWraps[0].createdFramework.frameworkId )
         );
         */
-
         var pOnS = point_on_dragSurf;
         //.if distance to pOnS is "outside" of this par.,
         //.then dragWrap is not "considered" for drag

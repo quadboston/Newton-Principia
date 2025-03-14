@@ -76,6 +76,7 @@
             //exact formulae for circular orbit,
             //(for curiocity reasons, we can compare them
             //later if time allows)
+            //var force = Math.abs(gaix.y[0]);
             var force = 1/(r2*PV*PV*PV);
             /*
             ccc( ix, 
@@ -149,6 +150,15 @@
                     Math.abs(gaix.y[4]),
                     Math.abs(gaix.y[5]),
                 );
+                
+                //let cP = ssD.curve[gaix.ix];
+                //let r = cP.r;
+                /*
+                ccc( ix, 
+                     'r='+r.toFixed(3) + ' s='+Math.abs(ssD.ssigned[ix])
+                     + ' s/min='+Math.abs(gaix.y[1])
+                );
+                */
                 /*
                 let globalRelativeMin_ = Math.min(
                     Math.abs(gaix.y[0]),
