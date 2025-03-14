@@ -77,6 +77,7 @@
 
             ${dclass} .${spinnerClsId}.brc-slider-draggee {
                 ${zIndex}
+                cursor: crosshair;
             }
 
             /*=============================*/
