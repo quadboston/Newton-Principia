@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New</title>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+</head>
+<body>
+    <p><a href="../index.src.html">Back</a></p>
+    <div id="content"></div>
+    <p><a href="../index.src.html">Back</a></p>
+
+    <script>
+        async function generateContent() {
+            const converter = new showdown.Converter();
+            try {
+                const response = await fetch("changelog.md", {cache: "reload"});
+                const text = await response.text();
+                return converter.makeHtml(text);
+            } catch (e) {
+                console.error(e);
+                return "Error loading changelog.";
+            }
+        }
+    
+        async function loadChangeLog() {
+            document.getElementById("content").innerHTML = await generateContent();
+        }
+    
+        loadChangeLog();
+    </script>
+</body>
+</html>

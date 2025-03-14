@@ -167,7 +167,7 @@
 
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
                             open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
-                        <span class="dd-label"><a href="javascript:showChangeLog()">What's New</a></span> 
+                        <span class="dd-label"><a href="changelog/changelog.html">What's New</a></span> 
                     </p>
                 </div>`;
             $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
