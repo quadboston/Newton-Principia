@@ -164,7 +164,6 @@
                             lead programming, addenda, UI<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
-
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
                             open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
                         <span class="dd-label"><a href="changelog/changelog.html">What's New</a></span> 
