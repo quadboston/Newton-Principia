@@ -42,7 +42,10 @@
     {
         var st      = rg.stepIx.value;
         var path    = rg.path.pos;
-        if( st >= path.length -1 ) return; //no second point
+        //Constrain the step value as follows.  Previously "if( st >= path.length -1 ) return;" was run however this caused an issue.
+        //The positions for the “perpendicular” and “rectilinear tangent” lines in P1 “Corollary 1”, didn't get updated when the time 
+        //slider was at its maximum and the delta time slider was dragged to the left.
+        st = Math.min(st, path.length -1);
 
         //perpendicular to unseen lines looks awkward
         //st -= rg.substepIx < 2 ? 1 : 0;
@@ -61,8 +64,8 @@
                 y       : rgP.medpos[1]-10,
             });
         });
-        ssF.pnames2line( 'S', 'P', );
-        ssF.pnames2line( 'T', 'P', );
+        ssF.pnames2line( 'S', 'P', );  // SP
+        ssF.pnames2line( 'T', 'P', );  // TP
         //rg.P.p is unit vector interface
         rg.P.p = mat.p1_to_p2( rg.S.pos, rg.P.pos );
 
