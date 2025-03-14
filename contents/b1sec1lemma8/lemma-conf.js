@@ -18,7 +18,7 @@
                 { src : 'sconf.js' },
                 { src : ref + 'model-functions.js' },
                 { src : ref + 'init-model-parameters.js' },
-                { src : ref + 'media-upcreate.js' },
+                { src : 'media-upcreate.js' },
                 { src : ref + 'state-capturer.js' },
                 { src : 'main-legend.js' },
                 { src : ref + 'amode8captures.js' },
