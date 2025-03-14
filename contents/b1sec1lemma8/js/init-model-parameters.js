@@ -121,14 +121,8 @@
 
                 //patch: instead of fixing arc-Ab calculations properly,
                 //       this code-fragment restricts area where this arc miscalculated:
-                if( fconf.sappId === "b1sec1lemma8" ) {
-                    if( new_unrotatedParameterX < 0.008 ) {
-                        new_unrotatedParameterX = 0.008;
-                    }
-                } else if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
-                    ///we need to put some constraint here, to
-                    ///prevent chord vanishing
-                    new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
+                if( new_unrotatedParameterX < 0.008 ) {
+                    new_unrotatedParameterX = 0.008;
                 }
 
                 ////implements team agreed feature of preventing point B
@@ -138,25 +132,11 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
                 
-                if( fconf.sappId === "b1sec1lemma6" &&
-                    //core essays:
-                    ( !(amode.aspect === 'model') && amode.textSection === 'proof' ) && 
-                    (angleBAM < 0 || cpos[1] > -0.01)
-                ){
-                    adjust_new_unrotatedParameterX_asNeccesary();
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
-                } else {
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-                }
+                sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
                 ///prevents user from playing with too big curves
-                if( fconf.sappId === "b1sec1lemma8" ) {
-                    //.prevents user from playing with too big curves
-                    if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
-                        new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
-                    }
-                } else if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
-                    new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
+                if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
+                    new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
@@ -442,30 +422,21 @@
 
 
         //=================================================
-        // //\\ l7, l8 specific
+        // //\\ l8 specific
         //=================================================
-        if( fconf.sappId === "b1sec1lemma7" ) {
-            //makes line DB proportionally move
-            rg.D.pos[0] = rg.d.pos[0] / magn;
-        } else if( fconf.sappId === "b1sec1lemma8" ) {
-            //RBD line
-            let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-            rg.D.pos[0] = posD[0];
-            rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
-            rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
-            rg.imageOfD.pos[0] = posD[0] * magn;
-        }
+        //RBD line
+        let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
+        rg.D.pos[0] = posD[0];
+        rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
+        rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
+        rg.imageOfD.pos[0] = posD[0] * magn;
 
-        if( amode.subessay !== 'sin(x)/x' && fconf.sappId !== "b1sec1lemma8" ){
-            rg.E.pos[1] = rg.D.pos[1];
-            rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
-        }
         rg.G.pos[1] = rg.B.pos[1];
         rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
         rg.F.pos[1] = rg.B.pos[1];
         rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
         //=================================================
-        // \\// l7, l8 specific
+        // \\// l8 specific
         //=================================================
 
         if( amode.subessay === 'sin(x)/x' ){
@@ -547,36 +518,31 @@
         // \\// intervals for legend in lemma7
         //=================================================
 
+        rg.AB.arcLen = mat.integral.curveLength({
+            fun             : ssD.repoConf[0].fun,
+            curveStartParam : rg.A.pos[0],
+            curveEndParam   : rg.B.pos[0],
+            funIsAVector    : true,
+            calculationAccuracy : 1e-4*rg.AB.abs,
+        });
 
-        if( fconf.sappId === "b1sec1lemma7" || fconf.sappId === "b1sec1lemma8" ) {
-            rg.AB.arcLen = mat.integral.curveLength({
-                fun             : ssD.repoConf[0].fun,
-                curveStartParam : rg.A.pos[0],
-                curveEndParam   : rg.B.pos[0],
-                funIsAVector    : true,
-                calculationAccuracy : 1e-4*rg.AB.abs,
-            });
+        // todo: this curveLength function is returning the wrong value, why?
+        // rg.Ab.arcLen = mat.integral.curveLength({
+        //     fun             : ssD.repoConf[0].fun,
+        //     curveStartParam : rg.A.pos[0],
+        //     curveEndParam   : rg.b.pos[0],
+        //     funIsAVector    : true,
+        //     calculationAccuracy : 1e-4*rg.Ab.abs,
+        // });
 
-            // todo: this curveLength function is returning the wrong value, why?
-            // rg.Ab.arcLen = mat.integral.curveLength({
-            //     fun             : ssD.repoConf[0].fun,
-            //     curveStartParam : rg.A.pos[0],
-            //     curveEndParam   : rg.b.pos[0],
-            //     funIsAVector    : true,
-            //     calculationAccuracy : 1e-4*rg.Ab.abs,
-            // });
-
-            // John's "cheater" method
-            if(rg.AB.abs > 0) {
-                rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
-            }
+        // John's "cheater" method
+        if(rg.AB.abs > 0) {
+            rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
         }
-        ///decorations
-        //if( fconf.sappId === "b1sec1lemma8" ) {
-            let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
-            nspaste( rg.C.pos, C );
-            nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
-        //}
+
+        let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
+        nspaste( rg.C.pos, C );
+        nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
     }
 
     function builds__NewtonTangentAtA_8_L()
