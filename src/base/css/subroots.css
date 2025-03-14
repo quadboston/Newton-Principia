@@ -186,7 +186,8 @@ sup {
 }
 /* visibility per model-mode */
 .textSection--claim .main-legend.corollary,
-.textSection--proof .main-legend.corollary {
+.textSection--proof .main-legend.corollary,
+.main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
 }
 

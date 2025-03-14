@@ -9,17 +9,6 @@
             media_upcreate___part_of_medupcr_basic,
         },
     });
-    return;
-
-
-
-
-
-
-
-
-
-
 
     //=========================================================
     // //\\ lemma custom addons
@@ -28,15 +17,27 @@
     {
         rg.DLeft.pos[0] = -0.3; //extends tangent to the left
         //=================================================
-        // //\\ manages legend CSS-visibility
-        //      by essay-state
+        // //\\ manages legend CSS-visibility by essay-state
+        //      called each time page state changes (tab button clicked, corollary chosen from list)
         //=================================================
-        var rgMainLegend = haz( rg, 'main-legend' );
+        var rgMainLegend = haz( rg, 'main-legend' ); //haz returns param 2 from param 1
         if( rgMainLegend ) {
-            console.log(amode);
             var rgTeoTab = rgMainLegend[ amode.textSection ];
-            if( amode.textSection === 'corollary' && amode.aspect === 'model' ) {
-                $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
+            if( amode.textSection === 'corollary' ) {
+                //console.log(amode.subessay); // "cor-1", "cor-2", "cor-3"
+                const rows = rgTeoTab.tableDom.querySelectorAll('tr');
+                let visibleRows = [];
+                switch(amode.subessay) {
+                    // rows 0 and 1 are captions added and hidden elsewhere
+                    // the rest are defined in main-legend.js as the array lemma7Data.corollary
+                    case 'cor-1': visibleRows = [2, 3, 4, 5]; break;
+                    case 'cor-2': visibleRows = [6, 7, 8, 9, 10, 11, 12, 13]; break;
+                    case 'cor-3': visibleRows = [14, 15, 16, 17, 18, 19, 20]; break;
+                    default: break;
+                }
+                rows.forEach((row, index) => {
+                    row.style.display = visibleRows.includes(index) ? 'table-row' : 'none';
+                });
             } else {
                 $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );
             }
