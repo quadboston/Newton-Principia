@@ -24,7 +24,7 @@ that the angle ¦angleBAD AB AD *anch-color*given¦BAD¦¦ contained by the
 vanish.
 
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435</div>
 
 
 
@@ -42,4 +42,4 @@ vanish.
     contrary to the hypothesis.
 
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435</div>
