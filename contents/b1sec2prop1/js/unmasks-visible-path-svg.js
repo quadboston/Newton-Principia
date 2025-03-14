@@ -73,83 +73,40 @@
         // always shows first Kepler's triangle to show
         // all other Kepler's triangles are equal to it
         $$.$( rg[ 'kepltr-' + 0 ].svgel).removeClass( 'undisplay' );
+        //Also show the path segment.
+        $$.$( rg[ 'pathSegment-' + 0 ].svgel).removeClass( 'undisplay' );
         //--------------------------------------
         // \\// picture drawing began
         //--------------------------------------
 
 
-
         //----------------------------------------------
-        // //\\ makes visible previous path
+        // //\\ Show the following group decorations (eg. purple triangles, forces etc.).
         //----------------------------------------------
-        let pathRacksLen1 = pathRacks.length-1;
-        pathRacks.forEach( (prack, pix ) => {
+        //See "model-groupify-steps.js" function "trajectoryShapes_2_groups__III" where the groups are setup for more details.
 
-            //--------------------------------------------
-            // //\\ makes visible already accomplished path
-            //      by direct svg-undisplay
-            //--------------------------------------------
-            //not used:
-            //$$.$(prack.svgel).removeClass( 'undisplay' );
+        //Each step has decorations that should be shown.  Each step corresponds to a group, and each group has sub-groups which 
+        //correspond to substeps.  Therefore any group before the current step ("stepIx") should show its final sub-group, the 
+        //current step should show its sub-group corresponding to the current substep ("substepIx"), and any remaining groups
+        //shouldn't be shown.
 
-            if( pix > 0 && pix <= stepIx && pix < pathRacksLen1 ) {
-                $$.$( rg[ 'pathSegment-' + (pix-1) ].svgel)
-                    .removeClass( 'undisplay' );
-
-                //makes visible all kepler triangles along the path,
-                //they will be in zebra-colors in proof to distinguish,
-                //if( stepIx < 6 || pix < stepIx-1 ) {
-                    $$.$( rg[ 'kepltr-' + (pix-1) ].svgel)
-                        .removeClass( 'undisplay' );
-                //}
+        //Don't go beyond the current step, the number of triangles that should be shown, or the length of the array.
+        const indexMax = Math.min(stepIx, rg.spatialSteps - 1, pathIx_2_pathSubsteps.length - 1);
+        //Start with the second group (see the "picture drawing began" section above for the first one).
+        for (let index = 1; index <= indexMax; index++) {
+            const fgroups = pathIx_2_pathSubsteps[index];
+            const indexFGroupsMax = fgroups.length-1;
+            
+            const indexSubstep = Math.min((index < stepIx ? indexFGroupsMax : substepIx), indexFGroupsMax);
+            if (indexSubstep > -1) {
+                fgroups[indexSubstep].forEach( (paintee) => {
+                    $$.$(paintee.svgel).removeClass( 'undisplay' );
+                    paintee?.vectorArrowSvg$?.removeClass( 'undisplay' );
+                });
             }
-            //--------------------------------------------
-            // //\\ makes visible  previous forces
-            //      'force-N' and
-            //      'force-N-1' shapes
-            //      by direct svg-undisplay
-            //--------------------------------------------
-            if( pix < stepIx - 1) {
-                var fkey        = 'force-' + pix;
-                var fappliedKey = fkey + '-applied';
-                var tipKey      = fkey+'-1';
-                let rgX         = rg[ fappliedKey ];
-                $$.$(rgX.svgel).removeClass( 'undisplay' );
-                rgX.vectorArrowSvg$.removeClass( 'undisplay' );
-                $$.$(rg[ tipKey ].svgel).removeClass( 'undisplay' );
-            }
-            //--------------------------------------------
-            // \\// makes visible  previous forces
-            // \\// makes visible already accomplished path
-            //--------------------------------------------
-        });
-        //----------------------------------------------
-        // \\// makes visible previous path
-        //----------------------------------------------
-
-
-
-        //----------------------------------------------
-        // //\\ makes visible last fragment's fgroup,
-        //      last steps where already displayed,
-        //      by direct svg-undisplay,
-        //      there can be less fgroups than 4
-        //----------------------------------------------
-        //.sets phase to latest fgroups index === substepIx
-        var fgroups           = pathIx_2_pathSubsteps[ stepIx ];
-        var fgroups_substepIx = Math.min( fgroups.length-1, substepIx );
-        var fgroup            = fgroups[ fgroups_substepIx ];
-        //if( !fgroup ) return;
-        ///this visualizes necessary fragments:
-        if( amode.aspect !== 'claim' ) {
-            fgroup.forEach( (paintee, leafix) => {
-                $$.$(paintee.svgel).removeClass( 'undisplay' );
-                let vectorArrowSvg$ = haz( paintee, 'vectorArrowSvg$' );
-                vectorArrowSvg$ && vectorArrowSvg$.removeClass( 'undisplay' );
-            });
         }
         //----------------------------------------------
-        // \\// makes visible last fragment,
+        // \\// Show the following group decorations (eg. purple triangles, forces etc.).
         //----------------------------------------------
 
 
