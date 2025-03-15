@@ -19,9 +19,6 @@
     * greater rectilinear angle range
     * fixed B being being able to pass rectilinear angle
 
-* Lemma 8
-    * R combined with Φ to simplify presentation
-
 * Proposition 6
     * graph vertical scale always 0 to 100% to better convey minimal force changes
 
