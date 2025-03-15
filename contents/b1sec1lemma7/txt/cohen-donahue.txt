@@ -30,7 +30,7 @@ the
 
 *::*corollary|english
 {
-  "subessayCaption" : "corollary 1",
+  "subessayCaption" : "Corollary 1",
   "subessay" : "cor-1",
   "textSectionCaption" : "Corollaries"
 }
@@ -45,7 +45,7 @@ parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ a
 
 *::*corollary|english
 {
-  "subessayCaption" : "corollary 2",
+  "subessayCaption" : "Corollary 2",
   "subessay" : "cor-2"
 }
 *..*
@@ -59,7 +59,7 @@ and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 
 *::*corollary|english
 {
-  "subessayCaption" : "corollary 3",
+  "subessayCaption" : "Corollary 3",
   "subessay" : "cor-3"
 }
 *..*
