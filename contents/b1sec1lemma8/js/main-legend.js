@@ -17,26 +17,32 @@
 
     var lemma8Data =  {
         claim : [
-            [[ 'RAB', '△RAB : ', '' ]],
-            [[ 'RACB', '△RACB : ', '' ]],
-            [[ 'RAD', '△RAD : ', '' ]],
+            [[ 'RAB', '△RAB : ', 'rg.RAB.area' ]],
+            [[ 'RACB', '△RACB : ', 'rg.RACB.area' ]],
+            [[ 'RAD', '△RAD : ', 'rg.RAD.area' ]],
             [[ '', '', '' ]], 
-            [[ 'RAC', '△RACB / △RAB : ', '' ]],
-            [[ 'RAD', '△RAD / △RAB : ', '' ]],
+            [[ 'RAC', '△RACB / △RAB : ', getRatio('RACB', 'RAB') ]],
+            [[ 'RAD', '△RAD / △RAB : ', getRatio('RAD', 'RAB') ]],
         ]
     };
 
     lemma8Data.proof = [
-        [[ 'rAb', '△rAb : ', '' ]],
-        [[ 'rAcb', '△rAcb : ', '' ]],
-        [[ 'rAd', '△rAd : ', '' ]],
-        [[ '', '', '' ]], 
-        [[ 'rAcb', '△rAcb / △rAb : ', '' ]],
-        [[ 'rAd', '△rAd / △rAb : ', '' ]],
+        [lemma8Data.claim[0][0], [ 'rAb', '△rAb : ', 'rg.rAb.area' ]],
+        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb : ', 'rg.rAcb.area' ]],
+        [lemma8Data.claim[2][0], [ 'rAd', '△rAd : ', 'rg.rAd.area' ]],
+        [lemma8Data.claim[3][0], [ '', '', '' ]], 
+        [lemma8Data.claim[4][0], [ 'rAcb', '△rAcb / △rAb : ', getRatio('rAcb', 'rAb') ]],
+        [lemma8Data.claim[5][0], [ 'rAd', '△rAd / △rAb : ', getRatio('rAd', 'rAb') ]],
     ];
 
-    lemma8Data.corollary = lemma8Data.proof;
+    lemma8Data.corollary = lemma8Data.proof; 
 
+    function getRatio(t1, t2) {
+        return `
+            const r = rg.${t1}.area / rg.${t2}.area;
+            isNaN(r) ? "<span class='limit'>at limit<span>" : r;
+        `;
+    }
 
     // called once per page load
     function create_digital_legend() {
