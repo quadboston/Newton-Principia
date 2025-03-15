@@ -80,7 +80,6 @@ Page 455.
 
 *::*corollary|english
 {
-  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
   "textSectionCaption" : "Corollaries"
@@ -100,7 +99,6 @@ Page 456.
 
 *::*corollary|english
 {
-  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2"
 }
@@ -133,7 +131,6 @@ Page 456.
 
 *::*corollary|english
 {
-  "theorionCaption" : "Corollaries",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
 }
