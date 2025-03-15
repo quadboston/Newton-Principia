@@ -1,8 +1,36 @@
 # Change Log
  
- 
-## Upcoming
-* Proposition 9: improved data section
+
+
+## 2025-3-15 [0.????]
+### Improved (partial list)
+* All models
+    * crosshairs indicate when over draggable point
+    * values use mono font so they don't jitter when changing
+
+* Lemma 6
+    * proof tab: message responds to rectilinear angle reaching to / receding from B
+    * diagram extends arc and tangent to the left of A
+
+* Lemma 7
+    * B can reach A
+    * expanded and color-coded data emphasizes Newton's microscope and limit
+    * diagram extends arc and tangent to the left of A
+
+* Lemma 8
+    * diagram extends arc and tangent to the left of A
+
+* Proposition 1
+    * fixed bugs related to time reaching and receding from its maximum
+    * fixed bugs concerning proof tab highlights not working in some situations
+
+* Proposition 7
+    * graph simplified for core users, while retaining advanced graph for addendum
+    * unused line PK removed
+
+### Added
+* Homepage
+    * added explanation of translations used
 
  
 ## 2025-2-14 [0.13350]
