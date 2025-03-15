@@ -15,7 +15,6 @@
     * non-monotonic curves allowed for improved interaction, with rectangles applied to largest monotonic region
 
 * Lemma 7, proof tab
-    * rectilinar angle reported
     * greater rectilinear angle range
     * fixed B being being able to pass rectilinear angle
 
