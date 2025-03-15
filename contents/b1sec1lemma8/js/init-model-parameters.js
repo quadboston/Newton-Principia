@@ -511,36 +511,69 @@
         ssF.line2abs( 'Ad' );
         ssF.line2abs( 'Ar' );
         ssF.line2abs( 'rd' );
-        ssF.line2abs( 'rb' );
+        ssF.line2abs( 'rb' );        
 
         //todo: is there a better place to initialize these?
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
-        rg.RACB = { area : getArcArea('AB', 'AR', 'RB') };
+        rg.RACB = { area : getArcArea() };
 
         rg.rAb = { area : getTriangleArea('Ab', 'Ar', 'rb') };
         rg.rAd = { area : getTriangleArea('Ad', 'Ar', 'rd') };
-        rg.rAcb = { area : getArcArea('Ab', 'Ar', 'rb') };
+        rg.rAcb = { area : getArcArea() };
 
         function getTriangleArea(A, B, C) {
+            return calcTriangleArea(A, B, C).toFixed(3);
+        }
+
+        function getArcArea() {  
+            const triangleArea = calcTriangleArea('AB', 'AR', 'RB');  
+
+            console.log(rg);
+
+            const points = [ rg.A.pos, rg.B.pos, rg.C.pos ]; 
+            const curveArea = calcBezierArea(points, 100); 
+
+            return (triangleArea + curveArea).toFixed(3);
+        }
+
+        function calcTriangleArea(A, B, C) {
             const a = rg[A].abs;
             const b = rg[B].abs;
             const c = rg[C].abs;
             const s = (a + b + c) / 2;   
             const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); // Heron's formula
-            return area.toFixed(3);
+            return area;
         }
 
-        // todo: this isn't correct, just placeholder
-        // need to calc area under curved side + area of triangle
-        function getArcArea(Arc, B, C) {
-            const a = rg[Arc].arcLen;
-            const b = rg[B].abs;
-            const c = rg[C].abs;
-            const s = (a + b + c) / 2;   
-            const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); 
-            return area.toFixed(3);
-        }
+        function calcBezierArea(points, steps = 100) {
+            const [p0, p1, p2] = points; 
+        
+            // Quadratic Bézier formula
+            function bezierPoint(t) {
+                const x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t ** 2 * p2[0];
+                const y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t ** 2 * p2[1];
+                return [x, y];
+            }
+        
+            // Trapezoidal integration
+            let area = 0;
+            let prevPoint = bezierPoint(0); // Starting point at t = 0
+        
+            for (let i = 1; i <= steps; i++) {
+                const t = i / steps; // Incrementally move along the curve
+                const currPoint = bezierPoint(t);
+        
+                // Approximate the area of the trapezoid
+                const width = currPoint[0] - prevPoint[0];
+                const height = (currPoint[1] + prevPoint[1]) / 2;
+                area += width * height;
+        
+                prevPoint = currPoint; 
+            }
+        
+            return Math.abs(area); // Ensure the area is positive
+        }        
 
         rg.AB.arcLen = mat.integral.curveLength({
             fun             : ssD.repoConf[0].fun,
