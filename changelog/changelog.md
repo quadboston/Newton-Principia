@@ -18,6 +18,8 @@
     * diagram extends arc and tangent to the left of A
 
 * Lemma 8
+    * B can reach A
+    * expanded and color-coded data emphasizes Newton's microscope and limit
     * diagram extends arc and tangent to the left of A
 
 * Proposition 1
