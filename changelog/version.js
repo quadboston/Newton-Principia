@@ -9,19 +9,6 @@
 
     }) ();
 
-function showChangeLog() {
-    const converter = new showdown.Converter();
-    fetch("changelog/changelog.md", {cache: "reload"})
-        .then((response) => response.text())
-        .then((text) => {
-            const tab = window.open('', '_blank');
-            if (tab) {
-                tab.document.body.innerHTML = converter.makeHtml(text);
-            } else {
-                console.error("Failed to open a new tab.");
-            }
-   }).catch((e) => console.error(e));
-}
 
 function decryptEmail(encoded) {
     window.location.href = "mailto:" + atob(encoded);

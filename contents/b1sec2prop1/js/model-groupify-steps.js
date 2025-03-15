@@ -112,7 +112,11 @@
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
 
-                if( pix<pathRacks.length-1 ) {
+                //The following previously checked "pix<pathRacks.length-1", however pathRacks.length varies even when the desired result doesn't.
+                //As the delta time slider is moved to the left pathRacks.length increases, however when moved back to the right pathRacks.length 
+                //doesn't decrease.  This means that the following would sometimes get added for an extra step.  rg.spatialSteps-1 always has the
+                //correct value, and therefore a consistent result.
+                if (pix < rg.spatialSteps - 1) {
                   fgroup.push( rg[ 'kepltr-' + pix ] );
                   fgroup.push( rg[ 'pathSegment-' + (pix) ] );
                 }

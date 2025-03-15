@@ -300,7 +300,11 @@
         rg.substepIx    = stepIx4%4;
         //steps in its original meaning
         var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
-        stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
+        //The following line caused some bugs, has been commented out, and left for reference.  If the delta time slider is moved to the
+        //left of its maximum eg. 0.73, then when the time slider is moved to the left from its maximum, the time shown first increases
+        //then decreases (eg. 9.43 to 10.15 then back to 9.43).  This caused similar increasing/decreasing issues for the “path step” text
+        //in the Proof tab, and showing/hiding the last red force vector in the model area.
+        // stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
         toreg( 'stepIx' )( 'value', stepIx );
         /*
             c cc( 'ctime=' + ctime +

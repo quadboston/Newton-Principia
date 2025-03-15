@@ -41,6 +41,16 @@
                 });
             });
         });
+
+        //Hide all purple triangles.
+        //As the delta time slider is moved to left more purple triangles are added to the model area.  However when its moved back
+        //to the right they are never removed.  Therefore it's important to hide all of them here (then only show the correct ones in 
+        //"unmasks-visible-path-svg.js").
+        rg?.pathRacks?.pathRacks?.forEach( (prack, index) => {
+            const paintee = rg[ 'kepltr-' + (index) ];
+            if (paintee)
+                $$.$(paintee.svgel).addClass( 'undisplay' );
+        });
     }
 
 
