@@ -516,25 +516,22 @@
         //todo: is there a better place to initialize these?
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
-        rg.RACB = { area : getArcArea() };
+        rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
 
         rg.rAb = { area : getTriangleArea('Ab', 'Ar', 'rb') };
         rg.rAd = { area : getTriangleArea('Ad', 'Ar', 'rd') };
-        rg.rAcb = { area : getArcArea() };
+        rg.rAcb = { area : getArcArea('Ab', 'Ar', 'rb', 'A', 'b', 'c') };
 
         function getTriangleArea(A, B, C) {
             return calcTriangleArea(A, B, C).toFixed(3);
         }
 
-        function getArcArea() {  
-            const triangleArea = calcTriangleArea('AB', 'AR', 'RB');  
-
-            console.log(rg);
-
-            const points = [ rg.A.pos, rg.B.pos, rg.C.pos ]; 
+        function getArcArea(A, B, C, p1, p2, p3) {  
+            const triangleArea = calcTriangleArea(A, B, C);  
+            const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ]; 
             const curveArea = calcBezierArea(points, 100); 
-
-            return (triangleArea + curveArea).toFixed(3);
+            const area = triangleArea + curveArea;
+            return area.toFixed(3);
         }
 
         function calcTriangleArea(A, B, C) {
