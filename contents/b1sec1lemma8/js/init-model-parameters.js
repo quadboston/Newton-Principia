@@ -19,26 +19,25 @@
         //---------------------------------------------
         // //\\ saves originals for lemma 8
         //---------------------------------------------
-        if( fconf.sappId === "b1sec1lemma8" ) {
-            let b2B = sconf.b_per_B_original;        
-            nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
-            let D = rg.D.pos;
-            let B = rg.B.pos;
-            rg.rd.originalDirection = [ D[0]-B[0], D[1]-B[1], ];
-            let R = mat.linesCross(
-                rg.rd.originalDirection,
-                B,         //start-1
-                [ 0, -1],  //direction-2'
-                rg.A.pos,  //start-2'
-            );
-            nspaste( rg.R.pos, R );
-            rg.r.pos[0] = rg.R.pos[0] * b2B;
-            rg.r.pos[1] = rg.R.pos[1] * b2B;
-            rg.d.pos[0] = rg.D.pos[0] * b2B;
-            rg.d.pos[1] = rg.D.pos[1] * b2B;
-            nspaste( rg.imageOfR.pos, rg.r.pos );
-            nspaste( rg.imageOfD.pos, rg.d.pos );
-        }
+        let b2B = sconf.b_per_B_original;        
+        nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
+        let D = rg.D.pos;
+        let B = rg.B.pos;
+        rg.rd.originalDirection = [ D[0]-B[0], D[1]-B[1], ];
+        let R = mat.linesCross(
+            rg.rd.originalDirection,
+            B,         //start-1
+            [ 0, -1],  //direction-2'
+            rg.A.pos,  //start-2'
+        );
+        nspaste( rg.R.pos, R );
+        rg.r.pos[0] = rg.R.pos[0] * b2B;
+        rg.r.pos[1] = rg.R.pos[1] * b2B;
+        rg.d.pos[0] = rg.D.pos[0] * b2B;
+        rg.d.pos[1] = rg.D.pos[1] * b2B;
+        nspaste( rg.imageOfR.pos, rg.r.pos );
+        nspaste( rg.imageOfD.pos, rg.d.pos );
+        
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
         rg.D.originalPos = [];
@@ -121,14 +120,8 @@
 
                 //patch: instead of fixing arc-Ab calculations properly,
                 //       this code-fragment restricts area where this arc miscalculated:
-                if( fconf.sappId === "b1sec1lemma8" ) {
-                    if( new_unrotatedParameterX < 0.008 ) {
-                        new_unrotatedParameterX = 0.008;
-                    }
-                } else if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
-                    ///we need to put some constraint here, to
-                    ///prevent chord vanishing
-                    new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
+                if( new_unrotatedParameterX < 0.0065 ) {
+                    new_unrotatedParameterX = 0.0065;
                 }
 
                 ////implements team agreed feature of preventing point B
@@ -138,25 +131,11 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
                 
-                if( fconf.sappId === "b1sec1lemma6" &&
-                    //core essays:
-                    ( !(amode.aspect === 'model') && amode.textSection === 'proof' ) && 
-                    (angleBAM < 0 || cpos[1] > -0.01)
-                ){
-                    adjust_new_unrotatedParameterX_asNeccesary();
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
-                } else {
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-                }
+                sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
                 ///prevents user from playing with too big curves
-                if( fconf.sappId === "b1sec1lemma8" ) {
-                    //.prevents user from playing with too big curves
-                    if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
-                        new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
-                    }
-                } else if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
-                    new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
+                if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
+                    new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
@@ -198,37 +177,35 @@
         //-------------------------------------------------
         // //\\ dragger R
         //-------------------------------------------------
-        if( fconf.sappId === "b1sec1lemma8" ) {
-            rg.R.processOwnDownEvent = function() {
-                sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            };
+        rg.R.processOwnDownEvent = function() {
+            sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+        };
 
-            sDomF.params__2__rgX8dragwrap_gen_list({
-                stdMod,
-                pname : 'R',
-                acceptPos : ( newPos ) =>
-                {
-                    var ach = rg.R.achieved;
-                    newPos[0] = 0;
-                    if(
-                        //patch: instead of fixing arc-Ab calculations properly,
-                        //       this code-fragment restricts area where this arc miscalculated:
-                        newPos[1] > -0.01 ) {
-                        newPos[1] = -0.01;
-                    } else if( newPos[1] < -1.5 ) {
-                        newPos[1] = -1.5;
-                    }
-                    //prepares point B which implies new position of point R
-                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
-                        / ach.achieved[1];
-                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
-                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
-                    }
-                    nspaste( newPos, dir8innerB_2_R( rg.rd.originalDirection ) );
-                    return true;
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname : 'R',
+            acceptPos : ( newPos ) =>
+            {
+                var ach = rg.R.achieved;
+                newPos[0] = 0;
+                if(
+                    //patch: instead of fixing arc-Ab calculations properly,
+                    //       this code-fragment restricts area where this arc miscalculated:
+                    newPos[1] > -0.01 ) {
+                    newPos[1] = -0.01;
+                } else if( newPos[1] < -1.5 ) {
+                    newPos[1] = -1.5;
                 }
-            });
-        }
+                //prepares point B which implies new position of point R
+                rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
+                    / ach.achieved[1];
+                if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
+                    rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                }
+                nspaste( newPos, dir8innerB_2_R( rg.rd.originalDirection ) );
+                return true;
+            }
+        });
         //-------------------------------------------------
         // \\// dragger R
         //-------------------------------------------------
@@ -239,31 +216,29 @@
         //-------------------------------------------------
         // //\\ dragger fi
         //-------------------------------------------------
-        if( fconf.sappId === "b1sec1lemma8" ) {
-            rg.fi.processOwnDownEvent = function() {
-                sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
-            };
-            sDomF.params__2__rgX8dragwrap_gen_list({
-                stdMod,
-                pname : 'fi',
-                acceptPos : ( newPos ) =>
-                {
-                    //-------------------------------------------------------------------
-                    // //\\ corrects approximate mouse point to exact point on the circle
-                    //-------------------------------------------------------------------
-                    var q = Math.atan2( newPos[1], newPos[0] );
-                    var posAbs = mat.unitVector( newPos ).abs;            
-                    //sets handle
-                    newPos[0] = posAbs*Math.cos( q );
-                    newPos[1] = posAbs*Math.sin( q );
-                    //-------------------------------------------------------------------
-                    // \\// corrects approximate mouse point to exact point on the circle
-                    //-------------------------------------------------------------------
-                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ));
-                    return true;
-                }
-            });
-        }
+        rg.fi.processOwnDownEvent = function() {
+            sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
+        };
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname : 'fi',
+            acceptPos : ( newPos ) =>
+            {
+                //-------------------------------------------------------------------
+                // //\\ corrects approximate mouse point to exact point on the circle
+                //-------------------------------------------------------------------
+                var q = Math.atan2( newPos[1], newPos[0] );
+                var posAbs = mat.unitVector( newPos ).abs;            
+                //sets handle
+                newPos[0] = posAbs*Math.cos( q );
+                newPos[1] = posAbs*Math.sin( q );
+                //-------------------------------------------------------------------
+                // \\// corrects approximate mouse point to exact point on the circle
+                //-------------------------------------------------------------------
+                nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ));
+                return true;
+            }
+        });
         //-------------------------------------------------
         // \\// dragger fi
         //-------------------------------------------------
@@ -442,30 +417,21 @@
 
 
         //=================================================
-        // //\\ l7, l8 specific
+        // //\\ l8 specific
         //=================================================
-        if( fconf.sappId === "b1sec1lemma7" ) {
-            //makes line DB proportionally move
-            rg.D.pos[0] = rg.d.pos[0] / magn;
-        } else if( fconf.sappId === "b1sec1lemma8" ) {
-            //RBD line
-            let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-            rg.D.pos[0] = posD[0];
-            rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
-            rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
-            rg.imageOfD.pos[0] = posD[0] * magn;
-        }
+        //RBD line
+        let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
+        rg.D.pos[0] = posD[0];
+        rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
+        rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
+        rg.imageOfD.pos[0] = posD[0] * magn;
 
-        if( amode.subessay !== 'sin(x)/x' && fconf.sappId !== "b1sec1lemma8" ){
-            rg.E.pos[1] = rg.D.pos[1];
-            rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
-        }
         rg.G.pos[1] = rg.B.pos[1];
         rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
         rg.F.pos[1] = rg.B.pos[1];
         rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
         //=================================================
-        // \\// l7, l8 specific
+        // \\// l8 specific
         //=================================================
 
         if( amode.subessay === 'sin(x)/x' ){
@@ -534,49 +500,97 @@
         //-------------------------------------------------------
 
         //=================================================
-        // //\\ intervals for legend in lemma7
+        // //\\ values for legend
         //=================================================
-        ssF.line2abs( 'BG' );
-        ssF.line2abs( 'AD' );
-        ssF.line2abs( 'AE' );
-        ssF.line2abs( 'BF' );
+        ssF.line2abs( 'AD' ); //adds length as rg.AD.abs
+        ssF.line2abs( 'AR' );
+        ssF.line2abs( 'RD' );
+        ssF.line2abs( 'RB' );
         
         ssF.line2abs( 'Ab' );
         ssF.line2abs( 'Ad' );
-        //=================================================
-        // \\// intervals for legend in lemma7
-        //=================================================
+        ssF.line2abs( 'Ar' );
+        ssF.line2abs( 'rd' );
+        ssF.line2abs( 'rb' );        
 
+        //todo: is there a better place to initialize these?
+        rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
+        rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
+        rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
 
-        if( fconf.sappId === "b1sec1lemma7" || fconf.sappId === "b1sec1lemma8" ) {
-            rg.AB.arcLen = mat.integral.curveLength({
-                fun             : ssD.repoConf[0].fun,
-                curveStartParam : rg.A.pos[0],
-                curveEndParam   : rg.B.pos[0],
-                funIsAVector    : true,
-                calculationAccuracy : 1e-4*rg.AB.abs,
-            });
+        rg.rAb = { area : getTriangleArea('Ab', 'Ar', 'rb') };
+        rg.rAd = { area : getTriangleArea('Ad', 'Ar', 'rd') };
+        rg.rAcb = { area : getArcArea('Ab', 'Ar', 'rb', 'A', 'b', 'c') };
 
-            // todo: this curveLength function is returning the wrong value, why?
-            // rg.Ab.arcLen = mat.integral.curveLength({
-            //     fun             : ssD.repoConf[0].fun,
-            //     curveStartParam : rg.A.pos[0],
-            //     curveEndParam   : rg.b.pos[0],
-            //     funIsAVector    : true,
-            //     calculationAccuracy : 1e-4*rg.Ab.abs,
-            // });
-
-            // John's "cheater" method
-            if(rg.AB.abs > 0) {
-                rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
-            }
+        function getTriangleArea(A, B, C) {
+            return calcTriangleArea(A, B, C).toFixed(3);
         }
-        ///decorations
-        //if( fconf.sappId === "b1sec1lemma8" ) {
-            let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
-            nspaste( rg.C.pos, C );
-            nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
-        //}
+
+        function getArcArea(A, B, C, p1, p2, p3) {  
+            const triangleArea = calcTriangleArea(A, B, C);  
+            const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ]; 
+            const curveArea = calcBezierArea(points, 100); 
+            const area = triangleArea + curveArea;
+            return area.toFixed(3);
+        }
+
+        function calcTriangleArea(A, B, C) {
+            const a = rg[A].abs;
+            const b = rg[B].abs;
+            const c = rg[C].abs;
+            const s = (a + b + c) / 2;   
+            const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); // Heron's formula
+            return area;
+        }
+
+        function calcBezierArea(points, steps = 100) {
+            const [p0, p1, p2] = points; 
+        
+            // Quadratic Bézier formula
+            function bezierPoint(t) {
+                const x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t ** 2 * p2[0];
+                const y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t ** 2 * p2[1];
+                return [x, y];
+            }
+        
+            // Trapezoidal integration
+            let area = 0;
+            let prevPoint = bezierPoint(0); // Starting point at t = 0
+        
+            for (let i = 1; i <= steps; i++) {
+                const t = i / steps; // Incrementally move along the curve
+                const currPoint = bezierPoint(t);
+        
+                // Approximate the area of the trapezoid
+                const width = currPoint[0] - prevPoint[0];
+                const height = (currPoint[1] + prevPoint[1]) / 2;
+                area += width * height;
+        
+                prevPoint = currPoint; 
+            }
+        
+            return Math.abs(area); // Ensure the area is positive
+        }        
+
+        rg.AB.arcLen = mat.integral.curveLength({
+            fun             : ssD.repoConf[0].fun,
+            curveStartParam : rg.A.pos[0],
+            curveEndParam   : rg.B.pos[0],
+            funIsAVector    : true,
+            calculationAccuracy : 1e-4*rg.AB.abs,
+        });
+
+        if(rg.AB.abs > 0) {
+            rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
+        }
+
+        //=================================================
+        // \\// valuess for legend
+        //=================================================
+
+        let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
+        nspaste( rg.C.pos, C );
+        nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );       
     }
 
     function builds__NewtonTangentAtA_8_L()

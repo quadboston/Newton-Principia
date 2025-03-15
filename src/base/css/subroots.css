@@ -186,13 +186,22 @@ sup {
 }
 /* visibility per model-mode */
 .textSection--claim .main-legend.corollary,
-.textSection--proof .main-legend.corollary {
+.textSection--proof .main-legend.corollary,
+.main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
 }
 
 .main-legend td {
     padding:1px;
     /* for dev mode: border: 1px solid black; */
+}
+
+.main-legend .green {
+    color: var(--color-green) !important;
+}
+
+.main-legend .blue {
+    color: var(--color-blue) !important;
 }
 
 
@@ -204,19 +213,29 @@ sup {
 }
 .main-legend td.table-caption {
     padding-bottom:4px;
-    text-align:center;
+    text-align:center !important;
     font-weight:bold;
 }
 .main-legend td.align-to-right,
-.main-legend td.value {
+.main-legend tr td:first-child {
     text-align:right;
-} 
+}
+.main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
+    min-width: 7em !important;
+    text-align:right;
+}
 .main-legend td.value {
     font-family: var(--data-numerical-font);
+    width: 5rem;
+    padding-left: 1rem !important;
+    height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
 }
 .main-legend .eq-sign {
     text-align:center;
-}    
+}  
+.main-legend .limit {
+    font-family: var(--font-condensed);
+}  
 
 
 /*------------*/

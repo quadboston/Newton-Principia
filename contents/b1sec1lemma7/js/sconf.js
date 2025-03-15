@@ -479,7 +479,7 @@
               ( opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
-                modorInPicY - 61.085869
+                modorInPicY - 61.08569
 
               ) * ww_factor,
             ]
