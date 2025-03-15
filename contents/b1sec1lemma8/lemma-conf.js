@@ -2,35 +2,30 @@
     var ns = window.b$l;
     var fapp = ns.sn('fapp' ); 
     fapp.lemmaConfig = lemmaConfig;    
-    return;
 
-
-
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         var ref = '../../b1sec1lemma6/js/';
         return {
-            "contents-list" :
-            [
+            "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
                 'txt/addendum.txt',
                 'txt/video.txt',
             ],
-            //optional additional reference html
-            referencesForAllLemmaEssays : '',
 
-            codesList :
-            [
+            codesList : [
                 //todm: automate this list
                 { src : 'sconf.js' },
                 { src : ref + 'model-functions.js' },
-                { src : ref + 'init-model-parameters.js' },
-                { src : ref + 'media-upcreate.js' },
+                { src : 'init-model-parameters.js' },
+                { src : 'media-upcreate.js' },
                 { src : ref + 'state-capturer.js' },
-                { src : ref + 'main-legend.js' },
-                { src : ref + 'amode8captures.js' },
+                { src : 'main-legend.js' },
+                { src : 'amode8captures.js' },
             ],
+
+            //optional additional reference html
+            referencesForAllLemmaEssays : '',
         };
     }
 
