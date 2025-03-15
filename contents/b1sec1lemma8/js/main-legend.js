@@ -4,6 +4,7 @@
         eachprop,
         fconf,
         sconf,
+        sDomF,
         rg,
         ssF,
         stdMod,
@@ -21,8 +22,8 @@
             [[ 'RACB', '△RACB : ', 'rg.RACB.area' ]],
             [[ 'RAD', '△RAD : ', 'rg.RAD.area' ]],
             [[ '', '', '' ]], 
-            [[ 'RAC', '△RACB / △RAB : ', getRatio('RACB', 'RAB') ]],
-            [[ 'RAD', '△RAD / △RAB : ', getRatio('RAD', 'RAB') ]],
+            [[ 'RACB-RAB', '△RACB / △RAB : ', getRatio('RACB', 'RAB') ]],
+            [[ 'RAD-RAB', '△RAD / △RAB : ', getRatio('RAD', 'RAB') ]],
         ]
     };
 
@@ -61,11 +62,22 @@
             tableCaption    : '', 
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            textSection        : key,
+            textSection     : key,
             rowsCount,
             clustersCount,
             makesBodyCluster,
             updatesDataInCell,
+        });
+
+        //todo: where is data colour actually being set??
+        const greenData = ['RAB', 'RACB', 'RAD', 'RACB-RAB', 'RAD-RAB'];
+        greenData.forEach( (id) => {
+            let cssName = sDomF.topicIdUpperCase_2_underscore( id ); //converts to format applied by table generator
+            console.log(cssName);
+            let cells = document.querySelectorAll('.tp-' + cssName); //html table cells
+            cells.forEach( (cell) => {
+                cell.classList.add('green');
+            });
         });
 
         // called once per clustersCount from /media-model/main-legend.js
