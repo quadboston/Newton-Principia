@@ -115,17 +115,19 @@
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
         });
 
-
         ///============================================================
         /// creates point dragger
         ///============================================================
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
+        wrkwin.dividor.makeCentralDiskInvisible = true;
         D8D_fw.pointWrap_2_dragWrap_BSLd8d2PIPE({
             pointWrap           : wrkwin.dividor,
             update_decPoint     : 'update_decPoint_default',
             doProcess           : doProcess,
             dragHandleDOM       : mediaHorizontalHandler,
+            //already a default spinnerCursorGrab   : 'grab',
+            //already a default spinnerCursorGrabbed: 'grabbing',
         });
 
         //Load the following now that the dragger is setup.
@@ -146,14 +148,16 @@
         {
             switch( arg.down_move_up ) {
                 case 'down':
-                    //Store the partition handle's start position, also update the sessionStorage.
+                    //Store the partition handle's start position,
+                    //also update the sessionStorage.
                     wrkwin.dividor.achieved.achieved = nspaste([], dividorFractions);
                     wrkwin.storePosPartitionHandle();
                     break;
                 case 'move':
                     //vital-for-mobile
                     //nsd('mv: res and sl');
-                    //Move the partition handle, and adjust the width of the text and model areas.
+                    //Move the partition handle, and adjust the width
+                    //of the text and model areas.
                     const xOffset = arg.surfMove[0];
                     wrkwin.start8finish_media8Ess8Legend_resize__upcreate(xOffset);
                     break;

@@ -4,6 +4,7 @@
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
     var haz    = ns.haz;
+    var decorCount_debug = 0;
 
     dpdec.adds_decorSpinner = adds_decorSpinner;
     return;
@@ -38,8 +39,11 @@
             tooltip,
         } = (opt||{});
 
-        var { spinnerClsId, dragDecorColor, individual_zindex } =
-            ( addFeaturesToDecPoint || {} );
+        var { spinnerClsId, dragDecorColor, individual_zindex,
+              spinnerCursorGrab,
+              spinnerCursorGrabbed,
+        } = ( addFeaturesToDecPoint || {} );
+        spinnerClsId = spinnerClsId || 'dec-spinner-id='+decorCount_debug;
         //----------------------------------------------
         // \\// api
         //----------------------------------------------
@@ -50,14 +54,15 @@
         dpdec.createGlobal( makeCentralDiskInvisible ); //idempotent
         var cls = 'brc-slider-draggee';
         if( addFeaturesToDecPoint ) {
-            if( dragDecorColor ) {
-                dpdec.creates_spinnerOwnCss(
-                    spinnerClsId,
-                    dragDecorColor, //individual_color for arrows, and disk
-                    parent_classes,
-                    individual_zindex,
-                );
-            }
+            dpdec.creates_spinnerOwnCss(
+                decorCount_debug,
+                spinnerClsId,
+                dragDecorColor, //individual_color for arrows, and disk
+                parent_classes,
+                individual_zindex,
+                spinnerCursorGrab,
+                spinnerCursorGrabbed,
+            );
             cls += ' ' + spinnerClsId;
         }
         if( orientation === 'horiz' ) {
@@ -101,6 +106,7 @@
         //----------------------------------------------
         // \\// builds 3 DOM elements
         //----------------------------------------------
+        decorCount_debug++;
         return decPoint;
     }
 

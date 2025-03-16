@@ -53,6 +53,10 @@
         // \\// tp color
         //===================================================
 
+        //diagram drag handle mouse pointer styles
+        spinnerCursorGrab : 'crosshair',
+        spinnerCursorGrabbed : 'crosshair',
+  
         SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
 
         default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere

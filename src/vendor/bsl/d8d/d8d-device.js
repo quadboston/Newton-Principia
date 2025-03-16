@@ -75,11 +75,9 @@
         !doGiveClickEvent && addEvents();
 
         let movesAndFindsHandle = haz( arg, 'movesAndFindsHandle' );
-        if( movesAndFindsHandle ) {
-            if( !mouseMoveCount ) {
-                att.addEventListener( 'mousemove', movesAndFindsHandle );
-                mouseMoveCount++;
-            }
+        if( movesAndFindsHandle &&  !mouseMoveCount ) {
+            att.addEventListener( 'mousemove', movesAndFindsHandle );
+            mouseMoveCount++;
         }
         var returned = {
             removeEvents,

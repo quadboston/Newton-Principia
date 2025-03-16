@@ -10,7 +10,6 @@
         stdMod, amode,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
-        setModule
     });
     sDomF.createsFW__8__executes_dragWr_gens_list =
           createsFW__8__executes_dragWr_gens_list;
@@ -21,12 +20,6 @@
 
 
 
-
-
-
-    function setModule()
-    {
-    }
 
 
     //==========================================
@@ -62,6 +55,8 @@
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
             inn2outparent                       : sDomF.inn2outparent,
             doCreateDynamicSpinners             : true,
+            spinnerCursorGrab       : sconf.spinnerCursorGrab || 'crosshair',
+            spinnerCursorGrabbed    : sconf.spinnerCursorGrabbed || 'crosshair',
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -69,8 +64,8 @@
         //other places for this property are:
         //  processDownEvent
         //  processUpEvent
-        //todm: do this by adding class "grab" to medRoot
         if( !haz( sconf, 'mediaMoverPointDisabled' ) ){
+            //vital for appearing of 'grab" right at the launch
             stdMod.simScene.style.cursor = 'grab';
         }
         //==========================================

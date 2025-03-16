@@ -230,6 +230,7 @@
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
+                draggableY  : true,
             },
 
             Q : {

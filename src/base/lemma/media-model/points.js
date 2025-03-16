@@ -146,20 +146,6 @@
                              !haz( pt, 'displayAlways' ) && haz( pt, 'undisplay' )
             );
         }
-
-        if( pt.draggableX || pt.draggableY ) {
-            if( haz( pointWrap, 'hideD8Dpoint' ) ||
-                haz( pointWrap, 'd8d_find_is_LOCKED' )
-            ){
-                pt.svgel$.removeClass( 'grab' );
-            } else {
-                pt.svgel$.addClass( 'grab' );
-            }
-        }
-
-
-
-
         pt.pointIsAlreadyDressed = true;
         return pt;
     }
