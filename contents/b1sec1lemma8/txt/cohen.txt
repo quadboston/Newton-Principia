@@ -15,7 +15,7 @@ and the tangent ¦AD¦¦, constitute three triangles
 then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the ¦AR AB BR arc-AB RD AD¦ triangles ¦¦ as they vanish
 are similar in their ultimate form, and that their ultimate ratio is one of equality.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 
@@ -45,7 +45,7 @@ also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 *::*proof|english
@@ -73,7 +73,7 @@ also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
 and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 
@@ -86,7 +86,6 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 }
 *..*
 
-
-
 And hence ¦AR AB BR arc-AB RD AD¦those triangles¦¦ can be used for one another interchangeably in any argumentation concerning ultimate ratios.
-
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437</div>

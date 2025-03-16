@@ -16,7 +16,7 @@
         "contents-list" :
         [
             'txt/latin.txt',
-            'txt/english.txt',
+            'txt/cohen.txt',
             'txt/addendum.txt',
         ],
 
