@@ -47,19 +47,20 @@
             dontStopEndAfteshocks,
             attachee,
             doGiveClickEvent,
+            doCreateDynamicSpinners,
     }) {
 
         var DRAGGEE_HALF_SIZE = 40;
-
         findDraggee = findDraggee || findDraggee_default;
         handle2dragsurf_pos = handle2dragsurf_pos || handle2dragsurf_pos_default;
 
         var frameworkId = createdFrameworks.length;
 
         var selectedElement_flag;
+        var activeDecPoint = null;
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
-        var { givenClickEvent } = d8dp.creFW_BSLd8d1BASE({
+        var { givenClickEvent, eventPos_2_surfacePos } = d8dp.creFW_BSLd8d1BASE({
             surface : dragSurface,
 
 
@@ -85,6 +86,8 @@
             dontStopEndAfteshocks,
             attachee,
             doGiveClickEvent,
+            
+            movesAndFindsHandle : doCreateDynamicSpinners && movesAndFindsHandle,
         });
 
         var createdFramework = 
@@ -104,6 +107,42 @@
 
 
 
+        function movesAndFindsHandle( rootEvent )
+        {
+            //----------------------------------------------------------
+            // //\\ possible update for mobile for spinner
+            //----------------------------------------------------------
+            ///touch-down
+            //if( rootEvent.touches && rootEvent.touches.length === 1 ) {
+            //    var childEvent = rootEvent.touches[0];
+            //var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
+            //----------------------------------------------------------
+            // \\// possible update for mobile for spinner
+            //----------------------------------------------------------
+
+            var point_on_dragSurf = eventPos_2_surfacePos( rootEvent );
+                
+            //seems wrong: childEvent.preventDefault(); //trying for mobiles
+            //forbidden = do_complete_down( childEvent, ev );
+            let spinnerCandidate = findDraggee(
+                    point_on_dragSurf,
+                    dragWraps,
+                    dragSurface
+            );
+            const decPoint = haz( spinnerCandidate, 'decPoint' );
+            if( decPoint ) {
+                if( activeDecPoint ) {
+                    activeDecPoint.style.display = 'none';
+                    //c cc( 'sets ' + activeDecPoint.className +
+                    //     ' to ' + activeDecPoint.style.display
+                    //);
+                }
+                decPoint.style.display =
+                    spinnerCandidate.pointWrap.hideD8Dpoint ? 'none' : 'block';
+                activeDecPoint = decPoint;
+                //c cc( 'sets ' + decPoint.className + ' to ' + decPoint.style.display );
+            }
+        }
 
 
 
@@ -137,7 +176,7 @@
         {
             dragWraps.forEach( function( dragWrap ) {
                 var uP = dragWrap.update_decPoint;
-                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap );
+                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap, 'nonefy' );
                 //c cc( 'all dec end: ', dragWrap.decPoint );
             });
         }
@@ -266,8 +305,8 @@
             //    ccc( 'dragWrap is created for ' + pointWrap.pname );
             //}
 
-            //todo ... needed?
-            update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
+            //nonefy is needed
+            update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap, 'nonefy' );
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
@@ -311,8 +350,14 @@
                     return appFeedback;
                 }
                 //ccc( 'doProcessWrap: allowed' );
-                update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap );
                 if( arg.down_move_up === 'up' ) {
+                    const decPoint = haz( selectedElement_flag, 'decPoint' );
+                    if( decPoint ) {
+                        update_decPoint( decPoint,
+                                         dragSurface, selectedElement_flag,
+                                         //'nonenfy'
+                        );
+                    }
                     ////this cleans up drag and drop lifecycle
                     selectedElement_flag=null;
                 }
@@ -321,12 +366,12 @@
             // \\// tiny wrap around doProcess
             //=====================================================
 
-            ///updates spinner position;
-            ///uses already existing-on-drag-surface handle to synch with it;
+            ///updates spinner position.
+            ///uses already existing-on-drag-surface handle, "dragWrap", to synch with it.
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
-            ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss
-            function update_decPoint_default( decPoint, dragSurface, pointWrap )
+            ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss.
+            function update_decPoint_default( decPoint, dragSurface, pointWrap, nonenify )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
                 decPoint.style.left = dompos[0] + 'px';            
@@ -334,7 +379,7 @@
                 if( pointWrap.hideD8Dpoint ) {
                     decPoint.style.display = 'none';
                 } else {
-                    decPoint.style.display = 'block';
+                    decPoint.style.display = nonenify ? 'none' : 'block';
                 }
             }
 
@@ -346,12 +391,13 @@
             ///does position spinner by converting
             ///inner-media-position to dom-position
             ///and setting spinner ot this dom-position
-            function update_decPoint_inn2outparent()
+            function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify)
             {
-                var dompos          = inn2outparent.call( pointWrap );
-                //ccc( pointWrap.rgId, pointWrap.pos, dompos );
+                var dompos   = inn2outparent.call( pointWrap );
+                //c cc( pointWrap.rgId, pointWrap.pos, dompos );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top  = dompos[1] + 'px';
+
                 if( !pointWrap.ignore_hideD8Dpoint_for_CSS ) {
                     if( pointWrap.hideD8Dpoint ) {
                         decPoint.style.display = 'none';
@@ -359,7 +405,7 @@
                         //    ccc( pointWrap.rgId +
                         //         ' none: left=' + decPoint.style.left, decPoint );
                     } else {
-                        decPoint.style.display = 'block';
+                        decPoint.style.display = !!nonenify ? 'none' : 'block';
                         //if( pointWrap.pname === 'media-mover' )
                         //    ccc( pointWrap.rgId +
                         //         ' block: left=' + decPoint.style.left, decPoint );
@@ -436,8 +482,6 @@
             }
         }
 
-
-
         //====================
         // //\\ finds draggee
         //====================
@@ -466,11 +510,6 @@
             var closestDragPriority = 0;
             dragWraps.forEach( function( dragWrap, dix ) {
                 var pointWrap   = dragWrap.pointWrap;
-
-                //if( pointWrap.pname === 'fret-0-0' ) {
-                //    ccc( 'findDraggee_default', pointWrap.pname, pointWrap );
-                //}
-
                 if( haz( pointWrap, 'hideD8Dpoint' ) ||
                     haz( pointWrap, 'd8d_find_is_LOCKED' )  ) {
                     return;

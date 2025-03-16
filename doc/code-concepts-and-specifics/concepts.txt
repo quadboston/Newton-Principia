@@ -1,0 +1,16 @@
+
+The application concept is dynamic css assuming this is good for educational software.
+
+Whyle it is completely fine to have both static css (like, at the moment, basic/css ), the coder should know, there are <style> tags which change from aspect to aspect, or from corollary to corollary, or when Δt changes a value. And this cannot be done with static css variables.
+
+For example, at the moment in file base/roots.css
+
+:root {
+    /* constants */
+    --color-main : #202936;
+
+variable color-main cannot be changed by user's action or when body's orbit enters near other body.
+
+Some dynamic css constructs have <style> id in html <head>, like for example, glocss-id-force or glocss-id-sagitta (see picture).
+
+
