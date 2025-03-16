@@ -21,10 +21,14 @@
 
     ////**********************************************************************************
     ////legendScript-format:
-    ////clusters separated with <space>:
-    ////'topic,caption,JS-expression-of-value-in-local-JS-context <space> next-token ... '
-    ////<space> is vital, no <space> in clusters,
     ////
+    ////clusters separated with <space>:
+    ////'class-attribute-of-td,caption,JS-expression-of-value-in-local-JS-context <space> next-cluster ... '
+    ////<space> is vital, no <space> inside clusters,
+    ////
+    ////class-attribute-of-td will be converted to class attribute of table's cell td,
+    ////the "td-" will be prepend, <_> will be replaced with space
+    ////to divide classes in class attribute of td,
     ////see: function dataSourceParsed1__2__makesBodyCluster({
     ////
     ////'_' is replaced with ' ' in caption,
