@@ -94,9 +94,12 @@ sup {
 /* ||// media pane                */
 /*================================*/
 
+/* to be set dynamicallys */
+/*
 .bsl-sim-superscene .grab {
-    cursor : grab;
+   cursor : grab; 
 }
+*/
 
 #bsl-resizable-handle {
     display: flex;
@@ -106,7 +109,7 @@ sup {
     padding: 0 8px;
     position: absolute;
     height: 100%;
-    cursor: grab;
+    cursor: grab; /* overrides dynamic overlay */
 }
 
 #bsl-resizable-handle:hover {

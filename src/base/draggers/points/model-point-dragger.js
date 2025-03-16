@@ -101,7 +101,6 @@
         if( ns.h( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             //// dragging model as a whole "inside media"
-
             //sconf.originX_onPicture - original position remains intact
             //sconf.modorInPicX - moves as user does "move model origin"
             sconf.modorInPicX = this.achieved.achieved[0] + dragMove[0];
@@ -153,10 +152,9 @@
             //// from object to array:
             this.achieved.achieved = ns.paste( [], this.pos );
         }
-        $$.$( this.svgel ).addClass( 'grabbing' );  //seems redundant
-        if( ns.haz( arg.dragWrap, 'decPoint' ) ) {
-            $$.$( arg.dragWrap.decPoint ).addClass( 'grabbing' );
-        }
+
+        //already done on low level of d8d-framework
+        //$$.$( arg.dragWrap.decPoint ).addClass( 'grabbing' );
         haff( this, 'processOwnDownEvent' );
     }
 
@@ -174,12 +172,16 @@
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
             }
+            //vital to toggle grab from grabbing:
             stdMod.simScene.style.cursor = 'grab';
         }
-        $$.$( this.svgel ).removeClass( 'grabbing' ); //seems redundant
-        if( ns.haz( arg.dragWrap, 'decPoint' )) {
-            $$.$( arg.dragWrap.decPoint ).removeClass( 'grabbing' );
-        }
+
+        //already done on low level of d8d-framework
+        //$$.$( arg.dragWrap.decPoint ).removeClass( 'grabbing' );
+
+        //possibly good to make dynamic coursor change
+        //$$.$( this.svgel ).removeClass( 'grabbing' ); //seems redundant
+
         haff( this, 'processOwnUpEvent' );
         stdMod.model8media_upcreate(); //capital update, todo: check
     }

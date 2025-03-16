@@ -4,7 +4,7 @@
 //        which is supplied at initialization time.
 ( function() {
     var {
-        ns, d8dp, haz,
+        ns, d8dp, haz, $$,
         dpdec,
     } = window.b$l.nstree();
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
@@ -39,7 +39,7 @@
 
             //only for two things:
             //  findDraggee_default()
-            //  spinner((update_decPoint_default))
+            //  spinner((u pdate_decPoint_default))
             handle2dragsurf_pos,
 
             dontStopDownAfteshocks,
@@ -48,6 +48,8 @@
             attachee,
             doGiveClickEvent,
             doCreateDynamicSpinners,
+            spinnerCursorGrab,
+            spinnerCursorGrabbed,
     }) {
 
         var DRAGGEE_HALF_SIZE = 40;
@@ -58,6 +60,7 @@
 
         var selectedElement_flag;
         var activeDecPoint = null;
+        var spinnerCandidate = null;
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
         var { givenClickEvent, eventPos_2_surfacePos } = d8dp.creFW_BSLd8d1BASE({
@@ -73,7 +76,8 @@
             /*
                             * *api-doProcessWrap 
                             down_move_up    : down_move_up, //flag, string
-                            surfMove        : surfMove,     //possibly = move from start to current,
+                            //possibly = move from start to current,                                    
+                            surfMove        : surfMove,
                             moveIncrement   : moveIncrement,
                             dragWrap        : selectedElement_flag,
                             point_on_dragSurf,
@@ -124,23 +128,35 @@
                 
             //seems wrong: childEvent.preventDefault(); //trying for mobiles
             //forbidden = do_complete_down( childEvent, ev );
-            let spinnerCandidate = findDraggee(
-                    point_on_dragSurf,
-                    dragWraps,
-                    dragSurface
+            spinnerCandidate = findDraggee(
+                point_on_dragSurf,
+                dragWraps,
+                dragSurface
             );
+            //very good for debug:
+            //c cc( spinnerCandidate.pointWrap.pname  );
+
+            if( activeDecPoint ) {
+                activeDecPoint.style.display = 'none';
+            }
             const decPoint = haz( spinnerCandidate, 'decPoint' );
-            if( decPoint ) {
-                if( activeDecPoint ) {
-                    activeDecPoint.style.display = 'none';
-                    //c cc( 'sets ' + activeDecPoint.className +
-                    //     ' to ' + activeDecPoint.style.display
-                    //);
+
+            //if( spinnerCandidate.pointWrap.pname === 'P' )
+            //c cc( spinnerCandidate.pointWrap.pname, decPoint );
+
+            if( decPoint && spinnerCandidate.pointWrap.pname !== 'media-mover' ) {
+                if( spinnerCandidate.pointWrap.hideD8Dpoint ) {
+                    decPoint.style.display = 'none';
+                } else {
+                    decPoint.style.display = 'block';
+                    //vital
+                    //html global style tag does not do this:
+                    dragSurface.style.cursor = spinnerCursorGrab || 'grab';
+
+                    activeDecPoint = decPoint;
                 }
-                decPoint.style.display =
-                    spinnerCandidate.pointWrap.hideD8Dpoint ? 'none' : 'block';
-                activeDecPoint = decPoint;
-                //c cc( 'sets ' + decPoint.className + ' to ' + decPoint.style.display );
+            } else {
+                dragSurface.style.cursor = 'grab';
             }
         }
 
@@ -176,7 +192,9 @@
         {
             dragWraps.forEach( function( dragWrap ) {
                 var uP = dragWrap.update_decPoint;
-                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap, 'nonefy' );
+                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
+                          //'nonenify'
+                );
                 //c cc( 'all dec end: ', dragWrap.decPoint );
             });
         }
@@ -212,6 +230,9 @@
             var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
             var update_decPoint      = api.update_decPoint;
             var nospinner            = api.nospinner;
+            var grabffect            = api.spinnerCursorGrab || spinnerCursorGrab;
+            var grabbedffect         = api.spinnerCursorGrabbed || spinnerCursorGrabbed;
+            
             var orientation          = api.orientation;
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
@@ -245,10 +266,9 @@
                     );
 
                 if( spinnerClsId ) {
-
-
                     //don't do this here: not a d8d concern:
-                    //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore( spinnerClsId );
+                    //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore(
+                    //spinnerClsId );
                     var cssIdLowCase = spinnerClsId;
 
                     addFeaturesToDecPoint = Object.assign(
@@ -257,6 +277,8 @@
                                 dragDecorColor      : dragDecorColor,
                                 spinnerClsId        : cssIdLowCase,
                                 individual_zindex   : individual_zindex,
+                                spinnerCursorGrab   : grabffect,
+                                spinnerCursorGrabbed : grabbedffect,
                             }
                     );
                 }
@@ -306,7 +328,9 @@
             //}
 
             //nonefy is needed
-            update_decPoint && update_decPoint( decPoint, dragSurface, pointWrap, 'nonefy' );
+            update_decPoint &&
+                update_decPoint( decPoint, dragSurface, pointWrap,
+                                 doCreateDynamicSpinners ? 'nonenify' : 'block' );
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
@@ -376,10 +400,17 @@
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';
-                if( pointWrap.hideD8Dpoint ) {
+                
+                if( nonenify === 'nonenify' ) {
                     decPoint.style.display = 'none';
-                } else {
-                    decPoint.style.display = nonenify ? 'none' : 'block';
+                } else if( nonenify === 'block' ) {
+                    if( !pointWrap.ignore_hideD8Dpoint_for_CSS &&
+                        pointWrap.hideD8Dpoint
+                    ) {
+                        decPoint.style.display = 'none';
+                    } else {
+                        decPoint.style.display = 'block';
+                    }
                 }
             }
 
@@ -398,17 +429,15 @@
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top  = dompos[1] + 'px';
 
-                if( !pointWrap.ignore_hideD8Dpoint_for_CSS ) {
-                    if( pointWrap.hideD8Dpoint ) {
+                if( nonenify === 'nonenify' ) {
+                    decPoint.style.display = 'none';
+                } else if( nonenify === 'block' ) {
+                    if( !pointWrap.ignore_hideD8Dpoint_for_CSS &&
+                        pointWrap.hideD8Dpoint
+                    ) {
                         decPoint.style.display = 'none';
-                        //if( pointWrap.pname === 'M' )
-                        //    ccc( pointWrap.rgId +
-                        //         ' none: left=' + decPoint.style.left, decPoint );
                     } else {
-                        decPoint.style.display = !!nonenify ? 'none' : 'block';
-                        //if( pointWrap.pname === 'media-mover' )
-                        //    ccc( pointWrap.rgId +
-                        //         ' block: left=' + decPoint.style.left, decPoint );
+                        decPoint.style.display = 'block';
                     }
                 }
             }
@@ -443,15 +472,20 @@
                         ////ns.d(ww);
                         return true;
                     }
-                    selectedElement_flag = findDraggee(
+                    selectedElement_flag = spinnerCandidate || findDraggee(
                             point_on_dragSurf,
                             dragWraps,
                             dragSurface
                     );
                     if( !selectedElement_flag ) return true;
-
+                    
                     detected_user_interaction_effect && detected_user_interaction_effect();
                     processMouseDown && processMouseDown( selectedElement_flag.pointWrap );
+                    
+                    if( ns.haz( selectedElement_flag, 'decPoint' ) ) {
+                        //c cc('grabbing ' + selectedElement_flag.decPoint.className);
+                        $$.$( selectedElement_flag.decPoint ).addClass( 'grabbing' );
+                    }
 
                     //todM: let it to return !!'forbid drag'
                     //      which will add a "sugar" "just-a-clcik" and
@@ -468,11 +502,19 @@
                 break;
                 case 'move': 
                 case 'up':
+                    spinnerCandidate = null;
                     //.is throttled: does condence move and up events
+                    
+                    if( down_move_up !== 'move' &&
+                        ns.haz( selectedElement_flag, 'decPoint' ) ) {
+                        $$.$( selectedElement_flag.decPoint ).removeClass( 'grabbing' );
+                    }
+                    
                     selectedElement_flag.doProcessWrap({
                         //// **api-doProcessWrap 
                         down_move_up    : down_move_up, //flag, string
-                        surfMove        : surfMove,     //possibly = move from start to current,
+                        //possibly = move from start to current,
+                        surfMove        : surfMove,
                         moveIncrement   : moveIncrement,
                         dragWrap        : selectedElement_flag,
                         point_on_dragSurf,
@@ -543,6 +585,7 @@
             //------------------------------------
             // \\// loops and find closest item
             //------------------------------------
+            //c cc( closestDragWrap.pointWrap.spinnerClsId );
             return closestDragWrap;
         }
         //====================
