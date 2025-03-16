@@ -1,7 +1,7 @@
 
 *::*claim|video
 {
-  "menuCaption" : "Elucidation"
+  "menuCaption" : "Video"
 }
 *..*
 

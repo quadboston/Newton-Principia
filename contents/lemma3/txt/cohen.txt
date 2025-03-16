@@ -11,7 +11,7 @@
         <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,...
         of the parallelograms are unequal and are all diminished indefinitely.</dense>
 
-        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433</div>
 
 
 
@@ -30,7 +30,7 @@
             but if its width ¦AF¦¦ is diminished indefinitely,
             it will become less than any given rectangle.  Q.E.D.</dense>
 
-            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434</div>
 
 
 
@@ -59,6 +59,4 @@ perimeters acE) are not rectilinear, but curvilinear limits of rectilinear figur
 <br><br>
 
 
- <br><div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434</div>
