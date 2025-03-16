@@ -2,7 +2,7 @@
  
 
 
-## 2025-3-15 [0.????]
+## 2025-3-16 [0.13493]
 ### Improved (partial list)
 * All models
     * crosshairs indicate when over draggable point
@@ -30,7 +30,7 @@
     * graph simplified for core users, while retaining advanced graph for addendum
     * unused line PK removed
 
-### Added
+### Added 
 * Homepage
     * added explanation of translations used
 
