@@ -104,7 +104,6 @@
                 color:black;
                 background-color:#dddddd;
                 z-index:1000;
-                cursor:grab;
             }
         `;
 

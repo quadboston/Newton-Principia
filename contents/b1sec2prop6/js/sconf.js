@@ -270,6 +270,7 @@
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
+                draggableY  : true,
                 initialR    : 5,
             },
 
@@ -279,6 +280,7 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
+                draggableY  : true,
             },
             QtimeDecor : {
                 undisplayAlways : true,

@@ -73,9 +73,9 @@
         rg[ 'P,tCircleCenter' ].undisplay = hideAnother;
         rg[ 'tCircleCenter' ].undisplay = hideAnother;
 
-        stdMod.medRoot$.css( 'display',
-            textSection === 'corollary' || textSection === 'scholium' ? 'none' : 'block'
-        )
+        //stdMod.medRoot$.css( 'display',
+        //    textSection === 'corollary' || textSection === 'scholium' ? 'none' : 'block'
+        //)
 
         //=====================================================
         // //\\ alternates for addendum

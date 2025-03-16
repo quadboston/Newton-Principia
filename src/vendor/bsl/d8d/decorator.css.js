@@ -4,12 +4,19 @@
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
 
+    
+    var CURSOR = 'grab';
+    //var CURSOR = 'crosshair';
+    var CURSOR_GRABBING = 'grabbing';
     //---------------------------------------
     // //\\ configures dimensions
     //---------------------------------------
     var dm = {};
     dm.WIDTH                = 30;
     dm.HEIGHT               = 30;
+    //dm.HOT_ZONE_ANIM_WIDTH  = dm.WIDTH;
+    //dm.HOT_ZONE_ANIM_HEIGHT = dm.HEIGHT;
+    
     dm.DISK_RADIUS          = 30/3;
     dm.DISK_LEFT            = dm.WIDTH*0.5;
     dm.DISK_TOP             = dm.HEIGHT*0.5;
@@ -29,8 +36,6 @@
     //---------------------------------------
 
     var globalCssCreated_flag   = false;
-    var decorCount_debug        = 0;
-
     dpdec.creates_spinnerOwnCss = creates_spinnerOwnCss;
     dpdec.createGlobal          = createGlobal;
     return;
@@ -46,7 +51,7 @@
     ///appar. overrides spinner's-default CSS by means of
     ///parent_classes
     function creates_spinnerOwnCss(
-
+        decorCount_debug,
         //appar. can be point's rgId decapitalized
         spinnerClsId,   //"upward-css-callback"
 
@@ -58,28 +63,42 @@
 
         //optional
         individual_zindex,
+        spinnerCursorGrab,
+        spinnerCursorGrabbed,
     ) {
+        //fixing missed parameters
+        individual_color = individual_color || 'grey';
         parent_classes = parent_classes || [''];
+
+        CURSOR = spinnerCursorGrab || CURSOR;
+        CURSOR_GRABBING = spinnerCursorGrabbed || CURSOR_GRABBING;
         var ret = '';
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
+            //c cc( spinnerClsId, dclass, CURSOR, CURSOR_GRABBING );
 
-            ////if dclass exists, apparently it constrains css to ownself
+            ////if dclass exists, apparently it constrains css to ownself,
+            ////possibly useless and easy to forget when scripting lemma,
+            ////example: dclacc = .aspect--english
             dclass = dclass ? '.' + dclass : '';
 
             var zIndex = individual_zindex ?
                 'z-index : ' + individual_zindex + ';\n' :
                 ''
                 ;
-
-            ret +=
-            `
-
+            ret += `
             ${dclass} .${spinnerClsId}.brc-slider-draggee {
                 ${zIndex}
-                cursor: crosshair;
             }
-
+            .${spinnerClsId}.brc-slider-draggee,
+            .${spinnerClsId}.brc-slider-draggee:hover:after {
+                cursor: ${CURSOR};
+            }
+            .${spinnerClsId}.brc-slider-draggee.grabbing:hover:after,
+            .${spinnerClsId}.brc-slider-draggee.grabbing {
+                cursor: ${CURSOR_GRABBING};
+            }
+            
             /*=============================*/
             /* //\\ parent after           */
             /*=============================*/
@@ -110,19 +129,23 @@
         });
         // \\// css /////////////////////////////////////////
         
-        //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
+        //good debug
+        //if( 'point-_p-slider' === spinnerClsId ) {
+        //    c cc( spinnerClsId+ '=', ret);
+        //}
+
         ns.globalCss.update( ret, spinnerClsId );
     }
 
 
-    function createGlobal( makeCentralDiskInvisible )
+    function createGlobal( makeCentralDiskInvisible  )
     {
         if( globalCssCreated_flag ) return;
 
         var centralDiskVisibility = makeCentralDiskInvisible ?
             'hidden' :
             'visible';
-
+        //c cc( 'global cursors=' + CURSOR + ', ' + CURSOR_GRABBING );
         var ret =
 
         // //\\ css /////////////////////////////////////////
@@ -134,10 +157,13 @@
         .brc-slider-draggee {
             position    : absolute;
             top         : 0%;
+
             width       : ${ds.WIDTH};
             height      : ${ds.HEIGHT};
+            /* todm HOT_ZONE_ANIM_WIDTH HOT_ZONE_ANIM_HEIGHT */
+            
             z-index     : 1000;
-            cursor      : grab;
+            cursor: ${CURSOR};
             /* .good for devel.
             border      : 1px solid red;
             */
@@ -188,12 +214,12 @@
             background-color: black;
             z-index         : 1000;
             visibility      : ${centralDiskVisibility};
-            cursor          : grab;
+            cursor: ${CURSOR};
         }
 
         .brc-slider-draggee.grabbing:hover:after,
         .brc-slider-draggee.grabbing {
-            cursor : grabbing;
+            cursor: ${CURSOR_GRABBING};
         }
 
 
@@ -292,7 +318,7 @@
         // \\// css /////////////////////////////////////////
         //ns.globalCss.addText( ret );
         //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
-        ns.globalCss.update( ret, 'decor-count-' + decorCount_debug ++ );
+        ns.globalCss.update( ret, 'spinner-core-css');
         globalCssCreated_flag = true;
     };
 })();

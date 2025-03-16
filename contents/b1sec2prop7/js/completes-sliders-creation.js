@@ -116,8 +116,14 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
+
+        //note: combination of relative priorities of Q and P and
+        //relative sizes allows splitting user motions for Q and P:
+        // P.DRAGGEE_HALF_SIZE = 60 and for Q is 30,
         rg.P.dragPriority = 60;
-        rg.P.DRAGGEE_HALF_SIZE = 90;
+        rg.P.DRAGGEE_HALF_SIZE = 60;
+        
+        
         rg.P.processOwnDownEvent = () => {
             const rgCurve = rg[ 'approximated-curve' ];
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
@@ -127,7 +133,9 @@
             let curvePix = Math.floor( (rg.P.q - rgCurve.tStart )*rgCurve.q2ix );
             sData.stashed_curvePP = ssD.curve[curvePix];
         };
+        
         rg.P.processOwnUpEvent = () => { ssD.PdragInitiated = false; };
+        
         rg.P.acceptPos = (newPos, move) => {
             const rgCurve = rg[ 'approximated-curve' ];
             let REPELLING_DISTANCE = 0.02;
@@ -135,10 +143,16 @@
             {
                 let curvePP = sData.stashed_curvePP;
                 let { v, uu, rr, curveIx } = curvePP;
+                
+                // //\\  we project INCREMENTAL move
+                // to instant speed to calculate incremental angle:
                 let move0 = newPos[0]-rr[0];
                 let move1 = newPos[1]-rr[1];
-                let delta_curveIx = Math.floor( (uu[0]*move0 + uu[1]*move1)/v*rgCurve.q2ix );
+                let delta_curveIx =
+                    Math.floor( (uu[0]*move0 + uu[1]*move1)/v*rgCurve.q2ix );
                 curveIx = curveIx + delta_curveIx;
+                // \\//  we project INCREMENTAL move
+                
                 curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
                 let stashed_curvePP = ssD.curve[ curveIx ];
                 
@@ -170,7 +184,7 @@
         //=========================================================================
         {
             rg.S.dragPriority  = 30;
-            rg.S.DRAGGEE_HALF_SIZE = 50;
+            rg.S.DRAGGEE_HALF_SIZE = 30;
             rg.S.processOwnDownEvent = () => {
                 if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                     ssD.SdragInitiated = true;

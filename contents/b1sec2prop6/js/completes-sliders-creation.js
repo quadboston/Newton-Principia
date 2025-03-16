@@ -34,6 +34,7 @@
         //=========================================================================
         rg.Q.dragPriority = 100;
         rg.Q.DRAGGEE_HALF_SIZE = 10;
+
         rg.Q.processOwnDownEvent = function() {
             //this is for user mouse motion,
             //remember, mouse motion and Q.pos motions are
@@ -56,8 +57,12 @@
                 newPos[1]-ssD.QnewPos1_stashed,
             ];
             let { v, uu } = rg.Q.Qparams;
+            
+            // //\\  we project INCREMENTAL move
+            // to instant speed to calculate incremental angle:
             let deltaQ = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
             let new_q = rg.Q.q + deltaQ;
+            // \\//  we project INCREMENTAL move
             
             //this is resundant: this is validated in model
             //if( new_q <=0 || new_q >= 1 ) return false; 
@@ -118,6 +123,7 @@
         //=========================================================================
         rg.P.dragPriority = 50;
         rg.P.DRAGGEE_HALF_SIZE = 15;
+
         rg.P.processOwnDownEvent = () => {
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                 ssD.PdragInitiated = true;
@@ -126,7 +132,9 @@
             let curvePix = Math.floor( (rg.P.q - bezier.start_q )*bezier.q2ix );
             sData.stashed_curvePP = ssD.curve[curvePix];
         };
+
         rg.P.processOwnUpEvent = () => { ssD.PdragInitiated = false; };
+
         rg.P.acceptPos = (newPos, move) => {
             let REPELLING_DISTANCE = 0.02;
             let returnValue = true;
@@ -136,11 +144,17 @@
             } else {
                 let curvePP = sData.stashed_curvePP;
                 let { v, uu, rr, curveIx } = curvePP;
+                
+                // //\\  we project INCREMENTAL move
+                // to instant speed to calculate incremental angle:
                 let move0 = newPos[0]-rr[0];
                 let move1 = newPos[1]-rr[1];
-                let delta_curveIx = Math.floor( (uu[0]*move0 + uu[1]*move1)/v*bezier.q2ix );
+                let delta_curveIx =
+                    Math.floor( (uu[0]*move0 + uu[1]*move1)/v*bezier.q2ix );
                 curveIx = curveIx + delta_curveIx;
                 curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
+                // \\//  we project INCREMENTAL move
+
                 let stashed_curvePP = ssD.curve[ curveIx ];
                 
                 ///validates
