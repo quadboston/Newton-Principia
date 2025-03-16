@@ -15,7 +15,7 @@
     var haz = ns.haz;
     var eventId = 0;
     var d8dp = ns.sn( 'd8dp' ); //d8d platform framework
-
+    var mouseMoveCount = 0;
 
 
     ///****************************************************************
@@ -74,15 +74,20 @@
         //------------------------------------------
         !doGiveClickEvent && addEvents();
 
+        let movesAndFindsHandle = haz( arg, 'movesAndFindsHandle' );
+        if( movesAndFindsHandle ) {
+            if( !mouseMoveCount ) {
+                att.addEventListener( 'mousemove', movesAndFindsHandle );
+                mouseMoveCount++;
+            }
+        }
         var returned = {
             removeEvents,
             //givenClickEvent : doGiveClickEvent && givenClickEvent,
             givenClickEvent, //feature added: always give option of giving event,
+            eventPos_2_surfacePos,
         }
         return returned; //exports d8d-object of this module
-
-
-
 
 
 
@@ -177,6 +182,11 @@
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
+            }
+            if( movesAndFindsHandle && mouseMoveCount ) {
+                //c cc( mouseMoveCount + ' removes' );
+                att.removeEventListener( 'mousemove', movesAndFindsHandle );
+                mouseMoveCount--;
             }
         }
         //========================================
@@ -301,6 +311,11 @@
             att.removeEventListener( 'mouseup',  mouseEnd );
             att.removeEventListener( 'mouseleave', mouseEnd );
             do_complete_end( child8rootEvent );
+            if( movesAndFindsHandle && !mouseMoveCount ) {
+                //c cc( mouseMoveCount + ' readds' );
+                mouseMoveCount++;
+                att.addEventListener( 'mousemove', movesAndFindsHandle );
+            }
         }
 
         ///Input: note: "childEvent" can be missed for touches
@@ -355,7 +370,7 @@
                 Math.round( event.clientY - box.top )
             ];
             return loc;
-        };
+        }
         //===========================================
         // \\// converts event pos to domelem-css-pos
         //===========================================
