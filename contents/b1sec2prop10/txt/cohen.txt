@@ -101,7 +101,7 @@ Page 459.
 
 
 
-*::*corollary|english
+*::*Corollaries|english
 {
   "menuCaption" : "Text",
   "textSectionCaption" : "Corollaries"
@@ -138,7 +138,7 @@ the equality of the direct and inverse ratios) in the ratio of equality.
 
 
 
-*::*scholium|english
+*::*Scholium|english
 {
   "menuCaption" : "Text",
   "textSectionCaption" : "Scholium"

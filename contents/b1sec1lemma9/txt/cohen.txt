@@ -1,0 +1,59 @@
+
+
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "textSectionCaption" : "Claim"
+}
+*..*
+
+If the straight line ¦AE¦¦ and
+the curve ¦ABC¦¦,
+both given in position,
+intersect each other at a given angle ¦AE ABC¦A¦¦, and
+if ¦DB¦BD¦¦ and ¦EC¦CE¦¦ are drawn as ordinates to the straight line ¦AE¦AE¦¦ at another given angle
+and meet the curve in ¦B¦¦ and ¦C¦¦,
+and if then points ¦B¦¦ and ¦C¦¦ simultaneously approach point ¦A¦¦,
+I say that the areas of the triangles ¦ABD¦¦ and ¦ACE¦¦
+will ultimately
+¦ABDPerACE¦be to each other¦¦
+as the ¦AD2PerAE2¦squares of the sides¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437</div>
+
+
+
+*::*proof|english
+{
+  "textSectionCaption" : "Proof"
+}
+*..*
+
+For while points ¦B¦¦ and ¦C¦¦ approach point ¦A¦¦,
+let ¦AD¦¦ be understood always to be produced to the distant points ¦d¦¦ and ¦e¦¦,
+so that ¦Ad¦¦ and ¦Ae¦¦ are proportional to ¦AD¦¦ and ¦AE¦¦;
+
+and erect ordinates ¦db¦¦ and ¦ec¦¦
+parallel to ordinates ¦DB¦¦ and ¦EC¦¦
+and meeting ¦AB¦¦ and ¦AC¦¦, produced, at ¦b¦¦ and ¦c¦¦.
+
+Understand the curve ¦Abc¦¦ to be drawn similar to ¦ABC¦¦, and
+the straight line ¦Ag¦¦ to be drawn touching both curves at ¦A¦¦ and
+cutting the ordinates ¦DB¦¦, ¦EC¦¦, ¦db¦¦, and ¦ec¦¦ at ¦F¦¦, ¦G¦¦, ¦f¦¦, and ¦g¦¦.
+
+Then, with the ¦Ae-length¦length¦¦ ¦Ae¦¦ remaining the same,
+let points ¦B¦¦ and ¦C¦¦ come together with point ¦A¦¦; and as the angle ¦Ac Ag¦cAg¦¦ vanishes,
+
+the curvilinear areas ¦Abd¦¦ and ¦Ace¦¦ will coincide with the
+rectilinear areas ¦Afd Ad¦Afd¦¦ and ¦Age Ae¦Age¦¦,
+and thus (by lem. 5) will be in the squared ratio of the sides ¦Ad¦Ad¦¦ and ¦Ae¦Ae¦¦.
+
+But areas ¦ABD¦¦ and ¦ACE¦¦ are always proportional to these areas,
+and sides ¦AD¦¦ and ¦AE¦¦ to these sides.
+
+Therefore areas ¦ABD¦¦ and ¦ACE¦¦ also are ultimately 
+in the ¦AD2PerAE2¦squared ratio¦¦ of the sides ¦AD¦¦ and ¦AE¦¦. &nbsp; Q.E.D.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437</div>

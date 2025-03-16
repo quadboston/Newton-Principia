@@ -89,6 +89,7 @@
             ret += `
             ${dclass} .${spinnerClsId}.brc-slider-draggee {
                 ${zIndex}
+                cursor: crosshair;
             }
             .${spinnerClsId}.brc-slider-draggee,
             .${spinnerClsId}.brc-slider-draggee:hover:after {
