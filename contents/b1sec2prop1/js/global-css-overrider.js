@@ -65,14 +65,6 @@
                 opacity : 0.7;
             }
             `,
-
-            //The following overrides the above odd and even triangle colors for the Theorem tab in P1 and P2.
-            // div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-odd,
-            // div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-even {
-            //     fill : #8888ff;
-            //     opacity : 0.7;
-            //}
-            //`,
             'global-css-overrider'
         );
     }
