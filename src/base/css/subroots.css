@@ -106,14 +106,10 @@ sup {
     align-items: center;
     left: 0px;
     top: 0;
-    padding: 0 8px;
+    margin: 0 8px;
     position: absolute;
     height: 100%;
-    cursor: grab; /* overrides dynamic overlay */
-}
-
-#bsl-resizable-handle:hover {
-    background: var(--colorLight);
+    background-color: #cccccc;
 }
 
 .brc-slider-draggee.dividor:hover:after {
