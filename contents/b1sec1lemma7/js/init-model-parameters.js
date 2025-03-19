@@ -20,49 +20,6 @@
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
         //-------------------------------------------------
-        // //\\ dragger L for the rectilinear angle
-        //-------------------------------------------------
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            orientation : 'axis-y',
-            pname : 'L',
-            acceptPos : ( newPos ) =>
-            {
-                var fullAngle = Math.atan( newPos[1]/newPos[0] );
-                ///restricts converging tangent positions,
-                ///saves user from unexpected experiments,
-                if( fullAngle > 0.001 ) {
-                    fullAngle = 0;
-                }
-                if(
-                    amode.subessay === 'derivative' ||
-                    amode.subessay === 'sine derivative' ||
-                    amode.subessay === 'vector-derivative'
-                ) {
-                    if( fullAngle < -0.2 ) {
-                        ///this is lowest allowed L-position on the screen
-                        ////otherwise, function y(x) is not well-defined
-                        fullAngle = -0.2;
-                    }
-                } else {
-                    if( fullAngle < rg.AB.angle ) {
-                      ///this is lowest allowed L-position on the screen
-                      fullAngle = rg.AB.angle;
-                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
-                    } else {
-                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-                    }
-                }
-                rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
-                return true;
-            }
-        });
-        //-------------------------------------------------
-        // \\// dragger L
-        //-------------------------------------------------
-
-
-        //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -85,6 +42,7 @@
                 var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
                 var cpos = cfun( new_unrotatedParameterX );
 
+
                 //patch: instead of fixing arc-Ab calculations properly,
                 //       this code-fragment restricts area where this arc miscalculated:
                 if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
@@ -100,15 +58,7 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
                 
-                if( //core essays:
-                    ( !(amode.aspect === 'model') && amode.textSection === 'proof' ) && 
-                    (angleBAM < 0 || cpos[1] > -0.01)
-                ){
-                    adjust_new_unrotatedParameterX_asNeccesary();
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
-                } else {
-                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-                }
+                sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
                 ///prevents user from playing with too big curves
                 if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
@@ -119,26 +69,6 @@
                 
                 return true;
 
-                function adjust_new_unrotatedParameterX_asNeccesary() {
-                    (function () {
-                        var lpos = rg.L.pos;
-                        var apos = rg.A.pos;
-                        var kk = (lpos[1] - apos[1]) / (lpos[0] - apos[0]);
-                        ///calculates point when moving back point B will cross
-                        ///line AL
-                        for (var ix = 0; ix < 200; ix++) {
-                            cpar = new_unrotatedParameterX + ix * 0.005;
-                            var pos = cfun(cpar);
-                            var lineY = pos[0] * kk;
-                            if (lineY > pos[1]) {
-                                ////B crossed line AL
-                                new_unrotatedParameterX = cpar;
-                                break;
-                            }
-                        }
-
-                    })();
-                }
             }
         });
         //-------------------------------------------------
@@ -152,13 +82,12 @@
             sconf.givenCurve_pivots_inModel
         ).derivativeAtZero();
         orTan.angle = Math.atan( rg.originalGapTangent.tangent );
-        
+
         //sets angle as it is in original picture in lemma
         toreg( 'curveRotationAngle' )( 'angle', 0 );
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
-
 
         //todo: must work in media ... look for call backs and
         //      find which does once at the media creation
@@ -279,20 +208,6 @@
         //=================================================
 
 
-
-        //=================================================
-        // //\\ getting "main" angle ABD for data legend
-        //      in lemma6
-        //=================================================
-        ssF.line2abs( 'AB' );
-        rg.AB.angleGrad = rg.AB.angle * 180 / Math.PI;
-        //=================================================
-        // \\// getting "main" angle ABD for data legend
-        //=================================================
-
-
-
-
         //=================================================
         // //\\ builds Newton microscope
         //=================================================
@@ -306,12 +221,32 @@
         // \\// builds Newton microscope
         //=================================================
 
+
+        //=================================================
+        // //\\ l7 specific
+        //=================================================
+        //makes line DB proportionally move
+        rg.D.pos[0] = rg.d.pos[0] / magn;
+
+        if( amode.subessay !== 'sin(x)/x' ){
+            rg.E.pos[1] = rg.D.pos[1];
+            rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
+        }
+        rg.G.pos[1] = rg.B.pos[1];
+        rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
+        rg.F.pos[1] = rg.B.pos[1];
+        rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
+        //=================================================
+        // \\// l7 specific
+        //=================================================
+
         if( amode.subessay === 'sin(x)/x' ){
             rg.E.pos[1] = rg.A.pos[1];
             rg.E.pos[0] = rg.B.pos[0];
             rg.e.pos[1] = rg.A.pos[1];
             rg.e.pos[0] = rg.E.pos[0]*magn;
         }
+
 
 
         //=================================================
@@ -337,6 +272,7 @@
             //-----------------------------------------
             //X = magnified point x
             dropPoint( "X=b" );
+
 
             if( amode.subessay === 'sine derivative' ){
                 //extends tangent, AL
@@ -368,6 +304,43 @@
         //-------------------------------------------------------
         // \\// bridge to analytical theory
         //-------------------------------------------------------
+
+        //=================================================
+        // //\\ intervals for legend in lemma7
+        //=================================================        
+        ssF.line2abs( 'AB' );
+        ssF.line2abs( 'BG' );
+        ssF.line2abs( 'AD' );
+        ssF.line2abs( 'AE' );
+        ssF.line2abs( 'BF' );
+        
+        ssF.line2abs( 'Ab' );
+        ssF.line2abs( 'Ad' );
+        //=================================================
+        // \\// intervals for legend in lemma7
+        //=================================================
+
+        rg.AB.arcLen = mat.integral.curveLength({
+            fun             : ssD.repoConf[0].fun,
+            curveStartParam : rg.A.pos[0],
+            curveEndParam   : rg.B.pos[0],
+            funIsAVector    : true,
+            calculationAccuracy : 1e-4*rg.AB.abs,
+        });
+
+        // todo: this curveLength function is returning the wrong value, why?
+        // rg.Ab.arcLen = mat.integral.curveLength({
+        //     fun             : ssD.repoConf[0].fun,
+        //     curveStartParam : rg.A.pos[0],
+        //     curveEndParam   : rg.b.pos[0],
+        //     funIsAVector    : true,
+        //     calculationAccuracy : 1e-4*rg.Ab.abs,
+        // });
+
+        // John's "cheater" method
+        if(rg.AB.abs > 0) {
+            rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
+        }
 
         let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
         nspaste( rg.C.pos, C );

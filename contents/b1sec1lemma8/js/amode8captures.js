@@ -82,51 +82,6 @@
                     }
             },
 
-            "colollary-1": {
-                    "BF" : { "undisplay" : false },
-                    "AF" : { "undisplay" : false },
-                    "F"  : { "undisplay" : false },
-
-                    "BG" : { "undisplay" : true },
-                    "AE" : { "undisplay" : true },
-                    "BE" : { "undisplay" : true },
-                    "AG" : { "undisplay" : true },
-                    "G"  : { "undisplay" : true },
-                    "E"  : { "undisplay" : true },
-
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-
-
-            "colollary-2": {
-                    "BF" : { "undisplay" : false },
-                    "AF" : { "undisplay" : false },
-                    "F"  : { "undisplay" : false },
-
-                    "BG" : { "undisplay" : false },
-                    "AE" : { "undisplay" : false },
-                    "BE" : { "undisplay" : false },
-                    "AG" : { "undisplay" : false },
-                    "E"  : { "undisplay" : false },
-                    "G"  : { "undisplay" : false },
-
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-
             "meet": {
                     "curveRotationAngle": {
                         "angle": 0.10579977792284677,

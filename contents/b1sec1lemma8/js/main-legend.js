@@ -16,6 +16,23 @@
         },
     });
 
+    ////**********************************************************************************
+    //// legendScript-format:
+    ////
+    //// 3D array encompassing all data to be displayed and regularly updated in each tab
+    ////    tableData = [
+    ////        [[cluster 1], [cluster 2], ...] //defines one whole row
+    ////    ]
+    ////
+    ////    each cluster array has 3 elements: [class-attribute-of-td, caption, value]
+    ////    - each element must be a string; eval() will be used to parse value as rg is not yet defined here
+    ////
+    ////    * class-attribute-of-td will be converted to class attribute of table's cell,
+    ////    the "td-" will be prepend, <_> will be replaced with space
+    ////
+    //// Caution: '_' is replaced with ' ' in caption,
+    ////**********************************************************************************
+
     var lemma8Data =  {
         claim : [
             [[ 'RAB', '△RAB : ', 'rg.RAB.area' ]],
@@ -28,12 +45,12 @@
     };
 
     lemma8Data.proof = [
-        [lemma8Data.claim[0][0], [ 'rAb', '△rAb : ', 'rg.rAb.area' ]],
-        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb : ', 'rg.rAcb.area' ]],
-        [lemma8Data.claim[2][0], [ 'rAd', '△rAd : ', 'rg.rAd.area' ]],
+        [lemma8Data.claim[0][0], [ 'blue', '△rAb : ', 'rg.rAb.area' ]],
+        [lemma8Data.claim[1][0], [ 'blue', '△rAcb : ', 'rg.rAcb.area' ]],
+        [lemma8Data.claim[2][0], [ 'blue', '△rAd : ', 'rg.rAd.area' ]],
         [lemma8Data.claim[3][0], [ '', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'rAcb', '△rAcb / △rAb : ', getRatio('rAcb', 'rAb') ]],
-        [lemma8Data.claim[5][0], [ 'rAd', '△rAd / △rAb : ', getRatio('rAd', 'rAb') ]],
+        [lemma8Data.claim[4][0], [ 'blue', '△rAcb / △rAb : ', getRatio('rAcb', 'rAb') ]],
+        [lemma8Data.claim[5][0], [ 'blue', '△rAd / △rAb : ', getRatio('rAd', 'rAb') ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 
@@ -73,7 +90,7 @@
         const greenData = ['RAB', 'RACB', 'RAD', 'RACB-RAB', 'RAD-RAB'];
         greenData.forEach( (id) => {
             let cssName = sDomF.topicIdUpperCase_2_underscore( id ); //converts to format applied by table generator
-            console.log(cssName);
+            //console.log(cssName);
             let cells = document.querySelectorAll('.tp-' + cssName); //html table cells
             cells.forEach( (cell) => {
                 cell.classList.add('green');

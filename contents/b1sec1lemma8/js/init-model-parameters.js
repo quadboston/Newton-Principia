@@ -144,34 +144,11 @@
                     nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
                 }
                 return true;
-
-                function adjust_new_unrotatedParameterX_asNeccesary() {
-                    (function () {
-                        var lpos = rg.L.pos;
-                        var apos = rg.A.pos;
-                        var kk = (lpos[1] - apos[1]) / (lpos[0] - apos[0]);
-                        ///calculates point when moving back point B will cross
-                        ///line AL
-                        for (var ix = 0; ix < 200; ix++) {
-                            cpar = new_unrotatedParameterX + ix * 0.005;
-                            var pos = cfun(cpar);
-                            var lineY = pos[0] * kk;
-                            if (lineY > pos[1]) {
-                                ////B crossed line AL
-                                new_unrotatedParameterX = cpar;
-                                break;
-                            }
-                        }
-
-                    })();
-                }
             }
         });
         //-------------------------------------------------
         // \\// dragger B
         //-------------------------------------------------
-
-
 
 
         //-------------------------------------------------
@@ -212,7 +189,6 @@
 
 
 
-
         //-------------------------------------------------
         // //\\ dragger fi
         //-------------------------------------------------
@@ -244,27 +220,19 @@
         //-------------------------------------------------
 
 
-
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
-        if( fconf.sappId === "b1sec1lemma8" ) {
-            orTan.tangent = 0;
-            orTan.angle = 0;
-            mat.calculate_divided_differences(
-                sconf.givenCurve_pivots_inModel
-            );
-        } else {
-            orTan.tangent = mat.calculate_divided_differences(
-                sconf.givenCurve_pivots_inModel
-            ).derivativeAtZero();
-            orTan.angle = Math.atan( rg.originalGapTangent.tangent );
-        }
+        orTan.tangent = 0;
+        orTan.angle = 0;
+        mat.calculate_divided_differences(
+            sconf.givenCurve_pivots_inModel
+        );
+
         //sets angle as it is in original picture in lemma
         toreg( 'curveRotationAngle' )( 'angle', 0 );
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
-
 
 
         //todo: must work in media ... look for call backs and
@@ -386,20 +354,6 @@
         //=================================================
 
 
-
-        //=================================================
-        // //\\ getting "main" angle ABD for data legend
-        //      in lemma6
-        //=================================================
-        ssF.line2abs( 'AB' );
-        rg.AB.angleGrad = rg.AB.angle * 180 / Math.PI;
-        //=================================================
-        // \\// getting "main" angle ABD for data legend
-        //=================================================
-
-
-
-
         //=================================================
         // //\\ builds Newton microscope
         //=================================================
@@ -412,8 +366,6 @@
         //=================================================
         // \\// builds Newton microscope
         //=================================================
-
-
 
 
         //=================================================
@@ -440,7 +392,6 @@
             rg.e.pos[1] = rg.A.pos[1];
             rg.e.pos[0] = rg.E.pos[0]*magn;
         }
-
 
 
         //=================================================
@@ -502,6 +453,7 @@
         //=================================================
         // //\\ values for legend
         //=================================================
+        ssF.line2abs( 'AB' );
         ssF.line2abs( 'AD' ); //adds length as rg.AD.abs
         ssF.line2abs( 'AR' );
         ssF.line2abs( 'RD' );
