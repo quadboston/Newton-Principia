@@ -94,7 +94,7 @@
             ();
         var mediaHorizontalHandler = $$
             .c( 'img' )
-            .a( 'src', fconf.engineImg + '/vertical-black.png' )
+            .a( 'src', fconf.engineImg + '/vertical.png' )
             .to( wResizer )
             ();
         ///dynamic CSS placeholder
