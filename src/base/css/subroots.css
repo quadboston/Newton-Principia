@@ -109,6 +109,7 @@ sup {
     margin: 0 8px;
     position: absolute;
     height: 100%;
+    cursor: grab; /* overrides dynamic overlay */
     background-color: #cccccc;
 }
 
