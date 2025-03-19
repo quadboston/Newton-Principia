@@ -64,12 +64,6 @@
                 fill : #9999ff;
                 opacity : 0.7;
             }
-
-            div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-odd,
-            div.bsl-approot.textSection--claim svg .tp-kepler-triangle.triangle-even {
-                fill : #8888ff;
-                opacity : 0.7;
-            }
             `,
             'global-css-overrider'
         );
