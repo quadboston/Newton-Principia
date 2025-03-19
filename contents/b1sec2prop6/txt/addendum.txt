@@ -36,7 +36,7 @@ Force
 
 where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1sec2prop1,textSectionId=corollary,aspectId=model,subessayId=0#sagitta">
+<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 <br><br>
 
@@ -65,13 +65,13 @@ Force
 
 where ¦P,sagitta¦sagitta 𝕻 ¦¦
 
-<a target="_blank" href="?conf=sappId=b1sec2prop1,textSectionId=corollary,aspectId=model,subessayId=0#sagitta">
+<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
 
 M/2 is "Kepler constant" for constant sectorial speed:
     <div style="text-align:center;">
         S˙ = 1/2[<b>rₒvₒ</b>]<sub>𝗸</sub> = M/2, <br>
-        where 𝗸 = <a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=calculus-xx">[𝗶𝗷].</a>
+        where 𝗸 = <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=calculus-xx">[𝗶𝗷].</a>
     </div>
 <br><br><br>
 

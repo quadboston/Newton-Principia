@@ -3,7 +3,7 @@
   "default" : "1",
   "menuCaption" : "Text",
   "mediaBgImage" : "lemma-23-3rd-ed.png",
-  "textSectionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
         If in any figure ¦figure Aa¦AacE¦¦,
@@ -27,7 +27,7 @@
 
 *::*proof|english
 {
-  "textSectionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
             For the ¦difference¦¦ of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures

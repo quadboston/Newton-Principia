@@ -438,7 +438,7 @@
         //--------------------------------------
         {
             let l2 = fconf.sappId.indexOf('lemma2') === 0;
-            let checked = amode.textSection !== 'claim';
+            let checked = amode.logic_phase !== 'claim';
             let undisplay = !checked || videoMode || onlyFig;
             rg.F.undisplay = undisplay||l2;
             rg.f.undisplay = undisplay||l2;

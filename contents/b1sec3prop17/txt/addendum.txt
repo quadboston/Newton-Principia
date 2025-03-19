@@ -294,7 +294,7 @@ L (χ SP + PH ) = 2 PH .( χ KP + SP ) <br>
                                         </td><td>
 (χr₊ + r₋) / r₋ = (2χ𝗿₊𝗲₋ + 2r₊) / L = <br>
 = 
-<a target="_blank" href="?conf=sappId=addd-conics,textSectionId=proof,aspectId=addendum,subessayId=shoulder-lemma#conics">
+<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=shoulder-lemma#conics">
 4Ω²r₊
 </a>
 

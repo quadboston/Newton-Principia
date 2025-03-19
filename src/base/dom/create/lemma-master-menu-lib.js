@@ -7,7 +7,7 @@
         sDomF, sDomN,
     } = window.b$l.apptree({
     });
-    sDomF.makes_textSectionTab_nonClickable = makes_textSectionTab_nonClickable;
+    sDomF.makes_logic_phaseTab_nonClickable = makes_logic_phaseTab_nonClickable;
     return;
 
 
@@ -21,15 +21,15 @@
     ///tabIsInactive flag; this site is such a site;
     ///this function does this job for this site;
     ///todm: non-elegant solution: too much coding:
-    function makes_textSectionTab_nonClickable()
+    function makes_logic_phaseTab_nonClickable()
     {
-        sDomN.teafs$.textSection.addClass( 'non-clickable' )
+        sDomN.teafs$.logic_phase.addClass( 'non-clickable' )
             .e( 'click', function( event ) {
                 event.stopPropagation = true;
             })
             ;
 
-        sDomN.teafs$.textSection.tabIsInactive = true;
+        sDomN.teafs$.logic_phase.tabIsInactive = true;
         globalCss.update( `
                 .leftside-menuholder .menu-teaf.non-clickable
                 .litem:hover {

@@ -11,11 +11,11 @@
          href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
 
         <div style="text-align:center;">
-            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#area-speed">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed">
                 <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
             </a>
 
-            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#theorem-ii">
                 <b>r</b>||<b>a</b> ⇒ S˙ = const
             </a>
         </div>
@@ -48,11 +48,11 @@
          href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework:</a></b><br><br>
 
         <div style="text-align:center;">
-            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#area-speed">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed">
                 <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
             </a>
 
-            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#theorem-ii">
                 <b>r</b>||<b>a</b> ⇒ S˙ = const
             </a>
         </div>
@@ -171,7 +171,7 @@ To make speed and intial move distinct, we use these system simulation parameter
 
 <span class="captured-reference id-corollary-1">T.1. Corollary 1. </span>
         ¦SP¦r<sub>⟂</sub>¦¦v = const. <a target="_blank"  title="go to content"
-                href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#area-speed-vp">
+                href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed-vp">
             Proof.
             </a>
 <br><br>
@@ -181,7 +181,7 @@ To make speed and intial move distinct, we use these system simulation parameter
 <span class="captured-reference id-corollary-2">T.1. Corollary 2. </span>
 
 <a target="_blank"  title="go to content"
-   href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
+   href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
 From polynomial expansion at t₀ = ¦B¦¦ and ∆t = δ:
 </a>
 <br><br>

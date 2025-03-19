@@ -3,7 +3,7 @@ Handy help
 ==========
 
 example: makes self-reference in content-script
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=areas#scholium">
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#scholium">
 
 
 
@@ -38,13 +38,13 @@ Text inside { } is sets essay options which must be written in JSON format.
 Part {...} is optional.
 
 Pair like corollary|english above is an index of essay comprised of two categories
-<textSection>|<aspect>
+<logic_phase>|<aspect>
 which in given case is corollary|english.
 
-textSections currently are claim, proof, corollary, ... but can be any words,
+logic_phases currently are claim, proof, corollary, ... but can be any words,
 aspects currently are claim, proof, corollary, ... but can be any words.
 
-textSections comprise horizontal menu in reader's work space in browser,
+logic_phases comprise horizontal menu in reader's work space in browser,
 aspects go to vertical menu.
 
 
@@ -141,7 +141,7 @@ this contains another JSON, not a JSON for active fragments
     ------
         *::*claim|xixcentury
         {
-          "textSectionCaption" : "This is problem 2",
+          "logic_phaseCaption" : "This is problem 2",
           "dataLegend":"0",
           "mediaBgImage" : null,
 
@@ -156,7 +156,7 @@ this contains another JSON, not a JSON for active fragments
 
     description of above JSON
     ------------------------- 
-        "textSectionCaption" : "This is problem 2",- makes GUI caption (usually for horizontal menu),
+        "logic_phaseCaption" : "This is problem 2",- makes GUI caption (usually for horizontal menu),
         "default" : "1",                        - makes this essay default at site-landing,
         "mediaBgImage" : null,                  - loads empty image,
         "mediaBgImage" : 'my-bg-image.png',     - loads contents/.../img/my-bg-image.png,

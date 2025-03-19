@@ -78,11 +78,11 @@
             return;
         }
 
-        var { textSection, aspect, subessay } = amode;
+        var { logic_phase, aspect, subessay } = amode;
         if( runOnSubessay ) {
             subessay = runOnSubessay;
         }
-        var subessayRack    = exegs[ textSection ][ aspect ].subessay2subexeg[ subessay ];
+        var subessayRack    = exegs[ logic_phase ][ aspect ].subessay2subexeg[ subessay ];
         var stateId2state   = subessayRack.stateId2state;
         var scenarioState   = haz( stateId2state, subessayRack.scenario_stateId );
         if( !scenarioState ) {
@@ -255,13 +255,13 @@
     function restylifyUserConsole({
         subessay,
         style,
-        textSection,   //optional, if missed taken from state
+        logic_phase,   //optional, if missed taken from state
         aspect,     //optional, if missed taken from state
     }){
-        textSection = textSection || amode.textSection;
+        logic_phase = logic_phase || amode.logic_phase;
         aspect = aspect || amode.aspect;
         cssPath = '.original-text' +
-                  '.' + textSection +
+                  '.' + logic_phase +
                   '.' + aspect +
                   '.subessay-' + subessay +
                   ' .model-user-feedback';

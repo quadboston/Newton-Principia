@@ -14,7 +14,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            createtextSectionLegend,
+            createLogic_phaseLegend,
         },
     });
     return;
@@ -28,12 +28,12 @@
 
 
     //=========================================
-    // //\\ creates textSection table
+    // //\\ creates logic_phase table
     //      does one time work of html creation
     //=========================================
-    function createtextSectionLegend({
+    function createLogic_phaseLegend({
         stdMod_given,
-        textSection,
+        logic_phase,
         rowsCount,
         clustersCount,
         tableCaption,
@@ -48,11 +48,11 @@
     }){
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
-            ( textSection,     {
+            ( logic_phase,     {
                                 upcreate_mainLegend,
                             }
             );
-        var rgTeoTab = rg[ 'main-legend' ][ textSection ];
+        var rgTeoTab = rg[ 'main-legend' ][ logic_phase ];
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
@@ -68,7 +68,7 @@
         createsTablePlaceholder();
         createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat ||
                                         createsIdleFirstRow_forFormat_default;
-        createsIdleFirstRow_forFormat( tb, textSection );
+        createsIdleFirstRow_forFormat( tb, logic_phase );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
@@ -89,9 +89,9 @@
             tb = $$
                 .c('table')
                 .to( stdMod.legendRoot$ )
-                .cls( 'main-legend ' + textSection )
+                .cls( 'main-legend ' + logic_phase )
 
-                //removes set of .main-legend.]textSection[ {
+                //removes set of .main-legend.]logic_phase[ {
                 .css( 'border-collapse', 'collapse' )
                 ()
                 //css( 'table-layout', 'auto' ) //makes problem ... table moves out of pane ...
@@ -117,7 +117,7 @@
         ///=====================
         /// first row for format
         ///=====================
-        function createsIdleFirstRow_forFormat_default( tb, textSection )
+        function createsIdleFirstRow_forFormat_default( tb, logic_phase )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -125,7 +125,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( textSection +' tostroke')
+                .addClass( logic_phase +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)

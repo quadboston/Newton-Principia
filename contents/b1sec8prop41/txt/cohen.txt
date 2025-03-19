@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Problem 28"
+  "logic_phaseCaption" : "Problem 28"
 }
 *..*
 <!-- to set "text-keywords match (i.e. Meta parsing)",
@@ -102,7 +102,7 @@ Page 529.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution",
-  "textSectionCaption" : "Solution"
+  "logic_phaseCaption" : "Solution"
 }
 *..*
 Let any force tend toward a center ¦C¦¦; and let it be required to find the
@@ -200,7 +200,7 @@ Pages 530 - 531.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

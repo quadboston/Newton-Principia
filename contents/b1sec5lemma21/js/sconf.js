@@ -207,7 +207,7 @@
                   pos: pop.O,
                   //pcolor: pt[ "g-parameter" ],
                   //cssClass: 'tp-static',
-                  //cssClass : 'textSection--proof',
+                  //cssClass : 'logic_phase--proof',
                   cssClass: 'aspect--model',
                   initialR: pointRadius,
                   letterAngle : 0,
@@ -215,7 +215,7 @@
                   doPaintPname:false,
             },
             P : {
-                  cssClass: 'textSection--proof',
+                  cssClass: 'logic_phase--proof',
                   pcolor: pt.static,
                   initialR: pointRadius,
                   letterAngle : 0,
@@ -477,14 +477,14 @@
             {
                 'PC' :
                 {
-                    cssClass: 'textSection--proof',
+                    cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
             },
             {
                 'PB' :
                 {
-                    cssClass: 'textSection--proof',
+                    cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
             },

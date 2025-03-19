@@ -25,11 +25,11 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_textSection( 'proof' );
-        create_digital_legend_for_textSection( 'corollary' );
+        create_digital_legend_for_logic_phase( 'proof' );
+        create_digital_legend_for_logic_phase( 'corollary' );
     }
 
-    function create_digital_legend_for_textSection( textSection )
+    function create_digital_legend_for_logic_phase( logic_phase )
     {
         //--------------------------
         // //\\ data source scenario
@@ -55,9 +55,9 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createtextSectionLegend({
+        ssF.createLogic_phaseLegend({
             stdMod_given : stdMod,
-            textSection,
+            logic_phase,
             rowsCount,
             clustersCount,
             noTableTitle : true,
@@ -88,7 +88,7 @@
         }
     }
     //=========================================
-    // \\// creates textSection table
+    // \\// creates logic_phase table
     //=========================================
 
 }) ();

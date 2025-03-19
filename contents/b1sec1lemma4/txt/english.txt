@@ -6,7 +6,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 
@@ -25,7 +25,7 @@ I say that the two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ are t
 *::*proof|english
 {
       "APPARENTLY IS NOT IMPLEMENTED, LOADS, DOES NOT APPEAR mediaBgImage" : "l4-diagram.png",
-      "textSectionCaption" : "Proof"
+      "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -45,7 +45,7 @@ and the second figure to the second sum, in a ratio of equality. &nbsp;&nbsp;&nb
 
 *::*corollary|english
 {  
-  "textSectionCaption" : "Corollary"
+  "logic_phaseCaption" : "Corollary"
 }
 *..*
 

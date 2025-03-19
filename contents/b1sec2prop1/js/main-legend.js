@@ -302,11 +302,11 @@
 
         function makeCl(
                 row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                table_textSection, noEqualSign
+                table_logic_phase, noEqualSign
          ) {
             return makeClBoth(
                 row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                table_textSection, noEqualSign );
+                table_logic_phase, noEqualSign );
         }
     }
     //=========================================
@@ -327,7 +327,7 @@
     ///Input:  mname = magnitude name, just an ID of a cell and
     ///        tip for the css-class
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
-                         alignCaptionToRight, table_textSection, noEqualSign )
+                         alignCaptionToRight, table_logic_phase, noEqualSign )
     {
         var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
 
@@ -358,7 +358,7 @@
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
         if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        switch ( table_textSection ) {
+        switch ( table_logic_phase ) {
             case 'claim':
                 clustersToUpdate_claim[mname] = c$();
                 break;

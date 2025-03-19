@@ -23,11 +23,11 @@
 
 Here we follow the articles of
 
-<a target="_blank" href="?conf=sappId=addd-prel,textSectionId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a>
+<a target="_blank" href="?conf=sappId=addd-prel,logic_phaseId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-salomon-ofman-euclid-theory-of-ratio">Salomon Ofman</a>
 
 and
 
-<a target="_blank" href="?conf=sappId=addd-prel,textSectionId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
+<a target="_blank" href="?conf=sappId=addd-prel,logic_phaseId=proof,aspectId=algebraic-extension,subessayId=references#ctxt-howard-stein-eudoxos-and-dedekind">Howard Stein</a>
 
 <br><br><br>
 
