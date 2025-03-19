@@ -74,7 +74,7 @@
         LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
-        DRAGGEE_HALF_SIZE : 40, //px
+        DRAGGEE_HALF_SIZE : 15, //40, //px
 
         //setting this to "false" does hide slider
         //decoration spinning arrows
