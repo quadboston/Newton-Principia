@@ -121,7 +121,7 @@
         //relative sizes allows splitting user motions for Q and P:
         // P.DRAGGEE_HALF_SIZE = 60 and for Q is 30,
         rg.P.dragPriority = 60;
-        rg.P.DRAGGEE_HALF_SIZE = 60;
+        rg.P.DRAGGEE_HALF_SIZE = 40;
         
         
         rg.P.processOwnDownEvent = () => {
