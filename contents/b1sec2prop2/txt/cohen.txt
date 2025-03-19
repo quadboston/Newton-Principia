@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Theorem 2"
+  "logic_phaseCaption" : "Theorem 2"
 }
 *..*
 
@@ -17,7 +17,7 @@ motion, describes ¦kepler-triangle¦areas¦¦ around that ¦S¦point¦¦ propor
 
 *::*proof|english
 {
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -46,7 +46,7 @@ whether it moves uniformly straight forward, together with the body, the
 *::*corollary|english
 {
   "menuCaption" : "Text",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 
@@ -72,7 +72,7 @@ meet in the direction toward which the motion takes place.
 
 *::*scholium|english
 {
-  "theorionCaption" : "Scholium"
+  "logic_phaseCaption" : "Scholium"
 }
 *..*
 

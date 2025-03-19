@@ -19,7 +19,7 @@
         //1. .triangle-odd competes with
         //      .bsl-approot svg .tp-kepler-triangle.tofill
         //      we have to add more idle selectors into CSS-path,
-        //2.  overriding mask for theorion--claim ... .theor1proof
+        //2.  overriding mask for logic_phase--claim ... .theor1proof
         //      display ... none
         //--------------------------------------------------------
         globalCss.replace( `
@@ -32,24 +32,24 @@
                 display : none;
             }
 
-            .bsl-approot.appid-b1sec2prop1.theorion--claim svg .theor1claim,
-            .bsl-approot.appid-b1sec2prop1.theorion--corollary svg .theor1corollary,
-            .bsl-approot.appid-b1sec2prop2.theorion--corollary svg .theor2corollary,
-            .bsl-approot.appid-b1sec2prop2.theorion--proof svg .theor2proof,
-            .bsl-approot.appid-b1sec2prop1.theorion--proof svg .theor1proof
+            .bsl-approot.appid-b1sec2prop1.logic_phase--claim svg .theor1claim,
+            .bsl-approot.appid-b1sec2prop1.logic_phase--corollary svg .theor1corollary,
+            .bsl-approot.appid-b1sec2prop2.logic_phase--corollary svg .theor2corollary,
+            .bsl-approot.appid-b1sec2prop2.logic_phase--proof svg .theor2proof,
+            .bsl-approot.appid-b1sec2prop1.logic_phase--proof svg .theor1proof
             {
                 display : block;
             }
 
-            .bsl-approot.appid-b1sec2prop1.theorion--claim
+            .bsl-approot.appid-b1sec2prop1.logic_phase--claim
                 svg .theor1claim.undisplay,
-            .bsl-approot.appid-b1sec2prop1.theorion--corollary
+            .bsl-approot.appid-b1sec2prop1.logic_phase--corollary
                 svg .theor1corollary.undisplay,
-            .bsl-approot.appid-b1sec2prop2.theorion--corollary
+            .bsl-approot.appid-b1sec2prop2.logic_phase--corollary
                 svg .theor2corollary.undisplay,
-            .bsl-approot.appid-b1sec2prop2.theorion--proof
+            .bsl-approot.appid-b1sec2prop2.logic_phase--proof
                 svg .theor2proof.undisplay,
-            .bsl-approot.appid-b1sec2prop1.theorion--proof
+            .bsl-approot.appid-b1sec2prop1.logic_phase--proof
                 svg .theor1proof.undisplay
             {
                 display : none;

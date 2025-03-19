@@ -4,7 +4,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 
@@ -25,7 +25,7 @@ are similar in their ultimate form, and that their ultimate ratio is one of equa
 {
   "subessayCaption" : "Interpretation 1. Bounded triangles.",
   "subessay" : "interpretation1",
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -53,7 +53,7 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
   "isBonus" : "true",
   "subessayCaption" : "Interpretation 2. Unbounded triangles.",
   "subessay" : "interpretation2",
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -82,7 +82,7 @@ to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
 
 *::*corollary|english
 {
-  "theorionCaption" : "Corollary"
+  "logic_phaseCaption" : "Corollary"
 }
 *..*
 

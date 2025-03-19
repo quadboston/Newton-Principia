@@ -34,7 +34,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { logic_phase, aspect, subessay } = amode;
 
         /*
         //fails:
@@ -61,7 +61,7 @@
         /*
         if( fconf.sappId === "b1sec1lemma6" ) {
             captured = "reset-to-origin";
-            if( theorion === 'claim' ) {
+            if( logic_phase === 'claim' ) {
                  captured = 'L-equal-d';
             }
         }

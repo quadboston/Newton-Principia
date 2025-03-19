@@ -58,7 +58,7 @@ Imagine a "smart impact radar" which to control the body in the circular traject
 
 *::*corollary|addendum
 {
-  "theorionCaption" : "Corollaries",
+  "logic_phaseCaption" : "Corollaries",
   "menuCaption" : "Addendum",
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1"
@@ -75,7 +75,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excent
 
 *::*corollary|addendum
 {
-  "theorionCaption" : "Corollaries",
+  "logic_phaseCaption" : "Corollaries",
   "menuCaption" : "---",
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3"
@@ -83,7 +83,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excent
 *..*
 
 
-In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
+In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,logic_phaseId=proof,aspectId=addendum,subessayId=force-center-change">
     section "Two force fields ... ", (ft)</a> gives: 
 <br>
 

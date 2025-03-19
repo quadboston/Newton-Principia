@@ -207,7 +207,7 @@
                   pos: pop.O,
                   //pcolor: pt[ "g-parameter" ],
                   //cssClass: 'tp-static',
-                  //cssClass : 'theorion--proof',
+                  //cssClass : 'logic_phase--proof',
                   cssClass: 'aspect--model',
                   initialR: pointRadius,
                   letterAngle : 0,
@@ -215,7 +215,7 @@
                   doPaintPname:false,
             },
             P : {
-                  cssClass: 'theorion--proof',
+                  cssClass: 'logic_phase--proof',
                   pcolor: pt.static,
                   initialR: pointRadius,
                   letterAngle : 0,
@@ -477,14 +477,14 @@
             {
                 'PC' :
                 {
-                    cssClass: 'theorion--proof',
+                    cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
             },
             {
                 'PB' :
                 {
-                    cssClass: 'theorion--proof',
+                    cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
             },

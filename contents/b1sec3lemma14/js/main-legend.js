@@ -27,11 +27,11 @@
     {
         return;
         //see lemma 11 for the sample
-        create_digital_legend_for_theorion( 'proof' );
-        create_digital_legend_for_theorion( 'corollary' );
+        create_digital_legend_for_logic_phase( 'proof' );
+        create_digital_legend_for_logic_phase( 'corollary' );
     }
 
-    function create_digital_legend_for_theorion( theorion )
+    function create_digital_legend_for_logic_phase( logic_phase )
     {
         //--------------------------
         // //\\ data source scenario
@@ -88,11 +88,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createTheorionLegend({
+        ssF.createLogic_phaseLegend({
             tableCaption    : 'Areas and Ratios',
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            theorion,
+            logic_phase,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -161,7 +161,7 @@
         }
     }
     //=========================================
-    // \\// creates theorion table
+    // \\// creates logic_phase table
     //=========================================
 
 }) ();

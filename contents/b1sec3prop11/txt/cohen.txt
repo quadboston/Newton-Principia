@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Problem 6"
+  "logic_phaseCaption" : "Problem 6"
 }
 *..*
 Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
@@ -18,7 +18,7 @@ Page 462.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
   "subessay" : "solution",
-  "theorionCaption" : "Solutions"
+  "logic_phaseCaption" : "Solutions"
 }
 *..*
 
@@ -39,7 +39,7 @@ L x ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ x ¦Pv¦𝑣P¦¦ as
 L to ¦vG¦G𝑣¦¦; and<sup>b</sup>
  ¦vG¦G𝑣¦¦ x ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
  as PC² to CD²; and
-(<a target="_blank" href="?conf=sappId=b1sec1lemma7,theorionId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
+(<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
 
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
 with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
@@ -64,7 +64,7 @@ are proportional to these, are also equal. Multiply these equals by , and
 L x ¦SP¦¦²
  will become equal to . Therefore
 
-(<a target="_blank" href="?conf=sappId=b1sec2prop6,theorionId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
+(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
 </a>)
 
 
@@ -85,7 +85,7 @@ Page 462.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution",
-  "theorionCaption" : "Solutions"
+  "logic_phaseCaption" : "Solutions"
 }
 *..*
 
@@ -93,7 +93,7 @@ Page 462.
 The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦orbit¦the ellipse¦¦, and by which
 ¦P¦body P¦¦ can revolve in ¦orbit¦that ellipse¦¦, is
 
-(<a target="_blank" href="?conf=sappId=b1sec2prop10,theorionId=corollary,aspectId=english">(by prop. 10, corol. 1)</a>)
+(<a target="_blank" href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english">(by prop. 10, corol. 1)</a>)
 
 as the distance ¦PO¦CP¦¦
 of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
@@ -101,7 +101,7 @@ the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at
 which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
 will
  
-(<a target="_blank" href="?conf=sappId=b1sec2prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
+(<a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 (by prop. 7, corol. 3)</a>)
 
 

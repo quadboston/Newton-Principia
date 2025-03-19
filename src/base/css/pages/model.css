@@ -77,9 +77,9 @@ svg text {
 }
 
 #lemma2.bsl-approot #widest-visib-toggler-wrap,
-.bsl-approot.theorion--claim #widest-visib-toggler-wrap,
+.bsl-approot.logic_phase--claim #widest-visib-toggler-wrap,
 .widest-rectangular.invisible,
-.bsl-approot.theorion--claim .widest-rectangular {
+.bsl-approot.logic_phase--claim .widest-rectangular {
     display:none;
 }
   

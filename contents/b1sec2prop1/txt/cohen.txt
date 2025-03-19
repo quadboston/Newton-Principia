@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Theorem 1"
+  "logic_phaseCaption" : "Theorem 1"
 }
 *..*
 
@@ -23,7 +23,7 @@ The ¦kepler-triangle¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦
 
 *::*proof|english
 {
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -93,7 +93,7 @@ will be proportional to those times in this case.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "cor-1",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

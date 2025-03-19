@@ -16,7 +16,7 @@
 *..*
 
 
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#theorem-2">
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#theorem-2">
     <b>S˙</b> = const ⇔ [<b>ra</b>] = 0</a>.
 </a>
 <br><br>
@@ -112,7 +112,7 @@ the height of ¦SBC¦triangle SBC¦¦ and decreases area speed.
 
 
 Corollary 1.
-    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#corollary-1">
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#corollary-1">
     <b>S˙˙</b><sub>z</sub> ⇈ <b>S˙</b><sub>z</sub> ⇔
     <b>a</b><sub>⟂</sub> ⇈ <b>v</b><sub>⟂</sub>.
 </a>
@@ -121,7 +121,7 @@ Corollary 1.
 
 
 Corollary 2.
-    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#corollary-2">
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#corollary-2">
 <i>a</i><sub>⟂</sub> = -d + <i>f</i><sub>⟂</sub>.
     </a>
 <br><br>
@@ -137,7 +137,7 @@ Corollary 2.
 }
 *..*
 
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=areas#scholium">
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#scholium">
 
 <b>a</b><sub>z</sub> does not contribute to area.
 

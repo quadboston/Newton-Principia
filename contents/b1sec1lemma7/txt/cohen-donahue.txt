@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,
@@ -15,7 +15,7 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one anoth
 
 *::*proof|english
 {
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -32,7 +32,7 @@ the
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "cor-1",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦

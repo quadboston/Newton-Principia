@@ -25,8 +25,8 @@
     function subessayLaunch_definedInLemma_after_model_upcreate()
     {
         //this happens between "init_model_parameters" and "media_upcreate"
-        //var showBookDiagram = ( amode.theorion === 'claim' && amode.aspect !== 'model' ) ||
-        //                      ( amode.theorion !== 'corollary' )
+        //var showBookDiagram = ( amode.logic_phase === 'claim' && amode.aspect !== 'model' ) ||
+        //                      ( amode.logic_phase !== 'corollary' )
         sDomF.detected_user_interaction_effect( !!"showBookDiagram" );
     }
 

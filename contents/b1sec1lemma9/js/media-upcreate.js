@@ -157,10 +157,10 @@
         //api:calculateCurvedArea( rgId, pivots, tend, startPoint, endPoint )
         wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
         wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
-        paintCurvArea( 'area-Ace', 'theorion--proof', '_ace' );
+        paintCurvArea( 'area-Ace', 'logic_phase--proof', '_ace' );
         //.apparently makes this shape-element exclusively present in 
-        //.'theorion--proof' mode
-        paintCurvArea( 'area-Abd', 'theorion--proof', '_abd' );
+        //.'logic_phase--proof' mode
+        paintCurvArea( 'area-Abd', 'logic_phase--proof', '_abd' );
         //------------------------------------------
         //  \\// proof curved areas
         //------------------------------------------
@@ -180,8 +180,8 @@
         //------------------------------------------
         //  //\\ proof linear areas
         //------------------------------------------
-        paintLikeAGE( 'Age', 'theorion--proof', '_age', 'tostroke' );
-        paintLikeAGE( 'Afd', 'theorion--proof', '_afd', 'tostroke' );
+        paintLikeAGE( 'Age', 'logic_phase--proof', '_age', 'tostroke' );
+        paintLikeAGE( 'Afd', 'logic_phase--proof', '_afd', 'tostroke' );
         //------------------------------------------
         //  \\// proof linear areas
         //------------------------------------------

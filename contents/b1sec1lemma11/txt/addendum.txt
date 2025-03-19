@@ -280,7 +280,7 @@
             }
         ],
         [
-            " theorion === 'claim' ",
+            " logic_phase === 'claim' ",
             {
                 "rg" :
                 {
@@ -307,7 +307,7 @@
             }
         ],
         [
-            "( theorion === 'proof'|| theorion === 'corollary' )",
+            "( logic_phase === 'proof'|| logic_phase === 'corollary' )",
             {
                 "rg" :
                 {
@@ -315,7 +315,7 @@
             }
         ],
         [
-            "aspect === 'model' && theorion === 'proof'",
+            "aspect === 'model' && logic_phase === 'proof'",
             {
                 "rg" :
                 {
@@ -334,7 +334,7 @@
             }
         ],
         [
-            "aspect === 'model' && theorion === 'proof' && subessay === 'second-derivative'",
+            "aspect === 'model' && logic_phase === 'proof' && subessay === 'second-derivative'",
             {
                 "rg" :
                 {
@@ -346,7 +346,7 @@
             }
         ],
         [
-            "theorion === 'corollary' || aspect === 'model'",
+            "logic_phase === 'corollary' || aspect === 'model'",
             {
                 "rg" :
                 {

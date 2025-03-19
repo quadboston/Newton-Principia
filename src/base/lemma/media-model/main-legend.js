@@ -14,7 +14,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            createTheorionLegend,
+            createLogic_phaseLegend,
         },
     });
     return;
@@ -28,12 +28,12 @@
 
 
     //=========================================
-    // //\\ creates theorion table
+    // //\\ creates logic_phase table
     //      does one time work of html creation
     //=========================================
-    function createTheorionLegend({
+    function createLogic_phaseLegend({
         stdMod_given,
-        theorion,
+        logic_phase,
         rowsCount,
         clustersCount,
         tableCaption,
@@ -48,11 +48,11 @@
     }){
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
-            ( theorion,     {
+            ( logic_phase,     {
                                 upcreate_mainLegend,
                             }
             );
-        var rgTeoTab = rg[ 'main-legend' ][ theorion ];
+        var rgTeoTab = rg[ 'main-legend' ][ logic_phase ];
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
@@ -68,7 +68,7 @@
         createsTablePlaceholder();
         createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat ||
                                         createsIdleFirstRow_forFormat_default;
-        createsIdleFirstRow_forFormat( tb, theorion );
+        createsIdleFirstRow_forFormat( tb, logic_phase );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
@@ -89,9 +89,9 @@
             tb = $$
                 .c('table')
                 .to( stdMod.legendRoot$ )
-                .cls( 'main-legend ' + theorion )
+                .cls( 'main-legend ' + logic_phase )
 
-                //removes set of .main-legend.]theorion[ {
+                //removes set of .main-legend.]logic_phase[ {
                 .css( 'border-collapse', 'collapse' )
                 ()
                 //css( 'table-layout', 'auto' ) //makes problem ... table moves out of pane ...
@@ -117,7 +117,7 @@
         ///=====================
         /// first row for format
         ///=====================
-        function createsIdleFirstRow_forFormat_default( tb, theorion )
+        function createsIdleFirstRow_forFormat_default( tb, logic_phase )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -125,7 +125,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( theorion +' tostroke')
+                .addClass( logic_phase +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)

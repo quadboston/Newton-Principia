@@ -165,7 +165,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { logic_phase, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline
@@ -370,7 +370,7 @@
             }
 
             
-            if( theorion === 'corollary' ) {
+            if( logic_phase === 'corollary' ) {
                 [
                     'curve-AB',
                     'left-curve-AB',
@@ -401,7 +401,7 @@
                     'curve-AB',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
 
-                if( theorion === 'proof' ) {
+                if( logic_phase === 'proof' ) {
                     sDomF.detected_user_interaction_effect( 'doUndetected' );
                     [
                         'c',

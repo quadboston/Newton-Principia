@@ -124,7 +124,7 @@
                 //             precontent = \nJSON*..*\n content
                 //             JSON in singleSubessay is optional
                 //
-                //      below: ess_instructions[1] = theorion_id: claim, proof,
+                //      below: ess_instructions[1] = logic_phase_id: claim, proof,
                 //                                            theorems, neutral, ...
                 //             ess_instructions[2] = aspect_id: english,... latin, ...
                 //             ess_instructions[3] = precontent
@@ -135,7 +135,7 @@
 
                 //ess_instructions[3] is text itself
                 if( ess_instructions && ess_instructions[3] ) {
-                    var theorion_id = ess_instructions[1];
+                    var logic_phase_id = ess_instructions[1];
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
 
@@ -158,8 +158,8 @@
                     //===============================================================
                     // //\\ sets initial amode
                     //===============================================================
-                    sn( theorion_id, exegs );
-                    var aspExeg     = sn( aspect_id, exegs[ theorion_id ] );
+                    sn( logic_phase_id, exegs );
+                    var aspExeg     = sn( aspect_id, exegs[ logic_phase_id ] );
 
                     //group of "objectivied"-subessays === group of subexegs,
                     //subexeg is to be further structured,
@@ -186,20 +186,20 @@
                             var ami = sn( 'amodel_initial', sapp, {
                                 posOverriden : false
                             });
-                            var theorionId  = haz( fconf, 'theorionId' );
+                            var logic_phaseId  = haz( fconf, 'logic_phaseId' );
                             var aspectId    = haz( fconf, 'aspectId' );
-                            if( theorionId && aspectId ) {
+                            if( logic_phaseId && aspectId ) {
                                 var subessayId  = haz( fconf, 'subessayId' );
                                 if( !subessayId ) {
                                     ////default subessayId is set to 0,
                                     ////to enable missed subessayId in URL-query-config
                                     subessayId = '0';
                                 }
-                                ami.theorion = theorionId;
+                                ami.logic_phase = logic_phaseId;
                                 ami.aspect = aspectId;
                                 ami.subessay = subessayId;
                                 ami.posOverriden = {
-                                    theorion : theorionId,
+                                    logic_phase : logic_phaseId,
                                     aspect : aspectId,
                                     subessay : subessayId,
                                 };
@@ -207,7 +207,7 @@
                         }
 
                         if( !ami.posOverriden ) {
-                            ami.theorion = theorion_id;
+                            ami.logic_phase = logic_phase_id;
                             ami.aspect = aspect_id;
                             ami.subessay = essayHeader.subessay;
                             //sets 'default' for case it will be missed in all text
@@ -224,7 +224,7 @@
                         ///these conditions preserve legacy structure of
                         ///essayHeader in case if default are supplied from URLquery
                         if(
-                            theorion_id          !== ao.theorion ||
+                            logic_phase_id          !== ao.logic_phase ||
                             aspect_id            !== ao.aspect ||
                             essayHeader.subessay !== ao.subessay
                         ){
@@ -353,7 +353,7 @@
             //===========================================================
             sconf.asp8theor_menus = {};
 
-            eachprop( exegs, ( exAspects, theorion_id ) => {
+            eachprop( exegs, ( exAspects, logic_phase_id ) => {
                 eachprop( exAspects, ( exAspect, aspect_id ) => {
                     exAspect.subexegs.forEach( ( subex, subexId ) => {
                         var essayHeader = subex.essayHeader;
@@ -362,8 +362,8 @@
                         ///we need menu and classes only once per theor-aspect pair
                         if( subexId === 0 ) {
 
-                            //.not elegant: should be in "theorion" loop, not in child loop,
-                            setMenu( theorion_id, 'theorion', essayHeader );
+                            //.not elegant: should be in "logic_phase" loop, not in child loop,
+                            setMenu( logic_phase_id, 'logic_phase', essayHeader );
 
                             setMenu( aspect_id, 'aspect', essayHeader );
                             //******************************************************************
@@ -402,7 +402,7 @@
                         if( haz( essayHeader, "default" ) === '1' ){
                             //this is an alternative "if" which must work too
                             //if(
-                            //    sapp.amodel_initial.theorion === theorion_id &&
+                            //    sapp.amodel_initial.logic_phase === logic_phase_id &&
                             //    sapp.amodel_initial.aspect === aspect_id
                             //){
                             //todm ... name "default" is very unlucky, do change it ...
@@ -443,7 +443,7 @@
                     /*
                     asp8theor_menus :
                     {
-                        theorion: {
+                        logic_phase: {
                             list:
                             [
                                 { id:'claim' },
@@ -476,9 +476,9 @@
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;
                     men.list.push( menuItem );
-                    if( mcat_id === 'theorion' ) {
-                        sDomN.theorionMenuMembersCount =
-                            ( sDomN.theorionMenuMembersCount || 0 ) + 1;
+                    if( mcat_id === 'logic_phase' ) {
+                        sDomN.logic_phaseMenuMembersCount =
+                            ( sDomN.logic_phaseMenuMembersCount || 0 ) + 1;
                     } else if( mcat_id === 'aspect' ) {
                         sDomN.aspectionMenuMembersCount =
                             ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
@@ -491,10 +491,10 @@
                 //------------------------------------------------------------
                 //     for example for claim/english header with default === "1"
                 //         sconf.asp8theor_menus[ 'aspect' ].default='english';
-                //         sconf.asp8theor_menus[ 'theorion' ].default='claim';
+                //         sconf.asp8theor_menus[ 'logic_phase' ].default='claim';
                 if( has( sapp, 'amodel_initial' ) ) {
                     var ww = sapp.amodel_initial;
-                    if( ww.theorion === leafId || ww.aspect === leafId ) {
+                    if( ww.logic_phase === leafId || ww.aspect === leafId ) {
                         men[ "default" ] = leafId;
                     }
                 }
@@ -508,8 +508,8 @@
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                     men.duplicates[ leafId ].studylab = essayHeader.studylab;
                 }
-                if( essayHeader.theorionCaption && mcat_id === 'theorion' ) {
-                    men.duplicates[ leafId ].caption = essayHeader.theorionCaption;
+                if( essayHeader.logic_phaseCaption && mcat_id === 'logic_phase' ) {
+                    men.duplicates[ leafId ].caption = essayHeader.logic_phaseCaption;
                 }
             }
             //=======================================

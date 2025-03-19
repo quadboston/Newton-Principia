@@ -46,7 +46,7 @@
 
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { logic_phase, aspect, subessay } = amode;
         //----------------------------------
         // //\\ common values
         //----------------------------------
@@ -61,7 +61,7 @@
         //----------------------------------
 
 
-        if( theorion === 'proof' ){
+        if( logic_phase === 'proof' ){
 
             //todo ... why was it 0.7? and not 1?
             //         this made problems with bars number > DONT_PAINT_BARS_MORE_THAN

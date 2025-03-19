@@ -1,7 +1,7 @@
 
 *::*claim|english
 {
-  "theorionCaption" : "Problem 2",
+  "logic_phaseCaption" : "Problem 2",
   "default" : "1",
   "menuCaption" : "Text"
 }
@@ -17,7 +17,7 @@ Page 455.
 
 *::*proof|english
 {
-  "theorionCaption" : "Solutions"
+  "logic_phaseCaption" : "Solutions"
 }
 *..*
 
@@ -82,7 +82,7 @@ Page 455.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

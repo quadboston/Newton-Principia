@@ -11,22 +11,22 @@ A supposition of lemma 6 is that curve has continuous curvature. This can mean t
 <br><br>
 1. Curve has no "corner". In other words, 
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
 left and right Euclidean tangents are on the same line.
 </a>
  
 However, lemma 6 is
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=continuous-if-curve#cif-breaks-l6">incorrect in this case.</a>
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=continuous-if-curve#cif-breaks-l6">incorrect in this case.</a>
 
 Even when curve is continous.
 <br><br>
 
 2. Second meaning can be that curve has continuous
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=circle-based-curvature#circlescribed-curvature-anchor">CircleScribed curvature</a>.
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=circle-based-curvature#circlescribed-curvature-anchor">CircleScribed curvature</a>.
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
 In this case Lemma 6 is also incorrect.
 </a>
 
@@ -136,12 +136,12 @@ then
 <b>I. Newtons logic in Lemma 11,</b>
 <br>
 strongly suggests that by word "curvatue", Newton means
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=circle-based-curvature#circlescribed-curvature-anchor">
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=circle-based-curvature#circlescribed-curvature-anchor">
 "CirlescribedCurvature"
 </a>
 <br><br>
 
-<a target="_blank" href="?conf=sappId=b1sec1lemma11,theorionId=proof,aspectId=english">
+<a target="_blank" href="?conf=sappId=b1sec1lemma11,logic_phaseId=proof,aspectId=english">
 Drag point B to A and see that point G has limit J.
 </a>
 
@@ -153,7 +153,7 @@ R → R<sub>c</sub> or 2R=D → D<sub>c</sub>=J.
 (CircleSribed curvature is not the curvature χ in CalculusXX where it is |d²<b>r</b>/ds²|.
 Yes, when χ exists, then CircleSribed curvature does exist too and = χ = 1/R<sub>c</sub>, but not other way around:
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
 for this curve
 </a>
 CircleSribed curvature does exist, but χ does not because
@@ -171,13 +171,13 @@ even the first derivative d<b>r</b>/dt does not exist.
 a) curve is differentiable
 <br>
 <a target="_blank" href="?conf=sappId=b1sec1lemma6,
-theorionId=proof,aspectId=model#differential-version">
+logic_phaseId=proof,aspectId=model#differential-version">
 b) differential tangents exist
 </a>
 <br>
 
 <a target="_blank" href="?conf=sappId=b1sec1lemma6,
-theorionId=proof,aspectId=model#differential-version">
+logic_phaseId=proof,aspectId=model#differential-version">
 c) chord angle has a limit
 </a>
 <br><br><br>
@@ -185,7 +185,7 @@ c) chord angle has a limit
 
 
 <b>Variant 2.<a target="_blank" href="?conf=sappId=b1sec1lemma6,
-theorionId=proof,aspectId=model#pure-convex-version">
+logic_phaseId=proof,aspectId=model#pure-convex-version">
 Lemma 6. Pure convex version.
 </a></b> Apparently chosen in Dana Densmore book.
 However, this does not need any premise of "continuity" and "curvature".
@@ -304,7 +304,7 @@ then
 (i') for ¦curve-AB¦ACB¦¦ which lies on one side of ray ¦AL¦¦ in some of neighborhood of point ¦A¦¦ except point ¦A¦¦, <br><br>
 ¦AL¦¦ is
 
-<a target="_blank" href="?conf=sappId=addd-prel-curve,theorionId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=euclid-framework-curves#onc-side-euclidean-tangent">
 one-side Euclidean tangent,
 </a>
 

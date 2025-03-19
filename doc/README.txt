@@ -56,13 +56,13 @@ rgtools - possibly relates for batton "lab" for some model options, choice of fu
           thickness of lines, capture model states;
 rg - stands for registry, often used for geometrical object: dots, lines, ...
 
-amode - keeps current model state: var { theorion, aspect, submodel, subessay } = amode;
+amode - keeps current model state: var { logic_phase, aspect, submodel, subessay } = amode;
 
-theorion usually takes values as strings "proof", "clame", "corollary", so has semantics of fragment of logical text,
+logic_phase usually takes values as strings "proof", "clame", "corollary", so has semantics of fragment of logical text,
 
-aspect usually takes values as "english", "latin", "exercise", 'comment" - is a languge or cosmetic  form of own theorion,
+aspect usually takes values as "english", "latin", "exercise", 'comment" - is a languge or cosmetic  form of own logic_phase,
 
-Precisely strings "proof", "claim", ... "latin", "english" are assigned to theorion_id and aspect_id
+Precisely strings "proof", "claim", ... "latin", "english" are assigned to logic_phase_id and aspect_id
 correcspondingly in code. These string are keys in Book-text segments in form:
 *::*claim|english
 ...
@@ -73,8 +73,8 @@ exegs - array of compiled essays of lemma
 //==============================================
 // //\\ sapwns script-embedded-in-text to html
 //==============================================
-eachprop( exegs, ( theorionAspects, theorion_id ) => {
-    eachprop( theorionAspects, ( exAspect, aspect_id ) => {
+eachprop( exegs, ( logic_phaseAspects, logic_phase_id ) => {
+    eachprop( logic_phaseAspects, ( exAspect, aspect_id ) => {
         exAspect.subexegs.forEach( ( subexeg, exegId ) => {
 
 
@@ -104,7 +104,7 @@ aspect-menu submenu: subessays - vertical
 
 ********************************************
 menu-dom-structure
-    fapp.fappRoot$.addClass( 'theorion--' + amode.theorion + ' aspect--' + amode.aspect );
+    fapp.fappRoot$.addClass( 'logic_phase--' + amode.logic_phase + ' aspect--' + amode.aspect );
         sDomN.essaionsRoot$ = $$.div().cls( bsl-text-widget leftside-menuholder )
             leftSide_menuRotator$ = $$.dct( 'left-side-menu-rotator', ||| made in build_menu_top_leafs_placeholders()
                 sDomN.teafs$[ mcat_id ] = $$.dct( 'menu-teaf ' + mcat_id, ||| build_menu_top_leafs_placeholders()

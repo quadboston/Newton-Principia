@@ -59,7 +59,7 @@
             sDomN.videoListPopup_button_onModelPane$.css(
                 'display','none');
 
-            //:theorion menu cleanup
+            //:logic_phase menu cleanup
             ///cleans up video icon placeholders in exegesis-tabs,
             ///in tabs, not in help button,
             [ 'videoicon-placeholder', 'videoicon-placeholder-aspect' ]
@@ -69,7 +69,7 @@
                         iconRg$.html('');
                     });
                 });
-            var vConf = exegs[ amode['theorion'] ][ amode['aspect'] ].subexegs[0]
+            var vConf = exegs[ amode['logic_phase'] ][ amode['aspect'] ].subexegs[0]
                         .essayHeader.video;
             if( vConf ) {
                 if( vConf['to model help'] ) {
@@ -96,7 +96,7 @@
                     //----------------------------------------------------------
                     let iconClass = 'videoicon-placeholder' +
                                     ( has( vConf, 'to-aspect' ) ? '-aspect' : '' );
-                    let category = has( vConf, 'to-aspect' ) ? 'aspect' : 'theorion';
+                    let category = has( vConf, 'to-aspect' ) ? 'aspect' : 'logic_phase';
                     var itemDom$ = createVideoIconEntry( vConf );
                     var dom_already_built = rg[ iconClass ][ amode[ category ] ];
                     if( dom_already_built  ) {

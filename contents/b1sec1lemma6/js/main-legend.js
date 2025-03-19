@@ -38,11 +38,11 @@
         var clustersCount = legendScriptParsed[0].length;
 
         // function defined in /src/base/lemma/media-model/main-legend.js
-        ssF.createTheorionLegend({
+        ssF.createLogic_phaseLegend({
             tableCaption    : '', 
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            theorion        : key,
+            logic_phase        : key,
             rowsCount,
             clustersCount,
             makesBodyCluster,

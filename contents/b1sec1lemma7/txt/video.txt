@@ -65,7 +65,7 @@ we know that the ¦AB arc-AB AD¦vanishing components¦¦ will likewise coincide
   "menuCaption" : "Video",
   "subessayCaption" : "corollary 1",
   "subessay" : "cor-1",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 <div style="padding:56.25% 0 0 0;position:relative;">

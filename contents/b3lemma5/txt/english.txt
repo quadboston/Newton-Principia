@@ -8,7 +8,7 @@
     "experimental"   : [0,     0,   255,    1],
     "approximator"   : [255,   0,   0,      1]
   },  
-  "theorionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 <img src="contents/b3lemma5/img/english.jpg" style="width:100%">
@@ -20,7 +20,7 @@
 
 *::*proof|english
 {
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 

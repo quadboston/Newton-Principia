@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 
@@ -17,7 +17,7 @@ times¦¦.
 
 *::*proof|english
 {
-  "theorionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -47,7 +47,7 @@ is, at the very beginning of the motion these spaces will be (by lem. 9) in the
   "subessayCaption" : "Corollary 1",
   "subessay" : "cor-1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

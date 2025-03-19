@@ -31,8 +31,8 @@
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
     {
-        eachprop( exegs, ( theorionAspects, mcat_id ) => {
-            eachprop( theorionAspects, ( exAspect, scat_id ) => {
+        eachprop( exegs, ( logic_phaseAspects, mcat_id ) => {
+            eachprop( logic_phaseAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     subexeg.cssCls = ' subessay-menuitem-id-' + exegId;
                     //====================================================

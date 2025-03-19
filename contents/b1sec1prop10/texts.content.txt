@@ -1,9 +1,52 @@
 
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*Corollaries|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+*::*scholium|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec1prop10/img/latin.png" style="width:100%">
+<br>
+<div book-reference-id="latin"></div>
+
+
+
+
+
 *::*claim|english
 {
-  "default" : "1",
-  "menuCaption" : "Text",
-  "logic_phaseCaption" : "Problem 5"
+  "menuCaption" : "English"
 }
 *..*
 
@@ -11,8 +54,6 @@ Let a ¦body P¦body¦¦ revolve in an ellipse; it is required to find the law
 of the centripetal
 ¦force¦¦ tending toward the ¦O¦center of the ellipse¦¦
 
-
-<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -22,18 +63,28 @@ Page 459.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 *::*proof|english
 {
-  "menuCaption" : "Text",
+  "default" : "1",
+  "menuCaption" : "English",
   "subessayCaption" : "<i>[Solution</i>]",
-  "subessay" : "solution",
-  "logic_phaseCaption" : "Solutions"
+  "subessay" : "solution"
 }
 *..*
 
-Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
-¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
-then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
+Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, ¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conicsᵃ) be to ¦Qv¦Q𝑣¦¦²
 
 as ¦PO¦PC¦¦² to ¦DO¦CD¦¦², and
 
@@ -51,13 +102,15 @@ Write
 and ¦Q¦¦ coming together) 2¦PO¦PC¦¦ for ¦vG¦𝑣G¦¦, and, multiplying the extremes and
 means together, ¦QT¦¦² x ¦PO¦PC¦¦² / ¦QR¦¦ will become equal to 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦. Therefore
 
-(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), the centripetal ¦force¦¦ is as 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦ inversely, that
+(<a target="_blank" href="?conf=sappId=b1sec1prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), the centripetal ¦force¦¦ is as 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦ inversely, that
 
 is (because 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² is given), as 1/¦PO¦PC¦¦ inversely, that is, as the distance ¦PO¦PC¦¦
 directly. Q.E.I.
 
 
 <br><br>
+a. Concerning this reference to "the Conics" see the <i>Source</i>, Guide, §10.10.
+
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -66,10 +119,9 @@ Page 459.
 
 *::*proof|english
 {
-  "menuCaption" : "Text",
+  "menuCaption" : "English",
   "subessayCaption" : "<i>Another solution</i>",
-  "subessay" : "another-solution",
-  "logic_phaseCaption" : "Solutions"
+  "subessay" : "another-solution"
 }
 *..*
 
@@ -89,11 +141,9 @@ and the ratio of ¦u,VV¦𝑢V¦¦ to ¦vG¦𝑣G¦¦, which is the same as the 
 will become the ratio of ¦P,VV¦PV¦¦ to ¦GP¦PG¦¦ or ¦P,VV¦PV¦¦ to 2¦PO¦PC¦¦;
 and therefore ¦P,VV¦PV¦¦ will
 be equal to 2¦DO¦DC¦¦²/¦PO¦PC¦¦. Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
-revolves in the ellipse will (<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) be as 2¦DO¦DC¦¦² / ¦PO¦PC¦¦ x ¦PF¦¦² inversely,
+revolves in the ellipse will (<a target="_blank" href="?conf=sappId=b1sec1prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) be as 2¦DO¦DC¦¦² / ¦PO¦PC¦¦ x ¦PF¦¦² inversely,
 that is (because 2¦DO¦DC¦¦² x ¦PF¦¦² is given), as ¦PO¦PC¦¦ directly. Q.E.I.
 
-
-<br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
 Page 459.
 
@@ -101,10 +151,9 @@ Page 459.
 
 
 
-*::*corollaries|english
+*::*Corollaries|english
 {
-  "menuCaption" : "Text",
-  "logic_phaseCaption" : "Corollaries"
+  "menuCaption" : "English"
 }
 *..*
 
@@ -138,10 +187,9 @@ the equality of the direct and inverse ratios) in the ratio of equality.
 
 
 
-*::*scholium|english
+*::*Scholium|english
 {
-  "menuCaption" : "Text",
-  "logic_phaseCaption" : "Scholium"
+  "menuCaption" : "English"
 }
 *..*
 
@@ -167,3 +215,54 @@ the ordinates is changed in any way while the periodic time remains the
 same, the ¦forces¦¦ tending toward any center located in the abscissa are, for
 each individual ordinate, increased or decreased in the ratio of the distances
 from the center.
+
+
+
+
+
+
+
+
+
+*::*claim|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+
+
+<b>In <><>CXX:</b><br><br>
+<a target="_blank" href="?conf=sappId=addd-kepler-task#in-center-of-conic">"Conic motion with force origin in conic's center":</a>
+
+    <div style="text-align:center;">
+        f<sub>e</sub> = M²𝛂²𝛃²r. <br>
+    </div>
+
+
+
+<div book-reference-id="kvk"></div>
+
+*::*Corollaries|addendum
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+*::*scholium|addendum
+{
+  "menuCaption" : "Addendum",
+  "menuCaption" : "---"
+}
+*..*
+
+
+

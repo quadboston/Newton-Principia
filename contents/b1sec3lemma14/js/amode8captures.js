@@ -49,7 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { theorion, aspect, subessay } = amode;
+        var { logic_phase, aspect, subessay } = amode;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );

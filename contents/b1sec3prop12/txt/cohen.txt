@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "theorionCaption" : "Problem 7"
+  "logic_phaseCaption" : "Problem 7"
 }
 *..*
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
@@ -21,7 +21,7 @@ Page 463.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Solution</i>",
   "subessay" : "solution",
-  "theorionCaption" : "Solutions"
+  "logic_phaseCaption" : "Solutions"
 }
 *..*
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦hyperbola¦¦, ¦GP¦PG¦¦ and ¦DK¦KD¦¦ other
@@ -31,11 +31,11 @@ ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter DK in ¦E¦¦ 
 <!--
 <br><br>
 b.
-<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#in-focus">
+<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
 This result</a>
 
 is given in <a href="#cohensource"><i>Source</i></a>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
-[<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#in-focus">
+[<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
 and in CalculusXX, (A)</a>
 ]
 <br><br>
@@ -57,7 +57,7 @@ or ¦CA¦AC¦¦ to ¦PC¦¦. L x ¦Pv¦P𝑣¦¦ will also be to ¦Gv¦G𝑣¦¦
 
 nature of conics) the rectangle ¦Gv¦G𝑣¦¦ x ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
 (
-<a target="_blank" href="?conf=sappId=b1sec1lemma7,theorionId=corollary,aspectId=english">
+<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
 by lem. 7, corol. 2</a>
 )
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦², the points ¦Q¦¦ and ¦P¦¦ coming
@@ -89,13 +89,13 @@ Page 465.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>Another solution</i>",
   "subessay" : "another-solution",
-  "theorionCaption" : "Solutions"
+  "logic_phaseCaption" : "Solutions"
 }
 *..*
 Find the force that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
 come out proportional to the distance ¦PC¦CP¦¦. And hence
 (
-<a target="_blank" href="?conf=sappId=b1sec2prop7,theorionId=corollary,aspectId=english,subessayId=corollary3">
+<a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 by prop. 7, corol. 3</a>
 )
 the force tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is

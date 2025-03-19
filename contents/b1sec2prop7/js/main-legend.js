@@ -22,11 +22,11 @@
     function create_digital_legend()
     {
         //see lemma 11 for the sample
-        create_digital_legend_for_theorion( 'proof' );
-        create_digital_legend_for_theorion( 'corollary' );
+        create_digital_legend_for_logic_phase( 'proof' );
+        create_digital_legend_for_logic_phase( 'corollary' );
     }
 
-    function create_digital_legend_for_theorion( theorion )
+    function create_digital_legend_for_logic_phase( logic_phase )
     {
         //sample:
         //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
@@ -88,11 +88,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createTheorionLegend({
+        ssF.createLogic_phaseLegend({
             tableCaption    : 'Areas and Ratios',
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            theorion,
+            logic_phase,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -118,7 +118,7 @@
         function updatesDataInCell({ rowIx, clusterIx, })
         {
             //patch: disables second row of the table, the raw of dt
-            rg[ 'main-legend' ][ theorion ].tableDom.children[1].style.display = 'none';
+            rg[ 'main-legend' ][ logic_phase ].tableDom.children[1].style.display = 'none';
             
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
@@ -128,7 +128,7 @@
             })
         }
         
-        function createsIdleFirstRow_forFormat( tb, theorion )
+        function createsIdleFirstRow_forFormat( tb, logic_phase )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -136,7 +136,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( theorion +' tostroke')
+                .addClass( logic_phase +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)
@@ -152,7 +152,7 @@
         
     }
     //=========================================
-    // \\// creates theorion table
+    // \\// creates logic_phase table
     //=========================================
 
 }) ();
