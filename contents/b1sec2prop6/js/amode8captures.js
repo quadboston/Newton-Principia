@@ -48,7 +48,7 @@
 
     function amode2rgstate( captured )
     {
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
@@ -111,7 +111,7 @@
 
         } else {
 
-            if( textSection === 'claim' || textSection === 'proof' ){
+            if( theorion === 'claim' || theorion === 'proof' ){
 
                 rg.media_scale.value = 1;
 
@@ -148,10 +148,10 @@
                     )
                 );
                 */
-                if( textSection === 'proof' ){
+                if( theorion === 'proof' ){
                     rg[ 'Q,rrminus' ].undisplay = false;
                 }
-            } else if( textSection === 'corollary' && aspect === 'addendum' &&
+            } else if( theorion === 'corollary' && aspect === 'addendum' &&
                     subessay === 'corollary1' ){
                 rg.SY.undisplay = true;
                 rg.Y.undisplay = true;
@@ -165,7 +165,7 @@
                 rg[ 'Q,rrminus' ].undisplay = false;
                 rg[ 'P,rrminus' ].undisplay = false;
 
-            } else if( textSection === 'corollary' && subessay === 'corollary1' ){
+            } else if( theorion === 'corollary' && subessay === 'corollary1' ){
                 rg.SY.undisplay = true;
                 rg.Y.undisplay = true;
                 rg.PY.undisplay = true;
@@ -180,7 +180,7 @@
                 //rg.sagitta.undisplay = false;
                 rg[ 'P,sagitta' ].undisplay = false;
 
-            } else if( textSection === 'corollary' && subessay === 'corollary3'
+            } else if( theorion === 'corollary' && subessay === 'corollary3'
             ){
                 if( aspect === 'addendum' ) {
                     rg.Q.hideD8Dpoint = true;
@@ -214,7 +214,7 @@
                 rg.timearc.undisplay = true;
 
 
-            } else if( textSection === 'corollary' && subessay === 'corollary5' ){
+            } else if( theorion === 'corollary' && subessay === 'corollary5' ){
                 rg.SY.undisplay = true;
                 rg.Y.undisplay = true;
                 rg.PY.undisplay = false;

@@ -4,7 +4,7 @@
   "default" : "1",
   "menuCaption" : "Text",
   "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
-  "textSectionCaption" : "Claim"
+  "theorionCaption" : "Claim"
 }
 *..*
 
@@ -19,7 +19,7 @@
 
 *::*proof|english
 {
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
 }
 *..*
 
@@ -37,7 +37,7 @@
 
 *::*corollaries|english
 {
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 

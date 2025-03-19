@@ -426,7 +426,7 @@
         //--------------------------------------
         {
             let l2 = fconf.sappId.indexOf('lemma2') === 0;
-            let checked = amode.textSection !== 'claim';
+            let checked = amode.theorion !== 'claim';
             rg.F.undisplay = !checked || videoMode || onlyFig || l2;
             rg.f.undisplay = !checked || videoMode || onlyFig || l2;
             rg.AF.undisplay = !checked;

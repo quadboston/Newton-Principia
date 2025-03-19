@@ -129,49 +129,49 @@
             // //\\ aux points
             G : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : 45,
                  },
             I : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             H : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : -90,
                    letterRotRadius : 20,
                  },
             E : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             K : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : 90,
                    letterRotRadius : 20,
                 },
             F : {
                    pcolor : pt.aux,
-                   cssClass : 'textSection--proof',
+                   cssClass : 'theorion--proof',
                    letterAngle : 0,
                    letterRotRadius : 20,
                 },
             t : { pos: [1511, 574],
                   pcolor : pt.aux,
-                  cssClass : 'textSection--proof',
+                  cssClass : 'theorion--proof',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             r : { pos: [1028, 830],
                   pcolor : pt.aux,
-                  cssClass : 'textSection--proof',
+                  cssClass : 'theorion--proof',
                   initialR: pointRadius,
                 },
             q : { pos: [1028, 830],
@@ -407,58 +407,58 @@
             //------------------------
             { 'DG' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                      }
             },
             { 'IG' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                      }
             },
 
             { 'DI' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                      }
             },
             { 'DE' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                      }
             },
             { 'DK' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                      }
             },
             { 'Bt' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'CF' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'HB' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'DH' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'DF' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'IQ' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             //------------------------
@@ -470,7 +470,7 @@
             //------------------------
             { 'rt' : {
                         pcolor : pt.aux,
-                        cssClass : 'textSection--proof',
+                        cssClass : 'theorion--proof',
                     }
             },
             { 'Pr' : {

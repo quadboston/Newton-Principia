@@ -21,12 +21,12 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_textSection( 'proof' );
-        create_digital_legend_for_textSection( 'claim' );
-        create_digital_legend_for_textSection( 'corollary' );
+        create_digital_legend_for_theorion( 'proof' );
+        create_digital_legend_for_theorion( 'claim' );
+        create_digital_legend_for_theorion( 'corollary' );
     }
 
-    function create_digital_legend_for_textSection( textSection )
+    function create_digital_legend_for_theorion( theorion )
     {
         //sample:
         //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
@@ -66,11 +66,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createtextSectionLegend({
+        ssF.createTheorionLegend({
             tableCaption    : '',
             noTableTitle    : true,
             stdMod_given    : stdMod,
-            textSection,
+            theorion,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -103,7 +103,7 @@
             })
         }
         
-        function createsIdleFirstRow_forFormat( tb, textSection )
+        function createsIdleFirstRow_forFormat( tb, theorion )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -111,7 +111,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( textSection +' tostroke')
+                .addClass( theorion +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)
@@ -127,7 +127,7 @@
         
     }
     //=========================================
-    // \\// creates textSection table
+    // \\// creates theorion table
     //=========================================
 
 }) ();

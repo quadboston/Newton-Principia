@@ -32,15 +32,15 @@
     function model_upcreate_addon()
     {
         //this patch amends this css
-        //.bsl-approot.textSection--corollary.aspect--english .bsl--svgscene.s ubmodel-common
+        //.bsl-approot.theorion--corollary.aspect--english .bsl--svgscene.s ubmodel-common
 
-        //img competes with: .bsl-approot.textSection--scholium.aspect--english .bg0,
+        //img competes with: .bsl-approot.theorion--scholium.aspect--english .bg0,
         //todm: inconsistent: .main-legend.proof should not need this CSS, it
         //      is designed to remove itself by class ".proof",
         var wwCss =
             amode.aspect === 'model' ||
-            amode.textSection === 'corollary' ||
-            amode.textSection === 'scholium'
+            amode.theorion === 'corollary' ||
+            amode.theorion === 'scholium'
         ?
         //hides common model in corollary and scholium
         `

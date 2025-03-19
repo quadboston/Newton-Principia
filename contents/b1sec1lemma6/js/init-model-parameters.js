@@ -140,7 +140,7 @@
                 
                 if( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
-                    ( !(amode.aspect === 'model') && amode.textSection === 'proof' ) && 
+                    ( !(amode.aspect === 'model') && amode.theorion === 'proof' ) && 
                     (angleBAM < 0 || cpos[1] > -0.01)
                 ){
                     adjust_new_unrotatedParameterX_asNeccesary();

@@ -5,7 +5,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "theorionCaption" : "Claim"
 }
 *..*
 
@@ -27,7 +27,7 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
 
 *::*proof|english
 {
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
 }
 *..*
 

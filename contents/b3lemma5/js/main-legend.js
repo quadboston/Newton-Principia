@@ -24,14 +24,14 @@
 
     function create_digital_legend()
     {
-        var textSection        = 'proof';
+        var theorion        = 'proof';
         var columnPars      = sconf.basePairs;
         var rowsCount       = columnPars.length-1;
         var clustersCount   = columnPars.length-1;
         var tableCaption    = 'Divided Differences';
-        ssF.createtextSectionLegend({
+        ssF.createTheorionLegend({
             stdMod_given : stdMod,
-            textSection,
+            theorion,
             rowsCount,
             clustersCount,
             tableCaption,
@@ -170,7 +170,7 @@
         }
     }
     //=========================================
-    // \\// creates textSection table
+    // \\// creates theorion table
     //=========================================
 
 }) ();

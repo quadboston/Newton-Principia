@@ -108,7 +108,7 @@
         //=======================================================
         // //\\ executes "lesson-guide-scenario" from start-event
         //=======================================================
-        eachprop( exegs[ amode.textSection ][ amode.aspect ].subessay2subexeg,
+        eachprop( exegs[ amode.theorion ][ amode.aspect ].subessay2subexeg,
                     (subessayRack, sname) => {
             if( haz( subessayRack, 'stateId2state' ) ) {
                 subessayRack.scenario_stateId = 'start';

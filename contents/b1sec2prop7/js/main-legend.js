@@ -22,11 +22,11 @@
     function create_digital_legend()
     {
         //see lemma 11 for the sample
-        create_digital_legend_for_textSection( 'proof' );
-        create_digital_legend_for_textSection( 'corollary' );
+        create_digital_legend_for_theorion( 'proof' );
+        create_digital_legend_for_theorion( 'corollary' );
     }
 
-    function create_digital_legend_for_textSection( textSection )
+    function create_digital_legend_for_theorion( theorion )
     {
         //sample:
         //let sagittaColor = sDomF.getFixedColor( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
@@ -88,11 +88,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createtextSectionLegend({
+        ssF.createTheorionLegend({
             tableCaption    : 'Areas and Ratios',
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            textSection,
+            theorion,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -118,7 +118,7 @@
         function updatesDataInCell({ rowIx, clusterIx, })
         {
             //patch: disables second row of the table, the raw of dt
-            rg[ 'main-legend' ][ textSection ].tableDom.children[1].style.display = 'none';
+            rg[ 'main-legend' ][ theorion ].tableDom.children[1].style.display = 'none';
             
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
@@ -128,7 +128,7 @@
             })
         }
         
-        function createsIdleFirstRow_forFormat( tb, textSection )
+        function createsIdleFirstRow_forFormat( tb, theorion )
         {
             //=====================================================
             // //\\ idle first row to format table for fixed-layout
@@ -136,7 +136,7 @@
             var row = $$.c('tr')
                 //vital ... removes global css which corrupts table
                 //aka .addClass( 'proof row1 tostroke' )
-                .addClass( textSection +' tostroke')
+                .addClass( theorion +' tostroke')
 
                 .css( 'visibility', 'hidden' ) //todm ... tmp fix
                 .to(tb)
@@ -152,7 +152,7 @@
         
     }
     //=========================================
-    // \\// creates textSection table
+    // \\// creates theorion table
     //=========================================
 
 }) ();

@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Theorem 8"
+  "theorionCaption" : "Theorem 8"
 }
 *..*
 
@@ -29,7 +29,7 @@ Page 114.
 *::*proof|english
 {
   "menuCaption" : "Text",
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
   
 }
 *..*
@@ -71,7 +71,7 @@ Page 114.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -90,7 +90,7 @@ Page 114.
 {
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -111,7 +111,7 @@ Page 114.
 {
   "subessayCaption" : "Corollary 3",
   "subessay" : "corollary3",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -133,7 +133,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 4",
   "subessay" : "corollary4",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -160,7 +160,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 5",
   "subessay" : "corollary5",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 In the same figure, or even in different figures whose
@@ -179,7 +179,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 6",
   "subessay" : "corollary6",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -202,7 +202,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 7",
   "subessay" : "corollary7",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -228,7 +228,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 8",
   "subessay" : "corollary8",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -251,7 +251,7 @@ Page 115.
 {
   "subessayCaption" : "Corollary 9",
   "subessay" : "corollary9",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 

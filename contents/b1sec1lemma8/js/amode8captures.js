@@ -162,7 +162,7 @@
 
     function amode2rgstate( captured )
     {
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline
@@ -246,7 +246,7 @@
             'fi',
         ].forEach( gname => { rg[ gname ].undisplay = false; });
 
-        if( textSection === 'claim' ) {
+        if( theorion === 'claim' ) {
             [
                 'c',
                 'rd',
@@ -258,7 +258,7 @@
                 'imageOfR,b',
                 'imageOfR,imageOfD',
             ].forEach( gname => { rg[ gname ].undisplay = true; });
-        } else if( textSection === 'proof' ) {
+        } else if( theorion === 'proof' ) {
             [
                 'c',
                 //'d',
@@ -279,7 +279,7 @@
                 'arc-Ab',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
-        if( textSection === 'claim' || textSection === 'corollary' ) {
+        if( theorion === 'claim' || theorion === 'corollary' ) {
             if( userOptions.showingBonusFeatures() ) {
                 rg.B.hideD8Dpoint   = false;
                 rg.R.hideD8Dpoint   = false;

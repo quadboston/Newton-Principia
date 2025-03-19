@@ -87,7 +87,7 @@
     "__amode2rgstate" :
     [
         [
-            "!ssF.mediaModelInitialized || amode.textSection === 'scholium' || amode.textSection === 'claim'",
+            "!ssF.mediaModelInitialized || amode.theorion === 'scholium' || amode.theorion === 'claim'",
             {
                 "captured" : "initial-state",
                 "rg" :
@@ -101,7 +101,7 @@
         ],
 
         [
-            "amode.textSection === 'proof'",
+            "amode.theorion === 'proof'",
             {
                 "rg" :
                 {
@@ -114,7 +114,7 @@
         ],
 
         [
-            "( textSection === 'corollary' )",
+            "( theorion === 'corollary' )",
             {
                 "captured" : "t2corollary",
                 "rg" :

@@ -49,7 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
@@ -74,7 +74,7 @@
         rg[ 'tCircleCenter' ].undisplay = hideAnother;
 
         //stdMod.medRoot$.css( 'display',
-        //    textSection === 'corollary' || textSection === 'scholium' ? 'none' : 'block'
+        //    theorion === 'corollary' || theorion === 'scholium' ? 'none' : 'block'
         //)
 
         //=====================================================

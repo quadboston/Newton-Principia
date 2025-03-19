@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Theorem 7"
+  "theorionCaption" : "Theorem 7"
 }
 *..*
 
@@ -21,7 +21,7 @@ Page 114.
 *::*proof|english
 {
   "menuCaption" : "Text",
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
 }
 *..*
 
@@ -45,7 +45,7 @@ Page 114.
 
 *::*corollary|english
 {
-  "textSectionCaption" : "Corollary"
+  "theorionCaption" : "Corollary"
 }
 *..*
 Therefore the periodic times in ¦orbit¦ellipses¦¦ are the same as in

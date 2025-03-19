@@ -36,7 +36,7 @@
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
         if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-            (haz( amode, 'textSection') === 'proof' && fconf.sappId === "b1sec2prop1") ) {
+            (haz( amode, 'theorion') === 'proof' && fconf.sappId === "b1sec2prop1") ) {
             //Adjust when the following decorations start becoming visible for the P1 proof tab.
 
             //There was a bug where even though the step’s value was the same, decoration visibility was different depending on whether the 
@@ -81,7 +81,7 @@
         if(
             amode.subessay === 'cor-1' ||
             amode.subessay === 'cor-6' ||
-            amode.textSection !== 'corollary'
+            amode.theorion !== 'corollary'
         ){
             rg.V.decStart = 11111111;
             rg.V.decEnd   = 1111111;
@@ -111,7 +111,7 @@
         }
 
         //:updates subessay menu
-        var exAspect = exegs[ amode.textSection ][ amode.aspect ];
+        var exAspect = exegs[ amode.theorion ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         ////reveals subessay in menu and in text
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
@@ -161,22 +161,22 @@
             initialization_is_done = true;
             if( POINTS_BCDE_ARE_ACTIVE ) {
                 rg.B.svgel.addEventListener( 'click', function() {
-                    if( amode.textSection === 'proof' ) {
+                    if( amode.theorion === 'proof' ) {
                         fmethods.executeCapturedState( '1-4' );
                     }
                 });
                 rg.C.svgel.addEventListener( 'click', function() {
-                    if( amode.textSection === 'proof' ) {
+                    if( amode.theorion === 'proof' ) {
                         fmethods.executeCapturedState( '1-C' );
                     }
                 });
                 rg.D.svgel.addEventListener( 'click', function() {
-                    if( amode.textSection === 'proof' ) {
+                    if( amode.theorion === 'proof' ) {
                         fmethods.executeCapturedState( '1-D' );
                     }
                 });
                 rg.E.svgel.addEventListener( 'click', function() {
-                    if( amode.textSection === 'proof' ) {
+                    if( amode.theorion === 'proof' ) {
                         fmethods.executeCapturedState( '1-E' );
                     }
                 });
@@ -191,7 +191,7 @@
             }
         }
         var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
-                          amode.textSection === 'proof';
+                          amode.theorion === 'proof';
         ['B', 'C', 'D', 'E'].forEach( id => {
                 let rgX = rg[ id ];
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
@@ -207,7 +207,7 @@
         //----------------------------------------------------        
         
         rg['main-legend'].tb.corollary.style.display =
-            ( amode.textSection === 'corollary' && amode.subessay === 'cor-1' ) ?
+            ( amode.theorion === 'corollary' && amode.subessay === 'cor-1' ) ?
             'table' : 'none';
 
         ssF.mediaModelInitialized = true;

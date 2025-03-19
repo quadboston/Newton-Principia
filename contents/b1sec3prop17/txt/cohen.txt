@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Problem 9"
+  "theorionCaption" : "Problem 9"
 }
 *..*
 Supposing that the centripetal force is inversely proportional to the square of the
@@ -22,7 +22,7 @@ Page 116.
   "menuCaption" : "Text",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution",
-  "textSectionCaption" : "Solution"
+  "theorionCaption" : "Solution"
 }
 *..*
 
@@ -95,7 +95,7 @@ Page 116.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 
@@ -181,7 +181,7 @@ Page 118.
 
 *::*scholium|english
 {
-  "textSectionCaption" : "Scholium"
+  "theorionCaption" : "Scholium"
 }
 *..*
 

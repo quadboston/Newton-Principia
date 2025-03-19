@@ -35,7 +35,7 @@
         if( amodel2app_8_extraWork ) {
             doMinimizeTextMenus();
         }
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ sets "undefined" flag
         //      for registry rg members with defined pname,
@@ -70,12 +70,12 @@
         /// //\\ takes conditions scripted at the bottom of professor-script,
         ///      loops via these conditions and executes them,
         ///         context is a closure of running function:
-        ///             { textSection, aspect, subessay ...
+        ///             { theorion, aspect, subessay ...
         ///
         ///      "__amode2rgstate" can come from JS-module
         ///------------------------------------------------------------------
         ssD.__amode2rgstate.forEach( (cblock,ix) => {
-            ///aka: "true", or "( textSection === 'claim' || ...
+            ///aka: "true", or "( theorion === 'claim' || ...
             var cond = cblock[0];
             if( eval( cond ) ) {
                 var instr = cblock[ 1 ];
@@ -157,7 +157,7 @@
             if( overrideAspect ) {
                 var hideAspect = !fconf.showAspectMenu;
             } else if( hideSingles ) {
-                var hideAspect = Object.keys( exegs[ amode.textSection ] ).length === 1;
+                var hideAspect = Object.keys( exegs[ amode.theorion ] ).length === 1;
             }
 
             var textMenuStyle$ = haz( sDomN, 'textMenuStyle$' );
@@ -167,7 +167,7 @@
             var html = '';
             if( hideTheor ){
                 html += `
-                    .leftside-menuholder .menu-teaf.textSection {
+                    .leftside-menuholder .menu-teaf.theorion {
                         display : none;
                     }
                 `;

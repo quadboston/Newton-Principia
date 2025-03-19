@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "theorionCaption" : "Claim"
 }
 *..*
 
@@ -31,7 +31,7 @@ vanish.
 
 *::*proof|english
 {
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
 }
 *..*
 

@@ -610,7 +610,7 @@
                     }
                 ],
                 [
-                    "( textSection === 'proof' )",
+                    "( theorion === 'proof' )",
                     {
                         "captured" : "1-0",
                         "rg" :
@@ -624,7 +624,7 @@
                 ],
 
                 [
-                    "( textSection === 'claim' && aspect !== 'model' )",
+                    "( theorion === 'claim' && aspect !== 'model' )",
                     {
                         "captured" : "initial-state",
                         "rg" :
@@ -634,7 +634,7 @@
                 ],
                  
                 [
-                    "( textSection === 'corollary' )",
+                    "( theorion === 'corollary' )",
                     {
                         "captured" : "initial-state",
                         "rg" :
@@ -787,7 +787,7 @@
                  
                 [
                     //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
-                    "( textSection === 'corollary' && aspect === 'model' )",
+                    "( theorion === 'corollary' && aspect === 'model' )",
                     {
                         //we set here condisions of cor4, but saggita will depend on time
                         //which is good for cor2

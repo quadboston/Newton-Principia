@@ -20,7 +20,7 @@
 <b>In <><>CXX:</b><br><br>
 
 If curve
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=frenet-serret">
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
 is continuously differentiable,
 </a>
 
@@ -70,7 +70,7 @@ which is a finite form of above differential equalities (*).
 
 
 If curve
-<a target="_blank" href="?conf=sappId=addd-prel-curveXX,textSectionId=proof,aspectId=curve,subessayId=frenet-serret">
+<a target="_blank" href="?conf=sappId=addd-prel-curveXX,theorionId=proof,aspectId=curve,subessayId=frenet-serret">
 is continuously differentiable,
 </a>
 

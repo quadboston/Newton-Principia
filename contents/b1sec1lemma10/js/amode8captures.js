@@ -25,7 +25,7 @@
 
     function amode2rgstate( captured )
     {
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
 
         //hides all proof material, proof is already done in lemma 9
         [
@@ -59,7 +59,7 @@
         rg.Ag.pcolor = sDomF.getFixedColor( 'given' )
 
         if(
-            textSection === 'proof'
+            theorion === 'proof'
         ) {
             rg.tiltRatio = { value : 1.3 };
             [

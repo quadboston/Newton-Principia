@@ -71,7 +71,7 @@
     function setsEngineDefaults()
     {
         //these are pre-professorscripts values: at engine level
-        amode.textSection = '';
+        amode.theorion = '';
         amode.aspect = '';
         amode.subessay = '';
         //todm: poor? name: to be "amode.stdmod" //study model

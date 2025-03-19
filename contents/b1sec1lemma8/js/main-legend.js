@@ -58,11 +58,11 @@
         var clustersCount = legendScriptParsed[0].length;
 
         // function defined in /src/base/lemma/media-model/main-legend.js
-        ssF.createtextSectionLegend({
+        ssF.createTheorionLegend({
             tableCaption    : '', 
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            textSection     : key,
+            theorion     : key,
             rowsCount,
             clustersCount,
             makesBodyCluster,

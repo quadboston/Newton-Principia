@@ -33,8 +33,8 @@
         //=================================================
         var rgMainLegend = haz( rg, 'main-legend' );
         if( rgMainLegend ) {
-            var rgTeoTab = rgMainLegend[ amode.textSection ];
-            if( amode.textSection === 'corollary' && amode.aspect === 'model' ) {
+            var rgTeoTab = rgMainLegend[ amode.theorion ];
+            if( amode.theorion === 'corollary' && amode.aspect === 'model' ) {
                 $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
             } else {
                 $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );

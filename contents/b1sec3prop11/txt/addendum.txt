@@ -27,7 +27,7 @@
 <b><i>Another Solution</i></b>
 <br>
 
-<a target="_blank" href="?conf=sappId=addd-kepler-task,textSectionId=proof,aspectId=addendum,subessayId=force-center-change">
+<a target="_blank" href="?conf=sappId=addd-kepler-task,theorionId=proof,aspectId=addendum,subessayId=force-center-change">
     Transitional formula (ft)</a> gives: 
 <br>
 
@@ -42,7 +42,7 @@
                  𝑓<sub>φ</sub> = 𝑠M²α²β²ρ<sub>φ</sub>. <br>
     </div>
 and recalling conic's property 𝘨  = 𝜎𝑠a,
-<a target="_blank" href="?conf=sappId=addd-conics,textSectionId=proof,aspectId=addendum,subessayId=interval#ellipse">
+<a target="_blank" href="?conf=sappId=addd-conics,theorionId=proof,aspectId=addendum,subessayId=interval#ellipse">
 from "Interval between conjugate parallels", (A),
 </a>
 we obtain the inverse square law again: 𝑓  = 𝑓 <sub>𝛙</sub> and

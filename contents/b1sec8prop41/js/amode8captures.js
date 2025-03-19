@@ -49,7 +49,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { textSection, aspect, subessay } = amode;
+        var { theorion, aspect, subessay } = amode;
 
         //------------------------------------------------
         // //\\ returns diagram back at every menu click

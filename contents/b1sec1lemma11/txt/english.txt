@@ -6,7 +6,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "theorionCaption" : "Claim"
 }
 *..*
 
@@ -26,7 +26,7 @@ duplicate ratio of the ¦AB¦subtense¦¦ of the ¦arc-AB¦conterminous arc¦¦.
 
 *::*proof|english
 {
-  "textSectionCaption" : "Proof"
+  "theorionCaption" : "Proof"
 }
 *..*
 
@@ -133,7 +133,7 @@ Q.E.D.
 
 *::*corollary|english
 {
-  "textSectionCaption" : "Corollaries"
+  "theorionCaption" : "Corollaries"
 }
 *..*
 

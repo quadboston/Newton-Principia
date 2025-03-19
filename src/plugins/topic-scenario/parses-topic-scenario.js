@@ -46,9 +46,9 @@
         var PURGE_EVENT = /^>\s/;
 
         //                 "exersise"
-        eachprop( exegs, ( textSectionAspects, textSection_id ) => {
+        eachprop( exegs, ( theorionAspects, theorion_id ) => {
         //                               "subtopics"
-            eachprop( textSectionAspects, ( exAspect, aspect_id ) => {
+            eachprop( theorionAspects, ( exAspect, aspect_id ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
 
                     var scenarioScript = haz( subexeg, 'scenarioScript' );

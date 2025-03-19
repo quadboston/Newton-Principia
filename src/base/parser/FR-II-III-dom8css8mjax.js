@@ -24,8 +24,8 @@
         if( sconf.dontDoMathJax ) {
            // delete window.MathJax;
         }
-        eachprop( exegs, ( textSectionAspects, mcat_id ) => {
-            eachprop( textSectionAspects, ( exAspect, scat_id ) => {
+        eachprop( exegs, ( theorionAspects, mcat_id ) => {
+            eachprop( theorionAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg ) => {
                     subexeg.built_act8stat_fragments_texts = [];
 
