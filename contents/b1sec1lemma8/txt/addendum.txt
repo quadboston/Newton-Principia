@@ -66,6 +66,23 @@ which is a finite form of above differential equalities (*).
 }
 *..*
 
+Apparently, "Interpretation 2. Unbounded triangles." case exist in Cor 5, Prop 6:
+<br><br>
+
+"That is, one computes the solid sq.SP x sq.QT / QR ... [that is] inversely proportional to this force. We shall give example of this procedure in the following problems."
+<br><br> 
+
+because contains a process of triangle SP x QT simiarᵘ to "time triangle" (arcQP,S) which supports that area sq.SP x sq.QT ~ᵘ time.
+<br><br>
+
+which is "Interpretation 2" if to replace S with R, Q with B and arcQP with arc ACB.
+<br><br>
+
+Therefore, this case exist in Prop 7, and perhaps aslo, in following propositions.
+<br><br><br>
+
+
+
 <b>In <><>CXX:</b><br><br>
 
 
@@ -86,7 +103,7 @@ which in this case will be
 
 This analogically implies ultimate similarity of underlined triangles. For example, ratios to r
 (**) will still hold.
-
+<br><br>
 
 
 
