@@ -33,7 +33,7 @@
         //      for delta t
         //=========================================================================
         rg.Q.dragPriority = 100;
-        rg.Q.DRAGGEE_HALF_SIZE = 10;
+        rg.Q.DRAGGEE_HALF_SIZE = 15;
 
         rg.Q.processOwnDownEvent = function() {
             //this is for user mouse motion,
@@ -307,7 +307,7 @@
         // //\\ point S slider
         //=========================================================================
         {
-            rg.S.DRAGGEE_HALF_SIZE = 20;
+            rg.S.DRAGGEE_HALF_SIZE = 15;
             rg.S.processOwnDownEvent = () => {
                 if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                     ssD.SdragInitiated = true;

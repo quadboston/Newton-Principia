@@ -12,8 +12,14 @@
     // //\\ configures dimensions
     //---------------------------------------
     var dm = {};
-    dm.WIDTH                = 30;
-    dm.HEIGHT               = 30;
+    //it can be 30, but made 35
+    //to make a bit bigger than
+    //dynamic handle seach in model which has
+    //15 as a distance of the search:
+    //in this case animation starts a bit earlier
+    //than change to mouse search cursor:
+    dm.WIDTH                = 35;
+    dm.HEIGHT               = 35;
     //dm.HOT_ZONE_ANIM_WIDTH  = dm.WIDTH;
     //dm.HOT_ZONE_ANIM_HEIGHT = dm.HEIGHT;
     
