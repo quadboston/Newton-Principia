@@ -58,8 +58,6 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
                 
-                sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-
                 ///prevents user from playing with too big curves
                 if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
@@ -88,36 +86,6 @@
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
-
-        //todo: must work in media ... look for call backs and
-        //      find which does once at the media creation
-        var wwId = 'proof-pop-up';
-        ssF.createButton({
-            caption                 :
-                'AB cannot be diminished further while ' +
-                'containing the rectilinear angle.',
-            buttonUniversalId       : wwId,
-            //scenarioEventOnClick    : 'graph-is-plotted',
-            clickCallback           : () => {
-                sData[ wwId ].dom$.css( 'display', 'none' );
-            },
-            noTopicScenario         : true,
-            cssText                 : `
-                position            : absolute;
-                width               : 250px;
-                height              : 90px;
-                top                 : 30%;
-                padding             : 10px;
-                left                : 10%;
-                border-radius       : 20%;
-                border              : 5px outset #cccccc;
-                font-size           : 18px;
-                text-align          : center;
-                background-color    : #dddddd;
-                cursor              : pointer;
-                z-index             : 111111111;
-            `,
-        });
 
     }
 
