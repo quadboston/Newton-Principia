@@ -52,7 +52,7 @@
         var proof   = [0,   0,   255]; // proof blue
         var shadow  = [150, 150, 150]; // colour of φ both point and label
         var hidden  = [0,   0,   0,   0];
-        var red = [255,0,0];
+        var red = [255,0,0]; //for debugging
 
         var predefinedTopics = { 
             //:basic topics
@@ -309,40 +309,45 @@
 
         var linesArray =
         [
-            { "rd" : { pcolor : proof } },
-            { "rb" : { pcolor : proof } },
-
-            { 'dr-decorpoint,d' : { pcolor : proof } },
-            { 'dr' : { pcolor : proof } },
-            { 'imageOfR,imageOfD' : { pcolor : proof } },
-            { 'A,imageOfD' : { pcolor : proof } },
-            { 'A,imageOfR' : { pcolor : proof } },
-            { 'imageOfR,b' : { pcolor : proof } },
-
-            { 'Ad' : { pcolor : proof } },
-            { 'Ar' : { pcolor : given } },
-
-            //l7
-            { 'bd' : { pcolor : proof } },
-            { 'be' : { pcolor : proof } },
-
-            { 'Ab' : { pcolor : proof } },
-            { 'AR' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
-
-            //l7
-            { 'BD' : { pcolor : given } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : given } },
-            { 'AF' : { pcolor : given } },
-            { 'AG' : { pcolor : given } },
-            { 'AE' : { pcolor : given } },
-            { 'BG' : { pcolor : given } },
-
-
-            //l8
+            // given (shown in green)            
+            { 'AB' : { pcolor : given } },
+            { 'AR' : { pcolor : given } }, 
+            { 'AD' : { pcolor : given } }, 
+            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, // to left of A            
             { 'RD' : { pcolor : given } },
             { 'BR' : { pcolor : given } },
+
+            // proof (shown in blue) 
+            { 'Ab' : { pcolor : proof } },   
+            { 'A,imageOfR' : { pcolor : proof } }, // Ar      
+            { 'A,imageOfD' : { pcolor : proof } }, // Ad  
+            { 'imageOfR,imageOfD' : { pcolor : proof } }, // rd
+            { 'imageOfR,b' : { pcolor : proof } }, //rb
+
+            // questionable                       
+            { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
+            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
+            { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
+
+
+            // the rest of these are only use if rgShapesVisible
+            // todo: maybe some not at all in L8?
+
+            { "rb" : { pcolor : proof } },
+            { 'dr-decorpoint,d' : { pcolor : proof } },
+            { 'dr' : { pcolor : proof } },
+
+            //l7
+            { 'bd' : { pcolor : hidden } },
+            { 'be' : { pcolor : hidden } },
+
+            //l7
+            { 'BD' : { pcolor : hidden } },  //lemma 7, coroll 1
+            { 'BF' : { pcolor : hidden } },
+            { 'AF' : { pcolor : hidden } },
+            { 'AG' : { pcolor : hidden } },
+            { 'AE' : { pcolor : hidden } },
+            { 'BG' : { pcolor : hidden } },
 
             //sin(x)/x
             { 'Br' : { pcolor : given } },
@@ -386,7 +391,6 @@
 
             { 'AE' : { pcolor : given } },
             { 'BE' : { pcolor : given } },
-            { 'AB' : { pcolor : given } },
         ]
 
         //----------------------------------
