@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Theorem 6"
+  "logic_phaseCaption" : "Theorem 6"
 }
 *..*
 
@@ -25,7 +25,7 @@ Page 113.
 *::*proof|english
 {
   "menuCaption" : "Text",
-  "textSectionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -41,7 +41,7 @@ Page 113.
 
 For
 
-<a target="_blank" href="?conf=sappId=b1sec3prop13,textSectionId=corollary,aspectId=english,subessayId=corollary2">
+<a target="_blank" href="?conf=sappId=b1sec3prop13,logic_phaseId=corollary,aspectId=english,subessayId=corollary2">
 (by prop. 13, corol. 2)
 </a>
 
@@ -64,7 +64,7 @@ Page 113.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollary"
+  "logic_phaseCaption" : "Corollary"
 }
 *..*
 

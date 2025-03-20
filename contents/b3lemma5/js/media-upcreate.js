@@ -51,7 +51,7 @@
               .html( "function" )
               ;
         }
-        var tlegend = ns.haz( rg[ 'main-legend' ], amode.textSection );
+        var tlegend = ns.haz( rg[ 'main-legend' ], amode.logic_phase );
         if( tlegend ) {
             ///above lines do create legend for all theoreons, this line
             ///shows only for one:

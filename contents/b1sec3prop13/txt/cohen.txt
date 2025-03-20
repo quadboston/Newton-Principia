@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Problem 8"
+  "logic_phaseCaption" : "Problem 8"
 }
 *..*
 Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is required to find the law of
@@ -21,7 +21,7 @@ Page 112.
   "menuCaption" : "English",
   "subessayCaption" : "<i>[Solution</i>]",
   "subessay" : "solution",
-  "textSectionCaption" : "Solution"
+  "logic_phaseCaption" : "Solution"
 }
 *..*
 Let the construction be the same as in lem. 14, and let ¦P¦P be the body¦¦ in
@@ -67,7 +67,7 @@ Page 112.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 
@@ -94,7 +94,7 @@ Page 113.
 {
   "subessayCaption" : "Corollary 2",
   "subessay" : "corollary2",
-  "textSectionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

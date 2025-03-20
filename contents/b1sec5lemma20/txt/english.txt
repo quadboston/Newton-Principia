@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
@@ -29,7 +29,7 @@ Page 485.
 {
   "subessayCaption" : "Case 1",
   "subessay" : "case1",
-  "textSectionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -43,7 +43,7 @@ Page 485.
 {
   "subessayCaption" : "Case 2",
   "subessay" : "case2",
-  "textSectionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -58,7 +58,7 @@ Page 486.
 {
   "subessayCaption" : "Corollary 1",
   "subessay" : "corollary1",
-  "textSectionCaption" : "Corollaries"
+  "logic_phaseCaption" : "Corollaries"
 }
 *..*
 

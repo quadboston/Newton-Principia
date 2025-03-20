@@ -93,7 +93,7 @@
         // machinery,
         //
         // in mean time, these 21px comes as a sum
-        // for 5px of image width + 2*8px padding from
+        // for 5px of image width + 2*8px margin from
         //     subroots.css.js::#bsl-resizable-handle
         // and not from dpdec.dimensions.WIDTH as may appear,
         main_horizontal_dividor_width_px : 21,

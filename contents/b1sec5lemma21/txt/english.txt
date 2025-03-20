@@ -2,7 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "textSectionCaption" : "Claim"
+  "logic_phaseCaption" : "Claim"
 }
 *..*
 
@@ -34,7 +34,7 @@ Page 486.
   "menuCaption" : "Text",
   "subessayCaption" : "Direct proof",
   "subessay" : "direct-proof",
-  "textSectionCaption" : "Proof"
+  "logic_phaseCaption" : "Proof"
 }
 *..*
 
@@ -70,7 +70,7 @@ Page 487.
 
 And conversely, if the movable point ¦D¦¦ lies in a conic passing through the given points B, C, and ¦A¦¦; and if angle DBM is always equal to the given angle ABC, and the angle DCM is always equal to the given angle ACB; and if, when point ¦D¦¦ falls successively on any two stationary points p and P of the conic, the movable point M falls successively on the two stationary points n and N; then through these same points n and N draw the straight line nN, and this will be the perpetual locus of the movable point M. For, if it can be done, let point M move in some curved line. Then the point ¦D¦¦ will lie in a conic passing through the five points B, C, ¦A¦¦, p, and P when the point M perpetually lies in a curved line. But from what has already been demonstrated, point ¦D¦¦ will also lie in a conic passing through the same five points B, C, ¦A¦¦, p, and P when point M perpetually lies in a straight line. Therefore, two conies will pass through the same five points, contrary to
  
-<a target="_blank" href="?conf=sappId=b1sec5lemma20,textSectionId=corollary,aspectId=english,subessayId=corollary3">
+<a target="_blank" href="?conf=sappId=b1sec5lemma20,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 lem. 20, corol. 3.</a>
 
 Therefore, it is absurd to suppose the point M to be moving in a curved line. Q.E.D. 

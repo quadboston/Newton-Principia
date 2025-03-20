@@ -26,11 +26,11 @@
     function create_digital_legend()
     {
         //see lemma 11 for the sample
-        create_digital_legend_for_textSection( 'proof' );
-        create_digital_legend_for_textSection( 'corollary' );
+        create_digital_legend_for_logic_phase( 'proof' );
+        create_digital_legend_for_logic_phase( 'corollary' );
     }
 
-    function create_digital_legend_for_textSection( textSection )
+    function create_digital_legend_for_logic_phase( logic_phase )
     {
         //--------------------------
         // //\\ data source scenario
@@ -87,11 +87,11 @@
         // \\// data source scenario
         //--------------------------
 
-        ssF.createtextSectionLegend({
+        ssF.createLogic_phaseLegend({
             tableCaption    : 'Areas and Ratios',
             noTableTitle    : false,
             stdMod_given    : stdMod,
-            textSection,
+            logic_phase,
             rowsCount,
             clustersCount,
             //makesCaptionCluster, //optional
@@ -160,7 +160,7 @@
         }
     }
     //=========================================
-    // \\// creates textSection table
+    // \\// creates logic_phase table
     //=========================================
 
 }) ();

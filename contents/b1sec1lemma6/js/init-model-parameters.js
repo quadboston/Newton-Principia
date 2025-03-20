@@ -100,8 +100,9 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
                 
-                if( //core essays:
-                    ( !(amode.aspect === 'model') && amode.textSection === 'proof' ) && 
+                if( fconf.sappId === "b1sec1lemma6" &&
+                    //core essays:
+                    ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) && 
                     (angleBAM < 0 || cpos[1] > -0.01)
                 ){
                     adjust_new_unrotatedParameterX_asNeccesary();

@@ -106,14 +106,11 @@ sup {
     align-items: center;
     left: 0px;
     top: 0;
-    padding: 0 8px;
+    margin: 0 8px;
     position: absolute;
     height: 100%;
     cursor: grab; /* overrides dynamic overlay */
-}
-
-#bsl-resizable-handle:hover {
-    background: var(--colorLight);
+    background-color: #cccccc;
 }
 
 .brc-slider-draggee.dividor:hover:after {
@@ -178,18 +175,18 @@ sup {
 }
 
 /*todm: should be automated */
-.textSection--claim .main-legend.proof,
-.textSection--corollary .main-legend.proof {
+.logic_phase--claim .main-legend.proof,
+.logic_phase--corollary .main-legend.proof {
     display:none;
 }
 /* visibility per model-mode */
-.textSection--corollary .main-legend.claim,
-.textSection--proof .main-legend.claim {
+.logic_phase--corollary .main-legend.claim,
+.logic_phase--proof .main-legend.claim {
     display:none;
 }
 /* visibility per model-mode */
-.textSection--claim .main-legend.corollary,
-.textSection--proof .main-legend.corollary,
+.logic_phase--claim .main-legend.corollary,
+.logic_phase--proof .main-legend.corollary,
 .main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
 }
