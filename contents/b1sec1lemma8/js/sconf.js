@@ -23,6 +23,9 @@
         //====================================================
         // \\// subapp regim switches
         //====================================================
+        
+        //making size to better fit lemma's diagram
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
         //--------------------------------------
         // //\\ geometics parameters
@@ -84,7 +87,7 @@
 
         var originalPoints = { 
 
-            // colours of points and their labels
+            // styles, positions, and animations of points and their labels
             //:originals from Book
             A : {
                 //assigment by reference to pos is safe: no parasite links,
@@ -130,17 +133,22 @@
                 letterAngle : 0,
                 pcolor      : proof,
             },
-            
-            // todo: these two only work when rgShapesVisible, where r and d defined?
-            d : {
-                caption : 'dₒ',
-                letterAngle : 90,
+
+            ///modified point r, closer to d
+            "imageOfR" : {
+                caption : "r",
                 pcolor      : proof,
+                letterAngle : -45,
+                letterRotRadius : 30,
             },
-            r : {
-                caption : 'rₒ',
-                letterAngle : 135,
-                pcolor      : given,
+
+            ///modified point r, closer to d
+            "imageOfD" : {
+                caption : "d",
+                pos : D,
+                pcolor      : proof,
+                letterAngle : -90,
+                letterRotRadius : 30,
             },
             
             curveStart  : {
@@ -154,8 +162,19 @@
             },
 
             
-            // the rest are only used when rgShapesVisible === true
+            // the rest are only used when rgShapesVisible
             // todo: maybe some are not used at all
+            
+            d : {
+                caption : 'dₒ',
+                letterAngle : 90,
+                pcolor      : proof,
+            },
+            r : {
+                caption : 'rₒ',
+                letterAngle : 135,
+                pcolor      : given,
+            },
 
             //axis-y addendum
             'ytop' : {
@@ -201,22 +220,6 @@
                 letterRotRadius : 20,
             },
 
-            ///modified point r, closer to d
-            "imageOfR" : {
-                caption : "r",
-                pcolor      : proof,
-                letterAngle : -45,
-                letterRotRadius : 30,
-            },
-
-            ///modified point r, closer to d
-            "imageOfD" : {
-                caption : "d",
-                pos : D,
-                pcolor      : proof,
-                letterAngle : -90,
-                letterRotRadius : 30,
-            },
 
             "y0" : {
                 caption     : 'yₒ',
@@ -302,7 +305,6 @@
         };
         
         ///alternatively to this, you can set own colors for originalPoints
-        ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
             point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
@@ -318,22 +320,23 @@
             { 'BR' : { pcolor : given } },
 
             // proof (shown in blue) 
-            { 'Ab' : { pcolor : proof } },   
-            { 'A,imageOfR' : { pcolor : proof } }, // Ar      
+            { 'Ab' : { pcolor : proof } },  
+
             { 'A,imageOfD' : { pcolor : proof } }, // Ad  
+            { 'A,imageOfR' : { pcolor : proof } }, // Ar   
             { 'imageOfR,imageOfD' : { pcolor : proof } }, // rd
             { 'imageOfR,b' : { pcolor : proof } }, //rb
 
             // questionable                       
             { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
-            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
             { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
+            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
+            { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
 
 
             // the rest of these are only use if rgShapesVisible
             // todo: maybe some not at all in L8?
 
-            { "rb" : { pcolor : proof } },
             { 'dr-decorpoint,d' : { pcolor : proof } },
             { 'dr' : { pcolor : proof } },
 
@@ -440,10 +443,6 @@
         //----------------------------------
         // \\// curve pars
         //----------------------------------
-
-
-        //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
         ns.paste( sconf, { // adds these members to globally available sconf
             //double back step ../../ is to reuse this path in code for lemma7

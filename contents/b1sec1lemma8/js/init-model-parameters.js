@@ -23,9 +23,9 @@
         nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
         let D = rg.D.pos;
         let B = rg.B.pos;
-        rg.rd.originalDirection = [ D[0]-B[0], D[1]-B[1], ];
+        rg['imageOfR,imageOfD'].originalDirection = [ D[0]-B[0], D[1]-B[1], ];
         let R = mat.linesCross(
-            rg.rd.originalDirection,
+            rg['imageOfR,imageOfD'].originalDirection,
             B,         //start-1
             [ 0, -1],  //direction-2'
             rg.A.pos,  //start-2'
@@ -96,7 +96,7 @@
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 
                 if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
-                    nspaste( rg.R.pos, dir8innerB_2_R( rg.rd.originalDirection ) );
+                    nspaste( rg.R.pos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
                 }
                 return true;
             }
@@ -134,7 +134,7 @@
                 if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
                     rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
                 }
-                nspaste( newPos, dir8innerB_2_R( rg.rd.originalDirection ) );
+                nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
                 return true;
             }
         });
@@ -383,19 +383,19 @@
         ssF.line2abs( 'RB' );
         
         ssF.line2abs( 'Ab' );
-        ssF.line2abs( 'Ad' );
-        ssF.line2abs( 'Ar' );
-        ssF.line2abs( 'rd' );
-        ssF.line2abs( 'rb' );        
+        ssF.line2abs( 'A,imageOfD' ); //Ad
+        ssF.line2abs( 'A,imageOfR' ); // Ar
+        ssF.line2abs( 'imageOfR,imageOfD' ); // rd
+        ssF.line2abs( 'imageOfR,b' ); // rb    
 
         //todo: is there a better place to initialize these?
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
         rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
 
-        rg.rAb = { area : getTriangleArea('Ab', 'Ar', 'rb') };
-        rg.rAd = { area : getTriangleArea('Ad', 'Ar', 'rd') };
-        rg.rAcb = { area : getArcArea('Ab', 'Ar', 'rb', 'A', 'b', 'c') };
+        rg.rAb = { area : getTriangleArea('Ab', 'A,imageOfR', 'imageOfR,b') };
+        rg.rAd = { area : getTriangleArea('A,imageOfD', 'A,imageOfR', 'imageOfR,imageOfD') };
+        rg.rAcb = { area : getArcArea('Ab', 'A,imageOfR', 'imageOfR,b', 'A', 'b', 'c') };
 
         function getTriangleArea(A, B, C) {
             return calcTriangleArea(A, B, C).toFixed(3);
