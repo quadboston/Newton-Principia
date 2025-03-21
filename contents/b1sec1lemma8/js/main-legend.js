@@ -39,8 +39,8 @@
             [[ 'RACB', '△RACB : ', 'rg.RACB.area' ]],
             [[ 'RAD', '△RAD : ', 'rg.RAD.area' ]],
             [[ '', '', '' ]], 
-            [[ 'RACB-RAB', '△RACB / △RAB : ', getRatio('RACB', 'RAB') ]],
-            [[ 'RAD-RAB', '△RAD / △RAB : ', getRatio('RAD', 'RAB') ]],
+            [[ 'RACB-RAB', '△RACB / △RAB : ', getRatio('rg.RACB_RAB.ratio') ]],
+            [[ 'RAD-RAB', '△RAD / △RAB : ', getRatio('rg.RAD_RAB.ratio') ]],
         ]
     };
 
@@ -49,16 +49,15 @@
         [lemma8Data.claim[1][0], [ 'blue', '△rAcb : ', 'rg.rAcb.area' ]],
         [lemma8Data.claim[2][0], [ 'blue', '△rAd : ', 'rg.rAd.area' ]],
         [lemma8Data.claim[3][0], [ '', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'blue', '△rAcb / △rAb : ', getRatio('rAcb', 'rAb') ]],
-        [lemma8Data.claim[5][0], [ 'blue', '△rAd / △rAb : ', getRatio('rAd', 'rAb') ]],
+        [lemma8Data.claim[4][0], [ 'blue', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
+        [lemma8Data.claim[5][0], [ 'blue', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 
 
-    function getRatio(t1, t2) {
+    function getRatio(r) {
         return `
-            const r = rg.${t1}.area / rg.${t2}.area;
-            isNaN(r) ? "<span class='limit'>at limit<span>" : r;
+            rg.RAB.area < 0.001 ? "<span class='limit'>at limit<span>" : ${r};
         `;
     }
 

@@ -392,13 +392,16 @@
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
         rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
+        
+        rg.RACB_RAB = { ratio : rg.RACB.area / rg.RAB.area };
+        rg.RAD_RAB = { ratio : rg.RAD.area / rg.RAB.area };
 
         rg.rAb = { area : getTriangleArea('Ab', 'A,imageOfR', 'imageOfR,b') };
-        rg.rAd = { area : getTriangleArea('A,imageOfD', 'A,imageOfR', 'imageOfR,imageOfD') };
-        rg.rAcb = { area : getArcArea('Ab', 'A,imageOfR', 'imageOfR,b', 'A', 'b', 'c') };
+        rg.rAd = { area : rg.rAb.area * rg.RAD_RAB.ratio };
+        rg.rAcb = { area : rg.rAb.area * rg.RACB_RAB.ratio };
 
         function getTriangleArea(A, B, C) {
-            return calcTriangleArea(A, B, C).toFixed(3);
+            return calcTriangleArea(A, B, C);
         }
 
         function getArcArea(A, B, C, p1, p2, p3) {  
@@ -406,7 +409,7 @@
             const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ]; 
             const curveArea = calcBezierArea(points, 100); 
             const area = triangleArea + curveArea;
-            return area.toFixed(3);
+            return area;
         }
 
         function calcTriangleArea(A, B, C) {
