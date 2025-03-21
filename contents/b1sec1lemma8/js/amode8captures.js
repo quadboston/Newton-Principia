@@ -172,7 +172,7 @@
 
         nspaste(rg.R.pos, rg.R.originalPos);
         rg.fi.pos[0] = rg.R.pos[0];
-        rg.fi.pos[1] = rg.R.pos[1] * 1.2;
+        rg.fi.pos[1] = rg.R.pos[1] * 1.2; // this is why fi is floating below R to start
 
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
@@ -210,6 +210,7 @@
                 'A,imageOfR',
                 'imageOfR,b',
                 'imageOfR,imageOfD',
+                'fi'
             ].forEach( gname => { rg[ gname ].undisplay = true; });
         } else if( logic_phase === 'proof' ) {
             [
@@ -232,27 +233,29 @@
                 'arc-Ab',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
-        if( logic_phase === 'claim' || logic_phase === 'corollary' ) {
-            if( userOptions.showingBonusFeatures() ) {
-                rg.B.hideD8Dpoint   = false;
-                rg.R.hideD8Dpoint   = false;
-            } else {
-                rg.B.hideD8Dpoint   = false;
-                rg.R.hideD8Dpoint   = true;
-            }
-        }    
-        if( subessay === 'interpretation1' ) {
-            if( userOptions.showingBonusFeatures() ) {
-                rg.B.hideD8Dpoint   = true;
-                rg.R.hideD8Dpoint   = false;
-            } else {
-                rg.B.hideD8Dpoint   = false;
-                rg.R.hideD8Dpoint   = true;
-            }
-        } else if( subessay === 'interpretation2' ) {
+
+        if( userOptions.showingBonusFeatures() ) {
             rg.B.hideD8Dpoint   = false;
-            rg.R.hideD8Dpoint   = true;
+            rg.R.hideD8Dpoint   = false;
+            rg.fi.hideD8Dpoint  = false;
+            if( subessay === 'interpretation1' ) {
+                if( userOptions.showingBonusFeatures() ) {
+                    rg.B.hideD8Dpoint   = true;
+                    rg.R.hideD8Dpoint   = false;
+                } else {
+                    rg.B.hideD8Dpoint   = false;
+                    rg.R.hideD8Dpoint   = true;
+                }
+            } else if( subessay === 'interpretation2' ) {
+                rg.B.hideD8Dpoint   = false;
+                rg.R.hideD8Dpoint   = true;
+            }
+        } else {
+            rg.B.hideD8Dpoint   = false;
+            rg.R.hideD8Dpoint   = false; // enables mouse events on point R
+            rg.fi.hideD8Dpoint  = true; // fi only used in bonus features
         }
+          
         //*****************************************************************************
         // \\// lemma 8
         //*****************************************************************************

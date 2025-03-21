@@ -19,7 +19,7 @@
         //---------------------------------------------
         // //\\ saves originals for lemma 8
         //---------------------------------------------
-        let b2B = sconf.b_per_B_original;        
+        let b2B = sconf.b_per_B_original; // defined in sconf.js, factor to determine distance between B and b    
         nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
         let D = rg.D.pos;
         let B = rg.B.pos;
@@ -110,7 +110,11 @@
         // //\\ dragger R
         //-------------------------------------------------
         rg.R.processOwnDownEvent = function() {
-            sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+            if(userOptions.showingBonusFeatures()) {
+                sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+            } else {
+                sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
+            }
         };
 
         sDomF.params__2__rgX8dragwrap_gen_list({
@@ -118,24 +122,29 @@
             pname : 'R',
             acceptPos : ( newPos ) =>
             {
-                var ach = rg.R.achieved;
-                newPos[0] = 0;
-                if(
-                    //patch: instead of fixing arc-Ab calculations properly,
-                    //       this code-fragment restricts area where this arc miscalculated:
-                    newPos[1] > -0.01 ) {
-                    newPos[1] = -0.01;
-                } else if( newPos[1] < -1.5 ) {
-                    newPos[1] = -1.5;
+                if(userOptions.showingBonusFeatures()) {
+                    var ach = rg.R.achieved;
+                    newPos[0] = 0;
+                    if(
+                        //patch: instead of fixing arc-Ab calculations properly,
+                        //       this code-fragment restricts area where this arc miscalculated:
+                        newPos[1] > -0.01 ) {
+                        newPos[1] = -0.01;
+                    } else if( newPos[1] < -1.5 ) {
+                        newPos[1] = -1.5;
+                    }
+                    //prepares point B which implies new position of point R
+                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
+                        / ach.achieved[1];
+                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
+                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                    }
+                    nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
+                    return true;
+                } else {
+                    //todo: add limits
+                    return true;
                 }
-                //prepares point B which implies new position of point R
-                rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
-                    / ach.achieved[1];
-                if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
-                    rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
-                }
-                nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
-                return true;
             }
         });
         //-------------------------------------------------
@@ -388,7 +397,6 @@
         ssF.line2abs( 'imageOfR,imageOfD' ); // rd
         ssF.line2abs( 'imageOfR,b' ); // rb    
 
-        //todo: is there a better place to initialize these?
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
         rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };

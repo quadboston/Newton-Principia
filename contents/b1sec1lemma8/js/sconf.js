@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf } =
+    var { ns, fconf, sconf, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     //====================================================
@@ -114,12 +114,12 @@
             R : {
                 letterAngle : 135,
                 pcolor      : given,
-                draggableX  : false,
+                draggableX  : false, // this adds mousover animation, does not affect behaviour
                 draggableY  : true,
             },            
             fi : {
                 caption : "φ",
-                pcolor : shadow,
+                pcolor : userOptions.showingBonusFeatures() ? shadow : hidden,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,
