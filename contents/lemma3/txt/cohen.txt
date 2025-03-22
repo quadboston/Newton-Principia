@@ -11,7 +11,7 @@
         <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,...
         of the parallelograms are unequal and are all diminished indefinitely.</dense>
 
-        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433</div>
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433.</div>
 
 
 
@@ -28,9 +28,9 @@
             This parallelogram will be greater than the ¦difference¦¦ of 
             the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
             but if its width ¦AF¦¦ is diminished indefinitely,
-            it will become less than any given rectangle.  Q.E.D.</dense>
+            it will become less than any given rectangle. &nbsp;&nbsp; Q.E.D.</dense>
 
-            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434</div>
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434.</div>
 
 
 
@@ -57,6 +57,4 @@ that is comprehended by the tangents of those same arcs.
 COROLLARY 4. And therefore these ultimate figures (with respect to their
 perimeters acE) are not rectilinear, but curvilinear limits of rectilinear figures.
 <br><br>
-
-
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434.</div>

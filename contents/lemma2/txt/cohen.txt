@@ -21,7 +21,8 @@
         and the ¦figure-area figure-area-txt¦curvilinear figure AabcdE¦¦
         have to one another are ratios of equality.
             
-        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433</div>
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433.</div>
+
 
 
 
@@ -48,6 +49,6 @@
 
             But this rectangle, because its width ¦AB¦¦ is diminished indefinitely, becomes less than any given rectangle.
             Therefore (by lem. 1) the ¦inscribed-rectangles insc-txt¦inscribed figure¦¦ and the ¦circumscribed-rectangles circ-txt¦circumscribed figure¦¦ and,
-            all the more, the intermediate ¦figure-area figure-area-txt¦curvilinear figure¦¦ become ultimately equal.  Q.E.D.
+            all the more, the intermediate ¦figure-area figure-area-txt¦curvilinear figure¦¦ become ultimately equal. &nbsp;&nbsp; Q.E.D.
             
-            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433</div>
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433.</div>
