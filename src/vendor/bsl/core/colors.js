@@ -240,6 +240,7 @@
         var op = op.toFixed(4);
         return 'rgba('+r+','+g+','+b+','+op+')';
     }
+    //input: arr[0],arr[1],arr[2] must be integers
     ns.arr2rgb_rgba = function ( arr )
     {
         if( !arr || !Array.isArray(arr) ) return "rgba(0,0,0,1)";

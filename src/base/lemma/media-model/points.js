@@ -239,7 +239,7 @@
             var lposX_rounded = lposX.toFixed();
             var lposY_rounded = lposY.toFixed();
             rgX.pnameLabelsvg = nssvg.printText({
-                tpclass         : '',
+                //tpclass         : '', //apparently non-used
                 text            : rgX.caption || pname,
                 //stroke          : strokeCol,
                 //fill            : fillCol,
@@ -274,6 +274,12 @@
                     ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
                 )
             );
+            rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
+                    let me = rgX.pnameLabelsvg;
+                    me.style.cursor = 
+                        //wrong: me.parentNode.style.cursor;
+                        stdMod.simScene.style.cursor;
+            });
 
             let txtclass = haz( rgX, 'classmark' );
             if( txtclass ) {

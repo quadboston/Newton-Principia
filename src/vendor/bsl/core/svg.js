@@ -351,7 +351,8 @@
         var svgEl = nssvg.u( arg );
         if( arg.text ) {
             //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-            //https://stackoverflow.com/questions/4282108/how-to-change-svg-text-tag-using-javascript-innerhtml
+            //https://stackoverflow.com/questions/4282108/how-to-change-
+            //svg-text-tag-using-javascript-innerhtml
             svgEl.textContent = arg.text;
         }
         return svgEl;

@@ -99,11 +99,12 @@
                 'conterminousRatio,,""',
 
             //second table row
-                //first cell
+                //first cell //dummy<_>myclass
+                //'dummy<_>myclass,AD&nbsp;=&nbsp;,rg.AD.abs' +
                 'AD,AD&nbsp;=&nbsp;,rg.AD.abs' +
-
                 ' ' +
                 //second cell
+                //'dummy<_>myclass,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)',
                 'conterminousRatio,AD&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AD.abs/rg.AB.abs).toFixed(3)',
 
             //third table row
@@ -115,6 +116,22 @@
                 'conterminousRatio,arc&nbsp;ACB&nbsp;/&nbsp;AB&nbsp;=&nbsp;,(rg.AB.arcLen/rg.AB.abs).toFixed(3)',
         ]
     };
+
+    /*
+    //example how to change the color css
+    //<style> tag can be set in any way, for example like this:
+    ns.globalCss.update( `
+        td.myclass {
+            color:#FF0000;
+        }
+                            
+        `,
+        'myclass-style-tag'
+    );
+    */
+    
+    
+    
     //--------------------------
     // \\// claim's script
     //--------------------------
