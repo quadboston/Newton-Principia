@@ -33,7 +33,7 @@
         //      for delta t
         //=========================================================================
         rg.Q.dragPriority = 100;
-        rg.Q.DRAGGEE_HALF_SIZE = 15;
+        rg.Q.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
         rg.Q.processOwnDownEvent = function() {
             //this is for user mouse motion,
             //remember, mouse motion and Q.pos motions are
@@ -121,7 +121,7 @@
         //relative sizes allows splitting user motions for Q and P:
         // P.DRAGGEE_HALF_SIZE = 60 and for Q is 30,
         rg.P.dragPriority = 60;
-        rg.P.DRAGGEE_HALF_SIZE = 15;
+        rg.P.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
         
         
         rg.P.processOwnDownEvent = () => {
@@ -184,7 +184,7 @@
         //=========================================================================
         {
             rg.S.dragPriority  = 30;
-            rg.S.DRAGGEE_HALF_SIZE = 30;
+            rg.S.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
             rg.S.processOwnDownEvent = () => {
                 if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                     ssD.SdragInitiated = true;

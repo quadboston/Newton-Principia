@@ -73,6 +73,8 @@
                     colArray_2_flags( topi_c );
                     return;
                 } else {
+                    ////this thing can make a lot of mangling
+                    ////with l,s in hls
                     var lh = colorArray_2_rgba(
                         fc,
                         sconf.TP_SATUR_FROM_fixed_colors,

@@ -3,7 +3,11 @@
 (function() {
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
-
+    
+    //these two lines merge vendor's module to
+    //src/base/app-tree.js context:
+    var fapp   = ns.sn('fapp' ); 
+    var fconf  = ns.sn('fconf',fapp);
     
     var CURSOR = 'grab';
     //var CURSOR = 'crosshair';
@@ -18,12 +22,14 @@
     //15 as a distance of the search:
     //in this case animation starts a bit earlier
     //than change to mouse search cursor:
-    dm.WIDTH                = 35;
-    dm.HEIGHT               = 35;
+    dm.WIDTH                =  ( fconf.DRAG_HANDLE_HALFHOTSPOT || 15 ) * 2 +
+                                5; //to overlap dragger-search-hot-spot,
+    dm.HEIGHT               = dm.WIDTH;
+    
     //dm.HOT_ZONE_ANIM_WIDTH  = dm.WIDTH;
     //dm.HOT_ZONE_ANIM_HEIGHT = dm.HEIGHT;
     
-    dm.DISK_RADIUS          = 30/3;
+    dm.DISK_RADIUS          = dm.WIDTH*0.1;
     dm.DISK_LEFT            = dm.WIDTH*0.5;
     dm.DISK_TOP             = dm.HEIGHT*0.5;
     dm.DISK_BORDER_RADIUS   = dm.WIDTH*0.5;
@@ -71,6 +77,7 @@
         individual_zindex,
         spinnerCursorGrab,
         spinnerCursorGrabbed,
+        makeCentralDiskInvisible,
     ) {
         //fixing missed parameters
         individual_color = individual_color || 'grey';
@@ -82,7 +89,7 @@
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
             //c cc( spinnerClsId, dclass, CURSOR, CURSOR_GRABBING );
-
+            centralDiskVisibility  = makeCentralDiskInvisible ? 'hidden' : 'visible';
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
             ////example: dclacc = .aspect--english
@@ -110,11 +117,11 @@
             /*=============================*/
             ${dclass} .${spinnerClsId}.brc-slider-draggee:hover:after {
                 background-color: ${individual_color};
+                visibility      : ${centralDiskVisibility};
             }
             /*=============================*/
             /* \\// parent after           */
             /*=============================*/
-
 
             /*=============================*/
             /* //\\ animates slider arrows */
@@ -144,13 +151,9 @@
     }
 
 
-    function createGlobal( makeCentralDiskInvisible  )
+    function createGlobal()
     {
         if( globalCssCreated_flag ) return;
-
-        var centralDiskVisibility = makeCentralDiskInvisible ?
-            'hidden' :
-            'visible';
         //c cc( 'global cursors=' + CURSOR + ', ' + CURSOR_GRABBING );
         var ret =
 
@@ -219,7 +222,6 @@
             text-align      : center;
             background-color: black;
             z-index         : 1000;
-            visibility      : ${centralDiskVisibility};
             cursor: ${CURSOR};
         }
 

@@ -23,6 +23,8 @@
     //====================================================
     to_fconf =
     {
+        
+        DRAG_HANDLE_HALFHOTSPOT : 15,
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
