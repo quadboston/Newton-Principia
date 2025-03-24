@@ -64,6 +64,10 @@
         //rotational angle = 0,
         //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+        rg.B.processOwnDownEvent = function() {
+            sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+            sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
+        };
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
