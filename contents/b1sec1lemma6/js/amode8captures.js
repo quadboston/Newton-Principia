@@ -250,14 +250,6 @@
                     'Ad',
                     'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
-                ///hides differential tangent row in data table
-                globalCss.update( `
-                    .main-legend.proof tr:nth-child(4)
-                    {
-                        display : none;
-                    }`,
-                    'table-patch',
-                );
             }
 
             if(
