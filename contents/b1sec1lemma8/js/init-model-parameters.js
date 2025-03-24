@@ -96,7 +96,7 @@
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 
                 if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
-                    nspaste( rg.R.pos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
+                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
                 }
                 return true;
             }
@@ -110,11 +110,8 @@
         // //\\ dragger R
         //-------------------------------------------------
         rg.R.processOwnDownEvent = function() {
-            if(userOptions.showingBonusFeatures()) {
-                sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            } else {
-                sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
-            }
+            sData.unrotatedParameterX = rg.B.unrotatedParameterX;
+            sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
         };
 
         sDomF.params__2__rgX8dragwrap_gen_list({
@@ -123,6 +120,7 @@
             acceptPos : ( newPos ) =>
             {
                 if(userOptions.showingBonusFeatures()) {
+                    // R can move along y axis only
                     var ach = rg.R.achieved;
                     newPos[0] = 0;
                     if(
@@ -141,8 +139,19 @@
                     }
                     nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
                     return true;
-                } else {
-                    //todo: add limits
+                } else {  
+                    // R moves in all directions                       
+                    sData.RB_slope = [ rg.B.pos[0] - newPos[0], rg.B.pos[1] - newPos[1] ];
+                    
+                    //prepares point B which implies new position of point R
+                    var ach = rg.R.achieved;
+                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
+                        / ach.achieved[1];
+                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
+                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                    }
+
+                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ));
                     return true;
                 }
             }
@@ -501,7 +510,7 @@
             ///cross line A,f which becomes a new R
             RB_slope,
             posB,
-            rg.fi.pos,
+            userOptions.showingBonusFeatures() ? rg.fi.pos : rg.R.pos,
             rg.A.pos,
         );
         return newRpos;

@@ -114,7 +114,7 @@
             R : {
                 letterAngle : 135,
                 pcolor      : given,
-                draggableX  : false, // this adds mousover animation, does not affect behaviour
+                draggableX  : true, // this adds mouseover animation, does not affect behaviour
                 draggableY  : true,
             },            
             fi : {
