@@ -18,7 +18,7 @@ Page 462.
 *::*proof|english
 {
   "menuCaption" : "Text",
-  "subessayCaption" : "<i>Solution</i>",
+  "subessayCaption" : "[<i>First solution</i>]",
   "subessay" : "solution",
   "logic_phaseCaption" : "Solutions"
 }

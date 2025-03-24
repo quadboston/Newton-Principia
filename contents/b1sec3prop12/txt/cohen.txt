@@ -1,4 +1,3 @@
-
 *::*claim|english
 {
   "default" : "1",
@@ -17,7 +16,7 @@ Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the
 *::*proof|english
 {
   "menuCaption" : "Text",
-  "subessayCaption" : "<i>Solution</i>",
+  "subessayCaption" : "[<i>First solution</i>]",
   "subessay" : "solution",
   "logic_phaseCaption" : "Solutions"
 }
@@ -89,6 +88,7 @@ the force tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², tha
 given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 465.</div>
+
 
 
 
