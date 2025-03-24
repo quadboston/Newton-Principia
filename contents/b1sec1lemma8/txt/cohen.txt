@@ -36,7 +36,7 @@ to the distant points ¦b¦¦, ¦imageOfD¦d¦¦, and ¦imageOfR¦r¦¦, and
 ¦imageOfR,imageOfD¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
 and let arc ¦arc-Ab¦Acb¦¦ be always similar
 to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
-¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
+¦B¦¦ come together, the angle ¦Ab A,imageOfD¦bAd¦¦ will
 
 vanish, and therefore the three triangles ¦Ab A,imageOfR imageOfR,b¦rAb¦¦,
 ¦A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,

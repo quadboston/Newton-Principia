@@ -35,8 +35,8 @@ the
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦
-and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦
+Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦ 
+and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦ 
 will ultimately have a ratio of equality to the vanishing arc ¦arc-AB¦ACB¦¦, because, if
 parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ always has a ratio of equality to ¦AD¦¦.
 <br><br>
@@ -51,7 +51,7 @@ parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ a
 *..*
 And if through ¦B¦¦ and ¦A¦¦ additional straight lines ¦BE¦¦,
 ¦BD¦¦, ¦AF¦¦, and ¦AG¦¦ are drawn cutting the tangent ¦AD¦¦ and its parallel ¦BF¦¦, the
-¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦
+¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦ 
 and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>

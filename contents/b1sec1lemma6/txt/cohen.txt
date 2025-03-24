@@ -7,12 +7,12 @@
 *..*
 
 If any arc ¦arc-AB¦ACB¦¦, given in position, 
-is subtended by the chord ¦AB¦¦
+is subtended by the chord ¦AB¦¦ 
 and at some point ¦A¦¦, 
 in the middle of the continuous
 curvature, is touched by the straight line ¦AD¦¦, 
 produced in both directions,
-and if then points ¦A¦¦ and ¦B¦¦
+and if then points ¦A¦¦ and ¦B¦¦ 
 
  <span class="captured-reference id-true-convergence-1">approach each other</span>
 
