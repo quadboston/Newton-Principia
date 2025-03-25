@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        sn, mat, eachprop, nspaste,
+        sn, mat, eachprop, nspaste, userOptions,
         fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
@@ -142,41 +142,73 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given     = [0,     140, 0];
-        var body      = [0,     150,  200];
+ 
+        //usually as a condition of a claim,
+        //condition of the theorem,
+        //given parameters of the claim or proof
+        var given = [100,  50, 0,      1];
+
+        //relates to moving body, to an orbit
+        var body      = [0,     150, 0, 1];
+        
         var orbit     = body;
-        //var orbitarea = [0,     150, 0,    0.001, 0.5];
+        var time      = [0,     150,  200];
+        var distance  = [60, 20, 0];
+        
+        //logical steps of the proof, auxilary constructs
+        //of a proof
         var proof     = [0,     0,   255];
 
-        var result    = [200,   40,  0];
-        var hidden    = [0,     0,   0];
-
-        //var shadow    = [150,  150,  150,    1];
+        ///addendum has different color concepts
+        if( userOptions.showingBonusFeatures() ) {
+            ////swaps colors
+            var force = [250, 0, 0];
+            var invalid = [0, 0, 0, 1];;
+            result = [255,0,0,1];
+        } else {
+            //alert, invalid user actions
+            var invalid   = [250,  0,  0];
+            //force, energy
+            var force     = [200,  150,  0];
+            //conclusion of the proof
+            var result    = [100,   0,  0];
+        }
+        //neutral elements
         var shadow    = [50,  50,  50];
         
-        var invalid   = [200,  150,  0];
-        var force     = [200,  0,  200];
+        var hidden    = [0,     0,   0];
 
+        //special or derivative parameters
         var fi        = [0,  0,  150,   0.1, 0.4 ];
-        //var Fkernel   = [0,  0,  150,   0.1, 0.6 ];
         var Fkernel   = [0,  0,  150,   0.5, 1 ];
         var fiArea    = [0,  0,  150,   0.1, 0.3];
 
-        var Zgraph    = [100,  0, 20, 0.01,  1]; //visible=[100,  0, 20, 0.08,  1];
-        var Z2graph   = [100,  0, 20, 0.4,  1]; //[100, 50, 0, 0.2];
-        var ro        = [60, 20, 0];
+        var Zgraph    = body; //[100,  0, 20, 0.01,  1];
+        Zgraph[3]     = 0.01;
+        Zgraph[4]     = 1;
+        var Z2graph   = body;
+        Z2graph[3]    = 0.4;
+        Z2graph[4]    = 1;
+        
+        
+        var ro        = distance;
 
-        var vSolid    = given;
-        //var vgraph    = [0,  140, 0, 0.01]; //visible=[0,  140, 0, 0.3];
-        var vgraph    = [0,  140, 0, 0.1, 1]; //visible=[0,  140, 0, 0.3];
+        var vgraph    = force;
+        vgraph[3]      = 0.1;
+        vgraph[4]      = 1;
+
         //var v2graph   = [0,  140, 0, 0.4];
-        var v2graph   = [0,  140, 0, 0.6, 1];
+        var v2graph   = force; //[0,  140, 0, 0.6, 1];
+        v2graph[3]     = 0.6;
+        v2graph[4]     = 1;
         //var VSarea    = [0,  140, 0, 0.2, 0.4];
-        var VSarea    = [0,  140, 0, 0.4, 0.7];
-
-        var Tkernel   = [110, 90, 0];
-        //var Tarea     = [110, 90, 0, 0.2, 0.4];
-        var Tarea     = [110, 90, 0, 0.01, 0.7];
+        var VSarea    = force; //[0,  140, 0, 0.4, 0.7];
+        VSarea[3]     = 0.3;
+        VSarea[4]     = 0.7;
+        var Tkernel   = time;
+        var Tarea     = time;
+        Tarea[3]      = 0.01;
+        Tarea[4]      = 0.7;
 
         var predefinedTopics =
         {
@@ -186,7 +218,7 @@
             hidden,
             body,
             orbit,
-            //orbitarea,
+
             shadow,
             force,
             fi,
@@ -280,7 +312,7 @@
             // //\\ speed
             v : {
                 caption : 'v',
-                pcolor : vSolid,
+                pcolor : body,
                 letterAngle : 120,
                 draggableX  : true,
                 draggableY  : true,
@@ -289,12 +321,12 @@
             M : {
                 pos : V, //sets model's pos[0]
                 caption : '',
-                pcolor : vSolid,
+                pcolor : body,
             },
 
             Vangle : {
                 caption : 'ω',
-                pcolor : vSolid,
+                pcolor : body,
                 letterAngle : 120,
                 draggableX  : true,
                 draggableY  : true,
@@ -328,7 +360,7 @@
 
             Z : {
                 caption : '',
-                pcolor : vSolid,
+                pcolor : body,
             },
 
             B : {
@@ -434,12 +466,12 @@
         var linesArray =
         [
             { 'V,v' : {
-                    pcolor : vSolid,
+                    pcolor : body,
                     vectorTipIx : 1 },
             },
 
             { VM : {
-                    pcolor : [100,  0, 20, 0.01, 1],
+                    pcolor : body, //[100,  0, 20, 0.01, 1],
                     vectorTipIx : 1 },
             },
 
@@ -450,7 +482,7 @@
             },
 
             { 'V,Vangle' : {
-                    pcolor : vSolid,
+                    pcolor : body,
                 },
             },
 
