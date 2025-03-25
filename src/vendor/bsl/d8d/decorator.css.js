@@ -324,8 +324,6 @@
 
         `;
         // \\// css /////////////////////////////////////////
-        //ns.globalCss.addText( ret );
-        //ns.globalCss.upqueue( ret ); //todo ... removed ... bad effect?
         ns.globalCss.update( ret, 'spinner-core-css');
         globalCssCreated_flag = true;
     };
