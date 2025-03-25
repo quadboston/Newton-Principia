@@ -1,7 +1,7 @@
 // //\\// file where to set plugin main configuration
 ( function() {
     var {
-        fapp, sconf,
+        fapp, sconf, userOptions, fixedColors,
     } = window.b$l.apptree({
     });
 
@@ -18,6 +18,62 @@
     var SLIDERS_LEGEND_HEIGHT = 25*GENERIC_SLIDERS_COUNT+20;
     var SLIDERS_OFFSET_Y      = 0;
 
+    //=======================================
+    // //\\ topicGroupColors
+    //      historically named as fixedColors
+    //=======================================
+    {
+        //usually as a condition of a claim,
+        //condition of the theorem,
+        //given parameters of the claim or proof
+        var given = [100,  50, 0,      1];
+
+        //relates to moving body, to an orbit
+        var body      = [0,     150, 0, 1];
+        
+        var orbit     = body;
+        var time      = [0,     150,  200];
+        var distance  = [60, 20, 0];
+        
+        //logical steps of the proof, auxilary constructs
+        //of a proof
+        var proof     = [0,     0,   255];
+
+        ///addendum has different color concepts
+        if( userOptions.showingBonusFeatures() ) {
+            ////swaps colors
+            var force = [250, 0, 0];
+            var invalid = [0, 0, 0, 1];;
+            result = [255,0,0,1];
+        } else {
+            //alert, invalid user actions
+            var invalid   = [250,  0,  0];
+            //force, energy
+            var force     = [200,  150,  0];
+            //conclusion of the proof
+            var result    = [100,   0,  0];
+        }
+        //neutral elements
+        var shadow    = [50,  50,  50];
+        
+        Object.assign( fixedColors, {
+            given,
+            body,
+            orbit,
+            time,
+            distance,
+            proof,
+            force,
+            invalid,
+            result,
+            shadow,
+        });
+    }
+    //=======================================
+    // \\// topicGroupColors
+    //=======================================
+    
+    
     to_sconf =
     {
         //***************************************************
