@@ -72,7 +72,7 @@
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
                     [fixedCol[0],fixedCol[1],fixedCol[2],0.7, 1],
-                    true, //sconf.TP_SATUR_FROM_fixed_colors,
+                    true,
                     sconf.TP_OPACITY_FROM_fixed_colors
             );
         } else if( tpIDs.length === 0 ) {

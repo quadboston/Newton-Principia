@@ -97,7 +97,6 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        sconf.TP_SATUR_FROM_fixed_colors = true;
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         TP_OPACITY_LOW = 0.3;
         TP_OPACITY_LOW_POINT = 1;

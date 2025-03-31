@@ -13,8 +13,6 @@
     
     function doesConfigLemma()
     {
-        fconf.tpversion = 2;
-        
         //====================================================
         // //\\ optionally overriden by url-query-config
         //====================================================
@@ -86,8 +84,7 @@
             //===================================================
             //takes precedence in: ssF.colorArray_2_rgba
             //                     ssF.topics__2__topicsColorModel
-            //affects diagram only in tpversion 1,
-            default_tp_lightness : 40,
+
             //this solution is not good:
             //some lemmas need bright red, but
             //bright green text is hard to read ...
@@ -104,12 +101,12 @@
             // //\\ tp color opacity
             //---------------------------------------------------
             //affects only ssF.topics__2__topicsColorModel and  ssF.colorArray_2_rgba
-            //0.6-makes opacity in tpversion 2, points do look "non-solid"
             //does not affect anchor colors,
-            TP_OPACITY_LOW : fconf.tpversion === 2 ? 0.5 : 0.6,
+            TP_OPACITY_LOW : 0.5,
+            //0.6-makes opacity points do look "non-solid"
             TP_OPACITY_LOW_POINT : 1, //for points only,
 
-            TP_OPACITY_HIGH : fconf.tpversion === 2 ? 0.8 : 1,
+            TP_OPACITY_HIGH : 0.8,
             TP_OPACITY_HIGH_POINT : 1,
     
             ANCHOR_OPACITY_LOW : '0.7',
@@ -123,12 +120,7 @@
             // \\// tp color opacity
             // \\// tp color
             //===================================================
-        
     
-            //since ver 13510, affects only tpversion 1,
-            //before (in tp 2) affected only anchor colors in Book text,
-            TP_SATUR_FROM_fixed_colors : true,
-
             //diagram drag handle mouse pointer styles
             spinnerCursorGrab : 'crosshair',
             spinnerCursorGrabbed : 'crosshair',
