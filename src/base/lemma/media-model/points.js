@@ -45,6 +45,7 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
+        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -208,10 +209,10 @@
                         'fill'          : 'white',
                         //'stroke-width'  : 2,
                         r               : han( rgX, 'initialR' , sconf.handleRadius ),
-                        tpclass         :
-                                          pname +
-                                          ' tp-' + fakeName + //possibly new feature
-                                          ' tostroke hover-width'
+                        tpclass         : '',
+                                          //pname +
+                                          //' tp-' + fakeName + //possibly new feature
+                                          //' tostroke hover-width'
                     },
                 );
             } else {
