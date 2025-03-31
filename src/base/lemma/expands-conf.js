@@ -165,8 +165,13 @@
             Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                fixedColors[ tk ] = predefinedTopics[ topicKey ];
-                fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
+                let fc = fixedColors[ tk ] = predefinedTopics[ topicKey ];
+                fixedColorsOriginal[ topicKey ] = fc;
+                fc.isPoint = false;
+                fc.isLine = false;
+                fc.isArea = false;
+                fc.isPoint0Line = false;
+                
             });
 
             //--------------------------------------------------
@@ -225,9 +230,13 @@
                 //pcolor
                 if( has( gshape, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    fixedColors[ tk ] = gshape.pcolor;
-                    fixedColorsOriginal[ pname ] = fixedColors[ tk ];
-                   rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
+                    let fc = fixedColors[ tk ] = gshape.pcolor;
+                    fixedColorsOriginal[ pname ] = fc;
+                    fc.isPoint = false;
+                    fc.isLine = true;
+                    fc.isArea = false;
+                    fc.isPoint0Line = true;
+                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
                     rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.getFixedColor( pname );
@@ -273,7 +282,7 @@
                 originalPoints_cssNames[
                     nsmethods.camelName2cssName( pname )
                 ] = op;
-                
+               
                 //todo ... non-readable: it tranfers properties from ??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
@@ -382,8 +391,12 @@
 
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    fixedColors[ tk ] = op.pcolor;
-                    fixedColorsOriginal[ pname ] = fixedColors[ tk ];
+                    let fc =  fixedColors[ tk ] = op.pcolor;
+                    fixedColorsOriginal[ pname ] = fc;
+                    fc.isPoint = true;
+                    fc.isLine = false;
+                    fc.isArea = false;
+                    fc.isPoint0Line = true;
                     rgX.pcolor = sDomF.getFixedColor( op.pcolor );
                     rgX.opaqueColor = sDomF.getFixedColor( op.pcolor, !!'makeOpacity1' );
                 } else {

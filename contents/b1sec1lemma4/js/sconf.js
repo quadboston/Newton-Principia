@@ -86,6 +86,7 @@
 
         sconf.ZEBRA_COLORS = 6;
         sconf.BARS_NUMBER_TO_PLOT = sconf.ZEBRA_COLORS;
+        //no effect: sconf.pointDecoration.r= 50;
 
         //after assigning, test app; because of
         //algo is repeatable, all next runs will do the same work,
@@ -159,9 +160,9 @@
         //patch which manually matches generated random zebra6-color for bar 1
         //when total bars max = 200:
         predefinedTopics[ 'left-bar-' +
-            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [254, 254, 1];
+            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1]; //[254, 254, 1];
         predefinedTopics[ 'right-bar-' +
-            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [254, 254, 1];
+            sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1];
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------

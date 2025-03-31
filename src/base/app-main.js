@@ -63,6 +63,7 @@
         //sn( 'pathToContentSite', fconf, '.' );
         sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr();
+        fapp.doesConfigLemma();
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
