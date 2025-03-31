@@ -74,7 +74,6 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        sconf.TP_SATUR_FROM_fixed_colors = true;
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),

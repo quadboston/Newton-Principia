@@ -69,19 +69,8 @@
             //c cc( topi_c.camelId + ' shrinked=' + fc.isPoint0Line );
             topi_c.tcount = tcount;
             if( fc ) {
-                if( fconf.tpversion === 2 ) {
-                    colArray_2_flags( topi_c );
-                    return;
-                } else {
-                    ////this thing can make a lot of mangling
-                    ////with l,s in hls
-                    var lh = colorArray_2_rgba(
-                        fc,
-                        sconf.TP_SATUR_FROM_fixed_colors,
-                        sconf.TP_OPACITY_FROM_fixed_colors,
-                        fc.isPoint0Line,
-                    );
-                }
+                colArray_2_flags( topi_c );
+                return;
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
@@ -162,7 +151,7 @@
     
     
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }
-    ///in tpversion2 works only for anchors in text
+    ///works only for anchors in text
     function colorArray_2_rgba(
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
         saturFromColorArray,
