@@ -12,7 +12,7 @@
                 lowId //aka "circ-txt"
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
-                tpOpacityHigh //used in topic-media-glocss
+                tpOpacityHigh //??? used in topic-media-glocss
                               //by topics_2_unhighCss, ...
                 tpOpacityLow  //"
 
