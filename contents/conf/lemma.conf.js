@@ -13,7 +13,7 @@
     
     function doesConfigLemma()
     {
-        fconf.tpversion = 1;
+        fconf.tpversion = 2;
         
         //====================================================
         // //\\ optionally overriden by url-query-config

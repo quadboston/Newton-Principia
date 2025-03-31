@@ -51,14 +51,9 @@
         var { styleAnchors, nextTplinks } = ssF.topics_anchor_css();
 
         ///Frag. step V. Unhighlighted global CSS.
-        if( fconf.tpversion === 2 ) {
-            ssF.v2_topics_2_unhighCss();
-            ///Frag. step VI. Highlighted global CSS.
-            ssF.v2_tplinks_2_highlightCss( nextTplinks, );
-        } else {
-            ssF.topics_2_unhighCss();
-            ssF.tplinks_2_highlightCss( nextTplinks, );
-        }
+        ssF.v2_topics_2_unhighCss();
+        ///Frag. step VI. Highlighted global CSS.
+        ssF.v2_tplinks_2_highlightCss( nextTplinks, );
         //inserts tp-highlight-machinery css into html-document
         //globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
         globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
@@ -119,7 +114,7 @@
             //Frag. step V. Unhighlighted global CSS.
             //reestablishes an entire style tags again,
             //did ruin css before 2025, should not for now:
-            //ssF.topics_2_unhighCss();
+            //??? ssF.topics_2_unhighCss();
 
             //Frag. step VI. Highlighted global CSS,
             //only for new nextTplinks
