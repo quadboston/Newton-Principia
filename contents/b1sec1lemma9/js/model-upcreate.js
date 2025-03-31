@@ -34,13 +34,55 @@
     ///****************************************************
     function model_upcreate()
     {
+        var mat             = sn( 'mat' );
+
         //:study-pars
         var modCurvPivots   = ssD.curvePivots;    //curve params
         var tC              = ssD.tC;             //point C curve param = vanish param
         var claimRatio      = ssD.claimRatio;
-        var tiltRatio       = rg.tiltRatio.value;
+        var tiltAngleRad    = mat.degToRad(rg.tiltAngle.value);
 
         var yRange          = sconf.APP_MODEL_Y_RANGE;
+        var angleARad_min   = mat.degToRad(sconf.angleA_min);
+
+
+
+        //===================================
+        // //\\ Constrain bezier middle pivot
+        //===================================
+        //Constrain the bezier middle pivot to be within the specified bounds, and on line ec (ultimately same position as point g).
+        //Code here to ensure always run whenever an update occurs (tab changed, point dragged, diagram moved, window resized etc.)
+        
+
+        //Ensure max angle A is before tiltAngleRad (keep in mind angle A is 0 when vertical, tiltAngle is 0 when horizontal)...
+        //-Line Ag cannot be parallel to line ec (tiltAngle) they wouldn't intersect.
+        //-If the angle between those lines goes beyond parallel, their intersection is on the other side of ec (left of Ae) and below 
+        //the constraint for angleA_min.
+        const angleARad_max = mat.degToRad(80) - tiltAngleRad;
+
+        //Calculate and constrain angle A using the bezier middle pivot (modCurvPivots[1]).
+        const newAngleA = Math.min(Math.max(Math.atan2(modCurvPivots[1][0], modCurvPivots[1][1]), angleARad_min), angleARad_max);
+
+        //Solve intersection using parametric equations for numerical stability (mainly to avoid divide by cos or sin).
+        //(x, y) = (0, 0) + t1 * (dx1, dy1)
+        //(x, y) = (0, yRange) + t2 * (dx2, dy2)
+        const dx1 = Math.sin(newAngleA);
+        const dy1 = Math.cos(newAngleA);
+        const dx2 = Math.cos(tiltAngleRad);
+        const dy2 = Math.sin(tiltAngleRad);
+
+        const denom = dy1 * dx2 - dy2 * dx1;
+        if (Math.abs(denom) > 0.0000000001) {
+            const t2 = yRange * dx1 / denom;
+            modCurvPivots[1][0] = t2 * dx2;
+            modCurvPivots[1][1] = yRange + t2 * dy2;
+        } else {
+            //The following should never occur due to angle constraints.
+            console.error("Line Ag and ec parallel or near parallel");
+        }
+        //===================================
+        // \\// Constrain bezier middle pivot
+        //===================================
 
 
 
@@ -54,7 +96,7 @@
         var modC        = topos( 'C', bezier.parT2point( tC, modCurvPivots ) );
         //var test      = topos( 'point_TEST', bezier.parT2point( 0.79, modCurvPivots ) );
 
-        var Ey          = tiltRatio * modC[1];
+        var Ey          = modC[1] - Math.tan(tiltAngleRad) * modC[0];
         var Dy          = claimRatio * Ey;
 
         var modD        = topos( 'D', [ 0, Dy ] );
