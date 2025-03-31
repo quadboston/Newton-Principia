@@ -24,7 +24,7 @@
         ssD.curvePivots   = sconf.curvePivots.concat([]);
         ssD.tC            = sconf.tC;
         ssD.claimRatio    = sconf.claimRatio;
-        toreg( 'tiltRatio' )( 'value', sconf.tiltRatio );
+        toreg( 'tiltAngle' )( 'value', sconf.tiltAngle );
     }
 }) ();
 
