@@ -13,6 +13,7 @@
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
         sconf.pointDecoration.r= 5; // radius of all points, both static and slider
+        sconf.TP_OPACITY_LOW = 1;
 
         //====================================================
         // //\\ subapp regim switches
@@ -83,6 +84,19 @@
             "tangentPhi"    : result,
             'angleBAD'      : given,
             'conterminousRatio' : proof,
+            
+            // triangles
+            'RAB' : given, 
+            'RACB' : given, 
+            'RAD' : given, 
+            'RACB-RAB' : given, 
+            'RAD-RAB' : given, 
+            
+            'rAb' : proof, 
+            'rAcb' : proof, 
+            'rAd' : proof, 
+            'rAcb-rAb' : proof, 
+            'rAd-rAb' : proof, 
         };
 
         var originalPoints = { 

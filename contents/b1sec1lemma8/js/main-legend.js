@@ -45,12 +45,12 @@
     };
 
     lemma8Data.proof = [
-        [lemma8Data.claim[0][0], [ 'blue', '△rAb : ', 'rg.rAb.area' ]],
-        [lemma8Data.claim[1][0], [ 'blue', '△rAcb : ', 'rg.rAcb.area' ]],
-        [lemma8Data.claim[2][0], [ 'blue', '△rAd : ', 'rg.rAd.area' ]],
+        [lemma8Data.claim[0][0], [ 'rAb', '△rAb : ', 'rg.rAb.area' ]],
+        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb : ', 'rg.rAcb.area' ]],
+        [lemma8Data.claim[2][0], [ 'rAd', '△rAd : ', 'rg.rAd.area' ]],
         [lemma8Data.claim[3][0], [ '', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'blue', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
-        [lemma8Data.claim[5][0], [ 'blue', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
+        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
+        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 
@@ -83,17 +83,6 @@
             clustersCount,
             makesBodyCluster,
             updatesDataInCell,
-        });
-
-        //todo: where is data colour actually being set??
-        const greenData = ['RAB', 'RACB', 'RAD', 'RACB-RAB', 'RAD-RAB'];
-        greenData.forEach( (id) => {
-            let cssName = sDomF.topicIdUpperCase_2_underscore( id ); //converts to format applied by table generator
-            //console.log(cssName);
-            let cells = document.querySelectorAll('.tp-' + cssName); //html table cells
-            cells.forEach( (cell) => {
-                cell.classList.add('green');
-            });
         });
 
         // called once per clustersCount from /media-model/main-legend.js
