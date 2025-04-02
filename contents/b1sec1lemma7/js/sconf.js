@@ -375,7 +375,7 @@
             { 'Ad' : { pcolor : proof } },
             { 'Ar' : { pcolor : given } },
             { 'Ab' : { pcolor : proof } },
-            { "rd" : { pcolor : proof } },
+            { "rd" : { pcolor : hidden } },
 
             { 'dr-decorpoint,d' : { pcolor : proof } },
             { 'dr' : { pcolor : proof } },
