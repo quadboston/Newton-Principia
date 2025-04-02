@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf } =
+    var { ns, fconf, sconf, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     function init_conf()
@@ -28,6 +28,7 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         sconf.TP_OPACITY_LOW_POINT = 1;
+        sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
@@ -123,12 +124,11 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var context = [0,     0,   0 ];
-        var given   = [0,     150, 0 ];
-        
-        var proof   = [0,     0,   255];
-        var result  = [200,   40,  0];
-        var hidden  = [0,     0,   0];
+        var context = [0, 0, 0];
+        var given   = fixedColors.given;        
+        var proof   = fixedColors.proof;
+        var result  = fixedColors.result;
+        var hidden  = fixedColors.hidden;
 
 
         var predefinedTopics =
@@ -143,10 +143,12 @@
             "curve-AB"      : given,
             "left-curve-AB" : given, //patch for left branch
             "arc-AB"        : given,
+            "claimRatio"    : given,
 
             //proof
             "curve-Ab"      : proof,
             "arc-Ab"        : proof,
+            "proofRatio"    : proof,
 
             //addendum
             "phi0"          : given,

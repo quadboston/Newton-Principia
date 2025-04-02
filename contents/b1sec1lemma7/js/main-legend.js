@@ -38,8 +38,8 @@
             [[ 'AD', 'AD : ', getVal('rg.AD.abs', '0.000') ]],
             [[ 'arc-AB', 'arc ACB : ', getVal('rg.AB.arcLen', '0.000') ]],
             [[ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', getLineRatio('AD', 'AB') ]],
-            [[ 'arc-AB', 'arc ACB / AB : ', getArcRatio('AB', 'AB') ]],
+            [[ 'claimRatio', 'AD / AB : ', getLineRatio('AD', 'AB') ]],
+            [[ 'claimRatio', 'arc ACB / AB : ', getArcRatio('AB', 'AB') ]],
         ]
     };
 
@@ -48,8 +48,8 @@
         [lemma7Data.claim[1][0], [ 'Ad', 'Ad : ', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
         [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb : ', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
         [[ '', '', '' ], [ '', '', '' ]], //small space
-        [lemma7Data.claim[4][0], [ 'Ad', 'Ad / Ab : ', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
-        [lemma7Data.claim[5][0], [ 'arc-Ab', 'arc Acb / Ab : ', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
+        [lemma7Data.claim[4][0], [ 'proofRatio', 'Ad / Ab : ', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
+        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc Acb / Ab : ', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
     ];
 
     // all 3 corollaries defined as one big table so framework updates their data properly

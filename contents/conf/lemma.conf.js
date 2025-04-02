@@ -30,7 +30,7 @@
             //usually as a condition of a claim,
             //condition of the theorem,
             //given parameters of the claim or proof
-            var given = [100,  50, 0,      1];
+            var given = [0, 150, 0, 1];
 
             //relates to moving body, to an orbit
             var body      = [0,     150, 0, 1];
@@ -58,6 +58,7 @@
             }
             //neutral elements
             var shadow    = [50,  50,  50];
+            var hidden    = [0, 0, 0, 0];
             
             Object.assign( fixedColors, {
                 given,
@@ -70,6 +71,7 @@
                 invalid,
                 result,
                 shadow,
+                hidden
             });
         }
         //=======================================

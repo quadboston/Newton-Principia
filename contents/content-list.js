@@ -72,7 +72,6 @@
             book : 'Book 1',
             caption : 'Sec. 1, Lemma 8',
             annotation : "",
-            tpversion : 2,
         },
 
         {   sappId : 'b1sec1lemma9',

@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, userOptions } =
+    var { ns, fconf, sconf, userOptions, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     //====================================================
@@ -13,7 +13,7 @@
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
         sconf.pointDecoration.r= 5; // radius of all points, both static and slider
-        sconf.TP_OPACITY_LOW = 1;
+        sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
 
         //====================================================
         // //\\ subapp regim switches
@@ -50,12 +50,12 @@
         //-----------------------------------
         // //\\ svg model colors
         //-----------------------------------
+        var given = fixedColors.given; // claim
+        var proof   = fixedColors.proof;
+        var shadow  = fixedColors.shadow; // colour of φ both point and label
+        var result  = fixedColors.result; // used only if sconf.rgShapesVisible === true
         var context = [0,   0,   0]; // used only if sconf.rgShapesVisible === true
-        var result  = [200, 40,  0];
-        var given   = [0,   150, 0]; // claim green, used for lines, points, and text (not data tables)
-        var proof   = [0,   0,   255]; // proof blue
-        var shadow  = [150, 150, 150]; // colour of φ both point and label
-        var hidden  = [0,   0,   0,   0];
+        var hidden  = fixedColors.hidden;
         var red = [255,0,0]; //for debugging
 
         var predefinedTopics = { 
