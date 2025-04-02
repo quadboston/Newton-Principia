@@ -42,7 +42,7 @@ contains ¦orbit¦¦ which is in experimental space. Right part of the diagram i
 *..*
 
 
-<b><a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a></b>
+<b><a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a></b>
 <br><br>
 
 Notations:
@@ -65,11 +65,11 @@ Notations:
     polar angle, anticlockwise,
                                         </td></tr>
                                         <tr><td>
-    v<sub>⟂</sub>
+    ¦IZ¦v<sub>⟂</sub>¦¦
                                         </td><td>
     = ¦IZ¦vsin(ω)¦¦ = ρ φ˙,&nbsp
                                         </td><td>
-    rotational speed component,
+    ¦IZ¦rotational speed component¦¦,
                                         </td></tr>
                                         <tr><td>
     v²
@@ -119,10 +119,10 @@ For known U(ρ) and E, v(ρ) is known, and equations for ¦CI¦distance¦¦
             dφ/dρ = φ˙/ρ˙ = M /¦CI CD¦ρ¦¦²/ρ˙, &nbsp; &nbsp; &nbsp; from (M<!--  -->) <br>
             or<br>
             <br>
-            dt = - T dρ,   &nbsp; &nbsp; &nbsp; (e) <br>
+            d¦Tarea¦t¦¦ = - ¦Tkernel¦T¦¦ dρ,   &nbsp; &nbsp; &nbsp; (e) <br>
             dφ = - v<sub>⟂</sub> / ρ  T dρ,   &nbsp; &nbsp; &nbsp; (m) <br>
             where<br>
-            T = ( v² - v<sub>⟂</sub>² )<sup> -½</sup>
+            ¦Tkernel¦T¦¦ = ( v² - v<sub>⟂</sub>² )<sup> -½</sup>
         </div>
     </div>
 <br>
@@ -152,9 +152,9 @@ Now when we see how v²(ρ) function can be calculated, we rewrite solutions (e)
 
     <div style="text-align:center;">
         <div style="text-align:left; display:inline-block;">
-            t = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; Tdρ,
+            ¦Tarea¦t¦¦ = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; ¦Tkernel¦T¦¦dρ,
             &nbsp; &nbsp; &nbsp; (eᵢ) <br>
-            φ = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; v<sub>⟂</sub> / ρ Tdρ.
+            φ = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; v<sub>⟂</sub> / ρ ¦Tkernel¦T¦¦dρ.
             &nbsp; &nbsp; &nbsp; (mᵢ) <br>
         </div>
     </div>
@@ -172,7 +172,7 @@ Notations
                                         <tr><td>
 Association
                                         </td><td>
-CalculusXX
+Vector Calculus
                                         </td><td>
 Principia
                                         </td></tr>
@@ -204,21 +204,21 @@ M
 ¦VM¦Q¦¦
                                         </td></tr>
                                         <tr><td>
-kinetic energy
+¦v2graph VSarea¦kinetic energy¦¦
                                         </td><td>
 v²
                                         </td><td>
 ABFD
                                         </td></tr>
                                         <tr><td>
-dt/dρ
+¦Tkernel¦dt/dρ¦¦
                                         </td><td>
-T
+¦Tkernel¦T¦¦
                                         </td><td>
 = 1 / √( ABFD - Z² ) ~ ¦Tkernel¦'curve abz'¦¦
                                         </td></tr>
                                         <tr><td>
-force
+¦force¦force¦¦
                                         </td><td>
 ¦force¦f(ρ<!--  -->)¦¦
                                         </td><td>
@@ -238,7 +238,7 @@ CV
                                         </td></tr>
 
                                         <tr><td>
-time
+¦Tarea¦time¦¦
                                         </td><td>
 ¦Tarea¦t MR²/2¦¦
                                         </td><td>
@@ -246,7 +246,7 @@ time
                                         </td></tr>
 
                                         <tr><td>
-dt/dρ
+¦Tkernel¦dt/dρ¦¦
                                         </td><td>
 ¦Tkernel¦Λ¦¦ = ¦Tkernel¦MR²/2 T¦¦
                                         </td><td>
@@ -319,7 +319,7 @@ One can see, that Newton's diagram fits impressively accurate to numerical diagr
 square root of the area ABFD."
 <br><br>
 
-<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>:
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>:
 <br><br>
 
 sin(ω) = ¦IZ Zgraph¦v<sub>⟂</sub>¦¦ / ¦vgraph¦v¦¦

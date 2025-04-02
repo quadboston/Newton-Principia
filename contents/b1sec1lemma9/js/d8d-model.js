@@ -1,6 +1,7 @@
 ( function() {
     var {
-        ns,
+        ns, 
+        sn,
         bezier,
         fapp,
         fconf,
@@ -36,6 +37,8 @@
     {
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
+        var yRange          = sconf.APP_MODEL_Y_RANGE;
+        var mat             = sn( 'mat' );
 
 
         //==========================================
@@ -92,33 +95,42 @@
         //.........................................
         // //\\ moves E
         //.........................................
+        //Store the position for point E rather than tiltAngle.  In lemma 9 the bezier middle pivot point is constrained to point g, meaning that point C
+        //moves when the tiltAngle changes.  The following needs the initial E y position.  This could be computed using the initial tiltAngle and initial 
+        //point C y.  However if achieved stored the initial the tiltAngle, it would not have access to the initial point C y.
         var wpoint              = rg.E;
-        wpoint.dragDecorColor   = sDomF.getFixedColor( 'given' );
+        wpoint.dragDecorColor   = ns.haz( rg.E, 'pcolor' ) || sDomF.getFixedColor( 'given' );
         wpoint.spinnerClsId       = 'E';
         createDragger({
-            achieved            : rg.tiltRatio.value,
+            achieved            : rg.E.pos.concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-y'],
             doProcess : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 switch( arg.down_move_up ) {
-                    case 'up': ach.achieved = rg.tiltRatio.value;
+                    case 'down':
+                        //Update ach.achieved to prevent 'jumping' in case point E moved (eg. point C was moved).
+                        ach.achieved = rg.E.pos.concat([]);
+                    break;
+                    case 'up': ach.achieved = rg.E.pos.concat([]);
                                sDomF.detected_user_interaction_effect();
                     break;
                     case 'move' :
-                         var Epy = bezier.parT2point( ssD.tC, modCurvPivots )[1];
-                         var startEy = ach.achieved * Epy;
-                         var newEy   = Math.min( 
-                                            sconf.Ep2yrange_max * sconf.APP_MODEL_Y_RANGE,
-                                            sconf.tiltRatio_max * Epy,
-                                            startEy - arg.surfMove[1] *
-                                                      sconf.inn2mod_scale *
-                                                      sDomF.out2inn()
-                                       );
-                         newEy = Math.max( newEy, Epy * sconf.tiltRatio_min );
-                         rg.tiltRatio.value = newEy/Epy;
-                         stdMod.model8media_upcreate();
+                        //Calculate point C
+                        const modC = bezier.parT2point( ssD.tC, modCurvPivots );
+
+                        //Dragger offset in y direction relative to initial dragger position (note dragger offset and diagram use different scales).
+                        const yOffset = sDomF.out2inn() * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
+
+                        //Calculate and constrain the new tiltAngle (angle of line EC from perspective of E)
+                        const newEy = ach.achieved[1] + yOffset;
+                        const newTiltAngle = -mat.radToDeg(Math.atan2(newEy - modC[1], modC[0]));
+                        rg.tiltAngle.value = Math.min(Math.max(newTiltAngle, sconf.tiltAngle_min), sconf.tiltAngle_max);
+                        
+                        //Note the bezier middle pivot is constrained in "model-upcreate.js" beginning of "model_upcreate" function.
+
+                        stdMod.model8media_upcreate();
                     break;
                 }
             }
@@ -179,37 +191,48 @@
         //.........................................
         // //\\ moves bezier middle pivot
         //.........................................
-        var mainCurve           = rg['mainCurve'];
-        var wpoint              = mainCurve.mediael.pivotPoints[1];
-        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.getFixedColor( 'result' );
-        wpoint.spinnerClsId       = 'pivotPoint1';
+        //A few different points could be used for the following, pivotPoint1 was choosen
+        //-mainCurve.mediael.pivotPoints[1]
+        //  -Used previously, however is undefined when second paint pivot is hidden ("media-upcreate.js" near beginning of "does paint view" section)
+        //-point g
+        //  -Note that lemma 10 shares code with lemma 9
+        //  -Would work well for lemma 9 as the bezier middle pivot and point g are supposed to be the same point
+        //  -Wouldn't work well for lemma 10 as it uses a separate point (pivotPoint1) that's not supposed to be the same as point g
+        //-pivotPoint1
+        //  -Works for both lemma 9 and 10
 
-        //****************************************************************
-        //todo: wpoint, pointWrap, rg.E - like must always be in 
-        //      the same place, in rg
-        //****************************************************************
+        var wpoint              = rg.pivotPoint1;
+        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.getFixedColor( 'proof' );
+        wpoint.spinnerClsId     = 'pivotPoint1';
         createDragger({
-            achieved            : sconf.curvePivots[1].concat([]),
+            achieved            : ssD.curvePivots[1].concat([]),
             pointWrap           : wpoint,
-            cssClasses          : ['red','rotate'],
+            cssClasses          : ['axis-x'],
             doProcess : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[1];
                 switch( arg.down_move_up ) {
+                    case 'down':
+                        //Update ach.achieved to prevent 'jumping' in case the bezier middle pivot moved (eg. point E was moved and constrained it).
+                        ach.achieved = pv.concat([]);
+                    break;
                     case 'up':   ach.achieved = pv.concat([]);
                                  sDomF.detected_user_interaction_effect();
                     break;
                     case 'move': 
-                        var wwMed = sDomF.out2inn();
-                        var mx = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
-                        var my = wwMed * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
-                        var newMy = ach.achieved[1] + my;
-                        var newMx = ach.achieved[0] + mx;
-                        newMy = Math.min( newMy, sconf.pivot1y_max );
-                        newMx = Math.max( newMx, sconf.tanA_min * newMy )
-                        pv[0] = newMx;
-                        pv[1] = newMy;
+                        //Dragger offset in x direction relative to initial dragger position (note dragger offset and diagram use different scales).
+                        const wwMed = sDomF.out2inn();
+                        const xOffset = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
+
+                        //Calculate the new bezier middle pivot, ensure it's on line ec.
+                        //Would be (newX, yRange) if line ec was horizontal.  Then tiltAngle adds or subtracts in the y direction.
+                        const newX = ach.achieved[0] + xOffset;  //New x pos for point being dragged.
+                        modCurvPivots[1][0] = newX;
+                        modCurvPivots[1][1] = yRange + Math.tan(mat.degToRad(rg.tiltAngle.value)) * modCurvPivots[1][0];
+                        
+                        //Note the bezier middle pivot is further constrained in "model-upcreate.js" beginning of "model_upcreate" function.
+
                         stdMod.model8media_upcreate();
                     break;
                 }
@@ -223,6 +246,7 @@
         //.........................................
         // //\\ moves bezier end pivot
         //.........................................
+        var mainCurve           = rg['mainCurve'];
         var wpoint              = mainCurve.mediael.pivotPoints[2];
         wpoint.dragDecorColor   = ns.haz( rg.pivotPoint2, 'pcolor' ) || sDomF.getFixedColor( 'given' );
         wpoint.spinnerClsId        = 'pivotPoint2';

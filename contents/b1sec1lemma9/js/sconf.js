@@ -74,7 +74,6 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        sconf.TP_SATUR_FROM_fixed_colors = true;
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
@@ -205,7 +204,7 @@
             },
 
             'pivotPoint1' : { 
-                pcolor      : result,
+                pcolor      : proof,
                 doPaintPname : false,
                 letterAngle : 90,
             },
@@ -258,16 +257,10 @@
             curvePivots :
             [
                 [0, 0],
-                //[326.8, 715.3],
-                //[326.8*1.05, 742*1.05],
-
-                [270.19, 612.8],
-
-                //[72.29, 621.2],
-
-                //[1516.1, 569.9]
-                //[1516.1, 495] //tmp
+                //The bezier middle pivot is constrained in "model-upcreate.js" beginning of "model_upcreate" function.
+                [440, APP_MODEL_Y_RANGE],
                 [ 1060, 567 ]
+
                 /* very good for debug: simple curve
                 [0, 0],
                 [500, 1000],
@@ -281,28 +274,27 @@
             //*************************************************
             APP_MODEL_Y_RANGE,
             //:ranges
-            tanA_min : 0.1, //pivot1x/pivot1y minimum
-            pivot1y_max : APP_MODEL_Y_RANGE * 0.99,
+            angleA_min : 5.71,  //Degrees
+            pivot1y_max : APP_MODEL_Y_RANGE * 0.99,  //Left here for lemma 10
             pivot2x_max : APP_MODEL_Y_RANGE * 1.8,
             pivot2y_min : APP_MODEL_Y_RANGE * 0.3,
             pivot2y_max : APP_MODEL_Y_RANGE * 0.99,
 
 
             //bezier parameter t of point C on principal curve
-            //tC : 0.5, //good for debug
-            tC : 0.50077 / 0.79 ,
+            tC : 0.48,  //This value ensures line EC not too high and upper bezier curve not cutoff.
 
             claimRatio : 0.74081,
             //range:
             claimRatio_max : 0.9, //Dy_per_Ey
 
 
-            tiltRatio : 1,   //controls DB-line tilt: 
-                             //1 is perpendicular; < 1 dy/dx is negative, > 1 is positive
+            tiltAngle : 0.0, //controls EC-line tilt:
+                             //in degrees;  0.0 is horizontal;  from perspective of point E (+ve when C y above E y);
             //:ranges
-            tiltRatio_min   : 0.4,
-            tiltRatio_max   : 1.5,
-            Ep2yrange_max   : 0.8,
+            tiltAngle_min   : -15,
+            tiltAngle_max   : 40,
+
             Cx_min          : 0.1,
             //*************************************************
             // \\// lemma model parameters

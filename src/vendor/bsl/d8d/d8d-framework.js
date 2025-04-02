@@ -282,6 +282,7 @@
                             }
                     );
                 }
+
                 decPoint = dpdec.adds_decorSpinner({
                     spinner_domParent : dragSurface,
                     opt :
