@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf,
+        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -61,7 +61,8 @@
         if(
             logic_phase === 'proof'
         ) {
-            rg.tiltRatio = { value : 1.3 };
+            //Set and constrain the tiltAngle as follows.
+            rg.tiltAngle.value = Math.min(Math.max(-10, sconf.tiltAngle_min), sconf.tiltAngle_max);
             [
                 'Ae',
                 'e',

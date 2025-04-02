@@ -87,7 +87,7 @@
         //==========================================
 
 
-        // //\\ paints curve with two pivot points
+        // //\\ paints curve with pivot points
         var mainCurve = toreg( 'mainCurve' )();
         mainCurve.mediael = bezier.mediafy({
             mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
@@ -97,8 +97,10 @@
             {
                 'stroke-width' : 1 * sconf.thickness
             },
+            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would 
+            //cover it for other tabs is hidden.
             paintPivots : {
-                topaint : [ null, true, true ],
+                topaint : [ null, null, true ],
                 attrs :
                 {
                     'stroke-width' : 1 * sconf.thickness,
