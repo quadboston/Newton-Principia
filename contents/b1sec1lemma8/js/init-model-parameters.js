@@ -144,18 +144,14 @@
                     nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
                     return true;
                 } else {  
-                    // R moves in all directions                       
-                    sData.RB_slope = [ rg.B.pos[0] - newPos[0], rg.B.pos[1] - newPos[1] ];
-                    
-                    //prepares point B which implies new position of point R
-                    var ach = rg.R.achieved;
-                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
-                        / ach.achieved[1];
-                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
-                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                    // R cannot be moved right of B on x-axis
+                    if(newPos[0] >= rg.B.pos[0] - 0.0001) {
+                        newPos[0] = rg.B.pos[0] - 0.0001
                     }
-
-                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ));
+                    // R cannot be higher than B on y-axis
+                    if(newPos[1] >= rg.B.pos[1] - 0.0001) {
+                        newPos[1] = rg.B.pos[1] - 0.0001
+                    }
                     return true;
                 }
             }
