@@ -5,7 +5,6 @@
   "logic_phaseCaption" : "Claim"
 }
 *..*
-
 If any arc ¦arc-AB¦ACB¦¦, given in position, 
 is subtended by the chord ¦AB¦¦
 and at some point ¦A¦¦, 
@@ -13,18 +12,14 @@ in the middle of the continuous
 curvature, is touched by the straight line ¦AD¦¦, 
 produced in both directions,
 and if then points ¦A¦¦ and ¦B¦¦
-
  <span class="captured-reference id-true-convergence-1">approach each other</span>
-
  <span class="captured-reference id-meet">and come together</span>,
-
 I say
 that the angle ¦angleBAD AB AD *anch-color*given¦BAD¦¦ contained by the
 ¦AB¦chord¦¦ and the ¦AD¦tangent¦¦ will be indefinitely diminished and will ultimately
 vanish.
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435.</div>
 
 
 
@@ -34,12 +29,10 @@ vanish.
   "logic_phaseCaption" : "Proof"
 }
 *..*
-
     For if that ¦angleBAD AB AD *anch-color*given¦angle¦¦ does not vanish, 
     the angle contained by the arc ¦arc-AB¦ACB¦¦ 
     and the tangent ¦AD¦¦ will be equal to a ¦AL Ad L¦rectilinear angle¦¦, 
     and therefore the curvature at point ¦A¦¦ will not be continuous,
     contrary to the hypothesis.
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 435.</div>
