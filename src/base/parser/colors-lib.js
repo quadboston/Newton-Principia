@@ -12,7 +12,7 @@
                 lowId //aka "circ-txt"
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
-                tpOpacityHigh //used in topic-media-glocss
+                tpOpacityHigh //??? used in topic-media-glocss
                               //by topics_2_unhighCss, ...
                 tpOpacityLow  //"
 
@@ -27,7 +27,7 @@
 ( function() {
     var {
         ns, sn, $$, nsmethods, haz, has, eachprop,
-        sconf, rg, sDomF, topics, lowId2topics, originalPoints,
+        sconf, rg, sDomF, topics, lowId2topics,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -66,20 +66,11 @@
         eachprop( lowId2topics,
                   ( topi_c, lowId, tcount, allTopicsCount ) => {
             var fc = haz( topi_c, 'fixed-color' );
-            var isPoint = !!has( originalPoints, topi_c.camelId );
+            //c cc( topi_c.camelId + ' shrinked=' + fc.isPoint0Line );
             topi_c.tcount = tcount;
             if( fc ) {
-                if( fconf.tpversion === 2 ) {
-                    colArray_2_flags( topi_c );
-                    return;
-                } else {
-                    var lh = colorArray_2_rgba(
-                        fc,
-                        sconf.TP_SATUR_FROM_fixed_colors,
-                        sconf.TP_OPACITY_FROM_fixed_colors,
-                        isPoint,
-                    );
-                }
+                colArray_2_flags( topi_c );
+                return;
             } else {
                 ////***********************************************
                 ////generates pseudo-random zebra colors
@@ -94,7 +85,8 @@
                     hue,
                     sconf.DEFAULT_TP_SATUR,
                     sconf.default_tp_lightness,
-                    isPoint ? sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW,
+                    //fc.isPoint0Line ? sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW,
+                    sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_HIGH,
                 );
             }
@@ -122,14 +114,21 @@
             topi_c.lowOpacity = colorArray[3];
             topi_c.rgba_own = rgb;
         } else {
+            
             ////high opacity does not exist,
             ////preserves own color and takes
             ////opacities from global setting
-            topi_c.highOpacity = sconf.TP_OPACITY_HIGH;
-            topi_c.lowOpacity = sconf.TP_OPACITY_LOW;
+            let fc = topi_c['fixed-color'];
+            topi_c.highOpacity = fc.isPoint0Line ?
+                    sconf.TP_OPACITY_HIGH_POINT : sconf.TP_OPACITY_HIGH;
+            topi_c.lowOpacity = fc.isPoint0Line ?
+                    sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
+            //if( topi_c.isPoint8Line ) {
+            //    c cc( topi_c.camelId, topi_c.lowOpacity, topi_c.highOpacity, topi_c );
+            //}
             topi_c.rgba_own = rgba;
         };
-        
+
         var rgX = haz( rg, topi_c.camelId );
         topi_c.strokeOpacity = 1;
         topi_c.fillOpacity = 1;
@@ -152,14 +151,16 @@
     
     
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }
+    ///works only for anchors in text
     function colorArray_2_rgba(
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
         saturFromColorArray,
         opacityFromColorArray,
-        isPoint,
+        isPoint0Line,
     ){
-        const sconfOPACITY_LOW = isPoint ?
+        const sconfOPACITY_LOW = isPoint0Line ?
             sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
+        //ccc(isPoint +  'tp P=' + sconf.TP_OPACITY_LOW_POINT, sconf.TP_OPACITY_LOW);
         if( opacityFromColorArray && colorArray ) {
             if( colorArray[3] || colorArray[3]===0 ) {
                 var lowOpacity = colorArray[3]; 

@@ -13,6 +13,8 @@
         }
         mat.powersOf2 = powersOf2;
         mat.atan2PI = atan2PI;
+        mat.degToRad = degToRad;
+        mat.radToDeg = radToDeg;
     })();
 
     
@@ -92,7 +94,17 @@
         let angle = Math.atan2( vector[1], vector[0] );
         return angle < 0 ?  2 * Math.PI + angle : angle;
     }
-    
+
+
+    //converts angle from degrees to radians
+    function degToRad(angle){
+        return angle / 180 * Math.PI;
+    }
+
+    //converts angle from radians to degrees
+    function radToDeg(angle){
+        return angle * 180 / Math.PI;
+    }
 }) ();
 
 

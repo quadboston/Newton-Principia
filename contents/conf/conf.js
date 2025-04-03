@@ -23,6 +23,8 @@
     //====================================================
     to_fconf =
     {
+        
+        DRAG_HANDLE_HALFHOTSPOT : 15,
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
@@ -74,7 +76,7 @@
         LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
-        DRAGGEE_HALF_SIZE : 40, //px
+        DRAGGEE_HALF_SIZE : 15, //40, //px
 
         //setting this to "false" does hide slider
         //decoration spinning arrows

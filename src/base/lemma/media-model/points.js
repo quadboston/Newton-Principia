@@ -45,6 +45,7 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
+        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -208,10 +209,10 @@
                         'fill'          : 'white',
                         //'stroke-width'  : 2,
                         r               : han( rgX, 'initialR' , sconf.handleRadius ),
-                        tpclass         :
-                                          pname +
-                                          ' tp-' + fakeName + //possibly new feature
-                                          ' tostroke hover-width'
+                        tpclass         : '',
+                                          //pname +
+                                          //' tp-' + fakeName + //possibly new feature
+                                          //' tostroke hover-width'
                     },
                 );
             } else {
@@ -239,7 +240,7 @@
             var lposX_rounded = lposX.toFixed();
             var lposY_rounded = lposY.toFixed();
             rgX.pnameLabelsvg = nssvg.printText({
-                tpclass         : '',
+                //tpclass         : '', //apparently non-used
                 text            : rgX.caption || pname,
                 //stroke          : strokeCol,
                 //fill            : fillCol,
@@ -274,6 +275,12 @@
                     ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
                 )
             );
+            rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
+                    let me = rgX.pnameLabelsvg;
+                    me.style.cursor = 
+                        //wrong: me.parentNode.style.cursor;
+                        stdMod.simScene.style.cursor;
+            });
 
             let txtclass = haz( rgX, 'classmark' );
             if( txtclass ) {

@@ -72,13 +72,13 @@
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
                     [fixedCol[0],fixedCol[1],fixedCol[2],0.7, 1],
-                    sconf.TP_SATUR_FROM_fixed_colors,
+                    true,
                     sconf.TP_OPACITY_FROM_fixed_colors
             );
         } else if( tpIDs.length === 0 ) {
             ////safety case: no topics exist in collection,
             ////setting default anchor color
-            var rgba_high = 'rgba( 150, 0, 150, 1 )';
+            var rgba_high = sconf.ANCHOR_DEFAULT_COLOR;
         } else {
             // see *topi_c properties*
             //var { rgb, rgba_high, } = topi_c;
@@ -88,8 +88,10 @@
         }
         var forAnchor = ( topi_c && topi_c.forAnchor ) || rgba_high; //patch
         
-        var rgb_low = forAnchor.replace( /,[^,]+$/, ',0.7)' );
-        var rgba_high = forAnchor.replace( /,[^,]+$/, ',1)' );
+        var rgb_low = forAnchor.replace( /,[^,]+$/, ',' +
+                        sconf.ANCHOR_OPACITY_LOW + ')' );
+        var rgba_high = forAnchor.replace( /,[^,]+$/, ',' +
+                        sconf.ANCHOR_OPACITY_HIGH + ')' );
 
         //  apparently padding highlighted anchor does bloat MathJax font,
         //  so, padding is disabled

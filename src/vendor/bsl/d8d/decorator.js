@@ -51,7 +51,7 @@
         //----------------------------------------------
         // //\\ builds cls and CSS
         //----------------------------------------------
-        dpdec.createGlobal( makeCentralDiskInvisible ); //idempotent
+        dpdec.createGlobal(); //idempotent
         var cls = 'brc-slider-draggee';
         if( addFeaturesToDecPoint ) {
             dpdec.creates_spinnerOwnCss(
@@ -62,6 +62,7 @@
                 individual_zindex,
                 spinnerCursorGrab,
                 spinnerCursorGrabbed,
+                makeCentralDiskInvisible,
             );
             cls += ' ' + spinnerClsId;
         }
