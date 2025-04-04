@@ -230,7 +230,9 @@
                 //pcolor
                 if( has( gshape, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    let fc = fixedColors[ tk ] = gshape.pcolor;
+                    //concat() separates generic color-arrays from
+                    //specific shapes permitting them own flags isPoint, etc.
+                    let fc = fixedColors[ tk ] = gshape.pcolor.concat();
                     fixedColorsOriginal[ pname ] = fc;
                     fc.isPoint = false;
                     fc.isLine = true;

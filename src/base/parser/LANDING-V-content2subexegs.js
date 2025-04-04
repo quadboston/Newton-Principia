@@ -587,7 +587,7 @@
     ///               if captilized-string, then converts to low-case-topic-style
     ///               if array, converted as array to color
     ///       makeOpacity1 - means "do make opacity equal to 1",
-    ///returns fixed color or black,
+    ///returns string of fixed color or black,
     function getFixedColor( ptype0colorArray, makeOpacity1 )
     {
         if( typeof ptype0colorArray === 'string' ) {

@@ -205,7 +205,7 @@
             let nam1 = 'VVV'+ix;
             let nam1f = nam1+'-white-filler';
             let doPaintPname = false;
-            let pcolor = sDomF.getFixedColor( 'force' )
+            let pcolor = sDomF.getFixedColor( 'force' );
             mixedSteps_conf[ nam0 ] = {
                 doPaintPname,
                 pointWrap : { doPaintPname },
@@ -382,7 +382,7 @@
         ].forEach( pNam => {
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
-                let pcolor = sDomF.getFixedColor( 'speed' )
+                let pcolor = sDomF.getFixedColor( 'speed' );
                 let line = toreg( 'Av' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.15 )

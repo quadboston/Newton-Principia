@@ -267,12 +267,23 @@
             Object.keys( predefinedTopics() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                fixedColors[ tk ] = pt[ topicKey ];
-                
+                fixedColors[ tk ] = pt[ topicKey ].concat();
+                ccc( topicKey );
                 //compensates missing of "extend-confib" in engine core
                 fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
             });
          }
+        'A B C D E F S'.split(' ').forEach( camelId => {
+            let fc = fixedColorsOriginal[ camelId ];
+            fc.isPoint = true;
+            fc.isPoint0Line = true;
+        });
+        'force-0-applied force-1-applied force-2-applied force-3-applied'.split(' ')
+            .forEach( camelId => {
+                let fc = fixedColorsOriginal[ camelId ];
+                fc.isLine = true;
+                fc.isPoint0Line = true;
+            });
 
         setsCommonT1andT2capture(); 
         //this comes from theorem P2; this does not exist in P1;
@@ -882,8 +893,9 @@
             "Ee"                : forceMove,
             "Ff"                : forceMove,
             "force-0-applied"   : forceMove,
+            "force-1-applied"   : forceMove,
+            "force-2-applied"   : forceMove,
             "force-3-applied"   : forceMove,
-
 
             //"field"             : [255,   0,  0, 0.5],
             "force-center"      : [255,   0,  0],
