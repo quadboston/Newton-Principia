@@ -15,6 +15,23 @@
         },
     });
 
+    ////**********************************************************************************
+    //// legendScript-format:
+    ////
+    //// 3D array encompassing all data to be displayed and regularly updated in each tab
+    ////    tableData = [
+    ////        [[cluster 1], [cluster 2], ...] //defines one whole row
+    ////    ]
+    ////
+    ////    each cluster array has 3 elements: [class-attribute-of-td, caption, value]
+    ////    - each element must be a string; eval() will be used to parse value as rg is not yet defined here
+    ////
+    ////    * class-attribute-of-td will be converted to class attribute of table's cell,
+    ////    the "td-" will be prepend, <_> will be replaced with space
+    ////
+    //// Caution: '_' is replaced with ' ' in caption,
+    ////**********************************************************************************
+
     var lemma6Data =  {
         claim : [
             [[ 'angleBAD', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]

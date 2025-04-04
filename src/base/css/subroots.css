@@ -196,14 +196,6 @@ sup {
     /* for dev mode: border: 1px solid black; */
 }
 
-.main-legend .green {
-    color: var(--color-green) !important;
-}
-
-.main-legend .blue {
-    color: var(--color-blue) !important;
-}
-
 
 /*====================================*/
 /* //\\ table formatter               */

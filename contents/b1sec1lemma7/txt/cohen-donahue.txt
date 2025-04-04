@@ -7,9 +7,9 @@
 *..*
 With the same suppositions, I say that the ultimate ratios of the ¦arc-AB¦arc¦¦,
 the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one another ¦¦ are ratios of equality.
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
 
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 
@@ -18,13 +18,13 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦conterminousRatio¦to one anoth
   "logic_phaseCaption" : "Proof"
 }
 *..*
+
 For as the point ¦B¦¦ approaches the point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d¦¦</i>, and let <i>¦bd ¦¦</i> be drawn parallel to the intersecting line ¦BD¦¦. And let the arc ¦arc-Ab¦A<i>cb </i>¦¦ be always similar to the arc ¦arc-AB¦ACB¦¦. And, the points ¦A¦¦, ¦B¦¦, coming together, the angle ¦Ab Ad *anch-color*proof¦<i>d</i>A<i>b</i>¦¦, by
 the 
 <a target="_blank" href="?conf=sappId=b1sec1lemma6">previous lemma</a>,
- vanishes; and therefore the straight lines ¦Ab¦A<i>b</i>¦¦, ¦Ad¦A<i>d</i>¦¦, always finite, and the arc ¦arc-Ab¦A<i>cb</i>¦¦ lying between them, coincide, and therefore will be equal. Therefore, both the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying between, will vanish, and will have the ultimate ratio of equality. &nbsp;&nbsp; Q.E.D.
+ vanishes; and therefore the straight lines ¦Ab¦A<i>b</i>¦¦, ¦Ad¦A<i>d</i>¦¦, always finite, and the arc ¦arc-Ab¦A<i>cb</i>¦¦ lying between them, coincide, and therefore will be equal. Therefore, both the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying between, will vanish, and will have the ultimate ratio of equality. &nbsp; Q.E.D.
 <br><br>
-<div book-reference-id="Donahue">Page 83.</div>
-
+<div book-reference-id="Donahue">Page 83</div>
 
 
 
@@ -35,14 +35,12 @@ the
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦
-and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦
+Hence, if ¦BF¦¦ is drawn through ¦B¦¦ parallel to the ¦AD¦tangent¦¦ 
+and always cutting at ¦F¦¦ any straight line ¦AF¦¦ passing through ¦A¦¦, then ¦BF¦¦ 
 will ultimately have a ratio of equality to the vanishing arc ¦arc-AB¦ACB¦¦, because, if
 parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ always has a ratio of equality to ¦AD¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 *::*corollary|english
@@ -53,12 +51,10 @@ parallelogram ¦AF BF AD BD *anch-color*given¦AFBD¦¦ is completed, ¦BF¦¦ a
 *..*
 And if through ¦B¦¦ and ¦A¦¦ additional straight lines ¦BE¦¦,
 ¦BD¦¦, ¦AF¦¦, and ¦AG¦¦ are drawn cutting the tangent ¦AD¦¦ and its parallel ¦BF¦¦, the
-¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦
+¦conterminousRatio¦ultimate ratios¦¦ of all the abscissas ¦AD¦¦, ¦AE¦¦, ¦BF¦¦, and ¦BG¦¦ and of the ¦AB¦chord¦¦ 
 and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>
 
 
 *::*corollary|english
@@ -70,4 +66,4 @@ and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 And therefore all these lines can be used for one another
 interchangeably in any argumentation concerning ultimate ratios.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436</div>

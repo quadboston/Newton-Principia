@@ -1,3 +1,6 @@
+
+
+
 *::*claim|english
 {
   "default" : "1",
@@ -5,6 +8,7 @@
   "logic_phaseCaption" : "Claim"
 }
 *..*
+
 If the straight line ¦AE¦¦ and
 the curve ¦ABC¦¦,
 both given in position,
@@ -17,8 +21,7 @@ will ultimately
 ¦ABDPerACE¦be to each other¦¦
 as the ¦AD2PerAE2¦squares of the sides¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437.</div>
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437</div>
 
 
 
@@ -27,6 +30,7 @@ as the ¦AD2PerAE2¦squares of the sides¦¦.
   "logic_phaseCaption" : "Proof"
 }
 *..*
+
 For while points ¦B¦¦ and ¦C¦¦ approach point ¦A¦¦,
 let ¦AD¦¦ be understood always to be produced to the distant points ¦d¦¦ and ¦e¦¦,
 so that ¦Ad¦¦ and ¦Ae¦¦ are proportional to ¦AD¦¦ and ¦AE¦¦;
@@ -50,6 +54,6 @@ But areas ¦ABD¦¦ and ¦ACE¦¦ are always proportional to these areas,
 and sides ¦AD¦¦ and ¦AE¦¦ to these sides.
 
 Therefore areas ¦ABD¦¦ and ¦ACE¦¦ also are ultimately 
-in the ¦AD2PerAE2¦squared ratio¦¦ of the sides ¦AD¦¦ and ¦AE¦¦. &nbsp;&nbsp; Q.E.D.
+in the ¦AD2PerAE2¦squared ratio¦¦ of the sides ¦AD¦¦ and ¦AE¦¦. &nbsp; Q.E.D.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437.</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437</div>

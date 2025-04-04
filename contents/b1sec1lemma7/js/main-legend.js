@@ -15,14 +15,31 @@
         },
     });
 
+    ////**********************************************************************************
+    //// legendScript-format:
+    ////
+    //// 3D array encompassing all data to be displayed and regularly updated in each tab
+    ////    tableData = [
+    ////        [[cluster 1], [cluster 2], ...] //defines one whole row
+    ////    ]
+    ////
+    ////    each cluster array has 3 elements: [class-attribute-of-td, caption, value]
+    ////    - each element must be a string; eval() will be used to parse value as rg is not yet defined here
+    ////
+    ////    * class-attribute-of-td will be converted to class attribute of table's cell,
+    ////    the "td-" will be prepend, <_> will be replaced with space
+    ////
+    //// Caution: '_' is replaced with ' ' in caption,
+    ////**********************************************************************************
+
     var lemma7Data =  {
         claim : [
             [[ 'AB', 'AB : ', getVal('rg.AB.abs', '0.000') ]],
             [[ 'AD', 'AD : ', getVal('rg.AD.abs', '0.000') ]],
             [[ 'arc-AB', 'arc ACB : ', getVal('rg.AB.arcLen', '0.000') ]],
             [[ '', '', '' ]], //small space
-            [[ 'AD', 'AD / AB : ', getLineRatio('AD', 'AB') ]],
-            [[ 'arc-AB', 'arc ACB / AB : ', getArcRatio('AB', 'AB') ]],
+            [[ 'claimRatio', 'AD / AB : ', getLineRatio('AD', 'AB') ]],
+            [[ 'claimRatio', 'arc ACB / AB : ', getArcRatio('AB', 'AB') ]],
         ]
     };
 
@@ -31,8 +48,8 @@
         [lemma7Data.claim[1][0], [ 'Ad', 'Ad : ', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
         [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb : ', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
         [[ '', '', '' ], [ '', '', '' ]], //small space
-        [lemma7Data.claim[4][0], [ 'Ad', 'Ad / Ab : ', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
-        [lemma7Data.claim[5][0], [ 'arc-Ab', 'arc Acb / Ab : ', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
+        [lemma7Data.claim[4][0], [ 'proofRatio', 'Ad / Ab : ', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
+        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc Acb / Ab : ', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
     ];
 
     // all 3 corollaries defined as one big table so framework updates their data properly

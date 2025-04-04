@@ -1,3 +1,5 @@
+
+
 *::*claim|english
 {
   "menuCaption" : "Text",
@@ -5,15 +7,16 @@
   "logic_phaseCaption" : "Theorem 5"
 }
 *..*
+
 If a ¦P body¦body¦¦ revolve in any ¦orbit¦¦ whatever about an inmobile center ¦S¦¦
 in a non-resisting space, and describe any ¦timearc¦arc¦¦ you please just now nanscent, in the
 ¦dtime¦least possible time¦¦, and the ¦P,sagitta¦sagitta¦¦ of the ¦timearc¦arc¦¦ be understood to be drawn, which bisects ¦Q,rrminus chord¦the chord¦¦ and being produced passes through ¦S¦the center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦ will be as
 ¦P,sagitta¦the sagitta¦¦ directly and the time twice inversely [i.e in the duplicate
 ratio of the time].
 <br><br>
+
+
 <div book-reference-id="Donahue"></div>
-
-
 
 
 *::*proof|english
@@ -21,6 +24,7 @@ ratio of the time].
   "logic_phaseCaption" : "Proof"
 }
 *..*
+
 For the ¦P,sagitta¦the sagitta¦¦ in the ¦dtime¦given time¦¦ is as the ¦force¦¦
 
 (<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">by Proposition 1 Corollary 4</a>),
@@ -33,15 +37,18 @@ duplicate of that ratio
 
 Therefore, it is as the ¦force¦¦ once and ¦dtime¦the time¦¦ twice. Let the duplicate ratio of
 ¦dtime¦the time¦¦ be removed on both sides, and the ¦force¦¦ comes out to be as the ¦P,sagitta¦sagitta¦¦
-directly and the ¦dtime¦time¦¦ twice inversely. &nbsp;&nbsp; Q.E.D.
+directly and the ¦dtime¦time¦¦ twice inversely.
+<br><br>
+Q.E.D.
 <br><br>
 The same thing is also easily demonstrated
 
 (<a target="_blank" href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
+
 <br><br>
 <div book-reference-id="Donahue"></div>
 
-
+<br><br>
 
 
 *::*corollary|english
@@ -51,6 +58,8 @@ The same thing is also easily demonstrated
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
+
+
 If a ¦P¦body P¦¦ in revolving about ¦S¦center S¦¦ describe the ¦APQ¦curved line APQ¦¦,
 while the ¦PZ PR¦straight line ZPR¦¦ touch ¦APQ¦that curve¦¦ at any point you please
 ¦P¦¦, and from any other point on the curve you please ¦Q¦¦ there be drawn ¦QR¦¦ to
@@ -63,6 +72,9 @@ together. For ¦QR¦¦ is equal to the ¦P,sagitta¦sagitta¦¦ of
 middle ¦P¦¦ is; and twice the triangle ¦SQ QP SP¦SQP¦¦, or ¦SP¦¦x¦QT¦¦, is propotional
 to ¦dtime¦the time¦¦ in which that ¦timearc¦double arc¦¦ is described; and therefore may be
 used to represent the ¦dtime¦time¦¦.
+
+
+
 <br><br>
 <div book-reference-id="Donahue"></div>
 
@@ -75,7 +87,9 @@ used to represent the ¦dtime¦time¦¦.
   "subessay" : "corollary3"
 }
 *..*
+
 If the ¦orbit¦¦ is either a circle, or touches or cuts a ¦curvatureCircle¦circle¦¦ concentrically, that is, contains with a circle the least angle of contact or section, having the same curvature and the same ¦PC¦radius of curvature¦¦ at the point ¦P¦¦; and if ¦PV¦¦ be a chord of this ¦curvatureCircle¦circle¦¦, drawn from the ¦P¦body¦¦ through the ¦S¦centre of force¦¦; the ¦force¦centripetal force¦¦ will be reciprocally as the solid '¦SY¦¦'² x '¦PV¦¦'. For '¦PV¦¦' is '¦QP¦¦'² / '¦QR¦¦'.
+
 <br><br>
 <div book-reference-id="Motte-3rd">Page 111.</div>
 
@@ -88,6 +102,7 @@ If the ¦orbit¦¦ is either a circle, or touches or cuts a ¦curvatureCircle¦c
   "subessay" : "corollary5"
 }
 *..*
+
 Hence if any ¦orbit¦curvilinear figure APQ¦¦, be given, and in it be given also the point ¦S¦¦
 to which the ¦force¦centripetal force¦¦ is ¦SP¦always directed¦¦,
 the law of ¦force¦centripetal force¦¦ may be found by which ¦P¦any body you please P¦¦,
@@ -96,5 +111,17 @@ the ¦orbit¦perimeter of that figure¦¦, and will trace it out by revolving.
 
 That is, one computes the solid sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦ ... [that is] inversely proportional to this ¦force¦¦.
 We shall give example of this procedure in the following problems.
+
+
+
+
 <br><br>
 <div book-reference-id="Donahue"></div>
+
+
+
+
+
+
+
+

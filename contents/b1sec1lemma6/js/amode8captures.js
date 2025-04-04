@@ -8,25 +8,15 @@
         {
             amode2rgstate,
         },
-    });
+    }); 
 
-    if( fconf.sappId === "b1sec1lemma8" ) {
     ///diff and Euclid tangents are equal
-        var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
-        {
-            "angle": 0,
-            "sin": 0,
-            "cos": 1
-        };
-    } else {
-        ///diff and Euclid tangents are equal
-        var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
-        {
-            "angle": 0.10579977792284677,
-            "sin": 0.10560250842053673,
-            "cos": 0.9944084222367038
-        };
-    }
+    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    {
+        "angle": 0.10579977792284677,
+        "sin": 0.10560250842053673,
+        "cos": 0.9944084222367038
+    };
 
     //this is Books origin, authentic N. drawing,
     //curveRotationAngle = 0,
@@ -39,12 +29,6 @@
 
 
     setCapture();
-    return;
-
-
-
-
-
 
     function setCapture()
     {
@@ -223,9 +207,7 @@
         // \\// common values
         //----------------------------------
 
-
         sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-
 
 
         //*****************************************************************************
@@ -268,14 +250,6 @@
                     'Ad',
                     'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
-                ///hides differential tangent row in data table
-                globalCss.update( `
-                    .main-legend.proof tr:nth-child(4)
-                    {
-                        display : none;
-                    }`,
-                    'table-patch',
-                );
             }
 
             if(

@@ -16,9 +16,7 @@
     --FOCUS_OFF_COLOR : #888888;
     --SHUTTLE_COLOR : rgba(150, 175, 200); 
     --SHUTTLE_COLOR_FAINT : rgba(150, 175, 200, 0.4);
-    --SHUTTLE_BG_COLOR : rgba(245, 245, 255);    
-    --color-green: rgba(3, 112, 1, 0.8); /* colours used in models and data */
-    --color-blue: rgba(1, 6, 112, 0.8);
+    --SHUTTLE_BG_COLOR : rgba(245, 245, 255); 
     --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
 
     --font-serif : 'Times New Roman', serif;

@@ -1,3 +1,4 @@
+
 *::*claim|english
 {
   "default" : "1",
@@ -8,7 +9,9 @@
 Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is required to find the law of
 the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 466.</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 112.
+
 
 
 
@@ -22,44 +25,42 @@ the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figu
 }
 *..*
 Let the construction be the same as in lem. 14, and let ¦P¦P be the body¦¦ in
-the perimeter of the ¦orbit¦parabola¦¦; from the ¦Q¦place Q¦¦ into which the body moves
+the ¦orbit¦perimeter of the parabola¦¦; from the ¦Q¦place Q¦¦ into which the body moves
 next, draw ¦QR¦¦ parallel and ¦QT¦¦ perpendicular to ¦SP¦¦ and draw ¦Qv¦Q𝑣¦¦ parallel
+
 to the ¦PR P,Zminus¦tangent¦¦ and meeting both the diameter ¦GP¦PG¦¦ in ¦v¦𝑣¦¦ and
 the distance ¦SP¦¦
 in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦Pxv¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
 equal. But from the <i>Conics</i> the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
+
 rectangle contained by the latus rectum and the segment ¦Pv¦P𝑣¦¦ of the diameter,
-that is 
-(by lem. 13), 
-equal to the rectangle 4¦SP¦PS¦¦ ✕ ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ ✕ ¦QR¦¦, and, the
-points ¦P¦¦ and ¦Q¦¦ coming together, the ratio of ¦Qv¦Q𝑣¦¦ to ¦Qx¦Q𝑥¦¦ 
-(by <a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>),
-becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑣¦¦²
+that is (by lem. 13), equal to the rectangle 4¦SP¦PS¦¦ x ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ x ¦QR¦¦, and, the
+points ¦P¦¦ and ¦Q¦¦ coming together, the ratio of ¦Qv¦Q𝑣¦¦ to ¦Qx¦Q𝑥¦¦ (by lem. 7, corol.
+2) becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑣¦¦²
  is equal to the
-rectangle 4¦SP¦PS¦¦ ✕ ¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦QxT¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
+rectangle 4¦SP¦PS¦¦ x ¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦QxT¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
 ¦Qx¦Q𝑣¦¦²
  is to ¦QT¦¦²
  as ¦SP¦PS¦¦²
  to ¦NS¦SN¦¦²
-, that is 
-(by lem. 14, corol. 1),
- as ¦SP¦PS¦¦ to ¦SA¦¦,
-that is, as 4¦SP¦PS¦¦ ✕ ¦QR¦¦ to 4¦SA¦¦ x ¦QR¦¦, and hence 
-(<a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's Elements, book 5, prop. 9</a>)
- ¦QT¦¦²
- and 4¦SA¦¦ ✕ ¦QR¦¦ are equal. Multiply these equals by ,
-¦SP¦¦² / ¦QR¦¦, and ¦SP¦¦² ✕ ¦Qx¦Q𝑣¦¦² / ¦QR¦¦ will become equal to ¦SP¦¦² x 4¦SA¦¦;
-and therefore 
-(by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
-the centripetal force is inversely as ¦SP¦¦²
- ✕ 4¦SA¦¦, that is,
-because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
+, that is (by lem. 14, corol. 1), as ¦SP¦PS¦¦ to ¦SA¦¦,
+that is, as 4¦SP¦PS¦¦ x ¦QR¦¦ to 4¦SA¦¦ x ¦QR¦¦, and hence (by Euclid's Elements, book
+
+5, prop. 9) ¦QT¦¦²
+ and 4¦SA¦¦ x ¦QR¦¦ are equal. Multiply these equals by ,
+
+¦SP¦¦² / ¦QR¦¦, and ¦SP¦¦² x ¦Qx¦Q𝑣¦¦² / ¦QR¦¦ will become equal to ¦SP¦¦² x 4¦SA¦¦;
+
+and therefore (by prop. 6, corols. 1 and 5) the centripetal force is inversely as ¦SP¦¦²
+ x 4¦SA¦¦, that is,
+because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. Q.E.I.
+
+
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 466.</div>
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 112.
 
 
 *::*corollary|english
@@ -81,9 +82,11 @@ a given curvature at that point. But the curvature is given from the given
 ¦force Px¦centripetal force¦¦ and velocity of the body; and two different orbits touching
 each other cannot be described with the same centripetal force and the same
 velocity.
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 467.</div>
 
+
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 113.
 
 
 
@@ -100,8 +103,14 @@ such that the ¦PR¦line-element PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
 body through space ¦QR¦¦ in that same time, this body will move in
 ¦orbit¦some conic¦¦ whose principal latus rectum is the quantity ¦QT¦¦² / ¦QR¦¦ which ultimately
+
 results when the line-elements ¦PR¦¦ and ¦QR¦¦ are diminished indefinitely. In
 these corollaries I include the circle along with the ellipse, but not for the
 case where the body descends straight down to a center.
+
+
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 467.</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
+Page 113.
+
+

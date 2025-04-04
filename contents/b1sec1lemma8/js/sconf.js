@@ -1,96 +1,82 @@
 
 ( function() {
-    var { ns, fconf, sconf } =
+    var { ns, fconf, sconf, userOptions, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
-
-
-
-
-
-
-
-
 
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
     function init_conf()
     {
-        sconf.TP_OPACITY_LOW_POINT = 1;
-        sconf.default_tp_lightness = 22;
-        sconf.rgShapesVisible = false;
-        sconf.default_tp_stroke_width = 8;
-        sconf.text_nonhover_width = 1;
-        sconf.text_hover_width = 2; //needs hover-width cls at svg-text-el,
-                                    //aka for: Δsin(φ),
-        //sconf.nonhover_width = 4;
-        //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
-                                    //aka for: Δsin(φ),
         //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 5;
-
+        sconf.TP_OPACITY_LOW_POINT = 1; // opacity of items defined in originalPoints and linesArray below
+        sconf.TP_OPACITY_LOW = 1; // applied to items defined in predefinedTopics below
+        sconf.default_tp_lightness = 22; // darkness of lines, curves
+        sconf.default_tp_stroke_width = 8; //size of slider circles
+        sconf.pointDecoration.r= 5; // radius of all points, both static and slider
 
         //====================================================
         // //\\ subapp regim switches
         //====================================================
-        sconf.enableStudylab            = false;
+        sconf.enableStudylab            = false; // true to include options as in Book 3 Lemma 5
         sconf.enableTools               = false;
+        sconf.rgShapesVisible           = false; // false to show only relevant lines, points, labels
         //====================================================
         // \\// subapp regim switches
         //====================================================
-
+        
+        //making size to better fit lemma's diagram
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 858;
+        var pictureWidth = 858; // size of svg div
         var pictureHeight = 566;
-        var modorInPicX = 166;
+        var modorInPicX = 166; // affect the shape of ACB
         var modorInPicY = 63;
 
         //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = 239; //was?: originalPoints.R.pos[1] - originalPoints.A.pos[1];
+        var mod2inn_scale = 239; // conversion factor to calc values displayed in data table
         
         var A = [modorInPicX, modorInPicY];
         var B = [358, 165];
         var D = [496, modorInPicY];
 
-        //var M = [140, modorInPicY];
-
-        sconf.b_per_B_original = 1.931578947;
-
+        sconf.b_per_B_original = 1.931578947; // determines distance between B and b
 
         //-----------------------------------
-        // //\\ topic group colors,
-        //      todm: possibly proliferation
+        // //\\ svg model colors
         //-----------------------------------
-        var context = [0,     0,   0];
-        var given   = [0,     150, 0];
-        var proof   = [0,     0,   255];
-        var result  = [200,   40,  0];
-        var shadow  = [150,  150,  150];
-        var hidden  = [0,     0,   0,     0];
+        var given = fixedColors.given; // claim
+        var proof   = fixedColors.proof;
+        var shadow  = fixedColors.shadow; // colour of φ both point and label
+        var result  = fixedColors.result; // used only if sconf.rgShapesVisible === true
+        var context = [0,   0,   0]; // used only if sconf.rgShapesVisible === true
+        var hidden  = fixedColors.hidden;
+        var red = [255,0,0]; //for debugging
 
-
-        var predefinedTopics =
-        {
+        var predefinedTopics = { 
             //:basic topics
             proof,
             given,
             result,
             hidden,
 
-            //:given
-            "curve-AB"      : given,
-            "left-curve-AB" : given, //patch for left branch
-            "arc-AB"        : given,
+            //given (claim)
+            "curve-AB"      : given, // ACB and curve segment after B
+            "left-curve-AB" : given, // curve segment before A
+            "arc-AB"        : given, // ACB (redundant?)
 
             //proof
-            "curve-Ab"      : proof,
-            "arc-Ab"        : proof,
+            "arc-Ab"        : proof, // Acb
+
+            
+            // the rest are only used when rgShapesVisible === true
+            // todo: maybe some are not used at all
+            "curve-Ab"      : proof, 
 
             //addendum
             "phi0"          : given,
@@ -98,14 +84,112 @@
             "tangentPhi"    : result,
             'angleBAD'      : given,
             'conterminousRatio' : proof,
+            
+            // triangles
+            'RAB' : given, 
+            'RACB' : given, 
+            'RAD' : given, 
+            'RACB-RAB' : given, 
+            'RAD-RAB' : given, 
+            
+            'rAb' : proof, 
+            'rAcb' : proof, 
+            'rAd' : proof, 
+            'rAcb-rAb' : proof, 
+            'rAd-rAb' : proof, 
         };
-        //-----------------------------------
-        // \\// topic group colors,
-        //-----------------------------------
 
-        var originalPoints =
-        {
-            //:context
+        var originalPoints = { 
+
+            // styles, positions, and animations of points and their labels
+            //:originals from Book
+            A : {
+                //assigment by reference to pos is safe: no parasite links,
+                //pos is recalculated later
+                pos         : A,
+                letterAngle : 90,
+                pcolor      : given,
+            },
+            B : {
+                pos: B,
+                letterAngle : 0,
+                pcolor      : given,
+            },
+            C : {
+                letterAngle : 45,
+                letterRotRadius : 13,
+                pcolor      : given,
+            },
+            D : {
+                pos: D,
+                letterAngle : 90,
+                pcolor      : given,
+            },
+            R : {
+                letterAngle : 135,
+                pcolor      : given,
+                draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                draggableY  : true,
+            },            
+            fi : {
+                caption : "φ",
+                pcolor : userOptions.showingBonusFeatures() ? shadow : hidden,
+                letterAngle : 180,
+                draggableX  : true,
+                draggableY  : true,
+            },
+            c : {
+                letterAngle : 45,
+                letterRotRadius : 18,
+                pcolor      : proof,
+            },
+            b : {
+                letterAngle : 0,
+                pcolor      : proof,
+            },
+
+            ///modified point r, closer to d
+            "imageOfR" : {
+                caption : "r",
+                pcolor      : proof,
+                letterAngle : -45,
+                letterRotRadius : 30,
+            },
+
+            ///modified point r, closer to d
+            "imageOfD" : {
+                caption : "d",
+                pos : D,
+                pcolor      : proof,
+                letterAngle : -90,
+                letterRotRadius : 30,
+            },
+            
+            curveStart  : {
+                pos : [ A[0]-80, 0 ],
+            },
+            curveEnd : {
+                pos : [B[0]+50,0],
+            },
+            curveLeftEnd : {
+                pos : [250,100],
+            },
+
+            
+            // the rest are only used when rgShapesVisible
+            // todo: maybe some are not used at all
+            
+            d : {
+                caption : 'dₒ',
+                letterAngle : 90,
+                pcolor      : proof,
+            },
+            r : {
+                caption : 'rₒ',
+                letterAngle : 135,
+                pcolor      : given,
+            },
+
             //axis-y addendum
             'ytop' : {
                 letterAngle     : 90,
@@ -149,43 +233,6 @@
                 letterAngle : -90,
                 letterRotRadius : 20,
             },
-
-            ///modified point r, closer to d
-            "imageOfR" : {
-                caption : "r",
-                pcolor      : proof,
-                letterAngle : -45,
-                letterRotRadius : 30,
-            },
-
-            ///modified point r, closer to d
-            "imageOfD" : {
-                caption : "d",
-                pos : D,
-                pcolor      : proof,
-                letterAngle : -90,
-                letterRotRadius : 30,
-            },
-
-
-            c : {
-                letterAngle : 45,
-                letterRotRadius : 18,
-                pcolor      : proof,
-            },
-
-            //proof
-            b : {
-                letterAngle : 0,
-                pcolor      : proof,
-            },
-            d : {
-                caption : 'dₒ',
-                letterAngle : 90,
-                pcolor      : proof,
-            },
-
-
 
 
             "y0" : {
@@ -239,65 +286,14 @@
                 letterAngle     : -90,
                 pcolor          : proof,
             },
-            // \\// magnified points
-
-
-            //:originals from Book
-            A : {
-                //assigment by reference to pos is safe: no parasite links,
-                //pos is recalculated later
-                pos         : A,
-                letterAngle : 90,
-                pcolor      : given,
-            },
-
-            r : {
-                caption : 'rₒ',
-                letterAngle : 135,
-                pcolor      : given,
-            },
-
-            R : {
-                letterAngle : 135,
-                pcolor      : given,
-                draggableX  : false,
-                draggableY  : true,
-            },
-
-            B : {
-                pos: B,
-                letterAngle : 0,
-                pcolor      : given,
-            },
-
-            C : {
-                letterAngle : 45,
-                letterRotRadius : 13,
-                pcolor      : given,
-            },
-
-            D : {
-                pos: D,
-                letterAngle : 90,
-                pcolor      : given,
-            },
+            // \\// magnified points     
 
             DLeft : {
                 letterAngle : 90,
                 pcolor      : given,
                 doPaintPname : false,
             },
-  
-            curveStart  : {
-                pos : [ A[0]-80, 0 ],
-            },
-            curveEnd : {
-                pos : [B[0]+50,0],
-            },
-            curveLeftEnd : {
-                pos : [250,100],
-            },
-
+            
             //lemma 7, coroll 1
             F : {
                 letterAngle : 90,
@@ -320,57 +316,55 @@
                 pcolor      : result,
             },
 
-            fi : {
-                caption : "φ",
-                pcolor : shadow,
-                letterAngle : 180,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
         };
+        
         ///alternatively to this, you can set own colors for originalPoints
-        ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
             point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
 
         var linesArray =
         [
-            { "rd" : { pcolor : proof } },
-            { "rb" : { pcolor : proof } },
+            // given (shown in green)            
+            { 'AB' : { pcolor : given } },
+            { 'AR' : { pcolor : given } }, 
+            { 'AD' : { pcolor : given } }, 
+            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, // to left of A            
+            { 'RD' : { pcolor : given } },
+            { 'BR' : { pcolor : given } },
+
+            // proof (shown in blue) 
+            { 'Ab' : { pcolor : proof } },  
+
+            { 'A,imageOfD' : { pcolor : proof } }, // Ad  
+            { 'A,imageOfR' : { pcolor : proof } }, // Ar   
+            { 'imageOfR,imageOfD' : { pcolor : proof } }, // rd
+            { 'imageOfR,b' : { pcolor : proof } }, //rb
+
+            // questionable                       
+            { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
+            { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
+            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
+            { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
+
+
+            // the rest of these are only use if rgShapesVisible
+            // todo: maybe some not at all in L8?
 
             { 'dr-decorpoint,d' : { pcolor : proof } },
             { 'dr' : { pcolor : proof } },
-            { 'imageOfR,imageOfD' : { pcolor : proof } },
-            { 'A,imageOfD' : { pcolor : proof } },
-            { 'A,imageOfR' : { pcolor : proof } },
-            { 'imageOfR,b' : { pcolor : proof } },
-
-            { 'Ad' : { pcolor : proof } },
-            { 'Ar' : { pcolor : given } },
 
             //l7
-            { 'bd' : { pcolor : proof } },
-            { 'be' : { pcolor : proof } },
-
-            { 'Ab' : { pcolor : proof } },
-            { 'AR' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
+            { 'bd' : { pcolor : hidden } },
+            { 'be' : { pcolor : hidden } },
 
             //l7
-            { 'BD' : { pcolor : given } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : given } },
-            { 'AF' : { pcolor : given } },
-            { 'AG' : { pcolor : given } },
-            { 'AE' : { pcolor : given } },
-            { 'BG' : { pcolor : given } },
-
-
-            //l8
-            { 'RD' : { pcolor : given } },
-            { 'BR' : { pcolor : given } },
+            { 'BD' : { pcolor : hidden } },  //lemma 7, coroll 1
+            { 'BF' : { pcolor : hidden } },
+            { 'AF' : { pcolor : hidden } },
+            { 'AG' : { pcolor : hidden } },
+            { 'AE' : { pcolor : hidden } },
+            { 'BG' : { pcolor : hidden } },
 
             //sin(x)/x
             { 'Br' : { pcolor : given } },
@@ -396,7 +390,6 @@
             { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
 
 
-
             //dy
             { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
             //dx
@@ -415,13 +408,13 @@
 
             { 'AE' : { pcolor : given } },
             { 'BE' : { pcolor : given } },
-            { 'AB' : { pcolor : given } },
         ]
 
         //----------------------------------
         // //\\ curve pars
-        //      points for divided
-        //      differences interpolation
+        //     points for divided differences interpolation
+        //
+        // *** used only if sconf.rgShapesVisible === true
         //----------------------------------
         var ww1 = [204,67];
         var ww1 = [244,82];
@@ -440,8 +433,7 @@
                 pcolor      : given,
         };
 
-        var givenCurve_pivots =
-        [
+        var givenCurve_pivots = [
             //make curve symmetrical in respect to axis Y
             [2*A[0]-ww3[0],ww3[1]],
             [2*A[0]-ww2[0],ww2[1]],
@@ -466,11 +458,7 @@
         // \\// curve pars
         //----------------------------------
 
-
-        //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-
-        ns.paste( sconf, {
+        ns.paste( sconf, { // adds these members to globally available sconf
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma8/img/d.png",
             givenCurve_pivots_inModel,
