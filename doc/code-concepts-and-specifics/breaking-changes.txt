@@ -1,22 +1,22 @@
 
 
 1) apparently css classes do not respect capital letters. Hence in the css, the change must be
-logic_phase -> text_section
+theorion -> text_section
 This is the app. css convention: xxxCapital goes to xxx_capital
 In particular, all topic names converted this way.
 
 For example, this is possibly a breaking change:
-.menu-teaf.logic_phase .decorated.litem-${ix},
--                .menu-teaf.logic_phase .litem-${ix},
--                .menu-teaf.logic_phase .shuttle-${ix} {
--                    left       :${logic_phaseChildWidth*ix}%;
+.menu-teaf.theorion .decorated.litem-${ix},
+-                .menu-teaf.theorion .litem-${ix},
+-                .menu-teaf.theorion .shuttle-${ix} {
+-                    left       :${theorionChildWidth*ix}%;
 +                .menu-teaf.textSection .decorated.litem-${ix},
 +                .menu-teaf.textSection .litem-${ix},
 +                .menu-teaf.textSection .shuttle-${ix} {
 
 
-2) replacement logic_phase -> textSection
-should be done line by line with understanding what each line does. There are 280 such lines. It cannot be done in batch mode. And this is a lot of work actually. And after this each lemma's logic_phase should have a regression test. (Like after each major change.)
+2) replacement theorion -> textSection
+should be done line by line with understanding what each line does. There are 280 such lines. It cannot be done in batch mode. And this is a lot of work actually. And after this each lemma's theorion should have a regression test. (Like after each major change.)
 
-(3) Very low importance, but trend is that changes in core scr/basic (like logic_phase) do break compatibility with other educational sofware, f.e. parxis. 
+(3) Very low importance, but trend is that changes in core scr/basic (like theorion) do break compatibility with other educational sofware, f.e. parxis. 
 

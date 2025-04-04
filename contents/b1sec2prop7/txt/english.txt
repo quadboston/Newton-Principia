@@ -15,12 +15,15 @@ Page 455.
 
 
 
+
 *::*proof|english
 {
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution",
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-
 Let ¦orbit¦VQPA¦¦ be the ¦orbit¦circumference of the circle¦¦, ¦S¦¦ the given
 point toward which the ¦force¦¦
 tends as to its center, ¦P¦P the body¦¦
@@ -31,7 +34,6 @@ Through ¦S¦point S¦¦ draw ¦PV¦chord PV¦¦;
 and when the ¦AV¦diameter VA¦¦ of
 the circle has been drawn, join
 ¦AP¦¦; and to ¦SP¦¦ drop perpendicular
-
 ¦QT¦¦, which when ¦ZQ¦produced¦¦ meets the ¦PR PZ P,Zminus¦tangent PR¦¦ at ¦Z¦¦;
 and finally through
 point ¦Q¦¦ draw ¦RL¦LR¦¦ parallel to ¦SP¦¦ and meeting both the circle at ¦L¦¦ and the
@@ -40,29 +42,29 @@ tangent ¦PZ¦¦ at ¦R¦¦.<br><br>
 Then because the triangles ¦ZQ QR ZR¦ZQR¦¦,
 ¦ZQ QT PZ PT¦ZTP¦¦, and ¦PV AP AV¦VPA¦¦ are
 similar,
-
 ¦PR¦RP¦¦² (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
-
 And therefore ¦QR¦¦ x ¦RL¦¦ x ¦PV¦¦² / ¦AV¦¦² is equal to ¦QT¦¦².
-
-Multiply these equals by ¦SP¦¦²/¦QR¦¦ and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
-
+Multiply these equals by ¦SP¦¦²&nbsp;/&nbsp;¦QR¦¦ and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
 Thus ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will become equal to ¦SP¦¦² x ¦QT¦¦² / ¦QR¦¦.
-
 Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is inversely as
-
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / ¦AV¦¦², that is (because ¦AV¦¦² is given), inversely as the square of the
-distance or altitude ¦SP¦¦ and the cube of the chord jointly. Q.E.I.
-<br><br><br>
-
-
-
-
-<i>Another solution</i>
+distance or altitude ¦SP¦¦ and the cube of the ¦PV¦chord¦¦ jointly. &nbsp;&nbsp; Q.E.I.
 <br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
+Page 455.
 
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
 Draw ¦SY¦¦ perpendicular to the tangent ¦PR¦¦ produced; then, because triangles ¦SY PY SP¦SYP¦¦ and ¦PV AP AV¦VPA¦¦
-
 are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
 ¦SP¦¦ x ¦PV¦¦ / ¦AV¦¦ will be equal to ¦SY¦¦, and
 ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will be equal to ¦SY¦¦² x ¦PV¦¦.
@@ -70,12 +72,12 @@ are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
 And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
 as ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦², that is, because ¦AV¦¦ is given, inversely as
 
-¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. Q.E.I.
-
+¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 455.
-<br><br>
+Page 456.
+
+
 
 
 *::*corollary|english

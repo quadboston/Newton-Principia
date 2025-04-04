@@ -129,52 +129,52 @@
     
             SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
 
-        default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
-  
-        //---------------------------------------------------------------
-        // //\\ anchor control
-        //---------------------------------------------------------------
-        ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
-        ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
-        ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
-        //---------------------------------------------------------------
-        // \\// anchor control
-        //---------------------------------------------------------------
-  
-        //---------------------------------------------------------------
-        // //\\ moved to site conf from expand-conf.js
-        //---------------------------------------------------------------
-        default_tp_stroke_width     : 10,
-        defaultLineWidth            : 2,
-        //---------------------------------------------------------------
-        // \\// moved to site conf from expand-conf.js
-        //***************************************************
-        // \\// TOPIC COLORS AND SHAPES
-        //***************************************************
-            
-            
-            
-            
-        //***************************************************
-        // in better design, this setting should come
-        // from ns.dpdec.dimensions.WIDTH bsl-core,
-        // to do this, this module should have
-        // delayed execution of to_sconf based on setModue
-        // machinery,
-        //
-        // in mean time, these 21px comes as a sum
-        // for 5px of image width + 2*8px margin from
-        //     subroots.css.js::#bsl-resizable-handle
-        // and not from dpdec.dimensions.WIDTH as may appear,
-        main_horizontal_dividor_width_px : 21,
-        //***************************************************
-  
-        mediaOffset : [ 0, 0 ],                 //in respect to simscene
-        GENERIC_SLIDERS_FONT_SIZE,
-        GENERIC_SLIDER_HEIGHT_Y,
-        GENERIC_SLIDERS_COUNT,
-        SLIDERS_LEGEND_HEIGHT,
-        SLIDERS_OFFSET_Y,
+            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+    
+            //---------------------------------------------------------------
+            // //\\ anchor control
+            //---------------------------------------------------------------
+            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
+            ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
+            ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
+            //---------------------------------------------------------------
+            // \\// anchor control
+            //---------------------------------------------------------------
+    
+            //---------------------------------------------------------------
+            // //\\ moved to site conf from expand-conf.js
+            //---------------------------------------------------------------
+            default_tp_stroke_width     : 10,
+            defaultLineWidth            : 2,
+            //---------------------------------------------------------------
+            // \\// moved to site conf from expand-conf.js
+            //***************************************************
+            // \\// TOPIC COLORS AND SHAPES
+            //***************************************************
+                
+                
+                
+                
+            //***************************************************
+            // in better design, this setting should come
+            // from ns.dpdec.dimensions.WIDTH bsl-core,
+            // to do this, this module should have
+            // delayed execution of to_sconf based on setModue
+            // machinery,
+            //
+            // in mean time, these 21px comes as a sum
+            // for 5px of image width + 2*8px margin from
+            //     subroots.css.js::#bsl-resizable-handle
+            // and not from dpdec.dimensions.WIDTH as may appear,
+            main_horizontal_dividor_width_px : 21,
+            //***************************************************
+    
+            mediaOffset : [ 0, 0 ],                 //in respect to simscene
+            GENERIC_SLIDERS_FONT_SIZE,
+            GENERIC_SLIDER_HEIGHT_Y,
+            GENERIC_SLIDERS_COUNT,
+            SLIDERS_LEGEND_HEIGHT,
+            SLIDERS_OFFSET_Y,
 
             SLIDERS_OFFSET_X : 0.05, //in respect to background-image-width
             SLIDERS_LENGTH_X : 0.70, //in respect to background-image-width
