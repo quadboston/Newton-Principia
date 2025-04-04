@@ -146,11 +146,11 @@
                 } else {  
                     // R cannot be moved right of B on x-axis
                     if(newPos[0] >= rg.B.pos[0] - 0.0001) {
-                        newPos[0] = rg.B.pos[0] - 0.0001
+                        return false;
                     }
                     // R cannot be higher than B on y-axis
-                    if(newPos[1] >= rg.B.pos[1] - 0.0001) {
-                        newPos[1] = rg.B.pos[1] - 0.0001
+                    if(newPos[1] >= rg.B.pos[1] - 0.1) {
+                        return false;
                     }
                     return true;
                 }
