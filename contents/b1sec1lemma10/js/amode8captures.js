@@ -67,8 +67,10 @@
                 'Ae',
                 'e',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
+        } else if( logic_phase === 'claim' ) {
+            //Set and constrain the tiltAngle as follows.
+            rg.tiltAngle.value = 0;
         }
-
         if(
             aspect === 'addendum'
         ) {
