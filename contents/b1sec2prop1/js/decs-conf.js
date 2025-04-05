@@ -103,7 +103,7 @@
             c   : {
                 decStart : LOGIC ? 5 : decor.C.decStart,
                 decEnd : decor.F.decStart+2, //22, //10,
-                cssClass : 'theor1proof theor2corollary',
+                cssClass : 'theor1proof theor2proof theor2corollary',
             },
             d   : { decStart : LOGIC ? 9 : decor.D.decStart,
                     decEnd : decor.F.decStart+2,

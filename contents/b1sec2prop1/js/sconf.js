@@ -1,7 +1,7 @@
 ( function() {
     var {
         haff, has, eachprop, nspaste, capture, toreg,
-        sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
+        sconf, ssF, ssD, sDomF, fixedColors, fixedColorsOriginal,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
@@ -162,7 +162,7 @@
 
             thickness           : 1,
             default_tp_stroke_width : 10,
-            hide_perp_P_and_alike : false,
+            //hide_perp_P_and_alike : false,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -272,12 +272,12 @@
                 fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
             });
          }
-        'A B C D E F S'.split(' ').forEach( camelId => {
+        'A B C D E F S c d e f'.split(' ').forEach( camelId => {
             let fc = fixedColorsOriginal[ camelId ];
             fc.isPoint = true;
             fc.isPoint0Line = true;
         });
-        'dt time force-0-applied force-1-applied force-2-applied force-3-applied'.split(' ')
+        'Av dt time force-0-applied force-1-applied force-2-applied force-3-applied'.split(' ')
             .forEach( camelId => {
                 let fc = fixedColorsOriginal[ camelId ];
                 fc.isLine = true;
@@ -840,7 +840,7 @@
         var time = [0,100,100,1];
         var sagittaeChords = [100, 0, 100];
         var speed = [130,100,0];
-        return {
+        var ret = {
             speed,
             force,
             forceMove,
@@ -944,6 +944,11 @@
 
             "free-triangle"     : freeMove,
         };
+        var p2_pt = haff( ssD, 'P2_predefinedTopics' );
+        if( p2_pt ) {
+            Object.assign( ret, p2_pt );
+        }
+        return ret;
     }
 }) ();
 
