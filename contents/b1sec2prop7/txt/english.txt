@@ -6,12 +6,10 @@
   "menuCaption" : "Text"
 }
 *..*
-
 Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 455.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
 
 
 
@@ -50,8 +48,7 @@ Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is i
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / ¦AV¦¦², that is (because ¦AV¦¦² is given), inversely as the square of the
 distance or altitude ¦SP¦¦ and the cube of the ¦PV¦chord¦¦ jointly. &nbsp;&nbsp; Q.E.I.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 455.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
 
 
 
@@ -68,14 +65,11 @@ Draw ¦SY¦¦ perpendicular to the tangent ¦PR¦¦ produced; then, because tria
 are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
 ¦SP¦¦ x ¦PV¦¦ / ¦AV¦¦ will be equal to ¦SY¦¦, and
 ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will be equal to ¦SY¦¦² x ¦PV¦¦.
-
 And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
 as ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦², that is, because ¦AV¦¦ is given, inversely as
-
 ¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 456.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
 
 
 
@@ -87,17 +81,14 @@ Page 456.
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
-
 Hence, if the given point ¦S¦¦ to which the ¦force¦centripetal force¦¦
 always tends is located in the circumference of this circle, say at ¦V¦¦, the
 ¦force¦centripetal force¦¦ will be inversely as the fifth power of the altitude ¦SP¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
 
 
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 456.
-<br><br>
+
 
 *::*corollary|english
 {
@@ -105,7 +96,6 @@ Page 456.
   "subessay" : "corollary2"
 }
 *..*
-
 The ¦force¦force¦¦ by which body
 ¦P¦¦ revolves in the circle ¦orbit¦APTV¦¦ around the
 ¦S¦center of forces S¦¦ is to the force by which the
@@ -116,17 +106,13 @@ RP² x SP to the cube of the
 ¦Gcol2,S¦straight line SG¦¦, which is drawn
 from the ¦S¦first center of forces S¦¦ to the
 ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
-
 For by the construction of this proposition the ¦force¦first force¦¦ is
 to the second force as ¦PR¦RP¦¦² x ¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
 that is, as ¦SP¦¦ x ¦PR¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦PT¦¦³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 456.
-<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
 
 
 
@@ -148,12 +134,5 @@ the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG�
 the ¦Rcol2,P¦distance RP¦¦ of the body from the second center of forces. For the forces
 in this orbit at any ¦P¦point of it P¦¦ are the same as in a circle of the same
 curvature.
-
-
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 456.
-<br><br>
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
