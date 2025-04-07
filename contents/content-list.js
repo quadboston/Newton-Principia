@@ -208,7 +208,7 @@
             book : 'Book 3',
             caption : 'Lemma 5',
             annotation : "",
-            inAddendum : false,
+            inAddendum : true,
         },
 
         {   sappId : 'addd-fw',
