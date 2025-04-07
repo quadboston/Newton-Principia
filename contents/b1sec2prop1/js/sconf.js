@@ -285,7 +285,9 @@
             fc.isPoint0Line = true;
         });
         ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
-        'force-0-applied force-1-applied force-2-applied force-3-applied').split(' ')
+        'force-0-applied force-1-applied force-2-applied ' +
+        'force-3-applied force-4-applied')
+        .split(' ')
             .forEach( camelId => {
                 let fc = fixedColorsOriginal[ camelId ];
                 fc.isLine = true;
@@ -903,6 +905,7 @@
             "force-1-applied"   : forceMove,
             "force-2-applied"   : forceMove,
             "force-3-applied"   : forceMove,
+            "force-4-applied"   : forceMove,
 
             //"field"             : [255,   0,  0, 0.5],
             "force-center"      : [255,   0,  0],
@@ -948,7 +951,7 @@
 
             "Ef"                : freeMove,
             "Eg"                : freeMove,
-            "Fg"                : [255, 100, 0],
+            "Fg"                : forceMove,
 
             "free-triangle"     : freeMove,
         };
