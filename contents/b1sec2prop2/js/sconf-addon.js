@@ -138,6 +138,7 @@
             "P"                 : [200, 100, 0, 0],
             "T"                 : [200, 100, 0, 0],
             "TP"                : [200, 100, 0, 0],
+            "Paracc"            : [100,   0,  100],
             "Caracc"            : [100,   0,  100],
             "CCaracc"           : [100,   0,  100],
             "CParacc"           : [100,   0,  100],
@@ -145,8 +146,10 @@
             "cCaracc"           : [100,   0,  100],
 
             "Varacc"            : forceMoveX,
-            "BVaracc"           : forceMoveX,   // force at B deviated toward V; area description accelerated
-            "VVaracc"           : forceMoveX,   // force vector at V displaced to V'; area description accelerated
+            "BVaracc"           : forceMoveX,   // force at B deviated toward V;
+                                                // area description accelerated
+            "VVaracc"           : forceMoveX,   // force vector at V displaced to V';
+                                                // area description accelerated
             "CParacc"           : forceMoveX,
             "CaraccParacc"      : [100,   0,  100],
 

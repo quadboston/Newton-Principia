@@ -263,21 +263,29 @@
             ////--------------------------------------------------
             ////expands predefinedTopic colors into rg
             ////--------------------------------------------------
-            let pt = predefinedTopics();
-            Object.keys( predefinedTopics() ).forEach( topicKey => {
+            var { pt_all, p2_pt } = predefinedTopics();
+            Object.keys( pt_all ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                fixedColors[ tk ] = pt[ topicKey ].concat();
+                var fck = fixedColors[ tk ] = pt_all[ topicKey ].concat();
                 //compensates missing of "extend-confib" in engine core
-                fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
+                fixedColorsOriginal[ topicKey ] = fck;
             });
          }
-        'A B C D E F S c d e f'.split(' ').forEach( camelId => {
+         if( has( ssD, 'P2_predefinedTopics' ) ) {
+             Object.keys( p2_pt ).forEach( camelId => {
+                if( camelId === 'SBCaracc' ) return;
+                let fc = fixedColorsOriginal[ camelId ];
+                fc.isPoint0Line = true;
+             })
+         }
+        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
             let fc = fixedColorsOriginal[ camelId ];
             fc.isPoint = true;
             fc.isPoint0Line = true;
         });
-        'Av dt time force-0-applied force-1-applied force-2-applied force-3-applied'.split(' ')
+        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
+        'force-0-applied force-1-applied force-2-applied force-3-applied').split(' ')
             .forEach( camelId => {
                 let fc = fixedColorsOriginal[ camelId ];
                 fc.isLine = true;
@@ -840,7 +848,7 @@
         var time = [0,100,100,1];
         var sagittaeChords = [100, 0, 100];
         var speed = [130,100,0];
-        var ret = {
+        var pt_all = {
             speed,
             force,
             forceMove,
@@ -946,9 +954,9 @@
         };
         var p2_pt = haff( ssD, 'P2_predefinedTopics' );
         if( p2_pt ) {
-            Object.assign( ret, p2_pt );
+            Object.assign( pt_all, p2_pt );
         }
-        return ret;
+        return { pt_all, p2_pt };
     }
 }) ();
 

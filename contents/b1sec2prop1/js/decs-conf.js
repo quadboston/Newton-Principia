@@ -410,14 +410,14 @@
             }
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 ////patch for purpose of drawing a vector tip
-                let line = toreg( 'BV' )
-                        ();
+                let line = toreg( 'BV' )();
             }
             var rgElem = ssF.pnames2line(
                 pNam.nam[0],
                 pNam.nam[1],
                 haz( pNam, 'cssClass' ), //for tp-links
             );
+            //var rgElem = toreg( pNam.nam[0] + pNam.nam[1] )();
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 rgElem.svgel.style.strokeWidth = '1';
                 //rgElem.svgel.style.stroke = '#00ff00';
