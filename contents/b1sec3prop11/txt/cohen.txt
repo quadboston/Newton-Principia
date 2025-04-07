@@ -9,8 +9,7 @@ Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
 it is required to find the law of the centripetal
 ¦force¦¦ tending toward a focus of the ellipse.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 462.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 462.</div>
 
 
 
@@ -23,7 +22,6 @@ Page 462.
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-
 Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦DK¦¦
 of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
 ¦Qx PR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AO¦AC¦¦ because when
@@ -68,7 +66,6 @@ square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 
 
 
-
 *::*proof|english
 {
   "menuCaption" : "Text",
@@ -79,17 +76,22 @@ square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 *..*
 The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦orbit¦the ellipse¦¦, and by which
 ¦P¦body P¦¦ can revolve in ¦orbit¦that ellipse¦¦, is
-(<a target="_blank" href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english">by prop. 10, corol. 1</a>)
+(<a target="_blank" 
+href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by 
+prop. 10, corol. 1</a>)
 as the distance ¦PO¦CP¦¦
 of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
 the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
 which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
 will
-(<a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 7, corol. 3</a>)
-be as ¦EP¦PE¦¦³/¦SP¦¦²; that is, if point ¦S¦¦ is a focus of the ellipse,
+(<a target="_blank" 
+href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by 
+prop. 7, corol. 3</a>)
+be as ¦EP¦PE¦¦³&nbsp;/&nbsp;¦SP¦¦²; that is, if point ¦S¦¦ is a focus of the ellipse,
 and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
+
 
 
 
