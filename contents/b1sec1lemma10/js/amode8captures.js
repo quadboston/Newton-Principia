@@ -61,14 +61,14 @@
         if(
             logic_phase === 'proof'
         ) {
-            //Set and constrain the tiltAngle as follows.
-            rg.tiltAngle.value = Math.min(Math.max(-10, sconf.tiltAngle_min), sconf.tiltAngle_max);
+            //Sets and constrains the tiltAngle as follows.
+            //rg.tiltAngle.value = Math.min(Math.max(-10, sconf.tiltAngle_min), sconf.tiltAngle_max);
             [
                 'Ae',
                 'e',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         } else if( logic_phase === 'claim' ) {
-            //Set and constrain the tiltAngle as follows.
+            //Sets and constrains the tiltAngle as follows.
             rg.tiltAngle.value = 0;
         }
         if(
