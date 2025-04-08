@@ -103,7 +103,7 @@
             c   : {
                 decStart : LOGIC ? 5 : decor.C.decStart,
                 decEnd : decor.F.decStart+2, //22, //10,
-                cssClass : 'theor1proof theor2corollary',
+                cssClass : 'theor1proof theor2proof theor2corollary',
             },
             d   : { decStart : LOGIC ? 9 : decor.D.decStart,
                     decEnd : decor.F.decStart+2,
@@ -205,7 +205,7 @@
             let nam1 = 'VVV'+ix;
             let nam1f = nam1+'-white-filler';
             let doPaintPname = false;
-            let pcolor = sDomF.getFixedColor( 'force' )
+            let pcolor = sDomF.getFixedColor( 'force' );
             mixedSteps_conf[ nam0 ] = {
                 doPaintPname,
                 pointWrap : { doPaintPname },
@@ -382,7 +382,7 @@
         ].forEach( pNam => {
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
-                let pcolor = sDomF.getFixedColor( 'speed' )
+                let pcolor = sDomF.getFixedColor( 'speed' );
                 let line = toreg( 'Av' )
                         ( 'vectorTipIx', 1 )
                         ( 'tipFraction', 0.15 )
@@ -410,14 +410,14 @@
             }
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 ////patch for purpose of drawing a vector tip
-                let line = toreg( 'BV' )
-                        ();
+                let line = toreg( 'BV' )();
             }
             var rgElem = ssF.pnames2line(
                 pNam.nam[0],
                 pNam.nam[1],
                 haz( pNam, 'cssClass' ), //for tp-links
             );
+            //var rgElem = toreg( pNam.nam[0] + pNam.nam[1] )();
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
                 rgElem.svgel.style.strokeWidth = '1';
                 //rgElem.svgel.style.stroke = '#00ff00';

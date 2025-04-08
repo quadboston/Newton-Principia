@@ -210,6 +210,31 @@
             ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
             'table' : 'none';
 
+        {
+            ////apparently working with non-standard lemma,
+            ////one of triangles
+            ////triangle-even tp-_s_b_c tp-kepler-triangle
+            ////(try document.querySelector( '.tp-_s_b_c' ).style.display = 'none';)
+            ////covers these two lines,
+            ////we do a manual patch to remove and add them
+            ////over this triangle,
+            let svg = rg.VVaracc.svgel;
+            let parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+            svg = rg.BVaracc.svgel;
+            svg.remove();
+            parent.appendChild( svg );
+            //similar method:
+            svg = rg.CaraccParacc.svgel;
+            svg.remove();
+            parent.appendChild( svg );
+            //making this point over the line
+            svg = haz( rg['VVV0-white-filler'], 'svgel' );
+            svg.remove();
+            parent.appendChild( svg );
+        }
+
         ssF.mediaModelInitialized = true;
     }
 

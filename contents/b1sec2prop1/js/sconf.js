@@ -1,7 +1,7 @@
 ( function() {
     var {
         haff, has, eachprop, nspaste, capture, toreg,
-        sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
+        sconf, ssF, ssD, sDomF, fixedColors, fixedColorsOriginal,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
@@ -162,7 +162,7 @@
 
             thickness           : 1,
             default_tp_stroke_width : 10,
-            hide_perp_P_and_alike : false,
+            //hide_perp_P_and_alike : false,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -263,16 +263,36 @@
             ////--------------------------------------------------
             ////expands predefinedTopic colors into rg
             ////--------------------------------------------------
-            let pt = predefinedTopics();
-            Object.keys( predefinedTopics() ).forEach( topicKey => {
+            var { pt_all, p2_pt } = predefinedTopics();
+            Object.keys( pt_all ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                fixedColors[ tk ] = pt[ topicKey ];
-                
+                var fck = fixedColors[ tk ] = pt_all[ topicKey ].concat();
                 //compensates missing of "extend-confib" in engine core
-                fixedColorsOriginal[ topicKey ] = fixedColors[ tk ];
+                fixedColorsOriginal[ topicKey ] = fck;
             });
          }
+         if( has( ssD, 'P2_predefinedTopics' ) ) {
+             Object.keys( p2_pt ).forEach( camelId => {
+                if( camelId === 'SBCaracc' ) return;
+                let fc = fixedColorsOriginal[ camelId ];
+                fc.isPoint0Line = true;
+             })
+         }
+        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
+            let fc = fixedColorsOriginal[ camelId ];
+            fc.isPoint = true;
+            fc.isPoint0Line = true;
+        });
+        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
+        'force-0-applied force-1-applied force-2-applied ' +
+        'force-3-applied force-4-applied')
+        .split(' ')
+            .forEach( camelId => {
+                let fc = fixedColorsOriginal[ camelId ];
+                fc.isLine = true;
+                fc.isPoint0Line = true;
+            });
 
         setsCommonT1andT2capture(); 
         //this comes from theorem P2; this does not exist in P1;
@@ -830,7 +850,7 @@
         var time = [0,100,100,1];
         var sagittaeChords = [100, 0, 100];
         var speed = [130,100,0];
-        return {
+        var pt_all = {
             speed,
             force,
             forceMove,
@@ -882,8 +902,10 @@
             "Ee"                : forceMove,
             "Ff"                : forceMove,
             "force-0-applied"   : forceMove,
+            "force-1-applied"   : forceMove,
+            "force-2-applied"   : forceMove,
             "force-3-applied"   : forceMove,
-
+            "force-4-applied"   : forceMove,
 
             //"field"             : [255,   0,  0, 0.5],
             "force-center"      : [255,   0,  0],
@@ -929,10 +951,15 @@
 
             "Ef"                : freeMove,
             "Eg"                : freeMove,
-            "Fg"                : [255, 100, 0],
+            "Fg"                : forceMove,
 
             "free-triangle"     : freeMove,
         };
+        var p2_pt = haff( ssD, 'P2_predefinedTopics' );
+        if( p2_pt ) {
+            Object.assign( pt_all, p2_pt );
+        }
+        return { pt_all, p2_pt };
     }
 }) ();
 

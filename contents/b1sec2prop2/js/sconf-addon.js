@@ -1,8 +1,9 @@
 ( function() {
     var { sconf, nspaste, capture, toreg,
-         ssF, sDomF, fixedColors,
+         ssF, ssD, sDomF, fixedColors,
     } = window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
+    ssD.P2_predefinedTopics = predefinedTopics;
     return;
 
 
@@ -13,19 +14,21 @@
     function init_conf_addon()
     {
         sconf.mediaBgImage = "../../b1sec2prop1/js/img/b1s2p1t1.png";
-        sconf.hide_perp_P_and_alike = true;
+        //sconf.hide_perp_P_and_alike = true;
         //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
 
         {
             ////--------------------------------------------------
             ////expands predefinedTopic colors into rg
             ////--------------------------------------------------
+            /*
             let pt = predefinedTopics();
             Object.keys( predefinedTopics() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
                 fixedColors[ tk ] = pt[ topicKey ];
             });
+            */
          }
 
         // //\\ makes capture
@@ -135,6 +138,7 @@
             "P"                 : [200, 100, 0, 0],
             "T"                 : [200, 100, 0, 0],
             "TP"                : [200, 100, 0, 0],
+            "Paracc"            : [100,   0,  100],
             "Caracc"            : [100,   0,  100],
             "CCaracc"           : [100,   0,  100],
             "CParacc"           : [100,   0,  100],
@@ -142,8 +146,10 @@
             "cCaracc"           : [100,   0,  100],
 
             "Varacc"            : forceMoveX,
-            "BVaracc"           : forceMoveX,   // force at B deviated toward V; area description accelerated
-            "VVaracc"           : forceMoveX,   // force vector at V displaced to V'; area description accelerated
+            "BVaracc"           : forceMoveX,   // force at B deviated toward V;
+                                                // area description accelerated
+            "VVaracc"           : forceMoveX,   // force vector at V displaced to V';
+                                                // area description accelerated
             "CParacc"           : forceMoveX,
             "CaraccParacc"      : [100,   0,  100],
 

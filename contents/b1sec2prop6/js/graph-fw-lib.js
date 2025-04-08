@@ -89,7 +89,7 @@
                 {
                     //"hover-width" decreases gigantict bold
                     //together, tobold hover-width and tostroke can be redundant
-                    text    :   '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Force</tspan></text>',
@@ -106,13 +106,13 @@
                     text    : bonus ?
                                 'Force f, sagitta s, -1/r², and speed v per their max.' :
 
-                                '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                                '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tostroke tobold hover-width"' +
+                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+n2c( 'sagitta' ) + ';"' +
                                 '>Estimated' +
