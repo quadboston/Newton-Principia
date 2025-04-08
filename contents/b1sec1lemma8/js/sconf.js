@@ -8,12 +8,15 @@
     //====================================================
     function init_conf()
     {
+        const BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
+
         //overrides "global", lemma.conf.js::sconf
         sconf.TP_OPACITY_LOW_POINT = 1; // opacity of items defined in originalPoints and linesArray below
         sconf.TP_OPACITY_LOW = 1; // applied to items defined in predefinedTopics below
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
         sconf.pointDecoration.r= 5; // radius of all points, both static and slider
+        sconf.b_per_B_original = 1.931578947; // determines distance between B and b
 
         //====================================================
         // //\\ subapp regim switches
@@ -37,15 +40,10 @@
         var pictureHeight = 566;
         var modorInPicX = 166; // affect the shape of ACB
         var modorInPicY = 63;
-
-        //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = 239; // conversion factor to calc values displayed in data table
         
         var A = [modorInPicX, modorInPicY];
         var B = [358, 165];
         var D = [496, modorInPicY];
-
-        sconf.b_per_B_original = 1.931578947; // determines distance between B and b
 
         //-----------------------------------
         // //\\ svg model colors
@@ -68,22 +66,10 @@
             //given (claim)
             "curve-AB"      : given, // ACB and curve segment after B
             "left-curve-AB" : given, // curve segment before A
-            "arc-AB"        : given, // ACB (redundant?)
+            "arc-AB"        : given, ////curve-AB plus extension past B
 
             //proof
             "arc-Ab"        : proof, // Acb
-
-            
-            // the rest are only used when rgShapesVisible === true
-            // todo: maybe some are not used at all
-            "curve-Ab"      : proof, 
-
-            //addendum
-            "phi0"          : given,
-            "deltaphi"      : given,
-            "tangentPhi"    : result,
-            'angleBAD'      : given,
-            'conterminousRatio' : proof,
             
             // triangles
             'RAB' : given, 
@@ -133,7 +119,7 @@
             },            
             fi : {
                 caption : "φ",
-                pcolor : userOptions.showingBonusFeatures() ? shadow : hidden,
+                pcolor : BONUS ? shadow : hidden,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,
@@ -175,153 +161,7 @@
                 pos : [250,100],
             },
 
-            
-            // the rest are only used when rgShapesVisible
-            // todo: maybe some are not used at all
-            
-            d : {
-                caption : 'dₒ',
-                letterAngle : 90,
-                pcolor      : proof,
-            },
-            r : {
-                caption : 'rₒ',
-                letterAngle : 135,
-                pcolor      : given,
-            },
-
-            //axis-y addendum
-            'ytop' : {
-                letterAngle     : 90,
-                caption         : 'axis y',
-                letterRotRadius : 35,
-                pcolor          : context,
-            },
-            "ylow" : {
-                letterAngle : 90,
-            },
-            O : {
-                letterAngle : -90,
-                pcolor : given,
-            },
-            'axis-y_X_rd' : {
-            },
-
-            //axis-x addendum
-            'xtop' : {
-                letterAngle     : 130,
-                caption         : 'axis x',
-                letterRotRadius : 40,
-                //pcolor : given,
-            },
-            "xlow" : {
-                letterAngle : 90,
-            },
-
-            //beyond X and L to enable show of tangent angle
-            "line-AL-end" : {
-            },
-
-            //extends rd to show an angle
-            "line-dr-start" : {
-                letterAngle : 30,
-            },
-            ///modified point r, closer to d
-            "dr-decorpoint" : {
-                caption : 'r',
-                pcolor      : proof,
-                letterAngle : -90,
-                letterRotRadius : 20,
-            },
-
-
-            "y0" : {
-                caption     : 'yₒ',
-                letterAngle : 225,
-                pcolor      : given,
-            },
-            //By
-            'y' : {
-                caption     : 'y',
-                letterAngle : 45,
-                pcolor      : given,
-            },
-            //Ax
-            x : {
-                caption     : 'x',
-                letterAngle : -45,
-                pcolor      : given,
-            },
-            //Bx
-            x0 : {
-                caption     : 'xₒ',
-                letterAngle : 135,
-                pcolor      : given,
-            },
-            
-            // //\\ magnified points
-            'Y0' : {
-                pos             : A,
-                caption         : 'Yₒ',
-                letterAngle     : 210,
-                letterRotRadius : 50,
-                pcolor          : proof,
-            },
-            //BY
-            'Y' : {
-                caption         : 'Y',
-                letterAngle     : 180,
-                letterRotRadius : 35,
-                pcolor          : proof,
-            },
-            //AX0
-            'X0' : {
-                caption         : 'Xₒ',
-                letterAngle     : -90,
-                pcolor          : proof,
-            },
-            //BX
-            'X' : {
-                caption         : 'X',
-                letterAngle     : -90,
-                pcolor          : proof,
-            },
-            // \\// magnified points     
-
-            DLeft : {
-                letterAngle : 90,
-                pcolor      : given,
-                doPaintPname : false,
-            },
-            
-            //lemma 7, coroll 1
-            F : {
-                letterAngle : 90,
-                pcolor      : given,
-            },
-            G : {
-                letterAngle : 90,
-                pcolor      : given,
-            },
-            E : {
-                letterAngle : 90,
-                pcolor      : given,
-            },
-            e : {
-                letterAngle : 90,
-                pcolor      : proof,
-            },
-            L : { 
-                letterAngle : -45,
-                pcolor      : result,
-            },
-
         };
-        
-        ///alternatively to this, you can set own colors for originalPoints
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
-        });
 
         var linesArray =
         [
@@ -346,69 +186,226 @@
             { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
             { "rd" : { pcolor : hidden } }, // todo: this line should not exist
             { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
+        ];
 
+        addBonusVars(); // todo: would be great if we only called this if BONUS === true, but as is that would break the page
+        function addBonusVars() {            
+            // *** these are only used if BONUS || rgShapesVisible (some maybe not at all)
 
-            // the rest of these are only use if rgShapesVisible
-            // todo: maybe some not at all in L8?
+            var predefinedTopicsBonus = {
+                "curve-Ab"      : proof, 
+    
+                //addendum
+                "phi0"          : given,
+                "deltaphi"      : given,
+                "tangentPhi"    : result,
+                'angleBAD'      : given,
+                'conterminousRatio' : proof,
 
-            { 'dr-decorpoint,d' : { pcolor : proof } },
-            { 'dr' : { pcolor : proof } },
+            }
+            predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 
-            //l7
-            { 'bd' : { pcolor : hidden } },
-            { 'be' : { pcolor : hidden } },
+            var originalPointsBonus = {                
+                d : {
+                    caption : 'dₒ',
+                    letterAngle : 90,
+                    pcolor      : proof,
+                },
+                r : {
+                    caption : 'rₒ',
+                    letterAngle : 135,
+                    pcolor      : given,
+                },
+    
+                //axis-y addendum
+                'ytop' : {
+                    letterAngle     : 90,
+                    caption         : 'axis y',
+                    letterRotRadius : 35,
+                    pcolor          : context,
+                },
+                "ylow" : {
+                    letterAngle : 90,
+                },
+                O : {
+                    letterAngle : -90,
+                    pcolor : given,
+                },
+                'axis-y_X_rd' : {
+                },
+    
+                //axis-x addendum
+                'xtop' : {
+                    letterAngle     : 130,
+                    caption         : 'axis x',
+                    letterRotRadius : 40,
+                    //pcolor : given,
+                },
+                "xlow" : {
+                    letterAngle : 90,
+                },
+    
+                //beyond X and L to enable show of tangent angle
+                "line-AL-end" : {
+                },
+    
+                //extends rd to show an angle
+                "line-dr-start" : {
+                    letterAngle : 30,
+                },
+                ///modified point r, closer to d
+                "dr-decorpoint" : {
+                    caption : 'r',
+                    pcolor      : proof,
+                    letterAngle : -90,
+                    letterRotRadius : 20,
+                },
+    
+    
+                "y0" : {
+                    caption     : 'yₒ',
+                    letterAngle : 225,
+                    pcolor      : given,
+                },
+                //By
+                'y' : {
+                    caption     : 'y',
+                    letterAngle : 45,
+                    pcolor      : given,
+                },
+                //Ax
+                x : {
+                    caption     : 'x',
+                    letterAngle : -45,
+                    pcolor      : given,
+                },
+                //Bx
+                x0 : {
+                    caption     : 'xₒ',
+                    letterAngle : 135,
+                    pcolor      : given,
+                },
+                
+                // //\\ magnified points
+                'Y0' : {
+                    pos             : A,
+                    caption         : 'Yₒ',
+                    letterAngle     : 210,
+                    letterRotRadius : 50,
+                    pcolor          : proof,
+                },
+                //BY
+                'Y' : {
+                    caption         : 'Y',
+                    letterAngle     : 180,
+                    letterRotRadius : 35,
+                    pcolor          : proof,
+                },
+                //AX0
+                'X0' : {
+                    caption         : 'Xₒ',
+                    letterAngle     : -90,
+                    pcolor          : proof,
+                },
+                //BX
+                'X' : {
+                    caption         : 'X',
+                    letterAngle     : -90,
+                    pcolor          : proof,
+                },
+                // \\// magnified points     
+    
+                DLeft : {
+                    letterAngle : 90,
+                    pcolor      : given,
+                    doPaintPname : false,
+                },
+                
+                //lemma 7, coroll 1
+                F : {
+                    letterAngle : 90,
+                    pcolor      : given,
+                },
+                G : {
+                    letterAngle : 90,
+                    pcolor      : given,
+                },
+                E : {
+                    letterAngle : 90,
+                    pcolor      : given,
+                },
+                e : {
+                    letterAngle : 90,
+                    pcolor      : proof,
+                },
+                L : { 
+                    letterAngle : -45,
+                    pcolor      : result,
+                },
+            }
+            originalPoints = {...originalPoints, ...originalPointsBonus};
 
-            //l7
-            { 'BD' : { pcolor : hidden } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : hidden } },
-            { 'AF' : { pcolor : hidden } },
-            { 'AG' : { pcolor : hidden } },
-            { 'AE' : { pcolor : hidden } },
-            { 'BG' : { pcolor : hidden } },
-
-            //sin(x)/x
-            { 'Br' : { pcolor : given } },
-
-            { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
-
-             //:context
-            { 'ylow,ytop' : { pcolor : context, } },
-            { 'xlow,xtop' : { pcolor : context, } },
-            { 'O,ytop'    : { pcolor : context, } },
-
-            //cirle radius
-            { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-            //cirle radius
-            { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-             //x-drops to axix x
-            { 'A,x0'  : { pcolor : given, 'stroke-width' : 1, } },
-            { 'Bx'    : { pcolor : given, 'stroke-width' : 1, } },
-             //y-drops to axix y
-            { 'A,y0'  : { pcolor : given, 'stroke-width' : 1, } },
-            { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
-
-
-            //dy
-            { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
-            //dx
-            { 'x0,x' : { pcolor : given, 'stroke-width' : 8, } },
-
-            { 'A,line-AL-end' : { pcolor : result } },
-
-            //DY
-            { 'A,Y' : { pcolor : proof, 'stroke-width' : 8, } },
-            //DX
-            { 'X0,X' : { pcolor : proof, 'stroke-width' : 8, } },
-
-            //tangent
-            { 'AL' : { pcolor : result } },
-            { 'Ae' : { pcolor : proof } },
-
-            { 'AE' : { pcolor : given } },
-            { 'BE' : { pcolor : given } },
-        ]
+            var linesArrayBonus = [    
+                { 'dr-decorpoint,d' : { pcolor : proof } },
+                { 'dr' : { pcolor : proof } },
+    
+                //l7
+                { 'bd' : { pcolor : hidden } },
+                { 'be' : { pcolor : hidden } },
+    
+                //l7
+                { 'BD' : { pcolor : hidden } },  //lemma 7, coroll 1
+                { 'BF' : { pcolor : hidden } },
+                { 'AF' : { pcolor : hidden } },
+                { 'AG' : { pcolor : hidden } },
+                { 'AE' : { pcolor : hidden } },
+                { 'BG' : { pcolor : hidden } },
+    
+                //sin(x)/x
+                { 'Br' : { pcolor : given } },
+    
+                { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
+    
+                 //:context
+                { 'ylow,ytop' : { pcolor : context, } },
+                { 'xlow,xtop' : { pcolor : context, } },
+                { 'O,ytop'    : { pcolor : context, } },
+    
+                //cirle radius
+                { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
+    
+                //cirle radius
+                { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
+    
+                 //x-drops to axix x
+                { 'A,x0'  : { pcolor : given, 'stroke-width' : 1, } },
+                { 'Bx'    : { pcolor : given, 'stroke-width' : 1, } },
+                 //y-drops to axix y
+                { 'A,y0'  : { pcolor : given, 'stroke-width' : 1, } },
+                { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
+    
+    
+                //dy
+                { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
+                //dx
+                { 'x0,x' : { pcolor : given, 'stroke-width' : 8, } },
+    
+                { 'A,line-AL-end' : { pcolor : result } },
+    
+                //DY
+                { 'A,Y' : { pcolor : proof, 'stroke-width' : 8, } },
+                //DX
+                { 'X0,X' : { pcolor : proof, 'stroke-width' : 8, } },
+    
+                //tangent
+                { 'AL' : { pcolor : result } },
+                { 'Ae' : { pcolor : proof } },
+    
+                { 'AE' : { pcolor : given } },
+                { 'BE' : { pcolor : given } },
+            ];
+            linesArray = [...linesArray, ...linesArrayBonus];
+        }
 
         //----------------------------------
         // //\\ curve pars
@@ -421,6 +418,9 @@
         var ww2 = [272,94];
         var ww2 = [300,110];
         var ww3 = B;
+        
+        //model's spacial unit in pixels of the picture:
+        var mod2inn_scale = 239; // conversion factor to calc values displayed in data table
 
         originalPoints.t1 = {
                 pos: ww1,
