@@ -109,6 +109,10 @@ ${Rix} span.tp-${lowId} {
 ${Rix} svg .tp-${lowId}.tostroke {
     stroke-width:${ sconf.default_tp_stroke_width }px;
 }
+                    `;
+                    
+ts += `
+                    
 ${Rix} svg .tp-${lowId}.tostroke.hover-width {
     stroke-width:${ sconf.hover_width }px;
 }
