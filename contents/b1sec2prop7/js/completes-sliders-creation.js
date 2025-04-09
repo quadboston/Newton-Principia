@@ -153,7 +153,8 @@
                 curveIx = curveIx + delta_curveIx;
                 // \\//  we project INCREMENTAL move
                 
-                curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
+                curveIx = (curveIx+ssD.curveSTEPS*2)%ssD.curveSTEPS;
+                //Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
                 let stashed_curvePP = ssD.curve[ curveIx ];
                 
                 ///validates
