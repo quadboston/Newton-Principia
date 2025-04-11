@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, userOptions, fconf, sconf, } = 
+    var { ns, userOptions, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
