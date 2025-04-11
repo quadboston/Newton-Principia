@@ -1,14 +1,6 @@
 ( function () {
-    var {
-        sn, nspaste,
-        fapp, fconf, sconf,
-        sapp,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            init_conf,
-        },
-    });
+    var { sn, nspaste, fapp, fconf, sconf, sapp, fixedColors, } = 
+	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
@@ -47,9 +39,6 @@
     return;
 
 
-
-
-
     function init_conf()
     {
         //as of Ap/13 2023 sets data in preset-data.js
@@ -84,36 +73,152 @@
         sconf.enableTools     = !true;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
+
+
+        const {
+            given,
+            difference,
+            base,
+            curve,
+            figure,
+        } = fixedColors;
+
+
+        var predT =
         {
-            let difference = [150, 50, 0, 0, 0.8 ];
-            var predT =
-            {
-                "given"                     : [0,    100,  0 ],
-                difference,
-                "base"                      : [0,    100,  0 ],
-                "curve"                     : [0,    100,  0 ],
+            given,
+            difference,
+            base,
+            curve,
 
-                "figure"                    : [0,    100,  0 ],
-                "figure-area"               : [0,    80,  0, 0.4, 0.8 ],
-                "figure-area-txt"           : [0,    80,  0, 0.7, 1],
+            figure,
+            //TEMP What is the best way to name the following keys/variables
+            //when they are moved to the global constants file?
+            //-could remove hyphens in the variable name
+            //-could set the key to be the same in fixedColors, however won't
+            // be able to give them avariable name that way
+            "figure-area"               : fixedColors["figure-area"],
+            "figure-area-txt"           : fixedColors["figure-area-txt"],
 
-                "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.8],
-                "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
+            "circumscribed-rectangles"  : fixedColors["circumscribed-rectangles"],
+            "inscribed-rectangles"      : fixedColors["inscribed-rectangles"],
 
-                //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-                "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
-                                                    [0,  0, 100, 0.0, 0.7] :
-                                                    [0,  0, 100, 0.4, 0.7],
+            //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+            "widest-rectangular"        : fconf.sappId.indexOf('lemma2')===0 ?
+                                            fixedColors["widest-rectangularL2"] :
+                                            fixedColors["widest-rectangularL3"],
 
-                "circ-txt"                  : [0,  50, 100, 0.7, 1],
-                "insc-txt"                  : [100,  0, 100, 0.7, 1],
-                "widt-txt"                  : [0,  0, 100, 0.7, 1],
-                'a--K--b--l'                : difference,
-                'b--L--c--m'                : difference,
-                'c--M--d--n'                : difference,
-                'd--e--p--o'                : difference,
-            };
-        }
+            "circ-txt"                  : fixedColors["circ-txt"],
+            "insc-txt"                  : fixedColors["insc-txt"],
+            "widt-txt"                  : fixedColors["widt-txt"],
+            'a--K--b--l'                : difference,
+            'b--L--c--m'                : difference,
+            'c--M--d--n'                : difference,
+            'd--e--p--o'                : difference,
+        };
+
+        //var predT =
+        // {
+        //     given,
+        //     difference,
+        //     base,
+        //     curve,
+
+        //     figure,
+        //     //TEMP What is the best way to name the following keys/variables
+        //     //when they are moved to the global constants file?
+        //     //-could remove hyphens in the variable name
+        //     //-could set the key to be the same in fixedColors, however won't
+        //     // be able to give them avariable name that way
+        //     "figure-area"               : [0,    150,  0, 0.32, 0.64],  //Temp updated opacity values
+        //     "figure-area-txt"           : [0,    150,  0, 0.7, 1],      //Temp updated opacity values
+
+        //     "circumscribed-rectangles"  : [0,   80, 150, 0.32, 0.64],  //Temp updated opacity values
+        //     "inscribed-rectangles"      : [150,  0, 150, 0.32, 0.64],  //Temp updated opacity values
+
+        //     //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+        //     "widest-rectangular"        : fconf.sappId.indexOf('lemma2')===0 ?
+        //                                         [0,  0, 150, 0.0, 0.49] : //Temp updated opacity values
+        //                                         [0,  0, 150, 0.28, 0.49], //Temp updated opacity values
+
+        //     "circ-txt"                  : [0,  80, 150, 0.7, 1],        //Temp updated opacity values
+        //     "insc-txt"                  : [150,  0, 150, 0.7, 1],       //Temp updated opacity values
+        //     "widt-txt"                  : [0,  0, 150, 0.7, 1],         //Temp updated opacity values
+        //     'a--K--b--l'                : difference,
+        //     'b--L--c--m'                : difference,
+        //     'c--M--d--n'                : difference,
+        //     'd--e--p--o'                : difference,
+        // };
+
+
+        //TEMP 2025.04.09 The following colors and opacities have been 
+        //converted an look pretty close to the original ones before
+        // {
+        //     //                                                              TEMP With old color manipulation became... (at least in terms of rgb values)
+        //     //                                                              o1, o2 => o1*o2, o2*o2
+        //     let difference = [150, 50, 0, 0, 0.64];  //Temp updated opacity values
+        //     var predT =
+        //     {
+        //         "given"                     : [0,    150,  0],
+        //         difference,
+        //         "base"                      : [0,    150,  0],
+        //         "curve"                     : [0,    150,  0],
+
+        //         "figure"                    : [0,    150,  0],
+        //         "figure-area"               : [0,    150,  0, 0.32, 0.64],  //Temp updated opacity values
+        //         "figure-area-txt"           : [0,    150,  0, 0.7, 1],      //Temp updated opacity values
+
+        //         "circumscribed-rectangles"  : [0,   80, 150, 0.32, 0.64],  //Temp updated opacity values
+        //         "inscribed-rectangles"      : [150,  0, 150, 0.32, 0.64],  //Temp updated opacity values
+
+        //         //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+        //         "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
+        //                                             [0,  0, 150, 0.0, 0.49] : //Temp updated opacity values
+        //                                             [0,  0, 150, 0.28, 0.49], //Temp updated opacity values
+
+        //         "circ-txt"                  : [0,  80, 150, 0.7, 1],        //Temp updated opacity values
+        //         "insc-txt"                  : [150,  0, 150, 0.7, 1],       //Temp updated opacity values
+        //         "widt-txt"                  : [0,  0, 150, 0.7, 1],         //Temp updated opacity values
+        //         'a--K--b--l'                : difference,
+        //         'b--L--c--m'                : difference,
+        //         'c--M--d--n'                : difference,
+        //         'd--e--p--o'                : difference,
+        //     };
+        // }
+
+
+        
+        // {
+        //     //                                                                  TEMP With old color manipulation became... (at least in terms of rgb values)
+        //     let difference = [150, 50, 0, 0, 0.8 ];                             //152, 51, 1
+        //     var predT =
+        //     {
+        //         "given"                     : [0,    100,  0 ],                 //rgba(4, 152, 1, 1);
+        //         difference,
+        //         "base"                      : [0,    100,  0 ],                 //rgba(4, 152, 1, 1);
+        //         "curve"                     : [0,    100,  0 ],                 //rgba(4, 152, 1, 1);
+
+        //         "figure"                    : [0,    100,  0 ],                 //rgba(4, 152, 1, 1);
+        //         "figure-area"               : [0,    80,  0, 0.4, 0.8 ],        //4, 152, 1
+        //         "figure-area-txt"           : [0,    80,  0, 0.7, 1],           //4, 152, 1
+
+        //         "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.8],          //1, 82, 152
+        //         "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],         //144, 1, 152
+
+        //         //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
+        //         "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
+        //                                             [0,  0, 100, 0.0, 0.7] :    //1, 8, 152
+        //                                             [0,  0, 100, 0.4, 0.7],     //1, 8, 152
+
+        //         "circ-txt"                  : [0,  50, 100, 0.7, 1],            //1, 82, 152
+        //         "insc-txt"                  : [100,  0, 100, 0.7, 1],           //144, 1, 152
+        //         "widt-txt"                  : [0,  0, 100, 0.7, 1],             //1, 8, 152
+        //         'a--K--b--l'                : difference,
+        //         'b--L--c--m'                : difference,
+        //         'c--M--d--n'                : difference,
+        //         'd--e--p--o'                : difference,
+        //     };
+        // }
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
