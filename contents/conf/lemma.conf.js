@@ -34,21 +34,29 @@
 
             //relates to moving body, to an orbit
             var body      = [0,     150, 0, 1];
+            var body2     = [0,     150,  200,   1];        //P6, P7, P9, P10, P11, P12 (Comments with specific models such as these are temporary and may not be up to date)
             
             var orbit     = body;
+            var orbitareaSample  = [0,     150, 0,  0.05];  //P12 (This model shares code with many other propositions)
+            var orbitarea = [0,     150, 0,    0.001, 0.5];
+            var orbitarea2= [0,     150, 0,    0.1, 0.5];   //P14 (in P12 sconf)
+            var instanttriangle  = [0, 150, 200, 0.001, 0.5 ];
+            var instanttriangle2 = [0, 150, 200, 0.2, 0.5 ];//P14 (in P12 sconf)
             var time      = [0,     150,  200];
+            var time2     = [200,  0,  255, 1];             //P6, P7
             var distance  = [60, 20, 0];
             
             //logical steps of the proof, auxilary constructs
             //of a proof
             var proof     = [0,     0,   255];
+            var proofHidden = [0, 0,   255,   0.05];        //P17 (in P12 sconf)
             var result    = [100,   0,  0];
 
             ///addendum has different color concepts
             if( userOptions.showingBonusFeatures() ) {
                 ////swaps colors
                 var force = [250, 0, 0];
-                var invalid = [0, 0, 0, 1];;
+                var invalid = [0, 0, 0, 1];
             } else {
                 //alert, invalid user actions
                 var invalid   = [250,  0,  0];
@@ -58,20 +66,52 @@
             }
             //neutral elements
             var shadow    = [50,  50,  50];
+            //var shadow2   = [150,  150,  150,    1];    //P12
             var hidden    = [0, 0, 0, 0];
-            
+
+
+
+            var estimatedForce = [200,0,200];
+            var estimatedForce2 = [100,50,0];           //P7
+            var sagitta = estimatedForce;
+            var sagitta2 = [100,0,100];                 //P7
+            var curvature  = [200,   40,  200, 1];
+            var context = [0,     0,   0,      1];      //Looks like eg. L6 should use this constant too
+            var chord = [0,0,255, 1];
+            var attention = [200,  200,  0,      1];
+
+
+                
             Object.assign( fixedColors, {
                 given,
                 body,
+                body2,
                 orbit,
+                orbitareaSample,
+                orbitarea,
+                orbitarea2,
+                instanttriangle,
+                instanttriangle2,
                 time,
+                time2,
                 distance,
                 proof,
+                proofHidden,
                 force,
                 invalid,
                 result,
                 shadow,
-                hidden
+                //shadow2,
+                hidden,
+
+                estimatedForce,
+                estimatedForce2,
+                sagitta,
+                sagitta2,
+                curvature,
+                context,
+                chord,
+                attention,
             });
         }
         //=======================================
