@@ -1,18 +1,10 @@
 // //\\// widget config
 ( function() {
-    var {
-        mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
+    var { mat, fapp, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
-
-
-
-
-
+    
     function init_conf()
     {
         //====================================================
@@ -76,25 +68,44 @@
         // \\// decorational parameters
         //***************************************************************
         
+        // var predefinedTopics =
+        // {                                                       //TEMP With old color manipulation became... (at least in terms of rgb values)
+        //     "static"                : [0,     200, 255, 1],     //rgba(1, 125, 152, 1);             //
+        //     "core"                  : [255,   0, 0, 1],         //rgba(152, 1, 1, 1);               //          
+        //     "aux"                   : [255,   0, 255, 1],       //rgba(144, 1, 152, 1);             //
+        //     "constructors"          : [0,     0, 255, 1],       //rgba(1, 8, 152, 1);               //
+        //     "ellipse"               : [0,   150, 0, 1],         //rgba(4, 152, 1, 1);               //
+        // };
+        const {
+            static,
+            core,
+            aux,
+            constructors,
+            ellipse,
+        } = fixedColors;
+
+
         var predefinedTopics =
-        {
-            "static"                : [0,     200, 255, 1],
-            "core"                  : [255,   0, 0, 1],
-            "aux"                   : [255,   0, 255, 1],
-            "constructors"          : [0,     0, 255, 1],
-            "ellipse"               : [0,   150, 0, 1],
-        };
-        let pt = predefinedTopics;   
-        pt[ "key-triangle" ] = pt.core;
-        pt[ "key-parts" ] = pt.core;
-        pt[ "similar-triangle" ] = pt.static;
-        pt.PT = pt.core;
-        pt[ "base-figure" ] = pt.core;
-        pt[ "static-generator" ] = pt[ "constructors" ];
-        pt[ "given-parallelogram" ] = pt.static;
-        pt[ "generators" ] = pt[ "constructors" ];
-        pt[ "tangent" ] = pt[ "constructors" ];
-        pt[ "aux-dots" ] = pt.aux;
+        {   
+            static,
+            core,
+            aux,
+            constructors,
+            ellipse,
+
+            "key-triangle"          : core,
+            "key-parts"             : core,
+            "similar-triangle"      : static,
+            "PT"                    : core,
+            "base-figure"           : core,
+            "static-generator"      : constructors,
+            "given-parallelogram"   : static,
+            "generators"            : constructors,
+            "tangent"               : constructors,
+            "aux-dots"              : aux,
+        }
+        let pt = predefinedTopics;
+        
         
         var originalPoints =
         {
