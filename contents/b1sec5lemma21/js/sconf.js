@@ -1,15 +1,7 @@
 ( function() {
-    var {
-        eachprop, mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
+    var { eachprop, mat, fapp, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
-
-
-
 
 
     function init_conf()
@@ -75,28 +67,39 @@
         // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
+        const {
+            static,
+            staticHalf,
+            core,
+            coreHalf,
+            aux,
+            constructors,
+            ellipse,
+        } = fixedColors;
+
 
         var predefinedTopics =
         {
-            "static"                : [0,     200, 255, 1],
-  
+            static,
             //with half opacity
-            "static-half"           : [0,     200, 255, 0.5],
+            "static-half"           : staticHalf,
 
-            "core"                  : [255,   0, 0, 1],
-            "core-half"             : [255,   0, 0, 0.5],
+            core,
+            "core-half"             : coreHalf,
 
-            "aux"                   : [255,   0, 255, 1],
-            "constructors"          : [0,     0, 255, 1],
-            "ellipse"               : [0,   150, 0, 1],
+            aux,
+            constructors,
+            ellipse,
+
+            "gamma"                 : core,
+            "g-parameter"           : core,
+            "angle-alpha"           : staticHalf,
+            "angle-beta"            : staticHalf,
+            "angle-alpha-core"      : coreHalf,
+            "angle-beta-core"       : coreHalf,
         };
         let pt = predefinedTopics;
-        pt[ "gamma" ] = pt[ "core" ];
-        pt[ "g-parameter" ] = pt[ "core" ];
-        pt[ "angle-alpha" ] = pt[ "static-half" ];
-        pt[ "angle-beta" ] = pt[ "static-half" ];
-        pt[ "angle-alpha-core" ] = pt[ "core-half" ];
-        pt[ "angle-beta-core" ] = pt[ "core-half" ];
+
 
         var pointsOnPicture =
         {
