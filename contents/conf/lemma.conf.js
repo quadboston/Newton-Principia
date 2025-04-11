@@ -1,9 +1,7 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var {
-        fapp, sconf, userOptions, fixedColors,
-    } = window.b$l.apptree({
-    });
+    var { fapp, sconf, userOptions, fixedColors, } = 
+        window.b$l.apptree({});
 
     fapp.doesConfigLemma = doesConfigLemma;
     //MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD is in fconf
@@ -81,6 +79,27 @@
             var attention = [200,  200,  0,      1];
 
 
+
+            //From L20, L21
+            //-colors may need to be adjusted, used color manipulation before
+            //-May be able to combine with other color variables
+            var static       = [0,     200, 255, 1];
+            var staticHalf   = [0,     200, 255, 0.5];  //with half opacity
+            //The following is red and should be changed
+            var core         = [255,   150, 0, 1];//[255,   0, 0, 1];
+            var coreHalf     = [255,   150, 0, 0.5];//[255,   0, 0, 0.5];      //with half opacity
+            var aux          = [255,   0, 255, 1];
+            var constructors = [0,     0, 255, 1];
+            var ellipse      = [0,   150, 0, 1];
+
+
+
+            //From L2, L3
+            var difference = [150, 50, 0, 0, 0.64];
+            var base = [0,    150,  0];
+            var curve = [0,    150,  0];
+            var figure = [0,    150,  0];
+
                 
             Object.assign( fixedColors, {
                 given,
@@ -112,6 +131,34 @@
                 context,
                 chord,
                 attention,
+                
+                static,
+                staticHalf,
+                core,
+                coreHalf,
+                aux,
+                constructors,
+                ellipse,
+
+                given,
+                difference,
+                base,
+                curve,
+                figure,
+
+                //From L2, L3 may want to rename the following to remove hyphens
+                "figure-area"               : [0,    150,  0, 0.32, 0.64],
+                "figure-area-txt"           : [0,    150,  0, 0.7, 1],
+
+                "circumscribed-rectangles"  : [0,   80, 150, 0.32, 0.64],
+                "inscribed-rectangles"      : [150,  0, 150, 0.32, 0.64],
+
+                "widest-rectangularL2"      : [0,  0, 150, 0.0, 0.49],
+                "widest-rectangularL3"      : [0,  0, 150, 0.28, 0.49],
+
+                "circ-txt"                  : [0,  80, 150, 0.7, 1],
+                "insc-txt"                  : [150,  0, 150, 0.7, 1],
+                "widt-txt"                  : [0,  0, 150, 0.7, 1],
             });
         }
         //=======================================
