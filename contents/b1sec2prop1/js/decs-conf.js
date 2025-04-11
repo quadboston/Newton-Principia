@@ -1,27 +1,10 @@
 ( function() {
-    var {
-        sn, eachprop, mapp, nspaste, haz, has,
-        sconf, toreg, rg, ssF, ssD, sDomF,
-        amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            decShapes_conf,
-        },
-    });
+    var { sn, eachprop, mapp, nspaste, haz, has, sconf, toreg, rg, ssF, ssD, sDomF, amode, 
+        stdMod, } = window.b$l.apptree({ stdModExportList : { decShapes_conf, }, });
     var decor = sn( 'decor', stdMod );
     
     var LOGIC = false; //true; //makes logic steps c and C clearer;
     return;
-
-
-
-
-
-
-
-
-
 
 
     //----------------------------------------
@@ -448,7 +431,7 @@
         //      due transparency are still well-visible,
         saggPolyNames_2_rg8media();
         keplerPolyNames_2_rg8media();
-        arbitraryArea_PolyNames_2_rg8media();
+        //arbitraryArea_PolyNames_2_rg8media();
         acceleratingArea_2_rg8media();
 
         toreg( 'displayTime' )( 'value', '' );
@@ -474,13 +457,17 @@
         if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
             rg.SC.decStart = 7;
 
-            [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd, rg.SABCD ].forEach( pn => {
+            [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd, 
+                //rg.SABCD //Doesn't seem like this polygon is needed
+            ].forEach( pn => {
                 pn.decStart = rg.SC.decStart + 4;
             });
             [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
                 pn.decStart = rg.SC.decStart + 8;
             });
-            [ rg.F, rg.Z, rg.W, rg.EW, rg.g, rg.Eg, rg.Fg, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF ].forEach( pn => {
+            [ rg.F, rg.Z, rg.W, rg.EW, rg.g, rg.Eg, rg.Fg, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf, 
+                //rg.SABCDEF //Doesn't seem like this polygon is needed
+            ].forEach( pn => {
                 pn.decStart = rg.SC.decStart + 12;
             });
         }
@@ -489,9 +476,9 @@
         //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
         [
             rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
-            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, rg.SABCD, 
+            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, //rg.SABCD, //Doesn't seem like this polygon is needed
             rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
-            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, rg.SABCDEF,
+            rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf, //rg.SABCDEF, //Doesn't seem like this polygon is needed
         ].forEach( pn => {
             pn.decEnd = rg.f.decStart + 3;
         });
@@ -561,25 +548,25 @@
         });
     }
 
-    function arbitraryArea_PolyNames_2_rg8media(
-    ){
-        [
-            ['S', 'A', 'B', 'C', 'D' ],
-            ['S', 'A', 'B', 'C', 'D', 'E', 'F'],
-        ].forEach( pNames => {
-            var rgElem = ssF.pnames2poly(
-                pNames,
-                'theor1proof tofill',
-                null,
-                !!'undisplay',
-                !'tostroke',
-            );
-            var lp = rg[ pNames[ pNames.length-1 ] ];
-            decor[ rgElem.pname ] = rgElem;
-            rgElem.decStart = lp.decStart;
-            rgElem.decEnd = 4 * 1.2 * sconf.numberOfManyBases;
-        });
-    }
+    // function arbitraryArea_PolyNames_2_rg8media(  //TEMP These don't seem to do anything.
+    // ){
+    //     [
+    //         ['S', 'A', 'B', 'C', 'D' ],
+    //         ['S', 'A', 'B', 'C', 'D', 'E', 'F'],
+    //     ].forEach( pNames => {
+    //         var rgElem = ssF.pnames2poly(
+    //             pNames,
+    //             'theor1proof tofill',
+    //             null,
+    //             !!'undisplay',
+    //             !'tostroke',
+    //         );
+    //         var lp = rg[ pNames[ pNames.length-1 ] ];
+    //         decor[ rgElem.pname ] = rgElem;
+    //         rgElem.decStart = lp.decStart;
+    //         rgElem.decEnd = 4 * 1.2 * sconf.numberOfManyBases;
+    //     });
+    // }
 
 
 

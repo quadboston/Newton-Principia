@@ -1,12 +1,7 @@
 ( function() {
-    var {
-        haff, has, eachprop, nspaste, capture, toreg,
-        sconf, ssF, ssD, sDomF, fixedColors, fixedColorsOriginal,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
+    var { haff, has, eachprop, nspaste, capture, toreg, sconf, ssF, ssD, sDomF, fixedColors, 
+        fixedColorsOriginal, } = window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
 
 
     //====================================================
@@ -840,16 +835,29 @@
         });
         }
 
+
     function predefinedTopics()
     {
-        var freeMove = [0,100,0];
-        var force = [255, 0, 0];
-        var forceMove = [150,50,0];
-        var diagram = [150,50,100];
-        var path = [0,0,100];
+        const {
+            force,
+        } = fixedColors;
+
+        var freeMove = [0,150,0];
+        var forceMove = [150,50,0];             //Color good, opacity was    1*0.6 before,  now 1*1
+        var diagram = [150,0,90];               //Color good, opacity was  0.6*0.6 before,  now 1*0.5
+        var path = [0,0,150];
         var time = [0,100,100,1];
-        var sagittaeChords = [100, 0, 100];
-        var speed = [130,100,0];
+        var sagittaeChords = [150, 0, 150];     //See note for "sagitta-chords" below
+        var speed = [150,120,0];                //Color good, opacity was  0.6*0.6 before,  now 1*1
+
+
+        var trianglePurpleTextAreaColorProp1 = [0,0,150];
+        var greenTrianglesProp1 = [0, 150,  0,  0.25, 0.64];
+
+        var perpendicular = [150, 80, 0, 1];
+        var tangent = [0, 150, 0, 1];           //Color good, opacity was 1*1 before, now 1*0.5
+
+
         var pt_all = {
             speed,
             force,
@@ -857,22 +865,30 @@
             time,
             dt                  : time,
             "path"              : path,
-            "path-change"       : [0,   0,  100, 1],
-            "kepler-triangle"   : [50,  50, 100],
-            "sagitta-chords"    : [100, 0, 100],
-            "SABCD"             : [0,0,100, 0.01, 0.8],
-            "SABCDEF"           : [0,0,100, 0.01, 0.8],
+            "path-change"       : path,
 
-            "SBC"               : [0,0,100, 0.5, 1],
-            "SCD"               : [0,0,100, 0.5, 1],
-            "SDE"               : [0,0,100, 0.5, 1],
-            "SEF"               : [0,0,100, 0.5, 1],
-            "SAB"               : [0,0,100, 0.5, 1],
+            //The following sets the color of the text in the text area for these triangles.  If 
+            //these are placed after "kepler-triangle-odd" and "kepler-triangle-even", they will 
+            //also set the triangle color in the model area.  If these are removed the triangles
+            //default to red and green "zebra-colors" (for more see "colors-lib.js" section
+            //"generates pseudo-random zebra colors" in function topics__2__topicsColorModel).
+            "SBC"               : trianglePurpleTextAreaColorProp1,
+            "SCD"               : trianglePurpleTextAreaColorProp1,
+            "SDE"               : trianglePurpleTextAreaColorProp1,
+            "SEF"               : trianglePurpleTextAreaColorProp1,
+            "SAB"               : trianglePurpleTextAreaColorProp1,
+            
+            "kepler-triangle-odd"   : [102,102,255, 0.35, 0.7],
+            "kepler-triangle-even"  : [153,153,255, 0.35, 0.7],
 
-            "SBc"               : [0, 100,  0,  0.5, 0.8],
-            "SCd"               : [0, 100,  0,  0.5, 0.8],
-            "SDe"               : [0, 100,  0,  0.5, 0.8],
-            "SEf"               : [0, 100,  0,  0.5, 0.8],
+            "sagitta-chords"    : sagittaeChords,   //Hard to see, opacity far less than before.  Maybe not too bad anymore?
+            //"SABCD"             : [0,0,150, 0.008, 0.64];,    //Doesn't seem like this polygon is needed
+            //"SABCDEF"           : [0,0,150, 0.008, 0.64];,    //Doesn't seem like this polygon is needed
+
+            "SBc"               : greenTrianglesProp1,
+            "SCd"               : greenTrianglesProp1,
+            "SDe"               : greenTrianglesProp1,
+            "SEf"               : greenTrianglesProp1,
 
             "A"                 : path,
             "B"                 : path,
@@ -881,7 +897,7 @@
             "E"                 : path,
             "F"                 : path,
 
-            "AB"                : [0,   0,  100, 0],
+            "AB"                : path,
             "BC"                : path,
             "CD"                : path,
             "DE"                : path,
@@ -908,8 +924,8 @@
             "force-4-applied"   : forceMove,
 
             //"field"             : [255,   0,  0, 0.5],
-            "force-center"      : [255,   0,  0],
-            "S"                 : [255,   0,  0],
+            "force-center"      : force,//[150,   0,  0];
+            "S"                 : force,//[150,   0,  0];
             "SB"                : diagram,
             "SC"                : diagram,
             "SD"                : diagram,
@@ -923,16 +939,16 @@
             "DF"                : sagittaeChords,
 
             force,
-            "Z"                 : [255, 100, 0, 1],
+            "Z"                 : force,
             "V"                 : force,
             "BV"                : forceMove,
-  
+    
             //perpendicular
-            "SP"                : [200, 100, 0, 1],
-            "P"                 : [200, 100, 0, 1],
+            "SP"                : perpendicular,
+            "P"                 : perpendicular,
             //tangent
-            "T"                 : [0,   100, 0, 1],
-            "TP"                : [0,   100, 0, 1],
+            "T"                 : tangent,
+            "TP"                : tangent,
 
             "free-path"         : freeMove,
             "c"                 : freeMove,

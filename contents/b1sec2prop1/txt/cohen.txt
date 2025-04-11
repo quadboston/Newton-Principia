@@ -7,7 +7,7 @@
 }
 *..*
 
-The ¦kepler-triangle¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
+The ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
 ¦S¦center¦¦ of forces lie in unmoving planes and are proportional to the times.
 
 <br><br>

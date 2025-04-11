@@ -1,16 +1,6 @@
 ( function() {
-    var {
-        globalCss,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    var { globalCss, } = window.b$l.apptree({ setModule, });
     return;
-
-
-
-
-
-
 
 
     function setModule()
@@ -53,16 +43,6 @@
                 svg .theor1proof.undisplay
             {
                 display : none;
-            }
-
-            div.bsl-approot svg .tp-kepler-triangle.triangle-odd {
-                fill : #6666ff;
-                opacity : 0.7;
-            }
-
-            div.bsl-approot svg .tp-kepler-triangle.triangle-even {
-                fill : #9999ff;
-                opacity : 0.7;
             }
             `,
             'global-css-overrider'
