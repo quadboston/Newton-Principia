@@ -121,7 +121,17 @@
         var sinOmega = ee[0]*uu[1] - ee[1]*uu[0];
         var cosOmega = ee[0]*uu[0] + ee[1]*uu[1];
 
-        var angleRV = Math.asin( sinOmega );
+        ///todo slow code, do work around,
+        ///fixing extreme cases:
+        ///is this bug in JS?
+        if( Math.abs( sinOmega - 1 ) < 1e-15 ) {
+            angleRV = Math.PI/2;
+        } else if( Math.abs( sinOmega + 1 ) < 1e-15 ) {
+            angleRV = -Math.PI/2;
+        } else {
+            var angleRV = Math.asin( sinOmega );
+        }    
+        
         angleRV = cosOmega > 0 ? angleRV :
             angleRV > 0 ? Math.PI-angleRV : -Math.PI-angleRV;
 

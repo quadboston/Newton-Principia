@@ -74,8 +74,11 @@
             //-------------------------------------
             var val = arg[ key ];
             if( val || val === 0 ) {
-                        if( typeof val === 'string' && val.indexOf('NaN')> 0 )
-                            ccc( val );
+                
+                //valuable for d e b u g
+                //if( typeof val === 'string' && val.indexOf('NaN')> 0 )
+                //    c cc( val );
+                
                 // //\\ adds a piece of sugar into CSS:
                 //      removes excessive digits from CSS:
                 //      assuming that scale of svg will be > 100px
@@ -115,7 +118,7 @@
     nssvg.polyline = function( arg )
     {
         var regExp = /(\d)0+$/; //removes trailing zeros from numbers for svg
-        var pivotsStr = arg.pivots.reduce( function( acc, point ) {
+        var pivotsStr = arg.pivots.reduce( function( acc, point, ix ) {
                 if( acc ) { acc += ' '; }
 
                 var p1 = point[0];
@@ -124,17 +127,20 @@
                 if( m1 < 0.00000000000001 ) p1 = 0;
                 if( m1 > 10000000000000 ) p1 = 10000000000000;
                 //todm: very crude zero-remover, do fine work:
-                p1 = p1.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+                var p1S = p1.toFixed( 3 ).replace( regExp, rep ); //'$2' );
                 //why fails?
-                //p1 = p1.toFixed( 3 ).replace( regExp, '$2' );
+                //p1S = p1S.toFixed( 3 ).replace( regExp, '$2' );
 
                 var p2 = point[1];
                 var m2 = Math.abs( p2 );
                 if( m2 < 0.00000000000001 ) p2 = 0;
                 if( m2 > 10000000000000 ) p2 = 10000000000000;
-                p2 = p2.toFixed( 3 ).replace( regExp, rep ); //'$2' );
-
-                return acc += p1 + ',' + p2;
+                var p2S = p2.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+                var res = p1S + ',' + p2S;
+                //valuable for d e b u g
+                //if( res.indexOf('NaN')> 0 )
+                //    c cc( res, ix );
+                return acc += res;
             },
             ''
         );
