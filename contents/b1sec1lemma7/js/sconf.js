@@ -5,7 +5,7 @@
 
     function init_conf()
     {
-        const BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
+        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //====================================================
         // //\\ subapp regim switches
@@ -149,7 +149,9 @@
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : given,                
+                // draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                // draggableY  : false,
             },
             DLeft : {
                 letterAngle : 90,
@@ -189,6 +191,17 @@
                 pcolor      : proof,
             },
 
+            r : { //hidden but used to calc pos of b
+                pos: r,
+                letterAngle : 135,
+                pcolor      : given,
+            },
+            R : {
+                pos: R,
+                letterAngle : 135,
+                pcolor      : given,
+            },
+
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
             },
@@ -201,7 +214,9 @@
         };
 
         var linesArray =
-        [
+        [            
+            { "rd" : { pcolor : hidden } }, // used for calcs
+
             { 'Ad' : { pcolor : proof } },
             { 'Ab' : { pcolor : proof } },
 
@@ -330,23 +345,6 @@
                     letterAngle     : -90,
                     pcolor          : proof,
                 },
-                // \\// magnified points
-
-                r : {
-                    pos: r,
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                R : {
-                    pos: R,
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                /*
-                'B-kernelx' : {
-                cssClass : 'hover-width',
-                },
-                */
 
                 L : { 
                     letterAngle : -45,
@@ -357,7 +355,6 @@
 
             var linesArrayBonus = [
                 { 'Ar' : { pcolor : given } },
-                { "rd" : { pcolor : hidden } },
                 { 'dr-decorpoint,d' : { pcolor : proof } },
                 { 'dr' : { pcolor : proof } },
 

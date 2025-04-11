@@ -5,7 +5,7 @@
 
     function init_conf()
     {
-        const BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
+        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -141,6 +141,8 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,
+                // draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                // draggableY  : false,
             },
             L : { // rectilinear angle slider
                 letterAngle : -45,
@@ -151,8 +153,8 @@
         var linesArray =
         [            
             { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
             { 'Ad' : { pcolor : context } }, // used in proof to extend AD to the right
+            { 'AD' : { pcolor : given } }, // comes after Ad so green line is on top
             { 'AL' : { pcolor : result } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
         ];

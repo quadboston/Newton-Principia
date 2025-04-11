@@ -8,7 +8,7 @@
     //====================================================
     function init_conf()
     {
-        const BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
+        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //overrides "global", lemma.conf.js::sconf
         sconf.TP_OPACITY_LOW_POINT = 1; // opacity of items defined in originalPoints and linesArray below
@@ -109,7 +109,9 @@
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : given,                
+                // draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                // draggableY  : false,
             },
             R : {
                 letterAngle : 135,
@@ -119,7 +121,7 @@
             },            
             fi : {
                 caption : "φ",
-                pcolor : BONUS ? shadow : hidden,
+                pcolor : sconf.BONUS ? shadow : hidden,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,
