@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, userOptions,
+        ns, sn, paste, mat, nspaste, 
         sconf, fconf, ssF, ssD, sDomF, sData,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -49,25 +49,15 @@
         // //\\ dragger B
         //-------------------------------------------------
         rg.B.processOwnDownEvent = function() {
-            //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-            //apparently this is a vitual master parameter of B along x,
-            //the parctical position of B obtains by rotation of line AL,
-            //by angle = rg.curveRotationAngle.angle =
-            //           fullAngle - rg.originalGapTangent.angle;
-            //apparently, this is an original-unrotated-parameter-X mapped to
-            //rg.originalGapTangent.angle which is not 0 and mapped to
-            //rotational angle = 0,
-            //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
-            //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
-        };
+            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            ssD.draggerInUse = 'B';
+        }; 
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var ach = rg.B.achieved;
                 var new_unrotatedParameterX = newPos[0];
 
                 //prevents B from getting too close to A to avoid rounding errors
@@ -94,8 +84,10 @@
         //-------------------------------------------------
         rg.R.processOwnDownEvent = function() {
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
-        };
+            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            ssD.draggerInUse = 'R';
+        }; 
+
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'R',
@@ -123,11 +115,11 @@
                     return true;
                 } else {  
                     // R cannot be moved right of B on x-axis
-                    if(newPos[0] >= rg.B.pos[0] - 0.0001) {
+                    if(newPos[0] >= rg.B.pos[0] - 0.2) {
                         return false;
                     }
                     // R cannot be higher than B on y-axis
-                    if(newPos[1] >= rg.B.pos[1] - 0.1) {
+                    if(newPos[1] >= rg.B.pos[1] - 0.2) {
                         return false;
                     }
                     return true;
@@ -137,25 +129,31 @@
 
         //-------------------------------------------------
         // //\\ dragger D
-        //-------------------------------------------------        
-        // ssF.line2abs( 'AD' );
-        // const original_Dx = rg.D.pos[0];
-        // const half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir
-        // console.log(original_Dx + ' ' + half_AD);
-        // sDomF.params__2__rgX8dragwrap_gen_list({
-        //     stdMod,
-        //     pname : 'D',
-        //     acceptPos : ( newPos ) => {
-        //         newPos[1] = 0; // y pos doesn't change
-        //         let x = newPos[0]; 
-        //         if(x < original_Dx - half_AD || x > original_Dx + half_AD) {
-        //             return false;
-        //         } else {
-        //             console.log(newPos);
-        //             return true;
-        //         }
-        //     }
-        // });
+        //-------------------------------------------------
+        rg.D.processOwnDownEvent = function() {
+            ssD.draggerInUse = 'D';
+        }; 
+        
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname : 'D',
+            acceptPos : ( newPos ) => {
+                let original_Dx = rg.D.originalPos[0];
+                let half_AD = original_Dx / 2; 
+                let Bx = rg.B.pos[0]; //D
+                
+                newPos[1] = 0; // y pos doesn't change
+                let newDx = newPos[0]; 
+
+                // Prevent D from being moved too far to the right
+                // Stop D before slope of DR === slope of AR
+                if(newDx > Bx + 0.2 && newDx < original_Dx * 2) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
 
         //-------------------------------------------------
         // //\\ dragger fi (only used in Bonus Content)
@@ -219,17 +217,19 @@
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
         nspaste( rg.b.pos, bpos );
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' );
-        //=================================================
-        // \\// builds Newton microscope
-        //=================================================
 
-
-        //=================================================
-        // //\\ l8 specific
-        //=================================================
         //RBD line
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-        rg.D.pos[0] = posD[0];
+        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
+
+        if(ssD.draggerInUse !== "D") {
+            rg.D.pos[0] = posD[0];
+        }        
+
+        if(ssD.draggerInUse !== "R") {
+            rg.R.pos = posR;
+        }
+        
         rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
         rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
         rg.imageOfD.pos[0] = posD[0] * magn;
@@ -239,7 +239,7 @@
         rg.F.pos[1] = rg.B.pos[1];
         rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
         //=================================================
-        // \\// l8 specific
+        // \\// builds Newton microscope
         //=================================================
 
 

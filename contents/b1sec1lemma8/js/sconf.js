@@ -110,8 +110,8 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                // draggableX  : true, // this adds mouseover animation, does not affect behaviour
-                // draggableY  : false,
+                draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                draggableY  : false,
             },
             R : {
                 letterAngle : 135,

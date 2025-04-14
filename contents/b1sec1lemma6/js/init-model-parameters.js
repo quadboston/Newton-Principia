@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, userOptions,
+        ns, sn, paste, mat, nspaste, 
         sconf, fconf, ssF, ssD, sDomF, sData,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -142,22 +142,22 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------        
-        // ssF.line2abs( 'AD' );
-        // const original_Dx = rg.D.pos[0];
-        // const half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir
-        // sDomF.params__2__rgX8dragwrap_gen_list({
-        //     stdMod,
-        //     pname : 'D',
-        //     acceptPos : ( newPos ) => {
-        //         newPos[1] = 0; // y pos doesn't change
-        //         let x = newPos[0]; 
-        //         if(x < original_Dx - half_AD || x > original_Dx + half_AD) {
-        //             return false;
-        //         } else {
-        //             return true;
-        //         }
-        //     }
-        // });
+        ssF.line2abs( 'AD' );
+        const original_Dx = rg.D.pos[0];
+        const half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname : 'D',
+            acceptPos : ( newPos ) => {
+                newPos[1] = 0; // y pos doesn't change
+                let x = newPos[0]; 
+                if(x < original_Dx - half_AD || x > original_Dx + half_AD) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        });
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};

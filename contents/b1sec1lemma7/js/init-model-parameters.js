@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, userOptions,
+        ns, sn, paste, mat, nspaste, 
         sconf, fconf, ssF, ssD, sDomF, sData,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -16,41 +16,43 @@
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
+        ssD.draggerInUse = 'init'; //used for Newton microscope below
+        
+        rg.B.originalPos = [];
+        nspaste( rg.B.originalPos, rg.B.pos );
+        rg.D.originalPos = [];
+        nspaste( rg.D.originalPos, rg.D.pos );
+        rg.R.originalPos = [];
+        nspaste( rg.R.originalPos, rg.R.pos );
+
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
+        rg.B.processOwnDownEvent = function() {
+            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            ssD.draggerInUse = 'B';
+        };
         sDomF.params__2__rgX8dragwrap_gen_list({
-            //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-            //apparently this is a vitual master parameter of B along x,
-            //the parctical position of B obtains by rotation of line AL,
-            //by angle = rg.curveRotationAngle.angle =
-            //           fullAngle - rg.originalGapTangent.angle;
-            //apparently, this is an original-unrotated-parameter-X mapped to
-            //rg.originalGapTangent.angle which is not 0 and mapped to
-            //rotational angle = 0,
-            //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
-            //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
             stdMod,
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var ach = rg.B.achieved;
-                var new_unrotatedParameterX = newPos[0];
-                var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
-                var cpos = cfun( new_unrotatedParameterX );
+                var newPosX = newPos[0];
 
                 //prevents B from getting too close to A to avoid rounding errors
-                if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
-                    new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
+                if( newPosX < sconf.NON_ZERO_A_PREVENTOR ) {
+                    newPosX = sconf.NON_ZERO_A_PREVENTOR;
                 }
                 
                 ///prevents user from playing with too big curves
-                if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
-                    new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
+                if( newPosX > rg.curveEnd.pos[0] ) {
+                    newPosX = rg.curveEnd.pos[0]-0.00001;
                 }
 
-                rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+                rg.B.unrotatedParameterX = newPosX;
+
+                nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
+
                 return true;
             }
         });
@@ -58,24 +60,32 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------
-        // gets current values when dragger event fires 
-        // rg.D.processOwnDownEvent = function() {
-        //     sData.original_Dx = rg.D.pos[0];
-        //     sData.half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir 
-        // };  
-        // sDomF.params__2__rgX8dragwrap_gen_list({
-        //     stdMod,
-        //     pname : 'D',
-        //     acceptPos : ( newPos ) => {
-        //         newPos[1] = 0; // y pos doesn't change
-        //         let x = newPos[0]; 
-        //         if(x < sData.original_Dx - sData.half_AD || x > sData.original_Dx + sData.half_AD) {
-        //             return false;
-        //         } else {
-        //             return true;
-        //         }
-        //     }
-        // });
+        rg.D.processOwnDownEvent = function() {
+            ssD.draggerInUse = 'D';
+        }; 
+        sDomF.params__2__rgX8dragwrap_gen_list({
+            stdMod,
+            pname : 'D',
+            acceptPos : ( newPos ) => {
+                let originalDx = rg.D.originalPos[0];
+                let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
+                newPos[1] = 0; // y pos doesn't change
+                let x = newPos[0]; 
+                if(x < originalDx - half_AD || x > originalDx + half_AD) {
+                    return false;
+                } else {
+                    let Dx = rg.D.pos[0];
+                    let newDx = newPos[0]; 
+                    let mag = newDx / Dx;
+                    let dPos = rg.d.pos;
+                    dPos[0] *= mag;
+
+                    nspaste( rg.d.pos, dPos );
+                    nspaste( rg.D.pos, newPos );
+                    return true;
+                }
+            }
+        });
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -105,31 +115,41 @@
         rg.B.pos[1] = newPos[1];
 
         //=================================================
-        // //\\ builds Newton microscope
+        // //\\ builds Newton microscope 
+        //    - scales whole model when a dragger is used
         //=================================================
         var Bx = rg.B.pos[0];
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
-        nspaste( rg.b.pos, bpos );
-        var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value 
+        var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
 
-        //makes line DB proportionally move
-        rg.D.pos[0] = rg.d.pos[0] / magn;
+        //if(ssD.draggerInUse === 'init' || ssD.draggerInUse === 'B') {
+            nspaste( rg.b.pos, bpos );
+        //}
+
+        let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
+        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
+
+        if(ssD.draggerInUse !== "D") {
+            //rg.D.pos = posD;
+            nspaste( rg.D.pos, posD );
+        }        
+
+        rg.R.pos = posR;
+
+        rg.r.pos[0] = rg.R.pos[0] * magn;
+        rg.r.pos[1] = rg.R.pos[1] * magn;
+        rg.d.pos[0] = posD[0] * magn;
 
         rg.E.pos[1] = rg.D.pos[1];
         rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
-        
-        // console.log(magn) todo: why this go to 0?
-        // rg.d.pos[0] = rg.D.pos[0] * magn;
-        // rg.r.pos[1] = rg.R.pos[0] * magn;
-
-        //=================================================
-        // \\// builds Newton microscope
-        //=================================================
 
         rg.G.pos[1] = rg.B.pos[1];
         rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
         rg.F.pos[1] = rg.B.pos[1];
         rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
+        //=================================================
+        // \\// builds Newton microscope
+        //=================================================
 
         //=================================================
         // //\\ adds length of line seg as rg["xx"].abs
@@ -155,6 +175,7 @@
             rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
         }
 
+        // points only, doesn't affect curves
         let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
         nspaste( rg.C.pos, C );
         nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
@@ -284,6 +305,24 @@
             // \\// bridge to analytical theory
             //-------------------------------------------------------
         }
+    }
+
+    function dir8innerB_2_R( RB_slope )
+    {
+        //prepares point B which implies new position of point R
+        //finds new point B
+        let posB = ssD.repoConf[ssD.repoConf.customFunction]
+            .fun( rg.B.unrotatedParameterX );
+        ///finds new point R
+        var newRpos = mat.linesCross(
+            ///drags line from B along original direction to
+            ///cross line A,f which becomes a new R
+            RB_slope,
+            posB,
+            rg.R.pos,
+            rg.A.pos,
+        );
+        return newRpos;
     }
 
 }) ();

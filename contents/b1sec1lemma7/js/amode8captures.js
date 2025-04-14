@@ -422,6 +422,10 @@
         //*****************************************************************************
         // \\// lemma 7
         //*****************************************************************************
+        
+        nspaste( rg.B.pos, rg.B.originalPos );
+        nspaste(rg.R.pos, rg.R.originalPos);
+        nspaste(rg.D.pos, rg.D.originalPos);
 
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
