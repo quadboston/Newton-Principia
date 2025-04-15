@@ -35,9 +35,6 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 5;
-        
-        //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         //--------------------------------------
         // //\\ do override engine defaults,
