@@ -360,7 +360,7 @@
             { nam : ['C','Paracc'], cssClass : 'theor2corollary', },        // CParacc
             { nam : ['V','Varacc'], cssClass : 'theor2corollary', },        // VVaracc
             { nam : ['B','Varacc'], cssClass : 'theor2corollary', },        // BVaracc
-            { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },
+            { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },   // CaraccParacc
 
         ].forEach( pNam => {
             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
