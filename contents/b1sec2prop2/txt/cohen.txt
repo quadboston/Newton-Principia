@@ -9,7 +9,7 @@
 
 Every body that moves in some ¦path¦curved line¦¦ described in a plane and, by a radius
 drawn to a ¦S¦point¦¦, either unmoving or moving uniformly forward with a rectilinear
-motion, describes ¦kepler-triangle¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
+motion, describes ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
 ¦forceMove¦centripetal force¦¦ tending toward that same ¦S¦point¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>

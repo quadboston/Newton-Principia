@@ -57,7 +57,7 @@
 ¦speed-change¦initial speed :¦¦¦¦
 ¦path-change BC path cssbold¦r¦¦¦¦
 
-¦kepler-triangle¦"kepler-triangle-area"¦¦
+¦SAB kepler-triangle-odd kepler-triangle-even¦"kepler-triangle-area"¦¦
 ¦BC¦BC¦¦
 ¦free-path¦freely¦¦
 ¦free-triangle¦"free-movement-triangle-area"¦¦
