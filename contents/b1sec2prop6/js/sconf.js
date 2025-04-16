@@ -124,10 +124,10 @@
         //-----------------------------------
         const {
             given,
-            body2,
+            body,//body2,
             orbit,
             time,   //Same as dtime below
-            time2,  //Same as timeColor below
+            //time2,  //Same as timeColor below
             proof,
             force,
             invalid,
@@ -141,8 +141,8 @@
             chord,
         } = fixedColors;
 
-        var body    = body2;//[0,     150,  200,   1];
-        var dtime   = time;//[0,     150,  200,  1];
+        //const body    = body2;//[0,     150,  200,   1];
+        const dtime   = time;//[0,     150,  200,  1];
 
         
         var predefinedTopics =
@@ -155,7 +155,7 @@
             context,
             curvature,
             dtime,
-            time    : time2,//timeColor,
+            //time    : time2,//timeColor,  //Doesn't seem to be used
             curvatureCircle : curvature,
             body,
             orbit,//   : given,
