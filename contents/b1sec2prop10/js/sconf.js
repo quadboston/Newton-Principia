@@ -113,7 +113,7 @@
         //-----------------------------------
         const {
             given,
-            body2,
+            body,//body2,
             orbit,
             proof,
             force,
@@ -123,7 +123,7 @@
             context,
         } = fixedColors;
 
-        var body    = body2;//[0,     150,  200,   1];
+        //var body    = body2;//[0,     150,  200,   1];
 
         
         var predefinedTopics =
