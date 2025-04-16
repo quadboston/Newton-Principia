@@ -25,6 +25,11 @@
         //      historically named as fixedColors
         //=======================================
         {
+            //Could place colors here (eg. dark green, light blue) then reference them below.
+            //They could be in array format for now, then converted to CSS format later.
+            
+
+
             //usually as a condition of a claim,
             //condition of the theorem,
             //given parameters of the claim or proof
@@ -32,8 +37,8 @@
 
             //relates to moving body, to an orbit
             var body      = [0,     150, 0, 1];
-            var body2     = [0,     150,  200,   1];        //P6, P7, P9, P10, P11, P12 (Comments with specific models such as these are temporary and may not be up to date)
-            
+            //var body2     = [0,     150,  200,   1];        //this was the old body color in b1sec8prop41  //P6, P7, P9, P10, P11, P12 (Comments with specific models such as these are temporary and may not be up to date)
+
             var orbit     = body;
             var orbitareaSample  = [0,     150, 0,  0.05];  //P12 (This model shares code with many other propositions)
             var orbitarea = [0,     150, 0,    0.001, 0.5];
@@ -41,7 +46,7 @@
             var instanttriangle  = [0, 150, 200, 0.001, 0.5 ];
             var instanttriangle2 = [0, 150, 200, 0.2, 0.5 ];//P14 (in P12 sconf)
             var time      = [0,     150,  200];
-            var time2     = [200,  0,  255, 1];             //P6, P7
+            //var time2     = [200,  0,  255, 1];             //P6, P7
             var distance  = [60, 20, 0];
             
             //logical steps of the proof, auxilary constructs
@@ -100,11 +105,112 @@
             var curve = [0,    150,  0];
             var figure = [0,    150,  0];
 
+
+
+            //P1 (Shared with P2)
+            var freeMove = [0,150,0];
+            var forceMove = [150,50,0];             //Color good, opacity was    1*0.6 before,  now 1*1
+            var diagram = [150,0,90];               //Color good, opacity was  0.6*0.6 before,  now 1*0.5
+            var path = [0,0,150];
+            //var time3 = [0,100,100,1];              //Used by the time and delta time sliders
+            var sagittaeChords = [150, 0, 150];     //Could this be combined with sagitta and sagitta2?
+            var speed = [150,120,0];                //Color good, opacity was  0.6*0.6 before,  now 1*1
+
+            var trianglePurpleTextAreaColor = path;//[0,0,150];
+            var triangleGreen = [0, 150,  0,  0.25, 0.64];
+
+            var perpendicular = [150, 80, 0, 1];
+            var tangent = [0, 150, 0, 1];           //Color good, opacity was 1*1 before, now 1*0.5
+
+
+            //P2
+            var areaDescriptionAccelerated = [255,  100, 0];    //The description of the areas triangle under the P2 proof tab
+
+
+
+            //P41
+            //special or derivative parameters
+            // var fi        = [0,  0,  150,   0.1, 0.4 ];
+            // var Fkernel   = [0,  0,  150,   0.5, 1 ];
+            // var fiArea    = [0,  0,  150,   0.1, 0.3];
+            //TEMP For the following (fi) keep the opacity values because they look different from the defaults.
+            var fi        = [0,  0,  150,   0.1, 0.3];//0.35 ];
+            var Fkernel   = [0,  0,  150];//[0,  0,  150,   0.5, 1 ];  //Similar to default
+            var fiArea    = fi;
+
+            var Zgraph    = [...body]; //[100,  0, 20, 0.01,  1];
+            //-Since the first opacity value is very low and then the next is very high, this would have to stay as is
+            // otherwise the functionality would change.
+            Zgraph[3]     = 0.01;
+            Zgraph[4]     = 1;
+            //TEMP What is the following color used for?
+            //-eg. Line (left one) starting near point V under area ABFD that extends well below line DF
+            //The opacity values are very similar to the defaults and I didn't notice a difference when removing them
+            var Z2graph   = [...body];
+            // Z2graph[3]    = 0.4;
+            // Z2graph[4]    = 1;
+
+
+            var vgraph    = [...force];
+            //-Since the first opacity value is very low and then the next is very high, this would have to stay as is
+            // otherwise the functionality would change.
+            vgraph[3]      = 0.1;
+            vgraph[4]      = 1;
+
+            ////var v2graph   = [0,  140, 0, 0.4];
+            //TEMP What is the following color used for?
+            //-eg. Line (right one) starting near point V under area ABFD that extends well below line DF
+            //The opacity values are very similar to the defaults and I didn't notice a difference when removing them
+            var v2graph   = [...force]; //[0,  140, 0, 0.6, 1];
+            // v2graph[3]     = 0.6;
+            // v2graph[4]     = 1;
+            ////var VSarea    = [0,  140, 0, 0.2, 0.4];
+            //TEMP For the following keep the opacity values because they look different from the defaults.
+            //-eg. area ABFD
+            var VSarea    = [...force]; //[0,  140, 0, 0.4, 0.7];
+            VSarea[3]     = 0.3;
+            VSarea[4]     = 0.7;
+
+
+            //var Tkernel   = time;  //This is in the "sconf.js" file for P41
+
+            //-Since the first opacity value is very low and then the next is very high, this would have to stay as is
+            // otherwise the functionality would change.
+            var Tarea     = [...time];
+            Tarea[3]      = 0.01;
+            Tarea[4]      = 0.7;
+
+
+            //More colors that were in the sconf.js file
+            //TEMP Could possibly switch to 0, 150, 0 to be consistent with other green colors
+            //Not sure what this is.  Seems to be after "Drop point, A" in Elements under developer tools
+            //however I haven't seen it visually yet.
+            var vgpoint = [0,  150, 0, 0.01, 1];//[0,  140, 0, 0.01, 1]; //todm: last two pars have no effect
+
+
+
+            //What's the best way to group the following, and what are the best variable names?
+            var XCY     = [0, 0, 150,  0.03,  0.5];
+            var D𝑐𝑥E    = [0, 0, 150,  0.01,  0.5];  //Definitely darker at 0.5 than 0.3
+
+            //The following may look better if it's the same as VIC/ICK below
+            var D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];//[110, 90, 0, 0.01,  0.3];
+
+            //The low values 0.01 above and 0.001 below don't really look very different.
+
+            //The following both have the same color/opacity values.  They are both hidden at first.
+            //The high value may need to be 0.5 because it's on top of other shapes.
+            var VIC     = [110, 90, 0, 0.01, 0.5];
+            //The following high value could possibly be 0.3 like D𝑏𝑧E
+            //needs color model working:
+            var ICK     = [110, 90, 0, 0.01, 0.5]; //good but hidden
+            //ICK : [110, 90, 0, 0.1, 1 ], //visible, but initially annoying,
+
+
                 
             Object.assign( fixedColors, {
                 given,
                 body,
-                body2,
                 orbit,
                 orbitareaSample,
                 orbitarea,
@@ -112,7 +218,6 @@
                 instanttriangle,
                 instanttriangle2,
                 time,
-                time2,
                 distance,
                 proof,
                 proofHidden,
@@ -120,7 +225,6 @@
                 invalid,
                 result,
                 shadow,
-                //shadow2,
                 hidden,
 
                 estimatedForce,
@@ -159,6 +263,50 @@
                 "circ-txt"                  : [0,  80, 150, 0.7, 1],
                 "insc-txt"                  : [150,  0, 150, 0.7, 1],
                 "widt-txt"                  : [0,  0, 150, 0.7, 1],
+
+
+
+                freeMove,
+                forceMove,
+                diagram,
+                path,
+                sagittaeChords,
+                speed,
+
+                trianglePurpleTextAreaColor,
+                triangleGreen,
+
+                perpendicular,
+                tangent,
+
+                areaDescriptionAccelerated,
+
+
+                //From P1 may want to rename the following to remove hyphens
+                "kepler-triangle-odd"   : [102,102,255, 0.35, 0.7],
+                "kepler-triangle-even"  : [153,153,255, 0.35, 0.7],
+
+
+                
+                fi,
+                Fkernel,
+                fiArea,
+                Zgraph,
+                Z2graph,
+
+                vgraph,
+                v2graph,
+                VSarea,
+                
+                Tarea,
+
+                vgpoint,
+
+                XCY,
+                D𝑐𝑥E,
+                D𝑏𝑧E,
+                VIC,
+                ICK,
             });
         }
         //=======================================
