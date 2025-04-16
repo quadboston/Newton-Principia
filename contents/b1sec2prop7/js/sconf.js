@@ -125,10 +125,10 @@
         //      todm: possibly proliferation
         //-----------------------------------
        const {
-            body2,
+            body,//body2,
             orbit,
             time,
-            time2,
+            //time2,
             proof,
             force,  //Same without showingBonusFeatures, very close with (close enough)
             invalid,//Close without bonus features (close enough), same with
@@ -140,10 +140,10 @@
             chord,
         } = fixedColors;
 
-        var estimatedForce = estimatedForce2;//[100,50,0];
-        var sagitta = sagitta2;//[100,0,100];
-        var body    = body2;//[0,     150,  200,   1];
-        var dtime   = time;//[0,     150,  200,  1];
+        const estimatedForce = estimatedForce2;//[100,50,0];
+        const sagitta = sagitta2;//[100,0,100];
+        //const body    = body2;//[0,     150,  200,   1];
+        const dtime   = time;//[0,     150,  200,  1];
         
         
         var predefinedTopics =
@@ -159,7 +159,7 @@
             context,
             curvature,
             dtime,
-            time : time2,//timeColor,
+            //time    : time2,//timeColor,  //Doesn't seem to be used
             curvatureCircle : curvature,
             orbit,
             timearc : proof,
