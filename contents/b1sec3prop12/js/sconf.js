@@ -277,7 +277,7 @@
         //-----------------------------------
         const {
             given,
-            body2,
+            body,//body2,
             orbit,
             orbitareaSample,
             orbitarea,
@@ -295,7 +295,7 @@
             attention,
         } = fixedColors;
 
-        const body    = body2;//[0,     150,  200,   1];
+        //const body    = body2;//[0,     150,  200,   1];
 
         var p17_result_proof = fconf.sappId === "b1sec3prop17" ? result : proof;
         var p17_result_orbit = fconf.sappId === "b1sec3prop17" ? result : orbit;
