@@ -56,7 +56,7 @@
             ///draws fi
             ///adds an extra point, fi, at rg.O to comply angle-api
             var fi = toreg( 'fi' )( 'pname', 'fi' )( 'pos', rg.C.pos )
-                ( 'pcolor', 'rgba(0,0,0,0.05)' ) //rg.Fi.pcolor
+                ( 'pcolor', 'rgba(0,0,0,0.95)' ) //rg.Fi.pcolor
                 ();
             fi.medpos = ssF.mod2inn( fi.pos );
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
