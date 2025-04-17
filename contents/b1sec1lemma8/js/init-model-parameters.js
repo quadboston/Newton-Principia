@@ -130,30 +130,31 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------
-        rg.D.processOwnDownEvent = function() {
-            ssD.draggerInUse = 'D';
-        }; 
-        
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            pname : 'D',
-            acceptPos : ( newPos ) => {
-                let original_Dx = rg.D.originalPos[0];
-                let half_AD = original_Dx / 2; 
-                let Bx = rg.B.pos[0]; //D
-                
-                newPos[1] = 0; // y pos doesn't change
-                let newDx = newPos[0]; 
+        if(!sconf.BONUS) {
+            rg.D.processOwnDownEvent = function() {
+                ssD.draggerInUse = 'D';
+            }; 
+            
+            sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
+                pname : 'D',
+                acceptPos : ( newPos ) => {
+                    let original_Dx = rg.D.originalPos[0];
+                    let Bx = rg.B.pos[0]; 
+                    
+                    newPos[1] = 0; // y pos doesn't change
+                    let newDx = newPos[0]; 
 
-                // Prevent D from being moved too far to the right
-                // Stop D before slope of DR === slope of AR
-                if(newDx > Bx + 0.2 && newDx < original_Dx * 2) {
-                    return true;
-                } else {
-                    return false;
+                    // Stop D before slope of DR === slope of AR
+                    // Prevent D from being moved too far to the right
+                    if(newDx > Bx + 0.2 && newDx < original_Dx * 2) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-            }
-        });
+            });
+        }
 
         //-------------------------------------------------
         // //\\ dragger fi (only used in Bonus Content)
@@ -204,7 +205,8 @@
     function model_upcreate()
     {
         //=================================================
-        // //\\ sets dragging point point B
+        // //\\ sets dragging point point B 
+        //      (keeps it on the curve)
         //=================================================
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.unrotatedParameterX );
         rg.B.pos[0] = newPos[0];
@@ -220,19 +222,17 @@
 
         //RBD line
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
+        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.imageOfR.pos );  
 
-        if(ssD.draggerInUse !== "D") {
-            rg.D.pos[0] = posD[0];
-        }        
-
-        if(ssD.draggerInUse !== "R") {
+        if(ssD.draggerInUse === "D") {
             rg.R.pos = posR;
-        }
+        } else {
+            rg.D.pos[0] = posD[0];
+        }  
         
         rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
         rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
-        rg.imageOfD.pos[0] = posD[0] * magn;
+        rg.imageOfD.pos[0] = rg.D.pos[0] * magn;
 
         rg.G.pos[1] = rg.B.pos[1];
         rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];

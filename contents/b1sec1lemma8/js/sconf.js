@@ -110,14 +110,14 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                draggableX  : true, // this adds mouseover animation, does not affect behaviour
-                draggableY  : false,
+                draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
+                draggableY  : false, // but not y
             },
             R : {
                 letterAngle : 135,
                 pcolor      : given,
-                draggableX  : true, // this adds mouseover animation, does not affect behaviour
-                draggableY  : true,
+                draggableX  : sconf.BONUS? false : true, // this adds mouseover animation, but does not affect behaviour...?
+                draggableY  : sconf.BONUS? false : true,
             },            
             fi : {
                 caption : "φ",
