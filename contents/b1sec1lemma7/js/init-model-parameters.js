@@ -30,6 +30,9 @@
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'B';
         };
+        rg.B.processOwnUpEvent = function() {
+            ssD.draggerInUse = '';
+        }; 
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
@@ -96,7 +99,6 @@
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
-
     }
 
     ///****************************************************
@@ -118,9 +120,12 @@
         var Bx = rg.B.pos[0];
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
+        console.log(Bx + ' ' + magn) // todo: sometimes magn is wrong when switching between claim/proof/corol
 
         if(bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
-        if(bpos[0] > rg.d.pos[0]) bpos[0] = rg.d.pos[0]; // or to the right of d
+        if(bpos[0] > rg.d.pos[0] && bpos[1] >= rg.d.pos[1]) {
+            bpos[0] = rg.d.pos[0]; // or to the right of d
+        }
         nspaste( rg.b.pos, bpos );
 
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
@@ -132,9 +137,11 @@
             rg.D.pos[0] = posD[0];
         }  
 
-        rg.r.pos[0] = rg.R.pos[0] * magn;
-        rg.r.pos[1] = rg.R.pos[1] * magn;
-        rg.d.pos[0] = rg.D.pos[0] * magn;
+        if(!sconf.BONUS || ssD.draggerInUse !== "") {
+            rg.r.pos[0] = rg.R.pos[0] * magn;
+            rg.r.pos[1] = rg.R.pos[1] * magn;
+            rg.d.pos[0] = rg.D.pos[0] * magn;
+        }
 
         rg.E.pos[1] = rg.D.pos[1];
         rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
