@@ -85,11 +85,10 @@
         var d = [778, modorInPicY];
         var b = [514, 254];
 
-        // *** used only if BONUS || rgShapesVisible (todo: maybe not at all)
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
-        //var M = [50, modorInPicY];
 
+        // *** used only if BONUS || rgShapesVisible (todo: maybe not at all)
         //sets position of axis-y for Calculus-framework, not for model axis-y
         var ytop = [-151, 50];        
         
@@ -147,7 +146,7 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                draggableX  : true, // this adds mouseover animation, does not affect behaviour
+                draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
             DLeft : {

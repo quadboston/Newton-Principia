@@ -15,8 +15,6 @@
     {
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
-
-        ssD.draggerInUse = 'init'; //used for Newton microscope below
         
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
@@ -51,7 +49,9 @@
 
                 rg.B.unrotatedParameterX = newPosX;
 
-                nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
+                if( !sconf.BONUS) {
+                    nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
+                }
 
                 return true;
             }
@@ -60,32 +60,37 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------
-        rg.D.processOwnDownEvent = function() {
-            ssD.draggerInUse = 'D';
-        }; 
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            pname : 'D',
-            acceptPos : ( newPos ) => {
-                let originalDx = rg.D.originalPos[0];
-                let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
-                newPos[1] = 0; // y pos doesn't change
-                let x = newPos[0]; 
-                if(x < originalDx - half_AD || x > originalDx + half_AD) {
-                    return false;
-                } else {
-                    let Dx = rg.D.pos[0];
-                    let newDx = newPos[0]; 
-                    let mag = newDx / Dx;
-                    let dPos = rg.d.pos;
-                    dPos[0] *= mag;
+        if(!sconf.BONUS) {
+            rg.D.processOwnDownEvent = function() {
+                ssD.draggerInUse = 'D';
+            }; 
+            rg.D.processOwnUpEvent = function() {
+                ssD.draggerInUse = '';
+            }; 
+            sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
+                pname : 'D',
+                acceptPos : ( newPos ) => {
+                    let originalDx = rg.D.originalPos[0];
+                    let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
+                    newPos[1] = 0; // y pos doesn't change
+                    let x = newPos[0]; 
+                    if(x < originalDx - half_AD || x > originalDx + half_AD) {
+                        return false;
+                    } else {
+                        // let Dx = rg.D.pos[0];
+                        // let newDx = newPos[0]; 
+                        // let mag = newDx / Dx;
+                        // let dPos = rg.d.pos;
+                        // dPos[0] *= mag;
 
-                    nspaste( rg.d.pos, dPos );
-                    nspaste( rg.D.pos, newPos );
-                    return true;
+                        // nspaste( rg.d.pos, dPos );
+                        //nspaste( rg.D.pos, newPos );
+                        return true;
+                    }
                 }
-            }
-        });
+            });
+        }
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -122,23 +127,20 @@
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
 
-        //if(ssD.draggerInUse === 'init' || ssD.draggerInUse === 'B') {
-            nspaste( rg.b.pos, bpos );
-        //}
+        nspaste( rg.b.pos, bpos );
 
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
         let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
 
-        if(ssD.draggerInUse !== "D") {
-            //rg.D.pos = posD;
-            nspaste( rg.D.pos, posD );
-        }        
-
-        rg.R.pos = posR;
+        if(ssD.draggerInUse === "D") {
+            rg.R.pos = posR;
+        } else {
+            rg.D.pos[0] = posD[0];
+        }  
 
         rg.r.pos[0] = rg.R.pos[0] * magn;
         rg.r.pos[1] = rg.R.pos[1] * magn;
-        rg.d.pos[0] = posD[0] * magn;
+        rg.d.pos[0] = rg.D.pos[0] * magn;
 
         rg.E.pos[1] = rg.D.pos[1];
         rg.E.pos[0] = rg.B.pos[0] + sconf.BXBE_per_BY * rg.B.pos[1];
