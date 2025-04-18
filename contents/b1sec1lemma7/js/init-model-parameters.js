@@ -78,14 +78,6 @@
                     if(x < originalDx - half_AD || x > originalDx + half_AD) {
                         return false;
                     } else {
-                        // let Dx = rg.D.pos[0];
-                        // let newDx = newPos[0]; 
-                        // let mag = newDx / Dx;
-                        // let dPos = rg.d.pos;
-                        // dPos[0] *= mag;
-
-                        // nspaste( rg.d.pos, dPos );
-                        //nspaste( rg.D.pos, newPos );
                         return true;
                     }
                 }
@@ -127,6 +119,8 @@
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
 
+        if(bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
+        if(bpos[0] > rg.d.pos[0]) bpos[0] = rg.d.pos[0]; // or to the right of d
         nspaste( rg.b.pos, bpos );
 
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );

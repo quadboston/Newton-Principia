@@ -71,7 +71,7 @@
         sconf.BXBE_per_BY = 0.5;
 
         //to avoid rounding errors as B gets very close to A
-        sconf.NON_ZERO_A_PREVENTOR = 0.0001;
+        sconf.NON_ZERO_A_PREVENTOR = 0.0002;
 
         //================================================================
         // //\\ original positions
@@ -119,7 +119,7 @@
 
             //proof
             "curve-Ab"      : proof, // todo: unused?
-            "arc-Ab"        : proof,
+            "arc-Ab"        : proof, // this is the one rendered in proof
             "proofRatio"    : proof, //data table
         };
 

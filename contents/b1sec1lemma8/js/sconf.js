@@ -167,13 +167,7 @@
 
         var linesArray =
         [
-            // given (shown in green)            
-            { 'AB' : { pcolor : given } },
-            { 'AR' : { pcolor : given } }, 
-            { 'AD' : { pcolor : given } }, 
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, // to left of A            
-            { 'RD' : { pcolor : given } },
-            { 'BR' : { pcolor : given } },
+            //** this defines render order */
 
             // proof (shown in blue) 
             { 'Ab' : { pcolor : proof } },  
@@ -182,6 +176,14 @@
             { 'A,imageOfR' : { pcolor : proof } }, // Ar   
             { 'imageOfR,imageOfD' : { pcolor : proof } }, // rd
             { 'imageOfR,b' : { pcolor : proof } }, //rb
+
+            // claim (shown in green)            
+            { 'AB' : { pcolor : given } },
+            { 'AR' : { pcolor : given } }, 
+            { 'AD' : { pcolor : given } }, 
+            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, // to left of A            
+            { 'RD' : { pcolor : given } },
+            { 'BR' : { pcolor : given } },
 
             // questionable                       
             { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
