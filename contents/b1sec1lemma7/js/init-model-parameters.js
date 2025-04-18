@@ -120,7 +120,7 @@
         var Bx = rg.B.pos[0];
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
-        console.log(Bx + ' ' + magn) // todo: sometimes magn is wrong when switching between claim/proof/corol
+        //console.log(Bx + ' ' + magn) // todo: sometimes magn is wrong when switching between claim/proof/corol
 
         if(bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
         if(bpos[0] > rg.d.pos[0] && bpos[1] >= rg.d.pos[1]) {
@@ -137,7 +137,7 @@
             rg.D.pos[0] = posD[0];
         }  
 
-        if(!sconf.BONUS || ssD.draggerInUse !== "") {
+        if(!sconf.BONUS) {
             rg.r.pos[0] = rg.R.pos[0] * magn;
             rg.r.pos[1] = rg.R.pos[1] * magn;
             rg.d.pos[0] = rg.D.pos[0] * magn;
