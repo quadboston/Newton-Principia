@@ -29,7 +29,6 @@
     function createsFW__8__executes_dragWr_gens_list()
     {
         ///creates tools for the first time and only once
-
         ///******************************************************
         /// todm,
         /// nearly a bug, thickness and wheel scaling are coupled
@@ -109,7 +108,6 @@
         //.if distance to pOnS is "outside" of this par.,
         //.then dragWrap is not "considered" for drag
         var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
-
         var closestDragWrap = null;
         var closestTd = null;
         //.the bigger is priority, the more "choicable" is the drag Wrap point
@@ -140,12 +138,16 @@
 
             var distLim = haz( dragPoint, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
             if( td <= distLim ) {
-                if( !closestDragWrap || closestTd > td ||
-                    (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
+                let dpp = dragPoint.dragPriority;
+                if( !closestDragWrap ||
+                    (
+                        ( dpp > closestDragPriority ) ||
+                        ( dpp === closestDragPriority && closestTd > td ) 
+                    )
+                ){
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
-
                     //vital-for-mobile
                     //ns.d('closest=' + dragPoint.pname +
                     //     ' fw' + dragWrap.createdFramework.frameworkId );

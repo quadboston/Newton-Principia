@@ -32,7 +32,8 @@
         };
         rg.B.processOwnUpEvent = function() {
             ssD.draggerInUse = '';
-        }; 
+        };
+        rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
