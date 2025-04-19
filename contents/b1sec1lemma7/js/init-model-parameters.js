@@ -74,14 +74,16 @@
                 stdMod,
                 pname : 'D',
                 acceptPos : ( newPos ) => {
-                    let originalDx = rg.D.originalPos[0];
-                    let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
-                    newPos[1] = 0; // y pos doesn't change
-                    let x = newPos[0]; 
-                    if(x < originalDx - half_AD || x > originalDx + half_AD) {
-                        return false;
-                    } else {
-                        return true;
+                    if(rg.B.pos[0] > 0.2) { // so D can't be grabbed when it is under B
+                        let originalDx = rg.D.originalPos[0];
+                        let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
+                        newPos[1] = 0; // y pos doesn't change
+                        let x = newPos[0]; 
+                        if(x < originalDx - half_AD || x > originalDx + half_AD) {
+                            return false;
+                        } else {
+                            return true;
+                        }
                     }
                 }
             });

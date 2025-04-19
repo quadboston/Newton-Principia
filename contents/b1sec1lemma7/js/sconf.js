@@ -130,18 +130,12 @@
                 pos         : A,
                 letterAngle : 90,
                 pcolor      : given,
-            },
-            B : {
-                pos: B,
-                letterAngle : 0,
-                pcolor      : given,
-            },            
+            },           
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
                 pcolor      : given,
             },
-
             D : {
                 pos: D,
                 letterAngle : 90,
@@ -149,6 +143,15 @@
                 draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
+            
+            B : {
+                pos: B,
+                letterAngle : 0,
+                pcolor      : given,                
+                draggableX  : true,
+                draggableY  : true,
+            }, 
+
             DLeft : {
                 letterAngle : 90,
                 pcolor      : given,
