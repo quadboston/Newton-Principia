@@ -46,7 +46,17 @@
         //=================================================
 
         toreg( 'approximated-curve' );
+        toreg( 'sForSagitta' ),
+  //sconf.sForSagitta_valT
         stdMod.creates_orbitRack();
+        stdMod.buildsforceGraphArray();
+        var parP = sconf.PparT;
+        var deltaQ = sconf.curveQRange / sconf.curveQRange*sconf.FORCE_ARRAY_LEN;
+        var qixP = Math.floor( parP / deltaQ );
+        var diff = ssD.qix2orb[ qixP ];
+        rg.sForSagitta.val = (diff.pulsQ - qixP*deltaQ + sconf.curveQRange)
+                             % sconf.curveQRange;
+        ccc( rg.sForSagitta.val );
 
         //var t =  stdMod.pos2t( rt.P.pos );
         //var newP = rg[ 'approximated-curve' ].t2xy( t );

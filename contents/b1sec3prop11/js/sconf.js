@@ -112,6 +112,11 @@
         var curveParA   = -0.64;
         var curveParFi0 = 0.0 * Math.PI;
         var curveParFiMax = 2 * Math.PI;
+        //interval of t to construct an arc for Newton's sagitta
+        //var sForSagitta_valQ = 0.36;
+        var sForSagitta_valT = 0.39;
+        var FORCE_ARRAY_LEN = 20;//23; //400;
+        var TIME_STEPS = 20;
 
         {
             // gets ellipse parameters
@@ -122,8 +127,6 @@
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
 
-        //interval of t to construct an arc for Newton's sagitta
-        var sForSagitta_valQ = 0.36;
 
         var P = [0, 0 ]; //set bu sconf.PparT
         var Q = [0, 0 ]; //set in amode8captures
@@ -449,7 +452,10 @@
             curveParA,
             curveParFi0,
             curveParFiMax,
-            sForSagitta_valQ,
+            curveQRange : curveParFiMax - curveParFi0,
+            sForSagitta_valT,
+            FORCE_ARRAY_LEN,
+            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,

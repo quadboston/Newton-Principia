@@ -34,12 +34,12 @@
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-                sDomF.getFixedColor( 'sagitta' ), //sagitta
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'sagitta' ),
                 sDomF.getFixedColor( 'context' ),
                 sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'estimatedForce' ), //estimatedForce
-                sDomF.getFixedColor( 'proof' ), //comp law5
+                sDomF.getFixedColor( 'estimatedForce' ),
+                sDomF.getFixedColor( 'proof' ),
             ];
             return colorThreadArray;
         }

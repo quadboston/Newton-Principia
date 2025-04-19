@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has,
-        fconf, ssF, sData,
+        fconf, ssF, sData, ssD,
         stdMod, amode, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -13,38 +13,31 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
     function model_upcreate()
     {
+        stdMod.buildsforceGraphArray();
+        
         const fun = rg[ 'approximated-curve' ].t2xy;
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-        var parP = stdMod.pos2t( rr0 );
 
+        var parP = stdMod.pos2t( rr0 );
+        var Porb = ssD.qix2orb[ Math.floor(parP/sconf.curveQRange*sconf.FORCE_ARRAY_LEN) ];
+        var intervalS = rg.sForSagitta.val = Porb.deltaSugittaQ;
+        ccc( rg.sForSagitta.val );
+        var intervalT = sconf.sForSagitta_valT;
+        var Qpos = fun( Porb.pulsQ );
+        var rr = Qpos;
+        rg.Q.pos[0] = Qpos[0];
+        rg.Q.pos[1] = Qpos[1];
+        rg.Q.intervalS = intervalS;
+        var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
+        
         // **api-input---plane-curve-derivatives
-        var diff = mcurve.planeCurveDerivatives({
-            fun, //r = a*cos(q), b*sin(q) === ellipse
-            q : parP,
-            rrc,
-        });
         var {
             RC,
             R,
@@ -52,26 +45,12 @@
             projectionOfCenterOnTangent,
             uu,
             nn,
-            rr,
-            //staticSectorialSpeed_rrrOnUU,
-        } = diff;
-        //rr0[1] = rr[1]; //=fun( rr0[0] )[1];
+        } = Porb;
         var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-
-        var { rr, side, intervalT, intervalS } = deltaT_2_arc(
-            rr0,                    //P
-            rg.vt.val,              //v0
-            rg.sForSagitta.val,     //t for arc
-        );
-        var sidePlus = side;
-        rg.Q.pos[0] = rr[0];
-        rg.Q.pos[1] = rr[1];
-        rg.Q.intervalS = intervalS;
-
 
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
@@ -145,7 +124,6 @@
         // //\\ graph
         //------------------------------------------------
         ///for initial launch only
-        stdMod.buildsforceGraphArray();
         stdMod.graphFW.drawGraph_wrap();
         //------------------------------------------------
         // \\// graph
@@ -259,79 +237,6 @@
 
     }
 
-
-
-
-
-
-
-
-    //builds two arcs, after and before instant position of moving body P
-    function deltaT_2_arc(
-        rr0,        //rg.P.pos[0],
-        vt0,
-        intervalS,   //rg.sForSagitta.val
-        intervalT
-    ){
-        const INTEGRATION_STEPS = 500;
-        const STEP_NGRAL = ( intervalS === null ? intervalT : intervalS )
-                           / INTEGRATION_STEPS;
-        const rrc = rg.S.pos;
-        const fun = rg[ 'approximated-curve' ].t2xy;
-
-        //: integration starting values
-        var s = stdMod.pos2t( rr0 );
-        var s0 = s;
-        var {
-                staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q : s,
-                rrc,
-            });
-        var sectorialSpeed0 = staticSectorialSpeed_rrrOnUU
-
-            //"fake" speed, no relation to actual speed,
-            //real speed must change from point P to point P,
-            //this speed only indicates negative direction of speed,
-            //speed multiplied here for performance,
-            * vt0; 
-
-        var intervalT = 0;
-        for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
-            //doing step from old values
-                    //=vt=tangential speed
-                    //* sectorialSpeed0
-                    // / staticSectorialSpeed_rrrOnUU;
-            //calculating new values
-            var rr = fun( s );
-            var {
-                staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q : s,
-                rrc,
-            });
-            var vt = sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
-            if( intervalS === null ) {
-                //timeStep*vt, vt = tangential speed
-                s += STEP_NGRAL * vt;
-                //ccc( s.toFixed(3), 'vt=' + vt.toFixed(3), 
-                //     sectorialSpeed0.toFixed(3), staticSectorialSpeed_rrrOnUU.toFixed(3) );
-            } else {
-                s += STEP_NGRAL;
-                intervalT += STEP_NGRAL / vt;
-            }
-        }
-        var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
-        return {    rr,
-                    side,
-                    intervalS : intervalS === null ? s - s0 : intervalS,
-                    intervalT,
-        };
-    }
-    
-    
     
     //-------------------------------------------------------------------
     // //\\ corrects approximate mouse point to exact point on the circle

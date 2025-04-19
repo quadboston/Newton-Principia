@@ -28,25 +28,10 @@
         //===========================================
         // //\\ prepares color ThreadArray
         //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
-        }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
         sData.colorThreadArray = [
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'context' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+            sDomF.getFixedColor( 'force' ),
+            sDomF.getFixedColor( 'force' ),
+            //sDomF.getFixedColor( 'body' ),
         ];
         return sData.colorThreadArray;
         //===========================================
@@ -103,7 +88,7 @@
             },
 
             {
-                text    : 'Force f, 1/r², and speed v per their maximums.',
+                text    : 'Force f and estimated formce per their maximums.',
                 x       : 250,
                 y       : 40,
                 style   : {
@@ -151,7 +136,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'f',
+                pcaption : 'f=1/r²',
                 fontShiftX : 0,
                 fontShiftY : 15,
                 style : {
@@ -167,7 +152,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
+                pcaption : 'estimated force',
                 fontShiftX : 25,
                 fontShiftY : 15,
                 style : {
@@ -175,6 +160,7 @@
                     'stroke'  : colorThreadArray[1],
                 },
             },
+            /*
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
@@ -186,6 +172,7 @@
                     'stroke'  : colorThreadArray[2],
                 },
             },
+            */
         ];
     }
 
@@ -194,7 +181,8 @@
     function setsGraphTpClasses()
     {
         $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
+        //$$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
     }
 
 

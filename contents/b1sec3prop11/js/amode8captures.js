@@ -53,7 +53,7 @@
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-        toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
+        //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
 
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
