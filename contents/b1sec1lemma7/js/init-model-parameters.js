@@ -19,6 +19,13 @@
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
 
+        rg.B.originalPos = [];
+        nspaste( rg.B.originalPos, rg.B.pos );
+        rg.D.originalPos = [];
+        nspaste( rg.D.originalPos, rg.D.pos );
+        rg.R.originalPos = [];
+        nspaste( rg.R.originalPos, rg.R.pos );
+
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
@@ -32,6 +39,7 @@
         //rotational angle = 0,
         //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+        rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
@@ -73,6 +81,37 @@
         // \\// dragger B
         //-------------------------------------------------
 
+
+        //-------------------------------------------------
+        // //\\ dragger D
+        //-------------------------------------------------
+        if(!sconf.BONUS) {
+            rg.D.processOwnDownEvent = function() {
+                ssD.draggerInUse = 'D';
+            }; 
+            rg.D.processOwnUpEvent = function() {
+                ssD.draggerInUse = '';
+            }; 
+            sDomF.params__2__rgX8dragwrap_gen_list({
+                stdMod,
+                pname : 'D',
+                acceptPos : ( newPos ) => {
+                    let originalDx = rg.D.originalPos[0];
+                    // D can move half the width of AD in either dir 
+                    let half_AD = originalDx / 2;
+                    newPos[1] = 0; // y pos doesn't change
+                    let x = newPos[0]; 
+                    if(x < originalDx - half_AD || x > originalDx + half_AD) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            });
+        }
+        //-------------------------------------------------
+        // \\// dragger D
+        //-------------------------------------------------
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
