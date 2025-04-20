@@ -21,20 +21,23 @@
     {
         stdMod.buildsforceGraphArray();
         
-        const fun = rg[ 'approximated-curve' ].t2xy;
+        const q2xy = rg.q2pos.t2xy;
+
+        var parQ = rg.P.parQ; //  stdMod.pos2t( rr0 );
+        var qixP = Math.floor(parQ/sconf.curveQRange*sconf.FORCE_ARRAY_LEN);
+        var Porb = ssD.qix2orb[ qixP ];
+        rg.P.pos[0] = Porb.rr[0];
+        rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-
-        var parP = stdMod.pos2t( rr0 );
-        var Porb = ssD.qix2orb[ Math.floor(parP/sconf.curveQRange*sconf.FORCE_ARRAY_LEN) ];
-        var intervalS = rg.sForSagitta.val = Porb.deltaSugittaQ;
-        ccc( rg.sForSagitta.val );
-        var intervalT = sconf.sForSagitta_valT;
-        var Qpos = fun( Porb.pulsQ );
+        
+        rg.sForSagitta.val = Porb.sagittaDq;
+        //ccc( 'model, sag_dq=' + rg.sForSagitta.val + ' qixP=' + qixP );
+        var Qpos = q2xy( Porb.pulsQ );
         var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-        rg.Q.intervalS = intervalS;
+        rg.Q.intervalS = Porb.sagittaDq;
         var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
         
         // **api-input---plane-curve-derivatives
@@ -149,9 +152,9 @@
         //================================================
 
         //conjugate diameters
-        nspaste( rg.G.pos, fun( parP + Math.PI ) );
-        nspaste( rg.D.pos, fun( parP + Math.PI/2 ) );
-        nspaste( rg.K.pos, fun( parP + 3/2*Math.PI ) );
+        nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
+        nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
+        nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
 
 
         //vuFV
@@ -181,10 +184,10 @@
 
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-        nspaste( rg.A.pos, fun( 0 ) );
-        nspaste( rg.AA.pos, fun( Math.PI ) );
-        nspaste( rg.B.pos, fun( Math.PI/2 ) );
-        nspaste( rg.BB.pos, fun( Math.PI*3/2 ) );
+        nspaste( rg.A.pos, q2xy( 0 ) );
+        nspaste( rg.AA.pos, q2xy( Math.PI ) );
+        nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
+        nspaste( rg.BB.pos, q2xy( Math.PI*3/2 ) );
 
         //=============================================================
         // //\\ tan. cir.
@@ -238,20 +241,21 @@
     }
 
     
-    //-------------------------------------------------------------------
-    // //\\ corrects approximate mouse point to exact point on the circle
-    //-------------------------------------------------------------------
-    function correctsPos8angle2angle( pname, newPos, angle ) {
+    ///corrects approximate mouse point to exact point on the circle
+    function correctsPos8angle2angle( pname, newPos, angle ){
         let rgX = rg[pname];
         let pos = rgX.pos;
-        if( typeof angle === 'undefined' ) {
-            angle =  stdMod.pos2t( newPos );
+        if( typeof angle === 'undefined' ){
+            angle = stdMod.pos2t( newPos );
         }
-        if( angle < Math.PI*0.01 || angle > sconf.curveParFiMax ) {
+        if( angle < Math.PI*0.01 || angle > sconf.curveParFiMax ){
             angle = ( angle + sconf.curveParFiMax ) % sconf.curveParFiMax;
-        } //  return false;
-        rgX.angle = angle;
-        var newP = rg[ 'approximated-curve' ].t2xy( angle );
+        }
+
+        let qix = Math.floor( angle/sconf.deltaQ );
+        rgX.qix = qix;
+        rgX.parQ = qix * sconf.deltaQ;
+        var newP = ssD.qix2orb[ qix ].rr; //rg.q2pos.t2xy( angle );
         pos[0] = newP[0];
         pos[1] = newP[1];
         return pos;

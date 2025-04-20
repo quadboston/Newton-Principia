@@ -33,11 +33,11 @@
 
         var curveName = 'orbit';
         var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
-        var rgX = rg[ 'approximated-curve' ];
+        var rgX = rg.q2pos;
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
 
-        //rg[ 'approximated-curve' ] will have these properties:
+        //rg.q2pos will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
                 trange2points,

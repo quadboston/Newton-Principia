@@ -19,7 +19,7 @@
     {
         var curveParFi0   = sconf.curveParFi0;
         var rrc      = rg.S.pos;
-        var q2xy      = rg[ 'approximated-curve' ].t2xy;
+        var q2xy      = rg.q2pos.t2xy;
         const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
         const TIME_STEPS = sconf.TIME_STEPS; // 7; //300;
         var momentum0; //at start of the path
@@ -69,8 +69,9 @@
         // //\\ distributing values in time arrays
         //------------------------------------------
         {
-            var timeRange = qix2orb[ FORCE_ARRAY_LEN ].timeAtQ - qix2orb[0].timeAtQ;
-            var timeDelta = timeRange/TIME_STEPS;
+            var timeRange = ssD.timeRange =
+                qix2orb[ FORCE_ARRAY_LEN ].timeAtQ - qix2orb[0].timeAtQ;
+            var timeDelta = ssD.timeDelta = timeRange/TIME_STEPS;
             let timeAtT = 0;
             let timeAtQ = 0;
             let qix = 0;
@@ -115,20 +116,27 @@
                 let rr = bP.rr; //abs
                 let r2 = bP.r2; //rel
 
-                let plusT = ( timeRange + bT + sconf.sForSagitta_valT ) % timeRange;                
+                let plusT = ( timeRange + bT + ssD.sForSagitta_valT ) % timeRange;                
                 let tix = Math.floor( plusT/timeDelta );
                 let plusT_reminder = plusT - tix*timeDelta;
-                let pulsQ = ( tix2orbit[tix].qix + plusT_reminder/timeDelta ) * deltaQ;
+                let pulsQ = ( 
+                        tix2orbit[tix].qix + tix2orbit[tix].timeReminder + //=q at tix
+                        plusT_reminder/timeDelta ) * deltaQ; //remainder's fraction
 
                 //saves data for model-upcreate;
                 bP.pulsQ = pulsQ;
-                bP.deltaSugittaQ = (pulsQ - bP.q + qRange )%qRange;
+                bP.sagittaDq = (pulsQ - bP.q + qRange )%qRange;
 
                 let rrplus = q2xy( pulsQ );
-                let minusT = ( timeRange + bT - sconf.sForSagitta_valT ) % timeRange;                
-                tix = Math.floor( plusT/timeDelta );
+                
+                let minusT = ( timeRange + bT - ssD.sForSagitta_valT ) % timeRange;                
+                tix = Math.floor( minusT/timeDelta );
                 let minusT_reminder = plusT - tix*timeDelta;
-                let minusQ = ( tix2orbit[tix].qix + minusT_reminder/timeDelta ) * deltaQ; 
+                let minusQ = (
+                    tix2orbit[tix].qix + tix2orbit[tix].timeReminder + //=q at tix
+                    minusT_reminder/timeDelta ) * deltaQ; 
+                //saves data for model-upcreate;
+                bP.minusQ = minusQ;
                 let rrminus = q2xy( minusQ );
 
                 var sagitta0 = rrplus[0]+rrminus[0]-2*rr[0];
@@ -187,8 +195,8 @@
                     ],
                 };
             }
-            ccc( 'tix2orbit',tix2orbit );
-            ccc( 'qix2orb',qix2orb );
+            //c cc( 'tix2orbit',tix2orbit );
+            //c cc( 'qix2orb',qix2orb );
         }
         var arrLen = graphArray.length;
         stdMod.graphArray = [];

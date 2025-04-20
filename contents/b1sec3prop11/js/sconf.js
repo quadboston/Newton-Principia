@@ -108,15 +108,15 @@
         sconf.ellipseB  =
             Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
             * sconf.ellipseA; //0.86;
-        var PparT       = 0.250 * Math.PI;
+        var parQ       = 0.250 * Math.PI;
         var curveParA   = -0.64;
         var curveParFi0 = 0.0 * Math.PI;
         var curveParFiMax = 2 * Math.PI;
         //interval of t to construct an arc for Newton's sagitta
         //var sForSagitta_valQ = 0.36;
         var sForSagitta_valT = 0.39;
-        var FORCE_ARRAY_LEN = 20;//23; //400;
-        var TIME_STEPS = 20;
+        var FORCE_ARRAY_LEN = 200;//23; //400;
+        var TIME_STEPS = 150;
 
         {
             // gets ellipse parameters
@@ -126,10 +126,6 @@
             let excentris = Math.sqrt( excentris2 );
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
-
-
-        var P = [0, 0 ]; //set bu sconf.PparT
-        var Q = [0, 0 ]; //set in amode8captures
 
         sconf.diagramOrigin = [ 0, 0 ];
         //=============================================
@@ -366,7 +362,9 @@
             },
 
             P : {
-                pos: P,
+                //set by sconf.parQ
+                //pos: P,
+
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -374,7 +372,9 @@
             },
 
             Q : {
-                pos: Q,
+                //set in amode8captures
+                //pos: Q,
+
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
@@ -448,7 +448,7 @@
         ];
 
         ns.paste( sconf, {
-            PparT,
+            parQ,
             curveParA,
             curveParFi0,
             curveParFiMax,
@@ -472,6 +472,7 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
+        sconf.deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
         //***************************************************************
         // \\// geometics parameters
         //***************************************************************
