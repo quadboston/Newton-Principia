@@ -339,9 +339,12 @@
                 letterAngle : -45,
             },
             Rcol2 : {
+                ////for corollary2, second center of force
                 caption : 'R',
                 pcolor : curvature,
                 letterAngle : -45,
+                draggableX  : true,
+                draggableY  : true,
             },
             Gcol2 : {
                 caption : 'G',

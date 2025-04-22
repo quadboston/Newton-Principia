@@ -4,7 +4,7 @@
 //        which is supplied at initialization time.
 ( function() {
     var {
-        ns, d8dp, haz, $$,
+        ns, sn, d8dp, haz, $$,
         dpdec,
     } = window.b$l.nstree();
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
@@ -21,6 +21,13 @@
     ///===========================================================
     /// //\\ inits common framework for the set of  point-draggees
     ///      There can be as many frameworks as one wishes.
+    ///this function is never called outside of createsFW__8__executes_dragWr_gens_list
+    ///(except workplace-dividor.js),
+    ///
+    ///making finalizes-custDraggers8toolsSliders.js::findDraggee() an effective
+    ///default finder instead of d8d-framework.js::findDraggee_default()
+    ///
+    ///lemma1,lemma2, possibly have own createDragModel() and finder
     ///===========================================================
     function crePointFW_BSLd8d1CHAMBER({
             //// api
@@ -335,6 +342,9 @@
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
+                
+            //explicit setting to avoid property in prototype:
+            sn( 'dragPriority', pointWrap, 0 );
             return; // dragWrap; //todm consider adding this
                     //to pointWrap
 
@@ -570,8 +580,13 @@
                     td <= distLim ||
                     distLim < 0 //finds the first existing dragWrap
                 ) {
-                    if( !closestDragWrap || closestTd > td ||
-                        (pointWrap.dragPriority || 0 ) > closestDragPriority ) {
+                    let dpp = pointWrap.dragPriority;
+                    if( !closestDragWrap ||
+                        (
+                            ( dpp > closestDragPriority ) ||
+                            ( dpp === closestDragPriority && closestTd > td ) 
+                        )
+                    ){
                         closestDragWrap = dragWrap;
                         closestTd = td;
                         closestDragPriority = pointWrap.dragPriority || 0;

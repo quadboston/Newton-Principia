@@ -67,30 +67,34 @@
             //================================================
             // //\\ arc, sagittae and related
             //================================================
-            var rrplus = null
-            var rrminus = null;
+            //var rrplus = null
+            //var rrminus = null;
             var { rr, side, Qq, Qparams, dt2dq } = deltaT_2_arc(
                 rg.tForSagitta.val,     //t for arc
                 sectSpeed0,
             );
-            if( Qq < rgCurve.tEnd ) {
-                var rrplus = rr;
+            var PERIOD_OF_Q = 2*Math.PI;
+            Qq = (Qq+10*PERIOD_OF_Q)%PERIOD_OF_Q;
+            //if( Qq < rgCurve.tEnd ) {
+                //var rrplus = rr;
                 var sidePlus = side;
                 rg.Q.q = Qq;
                 rg.Q.Qparams = Qparams;
                 rg.Q.dt2dq = dt2dq;
-            }
+            //}
             var { rr, side, Qq, Qparams } = deltaT_2_arc(
                 -rg.tForSagitta.val,    //t for arc
                 sectSpeed0,
             );
-            if( Qq > rgCurve.tStart ) {
-                var rrminus = rr;
+            //if( Qq > rgCurve.tStart ) {
+                //var rrminus = rr;
                 var sideMinus = side;
                 rg.Q.q_minus = Qq;
-            }
-            ////validator and corrector
-            ///creative user may move Q beyond curve x-limits, don't let trouble to happen
+            //}
+            ///was validator and corrector
+            ///creative user may move Q beyond curve x-limits, don't let trouble to happen,
+            ///now it is always in limit 0,2PI,
+            /*
             if( !rrminus || !rrplus ) {
                 if( has( rg.Q, 'former_q' ) ) {
                     ////rolls back, rolls only Q and P which may be changed in sliding,
@@ -105,6 +109,7 @@
                     var sidePlus = rg.former_sidePlus;
                 }
             }
+            */
             let chord = rg.chord = [ sidePlus[0] - sideMinus[0], sidePlus[1] - sideMinus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
         }

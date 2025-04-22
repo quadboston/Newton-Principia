@@ -1,7 +1,7 @@
 ( function() {
     var {
-        sn, mcurve,
-        stdMod, rg, sconf,
+        sn, haz, mcurve, mat, userOptions,
+        stdMod, rg, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -9,88 +9,206 @@
             pos2qix,
         },
     });
+    let bonus = userOptions.showingBonusFeatures() ? 1 : 0;
+    var tix2orbit = ssD.tix2orbit = [];
+    var qix2orb = ssD.qix2orb = [];
     return;
 
 
     function buildsforceGraphArray()
     {
-        var xStart   = 0.;
-        var xEnd     = sconf.curveParFiMax;
+        var curveParFi0   = sconf.curveParFi0;
         var rrc      = rg.S.pos;
-        var fun      = rg[ 'approximated-curve' ].t2xy;
-        var forceGraphArray = [];
-        var FORCE_ARRAY_LEN = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
+        var q2xy      = rg.q2pos.t2xy;
+        const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
+        const TIME_STEPS = sconf.TIME_STEPS; // 7; //300;
+        var momentum0; //at start of the path
+        var qRange = sconf.curveQRange;
+        var deltaQ = qRange / FORCE_ARRAY_LEN;
+        var graphArray = [];
+        //there is no prebilt orbit points, they are built and
+        //embedded into svg in other place,
+        ///they are recalculated here
+        ///with other step here for derivative params,
+        for (var qix = 0; qix<=FORCE_ARRAY_LEN; qix++ )
         {
-            var q = xStart + forceArrayIx * ( xEnd - xStart ) / FORCE_ARRAY_LEN;
-            var {
-                rr,
-                r, //from chosen rrc
-                r2,
-                R,
-                sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
-                staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
+            var q = curveParFi0 + qix * deltaQ;
+            qix2orb[ qix ] = mcurve.planeCurveDerivatives({
+                fun : q2xy,
                 q,
                 rrc,
             });
-            sinOmega = Math.max( 1e-100, sinOmega );
-            // Kepler's motion: rvₜcos(w) = M
-            // f = M²/(Rr²cos³(w))
-            var sinOmega2 = sinOmega*sinOmega;
-
-            //M is excluded in following lines:
-            var comparLaw = 1/r2;
-            var unitlessForce = 1/(R*r2*sinOmega*sinOmega2);
-            var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
-
-            var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
-                    1e+150 : 1/staticSectorialSpeed_rrrOnUU;
-            sectSpeedSafe = Math.abs( sectSpeedSafe );
-
-            //-----------------------------------------------------------
-            // //\\ builds coefficients at maximum |force|
-            //-----------------------------------------------------------
-            if( forceArrayIx === 0 ) {
-                var forceMax        = forceSafe;
-                var comparLawMax    = comparLaw;
-                var speedMax = sectSpeedSafe;
+            var {
+                rr,
+                //r, //from chosen rrc
+                v, //|d𝗿/dq|
+                r2,
+                //R,
+                staticSectorialSpeed_rrrOnUU,
+            } = qix2orb[ qix ];
+            
+            //------------------------------------------
+            // //\\ preparing time array
+            //------------------------------------------
+            if( 0 === qix ) {
+                momentum0 = staticSectorialSpeed_rrrOnUU;
+                qix2orb[ 0 ].timeAtQ = 0;
+            } else {
+                var ds2dt = momentum0 / staticSectorialSpeed_rrrOnUU;
+                var dq2dt = v * ds2dt;
+                //ds/dq = v
+                qix2orb[ qix ].timeAtQ = qix2orb[ qix -1 ].timeAtQ +
+                    deltaQ * dq2dt;
             }
-            if( forceMax < forceSafe ) {
-                var forceMax = forceSafe;
-            }
-            if( comparLawMax < comparLaw ) {
-                var comparLawMax = comparLaw;
-            }
-            if( speedMax < sectSpeedSafe ) {
-                var speedMax = sectSpeedSafe;
-            }
-            //-----------------------------------------------------------
-            // \\// builds coefficients at maximum |force|
-            //-----------------------------------------------------------
-
-            forceGraphArray[ forceArrayIx ] = {
-                x : r,
-                y : [
-                        unitlessForce, //actual
-                        comparLaw,      //for comparision
-                        //=vt=tangent speed
-                        sectSpeedSafe,
-                ],
-            };
+            //------------------------------------------
+            // \\// preparing time array
+            //------------------------------------------
         }
 
-        var arrLen = forceGraphArray.length;
-        stdMod.graphArray = [];
-        for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
+        //------------------------------------------
+        // //\\ distributing values in time arrays
+        //------------------------------------------
         {
-            var far = forceGraphArray[ forceArrayIx ];
-            far.y[0] = far.y[0] / forceMax;
-            far.y[1] = far.y[1] / comparLawMax;
-            far.y[2] = far.y[2] / speedMax;
+            var timeRange = ssD.timeRange =
+                qix2orb[ FORCE_ARRAY_LEN ].timeAtQ - qix2orb[0].timeAtQ;
+            var timeDelta = ssD.timeDelta = timeRange/TIME_STEPS;
+            let timeAtT = 0;
+            let timeAtQ = 0;
+            let qix = 0;
+            var qix_former = qix;
+            var timeAtQ_former = timeAtQ;
+            tix2orbit.length = 0; 
+            tix2orbit[0] = [ {timeAtT, qix, timeAtQ, timeReminder:0} ];
+            for( let tix = 0; tix<=TIME_STEPS; tix++ )
+            {
+                timeAtT = tix*timeDelta;
+                while( timeAtT > timeAtQ ) {
+                    qix_former = qix;
+                    timeAtQ_former = timeAtQ;
+                    if( qix >= FORCE_ARRAY_LEN ) break;
+                    qix++;
+                    timeAtQ = qix2orb[qix].timeAtQ;
+                }
+                tix2orbit[tix] = {
+                     timeAtT,
+                     qix:qix_former,
+                     timeAtQ:timeAtQ_former,
+                     timeReminder:
+                        Math.max( //prevents floating poit errors
+                            0,timeAtT - timeAtQ_former )
+                };
+                qix = qix_former+1;
+                if( qix > FORCE_ARRAY_LEN ) {
+                    qix = FORCE_ARRAY_LEN;
+                }
+                timeAtQ = qix2orb[qix].timeAtQ;
+            }
         }
-        stdMod.graphArray = forceGraphArray;
+        //------------------------------------------
+        // \\// distributing values in time arrays
+        //------------------------------------------
+
+        {
+            //ccc( 'timeRange='+timeRange.toFixed(3) + ' qRange='+qRange.toFixed(3) );
+            for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ) {
+                let bP = qix2orb[ qix ]; //body point data
+                let bT = bP.timeAtQ; //body time
+                let rr = bP.rr; //abs
+                let r2 = bP.r2; //rel
+
+                let plusT = ( timeRange + bT + ssD.sForSagitta_valT ) % timeRange;                
+                let tix = Math.floor( plusT/timeDelta );
+                let plusT_reminder = plusT - tix*timeDelta;
+                let pulsQ = ( 
+                        tix2orbit[tix].qix + tix2orbit[tix].timeReminder + //=q at tix
+                        plusT_reminder/timeDelta ) * deltaQ; //remainder's fraction
+
+                //saves data for model-upcreate;
+                bP.pulsQ = pulsQ;
+                bP.sagittaDq = (pulsQ - bP.q + qRange )%qRange;
+
+                let rrplus = q2xy( pulsQ );
+                
+                let minusT = ( timeRange + bT - ssD.sForSagitta_valT ) % timeRange;                
+                tix = Math.floor( minusT/timeDelta );
+                let minusT_reminder = plusT - tix*timeDelta;
+                let minusQ = (
+                    tix2orbit[tix].qix + tix2orbit[tix].timeReminder + //=q at tix
+                    minusT_reminder/timeDelta ) * deltaQ; 
+                //saves data for model-upcreate;
+                bP.minusQ = minusQ;
+                let rrminus = q2xy( minusQ );
+
+                var sagitta0 = rrplus[0]+rrminus[0]-2*rr[0];
+                var sagitta1 = rrplus[1]+rrminus[1]-2*rr[1];
+                var sagitta2 = Math.sqrt( sagitta0*sagitta0+sagitta1*sagitta1 );
+                var estimatedForce = sagitta2;
+                bP.sagitta = sagitta2 * 0.5;
+
+                //--------------------------------------------
+                // //\\ estimated force
+                //      this is all wrong: it is static, but must be not:
+                //--------------------------------------------
+                //var QTPivots = haz( rg.QT, 'pivots' );
+                //var QT2 = QTPivots ? mat.p1_to_p2( QTPivots[0].pos, QTPivots[1].pos ).v2 : 1;
+                //var QRPivots = haz( rg.QR, 'pivots' );
+                //var QR = QRPivots ? mat.p1_to_p2( QRPivots[0].pos, QRPivots[1].pos ).abs : 1;
+                //var estimatedForce = QR/(QT2*r2);
+                //--------------------------------------------
+                // \\// estimated force
+                //--------------------------------------------
+
+                var unitlessForce = -1/r2;
+                var forceSafe = Math.abs( unitlessForce );
+                var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
+                                    1e+150 : 1/staticSectorialSpeed_rrrOnUU;
+                sectSpeedSafe = Math.abs( sectSpeedSafe );
+
+                //-----------------------------------------------------------
+                // //\\ builds coefficients at maximum |force|
+                //-----------------------------------------------------------
+                if( qix === 0 ) {
+                    var forceMax        = forceSafe;
+                    var estimatedForceMax = estimatedForce;
+                    var speedMax = sectSpeedSafe;
+                }
+                if( forceMax < forceSafe ) {
+                    var forceMax = forceSafe;
+                }
+                if( estimatedForceMax < estimatedForce ) {
+                    var estimatedForceMax = estimatedForce;
+                }
+                if( speedMax < sectSpeedSafe ) {
+                    var speedMax = sectSpeedSafe;
+                }
+                //-----------------------------------------------------------
+                // \\// builds coefficients at maximum |force|
+                //-----------------------------------------------------------
+
+                graphArray[ qix ] = {
+                    x : bP.r,
+                    y : [
+                            bonus ? unitlessForce : forceSafe,
+                            estimatedForce,
+                            //=vt=tangent speed
+                            //sectSpeedSafe,
+                    ],
+                };
+            }
+            //c cc( 'tix2orbit',tix2orbit );
+            //c cc( 'qix2orb',qix2orb );
+        }
+        var arrLen = graphArray.length;
+        stdMod.graphArray = [];
+        for (var qix = 0; qix<arrLen; qix++ )
+        {
+            var qo = graphArray[ qix ];
+            qo.y[0] = qo.y[0] / forceMax;
+            qo.y[1] = qo.y[1] / estimatedForceMax; //will be: estimatedMax;
+            //qo.y[2] = qo.y[2] / speedMax;
+        }
+        stdMod.graphArray = graphArray;
+        //ccc( "graphArray",graphArray )
     }
 
 

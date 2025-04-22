@@ -34,12 +34,12 @@
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-                sDomF.getFixedColor( 'sagitta' ), //sagitta
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'sagitta' ),
                 sDomF.getFixedColor( 'context' ),
                 sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'estimatedForce' ), //estimatedForce
-                sDomF.getFixedColor( 'proof' ), //comp law5
+                sDomF.getFixedColor( 'estimatedForce' ),
+                sDomF.getFixedColor( 'proof' ),
             ];
             return colorThreadArray;
         }
@@ -87,7 +87,7 @@
                 {
                     //"hover-width" decreases gigantict bold
                     //together, tobold hover-width and tostroke can be redundant
-                    text    :   '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Force</tspan></text>',
@@ -104,13 +104,15 @@
                     text    : addendum ?
                                 //'Forces f, -1/r² their max.'
                                 
-                                '<text><tspan>Forces </tspan><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                                '<text><tspan>Forces </tspan>' +
+                                '<tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>f </tspan>' +
                                 '<tspan>, </tspan>' +
                                 
-                                '<tspan class="tp-estimated_force tofill tostroke tobold hover-width"' +
+                                '<tspan class="tp-estimated_force tofill' +
+                                'tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:'+
                                                 n2c( 'estimatedForce' ) + ';"' +
@@ -125,13 +127,16 @@
                                 :   // Actual and Estimated forces
                                 
                                 
-                                '<text><tspan class="tp-force tofill tostroke tobold hover-width"' +
+                                '<text><tspan class="tp-force tofill ' +
+                                'tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                ' style="fill:'+n2c( 'force' ) +
+                                '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tostroke tobold hover-width"' +
+                                '<tspan class="tp-_p_-sagitta tofill' +
+                                'tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+
                                                 n2c( 'sagitta' ) + ';"' +

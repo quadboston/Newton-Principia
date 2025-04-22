@@ -153,7 +153,8 @@
                 curveIx = curveIx + delta_curveIx;
                 // \\//  we project INCREMENTAL move
                 
-                curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
+                curveIx = (curveIx+ssD.curveSTEPS*2)%ssD.curveSTEPS;
+                //Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
                 let stashed_curvePP = ssD.curve[ curveIx ];
                 
                 ///validates
@@ -202,6 +203,34 @@
         //=========================================================================
         // \\// point S slider
         //=========================================================================
+
+        
+        
+        
+        //=========================================================================
+        // //\\ point Rcol2 slider
+        //=========================================================================
+        {
+            rg.Rcol2.dragPriority  = 30;
+            rg.Rcol2.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
+            rg.Rcol2.processOwnDownEvent = () => {
+                if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
+                    ssD.SdragInitiated = true;
+                }
+            };
+            rg.Rcol2.processOwnUpEvent = () => { ssD.SdragInitiated = false; };
+            //rg.Rcol2.processOwnUpEvent = () => {};
+            rg.Rcol2.acceptPos = newPos => {
+                //does this for decorational purposes
+                stdMod.curveIsSolvable();
+                //this permits an orbitrary move
+                return true;
+            }
+        }
+        //=========================================================================
+        // \\// point Rcol2 slider
+        //=========================================================================
+        
     }
 
 

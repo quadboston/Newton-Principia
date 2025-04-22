@@ -140,8 +140,13 @@
 
             var distLim = haz( dragPoint, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
             if( td <= distLim ) {
-                if( !closestDragWrap || closestTd > td ||
-                    (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
+                let dpp = dragPoint.dragPriority;
+                if( !closestDragWrap ||
+                    (
+                        ( dpp > closestDragPriority ) ||
+                        ( dpp === closestDragPriority && closestTd > td ) 
+                    )
+                ){
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;

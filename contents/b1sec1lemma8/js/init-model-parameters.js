@@ -53,6 +53,7 @@
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'B';
         }; 
+        rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',

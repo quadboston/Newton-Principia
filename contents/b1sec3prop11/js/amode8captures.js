@@ -21,26 +21,6 @@
     {
         nspaste( capture,
         {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
         });
     }
 
@@ -53,7 +33,7 @@
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-        toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
+        //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
 
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
@@ -64,7 +44,7 @@
             rg.SS.pos[1] = 0;
         }
 
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
+        nspaste( rg.P.pos, rg.q2pos.t2xy( sconf.parQ ));
         //gets angle of P
         stdMod.correctsPos8angle2angle( 'P', rg.P.pos );
 
