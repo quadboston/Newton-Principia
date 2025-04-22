@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, mat, userOptions,
-        fconf, sData,
+        fconf, sData, ssD,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -58,34 +58,23 @@
             var newPos0 = dragMove[0] + sData.Qpos0;
             var newPos1 = -dragMove[1] + sData.Qpos1;
 
-            //------------------------------------------------------------------
-            // //\\ to separate dragging pivots and moving body,
-            //      prevents moving body come too close to pivots
-            //------------------------------------------------------------------
-            //this is main parameter which updates math-model,
-            //this is a time interval to build a chord for suggitae,
-            var sForSagitta_val = Math.max(
-                sconf.REPELLING_DISTANCE,
-                stdMod.pos2t( [newPos0,newPos1] ) - stdMod.pos2t( rg.P.pos )
-            );
-            /*
-            if( Math.abs(mat.atan2PI( newPos ) - rg.P.angle) >
-                1.5*Math.PI ) return false;
-            rg.Q.pos[0] = newPos[0];
-            rg.Q.pos[1] = newPos[1];
-            stdMod.model8media_upcreate();
-            */
-            if( sForSagitta_val > Math.PI/3 ) return false;
-            rg.sForSagitta.val = sForSagitta_val;
-            newPos[0] = newPos0;
-            newPos[1] = newPos1;
-            //------------------------------------------------------------------
-            // \\// to separate dragging pivots and moving body,
-            //------------------------------------------------------------------
-
+            let sForSagitta_valT = ssD.sForSagitta_valT;
+            stdMod.correctsPos8angle2angle( 'Q', newPos );
+            {
+                let tR = ssD.timeRange;
+                let tP = ssD.qix2orb[ rg.P.qix ].timeAtQ;
+                let tQ = ssD.qix2orb[ rg.Q.qix ].timeAtQ;
+                ssD.sForSagitta_valT = ( tR + tQ - tP ) % tR;
+                //recalculates dQ attached to orbit points,
+                //todm for now, does redundant job of rebuilding grids
+                stdMod.buildsforceGraphArray();
+            }
+            if( ssD.sForSagitta_valT > ssD.timeRange*0.33 ) {
+                ssD.sForSagitta_valT = sForSagitta_valT;
+            }
             //lets validators to do the job
             stdMod.model8media_upcreate();
-            return false;
+            //"return false skips d8d engine"
         }
         //=====================================================================
         // \\// point Q slider
@@ -127,7 +116,7 @@
                         sconf.eccentricity = Math.sqrt( 1 - lambda2 );
                     }
                 }
-                stdMod.correctsPos8angle2angle( 'P', null, rg.P.angle );
+                stdMod.correctsPos8angle2angle( 'P', null, rg.P.parQ );
                 return true;
             }
         }

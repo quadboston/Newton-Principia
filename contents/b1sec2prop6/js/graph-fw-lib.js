@@ -38,7 +38,7 @@
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
+                sDomF.getFixedColor( 'force' ),
                 sDomF.getFixedColor( 'estimatedForce' ), //sagitta
                 sDomF.getFixedColor( 'context' ),
                 sDomF.getFixedColor( 'body' ),

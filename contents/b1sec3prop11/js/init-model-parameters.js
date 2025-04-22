@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, nssvg, mcurve, integral, mat,
+        ns, sn, $$, nspaste, nsmethods, nssvg, mcurve, integral, mat,
         fconf, ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -10,17 +10,6 @@
         },
     });
     return;
-
-
-
-
-
-
-
-
-
-
-
 
 
     ///****************************************************
@@ -45,11 +34,25 @@
         // \\// model parameters,
         //=================================================
 
-        toreg( 'approximated-curve' );
+        toreg( 'q2pos' );
+        toreg( 'sForSagitta' ),
+
         stdMod.creates_orbitRack();
+        ssD.sForSagitta_valT = sconf.sForSagitta_valT;
+        stdMod.buildsforceGraphArray();
+
+        var deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
+        rg.P.qix = Math.floor( sconf.parQ / deltaQ );
+        rg.P.parQ = rg.P.qix * deltaQ;
+        nspaste( rg.P.pos, rg.q2pos.t2xy( rg.P.parQ ));
+        var diff = ssD.qix2orb[ rg.P.qix ];
+        rg.sForSagitta.val = diff.sagittaDq;
+        ccc( 'init, sag_dq=' + rg.sForSagitta.val +
+             ' P.qix=' + rg.P.qix +
+             ' P.parQ=' + rg.P.parQ );
 
         //var t =  stdMod.pos2t( rt.P.pos );
-        //var newP = rg[ 'approximated-curve' ].t2xy( t );
+        //var newP = rg.q2pos.t2xy( t );
 
         stdMod.completesSlidersCreation();
 

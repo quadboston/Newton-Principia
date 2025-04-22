@@ -1,10 +1,12 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors } =
+    var { ns, fconf, sconf, fixedColors, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     function init_conf()
     {
+        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
+
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -301,6 +303,10 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,
+                // this adds animation and allows dragging along x
+                draggableX  : sconf.BONUS? false : true,
+                draggableY  : false,
+
             },
             DLeft : {
                 letterAngle : 90,
