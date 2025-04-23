@@ -7,7 +7,6 @@
         stdModExportList :
         {
             model_upcreate,
-            correctsPos8angle2angle,
         },
     });
     return;
@@ -19,20 +18,17 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.buildsforceGraphArray();
+        stdMod.buildsSagitta();
         
-        const q2xy = rg.q2pos.t2xy;
+        const q2xy = stdMod.q2xy;
 
-        var parQ = rg.P.parQ; //  stdMod.pos2t( rr0 );
+        var parQ = rg.P.parQ;
         var qixP = Math.floor(parQ/sconf.curveQRange*sconf.FORCE_ARRAY_LEN);
         var Porb = ssD.qix2orb[ qixP ];
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-        
-        rg.sForSagitta.val = Porb.sagittaDq;
-        //ccc( 'model, sag_dq=' + rg.sForSagitta.val + ' qixP=' + qixP );
         var Qpos = q2xy( Porb.pulsQ );
         var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
@@ -237,28 +233,6 @@
         //=============================================================
         // \\// for prop. 11
         //=============================================================
-
-    }
-
-    
-    ///corrects approximate mouse point to exact point on the circle
-    function correctsPos8angle2angle( pname, newPos, angle ){
-        let rgX = rg[pname];
-        let pos = rgX.pos;
-        if( typeof angle === 'undefined' ){
-            angle = stdMod.pos2t( newPos );
-        }
-        if( angle < Math.PI*0.01 || angle > sconf.curveParFiMax ){
-            angle = ( angle + sconf.curveParFiMax ) % sconf.curveParFiMax;
-        }
-
-        let qix = Math.floor( angle/sconf.deltaQ );
-        rgX.qix = qix;
-        rgX.parQ = qix * sconf.deltaQ;
-        var newP = ssD.qix2orb[ qix ].rr; //rg.q2pos.t2xy( angle );
-        pos[0] = newP[0];
-        pos[1] = newP[1];
-        return pos;
     }
 }) ();
 

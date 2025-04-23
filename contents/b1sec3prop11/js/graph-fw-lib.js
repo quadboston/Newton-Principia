@@ -19,10 +19,6 @@
     return;
 
 
-
-
-
-
     function doSetColorThreadArray()
     {
         //===========================================
@@ -61,7 +57,6 @@
         sData.graph_dimY = 580;   //innerHeight
     }
 
-
     function setsGraphAxes()
     {
         //==================================================
@@ -86,7 +81,6 @@
                             'fill'   : yColor,
                 },
             },
-
             {
                 text    : 'Force f and estimated formce per their maximums.',
                 x       : 250,
@@ -101,7 +95,6 @@
         ];
         var axisXLegend =
         [
-
             {
                     text    : 'Distance, r',
                 x       : -700,
@@ -126,19 +119,16 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 
-
-
     function plotLabels_2_plotsPars( colorThreadArray )
     {
-
         ///make sure, the number of plot labels is equal to plot functions y(x)
         return [
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'f=1/r²',
-                fontShiftX : 0,
-                fontShiftY : 15,
+                pcaption : '1/r²',
+                fontShiftX : -222,
+                fontShiftY : 0,
                 style : {
                     'font-size' : '40px',
                     'stroke'  : colorThreadArray[0],
@@ -152,8 +142,8 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'estimated force',
-                fontShiftX : 25,
+                pcaption : 'sagitta',
+                fontShiftX : -33,
                 fontShiftY : 15,
                 style : {
                     'font-size' : '40px',
@@ -161,6 +151,7 @@
                 },
             },
             /*
+            ///optional
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
@@ -176,16 +167,12 @@
         ];
     }
 
-
-
     function setsGraphTpClasses()
     {
         $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
         $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
         //$$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
     }
-
-
 
     function doDrawToolline()
     {
@@ -194,11 +181,11 @@
                 stroke : sData.colorThreadArray[2],
                 'stroke-width' : 3,
             },
-            abscissaIxValue : stdMod.pos2qix(),
+            abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
+                              /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
             numberMarks : true, 
         };
     }
-
 
     function graphAxisX( xColor )
     {
@@ -213,7 +200,6 @@
         };
     }
 
-
     function graphAxisY( yColor )
     {
         return {
@@ -226,6 +212,5 @@
            'stroke-width'   : '1',
         };
     }
-
 }) ();
 

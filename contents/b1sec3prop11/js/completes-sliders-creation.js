@@ -13,17 +13,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
     ///****************************************************
     ///****************************************************
     function completesSlidersCreation()
@@ -58,19 +47,22 @@
             var newPos0 = dragMove[0] + sData.Qpos0;
             var newPos1 = -dragMove[1] + sData.Qpos1;
 
-            let sForSagitta_valT = ssD.sForSagitta_valT;
+            let saggitaDt = ssD.saggitaDt;
             stdMod.correctsPos8angle2angle( 'Q', newPos );
             {
                 let tR = ssD.timeRange;
                 let tP = ssD.qix2orb[ rg.P.qix ].timeAtQ;
                 let tQ = ssD.qix2orb[ rg.Q.qix ].timeAtQ;
-                ssD.sForSagitta_valT = ( tR + tQ - tP ) % tR;
+                let saggitaDt_new = ( tR + tQ - tP ) % tR; 
+                if( saggitaDt_new > ssD.timeRange*sconf.DT_FRACTION_OF_T_RANGE_MAX ) {
+                    saggitaDt_new = saggitaDt;
+                } else if( saggitaDt_new < sconf.DT_MIN ) {
+                    saggitaDt_new = sconf.DT_MIN;
+                }
+                ssD.saggitaDt = saggitaDt_new;
                 //recalculates dQ attached to orbit points,
                 //todm for now, does redundant job of rebuilding grids
-                stdMod.buildsforceGraphArray();
-            }
-            if( ssD.sForSagitta_valT > ssD.timeRange*0.33 ) {
-                ssD.sForSagitta_valT = sForSagitta_valT;
+                stdMod.buildsSagitta();
             }
             //lets validators to do the job
             stdMod.model8media_upcreate();
@@ -114,9 +106,16 @@
                         let lambda2 = sconf.ellipseB/sconf.ellipseA;
                         lambda2 *= lambda2;
                         sconf.eccentricity = Math.sqrt( 1 - lambda2 );
+                        stdMod.recreates_q2xy();
+                        stdMod.recreatesPosCorrector();
                     }
                 }
                 stdMod.correctsPos8angle2angle( 'P', null, rg.P.parQ );
+
+                rg.S.pos[0] = newPos[0];
+                rg.S.pos[1] = newPos[1];
+                stdMod.buildsOrbit();
+
                 return true;
             }
         }
