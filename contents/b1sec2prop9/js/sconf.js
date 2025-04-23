@@ -1,22 +1,10 @@
 
 ( function() {
-    var { //import from apptree
-        ns,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, fconf, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
-
-
-
-
-
-
-
-
+    
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
@@ -130,14 +118,19 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var curvature  = [200,   40,  200, 1];
-        var body    = [0,     150,  200,   1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
+        const {
+            given,
+            orbit,
+            body,
+            proof,
+            force,
+            result,
+            hidden,
+            curvature,
+            context,
+        } = fixedColors;
+
+
         var predefinedTopics =
         {
             given,
@@ -148,8 +141,8 @@
             curvature,
             curvatureCircle : curvature,
             body,
-            orbit   : given,
-            force   : result,
+            orbit,
+            force,
         };
         //-----------------------------------
         // \\// topic group colors,
