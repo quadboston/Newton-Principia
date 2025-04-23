@@ -117,6 +117,7 @@
         // //\\ paints magnified curve
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
+        if(magnitude > 100) magnitude = rg.magnitude.value = 100; // prevents Acb from going above Ad
         //misleading notation: this is not ..._b, this is ..._B
         rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
         ssF.paintsCurve({

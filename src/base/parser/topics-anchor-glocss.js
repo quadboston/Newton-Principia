@@ -12,16 +12,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
     ///Input:   domEl - anchors are collected in scope of this element
     function topics_anchor_css( domEl )
     {
