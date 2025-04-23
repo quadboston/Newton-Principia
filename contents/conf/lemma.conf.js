@@ -1,9 +1,7 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var {
-        fapp, sconf, userOptions, fixedColors,
-    } = window.b$l.apptree({
-    });
+    var { fapp, sconf, userOptions, fixedColors, } = 
+        window.b$l.apptree({});
 
     fapp.doesConfigLemma = doesConfigLemma;
     //MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD is in fconf
@@ -27,28 +25,38 @@
         //      historically named as fixedColors
         //=======================================
         {
+            //The color constants could be further improved.  Some draft notes are below
+            //which may not all be up to date.
+
+
             //usually as a condition of a claim,
             //condition of the theorem,
             //given parameters of the claim or proof
-            var given = [0, 150, 0, 1];
+            var given = [0, 150, 0];
 
             //relates to moving body, to an orbit
-            var body      = [0,     150, 0, 1];
-            
+            var body      = [0,     150, 0];
             var orbit     = body;
+            var orbitareaSample  = [0, 150, 0,  0.05];  //P12 (This model shares code with many other propositions)
+            var orbitarea = [0, 150, 0,  0.1, 0.5];     //P14 (in P12 sconf)  Why do orbitarea and orbitarea2 share the same name but have different low opacity values?
+            var orbitareaHiddenStart = [0, 150, 0,  0.001, 0.5];   //P12
+            var instanttriangle  = [0, 150, 200, 0.2, 0.5 ];//P14 (in P12 sconf)  Why do instanttriangle and instanttriangle2 share the same name but have different low opacity values?
+            var instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ];  //P12
             var time      = [0,     150,  200];
+            var dtime     = time;
             var distance  = [60, 20, 0];
             
             //logical steps of the proof, auxilary constructs
             //of a proof
             var proof     = [0,     0,   255];
+            var proofHidden = [0, 0,   255,   0.05];        //P17 (in P12 sconf)
             var result    = [100,   0,  0];
 
             ///addendum has different color concepts
             if( userOptions.showingBonusFeatures() ) {
                 ////swaps colors
                 var force = [250, 0, 0];
-                var invalid = [0, 0, 0, 1];;
+                var invalid = [0, 0, 0];
             } else {
                 //alert, invalid user actions
                 var invalid   = [250,  0,  0];
@@ -59,19 +67,206 @@
             //neutral elements
             var shadow    = [50,  50,  50];
             var hidden    = [0, 0, 0, 0];
+
+
+            var estimatedForce = [200,0,200];
+            var sagitta = estimatedForce;
+            var curvature  = [200,   40,  200];
+            var context = [0, 0, 0];
+            var chord = [0, 0, 255];
+            var attention = [200,  200,  0];
+
+
+            //From L20, L21
+            //-May be able to combine with other color variables
+            var static              = [0,     200, 255];
+            var staticHalfOpacity   = [0, 200, 255, 0.5];
+            var core                = [255,   150, 0];
+            var coreHalfOpacity     = [255, 150, 0, 0.5];
+            var aux                 = [255,   0, 255];
+            var constructors        = [0,     0, 255];
+            var ellipse             = [0,   150, 0];
+
+
+            //From L2, L3
+            var difference = [150, 50, 0, 0, 0.64];
+            var base = [0,    150,  0];
+            var curve = [0,    150,  0];
+            var figure = [0,    150,  0];
+
+
+            //P1 (Shared with P2)
+            var freeMove = [0,150,0];
+            var forceMove = [150,50,0];
+            var diagram = [150,0,90];
+            var path = [0,0,150];
+            var sagittaeChords = [150, 0, 150];     //Could this be combined with sagitta and sagitta2?
+            var speed = [150,120,0]; 
+
+            var trianglePurpleTextAreaColor = path;//[0,0,150];
+            var triangleGreen = [0, 150,  0,  0.25, 0.64];
+
+            var perpendicular = [150, 80, 0];
+            var tangent = [0, 150, 0]; 
+
+            //P2
+            var areaDescriptionAccelerated = [255,  100, 0];    //The description of the areas triangle under the P2 proof tab
+
+
+            //P41
+            //The following could have better generic variable names
+            //special or derivative parameters
+            //Note that Fi for P12 is shadow (see its sconf.js ~line 635)
+            var fi        = [0,  0,  150,   0.1, 0.3];
+            var Fkernel   = [0,  0,  150];
+
+            //Maybe rename this to something about body with info about the opacities?
+            var Zgraph    = [...body];
+            Zgraph[3]     = 0.01;
+            Zgraph[4]     = 1;
+
+            //Maybe rename this to something about force with info about the opacities?
+            var vgraph    = [...force];
+            vgraph[3]      = 0.1;
+            vgraph[4]      = 1;
             
+
+            //-eg. area ABFD
+            //Maybe rename this to something about force with info about the opacities?
+            var VSarea    = [...force];
+            VSarea[3]     = 0.3;
+            VSarea[4]     = 0.7;
+
+
+            //Maybe rename this to something about time with info about the opacities?
+            var Tarea     = [...time];
+            Tarea[3]      = 0.01;
+            Tarea[4]      = 0.7;
+
+
+            //Not sure what this is.  Seems to be after "Drop point, A" in Elements under developer tools
+            //however I haven't seen it visually yet.
+            var vgpoint = [0,  150, 0, 0.01, 1]; //todm: last two pars have no effect
+
+
+            var XCY     = [0, 0, 150,  0.03,  0.5];
+
+            var D𝑐𝑥E    = [0, 0, 150,  0.01,  0.5];
+
+            
+            //TEMP Could name the following based on their color and opacity values (eg. starts hidden)?
+            //However many of the other variables describe what they do.  What name might describe these?
+            var D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
+            var VIC     = [110, 90, 0, 0.01, 0.5];
+            var ICK     = [110, 90, 0, 0.01, 0.5];
+
+            
+
+                
             Object.assign( fixedColors, {
                 given,
                 body,
                 orbit,
+                orbitareaSample,
+                orbitarea,
+                orbitareaHiddenStart,
+                instanttriangle,
+                instanttriangleHiddenStart,
                 time,
+                dtime,
                 distance,
                 proof,
+                proofHidden,
                 force,
                 invalid,
                 result,
                 shadow,
-                hidden
+                hidden,
+
+                estimatedForce,
+                sagitta,
+                curvature,
+                context,
+                chord,
+                attention,
+                
+                static,
+                staticHalfOpacity,
+                core,
+                coreHalfOpacity,
+                aux,
+                constructors,
+                ellipse,
+
+                given,
+                difference,
+                base,
+                curve,
+                figure,
+
+                //From L2, L3 may want to rename the following to remove hyphens
+                //Could create a few opacity constants as there are only a few unique ones below
+                "figure-area"               : [0,    150,  0, 0.32, 0.64],
+
+                "circumscribed-rectangles"  : [0,   80, 150, 0.32, 0.64],
+                "inscribed-rectangles"      : [150,  0, 150, 0.32, 0.64],
+
+                //Could modify the varaible name for the first one to describe that it's initially hidden?
+                "widest-rectangularL2"      : [0,  0, 150, 0.0, 0.49],
+                "widest-rectangularL3"      : [0,  0, 150, 0.28, 0.49],
+
+                
+                //Do the opacity values really need to be as follows or could they be the defaults?
+                //Doesn't other text use the defaults?  Would this situation be different?
+                "figure-area-txt"           : [0,    150,  0, 0.7, 1],
+                //Should the following variable names be longer? eg. circumscribed instead of circ?
+                //I believe this refers to circumscribed
+                "circ-txt"                  : [0,  80, 150, 0.7, 1],
+                //I believe this refers to inscribed
+                "insc-txt"                  : [150,  0, 150, 0.7, 1],
+                //Would this refer to widest-rectangular?
+                "widt-txt"                  : [0,  0, 150, 0.7, 1],
+
+
+
+                freeMove,
+                forceMove,
+                diagram,
+                path,
+                sagittaeChords,
+                speed,
+
+                trianglePurpleTextAreaColor,
+                triangleGreen,
+
+                perpendicular,
+                tangent,
+
+                areaDescriptionAccelerated,
+
+
+                //From P1 may want to rename the following to remove hyphens
+                "kepler-triangle-odd"   : [102,102,255, 0.35, 0.7],
+                "kepler-triangle-even"  : [153,153,255, 0.35, 0.7],
+
+
+                
+                fi,
+                Fkernel,
+                Zgraph,
+
+                vgraph,
+                VSarea,
+                
+                Tarea,
+
+                vgpoint,
+
+                XCY,
+                D𝑐𝑥E,
+                D𝑏𝑧E,
+                VIC,
+                ICK,
             });
         }
         //=======================================
