@@ -121,6 +121,9 @@
             "curve-Ab"      : proof, // todo: unused?
             "arc-Ab"        : proof, // this is the one rendered in proof
             "proofRatio"    : proof, //data table
+
+            //corollaries            
+            'BF-data' : given, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints =
@@ -244,7 +247,6 @@
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
                 'angleBAD'      : given,
-                'conterminousRatio' : proof,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

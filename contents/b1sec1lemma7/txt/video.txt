@@ -115,7 +115,7 @@ observes that had this
 ¦AD¦longer¦¦ tangent line, that the 
 ¦AE¦new tangent¦¦ line, along with its 
 ¦BG¦opposite side¦¦ in the parallelogram, would also ultimately have 
-¦conterminousRatio¦ratios¦¦ of equality with the 
+¦claimRatio¦ratios¦¦ of equality with the 
 ¦AB¦chord¦¦, 
 ¦arc-AB¦arc¦¦, the 
 ¦AD¦original tangent¦¦ line, and its 

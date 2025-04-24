@@ -204,8 +204,6 @@
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
                 'angleBAD'      : given,
-                'conterminousRatio' : proof,
-
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

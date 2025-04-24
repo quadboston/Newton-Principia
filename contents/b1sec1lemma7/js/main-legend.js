@@ -28,6 +28,7 @@
     ////
     ////    * class-attribute-of-td will be converted to class attribute of table's cell,
     ////    the "td-" will be prepend, <_> will be replaced with space
+    ////    this string is also used in txt links to specify mouseover styling
     ////
     //// Caution: '_' is replaced with ' ' in caption,
     ////**********************************************************************************
@@ -56,10 +57,10 @@
     // rows shown/hidden in media-upcreate.js, based on which cor is selected 
     lemma7Data.corollary = [
         //corollary 1
-        [[ 'BF', 'BF : ', 'rg.BF.abs' ], [ '', '', '' ]],
+        [[ 'BF-data', 'BF : ', 'rg.BF.abs' ], [ '', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
         [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB 
         [[ '', '', '' ], [ '', '', '' ]],
-        [[ 'BF', 'BF / arc ACB : ', getCor1Ratio() ], [ '', '', '' ]],
+        [[ 'claimRatio', 'BF / arc ACB : ', getCor1Ratio() ], [ '', '', '' ]],
 
         //corollary 2
         [lemma7Data.claim[1][0], [ '', '', '' ]], //AD
@@ -67,9 +68,9 @@
         [lemma7Data.claim[0][0], [ '', '', '' ]], //AB
         [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB
         [[ '', '', '' ], [ '', '', '' ]],
-        [[ 'AE', 'AE / AD : ', getLineRatio('AE', 'AD') ], [ '', '', '' ]],
-        [[ 'AB', 'AB / AD : ', getLineRatio('AB', 'AD') ], [ '', '', '' ]],
-        [[ 'AD', 'arc ACB / AD : ', getArcRatio('AB', 'AD') ], [ '', '', '' ]], 
+        [[ 'claimRatio', 'AE / AD : ', getLineRatio('AE', 'AD') ], [ '', '', '' ]],
+        [[ 'claimRatio', 'AB / AD : ', getLineRatio('AB', 'AD') ], [ '', '', '' ]],
+        [[ 'claimRatio', 'arc ACB / AD : ', getArcRatio('AB', 'AD') ], [ '', '', '' ]], 
         
         //corollary 3
         [lemma7Data.claim[0][0], [ '', '', '' ]],

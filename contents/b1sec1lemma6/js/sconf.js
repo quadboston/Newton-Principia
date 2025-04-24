@@ -172,7 +172,6 @@
                 "phi0"          : given,
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
-                'conterminousRatio' : proof,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

@@ -29,6 +29,7 @@
     ////
     ////    * class-attribute-of-td will be converted to class attribute of table's cell,
     ////    the "td-" will be prepend, <_> will be replaced with space
+    ////    this string is also used in txt links to specify mouseover styling
     ////
     //// Caution: '_' is replaced with ' ' in caption,
     ////**********************************************************************************
