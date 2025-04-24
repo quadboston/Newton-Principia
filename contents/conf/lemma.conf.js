@@ -20,258 +20,191 @@
         var SLIDERS_LEGEND_HEIGHT = 25*GENERIC_SLIDERS_COUNT+20;
         var SLIDERS_OFFSET_Y      = 0;
 
+
         //=======================================
         // //\\ topicGroupColors
         //      historically named as fixedColors
         //=======================================
-        {
-            //The color constants could be further improved.  Some draft notes are below
-            //which may not all be up to date.
+        
+        //The colors have been moved from each model to this file so they can be standardized.  Note
+        //that comments referencing specific models (eg. P12) may not be up to date, or include every 
+        //model where the color is used.  More improvements can be made to the colors, some 
+        //possibilities are below.
 
 
-            //usually as a condition of a claim,
-            //condition of the theorem,
-            //given parameters of the claim or proof
-            var given = [0, 150, 0];
+        //Variable Naming and Comments...
+        //-Variable names:
+        //  -Could be more descriptive.
+        //  -Renamed to remove hyphens (some already had them removed previously).
+        //  -Many include information about their opacity values.  Terms used such as "HiddenStart" are
+        //   vague, and variables that use "HiddenStart" have different opacity values.
 
-            //relates to moving body, to an orbit
-            var body      = [0,     150, 0];
-            var orbit     = body;
-            var orbitareaSample  = [0, 150, 0,  0.05];  //P12 (This model shares code with many other propositions)
-            var orbitarea = [0, 150, 0,  0.1, 0.5];     //P14 (in P12 sconf)  Why do orbitarea and orbitarea2 share the same name but have different low opacity values?
-            var orbitareaHiddenStart = [0, 150, 0,  0.001, 0.5];   //P12
-            var instanttriangle  = [0, 150, 200, 0.2, 0.5 ];//P14 (in P12 sconf)  Why do instanttriangle and instanttriangle2 share the same name but have different low opacity values?
-            var instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ];  //P12
-            var time      = [0,     150,  200];
-            var dtime     = time;
-            var distance  = [60, 20, 0];
-            
-            //logical steps of the proof, auxilary constructs
-            //of a proof
-            var proof     = [0,     0,   255];
-            var proofHidden = [0, 0,   255,   0.05];        //P17 (in P12 sconf)
-            var result    = [100,   0,  0];
-
-            ///addendum has different color concepts
-            if( userOptions.showingBonusFeatures() ) {
-                ////swaps colors
-                var force = [250, 0, 0];
-                var invalid = [0, 0, 0];
-            } else {
-                //alert, invalid user actions
-                var invalid   = [250,  0,  0];
-                //force, energy
-                var force     = [200,  150,  0];
-                //conclusion of the proof
-            }
-            //neutral elements
-            var shadow    = [50,  50,  50];
-            var hidden    = [0, 0, 0, 0];
+        //-Descriptive comments should be added, and may only be needed for variables where their 
+        // purpose isn't obvious.
 
 
-            var estimatedForce = [200,0,200];
-            var sagitta = estimatedForce;
-            var curvature  = [200,   40,  200];
-            var context = [0, 0, 0];
-            var chord = [0, 0, 255];
-            var attention = [200,  200,  0];
+        //Color Variable Constants...
+        //-Many color variables use the same color (eg. green [0, 150, 0]) but their r, g, b values 
+        // are set independently.  For consistency, especially for when changes are made in the future, 
+        // it would be much better to have a single variable for each color (eg. green, blue etc.) 
+        // that is referenced (eg. body = green).  They could be in the array format for now, then 
+        // converted to the CSS format later.
 
 
-            //From L20, L21
-            //-May be able to combine with other color variables
-            var static              = [0,     200, 255];
-            var staticHalfOpacity   = [0, 200, 255, 0.5];
-            var core                = [255,   150, 0];
-            var coreHalfOpacity     = [255, 150, 0, 0.5];
-            var aux                 = [255,   0, 255];
-            var constructors        = [0,     0, 255];
-            var ellipse             = [0,   150, 0];
+        //Opacity Variable Constants...
+        //-Some opacity values use the defaults while others override them.  It would be best to 
+        // have constants for these overriding opacity values to keep them consistent.  For example if 
+        // the non-highlighted opacity value is supposed to keep a decoration/shape hidden, any situation 
+        // where that’s the case should reference a variable (eg. opacityHidden or similar).
+
+        //-The non-highlighted opacity values (0.01 and 0.001) don't really look very different.  Since
+        // they are supposed to start hidden, an opacity value 0 would probably be better.
+
+        //-Some colors override the default opacity values, however given that they use values that are
+        // similar to the defaults, they may be able to use them instead.
 
 
-            //From L2, L3
-            var difference = [150, 50, 0, 0, 0.64];
-            var base = [0,    150,  0];
-            var curve = [0,    150,  0];
-            var figure = [0,    150,  0];
+        //Other Possible Improvements...
+        //-Note some variables (eg. P41 “XCY”, “D𝑐𝑥E”, “D𝑏𝑧E” etc.) should probably be moved back to their
+        // sconf.js file, once a more broad variable name is created for them.  They are currently here so 
+        // that all colors from all models in the global file can be compared, to determine the best way to
+        // group them.
 
-
-            //P1 (Shared with P2)
-            var freeMove = [0,150,0];
-            var forceMove = [150,50,0];
-            var diagram = [150,0,90];
-            var path = [0,0,150];
-            var sagittaeChords = [150, 0, 150];     //Could this be combined with sagitta and sagitta2?
-            var speed = [150,120,0]; 
-
-            var trianglePurpleTextAreaColor = path;//[0,0,150];
-            var triangleGreen = [0, 150,  0,  0.25, 0.64];
-
-            var perpendicular = [150, 80, 0];
-            var tangent = [0, 150, 0]; 
-
-            //P2
-            var areaDescriptionAccelerated = [255,  100, 0];    //The description of the areas triangle under the P2 proof tab
-
-
-            //P41
-            //The following could have better generic variable names
-            //special or derivative parameters
-            //Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-            var fi        = [0,  0,  150,   0.1, 0.3];
-            var Fkernel   = [0,  0,  150];
-
-            //Maybe rename this to something about body with info about the opacities?
-            var Zgraph    = [...body];
-            Zgraph[3]     = 0.01;
-            Zgraph[4]     = 1;
-
-            //Maybe rename this to something about force with info about the opacities?
-            var vgraph    = [...force];
-            vgraph[3]      = 0.1;
-            vgraph[4]      = 1;
-            
-
-            //-eg. area ABFD
-            //Maybe rename this to something about force with info about the opacities?
-            var VSarea    = [...force];
-            VSarea[3]     = 0.3;
-            VSarea[4]     = 0.7;
-
-
-            //Maybe rename this to something about time with info about the opacities?
-            var Tarea     = [...time];
-            Tarea[3]      = 0.01;
-            Tarea[4]      = 0.7;
-
-
-            //Not sure what this is.  Seems to be after "Drop point, A" in Elements under developer tools
-            //however I haven't seen it visually yet.
-            var vgpoint = [0,  150, 0, 0.01, 1]; //todm: last two pars have no effect
-
-
-            var XCY     = [0, 0, 150,  0.03,  0.5];
-
-            var D𝑐𝑥E    = [0, 0, 150,  0.01,  0.5];
-
-            
-            //TEMP Could name the following based on their color and opacity values (eg. starts hidden)?
-            //However many of the other variables describe what they do.  What name might describe these?
-            var D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
-            var VIC     = [110, 90, 0, 0.01, 0.5];
-            var ICK     = [110, 90, 0, 0.01, 0.5];
-
-            
-
-                
-            Object.assign( fixedColors, {
-                given,
-                body,
-                orbit,
-                orbitareaSample,
-                orbitarea,
-                orbitareaHiddenStart,
-                instanttriangle,
-                instanttriangleHiddenStart,
-                time,
-                dtime,
-                distance,
-                proof,
-                proofHidden,
-                force,
-                invalid,
-                result,
-                shadow,
-                hidden,
-
-                estimatedForce,
-                sagitta,
-                curvature,
-                context,
-                chord,
-                attention,
-                
-                static,
-                staticHalfOpacity,
-                core,
-                coreHalfOpacity,
-                aux,
-                constructors,
-                ellipse,
-
-                given,
-                difference,
-                base,
-                curve,
-                figure,
-
-                //From L2, L3 may want to rename the following to remove hyphens
-                //Could create a few opacity constants as there are only a few unique ones below
-                "figure-area"               : [0,    150,  0, 0.32, 0.64],
-
-                "circumscribed-rectangles"  : [0,   80, 150, 0.32, 0.64],
-                "inscribed-rectangles"      : [150,  0, 150, 0.32, 0.64],
-
-                //Could modify the varaible name for the first one to describe that it's initially hidden?
-                "widest-rectangularL2"      : [0,  0, 150, 0.0, 0.49],
-                "widest-rectangularL3"      : [0,  0, 150, 0.28, 0.49],
-
-                
-                //Do the opacity values really need to be as follows or could they be the defaults?
-                //Doesn't other text use the defaults?  Would this situation be different?
-                "figure-area-txt"           : [0,    150,  0, 0.7, 1],
-                //Should the following variable names be longer? eg. circumscribed instead of circ?
-                //I believe this refers to circumscribed
-                "circ-txt"                  : [0,  80, 150, 0.7, 1],
-                //I believe this refers to inscribed
-                "insc-txt"                  : [150,  0, 150, 0.7, 1],
-                //Would this refer to widest-rectangular?
-                "widt-txt"                  : [0,  0, 150, 0.7, 1],
+        //-Many more similar color variables could likely be combined together.
 
 
 
-                freeMove,
-                forceMove,
-                diagram,
-                path,
-                sagittaeChords,
-                speed,
+        //usually as a condition of a claim,
+        //condition of the theorem,
+        //given parameters of the claim or proof
+        fixedColors.given   = [0, 150, 0];
 
-                trianglePurpleTextAreaColor,
-                triangleGreen,
+        //relates to moving body, to an orbit
+        fixedColors.body    = [0, 150, 0];
+        fixedColors.orbit   = fixedColors.body;
+        
+        fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
+        fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
+        fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
+        fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
+        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ]; //P12
 
-                perpendicular,
-                tangent,
+        fixedColors.time      = [0, 150, 200];
+        fixedColors.dtime     = fixedColors.time;
+        fixedColors.distance  = [60, 20, 0];
+        
+        //logical steps of the proof, auxilary constructs
+        //of a proof
+        fixedColors.proof       = [0, 0, 255];
+        fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
+        fixedColors.result      = [100, 0, 0];
 
-                areaDescriptionAccelerated,
-
-
-                //From P1 may want to rename the following to remove hyphens
-                "kepler-triangle-odd"   : [102,102,255, 0.35, 0.7],
-                "kepler-triangle-even"  : [153,153,255, 0.35, 0.7],
-
-
-                
-                fi,
-                Fkernel,
-                Zgraph,
-
-                vgraph,
-                VSarea,
-                
-                Tarea,
-
-                vgpoint,
-
-                XCY,
-                D𝑐𝑥E,
-                D𝑏𝑧E,
-                VIC,
-                ICK,
-            });
+        ///addendum has different color concepts
+        if( userOptions.showingBonusFeatures() ) {
+            ////swaps colors
+            fixedColors.invalid = [0, 0, 0];
+            fixedColors.force   = [250, 0, 0];
+        } else {
+            //alert, invalid user actions
+            fixedColors.invalid = [250, 0, 0];
+            //force, energy
+            fixedColors.force   = [200, 150, 0];
+            //conclusion of the proof
         }
+        //neutral elements
+        fixedColors.shadow  = [50, 50, 50];
+        fixedColors.hidden  = [0, 0, 0, 0];
+
+
+        fixedColors.context = [0, 0, 0];
+
+        fixedColors.estimatedForce  = [200, 0, 200];
+        fixedColors.sagitta         = fixedColors.estimatedForce;
+        fixedColors.curvature       = [200, 40, 200];
+        fixedColors.chord           = [0, 0, 255];
+        fixedColors.attention       = [200, 200, 0];
+
+
+
+        //From L20, L21
+        fixedColors.static              = [0, 200, 255];
+        fixedColors.staticHalfOpacity   = [0, 200, 255, 0.5];
+        fixedColors.core                = [255, 150, 0];
+        fixedColors.coreHalfOpacity     = [255, 150, 0, 0.5];
+        fixedColors.aux                 = [255, 0, 255];
+        fixedColors.constructors        = [0, 0, 255];
+        fixedColors.ellipse             = [0, 150, 0];
+
+
+
+        //From L2, L3
+        fixedColors.difference  = [150, 50, 0, 0, 0.64];
+        fixedColors.base        = [0, 150, 0];
+        fixedColors.curve       = [0, 150, 0];
+        fixedColors.figure      = [0, 150, 0];
+
+        fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],
+        fixedColors["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
+
+        fixedColors["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
+        fixedColors["circ-txt"]                 = [0, 80, 150, 0.7, 1],
+
+        fixedColors["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
+        fixedColors["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+
+        fixedColors.widestRectangular           = [0, 0, 150, 0.28, 0.49],
+        fixedColors.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
+        fixedColors["widt-txt"]                 = [0, 0, 150, 0.7, 1],
+
+
+
+        //P1 (Shared with P2)
+        fixedColors.freeMove        = [0, 150, 0];
+        fixedColors.forceMove       = [150, 50, 0];
+        fixedColors.diagram         = [150, 0, 90];
+        fixedColors.path            = [0, 0, 150];
+        fixedColors.sagittaeChords  = fixedColors.sagitta;
+        fixedColors.speed           = [150, 120, 0]; 
+
+        fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
+        fixedColors["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
+        fixedColors["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
+        fixedColors.triangleGreen           = [0, 150, 0, 0.25, 0.64];
+
+        fixedColors.perpendicular   = [150, 80, 0];
+        fixedColors.tangent         = [0, 150, 0]; 
+
+        //P2
+        fixedColors.areaDescriptionAccelerated = [255, 100, 0]; //Description of areas triangle P2 proof tab
+
+
+
+        //P41
+        //Note that Fi for P12 is shadow (see its sconf.js ~line 635)
+        fixedColors.fi      = [0, 0, 150, 0.1, 0.3];
+        fixedColors.Fkernel = [0, 0, 150];
+
+        fixedColors.bodyHiddenStart         = [...fixedColors.body.slice(0,3), 0.01, 1];
+        fixedColors.forceTransparentStart   = [...fixedColors.force.slice(0,3), 0.1, 1];
+        fixedColors.VSarea                  = [...fixedColors.force.slice(0,3), 0.3, 0.7];
+        fixedColors.timeHiddenStart         = [...fixedColors.time.slice(0,3), 0.01, 0.7];
+
+        //Is vgpoint still needed?  Seems to be after "Drop point, A" in Elements under developer tools
+        //however may not be visible.
+        fixedColors.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
+
+        fixedColors.XCY     = [0, 0, 150, 0.03, 0.5];
+
+        fixedColors.D𝑐𝑥E    = [0, 0, 150, 0.01, 0.5];
+
+        fixedColors.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
+        fixedColors.VIC     = [110, 90, 0, 0.01, 0.5];
+        fixedColors.ICK     = [110, 90, 0, 0.01, 0.5];
+        
         //=======================================
         // \\// topicGroupColors
         //=======================================
+
         
         to_sconf =
         {
