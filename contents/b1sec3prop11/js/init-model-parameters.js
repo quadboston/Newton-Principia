@@ -33,6 +33,10 @@
         //=================================================
         // \\// model parameters,
         //=================================================
+
+
+        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({ digramParentDom$:stdMod.legendRoot$ });
+
         ssD.saggitaDt = sconf.saggitaDt;
 
         stdMod.recreates_q2xy();
@@ -84,7 +88,7 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        //stdMod.createsGraphFW( stdMod.legendRoot$ );
         //==================================================
         // \\// decoration graph 
         //==================================================

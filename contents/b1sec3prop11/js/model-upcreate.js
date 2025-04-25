@@ -122,8 +122,34 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        ///for initial launch only
-        stdMod.graphFW.drawGraph_wrap();
+        //stdMod.graphFW_lemma.graphArrayMask[1] =
+        //       ssD.solvable && !ssD.doMaskSagitta;
+               
+        {
+            let graphArg = {
+                //drawDecimalY : true,
+                //drawDecimalX : false,
+                //printAxisXDigits : bonus,
+                //printAxisYDigits : true,
+            }
+            /*
+            if( !bonus ) {
+                let ga = stdMod.graphFW_lemma.graphArray;
+                let len = ga.length;
+                let sumAbs = 0;
+                var yMax =0;
+                for( ix = 0; ix<len; ix++ ) {
+                    let yy = Math.abs( ga[ix].y[0] );
+                    sumAbs += yy;
+                    yMax = Math.max( yMax, yy );
+                }
+                let averageY = sumAbs/len;
+                graphArg.yMax = Math.max( yMax, averageY*1.5 );
+                graphArg.yMin = 0;
+            }
+            */
+            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+        }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------

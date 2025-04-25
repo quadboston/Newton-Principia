@@ -102,9 +102,22 @@
         //interval of t to construct an arc for Newton's sagitta
         var saggitaDt = 0.39;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+        
+        /*
+        //combination which is at the edge of accuracy:
+        //0.01 gives noticeable sagitta error
+        //0.02 does not give this error
+        //DATA_GRAPH_ARRAY_LEN is irrelevant
         sconf.DT_MIN = 0.01;
-        var FORCE_ARRAY_LEN = 2000;
-        var TIME_STEPS = 2000;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        //however 0.01 and 2000 eliminates the error, but
+        //for expense of twice large arrays,
+        */
+        
+        sconf.DT_MIN = 0.02;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
         var DATA_GRAPH_ARRAY_LEN = 200;
         {
             // gets ellipse parameters

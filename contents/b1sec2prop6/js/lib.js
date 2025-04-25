@@ -14,15 +14,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
     ///Returns: false if radius-vector is nearly parallel to
     ///         tangent in some point of the curve
     function curveIsSolvable()

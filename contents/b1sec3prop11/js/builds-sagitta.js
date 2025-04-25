@@ -11,7 +11,7 @@
     var graphArray = sn( 'graphArray', stdMod, [] );
     var tix2orbit = sn( 'tix2orbit', ssD, [] );
     var qix2orb = sn( 'qix2orb', ssD, [] );
-    const BONUS = userOptions.showingBonusFeatures() ? 1 : 0;
+    const BONUS = userOptions.showingBonusFeatures();
     return;
 
 
@@ -64,6 +64,27 @@
             var estimatedForce = sagitta2;
             bP.sagitta = sagitta2 * 0.5;
 
+            /*
+            ///this is a debug of non-completely clear issue
+            ///of large fluctuations of dq at small dt
+            ///it can be due of algo, or due code error
+            //sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+            //sconf.DT_MIN = 0.0001;
+            //var FORCE_ARRAY_LEN = 20;
+            //var TIME_STEPS = 20;
+            //var DATA_GRAPH_ARRAY_LEN = 200;
+            if( qix === 19 || qix === 15 ) { 
+                //ix || bP.sagittaDq < 0.1) {
+                ccc( 'qix='+qix+ ' pix='+plusQix + ' mix='+minusQix +
+                    //' plus: t at qix=' + plusTQix +
+                    ' sag='+estimatedForce.toFixed(5)
+                    );
+                ccc( ' pQ = '+ pulsQ.toFixed(5) + '= (atIX=)'+ plusP.q.toFixed(5) +
+                    '(qrem=)' + (plusT_reminder * plusP.dq_dt).toFixed(5) );
+                ccc( ' mQ = '+ minusQ.toFixed(5) + '=(atIX=)'+ minusP.q.toFixed(5) +
+                    '(qrem=)' + (minusT_reminder * minusP.dq_dt).toFixed(5) );
+            }
+            */
             //--------------------------------------------
             // //\\ estimated force
             //      by Newton's method,
@@ -81,7 +102,7 @@
 
 
             //-----------------------------------------------------------
-            // //\\ builds coefficients at maximum |force|
+            // //\\ calculates maximum force
             //-----------------------------------------------------------
             if( qix === 0 ) {
                 var estimatedForceMax = estimatedForce;
@@ -89,22 +110,26 @@
             if( estimatedForceMax < estimatedForce ) {
                 var estimatedForceMax = estimatedForce;
             }
+            bP.estimatedForce = estimatedForce;
             //-----------------------------------------------------------
-            // \\// builds coefficients at maximum |force|
+            // \\// calculates maximum force
             //-----------------------------------------------------------
 
             //-----------------------------------------------------------
-            // //\\ builds coefficients at maximum |force|
+            // //\\ calculates maximum speed
             //-----------------------------------------------------------
             if( qix === 0 ) {
                 var speedMax = bP.ds_dt;
             }
             speedMax = Math.max( speedMax, bP.ds_dt );
             //-----------------------------------------------------------
-            // \\// builds coefficients at maximum |force|
+            // \\// calculates maximum speed
             //-----------------------------------------------------------
-            bP.estimatedForce = estimatedForce;
         }
+        //stdMod.graphFW_lemma.forceMax = forceMax;
+        ///resets forceGraphArray
+        stdMod.graphFW_lemma.graphArray = graphArray;
+        
         var arrLen = graphArray.length;
         for (var gix = 0; gix<arrLen; gix++ )
         {

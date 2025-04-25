@@ -1,11 +1,22 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, haz, globalCss,
+        sn, $$, nsmethods, haz, globalCss, userOptions,
         ssD, sDomN, sDomF, sData,
         stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
         {
+            createsGraph_FW_lemma,
+        },
+    });
+    return;
+
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
+        const BONUS = userOptions.showingBonusFeatures();
+        stdMod.createsGraphFW_class({
+            graphFW,
+            digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
@@ -14,203 +25,209 @@
             doDrawToolline,
             graphAxisX,
             graphAxisY,
-        },
-    });
-    return;
+            setsGraphTpClasses,
+        });
+        //first array mast be enabled
+        graphFW.graphArrayMask = BONUS ?
+            [ 'force', 'sagitta', 'body' ] :
+            [ 'force', 'sagitta', ];
+        return graphFW;
 
 
-    function doSetColorThreadArray()
-    {
-        //===========================================
-        // //\\ prepares color ThreadArray
-        //===========================================
-        sData.colorThreadArray = [
-            sDomF.getFixedColor( 'force' ),
-            sDomF.getFixedColor( 'force' ),
-            //sDomF.getFixedColor( 'body' ),
-        ];
-        return sData.colorThreadArray;
-        //===========================================
-        // \\// prepares color ThreadArray
-        //===========================================
-    }
+        function doSetColorThreadArray()
+        {
+            let colorThreadArray = [
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'estimatedForce' ),
+                //sDomF.getFixedColor( 'speed' ),
+            ];
+            return colorThreadArray;
+        }
 
 
-    function setsGraphContainerAttributes( digramParentDom$ )
-    {
-        stdMod.graphFW.container$ = $$.div()
-            .addClass( 'chem-equiibr-graph-container' )
-            .to( $$.div().to( digramParentDom$ )
-                    .addClass( 'lost-diagram-parent' )
-                    //.css( 'position', 'absolute' )
+        function setsGraphContainerAttributes( digramParentDom$ )
+        {
+                container$ = $$.div()
+                .addClass( 'chem-equiibr-graph-container' )
+                .to( $$.div().to( digramParentDom$ )
+                        .addClass( 'lost-diagram-parent' )
+                        //.css( 'position', 'absolute' )
 
-                    //:this data sets outer dimensions of the graph
-                    .css( 'width', '400px' )
-                    .css( 'height', '230px' )
-                    .css( 'top', '0' )
-                    .css( 'left', '0' )
-                    .css( 'z-index', '111111' )
-            )
-            ;
-        ///creates low tire api
-        sData.graph_dimX = 1000;  //innerWidth
-        sData.graph_dimY = 580;   //innerHeight
-    }
+                        //:this data sets outer dimensions of the graph
+                        .css( 'width', '400px' )
+                        .css( 'height', '230px' )
+                        .css( 'top', '0' )
+                        .css( 'left', '0' )
+                        .css( 'z-index', '111111' )
+                )
+                ;
+            ///creates low tire api
+                graph_dimX = 1000;  //innerWidth
+                graph_dimY = 580;   //innerHeight
+                return {container$, graph_dimX, graph_dimY}
+        }
 
-    function setsGraphAxes()
-    {
-        //==================================================
-        // //\\ calls api
-        //==================================================
-        //y-legend color; taken from first plot color:
-        var yColor      = sData.colorThreadArray[ 0 ]; //equilibConst;
+        function setsGraphAxes()
+        {
+                let n2c = sDomF.getFixedColor; //name to color
+                
+            //==================================================
+            // //\\ calls api
+            //==================================================
+            //y-legend color; taken from first plot color:
+                var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
-        //axis x and legend x color:
-        //manually picked color, not from plot,
-        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
-
-        var axisYLegend =
-        [
-            {
-                text    : 'Force',
-                x       : 40,
-                y       : 25,
-                style   : {
-                            'font-size' : 28 + 'px',
-                            'stroke' : yColor,
-                            'fill'   : yColor,
+            //axis x and legend x color:
+            //manually picked color, not from plot,
+                var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
+                //                'rgba(56,132,79,1)';
+            var axisYLegend =
+            [
+                {
+                    text    : 'Force',
+                    x       : 40,
+                    y       : 25,
+                    style   : {
+                                'font-size' : 28 + 'px',
+                                'stroke' : yColor,
+                                'fill'   : yColor,
+                    },
                 },
-            },
-            {
-                text    : 'Force f and estimated formce per their maximums.',
-                x       : 250,
-                y       : 40,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : 'black',
-                            'fill'   : 'black',
+                {
+                    text    : 'Force f and estimated formce per their maximums.',
+                    x       : 250,
+                    y       : 40,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : 'black',
+                                'fill'   : 'black',
+                    },
                 },
-            },
 
-        ];
-        var axisXLegend =
-        [
-            {
-                    text    : 'Distance, r',
-                x       : -700,
-                y       : 25,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : xColor,
-                            'fill' : xColor,
+            ];
+            var axisXLegend =
+            [
+                {
+                        text    :  BONUS ?
+                                        'Distance from force center, r' : 'Distance along arc', 
+                        x       : BONUS ? -700 : -520,
+                    y       : 25,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
                 },
-            },
-            {
-                text    : '',
-                x       : 50,
-                y       : -20,
-                style   : {
-                            'font-size' : '23',
-                            'stroke' : xColor,
-                            'fill' : xColor,
+                {
+                    text    : '',
+                    x       : 50,
+                    y       : -20,
+                    style   : {
+                                'font-size' : '23',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
                 },
-            },
-        ];
-        return { yColor, xColor, axisYLegend, axisXLegend, };
-    }
+            ];
+            return { yColor, xColor, axisYLegend, axisXLegend, };
+        }
 
-    function plotLabels_2_plotsPars( colorThreadArray )
-    {
-        ///make sure, the number of plot labels is equal to plot functions y(x)
-        return [
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
-                fontShiftX : -222,
-                fontShiftY : 0,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[0],
-                    //'fill' : colorThreadArray[0],
+        function plotLabels_2_plotsPars( colorThreadArray )
+        {
+            ///make sure, the number of plot labels is equal to plot functions y(x)
+            return [
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption : '1/r²',
+                    fontShiftX : -222,
+                    fontShiftY : 0,
+                    style : {
+                        'font-size' : '40px',
+                        'stroke'  : colorThreadArray[0],
+                        //'fill' : colorThreadArray[0],
+                    },
+                    //overrides tp class
+                    //plotStyle : {
+                    //    'stroke-width'  : '5',   //optional
+                    //},
                 },
-                //overrides tp class
-                //plotStyle : {
-                //    'stroke-width'  : '5',   //optional
-                //},
-            },
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'sagitta',
-                fontShiftX : -33,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[1],
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption : 'sagitta',
+                    fontShiftX : -33,
+                    fontShiftY : 15,
+                    style : {
+                        'font-size' : '40px',
+                        'stroke'  : colorThreadArray[1],
+                    },
                 },
-            },
-            /*
-            ///optional
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'v',
-                fontShiftX : 40,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[2],
+                /*
+                ///optional
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption : 'v',
+                    fontShiftX : 40,
+                    fontShiftY : 15,
+                    style : {
+                        'font-size' : '40px',
+                        'stroke'  : colorThreadArray[2],
+                    },
                 },
-            },
-            */
-        ];
-    }
+                */
+            ];
+        }
 
-    function setsGraphTpClasses()
-    {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
-        //$$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
-    }
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
+        function setsGraphTpClasses()
+        {
+            $$.$( graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
+            //$$.$( graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+        }
 
-    function doDrawToolline()
-    {
-        return {
-            toollineStyle : {
-                stroke : sData.colorThreadArray[2],
-                'stroke-width' : 3,
-            },
-            abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                              /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
-            numberMarks : true, 
-        };
-    }
+        function doDrawToolline()
+        {
+            return {
+                toollineStyle : {
+                    //stroke : sData.colorThreadArray[2],
+                    'stroke-width' : 3,
+                },
+                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
+                                /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+                numberMarks : true, 
+            };
+        }
 
-    function graphAxisX( xColor )
-    {
-        return {
-            'font-size'     : '18px',
-            fontShiftX      : -12, //in media scale
-            fontShiftY      : +14,
-            decimalDigits   : 3,
-            stroke          : xColor,
-            fill            : xColor,
-           'stroke-width'   : '0.2',
-        };
-    }
+            ///horizontal axis x pars, font, etc,
+        function graphAxisX( xColor )
+        {
+            return {
+                'font-size'     : '18px',
+                fontShiftX      : -12, //in media scale
+                fontShiftY      : +14,
+                decimalDigits   : 3,
+                stroke          : xColor,
+                fill            : xColor,
+            'stroke-width'   : '0.2',
+            };
+        }
 
-    function graphAxisY( yColor )
-    {
-        return {
-            'font-size'     : '20px',
-            fontShiftX      : -45, //in media scale
-            fontShiftY      : +5,
-            decimalDigits   : 1,
-            stroke          : yColor,
-            fill            : yColor,
-           'stroke-width'   : '1',
-        };
+        function graphAxisY( yColor )
+        {
+            return {
+                'font-size'     : '20px',
+                fontShiftX      : -45, //in media scale
+                fontShiftY      : +5,
+                decimalDigits   : 1,
+                stroke          : yColor,
+                fill            : yColor,
+            'stroke-width'   : '1',
+            };
+        }
     }
 }) ();
 
