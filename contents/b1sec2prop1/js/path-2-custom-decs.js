@@ -21,7 +21,14 @@
         //-----------------------------------------------------
         // \\// allocates positions for c,d,e,f
         //-----------------------------------------------------
-        
+        //-------------------------------------------------
+        // //\\ refills corollary pos
+        //-------------------------------------------------
+        nspaste( rg.h.pos, rg.c.pos );  //Duplicate h used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+        nspaste( rg.g.pos, rg.f.pos );  //Duplicate g used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+        //-------------------------------------------------
+        // \\// refills corollary pos
+        //-------------------------------------------------
 
         //-----------------------------------------------------
         // //\\ recalculates BCDEF points pos
