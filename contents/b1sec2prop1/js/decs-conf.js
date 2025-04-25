@@ -102,6 +102,21 @@
                     cssClass : 'theor1proof theor2proof theor2corollary',
             },
             // \\// c,d,e,f
+
+            // //\\ c-col3
+            h   : {     //Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+                caption : 'c',
+                decStart : decor.C.decStart+1,
+                decEnd : decor.F.decStart+4,
+                cssClass : 'theor1corollary theor2proof',
+            },
+            g   : {     //Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+                caption : 'f',
+                decStart : decor.F.decStart,
+                decEnd : decor.F.decEnd,
+                cssClass : 'theor1corollary',
+            },
+            // \\// c-col3
         };
 
         var forceTip_conf = {
@@ -308,6 +323,10 @@
                 cssClass : 'theor1proof theor2proof',
                 decEnd : rg.f.decStart,
             },
+            { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },    // Bh   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },    // Ch   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            { nam : ['E', 'g'], cssClass : 'theor1corollary', },                // Eg   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            { nam : ['F', 'g'], cssClass : 'theor1corollary', },                // Fg   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
 
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
             { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
@@ -444,7 +463,8 @@
             [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
                 pn.decStart = rg.SC.decStart + 8;
             });
-            [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf ].forEach( pn => {
+            [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf,
+              rg.g, rg.Eg, rg.Fg ].forEach( pn => { //Duplicate g, Eg, Fg used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
                 pn.decStart = rg.SC.decStart + 12;
             });
         }
