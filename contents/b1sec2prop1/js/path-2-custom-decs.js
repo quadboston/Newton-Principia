@@ -1,21 +1,7 @@
 ( function() {
-    var {
-        ns, sn, haz, nspaste, mat,
-        sconf, sDomF, ssF, ssD, toreg, rg,
-        amode,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            traj2decs__II,
-        },
-    });
+    var { ns, sn, haz, nspaste, mat, sconf, sDomF, ssF, ssD, toreg, rg, amode, } 
+        = window.b$l.apptree({ stdModExportList : { traj2decs__II, }, });
     return;
-
-
-
-
-
-
 
 
     ///at current ver, runs at every model_upcreate
@@ -35,14 +21,7 @@
         //-----------------------------------------------------
         // \\// allocates positions for c,d,e,f
         //-----------------------------------------------------
-        //-------------------------------------------------
-        // //\\ refills corollary pos
-        //-------------------------------------------------
-        nspaste( rg.h.pos, rg.c.pos );
-        nspaste( rg.g.pos, rg.f.pos );
-        //-------------------------------------------------
-        // \\// refills corollary pos
-        //-------------------------------------------------
+        
 
         //-----------------------------------------------------
         // //\\ recalculates BCDEF points pos
