@@ -40,8 +40,8 @@
             [[ 'RACB', '△RACB : ', 'rg.RACB.area' ]],
             [[ 'RAD', '△RAD : ', 'rg.RAD.area' ]],
             [[ '', '', '' ]], 
-            [[ 'RACB-RAB', '△RACB / △RAB : ', getRatio('rg.RACB_RAB.ratio') ]],
-            [[ 'RAD-RAB', '△RAD / △RAB : ', getRatio('rg.RAD_RAB.ratio') ]],
+            [[ 'RACB-RAB fixed-width', '△RACB / △RAB : ', getRatio('rg.RACB_RAB.ratio') ]],
+            [[ 'RAD-RAB fixed-width', '△RAD / △RAB : ', getRatio('rg.RAD_RAB.ratio') ]],
         ]
     };
 
@@ -50,8 +50,8 @@
         [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb : ', 'rg.rAcb.area' ]],
         [lemma8Data.claim[2][0], [ 'rAd', '△rAd : ', 'rg.rAd.area' ]],
         [lemma8Data.claim[3][0], [ '', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
-        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
+        [lemma8Data.claim[4][0], [ 'rAcb-rAb fixed-width', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
+        [lemma8Data.claim[5][0], [ 'rAd-rAb fixed-width', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 
