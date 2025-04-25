@@ -38,8 +38,8 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'estimatedForce' ),
-                //sDomF.getFixedColor( 'speed' ),
+                sDomF.getFixedColor( BONUS ? 'sagitta' : 'estimatedForce' ),
+                sDomF.getFixedColor( 'speed' ),
             ];
             return colorThreadArray;
         }
@@ -84,7 +84,12 @@
             var axisYLegend =
             [
                 {
-                    text    : 'Force',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                     x       : 40,
                     y       : 25,
                     style   : {
@@ -94,7 +99,23 @@
                     },
                 },
                 {
-                    text    : 'Force f and estimated formce per their maximums.',
+                    text    : BONUS ?
+                                'Force f, sagitta s, -1/r², and speed v per their max.' :
+
+                                '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
+
+                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+n2c( 'sagitta' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
+
+                                '<tspan> forces (per their max)</tspan>' +
+                                '</text>',
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -108,8 +129,7 @@
             var axisXLegend =
             [
                 {
-                        text    :  BONUS ?
-                                        'Distance from force center, r' : 'Distance along arc', 
+                        text    : 'Distance from force center, r', 
                         x       : BONUS ? -700 : -520,
                     y       : 25,
                     style   : {
@@ -143,7 +163,7 @@
                     fontShiftX : -222,
                     fontShiftY : 0,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[0],
                         //'fill' : colorThreadArray[0],
                     },
@@ -155,11 +175,13 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'sagitta',
+                    pcaption :  BONUS ? 
+                                'sagitta' :
+                                'est. force',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[1],
                     },
                 },

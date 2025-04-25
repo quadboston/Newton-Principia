@@ -1,3 +1,6 @@
+///builds estimated force as finite sagitta
+///which is calculated from preintegrated synchronized
+///grids of t and q, time t and curve parameter q,
 ( function() {
     var {
         sn, haz, mcurve, mat, userOptions,
@@ -25,35 +28,48 @@
         var timeDelta = ssD.timeDelta
         var timeRange = ssD.timeRange;
         var qRange = sconf.curveQRange;
+        var sDt = ssD.saggitaDt;
         var deltaQ = qRange / FORCE_ARRAY_LEN;
-        //ccc( 'timeRange='+timeRange.toFixed(3) + ' qRange='+qRange.toFixed(3) );
         for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ) {
             let bP = qix2orb[ qix ]; //body point data
             let bT = bP.timeAtQ; //body time
             let rr = bP.rr; //abs
             let r2 = bP.r2; //rel
 
-            let plusT = ( timeRange + bT + ssD.saggitaDt ) % timeRange;
-            let plusTix = Math.floor( plusT/timeDelta );
-            let plusQix = tix2orbit[plusTix].qix;
-            let plusP = qix2orb[ plusQix ];
-            let plusTQix = plusP.timeAtQ;
-            let plusT_reminder = plusT - plusTQix;
-            let pulsQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
-
+            if( sDt < timeDelta*2 ) {
+                ////this method fails,
+                ////possibly because of non-linear dependency
+                ////of sDt * bP.dq_dt
+                var pulsQ = bP.q + sDt * bP.dq_dt;
+            } else {
+                let plusT = ( timeRange + bT + ssD.saggitaDt ) % timeRange;
+                let plusTix = Math.floor( plusT/timeDelta );
+                let plusQix = tix2orbit[plusTix].qix;
+                let plusP = qix2orb[ plusQix ];
+                let plusTQix = plusP.timeAtQ;
+                let plusT_reminder = plusT - plusTQix;
+                var pulsQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
+            }
+            
             //saves data for model-upcreate;
             bP.pulsQ = pulsQ;
             bP.sagittaDq = (pulsQ - bP.q + qRange )%qRange;
-
             let rrplus = q2xy( pulsQ );
-            let minusT = ( timeRange + bT - ssD.saggitaDt ) % timeRange;
-            let minusTix = Math.floor( minusT/timeDelta );
-            let minusQix = tix2orbit[minusTix].qix;
-            let minusP = qix2orb[ minusQix ];
-            let minusTQix = minusP.timeAtQ;
-            let minusT_reminder = minusT - minusTQix;
-            let minusQ = minusP.q + minusT_reminder * minusP.dq_dt;
-               
+
+            if( sDt < timeDelta*2 ) {
+                ////this method fails,
+                ////possibly because of non-linear dependency
+                ////of sDt * bP.dq_dt
+                var minusQ = bP.q - sDt * bP.dq_dt;
+            } else {
+                let minusT = ( timeRange + bT - ssD.saggitaDt ) % timeRange;
+                let minusTix = Math.floor( minusT/timeDelta );
+                let minusQix = tix2orbit[minusTix].qix;
+                let minusP = qix2orb[ minusQix ];
+                let minusTQix = minusP.timeAtQ;
+                let minusT_reminder = minusT - minusTQix;
+                var minusQ = minusP.q + minusT_reminder * minusP.dq_dt;
+            }   
             //saves data for model-upcreate;
             bP.minusQ = minusQ;
             let rrminus = q2xy( minusQ );
