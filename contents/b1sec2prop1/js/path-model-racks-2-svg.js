@@ -1,24 +1,9 @@
 ( function() {
-    var {
-        sn, $$, eachprop,
-        sconf, ssF, ssD, sDomF, toreg, rg,
-        amode,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            allPathRacks_2_unseenSVGs,
-        },
-    });
+    var { sn, $$, eachprop, sconf, ssF, ssD, sDomF, toreg, rg, amode, } = 
+        window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
-
-
-
-
-
-
-
-
+    
     ///this fun. completes the split model and media code,
     function allPathRacks_2_unseenSVGs()
     {
@@ -60,28 +45,20 @@
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
             if( pix > 0 ) {
-                var kix             = pix-1;
-                var pkey            = 'kepltr-' + kix;
-                var ktr             = toreg( pkey )({ undisplay : true })();
+                const kix           = pix-1;
+                const pkey          = 'kepltr-' + kix;
 
-                var triangleOddness = '';
-                //this solution is not good:
-                //if( pix <=5 ) {
-                //    var triangleOddness = 'hidden';
-                var triangleOddness = pix%2 ? 'triangle-odd' : 'triangle-even';
+                //Add the following classes as required so that the those triangles can be highlighted.
+                let cssCls = '';
                 switch (pix) {
-                    case 1: var triangleOddness = triangleOddness + ' tp-_s_a_b';
-                    break;
-                    case 2: var triangleOddness = triangleOddness + ' tp-_s_b_c  ';
-                    break;
-                    case 3: var triangleOddness = triangleOddness + ' tp-_s_c_d';
-                    break;
-                    case 4: var triangleOddness = triangleOddness + ' tp-_s_d_e';
-                    break;
-                    case 5: var triangleOddness = triangleOddness + ' tp-_s_e_f';
-                    break;
+                    case 1: cssCls += 'tp-_s_a_b'; break;
+                    case 2: cssCls += 'tp-_s_b_c'; break;
+                    case 3: cssCls += 'tp-_s_c_d'; break;
+                    case 4: cssCls += 'tp-_s_d_e'; break;
+                    case 5: cssCls += 'tp-_s_e_f'; break;
                 }
-                var tpCls           = 'kepler-triangle';
+                //Set the following class to either odd or even, to set the color and for highlighting.
+                const tpclass = pix % 2 ? 'kepler-triangle-odd' : 'kepler-triangle-even';
 
                 //sets up model vertices for triangle
                 // paints Kepler's triangles rg[pkey] along the path:
@@ -89,8 +66,8 @@
                 // based on "triang = rg[ pkey ]"
                 paintTriangle(
                     pkey,       //triangleId
-                    triangleOddness,
-                    tpCls,
+                    cssCls,
+                    tpclass,
                     '', //rgba( 100,100,255,0.2)'    //for svgarg.fill = defaultFill
                 );
             }
