@@ -274,12 +274,12 @@
                 fc.isPoint0Line = true;
              })
          }
-        'A B C D E F S c d e f P'.split(' ').forEach( camelId => {
+        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {  //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
             let fc = fixedColorsOriginal[ camelId ];
             fc.isPoint = true;
             fc.isPoint0Line = true;
         });
-        ( 'SP Av dt time Ff Ee Dd Cc ' +
+        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +      //Duplicate Ch and Fg used by P1 Corollary 3 see predefinedTopics for more
         'force-0-applied force-1-applied force-2-applied ' +
         'force-3-applied force-4-applied')
         .split(' ')
@@ -742,6 +742,63 @@
                 //---------------------------
                 // \\// redundant points
                 //---------------------------
+
+                [
+                    "( subessay !== 'cor-3' )",
+                    {
+                        //we set here condisions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1
+                            },
+                        }
+                    }
+                ],
+                [
+                    "( subessay === 'cor-3' )",
+                    {
+                        //we set here conditions of cor4, but saggita will depend on time
+                        //which is good for cor2
+                        "captured" : "",
+                        "rg" : {
+                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                                "decEnd" : 1111111111
+                            },
+                        }
+                    }
+                ],
                  
                 [
                     //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
@@ -823,7 +880,7 @@
             "kepler-triangle-odd"   : fixedColors["kepler-triangle-odd"],
             "kepler-triangle-even"  : fixedColors["kepler-triangle-even"],
 
-            "sagitta-chords" : sagittaeChords,
+            "sagitta-chords"    : sagittaeChords,
 
             "SBc"               : triangleGreen,
             "SCd"               : triangleGreen,
@@ -852,9 +909,11 @@
             "Sf"                : diagram,
             
             "Cc"                : forceMove,
+            "Ch"                : forceMove,//Duplicate of "Cc" used by P1 Corollary 3.  Also referenced in cohen.txt
             "Dd"                : forceMove,
             "Ee"                : forceMove,
             "Ff"                : forceMove,
+            "Fg"                : forceMove,//Duplicate of "Ff" used by P1 Corollary 3.  Also referenced in cohen.txt
             "force-0-applied"   : forceMove,
             "force-1-applied"   : forceMove,
             "force-2-applied"   : forceMove,
@@ -870,7 +929,7 @@
             "SD"                : diagram,
             "SE"                : diagram,
             "SF"                : diagram,
-            
+
             "BU"                : forceMove,
             "EW"                : forceMove,
             "AC"                : sagittaeChords,
@@ -891,16 +950,20 @@
 
             "free-path"         : freeMove,
             "c"                 : freeMove,
+            "h"                 : freeMove, //Duplicate of "c" used by P1 Corollary 3
             "d"                 : freeMove,
             "e"                 : freeMove,
             "f"                 : freeMove,
+            "g"                 : freeMove, //Duplicate of "f" used by P1 Corollary 3
 
             "Bc"                : freeMove,
+            "Bh"                : freeMove, //Duplicate of "Bc" used by P1 Corollary 3.  Also referenced in cohen.txt
 
             "Cd"                : freeMove,
             "De"                : freeMove,
 
             "Ef"                : freeMove,
+            "Eg"                : freeMove, //Duplicate of "Ef" used by P1 Corollary 3  Also referenced in cohen.txt
 
             "free-triangle"     : freeMove,
         };
