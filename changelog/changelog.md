@@ -1,6 +1,67 @@
 # Change Log
  
 
+## 2025-4-30 [0.13618]
+### Improved (core presentation)
+* Homepage
+    * mission statement
+
+* All models
+    * more obvious adjustable partition between text and model
+    * data areas easier to read
+    * more precise and consistent use of crosshair to adjust points
+
+* Lemmas 2, 3
+    * fixed missing outline
+    * point size consistent with other models
+    * video tab diagram matches text tab diagram
+
+* Lemmas 6, 7, 8
+    * point D adjustable
+
+* Lemma 6
+    * proof shows rectilinear angle
+
+* Lemma 7
+    * fixed point b overshooting point d
+    * line bd doesn't extend past b
+
+* Lemma 8
+    * fixed phantom line Ar
+    * point φ functionality merged into point R, with reasonable boundaries
+
+* Lemma 9
+    * claim tab shows only claim elements
+    * proof tab's unlabled adjustable point combined with point g
+
+* Lemma 10
+    * fixed proof's diagram tilt
+
+* Propositions 1, 2
+    * alterating colors used on all tabs to distinguish area segments
+    * point opacities fixed
+
+* Proposition 6
+    * graph text highlighting fixed
+
+* Proposition 7
+    * point P given full range of orbit
+    * corollary 2 point R adjustable
+
+* Proposition 11
+    * graph changed to only show estimated and actual force
+
+* Misc
+    * various text tweaks such as adding links and adding corollary submenus
+
+
+### Removed
+* Book 3 Lemma 5
+    * lemma 5's model did not offer clear advantages for learning, so it was removed
+
+* Book 1 references in "Current Content" widget
+    * unneeded as all models are from Book 1
+
 
 ## 2025-3-16 [0.13493]
 ### Improved (partial list)
