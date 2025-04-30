@@ -115,9 +115,9 @@
         //for expense of twice large arrays,
         */
         
-        sconf.DT_MIN = 0.01;
-        var FORCE_ARRAY_LEN = 2000;
-        var TIME_STEPS = 2000;
+        sconf.DT_MIN = 0.001;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
         var DATA_GRAPH_ARRAY_LEN = 200;
         {
             // gets ellipse parameters
@@ -141,6 +141,7 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
+        var deviation = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
@@ -150,6 +151,7 @@
             given,
             proof,
             result,
+            deviation,
             hidden,
             context,
             curvature,
@@ -413,7 +415,7 @@
             { 'ZR' : { pcolor : body }, },
 
             { 'PR' : { pcolor : body }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : deviation }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },

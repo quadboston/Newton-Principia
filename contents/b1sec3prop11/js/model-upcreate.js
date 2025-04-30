@@ -29,7 +29,7 @@
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-        var Qpos = q2xy( Porb.pulsQ );
+        var Qpos = q2xy( Porb.plusQ );
         var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];

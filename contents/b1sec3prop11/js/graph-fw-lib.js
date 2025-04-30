@@ -2,7 +2,7 @@
     var {
         sn, $$, nsmethods, haz, globalCss, userOptions,
         ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
+        amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -13,7 +13,12 @@
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
+
+        //if one wants to separate BONUS and aspect, this
+        //method can be used:
+        //const ADDENDUM = amode.aspect === 'addendum';
         const BONUS = userOptions.showingBonusFeatures();
+
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -27,60 +32,64 @@
             graphAxisY,
             setsGraphTpClasses,
         });
-        //first array mast be enabled
+        //first array must be enabled
+        //but can be dynamically overridden,
         graphFW.graphArrayMask = BONUS ?
             [ 'force', 'sagitta', 'body' ] :
             [ 'force', 'sagitta', ];
         return graphFW;
 
-
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset
+        ///dynamically,
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( BONUS ? 'sagitta' : 'estimatedForce' ),
-                sDomF.getFixedColor( 'speed' ),
-            ];
+                sDomF.getFixedColor( 'deviation' ),
+                sDomF.getFixedColor( 'body' ),
+              ];
             return colorThreadArray;
         }
 
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-                container$ = $$.div()
-                .addClass( 'chem-equiibr-graph-container' )
-                .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
+            container$ = $$.div()
+            .addClass( 'chem-equiibr-graph-container' )
+            .to( $$.div().to( digramParentDom$ )
+                    .addClass( 'lost-diagram-parent' )
+                    //.css( 'position', 'absolute' )
 
-                        //:this data sets outer dimensions of the graph
-                        .css( 'width', '400px' )
-                        .css( 'height', '230px' )
-                        .css( 'top', '0' )
-                        .css( 'left', '0' )
-                        .css( 'z-index', '111111' )
-                )
-                ;
-            ///creates low tire api
-                graph_dimX = 1000;  //innerWidth
-                graph_dimY = 580;   //innerHeight
-                return {container$, graph_dimX, graph_dimY}
+                    //:this data sets outer dimensions of the graph
+                    .css( 'width', '400px' )
+                    .css( 'height', '230px' )
+                    .css( 'top', '0' )
+                    .css( 'left', '0' )
+                    .css( 'z-index', '111111' )
+            )
+            ;
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
         }
 
         function setsGraphAxes()
         {
-                let n2c = sDomF.getFixedColor; //name to color
+            const ADDENDUM = amode.aspect === 'addendum';
+            let n2c = sDomF.getFixedColor; //name to color
                 
             //==================================================
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-                var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-                var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
-                //                'rgba(56,132,79,1)';
+            var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
+            //                'rgba(56,132,79,1)';
             var axisYLegend =
             [
                 {
@@ -99,8 +108,10 @@
                     },
                 },
                 {
-                    text    : BONUS ?
-                                'Force f, sagitta s, -1/r², and speed v per their max.' :
+                    text    : ADDENDUM ?
+                                'Force -1/r², est. force, speed, sagitta per their max.'
+
+                                :
 
                                 '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
@@ -108,9 +119,9 @@
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
+                                '<tspan class="tp-deviation tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'deviation' ) + '; stroke:'+n2c( 'deviation' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -154,7 +165,7 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            ///make sure, the number of plot labels is equal to plot functions y(x)
+            const ADDENDUM = amode.aspect === 'addendum';
             return [
                 {
                     fraqX : 0.01,
@@ -175,9 +186,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption :  BONUS ? 
-                                'sagitta' :
-                                'est. force',
+                    pcaption :  'est. force',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {
@@ -185,7 +194,6 @@
                         'stroke'  : colorThreadArray[1],
                     },
                 },
-                /*
                 ///optional
                 {
                     fraqX : 0.01,
@@ -194,11 +202,22 @@
                     fontShiftX : 40,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[2],
                     },
                 },
-                */
+                ///optional
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption : 'sagitta',
+                    fontShiftX : 40,
+                    fontShiftY : 15,
+                    style : {
+                        'font-size' : '30px',
+                        'stroke'  : colorThreadArray[2],
+                    },
+                },
             ];
         }
 
@@ -206,9 +225,11 @@
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            $$.$( graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
-            //$$.$( graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+            const svg = graphFW.fw.plotIx2plotSvg;
+            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+            svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+            svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
 
         function doDrawToolline()

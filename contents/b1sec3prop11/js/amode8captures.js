@@ -45,7 +45,7 @@
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 
-        var isAdden = aspect === 'addendum';
+        var ADDENDUM = aspect === 'addendum';
 
         if( fconf.sappId === 'b1sec3prop11' ) {
             rg.VV.undisplay = true;
@@ -61,18 +61,23 @@
             rg.Tu.undisplay = true;
             rg[ 'u,VV' ].undisplay = true;
             rg.uP.undisplay = true;
-            var hideExtras = isAdden || subessay === 'another-solution';
+            
+            //rg.R.undisplay = ADDENDUM;
+            //rg.T.undisplay = hideExtras;
+            //rg.Q.undisplay = hideExtras;
+            
+            var hideExtras = ADDENDUM || subessay === 'another-solution';
 
             // //\\ another solution
-            rg.DK.undisplay = isAdden;
-            rg.PI.undisplay = isAdden;
-            rg.E.undisplay = isAdden;
-            rg.EP.undisplay = isAdden;
-            rg.EO.undisplay = isAdden;
-            rg.EO.undisplay = isAdden;
-            rg.E.undisplay = isAdden;
-            rg.R.undisplay = isAdden;
-            rg.PO.undisplay = isAdden;
+            rg.DK.undisplay = ADDENDUM;
+            rg.PI.undisplay = ADDENDUM;
+            rg.E.undisplay = ADDENDUM;
+            rg.EP.undisplay = ADDENDUM;
+            rg.EO.undisplay = ADDENDUM;
+            rg.EO.undisplay = ADDENDUM;
+            rg.E.undisplay = ADDENDUM;
+
+            rg.PO.undisplay = ADDENDUM;
             // \\// another solution
 
             //=====================================================
@@ -87,8 +92,6 @@
             rg.A.undisplay = hideExtras;
             rg.B.undisplay = hideExtras;
             rg.G.undisplay = hideExtras;
-            rg.T.undisplay = hideExtras;
-            rg.Q.undisplay = hideExtras;
             rg.Z.undisplay = hideExtras;
             rg.Zminus.undisplay = hideExtras;
             rg.ES.undisplay = hideExtras;
@@ -129,7 +132,7 @@
             //=====================================================
 
         } else {
-            rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !isAdden;
+            rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !ADDENDUM;
             var hideAnother = subessay !== 'another-solution';
             rg.u.undisplay = hideAnother;
             rg.Tu.undisplay = hideAnother;
@@ -153,39 +156,39 @@
             //=====================================================
             // //\\ alternates for addendum
             //=====================================================
-            rg.PF.undisplay = isAdden;
-            rg.GP.undisplay = isAdden;
-            rg.G.undisplay = isAdden;
-            rg.DK.undisplay = isAdden;
-            rg.K.undisplay = isAdden;
-            rg.D.undisplay = isAdden;
-            rg.F.undisplay = isAdden;
-            rg.A.undisplay = isAdden;
-            rg.B.undisplay = isAdden;
-            rg.G.undisplay = isAdden;
-            rg.T.undisplay = isAdden;
-            rg.Q.undisplay = isAdden;
-            rg.R.undisplay = isAdden;
+            rg.PF.undisplay = ADDENDUM;
+            rg.GP.undisplay = ADDENDUM;
+            rg.G.undisplay = ADDENDUM;
+            rg.DK.undisplay = ADDENDUM;
+            rg.K.undisplay = ADDENDUM;
+            rg.D.undisplay = ADDENDUM;
+            rg.F.undisplay = ADDENDUM;
+            rg.A.undisplay = ADDENDUM;
+            rg.B.undisplay = ADDENDUM;
+            rg.G.undisplay = ADDENDUM;
+            rg.T.undisplay = ADDENDUM;
+            rg.Q.undisplay = ADDENDUM;
+            rg.R.undisplay = ADDENDUM;
 
-            rg.VV.undisplay = isAdden;
-            rg.v.undisplay = isAdden;
-            rg.u.undisplay = isAdden;
-            rg.Pv.undisplay = isAdden;
-            rg.Qv.undisplay = isAdden;
-            rg.Tv.undisplay = isAdden;
-            rg.vG.undisplay = isAdden;
-            rg.QT.undisplay = isAdden;
-            rg.PT.undisplay = isAdden;
-            rg.QR.undisplay = isAdden;
-            rg.SQ.undisplay = isAdden;
-            rg.GO.undisplay = isAdden;
-            rg.GP.undisplay = isAdden;
+            rg.VV.undisplay = ADDENDUM;
+            rg.v.undisplay = ADDENDUM;
+            rg.u.undisplay = ADDENDUM;
+            rg.Pv.undisplay = ADDENDUM;
+            rg.Qv.undisplay = ADDENDUM;
+            rg.Tv.undisplay = ADDENDUM;
+            rg.vG.undisplay = ADDENDUM;
+            rg.QT.undisplay = ADDENDUM;
+            rg.PT.undisplay = ADDENDUM;
+            rg.QR.undisplay = ADDENDUM;
+            rg.SQ.undisplay = ADDENDUM;
+            rg.GO.undisplay = ADDENDUM;
+            rg.GP.undisplay = ADDENDUM;
 
-            rg.AO.undisplay = isAdden;
-            rg.DO.undisplay = isAdden;
-            rg.BO.undisplay = isAdden;
-            rg.PO.undisplay = isAdden;
-            rg[ 'P,VV' ].undisplay = isAdden;
+            rg.AO.undisplay = ADDENDUM;
+            rg.DO.undisplay = ADDENDUM;
+            rg.BO.undisplay = ADDENDUM;
+            rg.PO.undisplay = ADDENDUM;
+            rg[ 'P,VV' ].undisplay = ADDENDUM;
             //=====================================================
             // \\// alternates for addendum
             //=====================================================
