@@ -9,40 +9,11 @@
             annotation : "Home Page and Contents",
         },
 
-        /*  
-            Professor Gallant is most interested in interacting with Newton's diagrams,
-            and concerned about one without interaction.
-            I (John Scott) agree. Could be confusing when others are interactive.
-            So removing L1 for now. Can re-evaluate later.
-        {
-            sappId : 'lemma1',
-            book : 'Book 1',
-            caption : 'Sec. 1. Lemma 1.',
-            annotation : "Core lemma introducing limit method",
-        },*/
-
         {   sappId : 'lemma2',
             book : 'Book 1',
-            caption : 'Sec. 1, Lemma 2.',
+            caption : 'Sec. 1, Lemma 2',
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
-
-        //legacy version:  
-        {   sappId : 'lemma2-non-monotonic',
-            //book : 'In Development',
-            book : 'Book 1',
-            caption : 'Lemma 3. Darboux and Riemann.',
-            inAddendum : true,
-        },
-
-        /*
-        //suspended version development:  
-        {   sappId : 'lemma2-12-handles',
-            book : 'Book 1',
-            caption : 'Sec. 1, Lemma 2. Programmed with function as an array with 12 handes.',
-            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
-        },
-        */
 
         {   sappId : 'lemma3',
             book : 'Book 1',
@@ -244,13 +215,6 @@
             book : 'Addendum',
             caption : 'Kepler Task.',
             annotation : userOptions.BONUS_END,
-        },
-
-        {   sappId : 'lemma2-mono-stashed-program',
-            book : 'Programmer Guide',
-            caption : 'S1Lemma2. How to code derivative sliders.',
-            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
-            inAddendum : true,
         },
     ];
 }) ();
