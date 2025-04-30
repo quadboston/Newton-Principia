@@ -1,27 +1,8 @@
 // lemma-twin addon ... enables by including into lemma-conf.js
 ( function() {
-    var {
-        ns, sn, globalCss,
-        sconf,
-        rg,
-        amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            model_upcreate_addon,
-            init_model_parameters_addon,
-        },
-    });
+    var { ns, sn, globalCss, sconf, rg, amode, stdMod, } 
+        = window.b$l.apptree({ stdModExportList : { model_upcreate_addon, init_model_parameters_addon, }, });
     return;
-
-
-
-
-
-
-
-
-
 
 
     //=========================================================
@@ -69,27 +50,6 @@
     {
         stdMod.cre__extraImages();
         stdMod.creates_mainSceneResizer();
-
-        //========================================================================
-        // //\\ this patch can be avoided
-        //      if to split module decor-cofig.js to two
-        //      mods. conf and spawn and put separate confs in separated lemmas,
-        //========================================================================
-        rg.h.cssClass = 'theor1proof';
-        rg.j.cssClass = 'theor1proof';
-
-        rg.j.decStart = rg.D.decStart;
-        rg.j.decEnd   = rg.D.decEnd;
-
-        ///recall, decor-conf.js already created svgel for lines and polies
-        [ 'Bh', 'Ch', 'Cj', 'Dj' ].forEach( pname => {
-            var rgX = rg[ pname];
-            rgX.finalCssClass = rgX.finalCssClass.replace( 'theor1corollary', 'theor1proof' );
-            rgX.svgel.setAttribute( 'class', rgX.finalCssClass );
-        });
-        //========================================================================
-        // \\// this patch can be avoided
-        //========================================================================
     }
 
 }) ();

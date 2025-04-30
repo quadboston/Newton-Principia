@@ -1,21 +1,7 @@
 ( function() {
-    var {
-        ns, sn, haz, nspaste, mat,
-        sconf, sDomF, ssF, ssD, toreg, rg,
-        amode,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            traj2decs__II,
-        },
-    });
+    var { ns, sn, haz, nspaste, mat, sconf, sDomF, ssF, ssD, toreg, rg, amode, } 
+        = window.b$l.apptree({ stdModExportList : { traj2decs__II, }, });
     return;
-
-
-
-
-
-
 
 
     ///at current ver, runs at every model_upcreate
@@ -38,8 +24,8 @@
         //-------------------------------------------------
         // //\\ refills corollary pos
         //-------------------------------------------------
-        nspaste( rg.h.pos, rg.c.pos );
-        nspaste( rg.g.pos, rg.f.pos );
+        nspaste( rg.h.pos, rg.c.pos );  //Duplicate h used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+        nspaste( rg.g.pos, rg.f.pos );  //Duplicate g used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
         //-------------------------------------------------
         // \\// refills corollary pos
         //-------------------------------------------------
