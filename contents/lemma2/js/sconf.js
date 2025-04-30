@@ -205,117 +205,117 @@
             B : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             K : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             L : {
                 pcolor      : predT.given,
                 letterAngle : -145,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             M : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             a : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             F : {
                 pcolor      : predT[ "widest-rectangular" ],
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             f : {
                 pcolor      : predT.given,
                 letterAngle : 90,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             C : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             D : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             l : {
                 pcolor      : predT.given,
                 letterAngle : 135,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             b : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
-            //invizible point
+            //invisible point
             c : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             d : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
             m : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             n : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             o : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             e : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
                 hideCaption  : true,
             },
         };
@@ -391,6 +391,10 @@
                    },
             },
             { nc : {
+                        pcolor : predT.given,
+                   },
+            },
+            { mb : {
                         pcolor : predT.given,
                    },
             },

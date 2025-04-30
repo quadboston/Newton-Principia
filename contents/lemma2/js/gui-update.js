@@ -355,14 +355,13 @@
 
 
     function syncPoints() {
-        let videoMode = amode.aspect === 'video';
         let view = sdata.view;
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
         let isCir = !!view.isCircumscribed;
         let onlyFig = !isIn&&!isCir;
         {
-            let s = videoMode || onlyFig;
+            let s = onlyFig;
             [ 'a', 'b', 'c', 'd', 
               'A', 'B', 'C', 'D', 'E',
             ].forEach( function( l ) {
@@ -384,38 +383,7 @@
                 rg["Aa"].undisplay = true;
             }
         }
-        let doset = videoMode || !isIn;
-        rg.K.undisplay = doset;
-        rg.L.undisplay = doset;
-        rg.M.undisplay = doset;
-
-        //some were missed in program
-        rg["Kb"].undisplay = doset;
-        rg.AK.undisplay = doset;
-        rg.LB.undisplay = doset;
-        rg.MC.undisplay = doset;
-
-        doset = videoMode || !isCir;
-        rg.la.undisplay = doset;
-        //right sides:
-        rg.lB.undisplay = doset;
-        rg.mC.undisplay = doset;
-        rg.nD.undisplay = doset;
-        rg.oE.undisplay = doset;
-
-        rg.l.undisplay = doset;
-        rg.m.undisplay = doset;
-        rg.n.undisplay = doset;
-        rg.o.undisplay = doset;
-
-        //:true is because of not in use in text
-        rg.e.undisplay = true;
-        rg.dM.undisplay = true;
-        rg.cL.undisplay = true;
-        rg.nc.undisplay = true;
-        rg.od.undisplay = true;
         
-
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
         dr.ctrlPts.forEach( item => { syncPoint( item ); });
@@ -439,7 +407,7 @@
         {
             let l2 = fconf.sappId.indexOf('lemma2') === 0;
             let checked = amode.logic_phase !== 'claim';
-            let undisplay = !checked || videoMode || onlyFig;
+            let undisplay = !checked || onlyFig;
             rg.F.undisplay = undisplay||l2;
             rg.f.undisplay = undisplay||l2;
             rg.AF.undisplay = undisplay||l2;
