@@ -27,14 +27,6 @@
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
         },
 
-        //legacy version:  
-        {   sappId : 'lemma2-non-monotonic',
-            //book : 'In Development',
-            book : 'Book 1',
-            caption : 'Lemma 3. Darboux and Riemann.',
-            inAddendum : true,
-        },
-
         /*
         //suspended version development:  
         {   sappId : 'lemma2-12-handles',
@@ -244,13 +236,6 @@
             book : 'Addendum',
             caption : 'Kepler Task.',
             annotation : userOptions.BONUS_END,
-        },
-
-        {   sappId : 'lemma2-mono-stashed-program',
-            book : 'Programmer Guide',
-            caption : 'S1Lemma2. How to code derivative sliders.',
-            annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
-            inAddendum : true,
         },
     ];
 }) ();
