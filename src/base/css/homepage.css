@@ -133,10 +133,10 @@ header.default {
 
 .sub-title {
     font-family: var(--homepage-font);
-    font-size: 19px;
+    font-size: 18px;
     color: var(--color-white);
     letter-spacing: 1.32px;
-    line-height: 32px;
+    line-height: 28px;
     grid-area: title; 
 }
 
