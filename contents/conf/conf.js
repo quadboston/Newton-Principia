@@ -128,7 +128,9 @@
                                       'Interactive Models',
             homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
                                       'These models make it easier.<br>',
-            homePageSubtitle        : 'A supplement to resources such as<br>' +
+            homePageSubtitle        : 'This site presents interactive models of lemmas and propositions from<br>' +
+                                      'Newton’s <span>Principia</span> that illustrate geometric limits.<br><br>' +
+                                      'A supplement to resources such as<br>' +
                                       '* Joseph Gallant’s <span class="dd-label"><a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook">Newton’s Principia for the Modern Student</span></a><br>' +
                                       '* Dana Densmore’s <span class="dd-label"><a href="https://www.greenlion.com/books/NewtonPrincipia.html">Newton’s Principia: The Central Argument</span></a><br>' +
                                       '* L. Bernard Cohen’s <span class="dd-label"><a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">A Guide to Newton’s Principia</span></a>',
