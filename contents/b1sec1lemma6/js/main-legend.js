@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        ns, sn, $$,
-        eachprop,
-        fconf,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+    var { 
+        eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,

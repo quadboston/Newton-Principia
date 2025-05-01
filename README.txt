@@ -29,6 +29,12 @@ but you can also perform these actions using the VSCode GUI.
     Include a descriptive title and detailed description of changes, then click "Create pull request" button.
 
 
+Style Guide
+
+1. Please follow comment syntax as described in doc/README-engine-source-code-comments-syntax.js
+
+2. Although not required by JavaScript, return statements are used after initialization of most modules to make it clear that below it, there are no executable statements in the parent function context. The return statement should be followed by two blank lines before internal function definitions.
+
 
 Deployment.
 

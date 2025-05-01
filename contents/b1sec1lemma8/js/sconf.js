@@ -2,9 +2,11 @@
 ( function() {
     var { ns, fconf, sconf, userOptions, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+
 
     //====================================================
-    // //\\ inits and sets config pars
+    // //\\// inits and sets config pars
     //====================================================
     function init_conf()
     {
@@ -31,9 +33,11 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
+
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
+
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 858; // size of svg div
@@ -45,9 +49,7 @@
         var B = [358, 165];
         var D = [496, modorInPicY];
 
-        //-----------------------------------
-        // //\\ svg model colors
-        //-----------------------------------
+        //: svg model colors
         var given = fixedColors.given; // claim
         var proof   = fixedColors.proof;
         var shadow  = fixedColors.shadow; // colour of φ both point and label

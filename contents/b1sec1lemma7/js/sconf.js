@@ -2,6 +2,8 @@
 ( function() {
     var { ns, fconf, sconf, fixedColors, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+
 
     function init_conf()
     {
@@ -64,7 +66,10 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
+        //--------------------------------------        
+        //***************************************************************
+        // \\// decorational parameters
+        //***************************************************************
 
         //fixes direction of line BE as constant
         //can be any number from -oo to +oo
@@ -90,12 +95,12 @@
 
         // *** used only if BONUS || rgShapesVisible (todo: maybe not at all)
         //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];        
+        var ytop = [-151, 50];  
+        //================================================================
+        // \\// original positions
+        //================================================================      
         
-        //-----------------------------------
-        // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //: topic group colors
         var context = [0, 0, 0];
         var given   = fixedColors.given;        
         var proof   = fixedColors.proof;

@@ -2,6 +2,8 @@
 ( function() {
     var { ns, fconf, sconf, fixedColors, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+    
 
     function init_conf()
     {
@@ -66,7 +68,10 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
+        //--------------------------------------        
+        //***************************************************************
+        // \\// decorational parameters
+        //***************************************************************
 
         //to avoid rounding errors as B gets very close to A
         sconf.NON_ZERO_A_PREVENTOR = 0.0001;
@@ -83,7 +88,7 @@
         var D = [474, modorInPicY];
 
 
-        // *** used only if BONUS || rgShapesVisible
+        //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
@@ -91,12 +96,12 @@
         //var M = [50, modorInPicY];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];        
+        var ytop = [-151, 50];  
+        //================================================================
+        // \\// original positions
+        //================================================================      
         
-        //-----------------------------------
-        // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //: topic group colors
         var context = [0, 0, 0];
         var given   = fixedColors.given;        
         var proof   = fixedColors.proof;
