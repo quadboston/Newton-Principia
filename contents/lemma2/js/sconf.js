@@ -243,7 +243,7 @@
             },
 
             F : {
-                pcolor      : predT[ "widest-rectangular" ],
+                pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
