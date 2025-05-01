@@ -1,33 +1,12 @@
 ( function() {
-    var {
-        $$,
-        sconf, sDomF, sDomN, ssD, ssF,
-        stdMod, rg, toreg,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            upcreate_mainLegend,
-            create_digital_legend,
-        },
-    });
+    var { $$, sconf, fconf, sDomF, sDomN, ssD, ssF, stdMod, rg, toreg, } 
+        = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
     var AbdAce_row$;
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     function create_digital_legend()
     {
         var mlegend = toreg( 'main-legend' )();
@@ -211,12 +190,14 @@
         //=======================
         // //\\ model linear unit 
         //=======================
-        var row = $$.c('tr')
-            //.addClass('tostroke')
-            .to(tb)();
-        //$$.c('td').a('colspan','6').to(row);
-        makeCl( row, 'model-linear-unit', 'Ae').cls('tp-_ae-length tostroke');
-        clustersToUpdate['model-linear-unit'].innerHTML = sconf.LEGEND_NUMERICAL_SCALE.toFixed();
+        if (fconf.sappId === "b1sec1lemma9") {
+            var row = $$.c('tr')
+                //.addClass('tostroke')
+                .to(tb)();
+            //$$.c('td').a('colspan','6').to(row);
+            makeCl( row, 'model-linear-unit', 'Ae').cls('tp-_ae-length tostroke');
+            clustersToUpdate['model-linear-unit'].innerHTML = sconf.LEGEND_NUMERICAL_SCALE.toFixed();
+        }
         //=======================
         // \\// model linear unit 
         //=======================
