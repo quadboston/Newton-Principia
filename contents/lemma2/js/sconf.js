@@ -1,14 +1,6 @@
 ( function () {
-    var {
-        sn, nspaste,
-        fapp, fconf, sconf,
-        sapp,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            init_conf,
-        },
-    });
+    var { sn, nspaste, fapp, fconf, sconf, sapp, fixedColors, } = 
+	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
@@ -84,36 +76,46 @@
         sconf.enableTools     = !true;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
+        const {
+            given,
+            difference,
+            base,
+            curve,
+            figure,
+
+            widestRectangular,
+            widestRectangularHiddenStart,
+        } = fixedColors;
+
+
+        const predT =
         {
-            let difference = [150, 50, 0, 0, 0.8 ];
-            var predT =
-            {
-                "given"                     : [0,    100,  0 ],
-                difference,
-                "base"                      : [0,    100,  0 ],
-                "curve"                     : [0,    100,  0 ],
+            given,
+            difference,
+            base,
+            curve,
 
-                "figure"                    : [0,    100,  0 ],
-                "figure-area"               : [0,    80,  0, 0.4, 0.8 ],
-                "figure-area-txt"           : [0,    80,  0, 0.7, 1],
+            figure,
+            "figure-area"               : fixedColors["figure-area"],
+            "figure-area-txt"           : fixedColors["figure-area-txt"],
 
-                "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.8],
-                "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
+            "circumscribed-rectangles"  : fixedColors["circumscribed-rectangles"],
+            "inscribed-rectangles"      : fixedColors["inscribed-rectangles"],
 
-                //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-                "widest-rectangular"      : fconf.sappId.indexOf('lemma2')===0 ?
-                                                    [0,  0, 100, 0.0, 0.7] :
-                                                    [0,  0, 100, 0.4, 0.7],
+            "widest-rectangular"        : fconf.sappId.indexOf('lemma2')===0 ?
+                                            widestRectangularHiddenStart :
+                                            widestRectangular,
 
-                "circ-txt"                  : [0,  50, 100, 0.7, 1],
-                "insc-txt"                  : [100,  0, 100, 0.7, 1],
-                "widt-txt"                  : [0,  0, 100, 0.7, 1],
-                'a--K--b--l'                : difference,
-                'b--L--c--m'                : difference,
-                'c--M--d--n'                : difference,
-                'd--e--p--o'                : difference,
-            };
+            "circ-txt"                  : fixedColors["circ-txt"],
+            "insc-txt"                  : fixedColors["insc-txt"],
+            "widt-txt"                  : fixedColors["widt-txt"],
+            'a--K--b--l'                : difference,
+            'b--L--c--m'                : difference,
+            'c--M--d--n'                : difference,
+            'd--e--p--o'                : difference,
         }
+        
+        
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
@@ -205,117 +207,117 @@
             B : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             K : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             L : {
                 pcolor      : predT.given,
                 letterAngle : -145,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             M : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             a : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             F : {
-                pcolor      : predT[ "widest-rectangular" ],
+                pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             f : {
                 pcolor      : predT.given,
                 letterAngle : 90,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             C : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             D : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             l : {
                 pcolor      : predT.given,
                 letterAngle : 135,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             b : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
-            //invizible point
+            //invisible point
             c : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             d : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
             m : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             n : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             o : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
             },
 
             e : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 3,
+                initialR    : 1.6,
                 hideCaption  : true,
             },
         };
@@ -391,6 +393,10 @@
                    },
             },
             { nc : {
+                        pcolor : predT.given,
+                   },
+            },
+            { mb : {
                         pcolor : predT.given,
                    },
             },

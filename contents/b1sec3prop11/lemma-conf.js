@@ -1,9 +1,6 @@
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
     return;
-
 
 
     function lemmaConfig()
@@ -21,9 +18,10 @@
                 { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
-                { src: sm + 'graph-array.js' },
+                { src: sm + 'builds-orbit.js' },
+                { src: sm + 'builds-sagitta.js' },
                 { src: sm + 'graph-fw-lib.js' },
-                { src: sm + 'makes-orbit.js' },
+                { src: sm + 'orbit-lib.js' },
             ],
             "contents-list" :
             [
@@ -35,6 +33,5 @@
             referencesForAllLemmaEssays : '',
         };
     }
-
 }) ();
 

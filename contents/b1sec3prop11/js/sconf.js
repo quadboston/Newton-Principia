@@ -1,20 +1,8 @@
 
 ( function() {
-    var { //import from apptree
-        ns, userOptions,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, userOptions, fconf, sconf, fixedColors, } = 
+        window.b$l.apptree({  ssFExportList : { init_conf } });
     return;
-
-
-
-
-
-
-
 
 
     //====================================================
@@ -40,8 +28,8 @@
         //====================================================
         // //\\ subapp regim switches
         //====================================================
-        sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
+        sconf.enableStudylab = false;
+        sconf.enableTools = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -51,7 +39,6 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-
         sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
@@ -79,10 +66,7 @@
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
         //***************************************************************
 
@@ -90,8 +74,6 @@
 
         //***************************************************************
         // //\\ geometics parameters
-        //***************************************************************
-        //=============================================
         // //\\ points reused in config
         //=============================================
         //model's spacial unit expressed in pixels of the picture:
@@ -113,11 +95,25 @@
         var curveParFi0 = 0.0 * Math.PI;
         var curveParFiMax = 2 * Math.PI;
         //interval of t to construct an arc for Newton's sagitta
-        //var sForSagitta_valQ = 0.36;
-        var sForSagitta_valT = 0.39;
-        var FORCE_ARRAY_LEN = 200;//23; //400;
-        var TIME_STEPS = 150;
-
+        var saggitaDt = 0.39;
+        sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+        
+        /*
+        //combination which is at the edge of accuracy:
+        //0.01 gives noticeable sagitta error
+        //0.02 does not give this error
+        //DATA_GRAPH_ARRAY_LEN is irrelevant
+        sconf.DT_MIN = 0.01;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        //however 0.01 and 2000 eliminates the error, but
+        //for expense of twice large arrays,
+        */
+        
+        sconf.DT_MIN = 0.01;
+        var FORCE_ARRAY_LEN = 2000;
+        var TIME_STEPS = 2000;
+        var DATA_GRAPH_ARRAY_LEN = 200;
         {
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
@@ -136,14 +132,19 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var curvature  = [200,   40,  200, 1];
-        var body    = [0,     150,  200,   1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
+        const {
+            given,
+            body,
+            orbit,
+            proof,
+            force,
+            result,
+            hidden,
+            curvature,
+            context,
+        } = fixedColors;
+
+
         var predefinedTopics =
         {
             given,
@@ -153,8 +154,8 @@
             context,
             curvature,
             body,
-            orbit   : given,
-            force   : result,
+            orbit,
+            force,
             tangentCircle : curvature,
             //curvatureCircle : curvature,
         };
@@ -176,9 +177,6 @@
         */
         var originalPoints =
         {
-        };
-
-        Object.assign( originalPoints, {
             O : {
                 pcolor : context,
                 caption : 'C',
@@ -384,7 +382,7 @@
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
-        });
+        };
 
         var linesArray =
         [
@@ -453,8 +451,9 @@
             curveParFi0,
             curveParFiMax,
             curveQRange : curveParFiMax - curveParFi0,
-            sForSagitta_valT,
+            saggitaDt,
             FORCE_ARRAY_LEN,
+            DATA_GRAPH_ARRAY_LEN,
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",

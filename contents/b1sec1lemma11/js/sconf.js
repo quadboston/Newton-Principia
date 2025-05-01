@@ -1,15 +1,8 @@
 
 ( function() {
-    var { ns, fconf, sconf } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
+    var { ns, fconf, sconf, fixedColors } =
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
-
-
-
-
-
-
 
 
     //====================================================
@@ -96,10 +89,13 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var hidden  = [0,     0,   0,      0];
+        const {
+            given,
+            proof,
+            result,
+            hidden,
+        } = fixedColors;
+
 
         var predefinedTopics =
         {

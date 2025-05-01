@@ -34,26 +34,31 @@
         // \\// model parameters,
         //=================================================
 
-        toreg( 'q2pos' );
-        toreg( 'sForSagitta' ),
 
-        stdMod.creates_orbitRack();
-        ssD.sForSagitta_valT = sconf.sForSagitta_valT;
-        stdMod.buildsforceGraphArray();
+        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({ digramParentDom$:stdMod.legendRoot$ });
 
+        ssD.saggitaDt = sconf.saggitaDt;
+
+        stdMod.recreates_q2xy();
+        stdMod.recreatesPosCorrector();
+        stdMod.creates_poly2svgP11();
+        rg.S.pos[0] = -sconf.ellipseFocus;
+        rg.S.pos[1] = 0;
+        stdMod.buildsOrbit();
+        stdMod.buildsSagitta();
+
+        //----------------------------------------------
+        // //\\ sets parameters of P
+        //----------------------------------------------
         var deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
         rg.P.qix = Math.floor( sconf.parQ / deltaQ );
         rg.P.parQ = rg.P.qix * deltaQ;
-        nspaste( rg.P.pos, rg.q2pos.t2xy( rg.P.parQ ));
+        nspaste( rg.P.pos, stdMod.q2xy( rg.P.parQ ));
         var diff = ssD.qix2orb[ rg.P.qix ];
-        rg.sForSagitta.val = diff.sagittaDq;
-        ccc( 'init, sag_dq=' + rg.sForSagitta.val +
-             ' P.qix=' + rg.P.qix +
-             ' P.parQ=' + rg.P.parQ );
-
-        //var t =  stdMod.pos2t( rt.P.pos );
-        //var newP = rg.q2pos.t2xy( t );
-
+        //----------------------------------------------
+        // \\// sets parameters of P
+        //----------------------------------------------
+        
         stdMod.completesSlidersCreation();
 
         //creates placeholder
@@ -83,7 +88,7 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        //stdMod.createsGraphFW( stdMod.legendRoot$ );
         //==================================================
         // \\// decoration graph 
         //==================================================

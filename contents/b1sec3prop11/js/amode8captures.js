@@ -13,10 +13,6 @@
     return;
 
 
-
-
-
-
     function setCapture()
     {
         nspaste( capture,
@@ -33,8 +29,6 @@
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-        //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
-
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         rg.SS.undisplay = true;
@@ -43,10 +37,6 @@
             rg.SS.pos[0] = -sconf.ellipseFocus;
             rg.SS.pos[1] = 0;
         }
-
-        nspaste( rg.P.pos, rg.q2pos.t2xy( sconf.parQ ));
-        //gets angle of P
-        stdMod.correctsPos8angle2angle( 'P', rg.P.pos );
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by

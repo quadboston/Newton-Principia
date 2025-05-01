@@ -31,7 +31,7 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        rg.q2pos.poly2svg({});
+        stdMod.poly2svgP11({});
 
         //=============================================================
         // //\\ tan. cir.
