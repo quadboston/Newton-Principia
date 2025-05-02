@@ -1,6 +1,15 @@
 # Change Log
  
 
+## 2025-5-14 [0.]
+### Improved (core presentation)
+* Lemma 3
+    * point F more visible
+
+* Lemma 10
+    * diagram doesn't show more than what lemma describes
+    
+
 ## 2025-4-30 [0.13618]
 ### Improved (core presentation)
 * Homepage
