@@ -31,8 +31,6 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        sconf.TP_OPACITY_LOW_POINT = 1;
-        sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf

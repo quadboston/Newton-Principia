@@ -13,8 +13,6 @@
         sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //overrides "global", lemma.conf.js::sconf
-        sconf.TP_OPACITY_LOW_POINT = 1; // opacity of items defined in originalPoints and linesArray below
-        sconf.TP_OPACITY_LOW = 1; // applied to items defined in predefinedTopics below
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
         sconf.pointDecoration.r= 5; // radius of all points, both static and slider

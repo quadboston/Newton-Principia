@@ -22,7 +22,7 @@ legendScript format is
     value is scripted as JavaScript code, which is evaluated each time when
     diagram or model changes,
 
-    legendScript is processed in src/base/lemma/main-legend.js
+    legendScript is processed in src/base/lemma/media-model/main-legend.js
 
     clusters seprated with space, therefore no space must exist in cluster's body,
     the string cssClasses can include token <_> which will be converted to space,
