@@ -236,7 +236,7 @@
             //0.6-makes opacity points do look "non-solid"
             TP_OPACITY_LOW_POINT : 0.85, // applied to 'originalPoints' and 'linesArray' in page's sconf.js
 
-            TP_OPACITY_HIGH : 0.8,
+            TP_OPACITY_HIGH : 1,
             TP_OPACITY_HIGH_POINT : 1,
     
             ANCHOR_OPACITY_LOW : '0.7',

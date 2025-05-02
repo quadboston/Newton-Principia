@@ -100,10 +100,8 @@ ${Rix} .tp-${lowId}.tobold,
 
 ${Rix} svg text.tp-${lowId},
 ${Rix} svg tspan.tp-${lowId},
-${Rix} span.tp-${lowId} {
-    opacity          : 1;
+${Rix} span.tp-${lowId} { 
     background-color : #eaeaea;
-    cursor           : default;
 }
                     `;
                         ///todm: very crude and wordy stroke width control
