@@ -266,7 +266,6 @@
             APP_MODEL_Y_RANGE,
             //:ranges
             angleA_min : 5.71,  //Degrees
-            pivot1y_max : APP_MODEL_Y_RANGE * 0.99,  //Left here for lemma 10
             pivot2x_max : APP_MODEL_Y_RANGE * 1.8,
             pivot2y_min : APP_MODEL_Y_RANGE * 0.3,
             pivot2y_max : APP_MODEL_Y_RANGE * 0.99,
