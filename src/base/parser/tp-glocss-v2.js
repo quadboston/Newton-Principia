@@ -101,7 +101,9 @@ ${Rix} .tp-${lowId}.tobold,
 ${Rix} svg text.tp-${lowId},
 ${Rix} svg tspan.tp-${lowId},
 ${Rix} span.tp-${lowId} {
-    font-weight : bold;
+    opacity          : 1;
+    background-color : #eaeaea;
+    cursor           : default;
 }
                     `;
                         ///todm: very crude and wordy stroke width control

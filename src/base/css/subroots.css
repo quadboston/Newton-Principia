@@ -158,7 +158,6 @@ sup {
     text-align:right;
 }
 .main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
-    min-width: 7em !important;
     text-align:right;
 }
 .main-legend td:first-child.fixed-width, .main-legend td:nth-child(4).fixed-width {/* patch for L6, L8 */
