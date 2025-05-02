@@ -1,19 +1,8 @@
 ( function() {
-    var {
-        ns, sn, nspaste, capture, userOptions,
-        amode, toreg, stdMod, rg, sDomF, ssD, ssF, fconf, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, nspaste, capture, userOptions, amode, toreg, stdMod, rg, sDomF, ssD, ssF, 
+        fconf, sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
-
-
-
-
 
 
     function setCapture()
@@ -76,17 +65,14 @@
         }
 
 
-        rg.SQ.undisplay = true;
-        rg[ 'sagitta' ].undisplay = true;
-        rg[ 'rrminus' ].undisplay = true;
-        rg[ 'Q,rrminus' ].undisplay = true;
-        rg[ 'P,rrminus' ].undisplay = true;
-        rg.curvatureCircle.undisplay = true;
-        rg.C.undisplay = false;
-        rg.PC.undisplay = true;
-        rg.timearc.undisplay = true;
-        rg.Q.hideD8Dpoint = false;
-        rg.Q.d8d_find_is_LOCKED = false;
+        rg.SQ.undisplay                 = true;
+        rg[ 'sagitta' ].undisplay       = true;
+        rg[ 'rrminus' ].undisplay       = true;
+        rg[ 'Q,rrminus' ].undisplay     = true;
+        rg[ 'P,rrminus' ].undisplay     = true;
+        rg.curvatureCircle.undisplay    = true;
+        rg.PC.undisplay                 = true;
+        rg.timearc.undisplay            = true;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -109,7 +95,6 @@
             var Rcol2 = rg[ 'approximated-curve' ].t2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
-            setsCoroll2( !!'yes0not' );
 
         } else {
             nspaste( rg.A.pos,
@@ -121,13 +106,14 @@
             nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy(
                 0.7262954797868 // Book's value for P
             ));
-            setsCoroll2( !'yes0not' );
             if( subessay === 'corollary1' ) {
                 ////placing S to the circle
                 nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
             }
             sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
         }
+
+        modifyDecorationVisibility();
 
         ssD.stashedVisibility = null;
         stdMod.curveIsSolvable();
@@ -137,35 +123,66 @@
 
 
 
-    function setsCoroll2( yes0not )
-    {
-        rg.QP.undisplay = yes0not;
-        rg.Q.undisplay = yes0not;
-        rg.Y.undisplay = yes0not;
-        rg.L.undisplay = yes0not;
-        rg.R.undisplay = yes0not;
-        rg.Z.undisplay = yes0not;
-        rg.T.undisplay = yes0not;
+    function modifyDecorationVisibility() {
+        //Modify visibility for the below decorations based on the following settings.
+        const { logic_phase, aspect, subessay } = amode;
+        const IS_PROBLEM2_AND_NOT_ADDENDUM  = (logic_phase === 'claim' && aspect !== 'addendum');
+        const IS_SOLUTIONS_AND_NOT_ADDENDUM = (logic_phase === 'proof' && aspect !== 'addendum');
+        const IS_COROLLARY2_OR_COROLLARY3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
-        rg.QR.undisplay = yes0not;
-        rg.QT.undisplay = yes0not;
-        rg.PT.undisplay = yes0not;
-        rg.ZQ.undisplay = yes0not;
-        rg.RL.undisplay = yes0not;
-        rg.SY.undisplay = yes0not;
-        rg.AP.undisplay = yes0not;
-        rg.AV.undisplay = yes0not;
-        rg.QP.undisplay = yes0not;
-        rg[ 'P,sagitta' ].undisplay = yes0not;
 
-        rg.Tcol2.undisplay = !yes0not;
-        rg.Rcol2.undisplay = !yes0not;
-        rg.Gcol2.undisplay = !yes0not;
-        rg[ 'Rcol2,Tcol2' ].undisplay = !yes0not;
-        rg[ 'Tcol2,V' ].undisplay = !yes0not;
-        rg[ 'Gcol2,S' ].undisplay = !yes0not;
-        rg[ 'Gcol2,P' ].undisplay = !yes0not;
-        rg[ 'Rcol2,P' ].undisplay = !yes0not;
+        rg.Q.hideD8Dpoint       = IS_PROBLEM2_AND_NOT_ADDENDUM;
+        rg.Q.d8d_find_is_LOCKED = IS_PROBLEM2_AND_NOT_ADDENDUM;
+        [   'V',
+            'A',
+            'PV',
+            'SP',
+            'PR',
+            'P,Zminus',
+            'PY',
+            'PZ',
+            'ZR',
+        ].forEach(decoration => {
+            rg[decoration].undisplay = IS_PROBLEM2_AND_NOT_ADDENDUM;
+        });
+
+
+        rg.C.undisplay = (IS_PROBLEM2_AND_NOT_ADDENDUM || IS_SOLUTIONS_AND_NOT_ADDENDUM);
+
+
+        [   'Q',
+            'Y',
+            'L',
+            'R',
+            'Z',
+            'T',
+            'QR',
+            'QT',
+            'PT',
+            'ZQ',
+            'RL',
+            'SY',
+            'AP',
+            'AV',
+            'QP',
+        ].forEach(decoration => {
+                rg[decoration].undisplay = (IS_PROBLEM2_AND_NOT_ADDENDUM || IS_COROLLARY2_OR_COROLLARY3);
+        });
+
+
+        rg[ 'P,sagitta' ].undisplay = IS_COROLLARY2_OR_COROLLARY3;
+
+        [   'Tcol2',
+            'Rcol2',
+            'Gcol2',
+            'Rcol2,Tcol2',
+            'Tcol2,V',
+            'Gcol2,S',
+            'Gcol2,P',
+            'Rcol2,P',
+        ].forEach(decoration => {
+            rg[decoration].undisplay = !IS_COROLLARY2_OR_COROLLARY3
+        });
     }
 
 }) ();
