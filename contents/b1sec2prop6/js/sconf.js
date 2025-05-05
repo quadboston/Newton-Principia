@@ -242,7 +242,7 @@
 
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : given,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -291,7 +291,7 @@
 
             Z : {
                 pos: [111111,111111],
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
             },
 
@@ -365,8 +365,8 @@
             { 'SP' : { pcolor : result }, },
 
             { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'PR' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
