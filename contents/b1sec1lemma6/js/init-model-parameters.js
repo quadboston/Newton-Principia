@@ -1,15 +1,14 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, 
-        sconf, fconf, ssF, ssD, sDomF, sData,
-        amode, stdMod, toreg, rg,
+        ns, mat, nspaste, sconf, fconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
             model_upcreate,
         },
     });
+    return;
+
 
     ///****************************************************
     /// model initiation (draggers and popup)
@@ -56,7 +55,10 @@
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
                 return true;
             }
-        });
+        });        
+        //-------------------------------------------------
+        // \\// dragger L for the rectilinear angle        
+        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ dragger B
@@ -138,6 +140,9 @@
                 }
             }
         });
+        //-------------------------------------------------
+        // \\// dragger B
+        //-------------------------------------------------
         
         //-------------------------------------------------
         // //\\ dragger D
@@ -158,6 +163,9 @@
                 }
             }
         });
+        //-------------------------------------------------
+        // \\// dragger D
+        //------------------------------------------------- 
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -172,7 +180,9 @@
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         stdMod.createModelFunctions();
 
-        //pops up when AL and AB have same slope
+        //-------------------------------------------------
+        // //\\ Pops up when AL and AB have same slope
+        //-------------------------------------------------  
         var wwId = 'proof-pop-up';
         ssF.createButton({
             caption                 :
@@ -200,7 +210,9 @@
                 z-index             : 111111111;
             `,
         });
-
+        //-------------------------------------------------
+        // \\// Popup
+        //-------------------------------------------------  
     }
 
     ///****************************************************
@@ -208,23 +220,17 @@
     ///****************************************************
     function model_upcreate()
     {
-        //=================================================
-        // //\\ creats AL for rectilinear angle        
-        //=================================================
+        //: creats AL for rectilinear angle        
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         builds__NewtonTangentAtA_8_L();
 
-        //=================================================
-        // //\\ sets dragging point point B
-        //=================================================
+        //: sets dragging point point B
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.unrotatedParameterX );
         rg.B.pos[0] = newPos[0];
         rg.B.pos[1] = newPos[1];
 
-        //=================================================
-        // //\\ getting "main" angle ABD for data legend
-        //=================================================
+        //: getting "main" angle ABD for data legend
         ssF.line2abs( 'AB' );
         rg.AB.angleGrad = rg.AB.angle * 180 / Math.PI;
 
@@ -368,8 +374,7 @@
         }
     }
 
-    function builds__NewtonTangentAtA_8_L()
-    {
+    function builds__NewtonTangentAtA_8_L() {
         var angleL = rg.originalGapTangent.angle + rg.curveRotationAngle.angle;
         rg.L.gapTangent = Math.tan( angleL );
         let L = mat.lineSegmentsCross(

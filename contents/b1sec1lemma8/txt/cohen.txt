@@ -10,7 +10,7 @@ its chord ¦AB¦¦,
 and the tangent ¦AD¦¦, constitute three triangles
 ¦RAB AR AB BR¦RAB¦¦, ¦RACB AR BR arc-AB¦RACB¦¦, and ¦RAD AR RD AD¦RAD¦¦, and if
 then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the ¦RAB RACB RAD AR AB BR arc-AB RD AD¦ triangles ¦¦ as they vanish
-are similar in their ultimate form, and that their ultimate ratio is one of equality.
+are similar in their ultimate form, and that their ¦RACB-RAB RAD-RAB¦ultimate ratio is one of equality¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
 
@@ -35,10 +35,10 @@ to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
 
 vanish, and therefore the three triangles ¦rAb Ab A,imageOfR imageOfR,b¦rAb¦¦,
 ¦rAcb A,imageOfR arc-Ab imageOfR,b¦rAcb¦¦,
-and ¦rAd imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
+and ¦rAd imageOfR,imageOfD A,imageOfR A,imageOfD¦rAd¦¦, which are always finite, will coincide and on that account are similar and ¦rAcb-rAb rAd-rAb¦equal¦¦. Hence
 also ¦RAB AR AB BR¦RAB¦¦, ¦RACB AR BR arc-AB¦RACB¦¦,
 and ¦RAD AR RD AD¦RAD¦¦, which will always be similar and proportional
-to these, will ultimately become similar and equal to one another. &nbsp; Q.E.D
+to these, will ultimately become similar and ¦RACB-RAB RAD-RAB¦equal to one another¦¦. &nbsp; Q.E.D
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
 

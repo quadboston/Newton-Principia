@@ -2,18 +2,11 @@
     var {
         ns, fapp, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             captureAState,
         },
     });
     return;
-
-
-
-
-
-
 
 
     ///==========================================
