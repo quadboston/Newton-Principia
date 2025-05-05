@@ -126,13 +126,13 @@
     function modifyDecorationVisibility() {
         //Modify visibility for the below decorations based on the following settings.
         const { logic_phase, aspect, subessay } = amode;
-        const IS_PROBLEM2_AND_NOT_ADDENDUM  = (logic_phase === 'claim' && aspect !== 'addendum');
-        const IS_SOLUTIONS_AND_NOT_ADDENDUM = (logic_phase === 'proof' && aspect !== 'addendum');
-        const IS_COROLLARY2_OR_COROLLARY3   = (subessay === 'corollary2' || subessay === 'corollary3');
+        const isProblem2AndNotAddendum  = (logic_phase === 'claim' && aspect !== 'addendum');
+        const isSolutionsAndNotAddendum = (logic_phase === 'proof' && aspect !== 'addendum');
+        const isCorollary2OrCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
 
-        rg.Q.hideD8Dpoint       = IS_PROBLEM2_AND_NOT_ADDENDUM;
-        rg.Q.d8d_find_is_LOCKED = IS_PROBLEM2_AND_NOT_ADDENDUM;
+        rg.Q.hideD8Dpoint       = isProblem2AndNotAddendum;
+        rg.Q.d8d_find_is_LOCKED = isProblem2AndNotAddendum;
         [   'V',
             'A',
             'PV',
@@ -143,11 +143,11 @@
             'PZ',
             'ZR',
         ].forEach(decoration => {
-            rg[decoration].undisplay = IS_PROBLEM2_AND_NOT_ADDENDUM;
+            rg[decoration].undisplay = isProblem2AndNotAddendum;
         });
 
 
-        rg.C.undisplay = (IS_PROBLEM2_AND_NOT_ADDENDUM || IS_SOLUTIONS_AND_NOT_ADDENDUM);
+        rg.C.undisplay = (isProblem2AndNotAddendum || isSolutionsAndNotAddendum);
 
 
         [   'Q',
@@ -166,11 +166,11 @@
             'AV',
             'QP',
         ].forEach(decoration => {
-                rg[decoration].undisplay = (IS_PROBLEM2_AND_NOT_ADDENDUM || IS_COROLLARY2_OR_COROLLARY3);
+                rg[decoration].undisplay = (isProblem2AndNotAddendum || isCorollary2OrCorollary3);
         });
 
 
-        rg[ 'P,sagitta' ].undisplay = IS_COROLLARY2_OR_COROLLARY3;
+        rg[ 'P,sagitta' ].undisplay = isCorollary2OrCorollary3;
 
         [   'Tcol2',
             'Rcol2',
@@ -181,7 +181,7 @@
             'Gcol2,P',
             'Rcol2,P',
         ].forEach(decoration => {
-            rg[decoration].undisplay = !IS_COROLLARY2_OR_COROLLARY3
+            rg[decoration].undisplay = !isCorollary2OrCorollary3
         });
     }
 
