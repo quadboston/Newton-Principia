@@ -160,14 +160,15 @@ sup {
 .main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
     text-align:right;
 }
-.main-legend td:first-child.fixed-width, .main-legend td:nth-child(4).fixed-width {/* patch for L6, L8 */
+
+.main-legend td:first-child.fixed-width, .main-legend td:nth-child(4).fixed-width {/* patch for L6, L7, L8 */
     min-width: 9em !important;
 }
 
 .main-legend td.value {
     font-family: var(--data-numerical-font);
     width: 5rem;
-    padding-left: 1rem !important;
+    padding-left: 0.5rem !important;
     height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
 }
 .main-legend .eq-sign {

@@ -31,6 +31,7 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
+        sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //--------------------------------------
         // //\\ geometics parameters

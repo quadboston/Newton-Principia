@@ -35,6 +35,8 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 5;
+        
+        sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //--------------------------------------
         // //\\ do override engine defaults,
