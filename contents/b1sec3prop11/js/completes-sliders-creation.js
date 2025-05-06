@@ -62,7 +62,7 @@
                 ssD.saggitaDt = saggitaDt_new;
                 //recalculates dQ attached to orbit points,
                 //todm for now, does redundant job of rebuilding grids
-                stdMod.buildsSagitta();
+                stdMod.builds_dq8agitta();
             }
             //lets validators to do the job
             stdMod.model8media_upcreate();

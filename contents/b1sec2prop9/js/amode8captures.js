@@ -53,8 +53,8 @@
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-        toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
+        //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
+        //nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by

@@ -9,7 +9,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            buildsSagitta,
+            builds_dq8agitta,
         },
     });
     var graphArray = sn( 'graphArray', stdMod, [] );
@@ -19,7 +19,7 @@
     return;
 
 
-    function buildsSagitta()
+    function builds_dq8agitta()
     {
         const ADDENDUM = amode.aspect === 'addendum';
         const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;

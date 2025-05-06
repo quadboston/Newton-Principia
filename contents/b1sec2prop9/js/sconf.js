@@ -10,13 +10,6 @@
     return;
 
 
-
-
-
-
-
-
-
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
@@ -51,7 +44,6 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-
         sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
@@ -79,10 +71,7 @@
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
         //***************************************************************
 
@@ -90,8 +79,6 @@
 
         //***************************************************************
         // //\\ geometics parameters
-        //***************************************************************
-        //=============================================
         // //\\ points reused in config
         //=============================================
         var V = [64, 462 ];
@@ -102,26 +89,70 @@
 
         var mod2inn_scale = 360; //RR;
         var C           = [510, 311 ]; //455]; //[ V[0] + ww1/2, V[1] + ww2/2, ];
-        var ro0         = 1.17; //spiral's ro0
-
-        var PparT       = 0;
-        var curveParA   = -0.64;
-        var curveParFi0 = -0.0 * Math.PI;
-        var curveParFiMax = 1.3 * Math.PI;
-
-        //interval of t to construct an arc for
-        //Newton's sagitta
-        var sForSagitta_valQ = 0.25;
-
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
 
-        var S = C; //[0, 0 ]; //not set in amode8captures
-        var P = [0, 0 ]; //set in amode8captures
-        var Q = [0, 0 ]; //set in amode8captures
-
+        
+        //-------------------------------------------
+        // //\\ curve shape parameters
+        //-------------------------------------------
         sconf.prop7R = 1;
+        var ro0 = 1.17; //spiral's ro0
+        var curveParA = -0.64;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 1.3 * Math.PI;
+        
+        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
+        //to be studied in given proposition:
+        sconf.force_law = bP => 1/(bP.r2*bP.r);
+        //-------------------------------------------
+        // \\// curve shape parameters
+        //-------------------------------------------
+
+
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+        
+        /*
+        //combination which is at the edge of accuracy:
+        //0.01 gives noticeable sagitta error
+        //0.02 does not give this error
+        //DATA_GRAPH_ARRAY_LEN is irrelevant
+        sconf.DT_SLIDER_MIN = 0.01;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        //however 0.01 and 2000 eliminates the error, but
+        //for expense of twice large arrays,
+        */
+        
+        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = false;
+        sconf.CURVE_REVOLVES = false; //is cyclic
+        sconf.DT_SLIDER_MIN = 0.001;
+        sconf.DQ_SLIDER_MAX = 0.65;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        var DATA_GRAPH_ARRAY_LEN = 200;
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
+        
+        //-------------------------------------------
+        // //\\ P and Q points positions
+        //-------------------------------------------
+        //interval of t to construct an arc for
+        //Newton's sagitta
+        //interval of t to construct an arc for Newton's sagitta
+        var saggitaDt = 0.19;
+        var parQ = 0.250 * Math.PI;
+        var P = null; //set in init_model_parameters
+        var Q = null; //set in model
+        //-------------------------------------------
+        // \\// P and Q points positions
+        //-------------------------------------------
+
         sconf.diagramOrigin = [ 0, 0 ];
+        var S = C; //[0, 0 ]; //not set in amode8captures
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -134,6 +165,7 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
+        var deviation = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
@@ -143,6 +175,7 @@
             given,
             proof,
             result,
+            deviation,
             hidden,
             context,
             curvature,
@@ -275,12 +308,13 @@
         ];
 
         ns.paste( sconf, {
+            parQ,
             ro0,
-            PparT,
             curveParA,
-            curveParFi0,
-            curveParFiMax,
-            sForSagitta_valQ,
+            saggitaDt,
+            FORCE_ARRAY_LEN,
+            DATA_GRAPH_ARRAY_LEN,
+            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -297,6 +331,7 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
+        sconf.deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
         //***************************************************************
         // \\// geometics parameters
         //***************************************************************

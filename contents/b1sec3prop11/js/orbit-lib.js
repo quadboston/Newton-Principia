@@ -8,7 +8,7 @@
         {
             recreates_q2xy,
             recreatesPosCorrector,
-            creates_poly2svgP11,
+            creates_poly2svg_for_lemma,
         },
     });
     return;
@@ -37,7 +37,7 @@
     ///decoration, should run in upcreate_media
     ///analogy of
     ///function  pointsArr_2_singleDividedDifferences()
-    function creates_poly2svgP11()
+    function creates_poly2svg_for_lemma()
     {
         var polylineSvg;
         stdMod.poly2svgP11 = poly2svgP11;
