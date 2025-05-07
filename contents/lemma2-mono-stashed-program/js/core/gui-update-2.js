@@ -67,7 +67,6 @@
         // //\\ view top-manager
         //======================================
         function refreshSVG_master() {
-            ccc( 'second mono: rg=', rg );
             rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
             let max = numModel.ctrlPt_2_maxIx();
