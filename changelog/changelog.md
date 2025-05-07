@@ -3,11 +3,21 @@
 
 ## 2025-5-14 [0.]
 ### Improved (core presentation)
+* All models
+    * data highlighted with background
+
 * Lemma 3
     * point F more visible
 
 * Lemma 10
-    * diagram doesn't show more than what lemma describes
+    * simplified diagram by not showing more than what is described
+
+* Proposition 7
+    * simplified diagram by not showing more than what is described
+
+* Proposition 9
+    * simplified diagram by not showing more than what is described
+    * graph changed to only show estimated and actual force
     
 
 ## 2025-4-30 [0.13618]
