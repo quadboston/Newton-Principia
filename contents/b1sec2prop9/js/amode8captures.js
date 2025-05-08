@@ -1,20 +1,8 @@
 ( function() {
-    var {
-        ns, sn, nspaste, capture, toreg,
-        sDomF, ssD, ssF, fconf,
-        stdMod, amode, rg, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, nspaste, capture, toreg, sDomF, ssD, ssF, fconf, stdMod, amode, rg, sconf, } 
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
-
-
-
-
 
 
     function setCapture()
@@ -63,6 +51,21 @@
         //rg.Q.hideD8Dpoint = false;
         //rg.Q.d8d_find_is_LOCKED = false;
         //nspaste( rg.S.pos, [ 0., 0.] ); //Book's value
+
+
+        //Modify visibility for the below decorations based on the following settings.
+        if (logic_phase === 'claim') {
+            [   'Y',
+                'SY', 
+                'PY', 
+                'T', 
+                'QT', 
+                'PT',
+            ].forEach(decoration => {
+                rg[decoration].undisplay = true;
+            });
+        }
+
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;

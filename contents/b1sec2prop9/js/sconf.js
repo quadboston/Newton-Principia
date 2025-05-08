@@ -139,7 +139,7 @@
             hidden,
             context,
             curvature,
-            curvatureCircle : curvature,
+            curvatureCircle : curvature,    //Actually uses "rg.C.pcolor" see "model-upcreate.js" section "curvature circle"
             body,
             orbit,
             force,
@@ -235,11 +235,17 @@
             },
 
             //center of instant curvature circle
+            //C is always hidden, therefore could likely be removed eventually however...
+            //-see comment in section "topic group colors" for curvatureCircle
+            //-its position is set in "model-upcreate.js" section "curvature circle"
+            //-may also be set and/or used elsewhere
             C : {
                 pos : C,
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
         });
 
@@ -247,7 +253,6 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proof }, },
-            { 'CV' : { pcolor : curvature }, },
 
             { 'SP' : { pcolor : result }, },
 
@@ -263,8 +268,6 @@
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
-
-            { 'PC' : { pcolor : curvature }, },
         ];
 
         ns.paste( sconf, {
