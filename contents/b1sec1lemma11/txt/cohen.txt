@@ -22,70 +22,6 @@ of the ¦arc-AB¦conterminous arc¦¦.
   "logic_phaseCaption" : "Proof"
 }
 *..*
-CASE 1. Let that arc be ¦arc-AB¦AB¦¦, its tangent ¦AD¦¦,
-the subtense of the angle of contact perpendicular to the tangent ¦BD¦¦,
-subtense of the arc ¦AB¦¦.
-<br><br>
-
-Let ¦AG¦¦, ¦BG¦¦ be erected perpendicular to the latter subtense ¦AB¦¦ and to the
-tangent ¦AD¦¦,
-meeting at ¦G¦¦, and then let the points ¦D¦¦, ¦B¦¦, ¦G¦¦, come to the points
-¦d¦¦, ¦b¦¦, ¦g¦¦, and let ¦J¦¦ be
-the intersection of the lines ¦BG¦¦, ¦AG¦¦, occuring ultimately,
-where the points ¦D¦¦, ¦B¦¦ come all
-the way to ¦A¦¦.
-<br><br>
-It is obvious that the distance ¦GJ¦¦ can be less than any assigned [magnitude]
-you please. <!-- KVK: this is not obvious: this is the assumption of the theorem ===
-curve has finite curvature ~ the curve has limit J; or it can be a theorem on itself
-if define "finite curvature" different way like as "second order Taylor member is not zero"
- -->
-<br><br>
-Now, by the nature of circles passing through the points ¦A B G¦ABG¦¦, ¦A b g¦Abg¦¦, square ¦AB¦¦
-is equal ¦AG¦¦ x ¦BD¦¦, and square ¦Ab¦¦ is equal to ¦Ag¦¦ x ¦bd¦¦, and therefore the
-ratio of square ¦AB¦¦ to square ¦Ab¦¦ is compounded of the ratios ¦AG¦¦ to ¦Ag¦¦
-and ¦BD¦¦ to ¦bd¦¦.
-<br><br>
-But seeing that ¦GJ¦¦ can be taken to be less than any assigned length
-you please, it can be taken to be less than any assigned length you please,
-it can happen
-<!-- KVK: weak wording; must say in "some neighbourhood of A,
-it happens" -->
-
-that the ratio ¦AG¦¦ to ¦Ag¦¦
-differ from
-the ratio of equality by less
-than any assigned difference you please, and therefore, that the 
-
-¦Ab2-AB2¦ratio¦¦ square ¦AB¦¦
-
-to square ¦Ab¦¦ ¦claimRatio¦differ from¦¦ the ¦bd-BD¦ratio¦¦ ¦BD¦¦ to ¦bd¦¦ by less than any assigned diffece you
-plase.
-<!-- KVK: this shows that in Lemma 1, the word "which" relates to ratios,
-not to nominator and denominator of the ratio -->
-<br><br>
-Therefore, by Lemma 1, the ultimate ratio of square ¦AB¦¦ to square ¦Ab¦¦ is the same as
-the ultimate ratio of ¦BD¦¦ to ¦bd¦¦.
-
-<!-- KVK:
-Interpretation 1:
-BD/bd is an arbitrarily chosen, it does not have ultimate ratio;
-the wording "eadem cum" must be not like above, but like:
-
-(BD/bd) / (ABxAB/(AbxAb)) has ulitmate ratio of equality; (*)
-
-secondary, this is a limit of a set: for all chors bd inside of BD, (*) holds
-
-Interpretation 2.
-Ratio AD/Ad is fixed. Then lemma is about of limit of function.
-( lim (ABxAB/(AbxAb)) ) = BD/bd =const
--->
-<br>
-Q.E.D.
-<br><br><br>
-
-
-
 Let ¦arc-AB¦AB¦¦ be the arc, ¦AD¦¦ its tangent, ¦BD¦¦ the subtense of the ¦AD arc-AB¦angle
 of contact¦¦ perpendicular to the ¦AD¦tangent¦¦ [angle ¦AD arc-AB¦BAD¦¦], and [the line] ¦AB¦¦ the
 subtense [i.e., the conterminous chord] of the arc [¦arc-AB¦AB¦¦].
@@ -98,8 +34,8 @@ occurs when points ¦D¦¦ and ¦B¦¦ reach ¦A¦¦.
 It is evident that
 the distance ¦GJ¦¦ can be less than any assigned distance.
 And (from the nature of the circles passing through
-points ¦A¦¦, ¦B¦¦, ¦G¦¦ and ¦A¦¦, ¦b¦𝑏¦¦, ¦g¦𝑔¦¦) ¦AB¦¦² is equal to ¦AG¦¦ x ¦BD¦¦,
-and ¦Ab¦A𝑏¦¦² is equal to ¦Ag¦A𝑔¦¦ x ¦bd¦𝑏𝑑¦¦, and thus the ratio of ¦AB¦¦²
+points ¦A¦¦, ¦B¦¦, ¦G¦¦ and ¦A¦¦, ¦b¦𝑏¦¦, ¦g¦𝑔¦¦) ¦AB¦¦² is equal to ¦AG¦¦ × ¦BD¦¦,
+and ¦Ab¦A𝑏¦¦² is equal to ¦Ag¦A𝑔¦¦ × ¦bd¦𝑏𝑑¦¦, and thus the ratio of ¦AB¦¦²
 to ¦Ab¦A𝑏¦¦² is compounded of the ratios of ¦AG¦¦ to ¦Ag¦A𝑔¦¦ and
 ¦BD¦¦ to ¦bd¦𝑏𝑑¦¦. But since ¦GJ¦¦ can be taken as less than any assigned length, it can
 happen that the ratio of ¦AG¦¦ to ¦Ag¦A𝑔¦¦ differs from the ratio of equality by less
