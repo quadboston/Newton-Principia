@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        ns, sn, $$,
-        eachprop,
-        fconf,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+    var { 
+        eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -34,11 +26,11 @@
 
     var lemma6Data =  {
         claim : [
-            [[ 'angleBAD', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD fixed-width', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
         ],
         proof : [
-            [[ 'angleBAD',  'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
-            [[ 'L', 'rectilinear angle : ', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD fixed-width',  'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
+            [[ 'L fixed-width', 'rectilinear angle : ', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
         ]
     };
 

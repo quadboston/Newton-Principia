@@ -1,15 +1,14 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, 
-        sconf, fconf, ssF, ssD, sDomF, sData,
-        amode, stdMod, toreg, rg,
+        ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
             model_upcreate,
         },
     });
+    return;
+
 
     ///****************************************************
     /// model initiation
@@ -79,6 +78,9 @@
                 return true;
             }
         });
+        //-------------------------------------------------
+        // \\// dragger B
+        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ dragger R
@@ -127,6 +129,9 @@
                 }
             }
         });
+        //-------------------------------------------------
+        // \\// dragger R
+        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ dragger D
@@ -156,6 +161,9 @@
                 }
             });
         }
+        //-------------------------------------------------
+        // \\// dragger D
+        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ dragger fi (only used in Bonus Content)
@@ -183,6 +191,9 @@
                 return true;
             }
         });
+        //-------------------------------------------------
+        // \\// dragger fi (only used in Bonus Content)
+        //-------------------------------------------------
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -205,10 +216,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        //=================================================
-        // //\\ sets dragging point point B 
-        //      (keeps it on the curve)
-        //=================================================
+        //: sets dragging point point B (keeps it on the curve)
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.unrotatedParameterX );
         rg.B.pos[0] = newPos[0];
         rg.B.pos[1] = newPos[1];

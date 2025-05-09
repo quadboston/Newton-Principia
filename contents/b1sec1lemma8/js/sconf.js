@@ -2,17 +2,17 @@
 ( function() {
     var { ns, fconf, sconf, userOptions, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+
 
     //====================================================
-    // //\\ inits and sets config pars
+    // //\\// inits and sets config pars
     //====================================================
     function init_conf()
     {
         sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //overrides "global", lemma.conf.js::sconf
-        sconf.TP_OPACITY_LOW_POINT = 1; // opacity of items defined in originalPoints and linesArray below
-        sconf.TP_OPACITY_LOW = 1; // applied to items defined in predefinedTopics below
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
         sconf.pointDecoration.r= 5; // radius of all points, both static and slider
@@ -31,9 +31,12 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
 
+        sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
+
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
+
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 858; // size of svg div
@@ -45,9 +48,7 @@
         var B = [358, 165];
         var D = [496, modorInPicY];
 
-        //-----------------------------------
-        // //\\ svg model colors
-        //-----------------------------------
+        //: svg model colors
         var given = fixedColors.given; // claim
         var proof   = fixedColors.proof;
         var shadow  = fixedColors.shadow; // colour of φ both point and label
@@ -204,8 +205,6 @@
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
                 'angleBAD'      : given,
-                'conterminousRatio' : proof,
-
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

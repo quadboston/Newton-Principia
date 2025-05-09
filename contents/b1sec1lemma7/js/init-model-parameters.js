@@ -1,15 +1,14 @@
 ( function() {
     var {
-        ns, sn, paste, mat, nspaste, 
-        sconf, fconf, ssF, ssD, sDomF, sData,
-        amode, stdMod, toreg, rg,
+        ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
             model_upcreate,
         },
     });
+    return;
+
 
     function init_model_parameters()
     {
@@ -60,6 +59,9 @@
                 return true;
             }
         });
+        //-------------------------------------------------
+        // \\// dragger B
+        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ dragger D
@@ -89,6 +91,9 @@
                 }
             });
         }
+        //-------------------------------------------------
+        // \\// dragger D
+        //-------------------------------------------------
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -109,9 +114,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        //=================================================
-        // //\\ sets dragging point point B
-        //=================================================
+        //: sets dragging point point B
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.unrotatedParameterX );
         rg.B.pos[0] = newPos[0];
         rg.B.pos[1] = newPos[1];
@@ -157,15 +160,12 @@
         // \\// builds Newton microscope
         //=================================================
 
-        //=================================================
-        // //\\ adds length of line seg as rg["xx"].abs
-        //=================================================        
+        //: adds length of line seg as rg["xx"].abs    
         ssF.line2abs( 'AB' );
         ssF.line2abs( 'BG' );
         ssF.line2abs( 'AD' );
         ssF.line2abs( 'AE' );
-        ssF.line2abs( 'BF' );
-        
+        ssF.line2abs( 'BF' );        
         ssF.line2abs( 'Ab' );
         ssF.line2abs( 'Ad' );
 

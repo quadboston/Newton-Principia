@@ -2,6 +2,8 @@
 ( function() {
     var { ns, fconf, sconf, fixedColors, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+    
 
     function init_conf()
     {
@@ -28,8 +30,8 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        sconf.TP_OPACITY_LOW_POINT = 1;
-        sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
+        sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
+
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
@@ -66,7 +68,10 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
+        //--------------------------------------        
+        //***************************************************************
+        // \\// decorational parameters
+        //***************************************************************
 
         //to avoid rounding errors as B gets very close to A
         sconf.NON_ZERO_A_PREVENTOR = 0.0001;
@@ -83,7 +88,7 @@
         var D = [474, modorInPicY];
 
 
-        // *** used only if BONUS || rgShapesVisible
+        //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
@@ -91,12 +96,12 @@
         //var M = [50, modorInPicY];
 
         //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];        
+        var ytop = [-151, 50];  
+        //================================================================
+        // \\// original positions
+        //================================================================      
         
-        //-----------------------------------
-        // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //: topic group colors
         var context = [0, 0, 0];
         var given   = fixedColors.given;        
         var proof   = fixedColors.proof;
@@ -172,7 +177,6 @@
                 "phi0"          : given,
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
-                'conterminousRatio' : proof,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

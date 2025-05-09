@@ -15,40 +15,14 @@ sup {
 
 /******************************************/
 /* //|| page primary sections             */
+/* ||// bsl--svgscene                     */
+/* ||// media pane                        */
 /******************************************/
-
-/* vital */
-/*
-.bsl-menu-filler { 
-    height: ${fconf.attach_menu_to_essaion_root ? 65 : 90}px;
-}
-*/
-
-/* //=======================================
-// //\\ visib
-//=======================================
-//svg display
-//display-inline-and-block-on-svg-elements
-//https://stackoverflow.com/questions/41437423/difference-between- */
-/* idea:
-    .display-block {
-        display : block;
-    }
-*/
 
 .bsl-approot .bsl--svgscene .undisplay,
 .display-none {
     display : none;
 }
-
-/* //this was an outdated code, but it may give a clue
-//.bsl-approot.submodel--common .bsl-simscene.submodel--common,
-//todo why do we need make it displayed explicityly?
-//because of it was: .bsl-simscene, {display : none;}
-//ret += `.bsl-approot .bsl-simscene { display : block;}`;
-//=======================================
-// \\// visib
-//======================================= */
 
 /* enables original-figure-picture disappearance */
 /* at version 1112, restored by client request */
@@ -57,18 +31,6 @@ sup {
     opacity:0;
     transition: opacity 1s ease;
 }
-
-/*================================*/
-/* //|| bsl--svgscene                */
-/*      .bsl--svgscene === svg       */
-/*================================*/
-
-/*
-    moved to separate more specific settings module for collection of sites:
-    .bsl-bg-image {
-        width:100%;
-    ...
-*/
 
 /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
 /* this really solved firefox problem of "shadow-dragging-object"
@@ -89,17 +51,9 @@ sup {
             user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
 }
-/*================================*/
-/* ||// bsl--svgscene             */
-/* ||// media pane                */
-/*================================*/
 
-/* to be set dynamicallys */
-/*
-.bsl-sim-superscene .grab {
-   cursor : grab; 
-}
-*/
+/*================================*/
+/*================================*/
 
 #bsl-resizable-handle {
     display: flex;
@@ -117,15 +71,6 @@ sup {
     background-color: transparent;
 }        
 
-/* patch: should be nicely disabling divide-panes-functionality todm */
-/*
-#bsl-resizable-handle {
-    top:-300%;
-}
-*/
-/*---------------------------*/
-/* \\// horizontal resizer   */ 
-/*---------------------------*/
 
 /*========================================*/
 /* //|| mobile                            */
@@ -151,12 +96,12 @@ sup {
 //      otherwise, margin may solves all
 //======================================== */
 
-.bsl-legend-root {
+.bsl-legend-root { /* table container, parent is bsl-simscene */
     box-sizing   : border-box;
     text-align   : center;
 }
 
-.main-legend {
+.main-legend { /* data table */
     table-layout : auto;
     box-sizing   : border-box;
     margin-left  : 15px;
@@ -213,13 +158,17 @@ sup {
     text-align:right;
 }
 .main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
-    min-width: 7em !important;
     text-align:right;
 }
+
+.main-legend td:first-child.fixed-width, .main-legend td:nth-child(4).fixed-width {/* patch for L6, L7, L8 */
+    min-width: 9em !important;
+}
+
 .main-legend td.value {
     font-family: var(--data-numerical-font);
     width: 5rem;
-    padding-left: 1rem !important;
+    padding-left: 0.5rem !important;
     height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
 }
 .main-legend .eq-sign {

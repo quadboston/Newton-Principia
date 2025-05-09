@@ -1,14 +1,13 @@
 ( function() {
     var {
-        ns, sn, paste, capture, nspaste, userOptions,
+        ns, paste, capture, nspaste, userOptions,
         fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
         stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             amode2rgstate,
         },
-    }); 
+    });
 
     ///diff and Euclid tangents are equal
     var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
@@ -27,9 +26,10 @@
         "cos": 1
     };
 
+    setCapture();   
+    return;
 
-    setCapture();
-
+    
     function setCapture()
     {
         paste( capture,
