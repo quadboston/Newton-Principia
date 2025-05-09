@@ -1,0 +1,122 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Claim"
+}
+*..*
+In all ¦curve-AB¦curves¦¦ having a ¦AJ¦finite curvature¦¦ at the ¦A¦point of contact¦¦, the vanishing
+¦BD¦subtense¦¦ of the ¦AD arc-AB¦angle of contact¦¦ is ultimately in the squared ratio of the ¦AB¦subtense¦¦
+of the ¦arc-AB¦conterminous arc¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 439.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "Cᴀsᴇ 1",
+  "subessay" : "case-1",
+  "logic_phaseCaption" : "Proof"
+}
+*..*
+Let ¦arc-AB¦AB¦¦ be the arc, ¦AD¦¦ its tangent, ¦BD¦¦ the subtense of the ¦AD arc-AB¦angle
+of contact¦¦ perpendicular to the ¦AD¦tangent¦¦ [angle ¦AD arc-AB¦BAD¦¦], and [the line] ¦AB¦¦ the
+subtense [i.e., the conterminous chord] of the arc [¦arc-AB¦AB¦¦].
+Erect ¦BG¦¦ and ¦AG¦¦ perpendicular to this subtense ¦AB¦¦
+and tangent ¦AD¦¦ and meeting in ¦G¦¦; then let points ¦D¦¦,
+¦B¦¦, and ¦G¦¦ approach points ¦d¦𝑑¦¦, ¦b¦𝑏¦¦, and ¦g¦𝑔¦¦, and let ¦J¦¦ be
+the intersection of lines ¦BG¦¦ and ¦AG¦¦, which ultimately
+occurs when points ¦D¦¦ and ¦B¦¦ reach ¦A¦¦. 
+<br><br>
+It is evident that
+the distance ¦GJ¦¦ can be less than any assigned distance.
+And (from the nature of the circles passing through
+points ¦A¦¦, ¦B¦¦, ¦G¦¦ and ¦A¦¦, ¦b¦𝑏¦¦, ¦g¦𝑔¦¦) ¦AB¦¦² is equal to ¦AG¦¦ × ¦BD¦¦,
+and ¦Ab¦A𝑏¦¦² is equal to ¦Ag¦A𝑔¦¦ × ¦bd¦𝑏𝑑¦¦, and thus the ratio of ¦AB¦¦²
+to ¦Ab¦A𝑏¦¦² is compounded of the ratios of ¦AG¦¦ to ¦Ag¦A𝑔¦¦ and
+¦BD¦¦ to ¦bd¦𝑏𝑑¦¦. But since ¦GJ¦¦ can be taken as less than any assigned length, it can
+happen that the ratio of ¦AG¦¦ to ¦Ag¦A𝑔¦¦ differs from the ratio of equality by less
+than any assigned difference, and thus that the ratio of ¦AB¦¦² to ¦Ab¦A𝑏¦¦² differs
+from the ratio of ¦BD¦¦ to ¦bd¦𝑏𝑑¦¦ by less than any assigned difference. Therefore,
+by lem. 1, the ultimate ratio of ¦AB¦¦² to ¦Ab¦A𝑏¦¦² is the same as the ultimate ratio
+of ¦BD¦¦ to ¦bd¦𝑏𝑑¦¦. &nbsp;&nbsp; Q.E.D.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 439.</div>
+
+
+
+
+*::*proof|english
+{
+  "subessayCaption" : "Cᴀsᴇ 2",
+  "subessay" : "case-2"
+}
+*..*
+Now let ¦BD¦¦ be inclined to ¦AD¦¦ at any given angle, and the
+ultimate ratio of ¦BD¦¦ to ¦bd¦𝑏𝑑¦¦ will always be the same as before and thus the
+same as ¦AB¦¦² to ¦Ab¦A𝑏¦¦². &nbsp;&nbsp; Q.E.D.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 439.</div>
+
+
+
+*::*proof|english
+{
+  "subessayCaption" : "Cᴀsᴇ 3",
+  "subessay" : "case-3"
+}
+*..*
+And even when angle ¦AD BD¦D¦¦ is not given, if the straight line ¦BD¦¦
+converges to a given point or is drawn according to any ¦limitRatio¦other specification¦¦,
+still the angles ¦AD BD¦D¦¦ and ¦Ad bd¦𝑑¦¦ (constructed according to the specification common
+to both) will always tend to equality and will approach each other so closely
+that their difference will be less than any assigned quantity, and thus will
+ultimately be equal, by lem. 1; and therefore lines ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦ are in the
+same ratio to each other as before. &nbsp;&nbsp; Q.E.D.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 439.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+Hence, since tangents ¦AD¦¦ and ¦Ad¦A𝑑¦¦, arcs ¦arc-AB¦AB¦¦ and ¦arc-Ab¦A𝑏¦¦, and
+their sines ¦BC¦¦ and ¦bc¦𝑏𝘤¦¦ become ultimately equal to chords ¦AB¦¦ and ¦Ab¦A𝑏¦¦, their
+squares will also be ultimately as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2"
+}
+*..*
+The squares of these ¦AD Ad¦tangents¦¦, ¦arc-AB arc-Ab¦arcs¦¦, and ¦BC bc¦sines¦¦ are also
+ultimately as the sagittas of the ¦arc-AB arc-Ab¦arcs¦¦, which bisect the ¦AB Ab¦chords¦¦ and converge
+to a given point. For these sagittas are as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3"
+}
+*..*
+And thus the sagitta is in the squared ratio of the time
+in which a body describes the ¦arc-AB¦arc¦¦ with a given velocity.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
