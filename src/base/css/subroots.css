@@ -120,7 +120,7 @@ sup {
     /* this is a brute force way to specify opacity for table data 
         without affect TP_OPACITY values used in the models,
         however, it prevents dynamic opacity change on hover */
-    /* opacity: 1 !important; */
+    opacity: 1 !important;
 }
 
 .main-legend td.monospace {

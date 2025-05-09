@@ -1,25 +1,14 @@
 ( function() {
     var {
-        $$, mat,
-        sconf, sDomF, sDomN, ssD, ssF,
-        stdMod, rg, toreg,
+        $$, mat, sDomF, stdMod, rg, toreg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList :  {
             upcreate_mainLegend,
             create_digital_legend,
         },
     });
     var clustersToUpdate = [];
-    var clustersToUpdate_claim = [];
     return;
-
-
-
-
-
-
-
 
 
     ///this function is called from common-application-library,
@@ -32,9 +21,6 @@
     }
 
 
-
-
-
     //=========================================
     // //\\ updates values during simulation
     //      can be called from slider and from
@@ -45,8 +31,6 @@
         var ww = clustersToUpdate;
         ww[ 'a' ].innerHTML = rg.a.value.toFixed(2);
         ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
-
-        var wwT=rg.T.pos;
 
         //todm this is a patch: do use Pr/Pt
         var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
@@ -64,9 +48,6 @@
     //=========================================
 
 
-
-
-
     //=========================================
     // //\\ creates proof table
     //      does one time work of html creation
@@ -80,80 +61,27 @@
             .to( stdMod.legendRoot$ )
             ();
 
-
-        //=====================================================
-        // //\\ idle first row to format table for fixed-layout
-        //=====================================================
-        var row = $$.c('tr')
-            .addClass('proof row1')
-            .addClass('tostroke')
-            .to(tb)();              
-        makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
-        makeFormatterCell( row, 'xxx', '11111', 'xxxxxxxxx' );
-        function makeFormatterCell( row, mcaption, val, id )
-        {
-            $$.c('td').html( mcaption ).to(row);
-            $$.c('td').html('=').addClass('eq-sign '+id).to(row);
-            $$.c('td').html( val+'' ).to(row);
-        }
-        //=====================================================
-        // \\// idle first row to format table for fixed-layout
-        //=====================================================
-
-
         //===================
-        // //\\ table caption
-        //===================
-        var row = $$.c('tr').to(tb)();
-        $$.c('td').a('colspan','9')
-                  .addClass('table-caption')
-                  .html(' ')
-                  .to(row);
-        //===================
-        // \\// table caption
-        //===================
-
-        // begins to fill data rows
-
-        //===================
-        // //\\
+        // //\\ begins to fill data rows
         //===================
         //:time
         var row = $$.c('tr')
-            //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'a', 'semi a', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
-        makeCl( row, 'b', 'semi b', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
+        makeCl( row, 'a', 'semi a', 'ellipse' );
+        makeCl( row, 'b', 'semi b', 'ellipse' );
 
         var row = $$.c('tr')
-            //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'PT', 'PT', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
-        makeCl( row, 'PR', 'PR', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
-        makeCl( row, 'PR-PT', 'PR/PT', null, null,  !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
+        makeCl( row, 'PT', 'PT', 'key-triangle' );
+        makeCl( row, 'PR', 'PR', 'key-triangle' );
+        makeCl( row, 'PR-PT', 'PR : PT', 'key-triangle' );
         //===================
         // \\//
         //===================
-        return;
-
-
-        function makeCl(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                claim0proof, noEqualSign, cssName
-         ) {
-            return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight,
-                'proof', noEqualSign, cssName );
-        }
     }
     //=========================================
     // \\// creates proof table
     //=========================================
-
-
-
-
 
 
     //=========================================
@@ -163,8 +91,7 @@
     ///Effect: represents magnitude in html-table-row in 
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeClBoth( row, mname, mcaption, spanIx, spanVal,
-                         alignCaptionToRight, claim0proof, noEqualSign, cssName )
+    function makeCl( row, mname, mcaption, cssName )
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
@@ -175,37 +102,15 @@
                        .html( mcaption||mname )
                        .addClass('tostroke tocolor tobold tp-' + cssName)
                        .to(row);
-            if( alignCaptionToRight ) {
-                c$.addClass('align-to-right')
-            }
-            if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
-        }
-
-        //todm .this does not guarantee adding the class to td ... so far only
-        //.topic-engine probably takes care about the class - do fix this
-        //tr( 'legend-'+mname, 'domel', c$() );
-        //tr( 'claim-legend-'+mname, 'domel', c$() );
-
-        if( !noEqualSign ) {
-            //$$.c('td').html( noEqualSign ? '' : '=' ).to(row)
-            $$.c('td').html( '=' ).to(row)
-                //.addClass('eq-sign')
-                ;
         }
         var c$ = $$.c('td')
                    .cls('value')
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
-        if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        if( claim0proof === 'claim' ) {
-            clustersToUpdate_claim[mname] = c$();
-        } else {
-            clustersToUpdate[mname] = c$(); //updateeCell;
-        }
+
+        clustersToUpdate[mname] = c$(); //updateeCell;
         return c$;
     }
-
-
 
 }) ();
 

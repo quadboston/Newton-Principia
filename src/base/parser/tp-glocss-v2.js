@@ -101,7 +101,7 @@ ${Rix} .tp-${lowId}.tobold,
 ${Rix} svg text.tp-${lowId},
 ${Rix} svg tspan.tp-${lowId},
 ${Rix} span.tp-${lowId} { 
-    background-color : #eaeaea;
+    background-color : #eaeaea; /* highlight instead of bold */
 }
                     `;
                         ///todm: very crude and wordy stroke width control

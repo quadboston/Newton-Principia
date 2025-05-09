@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, sDomF, ssD, stdMod, rg, toreg, } 
+    var { $$, sconf, fconf, sDomF, ssD, stdMod, rg, toreg, } 
         = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
@@ -28,9 +28,17 @@
 
         var claimR = ssD.claimRatio;
 
+        var www = sconf.LEGEND_NUMERICAL_SCALE;
+        var wD2 = www * www;
+        var dig = www > 10 ? 0 : 4;
+
         var ww = clustersToUpdate;
 
-        ww.AbdPerAce.innerHTML  = (calcA[ 'Afd' ].total/calcA[ 'Age' ].total).toFixed(3);
+        //:vanishing areas
+        //:sets display of "main vanishing values"
+        //:these statements do output all the "vanishing" digits
+        ww.ABD.innerHTML        = (wD2*calcA[ 'AFD' ].total).toFixed(dig+4);
+        ww.ACE.innerHTML        = (wD2*calcA[ 'AGE' ].total).toFixed(dig+4);
 
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
@@ -59,31 +67,28 @@
             ();
 
         //===================
-        // //\\ first row
-        //===================
-        //:Abd Ace
-        AbdAce_row$ = $$.c('tr')
-            .addClass('tostroke')
-            .to(tb);
-        var row = AbdAce_row$();        
-        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );  
-        makeCl( row, 'AbdPerAce', '△Abd : △Ace' );
-        //===================
-        // \\// first row
-        //===================
-
-        //===================
-        // //\\ second row
+        // //\\ row 1
         //===================
         var row = $$.c('tr')
                     .addClass('tostroke')
-                    .to(tb)();              
-        makeCl( row, 'AD2PerAE2', 'AD² : AE²');    
-        makeCl( row, 'Ad2PerAe2', 'Ad² : Ae²');
+                    .to(tb)();
+        makeCl( row, 'ABD' ); //...span-index, span-value
+        makeCl( row, 'ABDPerACE', 'ABD : ACE' );
         //===================
-        // \\// second row
+        // \\// row 1
         //===================
 
+        //===================
+        // //\\ row 2
+        //===================
+        var row = $$.c('tr')
+                    .addClass('tostroke')
+                    .to(tb)();                    
+        makeCl( row, 'ACE');
+        makeCl( row, 'AD2PerAE2', 'AD² : AE²');
+        //===================
+        // \\// row 2
+        //===================
         return;
 
         function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
@@ -109,13 +114,14 @@
             .to( stdMod.legendRoot$ )
             ();
 
+
         //===================
         // //\\ vanishing areas
         //===================
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );
+        makeCl( row, 'ABDPerACE', 'ABD : ACE' );
         //===================
         // \\// vanishing areas
         //===================
@@ -172,4 +178,3 @@
     }
 
 }) ();
-
