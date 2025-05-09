@@ -193,7 +193,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : orbit,
+                pcolor : given,
                 //letterAngle : -90,
                 //undisplayAlways : true,
                 //doPaintPname : false,
@@ -201,7 +201,7 @@
 
             S : {
                 pos: S,
-                pcolor : force,
+                pcolor : given,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -210,7 +210,7 @@
 
             P : {
                 pos: P,
-                pcolor : body,
+                pcolor : given,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -252,7 +252,7 @@
 
 
             Zminus : {
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
                 //undisplay : true,
                 undisplayAlways : true,
@@ -285,12 +285,12 @@
 
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
             L : {
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
@@ -298,7 +298,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 

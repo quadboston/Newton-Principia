@@ -77,7 +77,7 @@
         //usually as a condition of a claim,
         //condition of the theorem,
         //given parameters of the claim or proof
-        fixedColors.given   = [0, 150, 0];
+        fixedColors.given   = [42, 124, 140];//[0, 150, 0]; <<<
 
         //relates to moving body, to an orbit
         fixedColors.body    = [0, 150, 0];
@@ -95,7 +95,7 @@
         
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = [0, 0, 255];
+        fixedColors.proof       = [112, 97, 160];//[0, 0, 255]; <<<
         fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = [100, 0, 0];
 
@@ -118,7 +118,8 @@
 
         fixedColors.context = [0, 0, 0];
 
-        fixedColors.estimatedForce  = [200, 0, 200];
+        fixedColors.estimatedForce  = [167, 109, 111];//[200, 0, 200]; <<<
+        fixedColors.actualForce     = [181, 154, 76];// <<<
         fixedColors.sagitta         = fixedColors.estimatedForce;
         fixedColors.curvature       = [200, 40, 200];
         fixedColors.chord           = [0, 0, 255];
