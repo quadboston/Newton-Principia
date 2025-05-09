@@ -81,7 +81,7 @@
 
         //relates to moving body, to an orbit
         fixedColors.body    = [0, 150, 0];
-        fixedColors.orbit   = fixedColors.body;
+        fixedColors.orbit   = fixedColors.given;//fixedColors.body;
         
         fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
         fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
@@ -108,7 +108,7 @@
             //alert, invalid user actions
             fixedColors.invalid = [250, 0, 0];
             //force, energy
-            fixedColors.force   = [200, 150, 0];
+            fixedColors.force   = [181, 154, 76];//[167, 109, 111];// <<<[200, 150, 0];
             //conclusion of the proof
         }
         //neutral elements
@@ -118,8 +118,8 @@
 
         fixedColors.context = [0, 0, 0];
 
-        fixedColors.estimatedForce  = [167, 109, 111];//[200, 0, 200]; <<<
-        fixedColors.actualForce     = [181, 154, 76];// <<<
+        fixedColors.estimatedForce  = [167, 109, 111];//[181, 154, 76];//[200, 0, 200]; <<<
+        //fixedColors.actualForce     = [167, 109, 111];// <<<
         fixedColors.sagitta         = fixedColors.estimatedForce;
         fixedColors.curvature       = [200, 40, 200];
         fixedColors.chord           = [0, 0, 255];

@@ -138,6 +138,7 @@
             curvature,
             context,
             chord,
+            given
         } = fixedColors;
 
 
@@ -193,7 +194,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : given,
+                pcolor : proof,
                 //letterAngle : -90,
                 //undisplayAlways : true,
                 //doPaintPname : false,
@@ -218,7 +219,7 @@
 
             Q : {
                 pos: Q,
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -236,17 +237,17 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
             },
 
             Z : {
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
             },
 
@@ -343,25 +344,25 @@
         [
             { 'PV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : orbit }, },
+            { 'SP' : { pcolor : estimatedForce }, },
             { 'AP' : { pcolor : proof }, },
 
-            { 'PY' : { pcolor : body }, },
+            { 'PY' : { pcolor : proof }, },
             { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'ZR' : { pcolor : proof }, },
 
-            { 'PR' : { pcolor : body }, },
-            { 'ZQ' : { pcolor : body }, },
+            { 'PR' : { pcolor : proof }, },
+            { 'ZQ' : { pcolor : proof }, },
 
 
             { 'RL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
             { 'PT' : { pcolor : proof }, },
 
             { 'PC' : { pcolor : curvature }, },
