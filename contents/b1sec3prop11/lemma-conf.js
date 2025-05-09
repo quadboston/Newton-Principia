@@ -20,6 +20,7 @@
                 { src: sm + 'state-capturer.js' },
                 { src: sm + 'builds-orbit.js' },
                 { src: sm + 'builds-sagitta.js' },
+                { src: sm + 'builds-deviation.js' },
                 { src: sm + 'graph-fw-lib.js' },
                 { src: sm + 'orbit-lib.js' },
             ],

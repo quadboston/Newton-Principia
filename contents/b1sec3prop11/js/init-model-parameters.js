@@ -41,11 +41,11 @@
 
         stdMod.recreates_q2xy();
         stdMod.recreatesPosCorrector();
-        stdMod.creates_poly2svgP11();
+        stdMod.creates_poly2svg_for_lemma();
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         stdMod.buildsOrbit();
-        stdMod.buildsSagitta();
+        stdMod.builds_dq8agitta();
 
         //----------------------------------------------
         // //\\ sets parameters of P

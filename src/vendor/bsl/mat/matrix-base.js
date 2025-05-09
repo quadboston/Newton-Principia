@@ -313,7 +313,7 @@
     {
         //direction of line AB = line segment from start point A to end point B
         var lineForPerp = [ B[0] - A[0], B[1] - A[1] ];
-        var lAbs = lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1];
+        var lAbs = Math.sqrt( lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1] );
         lAbs = Math.max( lAbs, 1.e-150 );
         var unitLine = [ lineForPerp[0]/lAbs, lineForPerp[1]/lAbs, ]
 
