@@ -84,72 +84,39 @@ same ratio to each other as before. &nbsp;&nbsp; Q.E.D.
 
 *::*corollary|english
 {
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-COR. 1. Hence, since the tangents ¦AD¦¦, ¦Ad¦¦,
-the arcs ¦arc-AB¦AB¦¦, ¦arc-Ab¦Ab¦¦, and their sines, ¦BC¦¦, ¦bc¦¦,
-become ultimately equal to the chords ¦AB¦¦, ¦Ab¦¦,
-their squares will also be ultimately as the subtenses ¦BD¦¦, ¦bd¦¦.
-<br><br><br>
-
-COR. 2. The squares of the same are also ultimately as the sagittae of the arcs which
-bisect the chords and converge to a given point. For these sagittae are as the subtenses
-BD, bd.
-<br><br><br>
-
-
-
-COR. 3. Therefore, the sagitta is in the duplicate ratio of the time in which
-a given body describes the arc with a given velocity.
-<br><br><br>
-
-COR. 4. The rectilinear triangles ADB, Adb are ultimately in the triplicate ratio of the sides AD, Ad,
-and in a sesquiplicate ratio of the sides DB, db; as being in the ratio compounded of the sides AD to DB,
-and of Ad to db.
-
-So also the triangles ABC, Abe
-are ultimately in the triplicate ratio of the sides BC, bc. What I call the sesquiplicate ratio is the subduplicate
-of the triplicate, as being compounded of the simple
-and subduplicate ratio.
-<br><br><br>
-
-COR. 5. And because DB, db are ultimately parallel
-and in the duplicate ratio of the lines AD, Ad, the
-ultimate curvilinear areas ADB, Adb will be (by the nature of the parabola)
-two thirds of the rectilinear triangles ADB, Adb and the segments
-AB, Ab will be
-one third
-
-<!-- KVK: does not make sense. This makes sense: AD ~ area^(1/3) -->
-
-of the same triangles. And thence those areas and those segments will be in the triplicite ratio as well of the tangents
-AD, Ad, as of the chords and arcs AB, AB.
-<br><br><br>
-
-
-<div style="font-size:10px;">
-    Sources: <br><br>
-
-    COR. 1, 2, 3.
-
-
+Hence, since tangents ¦AD¦¦ and ¦Ad¦A𝑑¦¦, arcs ¦arc-AB¦AB¦¦ and ¦arc-Ab¦A𝑏¦¦, and
+their sines ¦BC¦¦ and ¦bc¦𝑏𝘤¦¦ become ultimately equal to chords ¦AB¦¦ and ¦Ab¦A𝑏¦¦, their
+squares will also be ultimately as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
 <br><br>
-    <div book-reference-id="Donahue"></div>
-    <br><br>
-
-    COR. 4 and COR. 5.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
 
 
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2"
+}
+*..*
+The squares of these ¦AD Ad¦tangents¦¦, ¦arc-AB arc-Ab¦arcs¦¦, and ¦BC bc¦sines¦¦ are also
+ultimately as the sagittas of the ¦arc-AB arc-Ab¦arcs¦¦, which bisect the ¦AB Ab¦chords¦¦ and converge
+to a given point. For these sagittas are as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
 <br><br>
-    <div book-reference-id="Motte-3rd"></div>
-</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
 
 
 
 
-
-
-
-
-
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3"
+}
+*..*
+And thus the sagitta is in the squared ratio of the time
+in which a body describes the ¦arc-AB¦arc¦¦ with a given velocity.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
