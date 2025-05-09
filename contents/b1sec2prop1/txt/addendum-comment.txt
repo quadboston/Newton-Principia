@@ -65,7 +65,7 @@
 
     <span class="captured-reference id-1-0">When body arrives from point A to point B</span>,
 
-    it circumscribes a ¦kepler-triangle SAB¦"kepler-triangle-area"¦¦. <br><br>
+    it circumscribes a ¦SAB kepler-triangle-odd kepler-triangle-even¦"kepler-triangle-area"¦¦. <br><br>
 
     Logical steps describing motion ¦BC¦BC¦¦ are:<br><br>
 
@@ -76,7 +76,7 @@
            making motion ¦Bc¦𝗿<sub>Bc</sub>¦¦ = ¦Av¦v<sub>AB</sub>¦¦ ¦dt¦∆t¦¦.
 
            The area of ¦free-triangle SBc¦"free-movement-triangle-area"¦¦ is equal
-           to area of former ¦kepler-triangle SAB¦"kepler-triangle"¦¦,<br><br>
+           to area of former ¦SAB kepler-triangle-odd kepler-triangle-even¦"kepler-triangle"¦¦,<br><br>
 
 
         <span class="captured-reference id-1-2">proof step 2.</span>
@@ -114,7 +114,7 @@
          <br><br>
 
         <span class="captured-reference id-1-3">proof step 4.</span>
-        previous and new ¦kepler-triangle SBC¦"kepler-triangle-area"¦¦ are equal.<br><br>
+        previous and new ¦SBC kepler-triangle-odd kepler-triangle-even¦"kepler-triangle-area"¦¦ are equal.<br><br>
 
 
         Each of next motions, CD, DE, ... repeats steps 1, 2, 3, 4.<br><br><br>

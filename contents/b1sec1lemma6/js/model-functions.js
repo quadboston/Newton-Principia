@@ -1,32 +1,13 @@
 ( function() {
     var {
-        ns, sn, mat,
-        sconf, fconf, ssF, ssD, sDomF,
-        amode, stdMod, rg,
+        mat, sconf, fconf, ssD, amode, stdMod, rg,
     } = window.b$l.apptree({
-        //setModule,
-        stdModExportList :
-        {
+        stdModExportList : {
             createModelFunctions,
         },
     });
     return;
 
-
-
-    /*
-    function setModule()
-    {
-        //createsModelFunctions();
-    }
-    /// alternative solution
-    ///=================================================
-    /// configures repo of "experimental" functions
-    ///=================================================
-    function createsModelFunctions()
-    {
-    }
-    */
 
     //=================================================
     // //\\ configures curve
@@ -125,11 +106,6 @@
     //=================================================
     // \\// configures curve
     //=================================================
-
-
-
-
-
 
 }) ();
 

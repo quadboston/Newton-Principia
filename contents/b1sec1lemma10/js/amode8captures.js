@@ -1,20 +1,10 @@
 ( function() {
-    var {
-        ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, paste, capture, amode, rg, sDomF, ssD, ssF, fconf, sconf, } 
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
 
-
-
-
-
-
+    
     function setCapture()
     {
         paste( capture,
@@ -33,16 +23,21 @@
             'c',
             'd',
             'e',
+            'F', 
+            'G',
             'f',
             'g',
+            'pivotPoint1',
             'Ae',
             'Ab',
             'Ac',
             'Ad',
+            'Ag',
             'db',
             'ec',
             //'df',
             //'eg',
+            'AG',
             'remoteCurve',
 
             "Abd",
@@ -58,16 +53,7 @@
         rg.pivotPoint1.pcolor = sDomF.getFixedColor( 'given' )
         rg.Ag.pcolor = sDomF.getFixedColor( 'given' )
 
-        if(
-            logic_phase === 'proof'
-        ) {
-            //Sets and constrains the tiltAngle as follows.
-            //rg.tiltAngle.value = Math.min(Math.max(-10, sconf.tiltAngle_min), sconf.tiltAngle_max);
-            [
-                'Ae',
-                'e',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
-        } else if( logic_phase === 'claim' ) {
+        if( logic_phase === 'claim' ) {
             //Sets and constrains the tiltAngle as follows.
             rg.tiltAngle.value = 0;
         }

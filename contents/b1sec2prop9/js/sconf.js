@@ -1,12 +1,7 @@
 
 ( function() {
-    var { //import from apptree
-        ns,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, fconf, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -161,28 +156,31 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var curvature  = [200,   40,  200, 1];
-        var deviation = [200,   0,  200, 1];
-        var body    = [0,     150,  200,   1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
+        const {
+            given,
+            orbit,
+            body,
+            proof,
+            force,
+            result,
+            hidden,
+            curvature,
+            context,
+        } = fixedColors;
+
+
         var predefinedTopics =
         {
             given,
             proof,
             result,
-            deviation,
             hidden,
             context,
             curvature,
-            curvatureCircle : curvature,
+            curvatureCircle : curvature,    //Actually uses "rg.C.pcolor" see "model-upcreate.js" section "curvature circle"
             body,
-            orbit   : given,
-            force   : result,
+            orbit,
+            force,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -275,11 +273,17 @@
             },
 
             //center of instant curvature circle
+            //C is always hidden, therefore could likely be removed eventually however...
+            //-see comment in section "topic group colors" for curvatureCircle
+            //-its position is set in "model-upcreate.js" section "curvature circle"
+            //-may also be set and/or used elsewhere
             C : {
                 pos : C,
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
         });
 
@@ -287,7 +291,6 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proof }, },
-            { 'CV' : { pcolor : curvature }, },
 
             { 'SP' : { pcolor : result }, },
 
@@ -303,8 +306,6 @@
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
-
-            { 'PC' : { pcolor : curvature }, },
         ];
 
         ns.paste( sconf, {

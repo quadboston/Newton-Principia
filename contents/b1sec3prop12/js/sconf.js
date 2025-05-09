@@ -1,22 +1,10 @@
 
 ( function() {
-    var { //import from apptree
-        ns, sn, mat,
-        fconf,
-        sconf, rg, stdMod,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, sn, mat, fconf, sconf, rg, stdMod, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
-
-
-
-
-
-
-
 
 
     //====================================================
@@ -287,29 +275,30 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0,      1];
-        var orbitareaSample = [0,     150, 0,  0.05];
-        var orbit   = given;
-        var orbitarea = [0,     150, 0,    fconf.effId === "b1sec3prop14" ? 0.1 : 0.001, 0.5];
-        var instanttriangle = [0, 150, 200,
-                               fconf.effId === "b1sec3prop14" ? 0.2 : 0.001, 0.5 ];
-        var proof   = [0,     0,   255,    1];
-        var proofHidden = [0, 0,   255,   0.05];
+        const {
+            given,
+            body,
+            orbit,
+            orbitareaSample,
+            orbitarea,
+            orbitareaHiddenStart,
+            instanttriangle,
+            instanttriangleHiddenStart,
+            proof,
+            proofHidden,
+            result,
+            force,
+            shadow,
+            hidden,
+            curvature,
+            context,
+            attention,
+        } = fixedColors;
 
-        var result  = [200,   40,  0,      1];
-        var curvature  = [200,   40,  200, 1];
-        var body    = [0,     150,  200,   1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var shadow  = [150,  150,  150,    1];
-        var invalid = [200,  150,  0,      1];
-        var attention = [200,  200,  0,      1];
-        var force   = [200,  0,  200,      1];
 
         var p17_result_proof = fconf.sappId === "b1sec3prop17" ? result : proof;
         var p17_result_orbit = fconf.sappId === "b1sec3prop17" ? result : orbit;
         var p17_body_proof   = fconf.sappId === "b1sec3prop17" ? body : proof;
-        var p17_result_given = fconf.sappId === "b1sec3prop17" ? result : given;
         var p17_force_result = fconf.sappId === "b1sec3prop17" ? force : result;
 
         var predefinedTopics =
@@ -321,15 +310,15 @@
             context,
             curvature,
             body,
-            orbit : p17_result_given,
-            'orbit-sample' : given,
-            orbitarea,
-            'orbitarea-sample' : orbitareaSample,
-            orbitdq : p17_result_given,
-            'orbitdq-sample' : given, //todm remove
+            orbit               : p17_result_orbit,
+            'orbit-sample'      : given,
+            orbitarea           : (fconf.effId === "b1sec3prop14" ? orbitarea : orbitareaHiddenStart),
+            'orbitarea-sample'  : orbitareaSample,
+            orbitdq             : p17_result_orbit,
+            'orbitdq-sample'    : given, //todm remove
             shadow,
-            force   : p17_force_result,
-            instanttriangle,
+            force               : p17_force_result,
+            instanttriangle     : (fconf.effId === "b1sec3prop14" ? instanttriangle : instanttriangleHiddenStart),
             //curvatureCircle : curvature,
             //tangentCircle : curvature,
         };

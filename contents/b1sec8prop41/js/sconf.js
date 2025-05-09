@@ -1,20 +1,9 @@
 
 ( function() {
-    var {
-        sn, mat, eachprop, nspaste, userOptions, fixedColors,
-        fconf, sconf, rg, stdMod,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { sn, mat, eachprop, nspaste, userOptions, fixedColors, fconf, sconf,
+        rg, stdMod, } = window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
-
-
-
-
-
-
-
 
 
     function init_conf()
@@ -97,11 +86,6 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        sconf.TP_OPACITY_FROM_fixed_colors = true;
-        TP_OPACITY_LOW = 0.3;
-        TP_OPACITY_LOW_POINT = 1;
-        TP_OPACITY_HIGH = 1;
-        TP_OPACITY_FROM_fixed_colors = false;
 
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
@@ -152,41 +136,31 @@
             invalid,
             result,
             shadow,
+            hidden,
+
+            fi,
+            Fkernel,
+            bodyHiddenStart,
+
+            forceTransparentStart,
+            VSarea,
+
+            timeHiddenStart,
+
+            vgpoint,
+
+            XCY,
+            D𝑐𝑥E,
+            D𝑏𝑧E,
+            VIC,
+            ICK,
         } = fixedColors;
 
-        var hidden    = [0,     0,   0];
+        const Zgraph = bodyHiddenStart;
+        const vgraph = forceTransparentStart;
+        const ro = distance;
+        const Tkernel = time;
 
-        //special or derivative parameters
-        var fi        = [0,  0,  150,   0.1, 0.4 ];
-        var Fkernel   = [0,  0,  150,   0.5, 1 ];
-        var fiArea    = [0,  0,  150,   0.1, 0.3];
-
-        var Zgraph    = body; //[100,  0, 20, 0.01,  1];
-        Zgraph[3]     = 0.01;
-        Zgraph[4]     = 1;
-        var Z2graph   = body;
-        Z2graph[3]    = 0.4;
-        Z2graph[4]    = 1;
-        
-        
-        var ro        = distance;
-
-        var vgraph    = force;
-        vgraph[3]      = 0.1;
-        vgraph[4]      = 1;
-
-        //var v2graph   = [0,  140, 0, 0.4];
-        var v2graph   = force; //[0,  140, 0, 0.6, 1];
-        v2graph[3]     = 0.6;
-        v2graph[4]     = 1;
-        //var VSarea    = [0,  140, 0, 0.2, 0.4];
-        var VSarea    = force; //[0,  140, 0, 0.4, 0.7];
-        VSarea[3]     = 0.3;
-        VSarea[4]     = 0.7;
-        var Tkernel   = time;
-        var Tarea     = time;
-        Tarea[3]      = 0.01;
-        Tarea[4]      = 0.7;
 
         var predefinedTopics =
         {
@@ -201,32 +175,30 @@
             force,
             fi,
             Zgraph,
-            Z2graph,
+            Z2graph     : body,
             vgraph,
-            v2graph,
-            vback : vgraph,
-            vgpoint : [0,  140, 0, 0.01, 1], //todm: last two pars have no effect
+            v2graph     : force,
+            vback       : vgraph,
+            vgpoint,
             Fkernel,
             Tkernel,
-            Tarea,
-            fiArea,
+            Tarea       : timeHiddenStart,
+            fiArea      : fi,
             VSarea,
 
-            'NK' : Fkernel,
-            'ECircle' : Fkernel,
-            'DCircle' : Fkernel,
-            'MainCircle' : [0,  0,  150,   0.5, 1 ], //Fkernel,
-            'YX' : Fkernel,
+            'NK'        : Fkernel,
+            'ECircle'   : Fkernel,
+            'DCircle'   : Fkernel,
+            'MainCircle': Fkernel,
+            'YX'        : Fkernel,
 
-            XCY : [0,  0,    150, 0.03,  0.5 ],
-            IK : body,
-            'D𝑐𝑥E' : [0,  0,  150,   0.01, 0.3],
-            'D𝑏𝑧E' : [110, 90,  0,   0.01, 0.3],
-            VIC : [110, 90, 0, 0.001, 0.5 ],
-  
-            //needs color model working:
-            ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
-            //ICK : [110, 90, 0, 0.1, 1 ], //visible, but initially annoying,
+            XCY,
+            IK          : body,
+            D𝑐𝑥E,
+            D𝑏𝑧E,
+            VIC,
+
+            ICK,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -449,12 +421,12 @@
             },
 
             { VM : {
-                    pcolor : body, //[100,  0, 20, 0.01, 1],
+                    pcolor : body,
                     vectorTipIx : 1 },
             },
 
             { IZ : {
-                    pcolor : Zgraph, //[100,  0, 20, 0.01,  1],
+                    pcolor : Zgraph,
                     vectorTipIx : 1
                 },
             },
@@ -510,7 +482,7 @@
             },
 
             { CX : {
-                    pcolor : [50,  50,  50,    1] //shadow,
+                    pcolor : shadow,
                 },
             },
 

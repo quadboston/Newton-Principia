@@ -1,8 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, capture, nspaste, userOptions,
-        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
-        stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, userOptions, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -26,8 +24,9 @@
         "cos": 1
     };
 
-
     setCapture();
+    return;
+
 
     function setCapture()
     {
@@ -171,6 +170,7 @@
         rg.B.unrotatedParameterX = rg.B.originalPos[0]; //what a misleading naming
 
         nspaste(rg.R.pos, rg.R.originalPos);
+        nspaste(rg.D.pos, rg.D.originalPos);
         rg.fi.pos[0] = rg.R.pos[0];
         rg.fi.pos[1] = rg.R.pos[1] * 1.2; // this is why fi is floating below R to start
 

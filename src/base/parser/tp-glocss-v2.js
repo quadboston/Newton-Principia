@@ -100,8 +100,8 @@ ${Rix} .tp-${lowId}.tobold,
 
 ${Rix} svg text.tp-${lowId},
 ${Rix} svg tspan.tp-${lowId},
-${Rix} span.tp-${lowId} {
-    font-weight : bold;
+${Rix} span.tp-${lowId} { 
+    background-color : #eaeaea;
 }
                     `;
                         ///todm: very crude and wordy stroke width control

@@ -1,15 +1,7 @@
 ( function() {
-    var {
-        eachprop, mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
+    var { eachprop, mat, fapp, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
-
-
-
 
 
     function init_conf()
@@ -75,28 +67,36 @@
         // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
+        const {
+            static,
+            staticHalfOpacity,
+            core,
+            coreHalfOpacity,
+            aux,
+            constructors,
+            ellipse,
+        } = fixedColors;
 
-        var predefinedTopics =
+
+        const predefinedTopics =
         {
-            "static"                : [0,     200, 255, 1],
-  
-            //with half opacity
-            "static-half"           : [0,     200, 255, 0.5],
+            static,
+            "static-half"       : staticHalfOpacity,
+            core,
+            "core-half"         : coreHalfOpacity,
+            aux,
+            constructors,
+            ellipse,
 
-            "core"                  : [255,   0, 0, 1],
-            "core-half"             : [255,   0, 0, 0.5],
-
-            "aux"                   : [255,   0, 255, 1],
-            "constructors"          : [0,     0, 255, 1],
-            "ellipse"               : [0,   150, 0, 1],
+            "gamma"             : core,
+            "g-parameter"       : core,
+            "angle-alpha"       : staticHalfOpacity,
+            "angle-beta"        : staticHalfOpacity,
+            "angle-alpha-core"  : coreHalfOpacity,
+            "angle-beta-core"   : coreHalfOpacity,
         };
-        let pt = predefinedTopics;
-        pt[ "gamma" ] = pt[ "core" ];
-        pt[ "g-parameter" ] = pt[ "core" ];
-        pt[ "angle-alpha" ] = pt[ "static-half" ];
-        pt[ "angle-beta" ] = pt[ "static-half" ];
-        pt[ "angle-alpha-core" ] = pt[ "core-half" ];
-        pt[ "angle-beta-core" ] = pt[ "core-half" ];
+        const pt = predefinedTopics;
+        
 
         var pointsOnPicture =
         {

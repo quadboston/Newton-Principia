@@ -88,8 +88,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
-            //                'rgba(56,132,79,1)';
+                var xColor      = 'rgba(0,0,0,1)'
             var axisYLegend =
             [
                 {
@@ -140,7 +139,7 @@
             var axisXLegend =
             [
                 {
-                        text    : 'Distance from force center, r', 
+                        text    : BONUS ? 'Distance from force center, r' : 'SP (distance from force)', 
                         x       : BONUS ? -700 : -520,
                     y       : 25,
                     style   : {
@@ -170,7 +169,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '1/r²',
+                    pcaption : BONUS ? '1/r²' : '',
                     fontShiftX : -222,
                     fontShiftY : 0,
                     style : {
@@ -186,7 +185,9 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption :  'est. force',
+                    pcaption :  BONUS ? 
+                                'est. force' :
+                                '',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {

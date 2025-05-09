@@ -1,14 +1,13 @@
 ( function() {
     var {
-        ns, sn, $$, mat, haz, nspaste,
-        fconf, sDomF, ssF, ssD,
-        sconf, amode, stdMod, rg, toreg,
+        $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
         },
     });
+    return;
+
 
     //=========================================================
     // //\\ lemma custom addons
@@ -50,9 +49,7 @@
         //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
-        //=================================================
-        // //\\ analytical derivative dy/dx
-        //=================================================
+        //: analytical derivative dy/dx
         var cfun = ssD.repoConf[ssD.repoConf.customFunction];
 
         //-------------------------------------------------
@@ -117,6 +114,7 @@
         // //\\ paints magnified curve
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
+        if(magnitude > 100) magnitude = rg.magnitude.value = 100; // prevents Acb from going above Ad
         //misleading notation: this is not ..._b, this is ..._B
         rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
         ssF.paintsCurve({

@@ -303,7 +303,7 @@
                             coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
                         }  
                     } 
-                } else if (sappItem.sappId === "b1sec2prop9") {
+                } else if (sappItem.sappId === "b1sec2prop7") {
                     coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
                 }
             }

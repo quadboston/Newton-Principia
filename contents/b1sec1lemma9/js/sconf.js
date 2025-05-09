@@ -1,20 +1,9 @@
 ( function() {
-    var { sconf, paste, fconf, rg } =
-    window.b$l.apptree(
-        {
-            ssFExportList : { init_conf }
-        }
-    );
+    var { sconf, paste, fconf, rg, fixedColors } =
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
-
-
-
-
-
-
-
-
+    
     function init_conf()
     {
         //----------------------------------
@@ -103,10 +92,12 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var given   = [0,     150, 0, ];
-        var proof   = [0,     0,   255, ];
-        var result  = [200,   40,  0,  ];
-        var hidden  = [0,     0,   0,  ];
+        const {
+            given,
+            proof,
+            result,
+            hidden,
+        } = fixedColors;
 
 
         var predefinedTopics =
@@ -275,7 +266,6 @@
             APP_MODEL_Y_RANGE,
             //:ranges
             angleA_min : 5.71,  //Degrees
-            pivot1y_max : APP_MODEL_Y_RANGE * 0.99,  //Left here for lemma 10
             pivot2x_max : APP_MODEL_Y_RANGE * 1.8,
             pivot2y_min : APP_MODEL_Y_RANGE * 0.3,
             pivot2y_max : APP_MODEL_Y_RANGE * 0.99,

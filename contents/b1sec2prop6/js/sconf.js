@@ -1,12 +1,7 @@
 
 ( function() {
-    var { //import from apptree
-        ns, userOptions,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, userOptions, fconf, sconf, fixedColors,} = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -127,29 +122,26 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var estimatedForce = [200,0,200];
-        var sagitta = estimatedForce;
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,150,0,1];
-        var curvature  = [200,   40,  200, 1];
-        var timeColor  = [200,  0,  255, 1];
-        var body    = [0,     150,  200,   1];
-        var dtime   = [0,     150,  200,  1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
+        const {
+            given,
+            body,
+            orbit,
+            time,
+            dtime,
+            proof,
+            force,
+            invalid,
+            result,
+            hidden,
 
-        var invalid = [255,    0,  0,      1];
-        var force   = [200,  150,  0,      1];
-        if( userOptions.showingBonusFeatures() ) {
-            ////swaps colors
-            var force = invalid;
-            var invalid = [0,     0,   0,      1];;
-            result = [255,0,0,1];
-        }
-        
-        //var chord = [0,0,255, 0.5]; //no dice
-        var chord = [0,0,255, 1];
+            estimatedForce,
+            sagitta,
+            curvature,
+            context,
+            chord,
+        } = fixedColors;
+
+
         var predefinedTopics =
         {
             estimatedForce,
@@ -160,12 +152,12 @@
             context,
             curvature,
             dtime,
-            time    : timeColor,
+            time,
             curvatureCircle : curvature,
             body,
-            orbit   : given,
+            orbit,
             timearc : proof,
-            APQ     : given,
+            APQ     : orbit,
             force,
             invalid,
             sagitta,

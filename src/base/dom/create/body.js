@@ -71,7 +71,8 @@
         // //\\ page master menu
         //==================================================
         var ww = fconf.sappId2lemmaDef[ fconf.sappId ];
-        var caption = ww.book + ', ' + ww.caption;
+        var caption = userOptions.showingBonusFeatures() ?  ww.book + ', ' : '';
+        caption += ww.caption;
 
         //pageNavTopBar
         var navBar$ =
@@ -116,7 +117,7 @@
                 .ch(
                     sDomN.midddleButton$ = $$
                     .dc( "master-pagination-btn current-lemma" )
-                    .a( 'title', 'Currently chosen item of site content.' )
+                    .a( 'title', 'Current content' )
                     //todo hard problem: why border is still black?
                     .css( 'border', '3px solid rgba(150, 175, 200, 1)' )
                     .html( caption )

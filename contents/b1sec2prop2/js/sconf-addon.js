@@ -1,11 +1,9 @@
 ( function() {
-    var { sconf, nspaste, capture, toreg,
-         ssF, ssD, sDomF, fixedColors,
-    } = window.b$l.apptree({});
+    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, fixedColors, } = 
+        window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_predefinedTopics = predefinedTopics;
     return;
-
 
 
     ///====================================================
@@ -132,33 +130,32 @@
 
     function predefinedTopics()
     {
-        var forceMoveX = [150,0,0, 0.9];
+        const {
+            forceMove,
+
+            diagram,
+            areaDescriptionAccelerated,
+        } = fixedColors;
+
+
         return {
-            "SP"                : [200, 100, 0, 0],
-            "P"                 : [200, 100, 0, 0],
-            "T"                 : [200, 100, 0, 0],
-            "TP"                : [200, 100, 0, 0],
-            "Paracc"            : [100,   0,  100],
-            "Caracc"            : [100,   0,  100],
-            "CCaracc"           : [100,   0,  100],
-            "CParacc"           : [100,   0,  100],
-            "SBCaracc"          : [255,  100, 0, 0.5],  // triangle SBC area description accelerated
-            "cCaracc"           : [100,   0,  100],
+            "Paracc"            : diagram,  //Point C''
+            "Caracc"            : diagram,  //Point C'
+            "CCaracc"           : diagram,  //Line C to C'
+            "CParacc"           : diagram,  //Line C to C''
+            "cCaracc"           : diagram,  //Line c to C'
+            "CaraccParacc"      : diagram,  //Line C' to C''
+            "BParacc"           : diagram,  //Line B to C''
+            "BCaracc"           : diagram,  //Line B to C'
+            "SCaracc"           : diagram,  //Line S C'
 
-            "Varacc"            : forceMoveX,
-            "BVaracc"           : forceMoveX,   // force at B deviated toward V;
+            "SBCaracc"          : areaDescriptionAccelerated,   // triangle SBC area description accelerated
+
+            "Varacc"            : forceMove,    //Point V'
+            "BVaracc"           : forceMove,    // force at B deviated toward V;        Line B to V'
                                                 // area description accelerated
-            "VVaracc"           : forceMoveX,   // force vector at V displaced to V';
+            "VVaracc"           : forceMove,    // force vector at V displaced to V';   Line V to V'
                                                 // area description accelerated
-            "CParacc"           : forceMoveX,
-            "CaraccParacc"      : [100,   0,  100],
-
-            "j"                 : [0,100,0],
-            "e"                 : [0,100,0],
-            "f"                 : [0,100,0],
-
-            "Cj"                : [0,100,0],
-            "Dj"                : [255, 100, 0],
         };
     }
 }) ();

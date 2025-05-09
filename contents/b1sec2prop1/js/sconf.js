@@ -1,12 +1,7 @@
 ( function() {
-    var {
-        haff, has, eachprop, nspaste, capture, toreg,
-        sconf, ssF, ssD, sDomF, fixedColors, fixedColorsOriginal,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
+    var { haff, has, eachprop, nspaste, capture, toreg, sconf, ssF, ssD, sDomF, fixedColors, 
+        fixedColorsOriginal, } = window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
 
 
     //====================================================
@@ -279,12 +274,12 @@
                 fc.isPoint0Line = true;
              })
          }
-        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
+        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {  //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
             let fc = fixedColorsOriginal[ camelId ];
             fc.isPoint = true;
             fc.isPoint0Line = true;
         });
-        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
+        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +      //Duplicate Ch and Fg used by P1 Corollary 3 see predefinedTopics for more
         'force-0-applied force-1-applied force-2-applied ' +
         'force-3-applied force-4-applied')
         .split(' ')
@@ -747,7 +742,7 @@
                 //---------------------------
                 // \\// redundant points
                 //---------------------------
-                 
+
                 [
                     "( subessay !== 'cor-3' )",
                     {
@@ -755,22 +750,22 @@
                         //which is good for cor2
                         "captured" : "",
                         "rg" : {
-                            "h": {
+                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
-                            "Bh": {
+                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
-                            "Ch": {
+                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
-                            "g": {
+                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
-                            "Eg": {
+                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
-                            "Fg": {
+                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1
                             },
                         }
@@ -783,22 +778,22 @@
                         //which is good for cor2
                         "captured" : "",
                         "rg" : {
-                            "h": {
+                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
-                            "Bh": {
+                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
-                            "Ch": {
+                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
-                            "g": {
+                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
-                            "Eg": {
+                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
-                            "Fg": {
+                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
                                 "decEnd" : 1111111111
                             },
                         }
@@ -840,40 +835,58 @@
         });
         }
 
+
     function predefinedTopics()
     {
-        var freeMove = [0,100,0];
-        var force = [255, 0, 0];
-        var forceMove = [150,50,0];
-        var diagram = [150,50,100];
-        var path = [0,0,100];
-        var time = [0,100,100,1];
-        var sagittaeChords = [100, 0, 100];
-        var speed = [130,100,0];
-        var pt_all = {
+        const {
+            force,
+
+            freeMove,
+            forceMove,
+            diagram,
+            path,
+            time,
+            sagittaeChords,
+            speed,
+
+            trianglePurpleTextAreaColor,
+            triangleGreen,
+
+            perpendicular,
+            tangent,
+        } = fixedColors;
+
+
+        const pt_all = {
             speed,
             force,
             forceMove,
-            time,
-            dt                  : time,
-            "path"              : path,
-            "path-change"       : [0,   0,  100, 1],
-            "kepler-triangle"   : [50,  50, 100],
-            "sagitta-chords"    : [100, 0, 100],
-            "SABCD"             : [0,0,100, 0.01, 0.8],
-            "SABCDEF"           : [0,0,100, 0.01, 0.8],
+            time,                       //Time slider
+            dt                  : time, //Delta time slider
+            path,
+            "path-change"       : path,
 
-            "SBC"               : [0,0,100, 0.5, 1],
-            "SCD"               : [0,0,100, 0.5, 1],
-            "SDE"               : [0,0,100, 0.5, 1],
-            "SEF"               : [0,0,100, 0.5, 1],
-            "SAB"               : [0,0,100, 0.5, 1],
+            //The following sets the color of the text in the text area for these triangles.  If 
+            //these are placed after "kepler-triangle-odd" and "kepler-triangle-even", they will 
+            //also set the triangle color in the model area.  If these are removed the triangles
+            //default to red and green "zebra-colors" (for more see "colors-lib.js" section
+            //"generates pseudo-random zebra colors" in function topics__2__topicsColorModel).
+            "SBC"               : trianglePurpleTextAreaColor,
+            "SCD"               : trianglePurpleTextAreaColor,
+            "SDE"               : trianglePurpleTextAreaColor,
+            "SEF"               : trianglePurpleTextAreaColor,
+            "SAB"               : trianglePurpleTextAreaColor,
 
-            "SBc"               : [0, 100,  0,  0.5, 0.8],
-            "SCd"               : [0, 100,  0,  0.5, 0.8],
-            "SDe"               : [0, 100,  0,  0.5, 0.8],
-            "SEf"               : [0, 100,  0,  0.5, 0.8],
+            "kepler-triangle-odd"   : fixedColors["kepler-triangle-odd"],
+            "kepler-triangle-even"  : fixedColors["kepler-triangle-even"],
 
+            "sagitta-chords"    : sagittaeChords,
+
+            "SBc"               : triangleGreen,
+            "SCd"               : triangleGreen,
+            "SDe"               : triangleGreen,
+            "SEf"               : triangleGreen,
+            
             "A"                 : path,
             "B"                 : path,
             "C"                 : path,
@@ -881,7 +894,7 @@
             "E"                 : path,
             "F"                 : path,
 
-            "AB"                : [0,   0,  100, 0],
+            "AB"                : path,
             "BC"                : path,
             "CD"                : path,
             "DE"                : path,
@@ -889,27 +902,28 @@
 
             "ABCV"              : forceMove,
             "DEFZ"              : forceMove,
-            "SA"                : diagram,
 
-            "Sb"                : diagram,
             "Sc"                : diagram,
             "Sd"                : diagram,
             "Se"                : diagram,
             "Sf"                : diagram,
-
+            
             "Cc"                : forceMove,
+            "Ch"                : forceMove,//Duplicate of "Cc" used by P1 Corollary 3.  Also referenced in cohen.txt
             "Dd"                : forceMove,
             "Ee"                : forceMove,
             "Ff"                : forceMove,
+            "Fg"                : forceMove,//Duplicate of "Ff" used by P1 Corollary 3.  Also referenced in cohen.txt
             "force-0-applied"   : forceMove,
             "force-1-applied"   : forceMove,
             "force-2-applied"   : forceMove,
             "force-3-applied"   : forceMove,
             "force-4-applied"   : forceMove,
 
-            //"field"             : [255,   0,  0, 0.5],
-            "force-center"      : [255,   0,  0],
-            "S"                 : [255,   0,  0],
+            "force-center"      : force,
+            "S"                 : force,
+
+            "SA"                : diagram,
             "SB"                : diagram,
             "SC"                : diagram,
             "SD"                : diagram,
@@ -923,35 +937,33 @@
             "DF"                : sagittaeChords,
 
             force,
-            "Z"                 : [255, 100, 0, 1],
+            "Z"                 : force,
             "V"                 : force,
             "BV"                : forceMove,
-  
+    
             //perpendicular
-            "SP"                : [200, 100, 0, 1],
-            "P"                 : [200, 100, 0, 1],
+            "SP"                : perpendicular,
+            "P"                 : perpendicular,
             //tangent
-            "T"                 : [0,   100, 0, 1],
-            "TP"                : [0,   100, 0, 1],
+            "T"                 : tangent,
+            "TP"                : tangent,
 
             "free-path"         : freeMove,
             "c"                 : freeMove,
-            "h"                 : freeMove,
+            "h"                 : freeMove, //Duplicate of "c" used by P1 Corollary 3
             "d"                 : freeMove,
             "e"                 : freeMove,
             "f"                 : freeMove,
-            "g"                 : freeMove,
+            "g"                 : freeMove, //Duplicate of "f" used by P1 Corollary 3
 
             "Bc"                : freeMove,
-            "Bh"                : freeMove,
-            "Ch"                : forceMove,
+            "Bh"                : freeMove, //Duplicate of "Bc" used by P1 Corollary 3.  Also referenced in cohen.txt
 
             "Cd"                : freeMove,
             "De"                : freeMove,
 
             "Ef"                : freeMove,
-            "Eg"                : freeMove,
-            "Fg"                : forceMove,
+            "Eg"                : freeMove, //Duplicate of "Ef" used by P1 Corollary 3  Also referenced in cohen.txt
 
             "free-triangle"     : freeMove,
         };
