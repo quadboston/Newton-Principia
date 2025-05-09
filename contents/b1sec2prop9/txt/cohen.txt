@@ -26,34 +26,52 @@ Let the indefinitely small angle ¦SP SQ¦PSQ¦¦ be given, and because all the 
 are given, the species [i.e., the ratio of all the parts] of the figure ¦SP SQ QR QT¦SPRQT¦¦
 will be given.
 Therefore, the ratio 
-<math><mfrac><mrow>
-  <mi>¦QT¦¦</mi>
-</mrow><mrow>
-  <mi>¦QR¦¦</mi>
-</mrow></mfrac></math>
+
+<math><mfrac><mrow><mi>
+¦QT¦¦
+</mi></mrow><mrow><mi>
+¦QR¦¦
+</mi></mrow></mfrac></math>
+
 is given, and 
-<math><mfrac><mrow>
-  <mi>¦QT¦¦²</mi>
-</mrow><mrow>
-  <mi>¦QR¦¦</mi>
-</mrow></mfrac></math>
+
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦
+</mi><mn>
+2
+</mn></msup></mrow><mrow><mi>
+¦QR¦¦
+</mi></mrow></mfrac></math>
+
 is as ¦QT¦¦, that is
 (because the species of the figure is given), as ¦SP¦¦. Now change the angle ¦SP SQ¦PSQ¦¦
 in any way, and the straight line ¦QR¦¦ subtending the angle of contact ¦QP PR¦QPR¦¦
 will be changed 
 <a target="_blank" href="?conf=sappId=b1sec1lemma11">(by lem. 11)</a>
 as the square of ¦PR¦¦ or ¦QT¦¦. Therefore,
-<math><mfrac><mrow>
-  <mi>¦QT¦¦²</mi>
-</mrow><mrow>
-  <mi>¦QR¦¦</mi>
-</mrow></mfrac></math>
+
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦
+</mi><mn>
+2
+</mn></msup></mrow><mrow><mi>
+¦QR¦¦
+</mi></mrow></mfrac></math>
+
 will remain the same as before, that is, as ¦SP¦¦. And therefore 
-<math><mfrac><mrow>
-  <mi>¦QT¦¦² × ¦SP¦¦²</mi>
-</mrow><mrow>
-  <mi>¦QR¦¦</mi>
-</mrow></mfrac></math>
+
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦
+</mi><mn>
+2
+</mn></msup><mo>x</mo><msup><mi>
+¦SP¦¦
+</mi><mn>
+2
+</mn></msup></mrow><mrow><mi>
+¦QR¦¦
+</mi></mrow></mfrac></math>
+
 is as ¦SP¦¦³, and thus
 <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">
 (by prop. 6, corols. 1 and 5),</a>
