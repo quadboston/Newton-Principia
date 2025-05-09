@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, haz, mcurve, mat, userOptions,
-        stdMod, rg, sconf, ssD,
+        amode, stdMod, rg, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -18,6 +18,8 @@
 
     function buildsOrbit()
     {
+        const ADDENDUM = amode.aspect === 'addendum';
+        
         //this array speeds up conversion between q and t grids:
         //it elimiantes extra calculations and loops:
         tix2orbit.length = 0;
@@ -131,12 +133,12 @@
         // \\// distributing values in time arrays
         //------------------------------------------
 
-        //needed only in lemmas with dynamic orbit
         graphArray.length = 0;
+        ///prepares averages and placeholder for data graphs
         for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ) {
             var bP = qix2orb[ qix ];
-            var forceSinged = -1/bP.r2;
-            var forceAbs = Math.abs( forceSinged );
+            var forceAbs = 1/bP.r2;
+            bP.forceAbsNormed = forceAbs;
             //var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
             //                    1e+150 : 1/staticSectorialSpeed_rrrOnUU;
             //sectSpeedSafe = Math.abs( sectSpeedSafe );
@@ -145,7 +147,6 @@
             //-----------------------------------------------------------
             if( qix === 0 ) {
                 var forceMax = forceAbs;
-                //var speedMax = sectSpeedSafe;
             }
             if( forceMax < forceAbs ) {
                 var forceMax = forceAbs;
@@ -158,19 +159,21 @@
                     qix,
                     x : bP.r,
                     y : [
-                            BONUS ? forceSinged : forceAbs,
-                            0, //perfomacewise: reserves space for estimatedForce,
-                            //0, //reserves space for sectSpeedSafe,
+                            ////reserves space for
+                            0, //forceAbs/forceMax,
+                            0, //for deviation,
+                            0, //sectSpeedSafe,
+                            0, //sagitta,
                     ],
                 };
-                BONUS && (graphColumn.y[2] = 0);
                 graphArray.push( graphColumn );
             }
         }
-        var arrLen = graphArray.length;
-        for (var gix = 0; gix<arrLen; gix++ )
+        ///stashes static values
+        for (var qix = 0; qix<=FORCE_ARRAY_LEN; qix++ )
         {
-            graphArray[ gix ].y[0] /= forceMax;
+            var bP = qix2orb[ qix ];
+            bP.forceAbsNormed /= forceMax;
         }
     }
 }) ();

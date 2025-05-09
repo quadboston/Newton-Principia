@@ -1,7 +1,6 @@
 ( function() {
     var {
-        rg, ssF, ssD, sconf,
-        amode, toreg, stdMod,
+        rg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -30,7 +29,7 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg({});
+        stdMod.poly2svgP11({});
     }
     //=========================================================
     // \\// lemma custom addons

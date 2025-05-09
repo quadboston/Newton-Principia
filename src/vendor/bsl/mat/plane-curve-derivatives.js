@@ -175,6 +175,7 @@
         //****************************************************
         return {
             q,
+            rrc, //force center if supplied
             // **api-output---plane-curve-derivatives
             rr, //body pos in respect to coord system origin
             rOrAbs,

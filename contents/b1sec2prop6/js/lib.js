@@ -183,6 +183,23 @@
     ///finds and fills finite sagitta in the
     ///stdMod.graphFW_lemma.graphArray
     ///finite sagitta is normalized by its sMax,
+    ///
+    ///in ver 13616, this function is wrong because it assumes the
+    ///constant speed dq_dt0 along dt: dq = dq_dt0 * dt,
+    ///dt = rg.tForSagitta.val
+    ///
+    ///D=dt²
+    ///u=q˙=dq/dt,
+    ///v = r'=dr/dq, r''=a, 
+    ///in reality, dq = udt + u˙D/2 + ..., and 
+    ///hence dr = vudt + (r''u² + r'u˙)D/2 + ... ,
+    ///sagitta = dr + +dr- = (r''u² + r'u˙)D + ...
+    ///and we make an error r'u˙D and obtain wrong value
+    ///sagitta = au²D = av⁻²(m0/m)²,
+    ///and wrong force = au²,
+    ///for large dt we also obtain error due u˙˙, etc,
+    ///
+    ///u=dq_dt = m0 / (v * m);
     function findsFiniteSagitta(DD)
     {
         const DDD = DD || 1e-5;
