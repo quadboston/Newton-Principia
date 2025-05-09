@@ -116,18 +116,18 @@
             //:areas
             "ABD"               : given,
             "ACE"               : given,
-            "area-ABD"               : given,
-            "area-ACE"               : given,
+            "area-ABD"          : given,
+            "area-ACE"          : given,
             "Abd"               : proof,
             "Ace"               : proof,
-            "area-Abd"               : proof,
-            "area-Ace"               : proof,
+            "area-Abd"          : proof,
+            "area-Ace"          : proof,
             //:linear areas
-            "Afd"               : result,
-            "Age"               : result,
+            "Afd"               : proof,
+            "Age"               : proof,
 
             "ABDPerACE"         : given,
-            "AD2PerAE2"         : result,
+            "AD2PerAE2"         : given,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -211,10 +211,10 @@
         [
             { 'Ab' : { pcolor : proof } },
             { 'Ac' : { pcolor : proof } },
-            { 'Ad' : { pcolor : result } },
-            { 'Ae' : { pcolor : result, 'stroke-width' : 4 } },
+            { 'Ad' : { pcolor : proof } },
+            { 'Ae' : { pcolor : proof, 'stroke-width' : 4 } },
 
-            { 'Ag' : { pcolor : result, 'stroke-width' : 4, } },
+            { 'Ag' : { pcolor : proof, 'stroke-width' : 4, } },
 
             { 'ec' : { pcolor : proof } },
             { 'db' : { pcolor : proof } },
@@ -222,8 +222,7 @@
             { 'AB' : { pcolor : given } },
             { 'AC' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'AE' : { pcolor : given, 
-                'stroke-width' : 1, } },
+            { 'AE' : { pcolor : given, 'stroke-width' : 1, } },
             { 'AG' : { pcolor : given } },
             { 'EC' : { pcolor : given } },
             { 'DB' : { pcolor : given } },

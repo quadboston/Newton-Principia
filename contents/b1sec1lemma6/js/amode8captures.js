@@ -247,7 +247,6 @@
                 rg.L.hideCaption = true;
                 [
                     'AL',
-                    'Ad',
                     'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
