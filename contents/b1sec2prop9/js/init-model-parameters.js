@@ -54,7 +54,7 @@
         // //\\ sets parameters of P
         //----------------------------------------------
         var deltaQ = sconf.deltaQ;
-        rg.P.qix = Math.floor( sconf.parQ / deltaQ );
+        rg.P.qix = 0;
         rg.P.parQ = rg.P.qix * deltaQ;
         nspaste( rg.P.pos, stdMod.q2xy( rg.P.parQ ));
         //----------------------------------------------
