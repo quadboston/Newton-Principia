@@ -1,10 +1,6 @@
 ( function() {
-    var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
     return;
-
-
 
     function lemmaConfig()
     {

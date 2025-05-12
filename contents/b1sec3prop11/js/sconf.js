@@ -110,9 +110,9 @@
         //for expense of twice large arrays,
         */
         
-        sconf.DT_MIN = 0.01;
-        var FORCE_ARRAY_LEN = 2000;
-        var TIME_STEPS = 2000;
+        sconf.DT_MIN = 0.001;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
         var DATA_GRAPH_ARRAY_LEN = 200;
         {
             // gets ellipse parameters

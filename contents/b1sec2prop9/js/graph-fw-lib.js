@@ -1,11 +1,27 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, haz, globalCss,
+        sn, $$, nsmethods, haz, globalCss, userOptions,
         ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
+        amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
         {
+            createsGraph_FW_lemma,
+        },
+    });
+    return;
+
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
+
+        //if one wants to separate BONUS and aspect, this
+        //method can be used:
+        //const ADDENDUM = amode.aspect === 'addendum';
+        const BONUS = userOptions.showingBonusFeatures();
+
+        stdMod.createsGraphFW_class({
+            graphFW,
+            digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
@@ -14,50 +30,32 @@
             doDrawToolline,
             graphAxisX,
             graphAxisY,
-        },
+            setsGraphTpClasses,
     });
-    return;
+        //first array must be enabled
+        //but can be dynamically overridden,
+        graphFW.graphArrayMask = BONUS ?
+            [ 'force', 'estforce', 'body' ] :
+            [ 'force', 'estforce', ];
+        return graphFW;
 
-
-
-
-
-
+    ///this thing is not dynamic (missed in design),
+    ///but, colorThreadArray is accessible for reset
+    ///dynamically,
     function doSetColorThreadArray()
     {
-        //===========================================
-        // //\\ prepares color ThreadArray
-        //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
-        }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
-        sData.colorThreadArray = [
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'context' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+            let colorThreadArray = [
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'deviation' ),
+                sDomF.getFixedColor( 'body' ),
         ];
-        return sData.colorThreadArray;
-        //===========================================
-        // \\// prepares color ThreadArray
-        //===========================================
+            return colorThreadArray;
     }
 
 
     function setsGraphContainerAttributes( digramParentDom$ )
     {
-        stdMod.graphFW.container$ = $$.div()
+            container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -71,28 +69,35 @@
                     .css( 'z-index', '111111' )
             )
             ;
-        ///creates low tire api
-        sData.graph_dimX = 1000;  //innerWidth
-        sData.graph_dimY = 580;   //innerHeight
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
     }
-
 
     function setsGraphAxes()
     {
+            const ADDENDUM = amode.aspect === 'addendum';
+            let n2c = sDomF.getFixedColor; //name to color
+                
         //==================================================
         // //\\ calls api
         //==================================================
         //y-legend color; taken from first plot color:
-        var yColor      = sData.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
         //axis x and legend x color:
         //manually picked color, not from plot,
-        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
-
+        var xColor      = 'rgba(0,0,0,1)';
         var axisYLegend =
         [
             {
-                text    : 'Force',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                 x       : 40,
                 y       : 25,
                 style   : {
@@ -101,10 +106,27 @@
                             'fill'   : yColor,
                 },
             },
+                {
+                    text    : ADDENDUM ?
+                                'Force -1/r³, est. force, speed, per their max.'
 
-            {
-                text    : 'Force f, 1/r³, and speed v per their maximums.',
-                x       : 250,
+                                :
+
+                                '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
+
+                                '<tspan class="tp-deviation tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'deviation' ) + '; stroke:'+n2c( 'deviation' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
+
+                                '<tspan> forces</tspan>' +
+                                '</text>',
+                x       : BONUS ? 250 : 320,
                 y       : 40,
                 style   : {
                             'font-size' : '30',
@@ -116,10 +138,9 @@
         ];
         var axisXLegend =
         [
-
             {
-                    text    : 'Distance, r',
-                x       : -700,
+                        text    : 'Distance from force (SP)', 
+                        x       : BONUS ? -700 : -560,
                 y       : 25,
                 style   : {
                             'font-size' : '30',
@@ -141,21 +162,18 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 
-
-
     function plotLabels_2_plotsPars( colorThreadArray )
     {
-
-        ///make sure, the number of plot labels is equal to plot functions y(x)
+        const ADDENDUM = amode.aspect === 'addendum';
         return [
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'f',
-                fontShiftX : 0,
-                fontShiftY : 15,
+                    pcaption : BONUS ? '1/r³' : '',
+                    fontShiftX : -222,
+                    fontShiftY : 0,
                 style : {
-                    'font-size' : '40px',
+                        'font-size' : '30px',
                     'stroke'  : colorThreadArray[0],
                     //'fill' : colorThreadArray[0],
                 },
@@ -167,14 +185,15 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r³',
-                fontShiftX : 25,
+                pcaption :  BONUS ? 'est. force' : '',
+                fontShiftX : -33,
                 fontShiftY : 15,
                 style : {
-                    'font-size' : '40px',
+                        'font-size' : '30px',
                     'stroke'  : colorThreadArray[1],
                 },
             },
+            ///optional
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
@@ -182,36 +201,50 @@
                 fontShiftX : 40,
                 fontShiftY : 15,
                 style : {
-                    'font-size' : '40px',
+                    'font-size' : '30px',
+                    'stroke'  : colorThreadArray[2],
+                },
+            },
+            ///optional
+            {
+                fraqX : 0.01,
+                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                pcaption : 'sagitta',
+                fontShiftX : 40,
+                fontShiftY : 15,
+                style : {
+                    'font-size' : '30px',
                     'stroke'  : colorThreadArray[2],
                 },
             },
         ];
     }
 
-
-
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
     function setsGraphTpClasses()
     {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+            const svg = graphFW.fw.plotIx2plotSvg;
+            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+            svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+            svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
     }
-
-
 
     function doDrawToolline()
     {
         return {
             toollineStyle : {
-                stroke : sData.colorThreadArray[2],
-                'stroke-width' : 3,
+                //stroke : sData.colorThreadArray[2],
+                'stroke-width' : BONUS ? 3 : 1,
             },
-            abscissaIxValue : stdMod.pos2qix(),
-            numberMarks : true, 
+                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
+                                /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+            numberMarks : BONUS, 
         };
     }
 
-
+    ///horizontal axis x pars, font, etc,
     function graphAxisX( xColor )
     {
         return {
@@ -225,7 +258,6 @@
         };
     }
 
-
     function graphAxisY( yColor )
     {
         return {
@@ -238,6 +270,6 @@
            'stroke-width'   : '1',
         };
     }
-
+    }
 }) ();
 

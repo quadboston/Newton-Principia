@@ -18,8 +18,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.buildsSagitta();
-        
+        stdMod.builds_dq8agitta();
         const q2xy = stdMod.q2xy;
 
         var parQ = rg.P.parQ;
@@ -29,7 +28,7 @@
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-        var Qpos = q2xy( Porb.pulsQ );
+        var Qpos = q2xy( Porb.plusQ );
         var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -40,8 +39,8 @@
         var {
             RC,
             R,
-            curvatureChordSecondPoint,
-            projectionOfCenterOnTangent,
+            //curvatureChordSecondPoint,
+            //projectionOfCenterOnTangent,
             uu,
             nn,
         } = Porb;
@@ -50,7 +49,6 @@
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
@@ -76,47 +74,16 @@
         // \\// arc, sagittae and related
         //================================================
 
-
-
-
         //================================================
         // //\\ curvature circle
         //================================================
         rg.C.pos[0] = RC[0];
         rg.C.pos[1] = RC[1];
-        //rg.V.pos[0] = curvatureChordSecondPoint[0];
-        //rg.V.pos[1] = curvatureChordSecondPoint[1];
-        //rg.Y.pos[0] = projectionOfCenterOnTangent[0];
-        //rg.Y.pos[1] = projectionOfCenterOnTangent[1];
-
         var RCmedpos = ssF.mod2inn( RC, stdMod );
         var RRmedpos = sconf.mod2inn_scale * Rc;
-
-        /*
-        //todo nearly bug: why create svg and set cls every time?
-        var curvatureCircleName = 'curvatureCircle';
-        var rgCurvatureCircle = toreg( curvatureCircleName )();
-        rgCurvatureCircle.svgel = nssvg.u({
-            svgel   : rgCurvatureCircle.svgel,
-            parent  : stdMod.mmedia,
-            type    : 'circle',
-            stroke  : rg.C.pcolor,
-            fill    : 'transparent',
-            'stroke-width' : '1',
-            cx : RCmedpos[0],
-            cy : RCmedpos[1],
-            r : RRmedpos,
-        });
-        $$.$( rgCurvatureCircle.svgel ).addClass(
-            //tostroke thickable ... what is thickable
-            'tostroke tp-' + nsmethods.camelName2cssName( curvatureCircleName )
-        );
-        rgCurvatureCircle.svgel.style.display =
-            rgCurvatureCircle.undisplay ? 'none' : 'block';
         //================================================
         // \\// curvature circle
         //================================================
-        */
 
         //================================================
         // //\\ decorations
@@ -235,30 +202,21 @@
         // \\// tan. cir.
         //=============================================================
 
-
-        //=============================================================
-        // //\\ for prop. 11
-        //=============================================================
-        if( fconf.sappId === 'b1sec3prop11' ) {
-            //point x
-            nspaste( rg.x.pos, mat.lineSegmentsCross(
-                rg.T.pos, rg.P.pos,
-                rg.Q.pos, rg.v.pos,
-            ));
-            //point E
-            nspaste( rg.E.pos, mat.lineSegmentsCross(
-                rg.D.pos, rg.K.pos,
-                rg.S.pos, rg.P.pos,
-            ));
-            //point I
-            nspaste( rg.I.pos, mat.linesCross(
-                mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
-                mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
-            ));
-        }
-        //=============================================================
-        // \\// for prop. 11
-        //=============================================================
+        //point x
+        nspaste( rg.x.pos, mat.lineSegmentsCross(
+            rg.T.pos, rg.P.pos,
+            rg.Q.pos, rg.v.pos,
+        ));
+        //point E
+        nspaste( rg.E.pos, mat.lineSegmentsCross(
+            rg.D.pos, rg.K.pos,
+            rg.S.pos, rg.P.pos,
+        ));
+        //point I
+        nspaste( rg.I.pos, mat.linesCross(
+            mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
+            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
+        ));
     }
 }) ();
 

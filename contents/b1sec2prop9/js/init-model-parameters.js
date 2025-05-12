@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, nssvg, mcurve, integral, mat,
+        ns, sn, $$, nspaste, nsmethods, nssvg, mcurve, integral, mat,
         fconf, ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
@@ -10,17 +10,6 @@
         },
     });
     return;
-
-
-
-
-
-
-
-
-
-
-
 
 
     ///****************************************************
@@ -44,48 +33,38 @@
         //=================================================
         // \\// model parameters,
         //=================================================
+        rg.S.pos[0] = 0; //-sconf.ellipseFocus;
+        rg.S.pos[1] = 0;
 
-        toreg( 'approximated-curve' );
-        stdMod.creates_orbitRack();
+        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
+               digramParentDom$:stdMod.legendRoot$ });
+        ssD.saggitaDt = sconf.saggitaDt;
 
-        //var t =  stdMod.pos2t( rt.P.pos );
-        //var newP = rg[ 'approximated-curve' ].t2xy( t );
+        stdMod.recreates_q2xy();
+        
+        //order of these two lines  is significant
+        stdMod.recreates_pos2q();
+        stdMod.recreates_q8pos_2_q8pos8qix( sconf.orbit_q_start );
+        stdMod.creates_poly2svg_for_lemma();
+        stdMod.buildsOrbit();
+        stdMod.builds_dq8sagitta();
+        stdMod.builds_orbit_data_graph( sconf.force_law );
 
-        stdMod.completesSlidersCreation();
+        //----------------------------------------------
+        // //\\ sets parameters of P
+        //----------------------------------------------
+        var deltaQ = sconf.deltaQ;
+        rg.P.qix = 0;
+        rg.P.parQ = rg.P.qix * deltaQ;
+        nspaste( rg.P.pos, stdMod.q2xy( rg.P.parQ ));
+        //----------------------------------------------
+        // \\// sets parameters of P
+        //----------------------------------------------
+
+        stdMod.creates_Q8P_sliders();
 
         //creates placeholder
         toreg( 'curvatureCircle' );
-
-
-        //==================================================
-        // //\\ decoration graph
-        //==================================================
-        ssD.zebraCols = {};
-        [ false, ns.rgbaArr2hsla( [0,     0,   255,    1] )[0] ].forEach(
-            ( monoColorHue ) => {
-                var wwCols = ns.builds_zebraNColors_array({
-                    maxColors : 10,
-                    SATUR       : sconf.DEFAULT_TP_SATUR,  //site setting
-
-                    //40 seems better than 40 for distinct graph lines
-                    LIGHT       : 40,  //sconf.default_tp_lightness ||
-                    OPACITY     : 0.8, //apparently irrelevant; sconf.DEFAULT_TP_OPACITY,
-                    zebraNumber : 4,
-                    monoColorHue, //true is for mono, false is for multy,
-                });
-                if( monoColorHue ) {
-                    ssD.zebraCols.monocolor = wwCols;
-                } else {
-                    ssD.zebraCols.multicolor = wwCols;
-                }
-            });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
-        //==================================================
-        // \\// decoration graph 
-        //==================================================
-
-        //too early: overriden later by sconf.rgShapesVisible
-        //rg[ 'S,nonSolvablePoint' ].undisplay = true;
 
         rg.allLettersAreHidden = true;
     }
