@@ -302,7 +302,6 @@
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
-            { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },

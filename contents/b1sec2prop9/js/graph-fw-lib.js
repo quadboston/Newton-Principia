@@ -88,8 +88,7 @@
 
         //axis x and legend x color:
         //manually picked color, not from plot,
-            var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
-            //                'rgba(56,132,79,1)';
+        var xColor      = 'rgba(0,0,0,1)';
         var axisYLegend =
         [
             {
@@ -125,9 +124,9 @@
                                 '>Estimated' +
                                 '</tspan>' +
 
-                                '<tspan> forces (per their max)</tspan>' +
+                                '<tspan> forces</tspan>' +
                                 '</text>',
-                x       : 250,
+                x       : BONUS ? 250 : 320,
                 y       : 40,
                 style   : {
                             'font-size' : '30',
@@ -140,8 +139,8 @@
         var axisXLegend =
         [
             {
-                        text    : 'Distance from force center, r', 
-                        x       : BONUS ? -700 : -520,
+                        text    : 'Distance from force (SP)', 
+                        x       : BONUS ? -700 : -560,
                 y       : 25,
                 style   : {
                             'font-size' : '30',
@@ -170,7 +169,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '1/r³',
+                    pcaption : BONUS ? '1/r³' : '',
                     fontShiftX : -222,
                     fontShiftY : 0,
                 style : {
@@ -186,7 +185,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption :  'est. force',
+                pcaption :  BONUS ? 'est. force' : '',
                 fontShiftX : -33,
                 fontShiftY : 15,
                 style : {
@@ -202,19 +201,19 @@
                 fontShiftX : 40,
                 fontShiftY : 15,
                 style : {
-                        'font-size' : '30px',
-                        'stroke'  : colorThreadArray[2],
-                    },
+                    'font-size' : '30px',
+                    'stroke'  : colorThreadArray[2],
                 },
-                ///optional
-                {
-                    fraqX : 0.01,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'sagitta',
-                    fontShiftX : 40,
-                    fontShiftY : 15,
-                    style : {
-                        'font-size' : '30px',
+            },
+            ///optional
+            {
+                fraqX : 0.01,
+                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                pcaption : 'sagitta',
+                fontShiftX : 40,
+                fontShiftY : 15,
+                style : {
+                    'font-size' : '30px',
                     'stroke'  : colorThreadArray[2],
                 },
             },
@@ -237,11 +236,11 @@
         return {
             toollineStyle : {
                 //stroke : sData.colorThreadArray[2],
-                'stroke-width' : 3,
+                'stroke-width' : BONUS ? 3 : 1,
             },
                 abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
                                 /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
-            numberMarks : true, 
+            numberMarks : BONUS, 
         };
     }
 
