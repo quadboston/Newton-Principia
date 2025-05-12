@@ -61,6 +61,9 @@
                 'T', 
                 'QT', 
                 'PT',
+                'PV',
+                'V',
+                'curvatureCircle'
             ].forEach(decoration => {
                 rg[decoration].undisplay = true;
             });
