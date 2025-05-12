@@ -29,13 +29,6 @@
               'estimated force',
               !'-1/r^5'
             ];
-
-        let graphArg = {
-            //drawDecimalY : true,
-            //drawDecimalX : false,
-            printAxisXDigits : addendum,
-            //printAxisYDigits : true,
-        }
         
         let prop7R = sconf.prop7R;
         let ga = stdMod.graphFW_lemma.graphArray;
@@ -132,8 +125,10 @@
             gaix.y[5] = -r5m;
         }
         let xMargin = (xMax-xMin)*0.05;
-        graphArg.xMax = xMax + xMargin;
-        graphArg.xMin = xMin - xMargin;
+        let graphArg = {
+            xMax : addendum ? xMax + xMargin : xMax,
+            xMin : addendum ? xMin - xMargin : 0,
+        }
         if( addendum ) {
             for( ix = 0; ix<glen; ix++ ) {
                 let gaix = ga[ix];
@@ -150,27 +145,6 @@
                     Math.abs(gaix.y[4]),
                     Math.abs(gaix.y[5]),
                 );
-                
-                //let cP = ssD.curve[gaix.ix];
-                //let r = cP.r;
-                /*
-                ccc( ix, 
-                     'r='+r.toFixed(3) + ' s='+Math.abs(ssD.ssigned[ix])
-                     + ' s/min='+Math.abs(gaix.y[1])
-                );
-                */
-                /*
-                let globalRelativeMin_ = Math.min(
-                    Math.abs(gaix.y[0]),
-                    Math.abs(gaix.y[1]),
-                    Math.abs(gaix.y[2]),
-                    Math.abs(gaix.y[4]),
-                    Math.abs(gaix.y[5]),
-                );
-                globalRelativeMin = ix ? Math.min( globalRelativeMin_,
-                                     globalRelativeMin ) :
-                                     globalRelativeMin_;
-                */
             }
             graphArg.yMax = -0.95; //globalRelativeMin*0.98;
             graphArg.yMin = -Math.min( globalRelativeMax, 10 );
