@@ -162,8 +162,8 @@
             [
 
                 {
-                    text    : 'Distance from force (SP / AV)', 
-                    x       : bonus ? -700 : -600,
+                    text    : 'Distance from force (SP)', 
+                    x       : bonus ? -700 : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -296,7 +296,7 @@
             return {
                 toollineStyle : {
                     stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : 3,
+                    'stroke-width' : bonus ? 3 : 1.5,
                 },
                 abscissaIxValue : stdMod.pos2qix(),
                 numberMarks : false, //true, 

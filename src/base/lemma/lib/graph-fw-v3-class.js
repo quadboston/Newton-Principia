@@ -51,7 +51,7 @@
         ///creates fw-dom-container
         let {container$, graph_dimX, graph_dimY} =
             setsGraphContainerAttributes( digramParentDom$ );
-        ///creates low tire api
+        ///creates low tier api
         graphFW__self.fw = nsmethods.createsGraphFramework({
             parent : container$,
             dimX : graph_dimX,
@@ -73,7 +73,7 @@
 
 
         //===================================================
-        // //\\ top tire painter which wraps low tire painter
+        // //\\ top tier painter which wraps low tier painter
         //===================================================
         function drawGraph_wrap({
             drawDecimalY,
@@ -94,7 +94,7 @@
             var { yColor, xColor, axisYLegend, axisXLegend, } = setsGraphAxes();
             //==================================================
             // //\\ calls api
-            // //\\ calls low tire api
+            // //\\ calls low tier api
             //==================================================
             graphFW__self.fw.drawGraph({
                 //first array mast be enabled
@@ -152,13 +152,13 @@
             });
             graphFW__self.fw.gmedia$.addClass( 'ph-graph' );
             //==================================================
-            // \\// calls low tire api
+            // \\// calls low tier api
             //==================================================
 
             setsGraphTpClasses && setsGraphTpClasses();
         }
         //===================================================
-        // \\// top tire painter which wraps low tire painter
+        // \\// top tier painter which wraps low tier painter
         //===================================================
 
 
@@ -175,11 +175,11 @@
         }
         //==================================================
         // \\// shows/hides graph container
-        // \\// calls top tire api
+        // \\// calls top tier api
         //==============================================
     }
     //===================================================
-    // \\// top tire painter which wraps low tire painter
+    // \\// top tier painter which wraps low tier painter
     // \\// instantiable graph rack
     //**************************************************
     //**************************************************
@@ -187,7 +187,7 @@
     
     
     ///===========================================
-    /// creates low tire global CSS
+    /// creates low tier global CSS
     ///===========================================
     function createsLowTireGlobalCSS()
     {
