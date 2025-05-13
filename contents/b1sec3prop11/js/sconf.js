@@ -142,6 +142,7 @@
             hidden,
             curvature,
             context,
+            estimatedForce
         } = fixedColors;
 
 
@@ -157,6 +158,7 @@
             orbit,
             force,
             tangentCircle : curvature,
+            estimatedForce
             //curvatureCircle : curvature,
         };
         //-----------------------------------
@@ -178,7 +180,7 @@
         var originalPoints =
         {
             O : {
-                pcolor : context,
+                pcolor : estimatedForce,
                 caption : 'C',
                 pos: C,
                 letterAngle : 155,
@@ -256,7 +258,7 @@
 
 
             Z : {
-                pcolor : body,
+                pcolor : given,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -265,7 +267,7 @@
 
             Zminus : {
                 caption : 'Z',
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
                 //undisplay : true,
             },
@@ -300,7 +302,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : given,
                 letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -319,7 +321,7 @@
             tCircleCenter : {
                 pos : C,
                 caption : "C'",
-                pcolor : curvature,
+                pcolor : given,
                 letterAngle : -45,
             },
             //----------------------------------------
@@ -363,7 +365,7 @@
                 //set by sconf.parQ
                 //pos: P,
 
-                pcolor : body,
+                pcolor : given,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -406,17 +408,18 @@
             //{ 'CV' : { pcolor : curvature }, },
             { 'PC' : { pcolor : proof }, },
 
-            { 'SP' : { pcolor : result }, },
-
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
-            { 'PR' : { pcolor : body }, },
-            { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
+            { 'SP' : { pcolor : estimatedForce }, },
+
+            { 'P,Zminus' : { pcolor : proof }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'ZR' : { pcolor : proof }, },
+
+            { 'PR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
+            { 'SQ' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
+
 
             { DK : { pcolor : proof }, },
             { GP : { pcolor : proof }, },

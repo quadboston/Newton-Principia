@@ -166,6 +166,7 @@
             hidden,
             curvature,
             context,
+            estimatedForce
         } = fixedColors;
 
 
@@ -181,6 +182,7 @@
             body,
             orbit,
             force,
+            estimatedForce
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -219,25 +221,25 @@
 
             P : {
                 pos: P,
-                pcolor : body,
+                pcolor : estimatedForce,
                 letterAngle : 70,
                 draggableX  : true,
             },
 
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
             },
 
             Q : {
                 pos: Q,
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -268,7 +270,7 @@
 
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
@@ -294,16 +296,16 @@
 
             { 'SP' : { pcolor : result }, },
 
-            { 'PY' : { pcolor : body }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
+            { 'PY' : { pcolor : proof }, },
+            { 'P,Zminus' : { pcolor : proof }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'ZR' : { pcolor : proof }, },
 
-            { 'PR' : { pcolor : body }, },
+            { 'PR' : { pcolor : proof }, },
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
             { 'PT' : { pcolor : proof }, },
         ];
 

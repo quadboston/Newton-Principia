@@ -34,12 +34,12 @@
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'sagitta' ),
-                sDomF.getFixedColor( 'context' ),
-                sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'estimatedForce' ),
-                sDomF.getFixedColor( 'proof' ),
+                sDomF.getFixedColor( 'force' ),     // actual force
+                sDomF.getFixedColor( 'sagitta' ),   // not used in core
+                sDomF.getFixedColor( 'context' ),   // vertical P-line
+                sDomF.getFixedColor( 'body' ),      // not used in core
+                sDomF.getFixedColor( 'estimatedForce' ),    // est force
+                sDomF.getFixedColor( 'proof' ),   // not used in core
             ];
             return colorThreadArray;
         }
@@ -81,7 +81,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = n2c( 'orbit' );
+            var xColor = n2c( 'context' );
             var axisYLegend =
             [
                 {
@@ -89,7 +89,7 @@
                     //together, tobold hover-width and tostroke can be redundant
                     text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                //' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Force</tspan></text>',
                     x       : 40,
                     y       : 25,
@@ -138,8 +138,8 @@
                                 '<tspan class="tp-_p_-sagitta tofill' +
                                 'tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+
-                                                n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:'+
+                                                n2c( 'estimatedForce' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -167,8 +167,6 @@
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
-                                'stroke' : xColor,
-                                'fill' : xColor,
                     },
                 },
                 {
@@ -177,8 +175,8 @@
                     y       : -20,
                     style   : {
                                 'font-size' : '23',
-                                'stroke' : xColor,
-                                'fill' : xColor,
+                                //'stroke' : xColor,
+                                //'fill' : xColor,
                     },
                 },
             ];

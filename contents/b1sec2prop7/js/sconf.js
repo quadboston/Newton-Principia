@@ -202,7 +202,7 @@
 
             S : {
                 pos: S,
-                pcolor : given,
+                pcolor : estimatedForce,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -211,7 +211,7 @@
 
             P : {
                 pos: P,
-                pcolor : given,
+                pcolor : estimatedForce,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -348,7 +348,7 @@
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : proof }, },
-            { 'P,Zminus' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : proof }, },
             { 'PZ' : { pcolor : proof }, },
             { 'ZR' : { pcolor : proof }, },
 

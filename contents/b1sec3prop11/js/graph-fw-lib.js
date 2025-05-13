@@ -46,7 +46,7 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'deviation' ),
+                sDomF.getFixedColor( 'estimatedForce' ),
                 sDomF.getFixedColor( 'body' ),
               ];
             return colorThreadArray;
@@ -120,7 +120,7 @@
 
                                 '<tspan class="tp-deviation tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'deviation' ) + '; stroke:'+n2c( 'deviation' ) + ';"' +
+                                ' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:'+n2c( 'estimatedForce' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
