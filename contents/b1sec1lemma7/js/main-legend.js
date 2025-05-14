@@ -30,7 +30,7 @@
             [[ 'AB', 'AB', getVal('rg.AB.abs', '0.000') ]],
             [[ 'AD', 'AD', getVal('rg.AD.abs', '0.000') ]],
             [[ 'arc-AB', 'arc ACB', getVal('rg.AB.arcLen', '0.000') ]],
-            [[ '', '', '' ]], //small space
+            [[ 'spacer', '', '' ]], //small space
             [[ 'claimRatio fixed-width', 'AD : AB', getLineRatio('AD', 'AB') ]],
             [[ 'claimRatio fixed-width', 'arc ACB : AB', getArcRatio('AB', 'AB') ]],
         ]
@@ -40,7 +40,7 @@
         [lemma7Data.claim[0][0], [ 'Ab', 'Ab', getVal('rg.Ab.abs', 'rg.Ab.abs') ]],
         [lemma7Data.claim[1][0], [ 'Ad', 'Ad', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
         [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
-        [[ '', '', '' ], [ '', '', '' ]], //small space
+        [[ 'spacer', '', '' ], [ 'spacer', '', '' ]], //small space
         [lemma7Data.claim[4][0], [ 'proofRatio fixed-width', 'Ad : Ab', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
         [lemma7Data.claim[5][0], [ 'proofRatio fixed-width', 'arc Acb : Ab', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
     ];
@@ -51,7 +51,7 @@
         //corollary 1
         [[ 'BF-data', 'BF', 'rg.BF.abs' ], [ '', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
         [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB 
-        [[ '', '', '' ], [ '', '', '' ]],
+        [[ 'spacer', '', '' ], [ 'spacer', '', '' ]],
         [[ 'claimRatio fixed-width', 'BF : arc ACB', getCor1Ratio() ], [ '', '', '' ]],
 
         //corollary 2
@@ -59,7 +59,7 @@
         [[ 'AE', 'AE', 'rg.AE.abs'], [ '', '', '' ]],
         [lemma7Data.claim[0][0], [ '', '', '' ]], //AB
         [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB
-        [[ '', '', '' ], [ '', '', '' ]],
+        [[ 'spacer', '', '' ], [ 'spacer', '', '' ]],
         [[ 'claimRatio fixed-width', 'AE : AD', getLineRatio('AE', 'AD') ], [ '', '', '' ]],
         [[ 'claimRatio fixed-width', 'AB : AD', getLineRatio('AB', 'AD') ], [ '', '', '' ]],
         [[ 'claimRatio fixed-width', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ '', '', '' ]], 
@@ -127,7 +127,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false,
+            noTableTitle    : false, // todo: setting to true breaks corollary tables - why?
             stdMod_given    : stdMod,
             logic_phase        : key,
             rowsCount,
@@ -151,7 +151,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

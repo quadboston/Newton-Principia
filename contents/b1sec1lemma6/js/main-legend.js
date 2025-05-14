@@ -49,7 +49,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false,
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,
             rowsCount,
@@ -73,7 +73,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

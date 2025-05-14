@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ssF, stdMod, 
+        ssF, stdMod, fixedColors
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -11,37 +11,32 @@
 
     function create_digital_legend()
     {
+        create_digital_legend_for_logic_phase( 'claim' );
         create_digital_legend_for_logic_phase( 'proof' );
         create_digital_legend_for_logic_phase( 'corollary' );
     }
 
     function create_digital_legend_for_logic_phase( logic_phase )
     {
+        const {
+            given,
+            proof
+        } = fixedColors;
+
         //--------------------------
         // //\\ data source scenario
         //--------------------------
         ////legendScript-format: 'topic,caption,JS-expression-of-value-in-local-JS-context'
 
         var legendScriptParsed = [
-            [
-                ['bd', 'bd', 'rg.bd.abs'], 
-                ['BD', 'BD', 'rg.BD.abs'], 
-                ['bd-BD', 'r1 = bd : BD', 'rg.bd.abs/rg.BD.abs'], 
-                ['limitRatio', '(bx/BX)²', '(rg.b.pos[0]/rg.B.pos[0])*(rg.b.pos[0]/rg.B.pos[0])']
-            ],
-            [
-                ['Ab', 'Ab', 'rg.Ab.abs'],
-                ['AB', 'AB', 'rg.AB.abs'],
-                ['Ab2-AB2', 'r2 = Ab² : AB²', 'rg.Ab.abs2/rg.AB.abs2'],
-                ['', '', '""']
-            ],
-            [
-                ['', '', '""'],
-                ['', '', '""'],
-                ['claimRatio', 'r1 : r2', 'rg.bd.abs/rg.BD.abs/(rg.Ab.abs2/rg.AB.abs2)'],
-                ['', '', '""']
-            ]
-        ]
+            [['BD-bd', `<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>`, 'rg.BD.abs/rg.bd.abs']], 
+            [['AB2-Ab2', `<span style="color:rgb(${given})">AB²</span> : <span style="color:rgb(${proof})">Ab²</span>`, 'rg.AB.abs2/rg.Ab.abs2']],
+            [[ 
+                'ratio', 
+                `(<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>) : (<span style="color:rgb(${given})">AB²</span> : <span style="color:rgb(${proof})">Ab²</span>)`, 
+                '(rg.BD.abs/rg.bd.abs) / (rg.AB.abs2/rg.Ab.abs2)'
+            ]]
+        ];
 
         var rowsCount       = legendScriptParsed.length;
         var clustersCount   = legendScriptParsed[0].length;
@@ -57,9 +52,7 @@
             noTableTitle : true,
             makesBodyCluster,
             updatesDataInCell,
-        })
-        return;
-
+        });
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({

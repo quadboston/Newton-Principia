@@ -8,23 +8,13 @@
 
 ( function() {
     var {
-        ns, sn, $$, mat,
-        sconf, ssF, ssD, sDomF, sDomN,
-        amode, stdMod, toreg, rg,
+        $$, sDomF, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             createLogic_phaseLegend,
         },
     });
     return;
-
-
-
-
-
-
-
 
 
     //=========================================
@@ -44,7 +34,6 @@
         updatesDataInCell,
         updatesCaptionCluster,
         updatesTableTitle,
-        createsIdleFirstRow_forFormat,
     }){
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
@@ -66,9 +55,6 @@
         cellsVisibilityCondition = cellsVisibilityCondition || (()=>true);
 
         createsTablePlaceholder();
-        createsIdleFirstRow_forFormat = createsIdleFirstRow_forFormat ||
-                                        createsIdleFirstRow_forFormat_default;
-        createsIdleFirstRow_forFormat( tb, logic_phase );
         !noTableTitle && createsTableTitle();
         creates_caption8body_rows();
         visibilizeTable();
@@ -111,34 +97,6 @@
                 .html( tableCaption )
                 .to(row);
         }
-
-
-
-        ///=====================
-        /// first row for format
-        ///=====================
-        function createsIdleFirstRow_forFormat_default( tb, logic_phase )
-        {
-            //=====================================================
-            // //\\ idle first row to format table for fixed-layout
-            //=====================================================
-            var row = $$.c('tr')
-                //vital ... removes global css which corrupts table
-                //aka .addClass( 'proof row1 tostroke' )
-                .addClass( logic_phase +' tostroke')
-
-                .css( 'visibility', 'hidden' ) //todm ... tmp fix
-                .to(tb)
-                ();
-            //:todm ... kitchen ... non-reliable
-            $$.c('td').html( 'xxx' ).to(row);
-            $$.c('td').html( '-0.333x' ).to(row);
-            $$.c('td').html( 'xx' ).to(row);
-            //=====================================================
-            // \\// idle first row to format table for fixed-layout
-            //=====================================================
-        }
-
 
         function creates_caption8body_rows()
         {
@@ -224,9 +182,6 @@
                 clusterCaption,
                 ixOfSpanBeginning,     
                 spanVal,
-                alignCaptionToRight,
-                noEqualSign,
-                fillerAfterValue,
                 style,
         }){
             tpCssName = sDomF.topicIdUpperCase_2_underscore( tpCssName || clusterKey );
@@ -244,9 +199,6 @@
                    .html( clusterCaption || clusterKey )
                    .addClass('tostroke tocolor tobold tp-' + tpCssName)
                    .to(row);
-                if( alignCaptionToRight ) {
-                    c$.addClass('align-to-right')
-                }
                 if( ixOfSpanBeginning === 0 ) { c$.a( 'colspan', '' + spanVal ); }
                 cells$.push( c$ );
             }
@@ -254,21 +206,6 @@
             // \\// cell = value title
             //========================================================
 
-            //========================================================
-            // //\\ cell = equality tocken
-            //========================================================
-            if( !noEqualSign ) {
-                //$$.c('td').html( noEqualSign ? '' : '=' ).to(row)
-                var c$ = $$.c('td')
-                    .html( '=' )
-                    .to(row)
-                    //.addClass('eq-sign')
-                    ;
-                cells$.push( c$ );
-            }
-            //========================================================
-            // \\// cell = equality tocken
-            //========================================================
 
             //========================================================
             // //\\ cell = value placeholder
@@ -287,18 +224,6 @@
             // \\// cell = value placeholder
             //========================================================
 
-            //========================================================
-            // //\\ cell = filler after cluster
-            //========================================================
-            if( fillerAfterValue ) {
-                var filler$ = $$.c('td').html( fillerAfterValue ).to(row);
-                cells$.push( filler$ );
-            }
-            //========================================================
-            // \\// cell = filler after cluster
-            //========================================================
-
-
             ///"quick and angry" made clumsy style engine
             if( style ) {
                 style.forEach( (stl,six) => {
@@ -309,22 +234,6 @@
             }
             return cells$;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //=========================================
         // //\\ updates values during simulation

@@ -16,13 +16,6 @@
     return;
 
 
-
-
-
-
-
-
-
     function create_digital_legend()
     {
         //see lemma 11 for the sample
@@ -98,54 +91,13 @@
             //updatesCaptionCluster, //optional
             makesBodyCluster,
             updatesDataInCell,
-        })
-        return;
-
-
-
-        /*
-        //no dice for caption row
-        ///================================================
-        ///================================================
-        function makesCaptionCluster({
-            row,
-            clusterIx,
-        }){
-            var rowIx = 'caprow';
-            var id = rowIx+'-' + clusterIx + '-letter';
-            return {
-                style               :
-                [
-                    [
-                        ['border-left', '1px solid grey'],
-                        ['padding-left', '6px'],
-                    ],
-                ],
-                clusterKey: id,
-                //clusterCaption: '', //will be filled dynamically
-                tpCssName: 'experimental ' + id,
-                noEqualSign : true,
-                //fillerAfterValue : '&nbsp;',
-            };
-        }
-
-        ///================================================
-        /// updates captions
-        ///================================================
-        function updatesCaptionCluster({ clusterIx, })
-        {
-            var capt = [ 'left', '', 'right', '', 'left / right', '' ][ clusterIx ];
-            return { columnCaptionTitle : capt, clusterCellIx:0  };
-        }
-        */
+        });
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                //noEqualSign : true,
-                //alignCaptionToRight : false,
             })
         }
 
@@ -155,7 +107,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

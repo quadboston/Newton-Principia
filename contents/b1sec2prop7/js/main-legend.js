@@ -53,7 +53,7 @@
 
         ssF.createLogic_phaseLegend({
             tableCaption    : 'Areas and Ratios',
-            noTableTitle    : false,
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase,
             rowsCount,
@@ -69,8 +69,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                //noEqualSign : true,
-                alignCaptionToRight : true,
             })
         }
 
@@ -83,7 +81,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }        
     }

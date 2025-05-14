@@ -91,9 +91,9 @@
         //===================
         return;
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
+        function makeCl( row, mname, mcaption, spanIx, spanVal ) {
             return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'proof' );
+                row, mname, mcaption, spanIx, spanVal, 'proof' );
         }
     }
     //=========================================
@@ -134,9 +134,9 @@
         return;
 
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight ) {
+        function makeCl( row, mname, mcaption, spanIx, spanVal ) {
             return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, 'claim' );
+                row, mname, mcaption, spanIx, spanVal, 'claim' );
         }
     }
     //=========================================
@@ -151,16 +151,13 @@
     ///Effect: represents magnitude in html-table-row in 
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
+    function makeClBoth( row, mname, mcaption, spanIx, spanVal, claim0proof )
     {
         var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
         var c$ = $$.c('td')
                    .html( mcaption||mname )
                    .addClass('tostroke tocolor tobold tp-' + cssName)
                    .to(row);
-        if( alignCaptionToRight ) {
-            c$.addClass('align-to-right')
-        }
 
         if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
 

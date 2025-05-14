@@ -106,14 +106,20 @@ sup {
     margin-right : 15px;
 }
 
+.bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
+    border: 2px solid #AFAFAF;
+}
+
 .main-legend.hidden {
     display:none;
 }
 
 .main-legend td {
     text-align: center;
+    font-size: 14px;
     padding: 2px 0.5rem !important;
     text-align: right;
+    min-width: 7rem;
     border: 1px solid #AFAFAF;
     white-space: nowrap; /* keeps everything on one line */
 
@@ -135,16 +141,16 @@ sup {
 
 .main-legend td.value {
     font-family: var(--data-numerical-font);
-    width: 5rem;
+    min-width: 5rem;
     text-align: left;
-    /* padding-left: 0.25rem !important; */
     height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
+    border-right: 2px solid #AFAFAF;
 }
 
-/* .main-legend td.align-to-right,
-.main-legend tr td:first-child {
-    text-align:right;
-} */
+.main-legend .tp-spacer {
+    height: 1px !important;
+    padding: 0 !important;
+}
 
 .main-legend .eq-sign {
     text-align:center;
@@ -154,23 +160,10 @@ sup {
     font-family: var(--font-condensed);
 }  
 
-/*------------*/
-/* //\\ mix   */
-/*------------*/
-/* .main-legend.claim,
-.main-legend.proof {
-    border-collapse: separate;
-    border-spacing: 10px 0px;
+/* graphs in P6, P7, etc ...weird name */
+.lost-diagram-parent {
+    padding-bottom: 2rem; /* so there's space between graph and data table */
 }
-
-.claim.row1,
-.corollary.row1,
-.proof.row1 {
-    opacity:0;
-} */
-/*------------*/
-/* \\// mix   */
-/*------------*/
 
 /*todm: should be automated */
 .logic_phase--claim .main-legend.proof,
@@ -187,10 +180,6 @@ sup {
 .logic_phase--proof .main-legend.corollary,
 .main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
-}
-
-.main-legend td {
-    font-size:14px;
 }
 
 @media (max-width: 900px) {

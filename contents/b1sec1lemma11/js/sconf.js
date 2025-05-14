@@ -96,7 +96,6 @@
             hidden,
         } = fixedColors;
 
-
         var predefinedTopics =
         {
             given,
@@ -108,9 +107,10 @@
             'arc-Ab'    : proof,
             'AB2'       : given,
             'Ab2'       : proof,
-            'Ab2-AB2'   : proof,
-            'bd-BD'     : proof,
+            'AB2-Ab2'   : proof,
+            'BD-bd'     : proof,
             'claimRatio': proof,
+            'ratio'     : proof,
             'limitRatio': result,
         };
         //-----------------------------------
