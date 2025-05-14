@@ -28,11 +28,10 @@
                 const rows = rgTeoTab.tableDom.querySelectorAll('tr');
                 let visibleRows = [];
                 switch(amode.subessay) {
-                    // rows 0 and 1 are captions added and hidden elsewhere
-                    // the rest are defined in main-legend.js as the array lemma7Data.corollary
-                    case 'cor-1': visibleRows = [2, 3, 4, 5]; break;
-                    case 'cor-2': visibleRows = [6, 7, 8, 9, 10, 11, 12, 13]; break;
-                    case 'cor-3': visibleRows = [14, 15, 16, 17, 18, 19, 20]; break;
+                    // defined in main-legend.js as the array lemma7Data.corollary
+                    case 'cor-1': visibleRows = [0, 1, 2, 3]; break;
+                    case 'cor-2': visibleRows = [4, 5, 6, 7, 8, 9, 10, 11]; break;
+                    case 'cor-3': visibleRows = [12, 13, 14, 15, 16, 17]; break;
                     default: break;
                 }
                 rows.forEach((row, index) => {

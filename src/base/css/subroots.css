@@ -147,9 +147,16 @@ sup {
     border-right: 2px solid #AFAFAF;
 }
 
+/* small gap row for logical grouping */
 .main-legend .tp-spacer {
     height: 1px !important;
     padding: 0 !important;
+}
+
+/* patch for L7 corollaries */
+/* todo: change main-lengend framework to handle multiple corollary tables */
+.main-legend .tp-hidden {
+    display: none;
 }
 
 .main-legend .eq-sign {

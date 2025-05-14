@@ -49,25 +49,25 @@
     // rows shown/hidden in media-upcreate.js, based on which cor is selected 
     lemma7Data.corollary = [
         //corollary 1
-        [[ 'BF-data', 'BF', 'rg.BF.abs' ], [ '', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
-        [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB 
-        [[ 'spacer', '', '' ], [ 'spacer', '', '' ]],
-        [[ 'claimRatio fixed-width', 'BF : arc ACB', getCor1Ratio() ], [ '', '', '' ]],
+        [[ 'BF-data', 'BF', 'rg.BF.abs' ], [ 'hidden', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
+        [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB 
+        [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio fixed-width', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
 
         //corollary 2
-        [lemma7Data.claim[1][0], [ '', '', '' ]], //AD
-        [[ 'AE', 'AE', 'rg.AE.abs'], [ '', '', '' ]],
-        [lemma7Data.claim[0][0], [ '', '', '' ]], //AB
-        [lemma7Data.claim[2][0], [ '', '', '' ]], //arc ACB
-        [[ 'spacer', '', '' ], [ 'spacer', '', '' ]],
-        [[ 'claimRatio fixed-width', 'AE : AD', getLineRatio('AE', 'AD') ], [ '', '', '' ]],
-        [[ 'claimRatio fixed-width', 'AB : AD', getLineRatio('AB', 'AD') ], [ '', '', '' ]],
-        [[ 'claimRatio fixed-width', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ '', '', '' ]], 
+        [lemma7Data.claim[1][0], [ 'hidden', '', '' ]], //AD
+        [[ 'AE', 'AE', 'rg.AE.abs'], [ 'hidden', '', '' ]],
+        [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], //AB
+        [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB
+        [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio fixed-width', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio fixed-width', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio fixed-width', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
         
         //corollary 3
-        [lemma7Data.claim[0][0], [ '', '', '' ]],
-        [lemma7Data.claim[1][0], lemma7Data.claim[4][0]],
-        [lemma7Data.claim[2][0], lemma7Data.claim[5][0]],
+        [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], // AB
+        [lemma7Data.claim[1][0], lemma7Data.claim[4][0]], // AD
+        [lemma7Data.claim[2][0], lemma7Data.claim[5][0]], //arc ACB
         [[ 'BF fixed-width', 'BF', 'rg.BF.abs' ], [ 'BF', 'BF : AB', getLineRatio('BF', 'AB') ]], 
         [[ 'AE fixed-width', 'AE', 'rg.AE.abs'], [ 'AE', 'AE : AB', getLineRatio('AE', 'AB') ]],
         [[ 'BG fixed-width', 'BG', 'rg.BG.abs' ], [ 'BG', 'BG : AB', getLineRatio('BG', 'AB') ]], 
@@ -127,7 +127,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false, // todo: setting to true breaks corollary tables - why?
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,
             rowsCount,
