@@ -107,7 +107,7 @@ sup {
 }
 
 .bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
-    border: 2px solid #AFAFAF;
+    border: 2px solid var(--border-color);
 }
 
 .main-legend.hidden {
@@ -120,7 +120,7 @@ sup {
     padding: 2px 0.5rem !important;
     text-align: right;
     min-width: 7rem;
-    border: 1px solid #AFAFAF;
+    border: 1px solid var(--border-color);
     white-space: nowrap; /* keeps everything on one line */
 
     /* this is a brute force way to specify opacity for table data 
@@ -144,7 +144,7 @@ sup {
     min-width: 5rem;
     text-align: left;
     height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
-    border-right: 2px solid #AFAFAF;
+    border-right: 2px solid var(--border-color);
 }
 
 /* small gap row for logical grouping */

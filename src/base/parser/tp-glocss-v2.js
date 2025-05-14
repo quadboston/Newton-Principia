@@ -1,25 +1,14 @@
 ( function() {
     var {
-        ns, sn, cssp, $$, eachprop, globalCss, nsmethods,
-        fapp, sconf, topics,
+        cssp, eachprop, globalCss, sconf, topics, fixedColors
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             v2_tplinks_2_highlightCss,
             v2_topics_2_unhighCss,
         },
     });
-    var tpid2cssColor = {};
     var ROOT = '.' + cssp + '-approot';
     return;
-
-
-
-
-
-
-
-
 
 
     ///*************************************************
@@ -28,7 +17,6 @@
     ///*************************************************
     function v2_topics_2_unhighCss()
     {
-        var totalCss = '';
         eachprop( topics.lowId2topics, ( topi_c, lowId ) => {
             var { fillOpacity, strokeOpacity, rgba_own } = topi_c;
             var Rtp = ROOT + ' .tp-' + lowId;
@@ -101,7 +89,7 @@ ${Rix} .tp-${lowId}.tobold,
 ${Rix} svg text.tp-${lowId},
 ${Rix} svg tspan.tp-${lowId},
 ${Rix} span.tp-${lowId} { 
-    background-color : #eaeaea; /* highlight instead of bold */
+    background-color : rgb(${fixedColors.highlight}); /* highlight instead of bold */
 }
                     `;
                         ///todm: very crude and wordy stroke width control
