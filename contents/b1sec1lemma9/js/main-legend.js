@@ -28,15 +28,15 @@
 
         var claimR = ssD.claimRatio;
 
+        //: proof
         var ww = clustersToUpdate;
-
         ww.AbdPerAce.innerHTML  = (calcA[ 'Afd' ].total/calcA[ 'Age' ].total).toFixed(3);
-
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
+        ww.Ad2PerAe2.innerHTML  = (claimR*claimR).toFixed(3);
         
+        //: claim
         var ww = clustersToUpdate_claim;
-        //: vanishing areas
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
     }
