@@ -24,8 +24,8 @@
             Math.floor( FORCE_ARRAY_LEN/DATA_GRAPH_ARRAY_LEN ) );
         const CALCULATE_SUGITTA_ALONG_THE_PATH =
               sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
-        const DEVIATION_SCALE_BY_FORCE_MAX = 
-              sconf.DEVIATION_SCALE_BY_FORCE_MAX;
+        const IS_DEVIATION_SCALED_BY_FORCE_MAX = 
+              sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
         const DEVIATION_SCALE_FACTOR =
               sconf.DEVIATION_SCALE_FACTOR || 1;
         
@@ -91,7 +91,7 @@
             const ga = graphArray[ gix ];
             const y = ga.y;
             y[0] /= forceMax;
-            y[1] /= DEVIATION_SCALE_BY_FORCE_MAX ? 
+            y[1] /= IS_DEVIATION_SCALED_BY_FORCE_MAX ? 
                 forceMax * DEVIATION_SCALE_FACTOR :
                 deviationMax;
             ADDENDUM && ( y[2] /= speedMax );
