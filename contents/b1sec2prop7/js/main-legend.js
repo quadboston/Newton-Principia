@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, ssF, sData, rg, stdMod
+        ssF, rg, stdMod
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -11,7 +11,7 @@
 
     function create_digital_legend()
     {
-        //see lemma 11 for the sample
+        create_digital_legend_for_logic_phase( 'claim' );
         create_digital_legend_for_logic_phase( 'proof' );
         create_digital_legend_for_logic_phase( 'corollary' );
     }
@@ -37,12 +37,7 @@
         ///just append any number of them separated with <_>
 
         var legendScriptParsed = [
-            [['dtime<_>data-monospace', 'Δt', '(rg.tForSagitta.val*2).toFixed(4)']],
-            [['_s_p', 'SP', 'rg.SP.vector.abs.toFixed(4)']],
-            [['_r_l', 'RL', 'rg.RL.vector.abs.toFixed(4)']],
-            [['_p_v', 'PV', 'rg.PV.vector.abs.toFixed(4)']],
-            [['estimated_force<_>data-monospace', 'Estimated_force_at_P', 'stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[4].toFixed(4)']],
-            [['force<_>data-monospace', 'Actual_force_at_P', 'stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)']],
+            [['dtime<_>data-monospace', 'Δt', '(rg.tForSagitta.val*2).toFixed(4)']]
         ];
 
         var rowsCount       = legendScriptParsed.length;
@@ -58,8 +53,6 @@
             logic_phase,
             rowsCount,
             clustersCount,
-            //makesCaptionCluster, //optional
-            //updatesCaptionCluster, //optional
             makesBodyCluster,
             updatesDataInCell,
         });
@@ -73,10 +66,7 @@
         }
 
         function updatesDataInCell({ rowIx, clusterIx, })
-        {
-            //patch: disables second row of the table, the raw of dt
-            rg[ 'main-legend' ][ logic_phase ].tableDom.children[1].style.display = 'none';
-            
+        {            
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,

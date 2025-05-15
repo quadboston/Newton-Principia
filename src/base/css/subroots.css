@@ -102,8 +102,9 @@ sup {
 .main-legend { /* data table */
     table-layout : auto;
     box-sizing   : border-box;
-    margin-left  : 15px;
-    margin-right : 15px;
+    margin-left  : auto; /* table is centered within .bsl-legend-root */
+    margin-right : auto;
+    margin-bottom : 2rem; /* ensures layout shifts don't push table below the fold */
 }
 
 .bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
@@ -117,9 +118,9 @@ sup {
 .main-legend td {
     text-align: center;
     font-size: 14px;
-    padding: 2px 0.5rem !important;
+    padding: 2px 0.5rem 2px 2rem !important;
     text-align: right;
-    min-width: 7rem;
+    min-width: 5rem;
     border: 1px solid var(--border-color);
     white-space: nowrap; /* keeps everything on one line */
 
@@ -141,7 +142,7 @@ sup {
 
 .main-legend td.value {
     font-family: var(--data-numerical-font);
-    min-width: 5rem;
+    padding-left: 0.5rem !important;
     text-align: left;
     height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
     border-right: 2px solid var(--border-color);
