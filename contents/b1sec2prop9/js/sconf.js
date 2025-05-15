@@ -166,7 +166,8 @@
             hidden,
             curvature,
             context,
-            estimatedForce
+            estimatedForce,
+            sun
         } = fixedColors;
 
 
@@ -212,7 +213,7 @@
 
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : sun,
                 letterAngle : -90,
                 //draggableX  : true,
                 //draggableY  : true,

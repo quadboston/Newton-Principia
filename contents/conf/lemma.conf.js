@@ -78,6 +78,8 @@
         //condition of the theorem,
         //given parameters of the claim or proof
         fixedColors.given   = [42, 124, 140];//[0, 150, 0]; <<<
+        fixedColors.sun = rgb2Array('rgb(184,99,16)');
+        fixedColors.none = rgb2Array('rgb(77,77,77)');
 
         //relates to moving body, to an orbit
         fixedColors.body    = [0, 150, 0];
@@ -165,7 +167,7 @@
         fixedColors.diagram         = [150, 0, 90];
         fixedColors.path            = [0, 0, 150];
         fixedColors.sagittaeChords  = fixedColors.sagitta;
-        fixedColors.speed           = [150, 120, 0]; 
+        fixedColors.speed           = rgb2Array('rgb(122,134,107)');//[150, 120, 0]; 
 
         fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
         fixedColors["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
@@ -338,7 +340,13 @@
         return;
 
 
-
+        function rgb2Array(rgbString) {
+            const match = rgbString.match(/^rgb\s*\(\s*(\d+),\s*(\d+),\s*(\d+)\s*\)$/);
+            if (!match) {
+                throw new Error("Invalid RGB format");
+            }
+            return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+        }
 
 
 

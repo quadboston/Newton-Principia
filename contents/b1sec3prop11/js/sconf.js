@@ -142,7 +142,8 @@
             hidden,
             curvature,
             context,
-            estimatedForce
+            estimatedForce,
+            sun
         } = fixedColors;
 
 
@@ -158,7 +159,8 @@
             orbit,
             force,
             tangentCircle : curvature,
-            estimatedForce
+            estimatedForce,
+            sun
             //curvatureCircle : curvature,
         };
         //-----------------------------------
@@ -354,7 +356,7 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pcolor : result,
+                pcolor : sun,
                 letterAngle : -115,
                 letterRotRadius : 35,
                 draggableX  : true,

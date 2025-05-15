@@ -854,15 +854,20 @@
 
             perpendicular,
             tangent,
+            given,
+            invalid,
+            none,
+
+            sun
         } = fixedColors;
 
 
         const pt_all = {
             speed,
             force,
-            forceMove,
-            time,                       //Time slider
-            dt                  : time, //Delta time slider
+            forceMove : force,
+            time : none,                       //Time slider
+            dt : none,//                  : time, //Delta time slider
             path,
             "path-change"       : path,
 
@@ -914,18 +919,18 @@
             "Ee"                : forceMove,
             "Ff"                : forceMove,
             "Fg"                : forceMove,//Duplicate of "Ff" used by P1 Corollary 3.  Also referenced in cohen.txt
-            "force-0-applied"   : forceMove,
-            "force-1-applied"   : forceMove,
-            "force-2-applied"   : forceMove,
-            "force-3-applied"   : forceMove,
-            "force-4-applied"   : forceMove,
+            "force-0-applied"   : force,
+            "force-1-applied"   : force,
+            "force-2-applied"   : force,
+            "force-3-applied"   : force,
+            "force-4-applied"   : force,
 
-            "force-center"      : force,
-            "S"                 : force,
+            "force-center"      : time,
+            "S"                 : sun,
 
             "SA"                : diagram,
-            "SB"                : diagram,
-            "SC"                : diagram,
+            "SB"                : given,
+            "SC"                : given,
             "SD"                : diagram,
             "SE"                : diagram,
             "SF"                : diagram,

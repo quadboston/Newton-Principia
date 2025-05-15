@@ -138,7 +138,8 @@
             curvature,
             context,
             chord,
-            given
+            given,
+            sun
         } = fixedColors;
 
 
@@ -202,7 +203,7 @@
 
             S : {
                 pos: S,
-                pcolor : estimatedForce,
+                pcolor : sun,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
