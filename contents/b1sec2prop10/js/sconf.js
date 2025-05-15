@@ -117,9 +117,8 @@
         //for expense of twice large arrays,
         */
 
-        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = true;
-        sconf.SCALE_DEVIATION_USING_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_RELATIVE_TO_FORCE_MAX = 0.5;
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 0.5;
         sconf.CURVE_REVOLVES = true; //is cyclic
         sconf.DT_SLIDER_MIN = 0.001;
         sconf.DQ_SLIDER_MAX = 0.65;
