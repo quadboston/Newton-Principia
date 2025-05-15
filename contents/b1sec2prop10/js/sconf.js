@@ -38,9 +38,9 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         sconf.rgShapesVisible = true;
+        
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
@@ -66,10 +66,7 @@
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
         //***************************************************************
 
@@ -77,8 +74,6 @@
 
         //***************************************************************
         // //\\ geometics parameters
-        //***************************************************************
-        //=============================================
         // //\\ points reused in config
         //=============================================
         //model's spacial unit expressed in pixels of the picture:
@@ -89,20 +84,66 @@
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
 
+
+        //-------------------------------------------
+        // //\\ curve shape parameters
+        //-------------------------------------------
         sconf.ellipseA  = 1.03;
         sconf.ellipseB  = 0.86;
-        var PparT       = 0.255 * Math.PI;
-        var curveParA   = -0.64;
-        var curveParFi0 = 0.0 * Math.PI;
-        var curveParFiMax = 2 * Math.PI;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 2.0 * Math.PI;
+
+        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
+        //to be studied in given proposition:
+        sconf.force_law = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+        //-------------------------------------------
+        // \\// curve shape parameters
+        //-------------------------------------------
+
+
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+
+        /*
+        //combination which is at the edge of accuracy:
+        //0.01 gives noticeable sagitta error
+        //0.02 does not give this error
+        //DATA_GRAPH_ARRAY_LEN is irrelevant
+        sconf.DT_SLIDER_MIN = 0.01;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        //however 0.01 and 2000 eliminates the error, but
+        //for expense of twice large arrays,
+        */
+
+        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = true;
+        sconf.SCALE_DEVIATION_USING_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_RELATIVE_TO_FORCE_MAX = 0.5;
+        sconf.CURVE_REVOLVES = true; //is cyclic
+        sconf.DT_SLIDER_MIN = 0.001;
+        sconf.DQ_SLIDER_MAX = 0.65;
+        var FORCE_ARRAY_LEN = 1000;
+        var TIME_STEPS = 1000;
+        var DATA_GRAPH_ARRAY_LEN = 200;
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
+
+        //-------------------------------------------
+        // //\\ P and Q points positions
+        //-------------------------------------------
         //interval of t to construct an arc for Newton's sagitta
-        var sForSagitta_valQ = 0.36;
-
-        var S = C;
-        var P = [0, 0 ]; //set bu sconf.PparT
-        var Q = [0, 0 ]; //set in amode8captures
-
+        var saggitaDt = 0.36;
+        var parQ = 0.255 * Math.PI;
+        var P = null; //set in init_model_parameters by parQ
+        var Q = null; //set in model
+        //-------------------------------------------
+        // \\// P and Q points positions
+        //-------------------------------------------
+        
         sconf.diagramOrigin = [ 0, 0 ];
+        var S = C;
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -136,7 +177,6 @@
             orbit,
             force,
             tangentCircle : curvature,
-            //curvatureCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -365,11 +405,12 @@
         ];
 
         ns.paste( sconf, {
-            PparT,
-            curveParA,
-            curveParFi0,
-            curveParFiMax,
-            sForSagitta_valQ,
+            parQ,
+            saggitaDt,
+            FORCE_ARRAY_LEN,
+            DATA_GRAPH_ARRAY_LEN,
+            TIME_STEPS,
+
 
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -386,6 +427,8 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
+
+        sconf.deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
         //***************************************************************
         // \\// geometics parameters
         //***************************************************************

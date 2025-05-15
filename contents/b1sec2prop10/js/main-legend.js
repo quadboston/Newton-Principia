@@ -1,28 +1,9 @@
 ( function() {
-    var {
-        ns, sn, $$,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            create_digital_legend,
-        },
-    });
+    var {  ns, sn, $$, sconf, rg, ssF, stdMod, toreg, amode, } 
+        = window.b$l.apptree({ stdModExportList : { create_digital_legend, }, });
     return;
 
-
-
-
-
-
-
-
-
+    
     function create_digital_legend()
     {
         return;
