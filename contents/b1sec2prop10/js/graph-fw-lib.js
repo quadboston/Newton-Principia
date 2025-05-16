@@ -172,7 +172,7 @@
                     fontShiftX : 0,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[0],
                         //'fill' : colorThreadArray[0],
                     },
@@ -188,7 +188,7 @@
                     fontShiftX : 25,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[1],
                     },
                 },
@@ -199,7 +199,7 @@
                     fontShiftX : 40,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[2],
                     },
                 },
@@ -232,7 +232,7 @@
             };
         }
 
-
+        ///horizontal axis x pars, font, etc,
         function graphAxisX( xColor )
         {
             return {
