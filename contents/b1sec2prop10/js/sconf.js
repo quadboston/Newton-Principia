@@ -121,7 +121,7 @@
         sconf.DEVIATION_SCALE_FACTOR = 0.5;
         sconf.CURVE_REVOLVES = true; //is cyclic
         sconf.DT_SLIDER_MIN = 0.001;
-        sconf.DQ_SLIDER_MAX = 0.65;
+        sconf.DQ_SLIDER_MAX = 1.0;
         var FORCE_ARRAY_LEN = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_ARRAY_LEN = 200;
