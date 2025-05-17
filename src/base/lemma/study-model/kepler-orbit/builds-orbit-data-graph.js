@@ -1,13 +1,6 @@
 ( function() {
-    var {
-        sn, userOptions,
-        amode, stdMod, sconf, ssD,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            builds_orbit_data_graph,
-        },
-    });
+    var { sn, userOptions, amode, stdMod, sconf, ssD, } 
+        = window.b$l.apptree({ stdModExportList : { builds_orbit_data_graph, }, });
     var graphArray = sn( 'graphArray', stdMod, [] );
     var qix2orb = sn( 'qix2orb', ssD, [] );
     var orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
@@ -31,6 +24,10 @@
             Math.floor( FORCE_ARRAY_LEN/DATA_GRAPH_ARRAY_LEN ) );
         const CALCULATE_SUGITTA_ALONG_THE_PATH =
               sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
+        const IS_DEVIATION_SCALED_BY_FORCE_MAX = 
+              sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
+        const DEVIATION_SCALE_FACTOR =
+              sconf.DEVIATION_SCALE_FACTOR || 1;
         
         ///prepares averages and placeholder for data graphs
         for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ){
@@ -94,7 +91,9 @@
             const ga = graphArray[ gix ];
             const y = ga.y;
             y[0] /= forceMax;
-            y[1] /= deviationMax;
+            y[1] /= IS_DEVIATION_SCALED_BY_FORCE_MAX ? 
+                forceMax * DEVIATION_SCALE_FACTOR :
+                deviationMax;
             ADDENDUM && ( y[2] /= speedMax );
             CALCULATE_SUGITTA_ALONG_THE_PATH && ADDENDUM &&
                 ( y[3] /= sagittaMax );
