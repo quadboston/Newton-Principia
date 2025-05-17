@@ -8,7 +8,9 @@
 
 ( function() {
     var {
-        $$, sDomF, stdMod, toreg, rg,
+        ns, sn, $$, mat,
+        sconf, ssF, ssD, sDomF, sDomN,
+        amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             createLogic_phaseLegend,
