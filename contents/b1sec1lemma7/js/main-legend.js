@@ -31,8 +31,8 @@
             [[ 'AD', 'AD', getVal('rg.AD.abs', '0.000') ]],
             [[ 'arc-AB', 'arc ACB', getVal('rg.AB.arcLen', '0.000') ]],
             [[ 'spacer', '', '' ]], //small space
-            [[ 'claimRatio fixed-width', 'AD : AB', getLineRatio('AD', 'AB') ]],
-            [[ 'claimRatio fixed-width', 'arc ACB : AB', getArcRatio('AB', 'AB') ]],
+            [[ 'claimRatio', 'AD : AB', getLineRatio('AD', 'AB') ]],
+            [[ 'claimRatio', 'arc ACB : AB', getArcRatio('AB', 'AB') ]],
         ]
     };
 
@@ -41,8 +41,8 @@
         [lemma7Data.claim[1][0], [ 'Ad', 'Ad', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
         [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
         [[ 'spacer', '', '' ], [ 'spacer', '', '' ]], //small space
-        [lemma7Data.claim[4][0], [ 'proofRatio fixed-width', 'Ad : Ab', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
-        [lemma7Data.claim[5][0], [ 'proofRatio fixed-width', 'arc Acb : Ab', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
+        [lemma7Data.claim[4][0], [ 'proofRatio', 'Ad : Ab', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
+        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc Acb : Ab', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
     ];
 
     // all 3 corollaries defined as one big table so framework updates their data properly
@@ -52,7 +52,7 @@
         [[ 'BF-data', 'BF', 'rg.BF.abs' ], [ 'hidden', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
         [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB 
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio fixed-width', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
 
         //corollary 2
         [lemma7Data.claim[1][0], [ 'hidden', '', '' ]], //AD
@@ -60,17 +60,17 @@
         [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], //AB
         [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio fixed-width', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio fixed-width', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio fixed-width', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
+        [[ 'claimRatio', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'claimRatio', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
         
         //corollary 3
         [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], // AB
         [lemma7Data.claim[1][0], lemma7Data.claim[4][0]], // AD
         [lemma7Data.claim[2][0], lemma7Data.claim[5][0]], //arc ACB
-        [[ 'BF fixed-width', 'BF', 'rg.BF.abs' ], [ 'BF', 'BF : AB', getLineRatio('BF', 'AB') ]], 
-        [[ 'AE fixed-width', 'AE', 'rg.AE.abs'], [ 'AE', 'AE : AB', getLineRatio('AE', 'AB') ]],
-        [[ 'BG fixed-width', 'BG', 'rg.BG.abs' ], [ 'BG', 'BG : AB', getLineRatio('BG', 'AB') ]], 
+        [[ 'BF', 'BF', 'rg.BF.abs' ], [ 'BF', 'BF : AB', getLineRatio('BF', 'AB') ]], 
+        [[ 'AE', 'AE', 'rg.AE.abs'], [ 'AE', 'AE : AB', getLineRatio('AE', 'AB') ]],
+        [[ 'BG', 'BG', 'rg.BG.abs' ], [ 'BG', 'BG : AB', getLineRatio('BG', 'AB') ]], 
     ]; 
 
     // when AB <= NON_ZERO_A_PREVENTOR we're rounding to zero because the calculations become innaccurate at small values
