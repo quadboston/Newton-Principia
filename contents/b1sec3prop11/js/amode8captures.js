@@ -114,7 +114,6 @@
             rg.AO.undisplay = hideExtras;
             rg.DO.undisplay = hideExtras;
             rg.BO.undisplay = hideExtras;
-            rg[ 'PC' ].undisplay = hideExtras;
             
             // //\\ we don't know why one needs chorde-scribed circle
             //      so we disable it forever here

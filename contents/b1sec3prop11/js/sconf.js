@@ -403,9 +403,6 @@
             // \\// Book's prop. 11
             //-----------------------------------------
 
-            //{ 'CV' : { pcolor : curvature }, },
-            { 'PC' : { pcolor : proof }, },
-
             { 'SP' : { pcolor : result }, },
 
             { 'P,Zminus' : { pcolor : body }, },

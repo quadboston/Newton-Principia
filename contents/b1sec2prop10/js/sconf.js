@@ -362,9 +362,6 @@
 
         var linesArray =
         [
-            //{ 'CV' : { pcolor : curvature }, },
-            { 'PC' : { pcolor : proof }, },
-
             { 'SP' : { pcolor : result }, },
 
             { 'P,Zminus' : { pcolor : body }, },
