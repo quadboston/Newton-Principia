@@ -73,6 +73,18 @@
     display: flex;
     align-items: center;
     margin-bottom: 8px; 
+    height: 1.25rem;
+}
+
+.areas__checkboxes-row .number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.areas__checkboxes-row span {
+    height: 100%;
+    padding: 0.25rem;
 }
 
 .areas__checkboxes .checkbox {

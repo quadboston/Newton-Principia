@@ -71,8 +71,6 @@
                 clusterKey: id,
                 //clusterCaption: '', //will be filled dynamically
                 tpCssName: 'experimental ' + id,
-                noEqualSign : true,
-                //fillerAfterValue : '&nbsp;',
             };
         }
 
@@ -106,8 +104,6 @@
                 tpCssName,
                 clusterKey          : id,
                 clusterCaption      : 'y<sub>' + indices + '</sub>' + P,
-                noEqualSign         : true,
-                //fillerAfterValue    : ' ',
             };
         }
 

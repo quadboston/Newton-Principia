@@ -24,13 +24,13 @@
     //// Caution: '_' is replaced with ' ' in caption,
     ////**********************************************************************************
 
-    var lemma6Data =  {
+    var lemma6Data = {
         claim : [
-            [[ 'angleBAD fixed-width', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD', 'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
         ],
         proof : [
-            [[ 'angleBAD fixed-width',  'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
-            [[ 'L fixed-width', 'rectilinear angle : ', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD',  'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
+            [[ 'L', 'rectilinear angle', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
         ]
     };
 
@@ -49,7 +49,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false,
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,
             rowsCount,
@@ -73,7 +73,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

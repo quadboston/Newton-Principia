@@ -72,7 +72,8 @@
 
         //-Many more similar color variables could likely be combined together.
 
-
+        // background color used to highlight text and table rows on hover
+        fixedColors.highlight = [234, 234, 234];
 
         //usually as a condition of a claim,
         //condition of the theorem,

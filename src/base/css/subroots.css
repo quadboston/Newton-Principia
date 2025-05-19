@@ -89,12 +89,10 @@ sup {
 /*========================================*/
 
 
-/* //========================================
-// //\\ main-legend                       
-//      the only reason for "flex"
-//      it make table narrow ...
-//      otherwise, margin may solves all
-//======================================== */
+
+/*====================================*/
+/* \\// main-legend (data tables)     */
+/*====================================*/
 
 .bsl-legend-root { /* table container, parent is bsl-simscene */
     box-sizing   : border-box;
@@ -104,19 +102,75 @@ sup {
 .main-legend { /* data table */
     table-layout : auto;
     box-sizing   : border-box;
-    margin-left  : 15px;
-    margin-right : 15px;
+    margin-left  : auto; /* table is centered within .bsl-legend-root */
+    margin-right : auto;
+    margin-bottom : 2rem; /* ensures layout shifts don't push table below the fold */
 }
 
-.main-legend td {
-    text-align:center;
-}
-.main-legend td.monospace {
-    font-family : var(--data-numerical-font);
+.bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
+    border: 2px solid var(--border-color);
 }
 
 .main-legend.hidden {
     display:none;
+}
+
+.main-legend td {
+    text-align: center;
+    font-size: 14px;
+    padding: 2px 0.5rem 2px 2rem !important;
+    text-align: right;
+    min-width: 5rem;
+    border: 1px solid var(--border-color);
+    white-space: nowrap; /* keeps everything on one line */
+
+    /* this is a brute force way to specify opacity for table data 
+        without affect TP_OPACITY values used in the models,
+        however, it prevents dynamic opacity change on hover */
+    opacity: 1 !important;
+}
+
+.main-legend td.monospace {
+    font-family : var(--data-numerical-font);
+}
+
+.main-legend td.table-caption {
+    padding-bottom: 4px;
+    text-align: center !important;
+    font-weight: bold;
+}
+
+.main-legend td.value {
+    font-family: var(--data-numerical-font);
+    padding-left: 0.5rem !important;
+    text-align: left;
+    height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
+    border-right: 2px solid var(--border-color);
+}
+
+/* small gap row for logical grouping */
+.main-legend .tp-spacer {
+    height: 1px !important;
+    padding: 0 !important;
+}
+
+/* patch for L7 corollaries */
+/* todo: change main-lengend framework to handle multiple corollary tables */
+.main-legend .tp-hidden {
+    display: none;
+}
+
+.main-legend .eq-sign {
+    text-align:center;
+} 
+
+.main-legend .limit {
+    font-family: var(--font-condensed);
+}  
+
+/* graphs in P6, P7, etc ...weird name */
+.lost-diagram-parent {
+    padding-bottom: 2rem; /* so there's space between graph and data table */
 }
 
 /*todm: should be automated */
@@ -134,75 +188,6 @@ sup {
 .logic_phase--proof .main-legend.corollary,
 .main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
-}
-
-.main-legend td {
-    padding:1px;
-    /* for dev mode: border: 1px solid black; */
-}
-
-
-/*====================================*/
-/* //\\ table formatter               */
-/*====================================*/
-.main-legend td {
-    text-align:left;
-}
-.main-legend td.table-caption {
-    padding-bottom:4px;
-    text-align:center !important;
-    font-weight:bold;
-}
-.main-legend td.align-to-right,
-.main-legend tr td:first-child {
-    text-align:right;
-}
-.main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
-    text-align:right;
-}
-
-.main-legend td:first-child.fixed-width, .main-legend td:nth-child(4).fixed-width {/* patch for L6, L7, L8 */
-    min-width: 9em !important;
-}
-
-.main-legend td.value {
-    font-family: var(--data-numerical-font);
-    width: 5rem;
-    padding-left: 0.5rem !important;
-    height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
-}
-.main-legend .eq-sign {
-    text-align:center;
-}  
-.main-legend .limit {
-    font-family: var(--font-condensed);
-}  
-
-
-/*------------*/
-/* //\\ mix   */
-/*------------*/
-.main-legend.claim,
-.main-legend.proof {
-    border-collapse: separate;
-    border-spacing: 10px 0px;
-}
-
-.claim.row1,
-.corollary.row1,
-.proof.row1 {
-    opacity:0;
-}
-/*------------*/
-/* \\// mix   */
-/*------------*/
-
-/*====================================*/
-/* \\// table formatter               */
-/*====================================*/
-
-.main-legend td {
-    font-size:14px;
 }
 
 @media (max-width: 900px) {
@@ -229,6 +214,10 @@ sup {
         width:100%;
     }
 }
+
+/*====================================*/
+/* \\// main-legend                   */
+/*====================================*/
 
 /* //==================================
 // //\\ model help

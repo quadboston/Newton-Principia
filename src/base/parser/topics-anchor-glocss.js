@@ -1,10 +1,8 @@
 ( function() {
     var {
-        sn, haz, fapp, sconf, ssF,
-        topics,
+        haz, fapp, sconf, ssF, topics, fixedColors
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             topics_anchor_css,
             setsAnchor_mouseHighlightEvents,
         },
@@ -99,17 +97,16 @@
             }
             ${tplink_str}:hover {
                opacity          : ${focusOp_str};
-               background-color : #eaeaea;
+               background-color : rgb(${fixedColors.highlight});
                cursor           : default;
             }
             ${tplink_str}:hover span{
                font-weight      : bold;
-               background-color : #eaeaea;
+               background-color : rgb(${fixedColors.highlight});
                cursor           : default;
             }
         `;
     }
-
 
 
     function setsAnchor_mouseHighlightEvents( anchor, coreName )
