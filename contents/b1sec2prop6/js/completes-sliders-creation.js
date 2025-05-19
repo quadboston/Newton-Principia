@@ -60,15 +60,15 @@
             
             // //\\  we project INCREMENTAL move
             // to instant speed to calculate incremental angle:
-            let deltaQ = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
-            let new_q = rg.Q.q + deltaQ;
+            let qgrid_step = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
+            let new_q = rg.Q.q + qgrid_step;
             // \\//  we project INCREMENTAL move
             
             //this is resundant: this is validated in model
             //if( new_q <=0 || new_q >= 1 ) return false; 
 
-            //let delta_t = deltaQ / rg.Q.dt2dq
-            let sagg_t = rg.tForSagitta.val + deltaQ / rg.Q.dt2dq;
+            //let delta_t = qgrid_step / rg.Q.dt2dq
+            let sagg_t = rg.tForSagitta.val + qgrid_step / rg.Q.dt2dq;
             //prevents too small saggita
             //if( sagg_t < 0.0001 ) return false;
             const ACCURACY = 1e-4;

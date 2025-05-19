@@ -8,34 +8,30 @@
             builds_orbit_data_graph,
         },
     });
-    var graphArray = sn( 'graphArray', stdMod, [] );
-    var qix2orb = sn( 'qix2orb', ssD, [] );
-    var orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
-    //const BONUS = userOptions.showingBonusFeatures() ? 1 : 0;
+    const graphArray = sn( 'graphArray', stdMod, [] );
+    const qix2orb = sn( 'qix2orb', ssD, [] );
+    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
+    //usage sample: const BONUS = !!userOptions.showingBonusFeatures();
     return;
 
 
     function builds_orbit_data_graph()
     {
         const ADDENDUM = amode.aspect === 'addendum';
+        const FS = sconf.Q_STEPS;
+        const DS = sconf.DATA_GRAPH_STEPS;
+        const CS = sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
+        const fl_fun = sconf.force_law;
+        const dataPeriod = Math.max( 1, Math.floor( FS/DS ) );
+
         stdMod.graphFW_lemma.graphArray = graphArray;
-        graphArray.length =0;
-        
-        let fl_fun = sconf.force_law;
-        var orbit_q_start = sconf.orbit_q_start;
-        var q2xy = stdMod.q2xy;
-        const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
-        const orbitXYToDraw_LIMIT = Math.min( 1000, sconf.FORCE_ARRAY_LEN );
-        const DATA_GRAPH_ARRAY_LEN = sconf.DATA_GRAPH_ARRAY_LEN;
-        var DATA_GRAPH_ARRAY_period = Math.max( 1,
-            Math.floor( FORCE_ARRAY_LEN/DATA_GRAPH_ARRAY_LEN ) );
-        const CALCULATE_SUGITTA_ALONG_THE_PATH =
-              sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
-        
+        graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
-        for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ){
-            if( !(qix%DATA_GRAPH_ARRAY_period) || qix===FORCE_ARRAY_LEN ){
+        const glim = ssD.qix_graph_lim;
+        for( let qix=0; qix<glim; qix++ ){
+            if( !(qix%dataPeriod) || qix===FS ){
                 const bP = qix2orb[ qix ];
+                if( bP.plusQ === null ) continue;
                 const deviation = bP.estForce;
                 const sagitta = bP.sagitta;
                 const forceAbs = fl_fun( bP );
@@ -52,7 +48,7 @@
                 } else if( deviationMax < deviation ) {
                     var deviationMax = deviation;
                 }
-                if( sconf.CALCULATE_SUGITTA_ALONG_THE_PATH ) {
+                if( CS ) {
                     ///to normalize sagitta
                     if( qix === 0 ) {
                         var sagittaMax = sagitta;
@@ -69,6 +65,7 @@
                 }
                 let graphColumn = {
                     qix,
+                    rr : bP.rr,
                     x : bP.r,
                     y : [
                         forceAbs,
@@ -89,20 +86,17 @@
         forceMax = sign * forceMax;
         deviationMax = sign * deviationMax;
         sagittaMax = sign * sagittaMax;
-        for (var gix = 0; gix<arrLen; gix++ )
-        {
-            const ga = graphArray[ gix ];
-            const y = ga.y;
+        for( var gix = 0; gix<arrLen; gix++ ){
+            const y = graphArray[ gix ].y;
             y[0] /= forceMax;
             y[1] /= deviationMax;
             ADDENDUM && ( y[2] /= speedMax );
-            CALCULATE_SUGITTA_ALONG_THE_PATH && ADDENDUM &&
-                ( y[3] /= sagittaMax );
+            CS && ADDENDUM && ( y[3] /= sagittaMax );
         }
         stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
             [ 'force', 'deivation', 'body',
                 //blocks at times wher algo breaks, 'sagitta'
-                CALCULATE_SUGITTA_ALONG_THE_PATH && sDt > timeDelta*3
+                CS && ssD.Dt > ssD.tgrid_step*3
             ] :
             [ 'force', 'deivation', ];
         //this is just an example how to reset colors dynamically:

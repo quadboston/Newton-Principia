@@ -35,7 +35,7 @@
     function solvesTrajectoryMath__O()
     {
         //:study-pars
-        var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
+        var sSteps          = rg.spatialSteps = Math.floor(sconf.trange
                               / rg.rgslid_dt.val);
         var S               = rg.S.pos;
         var B               = rg.B.pos;

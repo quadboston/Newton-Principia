@@ -35,8 +35,8 @@
         //first array must be enabled
         //but can be dynamically overridden,
         graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'sagitta', 'body' ] :
-            [ 'force', 'sagitta', ];
+            [ 'force', 'estforce', 'body' ] :
+            [ 'force', 'estforce', ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -239,8 +239,8 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                                /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_STEPS
+                                /sconf.Q_STEPS ), //? default = stdMod.pos2qix(),
                 numberMarks : true, 
             };
         }

@@ -56,7 +56,7 @@
             ////forward body move time dt and backward move time dt to be consistent
             ////with mechanical laws,
             var { rplus, rminus, sidePlus, sideMinus, qplus, qminus, Qparams, dt2dq, dt } =
-                  deltaQ_2_arc( sectSpeed0, DDD );
+                  qgrid_step_2_arc( sectSpeed0, DDD );
             rg.Q.q = qplus;
             rg.Q.q_minus = qminus;
             rg.Q.Qparams = Qparams;
@@ -412,7 +412,7 @@
 
 
     //builds two arcs, after and before instant position of moving body P
-    function deltaQ_2_arc(
+    function qgrid_step_2_arc(
         sectSpeed0,
         DDD,
     ){

@@ -18,12 +18,10 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.builds_dq8agitta();
+        stdMod.builds_dq8sagitta8deviation();
         const q2xy = stdMod.q2xy;
-
-        var parQ = rg.P.parQ;
-        var qixP = Math.floor(parQ/sconf.curveQRange*sconf.FORCE_ARRAY_LEN);
-        var Porb = ssD.qix2orb[ qixP ];
+        var Porb = ssD.qix2orb[ rg.P.qix ];
+        var parQ = Porb.q;
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
@@ -32,15 +30,12 @@
         var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-        rg.Q.intervalS = Porb.sagittaDq;
         var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
         
         // **api-input---plane-curve-derivatives
         var {
             RC,
             R,
-            //curvatureChordSecondPoint,
-            //projectionOfCenterOnTangent,
             uu,
             nn,
         } = Porb;
@@ -89,39 +84,14 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //stdMod.graphFW_lemma.graphArrayMask[1] =
-        //       ssD.solvable && !ssD.doMaskSagitta;
-               
         {
             let graphArg = {
-                //drawDecimalY : true,
-                //drawDecimalX : false,
-                //printAxisXDigits : bonus,
-                //printAxisYDigits : true,
             }
-            /*
-            if( !bonus ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax =0;
-                for( ix = 0; ix<len; ix++ ) {
-                    let yy = Math.abs( ga[ix].y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
-
-
 
         //------------------------------------------------
         // //\\ PZminus

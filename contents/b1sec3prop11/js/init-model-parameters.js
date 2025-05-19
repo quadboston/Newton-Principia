@@ -30,41 +30,16 @@
         //at all points P used for differentiation,
         //body moves backward on x,
         toreg( 'vt' )( 'val', 1 );
+        //creates placeholder
+        //toreg( 'curvatureCircle' );
+        toreg( 'tangentCircle' );
         //=================================================
         // \\// model parameters,
         //=================================================
 
-
-        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({ digramParentDom$:stdMod.legendRoot$ });
-
-        ssD.saggitaDt = sconf.saggitaDt;
-
-        stdMod.recreates_q2xy();
-        stdMod.recreatesPosCorrector();
-        stdMod.creates_poly2svg_for_lemma();
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
-        stdMod.buildsOrbit();
-        stdMod.builds_dq8agitta();
-
-        //----------------------------------------------
-        // //\\ sets parameters of P
-        //----------------------------------------------
-        var deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
-        rg.P.qix = Math.floor( sconf.parQ / deltaQ );
-        rg.P.parQ = rg.P.qix * deltaQ;
-        nspaste( rg.P.pos, stdMod.q2xy( rg.P.parQ ));
-        var diff = ssD.qix2orb[ rg.P.qix ];
-        //----------------------------------------------
-        // \\// sets parameters of P
-        //----------------------------------------------
-        
-        stdMod.completesSlidersCreation();
-
-        //creates placeholder
-        //toreg( 'curvatureCircle' );
-        toreg( 'tangentCircle' );
-
+        stdMod.initiates_orbit8graph();
 
         //==================================================
         // //\\ decoration graph
@@ -92,9 +67,6 @@
         //==================================================
         // \\// decoration graph 
         //==================================================
-
-        //too early: overriden later by sconf.rgShapesVisible
-        //rg[ 'S,nonSolvablePoint' ].undisplay = true;
 
         rg.allLettersAreHidden = true;
     }

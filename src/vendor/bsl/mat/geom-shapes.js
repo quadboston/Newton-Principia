@@ -29,7 +29,7 @@
         return [ 0, G ];
     }
 
-
+    ///returns andgle from interval [0,2PI),
     ///converts atan2 from interval [-PI,PI] to interval [0,2PI),
     ///when atan2 < 0 returns angle from [0,2PI).
     function pos2angle( pos )

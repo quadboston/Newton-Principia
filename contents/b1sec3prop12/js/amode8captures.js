@@ -513,7 +513,7 @@
         rg.P.posInitialUnitVector = mat.unitVector( rg.P.pos );
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
-        op.delta_t  = op.delta_t_initial;
+        op.Dt  = op.Dt0;
         nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
@@ -523,7 +523,7 @@
         }
 
         if( fconf.effId === "b1sec3prop14" ) {
-            //op.delta_t = op.delta_t_initial;
+            //op.Dt = op.Dt0;
             rg.P.abs = mat.unitVector( rg.P.pos ).abs;
             nspaste( rg.Fi.pos, [
                 sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
@@ -555,7 +555,7 @@
                 rg.Q.undisplay = true;
                 rg.P.q      = 0;;
                 //op.Kepler_v = op.Kepler_v_initial;
-                //op.delta_t = op.delta_t_initial;
+                //op.Dt = op.Dt0;
                 nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( rg.P.q ));
 
                 rg.omegaHandle.undisplay = true;
@@ -603,7 +603,7 @@
                 sop.r2axisX_angle = sop.r2axisX_angle_initial;
                 sop.mainAxisAngle = sop.r2axisX_angle - rg.p.q;
             }
-            sop.delta_t  = sop.delta_t_initial;
+            sop.Dt  = sop.Dt0;
             //-------------------------------------------------
             // \\// sop 
             //-------------------------------------------------

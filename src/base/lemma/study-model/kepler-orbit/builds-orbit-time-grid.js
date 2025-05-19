@@ -17,50 +17,51 @@
 
     function builds_orbit_time_grid()
     {
-        tix2orbit.length = 0;
-        const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
-        const TIME_STEPS = sconf.TIME_STEPS;
+        const q2o = qix2orb;
+        const t2o = tix2orbit;
+        const FS = sconf.Q_STEPS;
+        const TS = sconf.TIME_STEPS;
+        t2o.length = 0;
         {
-            //------------------------------------------
-            // //\\ distributing values in time arrays
-            //------------------------------------------
-            ssD.timeRange = qix2orb[ FORCE_ARRAY_LEN ].timeAtQ -
-                            qix2orb[0].timeAtQ;
-            ssD.timeDelta = ssD.timeRange/TIME_STEPS;
-            let timeDelta = ssD.timeDelta
-            let timeRange = ssD.timeRange;
+            ssD.trange =q2o[ FS ].timeAtQ -q2o[0].timeAtQ;
+            const tgrid_step = ssD.trange/TS;
+            ssD.tgrid_step = tgrid_step;
+            const trange = ssD.trange;
             let timeAtT = 0;
             let timeAtQ = 0;
             let qix = 0;
             let qix_former = qix;
             let timeAtQ_former = timeAtQ;
-            tix2orbit.length = 0; 
-            tix2orbit[0] = [ {timeAtT, qix, timeAtQ, timeReminder:0} ];
-            const FORCE_ARRAY_LEN1 = FORCE_ARRAY_LEN - 1;
-            for( let tix = 0; tix<=TIME_STEPS; tix++ )
+            t2o.length = 0; 
+            t2o[0] = [ {timeAtT, qix, timeAtQ, timeReminder:0} ];
+            for( let tix = 0; tix<TS; tix++ )
             {
-                timeAtT = tix*timeDelta;
+                timeAtT = tix*tgrid_step;
                 while( timeAtT > timeAtQ ) {
                     qix_former = qix;
                     timeAtQ_former = timeAtQ;
-                    if( qix >= FORCE_ARRAY_LEN1 ) break;
+                    //this must not happen because of tix < TS:
+                    //if( qix > FS ) break;
                     qix++;
-                    timeAtQ = qix2orb[qix].timeAtQ;
+                    timeAtQ =q2o[qix].timeAtQ;
                 }
-                let dt4dqix =  qix2orb[qix_former+1].timeAtQ - timeAtQ_former;
-                tix2orbit[tix] = {
+                const dt4dqix = q2o[qix_former+1].timeAtQ - timeAtQ_former;
+                t2o[tix] = {
                      timeAtT,
-                     qix:qix_former,
-                     timeAtQ:timeAtQ_former, //extra
-                     timeReminder:
+                     qix : qix_former,
+                     timeAtQ : timeAtQ_former, //extra
+                     timeReminder :
                         Math.max( //prevents floating poit errors
                             0,timeAtT - timeAtQ_former ),
                      dt4dqix,
                 };
-                if( qix_former+1 <= FORCE_ARRAY_LEN1 ) {
-                    qix = qix_former+1;
-                    timeAtQ = qix2orb[qix].timeAtQ;
-                }
+
+                //this qix will never grow if qix reached toppest time,
+                //hence no need to do this check:
+                //if( qix_former < FS-1 ){
+
+                qix = qix_former+1;
+                timeAtQ = q2o[qix].timeAtQ;
             }
         }
     }

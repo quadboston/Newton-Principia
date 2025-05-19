@@ -24,7 +24,7 @@
     {
         let sl = rg.slider_sltime;
         ctime = ( ctime || ctime === 0 ) ? ctime : sl.curtime;
-        ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
+        ctime = Math.min( ctime, sconf.trange * 0.999999 );
         sl.curtime = ctime = Math.max(
             ctime,
             sconf.unitlessMinTime * rg.rgslid_dt.val

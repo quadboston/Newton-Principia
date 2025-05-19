@@ -95,9 +95,9 @@
                 '';
         } else {
             ////delta q is set not from delta t
-            let delta_q = op.sagittaDelta_q;
+            let sag_delta_q = op.sagittaDelta_q;
             //-pi,+pi locating is irrelevant for move
-            let Q = q + delta_q;
+            let Q = q + sag_delta_q;
             {
                 //--------------------------------------------
                 // //\\ validates sagitta q
@@ -113,13 +113,13 @@
                     if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
                         ////singularity is between q and abs_Q,
                         ////changes Q making it in the same singularity sector,
-                        //creates new delta_q unrelated to value of the former delta_q
-                        var new_delta_q = Math.abs( sing - abs_q )
+                        //creates new sag_delta_q unrelated to value of the former sag_delta_q
+                        var new_sag_delta_q = Math.abs( sing - abs_q )
                                           / 3; //factor 3 is an arbitraty > 1
                         ////shifts q down if increment is negative
-                        new_delta_q *= Math.sign( delta_q );
-                        Q = q + new_delta_q;
-                        op.sagittaDelta_q = new_delta_q;
+                        new_sag_delta_q *= Math.sign( sag_delta_q );
+                        Q = q + new_sag_delta_q;
+                        op.sagittaDelta_q = new_sag_delta_q;
                     }
                 }
                 //--------------------------------------------
@@ -376,8 +376,8 @@
 
 
 
-    ///calculates arc's delta q depending on delta_t by
-    ///integrating delta_q and reaching delta_t,
+    ///calculates arc's delta q depending on Dt by
+    ///integrating sag_delta_q and reaching Dt,
     function deltaT_2_arc()
     {
         const INTEGRATION_STEPS = 1000;
@@ -402,7 +402,7 @@
         var intervalT = 0;
         var deltaT_isReached = false;
         //path step
-        const ds_by_dt  = udir * op.delta_t / INTEGRATION_STEPS * op.Kepler_v;
+        const ds_by_dt  = udir * op.Dt / INTEGRATION_STEPS * op.Kepler_v;
         for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
                 v, //=ds_by_dfi

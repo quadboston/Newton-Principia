@@ -80,7 +80,7 @@
         let initialTimieStep = 0.75;
         let dtMin = 0.08;
         let stepsRange = 14;
-        let timeRange = stepsRange*initialTimieStep;
+        let trange = stepsRange*initialTimieStep;
         let numberOfManyBases = stepsRange*2;
         let timeStepOfManyBases = initialTimieStep/4;
         //let unitlessMinTime = 1.7500000;
@@ -132,7 +132,7 @@
             dtMin,
             numberOfManyBases,
             timeStepOfManyBases,
-            timeRange,
+            trange,
             unitlessMinTime,
             //maximum first path from A to B
             //too big values will allow user to place

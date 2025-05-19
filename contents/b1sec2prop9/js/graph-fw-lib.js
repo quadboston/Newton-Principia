@@ -221,8 +221,8 @@
         ];
     }
 
-        ///this thing fails if not to synch it with mask,
-        ///the unmasked indices must be the same as here:
+    ///this thing fails if not to synch it with mask,
+    ///the unmasked indices must be the same as here:
     function setsGraphTpClasses()
     {
             const svg = graphFW.fw.plotIx2plotSvg;
@@ -239,8 +239,8 @@
                 //stroke : sData.colorThreadArray[2],
                 'stroke-width' : 3,
             },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                                /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_STEPS
+                                /sconf.Q_STEPS ), //? default = stdMod.pos2qix(),
             numberMarks : true, 
         };
     }

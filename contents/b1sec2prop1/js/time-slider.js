@@ -216,7 +216,7 @@
             //interpolates slider GUI position
             var sliderXpos =
                  railsStart.pos[0] + 
-                 rawTime / sconf.timeRange * api.railsLength;
+                 rawTime / sconf.trange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 
             //does what it says, no extra calculations
@@ -270,7 +270,7 @@
         var newTime = api.achieved.achieved +
                             move_in_model[ 0 ] /
                             api.railsLength *
-                            sconf.timeRange;
+                            sconf.trange;
         //sets value:
         stdMod.protects_curTime_ranges( newTime );
 

@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, haz, mcurve, mat, userOptions,
+        sn, has, mcurve, mat, userOptions,
         amode, stdMod, rg, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
@@ -8,10 +8,10 @@
             buildsOrbit,
         },
     });
-    var graphArray = sn( 'graphArray', stdMod, [] );
-    var tix2orbit = sn( 'tix2orbit', ssD, [] );
-    var qix2orb = sn( 'qix2orb', ssD, [] );
-    var orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
+    const graphArray = sn( 'graphArray', stdMod, [] );
+    const tix2orbit = sn( 'tix2orbit', ssD, [] );
+    const qix2orb = sn( 'qix2orb', ssD, [] );
+    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
     const BONUS = userOptions.showingBonusFeatures() ? 1 : 0;
     return;
 
@@ -27,27 +27,22 @@
         graphArray.length =0;
         qix2orb.length = 0;
         
-        var orbit_q_start = sconf.orbit_q_start;
-        var q2xy = stdMod.q2xy;
-        const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
-        const orbitXYToDraw_LIMIT = Math.min( 1000, sconf.FORCE_ARRAY_LEN );
-        const TIME_STEPS = sconf.TIME_STEPS;
-        const DATA_GRAPH_ARRAY_LEN = sconf.DATA_GRAPH_ARRAY_LEN;
-        var DATA_GRAPH_ARRAY_period = Math.max( 1,
-            Math.floor( FORCE_ARRAY_LEN/DATA_GRAPH_ARRAY_LEN ) );
+        const orbit_q_start = sconf.orbit_q_start;
+        const q2xy = stdMod.q2xy;
+        const FS = sconf.Q_STEPS;
+        const orbitXYToDraw_LIMIT = Math.min( 1000, FS );
+        const qrange = sconf.curveQRange;
+        const qgrid_step = sconf.qgrid_step;
         var momentum0; //at start of the path
-        var qRange = sconf.curveQRange;
-        var deltaQ = sconf.deltaQ;
         //there is no prebilt orbit points, they are built and
         //embedded into svg in other place,
         ///they are recalculated here
         ///with other step here for derivative params,
-        for (var qix = 0; qix<=FORCE_ARRAY_LEN; qix++ )
+        for (var qix = 0; qix<=FS; qix++ )
         {
-            var q = orbit_q_start + qix * deltaQ;
             var bP = qix2orb[ qix ] = mcurve.planeCurveDerivatives({
                 fun : q2xy,
-                q,
+                q : orbit_q_start + qix * qgrid_step,
                 rrc : rg.S.pos,
             });
             var {
@@ -70,7 +65,7 @@
                 var ds_dt = momentum0 / staticSectorialSpeed_rrrOnUU;
                 var dq_dt = ds_dt/v;
                 bP.timeAtQ = qix2orb[ qix -1 ].timeAtQ +
-                             deltaQ / dq_dt;
+                             qgrid_step / dq_dt;
             }
             bP.ds_dt = ds_dt;
             bP.dq_dt = dq_dt;
@@ -79,16 +74,28 @@
             //------------------------------------------
         }
 
-        ////builds once per app lanuch
-        ///decoration: builds pivots for scalable decorational orbit
-        for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
-            let qix = Math.floor( oix*FORCE_ARRAY_LEN/orbitXYToDraw_LIMIT );
-            orbitXYToDraw[ oix ] = qix2orb[qix].rr;
+        // //\\ one or many shapes
+        if( !has( sconf, 'RESHAPABLE_ORBIT' ) ){
+            sconf.RESHAPABLE_ORBIT = 1;
         }
-        //to use this, one needs separate q for sagitta:
-        //sconf.CALCULATE_SUGITTA_ALONG_THE_PATH && 
-
-        stdMod.builds_orbit_time_grid();        
+        if( sconf.RESHAPABLE_ORBIT ){
+            if( sconf.RESHAPABLE_ORBIT === 1 ){
+                ////blocks redraw forever
+                sconf.RESHAPABLE_ORBIT = 0;
+            }
+            ///for static orbit shapes shoult build once per launch,
+            ///decoration: builds pivots for scalable decorational orbit
+            const ORBIT_STEP = FS/orbitXYToDraw_LIMIT;
+            for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
+                let qix = Math.floor( oix * ORBIT_STEP );
+                orbitXYToDraw[ oix ] = qix2orb[qix].rr;
+            }
+        }
+        // \\// one or many shapes
+        
+        if( sconf.TIME_IS_FREE_VARIABLE ) {
+            stdMod.builds_orbit_time_grid();        
+        }
     }
 }) ();
 
