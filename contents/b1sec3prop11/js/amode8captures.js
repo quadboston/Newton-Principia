@@ -83,15 +83,16 @@
             //=====================================================
             // //\\ alternates for addendum
             //=====================================================
-            rg.GP.undisplay = hideExtras;
-            rg.G.undisplay = hideExtras;
-            rg.K.undisplay = hideExtras;
-            rg.D.undisplay = hideExtras;
-            rg.F.undisplay = hideExtras;
+
             rg.PF.undisplay = hideExtras;
             rg.A.undisplay = hideExtras;
             rg.B.undisplay = hideExtras;
+            rg.D.undisplay = hideExtras;
+            rg.F.undisplay = hideExtras;
             rg.G.undisplay = hideExtras;
+            rg.K.undisplay = hideExtras;
+            rg.Q.undisplay = hideExtras;
+            rg.T.undisplay = hideExtras;
             rg.Z.undisplay = hideExtras;
             rg.Zminus.undisplay = hideExtras;
             rg.ES.undisplay = hideExtras;
