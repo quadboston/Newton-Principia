@@ -72,7 +72,8 @@
 
         //-Many more similar color variables could likely be combined together.
 
-
+        // background color used to highlight text and table rows on hover
+        fixedColors.highlight = [234, 234, 234];
 
         //usually as a condition of a claim,
         //condition of the theorem,
@@ -231,12 +232,12 @@
             // //\\ tp color opacity
             //---------------------------------------------------
             //affects only ssF.topics__2__topicsColorModel and  ssF.colorArray_2_rgba
-            //does not affect anchor colors,
-            TP_OPACITY_LOW : 0.5,
+            //does not affect text anchor colors, but does affect both model and table together
+            TP_OPACITY_LOW : 0.5, // applied to 'predefinedTopics' in page's sconf.js
             //0.6-makes opacity points do look "non-solid"
-            TP_OPACITY_LOW_POINT : 1, //for points only,
+            TP_OPACITY_LOW_POINT : 1, // applied to 'originalPoints' and 'linesArray' in page's sconf.js
 
-            TP_OPACITY_HIGH : 0.8,
+            TP_OPACITY_HIGH : 1,
             TP_OPACITY_HIGH_POINT : 1,
     
             ANCHOR_OPACITY_LOW : '0.7',

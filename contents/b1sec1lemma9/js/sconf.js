@@ -116,18 +116,21 @@
             //:areas
             "ABD"               : given,
             "ACE"               : given,
-            "area-ABD"               : given,
-            "area-ACE"               : given,
+            "area-ABD"          : given,
+            "area-ACE"          : given,
             "Abd"               : proof,
             "Ace"               : proof,
-            "area-Abd"               : proof,
-            "area-Ace"               : proof,
+            "area-Abd"          : proof,
+            "area-Ace"          : proof,
             //:linear areas
             "Afd"               : result,
             "Age"               : result,
 
             "ABDPerACE"         : given,
-            "AD2PerAE2"         : result,
+            "AD2PerAE2"         : given,
+
+            "AbdPerAce"         : proof,
+            "Ad2PerAe2"         : proof,
         };
         //-----------------------------------
         // \\// topic group colors,

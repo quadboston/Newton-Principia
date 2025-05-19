@@ -1,21 +1,10 @@
 ( function() {
-    var {
-        ns, sn, $$, nsmethods, nssvg,
-        ssF, ssD,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { ns, sn, $$, nsmethods, nssvg, ssF, ssD, amode, stdMod, sconf, rg, toreg, }
+        = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
-        },
-    });
+        }, });
     return;
-
-
-
-
-
 
 
     function media_upcreate___before_basic()
@@ -31,7 +20,7 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg({});
+        stdMod.poly2svgP11({});
 
         //=============================================================
         // //\\ tan. cir.

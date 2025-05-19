@@ -14,21 +14,12 @@
         stdModExportList :
         {
             createsGraphFW,
-            createsGraphFW_class,
         },
     });
     var GLOBAL_CSS_APPENDED = false;
     return;
 
-
-
-
-
-
-
-
-
-
+    
     ///===========================================
     /// paints diagrams
     /// this framework API comprises two exports:
@@ -178,176 +169,6 @@
         // \\// calls top tire api
         //==============================================
     }
-
-    
-    
-    
-    
-    //**************************************************
-    //**************************************************
-    // //\\ instantiable graph rack
-    //**************************************************
-    //**************************************************
-    function createsGraphFW_class({
-        graphFW,
-        digramParentDom$,
-        doSetColorThreadArray,
-        setsGraphContainerAttributes,
-        setsGraphAxes,
-        plotLabels_2_plotsPars,
-        
-        //optional:
-        doDrawToolline,
-        graphAxisX,
-        graphAxisY,
-        setsGraphTpClasses,
-    }){
-        var graphFW__self = graphFW;
-        var colorThreadArray = graphFW__self.colorThreadArray = doSetColorThreadArray();
-
-        //===========================================
-        // //\\ fills wrap-object
-        //===========================================
-        //exports painter
-        graphFW__self.drawGraph_wrap = drawGraph_wrap;
-        graphFW__self.showPHGraph = showPHGraph;
-        ///creates fw-dom-container
-        let {container$, graph_dimX, graph_dimY} =
-            setsGraphContainerAttributes( digramParentDom$ );
-        ///creates low tire api
-        graphFW__self.fw = nsmethods.createsGraphFramework({
-            parent : container$,
-            dimX : graph_dimX,
-            dimY : graph_dimY,
-        });
-        //===========================================
-        // \\// fills wrap-object
-        //===========================================
-
-        createsLowTireGlobalCSS();
-        return; //no, this must be supplied: graphFW__self;
-
-
-
-
-
-
-
-
-
-        //===================================================
-        // //\\ top tire painter which wraps low tire painter
-        //===================================================
-        function drawGraph_wrap({
-            drawDecimalY,
-            drawDecimalX,
-            printAxisXDigits,
-            printAxisYDigits,
-            xMin,
-            xMax,
-            yMin,
-            yMax,
-        }){
-            drawDecimalY = typeof drawDecimalY === 'undefined' ? true : drawDecimalY;
-            drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
-            
-            //first array mast be enabled
-            let graphArrayMask = haz( graphFW__self, 'graphArrayMask' );
-
-            var { yColor, xColor, axisYLegend, axisXLegend, } = setsGraphAxes();
-            //==================================================
-            // //\\ calls api
-            // //\\ calls low tire api
-            //==================================================
-            graphFW__self.fw.drawGraph({
-                //first array mast be enabled
-                graphArrayMask,
-
-                graphArray : graphFW__self.graphArray,
-                colorThreadArray,
-                style : {
-                   //'stroke-width' : 2, //destroys tp-machine
-                },
-                axisX : (graphAxisX && graphAxisX( xColor )) || {
-                    'font-size'     : '18px',
-                    fontShiftX      : -12, //in media scale
-                    fontShiftY      : +14,
-                    decimalDigits   : 3,
-                    stroke          : xColor,
-                    fill            : xColor,
-                   'stroke-width'   : '0.2',
-                },
-                axisY : (graphAxisY && graphAxisY( yColor )) || {
-                    'font-size'     : '20px',
-                    fontShiftX      : -45, //in media scale
-                    fontShiftY      : +5,
-                    decimalDigits   : 1,
-                    stroke          : yColor,
-                    fill            : yColor,
-                   'stroke-width'   : '1',
-                },
-                drawDecimalY,
-                drawDecimalX,
-                doSideAxes : true,
-
-                printAxisDigits : true,
-                    printAxisXDigits,
-                    printAxisYDigits,
-                
-                axisYLegend,
-                axisXLegend,
-                plotsCount_overrider : 1000,
-                plotsPars : plotLabels_2_plotsPars( colorThreadArray ),
-                doPaintGridOnlyOnce : false,
-                doDrawToolline : (doDrawToolline && doDrawToolline()) || {
-                    toollineStyle : {
-                        stroke : colorThreadArray[2],
-                        'stroke-width' : 3,
-                    },
-                    abscissaIxValue : stdMod.pos2qix(),
-                    numberMarks : true, 
-                },
-                brightenGrid : 0.3,
-                xMin,
-                xMax,
-                yMin,
-                yMax,
-            });
-            graphFW__self.fw.gmedia$.addClass( 'ph-graph' );
-            //==================================================
-            // \\// calls low tire api
-            //==================================================
-
-            setsGraphTpClasses && setsGraphTpClasses();
-        }
-        //===================================================
-        // \\// top tire painter which wraps low tire painter
-        //===================================================
-
-
-        //==================================================
-        // //\\ shows/hides graph container
-        //==================================================
-        function showPHGraph( doShow )
-        {
-            if( doShow ) {
-                graphFW__self.container$.removeClass( 'hidden' );
-            } else {
-                graphFW__self.container$.addClass( 'hidden' );
-            } 
-        }
-        //==================================================
-        // \\// shows/hides graph container
-        // \\// calls top tire api
-        //==============================================
-    }
-    //===================================================
-    // \\// top tire painter which wraps low tire painter
-    // \\// instantiable graph rack
-    //**************************************************
-    //**************************************************
-
-    
     
     ///===========================================
     /// creates low tire global CSS

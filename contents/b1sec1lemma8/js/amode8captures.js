@@ -1,8 +1,6 @@
 ( function() {
     var {
-        ns, sn, paste, capture, nspaste, userOptions,
-        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
-        stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, userOptions, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -26,8 +24,9 @@
         "cos": 1
     };
 
-
     setCapture();
+    return;
+
 
     function setCapture()
     {

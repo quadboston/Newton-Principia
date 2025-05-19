@@ -15,40 +15,14 @@ sup {
 
 /******************************************/
 /* //|| page primary sections             */
+/* ||// bsl--svgscene                     */
+/* ||// media pane                        */
 /******************************************/
-
-/* vital */
-/*
-.bsl-menu-filler { 
-    height: ${fconf.attach_menu_to_essaion_root ? 65 : 90}px;
-}
-*/
-
-/* //=======================================
-// //\\ visib
-//=======================================
-//svg display
-//display-inline-and-block-on-svg-elements
-//https://stackoverflow.com/questions/41437423/difference-between- */
-/* idea:
-    .display-block {
-        display : block;
-    }
-*/
 
 .bsl-approot .bsl--svgscene .undisplay,
 .display-none {
     display : none;
 }
-
-/* //this was an outdated code, but it may give a clue
-//.bsl-approot.submodel--common .bsl-simscene.submodel--common,
-//todo why do we need make it displayed explicityly?
-//because of it was: .bsl-simscene, {display : none;}
-//ret += `.bsl-approot .bsl-simscene { display : block;}`;
-//=======================================
-// \\// visib
-//======================================= */
 
 /* enables original-figure-picture disappearance */
 /* at version 1112, restored by client request */
@@ -57,18 +31,6 @@ sup {
     opacity:0;
     transition: opacity 1s ease;
 }
-
-/*================================*/
-/* //|| bsl--svgscene                */
-/*      .bsl--svgscene === svg       */
-/*================================*/
-
-/*
-    moved to separate more specific settings module for collection of sites:
-    .bsl-bg-image {
-        width:100%;
-    ...
-*/
 
 /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
 /* this really solved firefox problem of "shadow-dragging-object"
@@ -89,17 +51,9 @@ sup {
             user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
 }
-/*================================*/
-/* ||// bsl--svgscene             */
-/* ||// media pane                */
-/*================================*/
 
-/* to be set dynamicallys */
-/*
-.bsl-sim-superscene .grab {
-   cursor : grab; 
-}
-*/
+/*================================*/
+/*================================*/
 
 #bsl-resizable-handle {
     display: flex;
@@ -117,15 +71,6 @@ sup {
     background-color: transparent;
 }        
 
-/* patch: should be nicely disabling divide-panes-functionality todm */
-/*
-#bsl-resizable-handle {
-    top:-300%;
-}
-*/
-/*---------------------------*/
-/* \\// horizontal resizer   */ 
-/*---------------------------*/
 
 /*========================================*/
 /* //|| mobile                            */
@@ -144,34 +89,88 @@ sup {
 /*========================================*/
 
 
-/* //========================================
-// //\\ main-legend                       
-//      the only reason for "flex"
-//      it make table narrow ...
-//      otherwise, margin may solves all
-//======================================== */
 
-.bsl-legend-root {
+/*====================================*/
+/* \\// main-legend (data tables)     */
+/*====================================*/
+
+.bsl-legend-root { /* table container, parent is bsl-simscene */
     box-sizing   : border-box;
     text-align   : center;
 }
 
-.main-legend {
+.main-legend { /* data table */
     table-layout : auto;
     box-sizing   : border-box;
-    margin-left  : 15px;
-    margin-right : 15px;
+    margin-left  : auto; /* table is centered within .bsl-legend-root */
+    margin-right : auto;
+    margin-bottom : 2rem; /* ensures layout shifts don't push table below the fold */
 }
 
-.main-legend td {
-    text-align:center;
-}
-.main-legend td.monospace {
-    font-family : var(--data-numerical-font);
+.bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
+    border: 2px solid var(--border-color);
 }
 
 .main-legend.hidden {
     display:none;
+}
+
+.main-legend td {
+    text-align: center;
+    font-size: 14px;
+    padding: 2px 0.5rem 2px 2rem !important;
+    text-align: right;
+    min-width: 5rem;
+    border: 1px solid var(--border-color);
+    white-space: nowrap; /* keeps everything on one line */
+
+    /* this is a brute force way to specify opacity for table data 
+        without affect TP_OPACITY values used in the models,
+        however, it prevents dynamic opacity change on hover */
+    opacity: 1 !important;
+}
+
+.main-legend td.monospace {
+    font-family : var(--data-numerical-font);
+}
+
+.main-legend td.table-caption {
+    padding-bottom: 4px;
+    text-align: center !important;
+    font-weight: bold;
+}
+
+.main-legend td.value {
+    font-family: var(--data-numerical-font);
+    padding-left: 0.5rem !important;
+    text-align: left;
+    height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
+    border-right: 2px solid var(--border-color);
+}
+
+/* small gap row for logical grouping */
+.main-legend .tp-spacer {
+    height: 1px !important;
+    padding: 0 !important;
+}
+
+/* patch for L7 corollaries */
+/* todo: change main-lengend framework to handle multiple corollary tables */
+.main-legend .tp-hidden {
+    display: none;
+}
+
+.main-legend .eq-sign {
+    text-align:center;
+} 
+
+.main-legend .limit {
+    font-family: var(--font-condensed);
+}  
+
+/* graphs in P6, P7, etc ...weird name */
+.lost-diagram-parent {
+    padding-bottom: 2rem; /* so there's space between graph and data table */
 }
 
 /*todm: should be automated */
@@ -189,71 +188,6 @@ sup {
 .logic_phase--proof .main-legend.corollary,
 .main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
-}
-
-.main-legend td {
-    padding:1px;
-    /* for dev mode: border: 1px solid black; */
-}
-
-
-/*====================================*/
-/* //\\ table formatter               */
-/*====================================*/
-.main-legend td {
-    text-align:left;
-}
-.main-legend td.table-caption {
-    padding-bottom:4px;
-    text-align:center !important;
-    font-weight:bold;
-}
-.main-legend td.align-to-right,
-.main-legend tr td:first-child {
-    text-align:right;
-}
-.main-legend td:first-child, .proof td:nth-child(4), .corollary td:nth-child(4) {/* bc labels aren't given their own class */
-    min-width: 7em !important;
-    text-align:right;
-}
-.main-legend td.value {
-    font-family: var(--data-numerical-font);
-    width: 5rem;
-    padding-left: 1rem !important;
-    height: 1rem; /* so vertical spacing stays constant when value is "at limit" */
-}
-.main-legend .eq-sign {
-    text-align:center;
-}  
-.main-legend .limit {
-    font-family: var(--font-condensed);
-}  
-
-
-/*------------*/
-/* //\\ mix   */
-/*------------*/
-.main-legend.claim,
-.main-legend.proof {
-    border-collapse: separate;
-    border-spacing: 10px 0px;
-}
-
-.claim.row1,
-.corollary.row1,
-.proof.row1 {
-    opacity:0;
-}
-/*------------*/
-/* \\// mix   */
-/*------------*/
-
-/*====================================*/
-/* \\// table formatter               */
-/*====================================*/
-
-.main-legend td {
-    font-size:14px;
 }
 
 @media (max-width: 900px) {
@@ -280,6 +214,10 @@ sup {
         width:100%;
     }
 }
+
+/*====================================*/
+/* \\// main-legend                   */
+/*====================================*/
 
 /* //==================================
 // //\\ model help

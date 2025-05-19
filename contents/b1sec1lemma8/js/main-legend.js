@@ -1,15 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$,
-        eachprop,
-        fconf,
-        sconf,
-        sDomF,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+        eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -29,28 +20,29 @@
     ////
     ////    * class-attribute-of-td will be converted to class attribute of table's cell,
     ////    the "td-" will be prepend, <_> will be replaced with space
+    ////    this string is also used in txt links to specify mouseover styling
     ////
     //// Caution: '_' is replaced with ' ' in caption,
     ////**********************************************************************************
 
     var lemma8Data =  {
         claim : [
-            [[ 'RAB', '△RAB : ', 'rg.RAB.area' ]],
-            [[ 'RACB', '△RACB : ', 'rg.RACB.area' ]],
-            [[ 'RAD', '△RAD : ', 'rg.RAD.area' ]],
-            [[ '', '', '' ]], 
-            [[ 'RACB-RAB', '△RACB / △RAB : ', getRatio('rg.RACB_RAB.ratio') ]],
-            [[ 'RAD-RAB', '△RAD / △RAB : ', getRatio('rg.RAD_RAB.ratio') ]],
+            [[ 'RAB', '△RAB', 'rg.RAB.area' ]],
+            [[ 'RACB', '△RACB', 'rg.RACB.area' ]],
+            [[ 'RAD', '△RAD', 'rg.RAD.area' ]],
+            [[ 'spacer', '', '' ]], 
+            [[ 'RACB-RAB', '△RACB : △RAB', getRatio('rg.RACB_RAB.ratio') ]],
+            [[ 'RAD-RAB', '△RAD : △RAB', getRatio('rg.RAD_RAB.ratio') ]],
         ]
     };
 
     lemma8Data.proof = [
-        [lemma8Data.claim[0][0], [ 'rAb', '△rAb : ', 'rg.rAb.area' ]],
-        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb : ', 'rg.rAcb.area' ]],
-        [lemma8Data.claim[2][0], [ 'rAd', '△rAd : ', 'rg.rAd.area' ]],
-        [lemma8Data.claim[3][0], [ '', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△rAcb / △rAb : ', 'rg.RACB_RAB.ratio' ]],
-        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△rAd / △rAb : ', 'rg.RAD_RAB.ratio' ]],
+        [lemma8Data.claim[0][0], [ 'rAb', '△rAb', 'rg.rAb.area' ]],
+        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb', 'rg.rAcb.area' ]],
+        [lemma8Data.claim[2][0], [ 'rAd', '△rAd', 'rg.rAd.area' ]],
+        [lemma8Data.claim[3][0], [ 'spacer', '', '' ]], 
+        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△rAcb : △rAb', 'rg.RACB_RAB.ratio' ]],
+        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△rAd : △rAb', 'rg.RAD_RAB.ratio' ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 
@@ -76,7 +68,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false,
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase     : key,
             rowsCount,
@@ -100,7 +92,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

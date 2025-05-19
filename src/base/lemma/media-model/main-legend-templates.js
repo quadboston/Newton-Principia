@@ -17,7 +17,6 @@
     return;
 
 
-
     /*
         in caption, '_' is replaced with ' ',
         in expession, "<_>" will be replaced as " "
@@ -27,8 +26,6 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
-        noEqualSign,
-        alignCaptionToRight,
     }){
         var ds              = legendScriptParsed[ rowIx ][ clusterIx ];
         //c cc( ds );
@@ -45,9 +42,6 @@
             tpCssName,
             clusterKey          : id,
             clusterCaption,
-            noEqualSign         : typeof noEqualSign === 'undefined' ? true : noEqualSign,
-            fillerAfterValue    : '&nbsp;&nbsp;&nbsp;&nbsp;',
-            alignCaptionToRight,
         };
     }
 
@@ -55,24 +49,17 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
-        noEqualSignInNumber,
     }){
         var clusterCellIx = 1;
 
         var ds      = legendScriptParsed[ rowIx ][ clusterIx ];
         //var res     = ds[2] ? eval( ds[2] ) : '';
         var res     = eval( ds[2] );
-        var equalSignInNumb = typeof noEqualSignInNumber === 'undefined' ? '=' :
-                        (noEqualSignInNumber ? '' : '=');
-        var equal   = typeof res === 'number'? equalSignInNumb : '';
         res         = typeof res === 'number'? res.toFixed(3) : ( res || '' );
         res         = res.replace( /<_>/g, ' ' ).replace( /<>/g, ',' );
-        htmlbody = equal + res;
+        htmlbody = res;
         return { clusterCellIx, htmlbody, };
     }
-
-
-
 
 }) ();
 

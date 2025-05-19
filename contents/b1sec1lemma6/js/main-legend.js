@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        ns, sn, $$,
-        eachprop,
-        fconf,
-        sconf,
-        rg,
-        ssF,
-        stdMod,
-        toreg,
-        amode,
+    var { 
+        eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -32,13 +24,13 @@
     //// Caution: '_' is replaced with ' ' in caption,
     ////**********************************************************************************
 
-    var lemma6Data =  {
+    var lemma6Data = {
         claim : [
-            [[ 'angleBAD', 'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD', 'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
         ],
         proof : [
-            [[ 'angleBAD',  'angle BAD : ', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
-            [[ 'L', 'rectilinear angle : ', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
+            [[ 'angleBAD',  'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
+            [[ 'L', 'rectilinear angle', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
         ]
     };
 
@@ -57,7 +49,7 @@
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
             tableCaption    : '', 
-            noTableTitle    : false,
+            noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,
             rowsCount,
@@ -81,7 +73,6 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
-                noEqualSignInNumber : true,
             })
         }
     }

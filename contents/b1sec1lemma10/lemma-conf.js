@@ -9,7 +9,7 @@
             { src:'../../b1sec1lemma9/js/init-model-parameters.js' },
             { src:'../../b1sec1lemma9/js/model-upcreate.js' },
             { src:'../../b1sec1lemma9/js/media-upcreate.js' },
-            { src:'../../b1sec1lemma9/js/main-legend.js' },
+            { src:'main-legend.js' },
             { src:'../../b1sec1lemma9/js/d8d-model.js' },
             { src:'amode8captures.js' },
         ],

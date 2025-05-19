@@ -2,6 +2,8 @@
 ( function() {
     var { ns, fconf, sconf, fixedColors, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
+
 
     function init_conf()
     {
@@ -29,12 +31,12 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        sconf.TP_OPACITY_LOW_POINT = 1;
-        sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 5;
+        
+        sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -64,7 +66,10 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
+        //--------------------------------------        
+        //***************************************************************
+        // \\// decorational parameters
+        //***************************************************************
 
         //fixes direction of line BE as constant
         //can be any number from -oo to +oo
@@ -90,12 +95,12 @@
 
         // *** used only if BONUS || rgShapesVisible (todo: maybe not at all)
         //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];        
+        var ytop = [-151, 50];  
+        //================================================================
+        // \\// original positions
+        //================================================================      
         
-        //-----------------------------------
-        // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //: topic group colors
         var context = [0, 0, 0];
         var given   = fixedColors.given;        
         var proof   = fixedColors.proof;
@@ -121,6 +126,9 @@
             "curve-Ab"      : proof, // todo: unused?
             "arc-Ab"        : proof, // this is the one rendered in proof
             "proofRatio"    : proof, //data table
+
+            //corollaries            
+            'BF-data' : given, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints =
@@ -244,7 +252,6 @@
                 "deltaphi"      : given,
                 "tangentPhi"    : result,
                 'angleBAD'      : given,
-                'conterminousRatio' : proof,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 

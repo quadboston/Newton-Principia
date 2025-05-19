@@ -1,14 +1,15 @@
-///builds estimated force as finite sagitta
+///builds two force estimations, 1) as finite sagitta,
+///2) as Prop6, cor5 dev/area^2,
 ///which is calculated from preintegrated synchronized
 ///grids of t and q, time t and curve parameter q,
 ( function() {
     var {
         sn, haz, mcurve, mat, userOptions,
-        stdMod, rg, sconf, ssD, ssF,
+        stdMod,  amode, rg, sconf, ssD, ssF, sDomF,
     } = window.b$l.apptree({
         stdModExportList :
         {
-            buildsSagitta,
+            builds_dq8agitta,
         },
     });
     var graphArray = sn( 'graphArray', stdMod, [] );
@@ -18,8 +19,9 @@
     return;
 
 
-    function buildsSagitta()
+    function builds_dq8agitta()
     {
+        const ADDENDUM = amode.aspect === 'addendum';
         const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
         const q2xy = stdMod.q2xy;
         const graphArray = stdMod.graphArray;
@@ -37,10 +39,10 @@
             let r2 = bP.r2; //rel
 
             if( sDt < timeDelta*2 ) {
-                ////this method fails,
+                ////this does not work for sagitta,
                 ////possibly because of non-linear dependency
                 ////of sDt * bP.dq_dt
-                var pulsQ = bP.q + sDt * bP.dq_dt;
+                var plusQ = bP.q + sDt * bP.dq_dt;
             } else {
                 let plusT = ( timeRange + bT + ssD.saggitaDt ) % timeRange;
                 let plusTix = Math.floor( plusT/timeDelta );
@@ -48,16 +50,16 @@
                 let plusP = qix2orb[ plusQix ];
                 let plusTQix = plusP.timeAtQ;
                 let plusT_reminder = plusT - plusTQix;
-                var pulsQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
+                var plusQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
             }
             
             //saves data for model-upcreate;
-            bP.pulsQ = pulsQ;
-            bP.sagittaDq = (pulsQ - bP.q + qRange )%qRange;
-            let rrplus = q2xy( pulsQ );
+            bP.plusQ = plusQ;
+            bP.sagittaDq = (plusQ - bP.q + qRange )%qRange;
+            let rrplus = q2xy( plusQ );
 
             if( sDt < timeDelta*2 ) {
-                ////this method fails,
+                ////this does not work for sagitta,
                 ////possibly because of non-linear dependency
                 ////of sDt * bP.dq_dt
                 var minusQ = bP.q - sDt * bP.dq_dt;
@@ -76,10 +78,13 @@
 
             var sagitta0 = rrplus[0]+rrminus[0]-2*rr[0];
             var sagitta1 = rrplus[1]+rrminus[1]-2*rr[1];
-            var sagitta2 = Math.sqrt( sagitta0*sagitta0+sagitta1*sagitta1 );
-            var estimatedForce = sagitta2;
-            bP.sagitta = sagitta2 * 0.5;
+            var sagitta = 0.5*Math.sqrt( sagitta0*sagitta0+sagitta1*sagitta1 );
 
+            var deviation = stdMod.buildsDeviation({ 
+                parq: plusQ,
+                bP
+            });
+            
             /*
             ///this is a debug of non-completely clear issue
             ///of large fluctuations of dq at small dt
@@ -93,40 +98,39 @@
                 //ix || bP.sagittaDq < 0.1) {
                 ccc( 'qix='+qix+ ' pix='+plusQix + ' mix='+minusQix +
                     //' plus: t at qix=' + plusTQix +
-                    ' sag='+estimatedForce.toFixed(5)
+                    ' sag='+sagitta.toFixed(5)
                     );
-                ccc( ' pQ = '+ pulsQ.toFixed(5) + '= (atIX=)'+ plusP.q.toFixed(5) +
+                ccc( ' pQ = '+ plusQ.toFixed(5) + '= (atIX=)'+ plusP.q.toFixed(5) +
                     '(qrem=)' + (plusT_reminder * plusP.dq_dt).toFixed(5) );
                 ccc( ' mQ = '+ minusQ.toFixed(5) + '=(atIX=)'+ minusP.q.toFixed(5) +
                     '(qrem=)' + (minusT_reminder * minusP.dq_dt).toFixed(5) );
             }
             */
-            //--------------------------------------------
-            // //\\ estimated force
-            //      by Newton's method,
-            //      but it is implemented wrongly here,
-            //      it is static, but must be not:
-            //--------------------------------------------
-            //var QTPivots = haz( rg.QT, 'pivots' );
-            //var QT2 = QTPivots ? mat.p1_to_p2( QTPivots[0].pos, QTPivots[1].pos ).v2 : 1;
-            //var QRPivots = haz( rg.QR, 'pivots' );
-            //var QR = QRPivots ? mat.p1_to_p2( QRPivots[0].pos, QRPivots[1].pos ).abs : 1;
-            //var estimatedForce = QR/(QT2*r2);
-            //--------------------------------------------
-            // \\// estimated force
-            //--------------------------------------------
-
 
             //-----------------------------------------------------------
             // //\\ calculates maximum force
             //-----------------------------------------------------------
             if( qix === 0 ) {
-                var estimatedForceMax = estimatedForce;
+                var deviationMax = deviation;
             }
-            if( estimatedForceMax < estimatedForce ) {
-                var estimatedForceMax = estimatedForce;
+            if( deviationMax < deviation ) {
+                var deviationMax = deviation;
             }
-            bP.estimatedForce = estimatedForce;
+            bP.deviation = ADDENDUM ? -deviation : deviation;
+            //-----------------------------------------------------------
+            // \\// calculates maximum force
+            //-----------------------------------------------------------
+
+            //-----------------------------------------------------------
+            // //\\ calculates maximum force
+            //-----------------------------------------------------------
+            if( qix === 0 ) {
+                var sagittaMax = sagitta;
+            }
+            if( sagittaMax < sagitta ) {
+                var sagittaMax = sagitta;
+            }
+            bP.sagitta = ADDENDUM ? -sagitta : sagitta;
             //-----------------------------------------------------------
             // \\// calculates maximum force
             //-----------------------------------------------------------
@@ -145,16 +149,26 @@
         //stdMod.graphFW_lemma.forceMax = forceMax;
         ///resets forceGraphArray
         stdMod.graphFW_lemma.graphArray = graphArray;
-        
+
         var arrLen = graphArray.length;
         for (var gix = 0; gix<arrLen; gix++ )
         {
             let ga = graphArray[ gix ];
             let qix = ga.qix;
             let bP = qix2orb[ qix ];
-            ga.y[1] = bP.estimatedForce / estimatedForceMax;
-            BONUS && ( ga.y[2] = bP.ds_dt / speedMax );
+            ga.y[0] = ADDENDUM ? -bP.forceAbsNormed : bP.forceAbsNormed;
+            ga.y[1] = bP.deviation / deviationMax;
+            ADDENDUM && ( ga.y[2] = bP.ds_dt / speedMax );
+            ADDENDUM && ( ga.y[3] = bP.sagitta / sagittaMax );
         }
+        stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
+            [ 'force', 'deivation', 'body',
+               sDt > timeDelta*2  //blocks at times wher algo breaks, 'sagitta'
+            ] :
+            [ 'force', 'deivation', ];
+        //this is just an example how to reset colors dynamically:
+        //stdMod.graphFW_lemma.colorThreadArray[0] =
+        //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
     }
 }) ();
 
