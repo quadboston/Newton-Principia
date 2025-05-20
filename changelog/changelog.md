@@ -1,6 +1,15 @@
 # Change Log
  
 
+## 2025-5-31 [Blue Version 0.???]
+### Improved core presentation
+* Proposition 11
+    * graph changed to only show estimated and actual force
+
+* Proposition 12
+    * graph changed to only show estimated and actual force
+
+
 ## 2025-5-20 [0.13654]
 ### Improved core presentation
 * All models
