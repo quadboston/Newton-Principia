@@ -64,7 +64,7 @@ will remain the same as before, that is, as ¦SP¦¦. And therefore
 ¦QT¦¦
 </mi><mn>
 2
-</mn></msup><mo>x</mo><msup><mi>
+</mn></msup><mo>×</mo><msup><mi>
 ¦SP¦¦
 </mi><mn>
 2
