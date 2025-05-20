@@ -1,8 +1,49 @@
 # Change Log
  
 
+## 2025-5-20 [0.13654]
+### Improved core presentation
+* All models
+    * ratios shown using colon (not as fractions)
+    * data shown in higher opacity (to be more readable); highlighted using background
+    * data organized into tables
+
+* Lemma 3
+    * point F more visible
+
+* Lemma 9
+    * refined data section
+
+* Lemma 10
+    * simplified diagram by not showing more than what is described
+    * data section refined
+
+* Lemma 11
+    * refined data section
+    * broke proof and corollaries into submenus
+
+* Proposition 7
+    * simplified diagram by not showing more than what is described
+
+* Proposition 9
+    * simplified diagram by not showing more than what is described
+    * graph changed to only show estimated and actual force
+    * fractions changed from linear style to stacked
+    * products expressed with ×, not x
+
+* Proposition 10
+    * graph changed to only show estimated and actual force
+    * PF no longer extends past F
+    * fractions changed from linear style to stacked
+    * products expressed with ×, not x
+
+* Proposition 11
+    * PF no longer extends past F
+    * fixed highlight for PC
+    
+
 ## 2025-4-30 [0.13618]
-### Improved (core presentation)
+### Improved core presentation
 * Homepage
     * mission statement
 
