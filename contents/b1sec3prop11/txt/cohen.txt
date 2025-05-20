@@ -36,7 +36,7 @@ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AO¦AC¦¦ to ¦PO
 L × ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ as
 L to ¦vG¦G𝑣¦¦; and
  ¦vG¦G𝑣¦¦ × ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
- as ¦PC¦¦² to ¦DO¦CD¦¦²; and
+ as ¦PO¦PC¦¦² to ¦DO¦CD¦¦²; and
 (<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
 with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
