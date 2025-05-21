@@ -13,23 +13,12 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model initiation
     ///****************************************************
     function init_model_parameters()
     {
+        rg.B.dragPriority = 2; // highest value gets priority
         sDomF.pname__2__rgX8dragwrap_gen_list( 'B', stdMod )
             .acceptPos = function( newPos ) {
                 ///restricts point B
@@ -57,6 +46,7 @@
                 //keeps point b "in existing ratio" ratio_bxBx
                 rg.b.pos[0] = newPos[0]*ratio_bxBx;
                 rg.b.pos[1] = ssD.repoConf[0].fun( rg.b.pos[0] )[1];
+
                 //keeps point D "under existing ratio of angle"
                 rg.D.pos[0] = newBx + angD * newBy;
                 //keeps point D "under existing ratio of angle"
@@ -64,6 +54,8 @@
 
                 return true; //true means: do accept new pos
             };
+
+        rg.D.dragPriority = 1;
         sDomF.pname__2__rgX8dragwrap_gen_list( 'D', stdMod )
             .acceptPos = function( newPos ) {
                 ///restricts point D
@@ -84,16 +76,36 @@
                 newPos[1] = rg.D.pos[1];
                 return true; //true means: do accept new pos
             };
+
+        rg.b.dragPriority = 3;
         sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
-            .acceptPos = function( newPos ) {
+            .acceptPos = function( newPos ) {                
+
+                // limit so AB2:Ab2 is never > 10
+                let AB2Ab2 = rg.AB.abs2/rg.Ab.abs2;
+                if(newPos[0] < rg.b.pos[0] && AB2Ab2 > 10) {
+                    //keeps point b "in existing ratio" ratio_bxBx
+                    var ratio_bxBx = rg.B.pos[0]/rg.b.pos[0];
+                    let Bx_original = rg.B.pos[0];
+                    rg.B.pos[0] = newPos[0]*ratio_bxBx;
+                    rg.B.pos[1] = newPos[1]*ratio_bxBx;
+                    rg.D.pos[0] = rg.D.pos[0] - (Bx_original - rg.B.pos[0]);
+                    if(rg.D.pos[0] < 0) rg.D.pos[0] = 0;
+                    console.log(rg.B.pos[0])
+                }
+
                 ///restricts point b
                 if( newPos[0] < 0.000001 ) {
                     newPos[0] = 0.0000001;
+                } else if( newPos[0] > 1.2 ) {
+                    newPos[0] = 1.2;
                 }
-                if( rg.B.pos[0] < newPos[0] ) {
-                    ////makes sure b in limits
-                    newPos[0] = rg.B.pos[0];
+                if( rg.B.pos[0] <= newPos[0] ) {
+                    // when b = B, B is dragged along with b so the model can't get stuck
+                    // in a bad state where they can no longer be separated
+                    rg.B.pos = newPos;
                 }
+
                 newPos[1] = ssD.repoConf[0].fun( newPos[0] )[1];
                 var Bx = rg.B.pos[0];
                 var By = rg.B.pos[1];
