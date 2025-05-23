@@ -52,6 +52,8 @@
                 //keeps point D "under existing ratio of angle"
                 rg.d.pos[0] = rg.b.pos[0] + angD * rg.b.pos[1];
 
+                
+                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2; 
                 return true; //true means: do accept new pos
             };
 
@@ -77,7 +79,7 @@
                 return true; //true means: do accept new pos
             };
 
-        rg.b.dragPriority = 3;
+        rg.b.dragPriority = 3; 
         sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
             .acceptPos = function( newPos ) {                
 
@@ -120,6 +122,7 @@
                 //keeps point d "under existing ratio of angle"
                 rg.d.pos[0] = newPos[0] + angD * newPos[1];
 
+                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2; 
                 return true; //true means: do accept new pos
             };
     }
