@@ -62,10 +62,10 @@
             '_r_l,RL&nbsp;:,"&nbsp;"+rg.RL.vector.abs.toFixed(4)',
             '_p_v,PV&nbsp;:,"&nbsp;"+rg.PV.vector.abs.toFixed(4)',
   
-            'estimated_force<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[4].toFixed(4)'
+            'estimated_force<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.q2qix()].y[4].toFixed(4)'
             ,
   
-            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.pos2qix()].y[0].toFixed(4)'
+            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.q2qix()].y[0].toFixed(4)'
             ,
   
             'none,_,"<_>"'

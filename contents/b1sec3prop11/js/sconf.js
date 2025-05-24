@@ -34,6 +34,7 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab = false;
+        //true enables framework zoom
         sconf.enableTools = true;
         //====================================================
         // \\// subapp regim switches
@@ -88,6 +89,7 @@
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 360;
+
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
@@ -121,7 +123,6 @@
         var curveParA   = -0.64;
         sconf.orbit_q_start = 0;
         var orbit_q_start = 0.0 * Math.PI;
-        var curveParFiMax = 2 * Math.PI;
         sconf.orbit_q_end = 2 * Math.PI;
 
         {
@@ -158,7 +159,7 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
-        var deviation = [200,   0,  200, 1];
+        var displacement = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
@@ -168,7 +169,7 @@
             given,
             proof,
             result,
-            deviation,
+            displacement,
             hidden,
             context,
             curvature,
@@ -176,7 +177,6 @@
             orbit   : given,
             force   : result,
             tangentCircle : curvature,
-            //curvatureCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -253,7 +253,6 @@
                 letterAngle : 70,
             },
 
-
             T : {
                 pcolor : proof,
                 letterAngle : 180,
@@ -264,7 +263,6 @@
                 letterAngle : 45,
             },
 
-
             Z : {
                 pcolor : body,
                 letterAngle : 45,
@@ -272,20 +270,12 @@
                 doPaintPname : false,
             },
 
-
             Zminus : {
                 caption : 'Z',
                 pcolor : body,
                 letterAngle : 45,
                 //undisplay : true,
             },
-
-            /*
-            V : {
-                pcolor : proof,
-                letterAngle : -45,
-            },
-            */
 
             v : {
                 caption : '𝑣',
@@ -304,7 +294,6 @@
                 pcolor : proof,
                 letterAngle : -45,
             },
-
 
             //center of instant curvature circle
             C : {
@@ -423,7 +412,7 @@
             { 'ZR' : { pcolor : body }, },
 
             { 'PR' : { pcolor : body }, },
-            { 'QR' : { pcolor : deviation }, },
+            { 'QR' : { pcolor : displacement }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
@@ -458,8 +447,6 @@
         ns.paste( sconf, {
             curveParA,
             orbit_q_start,
-            curveParFiMax,
-            curveQRange : curveParFiMax - orbit_q_start,
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
@@ -479,17 +466,6 @@
             defaultLineWidth,
             handleRadius,
         });
-
-        //=========================================
-        // //\\ derivative paramters
-        //=========================================
-        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        sconf.pointDecoration.r = sconf.handleRadius;
-        sconf.qgrid_step = sconf.curveQRange / sconf.Q_STEPS;
-        sconf.qgrid_step1 = 1 / sconf.qgrid_step;
-        //=========================================
-        // \\// derivative paramters
-        //=========================================
     }
 }) ();
 

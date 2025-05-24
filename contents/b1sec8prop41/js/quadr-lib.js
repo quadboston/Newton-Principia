@@ -38,7 +38,6 @@
                 break;
             }
         }
-        //stdMod.pos2qix = pos2qix;
         return { solvable, fr };
     }
 

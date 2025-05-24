@@ -46,7 +46,7 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'deviation' ),
+                sDomF.getFixedColor( 'displacement' ),
                 sDomF.getFixedColor( 'body' ),
               ];
             return colorThreadArray;
@@ -119,9 +119,9 @@
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-deviation tofill tobold hover-width"' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'deviation' ) + '; stroke:'+n2c( 'deviation' ) + ';"' +
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -227,7 +227,7 @@
         {
             const svg = graphFW.fw.plotIx2plotSvg;
             $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
             svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
             svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
@@ -240,7 +240,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_STEPS
-                                /sconf.Q_STEPS ), //? default = stdMod.pos2qix(),
+                                /sconf.Q_STEPS ), //? default = stdMod.q2qix(),
                 numberMarks : true, 
             };
         }

@@ -175,7 +175,7 @@
             far.y[2] = far.y[2] / (-comparLawMin);
             far.y[3] = far.y[3] / speedMax;
         }
-        stdMod.pos2qix = pos2qix;
+        stdMod.q2qix = q2qix;
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
         return;
@@ -185,7 +185,7 @@
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
         ///     start_q ) / ( end_q - start_q ) * qixMax
-        function pos2qix()
+        function q2qix()
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;

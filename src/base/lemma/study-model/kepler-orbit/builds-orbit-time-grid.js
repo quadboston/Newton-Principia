@@ -19,11 +19,11 @@
     {
         const q2o = qix2orb;
         const t2o = tix2orbit;
-        const FS = sconf.Q_STEPS;
+        const QS = sconf.Q_STEPS;
         const TS = sconf.TIME_STEPS;
         t2o.length = 0;
         {
-            ssD.trange =q2o[ FS ].timeAtQ -q2o[0].timeAtQ;
+            ssD.trange =q2o[ QS ].timeAtQ -q2o[0].timeAtQ;
             const tgrid_step = ssD.trange/TS;
             ssD.tgrid_step = tgrid_step;
             const trange = ssD.trange;
@@ -41,7 +41,7 @@
                     qix_former = qix;
                     timeAtQ_former = timeAtQ;
                     //this must not happen because of tix < TS:
-                    //if( qix > FS ) break;
+                    //if( qix > QS ) break;
                     qix++;
                     timeAtQ =q2o[qix].timeAtQ;
                 }
@@ -58,7 +58,7 @@
 
                 //this qix will never grow if qix reached toppest time,
                 //hence no need to do this check:
-                //if( qix_former < FS-1 ){
+                //if( qix_former < QS-1 ){
 
                 qix = qix_former+1;
                 timeAtQ = q2o[qix].timeAtQ;

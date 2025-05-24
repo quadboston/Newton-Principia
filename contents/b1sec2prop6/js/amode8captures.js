@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, nspaste, has, paste, capture, bezier, userOptions,
+        ns, sn, nspaste, has, paste, capture, userOptions,
         sDomF, ssD, ssF, fconf,
         sconf, amode, toreg, stdMod, rg,
     } = window.b$l.apptree({
@@ -238,12 +238,12 @@
                 ssF.scaleValue2app( rg.media_scale.value, );
             }
         }
-        if( sconf.APPROX !== 'D' ) {
-            ////this refreshes scnenario of
-            ////non-Kepler shapes visibility
-            ssD.stashedVisibility = null;
-        }
-        stdMod.curveIsSolvable();
+
+        ////this refreshes scnenario of
+        ////non-Kepler shapes visibility
+        ssD.stashedVisibility = null;
+
+        stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }

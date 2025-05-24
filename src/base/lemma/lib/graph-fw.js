@@ -136,7 +136,7 @@
                         stroke : colorThreadArray[2],
                         'stroke-width' : 3,
                     },
-                    abscissaIxValue : stdMod.pos2qix(),
+                    abscissaIxValue : stdMod.q2qix(),
                     numberMarks : true, 
                 },
                 brightenGrid : 0.3,

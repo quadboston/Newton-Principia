@@ -58,8 +58,8 @@
             if( typeof inner_angle === 'undefined' ){
                 inner_angle = pos2t( newPos );
             }
-            if( inner_angle < Math.PI*0.01 || inner_angle > sconf.curveParFiMax ){
-                inner_angle = ( inner_angle + sconf.curveParFiMax ) % sconf.curveParFiMax;
+            if( inner_angle < Math.PI*0.01 || inner_angle > sconf.orbit_q_end ){
+                inner_angle = ( inner_angle + sconf.orbit_q_end ) % sconf.orbit_q_end;
             }
             let qix = Math.floor( inner_angle/sconf.qgrid_step );
             rgX.qix = qix;

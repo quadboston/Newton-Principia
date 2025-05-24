@@ -19,14 +19,12 @@
     return;
 
 
-    function builds_dq8sagitta8deviation()
-    {
+    function builds_dq8sagitta8deviation() {
         const ADDENDUM = amode.aspect === 'addendum';
+        const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CR = sconf.CURVE_REVOLVES;
-        const CALCULATE_SUGITTA_ALONG_THE_PATH =
-              sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
-        const FS = sconf.Q_STEPS;
-        const TIME_STEPS = sconf.TIME_STEPS;
+        const CS = sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
+        const QS = sconf.Q_STEPS;
         const q2xy = stdMod.q2xy;
         const qix2orb = ssD.qix2orb;
         const tix2orbit = ssD.tix2orbit;
@@ -39,11 +37,10 @@
         
         const Dt = ssD.Dt;  //optional
         var Dq = ssD.Dq;    //optional
-        
-        for( let qix=0; qix<=FS; qix++ ) {
+        var displMax = 0;
+        for( let qix=0; qix<=QS; qix++ ) {
             const bP = qix2orb[ qix ]; //body point data
-
-            
+           
             //**********************************************
             // //\\ q is free variable
             //**********************************************
@@ -56,12 +53,15 @@
                     }
                 } else {
                     bP.plusQ = plusQ;
-                    bP.estForce = stdMod.buildsDeviation({ 
+                    const displ = stdMod.calcs__displacement({ 
                         parq: plusQ,
                         bP
                     });
+                    bP.displacement = displ;
+                    displMax = Math.max( Math.abs(displ), displMax );
+                    //start here
                 }
-                if( FS === qix && ssD.qix_graph_lim === null ){
+                if( QS === qix && ssD.qix_graph_lim === null ){
                     ssD.qix_graph_lim = qix+1;
                 }
                 continue;
@@ -75,23 +75,28 @@
                 bP.plusQ = null;
                 continue;
             }
+
+            //todm This may happens bs of float errors: making them safe,
             if( sconf.orbit_q_end <= bP.q+qgrid_step*2 && !CR ){
                 bP.plusQ = null;
                 ssD.qix_graph_lim = ssD.qix_graph_lim === null ?
-                    ssD.qix_graph_lim = qix : ssD.qix_graph_lim;
+                                    qix : ssD.qix_graph_lim;
                 continue;
             }
                 
             const bT = bP.timeAtQ; //body time
             const rr = bP.rr; //abs
             const r2 = bP.r2; //rel
-            if( Dt < tgrid_step*3 ) {
-                ////this does not work for sagitta,
+            /*
+             //slider Q prevents this from happen:
+                if( Dt < tgrid_step*SACC ) {
+                ////this does not work to get accurate sagitta,
                 ////possibly because of non-linear dependency
                 ////of Dt * bP.dq_dt
                 var plusQ = bP.q + Dt * bP.dq_dt;
                 bP.plusQ = plusQ;
-            } else {
+            */
+            {
                 let plusT = bT + Dt;
                 plusT = CR ? ( trange + plusT ) % trange : plusT;
                 //possibly floating errors do happen
@@ -118,11 +123,11 @@
                 }
             }
             ///prefents empty graph array, sets limit for this array:
-            if( FS === qix && ssD.qix_graph_lim === null ){
+            if( QS === qix && ssD.qix_graph_lim === null ){
                 ssD.qix_graph_lim = qix+1;
             }
             if( bP.plusQ !== null ){
-                bP.estForce = stdMod.buildsDeviation({ 
+                bP.displacement = stdMod.calcs__displacement({ 
                     parq: plusQ,
                     bP
                 });
@@ -131,13 +136,14 @@
             
             ///todm: unfinished work: must block time values below time range:
             ///do this via bP.plusQ = null;
-            if( bP.plusQ !== null && sconf.CALCULATE_SUGITTA_ALONG_THE_PATH ){
-                const rrplus = q2xy( plusQ );
+            if( bP.plusQ !== null && CS ){
+                const rrplus = bP.rrplus = q2xy( plusQ );
                 let minusT = bT - Dt;
                 minusT =  CR ? ( trange + minusT ) % trange : minusT;
                 const minusTix = Math.floor( minusT/tgrid_step );
                 if( minusTix < 1 ) {
                     bP.plusQ = null;
+                    //ccc( bP.qix +  ' minusTix=' + minusTix );
                     continue;
                 }
                 const minusQix = tix2orbit[minusTix].qix;
@@ -147,10 +153,15 @@
                 var minusQ = minusP.q + minusT_reminder * minusP.dq_dt;
                 //saves data for model-upcreate;
                 bP.minusQ = minusQ;
-                const rrminus = q2xy( minusQ );
-                const s0 = rrplus[0]+rrminus[0]-2*rr[0];
-                const s1 = rrplus[1]+rrminus[1]-2*rr[1];
-                bP.sagitta = 0.5*Math.sqrt( s0*s0+s1*s1 );
+                const rrminus = bP.rrminus = q2xy( minusQ );
+                const s0 = (rrplus[0]+rrminus[0]-2*rr[0])*0.5;
+                const s1 = (rrplus[1]+rrminus[1]-2*rr[1])*0.5;
+
+                //when displacement is parallel to rrr, then sign > 0
+                const rrr = bP.rrr;
+                const sign = Math.sign( rrr[0]*s0 + rrr[1]*s1 );
+                bP.sagitta = sign * Math.sqrt( s0*s0+s1*s1 );
+                bP.sagittaVector = [s0, s1];
             }
         }
     }

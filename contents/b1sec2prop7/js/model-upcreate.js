@@ -49,8 +49,6 @@
         } = curveP;
         var Rc = R; //curvature radius
 
-        
-        //if( ssD.PdragInitiated || ssD.SdragInitiated || ssD.PivotDragInitiated ) {
         if( ssD.PdragInitiated || ssD.SdragInitiated ) {
             ////when P or S move we do keep chord constant, but recalculate
             ////forward body move time dt and backward move time dt to be consistent

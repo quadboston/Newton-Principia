@@ -2,7 +2,7 @@
     var {
         $$, nssvg,
         sDomF, ssF, ssD,
-        rg, stdMod, sconf,
+        stdMod, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -12,15 +12,15 @@
     return;
 
     
-    ///decoration, should run in upcreate_media
-    ///analogy of
-    ///function  pointsArr_2_singleDividedDifferences()
+    ///analogy of function
+    ///pointsArr_2_singleDividedDifferences()
     function creates_poly2svg_for_lemma()
     {
         var polylineSvg;
         stdMod.poly2svgP11 = poly2svgP11;
         return;
 
+        ///decoration, should run in upcreate_media
         function poly2svgP11(arg)
         {
             const curve_points = ssD.orbitXYToDraw;

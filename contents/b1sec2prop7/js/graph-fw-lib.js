@@ -298,7 +298,7 @@
                     stroke : graphFW.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.pos2qix(),
+                abscissaIxValue : stdMod.q2qix(),
                 numberMarks : false, //true, 
             };
         }

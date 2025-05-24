@@ -144,7 +144,7 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
-        var deviation = [200,   0,  200, 1];
+        var displacement = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
@@ -154,7 +154,7 @@
             given,
             proof,
             result,
-            deviation,
+            displacement,
             hidden,
             context,
             curvature,
@@ -291,17 +291,5 @@
             defaultLineWidth,
             handleRadius,
         });
-        
-        //=========================================
-        // //\\ derivative paramters
-        //=========================================
-        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        sconf.pointDecoration.r = sconf.handleRadius;
-        sconf.qgrid_step = sconf.curveQRange / sconf.Q_STEPS;
-        sconf.qgrid_step1 = 1 / sconf.qgrid_step;
-        sconf.ro02 = sconf.ro0*sconf.ro0 / 2;
-        //=========================================
-        // \\// derivative paramters
-        //=========================================
     }
 }) ();

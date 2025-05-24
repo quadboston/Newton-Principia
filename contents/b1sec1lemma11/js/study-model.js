@@ -42,12 +42,14 @@
                 var Bx = rg.B.pos[0];
                 var By = rg.B.pos[1];
                 var newBx = newPos[0];
+                //taking new abscissa of B, calculates new ordinate on
+                //the curve:
                 var newBy = newPos[1] = ssD.repoConf[0].fun( newPos[0] )[1];
 
                 //----------------------------------------------------------
                 // //\\ gets existing ratios
-                //this seems to be a deviation from Case2 of The Book:
-                //instead of preserving BD/bd, we preserve ratio bx/Bx,
+                //this is not a deviation from Case2 of The Book:
+                //preserving BD/bd, we preserve ratio bx/Bx=BD/bd,
                 var ratio_bxBx = rg.b.pos[0]/Bx;
                 //gets existing ratio for angle for point D
                 var angD = ( rg.D.pos[0] - Bx ) / By;

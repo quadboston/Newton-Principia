@@ -1,225 +1,55 @@
 ( function() {
     var {
-        sn, bezier, mat,
-        ssD, sData,
-        stdMod, sconf, rg, toreg,
+        sn, mat,
+        ssD, stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
-            completesSlidersCreation,
+            creates__curve_pivots_sliders,
+            creates_S_slider,
         },
     });
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    ///****************************************************
-    function completesSlidersCreation()
-    {
-        
-        //=========================================================================
-        // //\\ point Q slider
-        //      for delta t
-        //=========================================================================
-        rg.Q.dragPriority = 100;
-        rg.Q.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
-
-        rg.Q.processOwnDownEvent = function() {
-            //this is for user mouse motion,
-            //remember, mouse motion and Q.pos motions are
-            //different,
-            ssD.QnewPos0_stashed = rg.Q.pos[0];
-            ssD.QnewPos1_stashed = rg.Q.pos[1];
-        };
-
-        rg.Q.acceptPos = newPos => {
-            var REPELLING_DISTANCE = 0.01;
-
-            //--------------------------------------------------------------------
-            // //\\ sets delta t
-            //--------------------------------------------------------------------
-            //this is main parameter which updates math-model,
-            //this is a time interval to build a chord for suggitae,
-            //rg.tForSagitta.val = Math.abs( deltaX ) * sData.deltaX2deltaT;
-            let deltaPos = [
-                newPos[0]-ssD.QnewPos0_stashed,
-                newPos[1]-ssD.QnewPos1_stashed,
-            ];
-            let { v, uu } = rg.Q.Qparams;
-            
-            // //\\  we project INCREMENTAL move
-            // to instant speed to calculate incremental angle:
-            let qgrid_step = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
-            let new_q = rg.Q.q + qgrid_step;
-            // \\//  we project INCREMENTAL move
-            
-            //this is resundant: this is validated in model
-            //if( new_q <=0 || new_q >= 1 ) return false; 
-
-            //let delta_t = qgrid_step / rg.Q.dt2dq
-            let sagg_t = rg.tForSagitta.val + qgrid_step / rg.Q.dt2dq;
-            //prevents too small saggita
-            //if( sagg_t < 0.0001 ) return false;
-            const ACCURACY = 1e-4;
-            if( sagg_t < ACCURACY ) {
-                sagg_t = ACCURACY;
-            }
-            if( sagg_t > 2 ) return false;
-            //--------------------------------------------------------------------
-            // //\\ to separate dragging pivotsPos and moving body,
-            //      druring building a chord tip point,
-            //      prevents moving body come too close to pivotsPos
-            //--------------------------------------------------------------------
-            var returnValue = true;
-            
-            if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
-                ///this is a partial validation,
-                ///because of overlapping can happen during
-                //moving of P
-                sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
-                    let rgX = rg[ 'curvePivots-' + cpix ];
-                    if( REPELLING_DISTANCE > Math.abs( new_q - rgX.q ) ) {
-                        returnValue = false;
-                        return;
-                    }
-                });
-                if( !returnValue ) return false;
-            }
-            //--------------------------------------------------------------------
-            // \\// to separate dragging pivotsPos and moving body,
-            //--------------------------------------------------------------------
-            
-            rg.tForSagitta.val = sagg_t;
-            //--------------------------------------------------------------------
-            // \\// sets delta t
-            //--------------------------------------------------------------------
-
-            //lets validators to do the job
-            stdMod.model8media_upcreate();
-            ssD.QnewPos0_stashed = newPos[0];
-            ssD.QnewPos1_stashed = newPos[1];
-
-            //"false" prevents model8media_upcreate() from running second time
-            return false;
+    //=========================================================================
+    // //\\ point S slider
+    //=========================================================================
+    function creates_S_slider() {
+        rg.S.DRAGGEE_HALF_SIZE = 15;
+        rg.S.acceptPos = newPos => {
+            //does this for decorational purposes
+            stdMod.rebuilds_orbit( ssD.Dt );
+            //this permits an orbitrary move
+            return true;
         }
-        //=========================================================================
-        // \\// point Q slider
-        //=========================================================================
+    }
+    //=========================================================================
+    // \\// point S slider
+    //=========================================================================
 
         
-        //=========================================================================
-        // //\\ point P slider
-        //=========================================================================
-        rg.P.dragPriority = 50;
-        rg.P.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
-
-        rg.P.processOwnDownEvent = () => {
-            if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
-                ssD.PdragInitiated = true;
-            }
-            sData.stashed_curveP = sData.curveP;
-            let curvePix = Math.floor( (rg.P.q - bezier.start_q )*bezier.q2ix );
-            sData.stashed_curvePP = ssD.curve[curvePix];
-        };
-
-        rg.P.processOwnUpEvent = () => { ssD.PdragInitiated = false; };
-
-        rg.P.acceptPos = (newPos, move) => {
-            let REPELLING_DISTANCE = 0.02;
-            let returnValue = true;
-            if( sconf.APPROX === 'D' ) {            
-                //calculates new ordinate y(x)
-                newPos[1] = rg[ 'approximated-curve' ].t2xy( newPos[0] )[1];
-            } else {
-                let curvePP = sData.stashed_curvePP;
-                let { v, uu, rr, curveIx } = curvePP;
-                
-                // //\\  we project INCREMENTAL move
-                // to instant speed to calculate incremental angle:
-                let move0 = newPos[0]-rr[0];
-                let move1 = newPos[1]-rr[1];
-                let delta_curveIx =
-                    Math.floor( (uu[0]*move0 + uu[1]*move1)/v*bezier.q2ix );
-                curveIx = curveIx + delta_curveIx;
-                curveIx = Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
-                // \\//  we project INCREMENTAL move
-
-                let stashed_curvePP = ssD.curve[ curveIx ];
-                
-                ///validates
-                if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
-                    sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
-                        let rgX = rg[ 'curvePivots-' + cpix ];
-                        if( REPELLING_DISTANCE > Math.abs( stashed_curvePP.q - rgX.q ) ) {
-                            returnValue = false;
-                            return;
-                        }
-                    });
-                }
-                if( returnValue ) {
-                    sData.stashed_curvePP = stashed_curvePP;
-                    rg.P.q = sData.stashed_curvePP.q;
-                }
-            }
-            return returnValue;
-        };
-        //=========================================================================
-        // \\// point P slider
-        //=========================================================================
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //=========================================================================
-        // //\\ curve pivotsPos sliders
-        //=========================================================================
+    
+    //=========================================================================
+    // //\\ curve pivotsPos sliders
+    //=========================================================================
+    function creates__curve_pivots_sliders(){
+        const bezio = ssD.bezio;
         var pivs = sconf.originalPoints.curvePivots;
-
         pivs.forEach( (cp,cpix) => {
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
             var stashedCurveP = null;
             cp.rgX.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
             cp.rgX.processOwnDownEvent = () => {
-                if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
-                    ssD.PivotDragInitiated = true;
-                }
-                if( sconf.APPROX === 'D' ) {   
-                    let pos = rg[ 'curvePivots-' + cpix ].pos;                
-                    stashedPos = [ pos[0], pos[1] ];
-                } else {
-                    let pos = bezier.fun( ssD.bezier.ix2parameter[cpix] );
-                    stashedPos = [ pos[0], pos[1] ];
-                }
+                let pos = stdMod.q2xy( bezio.ix2parameter[cpix] );
+                stashedPos = [ pos[0], pos[1] ];
             };
 
             cp.rgX.processOwnUpEvent = () => {
+                ////forgotten: why we make curve point non-changed?
                 pos1[0] = stashedPos[0];
                 pos1[1] = stashedPos[1];
-                if( sconf.APPROX === 'D' ) {    
-                    stdMod.pointsArr_2_singleDividedDifferences();
-                }
-                ssD.PivotDragInitiated = false;
             };
 
             cp.rgX.acceptPos = (newPos, move) => {
@@ -233,100 +63,40 @@
                 var nextPoint = cpix+1;
                 var nextPoint = (nextPoint === pivs.length ) ? null : nextPoint;
                 var previousPoint = (previousPoint < 0 ) ? null : previousPoint;
-                
-                if( sconf.APPROX === 'D' ) {   
-                    if(
-                        (
-                            previousPoint !== null &&
-                            pivs[previousPoint].rgX.pos[0] <= newPos[0] + REPELLING_DISTANCE
-                        ) ||
-                        (
-                            nextPoint !== null &&
-                            pivs[nextPoint].rgX.pos[0] >= newPos[0] - REPELLING_DISTANCE
-                        )
-                    ){
-                        returnValue = false;
-                    }
-                }
                 //--------------------------------------------------------------
                 // \\// preserves pivot's order along x and being them too close
                 //--------------------------------------------------------------
 
+                let dpos0 = newPos[0]-stashedPos[0];
+                let dpos1 = newPos[1]-stashedPos[1];
+                let pos = bezio.pivotsPos[cpix];
+                let bpos0 = pos[0];
+                let bpos1 = pos[1];
+                
+                //this is clear, we calculate dependency, then
+                //multiply this dependency with curve-pivot displecement
+                //and add the reusult to bezier-pivot,
+                let c2p = bezio.curvePivots2bezierPivots[cpix];
+                pos[0] += dpos0*c2p;
+                pos[1] += dpos1*c2p;
+                bezio.updatesPivot( pos, cpix );
 
-                if( returnValue ) {
-                    if( sconf.APPROX === 'D' ) {    
-                        //calculates new curve
-                        pos1[0] = newPos[0];
-                        pos1[1] = newPos[1];
-                        stdMod.pointsArr_2_singleDividedDifferences();
+                stdMod.rebuilds_orbit( ssD.Dt );
+                ///updates curve pivots every time:
+                stdMod.bp2cp();
 
-                        ///apparently validates if point is valid and
-                        ///if not, shows a warning, and stashes most possible value
-                        stdMod.curveIsSolvable();
-                        if( !ssD.foldPoints.length ) {    
-                            stashedPos = [ pos1[0], pos1[1] ];
-                        }
-                    } else {
-                        ////sconf.APPROX === 'B'
-                        let dpos0 = newPos[0]-stashedPos[0];
-                        let dpos1 = newPos[1]-stashedPos[1];
-                        let pos = bezier.pivotsPos[cpix];
-                        let bpos0 = pos[0];
-                        let bpos1 = pos[1];
-                        let c2p = ssD.bezier.curvePivots2bezierPivots[cpix];
-                        pos[0] += dpos0*c2p;
-                        pos[1] += dpos1*c2p;
-                        ssD.bezier.updatesPivot( pos, cpix );
-                        stdMod.curveIsSolvable();
-                        stashedPos = [ newPos[0], newPos[1] ];
-                        if( ssD.foldPoints.length ) {    
-                            //these works in connection,
-                            //one can run stdMod.model8media_upcreate(); and
-                            //not set return false to skip automatic 
-                            //stdMod.model8media_upcreate(); which runs in 
-                            //src/base/draggers/points/model-point-dragger.js
-                            //stdMod.model8media_upcreate()
-                            return true; //false;
-                        }
-                    }
+                stashedPos = [ newPos[0], newPos[1] ];
+                if( ssD.foldPoints.length ) {
+                    ////we do return true, because would like to
+                    ////redraw gapped orbit with pivots
+                    return true;
                 }
                 return returnValue;
             };
         });
-        //=========================================================================
-        // \\// curve pivotsPos sliders
-        //=========================================================================
-
-
-
-
-
-
-
-        //=========================================================================
-        // //\\ point S slider
-        //=========================================================================
-        {
-            rg.S.DRAGGEE_HALF_SIZE = 15;
-            rg.S.processOwnDownEvent = () => {
-                if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
-                    ssD.SdragInitiated = true;
-                }
-            };
-            rg.S.processOwnUpEvent = () => { ssD.SdragInitiated = false; };
-            //rg.S.processOwnUpEvent = () => {};
-            rg.S.acceptPos = newPos => {
-                //does this for decorational purposes
-                stdMod.curveIsSolvable();
-                //this permits an orbitrary move
-                return true;
-            }
-        }
-        //=========================================================================
-        // \\// point S slider
-        //=========================================================================
     }
-
-
+    //=========================================================================
+    // \\// curve pivotsPos sliders
+    //=========================================================================
 }) ();
 

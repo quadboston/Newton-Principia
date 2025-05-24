@@ -10,7 +10,6 @@
         stdModExportList :
         {
             creates_Q8P_sliders,
-            creates_S_slider,
             creates__gets_orbit_closest_point,
         },
     });
@@ -35,7 +34,8 @@
             if( sconf.TIME_IS_FREE_VARIABLE ){
                 let tt = qix2orb[ Qqix ].timeAtQ;
                 let Dt = tt - qix2orb[ rg.P.qix ].timeAtQ;
-                if( Dt < 0.00001 || sconf.DT_SLIDER_MAX <= Dt ) return;
+                if( Dt < ssD.tgrid_step * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
+                    sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
             } else {
                 const q = qix2orb[ Qqix ].q;
@@ -46,70 +46,12 @@
             //recalculates dQ attached to orbit points,
             //todm for now, does redundant job of rebuilding grids
             stdMod.builds_dq8sagitta8deviation();
-            stdMod.builds_orbit_data_graph( sconf.force_law );
+            stdMod.builds_orbit_data_graph();
             stdMod.model8media_upcreate();
         }
         //=====================================================================
         // \\// point Q slider
         //=========================================================================
-   }
-
-   function creates_S_slider(){
-        //=====================================================================
-        // //\\ point S slider
-        //=====================================================================
-        {
-            let stashedPos = null;
-            let sp = rg.S.pos;
-            rg.S.processOwnDownEvent = () => {
-                stashedPos = [ sp[0], sp[1] ];
-            };
-
-            rg.S.processOwnUpEvent = () => {
-                sp[0] = stashedPos[0];
-                sp[1] = stashedPos[1];
-            };
-            rg.S.acceptPos = newPos => {
-                if( mat.p1_to_p2( newPos, sconf.diagramOrigin ).abs > -1 ) {
-                    if( userOptions.showingBonusFeatures() ) {
-                        stashedPos[0] = newPos[0];
-                        stashedPos[1] = newPos[1];
-                    } else {
-                        if( newPos[0] > -0.00001 || newPos[0] < -1.2 ) {
-                            return false;
-                        }
-                        stashedPos[0] = newPos[0];
-                        newPos[1] = stashedPos[1];
-                        sconf.ellipseFocus = -stashedPos[0];
-                        rg.H.pos[0] = sconf.ellipseFocus;
-                        let ellA2 = sconf.ellipseFocus*sconf.ellipseFocus +
-                                    sconf.ellipseB*sconf.ellipseB;
-                        sconf.ellipseA = Math.sqrt( ellA2 );
-                        let lambda2 = sconf.ellipseB/sconf.ellipseA;
-                        lambda2 *= lambda2;
-                        sconf.eccentricity = Math.sqrt( 1 - lambda2 );
-                        stdMod.recreates_q2xy();
-                        //resets ellpse parameters
-                        hafa( stdMod, 'recreatesPosCorrector' )();
-                    }
-                }
-                hafa( stdMod, 'correctsPos8angle2angle' )(
-                    'P', null,
-                    //reuses former q,
-                    //this moves point P, but in the nice manner
-                    ssD.qix2orb[ rg.P.qix ].q
-                );
-                rg.S.pos[0] = newPos[0];
-                rg.S.pos[1] = newPos[1];
-                stdMod.buildsOrbit(); //and its relation to S
-                stdMod.builds_dq8sagitta8deviation();
-                stdMod.builds_orbit_data_graph( sconf.force_law );
-                stdMod.model8media_upcreate();
-            }
-        }
-        //=====================================================================
-        // \\// point S slider
-        //=====================================================================
     }
 
 
@@ -136,7 +78,7 @@
             const x = r[0]-pos[0];
             const y = r[1]-pos[1];
             let min = x*x + y*y;
-            let qix_min = 0;
+            let qix_min = fromGraph ? point.qix : 0;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
                 const pos = point.rr;
@@ -148,14 +90,14 @@
                     qix_min = fromGraph ? point.qix : qix;
                 }
             }
-
+ 
             const FINE_SEARCH_POINTS = 20;
             const fstart = qix_min-FINE_SEARCH_POINTS;
             const fend = qix_min+FINE_SEARCH_POINTS;
-            ///refining the search
+            ///refines the search
             for( let qix=fstart; qix<=fend; qix++ ){
                 const point = q2o[qix];
-                if( !point || (fromGraph && point.plusQ === null) ) continue;
+                if( !point || point.plusQ === null ) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];

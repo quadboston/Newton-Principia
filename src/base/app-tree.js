@@ -77,7 +77,8 @@
         //todm: poor? name: to be "amode.stdmod" //study model
     }
 
-
+    ///be aware, this function executes multiple times, so any
+    ///"global external" caclulations will be done multiple times,
     function apptree({
         //optional variables
         modName,   //default: ''+mCount.count
@@ -108,7 +109,6 @@
                 //ccc( '... running setModule() for ' + mCount.count );
                 setModule();
             }
-
             //todm: why this code is delayes to srg_modules?
             if( stdModExportList ) {
 
