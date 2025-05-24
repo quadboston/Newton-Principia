@@ -120,10 +120,9 @@
             ////preserves own color and takes
             ////opacities from global setting
             let fc = topi_c['fixed-color'];
-            topi_c.highOpacity = fc.isPoint0Line ?
-                    sconf.TP_OPACITY_HIGH_POINT : sconf.TP_OPACITY_HIGH;
-            topi_c.lowOpacity = fc.isPoint0Line ?
-                    sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
+            
+            topi_c.highOpacity = topi_c.lowOpacity = 1;
+
             //if( topi_c.isPoint8Line ) {
             //    c cc( topi_c.camelId, topi_c.lowOpacity, topi_c.highOpacity, topi_c );
             //}

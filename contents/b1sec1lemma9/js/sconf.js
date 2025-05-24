@@ -97,6 +97,8 @@
             proof,
             result,
             hidden,
+            givenArea,
+            proofArea
         } = fixedColors;
 
 
@@ -114,12 +116,12 @@
             "remoteCurve"       : proof,
 
             //:areas
-            "ABD"               : given,
-            "ACE"               : given,
+            "ABD"               : givenArea,
+            "ACE"               : givenArea,
             "area-ABD"          : given,
             "area-ACE"          : given,
-            "Abd"               : proof,
-            "Ace"               : proof,
+            "Abd"               : proofArea,
+            "Ace"               : proofArea,
             "area-Abd"          : proof,
             "area-Ace"          : proof,
             //:linear areas

@@ -11,6 +11,9 @@
 
     function rgbToArray(rgbString) {
         const matches = rgbString.match(/\d+/g);
+        if (!matches || matches.length !== 3) {
+            throw new Error("Input must be in the format 'rgb(n1, n2, n3)' with exactly 3 numeric values.");
+        }
         return matches.map(Number);
     }
     
@@ -83,17 +86,18 @@
         //usually as a condition of a claim,
         //condition of the theorem,
         //given parameters of the claim or proof
-        fixedColors.given   = rgbToArray("rgb(0, 150, 0)");
+        fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
+        fixedColors.givenArea   = [0, 113, 0, 0.4];
 
         //relates to moving body, to an orbit
         fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
         fixedColors.orbit   = fixedColors.body;
         
-        fixedColors.orbitareaSample         = rgbToArray("rgb(0, 150, 0,  0.05)"); //P12
-        fixedColors.orbitarea               = rgbToArray("rgb(0, 150, 0,  0.1, 0.5)"); //P14 (in P12 sconf)
-        fixedColors.orbitareaHiddenStart    = rgbToArray("rgb(0, 150, 0,  0.001, 0.5)"); //P12
-        fixedColors.instanttriangle         = rgbToArray("rgb(0, 150, 200, 0.2, 0.5 )"); //P14 (in P12 sconf)
-        fixedColors.instanttriangleHiddenStart  = rgbToArray("rgb(0, 150, 200, 0.001, 0.5 )"); //P12
+        fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
+        fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
+        fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
+        fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
+        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
         fixedColors.time      = rgbToArray("rgb(0, 150, 200)");
         fixedColors.dtime     = fixedColors.time;
@@ -102,7 +106,8 @@
         //logical steps of the proof, auxilary constructs
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.proofHidden = rgbToArray("rgb(0, 0, 255, 0.05)"); //P17 (in P12 sconf)
+        fixedColors.proofArea   = [0, 0, 255, 0.4];
+        fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
         ///addendum has different color concepts
@@ -125,7 +130,7 @@
         }
         //neutral elements
         fixedColors.shadow  = rgbToArray("rgb(50, 50, 50)");
-        fixedColors.hidden  = rgbToArray("rgb(0, 0, 0, 0)");
+        fixedColors.hidden  = [0, 0, 0, 0];
 
 
         fixedColors.context = rgbToArray("rgb(0, 0, 0)");
@@ -140,9 +145,9 @@
 
         //From L20, L21
         fixedColors.static              = rgbToArray("rgb(0, 200, 255)");
-        fixedColors.staticHalfOpacity   = rgbToArray("rgb(0, 200, 255, 0.5)");
+        fixedColors.staticHalfOpacity   = [0, 200, 255, 0.5];
         fixedColors.core                = rgbToArray("rgb(255, 150, 0)");
-        fixedColors.coreHalfOpacity     = rgbToArray("rgb(255, 150, 0, 0.5)");
+        fixedColors.coreHalfOpacity     = [255, 150, 0, 0.5];
         fixedColors.aux                 = rgbToArray("rgb(255, 0, 255)");
         fixedColors.constructors        = rgbToArray("rgb(0, 0, 255)");
         fixedColors.ellipse             = rgbToArray("rgb(0, 150, 0)");
@@ -150,13 +155,13 @@
 
 
         //From L2, L3
-        fixedColors.difference  = rgbToArray("rgb(150, 50, 0, 0, 0.64)");
+        fixedColors.difference  = [150, 50, 0, 0, 0.64];
         fixedColors.base        = rgbToArray("rgb(0, 150, 0)");
         fixedColors.curve       = rgbToArray("rgb(0, 150, 0)");
         fixedColors.figure      = rgbToArray("rgb(0, 150, 0)");
 
-        fixedColors["figure-area"]              = rgbToArray("rgb(0, 150, 0, 0.32, 0.64)"),
-        fixedColors["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0, 0.7, 1)"),
+        fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],
+        fixedColors["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
 
         fixedColors["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
         fixedColors["circ-txt"]                 = [0, 80, 150, 0.7, 1],
