@@ -46,7 +46,7 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'deviation' ),
+                sDomF.getFixedColor( 'sagitta' ),
                 sDomF.getFixedColor( 'body' ),
               ];
             return colorThreadArray;
@@ -118,9 +118,9 @@
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-deviation tofill tobold hover-width"' +
+                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'deviation' ) + '; stroke:'+n2c( 'deviation' ) + ';"' +
+                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+ n2c( 'sagitta' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
