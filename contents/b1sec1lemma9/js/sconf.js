@@ -95,7 +95,6 @@
         const {
             given,
             proof,
-            result,
             hidden,
             givenArea,
             proofArea
@@ -106,7 +105,6 @@
         {
             given,
             proof,
-            result,
             hidden,
 
             //:curves
@@ -125,8 +123,8 @@
             "area-Abd"          : proof,
             "area-Ace"          : proof,
             //:linear areas
-            "Afd"               : result,
-            "Age"               : result,
+            "Afd"               : proof,
+            "Age"               : proof,
 
             "ABDPerACE"         : given,
             "AD2PerAE2"         : given,
@@ -216,10 +214,10 @@
         [
             { 'Ab' : { pcolor : proof } },
             { 'Ac' : { pcolor : proof } },
-            { 'Ad' : { pcolor : result } },
-            { 'Ae' : { pcolor : result, 'stroke-width' : 4 } },
+            { 'Ad' : { pcolor : proof } },
+            { 'Ae' : { pcolor : proof, 'stroke-width' : 4 } },
 
-            { 'Ag' : { pcolor : result, 'stroke-width' : 4, } },
+            { 'Ag' : { pcolor : proof, 'stroke-width' : 4, } },
 
             { 'ec' : { pcolor : proof } },
             { 'db' : { pcolor : proof } },

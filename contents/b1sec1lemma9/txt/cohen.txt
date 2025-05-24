@@ -39,7 +39,7 @@ Understand the curve ¦Abc¦¦ to be drawn similar to ¦ABC¦¦, and
 the straight line ¦Ag¦¦ to be drawn touching both curves at ¦A¦¦ and
 cutting the ordinates ¦DB¦¦, ¦EC¦¦, ¦db¦¦, and ¦ec¦¦ at ¦F¦¦, ¦G¦¦, ¦f¦¦, and ¦g¦¦.
 
-Then, with the ¦Ae-length¦length¦¦ ¦Ae¦¦ remaining the same,
+Then, with the length ¦Ae¦¦ remaining the same,
 let points ¦B¦¦ and ¦C¦¦ come together with point ¦A¦¦; and as the angle ¦Ac Ag¦cAg¦¦ vanishes,
 
 the curvilinear areas ¦Abd¦¦ and ¦Ace¦¦ will coincide with the
