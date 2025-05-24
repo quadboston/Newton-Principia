@@ -139,7 +139,7 @@
             var axisXLegend =
             [
                 {
-                        text    : BONUS ? 'Distance from force center, r' : 'SP (distance from force)', 
+                        text    : BONUS ? 'Distance from force center, r' : 'Distance from force (SP)', 
                         x       : BONUS ? -700 : -520,
                     y       : 25,
                     style   : {
