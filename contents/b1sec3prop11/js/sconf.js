@@ -352,7 +352,7 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pcolor : result,
+                pcolor : given,
                 letterAngle : -115,
                 letterRotRadius : 35,
                 draggableX  : true,
@@ -403,7 +403,7 @@
             // \\// Book's prop. 11
             //-----------------------------------------
 
-            { 'SP' : { pcolor : result }, },
+            { 'SP' : { pcolor : proof }, },
 
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
