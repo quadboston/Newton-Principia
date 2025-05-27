@@ -3,6 +3,13 @@
 
 ## 2025-5-31 [Blue Version 0.???]
 ### Improved core presentation
+* Multiple models
+    * Data text more readable; lines and curves more visible
+
+* Lemma 11
+    * dragger b takes priority except when B and b are at A
+    * dragger b cannot be moved too far away from B
+
 * Proposition 11
     * graph changed to only show estimated and actual force
 
