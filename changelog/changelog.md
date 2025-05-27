@@ -36,7 +36,8 @@
 
 * Lemma 11
     * refined data section
-    * broke proof and corollaries into submenus
+    * proof and corollaries broken into submenus
+    * changed to Cohen translation
 
 * Proposition 7
     * simplified diagram by not showing more than what is described
