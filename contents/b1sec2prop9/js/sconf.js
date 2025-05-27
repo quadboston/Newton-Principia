@@ -101,8 +101,8 @@
         //-------------------------------------------
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = false && FT;
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
+        sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;

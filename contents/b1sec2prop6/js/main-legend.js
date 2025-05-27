@@ -47,8 +47,8 @@
             ////**********************************************************************************
             //'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(rg.tForSagitta.val*2).toFixed(4)',
             'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(ssD.Dt*2).toFixed(4)',
-            'P<>sagitta<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.q2qix()].y[1].toFixed(4)',
-            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.q2qix()].y[0].toFixed(4)',
+            'P<>sagitta<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.P2gix()].y[1].toFixed(4)',
+            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.P2gix()].y[0].toFixed(4)',
             'none,_,"<_>"', //dummy row for spacing at foot
             'none,_,"<_>"' //dummy row for spacing at foot
         ];

@@ -18,6 +18,8 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        stdMod.poly2svgP11({});
+
         //todm this is a redundant step, graphArray is already
         //built and can be used
         let rgX = ssF.paintsCurve({

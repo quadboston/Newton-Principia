@@ -3,9 +3,8 @@
 ///models in propopositions 6-17 in Principia
 ( function() {
     var {
-        sn, mat, userOptions, hafa,
-        fconf, sData, ssD,
-        stdMod, sconf, rg, toreg,
+        sn,
+        ssD,stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -29,29 +28,27 @@
 
         /// point Q slider
         rg.Q.acceptPos = newPos => {
+            const qix = rg.P.qix;
             var Qqix = stdMod.gets_orbit_closest_point( newPos );
-            if( Qqix === rg.P.qix ) return;
+            if( Qqix === qix ) return;
             if( sconf.TIME_IS_FREE_VARIABLE ){
                 let tt = qix2orb[ Qqix ].timeAtQ;
-                let Dt = tt - qix2orb[ rg.P.qix ].timeAtQ;
+                let Dt = tt - qix2orb[ qix ].timeAtQ;
                 if( Dt < ssD.tgrid_step * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
                     sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
             } else {
                 const q = qix2orb[ Qqix ].q;
-                let Dq = q - qix2orb[ rg.P.qix ].q;
+                let Dq = q - qix2orb[ qix ].q;
                 if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
                 ssD.Dq = Dq;
             }
-            //recalculates dQ attached to orbit points,
-            //todm for now, does redundant job of rebuilding grids
-            stdMod.builds_dq8sagitta8deviation();
+            //:Dt or Dq changed
+            stdMod.builds_dq8sagit8displace({});
             stdMod.builds_orbit_data_graph();
             stdMod.model8media_upcreate();
+            return; //avoids repetition
         }
-        //=====================================================================
-        // \\// point Q slider
-        //=========================================================================
     }
 
 
@@ -78,18 +75,21 @@
             const x = r[0]-pos[0];
             const y = r[1]-pos[1];
             let min = x*x + y*y;
-            let qix_min = fromGraph ? point.qix : 0;
+            let qix_min = null;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
+                //if( point.invalid ) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;
-                if( min>d2 ){
+                if( qix_min === null || min>d2 ){
                     min = d2;
                     qix_min = fromGraph ? point.qix : qix;
                 }
             }
+            if( fromGraph ) return qix_min;
+ 
  
             const FINE_SEARCH_POINTS = 20;
             const fstart = qix_min-FINE_SEARCH_POINTS;
@@ -97,7 +97,17 @@
             ///refines the search
             for( let qix=fstart; qix<=fend; qix++ ){
                 const point = q2o[qix];
-                if( !point || point.plusQ === null ) continue;
+                if( 
+                    //we prefer sort out by "!" than
+                    //by limits 0 and array.length
+                    !point
+                    ||
+                    point.invalid
+                    
+                    //search for Q, for example, ignores
+                    //null flagged points
+                    //(fromGraph && point.invalid )
+                ) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];

@@ -13,11 +13,6 @@
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-        
-        //if one wants to separate BONUS from
-        //aspect addendum, this method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
-
         const BONUS = userOptions.showingBonusFeatures();
         stdMod.createsGraphFW_class({
             graphFW,
@@ -32,16 +27,6 @@
             graphAxisY,
             setsGraphTpClasses,
         });
-        //first array must be enabled
-        //but can be dynamically overridden,
-        /*
-        //done in lower framework
-        graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'sagitta', 'sample-force', 'body' ] :
-            [ 'force', 'sagitta', !'sample-force', !'body' ];
-                    //ccc( stdMod.graphFW_lemma.graphArrayMask );
-                    ccc( graphFW.graphArrayMask );
-        */
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -264,7 +249,6 @@
             });
         }
 
-
         function doDrawToolline()
         {
             return {
@@ -272,8 +256,8 @@
                     stroke : graphFW.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.q2qix(),
-                numberMarks : false, //true, 
+                abscissaIxValue : stdMod.P2gix(),
+                numberMarks : false,
             };
         }
 

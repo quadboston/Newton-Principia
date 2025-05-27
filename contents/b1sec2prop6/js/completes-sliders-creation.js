@@ -54,7 +54,6 @@
 
             cp.rgX.acceptPos = (newPos, move) => {
                 var REPELLING_DISTANCE = 0.01;
-                var returnValue = true;
                 //--------------------------------------------------------------
                 // //\\ preserves pivot's order along x and being them too close
                 //      to each other; note: order is reverse to axis x order,
@@ -91,7 +90,7 @@
                     ////redraw gapped orbit with pivots
                     return true;
                 }
-                return returnValue;
+                return true;
             };
         });
     }

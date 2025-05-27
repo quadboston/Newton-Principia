@@ -2,28 +2,8 @@
 	var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     var mcurve      = sn( 'mcurve', mat );
-
-    //----------------------------------------------------
-    // //\\ test,
-    //
-    //----------------------------------------------------
-    /*
-    var der = planeCurveDerivatives({
-        //circle
-        fun             : (x) => Math.sqrt( Math.abs( 1 - x*x ) ),
-    });
-    */
-    //----------------------------------------------------
-    // \\// test
-    //----------------------------------------------------
     mcurve.planeCurveDerivatives = planeCurveDerivatives;
     return;
-
-
-
-
-
-
 
 
     //Notation: ii,jj,kk right-coordinate-system orts,

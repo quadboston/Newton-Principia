@@ -103,13 +103,12 @@
 
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = true && FT;
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1000;
-        var DATA_GRAPH_STEPS = 500;
+        var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
         // \\// calculation algo parameters

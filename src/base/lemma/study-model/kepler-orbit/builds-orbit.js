@@ -102,6 +102,9 @@
         if( !has( sconf, 'RESHAPABLE_ORBIT' ) ){
             sconf.RESHAPABLE_ORBIT = 1;
         }
+        //todo start here apparen duplicate with other builder or
+        //svg object duplicates and leaks, this is seen when,
+        //we do not add ...P11 in media_upcreate basic,
         if( sconf.RESHAPABLE_ORBIT ){
             if( sconf.RESHAPABLE_ORBIT === 1 ){
                 ////blocks redraw forever

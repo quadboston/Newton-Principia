@@ -99,7 +99,6 @@
         //-------------------------------------------
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
-        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = false && FT;
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
         sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;

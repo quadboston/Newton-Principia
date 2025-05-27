@@ -36,7 +36,7 @@
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
         var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
-        //make program simpler than planeCurveDerivatives,
+        //make program simpler as planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
         var rgCurve = rg[ 'approximated-curve' ];
         var STEPS = rgCurve.stepsCount;

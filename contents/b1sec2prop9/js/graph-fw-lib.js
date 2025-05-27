@@ -10,15 +10,11 @@
         },
     });
     return;
+    
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-
-        //if one wants to separate BONUS and aspect, this
-        //method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
         const BONUS = userOptions.showingBonusFeatures();
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -39,238 +35,236 @@
             [ 'force', 'estforce', ];
         return graphFW;
 
-    ///this thing is not dynamic (missed in design),
-    ///but, colorThreadArray is accessible for reset
-    ///dynamically,
-    function doSetColorThreadArray()
-    {
-            let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
-                sDomF.getFixedColor( 'body' ),
-        ];
-            return colorThreadArray;
-    }
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset
+        ///dynamically,
+        function doSetColorThreadArray()
+        {
+                let colorThreadArray = [
+                    sDomF.getFixedColor( 'force' ),
+                    sDomF.getFixedColor( 'displacement' ),
+                    sDomF.getFixedColor( 'body' ),
+            ];
+                return colorThreadArray;
+        }
 
+        function setsGraphContainerAttributes( digramParentDom$ )
+        {
+                container$ = $$.div()
+                .addClass( 'chem-equiibr-graph-container' )
+                .to( $$.div().to( digramParentDom$ )
+                        .addClass( 'lost-diagram-parent' )
+                        //.css( 'position', 'absolute' )
 
-    function setsGraphContainerAttributes( digramParentDom$ )
-    {
-            container$ = $$.div()
-            .addClass( 'chem-equiibr-graph-container' )
-            .to( $$.div().to( digramParentDom$ )
-                    .addClass( 'lost-diagram-parent' )
-                    //.css( 'position', 'absolute' )
+                        //:this data sets outer dimensions of the graph
+                        .css( 'width', '400px' )
+                        .css( 'height', '230px' )
+                        .css( 'top', '0' )
+                        .css( 'left', '0' )
+                        .css( 'z-index', '111111' )
+                )
+                ;
+                //creates low tire api
+                graph_dimX = 1000;  //innerWidth
+                graph_dimY = 580;   //innerHeight
+                return {container$, graph_dimX, graph_dimY}
+        }
 
-                    //:this data sets outer dimensions of the graph
-                    .css( 'width', '400px' )
-                    .css( 'height', '230px' )
-                    .css( 'top', '0' )
-                    .css( 'left', '0' )
-                    .css( 'z-index', '111111' )
-            )
-            ;
-            //creates low tire api
-            graph_dimX = 1000;  //innerWidth
-            graph_dimY = 580;   //innerHeight
-            return {container$, graph_dimX, graph_dimY}
-    }
+        function setsGraphAxes()
+        {
+                const ADDENDUM = amode.aspect === 'addendum';
+                let n2c = sDomF.getFixedColor; //name to color
+                    
+            //==================================================
+            // //\\ calls api
+            //==================================================
+            //y-legend color; taken from first plot color:
+                var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
-    function setsGraphAxes()
-    {
-            const ADDENDUM = amode.aspect === 'addendum';
-            let n2c = sDomF.getFixedColor; //name to color
-                
-        //==================================================
-        // //\\ calls api
-        //==================================================
-        //y-legend color; taken from first plot color:
-            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
-
-        //axis x and legend x color:
-        //manually picked color, not from plot,
-            var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
-            //                'rgba(56,132,79,1)';
-        var axisYLegend =
-        [
-            {
-                    //"hover-width" decreases gigantict bold
-                    //together, tobold hover-width and tostroke can be redundant
-                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Force</tspan></text>',
-                x       : 40,
-                y       : 25,
-                style   : {
-                            'font-size' : 28 + 'px',
-                            'stroke' : yColor,
-                            'fill'   : yColor,
-                },
-            },
+            //axis x and legend x color:
+            //manually picked color, not from plot,
+                var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
+                //                'rgba(56,132,79,1)';
+            var axisYLegend =
+            [
                 {
-                    text    : ADDENDUM ?
-                                'Force -1/r³, est. force, speed, per their max.'
-
-                                :
-
-                                '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Actual</tspan>' +
-                                '<tspan> and </tspan>' +
-
-                                '<tspan class="tp-displacement tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
-                                '>Estimated' +
-                                '</tspan>' +
-
-                                '<tspan> forces (per their max)</tspan>' +
-                                '</text>',
-                x       : 250,
-                y       : 40,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : 'black',
-                            'fill'   : 'black',
+                        //"hover-width" decreases gigantict bold
+                        //together, tobold hover-width and tostroke can be redundant
+                        text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                    //overrides tp machinery
+                                    ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                    '>Force</tspan></text>',
+                    x       : 40,
+                    y       : 25,
+                    style   : {
+                                'font-size' : 28 + 'px',
+                                'stroke' : yColor,
+                                'fill'   : yColor,
+                    },
                 },
-            },
+                    {
+                        text    : ADDENDUM ?
+                                    'Force -1/r³, est. force, speed, per their max.'
 
-        ];
-        var axisXLegend =
-        [
-            {
-                        text    : 'Distance from force center, r', 
-                        x       : BONUS ? -700 : -520,
-                y       : 25,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : xColor,
-                            'fill' : xColor,
-                },
-            },
-            {
-                text    : '',
-                x       : 50,
-                y       : -20,
-                style   : {
-                            'font-size' : '23',
-                            'stroke' : xColor,
-                            'fill' : xColor,
-                },
-            },
-        ];
-        return { yColor, xColor, axisYLegend, axisXLegend, };
-    }
+                                    :
 
-    function plotLabels_2_plotsPars( colorThreadArray )
-    {
-        const ADDENDUM = amode.aspect === 'addendum';
-        return [
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '1/r³',
-                    fontShiftX : -222,
-                    fontShiftY : 0,
-                style : {
-                        'font-size' : '30px',
-                    'stroke'  : colorThreadArray[0],
-                    //'fill' : colorThreadArray[0],
+                                    '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                    //overrides tp machinery
+                                    ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                    '>Actual</tspan>' +
+                                    '<tspan> and </tspan>' +
+
+                                    '<tspan class="tp-displacement tofill tobold hover-width"' +
+                                    //overrides tp machinery
+                                    ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
+                                    '>Estimated' +
+                                    '</tspan>' +
+
+                                    '<tspan> forces (per their max)</tspan>' +
+                                    '</text>',
+                    x       : 250,
+                    y       : 40,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : 'black',
+                                'fill'   : 'black',
+                    },
                 },
-                //overrides tp class
-                //plotStyle : {
-                //    'stroke-width'  : '5',   //optional
-                //},
-            },
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption :  'est. force',
-                fontShiftX : -33,
-                fontShiftY : 15,
-                style : {
-                        'font-size' : '30px',
-                    'stroke'  : colorThreadArray[1],
+
+            ];
+            var axisXLegend =
+            [
+                {
+                            text    : 'Distance from force center, r', 
+                            x       : BONUS ? -700 : -520,
+                    y       : 25,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
                 },
-            },
-            ///optional
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'v',
-                fontShiftX : 40,
-                fontShiftY : 15,
-                style : {
-                        'font-size' : '30px',
-                        'stroke'  : colorThreadArray[2],
+                {
+                    text    : '',
+                    x       : 50,
+                    y       : -20,
+                    style   : {
+                                'font-size' : '23',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
+                },
+            ];
+            return { yColor, xColor, axisYLegend, axisXLegend, };
+        }
+
+        function plotLabels_2_plotsPars( colorThreadArray )
+        {
+            const ADDENDUM = amode.aspect === 'addendum';
+            return [
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                        pcaption : '1/r³',
+                        fontShiftX : -222,
+                        fontShiftY : 0,
+                    style : {
+                            'font-size' : '30px',
+                        'stroke'  : colorThreadArray[0],
+                        //'fill' : colorThreadArray[0],
+                    },
+                    //overrides tp class
+                    //plotStyle : {
+                    //    'stroke-width'  : '5',   //optional
+                    //},
+                },
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption :  'est. force',
+                    fontShiftX : -33,
+                    fontShiftY : 15,
+                    style : {
+                            'font-size' : '30px',
+                        'stroke'  : colorThreadArray[1],
                     },
                 },
                 ///optional
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'sagitta',
+                    pcaption : 'v',
                     fontShiftX : 40,
                     fontShiftY : 15,
                     style : {
-                        'font-size' : '30px',
-                    'stroke'  : colorThreadArray[2],
+                            'font-size' : '30px',
+                            'stroke'  : colorThreadArray[2],
+                        },
+                    },
+                    ///optional
+                    {
+                        fraqX : 0.01,
+                        //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                        pcaption : 'sagitta',
+                        fontShiftX : 40,
+                        fontShiftY : 15,
+                        style : {
+                            'font-size' : '30px',
+                        'stroke'  : colorThreadArray[2],
+                    },
                 },
-            },
-        ];
-    }
+            ];
+        }
 
-    ///this thing fails if not to synch it with mask,
-    ///the unmasked indices must be the same as here:
-    function setsGraphTpClasses()
-    {
-            const svg = graphFW.fw.plotIx2plotSvg;
-            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
-            svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
-            svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
-    }
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
+        function setsGraphTpClasses()
+        {
+                const svg = graphFW.fw.plotIx2plotSvg;
+                $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+                $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
+                svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+                svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
+        }
 
-    function doDrawToolline()
-    {
-        return {
-            toollineStyle : {
-                //stroke : sData.colorThreadArray[2],
-                'stroke-width' : 3,
-            },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_STEPS
-                                /sconf.Q_STEPS ), //? default = stdMod.q2qix(),
-            numberMarks : true, 
-        };
-    }
+        function doDrawToolline()
+        {
+            return {
+                toollineStyle : {
+                    //stroke : sData.colorThreadArray[2],
+                    'stroke-width' : 3,
+                },
+                abscissaIxValue : stdMod.P2gix(),
+                numberMarks : true, 
+            };
+        }
 
-    ///horizontal axis x pars, font, etc,
-    function graphAxisX( xColor )
-    {
-        return {
-            'font-size'     : '18px',
-            fontShiftX      : -12, //in media scale
-            fontShiftY      : +14,
-            decimalDigits   : 3,
-            stroke          : xColor,
-            fill            : xColor,
-           'stroke-width'   : '0.2',
-        };
-    }
+        ///horizontal axis x pars, font, etc,
+        function graphAxisX( xColor )
+        {
+            return {
+                'font-size'     : '18px',
+                fontShiftX      : -12, //in media scale
+                fontShiftY      : +14,
+                decimalDigits   : 3,
+                stroke          : xColor,
+                fill            : xColor,
+            'stroke-width'   : '0.2',
+            };
+        }
 
-    function graphAxisY( yColor )
-    {
-        return {
-            'font-size'     : '20px',
-            fontShiftX      : -45, //in media scale
-            fontShiftY      : +5,
-            decimalDigits   : 1,
-            stroke          : yColor,
-            fill            : yColor,
-           'stroke-width'   : '1',
-        };
-    }
+        function graphAxisY( yColor )
+        {
+            return {
+                'font-size'     : '20px',
+                fontShiftX      : -45, //in media scale
+                fontShiftY      : +5,
+                decimalDigits   : 1,
+                stroke          : yColor,
+                fill            : yColor,
+            'stroke-width'   : '1',
+            };
+        }
     }
 }) ();
 

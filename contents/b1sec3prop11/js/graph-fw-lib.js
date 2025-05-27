@@ -239,13 +239,12 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_STEPS
-                                /sconf.Q_STEPS ), //? default = stdMod.q2qix(),
+                abscissaIxValue : stdMod.P2gix(),
                 numberMarks : true, 
             };
         }
 
-            ///horizontal axis x pars, font, etc,
+        ///horizontal axis x pars, font, etc,
         function graphAxisX( xColor )
         {
             return {

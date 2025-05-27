@@ -60,11 +60,6 @@
             rg.S.pos[1] = newPos[1];
             
             stdMod.rebuilds_orbit();
-
-            //stdMod.buildsOrbit(); //and its relation to S
-            //stdMod.builds_dq8sagitta8deviation();
-            //stdMod.builds_orbit_data_graph();
-            
             stdMod.model8media_upcreate();
         }
     };

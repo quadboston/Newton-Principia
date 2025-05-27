@@ -4,26 +4,27 @@
 ///grids of t and q, time t and curve parameter q,
 ( function() {
     var {
-        sn, haz, mcurve, mat, userOptions,
-        stdMod,  amode, rg, sconf, ssD, ssF, sDomF,
+        sn,
+        stdMod, amode, sconf, ssD, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {
-            builds_dq8sagitta8deviation,
+            builds_dq8sagit8displace,
         },
     });
     sn( 'tix2orbit', ssD, [] );
-    const qix2orb = sn( 'qix2orb', ssD, [] );
-    const graphArray = sn( 'graphArray', stdMod, [] );
-    //const BONUS = userOptions.showingBonusFeatures();
+    sn( 'qix2orb', ssD, [] );
+    sn( 'graphArray', stdMod, [] );
+    sData.ULTIM_MAX = 2;
+    sData.ULTIM_INSTANT = 1;
+    sData.ULTIM_MIDDLE = 0;
     return;
 
 
-    function builds_dq8sagitta8deviation() {
+    function builds_dq8sagit8displace({ ulitmacy }){
         const ADDENDUM = amode.aspect === 'addendum';
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CR = sconf.CURVE_REVOLVES;
-        const CS = sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
         const QS = sconf.Q_STEPS;
         const q2xy = stdMod.q2xy;
         const qix2orb = ssD.qix2orb;
@@ -34,22 +35,41 @@
         const qgrid_step = sconf.qgrid_step;
         const trange = ssD.trange;
         const qrange = sconf.curveQRange;
-        
-        const Dt = ssD.Dt;  //optional
-        var Dq = ssD.Dq;    //optional
-        var displMax = 0;
+        ulitmacy = !ulitmacy ? 0 : ulitmacy;
+        var MAKE_RANGE = null;
+        switch( ulitmacy ){
+            case sData.ULTIM_MAX:
+                ////here we set graph range when Dq or Dt
+                ////take their maximums,
+                ////this makes abscissa range constant
+                ////whan Dq and Dt do change,
+                var Dt = sconf.DT_SLIDER_MAX;
+                var Dq = sconf.DQ_SLIDER_MAX;
+                //we are going to rebuid diagram abscissa range:
+                MAKE_RANGE = true;
+                ssD.qix_graph_start = 0;
+                ssD.qix_graph_end = QS;
+                break;
+            case sData.ULTIM_MIDDLE:
+                var Dt = ssD.Dt;
+                var Dq = ssD.Dq;
+                break;
+            case sData.ULTIM_INSTANT:
+                var Dt = ssD.tgrid_step*(SACC+1);
+                var Dq = sconf.DQ_SLIDER_MIN;
+                break;
+        }
         for( let qix=0; qix<=QS; qix++ ) {
             const bP = qix2orb[ qix ]; //body point data
-           
+            MAKE_RANGE && ( bP.invalid = false );
             //**********************************************
             // //\\ q is free variable
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= bP.q+qgrid_step*2 ){
-                    bP.plusQ = null;
-                    if( ssD.qix_graph_lim === null ){
-                        ssD.qix_graph_lim = qix;
+                if( sconf.orbit_q_end <= plusQ ){
+                    if( MAKE_RANGE ){
+                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                     }
                 } else {
                     bP.plusQ = plusQ;
@@ -58,11 +78,10 @@
                         bP
                     });
                     bP.displacement = displ;
+                    if( ulitmacy === sData.ULTIM_INSTANT ){
+                        bP.instant_displacement = displ;
+                    }
                     displMax = Math.max( Math.abs(displ), displMax );
-                    //start here
-                }
-                if( QS === qix && ssD.qix_graph_lim === null ){
-                    ssD.qix_graph_lim = qix+1;
                 }
                 continue;
             }
@@ -71,31 +90,12 @@
             //**********************************************
 
             
-            if( ssD.qix_graph_lim !== null && ssD.qix_graph_lim <= qix ){
-                bP.plusQ = null;
-                continue;
-            }
-
-            //todm This may happens bs of float errors: making them safe,
-            if( sconf.orbit_q_end <= bP.q+qgrid_step*2 && !CR ){
-                bP.plusQ = null;
-                ssD.qix_graph_lim = ssD.qix_graph_lim === null ?
-                                    qix : ssD.qix_graph_lim;
-                continue;
-            }
-                
+            //**********************************************
+            // //\\ t is a free variable
+            //**********************************************
             const bT = bP.timeAtQ; //body time
             const rr = bP.rr; //abs
             const r2 = bP.r2; //rel
-            /*
-             //slider Q prevents this from happen:
-                if( Dt < tgrid_step*SACC ) {
-                ////this does not work to get accurate sagitta,
-                ////possibly because of non-linear dependency
-                ////of Dt * bP.dq_dt
-                var plusQ = bP.q + Dt * bP.dq_dt;
-                bP.plusQ = plusQ;
-            */
             {
                 let plusT = bT + Dt;
                 plusT = CR ? ( trange + plusT ) % trange : plusT;
@@ -105,10 +105,10 @@
                 if( plusTix >= t2o_len ) {
                     plusTix = t2o_len -1;
                     plusT = plusTix * tgrid_step;
-                    bP.plusQ = null;
-                    if( ssD.qix_graph_lim === null ){
-                        ////relies on running 
-                        ssD.qix_graph_lim = qix;
+                    if( MAKE_RANGE ){
+                        plusQ = null;
+                        bP.invalid = true;
+                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                     }
                 } else {
                     const plusQix = tix2orbit[plusTix].qix;
@@ -122,30 +122,27 @@
                     bP.Dq = CR ? (Dq + qrange )%qrange : Dq;
                 }
             }
-            ///prefents empty graph array, sets limit for this array:
-            if( QS === qix && ssD.qix_graph_lim === null ){
-                ssD.qix_graph_lim = qix+1;
-            }
-            if( bP.plusQ !== null ){
-                bP.displacement = stdMod.calcs__displacement({ 
+
+            if( plusQ !== null ){
+                const displ = stdMod.calcs__displacement({ 
                     parq: plusQ,
                     bP
                 });
+                bP.displacement = displ;
             }
             
-            
-            ///todm: unfinished work: must block time values below time range:
-            ///do this via bP.plusQ = null;
-            if( bP.plusQ !== null && CS ){
+            if( plusQ !== null ){
                 const rrplus = bP.rrplus = q2xy( plusQ );
                 let minusT = bT - Dt;
                 minusT =  CR ? ( trange + minusT ) % trange : minusT;
                 const minusTix = Math.floor( minusT/tgrid_step );
                 if( minusTix < 1 ) {
-                    bP.plusQ = null;
-                    //ccc( bP.qix +  ' minusTix=' + minusTix );
+                    if( MAKE_RANGE ){
+                        ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
+                        bP.invalid = true;
+                    }
                     continue;
-                }
+                } 
                 const minusQix = tix2orbit[minusTix].qix;
                 const minusP = qix2orb[ minusQix ];
                 const minusTQix = minusP.timeAtQ;
@@ -160,10 +157,17 @@
                 //when displacement is parallel to rrr, then sign > 0
                 const rrr = bP.rrr;
                 const sign = Math.sign( rrr[0]*s0 + rrr[1]*s1 );
-                bP.sagitta = sign * Math.sqrt( s0*s0+s1*s1 );
+                const sagittaAbs = Math.sqrt( s0*s0+s1*s1 );
+                bP.sagitta = sign * sagittaAbs;
                 bP.sagittaVector = [s0, s1];
+                if( ulitmacy === sData.ULTIM_INSTANT ){
+                    bP.instant_sagitta = bP.sagitta;
+                }
             }
         }
+        //**********************************************
+        // \\// t is a free variable
+        //**********************************************
     }
 }) ();
 

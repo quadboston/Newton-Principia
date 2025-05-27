@@ -1,95 +1,106 @@
 ( function() {
     var {
         sn, haz, userOptions,
-        amode, stdMod, sconf, ssD,
+        rg, amode, stdMod, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
             builds_orbit_data_graph,
+            P2gix,
         },
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
     const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
-    //usage sample: const BONUS = !!userOptions.showingBonusFeatures();
     return;
 
+
+    function P2gix(){
+        const qix = rg.P.qix
+        const gix = qix2orb[ qix ].gix;
+        return gix;
+    }
+    
 
     function builds_orbit_data_graph()
     {
         const ADDENDUM = amode.aspect === 'addendum';
         const QS = sconf.Q_STEPS;
         const DS = sconf.DATA_GRAPH_STEPS;
-        const CS = sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
-        const fl_fun = haz( sconf, 'force_law' ) || null;
+        const fl_fun = sconf.force_law;
         const dataPeriod = Math.max( 1, Math.floor( QS/DS ) );
 
         stdMod.graphFW_lemma.graphArray = graphArray;
         graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
-        const glim = ssD.qix_graph_lim;
-        
-        var forceMax = 0;
+        const gstart = ssD.qix_graph_start;
+        const gend = ssD.qix_graph_end;
         var displMax = 0;
         var sagittaMax = 0;
+        var instantForceMax = 0;
         var speedMax = 0;
-        for( let qix=0; qix<glim; qix++ ){
+        for( let qix=gstart; qix<=gend; qix++ ){
+            const bP = qix2orb[ qix ];
+            const displacement = bP.displacement;
+            const sagitta = bP.sagitta;
+            const ds_dt = bP.ds_dt;
+            if( fl_fun ){
+                var instantForce = fl_fun(bP);
+            } else if( sconf.TIME_IS_FREE_VARIABLE ){
+                var instantForce = bP.instant_sagitta;
+            } else {
+                var instantForce = bP.instant_displacement;
+            }
+            bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===QS ){
-                const bP = qix2orb[ qix ];
-                //if( bP.plusQ === null )
-                //    ccc( bP.qix );
-                if( bP.plusQ === null ) continue;
-                
-                const displacement = bP.displacement;
-                const sagitta = bP.sagitta;
-                const ds_dt = bP.ds_dt;
-                if( fl_fun ){
-                    var instantForce = fl_fun( bP  );
-                } else if( sconf.TIME_IS_FREE_VARIABLE ) {
-                    var instantForce = bP.instant_sagitta;
-                }
-
-                forceMax = Math.max( forceMax, Math.abs(instantForce) );
-                displMax = Math.max( displMax, Math.abs(displacement) );
+                sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
+                displMax = Math.max( Math.abs( displacement ), displMax );
                 speedMax = Math.max( speedMax, ds_dt );
-                if( CS ) {
-                    sagittaMax = Math.max( sagittaMax, Math.abs(sagitta) );
-                }
-
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
                     x : bP.r,
-                    y : [
-                        instantForce,
-                        displacement,
-                        ds_dt,
-                        sagitta,
-                    ],
                 };
                 graphArray.push( graphColumn );
             }
+            bP.gix = Math.max(0,graphArray.length-1);
         }
 
         //------------------------------------------
-        // //\\ resets forceGraphArray
+        // //\\ resets graphArray
         //------------------------------------------
         var arrLen = graphArray.length;
-        const SAGITTA = CS && ADDENDUM;
+        const instantForceMax1 = 1/instantForceMax;
+        const displMax1 = 1/displMax;
+        const sagittaMax1 = 1/sagittaMax;
+        const speedMax1 = 1/speedMax;
         for( var gix = 0; gix<arrLen; gix++ ){
-            const y = graphArray[ gix ].y;
-            y[0] = y[0]/forceMax * ( ADDENDUM ? 1 : Math.sign(y[0]) );
-            y[1] = y[1]/displMax * ( ADDENDUM ? 1 : Math.sign(y[1]) );
-            ADDENDUM && ( y[2] /= speedMax );
-            y[3] = y[3]/forceMax * ( ADDENDUM ? 1 : Math.sign(y[3]) );
+            const ga = graphArray[ gix ];
+            const qix = ga.qix;
+            const bP = qix2orb[ qix ];
+            bP.gix = gix;
+            let instf = bP.instantForce;
+            instf = instf * instantForceMax1 * (ADDENDUM ? 1 : Math.sign(instf));
+            let disp = bP.displacement;
+            disp *= displMax1 * ( ADDENDUM ? 1 : Math.sign(disp) );
+            let ds_dt = bP.ds_dt;
+            ds_dt *= speedMax1;
+            let sagitta = bP.sagitta;
+            sagitta *= sagittaMax1 * ( ADDENDUM ? 1 : Math.sign(sagitta) );
+            ga.y = [
+                instf,
+                disp,
+                ds_dt,
+                sagitta,
+            ];
         }
         stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
             [ 
                 'force',
                 'displacement',
                 'body',
-                //blocks at times when algo breaks, 'sagitta'
-                CS && ssD.Dt > ssD.tgrid_step*sconf.SAGITTA_ACCURACY_LIMIT,
+                sconf.TIME_IS_FREE_VARIABLE && 'sagitta',
             ] :
             [ 
                 'force',
@@ -99,7 +110,7 @@
         //stdMod.graphFW_lemma.colorThreadArray[0] =
         //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         //------------------------------------------
-        // \\// resets forceGraphArray
+        // \\// resets graphArray
         //------------------------------------------
     }
 }) ();

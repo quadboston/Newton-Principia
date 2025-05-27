@@ -3,7 +3,7 @@
         sn, $$, nsmethods, nssvg, mcurve, integral,
         mat, has, userOptions,
         ssF, ssD, sData,
-        stdMod, sconf, rg, toreg,
+        amode, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -21,9 +21,10 @@
     function model_upcreate()
     {
         const BONUS = userOptions.showingBonusFeatures();
+        const ADDENDUM = amode.aspect === 'addendum';
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
-        stdMod.builds_dq8sagitta8deviation();
+        //stdMod.builds_dq8sagit8displace({});
         const Porb = ssD.qix2orb[ rg.P.qix ];
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
@@ -38,18 +39,17 @@
         const Rc = R; //curvature radius
 
         if( solvable ){
-            const rplus = Porb.rrplus;
-            const rminus = rg.rrminus.pos = Porb.rrminus;
+            const rrplus = Porb.rrplus;
+            const rrminus = rg.rrminus.pos = Porb.rrminus;
             rg.Q.q = Porb.plusQ;
             rg.Q.q_minus = Porb.minusQ;
-            rg.Q.pos[0] = rplus[0];
-            rg.Q.pos[1] = rplus[1];
+            rg.Q.pos[0] = rrplus[0];
+            rg.Q.pos[1] = rrplus[1];
             rg.QtimeDecor.caption = BONUS ? 'Δt=' + (2*ssD.Dt).toFixed(5) : '';
             rg.QtimeDecor.pos = Porb.rrplus;
-            rg.sagitta.pos = Porb.sagittaVector;
-            const sidePlus = [ rplus[0] - rr0[0], rplus[1] - rr0[1] ];
-            const sideMinus = [ rminus[0] - rr0[0], rminus[1] - rr0[1] ];
-            const chord = rg.chord = [ sidePlus[0] - sideMinus[0], sidePlus[1] - sideMinus[1], ];
+            let sagV = Porb.sagittaVector;
+            rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
+            const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
             //R = parallel-projection of Q to tangent
@@ -108,6 +108,7 @@
         // //\\ graph
         //------------------------------------------------
         stdMod.graphFW_lemma.graphArrayMask[1] = solvable;
+        stdMod.graphFW_lemma.graphArrayMask[3] = solvable && ADDENDUM;
         {
             let graphArg = {
                 //drawDecimalY : true,

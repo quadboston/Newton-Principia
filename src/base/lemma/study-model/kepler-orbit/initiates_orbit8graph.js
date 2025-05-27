@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, nspaste, haff, haz,
-        rg, stdMod, sconf, ssD,
+        rg, stdMod, sconf, ssD, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -63,36 +63,12 @@
         stdMod.recreates_q2xy();
         stdMod.buildsOrbit();
         stdMod.poly2svgP11();
-        if( sconf.TIME_IS_FREE_VARIABLE ) {
-            stdMod.builds_orbit_time_grid();
-            const Dt_stashed = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
-          
-            //establishes limit for q:
-            ssD.qix_graph_lim = null;
-            ssD.Dt = sconf.DT_SLIDER_MAX;
-            //c cc( 'DT_MAX='+ssD.Dt.toFixed(8) );
-            stdMod.builds_dq8sagitta8deviation();
-            
-            //gets instant sagitta
-            ssD.Dt = ssD.tgrid_step*(SACC+1);
-            //c cc( 'DT_MIN='+ssD.Dt.toFixed(8) );
-            stdMod.builds_dq8sagitta8deviation();
-            for( var ix = 0; ix<=QS; ix++ ){
-                const bP = qix2orb[ ix ];
-                bP.instant_sagitta = bP.sagitta;
-                //not in use yet:
-                //bP.instant_sagittaVector= bP.sagittaVector;
-            }
-           
-            //restores current Dt:
-            ssD.Dt = Dt_stashed;
-            //c cc( 'DT='+ssD.Dt.toFixed(8) );
-            stdMod.builds_dq8sagitta8deviation();
-        } else {
-            ssD.qix_graph_lim = null;
-            ssD.Dq = sconf.Dq0;
-            stdMod.builds_dq8sagitta8deviation();
-        }
+        sconf.TIME_IS_FREE_VARIABLE && stdMod.builds_orbit_time_grid();
+        ssD.Dq = sconf.Dq0;
+        ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
+        stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });
+        stdMod.builds_dq8sagit8displace({ulitmacy:sData.ULTIM_INSTANT});
+        stdMod.builds_dq8sagit8displace({});
         stdMod.builds_orbit_data_graph();
     }
 }) ();
