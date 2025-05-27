@@ -81,27 +81,19 @@
 
         rg.b.dragPriority = 3; 
         sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
-            .acceptPos = function( newPos ) {                
-
-                // limit so AB2:Ab2 is never > 10
-                let AB2Ab2 = rg.AB.abs2/rg.Ab.abs2;
-                
+            .acceptPos = function( newPos ) {  
                 ///restricts point b
                 if( newPos[0] < 0.000001 ) {
                     newPos[0] = 0.0000001;
                 }
 
-                ///keeps point b "in existing ratio" ratio_bxBx
+                // limit so AB2:Ab2 is never > 10
+                let AB2Ab2 = rg.AB.abs2/rg.Ab.abs2; // abs2 is length squared
                 if(newPos[0] < rg.b.pos[0] && AB2Ab2 > 10) {
-                    var ratio_bxBx = rg.B.pos[0]/rg.b.pos[0];
-                    let Bx_original = rg.B.pos[0];
-                    rg.B.pos[0] = newPos[0]*ratio_bxBx;
-                    rg.B.pos[1] = newPos[1]*ratio_bxBx;
-                    rg.D.pos[0] = rg.D.pos[0] - (Bx_original - rg.B.pos[0]);
-                    if(rg.D.pos[0] < 0) rg.D.pos[0] = 0;
+                    return false;
                 }
 
-                ///makes sure b in limits
+                ///makes sure b can't go beyond B
                 if( rg.B.pos[0] < newPos[0] ) {
                     newPos[0] = rg.B.pos[0];
                 }
