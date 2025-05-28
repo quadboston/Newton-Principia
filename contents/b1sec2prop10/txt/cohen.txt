@@ -5,9 +5,9 @@
   "logic_phaseCaption" : "Problem 5"
 }
 *..*
-Let a ¦body P¦body¦¦ revolve in an ellipse; it is required to find the law
+Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
 of the centripetal
-¦force¦¦ tending toward the ¦O¦center of the ellipse¦¦
+¦force¦¦ tending toward the ¦O¦center of the ellipse¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
 
