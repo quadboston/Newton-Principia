@@ -131,7 +131,6 @@
             proof,
             force,
             invalid,
-            result,
             hidden,
 
             estimatedForce,
@@ -147,7 +146,6 @@
             estimatedForce,
             given,
             proof,
-            result,
             hidden,
             context,
             curvature,
@@ -242,7 +240,7 @@
 
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : given,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -362,7 +360,7 @@
         [
             { 'PV' : { pcolor : curvature }, },
             //{ 'SA' : { pcolor : context }, },
-            { 'SP' : { pcolor : result }, },
+            { 'SP' : { pcolor : given }, },
 
             { 'PY' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },

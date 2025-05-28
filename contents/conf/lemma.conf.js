@@ -8,6 +8,14 @@
     //todm ... merge some fconf and sconf ... anyway, they do ? override from URL-query,
     return;
     
+
+    function rgbToArray(rgbString) {
+        const matches = rgbString.match(/\d+/g);
+        if (!matches || matches.length !== 3) {
+            throw new Error("Input must be in the format 'rgb(n1, n2, n3)' with exactly 3 numeric values.");
+        }
+        return matches.map(Number);
+    }
     
     function doesConfigLemma()
     {
@@ -73,76 +81,84 @@
         //-Many more similar color variables could likely be combined together.
 
         // background color used to highlight text and table rows on hover
-        fixedColors.highlight = [234, 234, 234];
+        fixedColors.highlight = rgbToArray("rgb(234, 234, 234)");
 
         //usually as a condition of a claim,
         //condition of the theorem,
         //given parameters of the claim or proof
-        fixedColors.given   = [0, 150, 0];
+        fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
+        fixedColors.givenArea   = [0, 113, 0, 0.4];
 
         //relates to moving body, to an orbit
-        fixedColors.body    = [0, 150, 0];
+        fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
         fixedColors.orbit   = fixedColors.body;
         
         fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
         fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
         fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
         fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
-        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ]; //P12
+        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-        fixedColors.time      = [0, 150, 200];
+        fixedColors.time      = rgbToArray("rgb(0, 150, 200)");
         fixedColors.dtime     = fixedColors.time;
-        fixedColors.distance  = [60, 20, 0];
+        fixedColors.distance  = rgbToArray("rgb(60, 20, 0)");
         
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = [0, 0, 255];
+        fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
+        fixedColors.proofArea   = [0, 0, 255, 0.4];
         fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
-        fixedColors.result      = [100, 0, 0];
+        fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
         ///addendum has different color concepts
         if( userOptions.showingBonusFeatures() ) {
             ////swaps colors
-            fixedColors.invalid = [0, 0, 0];
-            fixedColors.force   = [250, 0, 0];
+            fixedColors.invalid = rgbToArray("rgb(0, 0, 0)");
+            fixedColors.force   = rgbToArray("rgb(250, 0, 0)");
+
+            fixedColors.forceMove       = [150, 50, 0];
+            fixedColors.speed           = rgbToArray("rgb(150, 120, 0)");
         } else {
             //alert, invalid user actions
-            fixedColors.invalid = [250, 0, 0];
+            fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
             //force, energy
-            fixedColors.force   = [200, 150, 0];
+            fixedColors.force   = rgbToArray("rgb(200, 150, 0)");
             //conclusion of the proof
+
+            fixedColors.forceMove       = fixedColors.force;
+            fixedColors.speed           = rgbToArray("rgb(90, 90, 90)");
         }
         //neutral elements
-        fixedColors.shadow  = [50, 50, 50];
+        fixedColors.shadow  = rgbToArray("rgb(50, 50, 50)");
         fixedColors.hidden  = [0, 0, 0, 0];
 
 
-        fixedColors.context = [0, 0, 0];
+        fixedColors.context = rgbToArray("rgb(0, 0, 0)");
 
-        fixedColors.estimatedForce  = [200, 0, 200];
+        fixedColors.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
         fixedColors.sagitta         = fixedColors.estimatedForce;
-        fixedColors.curvature       = [200, 40, 200];
-        fixedColors.chord           = [0, 0, 255];
-        fixedColors.attention       = [200, 200, 0];
+        fixedColors.curvature       = rgbToArray("rgb(200, 40, 200)");
+        fixedColors.chord           = rgbToArray("rgb(0, 0, 255)");
+        fixedColors.attention       = rgbToArray("rgb(200, 200, 0)");
 
 
 
         //From L20, L21
-        fixedColors.static              = [0, 200, 255];
+        fixedColors.static              = rgbToArray("rgb(0, 200, 255)");
         fixedColors.staticHalfOpacity   = [0, 200, 255, 0.5];
-        fixedColors.core                = [255, 150, 0];
+        fixedColors.core                = rgbToArray("rgb(255, 150, 0)");
         fixedColors.coreHalfOpacity     = [255, 150, 0, 0.5];
-        fixedColors.aux                 = [255, 0, 255];
-        fixedColors.constructors        = [0, 0, 255];
-        fixedColors.ellipse             = [0, 150, 0];
+        fixedColors.aux                 = rgbToArray("rgb(255, 0, 255)");
+        fixedColors.constructors        = rgbToArray("rgb(0, 0, 255)");
+        fixedColors.ellipse             = rgbToArray("rgb(0, 150, 0)");
 
 
 
         //From L2, L3
         fixedColors.difference  = [150, 50, 0, 0, 0.64];
-        fixedColors.base        = [0, 150, 0];
-        fixedColors.curve       = [0, 150, 0];
-        fixedColors.figure      = [0, 150, 0];
+        fixedColors.base        = rgbToArray("rgb(0, 150, 0)");
+        fixedColors.curve       = rgbToArray("rgb(0, 150, 0)");
+        fixedColors.figure      = rgbToArray("rgb(0, 150, 0)");
 
         fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],
         fixedColors["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
@@ -161,11 +177,9 @@
 
         //P1 (Shared with P2)
         fixedColors.freeMove        = [0, 150, 0];
-        fixedColors.forceMove       = [150, 50, 0];
         fixedColors.diagram         = [150, 0, 90];
         fixedColors.path            = [0, 0, 150];
         fixedColors.sagittaeChords  = fixedColors.sagitta;
-        fixedColors.speed           = [150, 120, 0]; 
 
         fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
         fixedColors["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],

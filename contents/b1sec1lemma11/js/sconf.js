@@ -160,7 +160,7 @@
 
             J : {
                 pos: [A[0], 584],
-                pcolor : result,
+                pcolor : given,
                 letterAngle : 180,
                 letterRotRadius : 20, 
             },
@@ -200,7 +200,7 @@
             { 'bd' : { pcolor : proof }, },
             { 'bg' : { pcolor : proof }, },
 
-            { 'AJ' : { pcolor : result }, },
+            { 'AJ' : { pcolor : given }, },
         ];
 
         //making size to better fit lemma's diagram

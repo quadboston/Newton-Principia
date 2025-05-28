@@ -83,7 +83,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
+            var xColor = 'rgba(0,0,0,1)';
 
             var axisYLegend =
             [

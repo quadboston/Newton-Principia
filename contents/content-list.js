@@ -111,21 +111,6 @@
             annotation : "",
         },
 
-
-        /*
-        {   sappId : 'b1sec3lemma13',
-            book : 'Book 1',
-            caption : 'Sec. 3. Lemma 13.',
-            annotation : "",
-        },
-
-        {   sappId : 'b1sec3lemma14',
-            book : 'Book 1',
-            caption : 'Sec. 3. Lemma 14.',
-            annotation : "",
-        },
-        */
-
         {   sappId : 'b1sec3prop13',
             book : 'Book 1',
             caption : 'Sec. 3, Proposition 13',
