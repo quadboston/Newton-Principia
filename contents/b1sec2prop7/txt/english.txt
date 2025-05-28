@@ -6,7 +6,7 @@
   "menuCaption" : "Text"
 }
 *..*
-Let a ¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
+Let a ¦P¦body¦¦ revolve in the ¦orbit¦circumference of a circle¦¦; it is required to find the law
 of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
