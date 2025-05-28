@@ -138,7 +138,7 @@
         //interval of t to construct an arc for
         //Newton's sagitta
         //interval of t to construct an arc for Newton's sagitta
-        var saggitaDt = 0.19;
+        var saggitaDt = 0.4;
         var parQ = 0.250 * Math.PI;
         var P = null; //set in init_model_parameters
         var Q = null; //set in model
