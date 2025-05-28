@@ -6,7 +6,7 @@
         stdModExportList :
         {
             buildsforceGraphArray,
-            pos2qix,
+            q2qix,
         },
     });
     return;
@@ -19,10 +19,10 @@
         var rrc      = rg.S.pos;
         var fun      = rg[ 'approximated-curve' ].t2xy;
         var forceGraphArray = [];
-        var FORCE_ARRAY_LEN = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
+        var Q_STEPS = 400;
+        for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
         {
-            var q = xStart + forceArrayIx * ( xEnd - xStart ) / FORCE_ARRAY_LEN;
+            var q = xStart + forceArrayIx * ( xEnd - xStart ) / Q_STEPS;
             var {
                 rr, //from coor. sys. orig.
                 rOrAbs,
@@ -76,7 +76,7 @@
     }
 
 
-    function pos2qix( pos )
+    function q2qix( pos )
     {
         var q = stdMod.pos2t( rg.P.pos );
         var qixMax = stdMod.graphArray.length-1;

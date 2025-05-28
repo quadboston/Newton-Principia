@@ -1,114 +1,120 @@
 ( function() {
-    var { sn, userOptions, amode, stdMod, sconf, ssD, } 
-        = window.b$l.apptree({ stdModExportList : { builds_orbit_data_graph, }, });
-    var graphArray = sn( 'graphArray', stdMod, [] );
-    var qix2orb = sn( 'qix2orb', ssD, [] );
-    var orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
-    //const BONUS = userOptions.showingBonusFeatures() ? 1 : 0;
+    var {
+        sn, haz, userOptions,
+        rg, amode, stdMod, sconf, ssD, sData,
+    } = window.b$l.apptree({
+        stdModExportList :
+        {
+            builds_orbit_data_graph,
+            P2gix,
+        },
+    });
+    const graphArray = sn( 'graphArray', stdMod, [] );
+    const qix2orb = sn( 'qix2orb', ssD, [] );
+    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
     return;
 
+
+    function P2gix(){
+        const qix = rg.P.qix;
+        const gix = qix2orb[ qix ].gix;
+        return gix;
+    }
+    
 
     function builds_orbit_data_graph()
     {
         const ADDENDUM = amode.aspect === 'addendum';
-        stdMod.graphFW_lemma.graphArray = graphArray;
-        graphArray.length =0;
-        
-        let fl_fun = sconf.force_law;
-        var orbit_q_start = sconf.orbit_q_start;
-        var q2xy = stdMod.q2xy;
-        const FORCE_ARRAY_LEN = sconf.FORCE_ARRAY_LEN;
-        const orbitXYToDraw_LIMIT = Math.min( 1000, sconf.FORCE_ARRAY_LEN );
-        const DATA_GRAPH_ARRAY_LEN = sconf.DATA_GRAPH_ARRAY_LEN;
-        var DATA_GRAPH_ARRAY_period = Math.max( 1,
-            Math.floor( FORCE_ARRAY_LEN/DATA_GRAPH_ARRAY_LEN ) );
-        const CALCULATE_SUGITTA_ALONG_THE_PATH =
-              sconf.CALCULATE_SUGITTA_ALONG_THE_PATH;
-        const IS_DEVIATION_SCALED_BY_FORCE_MAX = 
-              sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
-        const DEVIATION_SCALE_FACTOR =
-              sconf.DEVIATION_SCALE_FACTOR || 1;
-        
-        ///prepares averages and placeholder for data graphs
-        for( let qix=0; qix<=FORCE_ARRAY_LEN; qix++ ){
-            if( !(qix%DATA_GRAPH_ARRAY_period) || qix===FORCE_ARRAY_LEN ){
-                const bP = qix2orb[ qix ];
-                const deviation = bP.estForce;
-                const sagitta = bP.sagitta;
-                const forceAbs = fl_fun( bP );
+        const GRAPH_PATH = sData.GRAPH_PATH;
+        const QS = sconf.Q_STEPS;
+        const DS = sconf.DATA_GRAPH_STEPS;
+        const fl_fun = sconf.force_law;
+        const dataPeriod = Math.max( 1, Math.floor( QS/DS ) );
 
-                ///to normalize force
-                if( qix === 0 ) {
-                    var forceMax = forceAbs;
-                } else if( forceMax < forceAbs ) {
-                    var forceMax = forceAbs;
-                }
-                ///to normalize deviation
-                if( qix === 0 ) {
-                    var deviationMax = deviation;
-                } else if( deviationMax < deviation ) {
-                    var deviationMax = deviation;
-                }
-                if( sconf.CALCULATE_SUGITTA_ALONG_THE_PATH ) {
-                    ///to normalize sagitta
-                    if( qix === 0 ) {
-                        var sagittaMax = sagitta;
-                    } else if( sagittaMax < sagitta ) {
-                        var sagittaMax = sagitta;
-                    }
-                }
-                ///to normalize speed
-                var ds_dt = bP.ds_dt;
-                if( qix === 0 ) {
-                    var speedMax = ds_dt;
-                } else if( speedMax > ds_dt ){
-                    speedMax = Math.max( speedMax, ds_dt );
-                }
+        stdMod.graphFW_lemma.graphArray = graphArray;
+        graphArray.length = 0;
+        ///prepares averages and placeholder for data graphs
+        const gstart = ssD.qix_graph_start;
+        const gend = ssD.qix_graph_end;
+        var displMax = 0;
+        var sagittaMax = 0;
+        var instantForceMax = 0;
+        var speedMax = 0;
+        //var fullPath = qix2orb[ gend ].pathAtQ;
+        for( let qix=gstart; qix<=gend; qix++ ){
+            const bP = qix2orb[ qix ];
+            const displacement = bP.displacement;
+            const sagitta = bP.sagitta;
+            const ds_dt = bP.ds_dt;
+            if( fl_fun ){
+                var instantForce = fl_fun(bP);
+                
+            //this is a stub for non-Kepler orbits:    
+            //} else if( sconf.TIME_IS_FREE_VARIABLE ){
+            //    var instantForce = bP.instant_sagitta;
+
+            } else {
+                var instantForce = bP.instant_displacement;
+            }
+            bP.instantForce = instantForce;
+            if( !(qix%dataPeriod) || qix===QS ){
+                sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
+                displMax = Math.max( Math.abs( displacement ), displMax );
+                speedMax = Math.max( speedMax, ds_dt );
                 let graphColumn = {
                     qix,
-                    x : bP.r,
-                    y : [
-                        forceAbs,
-                        deviation,
-                        ds_dt,
-                        sagitta,
-                    ],
+                    rr : bP.rr,
+                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
                 };
                 graphArray.push( graphColumn );
             }
+            bP.gix = Math.max(0,graphArray.length-1);
         }
 
         //------------------------------------------
-        // //\\ resets forceGraphArray
+        // //\\ resets graphArray
         //------------------------------------------
         var arrLen = graphArray.length;
-        var sign = ADDENDUM ? -1 : 1;
-        forceMax = sign * forceMax;
-        deviationMax = sign * deviationMax;
-        sagittaMax = sign * sagittaMax;
-        for (var gix = 0; gix<arrLen; gix++ )
-        {
+        const instantForceMax1 = 1/instantForceMax;
+        const displMax1 = 1/displMax;
+        const sagittaMax1 = 1/sagittaMax;
+        const speedMax1 = 1/speedMax;
+        for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
-            const y = ga.y;
-            y[0] /= forceMax;
-            y[1] /= IS_DEVIATION_SCALED_BY_FORCE_MAX ? 
-                forceMax * DEVIATION_SCALE_FACTOR :
-                deviationMax;
-            ADDENDUM && ( y[2] /= speedMax );
-            CALCULATE_SUGITTA_ALONG_THE_PATH && ADDENDUM &&
-                ( y[3] /= sagittaMax );
+            const qix = ga.qix;
+            const bP = qix2orb[ qix ];
+            bP.gix = gix;
+            let instf = bP.instantForce;
+            instf = instf * instantForceMax1 * (ADDENDUM ? 1 : Math.sign(instf));
+            let disp = bP.displacement;
+            disp *= displMax1 * ( ADDENDUM ? 1 : Math.sign(disp) );
+            let ds_dt = bP.ds_dt;
+            ds_dt *= speedMax1;
+            let sagitta = bP.sagitta;
+            sagitta *= sagittaMax1 * ( ADDENDUM ? 1 : Math.sign(sagitta) );
+            ga.y = [
+                instf,
+                disp,
+                ds_dt,
+                sagitta,
+            ];
         }
+        ///this is a common graph lines, but this mask can be
+        ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
-            [ 'force', 'deivation', 'body',
-                //blocks at times wher algo breaks, 'sagitta'
-                CALCULATE_SUGITTA_ALONG_THE_PATH && sDt > timeDelta*3
+            [ 
+                'force',
+                'displacement',
+                'body',
+                sconf.TIME_IS_FREE_VARIABLE && 'sagitta',
             ] :
-            [ 'force', 'deivation', ];
-        //this is just an example how to reset colors dynamically:
-        //stdMod.graphFW_lemma.colorThreadArray[0] =
-        //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
+            [ 
+                'force',
+                'displacement',
+            ];
         //------------------------------------------
-        // \\// resets forceGraphArray
+        // \\// resets graphArray
         //------------------------------------------
     }
 }) ();

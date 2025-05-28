@@ -1,6 +1,6 @@
-///builds estimated force as deviation/area^2,
+///builds estimated force as displacement/area^2,
 ///notations are from Prop6, cor. 5,
-///deviation = QR, area = QT*SP,
+///displacement = QR, area = QT*SP,
 ( function() {
     var {
         sn, mat,
@@ -8,13 +8,13 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            buildsDeviation,
+            calcs__displacement,
         },
     });
     return;
 
 
-    function buildsDeviation({
+    function calcs__displacement({
         parq, //orbit argument
         bP    //orbit point P rack
     }){
@@ -29,14 +29,19 @@
        const QR0 = Q[0]-R[0];
        const QR1 = Q[1]-R[1];
        const QR = Math.sqrt( QR0*QR0 + QR1*QR1 );
+       
+       //when displacement is parallel to rrr, then sign > 0
+       const rrr = bP.rrr;
+       const sign = Math.sign( rrr[0]*QR0 + rrr[1]*QR1 );
+       
        const T = mat.dropPerpendicular( Q, S, P )
        const QT0 = Q[0]-T[0];
        const QT1 = Q[1]-T[1];
        const QT = Math.sqrt( QT0*QT0 + QT1*QT1 );
        const SP = bP.r;
        const area = SP*QT;
-       const estForce = QR/(area*area);
-       return estForce;
+       const displacement = QR/(area*area);
+       return sign * displacement;
     }
 }) ();
 

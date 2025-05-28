@@ -1,7 +1,7 @@
 ( function() {
     var {
-        ns, sn, nspaste, has, paste, capture, bezier, userOptions,
-        sDomF, ssD, ssF, fconf,
+        ns, sn, nspaste, has, paste, capture, userOptions,
+        sDomF, ssD, ssF, fconf, sData,
         sconf, amode, toreg, stdMod, rg,
     } = window.b$l.apptree({
         ssFExportList :
@@ -49,6 +49,10 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+        sData.GRAPH_PATH =
+                sconf.GRAPH_PATH
+                && !userOptions.showingBonusFeatures()
+                && aspect !== 'addendum';
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
@@ -238,12 +242,12 @@
                 ssF.scaleValue2app( rg.media_scale.value, );
             }
         }
-        if( sconf.APPROX !== 'D' ) {
+
             ////this refreshes scnenario of
             ////non-Kepler shapes visibility
             ssD.stashedVisibility = null;
-        }
-        stdMod.curveIsSolvable();
+
+        stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }

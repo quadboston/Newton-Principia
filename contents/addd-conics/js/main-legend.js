@@ -145,6 +145,8 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
+                //noEqualSign : true,
+                //alignCaptionToRight : false,
             })
         }
 
@@ -154,6 +156,7 @@
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
+                noEqualSignInNumber : true,
             })
         }
     }

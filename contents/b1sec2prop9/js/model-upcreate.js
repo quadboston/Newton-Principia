@@ -18,16 +18,12 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.builds_dq8sagitta();
-        
+        stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
+        var Porb = ssD.qix2orb[ rg.P.qix ];
 
-        var parQ = rg.P.parQ;
-        var qixP = Math.floor(parQ/sconf.curveQRange*sconf.FORCE_ARRAY_LEN);
-        var Porb = ssD.qix2orb[ qixP ];
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
-        rg.P.sagittaDq = Porb.sagittaDq;
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );

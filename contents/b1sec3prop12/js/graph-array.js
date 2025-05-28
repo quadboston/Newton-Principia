@@ -6,7 +6,7 @@
         stdModExportList :
         {
             buildsforceGraphArray,
-            pos2qix,
+            q2qix,
         },
     });
     return;
@@ -20,10 +20,10 @@
         var rrc     = rg.S.pos;
         var fun     = rg[ 'approximated-curve' ].t2xy;
         var forceGraphArray = [];
-        var FORCE_ARRAY_LEN = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
+        var Q_STEPS = 400;
+        for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
         {
-            var q = qStart + forceArrayIx * ( qEnd - qStart ) / FORCE_ARRAY_LEN;
+            var q = qStart + forceArrayIx * ( qEnd - qStart ) / Q_STEPS;
             if( 1 !== op.conicSignum ) {
                 q = op.protectedQ( q );
             }
@@ -104,7 +104,7 @@
 
 
     ///to be used in slow code
-    function pos2qix( pos )
+    function q2qix( pos )
     {
         var q = rg.P.q;
         var qixMax = stdMod.graphArray.length-1;
