@@ -2,7 +2,7 @@
     var {
         ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral,
         mat, bezier,
-        ssF, ssD, sData, sDomN,
+        ssF, ssD, sDomN,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -15,8 +15,6 @@
 
     function init_model_parameters()
     {
-        //stdMod.initiates_kepler_config(); //duplicates
-
         ///curve pars
         ///sconf is insufficient, there is a fine tuneup,
         {

@@ -14,7 +14,7 @@
     const tix2orbit = sn( 'tix2orbit', ssD, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
     const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
-    const BONUS = userOptions.showingBonusFeatures() ? 1 : 0;
+    const BONUS = !!userOptions.showingBonusFeatures();
     return;
 
 
@@ -53,7 +53,7 @@
             bP.qix = qix;
             var {
                 rr,
-                v, //|d𝗿/dq|
+                ds_dq, //|d𝗿/dq|
                 r2,
                 staticSectorialSpeed_rrrOnUU,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
@@ -79,17 +79,14 @@
             if( 0 === qix ) {
                 momentum0 = staticSectorialSpeed_rrrOnUU;
                 var ds_dt = 1;
-
-                //todm: here we can add sAtQ as we did for time
-                
-                //v = ds/dq
-                bP.timeAtQ = 0;
-                var dq_dt = ds_dt/v;
+                var timeAtQ = bP.timeAtQ = 0;
+                var pathAtQ = bP.pathAtQ = 0;
+                var dq_dt = ds_dt/ds_dq;
             } else {
                 var ds_dt = momentum0 / staticSectorialSpeed_rrrOnUU;
-                var dq_dt = ds_dt/v;
-                bP.timeAtQ = qix2orb[ qix -1 ].timeAtQ +
-                             qgrid_step / dq_dt;
+                var dq_dt = ds_dt/ds_dq;
+                var pathAtQ = bP.pathAtQ = pathAtQ + qgrid_step * ds_dq;
+                var timeAtQ = bP.timeAtQ = timeAtQ + qgrid_step / dq_dt;
             }
             bP.ds_dt = ds_dt;
             bP.dq_dt = dq_dt;

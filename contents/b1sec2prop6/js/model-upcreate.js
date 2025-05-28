@@ -107,8 +107,15 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        stdMod.graphFW_lemma.graphArrayMask[1] = solvable;
-        stdMod.graphFW_lemma.graphArrayMask[3] = solvable && ADDENDUM;
+        //core code displays: force, mask[1] and sagitta, mask[3]
+        {
+            const mask = stdMod.graphFW_lemma.graphArrayMask;
+            mask[1] = solvable && ADDENDUM; //displ.
+            mask[2] = solvable && ADDENDUM;
+            //sagitta in proof, but not in ...
+            mask[3] = solvable && sconf.TIME_IS_FREE_VARIABLE;
+        }
+
         {
             let graphArg = {
                 //drawDecimalY : true,

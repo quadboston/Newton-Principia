@@ -78,7 +78,6 @@
             let qix_min = null;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
-                //if( point.invalid ) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
@@ -103,10 +102,6 @@
                     !point
                     ||
                     point.invalid
-                    
-                    //search for Q, for example, ignores
-                    //null flagged points
-                    //(fromGraph && point.invalid )
                 ) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];

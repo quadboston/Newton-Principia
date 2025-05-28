@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, haz, userOptions,
-        rg, amode, stdMod, sconf, ssD,
+        rg, amode, stdMod, sconf, ssD, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -16,7 +16,7 @@
 
 
     function P2gix(){
-        const qix = rg.P.qix
+        const qix = rg.P.qix;
         const gix = qix2orb[ qix ].gix;
         return gix;
     }
@@ -25,6 +25,7 @@
     function builds_orbit_data_graph()
     {
         const ADDENDUM = amode.aspect === 'addendum';
+        const GRAPH_PATH = sData.GRAPH_PATH;
         const QS = sconf.Q_STEPS;
         const DS = sconf.DATA_GRAPH_STEPS;
         const fl_fun = sconf.force_law;
@@ -39,6 +40,7 @@
         var sagittaMax = 0;
         var instantForceMax = 0;
         var speedMax = 0;
+        //var fullPath = qix2orb[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qix2orb[ qix ];
             const displacement = bP.displacement;
@@ -46,8 +48,11 @@
             const ds_dt = bP.ds_dt;
             if( fl_fun ){
                 var instantForce = fl_fun(bP);
-            } else if( sconf.TIME_IS_FREE_VARIABLE ){
-                var instantForce = bP.instant_sagitta;
+                
+            //this is a stub for non-Kepler orbits:    
+            //} else if( sconf.TIME_IS_FREE_VARIABLE ){
+            //    var instantForce = bP.instant_sagitta;
+
             } else {
                 var instantForce = bP.instant_displacement;
             }
@@ -60,7 +65,7 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    x : bP.r,
+                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
                 };
                 graphArray.push( graphColumn );
             }
@@ -95,6 +100,8 @@
                 sagitta,
             ];
         }
+        ///this is a common graph lines, but this mask can be
+        ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
             [ 
                 'force',
@@ -106,9 +113,6 @@
                 'force',
                 'displacement',
             ];
-        //this is just an example how to reset colors dynamically:
-        //stdMod.graphFW_lemma.colorThreadArray[0] =
-        //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------

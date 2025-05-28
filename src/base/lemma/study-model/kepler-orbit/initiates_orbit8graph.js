@@ -28,6 +28,7 @@
         
         //3 and 5 make float noize on graph:
         sn( 'SAGITTA_ACCURACY_LIMIT', sconf, 10 );
+        sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
     function initiates_orbit8graph() {
@@ -67,7 +68,7 @@
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });
-        stdMod.builds_dq8sagit8displace({ulitmacy:sData.ULTIM_INSTANT});
+        stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_INSTANT });
         stdMod.builds_dq8sagit8displace({});
         stdMod.builds_orbit_data_graph();
     }

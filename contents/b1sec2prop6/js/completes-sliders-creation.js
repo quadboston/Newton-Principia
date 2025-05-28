@@ -81,8 +81,16 @@
                 bezio.updatesPivot( pos, cpix );
 
                 stdMod.rebuilds_orbit( ssD.Dt );
+                
+                if( stdMod.graphArray.length ){
+                    ////for case when curve shape changes,
+                    //tricky loop: pos -> qix -> pos( in upcreate_model ):
+                    rg.P.qix = stdMod.gets_orbit_closest_point( rg.P.pos, !!'fromGraph' );
+                }
+
                 ///updates curve pivots every time:
                 stdMod.bp2cp();
+                
 
                 stashedPos = [ newPos[0], newPos[1] ];
                 if( ssD.foldPoints.length ) {

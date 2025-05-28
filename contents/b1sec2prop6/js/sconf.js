@@ -110,6 +110,7 @@
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+        sconf.GRAPH_PATH = true; //only for not-bonus
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -320,7 +321,7 @@
 
             R : {
                 //pos: Q,
-                pcolor : proof,
+                pcolor : displacement,
                 letterAngle : 45,
             },
 
@@ -401,11 +402,11 @@
             { 'PR' : { pcolor : body }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : displacement }, },
             { 'QP' : { pcolor : proof }, },
             //{ 'VQ' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : displacement }, },
             { 'PC' : { pcolor : curvature }, },
             { 'Q,rrminus' : { pcolor : proof }, },
             { 'P,rrminus' : { pcolor : proof }, },

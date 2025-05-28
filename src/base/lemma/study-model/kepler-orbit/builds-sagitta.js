@@ -70,6 +70,7 @@
                 if( sconf.orbit_q_end <= plusQ ){
                     if( MAKE_RANGE ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                        bP.invalid = true
                     }
                 } else {
                     bP.plusQ = plusQ;
@@ -129,6 +130,9 @@
                     bP
                 });
                 bP.displacement = displ;
+                if( ulitmacy === sData.ULTIM_INSTANT ){
+                    bP.instant_displacement = displ;
+                }
             }
             
             if( plusQ !== null ){
@@ -142,7 +146,14 @@
                         bP.invalid = true;
                     }
                     continue;
-                } 
+                } else if( minusTix >= tix2orbit.length ){
+                    ////todo why? helps only in P6 when curve shape changes
+                    if( MAKE_RANGE ){
+                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                        bP.invalid = true;
+                    }
+                    continue;
+                }   
                 const minusQix = tix2orbit[minusTix].qix;
                 const minusP = qix2orb[ minusQix ];
                 const minusTQix = minusP.timeAtQ;

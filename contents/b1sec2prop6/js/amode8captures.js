@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, nspaste, has, paste, capture, userOptions,
-        sDomF, ssD, ssF, fconf,
+        sDomF, ssD, ssF, fconf, sData,
         sconf, amode, toreg, stdMod, rg,
     } = window.b$l.apptree({
         ssFExportList :
@@ -49,6 +49,10 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+        sData.GRAPH_PATH =
+                sconf.GRAPH_PATH
+                && !userOptions.showingBonusFeatures()
+                && aspect !== 'addendum';
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;

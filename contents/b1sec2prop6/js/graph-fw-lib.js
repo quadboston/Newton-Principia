@@ -1,7 +1,7 @@
 ( function() {
     var {
         $$, nsmethods, globalCss, userOptions,
-        sDomF,
+        sDomF, sData,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
@@ -32,6 +32,11 @@
         ///this thing is not dynamic (missed in design),
         ///but, colorThreadArray is accessible for reset
         ///dynamically,
+        ///
+        //this is just an example how to reset colors dynamically
+        //in model_upcreate():
+        //stdMod.graphFW_lemma.colorThreadArray[0] =
+        //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
@@ -75,11 +80,11 @@
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor = graphFW.colorThreadArray[ 0 ];
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = BONUS ? n2c( 'force' ) : n2c( 'orbit' );
+            var xColor = sData.GRAPH_PATH ? n2c( 'orbit' ) : n2c( 'force' );
             var axisYLegend =
             [
                 {
@@ -131,8 +136,8 @@
             var axisXLegend =
             [
                 {
-                    text    : BONUS ?
-                              'Distance from force center, r' : 'Distance along arc', 
+                    text    :  sData.GRAPH_PATH ?
+                               'Distance along arc' : 'Distance from force center, r', 
                     x       : BONUS ? -700 : -520,
                     y       : 25,
                     style   : {
@@ -169,8 +174,6 @@
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
-                        //'display' : BONUS ? 'block' : 'none',
-                        //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
                     //plotStyle : {
@@ -180,7 +183,7 @@
                 {
                     fraqX : 0.6,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Estimated force',
+                    //pcaption : 'Displacement/area^2',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -195,7 +198,6 @@
                 },
                 {
                     fraqX : 0.9,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
                     pcaption : 'v',
                     fontShiftX : 0,
                     fontShiftY : 0,
@@ -243,8 +245,9 @@
             graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
                 switch(pix) {
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
+                    case 1: pl && $$.$(pl).addClass( 'tp-_p_-displecement tostroke' ); break;
+                    case 2: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
+                    case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
                 }
             });
         }
