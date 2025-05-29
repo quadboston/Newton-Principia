@@ -16,11 +16,11 @@
     * Q moved higher to match Newton's diagram
 
 * Propositions 1, 2
-    * changed graph's force color to match other models
+    * changed force color to match other models
 
 ### Removed
 * Addendums
-    * addendums remove to focus on core content
+    * addendums removed to focus on core content
 
 
 ## 2025-5-20 [0.13654]
