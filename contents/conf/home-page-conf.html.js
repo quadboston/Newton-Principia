@@ -138,8 +138,6 @@
                             Latin tabs (in progress)<br>
                         <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
                             overlay original diagrams<br>
-                        <input type="checkbox" id="bonusCheckbox" aria-label="bonus"> 
-                            addendums and additional interpetations by Konstantin Krillov 
                     </p>
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
