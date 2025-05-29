@@ -7,7 +7,8 @@
     fapp.buildDateString = "2025-05-29"; //build date
     // \\// updated automatically. Don't edit these strings.
 
-    }) ();
+    fapp.versionColor = 'tan';
+}) ();
 
 
 function decryptEmail(encoded) {
