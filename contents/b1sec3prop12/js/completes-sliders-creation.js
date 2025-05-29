@@ -1,31 +1,12 @@
 ( function() {
-    var {
-        sn, has, mat, mcurve, nspaste,
-        fconf, sData,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            completesSlidersCreation,
-        },
-    });
+    var { sn, has, mat, mcurve, nspaste, fconf, sData, amode, stdMod, sconf, rg, toreg, } 
+        = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, },  });
     var conics = sn( 'conics', mat );
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
     function completesSlidersCreation()
     {
         var op = sconf.orbitParameters;
@@ -33,6 +14,126 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
+        rg.P.acceptPos = newPos => {
+            //Keep only one of the following functions uncommented to select drag mode.
+            //dragUsingYValueTemp();
+            //dragUsingPointOffsetFromSTemp();
+            dragUsingCodeFromPointFiTemp();     //Original code from before used by Fi
+
+            
+            function dragUsingYValueTemp() {
+                //Temporary draft code below for this method
+                //Computes x value using y value
+                const a = op.A;
+                const b = op.B;
+
+                const y = newPos[1];
+                const x = Math.sqrt((1 + (y**2) / (b**2)) * (a**2)) - op.C;
+                var q = Math.atan2( y, x );
+
+                // console.log("**********");
+                // console.log(`rg.P.pos  ${rg.P.pos[0]}  ${rg.P.pos[1]}`);
+                rg.P.q = q;//Math.PI - q;
+                nspaste( rg.P.pos, [x, y] );
+                // console.log(`rg.P.pos  ${rg.P.pos[0]}  ${rg.P.pos[1]}`);
+            }
+            
+
+            function dragUsingPointOffsetFromSTemp() {
+                //Temporary draft code below for this method
+                //Computes intersection of hyperbola and line (defined by mouse cursor 
+                //and a point right of point S)
+                const a = op.A;
+                const b = op.B;
+
+                // console.log("***");
+                // console.log("newPos =", newPos);
+                const posP = [newPos[0]+ op.C, newPos[1]];
+                // console.log("posP =", posP);
+
+                const x0 = op.C + 4.5;//5.7;//op.C * 4;//1.4232 * 2;
+                const dx1 = posP[0] - x0;
+                const dy1 = posP[1] - 0;
+
+                const A = (dx1**2) / (a**2) - (dy1**2) / (b**2);
+                const B = (2 * x0 * dx1) / (a**2);
+                const C = (x0**2) / (a**2) - 1;
+
+                const t11 = (-B + Math.sqrt(B**2 - 4*A*C)) / (2*A);
+                const t12 = (-B - Math.sqrt(B**2 - 4*A*C)) / (2*A);
+
+                const intersection1 = [x0 + t11 * dx1, t11 * dy1];
+                const intersection2 = [x0 + t12 * dx1, t12 * dy1];
+
+                const q1 = Math.atan2( intersection1[1], intersection1[0] - op.C );
+                const q2 = Math.atan2( intersection2[1], intersection2[0] - op.C );
+
+                // console.log("t11 =", t11);
+                // console.log("t12 =", t12);
+                // console.log("intersection1 =", intersection1);
+                // console.log("intersection2 =", intersection2);
+                // console.log("q1 =", q1);
+                // console.log("q2 =", q2);
+                // console.log("rg.S.pos[0] - rg.C.pos[0] =", rg.S.pos[0] - rg.C.pos[0]);
+                // console.log("op.C =", op.C);
+
+                
+                rg.P.q = q2;
+                nspaste( rg.P.pos, intersection2 );
+            }
+
+
+            function dragUsingCodeFromPointFiTemp() {
+                //Original code for dragging point Fi that moved P.
+                var sliderAbs = mat.p1_to_p2( rg.P.pos, rg.omegaHandle.pos ).abs;
+                //-------------------------------------------------------------------
+                // //\\ corrects approximate mouse point to exact point on the circle
+                //-------------------------------------------------------------------
+                var q = Math.atan2( newPos[1], newPos[0] );
+                //if( !dQisInBranch( op.sagittaDelta_q, q ) ) return;
+
+                var posAbs = mat.unitVector( newPos ).abs;
+                //sets handle
+                newPos[0] = posAbs*Math.cos( q );
+                newPos[1] = posAbs*Math.sin( q );
+                if( fconf.effId === "b1sec3prop14" ) {
+                    //sets main axis
+                    op.mainAxisAngle = q;
+                    //fixes P in respect to main axis 
+                    rg.P.q = op.PparQ_initial - op.mainAxisAngle;
+                    op.latus = Math.abs( rg.P.abs *
+                        (1 - op.eccentricity * Math.cos( rg.P.q ) ) );
+                } else {
+                    //sets body
+                    rg.P.q = q;
+                }
+                //-------------------------------------------------------------------
+                // \\// corrects approximate mouse point to exact point on the circle
+                //-------------------------------------------------------------------
+
+                // **api-input---plane-curve-derivatives
+                var { angleRV, rr } = mcurve.planeCurveDerivatives({
+                    fun : rg[ 'approximated-curve' ].t2xy,
+                    q : rg.P.q,
+                    rrc : rg.S.pos,
+                });
+                nspaste( rg.P.pos, rr );
+                setsOmegaHandle( angleRV, sliderAbs );
+            }
+            
+            return true;
+        }
+        //=========================================================================
+        // \\// point P slider
+        //=========================================================================
+
+
+
+        //=========================================================================
+        // //\\ point P slider
+        //=========================================================================
+        //TEMP Probably be best to adjust the comment above.  Maybe "point Fi slider"
+        //                                                          "for point P"?
         rg.Fi.acceptPos = newPos => {
 
             var sliderAbs = mat.p1_to_p2( rg.P.pos, rg.omegaHandle.pos ).abs;

@@ -253,6 +253,13 @@
         }
 
 
+        if( "b1sec3prop12" === fconf.sappId ) { //TEMP
+            rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
+            rg['O,Fi'].undisplay = true;
+        }
+
+
         //=========================================
         // //\\ parabola: b1sec3prop13
         //=========================================
@@ -261,6 +268,10 @@
             rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
             rg.S.hideD8Dpoint = true;
             rg.O.undisplay = true;
+            
+            rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
+            rg['O,Fi'].undisplay = true;
         }
         {
             ////parabola showing
@@ -522,18 +533,20 @@
             op.om       = op.om_initial;
         }
 
-        if( fconf.effId === "b1sec3prop14" ) {
-            //op.delta_t = op.delta_t_initial;
-            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
-            nspaste( rg.Fi.pos, [
-                sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
-                sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
-            ]);
-        } else {
-            nspaste( rg.Fi.pos, [
-                sconf.Fi_distance * Math.cos( rg.P.q ),
-                sconf.Fi_distance * Math.sin( rg.P.q ),
-            ]);
+        if (sconf.Fi_distance != null) {
+            if( fconf.effId === "b1sec3prop14" ) {
+                //op.delta_t = op.delta_t_initial;
+                rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+                nspaste( rg.Fi.pos, [
+                    sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
+                    sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
+                ]);
+            } else {
+                nspaste( rg.Fi.pos, [
+                    sconf.Fi_distance * Math.cos( rg.P.q ),
+                    sconf.Fi_distance * Math.sin( rg.P.q ),
+                ]);
+            }
         }
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
