@@ -1,20 +1,26 @@
 # Change Log
  
 
-## 2025-5-31 [Blue Version 0.???]
+## 2025-5-29 [Blue Version 0.???]
 ### Improved core presentation
 * Multiple models
-    * Data text more readable; lines and curves more visible
+    * opacity tuned (some data text more readable; lines and curves more visible)
+    * red color reassigned when not indicating invalid situations
 
 * Lemma 11
     * dragger b takes priority except when B and b are at A
     * dragger b cannot be moved too far away from B
 
-* Proposition 11
-    * graph changed to only show estimated and actual force
+* Proposition 9
+    * changed graph's estimated force to match other models
+    * Q moved higher to match Newton's diagram
 
-* Proposition 12
-    * graph changed to only show estimated and actual force
+* Propositions 1, 2
+    * changed graph's force color to match other models
+
+### Removed
+* Addendums
+    * addendums remove to focus on core content
 
 
 ## 2025-5-20 [0.13654]
