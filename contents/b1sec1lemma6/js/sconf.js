@@ -151,16 +151,16 @@
             },
             L : { // rectilinear angle slider
                 letterAngle : -45,
-                pcolor      : result,
+                pcolor      : proof,
             },
         };
         
         var linesArray =
         [            
             { 'AB' : { pcolor : given } },
-            { 'Ad' : { pcolor : context } }, // used in proof to extend AD to the right
+            //{ 'Ad' : { pcolor : context } }, // used in proof to extend AD to the right
             { 'AD' : { pcolor : given } }, // comes after Ad so green line is on top
-            { 'AL' : { pcolor : result } }, // rectilinear angle
+            { 'AL' : { pcolor : proof } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 

@@ -138,7 +138,7 @@
         //interval of t to construct an arc for
         //Newton's sagitta
         //interval of t to construct an arc for Newton's sagitta
-        var saggitaDt = 0.19;
+        var saggitaDt = 0.4;
         var parQ = 0.250 * Math.PI;
         var P = null; //set in init_model_parameters
         var Q = null; //set in model
@@ -210,7 +210,7 @@
 
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : given,
                 letterAngle : -90,
                 //draggableX  : true,
                 //draggableY  : true,
@@ -237,7 +237,7 @@
 
             Q : {
                 pos: Q,
-                pcolor : proof,
+                pcolor : given,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -292,7 +292,7 @@
         [
             { 'PV' : { pcolor : proof }, },
 
-            { 'SP' : { pcolor : result }, },
+            { 'SP' : { pcolor : given }, },
 
             { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },
@@ -302,7 +302,7 @@
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
+            { 'SQ' : { pcolor : given }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
         ];

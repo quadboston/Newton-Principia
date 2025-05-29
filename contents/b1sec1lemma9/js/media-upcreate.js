@@ -159,10 +159,10 @@
         //api:calculateCurvedArea( rgId, pivots, tend, startPoint, endPoint )
         wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
         wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
-        paintCurvArea( 'area-Ace', 'logic_phase--proof', '_ace' );
+        paintCurveArea( 'area-Ace', 'logic_phase--proof', '_ace' );
         //.apparently makes this shape-element exclusively present in 
         //.'logic_phase--proof' mode
-        paintCurvArea( 'area-Abd', 'logic_phase--proof', '_abd' );
+        paintCurveArea( 'area-Abd', 'logic_phase--proof', '_abd' );
         //------------------------------------------
         //  \\// proof curved areas
         //------------------------------------------
@@ -173,8 +173,8 @@
         wCCA( 'area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos );
         wCCA( 'area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
         //.null makes this element present in all(?) theoreons
-        paintCurvArea( 'area-ACE', null, '_a_c_e' );
-        paintCurvArea( 'area-ABD', null, '_a_b_d' );
+        paintCurveArea( 'area-ACE', null, '_a_c_e' );
+        paintCurveArea( 'area-ABD', null, '_a_b_d' );
         //------------------------------------------
         //  \\// given curved areas
         //------------------------------------------
@@ -214,7 +214,7 @@
         //==========================================
         // //\\ curved areas
         //==========================================
-        function paintCurvArea( areaId, fullMode, topicGroup_decapitalized )
+        function paintCurveArea( areaId, fullMode, topicGroup_decapitalized )
         {
             var area = rg[ areaId ];
 
