@@ -158,10 +158,6 @@
         // \\// common values
         //----------------------------------
 
-
-        //*****************************************************************************
-        // //\\ lemma 8
-        //*****************************************************************************
         sDomF.detected_user_interaction_effect( 'doUndetected' );
 
         captured = '';
@@ -255,10 +251,7 @@
             rg.R.hideD8Dpoint   = false; // enables mouse events on point R
             rg.fi.hideD8Dpoint  = true; // fi only used in bonus features
         }
-          
-        //*****************************************************************************
-        // \\// lemma 8
-        //*****************************************************************************
+        
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
