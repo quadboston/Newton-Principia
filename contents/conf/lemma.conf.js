@@ -9,13 +9,18 @@
     return;
     
 
-    function rgbToArray(rgbString) {
+    function rgbToArray(rgbString, alpha) {
         const matches = rgbString.match(/\d+/g);
         if (!matches || matches.length !== 3) {
-            throw new Error("Input must be in the format 'rgb(n1, n2, n3)' with exactly 3 numeric values.");
+            throw new Error("Input must be a string in the format 'rgb(r, g, b)' with three numeric values.");
         }
-        return matches.map(Number);
+        const rgb = matches.map(Number);
+        if (alpha !== undefined) {
+            rgb.push(alpha);
+        }
+        return rgb;
     }
+
     
     function doesConfigLemma()
     {
@@ -87,7 +92,7 @@
         //condition of the theorem,
         //given parameters of the claim or proof
         fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
-        fixedColors.givenArea   = [0, 113, 0, 1];
+        fixedColors.givenArea   = [...fixedColors.given, 1];
 
         //relates to moving body, to an orbit
         fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
@@ -106,7 +111,7 @@
         //logical steps of the proof, auxilary constructs
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.proofArea   = [0, 0, 255, 1];
+        fixedColors.proofArea   = [...fixedColors.proof, 1];
         fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
@@ -181,7 +186,7 @@
         fixedColors.tangent         = [0, 150, 0]; 
 
         //P2
-        fixedColors.areaDescriptionAccelerated = rgbToArray("rgb(205, 151, 137)"); //Description of areas triangle P2 proof tab
+        fixedColors.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
 
 
 
