@@ -87,7 +87,7 @@
         //condition of the theorem,
         //given parameters of the claim or proof
         fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
-        fixedColors.givenArea   = [0, 113, 0, 0.4];
+        fixedColors.givenArea   = [0, 113, 0, 1];
 
         //relates to moving body, to an orbit
         fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
@@ -106,7 +106,7 @@
         //logical steps of the proof, auxilary constructs
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.proofArea   = [0, 0, 255, 0.4];
+        fixedColors.proofArea   = [0, 0, 255, 1];
         fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
@@ -243,8 +243,10 @@
             TP_OPACITY_LOW_POINT : 1, // applied to 'originalPoints' and 'linesArray' in page's sconf.js
 
             TP_OPACITY_HIGH : 1,
-            TP_OPACITY_HIGH_POINT : 1,
     
+            AREA_DEFAULT_OPACITY : 0.35,
+            AREA_HIGHLIGHT_OPACITY : 0.7,
+
             ANCHOR_OPACITY_LOW : '0.7',
             ANCHOR_OPACITY_HIGH : '1',
             ANCHOR_DEFAULT_COLOR : 'rgba( 150, 0, 150, 1 )',
