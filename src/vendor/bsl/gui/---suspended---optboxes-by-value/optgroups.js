@@ -279,7 +279,7 @@
                 border          : ${bsize}px solid grey;
                 font-weight     : bold;
                 font-size       : ${fsize}px;
-                font-family     : var(--default-font);
+                font-family     : arial, san-serif, helvetica;
                 color           : #aaaaaa;
                 user-select     : none;
                 margin-right    : ${bpadding}px;

@@ -13,13 +13,6 @@
     return;
 
 
-
-
-
-
-
-
-
     function setModule()
     {
         var dr          = sn('datareg', stdL2 );
@@ -41,7 +34,9 @@
                     //DRAG_POINTS_THROTTLE_TIME           : false,
                     detected_user_interaction_effect    :
                                     sDomF.detected_user_interaction_effect,
-                    processMouseDown                    : processMouseDown
+                    processMouseDown                    : processMouseDown,
+                    spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
+                    spinnerCursorGrab : sconf.spinnerCursorGrabbed,
                 });
             setDragPoints();
         }

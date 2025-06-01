@@ -19,7 +19,8 @@
         buildOptions();
         buildAbout();
         buildTranslations();
-        buildFeedbackAndTip();
+        //calls Internet: should test Internet first:
+        //buildFeedbackAndTip();
         padBottom();
 
 

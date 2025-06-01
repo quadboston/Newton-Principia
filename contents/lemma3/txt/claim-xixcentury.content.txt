@@ -1,0 +1,24 @@
+*::*claim|xixcentury
+{
+  "menuCaption" : "Addendum",
+  "dataLegend":"0"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+
+In XIX century notations, for any monotonic and bounded function ¦curve¦\( [A,E] \overset f \to \mathbb{R} \)¦¦,
+
+    \[
+            \underset{\delta \to 0} {\text{lim }} U_\delta =
+            \underset{\delta \to 0} {\text{lim }} L_\delta .
+    \]
+
+In plain words, ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ and ¦inscribed-rectangles insc-txt¦inscribed¦¦ sums converge to the same ¦figure-area¦limit¦¦ making upper and lower Darboux intergrals equal.
+
+
+
+
+
+

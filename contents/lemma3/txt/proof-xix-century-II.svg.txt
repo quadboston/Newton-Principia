@@ -1,0 +1,91 @@
+
+    <svg viewBox="0 0 1000 1000"
+        style="position:relative; width:40%; left:30%;"
+    >
+        <style>
+            .mark { font: bold 60px MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw,sans-serif; }
+            path { stroke-width: 3px; }
+        </style>
+
+        <!-- U+ -->
+        <circle cx="180" cy="285" r="5" fill="black"/>
+        <circle cx="160" cy="290" r="5" fill="black"/>
+        <path
+            stroke="black" fill="transparent"
+            d="M 200,280 C 300,280 500,260 800,50"
+        />
+        <text x="870" y="35" class="mark" fill="black">+</text>
+        <text x="820" y="70" class="mark" fill="black">U</text>
+        <text x="865" y="95" class="mark" fill="black">&#x03B4;</text>
+
+        <!-- U- -->
+        <text x="-5" y="270" class="mark tp-upper-darboux tofill" fill="#aaaa00">U</text>
+        <text x="55" y="270" class="mark tp-upper-darboux tofill" fill="#aaaa00">b</text>
+        <text x="30" y="300" class="mark tp-upper-darboux tofill" fill="#aaaa00">∫</text>
+        <text x="50" y="330" class="mark tp-upper-darboux tofill" fill="#aaaa00">a</text>
+        <circle cx="180" cy="300" r="5" class="mark tp-upper-darboux tofill" fill="#aaaa00"/>
+        <circle cx="160" cy="300" r="5" class="mark tp-upper-darboux tofill" fill="#aaaa00"/>
+        <circle cx="140" cy="300" r="5" class="mark tp-upper-darboux tofill" fill="#aaaa00"/>
+        <path
+            class="tp-upper-darboux tostroke"
+            stroke="black" fill="transparent"
+            d="M 200,300 C 300,300 500,300 800,300"
+        />
+        <text x="875" y="265" 
+            class="mark tp-upper-darboux tofill"
+            fill="black">-</text>
+        <text x="820" y="300"
+            class="mark tp-upper-darboux tofill"
+            fill="black">U</text>
+        <text x="865" y="320" 
+            class="mark tp-upper-darboux tofill"
+            fill="black">&#x03B4;</text>
+
+
+
+        <!-- L+ -->
+        <text x="-5" y="470" class="mark tp-low-darboux tofill" fill="#aaaa00">L</text>
+        <text x="55" y="470" class="mark tp-low-darboux tofill" fill="#aaaa00">b</text>
+        <!-- &#x222B; = ∫ -->
+        <text x="30" y="500" class="mark tp-low-darboux tofill" fill="#aaaa00">∫</text>
+        <text x="50" y="530" class="mark tp-low-darboux tofill" fill="#aaaa00">a</text>
+        <circle cx="180" cy="500" r="5" class="mark tp-low-darboux tofill" fill="#aaaa00"/>
+        <circle cx="160" cy="500" r="5" class="mark tp-low-darboux tofill" fill="#aaaa00"/>
+        <circle cx="140" cy="500" r="5" class="mark tp-low-darboux tofill" fill="#aaaa00"/>
+        <path
+            class="tp-low-darboux tostroke"
+            stroke="black" fill="transparent"
+            d="M 200,500 C 300,500 500,500 800,500"
+        />
+        <text x="865" y="465" class="mark tp-low-darboux tofill" fill="#aaaa00">+</text>
+        <text x="820" y="500" class="mark tp-low-darboux tofill" fill="#aaaa00">L</text>
+        <text x="865" y="530" class="mark tp-low-darboux tofill" fill="#aaaa00">&#x03B4;</text>
+
+
+        <!-- L- -->
+        <circle cx="180" cy="520" r="5" fill="black"/>
+        <circle cx="160" cy="510" r="5" fill="black"/>
+        <path
+            stroke="black" fill="transparent"
+            d="M 200,525 C 300,545 500,550 800,650"
+        />
+        <text x="865" y="620" class="mark" fill="black">-</text>
+        <text x="820" y="660" class="mark" fill="black">L</text>
+        <text x="865" y="685" class="mark" fill="black">&#x03B4;</text>
+
+
+        <!-- axes -->
+        <path
+            stroke="#444444" fill="transparent"
+            d="M 40,800 C 300,800 500,800 800,800"
+        />
+        <text x="840" y="820" class="mark" fill="#444444">&#x03B4;</text>
+        <path
+            class="tostroke"
+            stroke="#444444" fill="transparent"
+            d="M 110,820 L 110,100"
+        />
+        <text x="95" y="865" class="mark" fill="#444444">0</text>
+
+    </svg>
+

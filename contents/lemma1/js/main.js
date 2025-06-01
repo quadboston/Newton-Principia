@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, has,
-        sapp, fconf, sconf, ssF,
+        stdMod, sapp, fconf, sconf, ssF,
     } = window.b$l.apptree({
         stdModExportList :
         {

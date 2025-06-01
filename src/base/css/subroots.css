@@ -41,15 +41,6 @@ sup {
     display : none;
 }
 
-/* //this was an outdated code, but it may give a clue
-//.bsl-approot.submodel--common .bsl-simscene.submodel--common,
-//todo why do we need make it displayed explicityly?
-//because of it was: .bsl-simscene, {display : none;}
-//ret += `.bsl-approot .bsl-simscene { display : block;}`;
-//=======================================
-// \\// visib
-//======================================= */
-
 /* enables original-figure-picture disappearance */
 /* at version 1112, restored by client request */
 /* todm: .in-study must be lemma-wise flag, not image-wise */
@@ -62,14 +53,6 @@ sup {
 /* //|| bsl--svgscene                */
 /*      .bsl--svgscene === svg       */
 /*================================*/
-
-/*
-    moved to separate more specific settings module for collection of sites:
-    .bsl-bg-image {
-        width:100%;
-    ...
-*/
-
 /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
 /* this really solved firefox problem of "shadow-dragging-object"
     the problem tested and logged in 
@@ -94,13 +77,6 @@ sup {
 /* ||// media pane                */
 /*================================*/
 
-/* to be set dynamicallys */
-/*
-.bsl-sim-superscene .grab {
-   cursor : grab; 
-}
-*/
-
 #bsl-resizable-handle {
     display: flex;
     align-items: center;
@@ -116,13 +92,6 @@ sup {
 .brc-slider-draggee.dividor:hover:after {
     background-color: transparent;
 }        
-
-/* patch: should be nicely disabling divide-panes-functionality todm */
-/*
-#bsl-resizable-handle {
-    top:-300%;
-}
-*/
 /*---------------------------*/
 /* \\// horizontal resizer   */ 
 /*---------------------------*/

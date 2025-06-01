@@ -1,5 +1,21 @@
+/*
+need internet: removed:
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+it has inner links, still outside
+ */ 
+/*
+@import url('./src/vendor/fonts/roboto-mono.txt?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('./src/vendor/fonts/roboto-condenced.txt?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+*/
+
+/*
+@font-face {
+  font-family: 'Roboto';
+  src: url('./src/vendor/roboto-font/Roboto/static/Roboto-Regular.ttf') format('truetype');
+}
+*/
 
 :root {
     /* constants */
@@ -11,6 +27,7 @@
     --color-stone-blue: #8091A8;
     --color-light: white;
     --border-radius: 20px;
+    --border-color: #AFAFAF;
     --exegesisBackgroundColor : 'white';
     --FOCUS_COLOR : #888888;
     --FOCUS_OFF_COLOR : #888888;
