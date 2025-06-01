@@ -10,7 +10,6 @@
     //====================================================
     function init_conf()
     {
-        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //overrides "global", lemma.conf.js::sconf
         sconf.default_tp_lightness = 22; // darkness of lines, curves
@@ -111,22 +110,15 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
+                draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false, // but not y
             },
             R : {
                 letterAngle : 135,
                 pcolor      : given,
-                draggableX  : sconf.BONUS? false : true, // this adds mouseover animation, but does not affect behaviour...?
-                draggableY  : sconf.BONUS? false : true,
-            },            
-            fi : {
-                caption : "φ",
-                pcolor : sconf.BONUS ? shadow : hidden,
-                letterAngle : 180,
-                draggableX  : true,
+                draggableX  : true, // this adds mouseover animation, but does not affect behaviour...?
                 draggableY  : true,
-            },
+            },            
             c : {
                 letterAngle : 45,
                 letterRotRadius : 18,

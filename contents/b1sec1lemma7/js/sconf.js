@@ -7,7 +7,6 @@
 
     function init_conf()
     {
-        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //====================================================
         // //\\ subapp regim switches
@@ -148,7 +147,7 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
+                draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
             
@@ -468,4 +467,3 @@
         });
     }
 }) ();
-
