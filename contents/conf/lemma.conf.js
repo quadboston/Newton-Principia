@@ -110,24 +110,15 @@
         fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
-        ///addendum has different color concepts
-        if( userOptions.showingBonusFeatures() ) {
-            ////swaps colors
-            fixedColors.invalid = rgbToArray("rgb(0, 0, 0)");
-            fixedColors.force   = rgbToArray("rgb(250, 0, 0)");
+        //alert, invalid user actions
+        fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
+        //force, energy
+        fixedColors.force   = rgbToArray("rgb(200, 150, 0)");
+        //conclusion of the proof
 
-            fixedColors.forceMove       = [150, 50, 0];
-            fixedColors.speed           = rgbToArray("rgb(150, 120, 0)");
-        } else {
-            //alert, invalid user actions
-            fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
-            //force, energy
-            fixedColors.force   = rgbToArray("rgb(200, 150, 0)");
-            //conclusion of the proof
+        fixedColors.forceMove       = fixedColors.force;
+        fixedColors.speed           = rgbToArray("rgb(90, 90, 90)");
 
-            fixedColors.forceMove       = fixedColors.force;
-            fixedColors.speed           = rgbToArray("rgb(90, 90, 90)");
-        }
         //neutral elements
         fixedColors.shadow  = rgbToArray("rgb(50, 50, 50)");
         fixedColors.hidden  = [0, 0, 0, 0];
@@ -176,9 +167,9 @@
 
 
         //P1 (Shared with P2)
-        fixedColors.freeMove        = [0, 150, 0];
-        fixedColors.diagram         = [150, 0, 90];
-        fixedColors.path            = [0, 0, 150];
+        fixedColors.freeMove        = rgbToArray("rgb(0, 150, 0)");
+        fixedColors.diagram         = rgbToArray("rgb(150, 0, 90)");
+        fixedColors.path            = rgbToArray("rgb(0, 0, 150)");
         fixedColors.sagittaeChords  = fixedColors.sagitta;
 
         fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
@@ -190,7 +181,7 @@
         fixedColors.tangent         = [0, 150, 0]; 
 
         //P2
-        fixedColors.areaDescriptionAccelerated = [255, 100, 0]; //Description of areas triangle P2 proof tab
+        fixedColors.areaDescriptionAccelerated = rgbToArray("rgb(205, 151, 137)"); //Description of areas triangle P2 proof tab
 
 
 
