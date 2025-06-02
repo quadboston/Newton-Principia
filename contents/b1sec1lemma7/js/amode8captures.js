@@ -221,7 +221,6 @@
                     //'AL',
                     //'L',
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
-                rg.L.hideD8Dpoint   = false;
             }
         }
         

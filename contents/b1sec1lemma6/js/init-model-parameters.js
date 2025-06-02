@@ -234,20 +234,8 @@
         ssF.line2abs( 'AB' );
         rg.AB.angleGrad = rg.AB.angle * 180 / Math.PI;
 
-        //=================================================
-        // //\\ builds Newton microscope
-        //=================================================
-        var Bx = rg.B.pos[0];
-        var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
-        nspaste( rg.b.pos, bpos );
-        var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' );
-
         let C = ssD.repoConf[ssD.repoConf.customFunction].fun( rg.B.pos[0] * 0.7 );
         nspaste( rg.C.pos, C );
-        nspaste( rg.c.pos, [C[0]*magn,C[1]*magn] );
-        //=================================================
-        // \\// builds Newton microscope
-        //=================================================
     }
 
     function builds__NewtonTangentAtA_8_L() {
