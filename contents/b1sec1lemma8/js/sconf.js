@@ -191,12 +191,6 @@
 
             var predefinedTopicsBonus = {
                 "curve-Ab"      : proof, 
-    
-                //addendum
-                "phi0"          : given,
-                "deltaphi"      : given,
-                "tangentPhi"    : result,
-                'angleBAD'      : given,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 
@@ -210,34 +204,6 @@
                     caption : 'rₒ',
                     letterAngle : 135,
                     pcolor      : given,
-                },
-    
-                //axis-y addendum
-                'ytop' : {
-                    letterAngle     : 90,
-                    caption         : 'axis y',
-                    letterRotRadius : 35,
-                    pcolor          : context,
-                },
-                "ylow" : {
-                    letterAngle : 90,
-                },
-                O : {
-                    letterAngle : -90,
-                    pcolor : given,
-                },
-                'axis-y_X_rd' : {
-                },
-    
-                //axis-x addendum
-                'xtop' : {
-                    letterAngle     : 130,
-                    caption         : 'axis x',
-                    letterRotRadius : 40,
-                    //pcolor : given,
-                },
-                "xlow" : {
-                    letterAngle : 90,
                 },
     
                 //beyond X and L to enable show of tangent angle
@@ -254,61 +220,7 @@
                     pcolor      : proof,
                     letterAngle : -90,
                     letterRotRadius : 20,
-                },
-    
-    
-                "y0" : {
-                    caption     : 'yₒ',
-                    letterAngle : 225,
-                    pcolor      : given,
-                },
-                //By
-                'y' : {
-                    caption     : 'y',
-                    letterAngle : 45,
-                    pcolor      : given,
-                },
-                //Ax
-                x : {
-                    caption     : 'x',
-                    letterAngle : -45,
-                    pcolor      : given,
-                },
-                //Bx
-                x0 : {
-                    caption     : 'xₒ',
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                
-                // //\\ magnified points
-                'Y0' : {
-                    pos             : A,
-                    caption         : 'Yₒ',
-                    letterAngle     : 210,
-                    letterRotRadius : 50,
-                    pcolor          : proof,
-                },
-                //BY
-                'Y' : {
-                    caption         : 'Y',
-                    letterAngle     : 180,
-                    letterRotRadius : 35,
-                    pcolor          : proof,
-                },
-                //AX0
-                'X0' : {
-                    caption         : 'Xₒ',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-                //BX
-                'X' : {
-                    caption         : 'X',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-                // \\// magnified points     
+                }, 
     
                 DLeft : {
                     letterAngle : 90,
