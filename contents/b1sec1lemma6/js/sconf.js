@@ -7,7 +7,6 @@
 
     function init_conf()
     {
-        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -158,7 +157,6 @@
         var linesArray =
         [            
             { 'AB' : { pcolor : given } },
-            //{ 'Ad' : { pcolor : context } }, // used in proof to extend AD to the right
             { 'AD' : { pcolor : given } }, // comes after Ad so green line is on top
             { 'AL' : { pcolor : proof } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
