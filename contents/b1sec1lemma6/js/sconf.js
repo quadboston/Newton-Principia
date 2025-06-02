@@ -101,12 +101,10 @@
         //================================================================      
         
         //: topic group colors
-        var context = [0, 0, 0];
         var given   = fixedColors.given;        
         var proof   = fixedColors.proof;
         var result  = fixedColors.result;
         var hidden  = fixedColors.hidden;
-        var test = [0,0,255]; //for debugging
 
         var predefinedTopics =
         {
@@ -170,60 +168,10 @@
                 //proof
                 "curve-Ab"      : proof,
                 "arc-Ab"        : proof,
-
-                //addendum
-                "phi0"          : given,
-                "deltaphi"      : given,
-                "tangentPhi"    : result,
             }
             predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
 
             var originalPointsBonus = {
-                //:context
-                //axis-y addendum
-                'ytop' : {
-                    pos             : ytop,
-                    letterAngle     : 90,
-                    caption         : 'axis y',
-                    letterRotRadius : 35,
-                    pcolor          : context,
-                },
-                "ylow" : {
-                    letterAngle : 90,
-                },
-                O : {
-                    letterAngle : -90,
-                    pcolor : given,
-                },
-                'axis-y_X_rd' : {
-                },
-
-                //axis-x addendum
-                'xtop' : {
-                    letterAngle     : 130,
-                    caption         : 'axis x',
-                    letterRotRadius : 40,
-                    //pcolor : given,
-                },
-                "xlow" : {
-                    letterAngle : 90,
-                },
-
-                //beyond X and L to enable show of tangent angle
-                "line-AL-end" : {
-                },
-
-                //extends rd to show an angle
-                "line-dr-start" : {
-                    letterAngle : 30,
-                },
-                ///modified point r, closer to d
-                "dr-decorpoint" : {
-                    caption : 'r',
-                    pcolor      : proof,
-                    letterAngle : -90,
-                    letterRotRadius : 20,
-                },
 
                 //:originals from Book
                 r : {
@@ -327,7 +275,6 @@
             predefinedTopics,
             originalPoints,
             linesArray,
-            //lines,
             modorInPicX,
             modorInPicY,
             pictureWidth,
