@@ -156,7 +156,6 @@
             'C',
             'AR',
             'AD',
-            'BD',
             'BR',
             'RD',
             'curve-AB',
@@ -165,8 +164,6 @@
         if( logic_phase === 'claim' ) {
             [
                 'c',
-                //'rd',
-                //'rb',
                 'imageOfR',
                 'imageOfD',
                 'A,imageOfD',
@@ -177,15 +174,8 @@
         } else if( logic_phase === 'proof' ) {
             [
                 'c',
-                //'d',
-                //'r',
                 'b',
                 'Ab',
-                //'Ad',
-                //'rd',
-                //'rb',
-                'bd',
-                //'Ar',
                 'imageOfR',
                 'imageOfD',
                 'A,imageOfD',

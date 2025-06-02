@@ -118,22 +118,6 @@
         // \\// paints magnified curve
         //-------------------------------------------------
 
-        ///draws tangentPhi
-        var angleName =
-            ( amode.subessay === 'derivative' ||
-              amode.subessay === 'vector-derivative'
-            ) ? 'ψ' : 'φₒ';
-        var wwRg = toreg( 'tangentPhi' )( 'pname', 'tangentPhi' )
-                        ( 'pos', rg.L.pos )( 'pcolor', rg.L.pcolor )();
-        wwRg.medpos = ssF.mod2inn( rg.tangentPhi.pos );
-        ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
-            AB : [ rg.dr.pivots[1], rg.dr.pivots[0] ],
-            CD : rg.AL.pivots,
-            rgSample : wwRg,
-            ANGLE_SIZE : 1,
-            caption : angleName,
-        });
-
 
         ( function() {
             var AB = null;

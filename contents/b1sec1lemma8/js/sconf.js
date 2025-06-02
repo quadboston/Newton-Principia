@@ -339,67 +339,6 @@
                 },
             }
             originalPoints = {...originalPoints, ...originalPointsBonus};
-
-            var linesArrayBonus = [    
-                { 'dr-decorpoint,d' : { pcolor : proof } },
-                { 'dr' : { pcolor : proof } },
-    
-                //l7
-                { 'bd' : { pcolor : hidden } },
-                { 'be' : { pcolor : hidden } },
-    
-                //l7
-                { 'BD' : { pcolor : hidden } },  //lemma 7, coroll 1
-                { 'BF' : { pcolor : hidden } },
-                { 'AF' : { pcolor : hidden } },
-                { 'AG' : { pcolor : hidden } },
-                { 'AE' : { pcolor : hidden } },
-                { 'BG' : { pcolor : hidden } },
-    
-                //sin(x)/x
-                { 'Br' : { pcolor : given } },
-    
-                { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
-    
-                 //:context
-                { 'ylow,ytop' : { pcolor : context, } },
-                { 'xlow,xtop' : { pcolor : context, } },
-                { 'O,ytop'    : { pcolor : context, } },
-    
-                //cirle radius
-                { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
-    
-                //cirle radius
-                { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
-    
-                 //x-drops to axix x
-                { 'A,x0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'Bx'    : { pcolor : given, 'stroke-width' : 1, } },
-                 //y-drops to axix y
-                { 'A,y0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
-    
-    
-                //dy
-                { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
-                //dx
-                { 'x0,x' : { pcolor : given, 'stroke-width' : 8, } },
-    
-                { 'A,line-AL-end' : { pcolor : result } },
-    
-                //DY
-                { 'A,Y' : { pcolor : proof, 'stroke-width' : 8, } },
-                //DX
-                { 'X0,X' : { pcolor : proof, 'stroke-width' : 8, } },
-    
-                //tangent
-                { 'AL' : { pcolor : result } },
-                { 'Ae' : { pcolor : proof } },
-    
-                { 'AE' : { pcolor : given } },
-                { 'BE' : { pcolor : given } },
-            ];
-            linesArray = [...linesArray, ...linesArrayBonus];
         }
 
         //----------------------------------
