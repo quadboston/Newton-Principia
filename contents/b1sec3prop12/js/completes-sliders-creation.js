@@ -27,7 +27,7 @@
             if (denom != 0) {
                 //Calculate using the hyperbola equation (in its local coordinate system).
                 const xLocalSquared = (op.latus / denom)**2 + y**2 / denom;
-                if (xLocalSquared > 0) {
+                if (xLocalSquared >= 0) {
                     //Offset by point C's x value, so point P ends up in the correct position.
                     //Required because diagram has a different origin than the hyperbola equation.
                     const offset = rg.C.pos[0];
