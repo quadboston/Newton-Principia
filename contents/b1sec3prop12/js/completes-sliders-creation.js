@@ -1,37 +1,55 @@
 ( function() {
-    var {
-        sn, has, mat, mcurve, nspaste,
-        fconf, sData,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            completesSlidersCreation,
-        },
-    });
+    var { sn, has, mat, mcurve, nspaste, fconf, sData, amode, stdMod, sconf, rg, toreg, } 
+        = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, },  });
     var conics = sn( 'conics', mat );
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
     function completesSlidersCreation()
     {
         var op = sconf.orbitParameters;
 
         //=========================================================================
         // //\\ point P slider
+        //=========================================================================
+        rg.P.acceptPos = newPos => {
+            //Compute x value, using y value as the input to hyperbola equation.
+            const y = newPos[1];
+            //The following uses eccentricity and latus, which makes the calculation much simpler.
+            //While op.A and op.B could potentially be used, at the time of writing this code they
+            //sometimes lead to errors (for the parabola/ellipse).  They are calculated to ensure
+            //that a and b are always positive and to avoid imaginary numbers (for more details see
+            //establishesEccentricity function "makes-orbit.js").  This means that using them would
+            //require additional adjustments and be more complicating.
+            const denom = op.eccentricity**2 - 1;
+            if (denom != 0) {
+                //Calculate using the hyperbola equation (in its local coordinate system).
+                const xLocalSquared = (op.latus / denom)**2 + y**2 / denom;
+                if (xLocalSquared > 0) {
+                    //Offset by point C's x value, so point P ends up in the correct position.
+                    //Required because diagram has a different origin than the hyperbola equation.
+                    const offset = rg.C.pos[0];
+                    //Ensure the sign calculated using sqrt is correct.
+                    const x = Math.sign(op.eccentricity - 1) * Math.sqrt(xLocalSquared) + offset;
+
+                    const q = Math.atan2( y, x );
+                    rg.P.q = q;
+                    nspaste( rg.P.pos, [x, y] );
+                }
+            }
+            
+            return true;
+        }
+        //=========================================================================
+        // \\// point P slider
+        //=========================================================================
+
+
+
+        //=========================================================================
+        // //\\ point Fi slider
         //=========================================================================
         rg.Fi.acceptPos = newPos => {
 
@@ -73,7 +91,7 @@
             return true;
         }
         //=========================================================================
-        // \\// point P slider
+        // \\// point Fi slider
         //=========================================================================
 
 
