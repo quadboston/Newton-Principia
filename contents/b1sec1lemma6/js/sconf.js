@@ -225,60 +225,6 @@
                     letterRotRadius : 20,
                 },
 
-                "y0" : {
-                    caption     : 'yₒ',
-                    letterAngle : 225,
-                    pcolor      : given,
-                },
-                //By
-                'y' : {
-                    caption     : 'y',
-                    letterAngle : 45,
-                    pcolor      : given,
-                },
-                //Ax
-                x : {
-                    caption     : 'x',
-                    letterAngle : -45,
-                    pcolor      : given,
-                },
-                //Bx
-                x0 : {
-                    caption     : 'xₒ',
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                
-                // //\\ magnified points
-                'Y0' : {
-                    pos             : A,
-                    caption         : 'Yₒ',
-                    letterAngle     : 210,
-                    letterRotRadius : 50,
-                    pcolor          : proof,
-                },
-                //BY
-                'Y' : {
-                    caption         : 'Y',
-                    letterAngle     : 180,
-                    letterRotRadius : 35,
-                    pcolor          : proof,
-                },
-                //AX0
-                'X0' : {
-                    caption         : 'Xₒ',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-                //BX
-                'X' : {
-                    caption         : 'X',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-                // \\// magnified points
-
-
                 //:originals from Book
                 r : {
                     pos: r,
@@ -290,12 +236,6 @@
                     letterAngle : 135,
                     pcolor      : given,
                 },
-                /*
-                'B-kernelx' : {
-                cssClass : 'hover-width',
-                },
-                */
-
                 DLeft : {
                     letterAngle : 90,
                     pcolor      : given,
@@ -315,7 +255,6 @@
                     pcolor      : proof,
                 },
     
-    
                 d : {
                     pos         : d,
                     letterAngle : 90,
@@ -332,90 +271,8 @@
                 curveLeftEnd : {
                     pos : [250,100],
                 },
-
-                //lemma 7, coroll 1
-                F : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                G : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                E : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                e : {
-                    letterAngle : 90,
-                    pcolor      : proof,
-                },
             }
             originalPoints = {...originalPoints, ...originalPointsBonus};
-
-            var linesArrayBonus = [
-                { 'Ar' : { pcolor : given } },
-                { 'Ab' : { pcolor : proof } },
-                { "rd" : { pcolor : proof } },
-
-                { 'dr-decorpoint,d' : { pcolor : proof } },
-                { 'dr' : { pcolor : proof } },
-
-                //l7
-                { 'bd' : { pcolor : proof } },
-                { 'BD' : { pcolor : given } },  //lemma 7, coroll 1
-                { 'BF' : { pcolor : given } },
-                { 'AF' : { pcolor : given } },
-                { 'AG' : { pcolor : given } },
-                { 'AE' : { pcolor : given } },
-                { 'BG' : { pcolor : given } },
-                { 'be' : { pcolor : proof } },
-
-                //sin(x)/x
-                { 'Br' : { pcolor : given } },
-
-
-                { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
-
-                //:context
-                { 'ylow,ytop' : { pcolor : context, } },
-                { 'xlow,xtop' : { pcolor : context, } },
-                { 'O,ytop'    : { pcolor : context, } },
-
-                //cirle radius
-                { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-                //cirle radius
-                { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-                //x-drops to axix x
-                { 'A,x0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'Bx'    : { pcolor : given, 'stroke-width' : 1, } },
-                //y-drops to axix y
-                { 'A,y0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
-
-
-
-                //dy
-                { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
-                //dx
-                { 'x0,x' : { pcolor : given, 'stroke-width' : 8, } },
-
-                { 'A,line-AL-end' : { pcolor : result } },
-
-                //DY
-                { 'A,Y' : { pcolor : proof, 'stroke-width' : 8, } },
-                //DX
-                { 'X0,X' : { pcolor : proof, 'stroke-width' : 8, } },
-
-                //tangent
-                { 'Ae' : { pcolor : proof } },
-
-                { 'AE' : { pcolor : given } },
-                { 'BE' : { pcolor : given } },
-            ];
-            linesArray = [...linesArray, ...linesArrayBonus];
         }
 
 
