@@ -69,18 +69,6 @@
                     }
             },
 
-
-            "true-convergence-1": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.5232929802797621
-                    }
-            },
-
             "meet": {
                     "curveRotationAngle": {
                         "angle": 0.10579977792284677,
@@ -90,24 +78,6 @@
                     "B": {
                             "unrotatedParameterX": 0.001
                     }
-            },
-
-
-            "analytic-derivative" :
-            {
-                "media-mover": {
-                    "achieved": {
-                        "achieved": [
-                            220.438,
-                            222.515
-                        ]
-                    }
-                },
-                "curveRotationAngle": {
-                    "angle": 0.10579977792284677,
-                    "sin": 0.10560250842053673,
-                    "cos": 0.9944084222367038
-                }
             },
 
         });
