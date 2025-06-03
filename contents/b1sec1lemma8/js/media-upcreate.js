@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
+        $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg, bezier, nssvg
     } = window.b$l.apptree({
         stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
@@ -42,7 +42,6 @@
 
         //: analytical derivative dy/dx
         var cfun = ssD.repoConf[ssD.repoConf.customFunction];
-
         
         //-------------------------------------------------
         // //\\ original arc and curve
@@ -102,9 +101,25 @@
         //==========================================
         // //\\ fill areas (adapted from L9)
         //==========================================
-        var wCCA = ssF.calculateCurvedArea;
-        //wCCA( 'area-RAB', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
-        //paintArea( 'area-RAB', null, '_r_a_b' );
+
+        // borrowed from L9 model-upcreate.js; todo: is there somewhere to put common functions?
+        function calculateCurvedArea( rgId, pivots, tend, startPoint, endPoint )
+        {
+            var area        = toreg( rgId )();
+            area.curve      = bezier.bezier2lower( pivots, tend );
+            area.startPoint = startPoint;
+            area.endPoint   = endPoint;
+        }
+        calculateCurvedArea( 
+            'area-RAB', 
+            sconf.givenCurve_pivots_inModel, 
+            rg.C.pos[0], 
+            rg.A.medpos, 
+            rg.B.medpos 
+        );
+        console.log(rg.A.medpos) //todo: calc the correct vals for L8
+
+        paintArea( 'area-RAB', null, 'area-_r_a_b' );
         function paintArea( areaId, fullMode, topicGroup_decapitalized )
         {
             var area = rg[ areaId ];

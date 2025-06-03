@@ -116,6 +116,7 @@
         rg.B.undisplay              = false;
         rg.AB.undisplay             = false;
         rg[ 'arc-AB' ].undisplay    = false;
+        rg['area-RAB'].undisplay    = false;
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
