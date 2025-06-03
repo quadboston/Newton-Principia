@@ -33,24 +33,12 @@
                 if( fullAngle > 0.001 ) {
                     fullAngle = 0;
                 }
-                if(
-                    amode.subessay === 'derivative' ||
-                    amode.subessay === 'sine derivative' ||
-                    amode.subessay === 'vector-derivative'
-                ) {
-                    if( fullAngle < -0.2 ) {
-                        ///this is lowest allowed L-position on the screen
-                        ////otherwise, function y(x) is not well-defined
-                        fullAngle = -0.2;
-                    }
+                if( fullAngle < rg.AB.angle ) {
+                    ///this is lowest allowed L-position on the screen
+                    fullAngle = rg.AB.angle;
+                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
                 } else {
-                    if( fullAngle < rg.AB.angle ) {
-                      ///this is lowest allowed L-position on the screen
-                      fullAngle = rg.AB.angle;
-                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
-                    } else {
-                      sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
-                    }
+                    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
                 }
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
                 return true;
