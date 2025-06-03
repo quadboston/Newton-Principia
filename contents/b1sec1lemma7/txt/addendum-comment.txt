@@ -73,7 +73,7 @@ But perhaps as lack of nails made Kizhi stronger, the lack of numbers made Princ
 <br><br><br><br>
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a>:</b><br>
 <br>
 Taking radius ¦Ar¦¦ = 1 and applying Lemma 6 method we have
 

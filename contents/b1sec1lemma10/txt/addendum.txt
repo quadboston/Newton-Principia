@@ -19,7 +19,7 @@
 *..*
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX</a></b><br><br>
 
 <b>...Polynomial approximation</b>
 <br><br>

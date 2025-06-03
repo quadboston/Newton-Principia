@@ -3,7 +3,7 @@
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version = 13796; //application version
+    fapp.version = 13797; //application version
     fapp.buildDateString = "2025-06-02"; //build date
     // \\// updated automatically. Don't edit these strings.
 

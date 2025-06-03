@@ -5,7 +5,7 @@
 *..*
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a>:</b><br><br>
 
     <div style="text-align:center">
         ¦AB¦e¦¦<sup>2</sup> / ¦BD¦a¦¦ -&gt; ¦AJ¦2R¦¦ <br>
@@ -43,7 +43,7 @@
 }
 *..*
 
-<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>:</b><br><br>
+<b>In <a href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a>:</b><br><br>
 
     <b>1.</b> <i>in geometrical approach:</i><br>
 
@@ -206,7 +206,7 @@
 *..*
 
     <b>In <a target="_blank"
-             href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a>
+             href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a>
     </b><br>
     Newton's ultimate ratio defines second derivatives:
 

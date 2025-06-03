@@ -10,7 +10,7 @@
 
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
 
 Newton's proof is done in style "reductio ad absurdum":<br><br>
 

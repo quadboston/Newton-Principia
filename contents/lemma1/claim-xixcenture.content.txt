@@ -53,7 +53,7 @@ partition intervals for sum x and y, the are infinitely many x and infinitely ma
 
 
 <b>II. <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework.</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus.</a></b><br><br>
 <br>
 
 This is an interpretation of Newton's definition of limit in context of beginning XIX century (Bolzano).<br><br>

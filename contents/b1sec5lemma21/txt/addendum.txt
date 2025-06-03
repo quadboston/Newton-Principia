@@ -13,7 +13,7 @@
 *..*
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 
