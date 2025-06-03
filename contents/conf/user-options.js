@@ -33,7 +33,7 @@
     userOptions.setsBonus = setsBonus;
     return;   
     
-    ///created for lemmas which labeled as inAddendum and
+    ///created for lemmas which labeled as BONUS_FEATURE and
     ///user did land exactly on one of these
     function setsBonus() {
         doesStoreOption(BONUS, true);

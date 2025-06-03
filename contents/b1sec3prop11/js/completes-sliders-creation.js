@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, mat, userOptions, hafa,
-        ssD, stdMod, sconf, rg,
+        amode, ssD, stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -28,10 +28,11 @@
         };
         rg.S.acceptPos = newPos => {
             if( mat.p1_to_p2( newPos, sconf.diagramOrigin ).abs > -1 ) {
-                if( userOptions.showingBonusFeatures() ) {
-                    stashedPos[0] = newPos[0];
-                    stashedPos[1] = newPos[1];
-                } else {
+                //if( amode.aspect === 'addendum' ) {
+                //    stashedPos[0] = newPos[0];
+                //    stashedPos[1] = newPos[1];
+                //} else
+                {
                     if( newPos[0] > -0.00001 || newPos[0] < -1.2 ) {
                         return false;
                     }

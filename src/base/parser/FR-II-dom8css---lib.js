@@ -498,7 +498,7 @@
     ///to student's console,
     function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
     {
-        if( userOptions.showingBonusFeatures() ) {
+        if( amode.aspect === 'addendum' ) {
             let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
             let sea = '?conf=sappId=';
             let reg = new RegExp( '\\' + sea );

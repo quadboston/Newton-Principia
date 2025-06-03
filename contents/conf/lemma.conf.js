@@ -43,19 +43,9 @@
             //of a proof
             var proof     = [0,     0,   255];
             var result    = [100,   0,  0];
+            var force = [250, 0, 0];
+            var invalid = [0, 0, 0, 1];;
 
-            ///addendum has different color concepts
-            if( userOptions.showingBonusFeatures() ) {
-                ////swaps colors
-                var force = [250, 0, 0];
-                var invalid = [0, 0, 0, 1];;
-            } else {
-                //alert, invalid user actions
-                var invalid   = [250,  0,  0];
-                //force, energy
-                var force     = [200,  150,  0];
-                //conclusion of the proof
-            }
             //neutral elements
             var shadow    = [50,  50,  50];
             var hidden    = [0, 0, 0, 0];

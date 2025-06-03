@@ -13,12 +13,6 @@
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-
-        //if one wants to separate BONUS and aspect, this
-        //method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
-        const BONUS = userOptions.showingBonusFeatures();
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -34,9 +28,7 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'estforce', 'body' ] :
-            [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', 'body' ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -88,8 +80,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = BONUS ? 'rgba(0,0,0,1)':n2c( 'orbit' );
-            //                'rgba(56,132,79,1)';
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
@@ -141,7 +132,7 @@
             [
                 {
                         text    : 'Distance from force center, r', 
-                        x       : BONUS ? -700 : -520,
+                        x       : -700,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',

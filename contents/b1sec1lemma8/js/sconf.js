@@ -133,7 +133,7 @@
             },            
             fi : {
                 caption : "φ",
-                pcolor : userOptions.showingBonusFeatures() ? shadow : hidden,
+                pcolor : shadow,
                 letterAngle : 180,
                 draggableX  : true,
                 draggableY  : true,

@@ -51,7 +51,7 @@
            if( !foldPointsRemovedFromTp ) {
                foldPointsRemovedFromTp = true;
 
-               let gapColor = userOptions.showingBonusFeatures() ?
+               let gapColor = amode.aspect === 'addendum' ?
                               '#ffffff' : '#ff0000';
                rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
                sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {

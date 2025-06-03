@@ -173,12 +173,10 @@
         var chord = [0,0,255, 1];
 
         var force   = [200,  70,  70,      1];
-        if( userOptions.showingBonusFeatures() ) {
-            ////swaps colors
-            var force = invalid;
-            var invalid = [0,     0,   0,      1];
-            result = [255,0,0,1];
-        }
+        ////swaps colors
+        var force = invalid;
+        var invalid = [0,     0,   0,      1];
+        result = [255,0,0,1];
         
         var predefinedTopics =
         {

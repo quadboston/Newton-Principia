@@ -99,9 +99,11 @@
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
                 
-                if( !userOptions.showingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
+                /*
+                if( !userOptions.s howingBonusFeatures() && fconf.sappId === "b1sec1lemma8") {
                     nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
                 }
+                */
                 return true;
             }
         });
@@ -123,27 +125,27 @@
             pname : 'R',
             acceptPos : ( newPos ) =>
             {
-                if(userOptions.showingBonusFeatures()) {
-                    // R can move along y axis only
-                    var ach = rg.R.achieved;
-                    newPos[0] = 0;
-                    if(
-                        //patch: instead of fixing arc-Ab calculations properly,
-                        //       this code-fragment restricts area where this arc miscalculated:
-                        newPos[1] > -0.01 ) {
-                        newPos[1] = -0.01;
-                    } else if( newPos[1] < -1.5 ) {
-                        newPos[1] = -1.5;
-                    }
-                    //prepares point B which implies new position of point R
-                    rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
-                        / ach.achieved[1];
-                    if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
-                        rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
-                    }
-                    nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
-                    return true;
-                } else {  
+                // R can move along y axis only
+                var ach = rg.R.achieved;
+                newPos[0] = 0;
+                if(
+                    //patch: instead of fixing arc-Ab calculations properly,
+                    //       this code-fragment restricts area where this arc miscalculated:
+                    newPos[1] > -0.01 ) {
+                    newPos[1] = -0.01;
+                } else if( newPos[1] < -1.5 ) {
+                    newPos[1] = -1.5;
+                }
+                //prepares point B which implies new position of point R
+                rg.B.unrotatedParameterX = sData.unrotatedParameterX * newPos[1]
+                    / ach.achieved[1];
+                if( rg.B.originalPos[0] * 1.1 < rg.B.unrotatedParameterX ) {
+                    rg.B.unrotatedParameterX = rg.B.originalPos[0] * 1.1;
+                }
+                nspaste( newPos, dir8innerB_2_R( rg['imageOfR,imageOfD'].originalDirection ) );
+                return true;
+                /*
+                else {
                     // R cannot be moved right of B on x-axis
                     if(newPos[0] >= rg.B.pos[0] - 0.0001) {
                         return false;
@@ -154,6 +156,7 @@
                     }
                     return true;
                 }
+                */
             }
         });
         //-------------------------------------------------
@@ -510,7 +513,7 @@
             ///cross line A,f which becomes a new R
             RB_slope,
             posB,
-            userOptions.showingBonusFeatures() ? rg.fi.pos : rg.R.pos,
+            rg.fi.pos, // : rg.R.pos,
             rg.A.pos,
         );
         return newRpos;

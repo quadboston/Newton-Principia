@@ -25,7 +25,7 @@
             //book : 'In Development',
             book : 'Book 1',
             caption : 'Lemma 3. Darboux and Riemann.',
-            inAddendum : true,
+            BONUS_FEATURE : true,
         },
 
 
@@ -180,14 +180,14 @@
             book : 'Book 1',
             caption : 'Sec. 5, Lemma 20',
             annotation : "",
-            //inAddendum : true,
+            //BONUS_FEATURE : true,
         },
 
         {   sappId : 'b1sec5lemma21',
             book : 'Book 1',
             caption : 'Sec. 5, Lemma 21',
             annotation : "",
-            //inAddendum : true,
+            //BONUS_FEATURE : true,
         },
 
         {   sappId : 'b1sec8prop41',
@@ -241,7 +241,7 @@
             book : 'Programmer Guide',
             caption : 'S1Lemma2. How to code derivative sliders.',
             annotation : "Lorem ipsum acnut lima noir set lorem ipsum doler sut.",
-            inAddendum : true,
+            BONUS_FEATURE : true,
         },
     ];
 }) ();

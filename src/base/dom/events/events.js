@@ -84,7 +84,9 @@
         var next = direction === 'right' ? next = allowedIx + 1 : allowedIx - 1;
         if( next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
             fconf.ix2lemmaDefAllowed[ next ].sappId === 'home-pane' ||
-            (fconf.ix2lemmaDefAllowed[ next ].annotation === userOptions.BONUS_START && !userOptions.showingBonusFeatures())
+            //(fconf.ix2lemmaDefAllowed[ next ].annotation === userOptions.BONUS_START
+            //&& !amode.aspect === 'addendum')
+            (fconf.ix2lemmaDefAllowed[ next ].annotation === userOptions.BONUS_START )
         ) {
             pager$.addClass( 'non-displayed' );
         } else {

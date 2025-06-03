@@ -14,7 +14,6 @@
     const tix2orbit = sn( 'tix2orbit', ssD, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
     const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
-    const BONUS = !!userOptions.showingBonusFeatures();
     return;
 
 

@@ -151,7 +151,7 @@
             sDomN.essaionsRoot$.removeClass( 'active-right' );
             sDomN.essaionsRoot$.addClass( 'active-left' );
         }
-        if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
+        if( amode.aspect === 'addendum' && dr.basesN > 4 ) {
             sDomN.essaionsRoot$.removeClass( 'active-higlight-do' );
             sDomN.essaionsRoot$.addClass( 'active-no-higlight-do' );
         } else {

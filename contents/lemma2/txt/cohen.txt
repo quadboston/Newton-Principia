@@ -36,7 +36,7 @@
             
             <!-- addendum uses mathematically strict variant by removing 
                  notation Do from incorrect rect.
-                 see: userOptions.showingBonusFeatures() && dr.basesN > 4 -->
+                 see: amode.aspect === 'addendum' && dr.basesN > 4 -->
             ¿?
             {
                 "no-higlight-do" : "Do,",

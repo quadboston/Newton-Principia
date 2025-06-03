@@ -13,7 +13,6 @@
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-        const BONUS = userOptions.showingBonusFeatures();
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -104,9 +103,8 @@
                 },
 
                 {
-                    text    : BONUS ?
-                                'Force f, sagitta, -1/r², per their max.'
-                                
+                    text    :  'Force f, sagitta, -1/r², per their max.',
+                               /* 
                                 :
 
                                 '<text><tspan class="tp-force tofill tobold hover-width"' +
@@ -123,6 +121,7 @@
 
                                 '<tspan> forces (per their max)</tspan>' +
                                 '</text>',
+                                */
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -138,7 +137,7 @@
                 {
                     text    :  sData.GRAPH_PATH ?
                                'Distance along arc' : 'Distance from force center, r', 
-                    x       : BONUS ? -700 : -520,
+                    x       : -700,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',

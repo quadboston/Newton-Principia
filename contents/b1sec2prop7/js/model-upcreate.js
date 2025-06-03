@@ -24,8 +24,6 @@
     {
         const DDD = 1e-5;
         stdMod.findsFiniteSagitta(DDD);
-
-        const bonus = userOptions.showingBonusFeatures();
         const addendum = amode.aspect === 'addendum';
         const rgCurve = rg[ 'approximated-curve' ];
         const fun = rgCurve.t2xy;
@@ -327,7 +325,6 @@
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
                 nsp.undisplay = false;
-                //nsl.undisplay = !!userOptions.showingBonusFeatures();
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;

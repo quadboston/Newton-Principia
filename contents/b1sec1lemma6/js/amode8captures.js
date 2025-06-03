@@ -597,7 +597,7 @@
                 ].forEach( gname => { rg[ gname ].undisplay = false; });
             }
             if( logic_phase === 'claim' || logic_phase === 'corollary' ) {
-                if( userOptions.showingBonusFeatures() ) {
+                if( amode.aspect === 'addendum'() ) {
                     rg.B.hideD8Dpoint   = false;
                     rg.R.hideD8Dpoint   = false;
                 } else {
@@ -606,7 +606,7 @@
                 }
             }    
             if( subessay === 'interpretation1' ) {
-               if( userOptions.showingBonusFeatures() ) {
+               if( amode.aspect === 'addendum'() ) {
                    rg.B.hideD8Dpoint   = true;
                    rg.R.hideD8Dpoint   = false;
                } else {

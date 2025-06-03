@@ -155,7 +155,7 @@
             remove( 'active-left' );
             add( 'active-right' );
         }
-        if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
+        if( dr.basesN > 4 ) {
             remove( 'active-higlight-do' );
             add( 'active-no-higlight-do' );
         } else {

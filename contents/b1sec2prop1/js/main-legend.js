@@ -155,7 +155,8 @@
         //===================
         //prepares force parameters
         var forceColor = sDomF.getFixedColor( 'force' );
-        tableCaptionFun = function( isAddendum ) {
+        //tableCaptionFun = function( isAddendum ) {
+        tableCaptionFun = function() {
             var arr = rg.force.inarray;
             if( amode.aspect === 'model' ) {
                 let list = 'k<sub>B,C,D,E,F</sub>=';

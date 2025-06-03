@@ -5,8 +5,6 @@
 
     function init_conf()
     {
-        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -304,7 +302,7 @@
                 letterAngle : 90,
                 pcolor      : given,
                 // this adds animation and allows dragging along x
-                draggableX  : sconf.BONUS? false : true,
+                draggableX  : false,
                 draggableY  : false,
 
             },

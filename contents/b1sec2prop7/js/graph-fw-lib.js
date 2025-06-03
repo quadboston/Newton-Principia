@@ -13,7 +13,6 @@
 
     function createsGraphFW_lemma({ digramParentDom$ }){
         let graphFW = {};
-        let bonus = !!userOptions.showingBonusFeatures();
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -163,7 +162,7 @@
 
                 {
                     text    : 'Distance from force (SP / AV)', 
-                    x       : bonus ? -700 : -600,
+                    x       : -700,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -201,7 +200,6 @@
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
                         //'stroke-width' : '10px',
-                        //'display' : bonus ? 'block' : 'none',
                         //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class

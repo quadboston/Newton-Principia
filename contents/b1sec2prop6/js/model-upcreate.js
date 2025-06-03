@@ -20,7 +20,6 @@
     ///****************************************************
     function model_upcreate()
     {
-        const BONUS = userOptions.showingBonusFeatures();
         const ADDENDUM = amode.aspect === 'addendum';
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
@@ -45,7 +44,7 @@
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
             rg.Q.pos[1] = rrplus[1];
-            rg.QtimeDecor.caption = BONUS ? 'Δt=' + (2*ssD.Dt).toFixed(5) : '';
+            rg.QtimeDecor.caption = 'Δt=' + (2*ssD.Dt).toFixed(5);
             rg.QtimeDecor.pos = Porb.rrplus;
             let sagV = Porb.sagittaVector;
             rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
@@ -120,10 +119,11 @@
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
-                printAxisXDigits : BONUS,
+                printAxisXDigits : true,
                 //printAxisYDigits : true,
             }
-            if( !BONUS ) {
+            /*
+            if( !B ONUS ) {
                 let ga = stdMod.graphFW_lemma.graphArray;
                 let len = ga.length;
                 let sumAbs = 0;
@@ -145,6 +145,7 @@
                 graphArg.yMax = Math.max( yMax, averageY*1.5 );
                 graphArg.yMin = 0;
             }
+            */
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
@@ -204,7 +205,6 @@
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
                 nsp.undisplay = false;
-                //nsl.undisplay = !!userOptions.showingBonusFeatures();
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;

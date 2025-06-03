@@ -12,15 +12,16 @@
     {
         let ix2lemmaDefAllowed = fconf.ix2lemmaDefAllowed = [];
         fconf.ix2lemmaDef.forEach( ( ld, ix ) => {
-            let addendums = userOptions.showingBonusFeatures();
-            if( !addendums && haz( ld, 'inAddendum' ) ) {
+            if( haz( ld, 'BONUS_FEATURE' ) ) {
+                /*
                 if( fconf.sappId === ld.sappId ){
                     //// reestablished addendum mode on PC because of
                     //// addendum-lemma is called
-                    userOptions.setsBonus();
+                    //// userOptions.setsBonus();
                 } else {
                     return;
                 }
+                */
             }
             //ld.ix = ix;  //todom rid
             ld.allowedIx = ix2lemmaDefAllowed.length;

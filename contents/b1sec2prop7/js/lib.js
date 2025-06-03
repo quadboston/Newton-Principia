@@ -31,7 +31,7 @@
     ///         tangent in some point of the curve
     function curveIsSolvable()
     {
-        var bonus = userOptions.showingBonusFeatures();
+        const bonus = amode.aspect === 'addendum';
         const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
@@ -200,7 +200,7 @@
     function findsFiniteSagitta(DD)
     {
         const DDD = DD || 1e-5;
-        const bonus = userOptions.showingBonusFeatures();
+        const bonus = amode.aspect === 'addendum';
         const fun = rg[ 'approximated-curve' ].t2xy;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.graphArray;

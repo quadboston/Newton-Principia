@@ -26,17 +26,22 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+        var ADDENDUM = aspect === 'addendum';
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         rg.SS.undisplay = true;
-        if( userOptions.showingBonusFeatures() ) {
+        
+        /*
+        //too much general?:
+        if( ADDENDUM ) {
             rg.SS.undisplay = false;
             rg.SS.pos[0] = -sconf.ellipseFocus;
             rg.SS.pos[1] = 0;
         }
+        */
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -45,7 +50,6 @@
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 
-        var ADDENDUM = aspect === 'addendum';
 
         if( fconf.sappId === 'b1sec3prop11' ) {
             rg.VV.undisplay = true;

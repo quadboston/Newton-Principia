@@ -20,6 +20,7 @@
 
     function creates_mainSceneResizer()
     {
+        ccc( 'xxx' );
         //--------------------------------------------------------
         // //\\ attaches ownself to resize manager
         //--------------------------------------------------------

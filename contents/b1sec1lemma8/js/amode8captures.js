@@ -234,12 +234,12 @@
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
 
-        if( userOptions.showingBonusFeatures() ) {
+        if( amode.aspect === 'addendum' ) {
             rg.B.hideD8Dpoint   = false;
             rg.R.hideD8Dpoint   = false;
             rg.fi.hideD8Dpoint  = false;
             if( subessay === 'interpretation1' ) {
-                if( userOptions.showingBonusFeatures() ) {
+                if( amode.aspect === 'addendum' ) {
                     rg.B.hideD8Dpoint   = true;
                     rg.R.hideD8Dpoint   = false;
                 } else {

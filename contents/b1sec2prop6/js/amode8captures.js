@@ -51,7 +51,7 @@
         var { logic_phase, aspect, subessay } = amode;
         sData.GRAPH_PATH =
                 sconf.GRAPH_PATH
-                && !userOptions.showingBonusFeatures()
+                && !amode.aspect === 'addendum'
                 && aspect !== 'addendum';
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
@@ -69,7 +69,7 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        if( !userOptions.showingBonusFeatures() ) {
+        if( !amode.aspect === 'addendum' ) {
             rg[ 'S,nonSolvablePoint' ].undisplay = true;
             rg[ 'nonSolvablePoint' ].undisplay = true;
         }

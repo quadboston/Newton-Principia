@@ -31,6 +31,7 @@
     //=========================================================
     function model_upcreate_addon()
     {
+        ccc( 'unknown function' );
         //this patch amends this css
         //.bsl-approot.logic_phase--corollary.aspect--english .bsl--svgscene.s ubmodel-common
 
@@ -68,6 +69,7 @@
     function init_model_parameters_addon()
     {
         stdMod.cre__extraImages();
+        ccc( 'what is this' );
         stdMod.creates_mainSceneResizer();
 
         //========================================================================
