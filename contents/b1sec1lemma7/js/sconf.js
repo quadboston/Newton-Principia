@@ -7,7 +7,6 @@
 
     function init_conf()
     {
-        sconf.BONUS = userOptions.showingBonusFeatures(); //addendum options ticked
 
         //====================================================
         // //\\ subapp regim switches
@@ -93,9 +92,6 @@
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
 
-        // *** used only if BONUS || rgShapesVisible (todo: maybe not at all)
-        //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];  
         //================================================================
         // \\// original positions
         //================================================================      
@@ -106,7 +102,6 @@
         var proof   = fixedColors.proof;
         var result  = fixedColors.result;
         var hidden  = fixedColors.hidden;
-        var red = [255,0,0]; //for debugging
 
         var predefinedTopics =
         {
@@ -148,7 +143,7 @@
                 pos: D,
                 letterAngle : 90,
                 pcolor      : given,                
-                draggableX  : sconf.BONUS? false : true, // this adds animation and allows dragging along x
+                draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
             
@@ -242,171 +237,6 @@
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
         ]
 
-        addBonusVars(); // todo: would be great if we only called this if BONUS === true, but as is that would break the page
-        function addBonusVars() {            
-            // *** these are only used if BONUS || rgShapesVisible (some maybe not at all)
-
-            var predefinedTopicsBonus = {
-                //addendum
-                "phi0"          : given,
-                "deltaphi"      : given,
-                "tangentPhi"    : result,
-                'angleBAD'      : given,
-            }
-            predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
-
-            var originalPointsBonus = {
-                'ytop' : {
-                    pos             : ytop,
-                    letterAngle     : 90,
-                    caption         : 'axis y',
-                    letterRotRadius : 35,
-                    pcolor          : context,
-                },
-                "ylow" : {
-                    letterAngle : 90,
-                },
-                O : {
-                    letterAngle : -90,
-                    pcolor : given,
-                },
-                'axis-y_X_rd' : {
-                },
-
-                //axis-x addendum
-                'xtop' : {
-                    letterAngle     : 130,
-                    caption         : 'axis x',
-                    letterRotRadius : 40,
-                    //pcolor : given,
-                },
-                "xlow" : {
-                    letterAngle : 90,
-                },
-
-                //beyond X and L to enable show of tangent angle
-                "line-AL-end" : {
-                },
-
-                //extends rd to show an angle
-                "line-dr-start" : {
-                    letterAngle : 30,
-                },
-                ///modified point r, closer to d
-                "dr-decorpoint" : {
-                    caption : 'r',
-                    pcolor      : proof,
-                    letterAngle : -90,
-                    letterRotRadius : 20,
-                },
-
-                "y0" : {
-                    caption     : 'yₒ',
-                    letterAngle : 225,
-                    pcolor      : given,
-                },
-                //By
-                'y' : {
-                    caption     : 'y',
-                    letterAngle : 45,
-                    pcolor      : given,
-                },
-                //Ax
-                x : {
-                    caption     : 'x',
-                    letterAngle : -45,
-                    pcolor      : given,
-                },
-                //Bx
-                x0 : {
-                    caption     : 'xₒ',
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                
-                // //\\ magnified points
-                'Y0' : {
-                    pos             : A,
-                    caption         : 'Yₒ',
-                    letterAngle     : 210,
-                    letterRotRadius : 50,
-                    pcolor          : proof,
-                },
-                //BY
-                'Y' : {
-                    caption         : 'Y',
-                    letterAngle     : 180,
-                    letterRotRadius : 35,
-                    pcolor          : proof,
-                },
-                //AX0
-                'X0' : {
-                    caption         : 'Xₒ',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-                //BX
-                'X' : {
-                    caption         : 'X',
-                    letterAngle     : -90,
-                    pcolor          : proof,
-                },
-
-                L : { 
-                    letterAngle : -45,
-                    pcolor      : result,
-                },
-            }
-            originalPoints = {...originalPoints, ...originalPointsBonus};
-
-            var linesArrayBonus = [
-                { 'Ar' : { pcolor : given } },
-                { 'dr-decorpoint,d' : { pcolor : proof } },
-                { 'dr' : { pcolor : proof } },
-
-                { 'be' : { pcolor : proof } },
-
-                //sin(x)/x
-                { 'Br' : { pcolor : given } },
-
-                { 'line-dr-start,dr-decorpoint' : { pcolor : proof, undisplay : true } },
-
-                //:context
-                { 'ylow,ytop' : { pcolor : context, } },
-                { 'xlow,xtop' : { pcolor : context, } },
-                { 'O,ytop'    : { pcolor : context, } },
-
-                //cirle radius
-                { 'AO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-                //cirle radius
-                { 'BO'    : { pcolor : given, 'stroke-width' : 1, } },
-
-                //x-drops to axix x
-                { 'A,x0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'Bx'    : { pcolor : given, 'stroke-width' : 1, } },
-                //y-drops to axix y
-                { 'A,y0'  : { pcolor : given, 'stroke-width' : 1, } },
-                { 'By'    : { pcolor : given, 'stroke-width' : 1, } },
-
-                //dy
-                { 'y0,y' : { pcolor : given, 'stroke-width' : 8, } },
-                //dx
-                { 'x0,x' : { pcolor : given, 'stroke-width' : 8, } },
-
-                { 'A,line-AL-end' : { pcolor : result } },
-
-                //DY
-                { 'A,Y' : { pcolor : proof, 'stroke-width' : 8, } },
-                //DX
-                { 'X0,X' : { pcolor : proof, 'stroke-width' : 8, } },
-
-                //tangent
-                { 'AL' : { pcolor : result } },
-                { 'Ae' : { pcolor : proof } },
-            ];
-            linesArray = [...linesArray, ...linesArrayBonus];
-        }
 
         //----------------------------------
         // //\\ curve pars
@@ -468,4 +298,3 @@
         });
     }
 }) ();
-

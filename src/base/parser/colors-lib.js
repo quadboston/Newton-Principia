@@ -121,11 +121,13 @@
             ////opacities from global setting
             let fc = topi_c['fixed-color'];
             
-            topi_c.highOpacity = topi_c.lowOpacity = 1;
+            if (isArea(topi_c)) {
+                topi_c.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
+                topi_c.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
+            } else {
+                topi_c.highOpacity = topi_c.lowOpacity = 1;
+            }
 
-            //if( topi_c.isPoint8Line ) {
-            //    c cc( topi_c.camelId, topi_c.lowOpacity, topi_c.highOpacity, topi_c );
-            //}
             topi_c.rgba_own = rgba;
         };
 
@@ -147,6 +149,13 @@
             }
         }
     }
+
+
+    // kludge
+    function isArea(topi_c) {
+        return typeof topi_c['fixed-color'][3] == 'number';
+    }
+
     
     
     
