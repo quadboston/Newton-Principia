@@ -11,9 +11,13 @@
     
     //=========================================================
     // //\\ lemma custom addons
+    //      - called every time model changes
+    //      - all it seems to do is paint the arcs
+    //      - the rest is drawn in src\base\lemma\media-model\media-upcreate.js
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        //console.log('updating/creating arcs')
         rg.DLeft.pos[0] = -0.3; //extends tangent to the left
         //=================================================
         // //\\ manages legend CSS-visibility
@@ -94,6 +98,46 @@
         //-------------------------------------------------
         // \\// original arc and curve
         //-------------------------------------------------
+
+        //==========================================
+        // //\\ fill areas (adapted from L9)
+        //==========================================
+        var wCCA = ssF.calculateCurvedArea;
+        //wCCA( 'area-RAB', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
+        //paintArea( 'area-RAB', null, '_r_a_b' );
+        function paintArea( areaId, fullMode, topicGroup_decapitalized )
+        {
+            var area = rg[ areaId ];
+
+            var lowCurve = rg[ areaId ].curve;
+            
+            var dd = '';
+            dd += "M" + area.startPoint[0] + ' ' +
+                        area.startPoint[1] + ' ';
+            dd += "Q" + 
+                  lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
+                  lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
+            dd += "L" + 
+                        area.endPoint[0] + ' ' +
+                        area.endPoint[1] + ' ';
+
+            area.mediael = nssvg.u({
+                svgel : area.mediael,
+                type : 'path',
+                d:dd,
+                parent : stdMod.mmedia
+            });
+            //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
+            fullMode = fullMode ? ' ' + fullMode : '';
+
+            $$.$(area.mediael)
+                .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
+                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                ;
+        }
+        //==========================================
+        // \\// fill areas
+        //==========================================
 
 
         //-------------------------------------------------

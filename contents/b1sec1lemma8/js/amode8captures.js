@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, nspaste, userOptions, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -148,8 +148,6 @@
             //'dr-decorpoint',
         ].forEach( gname => { rg[ gname ].undisplay = true; });
 
-        rg.L.hideD8Dpoint   = true;
-
         [
             'D',
             'R',
@@ -164,24 +162,24 @@
         if( logic_phase === 'claim' ) {
             [
                 'c',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
             ].forEach( gname => { rg[ gname ].undisplay = true; });
         } else if( logic_phase === 'proof' ) {
             [
                 'c',
                 'b',
                 'Ab',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
                 'arc-Ab',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
