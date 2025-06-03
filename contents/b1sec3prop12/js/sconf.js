@@ -56,7 +56,6 @@
                 //decorations
                 var F = [ 492, 565 ];
                 op.sagittaDelta_q_initial = 1;
-                sconf.Fi_distance = 3;
                 break;
             case "b1sec3prop13" :
                 //media
@@ -68,7 +67,6 @@
                 var PparQ                 = 0.386 * Math.PI;
                 //decorations
                 op.sagittaDelta_q_initial = 0.39;
-                sconf.Fi_distance         = 3.7;
                 var F                     = [ 560, 554 ];
                 break;
             case "b1sec3prop17" :
@@ -622,6 +620,7 @@
                 pcolor : body,
                 letterAngle : fconf.sappId === 'b1sec3prop16' ? -90 :
                                 ( fconf.sappId === 'b1sec3prop17' ? 225 : 120 ),
+                draggableY  : (fconf.sappId === 'b1sec3prop12' || fconf.sappId === 'b1sec3prop13'),
             },
 
             p : {
