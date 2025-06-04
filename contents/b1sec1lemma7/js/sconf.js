@@ -289,7 +289,6 @@
             predefinedTopics,
             originalPoints,
             linesArray,
-            //lines,
             modorInPicX,
             modorInPicY,
             pictureWidth,

@@ -155,7 +155,7 @@
         var linesArray =
         [            
             { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } }, // comes after Ad so green line is on top
+            { 'AD' : { pcolor : given } },
             { 'AL' : { pcolor : proof } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
         ];
