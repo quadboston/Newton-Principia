@@ -86,7 +86,14 @@
             'rAd-rAb' : proof, 
 
             // areas
-            'area-RAB' : givenArea
+            'area-RAB' : givenArea,
+            'area-RAD' : givenArea,
+            'area-RACB' : givenArea,
+
+            
+            'area-rAb' : proofArea,
+            'area-rAd' : proofArea,
+            'area-rAcb' : proofArea
         };
 
         var originalPoints = { 

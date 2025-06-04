@@ -98,62 +98,6 @@
         // \\// original arc and curve
         //-------------------------------------------------
 
-        //==========================================
-        // //\\ fill areas (adapted from L9)
-        //==========================================
-
-        // borrowed from L9 model-upcreate.js; todo: is there somewhere to put common functions?
-        function calculateCurvedArea( rgId, pivots, tend, startPoint, endPoint )
-        {
-            var area        = toreg( rgId )();
-            area.curve      = bezier.bezier2lower( pivots, tend );
-            area.startPoint = startPoint;
-            area.endPoint   = endPoint;
-        }
-        calculateCurvedArea( 
-            'area-RAB', 
-            sconf.givenCurve_pivots_inModel, 
-            rg.C.pos[0], 
-            rg.A.medpos, 
-            rg.B.medpos 
-        );
-        console.log(rg.A.medpos) //todo: calc the correct vals for L8
-
-        paintArea( 'area-RAB', null, 'area-_r_a_b' );
-        function paintArea( areaId, fullMode, topicGroup_decapitalized )
-        {
-            var area = rg[ areaId ];
-
-            var lowCurve = rg[ areaId ].curve;
-            
-            var dd = '';
-            dd += "M" + area.startPoint[0] + ' ' +
-                        area.startPoint[1] + ' ';
-            dd += "Q" + 
-                  lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
-                  lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
-            dd += "L" + 
-                        area.endPoint[0] + ' ' +
-                        area.endPoint[1] + ' ';
-
-            area.mediael = nssvg.u({
-                svgel : area.mediael,
-                type : 'path',
-                d:dd,
-                parent : stdMod.mmedia
-            });
-            //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
-            fullMode = fullMode ? ' ' + fullMode : '';
-
-            $$.$(area.mediael)
-                .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
-                ;
-        }
-        //==========================================
-        // \\// fill areas
-        //==========================================
-
 
         //-------------------------------------------------
         // //\\ paints magnified curve
@@ -176,6 +120,133 @@
         //-------------------------------------------------
         // \\// paints magnified curve
         //-------------------------------------------------
+
+        //==========================================
+        // //\\ fill areas (loosely adapted from L9)
+        //==========================================
+
+        // draw proof triangles first so their on the bottom
+        calculateTriangleArea('area-rAb', rg.A.medpos, rg.b.medpos, rg.r.medpos);
+        paintArea( 'area-rAb', null, 'area-r_ab' );
+
+        calculateTriangleArea('area-rAd', rg.A.medpos, rg.d.medpos, rg.r.medpos);
+        paintArea( 'area-rAd', null, 'area-r_ad' );
+
+        // draw claim triangles
+        calculateTriangleArea('area-RAB', rg.A.medpos, rg.B.medpos, rg.R.medpos);
+        paintArea( 'area-RAB', null, 'area-_r_a_b' );
+
+        calculateTriangleArea('area-RAD', rg.A.medpos, rg.D.medpos, rg.R.medpos);
+        paintArea( 'area-RAD', null, 'area-_r_a_d' );
+
+        function calculateTriangleArea(rgId, Apos, Bpos, Rpos) {
+            var area = toreg(rgId)();
+
+            area.startPoint = Apos;
+            area.endPoint = Bpos;
+            area.Rpos = Rpos;
+        }
+
+        function paintArea(areaId, fullMode, topicGroup_decapitalized) {
+            var area = rg[areaId];
+
+            if (!area.startPoint || !area.endPoint || !area.Rpos) {
+                console.error("Missing triangle coordinates");
+                return;
+            }
+
+            var dd = `M${area.startPoint[0]} ${area.startPoint[1]} 
+                    L${area.endPoint[0]} ${area.endPoint[1]} 
+                    L${area.Rpos[0]} ${area.Rpos[1]} 
+                    Z`;
+
+            area.mediael = nssvg.u({
+                svgel: area.mediael,
+                type: 'path',
+                d: dd,
+                parent: stdMod.mmedia
+            });
+
+            $$.$(area.mediael)
+                .cls(`tp-${topicGroup_decapitalized}${fullMode ? ' ' + fullMode : ''} tofill`)
+                .tgcls('undisplay', haz(area, 'undisplay'));
+        }
+
+// function calculateCurvedArea(rgId, polyline, Rpos) {
+//     var area = toreg(rgId)();
+
+//     // Extract first and last points from the polyline
+//     var points = polyline.animatedPoints; // Assuming polyline is an SVG element
+//     var startPoint = [parseFloat(points[0].x), parseFloat(points[0].y)];
+//     var endPoint = [parseFloat(points[points.length - 1].x), parseFloat(points[points.length - 1].y)];
+
+//     area.startPoint = startPoint;
+//     area.endPoint = endPoint;
+//     area.Rpos = Rpos;
+// }
+
+// calculateCurvedArea(
+//     'area-RAB',
+//     rg['arc-Ab'].svg,
+//     rg.R.medpos
+// );
+
+// paintArea( 'area-RAB', null, 'area-_r_a_b' );
+
+// function paintArea(areaId, fullMode, topicGroup_decapitalized) {
+//     var area = rg[areaId];
+
+//     var dd = '';
+//     dd += "M" + area.startPoint[0] + ' ' + area.startPoint[1] + ' ';
+//     dd += "L" + area.endPoint[0] + ' ' + area.endPoint[1] + ' ';
+//     dd += "L" + area.Rpos[0] + ' ' + area.Rpos[1] + ' ';
+//     dd += "Z"; // Close the triangle
+
+//     area.mediael = nssvg.u({
+//         svgel: area.mediael,
+//         type: 'path',
+//         d: dd,
+//         parent: stdMod.mmedia
+//     });
+
+//     $$.$(area.mediael)
+//         .cls(' tp-' + topicGroup_decapitalized + (fullMode ? ' ' + fullMode : '') + ' tofill')
+//         .tgcls('undisplay', haz(area, 'undisplay'));
+// }
+
+        // {
+        //     var area = rg[ areaId ];
+
+        //     var lowCurve = rg[ areaId ].curve;
+            
+        //     var dd = '';
+        //     dd += "M" + area.startPoint[0] + ' ' +
+        //                 area.startPoint[1] + ' ';
+        //     dd += "Q" + 
+        //           lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
+        //           lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
+        //     dd += "L" + 
+        //                 area.endPoint[0] + ' ' +
+        //                 area.endPoint[1] + ' ';
+
+        //     area.mediael = nssvg.u({
+        //         svgel : area.mediael,
+        //         type : 'path',
+        //         d:dd,
+        //         parent : stdMod.mmedia
+        //     });
+        //     //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
+        //     fullMode = fullMode ? ' ' + fullMode : '';
+
+        //     $$.$(area.mediael)
+        //         .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
+        //         .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+        //         ;
+        // }
+
+        //==========================================
+        // \\// fill areas
+        //==========================================
     }
     //=========================================================
     // \\// lemma custom addons

@@ -117,6 +117,8 @@
         rg.AB.undisplay             = false;
         rg[ 'arc-AB' ].undisplay    = false;
         rg['area-RAB'].undisplay    = false;
+        rg['area-RAD'].undisplay    = false;
+        rg['area-RACB'].undisplay    = false;
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -182,6 +184,9 @@
                 'r,b',
                 'r,d',
                 'arc-Ab',
+                'area-rAb',
+                'area-rAd',
+                'area-rAcb'
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
 
