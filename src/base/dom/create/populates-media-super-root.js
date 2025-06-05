@@ -175,23 +175,6 @@
         // \\// sets studylab button
         //..........................
 
-
-        ///video-help-button is not the bulb image of help box,
-        ///video-help-button is about running movies,
-        sDomN.videoListPopup_button_onModelPane$ = $$
-            .c('img')
-            .addClass( "video-help-button" )
-            .css('width','35px')
-            .a( 'src', fconf.engineImg + "/camera-lightbulb.png" )
-            .a( 'alt', "Watch videohelp" )
-            .a( 'title', "Watch videohelp" )
-            /*
-            .e('mouseover', function() {
-                sDomN.helpBoxText$.innerHTML = 'Watch videohelp';
-            })
-            */
-            .to( wwHelpOnTop$() )
-            ;
         sDomN.idleHelpButton$ = $$
             .c('img')
             .addClass( "model-help" ) //todm ... non-elegant ... spread of CSS
@@ -212,76 +195,6 @@
         //--------------------------
         // \\// top media controls
         //--------------------------
-
-
-
-        //..........................
-        // //\\ video help
-        //..........................
-        // //\\ local video
-        //. . . . . . . . . . . . .
-        sDomN.videoWrap$ = $$
-            .c( 'div' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video-wrap' )
-            .to( sDomN.essaionsRoot$() )
-            ;
-        sDomN.localVideo$ = $$
-            .c( 'video' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video' )
-            .a('muted','true')
-            .a('controls','true')
-            .a('preload','true')
-            .to( sDomN.videoWrap$() )
-            ;
-        sDomN.localVideoSource$ = $$
-            .c( 'source' )
-            .a('type','video/mp4')
-            .to( sDomN.localVideo$() )
-            ;
-        //. . . . . . . . . . . . .
-        // \\// local video
-        //. . . . . . . . . . . . .
-
-        //..........................
-        // //\\ iframed video
-        //. . . . . . . . . . . . .
-        sDomN.iframedVideo$ = $$
-            .c( 'iframe' )
-            .css( 'display', 'none' )
-            .addClass( cssp + '-showreel-video-iframe' )
-            .a('frameborder','0')
-            .a('webkitallowfullscreen','true')
-            .a('mozallowfullscreen','true')
-            .a('allowfullscreen','true')
-            .to( sDomN.videoWrap$() )
-            ;
-        //. . . . . . . . . . . . .
-        // \\// iframed video
-        //..........................
-
-        //..........................
-        // //\\ close-video button
-        //. . . . . . . . . . . . .
-        sDomN.doCloseVideoHelp$ = $$
-            .c( 'div' )
-            .a('title','close video')
-            .css( 'display', 'none' )
-            .addClass( cssp + '-close-html-button' )
-            .html('X')
-            .to(sDomN.videoWrap$())
-            ;
-        //..........................
-        // \\// close-video button
-        //. . . . . . . . . . . . .
-
-        haff( fmethods, 'create_video_help_manager' );
-        //..........................
-        // \\// video help
-        //..........................
-
-
     }
 
 
@@ -295,7 +208,7 @@
     function createsMediaRoot( bgImagesAreLoaded_cb )
     {
         //..............................
-        // //\\ study image and s ubmodel
+        // //\\ study image and submodel
         //..............................
         var images = {};
         //top mode CSS: bsl-approot logic_phase--claim aspect--video
