@@ -119,11 +119,10 @@
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
-                //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
             /*
-            if( !bonus ) {
+            if( !b onus ) {
                 let ga = stdMod.graphFW_lemma.graphArray;
                 let len = ga.length;
                 let sumAbs = 0;

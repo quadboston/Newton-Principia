@@ -86,7 +86,7 @@
         // //\\ dragger D
         //-------------------------------------------------
         /*
-        if(!sconf.BONUS) {
+        if(!sconf.B ONUS) {
             rg.D.processOwnDownEvent = function() {
                 ssD.draggerInUse = 'D';
             }; 

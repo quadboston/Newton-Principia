@@ -28,7 +28,7 @@
         // //\\ header
         //==================================================
         function buildHeader() {
-            let hClass = userOptions.showingBonusFeatures() ? "bonusShowing" : "default";
+            let hClass = userOptions.showingBonusFeatures() ? "bonus-showing" : "default";
             $$.c('header').addClass(hClass).to(fapp.homePage$()).html(`
             <div class="hp-section-wrap">
                 <div class="landing-text">
@@ -140,7 +140,7 @@
                         <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
                             overlay original diagrams<br>
                         <input type="checkbox" id="bonusCheckbox" aria-label="bonus"> 
-                            shows programming in progress
+                            shows development
                     </p>
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
@@ -276,10 +276,8 @@
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
-                let cls = sappItem.annotation === userOptions.BONUS_START ?
-                         ' class="' + userOptions.BONUS_START + '"' : '';
                 let cls2 = book === "Book 1" ? ' class="column"' : '';
-                coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
+                coreText += '<div' + cls2 + '><div><ul>';
 
                 ////add title "Book ... " when list switches to the next book ...
                 coreText += `
@@ -296,15 +294,14 @@
                     </a>
                 </li>`;
             if(isHomepage) {
+                ////todm: apparent home-made patches:
                 if (userOptions.showingBonusFeatures()) {
-                    if (sappItem.annotation === userOptions.BONUS_END) {
-                        coreText += `</ul></div>`;
-                    } else {
-                        if (sappItem.sappId === "b1sec3prop14") {
-                            coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
-                        }  
-                    } 
+                    if (sappItem.sappId === "b1sec3prop14") {
+                        ////?? this is hand made home page patch to close and reopen column of lemmas
+                        coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
+                    }  
                 } else if (sappItem.sappId === "b1sec2prop9") {
+                    ////?? this is hand made home page patch to close and reopen column of lemmas
                     coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
                 }
             }

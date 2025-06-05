@@ -24,14 +24,6 @@
     left : -130%;
 }
 
-.bonus-section-start {
-    display : none;
-}
-
-.shows-bonus-features .bonus-section-start {
-    display : block;
-}
-
 .non-displayed {
     display : none;
 }
@@ -64,12 +56,12 @@ header {
 } 
 
 header.default {
-    min-height: 450px;    
+    min-height: 610px;    
 }
 
 @media only screen and (min-width: 1100px) {
-    header.bonusShowing {
-        min-height: 550px; 
+    header.bonus-showing {
+        min-height: 720px; 
     }
 }
 

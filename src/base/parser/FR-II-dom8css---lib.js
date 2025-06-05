@@ -505,7 +505,7 @@
             anchors.forEach( anch => {
                 if( anch.search.indexOf( sea ) === 0 ) {
                     anch.search = anch.search.replace(
-                        reg, '?conf=showAddendums=yes,sappId=' );
+                        reg, '?conf=showsBonus=yes,sappId=' );
                 }
             });
         }

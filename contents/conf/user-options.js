@@ -12,11 +12,11 @@
     if( 
         //the presence of keyword "addendum" at the ending of
         //landing file path is preferred:
-        window.location.pathname.match( /addendum[^\/]+$/ )
+        window.location.pathname.match( /bonus[^\/]+$/ )
 
-        //in the presence of keyword "showAddendums" in URL config,
+        //in the presence of keyword "showsBonus" in URL config,
         //but this does not preseve links to other lemmas:
-        || haz( nsconf, 'showAddendums' ) ) {
+        || haz( nsconf, 'showsBonus' ) ) {
 
         ////if some call requests bonus features, then they are set in store, and
         ////the next call to different lemma will preserve the bonus,
@@ -27,19 +27,9 @@
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.showingBonusFeatures = showingBonusFeatures;
     userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
-    userOptions.BONUS_START = "bonus-section-start";
-    userOptions.BONUS_END = "bonus-section-end";
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
-    userOptions.setsBonus = setsBonus;
     return;   
-    
-    ///created for lemmas which labeled as BONUS_FEATURE and
-    ///user did land exactly on one of these
-    function setsBonus() {
-        doesStoreOption(BONUS, true);
-        //check box may be not ready
-        //userOptions_2_updatedGUI();        
-    }
+
     
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
@@ -74,13 +64,13 @@
             var isOn = showingBonusFeatures();
             doesStoreOption(BONUS, !isOn);
             var relanded = false;
-            if( has( ns.conf, 'showAddendums' ) ) {
+            if( has( ns.conf, 'showsBonus' ) ) {
                 ////if user changes URL-induced mode, the entire
                 ////set of URL options wipes out for simplicity, and
                 ////user relands
-                //c cc( 'showAddendums=' + ns.conf.showAddendums );
-                if( (ns.conf.showAddendums && isOn ) ||
-                    (!ns.conf.showAddendums && !isOn ) ) {
+                //c cc( 'showsBonus=' + ns.conf.showsBonus );
+                if( (ns.conf.showsBonus && isOn ) ||
+                    (!ns.conf.showsBonus && !isOn ) ) {
                     //c cc( 'removing search' );
                     window.location.search = '';
                     relanded = true;
