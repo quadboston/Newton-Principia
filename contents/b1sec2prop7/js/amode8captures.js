@@ -100,35 +100,41 @@
     }
 
 
+    function hideItemsWhen(when) {
+        for (let i = 1; i < arguments.length; i++) {
+            rg[arguments[i]].undisplay = when;
+        }
+    }
 
     function modifyDecorationVisibility() {
         //Modify visibility for the below decorations based on the following settings.
         const { logic_phase, aspect, subessay } = amode;
-        const isProblem2AndNotAddendum  = (logic_phase === 'claim');
-        const isCorollary2OrCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
+        const isClaim  = (logic_phase === 'claim');
+        const isCorollary2orCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
+        rg.Q.hideD8Dpoint       = isClaim;
+        rg.Q.d8d_find_is_LOCKED = isClaim;
+        rg.C.undisplay = true;
 
-        rg.Q.hideD8Dpoint       = isProblem2AndNotAddendum;
-        rg.Q.d8d_find_is_LOCKED = isProblem2AndNotAddendum;
-        [   'V',
+        hideItemsWhen(isClaim,
+            'V',
             'A',
             'PV',
             'SP',
             'PR',
             'P,Zminus',
-            'PY',
             'PZ',
-            'ZR',
-        ].forEach(decoration => {
-            rg[decoration].undisplay = isProblem2AndNotAddendum;
-        });
+            'ZR'
+        );
 
-
-        rg.C.undisplay = true;
-
-
-        [   'Q',
+        hideItemsWhen(subessay !== 'another-solution',
             'Y',
+            'PY',
+            'SY'
+        );
+
+        hideItemsWhen(isClaim || isCorollary2orCorollary3,
+            'Q',
             'L',
             'R',
             'Z',
@@ -138,18 +144,15 @@
             'PT',
             'ZQ',
             'RL',
-            'SY',
             'AP',
             'AV',
             'QP',
-        ].forEach(decoration => {
-                rg[decoration].undisplay = (isProblem2AndNotAddendum || isCorollary2OrCorollary3);
-        });
+        );
 
+        hideItemsWhen(isCorollary2orCorollary3, 'P,sagitta');
 
-        rg[ 'P,sagitta' ].undisplay = isCorollary2OrCorollary3;
-
-        [   'Tcol2',
+        hideItemsWhen(!isCorollary2orCorollary3,
+            'Tcol2',
             'Rcol2',
             'Gcol2',
             'Rcol2,Tcol2',
@@ -157,9 +160,8 @@
             'Gcol2,S',
             'Gcol2,P',
             'Rcol2,P',
-        ].forEach(decoration => {
-            rg[decoration].undisplay = !isCorollary2OrCorollary3
-        });
+        );
+
     }
 
 }) ();
