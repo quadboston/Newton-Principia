@@ -9,26 +9,6 @@
     {
         nspaste( capture,
         {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
         });
     }
 
@@ -59,10 +39,8 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        if( !userOptions.showingBonusFeatures() ) {
-            rg[ 'S,nonSolvablePoint' ].undisplay = true;
-            rg[ 'nonSolvablePoint' ].undisplay = true;
-        }
+        rg[ 'S,nonSolvablePoint' ].undisplay = true;
+        rg[ 'nonSolvablePoint' ].undisplay = true;
 
 
         rg.SQ.undisplay                 = true;
@@ -126,8 +104,7 @@
     function modifyDecorationVisibility() {
         //Modify visibility for the below decorations based on the following settings.
         const { logic_phase, aspect, subessay } = amode;
-        const isProblem2AndNotAddendum  = (logic_phase === 'claim' && aspect !== 'addendum');
-        const isSolutionsAndNotAddendum = (logic_phase === 'proof' && aspect !== 'addendum');
+        const isProblem2AndNotAddendum  = (logic_phase === 'claim');
         const isCorollary2OrCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
 
@@ -147,7 +124,7 @@
         });
 
 
-        rg.C.undisplay = (isProblem2AndNotAddendum || isSolutionsAndNotAddendum);
+        rg.C.undisplay = true;
 
 
         [   'Q',

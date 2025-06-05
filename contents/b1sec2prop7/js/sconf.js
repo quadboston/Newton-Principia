@@ -300,6 +300,7 @@
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
+                undisplayAlways : true, // not respected?
             },
 
             nonSolvablePoint : {
