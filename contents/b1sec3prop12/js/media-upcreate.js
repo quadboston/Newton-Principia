@@ -1,11 +1,21 @@
 ( function() {
-    var { ns, sn, $$, nsmethods, nssvg, mat, fconf, ssF, ssD, amode, stdMod, sconf, rg, 
-        toreg, } = window.b$l.apptree({ stdModExportList : {
+    var {
+        ns, sn, $$, nsmethods, nssvg, mat,
+        fconf, ssF, ssD,
+        amode, stdMod, sconf, rg, toreg,
+    } = window.b$l.apptree({
+        stdModExportList :
+        {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         },
     });
     return;
+
+
+
+
+
 
 
     function media_upcreate___before_basic()
@@ -21,8 +31,7 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
-        if( fconf.sappId !== "b1sec3prop12" && fconf.sappId !== "b1sec3prop13" &&
-            fconf.sappId !== "b1sec3prop15" && fconf.sappId !== "b1sec3prop17" ) {
+        if( fconf.sappId !== "b1sec3prop15" && fconf.sappId !== "b1sec3prop17" ) {
             ///draws phi
             ///adds an extra point, rgPhi, at rg.O to comply angle-api
             var rgPhi = toreg( 'phi' )( 'pname', 'phi' )( 'pos', rg.O.pos )

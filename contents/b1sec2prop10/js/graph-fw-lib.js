@@ -6,12 +6,6 @@
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-
-        //if one wants to separate BONUS and aspect, this
-        //method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
-        const BONUS = userOptions.showingBonusFeatures();
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -27,11 +21,8 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'estforce', 'body' ] :
-            [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
         return graphFW;
-
 
         ///this thing is not dynamic (missed in design),
         ///but, colorThreadArray is accessible for reset
@@ -45,7 +36,6 @@
             ];
             return colorThreadArray;
         }
-
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
@@ -69,10 +59,8 @@
                 return {container$, graph_dimX, graph_dimY}
         }
 
-
         function setsGraphAxes()
         {
-            const ADDENDUM = amode.aspect === 'addendum';
             let n2c = sDomF.getFixedColor; //name to color
 
             //==================================================
@@ -83,7 +71,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = 'rgba(0,0,0,1)';
+            var xColor = n2c( 'orbit' );
 
             var axisYLegend =
             [
@@ -104,10 +92,7 @@
                 },
 
                 {
-                    text    : //ADDENDUM ? 
-                                //'Force f, 1/r², and speed v per their maximums.'
-                                
-                                //:   // Actual and Estimated forces
+                    text    :   // Actual and Estimated forces
                                 '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
@@ -136,8 +121,8 @@
             [
 
                 {
-                    text    : ADDENDUM ? 'Distance, r' : 'Distance from force (CP)',
-                    x       : ADDENDUM ? -700 : -560,
+                    text    : 'Distance from force (CP)',
+                    x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -159,11 +144,8 @@
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
 
-
-
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            const ADDENDUM = amode.aspect === 'addendum';
             return [
                 {
                     fraqX : 0.01,
@@ -206,7 +188,6 @@
             ];
         }
 
-
         ///this thing fails if not to synch it with mask,
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
@@ -218,7 +199,6 @@
             // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
 
-
         function doDrawToolline()
         {
             return {
@@ -226,9 +206,8 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                                    /sconf.FORCE_ARRAY_LEN ),
-                numberMarks : BONUS,
+                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                numberMarks : false,
             };
         }
 
@@ -242,10 +221,9 @@
                 decimalDigits   : 3,
                 stroke          : xColor,
                 fill            : xColor,
-            'stroke-width'   : '0.2',
+                'stroke-width'   : '0.2',
             };
         }
-
 
         function graphAxisY( yColor )
         {
@@ -256,7 +234,7 @@
                 decimalDigits   : 1,
                 stroke          : yColor,
                 fill            : yColor,
-            'stroke-width'   : '1',
+                'stroke-width'   : '1',
             };
         }
     }

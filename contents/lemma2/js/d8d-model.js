@@ -41,9 +41,7 @@
                     //DRAG_POINTS_THROTTLE_TIME           : false,
                     detected_user_interaction_effect    :
                                     sDomF.detected_user_interaction_effect,
-                    processMouseDown                    : processMouseDown,
-                    spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
-                    spinnerCursorGrab : sconf.spinnerCursorGrabbed,
+                    processMouseDown                    : processMouseDown
                 });
             setDragPoints();
         }

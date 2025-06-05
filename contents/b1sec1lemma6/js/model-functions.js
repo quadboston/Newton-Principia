@@ -1,6 +1,6 @@
 ( function() {
     var {
-        mat, sconf, fconf, ssD, amode, rg,
+        mat, sconf, fconf, ssD, amode, stdMod, rg,
     } = window.b$l.apptree({
         stdModExportList : {
             createModelFunctions,

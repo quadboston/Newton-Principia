@@ -1,0 +1,410 @@
+
+
+*::*proof|addendum
+{
+  "mediaBgImage" : null,
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Same force field with trajectory expressed in differnt origins",
+  "subessay" : "origin-change"
+}
+*..*
+<b>In <><>CXX.</b>
+<br><br>
+
+<b>Kepler Task</b>
+<br><br>
+
+For given ¦orbit¦¦ and point ¦S¦¦, find force which is directed to point ¦S¦¦ and makes ¦P¦body¦¦
+moving along this ¦orbit¦¦. Body's mass is 1.
+<br><br>
+
+<b><i>Analysis for arbitrary speed</i></b>
+<br><br>
+Consider "roller-coaster" bound to ¦orbit¦¦ without friction. For arbitrary twice differetiable speed function v(s), one can always find force 𝗳(s) which makes body moving along this ¦orbit¦¦ with this speed. "s" is orbit's length parameter.
+<br><br>
+
+<i>Proof sketch.</i>
+Tangent acceleration must be
+    <div style="text-align:center;">
+        aᵤ = v˙ = v'ₛs˙ = v'ₛv. &nbsp;&nbsp;&nbsp;&nbsp; (*)
+    </div>
+
+If to establish this acceleration along the path s and if to use starting
+value of speed v(s(tₒ)) at time tₒ, then calculated speed will be equal to v(t).
+In other words, applied tangent force aᵤ will cause coaster to
+move along orbit with given speed.
+<br><br>
+
+Normal acceleration will be aₙ = κv².
+Full force acting on the body will be
+    <div style="text-align:center;">
+             𝗳(s) = 𝗮 = aᵤ𝘂 + aₙ𝗻.
+    </div>
+<br><br>
+
+<b><i>I. Analysis for constant sector speed</i></b>
+<br><br>
+<b><i>I.1. Context.</i></b>
+
+Now instead of arbitrary speed, take speed v which makes sector speed constant.
+
+    <div style="text-align:center;">
+        1/2[𝗿𝘃]𝗸 = 1/2 vr[<a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=calculus-xx">𝗲𝘂</a>]<sub>𝗸</sub> = M/2 = const,
+
+        &nbsp;&nbsp;&nbsp;&nbsp;(k)<br>
+        M is called orbital momentum.<br>
+    </div>
+<br>
+
+We may use following notations:<br>
+Angles:<br>
+  &nbsp;&nbsp;&nbsp; ω is angle from 𝗲 to 𝘂. 𝛺 =ᵈᶠ sin(ω) = [𝗲𝘂]𝗸, <br>
+  &nbsp;&nbsp;&nbsp; for angle from 𝗻 to -𝗲: -𝗲𝗻 = 𝛺 b<sub>𝗸</sub>, <br>
+  when recalling that 𝗯 = [𝘂𝗻] is a binormal and 𝗯𝗸 = 𝗯<sub>𝗸</sub> = b<sub>𝗸</sub> is either 1 or -1. <br>
+<br>
+
+<b><i>I.2. Solution.</i></b>
+By differentiating (k), we find [𝗿𝗮] = 0 and 𝗳 // 𝗲. Hence our two starting equations are:
+<br>
+    <div style="text-align:center;">
+             𝗳 = -𝗲𝑓, &nbsp;&nbsp;&nbsp; (f) <br>
+        rv𝛺  = M. &nbsp;&nbsp;&nbsp;&nbsp; (k')<br>
+     </div>
+<br>
+
+We project force (f) on to curvature's norm 𝗻
+    <div style="text-align:center;">
+        -𝗲𝗻𝑓 = κv², or
+        𝑓 = 𝜅v²/𝛺, &nbsp;&nbsp;&nbsp; (f') <br>
+        ( where 𝜅 = κb<sub>𝗸</sub> is oriented curvature, see
+          "Calculation tips", (K) ) <br>
+     </div>
+<br>
+
+and, excluding v by substituting (k') into (f'), we obtain solution for
+𝑓 dependent only on shape of the orbit:
+    <div style="text-align:center;">
+        𝑓 = 𝜅M²/(r²𝛺³), &nbsp;&nbsp;&nbsp; (s) <br>
+     </div>
+<br>
+All magnitudes in right side (s) are known functions of curve's length parameter s.
+<br><br>
+
+We restrict domain of definition of solution 𝗳(s) on pieces of orbit
+[s₋ + ε, s₊ - ε] where s₋, s₊ are the points where 𝗿 // 𝘃. At these points, sector
+speed must be 0, so Kepler's law would be broken. Preserving Kepler's law
+in neighbourhoods like (s₋, s₋ + ε) would require "infinite" force which is
+out of scope in our essay.
+<br><br>
+In other words, (s) holds for convex center of forces, i.e. each ray from the center does not cross curve twice and not tangent to it.
+
+<br><br>
+
+
+
+<i><b>I.3. Expansion </b> 𝗳(s) to force filed 𝗳(𝗿), 𝗿  ∈ ℝ².</i>
+<br><br>
+
+    Consider curve's equation in polar coordinates 𝗿<sub>c</sub> = ρe<sup>iφ</sup> <br>
+
+    Body's orbit is
+        <div style="text-align:center;">
+                𝗿 = re<sup>i𝛙</sup> =
+                𝗿<sub>c</sub> + 𝗵, &nbsp;&nbsp;&nbsp;&nbsp; (O)  <br>
+          where 𝗵 is a center of force.
+        </div>
+
+        All derivatives in "Expansion..." section are via φ like:
+             𝗿˙ = 𝗿'<sub>φ</sub> = 𝘃<sub>φ</sub>.<br>
+        We denote: 𝛺<sub>𝛙</sub>=𝛺  and note ρ = v<sub>φ</sub>𝛺<sub>φ</sub>. <br>   
+
+    <!--
+    v<sub>φ</sub>𝛺<sub>𝛙</sub> = r𝛙˙,
+    And generic formula is:
+    𝑓 = M²r⁻² (ρ/(𝛙˙r))³ ( η + η˙˙ ), &nbsp;&nbsp;&nbsp;&nbsp; (G) <br>
+    -->
+
+    We rewrite (s):
+        <div style="text-align:center;">
+            𝑓 = v³<sub>φ</sub>𝜅ρ⁻³(M/r)²(𝛺<sub>φ</sub>/𝛺<sub>𝛙</sub>)³
+            <br>
+        </div>
+
+    Recalling that in
+    <a target="_blank" href="?conf=sappId=addd-prel-curveXX#polar-coordinates">
+        polar coordinates</a>:
+        <br>
+        <div style="text-align:center;">
+            v³<sub>φ</sub>𝜅 = -ρρ˙˙ + ρ² + 2ρ˙². <br>
+        </div>
+
+Defining new variable η = 1/ρ:
+        <div style="text-align:center;">
+            ρ˙ = -η⁻²η˙, ρ˙˙ = -2η⁻³η˙² - η⁻²η˙˙,<br>
+            ρ⁻³( -ρρ˙˙ + ρ² + 2ρ˙² ) = η + η˙˙, <br>
+        </div>
+<br>
+we express force in terms of force's center and curve's shape:
+        <div style="text-align:center;">
+            𝑓 = M²r⁻² (𝛺<sub>φ</sub>/𝛺<sub>𝛙</sub>)³ ( η + η˙˙ ).
+            &nbsp;&nbsp;&nbsp;&nbsp; (G)
+        </div>
+<br>
+
+When center of force is in curve coordinates' origin, then 𝗵 = 0, 𝛙 = φ, r = ρ, and we have 
+<a target="_blank" href="https://en.wikipedia.org/wiki/Binet_equation">Binet formula:</a>
+
+        <div style="text-align:center;">
+            𝑓 = (Mη)² (η + η˙˙).  &nbsp;&nbsp;&nbsp;&nbsp; (B)  <br>
+        </div>
+<a name="excentric-circular-motion"></a>
+<br><br><br>
+
+
+
+
+<i><b>Excentric circular motion</b></i>
+<br>
+        <div style="text-align:center;">
+                𝗿 = ρe<sup><i>iφ</i></sup> + h <br>
+        </div>
+    where radius ρ = const and h = const.
+    <br><br>
+
+    We find 𝛺<sub>𝛙</sub> from cosine theorem for triangle (0,0),(Px,Py),(h,0):<br>
+        <div style="text-align:center;">
+            h² = r²+ρ²-2rρ𝛺<sub>𝛙</sub>.
+        </div>
+    From (G) and noting 𝛺<sub>φ</sub> = 1 and η + η˙˙ = 1/ρ:
+        <div style="text-align:center;">
+            𝑓 = M²r⁻² 𝛺<sub>𝛙</sub>⁻³ / ρ. &nbsp;&nbsp;&nbsp;&nbsp; (EC)
+        </div>
+
+
+    Above formula holds for arc of the circle which is convex in respect to center (0,0):
+    if h ⩽ ρ for an entire circle and for h › ρ insde an angle between two tangents drawn from
+    (0,0).
+    <br><br>
+    When h=ρ, force center is on the circle, and 𝑓 = 8M²ρ²r⁻⁵.  <br>
+    When h=0, force center is circle's center, and 𝑓 = v²ₒ/ρ.
+<a name="in-focus-of-conic"></a>
+
+<a name="in-center-of-conic"></a>
+<br><br><br>
+
+
+
+
+<i><b>Ellipse and hyperbola motion with force origin in conic's center.</b></i>
+<br>
+      𝗵 = 0, φ = 𝛙, and r = ρ and formula (B) holds. <br>
+    Equation of conic is
+
+    <div style="text-align:center;">
+        x²/a² + 𝑠y²/b² = 1, <br>
+    </div>
+where 𝑠 = 1 for ellipse and -1 for hyperbola.<br>
+    <div style="text-align:center;">
+        ρ⁻² = α²cos²(φ) + 𝑠β²sin²(φ), where α  = 1/a and β = 1/b.<br>
+    </div>
+To find η˙˙, write:
+    <div style="text-align:center;">
+        η² = α² + Dsin²(φ) = <br>
+                                𝑠β² - Dcos²(φ), <br>
+        2η² = T - Dcos(2φ), .<br>
+        where D = 𝑠β² - α², T = α² + 𝑠β².<br>
+    </div>
+
+    <div style="text-align:center;">
+        ηη˙ = Dsin(φ)cos(φ). (*)<br>
+        (*) ⇒ η²η˙² = Dsin²(φ) Dcos²(φ) = ( η² - α² ) ( 𝑠β² - η² ), <br>
+        (*) ⇒ η˙² + ηη˙˙ = 1/2 Dsin˙(2φ) = Dcos(2φ) = T - 2η². <br>
+        ⇒ η²η˙² + η³η˙˙ = η²T - 2η⁴. <br>
+        ⇒ ( η² - α² ) ( 𝑠β² - η² ) + η³η˙˙ = Tη² - 2η⁴,<br>
+        Tη² - 𝑠α²β² + η³η˙˙ = Tη² - η⁴,<br>
+        η˙˙ + η = 𝑠α²β²η⁻³,<br>
+    </div>
+and
+    <div style="text-align:center;">
+        <div style="text-align:center; border:1px solid #aaaaaa;
+                    display:inline-block; padding:5px;">
+                         𝑓 = 𝑠M²α²β²r.
+        </div>
+         &nbsp; (C)<br>
+    </div>
+For ellipse, 𝑠 = 1 and the force attracts; otherwise, repels.
+
+<!--
+??For Ellipse motion with force origin in conic's center.
+
+Binet Jacqes Phillipe Marie 1786-1856, cited at Krylov p83, p84
+
+<br><br>
+<div book-reference-id="Krylov"></div>
+
+2. Lorentz corresponding states:
+Ptolemy's model
+https://www.mathpages.com/home/kmath639/kmath639.htm
+
+-->
+<br><br>
+
+
+
+
+
+
+<i><b>Conic motion with force origin in conic's focus.</b></i>
+<br>
+      𝗵 = 0, and φ = 𝛙, and formula (B) holds. <br>
+    Equation of conic is ρ<sub>⟂</sub>η = 𝜎  - 𝔢cos(φ). <br>
+            𝔢 ‹ 1 for ellipse, = 1 for parabola, › 1 for hyperbola. <br>
+            𝜎  = 1 for ellipse and parabola and both 𝜎  = 1 and -1 for hyperbola <br>
+    <br><br>
+
+    "Latus rectum" constant 2ρ<sub>⟂</sub> is "conic's width"
+    approached at angle φ = π/2. <br><br> 
+    We have η + η˙˙ = 𝜎  /ρ<sub>⟂</sub> and force law as in (B) is: <br>
+    
+    <div style="text-align:center;">
+        <div style="text-align:center; border:1px solid #aaaaaa;
+                    display:inline-block; padding:5px;">
+                        𝑓 = 𝜎 (M/ρ)²/ρ<sub>⟂</sub>, <br>
+                 𝗳 = -𝑓𝗲.
+        </div>
+        &nbsp; (F)<br>
+    </div>
+<br>
+
+For ellipse, parabola, and hyperbola with 𝜎  = 1, the force will be centripetal.
+However for hyperbola for the branch with 𝜎  = -1, the force will be centrifugal.
+<br><br>
+When expressed via instant speed v and instant angle 𝛺, the force is
+
+    <div style="text-align:center;">
+                𝑓 = 𝜎 v²𝛺² / ρ<sub>⟂</sub>. &nbsp;&nbsp;&nbsp;(F')<br>
+    </div>
+<br><br>
+
+<a name="logarithmic-spiral-motion"></a>
+<br><br>
+
+
+
+
+
+
+<i><b>Logarithmic spiral motion</b></i>
+<br>
+    Equation of Logarithmic spiral is: ρ = ρₒe<sup>Aφ</sup>     <br>
+    where A and ρₒ are constants, -oo ‹ A ‹ oo.
+<br><br>
+
+    This equation is equivalent to condition ω = const. <br>
+    Hence A = ctg(ω), 𝛺  = const, and<br>
+       𝗿 = ρₒe<sup>(i+A)φ</sup>, 𝘃<sub>φ</sub> = (A+i)𝗿, 𝗮<sub>φ</sub> = (A+i)²𝗿, <br>
+
+    v<sub>φ</sub>² = (A²+1)ρ², A²+1 = 1/𝛺², v<sub>φ</sub> = ρ/𝛺.   <br>
+
+       𝘃<sub>φ</sub>|𝗮 = (A-i)(A+i)²ρ² = (A²+1)(A+i)ρ², and <br>
+        b<sub>𝗸</sub> = 1, v<sub>φ</sub>³κ = Img 𝘃<sub>φ</sub>|𝗮 = (A²+1)ρ² = v<sub>φ</sub>²,
+        κ = 𝛺/ρ.
+    <br><br>
+
+    From (f'),(k' ): 𝑓 = κv²/𝛺, v = ρₒvₒ/ρ.
+    <div style="text-align:center;">
+        𝑓 = r²ₒv²ₒ/r³, <br>
+          or in vector form: <br>
+             𝗳 = -𝑓𝗲.
+    </div>
+<br>
+If ω = 90ᵒ, then ρ = const = ρₒ, body's orbit is a circle, and 𝑓 = v²ₒ/ρₒ.
+
+
+<br><br>
+<a target="_blank" href="https://en.wikipedia.org/wiki/Logarithmic_spiral">Logarithmic spiral</a> <br>
+<a target="_blank" href="https://en.wikipedia.org/wiki/Cotes%27s_spiral">Roger Cotes spirals</a>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+*::*proof|addendum
+{
+  "mediaBgImage" : null,
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Two force fields with same sector speed and same trajectory",
+  "subessay" : "force-center-change"
+}
+*..*
+
+Consider two centripetal force fields, 𝗳<sub>𝛙</sub> and 𝗳<sub>φ</sub>
+centered in (0,0) and in 𝗵  correspondingly and which make
+body moving with the same sector speed M/2 and on the same trajectory 𝗿<sub>𝛙</sub>:
+<br>
+    <div style="text-align:center;">
+            𝗿 = 𝗿<sub>𝛙</sub> = 𝗿<sub>φ</sub> + 𝗵, <br>
+            𝗿<sub>𝛙</sub> = ρ<sub>𝛙</sub>𝑒<sup>i𝛙</sup>, <br>
+            𝗿<sub>φ</sub> = ρ<sub>φ</sub>𝑒<sup>iφ</sup> <br>
+    </div>
+<br>
+
+From I.2., (s): <br>
+<br>
+    <div style="text-align:center;">
+                    𝑓<sub>𝛙</sub> = 𝜅M²/(ρ<sub>𝛙</sub>²𝛺<sub>𝛙</sub>³), <br>
+                    𝑓<sub>φ</sub> = 𝜅M²/(ρ<sub>φ</sub>²𝛺<sub>φ</sub>³).
+    </div>
+<br>
+Cancelling factors which do not have force dependence indices 𝛙, φ, we express
+forces in respect to each other:
+<br>
+    <div style="text-align:center;">
+             𝑓<sub>𝛙</sub> /  𝑓<sub>φ</sub>=
+            ρ<sub>φ</sub>² / ρ<sub>𝛙</sub>² 𝛺<sub>φ</sub>³ / 𝛺<sub>𝛙</sub>³.
+            &nbsp;&nbsp;&nbsp;   (h)
+    </div>
+<br>
+
+
+From <a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval">
+"Interval between conjugate parallels",  (𝛺)</a>:
+        𝘨 / ρ<sub>φ</sub> = 𝛺<sub>φ</sub> / 𝛺<sub>𝛙</sub>.
+<br>
+( Recall line interval 𝙜  // 𝗿<sub>𝛙</sub> begins at (0,0) and
+ends at the orbit's tangent drawn at body's point. )
+<br><br>
+
+Substituting above in to (h), we obtain final transition formula:
+<br>
+    <div style="text-align:center;">
+                    𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
+            ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² 𝘨³   &nbsp;&nbsp;&nbsp;  (ft)
+    </div>
+<br><br>
+
+
+In other, more geometrical way, and following Newton, we can modify above by expressing via cirvature circle chords
+
+c<sub>𝛙</sub> and c<sub>φ</sub>
+belonging radius vectors 𝗿<sub>𝛙</sub> and 𝗿<sub>φ</sub>:
+<br>
+
+    <div style="text-align:center;">
+        c<sub>𝛙</sub> = 2|𝛺<sub>𝛙</sub>| / κ, <br>
+        c<sub>φ</sub> = 2|𝛺<sub>φ</sub>| / κ, <br>
+        𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
+            ρ<sub>φ</sub>² / ρ<sub>𝛙</sub>² c<sub>φ</sub>³ / c<sub>𝛙</sub>³.
+            &nbsp;&nbsp;&nbsp;  (hc)
+    </div>
+
+From triangles similarity as in Book 1, prop7.:
+<br>
+    <div style="text-align:center;">
+        g / ρ<sub>φ</sub> = c<sub>φ</sub>/c<sub>𝛙</sub>. <br>
+    </div>
+
+
+

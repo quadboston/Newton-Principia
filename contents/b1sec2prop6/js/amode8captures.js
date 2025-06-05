@@ -1,21 +1,10 @@
 ( function() {
-    var {
-        ns, sn, nspaste, has, paste, capture, bezier, userOptions,
-        sDomF, ssD, ssF, fconf,
-        sconf, amode, toreg, stdMod, rg,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, nspaste, has, paste, capture, userOptions, sDomF, ssD, ssF,
+        fconf, sData, sconf, amode, toreg, stdMod, rg, }
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     foldPointsRemovedFromTp = false;
     return;
-
-
-
-
 
 
     function setCapture()
@@ -49,6 +38,7 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+        sData.GRAPH_PATH = sconf.GRAPH_PATH;
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
@@ -151,19 +141,6 @@
                 if( logic_phase === 'proof' ){
                     rg[ 'Q,rrminus' ].undisplay = false;
                 }
-            } else if( logic_phase === 'corollary' && aspect === 'addendum' &&
-                    subessay === 'corollary1' ){
-                rg.SY.undisplay = true;
-                rg.Y.undisplay = true;
-                rg.PY.undisplay = true;
-                rg.V.undisplay = true;
-                rg.PV.undisplay = true;
-
-                rg.curvatureCircle.undisplay = true;
-                rg.C.undisplay = true;
-                rg.PC.undisplay = true;
-                rg[ 'Q,rrminus' ].undisplay = false;
-                rg[ 'P,rrminus' ].undisplay = false;
 
             } else if( logic_phase === 'corollary' && subessay === 'corollary1' ){
                 rg.SY.undisplay = true;
@@ -180,23 +157,13 @@
                 //rg.sagitta.undisplay = false;
                 rg[ 'P,sagitta' ].undisplay = false;
 
-            } else if( logic_phase === 'corollary' && subessay === 'corollary3'
-            ){
-                if( aspect === 'addendum' ) {
-                    rg.Q.hideD8Dpoint = true;
-                    rg.Q.d8d_find_is_LOCKED = true;
-                    rg.Q.undisplay = true;
-                    rg.QP.undisplay = true;
-                    rg.QR.undisplay = true;
-                    rg.R.undisplay = true;
-                } else {
-                    rg.Q.hideD8Dpoint = false;
-                    rg.Q.d8d_find_is_LOCKED = false;
-                    rg.Q.undisplay = false;
-                    rg.QP.undisplay = false;
-                    rg.QR.undisplay = false;
-                    rg.R.undisplay = false;
-                }
+            } else if( logic_phase === 'corollary' && subessay === 'corollary3' ) {
+                rg.Q.hideD8Dpoint = false;
+                rg.Q.d8d_find_is_LOCKED = false;
+                rg.Q.undisplay = false;
+                rg.QP.undisplay = false;
+                rg.QR.undisplay = false;
+                rg.R.undisplay = false;
 
                 rg.APQ.undisplay = true;
                 rg.Z.undisplay = true;
@@ -238,12 +205,12 @@
                 ssF.scaleValue2app( rg.media_scale.value, );
             }
         }
-        if( sconf.APPROX !== 'D' ) {
+
             ////this refreshes scnenario of
             ////non-Kepler shapes visibility
             ssD.stashedVisibility = null;
-        }
-        stdMod.curveIsSolvable();
+
+        stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }

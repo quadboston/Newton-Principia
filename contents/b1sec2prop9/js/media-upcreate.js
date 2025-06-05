@@ -1,19 +1,9 @@
 ( function() {
-    var {
-        rg, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { rg, stdMod, } = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
-        },
-    });
+        }, });
     return;
-
-
-
-
-
 
 
     function media_upcreate___before_basic()

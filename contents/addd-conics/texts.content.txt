@@ -1,0 +1,234 @@
+*::*proof|addendum
+{
+  "menuCaption" : "Conics",
+  "subessayCaption" : "\"Shoulder Lemma\"",
+  "subessay" : "shoulder-lemma"
+}
+*..*
+
+
+For any couple of 𝘂, 𝗻, 𝘂  ⟂ 𝗻, |𝘂| = |𝗻| = 1 and <br>
+for any two unit vectors 𝗲₊, 𝗲₋, non parallel except may be when 𝗻 // 𝗲₊,  <br><br>
+
+consider 𝗲<sub>ν</sub> = Θ<sub>ν</sub>𝗲<sub>ν</sub> - Ω<sub>ν</sub>𝗻<sub>ν</sub>,<br>
+and χ<sub>o</sub> = 1 iff Ω₊ = Ω₋, othewise χ<sub>o</sub> = -1.
+<br><br>
+
+<b>Lemma</b><br><br>
+    <div style="text-align:center;">
+        |Ω₊| = |Ω₋| ⇒  2Ω² = 1 + χ<sub>o</sub>𝗲₊𝗲₋.
+    </div>
+where Ω = |Ω<sub>ν</sub>|.
+<br><br>
+
+<!--
+
+Ω<sub>ν</sub> = -[𝗲<sub>ν</sub>𝘂]𝗸, 𝗸 = [𝘂𝗻].
+
+-->
+
+<b>Proof</b><br><br>
+
+|Ω₊| = |Ω₋| => |Θ₊| = |Θ₋|,<br>
+Θ = |Θ₊|.
+
+When χ<sub>o</sub> = 1, then Θ₊ = -Θ₋ and 𝗲₊𝗲₋ = -Θ² + Ω² = 2Ω² - 1.
+<br><br>
+When χ<sub>o</sub> = -1, then Θ₊ = Θ₋ and 𝗲₊𝗲₋ = χ<sub>o</sub>(2Ω² - 1). ∎
+<a name="conics"></a>
+<br><br><br>
+
+
+<b>Conics</b>
+
+<br><br>
+If 𝗿₊ = r₊𝗲₊ and 𝗿₋ = r₋𝗲₋ two centered at different focuses radius vectors of the the same conic point, then 𝗲₊ and 𝗲₋ satisfy lemma conditions with χ<sub>o</sub> = χ where 𝘂, 𝗻   
+unit tangent and norm and χ = 1 for ellipse and χ = -1 for hyperbola.
+<br><br>
+
+Therefore, 2|[𝗲<sub>ν</sub>𝘂]|² = 2Ω² and
+    <div style="text-align:center;">
+        <div style="text-align:center;">
+            <div style="text-align:center; border:1px solid #aaaaaa;
+                        display:inline-block; padding:5px;">
+                2Ω² = 1 + χ𝗲₊𝗲₋ or <br>
+                2Ω²r₊ = r₊ + χ𝗿₊𝗲₋.
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Conics",
+  "subessayCaption" : "Interval between conjugate parallels",
+  "subessay" : "interval"
+}
+*..*
+
+
+¦EP¦<b>Interval</b>¦¦ <b>between </b>¦DK PZ P,Zminus¦<b>conjugate parallels</b>¦¦.
+<br><br>
+
+<b>I. <span class="captured-reference id-arbitrary-curve">Arbitrary curve</span>.</b>
+<br>
+    Consider an arbitray ¦orbit¦curve¦¦, ¦PZ P,Zminus¦tangent¦¦ to
+    it in point ¦P¦¦, and ¦DK¦line¦¦ crossing
+    ¦O¦origin¦¦ and parallel to this tangent.
+
+    For ¦S¦arbitrary point S¦¦, consider ¦SP¦ line's SP¦¦ interval ¦EP¦𝙜¦¦ cut between
+    ¦DK PZ P,Zminus¦conjugate parallels¦¦.
+    ¦PZ¦𝘂¦¦ denotes unit tangent vector.
+
+<br><br>
+    Task: for given ¦PO¦𝗿 ¦¦, ¦SP¦𝗿<sub>𝛙</sub>¦¦, and ¦PZ¦𝘂¦¦,
+    find the value of ¦EP¦𝙜¦¦.
+
+    <br>Here, 
+    ¦SP¦𝗿<sub>𝛙</sub>¦¦ = r<sub>𝛙</sub>𝗲<sub>𝛙</sub> = ¦OS¦SO¦¦ + ¦PO¦𝗿 ¦¦. <br>
+    Solution is: <br><br>
+    <div style="text-align:center;">
+        <div style="text-align:center; border:1px solid #aaaaaa;
+                    display:inline-block; padding:5px;">
+
+            ¦EP¦𝙜¦¦ = ¦EP¦𝘨¦¦𝗲<sub>𝛙</sub>, <br>
+            ¦EP¦𝘨¦¦ = r 𝛺 / 𝛺<sub>𝛙</sub>, <br>
+            𝛺 = 𝗲𝘂, 𝛺<sub>𝛙</sub> = 𝗲<sub>𝛙</sub>𝘂. <br>
+        </div>
+        &nbsp;&nbsp;&nbsp; (G) <br>
+    </div>
+            𝛺, 𝛺<sub>𝛙</sub> are tangent sines.
+    In this section, we <i>temporarily</i> denote
+        𝗫𝗬 =<sup>df</sup> [𝗫𝗬]𝗸, ( which is 𝗸-th component of vector product of 𝗫𝗬 ).
+<br>
+    Proof: (𝙜 - 𝗿)𝘂 = 0 ⬜ <br>
+<br>
+For application of this formulae, we may denote: ¦OS¦𝗵¦¦ = 𝗿 - 𝗿<sub>𝛙</sub>.<br>
+
+<a name="ellipse"></a>
+<br><br><br>
+
+
+<b>II. <span class="captured-reference id-ellipse-and-hyperbola">Ellipse and hyperbola.</span></b>
+<br>
+For these curves,
+    <div style="text-align:center;">
+            ¦PO¦𝗿¦¦ = ( aC<sub>γ</sub>, bS<sub>γ</sub> ), where <br>
+            for ellipse: 𝑠 = 1, C<sub>γ</sub> = cos(γ), S<sub>γ</sub> = sin(γ) and <br>
+            for hyperbola: 𝑠 = -1, C<sub>γ</sub> = ch(γ), S<sub>γ</sub> = sh(γ). <br>
+    </div>
+    We denote: ¦FF,O¦c¦¦ = √( ¦AO¦a¦¦² - 𝑠b² ), ¦FF,O¦𝗰<sub>c</sub> =
+        ( 𝜎𝑠c, 0 )¦¦, <br>
+                     𝜎 = 1 for ellipse and 𝜎=1,-1 for inner, outer branch of hyperbola, <br>
+        ¦SP¦𝗿<sub>𝛙</sub>¦¦ = ¦FF,P¦𝗽¦¦ + ¦S,FF¦𝗾¦¦,
+        and radius vector in respect
+        to focus: ¦FF,P¦𝗽¦¦  = ¦PO¦𝗿¦¦ + ¦FF,O¦𝗰<sub>c</sub>¦¦.
+    <br>
+
+(G) will take a form:
+    <div style="text-align:center;">
+        ¦EP¦𝙜¦¦ = ( 𝗿𝘃 / (𝗽 + 𝗾 )𝘃 ) (𝗽 + 𝗾), &nbsp;&nbsp;&nbsp; (G') <br>
+    </div>
+where
+    <div style="text-align:center;">
+            𝘃 = ( -𝑠aS<sub>γ</sub>, bC<sub>γ</sub> ), <br>
+    </div>
+<br><br>
+
+Let us prove a mysterious property:
+    <div style="text-align:center;">
+            𝗽𝘃 = 𝜎𝑠pb <br>
+    </div>
+Proof:
+    <div style="text-align:center;">
+            𝗿² = a² - 𝑠S²<sub>γ</sub>c², <br>
+            𝗿𝘃 = ab, <br>
+            𝗽² = r² + c² + 2xc<sub>c</sub>. <br>
+            𝗽𝘃 = ab + bc<sub>c</sub>C<sub>γ</sub>, <br>
+        (𝗽𝘃)² = b²(a² + c²C²<sub>γ</sub> + 2xc<sub>c</sub>) = <br>
+        = b²( a² + c² - 𝑠c²S²<sub>γ</sub> + 2xc<sub>c</sub> ) = <br>
+        = b²p². <br>
+       For 𝑠=1, a²›c²C²<sub>γ</sub> and the opposite holds for 𝑠=-1. <br>
+    </div>
+⬜<br>
+<br><br><br>
+
+<b>III. Ellipse and hyperbola focus.</b>
+<br>
+Finally <span class="captured-reference id-ellipse">for S in focus</span>,
+𝗾 = 0 and (G') turns in to
+<a name="in-focus"></a>
+    <div style="text-align:center;">
+        ¦EP¦𝙜¦¦ = 𝗿𝘃/(𝗽𝘃) 𝗽, and <br>
+        <div style="text-align:center;">
+            <div style="text-align:center; border:1px solid #aaaaaa;
+                        display:inline-block; padding:5px;">
+               ¦EP¦𝙜¦¦ = ¦EP¦𝘨¦¦ 𝗽/p, <br>
+               ¦EP¦𝘨¦¦ = 𝜎𝑠¦AO¦a¦¦, <br>
+               |¦EP¦𝙜¦¦| = ¦AO¦a¦¦.
+            </div>
+            &nbsp;&nbsp;&nbsp; (A) <br>
+        </div>
+    </div>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+<!-- rid
+    Draft formulae:
+    a² r<sub>𝛙</sub>² = g²( r<sub>𝛙</sub>² - (h<sub>x</sub>² - c²)sin²(γ) +
+    h<sub>Δ</sub>(h<sub>Δ</sub>-2(a+h<sub>x</sub>cos(γ))),
+    where h<sub>Δ</sub> = a/b sin(γ) h<sub>y</sub> <br>
+-->
+
+
+
+
+*:::*:::*
+
+{
+    "arbitrary-curve" : {
+        "S": {
+            "pos": [
+                -0.76,
+                0.19
+            ]
+        },
+        "FF" : { "undisplay" : true },
+        "FF,O" : { "undisplay" : true },
+        "FF,P" : { "undisplay" : true },
+        "S,FF" : { "undisplay" : true }
+    },
+
+    "ellipse-and-hyperbola": {
+        "S": {
+            "pos": [
+                -0.76,
+                0.19
+            ]
+        },
+        "FF" : { "undisplay" : false },
+        "FF,O" : { "undisplay" : false },
+        "FF,P" : { "undisplay" : false },
+        "S,FF" : { "undisplay" : false }
+    },
+
+    "ellipse": {
+        "S": {
+            "pos": [
+                -0.63663176,
+                0.0
+            ]
+        },
+        "FF" : { "undisplay" : false },
+        "FF,P" : { "undisplay" : false },
+        "FF,O" : { "undisplay" : false },
+        "S,FF" : { "undisplay" : true }
+    }
+}
+

@@ -206,7 +206,7 @@
                 stroke : sData.colorThreadArray[1],
                 'stroke-width' : 3,
             },
-            abscissaIxValue : stdMod.pos2qix(),
+            abscissaIxValue : stdMod.posFromPointPToQIndex(),
             numberMarks : true, 
         };
     }

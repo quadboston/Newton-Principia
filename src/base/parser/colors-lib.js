@@ -101,7 +101,6 @@
 
     function colArray_2_flags( topi_c )
     {
-        //console.log(topi_c)
         var colorArray = haz( topi_c, 'fixed-color' );
         var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
         var ownHighOp = colorArray[4];
@@ -121,13 +120,11 @@
             ////opacities from global setting
             let fc = topi_c['fixed-color'];
             
-            if (isArea(topi_c)) {
-                topi_c.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
-                topi_c.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
-            } else {
-                topi_c.highOpacity = topi_c.lowOpacity = 1;
-            }
+            topi_c.highOpacity = topi_c.lowOpacity = 1;
 
+            //if( topi_c.isPoint8Line ) {
+            //    c cc( topi_c.camelId, topi_c.lowOpacity, topi_c.highOpacity, topi_c );
+            //}
             topi_c.rgba_own = rgba;
         };
 
@@ -149,13 +146,6 @@
             }
         }
     }
-
-
-    // kludge
-    function isArea(topi_c) {
-        return typeof topi_c['fixed-color'][3] == 'number';
-    }
-
     
     
     

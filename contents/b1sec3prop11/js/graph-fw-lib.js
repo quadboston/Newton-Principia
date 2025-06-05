@@ -1,15 +1,9 @@
 ( function() {
-    var {
-        sn, $$, nsmethods, haz, globalCss, userOptions,
-        ssD, sDomN, sDomF, sData,
-        amode, stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            createsGraph_FW_lemma,
-        },
-    });
+    var { sn, $$, nsmethods, haz, globalCss, userOptions, ssD, sDomN, sDomF, sData,
+        amode, stdMod, sconf, rg } 
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
+    
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
@@ -35,8 +29,8 @@
         //first array must be enabled
         //but can be dynamically overridden,
         graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'sagitta', 'body' ] :
-            [ 'force', 'sagitta', ];
+            [ 'force', 'estforce', 'body' ] :
+            [ 'force', 'estforce', ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -46,7 +40,7 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'sagitta' ),
+                sDomF.getFixedColor( 'displacement' ),
                 sDomF.getFixedColor( 'body' ),
               ];
             return colorThreadArray;
@@ -118,9 +112,9 @@
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+ n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -228,7 +222,7 @@
         {
             const svg = graphFW.fw.plotIx2plotSvg;
             $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
             svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
             svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
@@ -240,8 +234,7 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                                /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
                 numberMarks : true, 
             };
         }

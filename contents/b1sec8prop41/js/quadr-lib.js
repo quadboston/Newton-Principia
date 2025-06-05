@@ -3,12 +3,8 @@
 ///=======================================================
 
 ( function() {
-    var {
-        sn, $$, has, haz, mat, nssvg, mcurve, nspaste,
-        fconf, sData, ssF, sDomF,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
+    var { sn, $$, has, haz, mat, nssvg, mcurve, nspaste, fconf, sData, ssF, sDomF,
+        amode, stdMod, sconf, rg, toreg, } = window.b$l.apptree({ stdModExportList :
         {
             quadratures,
             forceIsBounded,
@@ -16,10 +12,6 @@
     });
     var op = sn( 'orbitParameters', sconf );
     return;
-
-
-
-
 
 
     ///possibly, "graph of force is bounded on diagram"
@@ -38,7 +30,6 @@
                 break;
             }
         }
-        //stdMod.pos2qix = pos2qix;
         return { solvable, fr };
     }
 

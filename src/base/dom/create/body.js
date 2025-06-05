@@ -147,7 +147,7 @@
             .css('position', 'absolute')
             .css('bottom', '10px')
             .css('right', '10px')
-            .css('color', 'orange')
+            .css('color', 'grey')
             .css('font-size', '10px')
             .html('Version 0.' + fapp.version);
         //==================================================

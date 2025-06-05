@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        sn, mcurve,
-        stdMod, rg, sconf,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            buildsforceGraphArray,
-            pos2qix,
-        },
-    });
+    var { sn, mcurve, stdMod, rg, sconf, } = window.b$l.apptree({
+        stdModExportList : { buildsforceGraphArray, posFromPointPToQIndex, }, });
     return;
 
 
@@ -18,12 +10,12 @@
         var qStart  = op.qStart;
         var qEnd    = op.qEnd;
         var rrc     = rg.S.pos;
-        var fun     = rg[ 'approximated-curve' ].t2xy;
+        var t2xy    = rg[ 'approximated-curve' ].t2xy;
         var forceGraphArray = [];
-        var FORCE_ARRAY_LEN = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=FORCE_ARRAY_LEN; forceArrayIx++ )
+        var Q_STEPS = 400;
+        for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
         {
-            var q = qStart + forceArrayIx * ( qEnd - qStart ) / FORCE_ARRAY_LEN;
+            var q = qStart + forceArrayIx * ( qEnd - qStart ) / Q_STEPS;
             if( 1 !== op.conicSignum ) {
                 q = op.protectedQ( q );
             }
@@ -35,7 +27,7 @@
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
+                fun : t2xy,
                 q,
                 rrc,
             });
@@ -46,11 +38,11 @@
 
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
-            var sinOmega2 = sinOmega*sinOmega;
+            var sinOmegaSquared = sinOmega*sinOmega;
 
             //M is excluded in following lines:
             var comparLaw = 1/r2;
-            var unitlessForce = 1/(R*r2*sinOmega*sinOmega2);
+            var unitlessForce = 1/(R*r2*sinOmega*sinOmegaSquared);
             var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
 
             var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
@@ -104,7 +96,7 @@
 
 
     ///to be used in slow code
-    function pos2qix( pos )
+    function posFromPointPToQIndex()
     {
         var q = rg.P.q;
         var qixMax = stdMod.graphArray.length-1;

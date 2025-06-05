@@ -9,6 +9,7 @@
                 'txt/latin.txt',
                 'txt/cohen.txt',
                 'txt/video.txt',
+                'txt/addendum-comment.txt',
             ],
 
             codesList : [

@@ -1,0 +1,148 @@
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Areas",
+  "subessay" : "areas"
+}
+*..*
+
+
+
+<b>Oriented sector area speed</b>
+<br><br>
+
+
+Definition: oriented sector area speed
+    <div style="text-align:center;">
+        <b>S˙</b> = 1/2[<b>rv</b>], &nbsp; &nbsp; &nbsp; (S˙)
+    </div>
+
+Definition: oriented sector area
+    <div style="text-align:center;">
+        <b>S</b> = <sub>tₒ</sub>∫<sup>t</sup><b>S˙</b> dt.
+    </div><br>
+
+(We could follow "classical" logic by defining first that area is a limit of inscribed triangles area and then proving (S˙), but find it advantageous following the opposide logic used in construction of curve length s.)
+<br><br>
+
+Decomposing radius vector along tangent and normal, 
+<b>r</b> = r<sub>||</sub><b>u</b> + r<sub>⟂</sub><b>n</b>, we have an alternative formula for
+speed:
+<br><br>
+
+    <div style="text-align:center;">
+        𝗦˙= 1/2[r<sub>⟂</sub><b>n</b>v<b>u</b>] =
+                    S<sub>b</sub><b>b</b>, where
+                    S<sub>b</sub> = -1/2r<sub>⟂</sub>v.
+    </div>
+<br>
+
+
+Decomposing area 𝗦 = 𝗦<sub>x</sub> + 𝗦<sub>y</sub> + 𝗦<sub>z</sub>,
+    𝗦<sub>x</sub> = S<sub>i</sub>𝗶,
+    𝗦<sub>y</sub> = S<sub>j</sub>𝗷,
+    𝗦<sub>z</sub> = S<sub>k</sub>𝗸,
+  we have:
+<br>
+
+<b>Lemma:</b> area A<sub>xy</sub> calculated for curve and radius projections on plane xy, A<sub>xy</sub> = S<sub>k</sub>.
+<br><br>
+
+<a name="area-speed-vp"></a>
+<br><br>
+<b>Lemma (T1.Cor1)</b>. For xy-planar curve <b>k</b> = <b>b</b>, and curve's area speed 
+    <div style="text-align:center;">
+        A˙<sub>xy</sub> = const ⇔ r<sub>⟂</sub>v = const.
+    </div>
+<br><br>
+
+
+
+
+
+
+<a name="area-speed"></a>
+<b>Lemma</b>. Oriented sector area speed is constant iff accelleration is 0 or is parallel to radius:
+    <div style="text-align:center;">
+        <b>S˙</b> = const ⇔ [<b>ra</b>] = 0 ⇔ <b>r</b>||<b>a</b> or <b>a</b>=0,
+    </div>
+<br>
+<br><br>
+
+
+
+<a name="theorem-2">    
+To prepare for Lemma (Theorem II), consider a curve with <b>r</b> ≄ 0, <b>v</b><sub>⟂</sub> ≄ 0, and
+vectors components along and perpendicular to <b>r</b>: <br>
+
+    <div style="text-align:center;">
+        <b>v</b> = <b>v</b><sub>⟂</sub> + <b>v</b><sub>||</sub>,    <br>
+        <b>a</b> = <b>a</b><sub>⟂</sub> + <b>a</b><sub>||</sub> + <b>a</b><sub>z</sub>.    <br>
+    </div>
+For convenience, at the moment t of consideration, axis z (along <b>k</b>) is chosen perpendicular to plane
+<b>v</b> <b>r</b>.
+<br><br>
+Express <b>a</b><sub>⟂</sub> in respect to <b>v</b><sub>⟂</sub>: <br>
+
+    <div style="text-align:center;">
+        <b>a</b><sub>⟂</sub> = <i>a</i><sub>⟂</sub><b>v</b><sub>⟂</sub>,    <br>
+
+        2<b>S˙</b> = [<b>rv</b><sub>⟂</sub>],    <br>
+        2<b>S˙˙</b> = [<b>r</b><i>a</i><sub>⟂</sub><b>v</b><sub>⟂</sub>] +
+                     [<b>r</b><b>a</b><sub>z</sub>]
+                    =
+                      <i>a</i><sub>⟂</sub>2<b>S˙</b> +
+                      [<b>r</b><b>a</b><sub>z</sub>], <br>
+
+        <b>S˙˙</b><sub>z</sub> = <i>a</i><sub>⟂</sub><b>S˙</b><sub>z</sub>  <br>
+        <b>S˙˙</b><sub>z</sub> ⇈ <b>S˙</b><sub>z</sub> ⇔
+              <i>a</i><sub>⟂</sub> › 0 ⇔ <b>a</b><sub>⟂</sub> ⇈ <b>v</b><sub>⟂</sub>
+    </div>
+Hence: <br><br>
+
+
+<a name="theorem-ii"></a>
+<b>Lemma (Theorem I and II)</b>. Planar sector area speed is constant if planar acceleration component is parallel to planar radius:
+    <div style="text-align:center;">
+        <b>S˙˙</b><sub>z</sub> = 0 ⇔ <i>a</i><sub>⟂</sub> = 0
+    </div>
+<br>
+
+<a name="corollary-1">
+<b>Lemma (T2.Cor1)</b>. Calculated in plane of <b>r</b> and <b>v</b>,
+sector speed increases ( or decreases ) when <br>
+    <div style="text-align:center;">
+        <b>a</b><sub>⟂</sub> ⇈ ( or ⇅ ) <b>v</b><sub>⟂</sub> correspondingly.
+    </div>
+<br>
+
+
+
+<a name="corollary-2">
+<b>Lemma (T2.Cor2)</b>. For motion in resisting area, if sector speed increases,
+then <b>a</b><sub>⟂</sub> ⇈ <b>v</b><sub>⟂</sub>. Proof:
+<br>
+
+Resistance component d<sub>⟂</sub> of <b>a</b><sub>⟂</sub> will be counter-directional to speed, hence
+
+    <div style="text-align:center;">
+        <i>a</i><sub>⟂</sub> = d<sub>⟂</sub> + <i>f</i><sub>⟂</sub>,
+    </div>
+
+where d<sub>⟂</sub> ‹ 0, and <b>f</b> is an accelleration from full force minus resistance force.
+<br>
+
+Since <i>a</i><sub>⟂</sub> must be › 0,
+then <i>f</i><sub>⟂</sub> › 0, which means <b>f</b><sub>⟂</sub> is codirectional to <b>v</b><sub>⟂</sub>∎
+<br><br><br>
+
+<a name="scholium">
+<b>Lemma (T2.Scholium)</b>. If force has component along axis z normal to plane where area is being calculated, then Lemma (T2.Cor1) still holds. This follows from
+above Lemma (Theorem I and II) proof where component <b>a</b><sub>z</sub> does not contribute to
+planar values.
+
+<br><br>
+<div book-reference-id="kvk"></div>
+

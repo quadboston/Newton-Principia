@@ -11,6 +11,7 @@
                 'txt/latin.txt',
                 'txt/cohen-donahue.txt',
                 'txt/video.txt',
+                'txt/addendum-comment.txt',
             ],
 
             codesList : [

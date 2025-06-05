@@ -56,6 +56,7 @@
                 //decorations
                 var F = [ 492, 565 ];
                 op.sagittaDelta_q_initial = 1;
+                sconf.Fi_distance = 3;
                 break;
             case "b1sec3prop13" :
                 //media
@@ -67,6 +68,7 @@
                 var PparQ                 = 0.386 * Math.PI;
                 //decorations
                 op.sagittaDelta_q_initial = 0.39;
+                sconf.Fi_distance         = 3.7;
                 var F                     = [ 560, 554 ];
                 break;
             case "b1sec3prop17" :
@@ -129,10 +131,10 @@
                 {
                     let sag_init                    = 0.16;
                     op.sagittaDelta_q_initial       = sag_init;
-                    //in this prop, using delta_t instead of delta_q
-                    op.delta_t_initial              = sag_init * 2.5;
-                    op.delta_t                      = op.delta_t_initial;
-                    op.delta_t_LIMIT                = op.delta_t_initial * 1.5;
+                    //in this prop, using Dt instead of sag_delta_q
+                    op.Dt0              = sag_init * 2.5;
+                    op.Dt                      = op.Dt0;
+                    op.delta_t_LIMIT                = op.Dt0 * 1.5;
                 }
                 stdMod.establishesEccentricity( op.initialEccentricity );
                 //-------------------------------------------
@@ -182,10 +184,10 @@
                         //0.19;
                         0.62;
                     op.sagittaDelta_q_initial     = sag_q;
-                    op.delta_t_initial = sag_q * 2.5;
+                    op.Dt0 = sag_q * 2.5;
                 }
-                op.delta_t = op.delta_t_initial;
-                op.delta_t_LIMIT = op.delta_t_initial * 1.5;
+                op.Dt = op.Dt0;
+                op.delta_t_LIMIT = op.Dt0 * 1.5;
                 sconf.Fi_distance = 1.8;
         }
         op.PparQ_initial        = PparQ;
@@ -620,7 +622,6 @@
                 pcolor : body,
                 letterAngle : fconf.sappId === 'b1sec3prop16' ? -90 :
                                 ( fconf.sappId === 'b1sec3prop17' ? 225 : 120 ),
-                draggableY  : (fconf.sappId === 'b1sec3prop12' || fconf.sappId === 'b1sec3prop13'),
             },
 
             p : {

@@ -1,14 +1,8 @@
 ( function() {
-    var {
-        sn, mcurve, ssD,
-        amode, stdMod, rg, sconf,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            buildsforceGraphArray,
-        },
-    });
+    var { sn, mcurve, ssD, amode, stdMod, rg, sconf, } = window.b$l.apptree({
+        stdModExportList : { buildsforceGraphArray, }, });
     return;
+    
 
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
@@ -31,8 +25,8 @@
             ];
         
         let prop7R = sconf.prop7R;
-        let ga = stdMod.graphFW_lemma.graphArray;
-        let glen = ga.length;
+        let graphArray = stdMod.graphFW_lemma.graphArray;
+        let graphArrayLength = graphArray.length;
         var forceMin;
         var forceMax;
         var estimatedMin;
@@ -44,8 +38,8 @@
         var xMax;
         var globalRelativeMax = 0;
         var globalRelativeMin;
-        for( ix = 0; ix<glen; ix++ ) {
-            let gaix = ga[ix];
+        for( ix = 0; ix<graphArrayLength; ix++ ) {
+            let gaix = graphArray[ix];
             var ssagitta = ssD.ssigned[ix]; //gaix.y[1];
             let cP = ssD.curve[gaix.ix];
             let r = cP.r;
@@ -130,8 +124,8 @@
             xMin : addendum ? xMin - xMargin : 0,
         }
         if( addendum ) {
-            for( ix = 0; ix<glen; ix++ ) {
-                let gaix = ga[ix];
+            for( ix = 0; ix<graphArrayLength; ix++ ) {
+                let gaix = graphArray[ix];
                 gaix.y[0] /= forceMin;
                 gaix.y[1] = ssD.ssigned[ix] / sagittaMin;
                 gaix.y[2] /= eLaw2Min;

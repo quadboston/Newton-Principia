@@ -1,0 +1,355 @@
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Curves",
+  "subessay" : "calculus-xx"
+}
+*..*
+
+<br>
+
+<b>Notations</b>
+<br>
+    <div style="text-align:center;">
+        <b>v</b> = <b>r˙</b>, speed             <br> 
+        <b>a</b> = <b>v˙</b>, acceleration      <br><br> 
+
+        In relation to arbitrary vectors <b>a</b>, <b>b</b> <br>
+        a = |<b>a</b>|,                                     <br>
+        <b>𝕒</b> is a unit vector: <b>𝕒</b> = <b>a</b>/a,   <br>
+        italic <i>a</i> is a scalar coordinate of <b>a</b>: <br>
+        
+        <b>a</b> = <i>a</i><b>b</b>                         <br>
+        <br>Special unit vectors:                           <br>
+            𝘂 = 𝘃 / v,                                           <br>
+            𝗲 = 𝗿 / r, <br><br>
+
+        [𝗮𝗯] - vector product of 𝗮  and	𝗯. <br>
+
+        <div style="text-align:center;">
+            [𝗮𝗯] = <br>
+            <table class="matrix-determinant" style=" display:inline-block;">
+
+            <tr><td>𝗶</td> <td>𝗷</td> <td>𝗸</td> </tr>
+            <tr><td>a<sub>x</sub></td>  <td>a<sub>y</sub></td>  <td>a<sub>z</sub></td> </tr>
+            <tr><td>b<sub>x</sub></td>  <td>b<sub>y</sub></td>  <td>a<sub>z</sub></td> </tr>
+            </table>. <br>
+
+                𝗮⊺𝗯 = [𝗮𝗯]𝗸 = a<sub>x</sub>b<sub>y</sub> - a<sub>y</sub>b<sub>x</sub> <br>
+        </div>
+
+        For planar vectors of type 𝗰 = (x,y,0),
+        their "product as complex numbers 𝗰<sup>*</sup>₁*𝗰₂" is  <br>
+            <div style="text-align:center;">
+                        𝗰₁|𝗰₂ =ᵈᶠ ( x₁x₂+y₁y₂, x₁y₂-y₁x₂ ) = ( 𝗰₁𝗰₂, 𝗰₁⊺𝗰₂ ), <br>
+                    ( which are 𝗰₂ components in coordinate system 𝗶 = 𝗰₁/c₁, [𝗸𝗶] ).
+            </div>
+            were 𝗸 - is a unit vertical ort.
+        <br>
+
+    </div>
+<br><br>
+
+We consider curve <b>r</b>(t) as a map:
+    <div style="text-align:center;">
+        <b>r</b> <b>=</b> 𝗧 → ℝ<sup>3</sup>,
+    </div>
+where 𝗧 is an open or closed interval in ℝ.
+<br><br>
+
+Curve has a limit <b>a</b> at point t iff
+    <div style="text-align:center;">
+        | <b>a</b> - <b>r</b>(t+∆t) | → 0 when ∆t → 0 
+    </div>
+
+Curve is continuous at t iff this limit <b>a</b> = <b>r</b>(t).
+<br><br>
+
+Derivative or speed is a limit:
+    <div style="text-align:center;">
+        <b>v</b> = <b>r˙</b><b>=</b> lim ∆<b>r</b>/∆t when ∆t → 0.
+    </div>
+<b>(i)</b> Existence of this limit is called differentiability  <br>
+and can be written in equivalent form <br>
+<b>(ii)</b>
+    <div style="text-align:center;">
+        <b>r</b>(t+∆t) = <b>r</b>(t) + <b>r˙</b>(t)∆t + <b>o</b>(∆t)
+    </div>
+in some neighbourhood of point t.
+<br>
+In other words, in this neighbourhood, the curve's average speed is constant with accuracy to infinitely small function <b>α</b> = <b>o</b>(∆t)/∆t.
+<br><br>
+
+(ii) is equivalent to coordinates differentiability:
+<br><br>
+<b>(iii)</b>
+    <div style="text-align:center;">
+        w<sub>x</sub> = w'<sub>x</sub> + α<sub>x</sub>∆t <br>
+        w<sub>y</sub> = w'<sub>y</sub> + α<sub>y</sub>∆t <br>
+        ...
+    </div>
+
+where average speed in reference to point t <b>w</b> = ∆<b>r</b>/∆t.
+<br><br>
+
+When <b>r</b>' ≄ <b>0</b>, (i) implies the differentiability of chord's length <br>
+    <div style="text-align:center;">
+      | ∆<b>r</b> | / ∆t = √( <b>r</b>'² + 2 <b>rα</b>' + <b>α</b>²) = <br>
+      √ ( <b>r</b>'² + β ) = |<b>r</b>'| + γ, <br>
+    </div>
+where β,γ are infinitely small functions of ∆t. <br><br>
+<br><br><br>
+
+
+<a name="taylor-expansion"></a>
+<b>Taylor expansion</b> in neightbourhood of t = t₀ for derivatives 𝗿₀⁽ⁿ⁾ taken at point t₀
+
+    <div style="text-align:center;">
+        ∆𝗿 = 𝗿(t₀+δ) - 𝗿₀ =
+                        𝗿₀˙δ + ... +
+                        𝗿₀⁽ⁿ⁾δⁿ/n! + ... +
+                        𝝰<sub>₀,δ</sub>δⁿ, <br>
+               where 𝝰<sub>₀,δ</sub> → 0 when δ → 0.
+    </div>
+    in some neighbourhood of point t.
+<br>
+
+
+<a name="taylor-expansion-2"></a>
+For n=2:
+    <div style="text-align:center;">
+             ∆𝗿  = 𝘃₀δ + 𝗮₀δ²/2 + 𝝰<sub>₀,δ</sub>δ², <br>
+    </div>
+<br><br><br>
+
+
+Competing notation:
+<b>Taylor expansion</b>
+
+    <div style="text-align:center;">
+        𝗿(t+∆t) = 𝗿(t) +
+                        𝗿˙(t)∆t + ... +
+                        𝗿⁽ⁿ⁾(t)(∆t)ⁿ/n! + ... +
+                        𝝰(∆t)(∆t)ⁿ, <br>
+               where 𝝰(∆t) → 0 when ∆t → 0.
+    </div>
+    in some neighbourhood of point t.
+<br><br><br><br><br>
+
+
+
+
+
+
+
+
+<b>Following part of this section "Curves" is a draft</b>
+<br><br>
+
+
+(i) or (ii) implies <br>
+
+<b>(ia)</b> convergence of chord angle \( \; \overset{df} \iff \; \) ∃ lim ψ when ∆t → 0; <br>
+where ψ is an angle between chord ∆<b>r</b> and arbitrary chosen vector <b>a</b>.
+<br><br>
+
+When chord is not zero in some pinned neighbourghood of t, then
+<b>(i)</b> ⇒ <b>(ia)</b> <br> 
+because of when ∆t → 0
+    <div style="text-align:center;">
+        ψ = acos( <b>a</b>∆<b>r</b>/(a|∆r|∆t) ) → acos( <b>r˙a</b>/r'/a ).
+    </div>
+<br>
+Vector r' is called a "tangent" because when <b>a</b> = <b>r</b>'/r', then lim ψ = 0.
+<br><br>
+
+The inverse implication <b>(i)</b> ?⇐ <b>(ia)</b>, does not hold for some functions r(t).
+However, we did not check is it still possible to find parameter t that the inverse implication holds?
+
+<br><br>
+
+<b>(ie)</b> If curve is ∆t › 0 side differentiable and for some δ › 0, branch [t, t+δ] of curve
+<br>
+(x) lies on one side from its one-side derivative
+ray <b>r</b>(t) + <b>r˙</b>(t)∆t, ∆t › 0,
+then this ray is a this-side Euclidean tangent,
+<br>
+(xx) othewise, curve does not have this-side Euclidean tangent.
+<br><br>
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Frenet-Serret curves",
+  "subessay" : "frenet-serret"
+}
+*..*
+
+
+For curve continuously differentiable in some interval T, we can define its length s(t) from point tₒ by demanding that
+    <div style="text-align:center;">
+        s˙ = v = √(x˙² + y˙²), <br>
+        which we solve as <br>
+        s <b>=</b> <sub>tₒ</sub>∫<sup>t</sup> vdt.
+    </div>
+<br>
+We consider curves for which s is "invariant": it can be chosen as a curve parameter and chosen "independently" on functions <b>r</b>(t) which are possible representations of the curve.
+<br><br>
+
+
+
+We use apostrophe to denote derivatives by length s like:
+    <div style="text-align:center;">
+        <b>r'</b> <b>=</b> <b>r˙</b>ₛ <b>=</b> d<b>r</b>/ds.
+    </div>
+Vector
+    <div style="text-align:center;">
+        <b>u</b> = <b>r</b>' 
+    </div>
+is a unit vector because of
+    <div style="text-align:center;">
+        <b>v</b> = <b>r˙</b> = <b>r'</b>s˙ = <b>u</b>v, <br>
+    </div>
+Its speed over s is called curvature vector:
+    <div style="text-align:center;">
+        𝝹 <b>=</b> <b>u</b>' = κ<b>n</b>, <br>
+        κ is called curvature.
+    </div>
+Because of <b>uu</b>=1, <b>uu˙</b> = 0 ⇒
+    <div style="text-align:center;">
+        <b>un</b>=0,
+    </div>
+and their binormal is denoted as
+    <div style="text-align:center;">
+        𝗯 = [<b>u</b><b>n</b>]. <br>
+    </div>
+
+Analogiously <b>nn</b>=1 ⇒ <b>nn'</b> = 0 ⇒
+    <div style="text-align:center;">
+        <b>n'</b> = α<b>u</b> + τ𝗯, <br>
+    </div>
+
+
+α and τ are unknowns, and it turns out α = -κ as follows from
+    <div style="text-align:center;">
+            𝗯' = [<b>u</b><b>n'</b>] = τ[<b>u</b>𝗯] = -τ<b>n</b>, <br>
+        <b>n</b>' = [𝗯<b>u</b>]' = [𝗯'<b>u</b>] + [𝗯<b>u'</b>] =
+        τ𝗯 - κ<b>u</b>. <br>
+    </div>
+<br>
+
+
+<a name="curve-notations"></a>
+Above is rewritten as Frenet-Serret formulas:
+    <div style="text-align:center;">
+        <b>u</b>' =             κ<b>n</b>,              <br> 
+        <b>n</b>' = - κ<b>u</b> +           τ𝗯,  <br>
+        𝗯' =             -τ<b>n</b>.             <br>
+    </div>
+<br><br>
+
+
+
+*::*proof|curve
+{
+  "default" : "1",
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Calculation tips",
+  "subessay" : "calculation-tips"
+}
+*..*
+
+<b>Motivation.</b> Suppose for given curve parametrization with parameter q,
+Cartesian, polar, etc., it is easy to
+find curve's derivatives <b>r˙</b>, <b>r˙˙</b>, etc. We try then to express curvature
+𝝹 in respect to these derivatives.
+
+    <div style="text-align:center;">
+            𝘃𝗮 = vv˙, <br>
+       [𝘃𝗮] = [𝘃𝗮<sub>⟂</sub>] = κv³[𝘂𝗻] = v³κ𝗯, <br>
+       [[𝘃𝗮]𝘃] = v³κ[𝗯𝘃] = v⁴𝝹 = v²𝗮 - (𝘃𝗮)𝘃.  <br> 
+    </div>
+<br>
+
+<br>
+
+For curve 𝗿(t) belonging to plane xy, so 𝗯 = b<sub>𝗸</sub>𝗸, b<sub>𝗸</sub> is 1 or -1:
+
+    <div style="text-align:center;">
+                      𝜅  =<sup>df</sup> = κb<sub>𝗸</sub>, &nbsp;&nbsp;&nbsp; (K)<br>
+        if curvature 𝝹 directed to the left when moving along 𝘃  and <br>
+        viewing from tip 𝗸, then 𝜅 › 0; othewise,
+                     𝜅  ⩽ 0.
+        <br><br>
+
+        v³𝜅 𝗸 = [𝘃𝗮] = (𝘃⊺𝗮)𝗸.   <br>
+        v³𝜅  = 𝘃⊺𝗮 = x˙y˙˙- x˙˙y˙. <br>
+        <br>
+
+             𝘃|𝗮 = ( 𝘃𝗮<sub>//</sub>, 𝘃⊺𝗮<sub>⟂</sub> ) = ( vv˙, v³𝜅  ). <br>
+        <!--
+        possibly useless: <br>
+        (𝘃|𝗮)|𝘃 = ( vv˙x˙ + κv³[𝘂𝗻]𝗸y˙, vv˙y˙ - κv³[𝘂𝗻]𝗸x˙  )
+        <br>
+        -->
+    </div>
+<br>
+
+
+<a name="cartesian-coordinates">
+<b>Cartesian coordinates</b>
+<br>
+    <div style="text-align:center;">
+        If parameter q = x, then
+        v³𝜅  = y˙˙. <br>
+    </div>
+<br><br>
+
+
+<a name="polar-coordinates">
+<b>Polar coordinates</b>
+<br>
+    <div style="text-align:center;">
+            𝗿 = ρe<sup><i>iφ</i></sup>,
+    </div>
+where ρ and φ are functions of q.
+<br><br>
+
+
+    <div style="text-align:center;">
+            𝘃 = ( ρ˙+ <i>i</i>ρφ˙) e<sup><i>iφ</i></sup>, &nbsp; v² = ρ˙² + ρ²φ˙², <br>
+            𝗮 = ( ρ˙˙+ 2ρ˙<i>i</i>φ˙ + <i>i</i>ρφ˙˙ - ρφ˙² ) e<sup><i>iφ</i></sup>
+         = ( ρ˙˙ - ρφ˙² + <i>i</i>( 2ρ˙φ˙ + ρφ˙˙ ) ) e<sup><i>iφ</i></sup> <br>
+
+           𝘃|𝗮 = ( ρ˙ρ˙˙ - ρ˙ρφ˙² +  ρφ˙(2ρ˙φ˙ + ρφ˙˙), ρφ˙(-ρ˙˙ + ρφ˙²) + ρ˙( 2ρ˙φ˙ + ρφ˙˙ ) )
+             = <br>
+            ( ρ˙ρ˙˙ + ρρ˙φ˙² +  ρ²φ˙φ˙˙, -ρρ˙˙φ˙ + ρ²φ˙³ + 2ρ˙²φ˙ + ρρ˙φ˙˙ )
+    </div>
+
+<br><br>
+
+For q = ρ:
+
+    <div style="text-align:center;">
+           𝘃|𝗮 = ( ρφ˙² +  ρ²φ˙φ˙˙, ρ²φ˙³ + 2φ˙ + ρφ˙˙ ), <br>
+       v² = 1 + ρ²φ˙², <br>
+       vv˙ = ρφ˙² +  ρ²φ˙φ˙˙,  <br>
+       v³𝜅  = ρ²φ˙³ + 2φ˙ + ρφ˙˙, <br>
+    </div>
+
+For q = φ:
+
+    <div style="text-align:center;">
+           𝘃|𝗮 = ( ρ˙ρ˙˙ + ρρ˙, -ρρ˙˙ + ρ² + 2ρ˙² ), <br>
+       v² = ρ˙² + ρ², <br>
+       vv˙ = ρ˙ρ˙˙ + ρρ˙,  <br>
+       v³𝜅  = -ρρ˙˙ + ρ² + 2ρ˙², <br>
+    </div>
+
+

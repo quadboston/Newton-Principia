@@ -1,0 +1,583 @@
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Euclid curves",
+  "subessay" : "euclid-framework-curves"
+}
+*..*
+
+<b>What is expected from the curve in
+    <a target="_blank" href="?conf=sappId=addd-fw,ESSAY_FRACTION_IN_WORKPANE~0.9">
+    Euclid framework</a>?
+</b><br><br>
+
+
+
+<b>* Curve is an ordered set of points.</b> Formally:
+<br><br>
+
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left;">
+
+                                            <tr><td style="vertical-align:top;">
+        ¦curveCircle¦Curve¦¦ is a map: ¦curveCircle¦<b>r</b> : 𝗧 → 𝗣¦¦ 
+                                            </td><td style="vertical-align:top;">
+        where 𝗧 is an ordered set and
+        <br>𝗣 is set of points<br>
+        "Ordered" means for all non-equal
+        <br>t', t" ∃ relation ‹ 
+        <br>which is transitive and antisymmetric.
+                                           </td></tr>
+
+                                            <tr><td colspan="2"> 
+        We could use simple definition without indices "t" require directly that
+        points <b>r</b> are ordered, but assume that introducting indices t
+        does not bring redundant content or contradiction.
+        <br>
+        Using free variable t for curve
+        is a "mainstream way in
+        <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>,
+        and we would like to
+        build this "bridge".
+                                           </td></tr></table>
+                                           </div>
+                                           <br><br>
+
+
+
+
+<b>* We call curve continuos in point t</b> if for each radius R there exists pinned neighbourhood of t
+where curve belongs to disk R centered at <b>r</b><sub>t</sub>. We call curve continuos if it is continuous in each point t.
+<br><br>
+
+
+
+
+<a name="onc-side-euclidean-tangent">
+<b>* One-side Euclidean tangent</b>.
+
+Consider a ray ¦AT¦¦ and a curve
+¦curveRightCircle¦<b>r</b><sub>t</sub>, a ⩽ t ⩽ b¦¦
+liing on one side s₁ of the ray except point ¦A¦¦ = ¦A¦<b>r</b><sub>a</sub>¦¦
+
+By our definition, side is a half-plane which does not include own boundary.
+<br><br>
+
+A ray ¦AT¦¦ is one-side Euclidean tangent iff
+
+for any other ¦AX¦ray AX¦¦ with X on side s₁,
+
+there is a point <b>r</b><sub>c</sub> between ¦AX¦¦ and ¦AT¦¦.
+<br><br>
+
+In simple words, there is no other line between tangent and the curve.
+<br><br>
+
+<a name="euclidean-tangent">
+<b>* Euclidean tangent</b> is a line which is a sum of ¦A,Tleft¦AT<sub>left</sub>¦¦ and ¦AT¦AT<sub>right</sub>¦¦ tangents to ¦curveLeftCircle¦two¦¦ ¦curveRightCircle¦branches¦¦ which make the ¦curveCircle¦curve¦¦.
+<br><br><br>
+
+
+Examples:
+<br><br>
+
+   <b>Draft1 start</b>
+   Existence of Euclidean tangent is proven for circle (EI.16) and may be proven for conics by using this
+   schema: <br><br>
+   for projection of circle into conic cut:<br><br>
+    <ul>
+        <li>rightline goes to rightline,</li>
+        <li>line crosses point goes to line crosses,</li>
+        <li>sequence of points on lines is preserved,</li>
+        <li>betweenness is preserved,</li>
+        <li>which completes the proof,</li>
+    </ul><br><br>
+
+   We don't know is this assumption proven for non-conics in the Book, and it may be
+   considered as a starting axiom, depending on chosen Geometry framwork.
+   <b>Draft1 end</b>
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Infinite frequency (IF) curve",
+  "subessay" : "if-curve"
+}
+*..*
+
+
+                                            <div style="text-align:center;">
+                                            <table class="essay-no-border">
+
+                                            <tr><td>
+        ¦curveIF¦<b>r</b><sub>t</sub> = (x(t), y(t))¦¦
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+        (IF)
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+        where y(t) = 
+                                            </td>
+                                            <td>
+        1 + sin(1/t)  
+                                            </td>
+                                            <td>
+        for 0 ‹ t
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+        -1 + sin(1/t)  
+                                            </td>
+                                            <td>
+        for t ‹ 0
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+        0
+                                            </td>
+                                            <td>
+        for t = 0
+                                            </td>
+                                            </tr>
+                                            </table>
+                                            </div>
+<br>
+
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left">
+
+                                            <tr><td>
+    ¦AT¦"right-side" tangent¦¦
+                                            </td>
+                                            <td>
+    is a ray: ¦AT¦x = 0, y ⩾ 0¦¦
+                                            </td>
+                                            </tr>
+
+                                            <tr><td>
+    "left-side" tangent
+                                            </td>
+                                            <td>
+    is a ray: x = 0, y ⩽  0
+                                            </td>
+                                            </tr>
+
+                                            <tr><td>
+    both-sides tangent
+                                            </td>
+                                            <td>
+    is a line: x = 0
+                                            </td>
+                                            </tr>
+
+                                            </table>
+                                            </div>
+<br>
+     
+<br><br>
+It is easy to see that this ¦curveIF¦curve¦¦ does not satisfy the conclusion of Lemma 6:
+<br><br>
+Indeed, for angle α between axis y and a chord when t > 0,
+α(t<sub>max</sub>) → 0 when t<sub>max</sub> → 0, and
+α(t<sub>min</sub>) = 90<sup>o</sup>, hence α ↛ 0 when t → 0.
+<br>
+where t<sub>max</sub> and t<sub>min</sub> are abscissas of max and min points of y(t) correspondingly.
+<br><br><br>
+
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "Continuous and IF ...",
+  "subessay" : "continuous-if-curve"
+}
+*..*
+
+<a name="cif-breaks-l6"></a>
+<br><br>
+At point ¦A¦¦, this curve has ¦A,Tleft AT¦Euclidean tangent¦¦ and is continuous. (It is continuous at each point, and has Euclidean tangent in some neighbourhood of each point. ). But it still does not satisfy conclusion of lemma 6:
+<br>
+
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left">
+
+                                            <tr><td>
+        ¦curveCIF¦<b>r</b><sub>t</sub>¦¦ =
+                                            </td>
+                                            <td>
+        ¦curveCIF¦(x<sub>t</sub>, y<sub>t</sub>)¦¦, where 
+                                            </td>
+                                            <td>
+        (CIF)
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+        x<sub>t</sub> =
+                                            </td>
+                                            <td>
+        p, p=|t|
+                                            </td>
+                                            <td>
+        -oo ‹  t ‹ oo
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+        y<sub>t</sub> = 
+                                            </td>
+                                            <td>
+            f(p)
+                                            </td>
+
+                                            <td>
+                for t › 0
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+            -f(p)
+                                            </td>
+                                            <td>
+                for t ‹ 0
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+            0
+                                            </td>
+                                            <td>
+                for t = 0
+                                            </td>
+                                            </tr>
+
+                                            <tr>
+                                            <td>
+            f(p) =
+                                            </td>
+                                            <td>
+
+        p<sup>α</sup>( p<sup>β</sup> + λ( 1+sin(1/p) ),
+                                            </td>
+                                            <td>
+                                            </tr>
+
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+
+        α,β,λ are constants,<br>
+        0 ‹ α ‹ 1, 1 ⩽  β+α,  λ › 0
+                                            </td>
+                                            <td>
+                                            </tr>
+
+                                            </table>
+                                            </div>
+<br><br>
+¦A,Tleft AT¦Line x=0 is both sides tangent¦¦ and is a union of ¦A,Tleft¦AT<sub>left</sub>¦¦ and
+¦AT¦AT<sub>right</sub>¦¦.
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "CircleScribed curvature",
+  "subessay" : "circle-based-curvature"
+}
+*..*
+
+<a name="circlescribed-curvature-anchor"></a>
+
+<b>Definition</b>
+<br>
+One-side CircleScribed curvature center R<sub>c</sub> \( \; \overset{df} = \; \)
+lim R when t → a. 
+<br><br>
+
+where we consider <br>
+curve's branch ¦curveParabola¦<b>r</b><sub>t</sub>, a ⩽ t ⩽ b¦¦, <br>
+¦AN¦line AN¦¦, ¦A¦¦ = <b>r</b><sub>a</sub>, and <br>
+circumscribed over ¦AB¦chord AB¦¦ ¦curvatureCircle¦circle¦¦ with center R on AN.
+<br><br>
+
+The circle with center in ¦Rc¦R<sub>c</sub>¦¦ with radius ¦A,Rc¦AR<sub>c</sub>¦¦ is called circle of
+CircleScribed curvature.
+<br><br>
+
+We call CircleScribed curvature continuous in point A if left and right CircleScribed curvature circles do coinside.
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "CircleScribed and IF ...",
+  "subessay" : "infinite-frequency-circle-based-curvature"
+}
+*..*
+
+<a name="if-circlescribed-curve"></a>
+
+<b>Lemma IFC. 
+
+Curve defined below has continuous CircleScribed curvature in point A ( left and right curvature circles are equal ), but fails conclusion of Lemma 6: chord-tangent angle does not approach 0.</b>
+<br><br>
+
+This curve is not continuous in point A.<br>
+
+
+                                            <div style="text-align:center;">
+                                            <table class="essay-no-border">
+
+                                            <tr><td>
+        ¦curveIFC curveIFCleft¦<b>r</b><sub>t</sub> = ρ( sin(φ), cos(φ) )¦¦
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+        (IFC)
+                                            </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+        where -oo ‹ t ‹ oo,  ε = C<sub>ε</sub>|t|, <br>
+        φ(t) = ε + C<sub>φ</sub>( 1 + sin(1/t) ),  <br>
+        ρ(t) = 1 - δ, <br>
+        δ = C<sub>δ</sub>ε<sup>λ</sup>, <br>
+        λ = 6. ( perhaps λ > 2 works too. ) <br>
+                                            </td>
+                                            </tr>
+                                            </table>
+                                            </div>
+<br>
+Transition from ρ,φ is:
+    <div style="text-align:center">
+        x = ρsin(φ); <br>
+        y = ρcos(φ) - 1;
+    </div>
+<br>
+Coordinates of point A = (0,0).
+<br><br>
+        Constants 0 ‹ C<sub>φ</sub> ‹ 1/4, C<sub>ε</sub> › 0, and
+        C<sub>δ</sub> › 0. On the diagram, they are adjusted for decorational purposes to emphasize
+        curve features. 
+<br><br>
+
+
+<br><br>
+<b>Proof</b>
+<br><br>
+
+For point B = <b>r</b><sub>t</sub>, consider
+¦curvatureCircle¦circle circumscribed over¦¦ the
+¦AB¦chord AB¦¦ with diameter ¦AD¦¦ on ¦A,axisX¦axis x¦¦.
+<br><br>
+Coordinate of diameter
+    <div style="text-align:center">
+        y<sub>D</sub> = (x²+y²)/y = <br>
+        ( ρ² + 1 - 2ρcos(φ) ) / ( ρcos(φ) - 1 ) = <br>
+        -2 + d, where <br>
+        d = ( 1 - ρ² ) / ( 1 - ρcos(φ) )
+    </div>
+<br><br>
+We are going to prove d → 0 when t → 0.
+<br><br>
+Consider range of t where already δ ‹ 1 and ε ‹ 1/2.
+<br><br>
+
+    <div style="text-align:center">
+        ⇒ <br>
+        0 ‹ d ‹ δ / (1 - (1-δ)|cos(φ)|) ‹ <br>
+        δ / ( ( ψ²/2 - ψ⁴/4!) + ( ψ⁶/6! - ψ⁸/8!) + ... ), where <br>
+        ψ in above fragment of Tailor expansion for cos(φ) is  <br>
+        ψ = min φ on interval t in [ t<sub>n+1</sub>, t<sub>n</sub> ], <br>
+        t<sub>i</sub> = 1/π(2i+1) <br>
+        ⇒ <br>
+        ψ = ε<sub>n+1</sub>
+    </div>
+
+    <div style="text-align:center">
+        ⇒ <br>
+        d ‹ δ<sub>n</sub> / ( ψ²/2 - ψ⁴/4! ) ‹ <br>
+        δ<sub>n</sub> / ( ψ²/2 11/12 ) ‹ <br>
+        C<sub>δ</sub>ε<sub>n</sub><sup>λ</sup> / ( 6/11 (ε<sub>n+1</sub>)² ) ‹ <br>
+    </div>
+<br>
+
+In last step, note that ε<sub>n+1</sub>/ε<sub>n</sub> = 1 - 2/2n+3. <br>
+0.99 ‹ ε<sub>n+1</sub> / ε<sub>n</sub> ‹ 1 for n ⩾ 100 ;
+therfore,
+<br><br>
+
+    <div style="text-align:center">
+        0 ‹ d ‹ const ε<sub>n</sub><sup>λ-2</sup> → 0 when ε → 0.
+    </div>
+<br><br>
+
+
+
+
+
+
+
+*::*proof|curve
+{
+  "menuCaption" : "Curve",
+  "subessayCaption" : "CircleScribed and continuous ...",
+  "subessay" : "continous-circle-curvature"
+}
+*..*
+<br><br>
+
+
+
+When curve is continuous in point A, and R<sub>c</sub> exists, and AT<sub>right</sub> is normal to AR, then AT<sub>right</sub>
+<br><br>
+(i) has only one touching point, point A, with the curve in some neighborhood of A,<br>
+(ii) angle BAT<sub>right</sub> → 0 when B → A,<br>
+(iii) AT<sub>right</sub> is one-side Euclidean tangent to the curve,<br>
+<br><br>
+
+
+Instead of requiring continuity in point A, we may
+restate definition of curvature, by replacing condition "when t → a" with
+"when B → A", and require A to be a "condensing" point of the curve.
+Then (i),(ii),(iii) will hold too.
+<br><br>
+
+
+
+
+
+
+<b>Following is a draft</b>
+
+<a name="cont-circle-curv">
+<b>* Continuous curve</b>. If a curve is once side continuous in point ¦A¦¦ and has the same side curvature, then lemma 6 is true for point ¦A¦¦.
+<br><br>
+
+
+
+<b>* We call curve "measurable"</b> if it has length:
+<br><br>
+<b>r</b> is measurable if there exist set of
+
+<a target="_blank" href="?conf=sappId=addd-prel,logic_phaseId=proof,aspectId=algebraic-extension,subessayId=real-magnitudes">
+real magnitudes L
+</a>
+
+and a function l: t ↦ l<sub>t</sub>, where l<sub>t</sub> ∈ L.
+<br><br>
+
+<b>* We assume that each straight line "has a length"</b> s<sub>t't"</sub>:
+<br>
+    <div style="text-align:center">
+        s<sub>t't"</sub>
+            \( \; \overset{df} = \; \)
+            l<sub>t"</sub> - l<sub>t'</sub>
+    </div>
+<br>
+
+
+
+
+<b>* "Usually expected features" for length</b>:
+<br>
+                                            <div style="text-align:center;">
+                                            <table style="display:inline-block; text-align:left">
+                                            <tr><td>
+        t' ‹ t" ⇒ l<sub>t'</sub> ‹ l<sub>t"</sub> 
+                                            </td>
+                                            <td>
+        (monotonity)
+                                            <br>
+                                            </td>
+                                            </tr>
+
+                                            <tr><td> 
+        ∀ l' ‹ l(t) ∃ t', l<sub>t'</sub> = l' 
+                                            </td>
+                                            <td>
+        "at each length,<br>a point does exist"
+                                            </td>
+
+                                            </tr><tr><td> 
+        ∀ t',t'' s<sub>t't"</sub>
+               ⩽ l<sub>t"</sub>-l<sub>t'</sub>
+                                            </td>
+                                            <td>
+        "synchronizes straight line and curve lengths"
+                                            </td>
+
+                                            </tr><tr><td> 
+        l<sub>t"</sub>-l<sub>t'</sub> → s<sub>t't"</sub><br>
+        when s<sub>t't"</sub> → 0
+                                            </td>
+                                            <td>
+        "curve as limit of chords"
+                                            </td>
+
+                                            </tr></table>
+                                            </div>
+<br><br><br>
+
