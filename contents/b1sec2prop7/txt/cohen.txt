@@ -1,4 +1,3 @@
-
 *::*claim|english
 {
   "logic_phaseCaption" : "Problem 2",
@@ -40,12 +39,53 @@ tangent ¦PZ¦¦ at ¦R¦¦.<br><br>
 Then because the triangles ¦ZQ QR ZR¦ZQR¦¦,
 ¦ZQ QT PZ PT¦ZTP¦¦, and ¦PV AP AV¦VPA¦¦ are
 similar,
-¦PR¦RP¦¦² (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
-And therefore ¦QR¦¦ x ¦RL¦¦ x ¦PV¦¦² / ¦AV¦¦² is equal to ¦QT¦¦².
-Multiply these equals by ¦SP¦¦²&nbsp;/&nbsp;¦QR¦¦ and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
-Thus ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will become equal to ¦SP¦¦² x ¦QT¦¦² / ¦QR¦¦.
-Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is inversely as
-¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / ¦AV¦¦², that is (because ¦AV¦¦² is given), inversely as the square of the
+¦PR¦RP¦¦² (that is, ¦QR¦¦ × ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
+And therefore 
+
+<!-- QR × RL × PV² / AV² -->
+<math><mfrac><mrow><mi>
+¦QR¦¦</mi><mo>×</mo><mi>
+¦RL¦¦</mi><mo>×</mo><msup><mrow><mi>
+¦PV¦¦</mrow><mn>2</mn></msup></mrow><msup><mrow><mi>
+¦AV¦¦</mi></mrow><mn>2</mn></msup></mfrac></math>
+
+is equal to ¦QT¦¦².
+Multiply these equals by 
+
+<!-- SP² / QR -->
+<math><mfrac><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mi>
+¦QR¦¦</mi></mfrac></math>
+
+and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
+Thus 
+
+<!-- SP² × PV³ / AV² -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦PV¦¦</mi><mn>3</mn></msup></mrow><msup><mi>
+¦AV¦¦</mi><mn>2</mn></msup></mfrac></math>
+
+will become equal to 
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>.
+
+Therefore
+<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">
+(by prop. 6, corols. 1 and 5),</a>
+the ¦force¦centripetal force¦¦ is inversely as
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦PV¦¦</mi><mn>3</mn></msup></mrow><msup><mi>
+¦AV¦¦</mi><mn>2</mn></msup></mfrac></math>,
+
+that is (because ¦AV¦¦² is given), inversely as the square of the
 distance or altitude ¦SP¦¦ and the cube of the ¦PV¦chord¦¦ jointly. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
@@ -61,13 +101,41 @@ distance or altitude ¦SP¦¦ and the cube of the ¦PV¦chord¦¦ jointly. &nbsp
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Draw ¦SY¦¦ perpendicular to the tangent ¦PR¦¦ produced; then, because triangles ¦SY PY SP¦SYP¦¦ and ¦PV AP AV¦VPA¦¦
+Draw ¦SY¦¦ perpendicular to the  ¦PY¦tangent produced¦¦; then, because triangles ¦SY PY SP¦SYP¦¦ and ¦PV AP AV¦VPA¦¦
 are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
-¦SP¦¦ x ¦PV¦¦ / ¦AV¦¦ will be equal to ¦SY¦¦, and
-¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will be equal to ¦SY¦¦² x ¦PV¦¦.
-And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
-as ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦², that is, because ¦AV¦¦ is given, inversely as
-¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. &nbsp;&nbsp; Q.E.I.
+
+<!-- SP × PV / AV -->
+<math><mfrac><mrow><mi>
+¦SP¦¦</mi><mo>×</mo><mi>
+¦PV¦¦</mi></mrow><mi>
+¦AV¦¦</mi></mfrac></math>
+
+
+will be equal to ¦SY¦¦, and
+
+<!-- SP² × PV³ / AV² -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦PV¦¦</mi><mn>3</mn></msup></mrow><msup><mi>
+¦AV¦¦</mi><mn>2</mn></msup></mfrac></math>
+
+will be equal to ¦SY¦¦² × ¦PV¦¦.
+And therefore 
+
+<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
+(by prop. 6, corols. 3 and 5),</a>
+
+the ¦force¦centripetal force¦¦ is inversely
+as 
+
+<!-- SP² × PV³ / AV² -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦PV¦¦</mi><mn>3</mn></msup></mrow><msup><mi>
+¦AV¦¦</mi><mn>2</mn></msup></mfrac></math>
+
+that is, because ¦AV¦¦ is given, inversely as
+¦SP¦SP²¦¦ × ¦PV¦PV³¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
 
@@ -102,13 +170,21 @@ The ¦force¦force¦¦ by which body
 ¦P¦same body P¦¦ can revolve in the same circle
 and in the same periodic time around any
 other center of ¦Rcol2¦forces R¦¦ as
-RP² x SP to the cube of the
+¦Rcol2,P¦RP¦¦² × ¦SP¦¦ to the cube of the
 ¦Gcol2,S¦straight line SG¦¦, which is drawn
 from the ¦S¦first center of forces S¦¦ to the
-¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
+¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the 
+¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
 For by the construction of this proposition the ¦force¦first force¦¦ is
-to the second force as ¦PR¦RP¦¦² x ¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
-that is, as ¦SP¦¦ x ¦PR¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦PT¦¦³,
+to the second force as ¦Rcol2,P¦RP¦¦² × ¦Rcol2,P Rcol2,Tcol2¦PT¦¦³ to ¦SP¦¦² × ¦PV¦¦³,
+that is, as ¦SP¦¦ × ¦Rcol2,P¦RP¦¦² to 
+
+<!-- SP³ × PV³ / PT³ -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>3</mn></msup><mo>×</mo><msup><mi>
+¦PV¦¦</mi><mn>3</mn></msup></mrow><msup><mi>
+¦Rcol2,P Rcol2,Tcol2¦PT¦¦</mi><mn>3</mn></msup></mfrac></math>,
+
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
 <br><br>
@@ -127,11 +203,11 @@ or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
 the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
 in the same orbit and in the same periodic time around any other
-¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ x ¦PR¦RP¦¦² - contained under ¦SP¦the distance of the body¦¦
+¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ × ¦Rcol2,P¦RP¦¦² —contained under ¦SP¦the distance of the body¦¦
 from the first ¦S¦center of forces S¦¦ and the square of ¦Rcol2,P¦its distance from the second
-center of forces R¦¦ - to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
+center of forces R¦¦ —to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
 the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to
-the ¦Rcol2,P¦distance RP¦¦ of the body from the second center of forces. For the forces
+the ¦Rcol2,P¦distance RP¦¦ of the body from the ¦Rcol2¦second center of forces¦¦. For the forces
 in this orbit at any ¦P¦point of it P¦¦ are the same as in a circle of the same
 curvature.
 <br><br>
