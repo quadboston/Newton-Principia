@@ -19,9 +19,9 @@
         nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
         let D = rg.D.pos;
         let B = rg.B.pos;
-        rg['imageOfR,imageOfD'].originalDirection = [ D[0]-B[0], D[1]-B[1], ];
+        rg['r,d'].originalDirection = [ D[0]-B[0], D[1]-B[1], ];
         let R = mat.linesCross(
-            rg['imageOfR,imageOfD'].originalDirection,
+            rg['r,d'].originalDirection,
             B,         //start-1
             [ 0, -1],  //direction-2'
             rg.A.pos,  //start-2'
@@ -31,8 +31,8 @@
         rg.r.pos[1] = rg.R.pos[1] * b2B;
         rg.d.pos[0] = rg.D.pos[0] * b2B;
         rg.d.pos[1] = rg.D.pos[1] * b2B;
-        nspaste( rg.imageOfR.pos, rg.r.pos );
-        nspaste( rg.imageOfD.pos, rg.d.pos );
+        nspaste( rg.r.pos, rg.r.pos );
+        nspaste( rg.d.pos, rg.d.pos );
         
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
@@ -175,7 +175,7 @@
 
         //RBD line
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.imageOfR.pos );  
+        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );  
 
         if(ssD.draggerInUse === "D") {
             rg.R.pos = posR;
@@ -183,14 +183,9 @@
             rg.D.pos[0] = posD[0];
         }  
         
-        rg.imageOfR.pos[0] = rg.R.pos[0] * magn;
-        rg.imageOfR.pos[1] = rg.R.pos[1] * magn;
-        rg.imageOfD.pos[0] = rg.D.pos[0] * magn;
-
-        rg.G.pos[1] = rg.B.pos[1];
-        rg.G.pos[0] = rg.B.pos[0] - rg.E.pos[0];
-        rg.F.pos[1] = rg.B.pos[1];
-        rg.F.pos[0] = rg.B.pos[0] - rg.D.pos[0];
+        rg.r.pos[0] = rg.R.pos[0] * magn;
+        rg.r.pos[1] = rg.R.pos[1] * magn;
+        rg.d.pos[0] = rg.D.pos[0] * magn;
         //=================================================
         // \\// builds Newton microscope
         //=================================================
@@ -206,10 +201,10 @@
         ssF.line2abs( 'RB' );
         
         ssF.line2abs( 'Ab' );
-        ssF.line2abs( 'A,imageOfD' ); //Ad
-        ssF.line2abs( 'A,imageOfR' ); // Ar
-        ssF.line2abs( 'imageOfR,imageOfD' ); // rd
-        ssF.line2abs( 'imageOfR,b' ); // rb    
+        ssF.line2abs( 'A,d' ); //Ad
+        ssF.line2abs( 'A,r' ); // Ar
+        ssF.line2abs( 'r,d' ); // rd
+        ssF.line2abs( 'r,b' ); // rb    
 
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
@@ -218,7 +213,7 @@
         rg.RACB_RAB = { ratio : rg.RACB.area / rg.RAB.area };
         rg.RAD_RAB = { ratio : rg.RAD.area / rg.RAB.area };
 
-        rg.rAb = { area : getTriangleArea('Ab', 'A,imageOfR', 'imageOfR,b') };
+        rg.rAb = { area : getTriangleArea('Ab', 'A,r', 'r,b') };
         rg.rAd = { area : rg.rAb.area * rg.RAD_RAB.ratio };
         rg.rAcb = { area : rg.rAb.area * rg.RACB_RAB.ratio };
 

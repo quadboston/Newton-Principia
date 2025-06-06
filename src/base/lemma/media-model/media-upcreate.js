@@ -19,26 +19,14 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
     function setModule()
     {
         pointies2line   = ssF.pointies2line;
     }
 
-
-
-
     //=========================================================
     // //\\ updater helper
+    //      - runs every time model changes
     //=========================================================
     ///overrides lemma's stdMod.media_upcreate if missed
     function media_upcreate_generic()

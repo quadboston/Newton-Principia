@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, userOptions, fixedColors } =
+    var { ns, fconf, sconf, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -48,13 +48,14 @@
         var D = [496, modorInPicY];
 
         //: svg model colors
-        var given = fixedColors.given; // claim
-        var proof   = fixedColors.proof;
-        var shadow  = fixedColors.shadow; // colour of φ both point and label
-        var result  = fixedColors.result; // used only if sconf.rgShapesVisible === true
-        var context = [0,   0,   0]; // used only if sconf.rgShapesVisible === true
-        var hidden  = fixedColors.hidden;
-        var red = [255,0,0]; //for debugging
+        const {
+            given,
+            proof,
+            hidden,
+            result,
+            givenArea,
+            proofArea
+        } = fixedColors;
 
         var predefinedTopics = { 
             //:basic topics
@@ -83,6 +84,16 @@
             'rAd' : proof, 
             'rAcb-rAb' : proof, 
             'rAd-rAb' : proof, 
+
+            // areas
+            'area-RAB' : givenArea,
+            'area-RAD' : givenArea,
+            'area-RACB' : givenArea,
+
+            
+            'area-rAb' : proofArea,
+            'area-rAd' : proofArea,
+            'area-rAcb' : proofArea
         };
 
         var originalPoints = { 
@@ -130,7 +141,7 @@
             },
 
             ///modified point r, closer to d
-            "imageOfR" : {
+            "r" : {
                 caption : "r",
                 pcolor      : proof,
                 letterAngle : -45,
@@ -138,7 +149,7 @@
             },
 
             ///modified point r, closer to d
-            "imageOfD" : {
+            "d" : {
                 caption : "d",
                 pos : D,
                 pcolor      : proof,
@@ -155,6 +166,11 @@
             curveLeftEnd : {
                 pos : [250,100],
             },
+            DLeft : {
+                letterAngle : 90,
+                pcolor      : given,
+                doPaintPname : false,
+            },
 
         };
 
@@ -165,10 +181,10 @@
             // proof (shown in blue) 
             { 'Ab' : { pcolor : proof } },  
 
-            { 'A,imageOfD' : { pcolor : proof } }, // Ad  
-            { 'A,imageOfR' : { pcolor : proof } }, // Ar   
-            { 'imageOfR,imageOfD' : { pcolor : proof } }, // rd
-            { 'imageOfR,b' : { pcolor : proof } }, //rb
+            { 'A,d' : { pcolor : proof } }, // Ad  
+            { 'A,r' : { pcolor : proof } }, // Ar   
+            { 'r,d' : { pcolor : proof } }, // rd
+            { 'r,b' : { pcolor : proof } }, //rb
 
             // claim (shown in green)            
             { 'AB' : { pcolor : given } },
@@ -185,79 +201,9 @@
             { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
         ];
 
-        addBonusVars(); // todo: would be great if we only called this if BONUS === true, but as is that would break the page
-        function addBonusVars() {            
-            // *** these are only used if BONUS || rgShapesVisible (some maybe not at all)
-
-            var predefinedTopicsBonus = {
-                "curve-Ab"      : proof, 
-            }
-            predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
-
-            var originalPointsBonus = {                
-                d : {
-                    caption : 'dₒ',
-                    letterAngle : 90,
-                    pcolor      : proof,
-                },
-                r : {
-                    caption : 'rₒ',
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-    
-                //beyond X and L to enable show of tangent angle
-                "line-AL-end" : {
-                },
-    
-                //extends rd to show an angle
-                "line-dr-start" : {
-                    letterAngle : 30,
-                },
-                ///modified point r, closer to d
-                "dr-decorpoint" : {
-                    caption : 'r',
-                    pcolor      : proof,
-                    letterAngle : -90,
-                    letterRotRadius : 20,
-                }, 
-    
-                DLeft : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                    doPaintPname : false,
-                },
-                
-                //lemma 7, coroll 1
-                F : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                G : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                E : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                },
-                e : {
-                    letterAngle : 90,
-                    pcolor      : proof,
-                },
-                L : { 
-                    letterAngle : -45,
-                    pcolor      : result,
-                },
-            }
-            originalPoints = {...originalPoints, ...originalPointsBonus};
-        }
-
         //----------------------------------
         // //\\ curve pars
         //     points for divided differences interpolation
-        //
-        // *** used only if sconf.rgShapesVisible === true
         //----------------------------------
         var ww1 = [204,67];
         var ww1 = [244,82];
