@@ -99,69 +99,102 @@
         return captured;
     }
 
-
-    function hideItemsWhen(when) {
-        for (let i = 1; i < arguments.length; i++) {
-            rg[arguments[i]].undisplay = when;
+    function showOnly(...args) {
+        for (const item in rg) {
+            rg[item].undisplay = !args.includes(item);
         }
     }
 
+    /**
+     * Show or hide components according to whether they are used
+     */
     function modifyDecorationVisibility() {
-        //Modify visibility for the below decorations based on the following settings.
         const { logic_phase, aspect, subessay } = amode;
-        const isClaim  = (logic_phase === 'claim');
-        const isCorollary2orCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
-        rg.Q.hideD8Dpoint       = isClaim;
-        rg.Q.d8d_find_is_LOCKED = isClaim;
-        rg.C.undisplay = true;
+        rg.Q.hideD8Dpoint = rg.Q.d8d_find_is_LOCKED = logic_phase === 'claim';
 
-        hideItemsWhen(isClaim,
-            'V',
-            'A',
-            'PV',
-            'SP',
-            'PR',
-            'P,Zminus',
-            'PZ',
-            'ZR'
-        );
-
-        hideItemsWhen(subessay !== 'another-solution',
-            'Y',
-            'PY',
-            'SY'
-        );
-
-        hideItemsWhen(isClaim || isCorollary2orCorollary3,
-            'Q',
-            'L',
-            'R',
-            'Z',
-            'T',
-            'QR',
-            'QT',
-            'PT',
-            'ZQ',
-            'RL',
-            'AP',
-            'AV',
-            'QP',
-        );
-
-        hideItemsWhen(isCorollary2orCorollary3, 'P,sagitta');
-
-        hideItemsWhen(!isCorollary2orCorollary3,
-            'Tcol2',
-            'Rcol2',
-            'Gcol2',
-            'Rcol2,Tcol2',
-            'Tcol2,V',
-            'Gcol2,S',
-            'Gcol2,P',
-            'Rcol2,P',
-        );
-
+        if (logic_phase === 'claim') {
+            showOnly(
+                'S',
+                'P'
+            );
+        } else if (subessay === 'solution') {
+            showOnly(
+                'A',
+                'P',
+                'Q',
+                'R',
+                'S',
+                'T',
+                'L',
+                'V',
+                'Z',
+                'AP',
+                'AV',
+                'PR',
+                'PT',
+                'PV',
+                'PZ',
+                'QR',
+                'QT',
+                'RL',
+                'SP',
+                'ZQ',
+                'ZR',
+            );
+        } else if (subessay === 'another-solution') {
+            showOnly(
+                'A',
+                'P',
+                'S',
+                'V',
+                'Y',
+                'AP',
+                'AV',
+                'PR',
+                'PV',
+                'PY',
+                'PZ',
+                'SP',
+                'SY'
+            );
+        } else if (subessay === 'corollary1') {
+            showOnly(
+                'P',
+                'S',
+                'V',
+                'SP',
+            );
+        } else if (subessay === 'corollary2') {
+            showOnly(
+                'A',
+                'Gcol2',
+                'P',
+                'PV',
+                'Rcol2',
+                'S',
+                'Tcol2',
+                'V',
+                'Gcol2,P',
+                'Gcol2,S',
+                'Rcol2,P',
+                'Rcol2,Tcol2',
+                'SP',
+                'Tcol2,V',
+            );
+        } else if (subessay === 'corollary3') {
+            showOnly(
+                'A',
+                'Gcol2',
+                'P',
+                'Rcol2',
+                'S',
+                'Gcol2,P',
+                'Gcol2,S',
+                'Rcol2,P',
+                'SP',
+            );
+        }
     }
 
 }) ();
