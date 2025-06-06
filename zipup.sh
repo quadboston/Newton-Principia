@@ -15,6 +15,6 @@
 #**************************************************
 
 cd ..
-ver/deploy/zipify.php ver
+addk/deploy/zipify.php addk
 
 

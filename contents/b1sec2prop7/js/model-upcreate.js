@@ -113,7 +113,7 @@
         rg.Q.pos[0] = rg.Q.Qparams.rr[0];
         rg.Q.pos[1] = rg.Q.Qparams.rr[1];
         //rg.Q.caption = 
-        rg.QtimeDecor.caption = bonus ? 'Δt=' + (2*rg.tForSagitta.val).toFixed(5) : '';
+        rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(5);
         rg.QtimeDecor.pos = rg.Q.pos;
         let Qminus = common_fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];

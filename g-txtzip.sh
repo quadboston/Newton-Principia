@@ -6,6 +6,6 @@
 #**************************************************
 
 cd ..
-ver/deploy/zipify.php ver nogit skipimgages
+addk/deploy/zipify.php addk nogit skipimgages
 
 

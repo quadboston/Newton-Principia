@@ -110,7 +110,7 @@
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
-        sconf.GRAPH_PATH = true; //only for not-bonus
+        sconf.GRAPH_PATH = true; //only for not-"addendum"
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------

@@ -28,7 +28,7 @@
         // //\\ header
         //==================================================
         function buildHeader() {
-            let hClass = userOptions.showingBonusFeatures() ? "bonus-showing" : "default";
+            let hClass = userOptions.showingBonusFeatures() ? "extramat-showing" : "default";
             $$.c('header').addClass(hClass).to(fapp.homePage$()).html(`
             <div class="hp-section-wrap">
                 <div class="landing-text">
@@ -139,7 +139,7 @@
                             Latin tabs (in progress)<br>
                         <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
                             overlay original diagrams<br>
-                        <input type="checkbox" id="bonusCheckbox" aria-label="bonus"> 
+                        <input type="checkbox" id="bonusCheckbox" aria-label="extramat"> 
                             shows development
                     </p>
                 </div>`;

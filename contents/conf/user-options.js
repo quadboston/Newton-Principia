@@ -2,7 +2,7 @@
     var { ns, $$, userOptions, fconf, has, haz, nsconf } = window.b$l.apptree({});
     const LATIN = "latin",
           USE_BG_IMAGE = "use-background-image",
-          BONUS = "bonus";
+          BONUS = "extramat";
     if (!(LATIN in sessionStorage)) {
         // if LATIN has not been set, assume none are set, and set to default values
         sessionStorage.setItem(LATIN, false);
@@ -12,14 +12,14 @@
     if( 
         //the presence of keyword "addendum" at the ending of
         //landing file path is preferred:
-        window.location.pathname.match( /bonus[^\/]+$/ )
+        window.location.pathname.match( /extramat[^\/]+$/ )
 
         //in the presence of keyword "showsBonus" in URL config,
         //but this does not preseve links to other lemmas:
         || haz( nsconf, 'showsBonus' ) ) {
 
-        ////if some call requests bonus features, then they are set in store, and
-        ////the next call to different lemma will preserve the bonus,
+        ////if some call requests extramat features, then they are set in store, and
+        ////the next call to different lemma will preserve the extramat,
         sessionStorage.setItem(BONUS, true);
     }
     userOptions.doesStoreOption = doesStoreOption; //only for URL-query for bonusOpt.
@@ -87,10 +87,8 @@
 
         function updateBonusContentVisibility()
         {
-            ////updates bonus list existance
+            ////updates extramat list existance
             let appRoot$ = $$.$(document.querySelector( '.bsl-approot' ));
-            appRoot$[ showingBonusFeatures() ? 'addClass' : 'removeClass'  ]
-                    ( "shows-bonus-features" );
         }
     }
 

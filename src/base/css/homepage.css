@@ -60,7 +60,7 @@ header.default {
 }
 
 @media only screen and (min-width: 1100px) {
-    header.bonus-showing {
+    header.extramat-showing {
         min-height: 720px; 
     }
 }

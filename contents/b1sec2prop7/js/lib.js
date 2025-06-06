@@ -31,7 +31,7 @@
     ///         tangent in some point of the curve
     function curveIsSolvable()
     {
-        const bonus = amode.aspect === 'addendum';
+        const ADDENDUM = amode.aspect === 'addendum';
         const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
@@ -169,7 +169,7 @@
         {
             var far = forceGraphArray[ forceArrayIx ];
             let f = far.y[0] / forceMax;
-            if( !bonus ) f = Math.abs(f);
+            if( !ADDENDUM ) f = Math.abs(f);
             far.y[0] = f;
             //1 sagg
             far.y[2] = far.y[2] / (-comparLawMin);
@@ -200,7 +200,7 @@
     function findsFiniteSagitta(DD)
     {
         const DDD = DD || 1e-5;
-        const bonus = amode.aspect === 'addendum';
+        const ADDENDUM = amode.aspect === 'addendum';
         const fun = rg[ 'approximated-curve' ].t2xy;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.graphArray;
@@ -277,7 +277,7 @@
         for (let gix = 0; gix<len; gix++ )
         {
             let tograph = ssigned[gix];
-            tograph = bonus ? tograph : Math.abs( tograph );
+            tograph = ADDENDUM ? tograph : Math.abs( tograph );
             garr[ gix ].y[1] = tograph; //sMax;
         }
         ssD.doMaskSagitta = sMax > 1e+18 || stdMod.graphFW_lemma.forceMax > 1e+18;

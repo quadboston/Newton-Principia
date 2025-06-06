@@ -253,7 +253,7 @@
         } else {
             rg.B.hideD8Dpoint   = false;
             rg.R.hideD8Dpoint   = false; // enables mouse events on point R
-            rg.fi.hideD8Dpoint  = true; // fi only used in bonus features
+            rg.fi.hideD8Dpoint  = true;  // fi only used in "extramat" features
         }
           
         //*****************************************************************************
