@@ -123,13 +123,14 @@ The ¦force¦force¦¦ by which body
 ¦P¦same body P¦¦ can revolve in the same circle
 and in the same periodic time around any
 other center of ¦Rcol2¦forces R¦¦ as
-RP² × SP to the cube of the
+¦Rcol2,P¦RP¦¦² × ¦SP¦¦ to the cube of the
 ¦Gcol2,S¦straight line SG¦¦, which is drawn
 from the ¦S¦first center of forces S¦¦ to the
-¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
+¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the 
+¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
 For by the construction of this proposition the ¦force¦first force¦¦ is
-to the second force as ¦PR¦RP¦¦² × ¦PT¦¦³ to ¦SP¦¦² × ¦PV¦¦³,
-that is, as ¦SP¦¦ × ¦PR¦RP¦¦² to ¦SP¦¦³ × ¦PV¦¦³ / ¦PT¦¦³,
+to the second force as ¦Rcol2,P¦RP¦¦² × ¦Rcol2,P Rcol2,Tcol2¦PT¦¦³ to ¦SP¦¦² × ¦PV¦¦³,
+that is, as ¦SP¦¦ × ¦Rcol2,P¦RP¦¦² to ¦SP¦¦³ × ¦PV¦¦³ / ¦Rcol2,P Rcol2,Tcol2¦PT¦¦³,
 or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 ¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
 <br><br>
@@ -148,11 +149,11 @@ or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦orbit¦¦ around
 the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
 in the same orbit and in the same periodic time around any other
-¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ × ¦PR¦RP¦¦² —contained under ¦SP¦the distance of the body¦¦
+¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ × ¦Rcol2,P¦RP¦¦² —contained under ¦SP¦the distance of the body¦¦
 from the first ¦S¦center of forces S¦¦ and the square of ¦Rcol2,P¦its distance from the second
 center of forces R¦¦ —to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
 the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to
-the ¦Rcol2,P¦distance RP¦¦ of the body from the second center of forces. For the forces
+the ¦Rcol2,P¦distance RP¦¦ of the body from the ¦Rcol2¦second center of forces¦¦. For the forces
 in this orbit at any ¦P¦point of it P¦¦ are the same as in a circle of the same
 curvature.
 <br><br>

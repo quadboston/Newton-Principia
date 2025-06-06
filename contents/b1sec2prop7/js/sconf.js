@@ -300,6 +300,7 @@
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
+                undisplayAlways : true, // not respected?
             },
 
             nonSolvablePoint : {
@@ -316,14 +317,13 @@
                 letterAngle : 0,
             },
 
-            //col2
+            //corollary 2
             Tcol2 : {
                 caption : 'T',
                 pcolor : curvature,
                 letterAngle : -45,
             },
             Rcol2 : {
-                ////for corollary2, second center of force
                 caption : 'R',
                 pcolor : curvature,
                 letterAngle : -45,
@@ -369,7 +369,7 @@
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
             { 'Q,rrminus' : { pcolor : proof }, },
 
-            //col2
+            //corollary 2
             { 'Rcol2,P' : { pcolor : proof }, },
             { 'Rcol2,Tcol2' : { pcolor : proof }, },
             { 'Tcol2,V' : { pcolor : proof }, },

@@ -9,26 +9,6 @@
     {
         nspaste( capture,
         {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
         });
     }
 
@@ -59,10 +39,8 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        if( !userOptions.showingBonusFeatures() ) {
-            rg[ 'S,nonSolvablePoint' ].undisplay = true;
-            rg[ 'nonSolvablePoint' ].undisplay = true;
-        }
+        rg[ 'S,nonSolvablePoint' ].undisplay = true;
+        rg[ 'nonSolvablePoint' ].undisplay = true;
 
 
         rg.SQ.undisplay                 = true;
@@ -121,68 +99,102 @@
         return captured;
     }
 
+    function showOnly(...args) {
+        for (const item in rg) {
+            rg[item].undisplay = !args.includes(item);
+        }
+    }
 
-
+    /**
+     * Show or hide components according to whether they are used
+     */
     function modifyDecorationVisibility() {
-        //Modify visibility for the below decorations based on the following settings.
         const { logic_phase, aspect, subessay } = amode;
-        const isProblem2AndNotAddendum  = (logic_phase === 'claim' && aspect !== 'addendum');
-        const isSolutionsAndNotAddendum = (logic_phase === 'proof' && aspect !== 'addendum');
-        const isCorollary2OrCorollary3   = (subessay === 'corollary2' || subessay === 'corollary3');
 
+        rg.Q.hideD8Dpoint = rg.Q.d8d_find_is_LOCKED = logic_phase === 'claim';
 
-        rg.Q.hideD8Dpoint       = isProblem2AndNotAddendum;
-        rg.Q.d8d_find_is_LOCKED = isProblem2AndNotAddendum;
-        [   'V',
-            'A',
-            'PV',
-            'SP',
-            'PR',
-            'P,Zminus',
-            'PY',
-            'PZ',
-            'ZR',
-        ].forEach(decoration => {
-            rg[decoration].undisplay = isProblem2AndNotAddendum;
-        });
-
-
-        rg.C.undisplay = (isProblem2AndNotAddendum || isSolutionsAndNotAddendum);
-
-
-        [   'Q',
-            'Y',
-            'L',
-            'R',
-            'Z',
-            'T',
-            'QR',
-            'QT',
-            'PT',
-            'ZQ',
-            'RL',
-            'SY',
-            'AP',
-            'AV',
-            'QP',
-        ].forEach(decoration => {
-                rg[decoration].undisplay = (isProblem2AndNotAddendum || isCorollary2OrCorollary3);
-        });
-
-
-        rg[ 'P,sagitta' ].undisplay = isCorollary2OrCorollary3;
-
-        [   'Tcol2',
-            'Rcol2',
-            'Gcol2',
-            'Rcol2,Tcol2',
-            'Tcol2,V',
-            'Gcol2,S',
-            'Gcol2,P',
-            'Rcol2,P',
-        ].forEach(decoration => {
-            rg[decoration].undisplay = !isCorollary2OrCorollary3
-        });
+        if (logic_phase === 'claim') {
+            showOnly(
+                'S',
+                'P'
+            );
+        } else if (subessay === 'solution') {
+            showOnly(
+                'A',
+                'P',
+                'Q',
+                'R',
+                'S',
+                'T',
+                'L',
+                'V',
+                'Z',
+                'AP',
+                'AV',
+                'PR',
+                'PT',
+                'PV',
+                'PZ',
+                'QR',
+                'QT',
+                'RL',
+                'SP',
+                'ZQ',
+                'ZR',
+            );
+        } else if (subessay === 'another-solution') {
+            showOnly(
+                'A',
+                'P',
+                'S',
+                'V',
+                'Y',
+                'AP',
+                'AV',
+                'PR',
+                'PV',
+                'PY',
+                'PZ',
+                'SP',
+                'SY'
+            );
+        } else if (subessay === 'corollary1') {
+            showOnly(
+                'P',
+                'S',
+                'V',
+                'SP',
+            );
+        } else if (subessay === 'corollary2') {
+            showOnly(
+                'A',
+                'Gcol2',
+                'P',
+                'PV',
+                'Rcol2',
+                'S',
+                'Tcol2',
+                'V',
+                'Gcol2,P',
+                'Gcol2,S',
+                'Rcol2,P',
+                'Rcol2,Tcol2',
+                'SP',
+                'Tcol2,V',
+            );
+        } else if (subessay === 'corollary3') {
+            showOnly(
+                'A',
+                'Gcol2',
+                'P',
+                'Rcol2',
+                'S',
+                'Gcol2,P',
+                'Gcol2,S',
+                'Rcol2,P',
+                'SP',
+            );
+        }
     }
 
 }) ();
