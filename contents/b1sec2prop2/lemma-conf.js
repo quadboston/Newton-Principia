@@ -12,10 +12,7 @@
         return {
             codesList :
             [
-                { src : 'sconf-addon.js' },
-                //{ src : 'study-model-addon.js' },
-                //{ src : 'extra-images.js' },
-                //{ src : 'resize-main-scene.js' },
+                { src : 'sconf-addon.js' }, // start Corollaries at 2nd step
 
                   //configures initial constants
                 { src : route+'js/sconf.js' },

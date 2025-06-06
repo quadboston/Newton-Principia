@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, nspaste, userOptions, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -116,6 +116,9 @@
         rg.B.undisplay              = false;
         rg.AB.undisplay             = false;
         rg[ 'arc-AB' ].undisplay    = false;
+        rg['area-RAB'].undisplay    = false;
+        rg['area-RAD'].undisplay    = false;
+        rg['area-RACB'].undisplay    = false;
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -148,8 +151,6 @@
             //'dr-decorpoint',
         ].forEach( gname => { rg[ gname ].undisplay = true; });
 
-        rg.L.hideD8Dpoint   = true;
-
         [
             'D',
             'R',
@@ -164,25 +165,28 @@
         if( logic_phase === 'claim' ) {
             [
                 'c',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
             ].forEach( gname => { rg[ gname ].undisplay = true; });
         } else if( logic_phase === 'proof' ) {
             [
                 'c',
                 'b',
                 'Ab',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
                 'arc-Ab',
+                'area-rAb',
+                'area-rAd',
+                'area-rAcb'
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
 

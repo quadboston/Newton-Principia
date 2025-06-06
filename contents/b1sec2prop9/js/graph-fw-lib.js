@@ -15,11 +15,6 @@
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
 
-        //if one wants to separate BONUS and aspect, this
-        //method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
-        const BONUS = userOptions.showingBonusFeatures();
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -35,9 +30,7 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'estforce', 'body' ] :
-            [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -127,7 +120,7 @@
 
                                 '<tspan> forces</tspan>' +
                                 '</text>',
-                    x       : BONUS ? 250 : 320,
+                    x       : 320,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
@@ -141,7 +134,7 @@
             [
                 {
                             text    : 'Distance from force (SP)', 
-                            x       : BONUS ? -700 : -560,
+                            x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -170,7 +163,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                        pcaption : BONUS ? '1/r³' : '',
+                        pcaption : '',
                         fontShiftX : -222,
                         fontShiftY : 0,
                     style : {
@@ -186,11 +179,11 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption :  BONUS ? 'est. force' : '',
+                    pcaption :  '',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {
-                            'font-size' : '30px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[1],
                     },
                 },
@@ -237,11 +230,11 @@
             return {
                 toollineStyle : {
                     //stroke : sData.colorThreadArray[2],
-                    'stroke-width' : BONUS ? 3 : 1,
+                    'stroke-width' : 1,
                 },
                     abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
                                     /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
-                numberMarks : BONUS, 
+                numberMarks : false, 
             };
         }
 
