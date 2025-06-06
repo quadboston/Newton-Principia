@@ -9,35 +9,20 @@
     {
         nspaste( capture,
         {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
         });
     }
 
+    function hide(...items) {
+        for (const item of items) {
+            rg[item].undisplay = true;
+        }
+    }
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        const { logic_phase, aspect, subessay } = amode;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
@@ -55,24 +40,51 @@
 
         //Modify visibility for the below decorations based on the following settings.
         if (logic_phase === 'claim') {
-            [   'Y',
-                'SY', 
-                'PY', 
+            hide(
+                'PY',
+                'R',
+                'Y',
+                'SY',
+                'PZ',
+                'ZR',
+                'PR',
+                'P,Zminus',
                 'T', 
                 'QT', 
                 'PT',
                 'PV',
+                'QR',
                 'V',
                 'curvatureCircle'
-            ].forEach(decoration => {
-                rg[decoration].undisplay = true;
-            });
+            );
+        } else if (subessay === 'solution') {
+            hide(
+                'PV',
+                'PY',
+                'V',
+                'Y',
+                'SY',
+                'curvatureCircle'
+            );
+        } else if (subessay === 'another-solution') {
+            hide(
+                'Q',
+                'R',
+                'SQ',
+                'PZ',
+                'ZR',
+                'PR',
+                'P,Zminus',
+                'T', 
+                'QT', 
+                'PT',
+                'QR',
+                'V',
+            );
         }
-
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 
 }) ();
-
