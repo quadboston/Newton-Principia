@@ -144,7 +144,7 @@ that is, because ¦AV¦¦ is given, inversely as
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "corollary1",
   "logic_phaseCaption" : "Corollaries"
 }
@@ -160,7 +160,7 @@ always tends is located in the circumference of this circle, say at ¦V¦¦, the
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "corollary2"
 }
 *..*
@@ -195,7 +195,7 @@ or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "corollary3"
 }
 *..*
