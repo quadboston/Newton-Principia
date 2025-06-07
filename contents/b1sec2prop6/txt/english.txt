@@ -29,7 +29,7 @@ and by increasing ¦dtime¦the time¦¦ in any ratio you please, because ¦timea
 increases in the same ratio, the ¦P,sagitta¦the sagitta¦¦ is increased in the
 duplicate of that ratio
 
-(<a target="_blank" href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=0">by Lemma 11 Corollary 2 and 3</a>).
+(<a target="_blank" href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">by Lemma 11 Corollary 2 and 3</a>).
 
 Therefore, it is as the ¦force¦¦ once and ¦dtime¦the time¦¦ twice. Let the duplicate ratio of
 ¦dtime¦the time¦¦ be removed on both sides, and the ¦force¦¦ comes out to be as the ¦P,sagitta¦sagitta¦¦
@@ -37,7 +37,7 @@ directly and the ¦dtime¦time¦¦ twice inversely. &nbsp;&nbsp; Q.E.D.
 <br><br>
 The same thing is also easily demonstrated
 
-(<a target="_blank" href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=0">by Lemma 10 Corollary 4</a>).
+(<a target="_blank" href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">by Lemma 10 Corollary 4</a>).
 <br><br>
 <div book-reference-id="Donahue"></div>
 
@@ -46,7 +46,7 @@ The same thing is also easily demonstrated
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "corollary1",
   "logic_phaseCaption" : "Corollaries"
 }
@@ -71,7 +71,7 @@ used to represent the ¦dtime¦time¦¦.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "corollary3"
 }
 *..*
@@ -84,7 +84,7 @@ If the ¦orbit¦¦ is either a circle, or touches or cuts a ¦curvatureCircle¦c
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 5",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 5",
   "subessay" : "corollary5"
 }
 *..*

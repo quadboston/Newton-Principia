@@ -91,7 +91,7 @@ will be proportional to those times in this case.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "cor-1",
   "logic_phaseCaption" : "Corollaries"
 }
@@ -111,7 +111,7 @@ triangles ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ¦DE¦¦, and ¦EF¦¦, and these bases 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "cor-2"
 }
 *..*
@@ -129,7 +129,7 @@ will ¦SB¦pass through¦¦ the ¦S¦center of forces¦¦.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "cor-3"
 }
 *..*
@@ -150,7 +150,7 @@ impulses.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 4",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 4",
   "subessay" : "cor-4"
 }
 *..*
@@ -169,7 +169,7 @@ which we dealt in corol. 3.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 5",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 5",
   "subessay" : "cor-5"
 }
 *..*
@@ -185,7 +185,7 @@ arcs that projectiles describe in the same time.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 6",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 6",
   "subessay" : "cor-6"
 }
 *..*
