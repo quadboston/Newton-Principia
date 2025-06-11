@@ -223,5 +223,44 @@
       alt="free hit counter"
       referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
       <!-- End of Statcounter Code -->
+
+    <!-- Color-set Buttons -->
+    <!-- functionality defined in contents/conf/lemma.conf.js -->
+    <div class="nav-buttons">
+        <button class="prev">Prev</button>
+        <span id="colorSetIdx">0</span>
+        <button class="next">Next</button>
+    </div>
+    <style>
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .nav-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+        .nav-buttons button:active {
+            background-color: #8ec1f7;
+        }
+        #colorSetIdx {
+            padding-left: 5px;
+            font-size: 16px;
+            color: #0056b3;
+        }
+    </style>
+    <!-- End Color-set Buttons -->
+
   </body>
 </html>

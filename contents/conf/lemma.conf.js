@@ -1,6 +1,6 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var { fapp, sconf, userOptions, fixedColors, } = 
+    var { fapp, sconf, fixedColors, } = 
         window.b$l.apptree({});
 
     fapp.doesConfigLemma = doesConfigLemma;
@@ -214,6 +214,92 @@
         
         //=======================================
         // \\// topicGroupColors
+        //=======================================
+
+        //=======================================
+        // //\\ Color-Set Buttons
+        //=======================================
+
+        const colorSets = [ 
+            {
+                // copy of above for reference and so it's included in the options
+                given : rgbToArray("rgb(0, 113, 0)"),
+                givenArea : [0, 113, 0, 1],
+
+                proof : rgbToArray("rgb(0, 0, 255)"),
+                proofArea : [0, 0, 255, 1],
+
+                // these are L2, L3 only - can they be combined with colors from other pages to reduce total number of global colors needed?
+                "circumscribed-rectangles" : [0, 80, 150, 0.32, 0.64], 
+                "circ-txt" : [0, 80, 150, 0.7, 1],
+                "inscribed-rectangles" : [150, 0, 150, 0.32, 0.64],
+                "insc-txt" : [150, 0, 150, 0.7, 1],
+
+                // ** copy more colors as defined above here **
+            },
+            {
+                given : rgbToArray("rgb(124, 57, 201)"),
+                givenArea : [124, 57, 201, 1],
+
+                proof : rgbToArray("rgb(39, 161, 182)"),
+                proofArea : [39, 182, 39, 1],
+
+                // L2, L3 only
+                "circumscribed-rectangles" : [14, 128, 148, 0.32, 0.64], 
+                "circ-txt" : [14, 128, 148, 0.7, 1],                
+                "inscribed-rectangles" : [124, 57, 201, 0.32, 0.64],
+                "insc-txt" : [124, 57, 201, 0.7, 1],
+                
+                // ** add colors here, ensure all objects in colorSets have the same members **
+            },            
+            // ** add as many color sets as you like here **
+            {
+                // for testing, to clearly indicate which elems are included in colorSets
+                given : rgbToArray("rgb(255, 0, 0)"),
+                givenArea : [255, 0, 0, 1],
+
+                proof : rgbToArray("rgb(rgb(255, 0, 0)"),
+                proofArea : [255, 0, 0, 1],
+                
+                // L2, L3 only
+                "circumscribed-rectangles" : [255, 0, 0, 0.32, 0.64],
+                "circ-txt" : [255, 0, 0, 1],                
+                "inscribed-rectangles" : [255, 0, 0, 0.32, 0.64],
+                "insc-txt" : [255, 0, 0, 1],
+
+                // ** add colors here, ensure all objects in colorSets have the same members **
+            },
+        ];      
+        
+        const prevBtn = document.getElementsByClassName("prev")[0];
+        const nextBtn = document.getElementsByClassName("next")[0];
+        const idxElem = document.getElementById("colorSetIdx");
+
+        let colorSetIdx = localStorage.getItem('COLORSET'); 
+        if(!colorSetIdx) colorSetIdx = 0; 
+        idxElem.innerText = colorSetIdx; 
+
+        prevBtn.onclick = () => {
+            colorSetIdx--;
+            if(colorSetIdx < 0) colorSetIdx = colorSets.length - 1; 
+            localStorage.setItem('COLORSET', colorSetIdx);
+            window.location.reload();
+        }
+        nextBtn.onclick = () => {
+            colorSetIdx++;
+            if(colorSetIdx >= colorSets.length) colorSetIdx = 0; 
+            localStorage.setItem('COLORSET', colorSetIdx);
+            window.location.reload();
+        }
+                  
+        console.log('Color Set: ' + colorSetIdx)
+        for(let key in colorSets[colorSetIdx]) {
+            value = colorSets[colorSetIdx][key];
+            fixedColors[key] = value;
+        }
+
+        //=======================================
+        // \\// Color-Set Buttons
         //=======================================
 
         
