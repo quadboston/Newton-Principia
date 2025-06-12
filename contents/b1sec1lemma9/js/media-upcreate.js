@@ -10,14 +10,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     function setModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
@@ -38,10 +30,6 @@
         var tC              = ssD.tC;             //point C curve param = vanish param
         //:run-time-pars
         var tB              = ssF.tB;
-
-
-
-
 
         //var medCurvPivots      = modCurvPivots.map( mod2innCustom );
         //var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
@@ -73,19 +61,10 @@
         //===================================================
 
 
-
-
-
-
-
-
-
-
         //==========================================
         // //\\ does paint view
         //      (in viewBox for SVG)
         //==========================================
-
 
         // //\\ paints curve with pivot points
         var mainCurve = toreg( 'mainCurve' )();
@@ -149,9 +128,6 @@
             ;
         // \\// paints curve with two pivot points
 
-
-
-
         //------------------------------------------
         //  //\\ proof curved areas
         //------------------------------------------
@@ -170,6 +146,7 @@
         //------------------------------------------
         //  //\\ given curved areas
         //------------------------------------------
+        console.log(medCurvPivots + '; ' + tC)
         wCCA( 'area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos );
         wCCA( 'area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
         //.null makes this element present in all(?) theoreons
@@ -188,8 +165,6 @@
         //  \\// proof linear areas
         //------------------------------------------
 
-
-
         //==========================
         // //\\ prints areas values
         //==========================
@@ -198,17 +173,16 @@
         // \\// prints areas values
         //==========================
 
-
         //==========================================
         // \\// does paint view
         //==========================================
+
         if( ssF.mediaModelInitialized ) {
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
         }
         return;
         // \\//\\// ends imperative part of the module
-
 
 
         //==========================================
@@ -266,63 +240,15 @@
                 svgel : area.mediael,
                 parent : stdMod.mmedia
             });
-            var ww$ = $$.$( area.mediael )
-                        .addClass( 'tp-' + topicGroup_decapitalized )
-                        .tgcls( 'undisplay', haz( area, 'undisplay' ) )
-                        ;
-            stroke0fill && ww$.addClass( stroke0fill );
-            fullMode && ww$.addClass( fullMode );
+            $$.$( area.mediael )
+                .addClass(`tp-${topicGroup_decapitalized} tofill`)
+                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                ;
         }
         //==========================================
         // \\// linear areas
         //==========================================
 
-
-
-        //==========================================
-        // //\\ paint helpers
-        //==========================================
-
-        ///converts model-pos and attributes to pointy
-        function pos2pointy4lemma9( pName, attrs, skipSVG, customSWidth, medPosKnown )
-        {
-            return pt              = toreg( pName )();
-            /*
-            pt.pname            = pName;
-            if( !medPosKnown ) {
-                var pos         = rg[ pName ].pos;
-                pt.pos          = pos;
-                pt.medpos       = ssF.mod2inn( pt.pos );
-            }
-            return pt;
-            */
-
-            /*
-             
-            //delete this later, this is a sample
-            
-            if( skipSVG ) return pt;
-            pt.svgel = nssvg.u({
-                svgel   : pt.svgel,
-                parent  : stdMod.mmedia,
-                type    : 'circle',
-                fill    : attrs && attrs.fill,
-                stroke  : attrs && attrs.stroke,
-                'stroke-width' : (( attrs && attrs[ 'stroke-width' ] ) || 0) * sconf.thickness,
-                cx : pt.medpos[0],
-                cy : pt.medpos[1],
-                //.defines visible size of a dot on screen
-                //r : 4 * sconf.thickness
-                r : ( customSWidth || 0.7 ) * sconf.thickness * 8 //todo
-            });
-            var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
-            $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.topicIdUpperCase_2_underscore( pName ) );
-            return pt;
-            */
-        }
-        //==========================================
-        // \\// paint helpers
-        //==========================================
     }
     //=========================================================
     // \\// updates and creates media

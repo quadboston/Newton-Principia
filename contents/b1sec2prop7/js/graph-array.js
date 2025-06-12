@@ -6,18 +6,10 @@
 
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
-        const addendum = amode.aspect === 'addendum';
         // //\\ graph
         //------------------------------------------------
         //first array mast be enabled
-        stdMod.graphFW_lemma.graphArrayMask = addendum ?
-            [   'force',
-  
-                //yet broke
-                false && ssD.solvable && !ssD.doMaskSagitta, //'sagitta',
-                '-1/r^2', !'body', 'estimated force', !!'-1/r^5'
-            ]
-        :
+        stdMod.graphFW_lemma.graphArrayMask =
             [ 'force',
               !'sagitta', !'sample-force', !'body',
               'estimated force',
@@ -105,52 +97,20 @@
                 xMax = graphX;
             }
             var fsignum = Math.sign(gaix.y[0]);
-            if( addendum ) {
-                force *= fsignum;
-                estimatedForce *= fsignum;
-            } else {
-                //this is inaccurate: but this is a requirement:
-                var estimatedForce = 1/(r2*RL*RL*RL);
-            }
+            //this is inaccurate: but this is a requirement:
+            var estimatedForce = 1/(r2*RL*RL*RL);
+                
             gaix.y[0] = force;
             gaix.y[1] = ssD.ssigned[ix];
             gaix.y[2] = -r2m;
             gaix.y[4] = estimatedForce;
             gaix.y[5] = -r5m;
         }
-        let xMargin = (xMax-xMin)*0.05;
         let graphArg = {
-            xMax : addendum ? xMax + xMargin : xMax,
-            xMin : addendum ? xMin - xMargin : 0,
-        }
-        if( addendum ) {
-            for( ix = 0; ix<graphArrayLength; ix++ ) {
-                let gaix = graphArray[ix];
-                gaix.y[0] /= forceMin;
-                gaix.y[1] = ssD.ssigned[ix] / sagittaMin;
-                gaix.y[2] /= eLaw2Min;
-                gaix.y[4] /= estimatedMin;
-                gaix.y[5] /= eLaw5Min;
-                globalRelativeMax = Math.max(
-                    globalRelativeMax,
-                    Math.abs(gaix.y[0]),
-                    Math.abs(gaix.y[1]),
-                    Math.abs(gaix.y[2]),
-                    Math.abs(gaix.y[4]),
-                    Math.abs(gaix.y[5]),
-                );
-            }
-            graphArg.yMax = -0.95; //globalRelativeMin*0.98;
-            graphArg.yMin = -Math.min( globalRelativeMax, 10 );
-        } else {
-            ////if !addenum
-            graphArg.yMax =
-                Math.max( 
-                    estimatedMax,
-                    forceMax,
-                    1
-                ); //10;
-            graphArg.yMin = 0;
+            xMax : xMax,
+            xMin : 0,
+            yMax : Math.max(estimatedMax, forceMax, 1), //10;
+            yMin : 0,
         }
         rg.estimatedForce = rg.estimatedForce;
         stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

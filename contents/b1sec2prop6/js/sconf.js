@@ -171,7 +171,7 @@
             chord,
             displacement,
         } = fixedColors;
-        
+
 
         var predefinedTopics =
         {

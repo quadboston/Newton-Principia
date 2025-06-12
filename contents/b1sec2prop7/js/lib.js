@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, nssvg, haz, mat, sDomF, ssF, mcurve, userOptions, ssD, rg, stdMod, sconf, } 
+    var { sn, $$, nssvg, haz, mat, sDomF, ssF, mcurve, ssD, rg, stdMod, sconf, } 
         = window.b$l.apptree({ stdModExportList : {
             creates_orbitRack,
             pos2t,
@@ -151,8 +151,7 @@
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
         {
             var far = forceGraphArray[ forceArrayIx ];
-            let f = far.y[0] / forceMax;
-            f = Math.abs(f);
+            let f = Math.abs(far.y[0] / forceMax);
             far.y[0] = f;
             //1 sagg
             far.y[2] = far.y[2] / (-comparLawMin);

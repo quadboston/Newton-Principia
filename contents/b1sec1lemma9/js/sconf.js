@@ -123,8 +123,8 @@
             "area-Abd"          : proof,
             "area-Ace"          : proof,
             //:linear areas
-            "Afd"               : proof,
-            "Age"               : proof,
+            "Afd"               : proofArea,
+            "Age"               : proofArea,
 
             "ABDPerACE"         : given,
             "AD2PerAE2"         : given,

@@ -1,7 +1,6 @@
 ( function() {
-    var { ns, sn, $$, nspaste, nsmethods, nssvg, mcurve, integral, mat,
-        fconf, ssF, ssD, sData, stdMod, sconf, rg, toreg, } 
-        = window.b$l.apptree({ stdModExportList : { init_model_parameters, }, });
+    var { stdMod, rg, toreg, } = window.b$l.apptree({ 
+        stdModExportList : { init_model_parameters, }, });
     return;
 
 

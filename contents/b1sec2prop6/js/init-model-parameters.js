@@ -1,15 +1,7 @@
 ( function() {
-    var {
-        ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral,
-        mat, bezier,
-        ssF, ssD, sDomN,
-        stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            init_model_parameters,
-        },
-    });
+    var { ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, bezier,
+        ssF, ssD, sDomN, stdMod, sconf, rg, toreg, } = window.b$l.apptree({
+        stdModExportList : { init_model_parameters, }, });
     return;
 
 

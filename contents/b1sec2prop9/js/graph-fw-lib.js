@@ -1,9 +1,8 @@
 ( function() {
-    var { sn, $$, nsmethods, haz, globalCss, userOptions, ssD, sDomN, sDomF, sData,
-        amode, stdMod, sconf, rg } 
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
-    
+
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
@@ -30,34 +29,33 @@
         ///dynamically,
         function doSetColorThreadArray()
         {
-                let colorThreadArray = [
-                    sDomF.getFixedColor( 'force' ),
-                    sDomF.getFixedColor( 'displacement' ),
-                    sDomF.getFixedColor( 'body' ),
+            let colorThreadArray = [
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'displacement' ),
             ];
-                return colorThreadArray;
+            return colorThreadArray;
         }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-                container$ = $$.div()
-                .addClass( 'chem-equiibr-graph-container' )
-                .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
+            container$ = $$.div()
+            .addClass( 'chem-equiibr-graph-container' )
+            .to( $$.div().to( digramParentDom$ )
+                    .addClass( 'lost-diagram-parent' )
+                    //.css( 'position', 'absolute' )
 
-                        //:this data sets outer dimensions of the graph
-                        .css( 'width', '400px' )
-                        .css( 'height', '230px' )
-                        .css( 'top', '0' )
-                        .css( 'left', '0' )
-                        .css( 'z-index', '111111' )
-                )
-                ;
-                //creates low tire api
-                graph_dimX = 1000;  //innerWidth
-                graph_dimY = 580;   //innerHeight
-                return {container$, graph_dimX, graph_dimY}
+                    //:this data sets outer dimensions of the graph
+                    .css( 'width', '400px' )
+                    .css( 'height', '230px' )
+                    .css( 'top', '0' )
+                    .css( 'left', '0' )
+                    .css( 'z-index', '111111' )
+            )
+            ;
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
         }
 
         function setsGraphAxes()
@@ -72,17 +70,16 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = n2c( 'orbit' );
-            //                'rgba(56,132,79,1)';
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
-                        //"hover-width" decreases gigantict bold
-                        //together, tobold hover-width and tostroke can be redundant
-                        text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                    //overrides tp machinery
-                                    ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                    '>Force</tspan></text>',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                     x       : 40,
                     y       : 25,
                     style   : {
@@ -91,21 +88,21 @@
                                 'fill'   : yColor,
                     },
                 },
-                    {
-                        text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                    //overrides tp machinery
-                                    ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                    '>Actual</tspan>' +
-                                    '<tspan> and </tspan>' +
+                {
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
 
-                                    '<tspan class="tp-displacement tofill tobold hover-width"' +
-                                    //overrides tp machinery
-                                    ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
-                                    '>Estimated' +
-                                    '</tspan>' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
 
-                                    '<tspan> forces (per their max)</tspan>' +
-                                    '</text>',
+                                '<tspan> forces (per their max)</tspan>' +
+                                '</text>',
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -120,7 +117,7 @@
             [
                 {
                     text    : 'Distance from force (SP)',
-                    x       : -520,
+                    x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -146,9 +143,9 @@
         {
             return [
                 {
-                    fraqX : 0.01,
+                    fraqX      : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : '1/r³',
+                    pcaption   : '',
                     fontShiftX : -222,
                     fontShiftY : 0,
                     style : {
@@ -164,7 +161,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption :  'est. force',
+                    pcaption :  '',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {
@@ -176,7 +173,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'v',
+                    pcaption : 'v',
                     fontShiftX : 40,
                     fontShiftY : 15,
                     style : {
@@ -188,7 +185,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'sagitta',
+                    pcaption : 'sagitta',
                     fontShiftX : 40,
                     fontShiftY : 15,
                     style : {
@@ -206,8 +203,8 @@
                 const svg = graphFW.fw.plotIx2plotSvg;
                 $$.$( svg[0] ).addClass( 'tp-force tostroke' );
                 $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
-                // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
-                // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
+                svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+                svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
 
         function doDrawToolline()
@@ -215,7 +212,7 @@
             return {
                 toollineStyle : {
                     //stroke : sData.colorThreadArray[2],
-                    'stroke-width' : 3,
+                    'stroke-width' : 1,
                 },
                 abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
                 numberMarks : false, 
@@ -232,7 +229,7 @@
                 decimalDigits   : 3,
                 stroke          : xColor,
                 fill            : xColor,
-                'stroke-width'   : '0.2',
+                'stroke-width'  : '0.2',
             };
         }
 
@@ -245,7 +242,7 @@
                 decimalDigits   : 1,
                 stroke          : yColor,
                 fill            : yColor,
-                'stroke-width'   : '1',
+                'stroke-width'  : '1',
             };
         }
     }

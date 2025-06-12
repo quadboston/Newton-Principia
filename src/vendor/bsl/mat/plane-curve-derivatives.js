@@ -187,7 +187,7 @@
             //this name is too long we need shorter name,
             //sectspeed_ru=momentum0 = [𝗿𝘂] = [𝗿𝘃]/v; for v=ds/dq or v=ds/dt
             staticSectorialSpeed_rrrOnUU, //=algebraic momentum0
-  
+
             angleRV,    //in respect to center rrc
             sinOmega,   //in respect to center rrc
             cosOmega,   //in respect to center rrc

@@ -13,9 +13,9 @@
 <br>
 
 Lemma 8 makes a claim about 3 related triangles (which you can see 
-¦RAB AR BR AB¦here¦¦, 
-¦RACB AR BR arc-AB¦here¦¦, 
-and ¦RAD AR RD AD¦here¦¦). 
+¦RAB area-RAB¦here¦¦, 
+¦RACB area-RACB¦here¦¦, 
+and ¦RAD area-RAD¦here¦¦). 
 These triangles are related to each other in that all 3 are bounded by these 
 ¦AR RD¦2 lines¦¦. Their 3rd side is either this 
 ¦arc-AB¦arc¦¦, this 
@@ -24,12 +24,12 @@ These triangles are related to each other in that all 3 are bounded by these
 ¦arc-AB¦arc¦¦ at an ¦A¦endpoint¦¦ of the 
 ¦AB¦chord¦¦. Lemma 8 claims that when the ¦AB¦chord¦¦’s ¦A B¦endpoints¦¦ approach each other along the 
 ¦arc-AB¦arc¦¦ and meet, that the area of these 
-¦RAB RACB RAD AR RD AD AB arc-AB¦triangles¦¦ ultimately have ratios of equality. 
+¦RAB RACB RAD area-RAB area-RACB area-RAD¦triangles¦¦ ultimately have ratios of equality. 
 
 <br><br>
 Notice the lemma does not require the 
-¦RAB RACB RAD AR RD AD AB arc-AB¦triangles¦¦ to have any particular properties beyond how they are related to each other. For instance, the 
-¦RAD AR RD AD¦large triangle¦¦ bounded by the tangent can be a right triangle as in Newton’s illustration, 
+¦RAB RACB RAD area-RAB area-RACB area-RAD¦triangles¦¦ to have any particular properties beyond how they are related to each other. For instance, the 
+¦RAD area-RAD¦large triangle¦¦ bounded by the tangent can be a right triangle as in Newton’s illustration, 
 or it can be acute, 
 or it can be obtuse. You can drag point R to have the model show any of these situations.
 
@@ -57,21 +57,21 @@ is similar to the original. All the enlarged items share a
 ¦AB¦original chord¦¦. Here’s the 
 ¦arc-Ab¦enlarged arc¦¦ which is similar to the 
 ¦arc-AB¦original arc¦¦. Here are the 
-¦rAb rAcb rAd A,imageOfR A,imageOfD imageOfR,imageOfD Ab arc-Ab¦enlarged triangles¦¦ which are similar to the 
-¦RAB RACB RAD AR RD AD AB arc-AB¦original triangles¦¦.
+¦rAb rAcb rAd area-rAb area-rAcb area-rAd¦enlarged triangles¦¦ which are similar to the 
+¦RAB RACB RAD area-RAB area-RACB area-RAD¦original triangles¦¦.
 
 <br><br>
 Now as the ¦AB¦chord¦¦ 
 ¦A B¦endpoints¦¦ approach each other along the 
 ¦arc-AB¦arc¦¦, we leave the 
-¦rAd A,imageOfR imageOfR,imageOfD A,imageOfD¦largest enlarged triangle¦¦ unchanged, 
+¦rAb rAcb rAd area-rAb area-rAcb area-rAd¦largest enlarged triangle¦¦ unchanged, 
 and we keep all enlarged items similar to their diminishing counterpart. As the 
 ¦AB¦chord¦¦ 
 ¦A B¦endpoints¦¦ meet, 
-¦Ab A,imageOfD¦this angle¦¦ must diminish to 0. When it does, these 
-¦rAb rAcb rAd A,imageOfR A,imageOfD imageOfR,imageOfD Ab arc-Ab¦3 enlarged triangles¦¦ must coincide and be equal. Since the 
-¦RAB RACB RAD AR RD AD AB arc-AB¦diminishing triangles¦¦ are always similar to their 
-¦rAb rAcb rAd A,imageOfR A,imageOfD imageOfR,imageOfD Ab arc-Ab¦larger counterparts¦¦, they too must ultimately become similar and equal to each other.
+¦Ab A,d¦this angle¦¦ must diminish to 0. When it does, these 
+¦rAb rAcb rAd area-rAb area-rAcb area-rAd¦3 enlarged triangles¦¦ must coincide and be equal. Since the 
+¦RAB RACB RAD area-RAB area-RACB area-RAD¦diminishing triangles¦¦ are always similar to their 
+¦rAb rAcb rAd area-rAb area-rAcb area-rAd¦larger counterparts¦¦, they too must ultimately become similar and equal to each other.
 
 
 
@@ -91,4 +91,4 @@ and we keep all enlarged items similar to their diminishing counterpart. As the
 <script src="https://player.vimeo.com/api/player.js"></script>
 
 <br>
-As those ¦RAB RACB RAD AR RD AD AB arc-AB¦triangles¦¦ are ultimately equal, they can be used interchangeably when we discuss ultimate ratios.
+As those ¦RAB RACB RAD area-RAB area-RACB area-RAD¦triangles¦¦ are ultimately equal, they can be used interchangeably when we discuss ultimate ratios.

@@ -45,13 +45,19 @@
 
 
    function creates__gets_orbit_closest_point() {
+       //Previously SEARCH_POINTS was 50, and there was also a second step that
+       //refined the search with fine search points if not fromGraph however...
+       //-When fromGraph was true (for point P dragging) there wern't enough
+       // search points so it's movement was choppy.
+       //-The main search runs in a fraction of a millisecond even with a large
+       // number of points, so a second step for fine search isn't needed.
        //the more, the better: slider accuracy:
-       const SEARCH_POINTS = 50;
+       const SEARCH_POINTS = 500;
        
        stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
        return;
 
-       
+
        function gets_orbit_closest_point(
             r, //distance to this point
             fromGraph //optional, using valid graph points
@@ -59,11 +65,7 @@
             const arr = fromGraph ? graphArray : qIndexToOrbit;
             const len = arr.length;
             const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ));
-            const point = arr[0];
-            const pos = point.rr;
-            const x = r[0]-pos[0];
-            const y = r[1]-pos[1];
-            let min = x*x + y*y;
+            let min = null;
             let qix_min = null;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
@@ -74,31 +76,6 @@
                 if( qix_min === null || min>d2 ){
                     min = d2;
                     qix_min = fromGraph ? point.qix : qix;
-                }
-            }
-            if( fromGraph ) return qix_min;
- 
- 
-            const FINE_SEARCH_POINTS = 20;
-            const fstart = qix_min-FINE_SEARCH_POINTS;
-            const fend = qix_min+FINE_SEARCH_POINTS;
-            ///refines the search
-            for( let qix=fstart; qix<=fend; qix++ ){
-                const point = qIndexToOrbit[qix];
-                if( 
-                    //we prefer sort out by "!" than
-                    //by limits 0 and array.length
-                    !point
-                    ||
-                    point.invalid
-                ) continue;
-                const pos = point.rr;
-                const x = r[0]-pos[0];
-                const y = r[1]-pos[1];
-                const d2 = x*x + y*y;
-                if( min>d2 ){
-                    min = d2;
-                    qix_min = qix;
                 }
             }
             return qix_min;

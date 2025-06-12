@@ -22,7 +22,6 @@
 
 
     function builds_dq8sagit8displace({ ulitmacy }){
-        const ADDENDUM = amode.aspect === 'addendum';
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const Q_STEPS = sconf.Q_STEPS;
@@ -68,7 +67,7 @@
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
                 if( sconf.orbit_q_end <= plusQ ){
-                    if( MAKE_RANGE ){
+                    if( MAKE_RANGE && !CURVE_REVOLVES ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
                     }
@@ -105,7 +104,7 @@
                 if( plusTix >= tIndexToOrbit_len ) {
                     plusTix = tIndexToOrbit_len -1;
                     plusT = plusTix * delta_t_between_steps;
-                    if( MAKE_RANGE ){
+                    if( MAKE_RANGE && !CURVE_REVOLVES ){
                         plusQ = null;
                         bP.invalid = true;
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
@@ -140,14 +139,14 @@
                 minusT =  CURVE_REVOLVES ? ( timeRange + minusT ) % timeRange : minusT;
                 const minusTix = Math.floor( minusT/delta_t_between_steps );
                 if( minusTix < 1 ) {
-                    if( MAKE_RANGE ){
+                    if( MAKE_RANGE && !CURVE_REVOLVES ){
                         ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
                         bP.invalid = true;
                     }
                     continue;
                 } else if( minusTix >= tIndexToOrbit.length ){
                     ////todo why? helps only in P6 when curve shape changes
-                    if( MAKE_RANGE ){
+                    if( MAKE_RANGE && !CURVE_REVOLVES ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true;
                     }

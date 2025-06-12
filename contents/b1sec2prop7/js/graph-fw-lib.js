@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, nsmethods, globalCss, userOptions, sDomF, amode, stdMod, sconf, rg } 
+    var { $$, nsmethods, globalCss, sDomF, amode, stdMod, sconf, rg } 
         = window.b$l.apptree({ stdModExportList : { createsGraphFW_lemma, }, });
     return;
 
@@ -92,7 +92,7 @@
                 },
 
                 {
-                    text    :  // Actual and Estimated forces
+                    text    :   // Actual and Estimated forces
                                 '<text><tspan class="tp-force tofill ' +
                                 'tobold hover-width"' +
                                 //overrides tp machinery

@@ -1,18 +1,13 @@
 ( function() {
-    var {
-        $$, sn, has, userOptions,
-        ssF, ssD, sDomN, sDomF,
-        amode, rg, toreg, sconf, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { $$, sn, has, ssF, ssD, sDomN, sDomF, amode, rg, toreg, sconf, stdMod, } 
+        = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
         },
     });
     let foldPointsRemovedFromTp = false;
     return;
 
-    
+
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================

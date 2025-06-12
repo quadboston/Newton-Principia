@@ -1,10 +1,6 @@
 ( function() {
-    var {
-        ns, sn, $$, nsmethods, haz, globalCss,
-        ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
+    var { ns, sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, sData, stdMod, }
+        = window.b$l.apptree({ stdModExportList :
         {
             doSetColorThreadArray,
             setsGraphContainerAttributes,
@@ -17,10 +13,6 @@
         },
     });
     return;
-
-
-
-
 
 
     function doSetColorThreadArray()

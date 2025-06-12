@@ -25,7 +25,6 @@
             [
                 'txt/latin.txt',
                 'txt/cohen.txt',
-                'txt/addendum.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

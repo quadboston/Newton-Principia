@@ -24,8 +24,7 @@
             "contents-list" :
             [
                 'txt/latin.txt',
-                'txt/english.txt',
-                'txt/addendum.txt',
+                'txt/cohen.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

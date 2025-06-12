@@ -19,6 +19,7 @@ the ¦S¦center of the spiral¦¦.
   "menuCaption" : "Text",
   "subessayCaption" : "[<i>First solution</i>]",
   "subessay" : "solution",
+  "subessay" : "solution",
   "logic_phaseCaption" : "Solutions"
 }
 *..*

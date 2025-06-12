@@ -75,7 +75,7 @@
         //=============================================
         var V = [64, 462 ];
         RR = 360; //Math.sqrt( RR ) / 2;
-        var C = [510, 311 ]; // V[0] + ww1/2, V[1] + ww2/2, ];
+        var C = [510, 311 ]; //V[0] + ww1/2, V[1] + ww2/2, ];
         //pos of point P
         var S = C; //[0, 0 ]; //not set in amode8captures
         //=============================================
@@ -126,11 +126,11 @@
         if( FT ){
             sconf.Dt0 = 0.3;
         } else {
-            sconf.Dq0 = 0.19;
+            sconf.Dq0 = 0.4;
         }
         
         //pos of P
-        sconf.parQ = -sconf.orbit_q_start*2;
+        sconf.parQ = -sconf.orbit_q_start*2;//TEMP //0;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -148,7 +148,7 @@
             context,
             displacement,
         } = fixedColors;
-        
+
 
         var predefinedTopics =
         {
@@ -291,3 +291,4 @@
         });
     }
 }) ();
+

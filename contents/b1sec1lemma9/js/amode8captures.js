@@ -11,17 +11,12 @@
     return;
 
 
-
-
-
-
     function setCapture()
     {
         paste( capture,
         {
         });
     }
-
 
     function amode2rgstate( captured )
     {

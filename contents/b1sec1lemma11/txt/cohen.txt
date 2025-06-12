@@ -85,6 +85,7 @@ same ratio to each other as before. &nbsp;&nbsp; Q.E.D.
 *::*corollary|english
 {
   "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
+  "subessay" : "cor-1",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
@@ -99,7 +100,8 @@ squares will also be ultimately as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦
 
 *::*corollary|english
 {
-  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2"
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
+  "subessay" : "cor-2"
 }
 *..*
 The squares of these ¦AD Ad¦tangents¦¦, ¦arc-AB arc-Ab¦arcs¦¦, and ¦BC bc¦sines¦¦ are also
@@ -113,7 +115,8 @@ to a given point. For these sagittas are as the subtenses ¦BD¦¦ and ¦bd¦�
 
 *::*corollary|english
 {
-  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3"
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
+  "subessay" : "cor-3"
 }
 *..*
 And thus the sagitta is in the squared ratio of the time

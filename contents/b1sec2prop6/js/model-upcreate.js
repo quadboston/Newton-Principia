@@ -1,17 +1,8 @@
 ( function() {
-    var {
-        sn, $$, nsmethods, nssvg, mcurve, integral,
-        mat, has, userOptions,
-        ssF, ssD, sData,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            model_upcreate,
-        },
-    });
+    var { sn, $$, nsmethods, nssvg, mcurve, integral, mat, has, userOptions,
+        ssF, ssD, sData, amode, stdMod, sconf, rg, toreg, } 
+        = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
-
 
 
     ///****************************************************
@@ -20,8 +11,6 @@
     ///****************************************************
     function model_upcreate()
     {
-        const BONUS = userOptions.showingBonusFeatures();
-        const ADDENDUM = amode.aspect === 'addendum';
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
         //stdMod.builds_dq8sagit8displace({});
@@ -45,7 +34,7 @@
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
             rg.Q.pos[1] = rrplus[1];
-            rg.QtimeDecor.caption = BONUS ? 'Δt=' + (2*ssD.Dt).toFixed(5) : '';
+            rg.QtimeDecor.caption = '';
             rg.QtimeDecor.pos = Porb.rrplus;
             let sagV = Porb.sagittaVector;
             rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
@@ -110,8 +99,8 @@
         //core code displays: force, mask[1] and sagitta, mask[3]
         {
             const mask = stdMod.graphFW_lemma.graphArrayMask;
-            mask[1] = solvable && ADDENDUM; //displ.
-            mask[2] = solvable && ADDENDUM;
+            mask[1] = false; //displ.
+            mask[2] = false;
             //sagitta in proof, but not in ...
             mask[3] = solvable && sconf.TIME_IS_FREE_VARIABLE;
         }
@@ -120,31 +109,31 @@
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
-                printAxisXDigits : BONUS,
+                printAxisXDigits : false,
                 //printAxisYDigits : true,
             }
-            if( !BONUS ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax = 0;
-                let leny = ga[0].y.length;
-                for( ix = 0; ix<len; ix++ ) {
-                    let gaix = ga[ix];
-                    //if( !solvable ){
-                    //    for( let iy=0; iy<leny; iy++ ){
-                    //        gaix.y[iy] = ix/len;
-                    //    }
-                    //}
-                    let yy = Math.abs( gaix.y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
+
+            let ga = stdMod.graphFW_lemma.graphArray;
+            let len = ga.length;
+            let sumAbs = 0;
+            var yMax = 0;
+            let leny = ga[0].y.length;
+            for( ix = 0; ix<len; ix++ ) {
+                let gaix = ga[ix];
+                //if( !solvable ){
+                //    for( let iy=0; iy<leny; iy++ ){
+                //        gaix.y[iy] = ix/len;
+                //    }
+                //}
+                let yy = Math.abs( gaix.y[0] );
+                sumAbs += yy;
+                yMax = Math.max( yMax, yy );
             }
+            let averageY = sumAbs/len;
+
+            graphArg.yMax = Math.max( yMax, averageY*1.5 );
+            graphArg.yMin = 0;
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
@@ -204,7 +193,6 @@
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
                 nsp.undisplay = false;
-                //nsl.undisplay = !!userOptions.showingBonusFeatures();
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;

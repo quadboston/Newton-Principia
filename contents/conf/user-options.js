@@ -54,8 +54,6 @@
     }
 
     function userOptions_2_updatedGUI() {
-        //sessionStorage.setItem(CHANGED, false);
-
         let latinCB = document.getElementById("latinCheckbox");
         latinCB.checked = showingLatin();
         latinCB.onclick = () => {
@@ -67,41 +65,6 @@
         fadeCB.onclick = () => {
             doesStoreOption(USE_BG_IMAGE, !useBGimage());
         };
-
-        let bonusCB = document.getElementById("bonusCheckbox");
-        bonusCB.checked = showingBonusFeatures();
-        bonusCB.onclick = () => {
-            var isOn = showingBonusFeatures();
-            doesStoreOption(BONUS, !isOn);
-            var relanded = false;
-            if( has( ns.conf, 'showAddendums' ) ) {
-                ////if user changes URL-induced mode, the entire
-                ////set of URL options wipes out for simplicity, and
-                ////user relands
-                //c cc( 'showAddendums=' + ns.conf.showAddendums );
-                if( (ns.conf.showAddendums && isOn ) ||
-                    (!ns.conf.showAddendums && !isOn ) ) {
-                    //c cc( 'removing search' );
-                    window.location.search = '';
-                    relanded = true;
-                }
-            }
-            //c cc( 'relanding the same=' + window.location );
-            if( !relanded ) {
-                window.location = window.location;
-            }
-            //redundant because of complete relaning on the way
-            //updateBonusContentVisibility();
-        };
-        updateBonusContentVisibility();
-
-        function updateBonusContentVisibility()
-        {
-            ////updates bonus list existance
-            let appRoot$ = $$.$(document.querySelector( '.bsl-approot' ));
-            appRoot$[ showingBonusFeatures() ? 'addClass' : 'removeClass'  ]
-                    ( "shows-bonus-features" );
-        }
     }
 
     function doesStoreOption(option, newValue) {

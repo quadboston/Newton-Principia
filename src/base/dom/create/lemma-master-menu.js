@@ -333,15 +333,6 @@
         // updates app and ...
         //==================================================
 
-        //==================================================
-        // //\\ amodel and image and legend
-        //      as prescribed in essaion
-        //      if its menu item exist and is already constructed
-        //==================================================
-        fmethods.spawnVideoList && fmethods.spawnVideoList(); //todon what?
-        //==================================================
-        // \\// amodel and image and legend
-        //==================================================
 
 
         ///=========================================================
@@ -363,7 +354,6 @@
     ///second click is for submenu,
     function menu2lemma( amodel2app_8_extraWork )
     {
-
         //we need to run "media" updater because we need to update
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event

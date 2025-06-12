@@ -1,13 +1,6 @@
 ( function() {
-    var {
-        sn, mat, userOptions, hafa,
-        ssD, stdMod, sconf, rg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            creates_S_slider,
-        },
-    });
+    var { sn, mat, userOptions, hafa, ssD, stdMod, sconf, rg, } 
+        = window.b$l.apptree({ stdModExportList : { creates_S_slider, }, });
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
 

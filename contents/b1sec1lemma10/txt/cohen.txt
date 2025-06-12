@@ -32,7 +32,7 @@ is, at the very beginning of the motion these spaces will be (by
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "cor-1",
   "menuCaption" : "Text",
   "logic_phaseCaption" : "Corollaries"
@@ -52,7 +52,7 @@ are generated.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "cor-2"
 }
 *..*
@@ -66,7 +66,7 @@ squares of the times jointly.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "cor-3"
 }
 *..*
@@ -80,7 +80,7 @@ beginning of the motion, as the forces and the squares of the times jointly.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 4",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 4",
   "subessay" : "cor-4"
 }
 *..*
@@ -93,7 +93,7 @@ beginning of the motion directly and as the squares of the times inversely.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 5",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 5",
   "subessay" : "cor-5"
 }
 *..*

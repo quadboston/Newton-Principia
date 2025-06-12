@@ -1,18 +1,11 @@
 ( function() {
-    var { sn, $$, nsmethods, haz, globalCss, userOptions, ssD, sDomN, sDomF, sData,
-        amode, stdMod, sconf, rg } 
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, amode, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
-    
+
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-
-        //if one wants to separate BONUS and aspect, this
-        //method can be used:
-        //const ADDENDUM = amode.aspect === 'addendum';
-        const BONUS = userOptions.showingBonusFeatures();
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -28,9 +21,7 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = BONUS ?
-            [ 'force', 'estforce', 'body' ] :
-            [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -41,11 +32,9 @@
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
                 sDomF.getFixedColor( 'displacement' ),
-                sDomF.getFixedColor( 'body' ),
-              ];
+            ];
             return colorThreadArray;
         }
-
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
@@ -71,7 +60,6 @@
 
         function setsGraphAxes()
         {
-            const ADDENDUM = amode.aspect === 'addendum';
             let n2c = sDomF.getFixedColor; //name to color
                 
             //==================================================
@@ -82,7 +70,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-                var xColor      = 'rgba(0,0,0,1)'
+            var xColor      = 'rgba(0,0,0,1)'
             var axisYLegend =
             [
                 {
@@ -101,12 +89,7 @@
                     },
                 },
                 {
-                    text    : ADDENDUM ?
-                                'Force -1/r², est. force, speed, sagitta per their max.'
-
-                                :
-
-                                '<text><tspan class="tp-force tofill tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
@@ -133,8 +116,8 @@
             var axisXLegend =
             [
                 {
-                        text    : BONUS ? 'Distance from force center, r' : 'Distance from force (SP)', 
-                        x       : BONUS ? -700 : -520,
+                    text    : 'Distance from force (SP)', 
+                    x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -158,12 +141,11 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            const ADDENDUM = amode.aspect === 'addendum';
             return [
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : BONUS ? '1/r²' : '',
+                    pcaption : '',
                     fontShiftX : -222,
                     fontShiftY : 0,
                     style : {
@@ -179,9 +161,7 @@
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption :  BONUS ? 
-                                'est. force' :
-                                '',
+                    pcaption :  '',
                     fontShiftX : -33,
                     fontShiftY : 15,
                     style : {
@@ -235,7 +215,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : true, 
+                numberMarks : false, 
             };
         }
 

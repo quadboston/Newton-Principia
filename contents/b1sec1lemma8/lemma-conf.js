@@ -9,7 +9,6 @@
             "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
-                'txt/addendum.txt',
                 'txt/video.txt',
             ],
 

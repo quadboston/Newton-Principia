@@ -1,6 +1,6 @@
 ( function() {
-    var { ns, sn, $$, nsmethods, haz, globalCss, userOptions, ssD, sDomN, sDomF, sData, amode, 
-        stdMod, sconf, rg } = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, } 
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
 
@@ -31,32 +31,31 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'sagitta' ), 
-                sDomF.getFixedColor( 'body' ),
+                sDomF.getFixedColor( 'displacement' ), 
             ];
             return colorThreadArray;
         }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-                container$ = $$.div()
-                .addClass( 'chem-equiibr-graph-container' )
-                .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
+            container$ = $$.div()
+            .addClass( 'chem-equiibr-graph-container' )
+            .to( $$.div().to( digramParentDom$ )
+                    .addClass( 'lost-diagram-parent' )
+                    //.css( 'position', 'absolute' )
 
-                        //:this data sets outer dimensions of the graph
-                        .css( 'width', '400px' )
-                        .css( 'height', '230px' )
-                        .css( 'top', '0' )
-                        .css( 'left', '0' )
-                        .css( 'z-index', '111111' )
-                )
-                ;
-                //creates low tire api
-                graph_dimX = 1000;  //innerWidth
-                graph_dimY = 580;   //innerHeight
-                return {container$, graph_dimX, graph_dimY}
+                    //:this data sets outer dimensions of the graph
+                    .css( 'width', '400px' )
+                    .css( 'height', '230px' )
+                    .css( 'top', '0' )
+                    .css( 'left', '0' )
+                    .css( 'z-index', '111111' )
+            )
+            ;
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
         }
 
         function setsGraphAxes()
@@ -71,8 +70,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = n2c( 'orbit' );
-
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
@@ -90,18 +88,16 @@
                                 'fill'   : yColor,
                     },
                 },
-
                 {
-                    text    :   // Actual and Estimated forces
-                                '<text><tspan class="tp-force tofill tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+ n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:'+n2c( 'displacement' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -119,7 +115,6 @@
             ];
             var axisXLegend =
             [
-
                 {
                     text    : 'Distance from force (CP)',
                     x       : -560,
@@ -194,7 +189,7 @@
         {
             const svg = graphFW.fw.plotIx2plotSvg;
             $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
             // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
             // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }

@@ -30,7 +30,7 @@ the
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "cor-1",
   "logic_phaseCaption" : "Corollaries"
 }
@@ -47,7 +47,7 @@ parallelogram ¦AF BF AD BD¦AFBD¦¦ is completed, ¦BF BF-data¦BF¦¦ always 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "cor-2"
 }
 *..*
@@ -63,7 +63,7 @@ and arc ¦arc-AB¦AB¦¦ to one another will be ratios of equality.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "cor-3"
 }
 *..*
