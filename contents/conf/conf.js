@@ -53,7 +53,7 @@
 
         //prevents text box string from being too wide,
         //otherwise, hard to move eye from string to string,
-        ESSAY_MAX_WIDTH: 600,
+        ESSAY_MAX_WIDTH: 1200,
         ESSAY_MIN_WIDTH: 370,
 
         MODEL_MIN_WIDTH: 300, //when dragging
