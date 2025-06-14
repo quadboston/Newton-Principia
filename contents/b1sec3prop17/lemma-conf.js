@@ -12,6 +12,11 @@
                 'txt/cohen.txt',
                 'txt/addendum.txt',
             ],
+
+            codesList : [
+                { src : 'main-legend.js' },
+            ],
+
             //optional additional reference html
             referencesForAllLemmaEssays : '',
         };
