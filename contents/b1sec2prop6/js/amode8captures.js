@@ -60,7 +60,7 @@
             rg[ 'nonSolvablePoint' ].undisplay = true;
         }
         
-        rg[ 'QP' ].undisplay = true;
+        rg[ 'QP' ].undisplay = false;
         rg[ 'Q,rrminus' ].undisplay = true;
         rg[ 'P,rrminus' ].undisplay = true;
         rg.APQ.undisplay = false;
@@ -137,7 +137,7 @@
             rg.QR.undisplay = false;
             rg.R.undisplay = false;
 
-            rg.APQ.undisplay = true;
+            rg.APQ.undisplay = false;
             rg.Z.undisplay = true;
             rg.V.undisplay = false;
             rg.PV.undisplay = false;
@@ -153,23 +153,23 @@
             rg.timearc.undisplay = true;
 
         } else if( logic_phase === 'corollary' && subessay === 'corollary5' ){
-            rg.SY.undisplay = true;
-            rg.Y.undisplay = true;
+            rg.SY.undisplay = false;
+            rg.Y.undisplay = false;
             rg.PY.undisplay = false;
-            rg.V.undisplay = true;
-            rg.PV.undisplay = true;
+            rg.V.undisplay = false;
+            rg.PV.undisplay = false;
             rg.SQ.undisplay = true;
             //rg.sagitta.undisplay = true;
             rg[ 'P,sagitta' ].undisplay = true;
             rg.PZ.undisplay = true;
             rg.Z.undisplay = true;
 
-            rg.curvatureCircle.undisplay = true;
+            rg.curvatureCircle.undisplay = false;
             rg.C.undisplay = true;
             rg.PC.undisplay = true;
             rg[ 'rrminus' ].undisplay = true;
             rg[ 'Q,rrminus' ].undisplay = true;
-            rg[ 'QP' ].undisplay = true;
+            rg[ 'QP' ].undisplay = false;
             rg.APQ.undisplay = true;
         } else {
             rg.media_scale.value = 1;
