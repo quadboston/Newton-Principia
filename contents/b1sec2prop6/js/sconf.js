@@ -263,9 +263,6 @@
             A : {
                 pos: A,
                 pcolor : given,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
             },
 
             S : {
@@ -323,8 +320,9 @@
                 letterAngle : 45,
             },
 
+            // Q's counterpart at other end of arc
             rrminus : {
-                caption : 'Q-',
+                caption : '',
                 //pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
@@ -356,7 +354,7 @@
             //center of instant curvature circle
             C : {
                 pos: [0,0], //will be calculated
-                caption : 'Rc',
+                caption : '',
                 pcolor : curvature,
                 letterAngle : -45,
             },
