@@ -28,7 +28,7 @@
             [['L,LL', 'L', "rg[ 'L,LL' ].value"]],
             [['SP', 'SP', 'rg.SP.abs']],
             [['PK', 'KP', 'rg.PK.abs']],
-            [['mergeCells', '', getEqn()]],
+            [['eqn merge-cells', '', getEqn()]],
         ];
 
         function getEqn() {
@@ -39,7 +39,7 @@
                 let SP = 2*rg.SP.abs;
                 let PK = 2*rg.PK.abs;
                 let SPPK = SP + PK;
-                
+
                 console.log(SPPK);
 
                 if(L === SPPK) 'L = 2SP + 2KP (parabola)'
