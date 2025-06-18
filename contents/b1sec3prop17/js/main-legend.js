@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ssF, rg, stdMod
+        ssF, stdMod
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -33,14 +33,18 @@
 
         function getEqn() {
             return `
+                let e = op.eccentricity;
                 let L = rg['L,LL'].value;
+                ssF.line2abs( 'PK' );
                 let SP = 2*rg.SP.abs;
                 let PK = 2*rg.PK.abs;
-                L === SP + PK ? 'L = 2SP + 2KP (parabola)' : (
-                    L < SP + PK ?
-                    'L < 2SP + 2KP (ellipse)' :
-                    'L > 2SP + 2KP (hyperbola)'
-                )
+                let SPPK = SP + PK;
+                
+                console.log(SPPK);
+
+                if(L === SPPK) 'L = 2SP + 2KP (parabola)'
+                else if(L < SPPK) 'L < 2SP + 2KP (ellipse)'
+                else 'L > 2SP + 2KP (hyperbola)'
             `;
         }
 
