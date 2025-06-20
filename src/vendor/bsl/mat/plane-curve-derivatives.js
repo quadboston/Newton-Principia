@@ -2,28 +2,8 @@
 	var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     var mcurve      = sn( 'mcurve', mat );
-
-    //----------------------------------------------------
-    // //\\ test,
-    //
-    //----------------------------------------------------
-    /*
-    var der = planeCurveDerivatives({
-        //circle
-        fun             : (x) => Math.sqrt( Math.abs( 1 - x*x ) ),
-    });
-    */
-    //----------------------------------------------------
-    // \\// test
-    //----------------------------------------------------
     mcurve.planeCurveDerivatives = planeCurveDerivatives;
     return;
-
-
-
-
-
-
 
 
     //Notation: ii,jj,kk right-coordinate-system orts,
@@ -189,6 +169,7 @@
             vv, //vector = dr/dq
             v2, //square of above
             v,  //abs of above
+            ds_dq : v, //todm revert all to this name
             uu, //direction of above
             aa,
             a2,
@@ -202,7 +183,10 @@
             RC,
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
-            staticSectorialSpeed_rrrOnUU, //=sectorialSpeedDividedByArcSpeed
+
+            //this name is too long we need shorter name,
+            //sectspeed_ru=momentum0 = [𝗿𝘂] = [𝗿𝘃]/v; for v=ds/dq or v=ds/dt
+            staticSectorialSpeed_rrrOnUU, //=algebraic momentum0
 
             angleRV,    //in respect to center rrc
             sinOmega,   //in respect to center rrc

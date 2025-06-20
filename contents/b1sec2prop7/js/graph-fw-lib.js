@@ -1,19 +1,11 @@
 ( function() {
-    var {
-        $$, nsmethods, globalCss, userOptions,
-        sDomF,
-        amode, stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            createsGraphFW_lemma,
-        },
-    });
+    var { $$, nsmethods, globalCss, sDomF, amode, stdMod, sconf, rg }
+        = window.b$l.apptree({ stdModExportList : { createsGraphFW_lemma, }, });
     return;
+
 
     function createsGraphFW_lemma({ digramParentDom$ }){
         let graphFW = {};
-        let bonus = !!userOptions.showingBonusFeatures();
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -71,7 +63,6 @@
         function setsGraphAxes()
         {
             let n2c = sDomF.getFixedColor; //name to color
-            const addendum = amode.aspect === 'addendum';
 
             //==================================================
             // //\\ calls api
@@ -101,32 +92,7 @@
                 },
 
                 {
-                    text    : addendum ?
-                                //'Forces f, -1/r² their max.'
-                                
-                                '<text><tspan>Forces </tspan>' +
-                                '<tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>f </tspan>' +
-                                '<tspan>, </tspan>' +
-                                
-                                '<tspan class="tp-estimated_force tofill' +
-                                'tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:'+
-                                                n2c( 'estimatedForce' ) + ';"' +
-                                '>fₑ' +
-                                '</tspan>' +
-                                
-                                '<tspan' +
-                                '>, r⁻², r⁻⁵ per own min.' +
-                                '</tspan>' +
-                                '</text>'
-                                
-                                :   // Actual and Estimated forces
-                                
-                                
+                    text    :   // Actual and Estimated forces
                                 '<text><tspan class="tp-force tofill ' +
                                 'tobold hover-width"' +
                                 //overrides tp machinery
@@ -145,10 +111,7 @@
 
                                 '<tspan> forces</tspan>' +
                                 '</text>',
-  
-  
-  
-                    x       : addendum ? 250 : 310,
+                    x       : 310,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
@@ -163,7 +126,7 @@
 
                 {
                     text    : 'Distance from force (SP)', 
-                    x       : bonus ? -700 : -560,
+                    x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -201,7 +164,7 @@
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
                         //'stroke-width' : '10px',
-                        //'display' : bonus ? 'block' : 'none',
+                        //'display' : 'none',
                         //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
@@ -296,10 +259,10 @@
             return {
                 toollineStyle : {
                     stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : bonus ? 3 : 1.5,
+                    'stroke-width' : 1.5,
                 },
-                abscissaIxValue : stdMod.pos2qix(),
-                numberMarks : false, //true, 
+                abscissaIxValue : stdMod.qValueFromPointPToQIndex(),
+                numberMarks : false,
             };
         }
 
