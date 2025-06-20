@@ -101,7 +101,6 @@
 
     function colArray_2_flags( topi_c )
     {
-        //console.log(topi_c)
         var colorArray = haz( topi_c, 'fixed-color' );
         var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
         var ownHighOp = colorArray[4];

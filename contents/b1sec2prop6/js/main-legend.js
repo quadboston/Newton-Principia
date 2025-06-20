@@ -27,7 +27,7 @@
         ////**********************************************************************************
 
         var legendScriptParsed = [
-            [['dtime<_>data-monospace', 'Δt', '(rg.tForSagitta.val*2).toFixed(4)']]
+            [['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']]
         ];
 
         var rowsCount       = legendScriptParsed.length;
