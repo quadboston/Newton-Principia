@@ -1,15 +1,34 @@
 # Change Log
  
+## 2025-6-23 (Tan Version, 0.13657)
+### Improved
+* Lemmas 2, 3
+    * cursor changes to crosshair for handle manipulation
+
+* Lemma 8
+    * areas shaded
+
+* Lemmas 9, 10
+    * fixed area highlighting
+
+* Proposition 7
+    * fixed highlighting in corollaries 2 and 3
+    * fractions changed from linear style to stacked
+
+* Propositions 12, 13
+    * point P now a handle; handle φ removed
+
 
 ## 2025-5-29 (Orange Version, 0.13657)
-### Improved core presentation
+### Improved presentation
 * Multiple models
     * opacity tuned (some data text more readable; lines and curves more visible)
     * red color reassigned when not indicating invalid situations
 
 * Lemma 11
-    * dragger b takes priority except when B and b are at A
-    * dragger b cannot be moved too far away from B
+    * handle b takes priority except when B and b are at A
+    * handle b cannot be moved too far away from B
+
 
 * Proposition 9
     * changed graph's estimated force to match other models
@@ -24,7 +43,7 @@
 
 
 ## 2025-5-20 [0.13654]
-### Improved core presentation
+### Improved presentation
 * All models
     * ratios shown using colon (not as fractions)
     * data shown in higher opacity (to be more readable); highlighted using background
