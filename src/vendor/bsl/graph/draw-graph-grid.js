@@ -352,6 +352,8 @@
         toollineStyle = toollineStyle || {};
         sn( 'stroke', toollineStyle, 'rgba( 0,0,0, 1 )' );
         var graphElement = graphArray[ Math.floor( abscissaIxValue ) ];
+        if (!graphElement) return;
+
         var svgParent = graphFM_self.gmedia$();
 
         var l_media = marginX + ( graphElement.x - xMin ) / rangeX * dimA;

@@ -1,13 +1,6 @@
 ( function() {
-    var {
-        sn, $$, nssvg, haz, mat,
-        sDomF, ssF,
-        mcurve, userOptions,
-        ssD, 
-        rg, stdMod, sconf,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { sn, $$, nssvg, haz, mat, sDomF, ssF, mcurve, ssD, rg, stdMod, sconf, }
+        = window.b$l.apptree({ stdModExportList : {
             creates_orbitRack,
             pos2t,
             curveIsSolvable,
@@ -18,20 +11,10 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
     ///Returns: false if radius-vector is nearly parallel to
     ///         tangent in some point of the curve
     function curveIsSolvable()
     {
-        var bonus = userOptions.showingBonusFeatures();
         const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
@@ -168,24 +151,24 @@
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
         {
             var far = forceGraphArray[ forceArrayIx ];
-            let f = far.y[0] / forceMax;
-            if( !bonus ) f = Math.abs(f);
+            let f = Math.abs(far.y[0] / forceMax);
             far.y[0] = f;
             //1 sagg
             far.y[2] = far.y[2] / (-comparLawMin);
             far.y[3] = far.y[3] / speedMax;
         }
-        stdMod.pos2qix = pos2qix;
+        stdMod.qValueFromPointPToQIndex = qValueFromPointPToQIndex;
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
         return;
 
         
         ///todm fix or rename to q2qix,
+        ///update "q2qix" has been renamed to "posFromPointPToQIndex"
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
         ///     start_q ) / ( end_q - start_q ) * qixMax
-        function pos2qix()
+        function qValueFromPointPToQIndex()
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;
@@ -200,7 +183,6 @@
     function findsFiniteSagitta(DD)
     {
         const DDD = DD || 1e-5;
-        const bonus = userOptions.showingBonusFeatures();
         const fun = rg[ 'approximated-curve' ].t2xy;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.graphArray;
@@ -276,8 +258,7 @@
         ///stores sagitta
         for (let gix = 0; gix<len; gix++ )
         {
-            let tograph = ssigned[gix];
-            tograph = bonus ? tograph : Math.abs( tograph );
+            let tograph = Math.abs(ssigned[gix]);
             garr[ gix ].y[1] = tograph; //sMax;
         }
         ssD.doMaskSagitta = sMax > 1e+18 || stdMod.graphFW_lemma.forceMax > 1e+18;

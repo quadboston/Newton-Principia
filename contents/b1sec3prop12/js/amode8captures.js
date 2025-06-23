@@ -1,20 +1,8 @@
 ( function() {
-    var {
-        ns, sn, has, nspaste, capture, toreg, mat,
-        sDomF, ssD, ssF, fconf,
-        stdMod, amode, rg, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, has, nspaste, capture, toreg, mat, sDomF, ssD, ssF, fconf, stdMod, amode,
+        rg, sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
-
-
-
-
 
 
     function setCapture()
@@ -254,6 +242,19 @@
 
 
         //=========================================
+        // //\\ b1sec3prop12
+        //=========================================
+        if( "b1sec3prop12" === fconf.sappId ) {
+            rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
+            rg['O,Fi'].undisplay = true;
+        }
+        //=========================================
+        // \\// b1sec3prop12
+        //=========================================
+
+
+        //=========================================
         // //\\ parabola: b1sec3prop13
         //=========================================
         if( "b1sec3prop13" === fconf.sappId ) {
@@ -261,6 +262,10 @@
             rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
             rg.S.hideD8Dpoint = true;
             rg.O.undisplay = true;
+            
+            rg.Fi.undisplay = true;
+            rg.Fi.hideD8Dpoint = true;
+            rg['O,Fi'].undisplay = true;
         }
         {
             ////parabola showing
@@ -513,7 +518,7 @@
         rg.P.posInitialUnitVector = mat.unitVector( rg.P.pos );
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
-        op.delta_t  = op.delta_t_initial;
+        op.Dt = op.Dt0;
         nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
@@ -522,18 +527,20 @@
             op.om       = op.om_initial;
         }
 
-        if( fconf.effId === "b1sec3prop14" ) {
-            //op.delta_t = op.delta_t_initial;
-            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
-            nspaste( rg.Fi.pos, [
-                sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
-                sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
-            ]);
-        } else {
-            nspaste( rg.Fi.pos, [
-                sconf.Fi_distance * Math.cos( rg.P.q ),
-                sconf.Fi_distance * Math.sin( rg.P.q ),
-            ]);
+        if (sconf.Fi_distance != null) {
+            if( fconf.effId === "b1sec3prop14" ) {
+                //op.Dt = op.Dt0;
+                rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+                nspaste( rg.Fi.pos, [
+                    sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
+                    sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
+                ]);
+            } else {
+                nspaste( rg.Fi.pos, [
+                    sconf.Fi_distance * Math.cos( rg.P.q ),
+                    sconf.Fi_distance * Math.sin( rg.P.q ),
+                ]);
+            }
         }
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -555,7 +562,7 @@
                 rg.Q.undisplay = true;
                 rg.P.q      = 0;;
                 //op.Kepler_v = op.Kepler_v_initial;
-                //op.delta_t = op.delta_t_initial;
+                //op.Dt = op.Dt0;
                 nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( rg.P.q ));
 
                 rg.omegaHandle.undisplay = true;
@@ -603,7 +610,7 @@
                 sop.r2axisX_angle = sop.r2axisX_angle_initial;
                 sop.mainAxisAngle = sop.r2axisX_angle - rg.p.q;
             }
-            sop.delta_t  = sop.delta_t_initial;
+            sop.Dt = sop.Dt0;
             //-------------------------------------------------
             // \\// sop 
             //-------------------------------------------------

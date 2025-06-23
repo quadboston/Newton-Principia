@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf, 
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, } 
+    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
+        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
             = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -11,16 +11,12 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.builds_dq8sagitta();
-
+        stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
-
-        var parQ = rg.P.parQ;
-        var qixP = Math.floor(parQ/sconf.curveQRange*sconf.FORCE_ARRAY_LEN);
-        var Porb = ssD.qix2orb[ qixP ];
+        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var parQ = Porb.q;
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
-        rg.P.sagittaDq = Porb.sagittaDq;
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
@@ -79,38 +75,15 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //stdMod.graphFW_lemma.graphArrayMask[1] =
-        //       ssD.solvable && !ssD.doMaskSagitta;
 
         {
             let graphArg = {
-                //drawDecimalY : true,
-                //drawDecimalX : false,
-                //printAxisXDigits : bonus,
-                //printAxisYDigits : true,
             }
-            /*
-            if( !bonus ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax =0;
-                for( ix = 0; ix<len; ix++ ) {
-                    let yy = Math.abs( ga[ix].y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
-
 
         //------------------------------------------------
         // //\\ PZminus

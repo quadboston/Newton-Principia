@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, nspaste, userOptions, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, sconf, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -69,18 +69,6 @@
                     }
             },
 
-
-            "true-convergence-1": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.5232929802797621
-                    }
-            },
-
             "meet": {
                     "curveRotationAngle": {
                         "angle": 0.10579977792284677,
@@ -90,24 +78,6 @@
                     "B": {
                             "unrotatedParameterX": 0.001
                     }
-            },
-
-
-            "analytic-derivative" :
-            {
-                "media-mover": {
-                    "achieved": {
-                        "achieved": [
-                            220.438,
-                            222.515
-                        ]
-                    }
-                },
-                "curveRotationAngle": {
-                    "angle": 0.10579977792284677,
-                    "sin": 0.10560250842053673,
-                    "cos": 0.9944084222367038
-                }
             },
 
         });
@@ -146,6 +116,9 @@
         rg.B.undisplay              = false;
         rg.AB.undisplay             = false;
         rg[ 'arc-AB' ].undisplay    = false;
+        rg['area-RAB'].undisplay    = false;
+        rg['area-RAD'].undisplay    = false;
+        rg['area-RACB'].undisplay    = false;
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -158,10 +131,6 @@
         // \\// common values
         //----------------------------------
 
-
-        //*****************************************************************************
-        // //\\ lemma 8
-        //*****************************************************************************
         sDomF.detected_user_interaction_effect( 'doUndetected' );
 
         captured = '';
@@ -171,8 +140,6 @@
 
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);
-        rg.fi.pos[0] = rg.R.pos[0];
-        rg.fi.pos[1] = rg.R.pos[1] * 1.2; // this is why fi is floating below R to start
 
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
@@ -184,81 +151,48 @@
             //'dr-decorpoint',
         ].forEach( gname => { rg[ gname ].undisplay = true; });
 
-        rg.L.hideD8Dpoint   = true;
-
         [
             'D',
             'R',
             'C',
             'AR',
             'AD',
-            'BD',
             'BR',
             'RD',
             'curve-AB',
-            'fi',
         ].forEach( gname => { rg[ gname ].undisplay = false; });
 
         if( logic_phase === 'claim' ) {
             [
                 'c',
-                //'rd',
-                //'rb',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
-                'fi'
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
             ].forEach( gname => { rg[ gname ].undisplay = true; });
         } else if( logic_phase === 'proof' ) {
             [
                 'c',
-                //'d',
-                //'r',
                 'b',
                 'Ab',
-                //'Ad',
-                //'rd',
-                //'rb',
-                'bd',
-                //'Ar',
-                'imageOfR',
-                'imageOfD',
-                'A,imageOfD',
-                'A,imageOfR',
-                'imageOfR,b',
-                'imageOfR,imageOfD',
+                'r',
+                'd',
+                'A,d',
+                'A,r',
+                'r,b',
+                'r,d',
                 'arc-Ab',
+                'area-rAb',
+                'area-rAd',
+                'area-rAcb'
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
 
-        if( userOptions.showingBonusFeatures() ) {
-            rg.B.hideD8Dpoint   = false;
-            rg.R.hideD8Dpoint   = false;
-            rg.fi.hideD8Dpoint  = false;
-            if( subessay === 'interpretation1' ) {
-                if( userOptions.showingBonusFeatures() ) {
-                    rg.B.hideD8Dpoint   = true;
-                    rg.R.hideD8Dpoint   = false;
-                } else {
-                    rg.B.hideD8Dpoint   = false;
-                    rg.R.hideD8Dpoint   = true;
-                }
-            } else if( subessay === 'interpretation2' ) {
-                rg.B.hideD8Dpoint   = false;
-                rg.R.hideD8Dpoint   = true;
-            }
-        } else {
-            rg.B.hideD8Dpoint   = false;
-            rg.R.hideD8Dpoint   = false; // enables mouse events on point R
-            rg.fi.hideD8Dpoint  = true; // fi only used in bonus features
-        }
-          
-        //*****************************************************************************
-        // \\// lemma 8
-        //*****************************************************************************
+        rg.B.hideD8Dpoint   = false;
+        rg.R.hideD8Dpoint   = false; // enables mouse events on point R
+        
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;

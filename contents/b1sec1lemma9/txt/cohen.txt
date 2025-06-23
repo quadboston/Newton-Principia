@@ -43,7 +43,7 @@ Then, with the length ¦Ae¦¦ remaining the same,
 let points ¦B¦¦ and ¦C¦¦ come together with point ¦A¦¦; and as the angle ¦Ac Ag¦cAg¦¦ vanishes,
 
 the curvilinear areas ¦Abd¦¦ and ¦Ace¦¦ will coincide with the
-rectilinear areas ¦Afd Ad¦Afd¦¦ and ¦Age Ae¦Age¦¦,
+rectilinear areas ¦Afd¦Afd¦¦ and ¦Age¦Age¦¦,
 and thus (by lem. 5) will be in the squared ratio of the sides ¦Ad¦Ad¦¦ and ¦Ae¦Ae¦¦.
 
 But areas ¦ABD¦¦ and ¦ACE¦¦ are always proportional to these areas,

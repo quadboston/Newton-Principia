@@ -2,105 +2,84 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var {
-        sn, mat,
-        fconf, sData, ssD,
-        stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            creates_Q8P_sliders,
-        },
-    });
+    var { sn, ssD,stdMod, sconf, rg, } = window.b$l.apptree({ stdModExportList : {
+            creates_Q8P_sliders, creates__gets_orbit_closest_point, }, });
+    const tIndexToOrbit = sn( 'tIndexToOrbit', ssD, [] );
+    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
     function creates_Q8P_sliders()
     {
-        //=====================================================================
-        // //\\ point P slider
-        //=====================================================================
+        /// point P slider
         rg.P.acceptPos = newPos => {
-            let newP = stdMod.q8pos_2_q8pos8qix( 'P', newPos );
-            //-------------------------------------------------------------------
-            // //\\ corrects approximate mouse point to exact point on the circle
-            //-------------------------------------------------------------------
-            var q =  stdMod.pos2q( newPos );
-            if( q < sconf.orbit_q_start + 0.01 || q+rg.P.sagittaDq > sconf.orbit_q_end ){
-                //cycling: removed:
-                //rg.P.parQ = ( rg.P.parQ + sconf.orbit_q_end ) % sconf.orbit_q_end;
-                return false; //stops dragging beyond curve tips
+            //Ensure solvable and qix exist to help prevent P6 errors when orbits
+            //are disconnected
+            if (ssD.solvable) {
+                const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
+                if (qix) {
+                    rg.P.qix = qix;
+                    stdMod.model8media_upcreate();
+                }
             }
-            stdMod.q8pos_2_q8pos8qix( 'P', null, q );                         
-            newPos[0] = rg.P.pos[0];
-            newPos[1] = rg.P.pos[1];
-            //-------------------------------------------------------------------
-            // \\// corrects approximate mouse point to exact point on the circle
-            //-------------------------------------------------------------------
-            return true;
         }
-        //=====================================================================
-        // \\// point P slider
-        //=====================================================================
 
-
-
-        //=====================================================================
-        // //\\ point Q slider
-        //      for delta t
-        //=====================================================================
-        rg.Q.processOwnDownEvent = function() {
-            ////apparently, there is no arg at this version,
-            ////            and useless "function.this" === rg.Q
-            sData.Qpos0 = rg.Q.pos[0];
-            sData.Qpos1 = rg.Q.pos[1];
-        };
-
-        rg.Q.acceptPos = ( newPos, dragMove ) => {
-            var newPos0 = dragMove[0] + sData.Qpos0;
-            var newPos1 = -dragMove[1] + sData.Qpos1;
-
-            let q = stdMod.pos2q( [newPos0,newPos1] );
-            if( q < sconf.orbit_q_start + 0.0001){
-                q = sconf.orbit_q_start + 0.0001;
-            } else if( q > sconf.orbit_q_end ){
-                sconf.orbit_q_end
-                //would be a revolving:
-                //angle = ( angle + sconf.orbit_q_end ) % sconf.orbit_q_end;
-            }
-            if( q > rg.P.parQ + sconf.DQ_SLIDER_MAX ){
-                q = rg.P.parQ + sconf.DQ_SLIDER_MAX;
-            }
-            let Qqix = Math.max( 0, Math.floor( (q - sconf.orbit_q_start)/sconf.deltaQ ) );
-            let PQix = rg.P.qix;
-            if( Qqix <= PQix ) {
-                ////making float sagitta
-                ////to close, we will set dt independently
-                var dt = (q - rg.P.parQ)/ssD.qix2orb[ PQix ].dq_dt;
+        /// point Q slider
+        rg.Q.acceptPos = newPos => {
+            const qix = rg.P.qix;
+            var Qqix = stdMod.gets_orbit_closest_point( newPos );
+            if( Qqix === qix ) return;
+            if( sconf.TIME_IS_FREE_VARIABLE ){
+                let tt = qIndexToOrbit[ Qqix ].timeAtQ;
+                let Dt = tt - qIndexToOrbit[ qix ].timeAtQ;
+                if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
+                    sconf.DT_SLIDER_MAX <= Dt ) return;
+                ssD.Dt = Dt;
             } else {
-                ////making sagitta aligned with orbit grid
-                //rg.Q.qix = Qqix;
-                let tP = ssD.qix2orb[ rg.P.qix ].timeAtQ;
-                let tQ = ssD.qix2orb[ Qqix ].timeAtQ;
-                var dt = tQ - tP;
+                const q = qIndexToOrbit[ Qqix ].q;
+                let Dq = q - qIndexToOrbit[ qix ].q;
+                if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
+                ssD.Dq = Dq;
             }
-            dt = Math.max( sconf.DT_SLIDER_MIN, dt );
-            ssD.saggitaDt = dt;
-
-            //recalculates dQ attached to orbit points,
-            //todm for now, does redundant job of rebuilding grids
-            stdMod.builds_dq8sagitta();
-            stdMod.builds_orbit_data_graph( sconf.force_law );
-
-            //lets validators to do the job
+            //:Dt or Dq changed
+            stdMod.builds_dq8sagit8displace({});
+            stdMod.builds_orbit_data_graph();
             stdMod.model8media_upcreate();
-            //"return false skips d8d engine"
+            return; //avoids repetition
         }
-        //=====================================================================
-        // \\// point Q slider
-        //=========================================================================
+    }
+
+
+   function creates__gets_orbit_closest_point() {
+       stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
+       return;
+
+       function gets_orbit_closest_point(
+            r, //distance to this point
+            fromGraph //optional, using valid graph points
+        ){
+            //Search every point in the array to ensure point P dragging isn't
+            //choppy (previously only some points were checked).  Note this
+            //runs in a fraction of a millisecond even with a large number of
+            //points.
+            const arr = fromGraph ? graphArray : qIndexToOrbit;
+            let min = null;
+            let qix_min = null;
+            for( let qix=0; qix<arr.length; qix++){
+                const point = arr[qix];
+                if(!point) continue;
+                const pos = point.rr;
+                const x = r[0]-pos[0];
+                const y = r[1]-pos[1];
+                const d2 = x*x + y*y;
+                if( qix_min === null || min>d2 ){
+                    min = d2;
+                    qix_min = fromGraph ? point.qix : qix;
+                }
+            }
+            return qix_min;
+        }
    }
-
-
 }) ();
 
