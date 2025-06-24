@@ -5,15 +5,20 @@
 * Lemmas 2, 3
     * cursor changes to crosshair for handle manipulation
 
-* Lemma 8
+* Lemma 8, 9, 10
     * areas shaded
 
-* Lemmas 9, 10
-    * fixed area highlighting
+* Proposition 6
+    * changed to Cohen translation
+    * fixed link to Lemma 10
+    * simplified diagram by not showing more than what is described
 
 * Proposition 7
     * fixed highlighting in corollaries 2 and 3
     * fractions changed from linear style to stacked
+
+* Proposition 9
+    * fixed spike in graph of estimated force
 
 * Propositions 12, 13
     * point P now a handle; handle φ removed
@@ -28,7 +33,6 @@
 * Lemma 11
     * handle b takes priority except when B and b are at A
     * handle b cannot be moved too far away from B
-
 
 * Proposition 9
     * changed graph's estimated force to match other models
