@@ -70,87 +70,67 @@
         // \\// decorational parameters
         //***************************************************************
 
-
-
-        //***************************************************************
-        // //\\ geometics parameters
+        //=============================================
         // //\\ points reused in config
         //=============================================
         var V = [64, 462 ];
-
         RR = 360; //Math.sqrt( RR ) / 2;
+        var C = [510, 311 ]; //V[0] + ww1/2, V[1] + ww2/2, ];
+        //pos of point P
+        var S = C; //[0, 0 ]; //not set in amode8captures
+        //=============================================
+        // \\// points reused in config
+        //=============================================
+
+
+        //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-
         var mod2inn_scale = 360; //RR;
-        var C           = [510, 311 ]; //455]; //[ V[0] + ww1/2, V[1] + ww2/2, ];
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
-
-        
-        //-------------------------------------------
-        // //\\ curve shape parameters
-        //-------------------------------------------
-        sconf.prop7R = 1;
-        var ro0 = 1.17; //spiral's ro0
-        var curveParA = -0.64;
-        sconf.orbit_q_start = 0;
-        sconf.orbit_q_end = 1.3 * Math.PI;
-        
-        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        //to be studied in given proposition:
-        sconf.force_law = bP => 1/(bP.r2*bP.r);
-        //-------------------------------------------
-        // \\// curve shape parameters
-        //-------------------------------------------
-
+        sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        
-        /*
-        //combination which is at the edge of accuracy:
-        //0.01 gives noticeable sagitta error
-        //0.02 does not give this error
-        //DATA_GRAPH_ARRAY_LEN is irrelevant
-        sconf.DT_SLIDER_MIN = 0.01;
-        var FORCE_ARRAY_LEN = 1000;
+        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.CURVE_REVOLVES = false; //true for cyclic orbit
+        sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
+        sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
+        sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
+        var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
-        //however 0.01 and 2000 eliminates the error, but
-        //for expense of twice large arrays,
-        */
-        
-        sconf.CALCULATE_SUGITTA_ALONG_THE_PATH = false;
-        sconf.CURVE_REVOLVES = false; //is cyclic
-        sconf.DT_SLIDER_MIN = 0.001;
-        sconf.DQ_SLIDER_MAX = 0.65;
-        var FORCE_ARRAY_LEN = 1000;
-        var TIME_STEPS = 1000;
-        var DATA_GRAPH_ARRAY_LEN = 200;
+        var DATA_GRAPH_STEPS = 200;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
         
         //-------------------------------------------
-        // //\\ P and Q points positions
+        // //\\ curve shape parameters
         //-------------------------------------------
-        //interval of t to construct an arc for
-        //Newton's sagitta
-        //interval of t to construct an arc for Newton's sagitta
-        var saggitaDt = 0.4;
-        var parQ = 0.250 * Math.PI;
-        var P = null; //set in init_model_parameters
-        var Q = null; //set in model
+        var ro0 = 1.17; //spiral's ro0
+        var curveParA = -0.64;
+        sconf.orbit_q_start = -0.05 * Math.PI;
+        sconf.orbit_q_end = 1.3 * Math.PI;
         //-------------------------------------------
-        // \\// P and Q points positions
+        // \\// curve shape parameters
         //-------------------------------------------
 
-        sconf.diagramOrigin = [ 0, 0 ];
-        var S = C; //[0, 0 ]; //not set in amode8captures
-        //=============================================
-        // \\// points reused in config
-        //=============================================
+        //to be studied in given proposition:
+        sconf.force_law_function = bP => 1/(bP.r2*bP.r);
+
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.3;
+        } else {
+            sconf.Dq0 = 0.4;
+        }
+
+        //pos of P
+        sconf.parQ = -sconf.orbit_q_start*2;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -166,6 +146,7 @@
             hidden,
             curvature,
             context,
+            displacement,
         } = fixedColors;
 
 
@@ -189,20 +170,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
-        var originalPoints =
-        {
-        };
-
-        Object.assign( originalPoints, {
+        var originalPoints = {
             Or : {
                 doPaintPname : false,
                 pos: C,
@@ -218,12 +186,10 @@
             },
 
             P : {
-                pos: P,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
             },
-
 
             T : {
                 pcolor : proof,
@@ -236,7 +202,6 @@
             },
 
             Q : {
-                pos: Q,
                 pcolor : given,
                 letterAngle : 225,
                 letterRotRadius : 40,
@@ -261,7 +226,6 @@
             },
 
             Y : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : -90,
             },
@@ -273,10 +237,6 @@
             },
 
             //center of instant curvature circle
-            //C is always hidden, therefore could likely be removed eventually however...
-            //-see comment in section "topic group colors" for curvatureCircle
-            //-its position is set in "model-upcreate.js" section "curvature circle"
-            //-may also be set and/or used elsewhere
             C : {
                 pos : C,
                 caption : 'Rc',
@@ -285,7 +245,7 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-        });
+        };
 
 
         var linesArray =
@@ -308,12 +268,10 @@
         ];
 
         ns.paste( sconf, {
-            parQ,
             ro0,
             curveParA,
-            saggitaDt,
-            FORCE_ARRAY_LEN,
-            DATA_GRAPH_ARRAY_LEN,
+            Q_STEPS,
+            DATA_GRAPH_STEPS,
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
@@ -330,11 +288,6 @@
             defaultLineWidth,
             handleRadius,
         });
-        sconf.pointDecoration.r = sconf.handleRadius;
-        sconf.deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
     }
 }) ();
 

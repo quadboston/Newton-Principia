@@ -1,0 +1,122 @@
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "default" : "1",
+  "logic_phaseCaption" : "Theorem 5"
+}
+*..*
+If in a nonresisting space a ¦P¦body¦¦ revolves in any ¦orbit¦¦ about an immobile ¦S¦center¦¦
+and describes any just-nascent ¦timearc¦arc¦¦ in a minimally small ¦dtime¦time¦¦, and if the ¦P,sagitta¦sagitta¦¦ of
+the ¦timearc¦arc¦¦ is understood to be drawn so as to bisect the ¦Q,rrminus¦chord¦¦ and, when produced,
+to pass through the ¦S¦center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦
+will be as the ¦P,sagitta¦the sagitta¦¦ directly and as the ¦dtime¦time¦¦ twice [i.e., as the square of the ¦dtime¦time¦¦]
+inversely.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 453.</div>
+
+
+
+
+*::*proof|english
+{
+  "logic_phaseCaption" : "Proof"
+}
+*..*
+For the ¦P,sagitta¦sagitta¦¦ in a given ¦dtime¦time¦¦ is as the ¦force¦¦ (by 
+<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">prop. 1, corol. 4</a>),
+and
+if the ¦dtime¦time¦¦ is increased in any ratio, then—because the ¦timearc¦arc¦¦ is increased in the
+same ratio—the ¦P,sagitta¦the sagitta¦¦ is increased in that ratio squared (by 
+<a target="_blank" href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 11, corols. 2
+and 3</a>).
+and therefore is as the ¦force¦¦ once and the ¦dtime¦time¦¦ twice [i.e., as the ¦force¦¦
+and the square of the ¦dtime¦time¦¦ jointly]. Take away from both sides the squared
+ratio of the ¦dtime¦time¦¦, and the ¦force¦¦ will become as the ¦P,sagitta¦sagitta¦¦ directly and as the
+¦dtime¦time¦¦ twice [or as the square of the ¦dtime¦time¦¦] inversely. &nbsp;&nbsp; Q.E.D.<br>
+&emsp; This proposition is also easily proved by 
+(<a target="_blank" href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">lem. 10, corol. 4</a>).
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 454.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
+  "subessay" : "corollary1",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+If a body ¦P¦¦, revolving
+about a center ¦S¦¦, describes the curved line
+¦APQ¦¦, while the straight line ¦PZ PR¦ZPR¦¦ touches
+the ¦APQ¦curve¦¦ at any point ¦P¦¦; and ¦QR¦¦, parallel 
+to distance ¦SP¦¦, is drawn to the ¦PZ PR¦tangent¦¦
+from any other point ¦Q¦¦ of the ¦APQ¦curve¦¦, and
+¦QT¦¦ is drawn perpendicular to that distance 
+¦SP¦¦; then the centripetal ¦force¦¦ will be inversely as the solid 
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>,
+
+provided that the magnitude of that solid is always taken as that which it
+has ultimately when the points ¦P¦¦ and ¦Q¦¦ come together. For ¦QR¦¦ is equal to
+the ¦P,sagitta¦sagitta¦¦ of an arc that is ¦timearc¦twice the length of arc QP¦¦, with ¦P¦¦ being in the
+middle; and twice the triangle ¦SQ QP SP¦SQP¦¦ (or ¦SP¦¦ × ¦QT¦¦) is proportional to the ¦dtime¦time¦¦
+in which ¦timearc¦twice that arc¦¦ is described and therefore can stand for the ¦dtime¦time¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 454.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
+  "subessay" : "corollary3"
+}
+*..*
+If the orbit ¦orbit¦APQ¦¦ either is a circle or touches a ¦curvatureCircle¦circle¦¦
+concentrically or cuts it concentrically—that is, if it makes with the ¦curvatureCircle¦circle¦¦ an
+angle of contact or of section which is the least possible—and has the same
+curvature and the same ¦PC¦radius of curvature¦¦ at point ¦P¦¦, and if the ¦curvatureCircle¦circle¦¦ has a
+¦PV¦chord¦¦ drawn from the ¦P¦body¦¦ through the ¦S¦center of forces¦¦, then the centripetal
+¦force¦¦ will be inversely as the solid ¦SY¦¦² × ¦PV¦¦. For ¦PV¦¦ is equal to 
+
+<!-- QP² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦QP¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 5",
+  "subessay" : "corollary5"
+}
+*..*
+Hence, if there is given any curvilinear figure ¦orbit¦APQ¦¦ and
+on it there is given also point ¦S¦¦, to which the centripetal ¦force¦¦ is continually
+directed, the law of the centripetal ¦force¦¦ can be found by which any body
+¦P¦¦, continually ¦QP¦drawn¦¦ away from a ¦PR¦rectilinear course¦¦, will be kept in the
+perimeter of that figure and will describe it as an ¦orbit¦¦. That is, the solid
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>
+
+or the solid ¦SY¦¦² × ¦PV¦¦, inversely proportional to this ¦force¦¦, is
+to be found by computation. We will give examples of this in the following
+problems.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>

@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, userOptions, fconf, sconf, fixedColors, } = 
+    var { ns, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -176,7 +176,7 @@
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
         */
-        sconf.tForSagitta0 = 0.168;
+        sconf.tForSagitta0 = 0.168; //Sets initial distance of point Q from P
         var foldPoints  = (new Array(200)).fill({}).map( fp => ({
             pcolor      : invalid,
             doPaintPname : false,
