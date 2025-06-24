@@ -5,13 +5,12 @@
   "logic_phaseCaption" : "Problem 9"
 }
 *..*
-Supposing that the centripetal force is inversely proportional to the square of the
-¦SP¦distance of places¦¦ from the center and that the absolute quantity of this force is
-known, it is required to find the line which a body describes when going forth
-from a ¦P¦given place¦¦ with a given velocity along a ¦PY¦given straight line¦¦.
+Supposing that the centripetal ¦f¦force¦¦ is inversely proportional to the square of the
+¦Sp SP¦distance of places¦¦ from the ¦S¦center¦¦ and that the absolute quantity of this ¦f¦force¦¦ is
+known, it is required to find the ¦orbit¦line¦¦ which a ¦P¦body¦¦ describes when going forth
+from a ¦P¦given place¦¦ with a given ¦vb¦velocity¦¦ along a ¦PY¦given straight line¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
-Page 116.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 470.</div>
 
 
 
@@ -26,7 +25,7 @@ Page 116.
 }
 *..*
 
-Let the centripetal force tending toward a point S be such that a body p
+Let the centripetal ¦force¦¦ tending toward a point S be such that a body p
 revolves by its action in any given orbit ¦orbit-sample¦pq¦¦,
 and let ¦p,vSample¦its velocity¦¦ in the place ¦p¦¦
 be found out. Let body P go forth from place P along line ¦PR¦¦ with a given
