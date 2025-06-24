@@ -391,6 +391,8 @@
                 //--------------------------------
                 var newSinOmega = Math.sin( omega );
                 var signCosOmega = Math.sign( Math.cos( omega ) );
+                
+                //console.log('omega: ' + newSinOmega)
             }
             //-------------------------------------------------------------------
             // \\// corrects approximate mouse point to exact point on the circle
@@ -424,7 +426,13 @@
             op.mainAxisAngle    = op.PparQ_initial - fi;
             op.latus            = latus;
             op.Kepler_v         = Kepler_v;
+            
+            // *** this is the value being used in P17 ***
+            // *** sometimes it is > 1 when it should be < 1
+            // console.log('new e: ' + e)
+            // if(e > 0.9 && e < 1.1) e = 1;
             stdMod.establishesEccentricity( e );
+
 
             //------------------------------------------------
             // //\\ decorates Fi handle
@@ -547,9 +555,6 @@
         //=========================================================================
 
 
-
-
-
         //=========================================================================
         // //\\ sample slider for point r
         //      for Kepler_v
@@ -643,8 +648,6 @@
         //=========================================================================
 
 
-
-
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
@@ -717,6 +720,4 @@
         return true;
     }
 
-
 }) ();
-

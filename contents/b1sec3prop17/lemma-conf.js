@@ -14,7 +14,13 @@
             ],
 
             codesList : [
+                { src : 'sconf.js' },
+                { src : 'init-model-parameters.js' },
+                { src : 'amode8captures.js' },
                 { src : 'main-legend.js' },
+                { src : 'model-upcreate.js' },
+                { src : 'makes-orbit.js' },
+                { src : 'completes-sliders-creation.js' },
             ],
 
             //optional additional reference html

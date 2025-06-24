@@ -11,6 +11,7 @@
 
     function create_digital_legend()
     {
+        //create_digital_legend_for_logic_phase( 'claim' ); //todo: remove
         create_digital_legend_for_logic_phase( 'proof' );
     }
 
@@ -40,7 +41,7 @@
                 let PK = 2*rg.PK.abs;
                 let SPPK = SP + PK;
 
-                console.log(SPPK);
+                //console.log('SPPK: ' + SPPK);
 
                 if(L === SPPK) 'L = 2SP + 2KP (parabola)'
                 else if(L < SPPK) 'L < 2SP + 2KP (ellipse)'

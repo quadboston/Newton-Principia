@@ -225,6 +225,9 @@
 
         //protects against parabola case by making conic ellipse
         if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
+            //todo: why are we "protecting" against parabola case?
+            //because without this we get svg errors when e === 1
+            //console.log('applying SAFE_VALUE') 
             eccentricity = 1-1.2*SAFE_VALUE;
         }
         op.conicSignum = eccentricity >= 1 ? -1 : 1;
@@ -251,6 +254,10 @@
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
         !vop && eccentricity2sliderPos();
+        
+        //this function does not change eccentricity (except SAFE_VALUE case), 
+        //mostly just flips model from ellipse to hyperbola based on e
+        //console.log('newEccentricity:' + eccentricity); 
     }
 
 }) ();
