@@ -83,17 +83,14 @@ straight line ¦PR¦¦ given in position. &nbsp;&nbsp; Q.E.F.
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
-Hence in ¦orbit¦every conic¦¦, given the principal vertex D, the
-latus rectum L, and a focus S, the other focus H is given when DH is taken
-to DS as the latus rectum is to the difference between the latus rectum and
-4¦DS¦¦. For the proportion SP + PH to PH as 2¦SP¦¦ + 2¦PK¦KP¦¦ to L in the case of
-this corollary becomes DS + DH to DH as 4¦DS¦¦ to L and, by separation [or
-dividendo], becomes DS to DH as 4¦DS¦¦ — L to L.
-
+Hence in every ¦orbit¦conic¦¦, given the principal vertex ¦D¦¦, the
+latus rectum ¦L,LL¦L¦¦, and a focus ¦S¦¦, the other focus ¦H¦¦ is given when ¦DH¦¦ is taken
+to ¦DS¦¦ as the latus rectum is to the difference between the latus rectum and
+4¦DS¦¦. For the proportion ¦SP¦¦ + ¦PH¦¦ to ¦PH¦¦ as 2¦SP¦¦ + 2¦PK¦KP¦¦ to ¦L,LL¦L¦¦ in the case of
+this corollary becomes ¦DS¦¦ + ¦DH¦¦ to ¦DH¦¦ as 4¦DS¦¦ to ¦L,LL¦L¦¦ and, by separation [or
+dividendo], becomes ¦DS¦¦ to ¦DH¦¦ as 4¦DS¦¦ − ¦L,LL¦L¦¦ to ¦L,LL¦L¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
-Page 117.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 471.</div>
 
 
 
