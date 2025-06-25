@@ -7,7 +7,7 @@
         Eædem rationes ultimæ sunt etiam rationes æqualitatis, ubi parallelogrammorum latitudines AB, BC, CD, &amp;c. 
         sunt inæquales, &amp; omnes minuuntur in infinitum.
 
-        <br><br><div book-reference-id="latin"></div>
+        <br><br><div book-reference-id="latin-on-e-rara"></div>
 
 
 *::*proof|latin
@@ -18,4 +18,4 @@
             at latitudine sua ¦AF¦¦ in infinitum diminuta,
             minus fiet dato quovis rectangulo. Q.E.D.
 
-            <br><br><div book-reference-id="latin"></div>
+            <br><br><div book-reference-id="latin-on-e-rara"></div>

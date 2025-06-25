@@ -11,7 +11,7 @@
         ////no unescaped special chars between backticks `...`
         ////no unescaped $, "\", ...
 
-        latin : `
+        'latin-on-e-rara' : `
             <div class="isclosed">
                 <div class="trigger-option">
                     Philosophiae Naturalis Principia Mathematica.
@@ -23,7 +23,7 @@
                     3rd Edition<br>
                     ETH-Bibliothek Zürich<br>
                     Shelf Mark: Rar 4176<br>
-                    License: public domain.<br>
+                    License: public domain<br>
                     Persistent Link: <a href="http://dx.doi.org/10.3931/e-rara-1235"
                                target="_blank"> http://dx.doi.org/10.3931/e-rara-1235<br>
                                http://www.e-rara.ch/<br>
