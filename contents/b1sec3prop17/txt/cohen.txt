@@ -101,17 +101,14 @@ dividendo], becomes ¦DS¦¦ to ¦DH¦¦ as 4¦DS¦¦ − ¦L,LL¦L¦¦ to ¦L,L
   "subessay" : "corollary2"
 }
 *..*
-
-Hence, given the ¦P,vb¦velocity¦¦ of a body in the principal vertex
-D, the orbit will be found expeditiously, namely, by taking its ¦L,LL¦latus rectum¦¦ to
-twice the distance DS as the square of the ratio of this given ¦P,vb¦velocity¦¦ to the
-velocity of a body revolving in a circle at a distance DS (by prop. 16, corol.
-3), and then taking DH to DS as the ¦L,LL¦latus rectum¦¦ to the difference between
+Hence, given the ¦P,vb¦velocity¦¦ of a ¦P¦body¦¦ in the principal vertex
+¦D¦¦, the orbit will be found expeditiously, namely, by taking its ¦L,LL¦latus rectum¦¦ to
+twice the distance ¦DS¦¦ as the square of the ratio of this given ¦P,vb¦velocity¦¦ to the
+velocity of a body revolving in a circle at a distance ¦DS¦¦ (by prop. 16, corol.
+3), and then taking ¦DH¦¦ to ¦DS¦¦ as the ¦L,LL¦latus rectum¦¦ to the difference between
 the ¦L,LL¦latus rectum¦¦ and 4¦DS¦¦.
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman-without-Guide"></div>
-Page 117.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 471.</div>
 
 
 
