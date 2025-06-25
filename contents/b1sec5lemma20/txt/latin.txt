@@ -4,11 +4,8 @@
 }
 *..*
 <img src="contents/b1sec5lemma20/img/latin.jpg" style="width:100%">
-Following Latin texts is from Lemma 20. <br>
-Book I Section V.<br>
 
 <pre>
-LEMMA XX.
 Si parallelogrammum quodvis ASPQ angulis duobus oppositis A &amp; P tangit sectionem
 quamvis conicam in punctis A &amp; P; &amp; lateribus unius angulorum illorum infinite
 productis AQ, AS occurrit eidem sectioni conicae in B &amp; C; a punctis autem occursuum B
