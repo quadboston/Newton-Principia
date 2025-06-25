@@ -23,6 +23,9 @@
 * Propositions 12, 13
     * point P now a handle; handle φ removed
 
+* Proposition 17
+    * improved text-diagram highlighting
+
 
 ## 2025-5-29 (Orange Version, 0.13657)
 ### Improved presentation
