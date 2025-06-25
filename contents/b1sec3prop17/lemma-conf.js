@@ -10,7 +10,6 @@
             [
                 'txt/latin.txt',
                 'txt/cohen.txt',
-                'txt/addendum.txt',
             ],
 
             codesList : [
@@ -23,8 +22,6 @@
                 { src : 'completes-sliders-creation.js' },
             ],
 
-            //optional additional reference html
-            referencesForAllLemmaEssays : '',
         };
     }
 
