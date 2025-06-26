@@ -20,6 +20,9 @@
 * Proposition 9
     * fixed spike in graph of estimated force
 
+* Proposition 11
+    * fractions changed from linear style to stacked
+    
 * Propositions 12, 13
     * point P now a handle; handle φ removed
 
