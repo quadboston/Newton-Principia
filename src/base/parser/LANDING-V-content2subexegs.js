@@ -103,8 +103,6 @@
         //====================================================
         function subessays2subexegs_8_doProcessSubexegs( lemmaConfig )
         {
-            references.text =
-                haz( fconf.sappId2lemmaDef[ fconf.sappId ], 'referencesForAllLemmaEssays' );
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
             var subessays = allEssays__str.split( SUBESSAYS_DIVIDOR );
 
