@@ -27,8 +27,6 @@
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.showingBonusFeatures = showingBonusFeatures;
     userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
-    userOptions.BONUS_START = "bonus-section-start";
-    userOptions.BONUS_END = "bonus-section-end";
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
     userOptions.setsBonus = setsBonus;
     return;   
