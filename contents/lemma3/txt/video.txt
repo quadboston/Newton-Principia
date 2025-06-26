@@ -56,5 +56,5 @@ even though we are not requiring the ¦base¦bases¦¦ to be of equal width.
 
 
 
-*::*corollaries|video
+*::*corollary|video
 There are no videos for these corollaries.

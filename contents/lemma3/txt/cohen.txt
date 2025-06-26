@@ -35,8 +35,9 @@
 
 
 
-*::*corollaries|english
+*::*corollary|english
 {
+  "subessay" : "cor-4",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
