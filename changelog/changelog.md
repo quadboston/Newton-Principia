@@ -26,6 +26,10 @@
 * Proposition 17
     * improved text-diagram highlighting
 
+### Removed
+* Proposition 15
+    * proposition 15's model did not offer clear advantages for learning, so it was removed
+
 
 ## 2025-5-29 (Orange Version, 0.13657)
 ### Improved presentation
