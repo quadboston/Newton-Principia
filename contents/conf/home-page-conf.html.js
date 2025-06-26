@@ -273,8 +273,7 @@
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
-                let cls = sappItem.annotation === userOptions.BONUS_START ?
-                         ' class="' + userOptions.BONUS_START + '"' : '';
+                let cls = '';
                 let cls2 = book === "Book 1" ? ' class="column"' : '';
                 coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
 
