@@ -1,6 +1,6 @@
 # Change Log
  
-## 2025-6-23 (Tan Version, 0.13657)
+## 2025-6-26 (Tan Version, 0.13660)
 ### Improved
 * Lemmas 2, 3
     * cursor changes to crosshair for handle manipulation
@@ -22,7 +22,7 @@
 
 * Proposition 11
     * fractions changed from linear style to stacked
-    
+
 * Propositions 12, 13
     * point P now a handle; handle φ removed
 
