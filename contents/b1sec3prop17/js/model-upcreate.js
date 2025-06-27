@@ -19,6 +19,8 @@
     ///****************************************************
     function model_upcreate()
     {
+        //console.log('model_upcreate'); //called 4x on page load, then 3x when switching tabs; and again when draggers move
+
         const op        = sconf.orbitParameters;
         const cosAxis   = Math.cos( op.mainAxisAngle );
         const sinAxis   = Math.sin( op.mainAxisAngle );
@@ -63,56 +65,15 @@
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-        if( fconf.effId === "b1sec3prop14" ) {
-            ////delta q is derived from delta t
-            var {
-                rr, //for pos for Q
-                sagittaDeltaQ,
-            } = deltaT_2_arc();
-            nspaste( rg.Q.pos, rr );
-            op.sagittaDelta_q = sagittaDeltaQ;
-            //rg.R.caption = fconf.sappId === "b1sec3prop15" ?
-            //    'R' : 'Δt = ' + op.Kepler_v.toFixed(3);
-            rg[ 'P,vb' ].caption = fconf.sappId === "b1sec3prop15" || fconf.effId !== 'b1sec3prop14' ?
-                '' :  'v = ' + op.Kepler_v.toFixed(3);
-            rg.SY.caption = fconf.sappId === "b1sec3prop16" ?
-                'SY = ' + (rg.P.sinOmega * rg.P.abs ).toFixed(3) :
-                '';
-        } else {
-            ////delta q is set not from delta t
-            let delta_q = op.sagittaDelta_q;
-            //-pi,+pi locating is irrelevant for move
-            let Q = q + delta_q;
-            {
-                //--------------------------------------------
-                // //\\ validates sagitta q
-                //      and sets it to op.sagittaDelta_q,
-                //      does this job for any slider which
-                //      affects q and Q
-                //--------------------------------------------
-                if( op.conicSignum === -1 ) {
-                    let abs_Q = Math.abs( Q );
-                    let abs_q = Math.abs( q );
-                    let sing = op.SINGULARITY_ANGLE;
-                    ////keeps hyperbola's saggita in the same branch as hyperbola branch
-                    if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
-                        ////singularity is between q and abs_Q,
-                        ////changes Q making it in the same singularity sector,
-                        //creates new delta_q unrelated to value of the former delta_q
-                        var new_delta_q = Math.abs( sing - abs_q )
-                                          / 3; //factor 3 is an arbitraty > 1
-                        ////shifts q down if increment is negative
-                        new_delta_q *= Math.sign( delta_q );
-                        Q = q + new_delta_q;
-                        op.sagittaDelta_q = new_delta_q;
-                    }
-                }
-                //--------------------------------------------
-                // \\// validates sagitta q
-                //--------------------------------------------
-            }
-            nspaste( rg.Q.pos, fun(Q) );
-        }
+        ////delta q is derived from delta t
+        var {
+            rr, //for pos for Q
+            sagittaDeltaQ,
+        } = deltaT_2_arc();
+        nspaste( rg.Q.pos, rr );
+        op.sagittaDelta_q = sagittaDeltaQ;
+        rg[ 'P,vb' ].caption = op.Kepler_v.toFixed(3);
+        rg.SY.caption = '';
 
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
@@ -141,23 +102,7 @@
         // \\// arc, sagittae and related
         //================================================
 
-
         nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-
-
-        //================================================
-        // //\\ decorations
-        // //\\ graph
-        //------------------------------------------------
-        ///for initial launch only
-        if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.buildsforceGraphArray();
-            stdMod.graphFW.drawGraph_wrap();
-        }
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
-
 
 
         //------------------------------------------------
@@ -178,20 +123,7 @@
         //================================================
 
         //conjugate diameters and tangents
-        if( "b1sec3prop13" === fconf.sappId ) {
-            nspaste( rg.G.pos, mat.dropLine(
-                null, rg.P.pos, rg.C.pos, null, null, 0.4 * op.latus ) );
-            nspaste( rg.M.pos, mat.linesCross(
-                    uu,
-                    rg.P.pos,
-                    [ 1, 0 ],
-                    rg.O.pos,
-                )
-            );
-            nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
-        } else {
-            nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
-        }
+        nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
 
         ////hyperbola or ellipse
         let D = mat.sm( rg.C.pos, -1, uu );
@@ -228,28 +160,6 @@
             ww = mat.rotatesVect( posB, op.mainAxisAngle, );
             nspaste( rg.BB.pos, ww );
         }
-
-        //=============================================================
-        // //\\ for prop. 11,12
-        //=============================================================
-        //point x
-        nspaste( rg.x.pos, mat.lineSegmentsCross(
-            rg.T.pos, rg.P.pos,
-            rg.Q.pos, rg.v.pos,
-        ));
-        //point E
-        nspaste( rg.E.pos, mat.lineSegmentsCross(
-            rg.D.pos, rg.K.pos,
-            rg.O.pos, rg.P.pos,
-        ));
-        nspaste( rg.I.pos, mat.linesCross(
-            DK, rg.H.pos, //direction, start
-            mat.sm( rg.O.pos, -1, rg.P.pos ), rg.O.pos, //direction, start
-        ));
-        //=============================================================
-        // \\// for prop. 11,12
-        //=============================================================
-
 
         //=============================================================
         // //\\ latus

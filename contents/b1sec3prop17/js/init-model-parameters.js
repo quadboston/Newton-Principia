@@ -18,6 +18,8 @@
     ///****************************************************
     function init_model_parameters()
     {
+        //console.log('init_model_parameters'); //called once on page load
+
         var op = sconf.orbitParameters;
         toreg( 'approximated-curve' );
         toreg( 'approximated-curve-sample' );
@@ -41,14 +43,14 @@
             nspaste( rg.P.pos, rr );
             nspaste( rg.Y.pos, projectionOfCenterOnTangent );
             ////establishes rg.omegaHandle.pos
-            let excess = fconf.sappId === "b1sec3prop17" ?
-                0.5 :
-                -0.2
-            ;
+            let excess = 0.5;
             rg.omegaHandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
             nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         }
-        if( fconf.sappId === 'b1sec3prop17' ) {
+
+        //====================================================
+        // //\\ b1sec3prop17
+        //====================================================
             //---------------------------------
             // //\\ sop initials
             //      stashes some values
@@ -76,46 +78,15 @@
             //---------------------------------
             // \\// sop initials
             //---------------------------------
-        }
+        //====================================================
+        // \\// b1sec3prop17
+        //====================================================
 
         stdMod.completesSlidersCreation();      //in-diagram sliders
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
-        //creates placeholder
-        //toreg( 'curvatureCircle' );
-        //toreg( 'tangentCircle' );
-
-        //==================================================
-        // //\\ decoration graph
-        //==================================================
-        ssD.zebraCols = {};
-        [ false, ns.rgbaArr2hsla( [0,     0,   255,    1] )[0] ].forEach(
-            ( monoColorHue ) => {
-                var wwCols = ns.builds_zebraNColors_array({
-                    maxColors : 10,
-                    SATUR       : sconf.DEFAULT_TP_SATUR,  //site setting
-
-                    //40 seems better than 40 for distinct graph lines
-                    LIGHT       : 40,  //sconf.default_tp_lightness ||
-                    OPACITY     : 0.8, //apparently irrelevant; sconf.DEFAULT_TP_OPACITY,
-                    zebraNumber : 4,
-                    monoColorHue, //true is for mono, false is for multy,
-                });
-                if( monoColorHue ) {
-                    ssD.zebraCols.monocolor = wwCols;
-                } else {
-                    ssD.zebraCols.multicolor = wwCols;
-                }
-            });
-        if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.createsGraphFW( stdMod.legendRoot$ );
-        }
-        //==================================================
-        // \\// decoration graph 
-        //==================================================
 
         //too early: overriden later by sconf.rgShapesVisible
         //rg[ 'S,nonSolvablePoint' ].undisplay = true;
     }
 
 }) ();
-

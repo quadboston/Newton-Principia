@@ -12,21 +12,18 @@
     //====================================================
     function init_conf()
     {
+        //console.log('sconf.js init_conf'); //called once on page load
+        
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
         sconf.enableTools               = true;
-        sconf.rgShapesVisible           = true;
-        //fconf.timeToShowOriginalDiagram = 11111111;
+        sconf.rgShapesVisible           = true; // setting to false removes S, SA, P, SP, eccentricity label and line (not dot)
         sconf.default_tp_lightness = 30;
         //====================================================
         // \\// subapp regim switches
         //====================================================
-
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = 145;
 
         //sets model offset
         op.mainAxisAngle_initial = 0;
@@ -39,158 +36,95 @@
         op.Kepler_gInitial  = Kepler_g;
         sop.Kepler_g        = Kepler_g;
         sop.Kepler_gInitial = Kepler_g;
-        fconf.effId = fconf.sappId === 'b1sec3prop14' ||
-                      fconf.sappId === 'b1sec3prop15' ||
-                      fconf.sappId === 'b1sec3prop16' ||
-                      fconf.sappId === 'b1sec3prop17' ? 'b1sec3prop14' : fconf.sappId;
 
-        switch ( fconf.sappId ) {
-            case "b1sec3prop12" :
-                //media
-                var pictureWidth = 690;
-                var pictureHeight = 836; //728;
-                //conic pars
-                op.initialEccentricity = 1.365; //hyperbola
-                op.latusInitial = 0.90;
-                var PparQ = 0.49 * Math.PI;
-                //decorations
-                var F = [ 492, 565 ];
-                op.sagittaDelta_q_initial = 1;
-                break;
-            case "b1sec3prop13" :
-                //media
-                var pictureWidth = 938;
-                var pictureHeight = 611;
-                //conic pars
-                op.latusInitial           = 2.10;
-                op.initialEccentricity    = 1; //parabola
-                var PparQ                 = 0.386 * Math.PI;
-                //decorations
-                op.sagittaDelta_q_initial = 0.39;
-                var F                     = [ 560, 554 ];
-                break;
-            case "b1sec3prop17" :
-                //media
-                //for real picture if diagram's picture is supplied or
-                //for graphical-media work-area if not supplied:
-                var pictureWidth = 1037;
-                var pictureHeight = 765;
-                var mod2inn_scale = 260;
-                var forceHandleInitial = 0.8; //todm fix
-                var F = [ 350,
-                          410
-                        ];
-                sconf.Fi_distance = 1.8;
-                sconf.insertDelayedBatch = true;
 
-                //-------------------------------------------
-                // //\\ sop
-                //-------------------------------------------
-                //sets cinematics
-                sop.latusInitial       = 1;
-                sop.latus              = sop.latusInitial;
-                sop.forceHandleInitial = forceHandleInitial;
-                sop.forceHandle        = forceHandleInitial;
-                {
-                    //Book's diagram values
-                    let r             = 1.30307;
-                    let r2axisX_angle = 2.24;
-                    let sin2speed     = 0.999;
-                    //Book's derivative values
-                    let eta = sop.latus / r;
-                    let e   = Math.sqrt( eta*eta / sin2speed / sin2speed - 2 * eta + 1 );
-                    let fi  = Math.acos( (1-eta)/e );
+        //====================================================
+        // //\\ b1sec3prop17
+        //====================================================
+        //media
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var pictureWidth = 1037;
+        var pictureHeight = 765;
+        var mod2inn_scale = 260; //model's spacial unit expressed in pixels of the picture, vital to set to non-0 value
+        var forceHandleInitial = 0.8; //todm fix
+        var F = [ 350, 410 ];
+        sconf.Fi_distance = 1.8;
+        sconf.insertDelayedBatch = true;
 
-                    //sop.latusInitial is already saved
-                    sop.r = r;
-                    sop.PparQ_initial = fi;
-                    sop.initialEccentricity = e;
-                    //diagram valuse:
-                    sop.r2axisX_angle = r2axisX_angle;
-                    sop.r2axisX_angle_initial = r2axisX_angle;
-                    //derived
-                    sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
-                }
+        //-------------------------------------------
+        // //\\ sop (green circle)
+        //-------------------------------------------
+        //sets cinematics
+        sop.latusInitial       = 1;
+        sop.latus              = sop.latusInitial;
+        sop.forceHandleInitial = forceHandleInitial;
+        sop.forceHandle        = forceHandleInitial;
+        {
+            //Book's diagram values
+            let r             = 1.30307;
+            let r2axisX_angle = 2.24;
+            let sin2speed     = 0.999;
+            //Book's derivative values
+            let eta = sop.latus / r;
+            let e   = Math.sqrt( eta*eta / sin2speed / sin2speed - 2 * eta + 1 );
+            let fi  = Math.acos( (1-eta)/e );
 
-                //todo: why are we calling this 4x in a row with diff values? 
-                //final values are correct, this one is not
-                stdMod.establishesEccentricity( sop.initialEccentricity, null, sop ); 
-
-                //decoration
-                sop.sagittaDelta_q_initial = 0.4;
-                //-------------------------------------------
-                // \\// sop
-                //-------------------------------------------
-
-                //-------------------------------------------
-                // //\\ op
-                //-------------------------------------------
-                op.latusInitial         = 0.93;
-                op.latus                = op.latusInitial;
-                op.initialEccentricity  = 0.60; // change this to 1 to test parabola condition
-                var PparQ = 0.39 * Math.PI;
-                {
-                    let sag_init                    = 0.16;
-                    op.sagittaDelta_q_initial       = sag_init;
-                    //in this prop, using delta_t instead of delta_q
-                    op.delta_t_initial              = sag_init * 2.5;
-                    op.delta_t                      = op.delta_t_initial;
-                    op.delta_t_LIMIT                = op.delta_t_initial * 1.5;
-                }
-                stdMod.establishesEccentricity( op.initialEccentricity );
-                //-------------------------------------------
-                // \\// op
-                //-------------------------------------------
-                //todm get r and then e:
-                //var neededG = 0.975339131380;
-
-                //-----------------------------------------
-                // //\\ defines sample speed
-                //-----------------------------------------
-                var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
-                        lat         : sop.latusInitial,
-                        fi          : sop.PparQ_initial,
-                        e           : sop.initialEccentricity,
-                        Kepler_g    : sop.Kepler_g,
-                })
-                sop.Kepler_v         = Kepler_v;
-                sop.Kepler_v_initial = Kepler_v;
-                sop.cosOmega         = cosOmega;
-                sop.om               = om;
-                sop.cosOmega_initial = cosOmega;
-                sop.om_initial       = om;
-                //-----------------------------------------
-                // \\// defines sample speed
-                //-----------------------------------------
-                stdMod.establishesEccentricity( op.initialEccentricity );
-                break;
-
-            default : //14,15,16
-                op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
-                sconf.insertDelayedBatch = true;
-                //for real picture if diagram's picture is supplied or
-                //for graphical-media work-area if not supplied:
-                var pictureWidth = 884;
-                var pictureHeight = 733;
-                var mod2inn_scale = 260;
-                var F = [ fconf.sappId === 'b1sec3prop16' ? 170 : 160,
-                          fconf.sappId === 'b1sec3prop16' ? 440 : 410
-                        ];
-                op.latusInitial = 0.83;
-                var PparQ       = ( fconf.sappId === 'b1sec3prop16' ? 0.14 : 0.07 ) * Math.PI;
-                {
-                    let sag_q = fconf.sappId === 'b1sec3prop16' ?
-                        //0.2 :
-                        0.4 :
-                        //0.19;
-                        0.62;
-                    op.sagittaDelta_q_initial     = sag_q;
-                    op.delta_t_initial = sag_q * 2.5;
-                }
-                op.delta_t = op.delta_t_initial;
-                op.delta_t_LIMIT = op.delta_t_initial * 1.5;
-                sconf.Fi_distance = 1.8;
+            //sop.latusInitial is already saved
+            sop.r = r;
+            sop.PparQ_initial = fi;
+            sop.initialEccentricity = e;
+            //diagram valuse:
+            sop.r2axisX_angle = r2axisX_angle;
+            sop.r2axisX_angle_initial = r2axisX_angle;
+            //derived
+            sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
         }
+        stdMod.establishesEccentricity( sop.initialEccentricity, null, sop ); 
+        sop.sagittaDelta_q_initial = 0.4;//decoration
+        //-------------------------------------------
+        // \\// sop
+        //-------------------------------------------
+
+        //-------------------------------------------
+        // //\\ op (brown ellipse)
+        //-------------------------------------------
+        op.latusInitial         = 0.93;
+        op.latus                = op.latusInitial;
+        op.initialEccentricity  = 0.60; // change this to 1 to test parabola condition
+        var PparQ = 0.39 * Math.PI;
+        {
+            let sag_init                    = 0.16;
+            op.sagittaDelta_q_initial       = sag_init;
+            //in this prop, using delta_t instead of delta_q
+            op.delta_t_initial              = sag_init * 2.5;
+            op.delta_t                      = op.delta_t_initial;
+            op.delta_t_LIMIT                = op.delta_t_initial * 1.5;
+        }
+
+        //-----------------------------------------
+        // //\\ defines sample speed
+        //-----------------------------------------
+        var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
+                lat         : sop.latusInitial,
+                fi          : sop.PparQ_initial,
+                e           : sop.initialEccentricity,
+                Kepler_g    : sop.Kepler_g,
+        })
+        sop.Kepler_v         = Kepler_v;
+        sop.Kepler_v_initial = Kepler_v;
+        sop.cosOmega         = cosOmega;
+        sop.om               = om;
+        sop.cosOmega_initial = cosOmega;
+        sop.om_initial       = om;
+        //-----------------------------------------
+        // \\// defines sample speed
+        //-----------------------------------------
+        //====================================================
+        // \\// b1sec3prop17
+        //====================================================
+
+
         op.PparQ_initial        = PparQ;
         op.PparQ_initial_essay  = PparQ;
         op.sagittaDelta_q       = op.sagittaDelta_q_initial;
@@ -198,7 +132,6 @@
         //-----------------------------------------------------
         // //\\ sets Kepler_v
         //-----------------------------------------------------
-        op.latus = op.latusInitial;
         stdMod.establishesEccentricity( op.initialEccentricity );
         var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
                 lat         : op.latusInitial,
@@ -225,13 +158,11 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = fconf.sappId === "b1sec3prop17" ? 20 : 30;
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+        sconf.pointDecoration.r = 3;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -258,7 +189,6 @@
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
-
 
 
         //=============================================
@@ -296,12 +226,6 @@
             attention,
         } = fixedColors;
 
-
-        var p17_result_proof = fconf.sappId === "b1sec3prop17" ? result : proof;
-        var p17_result_orbit = fconf.sappId === "b1sec3prop17" ? result : orbit;
-        var p17_body_proof   = fconf.sappId === "b1sec3prop17" ? body : proof;
-        var p17_force_result = fconf.sappId === "b1sec3prop17" ? force : result;
-
         var predefinedTopics =
         {
             given,
@@ -311,17 +235,15 @@
             context,
             curvature,
             body,
-            orbit               : p17_result_orbit,
+            orbit               : result,
             'orbit-sample'      : given,
-            orbitarea           : (fconf.effId === "b1sec3prop14" ? orbitarea : orbitareaHiddenStart),
+            orbitarea           : orbitarea,
             'orbitarea-sample'  : orbitareaSample,
-            orbitdq             : p17_result_orbit,
+            orbitdq             : result,
             'orbitdq-sample'    : given, //todm remove
             shadow,
-            force               : p17_force_result,
-            instanttriangle     : (fconf.effId === "b1sec3prop14" ? instanttriangle : instanttriangleHiddenStart),
-            //curvatureCircle : curvature,
-            //tangentCircle : curvature,
+            force               : force,
+            instanttriangle     : instanttriangle,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -361,7 +283,7 @@
                 //letterAngle : 90,
             },
             H : {
-                pcolor : p17_result_proof,
+                pcolor : result,
                 letterAngle : -90,
             },
             I : {
@@ -376,14 +298,14 @@
 
             B : {
                 letterRotRadius : 20,
-                pcolor : p17_result_orbit,
+                pcolor : result,
             },
 
             BB : {
                 letterAngle : 90,
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : p17_result_orbit,
+                pcolor : result,
             },
 
             L : {
@@ -415,7 +337,7 @@
 
 
             A : {
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 letterRotRadius : 20,
                 letterAngle : -90,
             },
@@ -423,12 +345,12 @@
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : p17_result_orbit,
+                pcolor : result,
             },
 
 
             D : {
-                pcolor : p17_result_proof,
+                pcolor : result,
                 letterRotRadius : 20,
                 //letterAngle : 135,
             },
@@ -464,7 +386,7 @@
             },
 
             R : {
-                pcolor : p17_body_proof,
+                pcolor : body,
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
@@ -490,7 +412,7 @@
             //speed of the body
             vb : {
                 caption : '',
-                pcolor : p17_body_proof,
+                pcolor : body,
                 letterAngle : 135,
                 letterRotRadius : 20,
                 draggableX  : true,
@@ -535,13 +457,6 @@
                 doPaintPname : "b1sec3prop13" !== fconf.sappId,
             },
 
-            /*
-            V : {
-                pcolor : proof,
-                letterAngle : -45,
-            },
-            */
-
             Ys : {
                 caption : '',
                 pcolor : proof,
@@ -570,7 +485,7 @@
 
             //center symmetry of orbit
             C : {
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 letterAngle : -45,
             },
 
@@ -579,21 +494,13 @@
             //----------------------------------------
             u : {
                 caption : '𝑢',
-                pcolor : p17_body_proof,
+                pcolor : body,
                 letterAngle : -45,
                 letterRotRadius : 15,
             },
-            /*
-            tCircleCenter : {
-                caption : "C'",
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-            */
             //----------------------------------------
             // \\// Prop. 10 Book's "another solution"
             //----------------------------------------
-
 
 
             //----------------------------------------
@@ -641,7 +548,7 @@
             },
 
             Q : {
-                pcolor : p17_result_proof,
+                pcolor : result,
                 letterAngle : 225,
                 letterRotRadius : 20,
                 draggableX  : true,
@@ -659,7 +566,7 @@
             Zeta : {
                 caption : 'eccentricity, e',
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 letterAngle : 90,
                 letterRotRadius : 20,
                 draggableX  : 'b1sec3prop13' !== fconf.sappId,
@@ -670,7 +577,7 @@
 
             ZetaCaption : {
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 undisplayAlways : true,
                 letterAngle : 90,
                 letterRotRadius : 20,
@@ -680,7 +587,7 @@
 
             ZetaStart : {
                 pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -688,7 +595,7 @@
 
             ZetaEnd : {
                 pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : p17_result_orbit,
+                pcolor : result,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -742,7 +649,7 @@
                        captionShiftNorm : -28 }, },
 
             { 'PY' : { pcolor : body }, },
-            { 'CS' : { pcolor : p17_result_proof }, },
+            { 'CS' : { pcolor : result }, },
             { 'CH' : { pcolor : proof }, },
 
             { 'P,Zminus' : { pcolor : body }, },
@@ -758,21 +665,20 @@
             { 'p,f' : { pcolor : force, 'stroke-width' : 1.1, captionShiftNorm : -18,
                        vectorTipIx : 1 }, },
 
-            { 'QR' : { pcolor : p17_result_proof }, },
-            //{ 'SQ' : { pcolor : proof }, },
+            { 'QR' : { pcolor : result }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
             { DK : { pcolor : proof }, },
             { DS : { pcolor : proof }, },
-            { DH : { pcolor : p17_result_proof }, },
+            { DH : { pcolor : result }, },
             { PM : { pcolor : body }, },
             { SM : { pcolor : body }, },
 
             { OM : { pcolor : proof }, },
             { ON : { pcolor : proof }, },
             { NS : { pcolor : proof }, },
-            { SA : { pcolor : p17_result_proof }, },
+            { SA : { pcolor : result }, },
             { NP : { pcolor : proof }, },
 
             { GP : { pcolor : proof }, },
@@ -784,29 +690,24 @@
 
             { Gv : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : p17_result_orbit }, },
-            { 'B,BB' : { pcolor : p17_result_orbit }, },
-            //{ AO : { pcolor : p17_result_orbit }, },
+            { 'A,AA' : { pcolor : result }, },
+            { 'B,BB' : { pcolor : result }, },
             { AT : { pcolor : proof }, },
-            { CA : { pcolor : p17_result_proof }, },
+            { CA : { pcolor : result }, },
 
-            //{ DO : { pcolor : p17_result_proof }, },
-            //{ BO : { pcolor : p17_result_proof }, },
-            { CB : { pcolor : p17_result_proof }, },
-            //{ 'L,LL' : { pcolor : proof, caption : 'L/2',
-            //             captionShiftNorm : -18, fontSize : 20, }, },
-            { 'L,LL' : { pcolor : p17_result_orbit,
+            { CB : { pcolor : result }, },
+            { 'L,LL' : { pcolor : result,
                captionShiftNorm : 22, lposYSugar : 3 }, },
             { 'l,ll' : { pcolor : given,
                captionShiftNorm : 44, lposYSugar : -5, }, },
             { SL : { pcolor : orbit, }, },
-            { CD : { pcolor : p17_result_proof }, },
+            { CD : { pcolor : result }, },
 
             { PO : { pcolor : proof }, },
             //{ GO : { pcolor : proof }, },
             { FO : { pcolor : proof }, },
             { 'SP' : {
-                    pcolor : fconf.sappId === "b1sec3prop17" ? body : body,
+                    pcolor : body,
                     vectorTipIx : 1 },
             },
             { 'Sp' : { pcolor : given, 'stroke-width' : 1.1, captionShiftNorm : -18,
@@ -819,11 +720,10 @@
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
             { 'ZetaStart,ZetaEnd' :
-              { pcolor : p17_result_orbit } 
+              { pcolor : result } 
             },
         ];
 
-        //stdMod.init_sliders_conf();
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,

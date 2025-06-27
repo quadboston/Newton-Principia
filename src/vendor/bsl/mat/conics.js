@@ -71,7 +71,9 @@
             var eo      = eta/om;
             var e2      = eo*eo-2*eta+1;
             e           = Math.sqrt(e2);
-            //console.log(e)
+
+            console.log('conic.js: ' + e.toFixed(3));
+            
             var Cfi     =
                             Math.min(       //because sometimes it is > 1 due floating ...
                             1, (1 - eta)/e );

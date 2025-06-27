@@ -20,6 +20,8 @@
     //function  pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
     {
+        //console.log('creates_orbitRack'); // called twice on page load
+
         var op                         = vop || sconf.orbitParameters;
         op.protectedQ                  = protectedQ;
         op.posQ_2_andgleInPIandMinusPI = posQ_2_andgleInPIandMinusPI;
@@ -196,7 +198,6 @@
         }
     }
 
-
     ///decorates media
     function eccentricity2sliderPos()
     {
@@ -207,7 +208,6 @@
         rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
         rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
     }
-
 
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
@@ -231,6 +231,16 @@
             eccentricity = 1-1.2*SAFE_VALUE;
         }
         op.conicSignum = eccentricity >= 1 ? -1 : 1;
+
+// // Determine conic type
+// if (eccentricity < 1 - SAFE_VALUE) {
+//     op.conicSignum = 1; // ellipse
+// } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
+//     op.conicSignum = 0; // parabola
+// } else {
+//     op.conicSignum = -1; // hyperbola
+// }
+        
         if( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
@@ -257,7 +267,7 @@
         
         //this function does not change eccentricity (except SAFE_VALUE case), 
         //mostly just flips model from ellipse to hyperbola based on e
-        //console.log('newEccentricity:' + eccentricity); 
+        console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
 
 }) ();
