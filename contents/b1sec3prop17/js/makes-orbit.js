@@ -220,26 +220,18 @@
     ){
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
-        var SAFE_VALUE = 1e-8;
+        var SAFE_VALUE = 0.1;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
 
-        //protects against parabola case by making conic ellipse
-        if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
-            //todo: why are we "protecting" against parabola case?
-            //because without this we get svg errors when e === 1
-            //console.log('applying SAFE_VALUE') 
-            eccentricity = 1-1.2*SAFE_VALUE;
+        // Determine conic type
+        if (eccentricity < 1 - SAFE_VALUE) {
+            op.conicSignum = 1; // ellipse
+        } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
+            eccentricity = 1-0.0001;
+            op.conicSignum = 0; // parabola
+        } else {
+            op.conicSignum = 1; // hyperbola
         }
-        op.conicSignum = eccentricity >= 1 ? -1 : 1;
-
-// // Determine conic type
-// if (eccentricity < 1 - SAFE_VALUE) {
-//     op.conicSignum = 1; // ellipse
-// } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
-//     op.conicSignum = 0; // parabola
-// } else {
-//     op.conicSignum = -1; // hyperbola
-// }
         
         if( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
@@ -267,7 +259,7 @@
         
         //this function does not change eccentricity (except SAFE_VALUE case), 
         //mostly just flips model from ellipse to hyperbola based on e
-        console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
+        //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
 
 }) ();

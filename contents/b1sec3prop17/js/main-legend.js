@@ -18,7 +18,7 @@
     function create_digital_legend_for_logic_phase( logic_phase )
     {
         //console.log('create_digital_legend'); //called once per phase, all on page load
-        
+
         ////**********************************************************************************
         ////legendScript-format:
         ////[topic, caption, JS-expression-of-value-in-local-JS-context]
@@ -28,21 +28,40 @@
         ////**********************************************************************************
 
         var legendScriptParsed = [
-            [['L,LL', 'L', "rg[ 'L,LL' ].value"]],
+            [['L,LL', 'L', getL()]],
             [['SP', 'SP', 'rg.SP.abs']],
             [['PK', 'KP', 'rg.PK.abs']],
             [['eqn merge-cells', '', getEqn()]],
         ];
+
+        function getL() {
+            return `
+                let L = rg['L,LL'].value;
+                ssF.line2abs( 'PK' );
+                let SP = 2*rg.SP.abs.toFixed(3);
+                let PK = 2*rg.PK.abs.toFixed(3);
+                let SPPK = SP + PK;
+                if(Math.abs(SPPK-L) < 0.1) L = SPPK; // to account for rounding error
+
+                L
+            `;
+        }
 
         function getEqn() {
             return `
                 let e = op.eccentricity;
                 let L = rg['L,LL'].value;
                 ssF.line2abs( 'PK' );
-                let SP = 2*rg.SP.abs;
-                let PK = 2*rg.PK.abs;
+                let SP = 2*rg.SP.abs.toFixed(3);
+                let PK = 2*rg.PK.abs.toFixed(3);
                 let SPPK = SP + PK;
 
+                if(Math.abs(SPPK-L) < 0.1) L = SPPK; // to account for rounding error
+
+                //todo: table gets updated 3x on tab load, 
+                //continuously while mouse is down and moving,
+                //and once more after mouseEnd, which causes a weird jump
+                
                 //console.log('SPPK: ' + SPPK);
 
                 if(L === SPPK) 'L = 2SP + 2KP (parabola)'
