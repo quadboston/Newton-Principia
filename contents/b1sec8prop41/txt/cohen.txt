@@ -31,6 +31,7 @@
 ¦IK¦¦¦
 ¦IN¦¦¦
 
+¦CX¦¦¦
 ¦CX¦XC¦¦¦
 ¦CI¦IC¦¦¦
 ¦CI¦¦¦
@@ -87,12 +88,8 @@
 
 Supposing a ¦force¦centripetal force¦¦ of any kind and granting the ¦VSarea Tarea fiArea¦quadratures¦¦ of ¦force Tkernel Fkernel¦curvilinear figures¦¦, it is required to find the ¦orbit¦trajectories¦¦ in which bodies will move and
 also the ¦Tarea¦times¦¦ of their motions in the ¦orbit¦trajectories¦¦ so found.
-
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 529.
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 529.</div>
 
 
 
@@ -105,61 +102,103 @@ Page 529.
   "logic_phaseCaption" : "Solution"
 }
 *..*
-Let any force tend toward a center ¦C¦¦; and let it be required to find the
+Let any force tend toward a center C; and let it be required to find the
 trajectory VIK𝑘. Let the circle ¦MainCircle¦VR¦¦ be given, described about the center C
 with any radius CV; and about the same center let there be described any
 other circles ID and KE cutting the trajectory in I and K and cutting the
-straight line CV in D and ¦E¦¦.
-<br><br>
-
-Then draw the straight line ¦CX¦CNIX¦¦ cutting
+straight line CV in D and ¦E¦¦. Then draw the straight line ¦CX¦CNIX¦¦ cutting
 the circles KE and VR in N and X, and also draw the straight line ¦CY¦CKY¦¦
-meeting the circle VR in Y.
-<br><br>
+meeting the circle VR in Y. Let the points I and K be very close indeed
+to each other, and let the body proceed from V through I and K to ¦k¦𝑘¦¦; and 
+let point ¦A¦¦ be the place from which another body must fall so as to acquire
+at place D a ¦vgraph vback vgpoint¦velocity¦¦ equal to the velocity of the first body at I. <br><br>
 
-Let the points I and K be very close indeed
-to each other, and let the body proceed from V through I and K to ¦k¦𝑘¦¦;
-
-and let point ¦A¦¦ be the place from which another body must fall so as to acquire
-at place D a ¦vgraph vback vgpoint¦velocity¦¦ equal to the velocity of the first body at I. And with
+And with
 everything remaining as it was in prop. 39, the line-element IK, described in
 a given minimally small time, will be as the velocity and hence as the straight
 line whose square equals the area ABFD, and the triangle ICK proportional
 to the time will be given; and therefore KN will be inversely as the height
 IC, that is, if some quantity Q is given and the height IC is called A, as
-¦VM¦Q¦¦/¦CD¦A¦¦.
-<br><br>
 
+<!-- Q/A -->
+<math><mfrac><mtext>
+Q </mtext><mtext>
+A </mtext></mfrac></math>.
 
-Let us denote this quantity ¦VM¦Q¦¦/¦CD¦A¦¦ by Z, and let us suppose the magnitude
+Let us denote this quantity 
+
+<!-- Q/A -->
+<math><mfrac><mtext>
+Q </mtext><mtext>
+A </mtext></mfrac></math>
+
+by Z, and let us suppose the magnitude
 of Q to be such that in some one case √¦VSarea¦ABFD¦¦ is to Z as IK is to KN,
 and in every case √¦v2graph VSarea¦ABFD¦¦ will be to Z as IK to KN and ABFD to Z² as
-¦IK¦¦² to ¦NK¦KN¦¦², and by separation [or dividendo] ABFD — Z²
-will be to Z²
-as ¦IN¦¦² to ¦NK¦KN¦¦², and therefore √(ABFD - Z²) will be to Z,
-or ¦VM¦Q¦¦/¦CD¦A¦¦, as IN to
-KN, and therefore A x KN will be equal to
-(Q x IN) / √(ABFD - Z²).
+¦IK¦¦² to ¦NK¦KN¦¦², and by separation [or dividendo] ABFD − Z² will be to Z² as 
+¦IN¦¦² to ¦NK¦KN¦¦², and therefore √(ABFD - Z²) will be to Z, or 
+
+<!-- Q/A -->
+<math><mfrac><mtext>
+Q </mtext><mtext>
+A </mtext></mfrac></math>,
+
+as IN to
+KN, and therefore A × KN will be equal to
+
+<!-- (Q × IN) / √(ABFD - Z²) -->
+<math><mfrac><mrow><mtext>
+¦VM¦Q &nbsp;¦¦ </mtext><mo>
+×</mo><mtext>
+¦IN¦&nbsp; IN¦¦  </mtext></mrow><msqrt><mrow><mtext>
+ABFD </mtext><mo>−</mo><mtext>
+Z² </mtext></mrow></msqrt></mfrac></math>.
 <br><br>
 
-Hence, since YX x XC is to A x KN as ¦CX¦¦² to ¦CD¦A¦¦²,
-the rectangle XY x XC will be equal
-(Q x IN x ¦CX¦¦²) / ( Q x IN x ¦CX¦¦² ) / (¦CD¦A¦¦² √(ABFD - Z²).
+Hence, since 
+YX × XC is to A × KN as ¦CX¦¦² to ¦CD¦A¦¦², the rectangle XY × XC will be equal
+to
+
+<!-- (Q × IN × ¦CX¦¦²) /  (¦CD¦A¦¦² √(ABFD - Z²)). -->
+<math><mfrac><mrow><mtext>
+Q </mtext><mo>×</mo><mtext>
+IN </mtext><mo>×</mo><msup><mtext>
+CX </mtext><mn>
+2</mn></msup></mrow><mrow><msup><mtext>
+A </mtext><mn>
+2</mn></msup><msqrt><mrow><mtext>
+ABFD </mtext><mo>−</mo><mtext>
+Z² </mtext></mrow></msqrt></mrow></mfrac></math>.
 
 Therefore, in the perpendicular DF take D𝑏 and D𝑐
-always equal respectively to ¦VM¦Q¦¦/(2√(ABFD - Z²)) and
-(Q x ¦CX¦¦²) /(2¦CD¦A¦¦²√(ABFD - Z²)), and
+always equal respectively to 
 
-describe the curved lines 𝑎𝑏 and 𝑎𝑐  which the points 𝑏 and 𝑐
-continually trace
+<!-- Q / (2√(ABFD - Z²)) -->
+<math><mfrac><mtext>
+Q </mtext><mrow><mn>2</mn><msqrt><mrow><mtext> 
+ABFD </mtext><mo>−</mo><mtext> 
+Z² </mtext></mrow></msqrt></mrow></mfrac></math>
+
+and
+
+<!-- (Q × ¦CX¦¦²) /(2¦CD¦A¦¦²√(ABFD - Z²)) -->
+<math><mfrac><mrow><mtext>
+Q </mtext><mo>×</mo><msup><mtext>
+CX </mtext><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mtext>
+A </mtext><mn>2</mn></msup><msqrt><mrow><mtext>
+ABFD </mtext><mo>−</mo><mtext>
+Z² </mtext></mrow></msqrt></mrow></mfrac></math>,
+
+and
+describe the curved lines 𝑎𝑏 and 𝑎𝑐  which the points 𝑏 and 𝑐 continually trace
 out, and from point V erect V𝑎 perpendicular to the line AC so as to cut
 off the curvilinear areas VD𝑏𝑎 and VD𝑐𝑎, and also erect the ordinates E𝑧
 and E𝑥.
 <br><br>
 
-Then, since the rectangle D𝑏 x IN or D𝑏𝑧E is equal to half of the
-rectangle A x KN or is equal to the triangle ICK, and the rectangle D𝑐 x IN
-or D𝑐𝑥E is equal to half of the rectangle YX x XC or is equal to the triangle
+Then, since the rectangle D𝑏 × IN or D𝑏𝑧E is equal to half of the
+rectangle A × KN or is equal to the triangle ICK, and the rectangle D𝑐 × IN
+or D𝑐𝑥E is equal to half of the rectangle YX × XC or is equal to the triangle
 XCY — that is, since the nascent particles D𝑏𝑧E and ICK of the areas VD𝑏𝑎
 and VIC are always equal, and the nascent particles D𝑐𝑥E and XCY of the
 areas VD𝑐𝑎  and VCX are always equal — the generated area VD𝑏𝑎  will be
@@ -172,26 +211,17 @@ V, the area VD𝑏𝑎  proportional to it will be given and hence the body's
 height CD or CI will be given, and the area VD𝑐𝑎  and, equal to that area,
 the sector VCX along with its angle VCI. And given the angle VCI and the
 height CI, the place I will be given, in which the body will be found at the
-end of that time. Q<!--  -->.E.I<!--  -->.
+end of that time. &nbsp;&nbsp; Q<!--  comment prevents parsing -->.E.I<!--  -->.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 529.</div>
 
-<!-- remove this
+<!-- include?
+<br><br>
     [ In diagram model: "starting point" V placed at distance 1 from ¦C¦¦: CV = A<sub>o</sub> = 1.
     Therfore, constant angular momentum Q = ¦V,v¦v<sub>o</sub>¦¦sin(ω<sub>o</sub>).
     "Newton/Halley printing parameter" Z = ¦vgraph¦v¦¦sin(ω). At starting point: ¦VM¦Z<sub>o</sub>¦¦ = Q. ]
     <br><br>
 -->
-
-
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Pages 530 - 531.
-
-
-
-
-
-
-
 
 
 
@@ -203,19 +233,15 @@ Pages 530 - 531.
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
-
-
 Hence the greatest and least heights of bodies (that is,
 the apsides of their trajectories) can be found expeditiously. For the apsides
 are those points in which the straight line IC drawn through the ¦C¦center¦¦ falls
 perpendicularly upon the trajectory VIK, which happens when the straight
 lines IK and NK are equal, and thus when the area ABFD is equal to Z².
-
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 530.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 531.</div>
+
+
 
 
 *::*corollary|english
@@ -224,16 +250,12 @@ Page 530.
   "subessay" : "corollary2"
 }
 *..*
-
 The angle KIN, in which the trajectory anywhere cuts
 the line IC, is also expeditiously found from the given height IC of the body,
 namely, by taking its sine to the radius as KN to IK, that is, as Z to the
 square root of the area ABFD.
-
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman"></div>
-Page 530.
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 531.</div>
 
 
 
