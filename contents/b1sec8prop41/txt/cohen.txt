@@ -250,7 +250,7 @@ lines IK and NK are equal, and thus when the area ABFD is equal to Z².
   "subessay" : "corollary2"
 }
 *..*
-The angle KIN, in which the trajectory anywhere cuts
+The angle ¦IK IN¦KIN¦¦, in which the trajectory anywhere cuts
 the line IC, is also expeditiously found from the given height IC of the body,
 namely, by taking its sine to the radius as KN to IK, that is, as Z to the
 square root of the area ABFD.
