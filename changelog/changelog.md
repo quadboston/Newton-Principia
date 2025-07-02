@@ -1,5 +1,11 @@
 # Change Log
  
+## 2025-7-14 (Purple Version, 0.)
+### Improved
+* Proposition 41
+    * fractions changed from linear style to stacked
+
+    
 ## 2025-6-26 (Tan Version, 0.13660)
 ### Improved
 * Lemmas 2, 3
