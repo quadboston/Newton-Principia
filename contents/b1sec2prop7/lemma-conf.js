@@ -17,8 +17,7 @@
                 { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
-                { src: sm + 'lib.js' },
-                { src: sm + 'graph-array.js' },
+                { src: sm + 'config-functions.js' },
                 { src: sm + 'graph-fw-lib.js' },
             ],
             "contents-list" :

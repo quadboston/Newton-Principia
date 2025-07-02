@@ -10,24 +10,6 @@
     //====================================================
     function init_conf()
     {
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-
-        //true enables framework zoom
-        sconf.enableTools               = true;
-
-        sconf.rgShapesVisible           = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
-        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
-
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -35,23 +17,35 @@
         //for graphical-media work-area if not supplied:
         var pictureWidth = 892; //630;  //892, 1.4158
         var pictureHeight = 840; //400; //840, 2.1
+
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
 
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.enableStudylab            = false;
+        //true enables framework zoom
+        sconf.enableTools               = true;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
 
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        sconf.rgShapesVisible = true;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
+
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
 
@@ -79,17 +73,8 @@
         sconf.text_nonhover_width   = 1;
         sconf.text_hover_width      = 1;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
-        //***************************************************************
-
-
-
-        //***************************************************************
-        // //\\ geometics parameters
         //***************************************************************
 
         //=============================================
@@ -97,28 +82,62 @@
         //=============================================
         var A = [785, 441];
         var V = [64, 462 ];
-        var ww1 = A[0]-V[0];
-        var RR = ww1*ww1;
-        var ww2 = A[1]-V[1];
-        RR += ww2*ww2;
-        RR = Math.sqrt( RR ) / 2;
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = RR;
-        var C = [ V[0] + ww1/2, V[1] + ww2/2, ];
-
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
-
+        var C = [425, 452];//[ V[0] + ww1/2, V[1] + ww2/2, ];
         var S = [207, 403];
-        var P = [693, 213];
-        var Q = [646.0, 168.0 ];
-
-        sconf.prop7R = 1;
-        sconf.prop7Center = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
         //=============================================
+
+
+        //:diagram sandbox spatial parameters
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = 360; //RR;
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+        sconf.diagramOrigin = [ 0, 0 ];
+
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.CURVE_REVOLVES = true; //true for cyclic orbit
+        sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
+        sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
+        var Q_STEPS = 1000;
+        var TIME_STEPS = 1000;
+        var DATA_GRAPH_STEPS = 500;
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 4;
+        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
+
+        //-------------------------------------------
+        // //\\ curve shape parameters
+        //-------------------------------------------
+        const prop7R = 1;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 2.0 * Math.PI;
+        //-------------------------------------------
+        // \\// curve shape parameters
+        //-------------------------------------------
+
+        //to be studied in given proposition:
+        sconf.force_law_function = bp => 1/(bp.r2*(2*prop7R*bp.sinOmega)**3);
+
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.168;
+        } else {
+            sconf.Dq0 = 0.42;
+        }
+
+        //pos of P
+        sconf.parQ = 0.235 * Math.PI;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -157,7 +176,6 @@
             time,
             curvatureCircle : curvature,
             orbit,
-            timearc : proof,
             APQ     : orbit,
         };
         //-----------------------------------
@@ -167,16 +185,6 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
-        sconf.tForSagitta0 = 0.168; //Sets initial distance of point Q from P
         var foldPoints  = (new Array(200)).fill({}).map( fp => ({
             pcolor      : invalid,
             doPaintPname : false,
@@ -209,7 +217,6 @@
             },
 
             P : {
-                pos: P,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -217,12 +224,11 @@
             },
 
             Q : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
-                draggableY  : fconf.sappId === 'b1sec2prop7',
+                draggableY  : true,
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -250,7 +256,6 @@
                 letterAngle : 45,
             },
 
-
             Zminus : {
                 pcolor : body,
                 letterAngle : 45,
@@ -276,9 +281,7 @@
                 //undisplay : true,
             },
 
-
             Y : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : -90,
             },
@@ -335,7 +338,6 @@
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
         });
 
 
@@ -379,6 +381,11 @@
         ];
 
         ns.paste( sconf, {
+            prop7R,
+            Q_STEPS,
+            DATA_GRAPH_STEPS,
+            TIME_STEPS,
+
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,
