@@ -173,6 +173,7 @@
             //-------------------------------------------------------------------
             var newSinOmega = sData.stashedOmega;
             var signCosOmega = Math.sign( sData.stashedCosOmega );
+            //console.log('omega: ' + newSinOmega);
             
             // the value of omega being calculated here is slightly off
             // using sData.stashedOmega prevents error, by limiting to only
@@ -192,12 +193,16 @@
                     //excludes unsafe values
                     let LIM = Math.PI * 0.99999;
                     if( Math.abs( omega ) > LIM ){
+                        //console.log('too close to pi')
                         omega = Math.sign( omega ) > 0 ? LIM : -LIM;
                     }
                     if( Math.abs( omega ) < 0.000001 ){
+                        //console.log('too close to zero')
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
                 }
+
+                //console.log(omega)
 
                 //--------------------------------
                 // \\// corrects extreme values
@@ -238,8 +243,7 @@
             
             // *** this is the value being used in P17 ***
             // *** sometimes it is > 1 when it should be < 1
-            // console.log('new e: ' + e)
-            // if(e > 0.9 && e < 1.1) e = 1;
+            //console.log('new e: ' + e)
 
             stdMod.establishesEccentricity( e );
 

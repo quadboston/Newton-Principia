@@ -37,11 +37,12 @@
         function getL() {
             return `
                 let L = rg['L,LL'].value;
+                ssF.line2abs( 'SP' );
                 ssF.line2abs( 'PK' );
                 let SP = 2*rg.SP.abs.toFixed(3);
                 let PK = 2*rg.PK.abs.toFixed(3);
                 let SPPK = SP + PK;
-                if(Math.abs(SPPK-L) < 0.1) L = SPPK; // to account for rounding error
+                if(Math.abs(SPPK-L) < 0.01) L = SPPK; // to account for rounding error
 
                 L
             `;
@@ -51,12 +52,16 @@
             return `
                 let e = op.eccentricity;
                 let L = rg['L,LL'].value;
+                ssF.line2abs( 'SP' );
                 ssF.line2abs( 'PK' );
                 let SP = 2*rg.SP.abs.toFixed(3);
                 let PK = 2*rg.PK.abs.toFixed(3);
                 let SPPK = SP + PK;
 
-                if(Math.abs(SPPK-L) < 0.1) L = SPPK; // to account for rounding error
+                if(Math.abs(SPPK-L) < 0.01) {
+                    //console.log('L: ' + L + ' SPPK: ' + SPPK)
+                    L = SPPK; // to account for rounding error
+                }
 
                 //todo: table gets updated 3x on tab load, 
                 //continuously while mouse is down and moving,
