@@ -198,17 +198,6 @@
         }
     }
 
-    ///decorates media
-    function eccentricity2sliderPos()
-    {
-        if( !has( rg, 'ZetaEnd' ) ) return;
-        var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
-        var zeta = Math.atan( op.eccentricity );
-        rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
-        rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
-        rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
-    }
-
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
         //latus is used from op.latus and
@@ -255,7 +244,6 @@
         op.B            = op.latus / op.lambda;
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
-        !vop && eccentricity2sliderPos();
         
         //this function does not change eccentricity (except SAFE_VALUE case), 
         //mostly just flips model from ellipse to hyperbola based on e

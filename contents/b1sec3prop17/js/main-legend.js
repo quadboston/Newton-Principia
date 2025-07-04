@@ -28,6 +28,7 @@
         ////**********************************************************************************
 
         var legendScriptParsed = [
+            [['e', 'eccentricity', 'op.eccentricity']],
             [['L,LL', 'L', getL()]],
             [['SP', 'SP', 'rg.SP.abs']],
             [['PK', 'KP', 'rg.PK.abs']],

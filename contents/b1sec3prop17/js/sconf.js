@@ -244,6 +244,7 @@
             shadow,
             force               : force,
             instanttriangle     : instanttriangle,
+            e                   : result 
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -561,46 +562,6 @@
                 letterRotRadius : 20,
             },
 
-
-            // //\\ eccentricity slider
-            Zeta : {
-                caption : 'eccentricity, e',
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : result,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                draggableX  : 'b1sec3prop13' !== fconf.sappId,
-                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
-                unscalable  : true,
-            },
-
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : result,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
-                unscalable  : true,
-            },
-
-            ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : result,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : result,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-            // \\// eccentricity slider
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -719,9 +680,6 @@
             { uP : { pcolor : proof }, },
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
-            { 'ZetaStart,ZetaEnd' :
-              { pcolor : result } 
-            },
         ];
 
         ns.paste( sconf, {

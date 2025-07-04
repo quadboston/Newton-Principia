@@ -249,7 +249,6 @@
         rg.f.hideD8Dpoint = false;
 
         rg.SL.undisplay = true;
-        rg.Zeta.hideD8Dpoint = true;
         rg.Sp.undisplay = false;
         rg['P,Zminus'].undisplay = true;
         rg['Zminus'].undisplay = true;
