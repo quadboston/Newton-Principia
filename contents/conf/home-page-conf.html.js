@@ -163,7 +163,7 @@
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
-                            open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
+                            open source, MIT license. Built ${fapp.buildDateString}, <span style="color: ${fapp.versionColor}">Version 0.${fapp.version}</span><br>
                         <span class="dd-label"><a href="changelog/changelog.html">What's New</a></span> 
                     </p>
                 </div>`;
@@ -273,8 +273,7 @@
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
-                let cls = sappItem.annotation === userOptions.BONUS_START ?
-                         ' class="' + userOptions.BONUS_START + '"' : '';
+                let cls = '';
                 let cls2 = book === "Book 1" ? ' class="column"' : '';
                 coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
 
@@ -292,18 +291,8 @@
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if(isHomepage) {
-                if (userOptions.showingBonusFeatures()) {
-                    if (sappItem.annotation === userOptions.BONUS_END) {
-                        coreText += `</ul></div>`;
-                    } else {
-                        if (sappItem.sappId === "b1sec3prop14") {
-                            coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
-                        }  
-                    } 
-                } else if (sappItem.sappId === "b1sec2prop7") {
-                    coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
-                }
+            if(isHomepage && sappItem.sappId === "b1sec2prop6") {
+                coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
             }
         });
         coreText += '\n</ul></div></div>';
