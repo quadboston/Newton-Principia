@@ -468,6 +468,8 @@
         function d8d_cb_middle2lowest(
             surfMove, down_move_up, point_on_dragSurf, event, moveIncrement
         ){
+            //ccc( 'in framework: d8d_cb_middle2lowest' );
+            
             var fw = createdFramework;
             //vital-for-mobile
             //ns.d('fram/w: case="' + down_move_up + '"');

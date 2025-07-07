@@ -126,7 +126,8 @@
             //---------------------------------------------------------------
             ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
             ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
-            ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
+            //for anchor-text, sets fixed-color opacity to 1
+            ITEM_BASE_COLOR_TO_ANCHOR : false,
             //---------------------------------------------------------------
             // \\// anchor control
             //---------------------------------------------------------------
@@ -141,8 +142,6 @@
             //***************************************************
             // \\// TOPIC COLORS AND SHAPES
             //***************************************************
-                
-                
                 
                 
             //***************************************************
@@ -187,9 +186,6 @@
         // \\// optionally overriden by url-query-config
         //====================================================
 
-
-
-
         //adds to_sconf to commong sconf
         Object.keys( to_sconf ).forEach( function( key ) {
             sconf[ key ] = to_sconf[ key ];
@@ -197,10 +193,6 @@
 
         fapp.normalizeSliders = normalizeSliders;
         return;
-
-
-
-
 
 
         //fapp

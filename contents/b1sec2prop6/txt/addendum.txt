@@ -22,7 +22,7 @@ In simple words, "one cannot construct the chord" simply from curve's shape with
   "subessayCaption" : "model for non-similar curves"
 }
 *..*
-<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework</b>
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a> framework</b>
 <br><br>
 
 Force
@@ -55,7 +55,7 @@ is defined here</a>,
 }
 *..*
 
-<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework.</b>
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a> framework.</b>
 <br><br>
 
 Force

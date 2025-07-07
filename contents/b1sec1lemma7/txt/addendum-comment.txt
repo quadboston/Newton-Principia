@@ -30,7 +30,7 @@ or directly from lemma 6: <br>
                 \( \overset{u} \sim \; \) 1 <br><br>
     </div>
 
-Going from Book to CalculusXX, one can define two ratios
+Going from Book to Vector Calculus, one can define two ratios
 
     <div style="text-align:center">
         sin(φ) = ¦AE¦¦ / ¦Ar¦¦ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    (i) and <br>

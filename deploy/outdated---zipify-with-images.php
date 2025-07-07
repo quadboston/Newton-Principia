@@ -60,10 +60,7 @@
     // //\\ does gets zippee name from cmd
     //=====================================================
     $add_git_repo = false;
-    $skips_movie_like = false;
-    $skips_big = false;
-    $skips_all = false;
-
+    $skips_images = false;
     if( count($argv) < 2 )
     {
         //too risky: $path_to_dir = '../../../vendor';
@@ -78,12 +75,9 @@
         {
             $add_git_repo = $argv[2] == 'addgit';
         }
-
-        if( count($argv) > 3 and $argv[3] == 'skipsbig' )
+        if( count($argv) > 3 and $argv[3] == 'skipimgages' )
         {
-            $skips_big = true;
-        } elseif ( count($argv) > 3 and $argv[3] == 'skipsall' ) {
-            $skips_all = true;
+            $skips_images = true;
         }
     }
     //=====================================================
@@ -142,7 +136,7 @@
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $path_to_version_file = "changelog/version.js";
+    $path_to_version_file = "version.js";
     $list = glob( $path_to_version_file );
     if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
@@ -180,7 +174,7 @@
     }
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
-    $versionPattern = "\n    fapp.version = $next_version; //application version";
+    $versionPattern = "\n    fapp.version =  $next_version; //application version";
     $new_content = preg_replace( 
             $version_re,
             $versionPattern,
@@ -189,27 +183,6 @@
     //echo $new_content;
     //=====================================================
     // \\// gets version
-    //=====================================================
-
-
-
-
-
-    //=====================================================
-    // //\\ updates build date
-    //=====================================================
-    $oldBuildDatePattern = '#' . 
-                    'fapp.buildDateString\s*=\s*"\d*-\d*-\d*";\s' .
-                    '//build date#';
-    $today = date('Y-m-d', time());
-    $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date';
-    $new_content = preg_replace( 
-            $oldBuildDatePattern,
-            $newBuildDatePattern,
-            $new_content
-    );
-    //=====================================================
-    // \\// updates build date
     //=====================================================
 
 
@@ -259,8 +232,12 @@
         $skipper .= ' --exclude \'.git\'';
     }
 
-    if( $skips_big or $skips_all ) {
+    if( $skips_images ) {
         $skipper .=
+        ' --exclude \'*.png\''.
+        ' --exclude \'*.jpeg\''.
+        ' --exclude \'*.jpg\''.
+        ' --exclude \'*.gif\''.
         ' --exclude \'*.mp4\''.
         ' --exclude \'*.mp3\''.
         ' --exclude \'*.mpeg\''.
@@ -269,8 +246,12 @@
         ' --exclude \'*.mkv\''.
         ' --exclude \'*.avi\''.
         ' --exclude \'*.webm\''.
+        ' --exclude \'*.pdf\''.
         ' --exclude \'*.MP4\''.
         ' --exclude \'*.MP3\''.
+        ' --exclude \'*.PNG\''.
+        ' --exclude \'*.JPEG\''.
+        ' --exclude \'*.GIF\''.
         ' --exclude \'*.MPEG\''.
         ' --exclude \'*.AVI\''.
         ' --exclude \'*.WEBM\''.
@@ -280,19 +261,6 @@
         ' --exclude \'*.zip\''.
         ' --exclude \'*.m4a\''.
         ' --exclude \'*.M4A\''
-        ;
-    }
-
-    if( $skips_all ) {
-        $skipper .=
-        ' --exclude \'*.png\''.
-        ' --exclude \'*.jpeg\''.
-        ' --exclude \'*.jpg\''.
-        ' --exclude \'*.gif\''.
-        //' --exclude \'*.pdf\''.
-        ' --exclude \'*.PNG\''.
-        ' --exclude \'*.JPEG\''.
-        ' --exclude \'*.GIF\''
         ;
     }
     $rsync = 'rsync -a ' . $skipper . ' ' . $rsync;

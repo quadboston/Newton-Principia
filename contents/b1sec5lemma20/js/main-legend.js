@@ -1,7 +1,7 @@
 ( function() {
     var {
         $$, mat,
-        sconf, sDomF, sDomN, ssD, ssF,
+        sconf, sDomF, sDomN, ssD, ssF, sData,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
         ssFExportList :
@@ -14,19 +14,11 @@
     var clustersToUpdate_claim = [];
     return;
 
-
-
-
-
-
-
-
-
+    
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        //c cc( 'starts create_digital_legend' );
         var mlegend = toreg( 'main-legend' )();
         doCreateTable_proof( mlegend );
     }
@@ -43,10 +35,10 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-        ww[ 'a' ].innerHTML = rg.a.value.toFixed(2);
-        ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
+        //ww[ 'a' ].innerHTML = sData.polar_ell_model.e.toFixed(2);
+        //ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
 
-        var wwT=rg.T.pos;
+        //var wwT=rg.T.pos;
 
         //todm this is a patch: do use Pr/Pt
         var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
@@ -108,7 +100,7 @@
         var row = $$.c('tr').to(tb)();
         $$.c('td').a('colspan','9')
                   .addClass('table-caption')
-                  .html(' ')
+                  .html('ratio:')
                   .to(row);
         //===================
         // \\// table caption
@@ -123,15 +115,14 @@
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'a', 'semi a', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
-        makeCl( row, 'b', 'semi b', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
-
+        //makeCl( row, 'a', 'semi a', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
+        //makeCl( row, 'b', 'semi b', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
         var row = $$.c('tr')
-            //.addClass('tostroke')
             .to(tb)();
         makeCl( row, 'PT', 'PT', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
         makeCl( row, 'PR', 'PR', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
         makeCl( row, 'PR-PT', 'PR/PT', null, null,  !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );
+        var row = $$.c('tr').to(tb)();
         //===================
         // \\//
         //===================

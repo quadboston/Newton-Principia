@@ -266,7 +266,7 @@
 
     /*
     //start here:
-    //todo: need this?
+    //todm: need this?
     //      add expand graph?
     //==================================================
     // //\\ shows/hides graph container

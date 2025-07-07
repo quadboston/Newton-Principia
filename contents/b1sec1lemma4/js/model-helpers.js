@@ -51,7 +51,7 @@
 
             //--------------------------------------------------------
             // //\\ left points drag validation
-            //      todo: all this can be eliminated if validate
+            //      todm: all this can be eliminated if validate
             //      integrations in update_model
             //--------------------------------------------------------
             rgX.acceptPos = newPos =>

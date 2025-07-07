@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
 #configures defaults
-PROJECT_PATH_FROM_THIS_SCRIPT="../index.src.html"
+#PROJECT_PATH_FROM_THIS_SCRIPT="../index.src.html"
+PROJECT_PATH_FROM_THIS_SCRIPT="../addendum.src.html"
 PHP_DEPLOYER="deployment-engine.php"
-
 
 #gets mode
 if [ "$#" = "1" ]; then

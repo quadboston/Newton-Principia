@@ -58,7 +58,12 @@ Returning from <><>CXX2E, for fixed interval time Δt,
     <div style="text-align:center;">
         f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
     </div>
-Given:
+
+    Given inverse square law for f, "Latus rectum", the constant L=2ρ<sub>⟂</sub>,
+    is proportional to M, between all possible orbits. This is what this proposition means.
+    <br><br>
+
+In formal language, given:
     <div style="text-align:center;">
         f = 𝛾/¦SP¦r¦¦², 𝛾 = const, assuming 𝛾 is the same for all orbits.
     </div>
@@ -66,7 +71,9 @@ Therefore:
     <div style="text-align:center;">
         ¦SL¦ρ<sub>⟂</sub>¦¦ = 𝜎/𝛾 M² = 4𝜎/𝛾 ¦instanttriangle¦S˙¦¦². &nbsp;&nbsp;&nbsp;(S)
     </div>
-Returning from <><>CXX2E, for fixed time interval Δt,
+    <br>
+
+Returning from <><>CXX2E to finite area, for fixed time interval Δt,
     <div style="text-align:center;">
         ¦QT¦¦ =<sup>u</sup> QP * sin(ω) =<sup>u</sup> PR * sin(ω) =<sup>u</sup> v * Δt * sin(ω) <br>
         ¦SP¦¦ = ¦SP¦r¦¦ <br>
@@ -79,3 +86,48 @@ Returning from <><>CXX2E, for fixed time interval Δt,
 <div book-reference-id="kvk"></div>
 
 
+<!--
+
+Hi John.
+Thank you for your thoughts. This is what I came up so far on these props.
+
+Prop. 15. basically does not need a diagram.
+Prop. 16. needs two sliders for base law: for speed and perpendicular, and, perhaps for shape changer: e.
+
+Prop. 14:
+
+f = 𝜎 (S˙/r)²/ρ⟂
+Given inverse square law for f, "Latus rectum", the constant L=2ρ⟂, is proportional to S˙², between all possible orbits. This is what this proposition means.
+https://landkey.net/z/bs/nl9/demo/13810-addk/addendum.prod.html?conf=sappId=b1sec3prop14,logic_phaseId=proof,aspectId=addendum
+
+In diagram, one can have two kind of handles.
+1) changing the shape, but preserving the L and see S preserves.
+2) changing either the L or S and fixing as much of the other shape parameters which are possible to fix to make the claim clear as possible and see the ratio preserves.
+
+In current implementation, 
+the only 2) is implemented: 
+a) slider changes excentricity, e, and fixes fi, r, and |𝘃|.
+b) slider changes fi and preserves e, r, and |v|. (Only L and ^𝘃,𝗿 do change proportionally.)
+c) handle changes v and preserving r (two complex to grasp)
+
+This current demo is focused on generalization of force law f(r). We should focus only on f=a/r^2.
+Therefore, less complicated demo shuld ingronre change of conic axes and r and include only e and scale of the conic.
+
+2) fi must be fixed when changing L.
+2a already accomplishes this
+2c) handle changes v and preserving r and fi
+We should not have slider for L because this creates uncertainity, due which paramters of orbit change of L happens.
+2) we can add handle for scaling of the cureve for point P along SP.
+
+We should not have handles for Dt because this leads away from the meaning of the theorem.
+Or we can make this for Q and have data table for the ratio L/area^2
+
+
+
+
+
+
+
+
+
+-->

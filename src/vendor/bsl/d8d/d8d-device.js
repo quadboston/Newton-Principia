@@ -323,6 +323,7 @@
                              ( childEvent.clientX || childEvent.clientX === 0 ) &&
                              [ childEvent.clientX , childEvent.clientY ];
             var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
+            //ccc( 'do_complete_end childEvent='+!!(childEvent) );
             if( startPoint ) {
                 !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
                 //.programmer may want to make d8d_cb_middle2lowest throttable:
@@ -333,10 +334,12 @@
                 ///todm this must be worked out for mobile,
                 ///mobile possible does not have meaningful spatial parameters,
                 if( surfPoint ) {
+                    //ccc( 'surfPoint=', surfPoint );
                     var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
                     var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
                  	d8d_cb_middle2lowest( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
                 } else {
+                    //ccc( 'no surfPoint=', surfPoint );
                  	d8d_cb_middle2lowest( null, 'up', null, childEvent );
                 }
 	            startPoint = null;

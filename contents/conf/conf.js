@@ -152,19 +152,19 @@
         HTMLMacroKey : '<><>',
         textScriptMacros : {
             CXX2E :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>
+                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>
                 to
                 <a target="_blank" href="?conf=sappId=addd-fw#Eframework">Euclid</a>
                 framwork`
             ,
             E2CXX :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Eframework">CalculusXX</a>
+                `<a target="_blank" href="?conf=sappId=addd-fw#Eframework">Vector Calculus</a>
                 to
                 <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Euclid</a>
                 framwork`
             ,
             CXX :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework`
+                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a> framework`
             ,
         },
         //------------------------------------------------------

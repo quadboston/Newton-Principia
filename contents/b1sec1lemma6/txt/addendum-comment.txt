@@ -150,7 +150,7 @@ R → R<sub>c</sub> or 2R=D → D<sub>c</sub>=J.
 (Rigorously, R and D are vectors from point A to point R or G on diagram, and curvature-radius-vector is a vector AJ which is a limit of these vectors).
 <br><br>
 
-(CircleSribed curvature is not the curvature χ in CalculusXX where it is |d²<b>r</b>/ds²|.
+(CircleSribed curvature is not the curvature χ in Vector Calculus where it is |d²<b>r</b>/ds²|.
 Yes, when χ exists, then CircleSribed curvature does exist too and = χ = 1/R<sub>c</sub>, but not other way around:
 
 <a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">
@@ -250,7 +250,7 @@ Premise of existance of differential tangent constructs conceptually different d
 non-convex functions in neighbouhood of point A, like x²sin(1/x) at A=(0,0). 
 <br><br>
 
-Moreover, in CalculusXX, differential tangent becomes logical backbone of the Calculus instead of Euclidean tangent.
+Moreover, in Vector Calculus, differential tangent becomes logical backbone of the Calculus instead of Euclidean tangent.
 <br><br>
 
 

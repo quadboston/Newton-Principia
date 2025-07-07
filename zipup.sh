@@ -14,7 +14,11 @@
 #
 #**************************************************
 
+p=$( readlink -f -- "$0"; )
+root=$(dirname "$p")
+b=$(basename $root)
+cd $root
 cd ..
-addk/deploy/zipify.php addk
 
-
+cmd="$b/deploy/zipify.php $b";
+eval $cmd

@@ -33,7 +33,7 @@ This result</a>
 
 is given in <a href="#cohensource"><i>Source</i></a>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
 [<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
-and in CalculusXX, (A)</a>
+and in Vector Calculus, (A)</a>
 ]
 <br><br>
 -->

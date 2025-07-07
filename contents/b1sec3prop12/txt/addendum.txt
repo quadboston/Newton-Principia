@@ -34,7 +34,7 @@ It is evident that ¦EP¦¦ is
 
 b. This result is given in <i>Source</i>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
 [<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
-and in CalculusXX, (A)</a>
+and in Vector Calculus, (A)</a>
 ]
 <br><br>
 equal to the transverse semiaxis ¦CA¦AC¦¦, because when line ¦HI¦¦ is drawn parallel

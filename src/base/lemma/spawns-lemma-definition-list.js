@@ -11,9 +11,9 @@
     ssF.spawns_lemsDefArr = function()
     {
         let ix2lemmaDefAllowed = fconf.ix2lemmaDefAllowed = [];
+        const EXTRA = userOptions.showingBonusFeatures();
         fconf.ix2lemmaDef.forEach( ( ld, ix ) => {
-            if( haz( ld, 'EXTRA_MATERIAL' ) &&
-                !userOptions.showingBonusFeatures() ) {
+            if( haz( ld, 'EXTRA_MATERIAL' ) && !EXTRA ) {
                 return;
             }
             ld.allowedIx = ix2lemmaDefAllowed.length;

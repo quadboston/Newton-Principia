@@ -5,7 +5,7 @@
 }
 *..*
 
-<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>.
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>.
 <br><br>
 
 Combinations of axes are defined as usual: <br>
@@ -53,7 +53,7 @@ After that, χ must be -1 and conic transforms to a hyperbola.
 }
 *..*
 
-<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>.
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>.
 <br><br>
 
 For ¦p,f¦f¦¦ = 𝛾 /¦SP¦r¦¦²,
@@ -116,7 +116,7 @@ L = 2 ¦SP¦r¦¦ ¦P,vb¦v¦¦² / ¦p,vSample¦v²<sub>or</sub>¦¦.
 *::*proof|addendum
 {
   "menuCaption" : "Addendum",
-  "subessayCaption" : "CalculusXX interpretation",
+  "subessayCaption" : "Vector Calculus interpretation",
   "subessay" : "calculus-interpretation"
 }
 *..*

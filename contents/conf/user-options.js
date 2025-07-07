@@ -9,19 +9,26 @@
         sessionStorage.setItem(USE_BG_IMAGE, false);
         sessionStorage.setItem(BONUS, false); //!fconf.basicSiteFeatures);
     }
+    if( has( nsconf, 'extramat' ) ){
+        sessionStorage.setItem(BONUS, nsconf.extramat);
+    }
+    /*
     if( 
         //the presence of keyword "addendum" at the ending of
         //landing file path is preferred:
-        window.location.pathname.match( /extramat[^\/]+$/ )
+        window.location.pathname.match( /extramat=yes[^\/]+$/ )
 
-        //in the presence of keyword "showsBonus" in URL config,
+        //in the presence of keyword "extramat=yes" in URL config,
         //but this does not preseve links to other lemmas:
-        || haz( nsconf, 'showsBonus' ) ) {
+        || haz( nsconf, 'extramat' ) ) {
 
         ////if some call requests extramat features, then they are set in store, and
         ////the next call to different lemma will preserve the extramat,
         sessionStorage.setItem(BONUS, true);
+    } else if( window.location.pathname.match( /extramat=no[^\/]+$/ ){
+        sessionStorage.setItem(BONUS, false);
     }
+    */
     userOptions.doesStoreOption = doesStoreOption; //only for URL-query for bonusOpt.
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
@@ -59,30 +66,32 @@
         };
 
         let bonusCB = document.getElementById("bonusCheckbox");
-        bonusCB.checked = showingBonusFeatures();
-        bonusCB.onclick = () => {
-            var isOn = showingBonusFeatures();
-            doesStoreOption(BONUS, !isOn);
-            var relanded = false;
-            if( has( ns.conf, 'showsBonus' ) ) {
-                ////if user changes URL-induced mode, the entire
-                ////set of URL options wipes out for simplicity, and
-                ////user relands
-                //c cc( 'showsBonus=' + ns.conf.showsBonus );
-                if( (ns.conf.showsBonus && isOn ) ||
-                    (!ns.conf.showsBonus && !isOn ) ) {
-                    //c cc( 'removing search' );
-                    window.location.search = '';
-                    relanded = true;
+        if( bonusCB ){
+            bonusCB.checked = showingBonusFeatures();
+            bonusCB.onclick = () => {
+                var isOn = showingBonusFeatures();
+                doesStoreOption(BONUS, !isOn);
+                var relanded = false;
+                if( has( ns.conf, 'extramat' ) ) {
+                    ////if user changes URL-induced mode, the entire
+                    ////set of URL options wipes out for simplicity, and
+                    ////user relands
+                    //c cc( 'extramat=' + ns.conf.extramat );
+                    if( (ns.conf.extramat && isOn ) ||
+                        (!ns.conf.extramat && !isOn ) ) {
+                        //c cc( 'removing search' );
+                        window.location.search = '';
+                        relanded = true;
+                    }
                 }
-            }
-            //c cc( 'relanding the same=' + window.location );
-            if( !relanded ) {
-                window.location = window.location;
-            }
+                //c cc( 'relanding the same=' + window.location );
+                if( !relanded ) {
+                    window.location = window.location;
+                }
             //redundant because of complete relaning on the way
             //updateBonusContentVisibility();
-        };
+            };
+        }
         updateBonusContentVisibility();
 
         function updateBonusContentVisibility()

@@ -6,7 +6,7 @@
         stdModExportList :
         {
             model_upcreate,
-            setRgPoint,
+            pos8tg_2_rg,
             baseParams_2_extendedParams,
             calculateConicPoint_algo,
             //deriveParameters,
@@ -25,16 +25,16 @@
         baseParams_2_extendedParams();
         var {D,M,A,P, angleBCM} = calculateConicPoint_algo( rg.g.value );
         rg.angleBCM = angleBCM;
-        setRgPoint( 'D', D );
-        setRgPoint( 'M', M );
-        setRgPoint( 'A', A );
-        setRgPoint( 'P', P );
+        pos8tg_2_rg( 'D', D );
+        pos8tg_2_rg( 'M', M );
+        pos8tg_2_rg( 'A', A );
+        pos8tg_2_rg( 'P', P );
         //decorations:
         var N = [
             rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
             -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
         ];
-        setRgPoint( 'N', N );
+        pos8tg_2_rg( 'N', N );
 
         if( amode.subessay === 'converse-proof' ) {
             let np = rg.n.pos;
@@ -70,7 +70,7 @@
     function baseParams_2_extendedParams()
     {
         rg.b.value = 1- rg.a.value;
-        setRgPoint( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
+        pos8tg_2_rg( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
     }
 
 
@@ -141,7 +141,7 @@
 
 
 
-    function setRgPoint( nameP, pos, tangent )
+    function pos8tg_2_rg( nameP, pos, tangent )
     {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored

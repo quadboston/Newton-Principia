@@ -9,10 +9,6 @@
     return;
 
 
-
-
-
-
     function init_conf()
     {
         //====================================================
@@ -79,7 +75,7 @@
         var predefinedTopics =
         {
             "static"                : [0,     200, 255, 1],
-            "core"                  : [255,   0, 0, 1],
+            "core"                  : [155,  70, 0, 1],
             "aux"                   : [255,   0, 255, 1],
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
@@ -237,7 +233,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'semi a (semiaxis a)',
+                    caption : 'excentricity',
                     draggableX : true,
                     draggableY : false,
                     
@@ -540,12 +536,10 @@
         // \\// app view parameters
         //----------------------------------
 
-
-
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
+        fapp.normalizeSliders( pictureHeight / 444 );
         to_sconf =
         {
             predefinedTopics,
@@ -554,20 +548,33 @@
             mediaBgImage : "l20.jpg",
             //dontRun_ExpandConfig : true,
 
-            a : 2.03,
-            aMax : 10,
-            b : 1,
-            rotationRads : Math.PI*0.19,
+            //for e slider
+            eMax : 2,
 
-            //given points on ellipse if fractions of
-            //full cycle of param t
-            initialparP : 0.259,
-            initialparA : 0.7542,
-            initialparC : 0.379,
-            initialparB : 0.0468,
-            initialParT : 0.760, //parameter T on line Pt
+            // //\\ this approximately fits Newton's diagram
+            //focus : [250, 540],
+            focus : [263, 535],    //[266, 526],  //in media scale
+            q0 : -Math.PI*0.19,
+            excentricity : 0.8702,
 
-
+            latus2 : 190.621, //in media scale
+            initialParT : 0.735, //parameter T on line Pt
+            initialparC : 0.58,
+            initialparP : -0.05,
+            initialparA : 5.17,
+            initialparB : -0.51,
+            // \\// this approximately fits Newton's diagram
+            
+            /*
+            //it is hard to fit original Newton diagram
+            //probably, one needs bigger latus
+            latus2 : 185,  //in media scale
+            initialParT : 0.75, //parameter T on line Pt
+            initialparC : 0.55,
+            initialparP : -0.05,
+            initialparA : 5.18,
+            initialparB : -0.52,
+            */
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -605,8 +612,6 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
 
-
-
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
@@ -620,6 +625,5 @@
     //====================================================
     // \\// inits and sets config pars
     //====================================================
-
 }) ();
 

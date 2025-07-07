@@ -63,7 +63,7 @@
 
         if( logic_phase === 'proof' ){
 
-            //todo ... why was it 0.7? and not 1?
+            //todm ... why was it 0.7? and not 1?
             //         this made problems with bars number > DONT_PAINT_BARS_MORE_THAN
             rg.media_scale.value = 1; //0.7;
 

@@ -139,8 +139,13 @@
                             Latin tabs (in progress)<br>
                         <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
                             overlay original diagrams<br>
+
+                        <!-- hidden, available only via URL -->
+                        <!--
                         <input type="checkbox" id="bonusCheckbox" aria-label="extramat"> 
                             shows development
+                        -->
+                        
                     </p>
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
