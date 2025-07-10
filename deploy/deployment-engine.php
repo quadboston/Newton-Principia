@@ -359,13 +359,17 @@
     } else {
         $production_css_link =  "\n";
     }
-    spawn_landing_file( $landing_text,
-                        $links_tpl_re,
-                        $production_css_link .
-                        $link_indent .
-                        '<script src="' . $prod_min_engine . '"></script>',
-                        'index.prod.html', '' );
     
+    //patch:
+    //if addendum does exist, then don't put index
+    if( !$addendum_text ){
+        spawn_landing_file( $landing_text,
+                            $links_tpl_re,
+                            $production_css_link .
+                            $link_indent .
+                            '<script src="' . $prod_min_engine . '"></script>',
+                            'index.prod.html', '' );
+    }
     ///adds addendum to production if its src does exist
     if( !!$addendum_text ) {
         spawn_landing_file( $addendum_text,

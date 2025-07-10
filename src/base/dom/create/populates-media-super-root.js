@@ -18,13 +18,7 @@
     var actuallyLoaded = 0;
     return;
 
-
-
-
-
-
-
-
+    
     //=========================================================
     /// create LemmaDom
     //=========================================================
@@ -42,9 +36,6 @@
             .addClass( 'help-box' )
             .to( topMediaControls$() )
             ;
-
-
-
         //..........................
         // //\\ change-tools button
         //..........................
@@ -149,6 +140,18 @@
         // \\// sets capture button
         //..........................
 
+        sDomN.zoomInfo$ = $$
+            .c( 'div' )
+            .addClass( 'zoom-info' )
+            .html( "zoom=" )
+            .to( topMediaControls$() )
+            .css( 'display', 'block' )
+            .css( 'font-size', '12px' )
+            .css( 'margin-top', '12px' )
+            .css( 'padding-right', '35px' )
+            .css( 'color', '#aaaaaa' )
+            .css( 'float', 'right' );        
+       
         //..........................
         // //\\ sets studylab button
         //..........................
@@ -200,7 +203,8 @@
             .to( wwHelpOnTop$() )
             ;
         if( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ){
-            sDomN.idleHelpButton$.a( 'title', fconf.appDecor.idleHelpButtonTooltip );
+            sDomN.idleHelpButton$.a( 'title', 
+                fconf.appDecor.idleHelpButtonTooltip );
         }
 
         sDomN.helpBoxText$ = $$
@@ -209,6 +213,16 @@
             .html( fconf.appDecor.helpButtonCaption)
             .to( wwHelpOnTop$() )
             ;
+        /*    
+        sDomN.zoomInfo$ = $$.c( 'div' )
+            .addClass( 'zoom-info' )
+            .a( 'style',
+            'float:right; color:red; text-align:right;' )
+            .html( 'zoom=' )
+            //.to( wwHelpOnTop$() )
+            .to( topMediaControls$() )
+            ;
+        */    
         //--------------------------
         // \\// top media controls
         //--------------------------

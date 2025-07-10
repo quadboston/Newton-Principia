@@ -42,13 +42,17 @@
         ];
     }
     ///transforms media-coordinates to model-coordinates
-    function inn2mod( medpos )
+    function inn2mod( medpos, original )
     {
         medpos = medpos || this;
-        const i2m = sconf.inn2mod_scale;
+        const i2m = original ?
+                    1/sconf.originalMod2inn_scale :
+                    sconf.inn2mod_scale;
+        const cx =  original ? sconf.originX_onPicture : sconf.modorInPicX;
+        const cy =  original ? sconf.originY_onPicture : sconf.modorInPicY;
         return [
-            (medpos[0]-sconf.modorInPicX) * i2m,
-            (medpos[1]-sconf.modorInPicY) * i2m * sconf.MONITOR_Y_FLIP,
+            (medpos[0]-cx) * i2m,
+            (medpos[1]-cy) * i2m * sconf.MONITOR_Y_FLIP,
         ];
     }
     ///purpose: use for controls independent on model scale and origin

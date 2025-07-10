@@ -1,11 +1,8 @@
 ( function() {
     var {
         ns, sn, haz, haff, $$, eachprop,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod, toreg, rg,
+        sconf, ssF, ssD, sDomN,
+        sDomF, amode, stdMod, toreg, rg,
         exegs,
     } = window.b$l.apptree({
         setModule,
@@ -14,28 +11,14 @@
             media_upcreate_generic,
         },
     });
-
     var pointies2line;
     return;
-
-
-
-
-
-
-
-
-
-
 
 
     function setModule()
     {
         pointies2line   = ssF.pointies2line;
     }
-
-
-
 
     //=========================================================
     // //\\ updater helper
@@ -45,7 +28,11 @@
     {
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
-
+        sDomN.zoomInfo$.html('zoom='+
+            ( 100 * //see min_magnit for min value:
+            sconf.mod2inn_scale/sconf.originalMod2inn_scale)
+            .toFixed()
+            +'%' );
         //:updates subessay menu
         var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];

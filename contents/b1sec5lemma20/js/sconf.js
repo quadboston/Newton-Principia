@@ -79,6 +79,7 @@
             "aux"                   : [255,   0, 255, 1],
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
+            "legend"                : [0,   0, 0, 0.3],
         };
         let pt = predefinedTopics;   
         pt[ "key-triangle" ] = pt.core;
@@ -91,7 +92,13 @@
         pt[ "generators" ] = pt[ "constructors" ];
         pt[ "tangent" ] = pt[ "constructors" ];
         pt[ "aux-dots" ] = pt.aux;
+        pt[ "perigeum" ] = pt.legend;
+        pt[ "apogee" ] = pt.legend;
+        pt[ "focus" ] = pt.legend;
+        pt[ "rectum" ] = pt.legend;
+        pt[ "ellipse_center" ] = pt.legend;
         
+
         var originalPoints =
         {
             P : { pos: [996, 570],
@@ -191,6 +198,56 @@
                   letterRotRadius : 20,
                 },
 
+            // //\\ decorations
+            ///conic focus
+            focus : {
+                  //caption : 'focus',
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 0,
+                  fontSize : 15,
+            },
+
+            ///conic latus rectum
+            rectum : {
+                  //caption : 'rectum',
+                  letterRotRadius : 20,
+                  hideCaption : true,
+                  undisplayAlways : true,
+            },
+            rectumLow : {
+                  hideCaption : true,
+                  undisplayAlways : true,
+            },
+            perigeum : {
+                  //hideCaption : true,
+                  undisplayAlways : true,
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 20,
+                  fontSize : 15,
+            },
+            apogee : {
+                  //hideCaption : true,
+                  undisplayAlways : true,
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 0,
+                  fontSize : 15,
+            },
+            //to be counted as ellipse_center=(apogee+perigeum)/2
+            ellipse_center : {
+                  caption : 'center',
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                    letterAngle : 190,
+                    letterRotRadius : 45,
+                  fontSize : 15,
+            },
+            // \\// decorations
+  
+  
+  
             //derived points, should not be used in model
             Q : { pos: [1077, 1231],
                   pcolor: pt.static,
@@ -233,7 +290,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'excentricity',
+                    caption : 'eccentricity',
                     draggableX : true,
                     draggableY : false,
                     
@@ -512,11 +569,25 @@
             //------------------------
 
             { 'aStart,aEnd' : {
-                        pcolor : predefinedTopics["ellipse"],
-                        cssClass : 'ellipse',
-                    }
+                    pcolor : predefinedTopics["ellipse"],
+                    cssClass : 'ellipse',
+                }
             },
 
+            // //\\ decorations
+            { 'rectumLow,rectum' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            { 'perigeum,apogee' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            { 'focus,apogee' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            // \\// decorations
         ];
 
         //----------------------------------
@@ -549,7 +620,7 @@
             //dontRun_ExpandConfig : true,
 
             //for e slider
-            eMax : 2,
+            eMax : 1.5,
 
             // //\\ this approximately fits Newton's diagram
             //focus : [250, 540],

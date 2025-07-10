@@ -64,7 +64,8 @@
                     ]
                 }
             );
-            //todm: without this diagram does not return back immediately, only after a click
+            //todm: without this diagram does not return
+            //back immediately, only after a click
             var ach = rg[ "media-mover" ].achieved.achieved;
             sconf.modorInPicX = ach[0];
             sconf.modorInPicY = ach[1];

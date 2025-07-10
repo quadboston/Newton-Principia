@@ -75,6 +75,20 @@
         pos8tg_2_rg( 'H', H );
         var F = mat.linesCross( PC, P, AC, D );
         pos8tg_2_rg( 'F', F );
+        // //\\ legends
+        {
+            const pem = sData.polar_ell_model;
+            rg.focus.pos = pem.focus;
+            q2rg( Math.PI*0.5+pem.q0, 'rectum' );
+            q2rg( Math.PI*1.5+pem.q0, 'rectumLow' );
+            q2rg( Math.PI+pem.q0, 'perigeum' );
+            q2rg( pem.q0, 'apogee' );
+            rg.ellipse_center.pos = [
+                (rg.perigeum.pos[0] + rg.apogee.pos[0])*0.5,
+                (rg.perigeum.pos[1] + rg.apogee.pos[1])*0.5,
+            ];
+        }
+        // \\// legends
     }
 
     function q2rg( parQ, pname )
@@ -143,7 +157,8 @@
         // //\\ deriving tangent
         //-----------------------
         //all in model units:
-        var tpos = mat.linesCross( [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
+        var tpos = mat.linesCross(
+            [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
         pos8tg_2_rg( 't', tpos );
         //-----------------------
         // \\// deriving tangent

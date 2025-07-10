@@ -1,0 +1,52 @@
+*::*claim|model
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Observations",
+  "subessay" : "observations"
+}
+*..*
+
+
+1. Preliminary observations.
+
+Curve L. 
+
+Continues curvature. This is "circular curvature". Assume, this means left and right circular curvature raddies are the same and left and rigth tangents to left and right curvature circles belong to the same line.
+
+Because, there is a tangent to the curve exist in both directinos, one can tend to assume that above line is this tangent also.
+
+Removing redundant suppositions, one can rewrite the claim as follows:
+
+When the a) right curvature exists and b) right tangent to the curve exists, then the angele between the right chord and this tangent is ultimately zero.
+
+But we still need to give a definition of the one side tangent to the curve. If for a moment, we give a modern definition as an ultimate position of the chorde, then lemma 6 loses the value, because the claim of the lemma follows from this defintion. More probably, Newton's "tangent definition" will be more like a definition of a tangent to the circle:
+
+One side tangent T is 
+1) the line ray L which in some neighbourhood of the curve point A has it's tip A and has no other intersection with the curve.
+2) and is "minimally close to the curve", i.e. there is no other ray from A wich lies between L and C and has no other crossigns with C in some neighbourhood of A.
+
+This definition implies that the curve C lies to the one side of the tangent in some neighbourhood of the A.
+
+In modern sense, this defines very restricted class of tangents and impractical for modern Physics.
+
+Note, that without requirement (a), claim fails, for example, for
+    y = sin(1/x), or
+    y = 1+sqrt(x)sin(|1/x|),
+at A = 0 and tangent (x=0, y>=0).
+<a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=if-curve">example</a>, 
+
+and <a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=continuous-if-curve">continuous example</a>.
+
+Because in modern calculus, there is no derivative, "differential tangent". But perhaps, recalling and adding (a) existance of "circular curvature", one "fixes" the claim?
+
+No. There can be "circular curvature" in some neighbourhood of point A and in point A itself, but "differential tangent" <a target="_blank" href="?conf=sappId=addd-prel-curve,logic_phaseId=proof,aspectId=curve,subessayId=infinite-frequency-circle-based-curvature#if-circlescribed-curve">will be still missed and claim fails</a>.
+
+
+
+
+
+
+
+
+
+

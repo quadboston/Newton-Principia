@@ -33,7 +33,7 @@
             sliderCaption   : 'scale',
             cssClsKey       : ' ' + magnit,
             max_magnit      : haz( sconf, 'MAX_MAGNITUDE' ) || 100,
-            min_magnit      : 0.2,
+            min_magnit      : 0.01,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
         });
