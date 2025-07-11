@@ -79,7 +79,7 @@
             "aux"                   : [255,   0, 255, 1],
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
-            "legend"                : [0,   0, 0, 0.3],
+            "legend"                : [200,   200, 200],
         };
         let pt = predefinedTopics;   
         pt[ "key-triangle" ] = pt.core;

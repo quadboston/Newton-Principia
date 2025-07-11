@@ -52,7 +52,20 @@
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
-        rg.a.caption = 'eccentricity, ' + sData.polar_ell_model.e.toFixed(2);
+        {
+            const e = sData.polar_ell_model.e;
+            let cap;
+            if( e<0.01 ){
+                cap = 'circle, eccentricity = 0';
+            } else if( e<0.999 ){
+                cap = 'ellipse, eccentricity = ' + e.toFixed(2);
+            } else if ( e<=1 ){
+                cap = 'parabola, eccentricity = 1';
+            } else {
+                cap = 'hyperbola, eccentricity = ' + e.toFixed(2);
+            }
+            rg.a.caption = cap;
+        }
         ssF.mediaModelInitialized = true;
     }
 

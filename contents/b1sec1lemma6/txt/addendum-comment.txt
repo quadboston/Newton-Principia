@@ -59,6 +59,10 @@ Indeed, sequence of chords has an upper angle, and exact upper bound line. (This
 Therefore, the claim of Lemma 6 can be stated as 
 d) convex, e) chord lenght approaches 0 when curve parameter approaches A, and d). This interpretation of Lemma 6 does not need conditions a) and b) and therefore unlikely meant by Newton.<br><br>
 
+If the whole purpose of the lemmma 6 is to establish the class of curves which have property of "ulitmate angle between chord and tangent is zero", than it would be much simpler to say that we consider only orbits/curves with such property. In this case, lemma6 simply is not necessary.<br><br>
+
+<!--
+
 PS: We remember that in reference (d, Dedekind?), there was a formulation in terms of "upper bound" made by Dedekind, but somehow no longer can find it. There are some, possibly equivalent wordings (Dedekind-Cantor continuity axiom, Hilbert), but we prefer more explicit and closer to original inventor.
 
 https://en.wikipedia.org/wiki/Cantor%E2%80%93Dedekind_axiom
@@ -68,3 +72,5 @@ Axiom of completeness. To a system of points, straight lines, and planes, it is 
 The old axiom V.2 is now Theorem 32.
 https://en.wikipedia.org/wiki/Hilbert%27s_axioms
 https://www.gutenberg.org/files/17384/17384-pdf.pdf
+
+-->
