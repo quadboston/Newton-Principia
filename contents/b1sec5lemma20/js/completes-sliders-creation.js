@@ -78,8 +78,8 @@
                     1;
             //sData.polar_ell_model.latus2 = initialLatus * latusFactor;
             //c cc( sData.polar_ell_model.latus2, 'change='+change.toFixed(3) );
-            const changeHyp = modelPar <=1.01 ?
-                            change : Math.abs(1.05 - sconf.excentricity);
+            const changeHyp = modelPar <=1.001 ?
+                            change : Math.abs(1.001 - sconf.excentricity);
             const parHyperbolaA = 1-changeHyp*0;
             const parHyperbolaC = 1+changeHyp*20;
             const parHyperbolaP = 1-changeHyp*45;
