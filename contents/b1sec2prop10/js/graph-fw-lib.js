@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, sData }
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
@@ -29,17 +29,16 @@
         ///dynamically,
         function doSetColorThreadArray()
         {
-            sData.colorThreadArray = [
+            let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'context' ),
-                sDomF.getFixedColor( 'body' ),
+                sDomF.getFixedColor( 'displacement' ),
             ];
-            return sData.colorThreadArray;
+            return colorThreadArray;
         }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-            const container$ = graphFW.container$ = $$.div()
+            const container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -71,8 +70,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
-
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
@@ -203,7 +201,7 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                abscissaIxValue : stdMod.P2gix(),
                 numberMarks : false,
             };
         }

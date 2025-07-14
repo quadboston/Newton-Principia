@@ -3,7 +3,6 @@
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
-
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
         stdMod.createsGraphFW_class({
@@ -21,7 +20,7 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', 'body' ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -32,6 +31,7 @@
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
                 sDomF.getFixedColor( 'displacement' ),
+                sDomF.getFixedColor( 'body' ),
             ];
             return colorThreadArray;
         }
@@ -60,6 +60,7 @@
 
         function setsGraphAxes()
         {
+            const ADDENDUM = amode.aspect === 'addendum';
             let n2c = sDomF.getFixedColor; //name to color
                 
             //==================================================
@@ -70,7 +71,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = 'rgba(0,0,0,1)'
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
@@ -140,6 +141,7 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
+            const ADDENDUM = amode.aspect === 'addendum';
             return [
                 {
                     fraqX : 0.01,
@@ -213,7 +215,7 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                abscissaIxValue : stdMod.P2gix(),
                 numberMarks : false, 
             };
         }

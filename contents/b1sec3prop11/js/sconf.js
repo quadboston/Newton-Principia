@@ -115,7 +115,8 @@
             Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
             * sconf.ellipseA; //0.86;
         var curveParA   = -0.64;
-        sconf.orbit_q_start = 0.0 * Math.PI;
+        sconf.orbit_q_start = 0;
+        var orbit_q_start = 0.0 * Math.PI;
         sconf.orbit_q_end = 2 * Math.PI;
 
         {
@@ -131,13 +132,13 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.force_law_function = bP => 1/(bP.r2);
+        sconf.force_law = bP => 1/(bP.r2);
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
         if( FT ){
-            sconf.Dt0 = 0.39;
+            var Dt0 = 0.39;
         } else {
             sconf.Dq0 = 0.19;
         }
@@ -168,6 +169,7 @@
             given,
             proof,
             result,
+            displacement,
             hidden,
             context,
             curvature,
@@ -441,6 +443,8 @@
 
         ns.paste( sconf, {
             curveParA,
+            orbit_q_start,
+            Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
             TIME_STEPS,

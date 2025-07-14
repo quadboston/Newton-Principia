@@ -13,7 +13,7 @@
     {
         stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qix2orb[ rg.P.qix ];
         var parQ = Porb.q;
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];

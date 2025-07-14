@@ -29,18 +29,8 @@
     }
     
     ///does newPos -> value -> pos (pos -> value in model)
-    function slider_a_pos2value( zoomedPos )
+    function slider_a_pos2value( newPos )
     {
-        // //\\ removing zoom from mouse move
-        {
-            const s2o = sconf.mod2inn_scale / sconf.originalMod2inn_scale;
-            const achi = rg.a.achieved.achieved;
-            let rel0 = zoomedPos[0] - achi[0];
-            let rel1 = zoomedPos[1] - achi[1];
-            var newPos = [ rel0*s2o+achi[0], rel1*s2o+achi[1] ];
-        }
-        // \\// removing zoom from mouse move
-            
         var scale = ( rg.eEnd.pos[0] - rg.eStart.pos[0] );
         sData.eScale = scale / sconf.eMax;
         var modelPar = ( newPos[0] - rg.eStart.pos[0] ) / sData.eScale;
@@ -108,8 +98,7 @@
             // \\// parameters' decorational changes
         }
         slider_a_value2pos();
-        //newPos[1] = rg.eStart.pos[1];
-        zoomedPos[1] = rg.eStart.pos[1];
+        newPos[1] = rg.eStart.pos[1];
         return true;
     }    
     function slider_a_value2pos()
