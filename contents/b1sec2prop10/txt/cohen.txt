@@ -35,30 +35,21 @@ to
 
 <!-- QT² / P𝑣 -->
 <math><mfrac><mrow><msup><mi>
-¦QT¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦Pv¦P𝑣¦¦ 
-</mi></mrow></mfrac></math>
+¦QT¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦Pv¦P𝑣¦¦ </mi></mrow></mfrac></math>
 
 as ¦PO¦PC¦¦² to 
 
 <!-- CD² × PF² / PC² -->
 <math><mfrac><mrow><msup><mi>
-¦DO¦CD¦¦
-</mi><mn>
-2
-</mn></msup><mo>×</mo><msup><mi>
-¦PF¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><msup><mi>
-¦PO¦PC¦¦
-</mi><mn>
-2
-</mn></msup></mrow></mfrac></math>
-.
+¦DO¦CD¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦PF¦¦</mi><mn>
+2</mn></msup></mrow><mrow><msup><mi>
+¦PO¦PC¦¦</mi><mn>
+2</mn></msup></mrow></mfrac></math>.
 
 <br><br>
 Write
@@ -68,62 +59,46 @@ means together,
 
 <!-- QT² × PC² / QR -->
 <math><mfrac><mrow><msup><mi>
-¦QT¦¦
-</mi><mn>
-2
-</mn></msup><mo>×</mo><msup><mi>
-¦PO¦PC¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦QR¦¦ 
-</mi></mrow></mfrac></math>
+¦QT¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦PO¦PC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦QR¦¦ </mi></mrow></mfrac></math>
 
 will become equal to 
 
 <!-- 2BC² × CA² / PC -->
 <math><mfrac><mrow><mn>
-2
-</mn><msup><mi>
-¦BO¦BC¦¦
-</mi><mn>
-2
-</mn></msup><mo>×</mo><msup><mi>
-¦AO¦CA¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦PO¦PC¦¦ 
-</mi></mrow></mfrac></math>
+2</mn><msup><mi>
+¦BO¦BC¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦AO¦CA¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PO¦PC¦¦ </mi></mrow></mfrac></math>.
 
-. Therefore
+Therefore
 (<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), 
 the centripetal ¦force¦¦ is as 
 
 <!-- 2BC² × CA² / PC -->
 <math><mfrac><mrow><mn>
-2
-</mn><msup><mi>
-¦BO¦BC¦¦
-</mi><mn>
-2
-</mn></msup><mo>×</mo><msup><mi>
-¦AO¦CA¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦PO¦PC¦¦ 
-</mi></mrow></mfrac></math>
+2</mn><msup><mi>
+¦BO¦BC¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦AO¦CA¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PO¦PC¦¦ </mi></mrow></mfrac></math>
 
 inversely, that
 is (because 2¦BO¦BC¦¦² × ¦AO¦CA¦¦² is given), as 
 
 <!-- 1 / PC -->
 <math><mfrac><mrow><mn>
-1
-</mn></mrow><mrow><mi>
-¦PO¦PC¦¦
-</mi></mrow></mfrac></math>
+1</mn></mrow><mrow><mi>
+¦PO¦PC¦¦</mi></mrow></mfrac></math>
 
 inversely, that is, as the distance ¦PO¦PC¦¦
 directly. &nbsp;&nbsp; Q.E.I.
@@ -158,30 +133,22 @@ be equal to
 
 <!-- 2DC² / PC -->
 <math><mfrac><mrow><mn>
-2
-</mn><msup><mi>
-¦DO¦DC¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦PO¦PC¦¦
-</mi></mrow></mfrac></math>
+2</mn><msup><mi>
+¦DO¦DC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PO¦PC¦¦</mi></mrow></mfrac></math>.
 
-. Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
+Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
 revolves in the ellipse will 
 (<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) 
 be as 
 
 <!-- 2DC² / PC -->
 <math><mfrac><mrow><mn>
-2
-</mn><msup><mi>
-¦DO¦DC¦¦
-</mi><mn>
-2
-</mn></msup></mrow><mrow><mi>
-¦PO¦PC¦¦
-</mi></mrow></mfrac></math>
+2</mn><msup><mi>
+¦DO¦DC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PO¦PC¦¦</mi></mrow></mfrac></math>
 
  × ¦PF¦¦² inversely,
 that is (because 2¦DO¦DC¦¦² × ¦PF¦¦² is given), as ¦PO¦PC¦¦ directly. Q.E.I.
@@ -201,7 +168,7 @@ that is (because 2¦DO¦DC¦¦² × ¦PF¦¦² is given), as ¦PO¦PC¦¦ direct
 Therefore, the ¦force¦¦ is as ¦SP¦the distance¦¦ of ¦P¦the body¦¦ from
 ¦O¦the center¦¦ of the ¦orbit¦ellipse¦¦; and, conversely,
 if the ¦force¦¦ is as the ¦SP¦distance¦¦, the
-body will move in an ellipse having ¦O¦its center¦¦ in the center of ¦forces¦¦, or
+body will move in an ellipse having ¦O¦its center¦¦ in the center of ¦force¦forces¦¦, or
 perhaps it will move in a circle, into which an ellipse can be changed.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
@@ -240,15 +207,15 @@ toward an infinitely distant center, will prove to be uniform. This is Galileo's
 theorem. And if (by changing the inclination of the cutting plane to the
 cone) the parabolic section of the cone turns into a hyperbola, the body will
 move in the perimeter of the hyperbola, with the centripetal ¦force¦¦ turned
-into a centrifugal ¦force¦¦. And just as in a circle or an ellipse, if the ¦forces¦¦
+into a centrifugal ¦force¦¦. And just as in a circle or an ellipse, if the ¦force¦forces¦¦
 tend toward a figure's center located in the abscissa, and if the ordinates are
 increased or decreased in any given ratio or even if the angle of the inclination
-of the ordinates to the abscissa is changed, these ¦forces¦¦ are always increased
+of the ordinates to the abscissa is changed, these ¦force¦forces¦¦ are always increased
 or decreased in the ratio of the distances from the center, provided that the
 periodic times remain equal; so also in all figures universally, if the ordinates
 are increased or decreased in any given ratio or the angle of inclination of
 the ordinates is changed in any way while the periodic time remains the
-same, the ¦forces¦¦ tending toward any center located in the abscissa are, for
+same, the ¦force¦forces¦¦ tending toward any center located in the abscissa are, for
 each individual ordinate, increased or decreased in the ratio of the distances
 from the center.
 <br><br>

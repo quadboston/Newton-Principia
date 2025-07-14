@@ -24,14 +24,6 @@
     left : -130%;
 }
 
-.bonus-section-start {
-    display : none;
-}
-
-.shows-bonus-features .bonus-section-start {
-    display : block;
-}
-
 .non-displayed {
     display : none;
 }

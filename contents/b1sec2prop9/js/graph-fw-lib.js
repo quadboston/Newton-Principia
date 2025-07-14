@@ -1,20 +1,11 @@
 ( function() {
-    var {
-        sn, $$, nsmethods, haz, globalCss, userOptions,
-        ssD, sDomN, sDomF, sData,
-        amode, stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            createsGraph_FW_lemma,
-        },
-    });
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
 
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
-
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -40,12 +31,10 @@
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'sagitta' ),
-                sDomF.getFixedColor( 'body' ),
+                sDomF.getFixedColor( 'displacement' ),
             ];
             return colorThreadArray;
         }
-
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
@@ -71,14 +60,13 @@
 
         function setsGraphAxes()
         {
-                const ADDENDUM = amode.aspect === 'addendum';
-                let n2c = sDomF.getFixedColor; //name to color
+            let n2c = sDomF.getFixedColor; //name to color
                     
             //==================================================
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-                var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
             //axis x and legend x color:
             //manually picked color, not from plot,
@@ -86,12 +74,12 @@
             var axisYLegend =
             [
                 {
-                        //"hover-width" decreases gigantict bold
-                        //together, tobold hover-width and tostroke can be redundant
-                        text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                    //overrides tp machinery
-                                    ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                    '>Force</tspan></text>',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                     x       : 40,
                     y       : 25,
                     style   : {
@@ -101,26 +89,21 @@
                     },
                 },
                 {
-                    text    : ADDENDUM ?
-                                'Force -1/r³, est. force, speed, per their max.'
-
-                                :
-
-                                '<text><tspan class="tp-force tofill tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
                                 ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+ n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:' + n2c( 'displacement' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
-                                '<tspan> forces</tspan>' +
+                                '<tspan> forces (per their max)</tspan>' +
                                 '</text>',
-                    x       : 320,
+                    x       : 250,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
@@ -133,8 +116,8 @@
             var axisXLegend =
             [
                 {
-                            text    : 'Distance from force (SP)', 
-                            x       : -560,
+                    text    : 'Distance from force (SP)',
+                    x       : -560,
                     y       : 25,
                     style   : {
                                 'font-size' : '30',
@@ -158,16 +141,15 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            const ADDENDUM = amode.aspect === 'addendum';
             return [
                 {
                     fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                        pcaption : '',
-                        fontShiftX : -222,
-                        fontShiftY : 0,
+                    pcaption : '',
+                    fontShiftX : -222,
+                    fontShiftY : 0,
                     style : {
-                            'font-size' : '30px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[0],
                         //'fill' : colorThreadArray[0],
                     },
@@ -220,7 +202,7 @@
         {
                 const svg = graphFW.fw.plotIx2plotSvg;
                 $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-                $$.$( svg[1] ).addClass( 'tp-deviation tostroke' );
+                $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
                 svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
                 svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
@@ -232,8 +214,7 @@
                     //stroke : sData.colorThreadArray[2],
                     'stroke-width' : 1,
                 },
-                    abscissaIxValue : Math.floor( rg.P.qix*sconf.DATA_GRAPH_ARRAY_LEN
-                                    /sconf.FORCE_ARRAY_LEN ), //? default = stdMod.pos2qix(),
+                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
                 numberMarks : false, 
             };
         }
@@ -248,7 +229,7 @@
                 decimalDigits   : 3,
                 stroke          : xColor,
                 fill            : xColor,
-            'stroke-width'   : '0.2',
+                'stroke-width'  : '0.2',
             };
         }
 
@@ -261,8 +242,9 @@
                 decimalDigits   : 1,
                 stroke          : yColor,
                 fill            : yColor,
-            'stroke-width'   : '1',
+                'stroke-width'  : '1',
             };
         }
     }
 }) ();
+

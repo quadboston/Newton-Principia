@@ -227,88 +227,9 @@ sup {
     cursor: pointer;
     opacity:1;
 }
-.video-help-button {
-    cursor: pointer;
-    opacity:0.2;
-}
-.video-help-button:hover,
-.model-help:hover {
-    opacity:1;
-}
-
-/* todo: this was only added conditionally, why? if( fconf.appDecor.helpBox_opacity0 ) */
-/* but also, it should be pointer, why set to auto at all? */
-/* .video-help-button,
-.model-help {
-    cursor: auto;
-} */
 
 /* //==================================
 // \\// model help
-//==================================
-
-
-//==================================
-// //\\ video
-//================================== */
-
-.bsl-showreel-video-wrap {
-    position:relative;
-    margin-bottom:10px;
-    background-color:transparent; /*#DDDDDD;*/
-    left        :50%;
-    transform   :translate(-50%,0%);
-}
-
-.bsl-showreel-video,
-.bsl-showreel-video-iframe{
-    position:absolute;
-    width:96%;
-    height:96%;
-    left:50%;
-    top:50%;
-    transform   :translate(-50%,-50%);
-    background-color:#DDDDDD;
-}
-
-.bsl-close-html-button {
-    position:absolute;
-    width:20px;
-    height:20px;
-    border-radius:15px;
-    right:-20px;
-    top:10px;
-    padding-top:5px;
-    padding-left:9px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    background-color:rgba(0,0,0,1);
-    cursor:pointer;
-    opacity:1;
-    z-index:1000;
-}
-
-/* //==================================
-// //\\ video icon
-//================================== */
-
-.video-icon-img-container > img {
-    position:relative;
-    /* version 1685: because of not perfect design,
-       the jerk of caption happens when this number
-       is greater than 18px
-    */
-    width:18px;
-    top:1px;
-}
-.video-list-popup .video-icon-img-container > img {
-    top:2px;
-    vertical-align:middle;
-}
-
-/* //==================================
-// \\// video icon
 //================================== */
 
 .hidden {

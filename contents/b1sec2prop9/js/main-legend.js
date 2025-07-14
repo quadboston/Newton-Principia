@@ -1,11 +1,6 @@
 ( function() {
-    var {
-        ssF, rg, stdMod
-    } = window.b$l.apptree({
-        stdModExportList : {
-            create_digital_legend,
-        },
-    });
+    var { ssF, stdMod, } = window.b$l.apptree({ stdModExportList : {
+        create_digital_legend, }, });
     return;
 
 

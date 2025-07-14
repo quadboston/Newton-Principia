@@ -8,8 +8,8 @@
 If the given straight lines ¦AR¦¦ and ¦BR¦¦, together with the arc ¦arc-AB¦ACB¦¦,
 its chord ¦AB¦¦,
 and the tangent ¦AD¦¦, constitute three triangles
-¦RAB AR AB BR¦RAB¦¦, ¦RACB AR BR arc-AB¦RACB¦¦, and ¦RAD AR RD AD¦RAD¦¦, and if
-then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the ¦RAB RACB RAD AR AB BR arc-AB RD AD¦ triangles ¦¦ as they vanish
+¦area-RAB RAB¦RAB¦¦, ¦area-RACB RACB¦RACB¦¦, and ¦area-RAD RAD¦RAD¦¦, and if
+then points ¦A¦¦ and ¦B¦¦ approach each other, I say that the ¦area-RAB area-RACB area-RAD RAB RACB RAD¦ triangles ¦¦ as they vanish
 are similar in their ultimate form, and that their ¦RACB-RAB RAD-RAB¦ultimate ratio is one of equality¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
@@ -33,11 +33,11 @@ and let arc ¦arc-Ab¦Acb¦¦ be always similar
 to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
 ¦B¦¦ come together, the angle ¦Ab A,d¦bAd¦¦ will
 
-vanish, and therefore the three triangles ¦rAb Ab A,r r,b¦rAb¦¦,
-¦rAcb A,r arc-Ab r,b¦rAcb¦¦,
-and ¦rAd r,d A,r A,d¦rAd¦¦, which are always finite, will coincide and on that account are similar and ¦rAcb-rAb rAd-rAb¦equal¦¦. Hence
-also ¦RAB AR AB BR¦RAB¦¦, ¦RACB AR BR arc-AB¦RACB¦¦,
-and ¦RAD AR RD AD¦RAD¦¦, which will always be similar and proportional
+vanish, and therefore the three triangles ¦rAb area-rAb¦rAb¦¦,
+¦rAcb area-rAcb¦rAcb¦¦,
+and ¦rAd area-rAd¦rAd¦¦, which are always finite, will coincide and on that account are similar and ¦rAcb-rAb rAd-rAb¦equal¦¦. Hence
+also ¦RAB area-RAB¦RAB¦¦, ¦RACB area-RACB¦RACB¦¦,
+and ¦RAD area-RAD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and ¦RACB-RAB RAD-RAB¦equal to one another¦¦. &nbsp; Q.E.D
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
@@ -61,11 +61,11 @@ to the distant points ¦b¦b¦¦, ¦d¦d¦¦, and ¦r¦r¦¦, and
 and let arc ¦arc-Ab¦Acb¦¦ be always similar
 to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
 ¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
-vanish, and therefore the three triangles ¦Ab A,r r,b¦rAb¦¦,
-¦A,r arc-Ab r,b¦rAcb¦¦,
-and ¦r,d A,r A,d¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
-also ¦AR AB BR¦RAB¦¦, ¦AR BR arc-AB¦RACB¦¦,
-and ¦AR RD AD¦RAD¦¦, which will always be similar and proportional
+vanish, and therefore the three triangles ¦rAb area-rAb¦rAb¦¦,
+¦rAcb area-rAcb¦rAcb¦¦,
+and ¦rAd area-rAd¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
+also ¦RAB area-RAB¦RAB¦¦, ¦RACB area-RACB¦RACB¦¦,
+and ¦RAD area-RAD¦RAD¦¦, which will always be similar and proportional
 to these, will ultimately become similar and equal to one another. &nbsp;&nbsp; Q.E.D
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
@@ -78,6 +78,6 @@ to these, will ultimately become similar and equal to one another. &nbsp;&nbsp; 
   "logic_phaseCaption" : "Corollary"
 }
 *..*
-And hence ¦RAB RACB RAD AR AB BR arc-AB RD AD¦those triangles¦¦ can be used for one another interchangeably in any argumentation concerning ultimate ratios.
+And hence ¦RAB RACB RAD area-RAB area-RACB area-RAD¦those triangles¦¦ can be used for one another interchangeably in any argumentation concerning ultimate ratios.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 437.</div>

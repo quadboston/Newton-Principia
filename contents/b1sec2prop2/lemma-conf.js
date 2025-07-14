@@ -55,10 +55,7 @@
             [
                 './txt/latin.txt',
                 './txt/cohen.txt',
-                './txt/addendum-comment.txt',
             ],
-            //optional additional reference html
-            referencesForAllLemmaEssays : ``,
         };
     }
 

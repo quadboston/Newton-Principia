@@ -7,7 +7,7 @@
 *..*
 Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦;
 it is required to find the law of the centripetal
-¦force¦¦ tending toward a ¦S¦focus¦¦ of the ellipse.
+¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦ellipse¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 462.</div>
 
@@ -30,12 +30,24 @@ and ¦EI¦¦ are equal because ¦OS¦CS¦¦ and ¦OH¦CH¦¦ are equal; so that 
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
 ¦PH P,Zminus¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
 the whole axis 2¦AO¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if L denotes the
-principal latus rectum of the ellipse (or 2¦BO¦BC¦¦²&nbsp;/&nbsp;¦AO¦AC¦¦), L × ¦QR¦¦ will
+principal latus rectum of the ¦orbit¦ellipse¦¦ 
+
+<!-- (or 2BC² / AC) -->
+<math><mrow>
+<mo stretchy="true">(</mo><mrow><mtext>
+or&nbsp;</mtext><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦BO¦BC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦AO¦AC¦¦</mi></mrow></mfrac></mrow>
+<mo stretchy="true">)</mo></mrow></math>,
+
+L × ¦QR¦¦ will
 be to L × ¦Pv¦P𝑣¦¦
 as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AO¦AC¦¦ to ¦PO¦PC¦¦; and
 L × ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ as
 L to ¦vG¦G𝑣¦¦; and
- ¦vG¦G𝑣¦¦ × ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
+ ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦²
  as ¦PO¦PC¦¦² to ¦DO¦CD¦¦²; and
 (<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
@@ -53,9 +65,24 @@ to ¦PO¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦DO¦CD¦¦²
  × ¦BO¦CB¦¦²
 , or as 2¦PO¦PC¦¦ to ¦vG¦G𝑣¦¦. But with the points ¦Q¦¦ and ¦P¦¦
 coming together, 2¦PO¦PC¦¦ and ¦vG¦G𝑣¦¦ are equal. Therefore, L × ¦QR¦¦ and ¦QT¦¦², which
-are proportional to these, are also equal. Multiply these equals by ¦SP¦¦²&nbsp;/&nbsp;¦QR¦¦, and
+are proportional to these, are also equal. Multiply these equals by 
+
+<!-- SP² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>,
+
+and
 L × ¦SP¦¦²
- will become equal to ¦SP¦¦² × ¦QT¦¦²&nbsp;/&nbsp;¦QR¦¦. Therefore
+ will become equal to 
+ 
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>.
+ 
+ Therefore
 (<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
 </a>)
  the ¦force¦centripetal force¦¦ is inversely as L × ¦SP¦¦², that is, inversely as the
@@ -80,14 +107,23 @@ The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦orbit¦the ellipse¦
 href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by 
 prop. 10, corol. 1</a>)
 as the distance ¦PO¦CP¦¦
-of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
-the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
-which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
+of the body from the ¦O¦center C¦¦ of the ¦orbit¦ellipse¦¦; hence, if ¦EO¦CE¦¦ is drawn parallel to
+the tangent ¦PR¦¦ of the ¦orbit¦ellipse¦¦ and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
+which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ¦orbit¦ellipse¦¦
 will
 (<a target="_blank" 
 href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by 
 prop. 7, corol. 3</a>)
-be as ¦EP¦PE¦¦³&nbsp;/&nbsp;¦SP¦¦²; that is, if point ¦S¦¦ is a focus of the ellipse,
+be as
+
+<!-- PE³ / SP²; -->
+<math><mfrac><msup><mi>
+¦EP¦PE¦¦</mi><mn>
+3</mn></msup><msup><mi>
+¦SP¦¦</mi><mn>
+2</mn></msup></mfrac></math>;
+
+that is, if point ¦S¦¦ is a focus of the ¦orbit¦ellipse¦¦,
 and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>

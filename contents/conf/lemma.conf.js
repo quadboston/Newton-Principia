@@ -133,6 +133,7 @@
 
         fixedColors.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
         fixedColors.sagitta         = fixedColors.estimatedForce;
+        fixedColors.displacement    = fixedColors.estimatedForce;
         fixedColors.curvature       = rgbToArray("rgb(200, 40, 200)");
         fixedColors.chord           = rgbToArray("rgb(0, 0, 255)");
         fixedColors.attention       = rgbToArray("rgb(200, 200, 0)");

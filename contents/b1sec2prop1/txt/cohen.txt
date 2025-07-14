@@ -6,19 +6,12 @@
   "logic_phaseCaption" : "Theorem 1"
 }
 *..*
-
 The ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
 ¦S¦center¦¦ of forces lie in unmoving planes and are proportional to the times.
-
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444.</div>
 
-
-
-
-
-
-
+ 
 
 
 *::*proof|english
@@ -26,38 +19,37 @@ The ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made 
   "logic_phaseCaption" : "Proof"
 }
 *..*
-
 Let the time be divided into equal parts, and in 
 <span class="captured-reference id-1-0">the first part of the time</span> let a body by its inherent force describe the straight line ¦AB¦¦.
 <br><br>
 
 In <span class="captured-reference id-1-1">the second part of the time</span>, if nothing hindered it, this body would (by law 1)
-go straight on to ¦c¦¦, describing line ¦Bc¦¦ equal to ¦AB¦¦, so that－when radii ¦SA¦AS¦¦,
-¦SB¦BS¦¦, and ¦Sc¦cS¦¦ were drawn to the center－the equal areas ¦SAB¦ASB¦¦ and ¦SBc¦BSc¦¦ would
+go straight on to ¦c¦𝑐¦¦, describing line ¦Bc¦B𝑐¦¦ equal to ¦AB¦¦, so that—when radii ¦SA¦AS¦¦,
+¦SB¦BS¦¦, and ¦Sc¦𝑐S¦¦ were drawn to the center—the equal areas ¦SAB¦ASB¦¦ and ¦SBc¦BS𝑐¦¦ would
 be described.
 <br><br>
 
 But <span class="captured-reference id-1-2">when the body comes to ¦B¦¦</span>,
 let a ¦force forceMove¦centripetal force¦¦ act with
 a single but great impulse and make the body deviate from the straight line
-¦Bc¦¦ and proceed in the straight line ¦BC¦¦.
+¦Bc¦B𝑐¦¦ and proceed in the straight line ¦BC¦¦.
 <br><br>
 
-Let ¦Cc¦cC¦¦ be drawn parallel to ¦SB¦BS¦¦ and
+Let ¦Cc¦𝑐C¦¦ be drawn parallel to ¦SB¦BS¦¦ and
 meet ¦BC¦BC¦¦ at ¦C¦¦; then, when the second part of the time has been completed,
 the body (by corol. 1 of the laws) will be found at ¦C¦¦ in the same plane as
 triangle ¦SA SB AB¦ASB¦¦.
 <br><br>
 
-<span class="captured-reference id-1-3">Join ¦SC¦¦</span>; and because ¦SB¦¦ and ¦Cc¦¦ are parallel, triangle ¦SBC¦¦
-will be equal to triangle ¦SBc¦¦ and thus also to triangle ¦SAB¦¦.
+<span class="captured-reference id-1-3">Join ¦SC¦¦</span>; and because ¦SB¦¦ and ¦Cc¦C𝑐¦¦ are parallel, triangle ¦SBC¦¦
+will be equal to triangle ¦SBc¦SB𝑐¦¦ and thus also to triangle ¦SAB¦¦.
 <br><br>
 
 By a similar
 argument, if the ¦forceMove¦centripetal force¦¦ acts successively at 
-<span class="captured-reference id-1-C">¦C¦C¦¦</span>,
-<span class="captured-reference id-1-D">¦D¦D¦¦</span>, 
-<span class="captured-reference id-1-E">¦E¦E¦¦</span>, 
+<span class="captured-reference id-1-C">¦C¦¦</span>,
+<span class="captured-reference id-1-D">¦D¦¦</span>, 
+<span class="captured-reference id-1-E">¦E¦¦</span>, 
 ..., making
 the body in each of the individual particles of time describe the individual
 straight lines ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, ..., all these lines will lie in the same plane;
@@ -72,31 +64,27 @@ the areas are to each other as the times of description.
 
 Now <span class="captured-reference id-more-triangles">let the number
 of triangles be increased and their width decreased</span> indefinitely, and their
-ultimate perimeter ¦AB BC CD DE EF path¦ADF¦¦ will (by lem. 3, corol. 4) be a curved line; and
+ultimate perimeter ¦AB BC CD DE EF path¦ADF¦¦ will (by 
+<a target="_blank" href="?conf=sappId=lemma3,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">
+by lem. 3, corol. 4</a>) be a curved line; and
 thus the ¦forceMove¦centripetal force¦¦ by which the body is continually drawn back from
 the tangent of this curve will act uninterruptedly, while any areas described,
 ¦SAB SBC SCD¦SADS¦¦ and ¦SAB SBC SCD SDE SEF¦SAFS¦¦, which are always proportional to the times of description,
 will be proportional to those times in this case.
 <br><br>
 
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444</div>
-
-
-
-
-
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444.</div>
 
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "cor-1",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
 In nonresisting spaces, the velocity of a body attracted
 to an immobile ¦S¦center¦¦ is inversely as the ¦SP¦perpendicular¦¦ dropped from that
 center to the straight line which is ¦TP¦tangent¦¦ to the orbit. For the velocities
@@ -104,36 +92,34 @@ in those places ¦A¦¦, ¦B¦¦, ¦C¦¦, ¦D¦¦, and ¦E¦¦ are respectively
 triangles ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ¦DE¦¦, and ¦EF¦¦, and these bases are inversely as the
 ¦SP¦perpendiculars¦¦ dropped to them.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445.</div>
 
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "cor-2"
 }
 *..*
-
 If chords ¦AB¦¦ and ¦BC¦¦ of two arcs successively described
 by the same body in equal times in nonresisting spaces are completed into the
 parallelogram ¦ABCV¦¦, and diagonal ¦force-0-applied¦BV¦¦ (in the position that it ultimately has
 when those arcs are decreased indefinitely) is produced in both directions, it
 will ¦SB¦pass through¦¦ the ¦S¦center of forces¦¦.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445.</div>
 
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 3",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 3",
   "subessay" : "cor-3"
 }
 *..*
-
 If chords ¦AB¦¦, ¦BC¦¦ and ¦DE¦¦, ¦EF¦¦ of arcs described in equal
 times in nonresisting spaces are completed into parallelograms ¦ABCV¦¦ and
 ¦DEFZ¦¦, then the forces at ¦B¦¦ and ¦E¦¦ are to each other in the ultimate ratio
@@ -144,13 +130,14 @@ proposition ¦force-0-applied¦BV¦¦ and ¦force-3-applied¦EZ¦¦, equal to ¦
 of the centripetal force at ¦B¦¦ and ¦E¦¦, and thus are proportional to these
 impulses.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 445.</div>
+
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 4",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 4",
   "subessay" : "cor-4"
 }
 *..*
@@ -162,37 +149,35 @@ converge to the ¦S¦center of forces¦¦ and bisect the ¦AC DF¦chords¦¦ whe
 decreased indefinitely. For these ¦BU EW¦sagittas¦¦ are halves of the ¦force-0-applied force-3-applied¦diagonals¦¦ with
 which we dealt in corol. 3.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>
 
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 5",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 5",
   "subessay" : "cor-5"
 }
 *..*
-
 And therefore these forces are to the force of gravity as
 these sagittas are to the sagittas, perpendicular to the horizon, of the parabolic
 arcs that projectiles describe in the same time.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>
 
 
 
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 6",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 6",
   "subessay" : "cor-6"
 }
 *..*
-
 All the same things hold, by corol. 5 of the laws, when
 the planes in which the bodies are moving, together with the centers of forces
 that are situated in those planes, are not at rest but move uniformly straight
 forward.
 <br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446</div>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>

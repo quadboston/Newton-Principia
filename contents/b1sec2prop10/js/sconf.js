@@ -70,20 +70,39 @@
         // \\// decorational parameters
         //***************************************************************
 
-
-
-        //***************************************************************
-        // //\\ geometics parameters
+        //=============================================
         // //\\ points reused in config
         //=============================================
+        var C = [443, 375 ];
+        var S = C;
+        //=============================================
+        // \\// points reused in config
+        //=============================================
+
+
+        //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 360;
-
-        var C = [443, 375 ];
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
+        sconf.diagramOrigin = [ 0, 0 ];
 
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.CURVE_REVOLVES = true; //true for cyclic orbit
+        sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
+        sconf.DT_SLIDER_MAX = FT ? 0.66 : null;
+        var Q_STEPS = 1000;
+        var TIME_STEPS = 1000;
+        var DATA_GRAPH_STEPS = 500;
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 0.5;
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
 
         //-------------------------------------------
         // //\\ curve shape parameters
@@ -92,60 +111,24 @@
         sconf.ellipseB  = 0.86;
         sconf.orbit_q_start = 0;
         sconf.orbit_q_end = 2.0 * Math.PI;
-
-        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        //to be studied in given proposition:
-        sconf.force_law = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
 
+        //to be studied in given proposition:
+        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
-        //-------------------------------------------
-        // //\\ calculation algo parameters
-        //-------------------------------------------
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.36;
+        } else {
+            sconf.Dq0 = 0.42;
+        }
 
-        /*
-        //combination which is at the edge of accuracy:
-        //0.01 gives noticeable sagitta error
-        //0.02 does not give this error
-        //DATA_GRAPH_ARRAY_LEN is irrelevant
-        sconf.DT_SLIDER_MIN = 0.01;
-        var FORCE_ARRAY_LEN = 1000;
-        var TIME_STEPS = 1000;
-        //however 0.01 and 2000 eliminates the error, but
-        //for expense of twice large arrays,
-        */
-
-        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_FACTOR = 0.5;
-        sconf.CURVE_REVOLVES = true; //is cyclic
-        sconf.DT_SLIDER_MIN = 0.001;
-        sconf.DQ_SLIDER_MAX = 1.0;
-        var FORCE_ARRAY_LEN = 1000;
-        var TIME_STEPS = 1000;
-        var DATA_GRAPH_ARRAY_LEN = 200;
-        //-------------------------------------------
-        // \\// calculation algo parameters
-        //-------------------------------------------
-
-        //-------------------------------------------
-        // //\\ P and Q points positions
-        //-------------------------------------------
-        //interval of t to construct an arc for Newton's sagitta
-        var saggitaDt = 0.36;
-        var parQ = 0.255 * Math.PI;
-        var P = null; //set in init_model_parameters by parQ
-        var Q = null; //set in model
-        //-------------------------------------------
-        // \\// P and Q points positions
-        //-------------------------------------------
-        
-        sconf.diagramOrigin = [ 0, 0 ];
-        var S = C;
-        //=============================================
-        // \\// points reused in config
-        //=============================================
+        //pos of P
+        sconf.parQ = 0.255 * Math.PI;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -161,6 +144,7 @@
             hidden,
             curvature,
             context,
+            displacement,
         } = fixedColors;
 
 
@@ -184,20 +168,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
-        var originalPoints =
-        {
-        };
-
-        Object.assign( originalPoints, {
+        var originalPoints = {
             O : {
                 pcolor : context,
                 caption : 'C',
@@ -217,7 +188,6 @@
                 doPaintPname : false,
             },
 
-
             A : {
                 pcolor : proof,
             },
@@ -226,7 +196,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             D : {
                 pcolor : proof,
@@ -244,7 +213,6 @@
                 letterRotRadius : 25,
             },
 
-
             T : {
                 pcolor : proof,
                 letterAngle : 180,
@@ -256,14 +224,12 @@
                 letterAngle : 45,
             },
 
-
             Z : {
                 pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             Zminus : {
                 pcolor : body,
@@ -272,13 +238,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-            /*
-            V : {
-                pcolor : proof,
-                letterAngle : -45,
-            },
-            */
 
             v : {
                 caption : '𝑣',
@@ -298,7 +257,6 @@
                 letterAngle : -45,
             },
 
-
             //center of instant curvature circle
             C : {
                 pos : C,
@@ -308,7 +266,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             //Book's "another solution"
             u : {
@@ -334,12 +291,11 @@
                 pcolor : result,
                 letterAngle : -115,
                 letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
+                // draggableX  : true,
+                // draggableY  : true,
             },
 
             P : {
-                pos: P,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -347,7 +303,6 @@
             },
 
             Q : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 180,
                 letterRotRadius : 25,
@@ -357,7 +312,7 @@
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
-        });
+        };
 
 
         var linesArray =
@@ -401,12 +356,9 @@
         ];
 
         ns.paste( sconf, {
-            parQ,
-            saggitaDt,
-            FORCE_ARRAY_LEN,
-            DATA_GRAPH_ARRAY_LEN,
+            Q_STEPS,
+            DATA_GRAPH_STEPS,
             TIME_STEPS,
-
 
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -422,12 +374,6 @@
             defaultLineWidth,
             handleRadius,
         });
-        sconf.pointDecoration.r = sconf.handleRadius;
-
-        sconf.deltaQ = sconf.curveQRange / sconf.FORCE_ARRAY_LEN;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
     }
 }) ();
 

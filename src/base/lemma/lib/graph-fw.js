@@ -6,16 +6,8 @@
 // These creators, however dependent via createsLowTireGlobalCSS.
 
 ( function() {
-    var {
-        ns, sn, nsmethods, haz, haff, hafa, globalCss, $$,
-        ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            createsGraphFW,
-        },
-    });
+    var { ns, sn, nsmethods, haz, haff, hafa, globalCss, sData, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { createsGraphFW, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
 
@@ -136,7 +128,7 @@
                         stroke : colorThreadArray[2],
                         'stroke-width' : 3,
                     },
-                    abscissaIxValue : stdMod.pos2qix(),
+                    abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
                     numberMarks : true, 
                 },
                 brightenGrid : 0.3,

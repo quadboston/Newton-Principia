@@ -1,6 +1,6 @@
 ( function() {
     var { mat, stdMod, sconf, } 
-        = window.b$l.apptree({ stdModExportList : { recreates_q2xy, recreates_pos2q, }, });
+        = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
     return;
 
 
@@ -21,25 +21,6 @@
                 A * Math.cos( q ) + center[0],
                 B * Math.sin( q ) + center[1],
             ];
-        }
-    }
-
-    function recreates_pos2q()
-    {
-        const dor    = sconf.diagramOrigin;
-        const A      = sconf.ellipseA;
-        const B      = sconf.ellipseB;
-        const fi0    = sconf.orbit_q_start;
-        stdMod.pos2q = pos2q;
-        return;
-        
-        ///pos to parameter: "virtual" angle
-        function pos2q( newPos )
-        {
-            return mat.pos2angle([
-                (newPos[0] - dor[0])/A,
-                (newPos[1] - dor[1])/B,
-            ])-fi0;
         }
     }
 }) ();

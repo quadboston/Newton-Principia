@@ -82,12 +82,6 @@
                     // \\// preliminary prepasing to extract active content
                     //-----------------------------------------------------
 
-                    if( references.text ) {
-                        ////todm: why adding ref. text is not controlled by fragment itself, but
-                        ////happens for each frag?
-                        ////references to essay-sources to be cited or to be the base of essay
-                        activeFrags.push( references.text );
-                    }
                     //array of JS-objects or strings of active Fragment text units
                     subexeg.activeFrags = activeFrags; //obtained by ACTION_SPLITTER = /¿/
                 });

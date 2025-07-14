@@ -6,7 +6,7 @@
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
-    
+
     function completesSlidersCreation()
     {
         var op = sconf.orbitParameters;
@@ -561,7 +561,7 @@
             sData.stashedR_r            = rg.p.abs;
             sData.stashedLatus4slider_r = sop.latus;
 
-            //we do not implement delta_t --> delta_q for sample; therfore,
+            //we do not implement Dt --> sag_delta_q for sample; therfore,
             //do not diplay it,
             rg.q.undisplay = true;
         };
