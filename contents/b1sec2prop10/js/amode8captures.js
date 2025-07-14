@@ -1,20 +1,8 @@
 ( function() {
-    var {
-        ns, sn, nspaste, capture, toreg,
-        sDomF, ssD, ssF, fconf,
-        stdMod, amode, rg, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { ns, sn, nspaste, capture, toreg, sDomF, ssD, ssF, fconf, stdMod, amode, 
+        rg, sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
-
-
-
-
 
 
     function setCapture()

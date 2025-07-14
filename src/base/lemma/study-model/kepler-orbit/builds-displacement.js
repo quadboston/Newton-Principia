@@ -2,15 +2,8 @@
 ///notations are from Prop6, cor. 5,
 ///displacement = QR, area = QT*SP,
 ( function() {
-    var {
-        sn, mat,
-        stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            calcs__displacement,
-        },
-    });
+    var { sn, mat, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { calcs__displacement, }, });
     return;
 
 

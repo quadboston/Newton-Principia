@@ -1,8 +1,8 @@
 ( function() {
     var {
-        ns, sn, nspaste, has, paste, capture, userOptions,
-        sDomF, ssD, ssF, fconf, sData,
-        sconf, amode, toreg, stdMod, rg,
+        ns, sn, nspaste, has, paste, capture, userOptions, //vendor
+        sDomF, ssD, ssF, fconf, sData,  //application
+        sconf, amode, toreg, stdMod, rg, //lemma
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -14,34 +14,10 @@
     return;
 
 
-
-
-
-
     function setCapture()
     {
         paste( capture,
         {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
         });
     }
 

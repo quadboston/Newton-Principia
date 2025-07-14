@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, globalCss, userOptions,
-        ssD, sDomN, sDomF, sData,
+        amode, ssD, sDomN, sDomF, sData,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :

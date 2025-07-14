@@ -20,6 +20,7 @@
     {
         stdMod.poly2svgP11({});
 
+        // entire green curve
         //todm this is a redundant step, graphArray is already
         //built and can be used
         let rgX = ssF.paintsCurve({
@@ -32,6 +33,7 @@
         });
         rgX.svgel$.addClass('tp-orbit');
 
+        // curve from Q- to Q
         //todm this is a redundant step, graphArray is already
         //built and can be used
         //arc updates
@@ -43,6 +45,8 @@
             start   : rg.Q.q_minus,
             step     : (rg.Q.q - rg.Q.q_minus ) / 100,
         });
+
+        // curve from A to Q
         //todm this is a redundant step, graphArray is already
         //built and can be used
         ssF.paintsCurve({

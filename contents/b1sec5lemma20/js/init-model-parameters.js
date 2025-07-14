@@ -49,7 +49,7 @@
                 latus2 : sconf.latus2*i2m,
             };
         }
-        sData.aScale = ( rg.aEnd.pos[0] - rg.aStart.pos[0] ) / sconf.eMax;
+        sData.eScale = ( rg.eEnd.pos[0] - rg.eStart.pos[0] ) / sconf.eMax;
         stdMod.slider_a_value2pos();
 
         stdMod.deriveParameters( 'do set T' );

@@ -19,29 +19,7 @@
 
     function setCapture()
     {
-        nspaste( capture,
-        {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
-        });
+        nspaste( capture,{});
     }
 
 
@@ -49,8 +27,8 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
-        var media_scale = toreg( 'media_scale' )();
+        const { logic_phase, aspect, subessay } = amode;
+        toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );

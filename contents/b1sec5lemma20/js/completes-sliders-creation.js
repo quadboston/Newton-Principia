@@ -31,9 +31,9 @@
     ///does newPos -> value -> pos (pos -> value in model)
     function slider_a_pos2value( newPos )
     {
-        var scale = ( rg.aEnd.pos[0] - rg.aStart.pos[0] );
-        sData.aScale = scale / sconf.eMax;
-        var modelPar = ( newPos[0] - rg.aStart.pos[0] ) / sData.aScale;
+        var scale = ( rg.eEnd.pos[0] - rg.eStart.pos[0] );
+        sData.eScale = scale / sconf.eMax;
+        var modelPar = ( newPos[0] - rg.eStart.pos[0] ) / sData.eScale;
         if( modelPar < 0.0000000001 || modelPar > sconf.eMax ) return false;
         
         // //\\ making pause at e=1
@@ -79,6 +79,7 @@
                     1;
             //sData.polar_ell_model.latus2 = initialLatus * latusFactor;
             //c cc( sData.polar_ell_model.latus2, 'change='+change.toFixed(3) );
+            /*
             const changeHyp = modelPar <=1.001 ?
                             change : Math.abs(1.001 - sconf.excentricity);
             const parHyperbolaA = 1-changeHyp*0;
@@ -93,16 +94,17 @@
                 (eChange < 0 ? 1-change*0.3 : parHyperbolaA );
             sData.initialparP = sconf.initialparP *
                 (eChange < 0 ? 1 : parHyperbolaP );
+            */
             // \\// parameters' decorational changes
         }
         slider_a_value2pos();
-        newPos[1] = rg.aStart.pos[1];
+        newPos[1] = rg.eStart.pos[1];
         return true;
     }    
     function slider_a_value2pos()
     {
-        rg.a.pos[0] = rg.aStart.pos[0] +
-            sData.polar_ell_model.e * sData.aScale;
+        rg.a.pos[0] = rg.eStart.pos[0] +
+            sData.polar_ell_model.e * sData.eScale;
     }
 }) ();
 

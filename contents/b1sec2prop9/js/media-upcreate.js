@@ -1,19 +1,9 @@
 ( function() {
-    var {
-        rg, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    const { rg, stdMod, } = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
-        },
-    });
+    }, });
     return;
-
-
-
-
-
 
 
     function media_upcreate___before_basic()
@@ -22,18 +12,11 @@
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
     }
 
-
-    //=========================================================
-    // //\\ lemma custom addons
-    //=========================================================
+    /// lemma custom addons
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
         stdMod.poly2svgP11({});
     }
-    //=========================================================
-    // \\// lemma custom addons
-    //=========================================================
-
-}) ();
+})();
 

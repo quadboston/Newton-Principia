@@ -1,10 +1,8 @@
 ( function() {
     var {
-        sn, $$, nssvg, haz, mat,
-        sDomF, ssF,
-        mcurve, userOptions,
-        ssD, 
-        rg, stdMod, sconf,
+        sn, $$, nssvg, haz, mat, mcurve, userOptions, //vendor
+        ssD, ssF,                                     //app
+        sconf, amode, stdMod, rg, sDomF,              //lemma (sub application)  
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -16,15 +14,6 @@
     });
     ssD.curveSTEPS = 1000;
     return;
-
-
-
-
-
-
-
-
-
 
 
     ///Returns: false if radius-vector is nearly parallel to

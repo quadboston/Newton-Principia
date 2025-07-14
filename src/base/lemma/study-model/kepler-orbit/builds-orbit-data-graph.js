@@ -1,10 +1,6 @@
 ( function() {
-    var {
-        sn, haz, userOptions,
-        rg, amode, stdMod, sconf, ssD, sData,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { sn, haz, rg, amode, stdMod, sconf, ssD, sData, } 
+        = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             P2gix,
         },

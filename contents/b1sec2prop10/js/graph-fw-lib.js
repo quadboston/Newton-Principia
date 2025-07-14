@@ -19,41 +19,15 @@
     return;
 
 
-
-
-
-
     function doSetColorThreadArray()
     {
-        //===========================================
-        // //\\ prepares color ThreadArray
-        //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
-        }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
         sData.colorThreadArray = [
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'context' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+            sDomF.getFixedColor( 'force' ),
+            sDomF.getFixedColor( 'context' ),
+            sDomF.getFixedColor( 'body' ),
         ];
         return sData.colorThreadArray;
-        //===========================================
-        // \\// prepares color ThreadArray
-        //===========================================
     }
-
 
     function setsGraphContainerAttributes( digramParentDom$ )
     {
@@ -76,7 +50,6 @@
         sData.graph_dimY = 580;   //innerHeight
     }
 
-
     function setsGraphAxes()
     {
         //==================================================
@@ -87,8 +60,7 @@
 
         //axis x and legend x color:
         //manually picked color, not from plot,
-        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
-
+            var xColor      = 'rgba(0,0,0,1)';
         var axisYLegend =
         [
             {
@@ -101,7 +73,6 @@
                             'fill'   : yColor,
                 },
             },
-
             {
                 text    : 'Force f, 1/r², and speed v per their maximums.',
                 x       : 250,
@@ -116,7 +87,6 @@
         ];
         var axisXLegend =
         [
-
             {
                     text    : 'Distance, r',
                 x       : -700,
@@ -141,11 +111,8 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 
-
-
     function plotLabels_2_plotsPars( colorThreadArray )
     {
-
         ///make sure, the number of plot labels is equal to plot functions y(x)
         return [
             {
@@ -189,15 +156,14 @@
         ];
     }
 
-
-
     function setsGraphTpClasses()
     {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+        const svg = graphFW.fw.plotIx2plotSvg;
+            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
+            // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+            // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
     }
-
-
 
     function doDrawToolline()
     {
@@ -211,7 +177,7 @@
         };
     }
 
-
+    ///horizontal axis x pars, font, etc,
     function graphAxisX( xColor )
     {
         return {
@@ -225,7 +191,6 @@
         };
     }
 
-
     function graphAxisY( yColor )
     {
         return {
@@ -238,6 +203,4 @@
            'stroke-width'   : '1',
         };
     }
-
 }) ();
-

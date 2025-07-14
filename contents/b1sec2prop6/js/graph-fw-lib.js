@@ -11,6 +11,7 @@
     });
     return;
 
+
     function createsGraph_FW_lemma({ digramParentDom$ }){
         const graphFW = {};
         stdMod.createsGraphFW_class({
@@ -47,7 +48,6 @@
             return colorThreadArray;
         }
 
-
         function setsGraphContainerAttributes( digramParentDom$ )
         {
             container$ = $$.div()
@@ -62,8 +62,7 @@
                         .css( 'top', '0' )
                         .css( 'left', '0' )
                         .css( 'z-index', '111111' )
-                )
-                ;
+            );
             //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
@@ -159,8 +158,6 @@
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
 
-
-
         function plotLabels_2_plotsPars( colorThreadArray )
         {
             return [
@@ -205,8 +202,6 @@
                         'stroke'  : colorThreadArray[4],
                     },
                 },
-  
-  
                 {
                     //sagitta
                     fraqX : 0.9,
@@ -219,7 +214,6 @@
                         'stroke'  : colorThreadArray[4],
                     },
                 },
-  
                 {
                     //sample force
                     fraqX : 0.8,
@@ -232,7 +226,6 @@
                         'stroke'  : colorThreadArray[3],
                     },
                 },
-  
             ];
         }
 

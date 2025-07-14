@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        sn, mat,
-        ssD, stdMod, sconf, rg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            creates__curve_pivots_sliders,
-            creates_S_slider,
-        },
-    });
+    var { sn, mat, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
+        stdModExportList : { creates__curve_pivots_sliders, creates_S_slider, }, });
     return;
 
 

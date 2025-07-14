@@ -2,14 +2,16 @@
 ( function() {
     var { ns, fconf, sconf, fixedColors } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
+    return;
 
+    
     function init_conf()
     {
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = false;
+        sconf.enableTools               = true;
         sconf.rgShapesVisible           = false;
         //====================================================
         // \\// subapp regim switches

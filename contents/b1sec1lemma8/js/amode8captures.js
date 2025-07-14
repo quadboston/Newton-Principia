@@ -1,33 +1,31 @@
 ( function() {
-    var {
-        ns, sn, paste, capture, nspaste, userOptions,
-        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
+    const {
+        sn, paste, capture, nspaste,
+        fconf, sconf, sDomF, ssD, ssF,
         stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
         },
     });
-
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
     {
         "angle": 0,
         "sin": 0,
         "cos": 1
     };
-
     //this is Books origin, authentic N. drawing,
     //curveRotationAngle = 0,
-    var ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
+    const ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
     {
         "angle": 0,
         "sin": 0,
         "cos": 1
     };
-
-
     setCapture();
+    return;
+    
 
     function setCapture()
     {
@@ -114,7 +112,6 @@
         });
     }
 
-
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
@@ -126,12 +123,13 @@
             nspaste( rg[ "media-mover" ].achieved,
                 {
                     "achieved": [
-                        sconf.originX_onPicture, //492,
-                        sconf.originY_onPicture, //565
+                        sconf.originX_onPicture,
+                        sconf.originY_onPicture,
                     ]
                 }
             );
-            //todm: without this diagram does not return back immediately, only after a click
+            //todm: without this diagram does not return back immediately,
+            //only after a click
             var ach = rg[ "media-mover" ].achieved.achieved;
             sconf.modorInPicX = ach[0];
             sconf.modorInPicY = ach[1];
@@ -149,9 +147,9 @@
         rg[ 'arc-AB' ].undisplay    = false;
 
         //idle?:
-        ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
+        nspaste( rg.curveStart.pos, ssD.curveStartInitialPos );
 
-        ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
+        nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
         var media_scale = toreg( 'media_scale' )();
@@ -177,8 +175,8 @@
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-        ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
-        ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+        nspaste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
+        nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
         [
             //'dr-decorpoint',
@@ -263,6 +261,5 @@
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }
-
-}) ();
+})();
 

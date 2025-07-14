@@ -1,14 +1,6 @@
 ( function() {
-    var {
-        $$, nssvg,
-        sDomF, ssF, ssD,
-        stdMod, sconf,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            creates_poly2svg_for_lemma,
-        },
-    });
+    var { $$, nssvg, sDomF, ssF, ssD, stdMod, sconf, } = window.b$l.apptree({
+        stdModExportList : { creates_poly2svg_for_lemma, }, });
     return;
 
     

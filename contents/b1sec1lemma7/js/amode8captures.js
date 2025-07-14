@@ -1,7 +1,7 @@
 ( function() {
-    var {
-        ns, sn, paste, capture, nspaste, userOptions,
-        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
+    const {
+        sn, paste, capture, nspaste,
+        fconf, sconf, sDomF, ssD, ssF, sData,
         stdMod, amode, toreg, rg,
     } = window.b$l.apptree({
         ssFExportList :
@@ -9,26 +9,24 @@
             amode2rgstate,
         },
     });
-
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
     {
         "angle": 0.10579977792284677,
         "sin": 0.10560250842053673,
         "cos": 0.9944084222367038
     };
-
     //this is Books origin, authentic N. drawing,
     //curveRotationAngle = 0,
-    var ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
+    const ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
     {
         "angle": 0,
         "sin": 0,
         "cos": 1
     };
-
     setCapture();
-
+    return;
+    
 
     function setCapture()
     {
@@ -197,9 +195,9 @@
         rg[ 'arc-AB' ].undisplay    = false;
 
         //idle?:
-        ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
+        nspaste( rg.curveStart.pos, ssD.curveStartInitialPos );
 
-        ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
+        nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
         var media_scale = toreg( 'media_scale' )();
@@ -274,8 +272,8 @@
                 if( amode.subessay === 'sine derivative' ){
 
                     rg.B.unrotatedParameterX = 1.3;
-                    ns.paste( rg.curveStart.pos, [ rg.ytop.pos[0], 0 ] );
-                    ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0]+0.7, 0 ] );
+                    nspaste( rg.curveStart.pos, [ rg.ytop.pos[0], 0 ] );
+                    nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0]+0.7, 0 ] );
                     ssD.repoConf.customFunction = 1;
                     [
                         'AO',
@@ -312,8 +310,8 @@
 
                 rg.B.unrotatedParameterX = 1.5;
 
-                ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
-                ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0]+0.7, 0 ] );
+                nspaste( rg.curveStart.pos, [ -0.2, 0 ] );
+                nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0]+0.7, 0 ] );
                 ssD.repoConf.customFunction = 1;
 
                 rg.L.hideD8Dpoint = true;
@@ -388,8 +386,8 @@
                 rg.media_scale.value = 1;
                 ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-                ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
-                ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+                nspaste( rg.curveStart.pos, [ -0.2, 0 ] );
+                nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
                 [
                     'C',
                     'D',
@@ -427,6 +425,5 @@
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }
-
-}) ();
+})();
 
