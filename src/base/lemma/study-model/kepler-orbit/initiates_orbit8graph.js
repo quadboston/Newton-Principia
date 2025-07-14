@@ -1,28 +1,30 @@
 ( function() {
-    var { sn, nspaste, haff, haz, rg, stdMod, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : {
+    var {
+        sn, nspaste, haff, haz,
+        rg, stdMod, sconf, ssD, sData,
+    } = window.b$l.apptree({
+        stdModExportList :
+        {
             initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
         },
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+    const qix2orb = sn( 'qix2orb', ssD, [] );
     return;
 
     
     function initiates_kepler_config() {
         sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
         sconf.pointDecoration.r = sconf.handleRadius;
-        sconf.delta_q_between_steps = sconf.curveQRange / sconf.Q_STEPS;
+        sconf.qgrid_step = sconf.curveQRange / sconf.Q_STEPS;
 
         //todm competing aliases:
-        //Update: Could replace this variable where used with (1 / sconf.delta_q_between_steps)
-        sconf.delta_q_between_steps_reciprocal = 1 / sconf.delta_q_between_steps;
-        //Update: q2qix was a function so could be confusing here, also duplicate of above
-        //sconf.q2qix = 1 / sconf.delta_q_between_steps;
+        sconf.qgrid_step1 = 1 / sconf.qgrid_step;
+        sconf.q2qix = 1 / sconf.qgrid_step;
 
-        sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
+        sconf.ro02 = sconf.ro0*sconf.ro0 / 2;
         
         //3 and 5 make float noize on graph:
         sn( 'SAGITTA_ACCURACY_LIMIT', sconf, 10 );
@@ -39,8 +41,8 @@
         stdMod.creates__gets_orbit_closest_point();
         
         //:sets parameters of P
-        rg.P.qix = Math.floor( sconf.parQ * sconf.delta_q_between_steps_reciprocal );
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        rg.P.qix = Math.floor( sconf.parQ * sconf.q2qix );
+        var Porb = ssD.qix2orb[ rg.P.qix ];
         nspaste( rg.P.pos, Porb.rr );
 
         // //\\ scenario: coincided P and Q: Q splits first
@@ -58,7 +60,7 @@
     
     function rebuilds_orbit( keepThisDt ) {
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
-        const Q_STEPS = sconf.Q_STEPS;
+        const QS = sconf.Q_STEPS;
         stdMod.recreates_q2xy();
         stdMod.buildsOrbit();
         stdMod.poly2svgP11();

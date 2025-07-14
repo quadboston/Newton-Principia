@@ -18,10 +18,6 @@
     return;
 
 
-
-
-
-
     ///==============================================
     /// only for common stdMod:
     ///                     1. expands sconf and
@@ -116,7 +112,6 @@
             point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
 
-
         ///it is vital to set these pars now ...
         ///they are used in function calls a little below this block ...
         Object.assign( sconf, {
@@ -140,7 +135,6 @@
             originX_onPicture : modorInPicX,
             originY_onPicture : modorInPicY,
             //.......................................
-
 
             // **api innerMediaHeight
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
@@ -171,7 +165,6 @@
                 fc.isLine = false;
                 fc.isArea = false;
                 fc.isPoint0Line = false;
-                
             });
 
             //--------------------------------------------------
@@ -426,7 +419,8 @@
                     rgX.letterOffsetX = letterShift[0];
                     rgX.letterOffsetY = letterShift[1];
                 } else {
-                    var letterAngle     = has( op, 'letterAngle' ) ? op.letterAngle : 0;
+                    var letterAngle     = has( op, 'letterAngle' ) ?
+                                          op.letterAngle : 0;
                     var rad             = letterAngle / 180 * Math.PI;
                     rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
                                           fontSize*LETTER_CENTER_X_PER_FONT_SIZE;

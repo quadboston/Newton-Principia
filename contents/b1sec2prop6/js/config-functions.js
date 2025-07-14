@@ -1,7 +1,13 @@
 ( function() {
-    var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+    var {
+        mat,
+        rg, ssD, stdMod, sconf,
+    } = window.b$l.apptree({
+        stdModExportList :
+        {
             recreates_q2xy,
-            bezierPivotsToCurvePivots, },
+            bp2cp,
+        },
     });
     return;
 
@@ -13,8 +19,8 @@
         return;
     }
     
-    ///bezier pivots to curve pivots
-    function bezierPivotsToCurvePivots() {
+    ///besier pivots to curve pivots
+    function bp2cp() {
         const bezio = ssD.bezio;
         bezio.pivotsPos.map( (pos,ix) => {
             let cp = rg[ 'curvePivots-' + ix ];

@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
+    var { sn, $$, nsmethods, haz, globalCss, amode, ssD, sDomN, sDomF, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
@@ -21,7 +21,7 @@
         });
         //first array must be enabled
         //but can be dynamically overridden,
-        graphFW.graphArrayMask = [ 'force', 'estforce', ];
+        graphFW.graphArrayMask = [ 'force', 'estforce', 'body' ];
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
@@ -32,6 +32,7 @@
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
                 sDomF.getFixedColor( 'displacement' ),
+                sDomF.getFixedColor( 'body' ),
             ];
             return colorThreadArray;
         }
@@ -60,6 +61,7 @@
 
         function setsGraphAxes()
         {
+                const ADDENDUM = amode.aspect === 'addendum';
             let n2c = sDomF.getFixedColor; //name to color
                     
             //==================================================
@@ -212,9 +214,9 @@
             return {
                 toollineStyle : {
                     //stroke : sData.colorThreadArray[2],
-                    'stroke-width' : 1,
+                    'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                abscissaIxValue : stdMod.P2gix(),
                 numberMarks : false, 
             };
         }

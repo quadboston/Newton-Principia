@@ -11,11 +11,11 @@
     ///****************************************************
     function model_upcreate()
     {
+        const ADDENDUM = amode.aspect === 'addendum';
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
         //stdMod.builds_dq8sagit8displace({});
-        const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
-        if (Porb) {
+        const Porb = ssD.qix2orb[ rg.P.qix ];
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
                 uu,
@@ -91,7 +91,6 @@
             //================================================
             // \\// curvature circle
             //================================================
-        }
 
 
         //================================================

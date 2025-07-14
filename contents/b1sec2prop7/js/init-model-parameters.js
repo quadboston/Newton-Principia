@@ -100,7 +100,6 @@
         //-----------------------------------------
         ssD.PdragInitiated = false;
         ssD.SdragInitiated = false;
-        //ssD.PivotDragInitiated = false;
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX = rg[ 'foldPoints-' + ppix ];
             fp.rgX.undisplay = true;

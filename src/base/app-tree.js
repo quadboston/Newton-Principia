@@ -78,7 +78,7 @@
     }
 
     ///be aware, this function executes multiple times, so any
-    ///"global external" calculations will be done multiple times,
+    ///"global external" caclulations will be done multiple times,
     function apptree({
         //optional variables
         modName,   //default: ''+mCount.count

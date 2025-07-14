@@ -62,17 +62,18 @@
 
         function setsGraphAxes()
         {
+            const ADDENDUM = amode.aspect === 'addendum';
             let n2c = sDomF.getFixedColor; //name to color
             
             //==================================================
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-            var yColor      = graphFW.colorThreadArray[ 0 ];
+            var yColor = graphFW.colorThreadArray[ 0 ];
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = 'rgba(0,0,0,1)';
+            var xColor = sData.GRAPH_PATH ? n2c( 'orbit' ) : n2c( 'force' );
             var axisYLegend =
             [
                 {
@@ -118,7 +119,7 @@
             var axisXLegend =
             [
                 {
-                    text    : sData.GRAPH_PATH ?
+                    text    :  sData.GRAPH_PATH ?
                                'Distance along arc' : 'Distance from force center, r',
                     x       : -520,
                     y       : 25,
@@ -221,7 +222,7 @@
             graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
                 switch(pix) {
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-displacement tostroke' ); break;
+                    case 1: pl && $$.$(pl).addClass( 'tp-_p_-displecement tostroke' ); break;
                     case 2: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
                     case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
                 }
@@ -235,7 +236,7 @@
                     stroke : graphFW.colorThreadArray[2],
                     'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                abscissaIxValue : stdMod.P2gix(),
                 numberMarks : false,
             };
         }

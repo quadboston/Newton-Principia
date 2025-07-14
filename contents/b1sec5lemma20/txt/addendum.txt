@@ -5,7 +5,7 @@
 *..*
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
 
 For ¦ellipse¦ellipse¦¦ and points P,A,B,C on it's circumference, the ratio
 ¦key-triangle¦PR/PT¦¦ will be constant when the point ¦generators¦D¦¦ moves along this circumference.
@@ -32,7 +32,7 @@ will move points T and ¦key-triangle¦R¦¦.
 *..*
 
 <b>In <a target="_blank"
-         href="&#63;conf=sappId=addd-fw#Cframework">CalculusXX-framework</a></b><br><br>
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
 
 <b>Numerical Model</b><br><br>
 

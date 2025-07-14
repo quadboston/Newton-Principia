@@ -81,7 +81,7 @@
                 }
 
                 ///updates curve pivots every time:
-                stdMod.bezierPivotsToCurvePivots();
+                stdMod.bp2cp();
 
 
                 stashedPos = [ newPos[0], newPos[1] ];

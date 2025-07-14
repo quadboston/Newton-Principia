@@ -44,7 +44,7 @@
 
             //fixes small pivots and curve displacements,
             //todm why do they exist in the first place?
-            stdMod.bezierPivotsToCurvePivots();
+            stdMod.bp2cp();
         }
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
 

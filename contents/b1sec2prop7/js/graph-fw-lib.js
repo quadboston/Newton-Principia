@@ -63,6 +63,7 @@
         function setsGraphAxes()
         {
             let n2c = sDomF.getFixedColor; //name to color
+            const addendum = amode.aspect === 'addendum';
 
             //==================================================
             // //\\ calls api
@@ -72,7 +73,7 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = 'rgba(0,0,0,1)';
+            var xColor = n2c( 'orbit' );
             var axisYLegend =
             [
                 {
@@ -164,7 +165,6 @@
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
                         //'stroke-width' : '10px',
-                        //'display' : 'none',
                         //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
@@ -259,10 +259,10 @@
             return {
                 toollineStyle : {
                     stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : 1.5,
+                    'stroke-width' : 3,
                 },
-                abscissaIxValue : stdMod.qValueFromPointPToQIndex(),
-                numberMarks : false,
+                abscissaIxValue : stdMod.q2qix(),
+                numberMarks : false, //true, 
             };
         }
 

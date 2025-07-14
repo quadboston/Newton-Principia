@@ -6,6 +6,7 @@
 
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
+        const addendum = amode.aspect === 'addendum';
         // //\\ graph
         //------------------------------------------------
         //first array mast be enabled
@@ -16,9 +17,16 @@
               !'-1/r^5'
             ];
         
+        let graphArg = {
+            //drawDecimalY : true,
+            //drawDecimalX : false,
+            printAxisXDigits : addendum,
+            //printAxisYDigits : true,
+        }
+        
         let prop7R = sconf.prop7R;
-        let graphArray = stdMod.graphFW_lemma.graphArray;
-        let graphArrayLength = graphArray.length;
+        let ga = stdMod.graphFW_lemma.graphArray;
+        let glen = ga.length;
         var forceMin;
         var forceMax;
         var estimatedMin;
@@ -30,8 +38,8 @@
         var xMax;
         var globalRelativeMax = 0;
         var globalRelativeMin;
-        for( ix = 0; ix<graphArrayLength; ix++ ) {
-            let gaix = graphArray[ix];
+        for( ix = 0; ix<glen; ix++ ) {
+            let gaix = ga[ix];
             var ssagitta = ssD.ssigned[ix]; //gaix.y[1];
             let cP = ssD.curve[gaix.ix];
             let r = cP.r;
@@ -99,19 +107,22 @@
             var fsignum = Math.sign(gaix.y[0]);
             //this is inaccurate: but this is a requirement:
             var estimatedForce = 1/(r2*RL*RL*RL);
-
             gaix.y[0] = force;
             gaix.y[1] = ssD.ssigned[ix];
             gaix.y[2] = -r2m;
             gaix.y[4] = estimatedForce;
             gaix.y[5] = -r5m;
         }
-        let graphArg = {
-            xMax : xMax,
-            xMin : 0,
-            yMax : Math.max(estimatedMax, forceMax, 1), //10;
-            yMin : 0,
-        }
+        let xMargin = (xMax-xMin)*0.05;
+        graphArg.xMax = xMax + xMargin;
+        graphArg.xMin = xMin - xMargin;
+        graphArg.yMax =
+            Math.max( 
+                estimatedMax,
+                forceMax,
+                1
+        ); //10;
+        graphArg.yMin = 0;
         rg.estimatedForce = rg.estimatedForce;
         stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         //------------------------------------------------

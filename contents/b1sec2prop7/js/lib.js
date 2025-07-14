@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, nssvg, haz, mat, sDomF, ssF, mcurve, ssD, rg, stdMod, sconf, }
+    var { sn, $$, nssvg, haz, mat, sDomF, ssF, mcurve, amode, ssD, rg, stdMod, sconf, }
         = window.b$l.apptree({ stdModExportList : {
             creates_orbitRack,
             pos2t,
@@ -15,11 +15,12 @@
     ///         tangent in some point of the curve
     function curveIsSolvable()
     {
+        const ADDENDUM = amode.aspect === 'addendum';
         const DDD = 1e-5; 
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
         var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
-        //make program simpler than planeCurveDerivatives,
+        //make program simpler as planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
         var rgCurve = rg[ 'approximated-curve' ];
         var STEPS = rgCurve.stepsCount;
@@ -151,24 +152,24 @@
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
         {
             var far = forceGraphArray[ forceArrayIx ];
-            let f = Math.abs(far.y[0] / forceMax);
+            let f = far.y[0] / forceMax;
+            if( !ADDENDUM ) f = Math.abs(f);
             far.y[0] = f;
             //1 sagg
             far.y[2] = far.y[2] / (-comparLawMin);
             far.y[3] = far.y[3] / speedMax;
         }
-        stdMod.qValueFromPointPToQIndex = qValueFromPointPToQIndex;
+        stdMod.q2qix = q2qix;
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
         return;
 
         
         ///todm fix or rename to q2qix,
-        ///update "q2qix" has been renamed to "posFromPointPToQIndex"
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
         ///     start_q ) / ( end_q - start_q ) * qixMax
-        function qValueFromPointPToQIndex()
+        function q2qix()
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;
@@ -183,6 +184,7 @@
     function findsFiniteSagitta(DD)
     {
         const DDD = DD || 1e-5;
+        const ADDENDUM = amode.aspect === 'addendum';
         const fun = rg[ 'approximated-curve' ].t2xy;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.graphArray;
@@ -258,7 +260,8 @@
         ///stores sagitta
         for (let gix = 0; gix<len; gix++ )
         {
-            let tograph = Math.abs(ssigned[gix]);
+            let tograph = ssigned[gix];
+            tograph = ADDENDUM ? tograph : Math.abs( tograph );
             garr[ gix ].y[1] = tograph; //sMax;
         }
         ssD.doMaskSagitta = sMax > 1e+18 || stdMod.graphFW_lemma.forceMax > 1e+18;

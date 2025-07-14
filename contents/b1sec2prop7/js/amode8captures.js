@@ -51,6 +51,8 @@
         rg.curvatureCircle.undisplay    = true;
         rg.PC.undisplay                 = true;
         rg.timearc.undisplay            = true;
+        rg.Q.hideD8Dpoint = false;
+        rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -73,6 +75,7 @@
             var Rcol2 = rg[ 'approximated-curve' ].t2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
+            setsCoroll2( !!'yes0not' );
 
         } else {
             nspaste( rg.A.pos,

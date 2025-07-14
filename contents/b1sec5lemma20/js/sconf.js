@@ -1,7 +1,11 @@
 // //\\// widget config
 ( function() {
-    var { mat, fapp, sconf, fixedColors, } = 
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+    var {
+        mat,
+        fapp, sconf,
+    } = window.b$l.apptree({
+        ssFExportList : { init_conf }
+    });
     return;
 
 
@@ -67,37 +71,34 @@
         // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
-        const {
-            static,
-            core,
-            aux,
-            constructors,
-            ellipse,
-        } = fixedColors;
+        
+        var predefinedTopics =
+        {
+            "static"                : [0,     200, 255, 1],
+            "core"                  : [155,  70, 0, 1],
+            "aux"                   : [255,   0, 255, 1],
+            "constructors"          : [0,     0, 255, 1],
+            "ellipse"               : [0,   150, 0, 1],
+            "legend"                : [200,   200, 200],
+        };
+        let pt = predefinedTopics;   
+        pt[ "key-triangle" ] = pt.core;
+        pt[ "key-parts" ] = pt.core;
+        pt[ "similar-triangle" ] = pt.static;
+        pt.PT = pt.core;
+        pt[ "base-figure" ] = pt.core;
+        pt[ "static-generator" ] = pt[ "constructors" ];
+        pt[ "given-parallelogram" ] = pt.static;
+        pt[ "generators" ] = pt[ "constructors" ];
+        pt[ "tangent" ] = pt[ "constructors" ];
+        pt[ "aux-dots" ] = pt.aux;
+        pt[ "perigeum" ] = pt.legend;
+        pt[ "apogee" ] = pt.legend;
+        pt[ "focus" ] = pt.legend;
+        pt[ "rectum" ] = pt.legend;
+        pt[ "ellipse_center" ] = pt.legend;
+        
 
-        
-        const predefinedTopics =
-        {   
-            static,
-            core,
-            aux,
-            constructors,
-            ellipse,
-
-            "key-triangle"          : core,
-            "key-parts"             : core,
-            "similar-triangle"      : static,
-            "PT"                    : core,
-            "base-figure"           : core,
-            "static-generator"      : constructors,
-            "given-parallelogram"   : static,
-            "generators"            : constructors,
-            "tangent"               : constructors,
-            "aux-dots"              : aux,
-        }
-        const pt = predefinedTopics;
-        
-        
         var originalPoints =
         {
             P : { pos: [996, 570],
@@ -197,6 +198,56 @@
                   letterRotRadius : 20,
                 },
 
+            // //\\ decorations
+            ///conic focus
+            focus : {
+                  //caption : 'focus',
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 0,
+                  fontSize : 15,
+            },
+
+            ///conic latus rectum
+            rectum : {
+                  //caption : 'rectum',
+                  letterRotRadius : 20,
+                  hideCaption : true,
+                  undisplayAlways : true,
+            },
+            rectumLow : {
+                  hideCaption : true,
+                  undisplayAlways : true,
+            },
+            perigeum : {
+                  //hideCaption : true,
+                  undisplayAlways : true,
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 20,
+                  fontSize : 15,
+            },
+            apogee : {
+                  //hideCaption : true,
+                  undisplayAlways : true,
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                  letterAngle : 0,
+                  fontSize : 15,
+            },
+            //to be counted as ellipse_center=(apogee+perigeum)/2
+            ellipse_center : {
+                  caption : 'center',
+                  initialR: pointRadius/2,
+                  letterRotRadius : 15,
+                    letterAngle : 190,
+                    letterRotRadius : 45,
+                  fontSize : 15,
+            },
+            // \\// decorations
+  
+  
+  
             //derived points, should not be used in model
             Q : { pos: [1077, 1231],
                   pcolor: pt.static,
@@ -239,7 +290,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'semi a (semiaxis a)',
+                    caption : 'eccentricity',
                     draggableX : true,
                     draggableY : false,
                     
@@ -253,14 +304,14 @@
                     unscalable : true,
                 },
             //rails
-            aStart : {
+            eStart : {
                 pos : [ slider_a_start, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
-            aEnd : {
+            eEnd : {
                 pos : [ slider_a_end, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
@@ -517,12 +568,26 @@
             // \\// similar triangles
             //------------------------
 
-            { 'aStart,aEnd' : {
-                        pcolor : predefinedTopics["ellipse"],
-                        cssClass : 'ellipse',
-                    }
+            { 'eStart,eEnd' : {
+                    pcolor : predefinedTopics["ellipse"],
+                    cssClass : 'ellipse',
+                }
             },
 
+            // //\\ decorations
+            { 'rectumLow,rectum' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            { 'perigeum,apogee' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            { 'focus,apogee' : {
+                    pcolor : predefinedTopics["rectum"],
+                }
+            },
+            // \\// decorations
         ];
 
         //----------------------------------
@@ -542,12 +607,10 @@
         // \\// app view parameters
         //----------------------------------
 
-
-
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
+        fapp.normalizeSliders( pictureHeight / 444 );
         to_sconf =
         {
             predefinedTopics,
@@ -556,20 +619,33 @@
             mediaBgImage : "l20.jpg",
             //dontRun_ExpandConfig : true,
 
-            a : 2.03,
-            aMax : 10,
-            b : 1,
-            rotationRads : Math.PI*0.19,
+            //for e slider
+            eMax : 1.5,
 
-            //given points on ellipse if fractions of
-            //full cycle of param t
-            initialparP : 0.259,
-            initialparA : 0.7542,
-            initialparC : 0.379,
-            initialparB : 0.0468,
-            initialParT : 0.760, //parameter T on line Pt
+            // //\\ this approximately fits Newton's diagram
+            //focus : [250, 540],
+            focus : [263, 535],    //[266, 526],  //in media scale
+            q0 : -Math.PI*0.19,
+            excentricity : 0.8702,
 
-
+            latus2 : 190.621, //in media scale
+            initialParT : 0.735, //parameter T on line Pt
+            initialparC : 0.58,
+            initialparP : -0.05,
+            initialparA : 5.17,
+            initialparB : -0.51,
+            // \\// this approximately fits Newton's diagram
+            
+            /*
+            //it is hard to fit original Newton diagram
+            //probably, one needs bigger latus
+            latus2 : 185,  //in media scale
+            initialParT : 0.75, //parameter T on line Pt
+            initialparC : 0.55,
+            initialparP : -0.05,
+            initialparA : 5.18,
+            initialparB : -0.52,
+            */
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -607,8 +683,6 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
 
-
-
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
@@ -622,6 +696,5 @@
     //====================================================
     // \\// inits and sets config pars
     //====================================================
-
 }) ();
 

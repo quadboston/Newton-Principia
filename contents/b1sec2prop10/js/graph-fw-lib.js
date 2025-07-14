@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, sData }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
@@ -29,16 +29,17 @@
         ///dynamically,
         function doSetColorThreadArray()
         {
-            let colorThreadArray = [
+            sData.colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
+                sDomF.getFixedColor( 'context' ),
+                sDomF.getFixedColor( 'body' ),
             ];
-            return colorThreadArray;
+            return sData.colorThreadArray;
         }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-            container$ = $$.div()
+            const container$ = graphFW.container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -70,7 +71,8 @@
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor      = 'rgba(0,0,0,1)';
+        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
+
             var axisYLegend =
             [
                 {

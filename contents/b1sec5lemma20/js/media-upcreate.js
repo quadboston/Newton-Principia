@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, nssvg, has, haz,
-        amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
+        amode, sconf, sDomF, sDomN, ssD, ssF, sData, fixedColors,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -18,12 +18,6 @@
     var paintTriangle;
     var ellipseColor;
     return;
-
-
-
-
-
-
 
 
     function setModule()
@@ -45,7 +39,6 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic() //media_upcreate()
     {
-        
         ///creates addendum points non-visibility machinery
         fapp.fappRoot$.removeClass( 'subessay--case1' );
         fapp.fappRoot$.removeClass( 'subessay--case2' );
@@ -59,36 +52,39 @@
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
+        {
+            const e = sData.polar_ell_model.e;
+            let cap;
+            if( e<0.01 ){
+                cap = 'circle, eccentricity = 0';
+            } else if( e<0.999 ){
+                cap = 'ellipse, eccentricity = ' + e.toFixed(2);
+            } else if ( e<=1 ){
+                cap = 'parabola, eccentricity = 1';
+            } else {
+                cap = 'hyperbola, eccentricity = ' + e.toFixed(2);
+            }
+            rg.a.caption = cap;
+        }
         ssF.mediaModelInitialized = true;
     }
 
-
-    //=========================================================
-    // //\\ updates and creates media
-    //=========================================================
+    /// updates and creates media
     function createMedia0updateMediaAUX()
     {
-        ///-------------------------------------------------
-        ///makes ellipse first to put point over it later
-        ///-------------------------------------------------
         var ellipse = toreg( 'ellipse' )();
-        ellipse.svgel = nssvg.ellipse({
-            stepsCount      : 100,
-            a               : rg.a.value*sconf.mod2inn_scale,
-            b               : rg.b.value*sconf.mod2inn_scale,
-            x0              : rg.O.medpos[0],
-            y0              : rg.O.medpos[1],
-            rotationRads    : sconf.rotationRads,
-            svgel           : ellipse.svgel,
-            parent          : stdMod.mmedia,
-
-            'stroke-width':5,
-            stroke  : ns.arr2rgba( fixedColors[ "ellipse" ] ),
-        });
-        $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
+        const pem = sData.polar_ell_model;
+        if( has( ellipse, 'svgel' ) ){
+            nssvg.model_ellipse(pem);
+        } else {
+            ////makes ellipse first to put point over it later
+            pem.stepsCount=200;
+            pem.parent = stdMod.mmedia;
+            pem['stroke-width'] = 5;
+            pem.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
+            pem.svgel = ellipse.svgel = nssvg.model_ellipse(pem);
+            $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
+        }
     }
-    //=========================================================
-    // \\// updates and creates media
-    //=========================================================
 }) ();
 

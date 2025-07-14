@@ -6,28 +6,17 @@
     } = window.b$l.apptree({
         setModule,
         ssFExportList : {
-            scaleValue2app,
             createSliderPlaceholder_media_scale,
         },
     });
     var pointies2line;
     return;
 
-
-
-
-
-
-
-
-
-
-
+    
     function setModule()
     {
         pointies2line   = ssF.pointies2line;
     }
-
 
     ///----------------------------------------
     /// creates slider only once per
@@ -44,7 +33,7 @@
             sliderCaption   : 'scale',
             cssClsKey       : ' ' + magnit,
             max_magnit      : haz( sconf, 'MAX_MAGNITUDE' ) || 100,
-            min_magnit      : 0.2,
+            min_magnit      : 0.01,
             SUGGESTED_COLOR : "#999999",
             magnitude2app,
         });
@@ -59,17 +48,8 @@
         //magnit_api.value = newValue * fullLength;
 
         magnit_api.value = newValue;
-        scaleValue2app( magnit_api.value, );
+        ssF.scaleValue2app( magnit_api.value, );
         // \\// todm: fullLength patch
     }
-
-
-    function scaleValue2app( svalue, ) {
-        var sc = sconf;
-        sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
-        sc.inn2mod_scale = 1 / sc.mod2inn_scale;
-    }
-
-
 }) ();
 

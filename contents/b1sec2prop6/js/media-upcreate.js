@@ -28,16 +28,6 @@
         });
         rgX.svgel$.addClass('tp-orbit');
 
-        // curve from P to Q
-        ssF.paintsCurve({
-            mmedia  : stdMod.svgScene,
-            fun     : stdMod.q2xy,
-            rgName  : 'QP',
-            stepsCount : 101,
-            start   : rg.P.q,
-            step     : (rg.Q.q - rg.P.q ) / 100,
-        });
-
         // curve from Q- to Q
         //todm this is a redundant step, graphArray is already
         //built and can be used
@@ -62,26 +52,6 @@
             start   : 0,
             step     : rg.Q.q / 100,
         });
-        
-        /*
-        ///possibly redundant because gap points are good
-        if( has( rg[ 'foldPoints-' + 1 ], 'svgel$' ) ){
-           if( !foldPointsRemovedFromTp ) {
-               foldPointsRemovedFromTp = true;
-
-               let gapColor = userOptions.showingBonusFeatures() ?
-                              '#ffffff' : '#ff0000';
-               rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
-               sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
-                    fp.rgX.svgel$
-                        .removeClass( 'tp-fold_points-'+ppix )
-                        .css( 'fill', gapColor )
-                        .css( 'stroke', gapColor )
-                    ;
-               });
-            }
-        }
-        */
     }
     //=========================================================
     // \\// lemma custom addons

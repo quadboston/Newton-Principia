@@ -149,6 +149,18 @@
         // \\// sets capture button
         //..........................
 
+        sDomN.zoomInfo$ = $$
+            .c( 'div' )
+            .addClass( 'zoom-info' )
+            .html( "zoom=" )
+            .to( topMediaControls$() )
+            .css( 'display', 'block' )
+            .css( 'font-size', '12px' )
+            .css( 'margin-top', '12px' )
+            .css( 'padding-right', '35px' )
+            .css( 'color', '#aaaaaa' )
+            .css( 'float', 'right' );        
+       
         //..........................
         // //\\ sets studylab button
         //..........................

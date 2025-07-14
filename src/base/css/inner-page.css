@@ -150,7 +150,7 @@
 .change-model-data-button,
 .change-tools-button {
     float:right;
-    margin-top:8px;
+    margin-top:12px;
     margin-right:5px;
     color: var(--color-medium-grey);
     font-size: 12px;
