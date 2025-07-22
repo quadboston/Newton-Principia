@@ -232,7 +232,7 @@
                 stroke : sData.colorThreadArray[2],
                 'stroke-width' : 3,
             },
-            abscissaIxValue : stdMod.q2qix(),
+            abscissaIxValue : stdMod.P2gix(),
             numberMarks : true, 
         };
     }

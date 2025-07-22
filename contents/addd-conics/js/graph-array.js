@@ -6,7 +6,7 @@
         stdModExportList :
         {
             buildsforceGraphArray,
-            q2qix,
+            P2gix,
         },
     });
     return;
@@ -76,7 +76,7 @@
     }
 
 
-    function q2qix( pos )
+    function P2gix( pos )
     {
         var q = stdMod.pos2t( rg.P.pos );
         var qixMax = stdMod.graphArray.length-1;

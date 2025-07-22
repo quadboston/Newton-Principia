@@ -1,20 +1,8 @@
 
 ( function() {
-    var { //import from apptree
-        ns,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
-        ssFExportList : { init_conf }
-    });
+    var { ns, fconf, sconf, fixedColors, } = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-
-
-
-
-
-
-
 
 
     //====================================================
@@ -50,9 +38,9 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         sconf.rgShapesVisible = true;
+        
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
@@ -78,46 +66,69 @@
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
         //***************************************************************
 
-
-
-        //***************************************************************
-        // //\\ geometics parameters
-        //***************************************************************
         //=============================================
         // //\\ points reused in config
         //=============================================
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = 360;
-
         var C = [443, 375 ];
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
-
-        sconf.ellipseA  = 1.03;
-        sconf.ellipseB  = 0.86;
-        var PparT       = 0.255 * Math.PI;
-        var curveParA   = -0.64;
-        var curveParFi0 = 0.0 * Math.PI;
-        var curveParFiMax = 2 * Math.PI;
-        //interval of t to construct an arc for Newton's sagitta
-        var sForSagitta_valQ = 0.36;
-
         var S = C;
-        var P = [0, 0 ]; //set bu sconf.PparT
-        var Q = [0, 0 ]; //set in amode8captures
-
-        sconf.diagramOrigin = [ 0, 0 ];
         //=============================================
         // \\// points reused in config
         //=============================================
+
+
+        //:diagram sandbox spatial parameters
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = 360;
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+        sconf.diagramOrigin = [ 0, 0 ];
+
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.CURVE_REVOLVES = true; //true for cyclic orbit
+        sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
+        sconf.DT_SLIDER_MAX = FT ? 0.66 : null;
+        var Q_STEPS = 1000;
+        var TIME_STEPS = 1000;
+        var DATA_GRAPH_STEPS = 500;
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 0.5;
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
+
+        //-------------------------------------------
+        // //\\ curve shape parameters
+        //-------------------------------------------
+        sconf.ellipseA  = 1.03;
+        sconf.ellipseB  = 0.86;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 2.0 * Math.PI;
+        //-------------------------------------------
+        // \\// curve shape parameters
+        //-------------------------------------------
+
+        //to be studied in given proposition:
+        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.36;
+        } else {
+            sconf.Dq0 = 0.42;
+        }
+
+        //pos of P
+        sconf.parQ = 0.255 * Math.PI;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -143,7 +154,6 @@
             orbit   : given,
             force   : result,
             tangentCircle : curvature,
-            //curvatureCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -152,20 +162,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
-        var originalPoints =
-        {
-        };
-
-        Object.assign( originalPoints, {
+        var originalPoints = {
             O : {
                 pcolor : context,
                 caption : 'C',
@@ -185,7 +182,6 @@
                 doPaintPname : false,
             },
 
-
             A : {
                 pcolor : proof,
             },
@@ -194,7 +190,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             D : {
                 pcolor : proof,
@@ -212,7 +207,6 @@
                 letterRotRadius : 25,
             },
 
-
             T : {
                 pcolor : proof,
                 letterAngle : 180,
@@ -224,14 +218,12 @@
                 letterAngle : 45,
             },
 
-
             Z : {
                 pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             Zminus : {
                 pcolor : body,
@@ -240,13 +232,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-            /*
-            V : {
-                pcolor : proof,
-                letterAngle : -45,
-            },
-            */
 
             v : {
                 caption : '𝑣',
@@ -266,7 +251,6 @@
                 letterAngle : -45,
             },
 
-
             //center of instant curvature circle
             C : {
                 pos : C,
@@ -276,7 +260,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             //Book's "another solution"
             u : {
@@ -302,12 +285,18 @@
                 pcolor : result,
                 letterAngle : -115,
                 letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
+  
+                //todo make S draggable if necessary
+                //fix error in
+                //        stdMod.creates_Q8P_sliders();
+                //if( rg.S.draggableX || rg.S.draggableY ) {
+                //    stdMod.creates_S_slider();
+                //for this, take create sliders from prop 11, or other,
+                //draggableX  : true,
+                //draggableY  : true,
             },
 
             P : {
-                pos: P,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -315,7 +304,6 @@
             },
 
             Q : {
-                pos: Q,
                 pcolor : proof,
                 letterAngle : 180,
                 letterRotRadius : 25,
@@ -325,12 +313,11 @@
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
-        });
+        };
 
 
         var linesArray =
         [
-            //{ 'CV' : { pcolor : curvature }, },
             { 'PC' : { pcolor : proof }, },
 
             { 'SP' : { pcolor : result }, },
@@ -372,11 +359,9 @@
         ];
 
         ns.paste( sconf, {
-            PparT,
-            curveParA,
-            curveParFi0,
-            curveParFiMax,
-            sForSagitta_valQ,
+            Q_STEPS,
+            DATA_GRAPH_STEPS,
+            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -392,10 +377,6 @@
             defaultLineWidth,
             handleRadius,
         });
-        sconf.pointDecoration.r = sconf.handleRadius;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
     }
 }) ();
 

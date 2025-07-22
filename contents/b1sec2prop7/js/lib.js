@@ -164,17 +164,17 @@
             far.y[2] = far.y[2] / (-comparLawMin);
             far.y[3] = far.y[3] / speedMax;
         }
-        stdMod.q2qix = q2qix;
+        stdMod.P2gix = P2gix;
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
         return;
 
         
-        ///todm fix or rename to q2qix,
+        ///todm fix or rename to P2gix,
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
         ///     start_q ) / ( end_q - start_q ) * qixMax
-        function q2qix()
+        function P2gix()
         {
             var q = rg.P.q;
             var qixMax = forceGraphArray.length-1;

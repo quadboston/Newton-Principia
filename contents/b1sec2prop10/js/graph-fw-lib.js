@@ -1,11 +1,14 @@
 ( function() {
-    var {
-        ns, sn, $$, nsmethods, haz, globalCss,
-        ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { sn, $$, nsmethods, haz, globalCss, ssD, sDomN, sDomF, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
+    return;
+
+
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
+        stdMod.createsGraphFW_class({
+            graphFW,
+            digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
@@ -14,24 +17,28 @@
             doDrawToolline,
             graphAxisX,
             graphAxisY,
-        },
-    });
-    return;
+            setsGraphTpClasses,
+        });
+        //first array must be enabled
+        //but can be dynamically overridden,
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
+        return graphFW;
 
-
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset
+        ///dynamically,
     function doSetColorThreadArray()
     {
-        sData.colorThreadArray = [
+            let colorThreadArray = [
             sDomF.getFixedColor( 'force' ),
-            sDomF.getFixedColor( 'context' ),
-            sDomF.getFixedColor( 'body' ),
+            sDomF.getFixedColor( 'displacement' ),
         ];
-        return sData.colorThreadArray;
+            return colorThreadArray;
     }
 
     function setsGraphContainerAttributes( digramParentDom$ )
     {
-        stdMod.graphFW.container$ = $$.div()
+            const container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -45,18 +52,21 @@
                     .css( 'z-index', '111111' )
             )
             ;
-        ///creates low tire api
-        sData.graph_dimX = 1000;  //innerWidth
-        sData.graph_dimY = 580;   //innerHeight
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
     }
 
     function setsGraphAxes()
     {
+            let n2c = sDomF.getFixedColor; //name to color
+
         //==================================================
         // //\\ calls api
         //==================================================
         //y-legend color; taken from first plot color:
-        var yColor      = sData.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
         //axis x and legend x color:
         //manually picked color, not from plot,
@@ -64,7 +74,12 @@
         var axisYLegend =
         [
             {
-                text    : 'Force',
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
                 x       : 40,
                 y       : 25,
                 style   : {
@@ -74,8 +89,21 @@
                 },
             },
             {
-                text    : 'Force f, 1/r², and speed v per their maximums.',
-                x       : 250,
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
+
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:' + n2c( 'displacement' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
+
+                                '<tspan> forces</tspan>' +
+                                '</text>',
+                    x       : 310,
                 y       : 40,
                 style   : {
                             'font-size' : '30',
@@ -88,8 +116,8 @@
         var axisXLegend =
         [
             {
-                    text    : 'Distance, r',
-                x       : -700,
+                    text    : 'Distance from force (CP)',
+                    x       : -560,
                 y       : 25,
                 style   : {
                             'font-size' : '30',
@@ -156,6 +184,8 @@
         ];
     }
 
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
     function setsGraphTpClasses()
     {
         const svg = graphFW.fw.plotIx2plotSvg;
@@ -169,10 +199,10 @@
     {
         return {
             toollineStyle : {
-                stroke : sData.colorThreadArray[2],
+                //stroke : sData.colorThreadArray[2],
                 'stroke-width' : 3,
             },
-            abscissaIxValue : stdMod.q2qix(),
+            abscissaIxValue : stdMod.P2gix(),
             numberMarks : true, 
         };
     }
@@ -202,5 +232,6 @@
             fill            : yColor,
            'stroke-width'   : '1',
         };
+    }
     }
 }) ();

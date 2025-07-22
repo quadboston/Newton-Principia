@@ -243,13 +243,19 @@
     ///input parameters are in model namespace,
     nssvg.model_ellipse = function( arg )
     {
+        const pe = mat.polar_ellipse;
         const polyline = arg.pivots = [];
         const stepsCount = arg.stepsCount;
         const step = 2*Math.PI/stepsCount;
+        const points = haz( arg, 'points' ); //precalculated
         for( var ii = 0; ii < stepsCount; ii++ ){
             arg.q = step * ii;
-            var ell = mat.polar_ellipse(arg);
-            var medpos = ssF.mod2inn( [ell.x, ell.y] );
+            if( points ){
+                var medpos = ssF.mod2inn( points[ii] );
+            } else {
+                const point = pe( arg ).point;
+                var medpos = ssF.mod2inn( point );
+            }
             polyline.push( medpos );
         }
         polyline.push( medpos );
