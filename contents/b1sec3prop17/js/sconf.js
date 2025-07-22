@@ -174,8 +174,8 @@
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.hover_width    = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -244,7 +244,8 @@
             shadow,
             force               : force,
             instanttriangle     : instanttriangle,
-            e                   : result 
+            e                   : result ,
+            conic               : result
         };
         //-----------------------------------
         // \\// topic group colors,
