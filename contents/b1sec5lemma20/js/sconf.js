@@ -210,6 +210,8 @@
                   cssClass: 'tp-generators',
                   initialR: pointRadius,
                   letterRotRadius : 20,
+                  draggableX : true,
+                  draggableY : true,
                 },
             R : { pos: [1010, 712],
                   pcolor: predefinedTopics['key-triangle'],

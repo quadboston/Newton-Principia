@@ -47,8 +47,10 @@
                 e : sconf.excentricity,
                 focus : ssF.inn2mod( sconf.focus ),
                 latus2 : sconf.latus2*i2m,
+                stepsCount : 1000,
             };
         }
+        stdMod.ellmod2arr( sData.polar_ell_model );
         sData.eScale = ( rg.eEnd.pos[0] - rg.eStart.pos[0] ) / sconf.eMax;
         stdMod.slider_a_value2pos();
 
@@ -57,5 +59,5 @@
         //dev tool:
         //ellipsePar_create8paint( 1.50 )
     }
+})();
 
-}) ();

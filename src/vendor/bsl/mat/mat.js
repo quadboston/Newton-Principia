@@ -76,8 +76,7 @@
         const e1 = 1-e*cosFi;
         const inve = Math.abs(e1) < 1e-30 ? 1e+30 : 1/e1;
         let ro = latus2 * inve;
-        let x = ro*cosQ+focus[0];
-        let y = ro*sinQ+focus[1];
+        let point = [ro*cosQ+focus[0], ro*sinQ+focus[1]];
         {
             const drodq = -e*sinFi*inve*inve;
             const drdqX = drodq * cosQ - inve * sinQ;
@@ -85,7 +84,7 @@
             const a = 1/Math.sqrt( drdqX*drdqX + drdqY*drdqY );
             var tangent = [ drdqX * a, drdqY * a ]; //=unit tangent
         }
-        return { x, y, tangent };
+        return { point, tangent };
     }
 
     ///definition:  ellipse = ((x-x0)/a)^2 + (y-y0)/b)^2 = 1;

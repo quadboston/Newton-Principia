@@ -78,7 +78,6 @@
             nssvg.model_ellipse(pem);
         } else {
             ////makes ellipse first to put point over it later
-            pem.stepsCount=200;
             pem.parent = stdMod.mmedia;
             pem['stroke-width'] = 5;
             pem.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );

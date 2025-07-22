@@ -7,6 +7,7 @@
         {
             model_upcreate,
             deriveParameters,
+            ellmod2arr,
         },
     });
     var DID_INITIALIZED = false;
@@ -81,8 +82,8 @@
     {
         const pem = sData.polar_ell_model;
         pem.q = parQ;
-        var { x,y,tangent } = mat.polar_ellipse( pem );
-        pos8tg_2_rg( pname, [x,y], tangent );
+        var { point, tangent } = mat.polar_ellipse( pem );
+        pos8tg_2_rg( pname, point, tangent );
         return rg[ pname ];
     }
 
@@ -188,7 +189,9 @@
     // \\// registers model pars into common scope
     //===================================================
 
-    //does project (pos-P) on Pt:
+    ///does project vector(pos-P) on Pt:
+    ///secures from perpendicular deviation of pos
+    ///from the line Pt
     function pos2Tpar( pos )
     {
         var P=rg.P.pos;
@@ -203,4 +206,19 @@
         return PTalgebraic;
      }
 
-}) ();
+     
+    ///input parameters are in model namespace,
+    ///ellipse to array
+    function ellmod2arr( arg )
+    {
+        const pe = mat.polar_ellipse;
+        const points = arg.points = [];
+        const stepsCount = arg.stepsCount;
+        const step = 2*Math.PI/stepsCount;
+        for( var ii = 0; ii < stepsCount; ii++ ){
+            arg.q = step * ii;
+            points.push( pe(arg).point );
+        }
+    };
+})();
+
