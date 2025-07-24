@@ -1,6 +1,8 @@
 ( function() {
     var {
-        $$, mat, sDomF, stdMod, rg, toreg,
+        $$, mat,
+        sconf, sDomF, sDomN, ssD, ssF, sData,
+        stdMod, rg, toreg,
     } = window.b$l.apptree({
         ssFExportList :  {
             upcreate_mainLegend,
@@ -10,12 +12,11 @@
     var clustersToUpdate = [];
     return;
 
-
+    
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        //c cc( 'starts create_digital_legend' );
         var mlegend = toreg( 'main-legend' )();
         doCreateTable_proof( mlegend );
     }
@@ -29,8 +30,10 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-        ww[ 'a' ].innerHTML = rg.a.value.toFixed(2);
-        ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
+        //ww[ 'a' ].innerHTML = sData.polar_ell_model.e.toFixed(2);
+        //ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
+
+        //var wwT=rg.T.pos;
 
         //todm this is a patch: do use Pr/Pt
         var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
@@ -113,4 +116,3 @@
     }
 
 }) ();
-
