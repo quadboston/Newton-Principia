@@ -253,14 +253,14 @@
                     unscalable : true,
                 },
             //rails
-            aStart : {
+            eStart : {
                 pos : [ slider_a_start, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
-            aEnd : {
+            eEnd : {
                 pos : [ slider_a_end, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
@@ -517,7 +517,7 @@
             // \\// similar triangles
             //------------------------
 
-            { 'aStart,aEnd' : {
+            { 'eStart,eEnd' : {
                         pcolor : predefinedTopics["ellipse"],
                         cssClass : 'ellipse',
                     }
