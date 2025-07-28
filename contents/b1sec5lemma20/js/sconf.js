@@ -288,6 +288,10 @@
                         pcolor : pt.aux,
                     }
             },
+			 { 'AC' : {
+                        pcolor : pt.aux,
+                    }
+            },
            //-------------------------
            // //\\ base-figure
            //-------------------------
@@ -350,11 +354,6 @@
                     }
             },
             { 'AS' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
-                    }
-            },
-            { 'AC' : {
                         pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
