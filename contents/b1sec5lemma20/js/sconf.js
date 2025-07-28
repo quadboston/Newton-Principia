@@ -239,7 +239,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'excentricity',
+                    caption : 'eccentricity',
                     draggableX : true,
                     draggableY : false,
                     
@@ -555,7 +555,7 @@
             //dontRun_ExpandConfig : true,
 
             //for e slider
-            eMax : 2,
+            eMax : 1.5,
 
             // //\\ this approximately fits Newton's diagram
             //focus : [250, 540],

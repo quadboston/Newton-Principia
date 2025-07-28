@@ -52,7 +52,7 @@
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
-        rg.a.caption = 'excentricity, ' + sData.polar_ell_model.e.toFixed(2);
+        rg.a.caption = 'eccentricity, ' + sData.polar_ell_model.e.toFixed(2);
         ssF.mediaModelInitialized = true;
     }
 
@@ -60,8 +60,6 @@
     function createMedia0updateMediaAUX()
     {
         var ellipse = toreg( 'ellipse' )();
-        const pe = sData.polar_ell;
-        const i2m = sconf.inn2mod_scale;
         const pem = sData.polar_ell_model;
         if( has( ellipse, 'svgel' ) ){
             nssvg.model_ellipse(pem);

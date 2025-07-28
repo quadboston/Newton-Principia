@@ -143,7 +143,8 @@
         // //\\ deriving tangent
         //-----------------------
         //all in model units:
-        var tpos = mat.linesCross( [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
+        var tpos = mat.linesCross(
+            [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
         pos8tg_2_rg( 't', tpos );
         //-----------------------
         // \\// deriving tangent
