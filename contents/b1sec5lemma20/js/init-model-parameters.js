@@ -37,6 +37,8 @@
         );
         sData.initialparC = sconf.initialparC;
         sData.initialparA = sconf.initialparA;
+		sData.initialparB = sconf.initialparB;
+        sData.initialparP = sconf.initialparP;
         toreg( 'b' )( 'value', sconf.b );
         const i2m = sconf.inn2mod_scale;
         {

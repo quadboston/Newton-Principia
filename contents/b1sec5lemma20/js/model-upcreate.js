@@ -127,10 +127,10 @@
         //=========================================
         // //\\ "given" parameters
         //=========================================
-        var P = q2rg( sconf.initialparP, 'P' ).pos;
+        var P = q2rg( sData.initialparP, 'P' ).pos;
         var A = q2rg( sData.initialparA, 'A' ).pos;
         var C = q2rg( sData.initialparC, 'C' ).pos;
-        var B = q2rg( sconf.initialparB, 'B' ).pos;
+        var B = q2rg( sData.initialparB, 'B' ).pos;
         var nBA = mat.p1_to_p2( B, A ).unitVec;
         var nCA = mat.p1_to_p2( C, A ).unitVec;
         var nCB = mat.p1_to_p2( C, B ).unitVec;
