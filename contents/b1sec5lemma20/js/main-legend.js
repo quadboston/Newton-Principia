@@ -67,12 +67,6 @@
         //===================
         // //\\ begins to fill data rows
         //===================
-        //:time
-        var row = $$.c('tr')
-            .to(tb)();
-        makeCl( row, 'a', 'semi a', 'ellipse' );
-        makeCl( row, 'b', 'semi b', 'ellipse' );
-
         var row = $$.c('tr')
             .to(tb)();
         makeCl( row, 'PT', 'PT', 'key-triangle' );
