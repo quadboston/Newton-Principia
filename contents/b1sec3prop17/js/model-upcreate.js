@@ -1,11 +1,8 @@
 ( function() {
     var {
-        sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has,
-        fconf, ssF, sData,
-        stdMod, amode, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+        sn, nspaste, mcurve, mat,
+        fconf, ssF, amode, sconf, rg, 
+    } = window.b$l.apptree({ stdModExportList : {
             model_upcreate,
         },
     });
@@ -16,257 +13,165 @@
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
+    /// called from src/base/lemma/astate2app.js (2x on page load, 1x on tab switch)
+    ///
+    /// called from src/base/app-tree.js (2x on page load and tab switch, 1x when moving draggers)
+    /// todo: investigate this redundant behaviour
     ///****************************************************
     function model_upcreate()
     {
-        //console.log('model_upcreate'); //called 4x on page load, then 3x when switching tabs; and again when draggers move
+        //called 4x on page load, 
+        //then 3x when switching tabs; 
+        //and again when draggers move
+        //console.log('model_upcreate'); 
 
+        //================================================
+        // //\\ op (brown orbit)
+        //================================================
         const op        = sconf.orbitParameters;
-        const cosAxis   = Math.cos( op.mainAxisAngle );
-        const sinAxis   = Math.sin( op.mainAxisAngle );
-        const fun       = rg[ 'approximated-curve' ].t2xy;
-        const q         = rg.P.q;
-        const rr0       = fun( q );
-        const rrc       = rg.S.pos;
-        nspaste( rg.P.pos, rr0 );
+        var cosAxis   = Math.cos( op.mainAxisAngle );
+        var sinAxis   = Math.sin( op.mainAxisAngle );
+        const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
+        const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
+        
+        const rr0       = fun( q ); // rg.P.pos
+        const rrc       = rg.S.pos; // rg.S.pos is [0,0] as defined in amode8captures.js
+        //nspaste( rg.P.pos, rr0 ); // rg.P.pos does not move   
+
+        // **api-input---plane-curve-derivatives
+        var diff = mcurve.planeCurveDerivatives({ fun, q, rrc, });
+        var {
+            projectionOfCenterOnTangent,
+            uu,
+            ee,
+            sinOmega,
+            cosOmega,
+        } = diff;     
 
         //"caustics"
+        //todo: these are not correct for hyperbola case
         const axisC     = op.conicSignum === -1 ? -op.C : op.C;
         rg.C.pos[0]     = cosAxis * axisC;
         rg.C.pos[1]     = sinAxis * axisC;
         rg.H.pos[0]     = 2*rg.C.pos[0];
         rg.H.pos[1]     = 2*rg.C.pos[1];
-
-        // **api-input---plane-curve-derivatives
-        var diff = mcurve.planeCurveDerivatives({
-            fun,
-            q,
-            rrc,
-        });
-        var {
-            R,
-            r,
-            curvatureChordSecondPoint,
-            projectionOfCenterOnTangent,
-            uu,
-            ee,
-            nn,
-            rr,
-            sinOmega,
-            cosOmega,
-            //staticSectorialSpeed_rrrOnUU,
-        } = diff;
-        var Rc = R; //curvature radius
-        rg.P.sinOmega = sinOmega;
-        rg.P.uu = uu;
-        rg.P.ee = ee;
-        rg.P.abs = r;
-
-        //================================================
-        // //\\ arc, sagittae and related
-        //================================================
-        ////delta q is derived from delta t
-        var {
-            rr, //for pos for Q
-            sagittaDeltaQ,
-        } = deltaT_2_arc();
-        nspaste( rg.Q.pos, rr );
-        op.sagittaDelta_q = sagittaDeltaQ;
-        rg[ 'P,vb' ].caption = op.Kepler_v.toFixed(3);
-        rg.SY.caption = '';
-
-        //R = parallel-projection of Q to tangent
-        nspaste( rg.R.pos,
-            mat.linesCross(
-                uu, rr0, //direction, start
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
-            )
-        );
-        {
-            //dropLine(... = start + direction * t
-            let udir = op.cosOmega * cosOmega + op.om * sinOmega;
-            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
-        }
-        //T = perp. from Q to radius-vector
-        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
-
-        nspaste( rg.Z.pos,
-            mat.linesCross(
-                uu,
-                rg.P.pos,
-                [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-                rg.T.pos,
-            )
-        );
-        //================================================
-        // \\// arc, sagittae and related
-        //================================================
-
-        nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-
-
-        //------------------------------------------------
-        // //\\ PZminus
-        //------------------------------------------------
-        nspaste( rg.Zminus.pos,
-            mat.dropLine(
-                -1.3,
-                rg.P.pos,
-                null,
-                null,
-                uu,
-            )
-        );
-        //------------------------------------------------
-        // \\// PZminus
-        // \\// decorations
-        //================================================
-
-        //conjugate diameters and tangents
-        nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
-
-        ////hyperbola or ellipse
-        let D = mat.sm( rg.C.pos, -1, uu );
-        nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  1, uu );
-        nspaste( rg.K.pos, K );    
-        //is this a numerical glitch in the Book?:
-        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
-
-        //vuFV
-        //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
-
-        nspaste( rg.v.pos,
-            mat.linesCross(
-                uu, rg.Q.pos, //direction, start
-                PG, rg.P.pos, //direction, start
-            )
-        );
-
-        //extra points
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-
+        
         nspaste( rg.A.pos, fun( Math.PI ) );
-        nspaste( rg.AA.pos, fun( 0 ) );
+        
+        ////hyperbola or ellipse  
+        if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
+            nspaste( rg.D.pos, rg.P.pos );
+        } else {
+            nspaste( rg.D.pos, fun( 0 ) );
+        } 
+
+        nspaste( rg.K.pos, mat.dropPerpendicular( rg.S.pos, rg.H.pos, rg.P.pos ) );
+          
+        // point B
         {
             let posBx = op.conicSignum === -1 ? -op.C : op.C;
             let posB = [posBx, op.B,];
             let ww = mat.rotatesVect( posB, op.mainAxisAngle, );
             nspaste( rg.B.pos, ww );
-            posB = [posBx, -op.B,];
-            ww = mat.rotatesVect( posB, op.mainAxisAngle, );
-            nspaste( rg.BB.pos, ww );
+        }
+        
+        // point Q
+        var {
+            rr, 
+            sagittaDeltaQ,
+        } = deltaT_2_arc();
+        nspaste( rg.Q.pos, rr );
+        op.sagittaDelta_q = sagittaDeltaQ;
+
+        // point R = parallel-projection of Q to tangent
+        nspaste( rg.R.pos,
+            mat.linesCross(
+                uu, rr0, //direction, start (rr0 is rg.P.pos)
+                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start (rrc is rg.S.pos)
+            )
+        ); 
+
+        // dragger vb (aka Pv)
+        {
+            //dropLine(... = start + direction * t
+            let udir = op.cosOmega * cosOmega + op.om * sinOmega;
+            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
         }
 
-        //=============================================================
-        // //\\ latus
-        //=============================================================
+        //perpendicular dropped from PR to S (referenced in Solution, but not shown for now)
+        nspaste( rg.Y.pos, projectionOfCenterOnTangent );
+
+        // latus rectum
         rg.L.pos[0]  = -sinAxis * op.latus;
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
         rg[ 'L,LL' ].value = (2*op.latus).toFixed(3);
-        rg[ 'L,LL' ].caption = 'L=' + rg[ 'L,LL' ].value;
-        //=============================================================
-        // \\// latus
-        //=============================================================
+
+        //================================================
+        // \\// op (brown orbit)
+        //================================================
 
 
         //=============================================================
-        // //\\ instant triangle
+        // //\\ sop (green orbit)
         //=============================================================
         {
-            let pkey = 'instanttriangle';
-            rg[ pkey ].vertices = [ rg.S.pos, rg.P.pos, rg.Q.pos ];
-            ssF.paintTriangle(
-                pkey,                       //triangleId,
-                'tofill',                   //cssCls,
-            );
-        }
-        //=============================================================
-        // \\// instant triangle
-        //=============================================================
-
-
-        //=============================================================
-        // //\\ prop. 17
-        //=============================================================
-        if( "b1sec3prop17" === fconf.sappId ) {
-            //solved orbit hyperbola or ellipse
-            if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
-                nspaste( rg.D.pos, rg.P.pos );
-            } else {
-                nspaste( rg.D.pos, fun( 0 ) );
-            }
-            nspaste( rg.K.pos, mat.dropPerpendicular( rg.O.pos, rg.H.pos, rg.P.pos ) );
+            ////sample orbit
+            let fun = rg[ 'approximated-curve-sample' ].t2xy;
+            var {
+                rr,
+                uu,
+                ee,
+                projectionOfCenterOnTangent,
+                sinOmega,
+                cosOmega,
+            } = mcurve.planeCurveDerivatives({
+                fun,
+                q   : rg.p.q,
+                rrc,
+            });
+            nspaste( rg.p.pos, rr );
+            //sample speed vector
             {
-                ////sample orbit
-                let fun = rg[ 'approximated-curve-sample' ].t2xy;
-                //orbit
-                let rrc = rg.S.pos;
-                var {
-                    rr,
-                    uu,
-                    ee,
-                    projectionOfCenterOnTangent,
-                    sinOmega,
-                    cosOmega,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q   : rg.p.q,
-                    rrc,
-                });
-                nspaste( rg.p.pos, rr );
-                //sample speed vector
-                {
-                    //dropLine(... = start + direction * t
-                    let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
-                    nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
-                }
-                //sample's decorational dt arc
-                var {
-                    rr,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q : rg.p.q + sop.sagittaDelta_q_initial,
-                    rrc,
-                });
-                nspaste( rg.q.pos, rr );
-                rg.p.abs = mat.unitVector( rg.p.pos ).abs;
+                //dropLine(... = start + direction * t
+                let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
+                nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
             }
-            const cosAxis   = Math.cos( sop.mainAxisAngle );
-            const sinAxis   = Math.sin( sop.mainAxisAngle );
-
-            //----------------------------------
-            // //\\ force, gamma, and latus
-            //----------------------------------
-            rg.l.pos[0]  = -sinAxis * sop.latus;
-            rg.l.pos[1]  =  cosAxis * sop.latus;
-            rg.ll.pos[0] =  sinAxis * sop.latus;
-            rg.ll.pos[1] = -cosAxis * sop.latus;
-            rg[ 'l,ll' ].caption = 'l=' + (2*sop.latus).toFixed(3);
-            {
-                ////force and gamma
-                let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
-                var newLen = relativeGamma * sop.forceHandleInitial;
-                nspaste( rg.f.pos,
-                         mat.sm( rg.p.pos, -1*newLen, ee )
-                );
-                rg[ 'p,f' ].caption = 'f = ' + relativeGamma.toFixed(2);
-            }
-            //----------------------------------
-            // \\// force, gamma, and latus
-            //----------------------------------
-            rg[ 'p,vSample' ].caption = 'vₛ = ' + sop.Kepler_v.toFixed(3);
-
-            rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
-            rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
+            //sample's decorational dt arc
+            var {
+                rr,
+            } = mcurve.planeCurveDerivatives({
+                fun,
+                q : rg.p.q + sop.sagittaDelta_q_initial,
+                rrc,
+            });
+            nspaste( rg.q.pos, rr );
+            rg.p.abs = mat.unitVector( rg.p.pos ).abs;
         }
+
+        cosAxis   = Math.cos( sop.mainAxisAngle );
+        sinAxis   = Math.sin( sop.mainAxisAngle );
+
+        // latus
+        rg.l.pos[0]  = -sinAxis * sop.latus;
+        rg.l.pos[1]  =  cosAxis * sop.latus;
+        rg.ll.pos[0] =  sinAxis * sop.latus;
+        rg.ll.pos[1] = -cosAxis * sop.latus;
+
+        {
+            ////force and gamma
+            let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
+            var newLen = relativeGamma * sop.forceHandleInitial;
+            nspaste( rg.f.pos, mat.sm( rg.p.pos, -1*newLen, ee ));
+        }
+
+        //perpendicular dropped from pr to S (referenced in Solution, but not shown for now)
+        rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
+        rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
+
         //=============================================================
-        // \\// prop. 17
+        // \\// sop (green orbit)
         //=============================================================
     }
 
@@ -281,20 +186,15 @@
         const fun   = rg[ 'approximated-curve' ].t2xy;
         var q       = rg.P.q;
         var {
-                staticSectorialSpeed_rrrOnUU,
-                r,
-                v,
-                uu,
-                sinOmega,
-                cosOmega,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q,
-                rrc,
-            });
-            var udir = op.cosOmega * cosOmega + op.om * sinOmega;
-        var intervalT = 0;
-        var deltaT_isReached = false;
+            v,
+            sinOmega,
+            cosOmega,
+        } = mcurve.planeCurveDerivatives({
+            fun,
+            q,
+            rrc,
+        });
+        var udir = op.cosOmega * cosOmega + op.om * sinOmega;
         //path step
         const ds_by_dt  = udir * op.delta_t / INTEGRATION_STEPS * op.Kepler_v;
         for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {

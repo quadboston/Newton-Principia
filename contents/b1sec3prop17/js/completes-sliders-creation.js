@@ -1,8 +1,8 @@
 ( function() {
-    var { sn, has, mat, mcurve, nspaste, fconf, sData, amode, stdMod, sconf, rg, toreg, } 
-        = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, },  });
+    var { 
+        sn, mat, nspaste, fconf, sData, amode, stdMod, sconf, rg,
+    } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
     var conics = sn( 'conics', mat );
-    var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
@@ -14,11 +14,9 @@
         var op = sconf.orbitParameters;
 
         //=========================================================================
-        // //\\ gamma slider (f)
-        //      for omega
+        // //\\ centripetal force slider (f)
         //=========================================================================
         rg.f.processOwnDownEvent = function() {
-
             //--------------------------------------------------------
             // //\\ stashes sample
             //--------------------------------------------------------
@@ -50,7 +48,6 @@
         };
 
         rg.f.acceptPos = ( newPos, dragMove ) => {
-            //console.log('moving f');
             var { logic_phase, aspect, subessay } = amode;
             var newPos0 = dragMove[0] *
                           0.5 //decreases slider sensetivity
@@ -127,12 +124,6 @@
             op.mainAxisAngle    = op.PparQ_initial - fi;
             op.latus            = solvedLatus;
             stdMod.establishesEccentricity( e );
-            // //\\ decorates Fi handle
-            var posAbs = mat.unitVector( rg.Fi.pos ).abs;            
-            //sets handle
-            rg.Fi.pos[0] = posAbs*Math.cos( op.mainAxisAngle );
-            rg.Fi.pos[1] = posAbs*Math.sin( op.mainAxisAngle );
-            // \\// decorates Fi handle
             //--------------------------------
             // \\// reestablish solved-orbit
             //--------------------------------------------------------------------
@@ -230,7 +221,7 @@
                 lat : latus,
                 signCosOmega,
             });
-            rg.P.q              = fi;
+            rg.P.q              = fi;       
             op.cosOmega         = cosOmega;
             op.om               = om;
 
@@ -246,19 +237,6 @@
             //console.log('new e: ' + e)
 
             stdMod.establishesEccentricity( e );
-
-
-            //------------------------------------------------
-            // //\\ decorates Fi handle
-            //------------------------------------------------
-            var posAbs = mat.unitVector( rg.Fi.pos ).abs;            
-            //sets handle
-            rg.Fi.pos[0] = posAbs*Math.cos( op.mainAxisAngle );
-            rg.Fi.pos[1] = posAbs*Math.sin( op.mainAxisAngle );
-            //------------------------------------------------
-            // \\// decorates Fi handle
-            //------------------------------------------------
-
             stdMod.model8media_upcreate();
         }
         //=========================================================================

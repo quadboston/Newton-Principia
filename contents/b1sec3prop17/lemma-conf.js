@@ -5,7 +5,6 @@
     function lemmaConfig()
     {
         return {
-            sappCodeReference : 'b1sec3prop12',
             "contents-list" :
             [
                 'txt/latin.txt',
@@ -18,6 +17,7 @@
                 { src : 'amode8captures.js' },
                 { src : 'main-legend.js' },
                 { src : 'model-upcreate.js' },
+                { src : 'media-upcreate.js' },
                 { src : 'makes-orbit.js' },
                 { src : 'completes-sliders-creation.js' },
             ],
