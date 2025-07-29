@@ -49,7 +49,6 @@
         } = diff;     
 
         //"caustics"
-        //todo: these are not correct for hyperbola case
         const axisC     = op.conicSignum === -1 ? -op.C : op.C;
         rg.C.pos[0]     = cosAxis * axisC;
         rg.C.pos[1]     = sinAxis * axisC;

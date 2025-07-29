@@ -54,7 +54,7 @@
             'SP', 'SK', 'PR', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
             'p,f', 'l,ll', 'Sp', 'p,vSample', //sop
 
-            'SY', 'S,Ys', //perpendiculars
+            //'SY', 'S,Ys', //perpendiculars
         ].forEach( i => {
             rg[i].undisplay = false;
         });

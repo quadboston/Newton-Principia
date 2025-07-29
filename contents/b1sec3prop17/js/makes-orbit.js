@@ -196,7 +196,7 @@
             op.conicSignum = 0; // parabola
             //console.log('parabola')
         } else {
-            op.conicSignum = 1; // hyperbola            
+            op.conicSignum = -1; // hyperbola            
             //console.log('hyperbola')
         }
         
