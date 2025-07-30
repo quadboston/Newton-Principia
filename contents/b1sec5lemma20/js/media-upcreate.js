@@ -55,14 +55,14 @@
         {
             const e = sData.polar_ell_model.e;
             let cap;
-            if( e<0.01 ){
-                cap = 'circle, eccentricity = 0';
-            } else if( e<0.999 ){
-                cap = 'ellipse, eccentricity = ' + e.toFixed(2);
-            } else if ( e<=1 ){
-                cap = 'parabola, eccentricity = 1';
+            if( e<0.001 ){
+                cap = 'eccentricity 0.00' + ' (circle)';
+            } else if( e<0.99 ){
+                cap = 'eccentricity ' + e.toFixed(2) + ' (ellipse)';
+            } else if ( e<=1.01 ){
+                cap = 'eccentricity 1.00 (parabola)';
             } else {
-                cap = 'hyperbola, eccentricity = ' + e.toFixed(2);
+                cap = 'eccentricity = ' + e.toFixed(2) + ' (hyperbola)';
             }
             rg.a.caption = cap;
         }
