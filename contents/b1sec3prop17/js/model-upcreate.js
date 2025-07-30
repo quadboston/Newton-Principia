@@ -82,14 +82,6 @@
         nspaste( rg.Q.pos, rr );
         op.sagittaDelta_q = sagittaDeltaQ;
 
-        // point R = parallel-projection of Q to tangent
-        nspaste( rg.R.pos,
-            mat.linesCross(
-                uu, rr0, //direction, start (rr0 is rg.P.pos)
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start (rrc is rg.S.pos)
-            )
-        ); 
-
         // dragger vb (aka Pv)
         {
             //dropLine(... = start + direction * t

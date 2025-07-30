@@ -47,11 +47,11 @@
         };
         [
             //points
-            'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'R', 'vb', 'Q', //op
-            'p', 'vSample', 'f', 'q', 'PY', 'CS', 'CH', 'DH', 'DS',  //sop
+            'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'vb', 'Q', //op
+            'p', 'vSample', 'f', 'q', 'CS', 'CH', 'DH', 'DS',  //sop
 
             //lines
-            'SP', 'SK', 'PR', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
+            'SP', 'SK', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
             'p,f', 'l,ll', 'Sp', 'p,vSample', //sop
 
             //'SY', 'S,Ys', //perpendiculars

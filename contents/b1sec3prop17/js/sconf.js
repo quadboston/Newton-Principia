@@ -236,16 +236,11 @@
                 pcolor : result,
                 letterRotRadius : 20,
             },
-            R : {
-                pcolor : body,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
             vb : { //speed of the body (dragger)
-                caption : '',
+                caption : 'R',
                 pcolor : body,
-                letterAngle : 135,
-                letterRotRadius : 20,
+                letterAngle : 135, // degrees CCW from east
+                letterRotRadius : 25, //distance from point
                 draggableX  : true,
                 draggableY  : true,
             },
@@ -353,13 +348,7 @@
             { CD : { pcolor : result }, },
                         
             //not visible, because behind overlapping lines  
-            //but may be highlighted in text links         
-            { PR : { 
-                pcolor : body, 
-                'stroke-width' : 2, 
-                captionShiftNorm : -18, }, 
-            },   
-            { PY : { pcolor : body }, },                     
+            //but may be highlighted in text links                      
             { CS : { pcolor : result }, },
             { SA : { pcolor : result }, },
             { DS : { pcolor : proof }, },

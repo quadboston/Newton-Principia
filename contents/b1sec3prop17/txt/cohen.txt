@@ -8,7 +8,7 @@
 Supposing that the centripetal ¦p,f¦force¦¦ is inversely proportional to the square of the
 ¦Sp SP¦distance of places¦¦ from the ¦S¦center¦¦ and that the absolute quantity of this ¦p,f¦force¦¦ is
 known, it is required to find the ¦orbit¦line¦¦ which a ¦P¦body¦¦ describes when going forth
-from a ¦P¦given place¦¦ with a given ¦P,vb¦velocity¦¦ along a ¦PY¦given straight line¦¦.
+from a ¦P¦given place¦¦ with a given ¦P,vb¦velocity¦¦ along a ¦P,vb¦given straight line¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 470.</div>
 
