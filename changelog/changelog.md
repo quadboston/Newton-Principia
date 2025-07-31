@@ -1,6 +1,6 @@
 # Change Log
  
-## 2025-7-31 (Purple Version, 0.)
+## 2025-7-31 (Purple Version, 0.13849)
 ### Improved
 * Proposition 17
 	* parabolas generated as well as ellipses and hyperbolas
