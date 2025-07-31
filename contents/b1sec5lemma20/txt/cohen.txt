@@ -42,7 +42,7 @@ through the four points ¦A¦¦, B, C, and P.
 Join BP and also 
 CP, and from point ¦D¦¦ draw two 
 straight lines DG and DE, the 
-first if which (DG) is parallel to 
+first of which (DG) is parallel to 
 AB and meets PB, PQ, and CA 
 at H, ¦I¦¦, and G, while the second 
 (DE) is parallel to AC and meets 
