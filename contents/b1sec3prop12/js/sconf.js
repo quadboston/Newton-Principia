@@ -111,7 +111,10 @@
                     //derived
                     sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
                 }
-                stdMod.establishesEccentricity( sop.initialEccentricity, null, sop );
+
+                //todo: why are we calling this 4x in a row with diff values? 
+                //final values are correct, this one is not
+                stdMod.establishesEccentricity( sop.initialEccentricity, null, sop ); 
 
                 //decoration
                 sop.sagittaDelta_q_initial = 0.4;
@@ -124,7 +127,7 @@
                 //-------------------------------------------
                 op.latusInitial         = 0.93;
                 op.latus                = op.latusInitial;
-                op.initialEccentricity  = 0.60;
+                op.initialEccentricity  = 0.60; // change this to 1 to test parabola condition
                 var PparQ = 0.39 * Math.PI;
                 {
                     let sag_init                    = 0.16;

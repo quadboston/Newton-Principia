@@ -64,6 +64,10 @@
             // //\\ sop initials
             //      stashes some values
             //---------------------------------
+            
+            ssF.line2abs( 'SP' );
+            ssF.line2abs( 'PK' );
+
             stdMod.creates_orbitRack( sop );
             let {
                 rr,

@@ -1,0 +1,86 @@
+( function() {
+    var {
+        ssF, stdMod
+    } = window.b$l.apptree({
+        stdModExportList : {
+            create_digital_legend,
+        },
+    });
+    return;
+
+
+    function create_digital_legend()
+    {
+        //create_digital_legend_for_logic_phase( 'claim' ); //todo: remove
+        create_digital_legend_for_logic_phase( 'proof' );
+    }
+
+    function create_digital_legend_for_logic_phase( logic_phase )
+    {
+        //called once per phase, all on page load
+        //console.log('create_digital_legend'); 
+
+        ////********************************************************************
+        ////legendScript-format:
+        ////[topic, caption, JS-expression-of-value-in-local-JS-context]
+        ////
+        ////see: function dataSourceParsed1__2__makesBodyCluster({
+        ////
+        ////********************************************************************
+
+        var legendScriptParsed = [
+            [['e', 'eccentricity', 'op.eccentricity']],
+            [['conic', 'conic', getEqn()]],
+        ];
+
+        function getEqn() {
+            return `
+                let e = op.eccentricity;
+
+                if(e > 1.0001) 'hyperbola'
+                else if(e < 0.9999) 'ellipse'
+                else 'parabola'
+            `;
+        }
+
+        var rowsCount       = legendScriptParsed.length;
+        var clustersCount   = legendScriptParsed[0].length;
+
+        ssF.createLogic_phaseLegend({
+            tableCaption    : '',
+            noTableTitle    : true,
+            stdMod_given    : stdMod,
+            logic_phase,
+            rowsCount,
+            clustersCount,
+            makesBodyCluster,
+            updatesDataInCell,
+        });
+
+        function makesBodyCluster({ rowIx, clusterIx, }){
+            return ssF.dataSourceParsed1__2__makesBodyCluster({
+                rowIx,
+                clusterIx,
+                legendScriptParsed,
+            })
+        }
+
+        function updatesDataInCell({ rowIx, clusterIx, })
+        {
+            //called 12x when switching to tab with table, then 4x each time model moves
+            //console.log('updates table'); 
+
+            return ssF.dataSourceParsed1__2__updatesDataInCell({
+                rowIx,
+                clusterIx,
+                legendScriptParsed,
+            })
+        }
+        
+    }
+    //=========================================
+    // \\// creates logic_phase table
+    //=========================================
+
+}) ();
+

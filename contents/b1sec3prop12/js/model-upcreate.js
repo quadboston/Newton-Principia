@@ -250,7 +250,8 @@
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
-        rg[ 'L,LL' ].caption = 'L=' + (2*op.latus).toFixed(3);
+        rg[ 'L,LL' ].value = (2*op.latus).toFixed(3);
+        rg[ 'L,LL' ].caption = 'L=' + rg[ 'L,LL' ].value;
         //=============================================================
         // \\// latus
         //=============================================================
