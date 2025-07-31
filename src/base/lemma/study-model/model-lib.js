@@ -16,21 +16,10 @@
             dropPerpend,
             dropLine,
             dropPoint,
+            gets_orbit_closest_point,
         },
     });
     return;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     ///input:       lineName aka 'AB'
@@ -104,10 +93,6 @@
         return AB;
     }
 
-
-
-
-
     ///given a string XY and registry of points, 
     ///returns function which calculates circum... on points in the string XY,
     function circumscribeCircleOverChordAndBothNormals_XY(
@@ -121,10 +106,6 @@
         var B = rg[ points[1] ].pos;
         return mat.circumscribeCircleOverChordAndBothNormals( null, A, B );
     }
-
-
-
-
 
     //===============================================================
     // //\\ scriptable arguments in string
@@ -149,7 +130,8 @@
     ///Assigns: "A=scale,C,D,S"
     ///         Arguments are similar to mat.dropLine()
     ///         [,S] is optional
-    ///         Draws line segment parallel line CD from point C [or S ] and assigns pos to A.
+    ///         Draws line segment parallel line CD from point C [or S ]
+    ///         and assigns pos to A.
     ///         Line segment length = scale * length_CD
     ///         A,C,D,S are registry names.
     function dropLine( assigneeScalePoint1Point2_str )
@@ -180,8 +162,30 @@
     //===============================================================
     // \\// scriptable arguments in string
     //===============================================================
-
-
-
-}) ();
+       
+    function gets_orbit_closest_point(
+        r, //distance to which point
+        orbitPoints
+    ){
+        const SEARCH_POINTS = 1000; 
+        const len = orbitPoints.length;
+        const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ) );
+        const point = orbitPoints[0];
+        const x = r[0]-point[0];
+        const y = r[1]-point[1];
+        let min = x*x + y*y;
+        let qix_min = null;
+        for( let qix=STEP; qix<len; qix+=STEP ){
+            const point = orbitPoints[qix];
+            const x = r[0]-point[0];
+            const y = r[1]-point[1];
+            const d2 = x*x + y*y;
+            if( qix_min === null || min>d2 ){
+                min = d2;
+                qix_min = qix;
+            }
+        }
+        return qix_min;
+    }
+})();
 
