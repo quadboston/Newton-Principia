@@ -38,7 +38,6 @@ through the four points ¦A¦¦, B, C, and P.
   "logic_phaseCaption" : "Proof"
 }
 *..*
-
 Join BP and also 
 CP, and from point ¦D¦¦ draw two 
 straight lines DG and DE, the 

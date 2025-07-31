@@ -314,7 +314,7 @@
            },
            { 'PC' : {
                         pcolor : pt.static,
-                        cssClass : 'tp-base-figure',
+                        cssClass : 'subessay--case1',
                     }
            },
            //-------------------------
