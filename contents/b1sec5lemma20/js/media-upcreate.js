@@ -42,7 +42,9 @@
         ///creates addendum points non-visibility machinery
         fapp.fappRoot$.removeClass( 'subessay--case1' );
         fapp.fappRoot$.removeClass( 'subessay--case2' );
-        fapp.fappRoot$.removeClass( 'subessay--corollary3' );
+        fapp.fappRoot$.removeClass( 'subessay--corollary1' );
+		fapp.fappRoot$.removeClass( 'subessay--corollary2' );
+		fapp.fappRoot$.removeClass( 'subessay--corollary3' );
         fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
         fapp.fappRoot$.removeClass( 'subessay--0' );
         fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );

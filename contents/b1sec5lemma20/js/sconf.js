@@ -131,49 +131,49 @@
             // //\\ aux points
             G : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1 subessay--case2',
                    letterAngle : 45,
                  },
             I : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             H : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1 subessay--case2',
                    letterAngle : -90,
                    letterRotRadius : 20,
                  },
             E : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1 subessay--case2',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             K : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1',
                    letterAngle : 90,
                    letterRotRadius : 20,
                 },
             F : {
                    pcolor : pt.aux,
-                   cssClass : 'logic_phase--proof',
+                   cssClass : 'subessay--case1 subessay--case2',
                    letterAngle : 0,
                    letterRotRadius : 20,
                 },
             t : { pos: [1511, 574],
                   pcolor : pt.aux,
-                  cssClass : 'logic_phase--proof',
+                  cssClass : 'subessay--corollary1 subessay--corollary2',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             r : { pos: [1028, 830],
                   pcolor : pt.aux,
-                  cssClass : 'logic_phase--proof',
+                  cssClass :  'subessay--corollary1 subessay--corollary2',
                   initialR: pointRadius,
                 },
             q : { pos: [1028, 830],
@@ -281,11 +281,13 @@
         var linesArray =
         [
             { 'KS' : {
-                        pcolor : pt.aux,
+						pcolor : pt.aux,
+						cssClass : 'subessay--case1',
                     }
             },
             { 'AE' : {
                         pcolor : pt.aux,
+						cssClass : 'subessay--case1 subessay--case2',
                     }
             },
 			 { 'AC' : {
@@ -306,11 +308,6 @@
                     }
            },
            { 'BA' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-base-figure',
-                    }
-           },
-           { 'PB' : {
                         pcolor : pt.static,
                         cssClass : 'tp-base-figure',
                     }
@@ -336,14 +333,6 @@
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
-           { 'RT' : {
-                        pcolor : predefinedTopics["key-triangle"],
-                        'stroke-width' : 10,
-                        cssClass : 'tp-key-triangle',
-                    }
-           },
-
-
   
             //-------------------------
             // //\\ given parallelogram
@@ -410,58 +399,58 @@
             //------------------------
             { 'DG' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1 subessay--case2',
                      }
             },
             { 'IG' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1',
                      }
             },
 
             { 'DI' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1',
                      }
             },
             { 'DE' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1 subessay--case2',
                      }
             },
             { 'DK' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1',
                      }
             },
             { 'Bt' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--corollary1 subessay--corollary2',
                     }
             },
-            { 'CF' : {
+			{ 'CF' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1 subessay--case2',
                     }
             },
             { 'HB' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1',
                     }
             },
             { 'DH' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1 subessay--case2',
                     }
             },
             { 'DF' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1 subessay--case2',
                     }
             },
             { 'IQ' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'subessay--case1',
                     }
             },
             //------------------------
@@ -471,19 +460,14 @@
             //------------------------
             // //\\ static triangle
             //------------------------
-            { 'rt' : {
-                        pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
-                    }
-            },
             { 'Pr' : {
                         pcolor : predefinedTopics["static-generator"],
-                        cssClass : 'tp-static-generator',
+                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
             { 'Pt' : {
                         pcolor : predefinedTopics["static-generator"],
-                        cssClass : 'tp-static-generator',
+                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
             { 'Cd' : {
@@ -506,14 +490,19 @@
             //------------------------
             { 'BP' : {
                         pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'tp-similar-triangle',
+                        cssClass : 'subessay--case1 subessay--case2',
                     }
             },
             { 'BC' : {
                         pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'tp-similar-triangle',
+                        cssClass : 'subessay--corollary1 subessay--corollary2',
                     }
             },
+			{ 'CP' : {
+                        pcolor : predefinedTopics["similar-triangle"],
+                        cssClass : 'subessay--case1',
+                    }
+           },
             //------------------------
             // \\// similar triangles
             //------------------------
