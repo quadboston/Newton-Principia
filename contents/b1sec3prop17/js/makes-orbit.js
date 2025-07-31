@@ -1,25 +1,22 @@
 ( function() {
     var {
-        sn,
-        $$, nssvg, has, haz, mat, mcurve,
-        fconf, ssF,
+        $$, nssvg, has, haz, ssF,
         stdMod, sconf, rg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    } = window.b$l.apptree({ stdModExportList : {
             creates_orbitRack,
             establishesEccentricity,
         },
     });
-    var op = sn( 'orbitParameters', sconf );
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
-    //analogy of
-    //function  pointsArr_2_singleDividedDifferences()
+    //called from init-model-parameters.js
+    //analogy of pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
     {
+        // called twice on page load, once per orbit
+        //console.log('creates_orbitRack'); 
+
         var op                         = vop || sconf.orbitParameters;
         op.protectedQ                  = protectedQ;
         op.posQ_2_andgleInPIandMinusPI = posQ_2_andgleInPIandMinusPI;
@@ -48,7 +45,6 @@
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
-                //trange2points,
                 poly2svg,
         };
         Object.assign( rgX, result );
@@ -73,17 +69,6 @@
                 den = 1e-20;
             }
             var signedRo = op.latus / den;
-
-            /*
-            if( fconf.effId === "b1sec3prop14" ) {
-                if( op.conicSignum === -1 && Math.abs( rgP.q ) < op.SINGULARITY_ANGLE ) {
-                    ////in this proposition, we keep position P = constant, so
-                    ////do invert signedRo for opposite branch of hyperbola,
-                    ////alternatively: signedRo = Math.abs( signedRo );
-                    signedRo = -signedRo;
-                }
-            }
-            */
             if( op.conicSignum === -1 && Math.abs( rgP.q ) < op.SINGULARITY_ANGLE ) {
                 ////in this proposition, we keep position P = constant, so
                 ////do invert signedRo for opposite branch of hyperbola,
@@ -124,7 +109,6 @@
                 var qEnd = op.qEnd;
             }
             var points = trange2points({ qStart, qEnd, stepsCount });
-            //points[ points.length - 1 ] = points[ 0 ]; //does close the poly.
             return points;
         }
 
@@ -133,18 +117,12 @@
             doDeltaArc, //do delta arc only, do not try area,
         }){
             const rgXX = doDeltaArc ? rgDq : rgX;
-            //rgX = approximated-curve-[sample]
-            //rgDq = orbitdq-[sample]
-            var curvePoints         = ownrange2points({ stepsCount:800, doDeltaArc });
-            var medpoints           = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
-            var polylineSvg         = rgXX.polylineSvg = nssvg.polyline({
+            var curvePoints = ownrange2points({ stepsCount:800, doDeltaArc });
+            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
+            var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints, 
                 svgel   : rgXX.polylineSvg,
                 parent  : stdMod.svgScene,
-                //should be overridden by ##tp-machine
-                //stroke           : haz( arg, 'stroke' ),
-                //'stroke-width'   : haz( arg, 'stroke-width' ),
-                //fill             : haz( arg, 'fill' ),
             });
             if( !has( rgXX, 'polylineSvg$' ) ) {
                 rgXX.polylineSvg$ = $$.$( polylineSvg );
@@ -152,7 +130,6 @@
             //##tp-machine
             rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' +
                                          (doDeltaArc ? dqlowname : lowname) );
-                                         //rgDq has tp - dqlowname, rgXX has tp - lowname
             //arc does not have area
             //"no more dq below" ...
             if( doDeltaArc ) return;
@@ -162,10 +139,6 @@
                 pivots  : medpoints,
                 svgel   : rgA.areaSvg,
                 parent  : stdMod.svgScene,
-                //should be overridden by ##tp-machine
-                //stroke           : haz( arg, 'stroke' ),
-                //'stroke-width'   : haz( arg, 'stroke-width' ),
-                //fill             : haz( arg, 'fill' ),
             });
 
             if( !has( rgA, 'areaSvg$' ) ) {
@@ -187,7 +160,6 @@
         ///converts position of Q-handle to Q-angle
         function posQ_2_andgleInPIandMinusPI( newPos )
         {
-            var sing = op.SINGULARITY_ANGLE;
             var probe = Math.atan2( newPos[1], newPos[0] ) - op.mainAxisAngle;
             //normalizes
             probe = ( probe + Math.PI*6 ) % ( Math.PI*2 );
@@ -195,19 +167,6 @@
             return probe;
         }
     }
-
-
-    ///decorates media
-    function eccentricity2sliderPos()
-    {
-        if( !has( rg, 'ZetaEnd' ) ) return;
-        var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
-        var zeta = Math.atan( op.eccentricity );
-        rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
-        rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
-        rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
-    }
-
 
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
@@ -218,16 +177,29 @@
         doAdjustLatus,  //optional, changes the latus, must be "falsy" if vop is present
         vop             //variable op, for case additional orbit is drawn
     ){
+        //called 6x on page load (3x per conic)
+        //and any time Pv/pv are dragged (only for appropriate conic)
+        //and once more per conic when switching tabs
+        //console.log('starting e: ' + eccentricity);
+        
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
-        var SAFE_VALUE = 1e-8;
+        var SAFE_VALUE = 0.1;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
 
-        //protects against parabola case by making conic ellipse
-        if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
-            eccentricity = 1-1.2*SAFE_VALUE;
+        // Determine conic type
+        if (eccentricity < 1 - SAFE_VALUE) {
+            op.conicSignum = 1; // ellipse
+            //console.log('ellipse')
+        } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
+            eccentricity = 1-0.0001;
+            op.conicSignum = 0; // parabola
+            //console.log('parabola')
+        } else {
+            op.conicSignum = -1; // hyperbola            
+            //console.log('hyperbola')
         }
-        op.conicSignum = eccentricity >= 1 ? -1 : 1;
+        
         if( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
@@ -250,7 +222,10 @@
         op.B            = op.latus / op.lambda;
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
-        !vop && eccentricity2sliderPos();
+        
+        //this function does not change eccentricity (except SAFE_VALUE case), 
+        //mostly just flips model from ellipse to hyperbola based on e
+        //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
 
 }) ();

@@ -357,6 +357,11 @@
             //-------------------------------------------------------------------
             var newSinOmega = sData.stashedOmega;
             var signCosOmega = Math.sign( sData.stashedCosOmega );
+            
+            // the value of omega being calculated here is slightly off
+            // using sData.stashedOmega prevents error, by limiting to only
+            // changes in magnitude of Pv, not the angle
+            // this is also used in P14
             if( !(fconf.sappId === 'b1sec3prop17' && ( aspect === 'addendum' ||
                   subessay == 'corollary1' || subessay == 'corollary2' ) ) 
             ){
@@ -404,7 +409,7 @@
             var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega );
             var latus    = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
             var { e, fi, om, cosOmega, lat, r, eta, } = conics.innerPars2innerPars({
-                r   : sData.stashedR,
+                r   : sData.stashedR, //rg.P.abs
                 om  : newSinOmega,
                 lat : latus,
                 signCosOmega,
