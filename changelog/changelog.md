@@ -2,6 +2,12 @@
  
 ## 2025-7-14 (Purple Version, 0.)
 ### Improved
+* Lemma 20
+	* eccentricity ranges from 0 to 1.5, to show circles, ellipses, parabolas, and hyperbolas
+	* point D now a handle
+	* simplified diagram by not showing more than what is described for each section
+	* fixed text and highlighting errors
+
 * Proposition 41
     * fractions changed from linear style to stacked
 
