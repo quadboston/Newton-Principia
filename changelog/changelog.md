@@ -1,9 +1,28 @@
 # Change Log
  
+## 2025-7-31 (Purple Version, 0.13849)
+### Improved
+* Proposition 17
+	* parabolas generated as well as ellipses and hyperbolas
+	* fixed erroneous placement of H near eccentricity of 1
+	* simplified diagram by not showing values for velocities, force, and latus recta
+	* eccentricity and conic reported in table
+
+* Lemma 20
+	* eccentricity ranges from 0 to 1.5, to show circles, ellipses, parabolas, and hyperbolas
+	* point D now manipulatable
+	* simplified diagram by not showing more than what is described for each section
+	* fixed text and highlighting errors
+
+* Proposition 41
+    * fractions changed from linear style to stacked
+	* added highlighting for angle KIN
+
+    
 ## 2025-6-26 (Tan Version, 0.13660)
 ### Improved
 * Lemmas 2, 3
-    * cursor changes to crosshair for handle manipulation
+    * cursor changes to crosshair for dragger manipulation
 
 * Lemma 8, 9, 10
     * areas shaded
@@ -24,7 +43,7 @@
     * fractions changed from linear style to stacked
 
 * Propositions 12, 13
-    * point P now a handle; handle φ removed
+    * point P now manipulatable; φ removed
 
 * Proposition 17
     * improved text-diagram highlighting
@@ -41,8 +60,8 @@
     * red color reassigned when not indicating invalid situations
 
 * Lemma 11
-    * handle b takes priority except when B and b are at A
-    * handle b cannot be moved too far away from B
+    * dragger b takes priority except when B and b are at A
+    * dragger b cannot be moved too far away from B
 
 * Proposition 9
     * changed graph's estimated force to match other models
@@ -228,7 +247,7 @@
     * point rendering consistent with later models
 
 * Lemmas 2, 3
-    * lowest curve handle constrained vertically so as to not create inscribed rectangle, as Newton implies
+    * lowest curve dragger constrained vertically so as to not create inscribed rectangle, as Newton implies
     * curve handles moved so as to not be confused with intersection points
  
 
@@ -237,7 +256,7 @@
 ### Improved
 * Proposition 6
     * graph shows convergence of estimated and actual force
-    * handle priority now Q > P > orbit
+    * dragger priority now Q > P > orbit
     * reported values moved from model and graph to separate data section
     * removed option for constant chord length because it complicated more than it helped
     * better graph labels
