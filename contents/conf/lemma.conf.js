@@ -112,7 +112,7 @@
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
         fixedColors.proofArea   = [...fixedColors.proof, 1];
-        fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
+        fixedColors.proofHidden = [0, 0, 255, 0.5]; //P17 
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 
         //alert, invalid user actions

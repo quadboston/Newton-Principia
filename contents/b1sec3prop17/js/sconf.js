@@ -160,6 +160,7 @@
             orbitareaSample,
             orbitarea,
             proof,
+            proofHidden,
             result,
             force,
             shadow,
@@ -355,9 +356,15 @@
             { DH : { pcolor : result }, },
             { CH : { pcolor : proof }, }, 
 
-            // perpendiculars referenced in the Solution (not shown for now)
-            { 'SY' : { pcolor : proof, captionShiftNorm : -28 }, }, 
-            { 'S,Ys' : { pcolor : proof, captionShiftNorm : -28 }, },
+            // perpendiculars referenced in the Solution
+            { 'SY' : { 
+                pcolor : proofHidden, 
+                captionShiftNorm : -28 
+            }, }, 
+            { 'S,Ys' : { 
+                pcolor : proofHidden, 
+                captionShiftNorm : -28 
+            }, },
             //-------------------------------------------
             // \\// op (brown conic)
             //------------------------------------------- 
