@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, $$, nssvg, has, haz,
-        amode, sconf, sDomF, sDomN, ssD, ssF, sData, fixedColors,
+        amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -18,6 +18,12 @@
     var paintTriangle;
     var ellipseColor;
     return;
+
+
+
+
+
+
 
 
     function setModule()
@@ -39,12 +45,11 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic() //media_upcreate()
     {
+        
         ///creates addendum points non-visibility machinery
         fapp.fappRoot$.removeClass( 'subessay--case1' );
         fapp.fappRoot$.removeClass( 'subessay--case2' );
-        fapp.fappRoot$.removeClass( 'subessay--corollary1' );
-		fapp.fappRoot$.removeClass( 'subessay--corollary2' );
-		fapp.fappRoot$.removeClass( 'subessay--corollary3' );
+        fapp.fappRoot$.removeClass( 'subessay--corollary3' );
         fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
         fapp.fappRoot$.removeClass( 'subessay--0' );
         fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
@@ -54,37 +59,36 @@
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
-        {
-            const e = sData.polar_ell_model.e;
-            let cap;
-            if( e<0.001 ){
-                cap = 'eccentricity 0.00' + ' (circle)';
-            } else if( e<0.99 ){
-                cap = 'eccentricity ' + e.toFixed(2) + ' (ellipse)';
-            } else if ( e<=1.01 ){
-                cap = 'eccentricity 1.00 (parabola)';
-            } else {
-                cap = 'eccentricity = ' + e.toFixed(2) + ' (hyperbola)';
-            }
-            rg.a.caption = cap;
-        }
         ssF.mediaModelInitialized = true;
     }
 
-    /// updates and creates media
+
+    //=========================================================
+    // //\\ updates and creates media
+    //=========================================================
     function createMedia0updateMediaAUX()
     {
+        ///-------------------------------------------------
+        ///makes ellipse first to put point over it later
+        ///-------------------------------------------------
         var ellipse = toreg( 'ellipse' )();
-        const pem = sData.polar_ell_model;
-        if( has( ellipse, 'svgel' ) ){
-            nssvg.model_ellipse(pem);
-        } else {
-            ////makes ellipse first to put point over it later
-            pem.parent = stdMod.mmedia;
-            pem['stroke-width'] = 5;
-            pem.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
-            pem.svgel = ellipse.svgel = nssvg.model_ellipse(pem);
-            $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
-        }
+        ellipse.svgel = nssvg.ellipse({
+            stepsCount      : 100,
+            a               : rg.a.value*sconf.mod2inn_scale,
+            b               : rg.b.value*sconf.mod2inn_scale,
+            x0              : rg.O.medpos[0],
+            y0              : rg.O.medpos[1],
+            rotationRads    : sconf.rotationRads,
+            svgel           : ellipse.svgel,
+            parent          : stdMod.mmedia,
+
+            'stroke-width':5,
+            stroke  : ns.arr2rgba( fixedColors[ "ellipse" ] ),
+        });
+        $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
     }
+    //=========================================================
+    // \\// updates and creates media
+    //=========================================================
 }) ();
+

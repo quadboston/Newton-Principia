@@ -18,6 +18,11 @@
             caption : 'Sec. 1, Lemma 3',
         },
 
+        {   sappId : 'lemma4',
+            book : 'Book 1',
+            caption : 'Sec. 1, Lemma 4',
+        },
+
         {   sappId : 'b1sec1lemma4',
             book : 'Book 1',
             caption : 'Sec. 1, Lemma 4',

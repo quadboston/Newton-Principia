@@ -6,9 +6,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            scaleValue2app,
             mod2inn,
-            inn2mod,
             mod2inn_original,
         },
         sDomFExportList :
@@ -21,46 +19,35 @@
     return;
 
 
-    function scaleValue2app( svalue, ) {
-        var sc = sconf;
-        sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
-        sc.inn2mod_scale = 1 / sc.mod2inn_scale;
-    }
+
+
+
     //==========================================
     // //\\ pos to pos
     //==========================================
     ///transforms model-coordinates to media-coordinates
-    function mod2inn( pos )
+    function mod2inn( pos, )
     {
-        const m2i = sconf.mod2inn_scale;
         pos = pos || this;
         return [
-            pos[0] * m2i + sconf.modorInPicX,
-            pos[1] * m2i *
+            pos[0] * sconf.mod2inn_scale + sconf.modorInPicX,
+            pos[1] * sconf.mod2inn_scale *
                     sconf.MONITOR_Y_FLIP +
                     sconf.modorInPicY,
         ];
     }
-    ///transforms media-coordinates to model-coordinates
-    function inn2mod( medpos )
-    {
-        medpos = medpos || this;
-        const i2m = sconf.inn2mod_scale;
-        return [
-            (medpos[0]-sconf.modorInPicX) * i2m,
-            (medpos[1]-sconf.modorInPicY) * i2m * sconf.MONITOR_Y_FLIP,
-        ];
-    }
-    ///purpose: use for controls independent on model scale and origin
+    ///purpose: use for controls undependent on model scale and origin
     ///         user controls,
     function mod2inn_original( pos, )
     {
-        const m2oi = sconf.originalMod2inn_scale;
         pos = pos || this;
         return [
-            pos[0] * m2oi + sconf.originX_onPicture,
-            pos[1] * m2oi * sconf.MONITOR_Y_FLIP +
-                            sconf.originY_onPicture,
+            pos[0] * sconf.originalMod2inn_scale +
+            sconf.originX_onPicture,
+            pos[1] *
+                sconf.originalMod2inn_scale *
+                sconf.MONITOR_Y_FLIP +
+            sconf.originY_onPicture,
         ];
     }
     //==========================================
@@ -90,6 +77,7 @@
         ];
     };
 
+
     ///converts dom-pos to media pos
     ///for lemma1, drag_surface = sDomN.medRoot
     function outparent2inn( outparent ) //css2media_converter (with offset)
@@ -107,10 +95,14 @@
     // \\// inn2outparent and inverse
     //===============================
 
+
     function out2inn() //css2media_scale
     {
         //returns fake scale for landing mode for draggers creation,
         //see "todm: patch: generates pars needed possibly for"
         return sconf.innerMediaWidth / stdMod.bgImgW;
     };
+
+
 }) ();
+

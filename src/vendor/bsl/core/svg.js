@@ -1,16 +1,12 @@
 ( function() {
 	const ns	  = window.b$l;
+    const nssvg   = ns.sn( 'svg' );
+    const mat     = ns.sn( 'mat' );
+    const svgNS   = ns.svgNS;
     const has     = ns.h;
     const haz     = ns.haz;
     const $$      = ns.$$;
-    const svgNS   = ns.svgNS;
-    const sn      = ns.sn;
-    const nssvg   = sn( 'svg' );
-    const mat     = sn( 'mat' );
 
-    const fapp      = sn('fapp' ); 
-    var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
 
     ///Updates svg-shape. Svg-shape creates before update if arg.svgel
     ///is missed in arg.
@@ -197,31 +193,31 @@
     }
 
     ///"manually" created polyline which formes ellipse,
-    ///input: in media scale,
-    ///       ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
-    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ],
+    ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
+    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
     //        rotationRads rotates around position x0,y0;
     ///returns: svg-element;
     nssvg.ellipse = function( arg )
     {
-        const polyline = arg.pivots = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        var { a, b, x0, y0, rotationRads } = arg;
-        var q0 = arg.t0 || 0;
+        var { stepsCount, a, b, x0, y0, rotationRads } = arg;
+        var polyline = arg.pivots = [];
+        var step = 2*Math.PI/stepsCount;
+
+        //var rC = Math.cos( rotationRads );
+        //var rS = Math.sin( rotationRads );
+
+        var t0 = arg.t0 || 0;
         for( var ii = 0; ii < stepsCount; ii++ ) {
-            let q = step * ii;
             ///this is slow but unified ... keep it for a while
-            arg.q = q;
             var ell = mat.ellipse({
-                    t:q,
-                    a,
-                    b,
-                    x0,
-                    y0,
-                    t0:q0,
-                    rotationRads,
-                });
+                t:step * ii,
+                a,
+                b,
+                x0,
+                y0,
+                t0,
+                rotationRads,
+            });
             var xx = ell.x;
             var yy = ell.y;
             /*
@@ -235,30 +231,6 @@
             polyline.push( [ xx, yy ] );
         }
         polyline.push( [ xx, yy ] );
-        //makes ellipse closed:
-        polyline.push( polyline[0] );
-        return nssvg.polyline( arg ); 
-    };
-    
-    ///input parameters are in model namespace,
-    nssvg.model_ellipse = function( arg )
-    {
-        const pe = mat.polar_ellipse;
-        const polyline = arg.pivots = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        const points = haz( arg, 'points' ); //precalculated
-        for( var ii = 0; ii < stepsCount; ii++ ){
-            arg.q = step * ii;
-            if( points ){
-                var medpos = ssF.mod2inn( points[ii] );
-            } else {
-                const point = pe( arg ).point;
-                var medpos = ssF.mod2inn( point );
-            }
-            polyline.push( medpos );
-        }
-        polyline.push( medpos );
         //makes ellipse closed:
         polyline.push( polyline[0] );
         return nssvg.polyline( arg ); 
@@ -317,6 +289,7 @@
         return nssvg.polyline( arg ); 
     };
 
+
     ///"manually" creates polyline which formes curve,
     ///signature:           nssvg.curve({ stepsCount, step, curve:function })
     ///signature of
@@ -366,6 +339,7 @@
         return nssvg.polyline( arg ); 
     };
 
+
     ///====================================
     ///Creates or updates svg-text element
     ///====================================
@@ -389,5 +363,7 @@
         }
         return svgEl;
     }
+
 }) ();
+
 

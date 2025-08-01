@@ -35,10 +35,6 @@ Style Guide
 
 2. Although not required by JavaScript, return statements are used after initialization of most modules to make it clear that below it, there are no executable statements in the parent function context. The return statement should be followed by two blank lines before internal function definitions.
 
-3. Limit code lines to 80 characters.
-
-4. When variables listed in function headers are organized by category, keep them organized.
-
 
 Deployment.
 

@@ -29,7 +29,7 @@
         let slider_a_start=pictureWidth*0.05;
         let slider_a_end=pictureWidth*0.7;
         let slider_aX=532;
-        let slider_aY=pictureHeight;
+        let slider_aY=pictureHeight*0.9;
         let pointRadius = 12;
         
         //***************************************************************
@@ -131,49 +131,49 @@
             // //\\ aux points
             G : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : 45,
                  },
             I : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             H : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : -90,
                    letterRotRadius : 20,
                  },
             E : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : -125,
                    letterRotRadius : 20,
                  },
             K : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : 90,
                    letterRotRadius : 20,
                 },
             F : {
                    pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
+                   cssClass : 'logic_phase--proof',
                    letterAngle : 0,
                    letterRotRadius : 20,
                 },
             t : { pos: [1511, 574],
                   pcolor : pt.aux,
-                  cssClass : 'subessay--corollary1 subessay--corollary2',
+                  cssClass : 'logic_phase--proof',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             r : { pos: [1028, 830],
                   pcolor : pt.aux,
-                  cssClass :  'subessay--corollary1 subessay--corollary2',
+                  cssClass : 'logic_phase--proof',
                   initialR: pointRadius,
                 },
             q : { pos: [1028, 830],
@@ -210,8 +210,6 @@
                   cssClass: 'tp-generators',
                   initialR: pointRadius,
                   letterRotRadius : 20,
-                  draggableX : true,
-                  draggableY : true,
                 },
             R : { pos: [1010, 712],
                   pcolor: predefinedTopics['key-triangle'],
@@ -241,7 +239,7 @@
                   //initialR: 8, //overrides handle radius if any
                 },
             a : {
-                    caption : 'eccentricity',
+                    caption : 'semi a (semiaxis a)',
                     draggableX : true,
                     draggableY : false,
                     
@@ -255,14 +253,14 @@
                     unscalable : true,
                 },
             //rails
-            eStart : {
+            aStart : {
                 pos : [ slider_a_start, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
-            eEnd : {
+            aEnd : {
                 pos : [ slider_a_end, slider_aY ],
                 pcolor : predefinedTopics.ellipse,
                 undisplayAlways : true,
@@ -281,16 +279,10 @@
         var linesArray =
         [
             { 'KS' : {
-						pcolor : pt.aux,
-						cssClass : 'subessay--case1',
+                        pcolor : pt.aux,
                     }
             },
             { 'AE' : {
-                        pcolor : pt.aux,
-						cssClass : 'subessay--case1 subessay--case2',
-                    }
-            },
-			 { 'AC' : {
                         pcolor : pt.aux,
                     }
             },
@@ -312,9 +304,14 @@
                         cssClass : 'tp-base-figure',
                     }
            },
+           { 'PB' : {
+                        pcolor : pt.static,
+                        cssClass : 'tp-base-figure',
+                    }
+           },
            { 'PC' : {
                         pcolor : pt.static,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'tp-base-figure',
                     }
            },
            //-------------------------
@@ -333,6 +330,14 @@
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
+           { 'RT' : {
+                        pcolor : predefinedTopics["key-triangle"],
+                        'stroke-width' : 10,
+                        cssClass : 'tp-key-triangle',
+                    }
+           },
+
+
   
             //-------------------------
             // //\\ given parallelogram
@@ -343,6 +348,11 @@
                     }
             },
             { 'AS' : {
+                        pcolor : pt.static,
+                        cssClass : 'tp-given-parallelogram',
+                    }
+            },
+            { 'AC' : {
                         pcolor : pt.static,
                         cssClass : 'tp-given-parallelogram',
                     }
@@ -399,58 +409,58 @@
             //------------------------
             { 'DG' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'logic_phase--proof',
                      }
             },
             { 'IG' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'logic_phase--proof',
                      }
             },
 
             { 'DI' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'logic_phase--proof',
                      }
             },
             { 'DE' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'logic_phase--proof',
                      }
             },
             { 'DK' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'logic_phase--proof',
                      }
             },
             { 'Bt' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--corollary1 subessay--corollary2',
+                        cssClass : 'logic_phase--proof',
                     }
             },
-			{ 'CF' : {
+            { 'CF' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'logic_phase--proof',
                     }
             },
             { 'HB' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'logic_phase--proof',
                     }
             },
             { 'DH' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'logic_phase--proof',
                     }
             },
             { 'DF' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'logic_phase--proof',
                     }
             },
             { 'IQ' : {
                         pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+                        cssClass : 'logic_phase--proof',
                     }
             },
             //------------------------
@@ -460,14 +470,19 @@
             //------------------------
             // //\\ static triangle
             //------------------------
+            { 'rt' : {
+                        pcolor : pt.aux,
+                        cssClass : 'logic_phase--proof',
+                    }
+            },
             { 'Pr' : {
                         pcolor : predefinedTopics["static-generator"],
-                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
+                        cssClass : 'tp-static-generator',
                     }
             },
             { 'Pt' : {
                         pcolor : predefinedTopics["static-generator"],
-                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
+                        cssClass : 'tp-static-generator',
                     }
             },
             { 'Cd' : {
@@ -490,24 +505,19 @@
             //------------------------
             { 'BP' : {
                         pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'tp-similar-triangle',
                     }
             },
             { 'BC' : {
                         pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'subessay--corollary1 subessay--corollary2',
+                        cssClass : 'tp-similar-triangle',
                     }
             },
-			{ 'CP' : {
-                        pcolor : predefinedTopics["similar-triangle"],
-                        cssClass : 'subessay--case1',
-                    }
-           },
             //------------------------
             // \\// similar triangles
             //------------------------
 
-            { 'eStart,eEnd' : {
+            { 'aStart,aEnd' : {
                         pcolor : predefinedTopics["ellipse"],
                         cssClass : 'ellipse',
                     }
@@ -532,10 +542,12 @@
         // \\// app view parameters
         //----------------------------------
 
+
+
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 444 );
+        fapp.normalizeSliders( pictureHeight / 444 ); //todo not automated, prolifer.
         to_sconf =
         {
             predefinedTopics,
@@ -544,33 +556,20 @@
             mediaBgImage : "l20.jpg",
             //dontRun_ExpandConfig : true,
 
-            //for e slider
-            eMax : 1.5,
+            a : 2.03,
+            aMax : 10,
+            b : 1,
+            rotationRads : Math.PI*0.19,
 
-            // //\\ this approximately fits Newton's diagram
-            //focus : [250, 540],
-            focus : [263, 535],    //[266, 526],  //in media scale
-            q0 : -Math.PI*0.19,
-            excentricity : 0.8702,
+            //given points on ellipse if fractions of
+            //full cycle of param t
+            initialparP : 0.259,
+            initialparA : 0.7542,
+            initialparC : 0.379,
+            initialparB : 0.0468,
+            initialParT : 0.760, //parameter T on line Pt
 
-            latus2 : 190.621, //in media scale
-            initialParT : 0.735, //parameter T on line Pt
-            initialparC : 0.58,
-            initialparP : -0.05,
-            initialparA : 5.17,
-            initialparB : -0.51,
-            // \\// this approximately fits Newton's diagram
-            
-            /*
-            //it is hard to fit original Newton diagram
-            //probably, one needs bigger latus
-            latus2 : 185,  //in media scale
-            initialParT : 0.75, //parameter T on line Pt
-            initialparC : 0.55,
-            initialparP : -0.05,
-            initialparA : 5.18,
-            initialparB : -0.52,
-            */
+
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -608,6 +607,8 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
 
+
+
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
@@ -621,4 +622,6 @@
     //====================================================
     // \\// inits and sets config pars
     //====================================================
+
 }) ();
+

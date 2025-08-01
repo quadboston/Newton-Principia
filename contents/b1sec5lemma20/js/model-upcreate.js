@@ -1,22 +1,28 @@
 ( function() {
     var {
         sn, mat,
-        stdMod, rg, sconf, ssF, sData,
+        stdMod, rg, sconf, ssF,
     } = window.b$l.apptree({
         stdModExportList :
         {
             model_upcreate,
             deriveParameters,
-            ellmod2arr,
         },
     });
     var DID_INITIALIZED = false;
     return;
+    
+
+
+
+
+
+
 
 
     function model_upcreate()
     {
-        //stdMod.slider_a_pos2value( rg.a.pos );
+        stdMod.slider_a_pos2value( rg.a.pos );
         deriveParameters();
 
         //------------------------------------
@@ -34,8 +40,8 @@
         var Pq = PR * qScale;
         var Rpos = [ P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR ]; 
         var qpos = [ P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq ]; 
-        var R = pos8tg_2_rg( 'R', Rpos ).pos;
-        var q = pos8tg_2_rg( 'q', qpos ).pos;
+        var R = setRgPoint( 'R', Rpos ).pos;
+        var q = setRgPoint( 'q', qpos ).pos;
 
         var C = rg.C.pos;
         var CR = mat.p1_to_p2( C,R );
@@ -47,10 +53,10 @@
         //intersection of two lines CR and BT has to be found:
         //q*uCR + C = q'*uBT + B needs to be solved against q,q' to find D
         var D = mat.linesCross( CR.unitVec, C, BT.unitVec, B );
-        pos8tg_2_rg( 'D', D );
+        setRgPoint( 'D', D );
 
         var d = mat.linesCross( Cq.unitVec, C, BT.unitVec, B );
-        pos8tg_2_rg( 'd', d );
+        setRgPoint( 'd', d );
 
         //------------------------------------
         // \\// thread from T to D
@@ -62,37 +68,44 @@
         var PC = [ P[0]-C[0], P[1]-C[1] ];
 
         var G = mat.linesCross( AB, D, AC, A );
-        pos8tg_2_rg( 'G', G );
+        setRgPoint( 'G', G );
         var DG = [ D[0]-G[0], D[1]-G[1] ];
 
         var AC = [ C[0]-A[0], C[1]-A[1] ];
         var I = mat.linesCross( AB, D, AC, P );
-        pos8tg_2_rg( 'I', I );
+        setRgPoint( 'I', I );
         var E = mat.linesCross( AB, A, AC, D );
-        pos8tg_2_rg( 'E', E );
+        setRgPoint( 'E', E );
         var K = mat.linesCross( AB, P, AC, D );
-        pos8tg_2_rg( 'K', K );
+        setRgPoint( 'K', K );
         var H = mat.linesCross( PB, P, DG, D );
-        pos8tg_2_rg( 'H', H );
+        setRgPoint( 'H', H );
         var F = mat.linesCross( PC, P, AC, D );
-        pos8tg_2_rg( 'F', F );
+        setRgPoint( 'F', F );
     }
 
-    function q2rg( parQ, pname )
+
+
+    function par2ellipsePoint( parP, nameP )
     {
-        const pem = sData.polar_ell_model;
-        pem.q = parQ;
-        var { point, tangent } = mat.polar_ellipse( pem );
-        pos8tg_2_rg( pname, point, tangent );
-        return rg[ pname ];
+        var { x,y,tangent } = mat.ellipse({
+            t   : parP,
+            a   : rg.a.value,
+            b   : rg.b.value,
+            x0  : 0,
+            y0  : 0,
+            t0  : 0,
+            rotationRads : -sconf.rotationRads,
+        });
+        setRgPoint( nameP, [x,y], tangent );
+        return rg[ nameP ];
     }
 
-    /*
     ///draws pointy named "art" on ellipse ...
     ///good for dev ...
     function ellipsePar_create8paint( ePar )
     {
-        q2rg( ePar, 'art' )
+        par2ellipsePoint( Math.PI*2*ePar, 'art' )
         ssF.pos2pointy(
             'art',
             { 
@@ -104,9 +117,8 @@
             }
         );
     }
-    */
-    
-    function pos8tg_2_rg( nameP, pos, tangent )
+
+    function setRgPoint( nameP, pos, tangent )
     {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
@@ -128,10 +140,10 @@
         //=========================================
         // //\\ "given" parameters
         //=========================================
-        var P = q2rg( sData.initialparP, 'P' ).pos;
-        var A = q2rg( sData.initialparA, 'A' ).pos;
-        var C = q2rg( sData.initialparC, 'C' ).pos;
-        var B = q2rg( sData.initialparB, 'B' ).pos;
+        var P = par2ellipsePoint( Math.PI*2*sconf.initialparP, 'P' ).pos;
+        var A = par2ellipsePoint( Math.PI*2*sconf.initialparA, 'A' ).pos;
+        var C = par2ellipsePoint( Math.PI*2*sconf.initialparC, 'C' ).pos;
+        var B = par2ellipsePoint( Math.PI*2*sconf.initialparB, 'B' ).pos;
         var nBA = mat.p1_to_p2( B, A ).unitVec;
         var nCA = mat.p1_to_p2( C, A ).unitVec;
         var nCB = mat.p1_to_p2( C, B ).unitVec;
@@ -143,16 +155,14 @@
         // //\\ derived parameters
         // //\\ deriving tangent
         //-----------------------
-        //all in model units:
-        var tpos = mat.linesCross(
-            [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
-        pos8tg_2_rg( 't', tpos );
+        var tpos = mat.linesCross( [-rg.B.tangent[0],-rg.B.tangent[1] ], B, nBA , P );
+        setRgPoint( 't', tpos );
         //-----------------------
         // \\// deriving tangent
         //-----------------------
 
         var rpos = mat.linesCross( nCA, P, nCB, C );
-        pos8tg_2_rg( 'r', rpos );
+        setRgPoint( 'r', rpos );
 
         //---------------------------
         // //\\ setting initial parT
@@ -163,13 +173,13 @@
             var parT = rg.T.value;
         } else {
             var parT = sconf.initialParT;
-            pos8tg_2_rg( 'T', [] );
+            setRgPoint( 'T', [] );
             rg.T.value = parT;
             rg.T.pos2Tpar = pos2Tpar;
             DID_INITIALIZED = true;
         }
         var Tpos = [ -nBA[0]*parT + P[0],  -nBA[1]*parT + P[1] ];
-        pos8tg_2_rg( 'T', Tpos );
+        setRgPoint( 'T', Tpos );
         //---------------------------
         // \\// setting parT
         //---------------------------
@@ -177,10 +187,10 @@
 
         //decorations
         var Spos = mat.linesCross( nBA, P, nCA, C );
-        pos8tg_2_rg( 'S', Spos );
+        setRgPoint( 'S', Spos );
 
         var Qpos = mat.linesCross( nBA, B, nCA, rpos );
-        pos8tg_2_rg( 'Q', Qpos );
+        setRgPoint( 'Q', Qpos );
         //=========================================
         // \\// derived parameters
         //=========================================
@@ -189,9 +199,7 @@
     // \\// registers model pars into common scope
     //===================================================
 
-    ///does project vector(pos-P) on Pt:
-    ///secures from perpendicular deviation of pos
-    ///from the line Pt
+    //does project (pos-P) on Pt:
     function pos2Tpar( pos )
     {
         var P=rg.P.pos;
@@ -206,19 +214,5 @@
         return PTalgebraic;
      }
 
-     
-    ///input parameters are in model namespace,
-    ///ellipse to array
-    function ellmod2arr( arg )
-    {
-        const pe = mat.polar_ellipse;
-        const points = arg.points = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        for( var ii = 0; ii < stepsCount; ii++ ){
-            arg.q = step * ii;
-            points.push( pe(arg).point );
-        }
-    };
-})();
+}) ();
 

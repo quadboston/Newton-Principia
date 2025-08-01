@@ -154,16 +154,6 @@ sup {
     padding: 0 !important;
 }
 
-/* make two cells look like one (used in P17) */
-.main-legend .merge-cells:nth-child(odd) {
-    border-right: 0 !important;
-}
-.main-legend .merge-cells:nth-child(even) {
-    border-left: 0 !important;
-    position: relative;
-    left: -4rem;
-}
-
 /* patch for L7 corollaries */
 /* todo: change main-lengend framework to handle multiple corollary tables */
 .main-legend .tp-hidden {

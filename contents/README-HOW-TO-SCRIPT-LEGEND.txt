@@ -2,7 +2,7 @@
 
 Diagram legend data table usually is scripted in file main-legend.js.
 
-The tables are constructed by calling the appropriate functions defined in 
+The tables are contructed by calling the appropriate functions defined in 
 src/base/lemma/media-model/main-legend-template.js
 
 The data is processed and updated in src/base/lemma/media-model/main-legend.js
@@ -13,8 +13,6 @@ The data is processed and updated in src/base/lemma/media-model/main-legend.js
 
 Table styles are defined in src/base/css/subroots.css with the .main-legend classname.
 * Note these styles apply to all tables except L2 and L3
-- Use .tp-spacer to add a double line between rows (see L7 for example)
-- Use .merge-cells to merge two cells in a row into one (see P17 for example)
 
 The colours of the data itself is defined in each page's sconf.js file as they are used
 to link text, model elements, and the data. 

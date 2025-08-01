@@ -16,6 +16,17 @@
     return;
 
 
+
+
+
+
+
+
+
+
+
+
+
     //analogy of
     //function  pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
@@ -197,6 +208,11 @@
     }
 
 
+
+
+
+
+
     ///decorates media
     function eccentricity2sliderPos()
     {
@@ -207,6 +223,7 @@
         rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
         rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
     }
+
 
 
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
