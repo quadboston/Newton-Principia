@@ -103,7 +103,8 @@
         var lemma2_slidersH = 0;
 
         // for lemmas 2 and 3, plus variations on lemma 2
-        if (fconf.sappId === 'lemma2' || fconf.sappId.indexOf('lemma2-') === 0 || fconf.sappId === 'lemma3') {
+        if (fconf.sappId === 'lemma2' || fconf.sappId.indexOf('lemma2-') === 0 || fconf.sappId === 'lemma3' ||
+            fconf.sappId === 'lemma4') {
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH += 35; //nicer
@@ -134,7 +135,8 @@
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
             legendHeight += 20; //todm: patch: adds gap at bottom page
-            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' )
+            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
+                fconf.sappId === 'lemma4')
                 legendHeight += 20; //todm: patch: adds gap at bottom page
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
@@ -305,7 +307,8 @@
             var svgSceneW = simSceneW;
         }
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
+            fconf.sappId === 'lemma4') {
             sliderGroup$
                 .css( 'top', svgSceneH.toFixed() + 'px' )
                 .css( 'width', '300px' ) //todm patch
@@ -400,7 +403,8 @@
         stdMod.svgVB_H      = sconf.innerMediaHeight;
         stdMod.svgVB_offsX  = 0;
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
+            fconf.sappId === 'lemma4' ) {
             sDomN.sliderGroup$
                 .css( 'display', 'inline-block' )
                 .css( 'position', 'static' )

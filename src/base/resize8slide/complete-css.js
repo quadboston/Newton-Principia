@@ -77,7 +77,8 @@
         stdMod.legendRoot$
             .css( 'top', '0px' )
             ;
-        if( fconf.sappId.indexOf('lemma2') === 0|| fconf.sappId === 'lemma3' ) {
+        if( fconf.sappId.indexOf('lemma2') === 0|| fconf.sappId === 'lemma3' ||
+            fconf.sappId === 'lemma4' ) {
             stdMod.legendRoot$
                 .css( 'left', '0px' )
                 ;
@@ -197,7 +198,7 @@
         if( wideScreen_flag ) {
             //todo ???
             var ww = fconf.sappId.indexOf('lemma2') === 0 ||
-                     fconf.sappId === 'lemma3' ? 20 : 0;
+                     (fconf.sappId === 'lemma3' || fconf.sappId === 'lemma4') ? 20 : 0;
             stdMod.legendRoot$
                 .css( 'left', ( svgSceneW + legendMargin ).toFixed() + 'px' )
                 .css( 'top','0px' )
