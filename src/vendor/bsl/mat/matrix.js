@@ -131,36 +131,6 @@
 		return cc;
 	};
 
-
-
-	///	calculates inverse for 2x2 matrix
-	///	input:		aa is a matrix
-	mat.inverse2x2 = function(aa) {
-        const a = aa[0][0];
-        const b = aa[0][1];
-        const c = aa[1][0];
-        const d = aa[1][1];
-        const det = a*d - c*b;
-        if( det === 0 ) {
-            //clumsy way to handle this, //TEMP Should this code be changed?
-            det = 1e+150;
-            //alternative way is to provide message,
-        }
-        //ccc( 'a,b,c,d=', a,b,c,d );
-        //builds inverse matrix
-        const A = d/det;
-        const B = -b/det;
-        const C = -c/det;
-        const D = a/det;
-        //ccc( 'inverse=', A,B,C,D );
-
-        //this must give 1,0,0,1 if program is correct:
-        //ccc( 'checks im=',A*a + B*c, A*b + B*d, C*a + D*c, C*b+D*d );
-        return [[A, B], [C, D]];
-	}
-
-
-
     mat.zero4 = [ 0, 0, 0, 0 ];
     mat.zero3 = [ 0, 0, 0 ];
 

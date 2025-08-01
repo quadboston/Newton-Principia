@@ -82,14 +82,6 @@ svg text {
 .bsl-approot.logic_phase--claim .widest-rectangular {
     display:none;
 }
-
-#lemma4.bsl-approot #widest-visib-toggler-wrap,
-.bsl-approot.logic_phase--claim #widest-visib-toggler-wrap,
-.widest-rectangular.invisible,
-.bsl-approot.logic_phase--claim .widest-rectangular {
-    display:none;
-}
-  
   
 /* legend */
 .areas .highlighted {

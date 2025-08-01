@@ -227,13 +227,13 @@
 
     function draggable__allxy_2_allTxy()
     {
-        // var rNorm       = sconf.originalPoints.rightCurvePivots_normalized;
-        // var rDraggable  = sconf.originalPoints.rightCurvePivots;
-        // rDraggable.forEach( (rd,pix) => {
-        //     var dragPos = stdMod.xy_2_Txy( rNorm[ pix ].rgX.pos );
-        //     rd.rgX.pos[0] = dragPos[0];
-        //     rd.rgX.pos[1] = dragPos[1];
-        // });
+        var rNorm       = sconf.originalPoints.rightCurvePivots_normalized;
+        var rDraggable  = sconf.originalPoints.rightCurvePivots;
+        rDraggable.forEach( (rd,pix) => {
+            var dragPos = stdMod.xy_2_Txy( rNorm[ pix ].rgX.pos );
+            rd.rgX.pos[0] = dragPos[0];
+            rd.rgX.pos[1] = dragPos[1];
+        });
     }
 
 

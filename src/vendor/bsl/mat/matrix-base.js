@@ -243,11 +243,27 @@
         vs  //start-2'
     ) {
         //ccc( 'u=', u, 'v=',v, 'us=', us, 'vs=', vs);
-        const inverse = mat.inverse2x2([
-            [u[0], -us[0]],
-            [u[1], -us[1]]]);
-        var A = inverse[0][0];
-        var B = inverse[0][1];
+        //builds determinant
+        var a = u[0];
+        var b = -us[0];
+        var c = u[1];
+        var d = -us[1];
+        var det = a*d - c*b;
+        if( det === 0 ) {
+            //clumsy way to handle parallel lines,
+            det = 1e+150;
+            //alternative way is to provide message,
+        }
+        //ccc( 'a,b,c,d=', a,b,c,d );
+        //builds inverse matrix
+        var A = d/det;
+        var B = -b/det;
+        var C = -c/det;
+        var D = a/det;
+        //ccc( 'inverse=', A,B,C,D );
+
+        //this must give 1,0,0,1 if program is correct:
+        //ccc( 'checks im=',A*a + B*c, A*b + B*d, C*a + D*c, C*b+D*d );
 
         //var free members    
         var z0 = vs[0] - v[0];
