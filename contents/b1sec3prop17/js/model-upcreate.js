@@ -86,7 +86,10 @@
         {
             //dropLine(... = start + direction * t
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
-            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
+            nspaste( 
+                rg.vb.pos, 
+                mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos ) 
+            );
         }
 
         //perpendicular dropped from PR to S (referenced in Solution, but not shown for now)
@@ -127,7 +130,10 @@
             {
                 //dropLine(... = start + direction * t
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
-                nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
+                nspaste( 
+                    rg.vSample.pos, 
+                    mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) 
+                );
             }
             //sample's decorational dt arc
             var {

@@ -136,18 +136,15 @@
 
 
         //=========================================================================
-        // //\\  body speed slider vb (Pv)
+        // //\\  body speed slider vb (R)
         //=========================================================================
         rg.vb.processOwnDownEvent = function() {
-            ////apparently, there is no arg at this version,
-            ////            and useless "function.this" === rg.Q
             const pp                    = rg.P.pos;
             sData.vbpos                 = nspaste( [], rg.vb.pos );
-            var dShift                  = [ sData.vbpos[0] - pp[0], sData.vbpos[1] - pp[1] ];
-            var dS                      = dShift[0]*dShift[0] + dShift[1]*dShift[1];
+            var dShift                  = mat.sm( 1, rg.vb.pos, -1, pp );
+            sData.dShift                = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             sData.stashedOmega          = op.om;
             sData.stashedCosOmega       = op.cosOmega;
-            sData.dShift                = dS;
             sData.Kepler_v_stashed      = op.Kepler_v;
             sData.stashedR              = rg.P.abs;
             sData.stashedLatus4slider   = op.latus;
@@ -156,27 +153,28 @@
         rg.vb.acceptPos = ( newPos, dragMove ) => {
             //console.log('moving vb');
             var { logic_phase, aspect, subessay } = amode;
-            var newPos0  = dragMove[0] + sData.vbpos[0];
-            var newPos1  = -dragMove[1] + sData.vbpos[1];
-            //-------------------------------------------------------------------
-            // //\\ corrects approximate mouse point to exact point on the circle
-            //      todm redundant code
-            //-------------------------------------------------------------------
-            var newSinOmega = sData.stashedOmega;
-            var signCosOmega = Math.sign( sData.stashedCosOmega );
-            //console.log('omega: ' + newSinOmega);
-            
-            // the value of omega being calculated here is slightly off
-            // using sData.stashedOmega prevents error, by limiting to only
-            // changes in magnitude of Pv, not the angle
-            if( !(subessay == 'corollary1' || subessay == 'corollary2' )) {
-                const pp      = rg.P.pos;
-                const sl      = mat.p1_to_p2( pp, newPos ); //slider
+            const pp = rg.P.pos;
+            let np = nspaste( [], [
+                dragMove[0] + sData.vbpos[0],
+                -dragMove[1] + sData.vbpos[1]
+            ]);
+            var dShift = mat.sm( 1, np, -1, pp );
+            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            var increase = dS / sData.dShift;
+            op.Kepler_v = sData.Kepler_v_stashed * increase; 
+
+            if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
+                // can only be dragged vertically
+                var newSinOmega = sData.stashedOmega;
+                var signCosOmega = Math.sign( sData.stashedCosOmega );
+            } else {
+                const sl = mat.p1_to_p2( pp, np ); //slider
                 if( sl.abs < 0.2 ) return;
                 let omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
                     [ [0,0], sl.vector ], 
                 ]).angle;
+
                 //--------------------------------
                 // //\\ corrects extreme values
                 //--------------------------------
@@ -192,51 +190,32 @@
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
                 }
-
-                //console.log(omega)
-
+                var newSinOmega = Math.sin( omega ); 
+                op.om               = newSinOmega;    
+                op.cosOmega         = Math.cos( omega );
+                var signCosOmega = Math.sign( op.cosOmega );
                 //--------------------------------
                 // \\// corrects extreme values
                 //--------------------------------
-                var newSinOmega = Math.sin( omega );
-                var signCosOmega = Math.sign( Math.cos( omega ) );
-                
-                //console.log('omega: ' + newSinOmega)
             }
-            //-------------------------------------------------------------------
-            // \\// corrects approximate mouse point to exact point on the circle
-            //-------------------------------------------------------------------
-
-            var dShift   = [ newPos0 - rg.P.pos[0], newPos1 - rg.P.pos[1] ];
-            var dS       = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
-            var increase = dS / sData.dShift;
-
-            var Kepler_v = sData.Kepler_v_stashed * increase;
 
             var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega );
-            var latus    = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
-            var { e, fi, om, cosOmega, lat, r, eta, } = conics.innerPars2innerPars({
+
+            op.latus = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
+            var { e, fi, } = conics.innerPars2innerPars({
                 r   : sData.stashedR, //rg.P.abs
                 om  : newSinOmega,
-                lat : latus,
+                lat : op.latus,
                 signCosOmega,
             });
-            rg.P.q              = fi;       
-            op.cosOmega         = cosOmega;
-            op.om               = om;
+            rg.P.q = fi;  
 
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
-            op.mainAxisAngle    = op.PparQ_initial - fi;
-            op.latus            = latus;
-            op.Kepler_v         = Kepler_v;
-            
-            // *** this is the value being used in P17 ***
-            // *** sometimes it is > 1 when it should be < 1
-            //console.log('new e: ' + e)
+            op.mainAxisAngle  = op.PparQ_initial - fi;
 
-            stdMod.establishesEccentricity( e );
+            stdMod.establishesEccentricity( e, null );
             stdMod.model8media_upcreate();
         }
         //=========================================================================
@@ -249,8 +228,6 @@
         //      for Kepler_v
         //=========================================================================
         rg.vSample.processOwnDownEvent = function() {
-            ////apparently, there is no arg at this version,
-            ////            and useless "function.this" === rg.Q
             const pp                    = rg.p.pos;
             sData.pos_r                 = nspaste( [], rg.vSample.pos );
             var dShift                  = mat.sm( 1, rg.vSample.pos, -1, pp );
@@ -259,31 +236,27 @@
             sData.Kepler_v_stashed_r    = sop.Kepler_v;
             sData.stashedR_r            = rg.p.abs;
             sData.stashedLatus4slider_r = sop.latus;
-
-            //we do not implement delta_t --> delta_q for sample; therfore,
-            //do not diplay it,
-            rg.q.undisplay = true;
         };
 
         rg.vSample.acceptPos = ( newPos, dragMove ) => {
-            //console.log('moving vSample');
+            console.log('moving vSample');
             var { logic_phase, aspect, subessay } = amode;
-            const pp      = rg.p.pos;
-            let np        = nspaste( [], [
-                                dragMove[0] + sData.pos_r[0],
-                                -dragMove[1] + sData.pos_r[1]
+            const pp = rg.p.pos;
+            let np = nspaste( [], [
+                dragMove[0] + sData.pos_r[0],
+                -dragMove[1] + sData.pos_r[1]
             ]);
-            var dShift           = mat.sm( 1, np, -1, pp );
-            var dS               = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
-            var increase         = dS / sData.dShift_r;
-            sop.Kepler_v         = sData.Kepler_v_stashed_r * increase;
+            var dShift = mat.sm( 1, np, -1, pp );
+            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            var increase = dS / sData.dShift_r;
+            sop.Kepler_v = sData.Kepler_v_stashed_r * increase;
 
             if( subessay == 'corollary2' ){
                 var newSinOmega = sop.om;
                 var signCosOmega = Math.sign( sop.cosOmega );
                 var momentumIncrease = increase;
             } else {
-                const sl      = mat.p1_to_p2( pp, np ); //slider
+                const sl = mat.p1_to_p2( pp, np ); //slider
                 if( sl.abs < 0.2 ) return;
                 var omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
@@ -303,10 +276,10 @@
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
                 }
-                var newSinOmega      = Math.sin( omega );
+                var newSinOmega = Math.sin( omega );
                 sop.om = newSinOmega;
                 sop.cosOmega = Math.cos( omega );
-                var signCosOmega     = Math.sign( sop.cosOmega );
+                var signCosOmega = Math.sign( sop.cosOmega );
                 //--------------------------------
                 // \\// corrects extreme values
                 //--------------------------------
@@ -317,15 +290,15 @@
             var { e, fi, } = conics.innerPars2innerPars({
                 r : sData.stashedR_r,
                 om : newSinOmega,
-                signCosOmega,
                 lat : sop.latus,
+                signCosOmega,
             })
             rg.p.q = fi;
+
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
-            //sop.mainAxisAngle    = sop.mainAxisAngle - fi;
-            sop.mainAxisAngle    = sop.r2axisX_angle - fi;
+            sop.mainAxisAngle = sop.r2axisX_angle - fi;
 
             stdMod.establishesEccentricity( e,
                 null,   //null because of latus is already adjusted
