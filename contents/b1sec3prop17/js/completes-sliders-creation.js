@@ -23,9 +23,11 @@
             sData.Lpos0_g = rg.f.pos[0];
             sData.Lpos1_g = rg.f.pos[1];
             {
-                let dShift    = [ rg.f.pos[0] - rg.p.pos[0],
-                                  rg.f.pos[1] - rg.p.pos[1] ];
-                sData.dShift_g = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+                let dShift = mat.sm( 1, rg.f.pos, -1, rg.p.pos );
+                sData.dShift_g = Math.sqrt( 
+                    dShift[0]*dShift[0] + 
+                    dShift[1]*dShift[1] 
+                );
                 sData.stashedOmega_g = sop.om;
                 sData.stashedCosOmega_g = sop.cosOmega;
             }
@@ -49,26 +51,19 @@
 
         rg.f.acceptPos = ( newPos, dragMove ) => {
             var { logic_phase, aspect, subessay } = amode;
-            var newPos0 = dragMove[0] *
-                          0.5 //decreases slider sensetivity
-                         + sData.Lpos0_g;
-            var newPos1 = -dragMove[1] *
-                          0.5 //decreases slider sensetivity
-                         + sData.Lpos1_g;
-            var incr;
-            {
-                let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
-                var dS = Math.abs( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
-                if( dS < 0.00000001 ) return;
-                incr = dS / sData.dShift_g;
-            }
+            var newPos0 = dragMove[0] + sData.Lpos0_g;
+            var newPos1 = -dragMove[1] + sData.Lpos1_g;
+            let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
+            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            if( dS < 0.00000001 ) return;
+            var incr = dS / sData.dShift_g;
 
             //-------------------------------------------
             // //\\ sample
             //-------------------------------------------
             var Kepler_g = sData.stashedKepler_g * incr;
 
-            if( amode.subessay === 'corollary2' ){
+            if( subessay === 'corollary2' ){
                 var newLatus = sData.stashedLatus_g;
                 sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
             } else {
@@ -86,7 +81,7 @@
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;
 
-            if( !( amode.subessay === 'corollary2' ) ){
+            if( !( subessay === 'corollary2' ) ){
                 rg.p.q = fi;
                 //rotates main axis in respect to change q,
                 //bs op.PparQ_initial === initial axis-fi
@@ -102,7 +97,7 @@
             // //\\ reestablish solved-orbit
             //--------------------------------
             let solvedLatus = sData.stashedLatus / incr;
-            let p17c12 = fconf.sappId === ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2' );
+            let p17c12 = ( subessay === 'corollary1' || subessay === 'corollary2' );
             var { e, fi } = conics.innerPars2innerPars({
                 r : ( p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs ) *
                     1,  //We do enforce here only positive branch, no matter is this
@@ -142,7 +137,10 @@
             const pp                    = rg.P.pos;
             sData.vbpos                 = nspaste( [], rg.vb.pos );
             var dShift                  = mat.sm( 1, rg.vb.pos, -1, pp );
-            sData.dShift                = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            sData.dShift                = Math.sqrt( 
+                                            dShift[0]*dShift[0] + 
+                                            dShift[1]*dShift[1] 
+                                        );
             sData.stashedOmega          = op.om;
             sData.stashedCosOmega       = op.cosOmega;
             sData.Kepler_v_stashed      = op.Kepler_v;
@@ -231,7 +229,10 @@
             const pp                    = rg.p.pos;
             sData.pos_r                 = nspaste( [], rg.vSample.pos );
             var dShift                  = mat.sm( 1, rg.vSample.pos, -1, pp );
-            sData.dShift_r              = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            sData.dShift_r              = Math.sqrt( 
+                                            dShift[0]*dShift[0] + 
+                                            dShift[1]*dShift[1] 
+                                        );
             sData.stashedOmega_r        = sop.om;
             sData.Kepler_v_stashed_r    = sop.Kepler_v;
             sData.stashedR_r            = rg.p.abs;
@@ -239,7 +240,7 @@
         };
 
         rg.vSample.acceptPos = ( newPos, dragMove ) => {
-            console.log('moving vSample');
+            //console.log('moving vSample');
             var { logic_phase, aspect, subessay } = amode;
             const pp = rg.p.pos;
             let np = nspaste( [], [
