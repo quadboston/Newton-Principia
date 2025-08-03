@@ -7,6 +7,8 @@
 
 * Lemma 20
 	* eccentricity slider moves 1:1 with mouse at all zoom levels
+	* lower case letters italicized
+	* removed drawing of hyperbola asymptotes
 
 
 ## 2025-7-31 (Purple Version, 0.13849)
