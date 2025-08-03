@@ -74,17 +74,21 @@
     /// updates and creates media
     function createMedia0updateMediaAUX()
     {
-        var ellipse = toreg( 'ellipse' )();
         const pem = sData.polar_ell_model;
-        if( has( ellipse, 'svgel' ) ){
-            nssvg.model_ellipse(pem);
-        } else {
-            ////makes ellipse first to put point over it later
-            pem.parent = stdMod.mmedia;
-            pem['stroke-width'] = 5;
-            pem.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
-            pem.svgel = ellipse.svgel = nssvg.model_ellipse(pem);
-            $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
+        const brs = pem.branches
+        const bN = brs.length;
+        for( var ib = 0; ib < bN; ib++ ){
+            const br = brs[ ib ];
+            if( has( br, 'svgel' ) ){
+                nssvg.model_ellipse(br);
+            } else {
+                ////makes ellipse first to put point over it later
+                br.parent = stdMod.mmedia;
+                br['stroke-width'] = 5;
+                br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
+                br.svgel = nssvg.model_ellipse(br);
+                $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
+            }
         }
     }
 }) ();
