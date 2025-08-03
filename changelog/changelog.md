@@ -1,5 +1,14 @@
 # Change Log
  
+ ## 2025-8-?? (Purple Version, 0.??)
+### Improved
+* Proposition 12
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+
+* Lemma 20
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+
+
 ## 2025-7-31 (Purple Version, 0.13849)
 ### Improved
 * Proposition 17
