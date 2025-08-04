@@ -78,13 +78,13 @@
         for( var ib = 0; ib < bN; ib++ ){
             const br = brs[ ib ];
             if( has( br, 'svgel' ) ){
-                nssvg.model_ellipse(br);
+                nssvg.model_ellipse(br, bN===1);
             } else {
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 5;
                 br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
-                br.svgel = nssvg.model_ellipse(br);
+                br.svgel = nssvg.model_ellipse(br, bN===1);
                 $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
             }
         }
