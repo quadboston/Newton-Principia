@@ -252,8 +252,8 @@
                     pos: [slider_aX,slider_aY],
                     pcolor : predefinedTopics.ellipse,
     
-                    letterAngle : 90,
-                    letterRotRadius : 20,
+                    letterAngle : 166,
+                    letterRotRadius : 104,
                     //makes display independent on user action
                     displayAlways : true,
                     unscalable : true,
