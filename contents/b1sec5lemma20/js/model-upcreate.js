@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, mat,
+        sn, haz, mat,
         stdMod, rg, sconf, ssF, sData,
     } = window.b$l.apptree({
         stdModExportList :
@@ -211,14 +211,44 @@
     ///ellipse to array
     function ellmod2arr( arg )
     {
-        const pe = mat.polar_ellipse;
-        const points = arg.points = [];
         const stepsCount = arg.stepsCount;
         const step = 2*Math.PI/stepsCount;
+        const pe = mat.polar_ellipse;
+        const brs = sn( 'branches', arg, [] );
+        const points = arg.points = [];
+        let bpoints;
+        let ro;
+        let branchesLen = 0;
         for( var ii = 0; ii < stepsCount; ii++ ){
             arg.q = step * ii;
-            points.push( pe(arg).point );
+            const orb = pe(arg);
+            if( !ii || Math.sign(ro)!==Math.sign(orb.ro) ){
+                ro = orb.ro;
+                bpoints = [];
+                brs[ branchesLen ] = brs[ branchesLen ] || {};
+                brs[ branchesLen ].points = bpoints;
+                branchesLen++;
+            }
+            bpoints.push( orb.point );
+            points.push( orb.point );
         }
+        if( branchesLen === 3 ){
+            ////second hyperbola branch is split, to
+            ////first and third branch, so do
+            ////connect them
+            const ps = brs[2].points;
+            const first = brs[0].points[0];
+            ps[ ps.length ] = [first[0], first[1]];
+        }
+        ///removes dom stuff in brs if leftover
+        for( ii=branchesLen; ii < brs.length; ii++ ){
+            const svgel = haz( brs[ii], 'svgel' );
+            if( svgel ){
+                svgel.remove();
+                delete brs[ii].svgel;
+            }
+        }
+        brs.length = branchesLen;
     };
 })();
 

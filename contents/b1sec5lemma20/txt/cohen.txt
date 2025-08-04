@@ -6,15 +6,15 @@
 }
 *..*
 <!-- to set text-keywords match, do add sconf.insertDelayedBatch = true -->
-¦BP¦¦¦ ¦BP¦PB¦¦¦ ¦BC¦¦¦ ¦Pt¦¦¦ ¦Pr¦¦¦ ¦BT¦¦¦ ¦BC¦CB¦¦¦
+¦BP¦¦¦ ¦BP¦PB¦¦¦ ¦BC¦¦¦ ¦Pt¦P𝑡¦¦¦ ¦Pr¦P𝑟¦¦¦ ¦BT¦¦¦ ¦BC¦CB¦¦¦
 ¦PR¦¦¦ ¦BD¦¦¦ ¦CD¦¦¦ ¦AQ¦¦¦ ¦AS¦¦¦ ¦P¦¦¦ ¦PS¦¦¦ ¦PQ¦¦¦ ¦PT¦¦¦
-¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦¦¦ ¦IQ¦¦¦ ¦IG¦¦¦ ¦CR¦RC¦¦¦ ¦CD¦DC¦¦¦ 
+¦DG¦¦¦ ¦DE¦¦¦ ¦DF¦¦¦ ¦Bt¦B𝑡¦¦¦ ¦IQ¦¦¦ ¦IG¦¦¦ ¦CR¦RC¦¦¦ ¦CD¦DC¦¦¦ 
 ¦CA¦¦¦ ¦DH¦¦¦ ¦BA¦AB¦¦¦ ¦AC¦¦¦ ¦PC¦¦¦ ¦PC¦CP¦¦¦ ¦HB¦¦¦
 
 ¦B¦¦¦ ¦C¦¦¦ ¦T¦¦¦ ¦R¦¦¦  ¦q¦¦¦
 ¦H¦¦¦ ¦F¦¦¦ ¦K¦¦¦ ¦G¦¦¦  ¦d¦¦¦
 ¦q¦¦¦ ¦d¦¦¦
-¦Cd¦¦¦ ¦Pq¦¦¦
+¦Cd¦C𝑑¦¦¦ ¦Pq¦P𝑞¦¦¦
 
 If any ¦given-parallelogram¦parallelogram ASPQ¦¦ touches ¦ellipse¦a conic¦¦ in points ¦A¦¦ and P with two of its
 opposite angles ¦A¦¦ and P, and if the sides AQ and AS, indefinitely produced, 
@@ -88,11 +88,11 @@ consequently that point ¦D¦¦ (by lem. 18) lies in a conic passing through poi
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-Hence, if BC is drawn cutting PQ in ¦r¦¦, and if Pt is taken
-on PT in the ratio to Pr which PT has to PR, Bt will be a tangent of the
+Hence, if BC is drawn cutting PQ in ¦r¦𝑟¦¦, and if P𝑡 is taken
+on PT in the ratio to P𝑟 which PT has to PR, B𝑡 will be a tangent of the
 ¦ellipse¦conic¦¦ at point B. For conceive of point ¦D¦¦ as coming together with point B
 in such a way that, as chord BD vanishes, BT becomes a tangent; then CD
-and BT will coincide with CB and Bt.
+and BT will coincide with CB and B𝑡.
 
 
 
@@ -104,8 +104,8 @@ and BT will coincide with CB and Bt.
 }
 *..*
 And vice versa, if Bt is a tangent and BD and CD meet
-in any point ¦D¦¦ of the ¦ellipse¦conic¦¦, PR will be to PT as Pr to Pt. And conversely,
-if PR is to PT as Pr to Pt, BD and CD will meet in some point ¦D¦¦ of the
+in any point ¦D¦¦ of the ¦ellipse¦conic¦¦, PR will be to PT as P𝑟 to P𝑡. And conversely,
+if PR is to PT as P𝑟 to P𝑡, BD and CD will meet in some point ¦D¦¦ of the
 ¦ellipse¦conic¦¦.
 
 
@@ -120,5 +120,5 @@ if PR is to PT as Pr to Pt, BD and CD will meet in some point ¦D¦¦ of the
 One ¦ellipse¦conic¦¦ does not intersect another conic in more than
 four points. For, if it can be done, let two conics pass through five points ¦A¦¦,
 B, C, P, and O, and let the straight line BD cut these conics in points ¦D¦¦ and
-d, and let the straight line Cd cut PQ in q. Then PR is to PT as Pq to PT;
-hence PR and Pq are equal to each other, contrary to the hypothesis.
+d, and let the straight line C𝑑 cut PQ in q. Then PR is to PT as P𝑞 to PT;
+hence PR and P𝑞 are equal to each other, contrary to the hypothesis.
