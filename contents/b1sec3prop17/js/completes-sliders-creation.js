@@ -49,7 +49,15 @@
             //--------------------------------------------------------
         };
 
+        rg.f.processOwnUpEvent = function() {
+            sData.minForce = false;
+        }
+
         rg.f.acceptPos = ( newPos, dragMove ) => {
+
+            //prevents user from being able to drag too far
+            if(sData.minForce) return; 
+
             var { logic_phase, aspect, subessay } = amode;
             var newPos0 = dragMove[0] + sData.Lpos0_g;
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
@@ -77,6 +85,13 @@
                 signCosOmega : sData.stashedCosOmega_g,
                 Kepler_g,
             });
+
+            // sample (green) conic should always be ellipse
+            if(e >= 0.9) {
+                sData.minForce = true;
+                return false; 
+            }
+
             sop.Kepler_g = Kepler_g;
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;
