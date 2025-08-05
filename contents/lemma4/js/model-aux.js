@@ -260,66 +260,59 @@
         //Should ensure monotonic also
         if (dr.drAdustWidthsTemp) {
             console.log("**********Un-transformed Areas**********");
-            // let sum = 0;
-            // const areas = [];
-            // for(let ib = 0; ib < basesN; ib++) {
-            //     const barwidth = pwidths[ib];
-            //     const height = Math.abs(dv.maxY - insYar[ib]);
-            //     const area = barwidth * height;
-            //     sum += area;
-            //     areas.push(area);
-            // }
-
-            // if (sum !== 0) {
-            //     const ratios = areas.map(area => area / sum);
-            //     const widths = calculateWidthsTemp4(ratios, dr.drAdustWidthsTemp);
-
-            //     // const ratios = areas.map(area => area / sum);
-            //     // const widths = calculateWidthsTemp3(ratios, dr.drAdustWidthsTemp);
-            //     // // const widths = calculateWidthsTemp(ratios, dr.drAdustWidthsTemp);
-            //     // checkWhenAreaDecreasesTemp(dr.drAdustWidthsTemp);
-            //     // const temp = "breakpoint";
-            // }
 
 
-
-            //TEMP Circumscribed
             let sumAreaIns = 0;
-            // let sumAreaCir = 0;
             const areasIns = [];
-            // const areasCir = [];
             const useSecondAreaIns = [];
             for(let ib = 0; ib < basesN; ib++) {
                 const barwidth = pwidths[ib];
                 const heightIns = Math.abs(dv.maxY - insYar[ib]);
-                // const heightCir = Math.abs(dv.maxY - cirYar[ib]);
                 const areaIns = barwidth * heightIns;
-                // const areaCir = barwidth * heightCir;
                 areasIns.push(areaIns);
-                // areasCir.push(areaCir);
                 useSecondAreaIns.push(barwidth > heightIns);
                 sumAreaIns += areaIns;
-                // sumAreaCir += areaCir;
             }
 
-            if (sumAreaIns !== 0) {//} && sumAreaCir !== 0) {
-                // const ratiosCir = areasCir.map(area => area / sumArea);//TEMP
-                // const ratiosCir = areasCir.map(area => area / dr.figureArea);
-                const ratiosIns = areasIns.map(area => area / dr.figureArea);
-                const widths = calculateRectWidthsToMatchRatiosIns(dr.drAdustWidthsTemp, ratiosIns, useSecondAreaIns);
-                // const widths = calculateRectWidthsToMatchRatiosCir(dr.drAdustWidthsTemp, ratiosCir, dr);
-                if (widths) {
+            if (sumAreaIns !== 0) {
+                const ratiosIns = areasIns.map(area => area / sumAreaIns);
+                // console.log("sumRatiosIns =", ratiosIns.reduce((acc, cur) => acc + cur));
+
+                //TEMP The exact width of the last rect
+                //////// const widthLastRect = pwidths.at(-1);
+
+                //sumW
+                //wLast
+                //avgW = sumW / n       Would be a constant for any given n
+
+                //(sumW - wLast) / (n - 1)  As the last width on the left figure gets smaller
+                //                          the last width on the right figure will increase
+
+
+                //TEMP Maybe when it comes to width of the last rect on the
+                //right diagram, when using width use the same width as the
+                //left diagram.
+                //I suppose one alternative would be to use height.  If that's
+                //the case then then could send the height of the left side of
+                //the last rect.  However one problem that could possibly occur
+                //is that a large height could keep the width of the last rect
+                //very large even at the limit and therefore prevent the area
+                //from converging?
+                //  -Actually that might not be the case, wouldn't the height
+                //   decrease as the number of bases increase?
+
+                const widthLastRect = pwidths[basesN-1];
+                const heightLastRect = Math.abs(dv.maxY - insYar[basesN-2]);
+                const ratioLastTemp = widthLastRect * heightLastRect / dr.figureArea;
+                
+                const widths = calculateRectWidthsToMatchAreaRatios(
+                    dr.drAdustWidthsTemp, ratiosIns, ratioLastTemp,
+                    widthLastRect);
+
+                if (widths)
                     dr.drAdustWidthsTemp.partitionWidths = widths;
-                }
             }
         } else {
-            // const drL = stdL2.datareg;
-            // const drR = stdL2.datareg2;
-            // const ratioAreaIns = drL.areaIns / drR.areaIns
-            // const ratioAreaCir = drL.areaCir / drR.areaCir
-            // const ratioFigureArea = drL.figureArea / drR.figureArea;
-            // console.log(`drL.areaIns / drL.figureArea = ${drL.areaIns / drL.figureArea}  drR.areaIns / drR.figureArea = ${drR.areaIns / drR.figureArea}    ratioAreaIns = ${ratioAreaIns}  drL.figureArea / drR.figureArea = ${ratioFigureArea}`);
-
             const drL = stdL2.datareg;
             const drR = stdL2.datareg2;
 
@@ -328,24 +321,923 @@
             const exactA = drL.figureArea;
             const exactB = drR.figureArea;
 
-            console.log("sumA =", sumA);
-            console.log("sumB =", sumB);
             console.log("exactA =", exactA);
             console.log("exactB =", exactB);
-            console.log("sumA / sumB =", sumA / sumB);
-            console.log("exactA / exactB =", exactA / exactB);
-            console.log("sumA / exactA =", sumA / exactA);
-            console.log("sumB / exactB =", sumB / exactB);
-            
-            // console.log(`drL.areaIns / drL.figureArea = ${drL.areaIns / drL.figureArea}  drR.areaIns / drR.figureArea = ${drR.areaIns / drR.figureArea}    ratioAreaCir = ${ratioAreaCir}  ratioAreaIns = ${ratioAreaIns}  drL.figureArea / drR.figureArea = ${ratioFigureArea}`);
+            console.log("sumA =", sumA);
+            console.log("sumB =", sumB);
+            // console.log("sumA / exactA =", sumA / exactA);
+            // console.log("sumB / exactB =", sumB / exactB);
+
+            // console.log("sumA =", sumA);
+            // console.log("sumB =", sumB);
+            // console.log("exactA =", exactA);
+            // console.log("exactB =", exactB);
+            // console.log("sumA / sumB =", sumA / sumB);
+            // console.log("exactA / exactB =", exactA / exactB);
+            // console.log("sumA / exactA =", sumA / exactA);
+            // console.log("sumB / exactB =", sumB / exactB);
+
+
+            const areasL = [];
+            for(let ib = 0; ib < basesN; ib++) {
+                const barwidth = drL.partitionWidths[ib];
+                const heightIns = Math.abs(dv.maxY - drL.basePts.inscribedY[ib]);
+                const areaIns = barwidth * heightIns;
+                areasL.push(areaIns);
+            }
+
+            const areasR = [];
+            for(let ib = 0; ib < basesN; ib++) {
+                const barwidth = drR.partitionWidths[ib];
+                const heightIns = Math.abs(dv.maxY - drR.basePts.inscribedY[ib]);
+                const areaIns = barwidth * heightIns;
+                areasR.push(areaIns);
+            }
+            console.log("(all)   A_i =", areasL);
+            console.log("(all)   B_i =", areasR);
+
+            const areaRatios = [];
+            for(let i = 0; i < basesN - 1; i++)
+                areaRatios.push(areasL[i] / areasR[i]);
+            console.log("exact_ratio = exactA / exactB =", exactA / exactB);
+            console.log("sum_ratio = sumA / sumB =", sumA / sumB);
+            console.log("(for all i)   i_ratio = A_i / B_i =", areaRatios);
         }
     }
 
 
 
+    //TEMP Adjust inputs as needed
+    //function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLast) {
+    function calculateRectWidthsToMatchAreaRatios(dr, ratios, ratioLastTemp,
+        widthLastRect) {
+        //Calculate rectangle widths for the input datareg, so that the ratio
+        //of each of their areas (inscribed rectangle area divide by sum of
+        //inscribed rectangle areas) match the input ratios.  Uses the Newton
+        //Raphson method (using approximate slope for the derivative).
+        const dv = dr.yVariations;
+        if (!dv) return;
+        
+        //TEMP
+        const isMonotonicTemp = dv.changes.length <= 1;
+        if (!isMonotonicTemp) return;
+        
+        //Useful values
+        const ff = numModel.curveFun;
+        const yVariations = dr.yVariations;
+        const xStart = yVariations.x_start;
+        const chosenWidth = yVariations.chosenWidth;
+        const xEnd = xStart + chosenWidth;
+        const figureArea = dr.figureArea;
 
 
-    function calculateRectWidthsToMatchRatiosIns(dr, ratiosIns, useSecondAreaIns) {
+        //TEMP Testing different widths
+        //The width to use for the last rectangle.
+        const widthLastRectUse = widthLastRect;//calculateWidthLastRectUsingArea();//widthLastRect;
+
+
+        console.time("Width calculation converged in");
+        //Bounds to constrain the scale.
+        const scaleMin = 0.01, scaleMax = 100;
+
+        //Initial guess for first iteration
+        let scaleCurrent = 1;
+        let widthDataCurrent = calculateWidthData(scaleCurrent);
+
+        //Offset to approximate derivative
+        const offset = 0.001;
+
+        //Constrain max iterations for very unlikely event of eg. infinite loop
+        for(let iteration = 0; iteration < 10; iteration++) {
+            //Estimate derivative
+            const widthDataOffset = calculateWidthData(scaleCurrent - offset);
+            const errorC = widthDataCurrent.sumWidth - chosenWidth;
+            const errorO = widthDataOffset.sumWidth - chosenWidth;
+            const slope = (errorC - errorO) / offset;
+            //Already at minimum error
+            if (slope === 0)
+                break;
+
+            //Calculate the scale for the next iteration and clamp if needed
+            //(eg. became negative because overshot the root).
+            let scaleNew = scaleCurrent - errorC / slope;
+            scaleNew = Math.min(Math.max(scaleNew, scaleMin), scaleMax);
+
+            //Update the current scale and data, then check if converged.
+            scaleCurrent = scaleNew;
+            widthDataCurrent = calculateWidthData(scaleCurrent);
+
+            const errorRelative = widthDataCurrent.sumWidth / chosenWidth - 1;
+            if (Math.abs(errorRelative) < 0.001)
+                break;
+        }
+        console.timeEnd("Width calculation converged in");
+        
+        // console.log(`NR Converged in iterations = ${iteration + 1}  ` +
+        //             `sumWidths = ${widthDataCurrent.sumWidth}  ` +
+        //             `chosenWidth = ${chosenWidth}`);
+        //TEMP Should the widths be scaled?**********************
+
+        //Reverse widths so in correct order.
+        const widths = widthDataCurrent.widthsReversed.reverse();
+        //Scale to ensure fills figure base (mainly for the very unlikely event
+        //that the above didn't converge closely enough).
+        const scaleWidth = chosenWidth / widthDataCurrent.sumWidth;
+        return widths.map(width => width * scaleWidth);
+        // const outputTemp = widths.map(width => width * scaleWidth);
+        // console.log("outputTemp reduce =", outputTemp.reduce((acc, cur) => acc + cur));
+        // return outputTemp;
+        // // return widthDataCurrent.widthsReversed.toReversed();
+
+
+
+        function calculateWidthData(scale) {
+            //Calculate widths for each inscribed rectangle using a chosen sum
+            //for their combined area (scaled by the input scale), and a fixed
+            //width for the last one.  If there's extra space the sum of their
+            //widths will be less than that of the figure.  If there isn't
+            //enough space the sum will be greater (the width of each will be
+            //added by assuming their height is that of the figure).  This
+            //gives an estimate of how far the scale is off by.
+
+            //Given that inscribed rectangles use the height on their right
+            //side, it's simpler and more efficient to calculate them in
+            //reverse order (from last to first).  For any given rectangle it's
+            //height is determined by the left side of the previous rectangle.
+            //This means that the height is constant and the width is simply
+            //calculated as width = area / height.  If instead the rectangles
+            //were calculated from first to last...
+            // -The height would have to be calculated eg. numerically which
+            //  would be much slower.
+            // -There are often two possible rectangles with the same area
+            //  (wide and short, or narrow and tall) and it can be tricky to
+            //  determine which one to choose.
+            // -When the input scale it large and there isn't enough space for
+            //  all the rectangles, it's difficult to get an estimate how much
+            //  the scale is off by.  This is because any remaining rectangles
+            //  have a height of zero.
+
+            //Outputs
+            const widthsReversed = [];
+            let sumWidth = 0;
+
+            //Chosen area for the sum of rectangles
+            const sumAreaChosen = figureArea * scale;
+
+            //Set the last width to a fixed value, as that rectangle's height
+            //is zero, a width can't be calculated for it using area.
+            widthsReversed.push(widthLastRectUse);
+            sumWidth += widthLastRectUse;
+            let xRight = xEnd - widthLastRectUse;
+            
+            //All remaining rectangles should have a non-zero height. //TEMP
+            //Start with the second last rectangle
+            for(let i = sconf.basesN - 2; i >= 0; i--) {
+                //TEMP May want to improve x constraint eg. to check right side?
+                const x = (xRight >= xStart) ? xRight : xStart;
+                const y = ff(dr, x);
+                const height = Math.abs(dv.maxY - y);
+                //TEMP Add check if height 0
+                
+                //                  A1 / A    * B
+                const areaDesired = ratios[i] * sumAreaChosen;
+                const width = areaDesired / height;
+                //TEMP Should ensure width is +ve
+                
+                widthsReversed.push(width);
+                sumWidth += width;
+                xRight -= width;
+            }
+
+            return {widthsReversed, sumWidth};
+        }
+
+
+        
+        // function calculateWidthData(scale) {
+        //     //Calculate widths for each inscribed rectangle using a chosen sum
+        //     //for their combined area (scaled by the input scale), and a fixed
+        //     //width for the last one.  If there's extra space the sum of their
+        //     //widths will be less than that of the figure.  If there isn't
+        //     //enough space the sum will be greater (the width of each will be
+        //     //added by assuming their height is that of the figure).  This
+        //     //gives an estimate of how far the scale is off by.
+
+        //     //Given that inscribed rectangles use the height on their right
+        //     //side, it's simpler and more efficient to calculate them in
+        //     //reverse order (from last to first).  For any given rectangle it's
+        //     //height is determined by the left side of the previous rectangle.
+        //     //This means that the height is constant and the width is simply
+        //     //calculated as width = area / height.  If instead the rectangles
+        //     //were calculated from first to last...
+        //     // -The height would have to be calculated eg. numerically which
+        //     //  would be much slower.
+        //     // -There are often two possible rectangles with the same area
+        //     //  (wide and short, or narrow and tall) and it can be tricky to
+        //     //  determine which one to choose.
+        //     // -When the input scale it large and there isn't enough space for
+        //     //  all the rectangles, it's difficult to get an estimate how much
+        //     //  the scale is off by.  This is because any remaining rectangles
+        //     //  have a height of zero.
+        //     //*****************************************************************
+
+
+        //     //TEMP
+        //     //Calculate rectangle widths for the input datareg, so that the ratio
+        //     //of each of their areas (inscribed rectangle area divide by sum of
+        //     //inscribed rectangle areas) match the input ratios.  Uses the Newton
+        //     //Raphson method (using approximate slope for the derivative).
+
+        //     //Calculates widths for each inscribed rectangle using a desired
+        //     //sum
+            
+        //     //Calculate widths for each inscribed rectangle using a desired
+        //     //sum
+
+        //     //Calculate rectangle widths so that the ratio of each of their areas
+
+        //     //Some overall ideas to add details for
+        //     //-inscribed rectangles
+        //     //-reversed order because quicker to calculate areas
+
+        //     //Because the height of an inscribed rectangle is always 
+
+        //     //Calculate them in reversed order because
+
+        //     //Given that the height of an inscribed rectangle is always 
+            
+            
+        //     //*****************************************************************
+        //     //Calculate widths for each inscribed rectangle using a desired
+        //     //sum of area (scaled by the input scale) 
+
+        //     //Calculate widths for each inscribed rectangle using a desired
+        //     //sum of area (scaled by the input scale) 
+        //     //Calculate widths for each inscribed rectangle using a chosen sum
+        //     //for their combined area (scaled by the input scale), and a fixed
+        //     //value for the last one.  If there's extra space the sum of their
+        //     //widths will be less than that of the figure.  If there isn't
+        //     //enough space the sum will be greater (the width of each will be
+        //     //added by assuming their height is that of the figure).  This
+        //     //gives an estimate of how far the scale is off by, which is
+        //     //helpful as this function is called to solve the widths numerically.
+
+
+
+        //     // -When the input scale it large and there isn't enough space for
+        //     //  all the rectangles, it's difficult to get an estimate how much
+        //     //  the scale is off by.  This is because any remaining rectangles
+        //     //  have a height of zero.  However when calculated in reverse
+        //     //  order, the height of the figure can be used to calculate widths
+        //     //  for each remaining rectangle.
+
+
+        //     // -When the input scale it large, and there isn't enough space for
+        //     //  all the rectangles, any remaining rectangles have a height of 0.
+        //     //  This means 
+
+        //     // -If the input scale is large, there won't be enough space for
+        //     //  all the rectangles (regardless of calculation order).  When
+        //     //  calculated in reverse order, the height of the figure can be
+        //     //  used to calculate widths for each remaining rectangle.  This
+        //     //  gives an estimate of how far off the scale is from what it
+        //     //  should be.  However when cal
+        //     //  figure meaning each additional rectangle 
+
+
+        //     //
+        //     // -If the input scale is large, there won't be enough space for
+        //     //  all the rectangles (regardless of calculation order).  When
+        //     //  calculated in reverse order, the height is the height of the
+        //     //  figure meaning each additional rectangle 
+        //     //
+        //     //
+        //     // However
+        //     //  When calculated in reverse order the 
+        //     // 
+        //     // (regardless of calculation order).
+        //     //  reaches the width of the figure, any additional rectangles will
+        //     //  have a height of zero.  While when calculating in 
+
+        //     // -If the input scale is large, once the sum of rectangle widths
+        //     //  reaches the width of the figure, any additional rectangles will
+        //     //  have a height of zero.  While when calculating in 
+        //     // 
+            
+        //     //Additionally if there isn't any
+        //     //extra space when calculating
+
+
+
+        //     //Given that inscribed rectangles use the height on their right
+        //     //side, it's more efficient to calculate them in reverse order
+        //     //(from last to first).  This means for any given rectangle it's
+        //     //height is determined by the left side of the previous rectangle.
+
+        //     // This means for any given rectangle the
+        //     //height at the left side of the previous rectangle will be it
+        //     // 
+        //     //This is beacuse when the height of the
+        //     //last rectangle 
+
+            
+        //     //Calculate them in reversed order by using 
+        //     const widthsReversed = [];
+        //     let sumWidth = 0;
+
+        //     const sumAreaDesired = figureArea * scale;
+
+        //     //The last rectangle
+        //     widthsReversed.push(widthLastRectUse);
+        //     sumWidth += widthLastRectUse;
+        //     let xRight = xEnd - widthLastRectUse;
+            
+        //     //Start with the second last rectangle
+        //     for(let i = sconf.basesN - 2; i >= 0; i--) {
+        //         //TEMP May want to improve x constraint eg. to check right side?
+        //         const x = (xRight >= xStart) ? xRight : xStart;
+        //         const y = ff(dr, x);
+        //         const height = Math.abs(dv.maxY - y);
+        //         //TEMP Add check if height 0
+                
+        //         //                  A1 / A    * B
+        //         const areaDesired = ratios[i] * sumAreaDesired;
+        //         const width = areaDesired / height;
+        //         //TEMP Should ensure width is +ve
+                
+        //         widthsReversed.push(width);
+        //         sumWidth += width;
+        //         xRight -= width;
+        //     }
+
+        //     return {widthsReversed, sumWidth};
+        // }
+
+
+
+        // function calculateWidthData(scale) {
+        //     //Calculates widths for each inscribed rectangle using a desired
+        //     //sum
+
+        //     //Some overall ideas to add details for
+        //     //-inscribed rectangles
+        //     //-reversed order because quicker to calculate areas
+        //     const widthsReversed = [];
+        //     let sumWidth = 0;
+
+        //     const sumAreaDesired = figureArea * scale;
+
+        //     //The last rectangle
+        //     widthsReversed.push(widthLastRectUse);
+        //     sumWidth += widthLastRectUse;
+        //     let xRight = xEnd - widthLastRectUse;
+            
+        //     //Start with the second last rectangle
+        //     for(let i = sconf.basesN - 2; i >= 0; i--) {
+        //         //TEMP May want to improve x constraint eg. to check right side?
+        //         const x = (xRight >= xStart) ? xRight : xStart;
+        //         const y = ff(dr, x);
+        //         const height = Math.abs(dv.maxY - y);
+        //         //TEMP Add check if height 0
+                
+        //         //                  A1 / A    * B
+        //         const areaDesired = ratios[i] * sumAreaDesired;
+        //         const width = areaDesired / height;
+        //         //TEMP Should ensure width is +ve
+                
+        //         widthsReversed.push(width);
+        //         sumWidth += width;
+        //         xRight -= width;
+        //     }
+
+
+        //     return {widthsReversed, sumWidth};
+        // }
+
+
+
+        function calculateWidthLastRectUsingArea() {
+            //TEMP
+            //Using circumscribed area or right rect on left figure
+
+            //As x increases what happens to area
+            //Of course area = width * height
+            //As x increases width decreases (for the last circumscribed rect or similar)
+            //therefore area decreases
+            //As x increased height stays the same or decreases (for the last circumscribed rect or similar)
+            //therefore area stays the same or decreases
+
+            // const areaData = [];
+            // const iMax = 20;
+            // const xInterval = chosenWidth / iMax;
+            // for(let i = 0; i <= iMax; i++){
+            //     const x = xStart + xInterval * i;
+            //     const y = ff(dr, x);
+            //     const height = Math.abs(dv.maxY - y);
+            //     const width = xEnd - x;
+            //     const area = width * height;
+            //     areaData.push({x, area, width, height});
+            // }
+            // console.log("as x increases  areaData =", areaData);
+
+            //                  A1                             / A              * B
+            // const areaCirLast = widthLastRect * heightLastRect / leftFigureArea * figureArea;//sumB;
+            //                  A1 / A        * B
+            const areaCirLast = ratioLastTemp * figureArea;
+            let xMin = xStart;
+            let xMax = xEnd;
+            let xBest = xMax;
+            for(let i = 0; i < 20; i++) {
+                const widthMin = xEnd - xMin;
+                const xLeftMin = xEnd - widthMin;
+                const yMin = ff(dr, xLeftMin);
+                const heightMin = Math.abs(dv.maxY - yMin);
+
+                const widthMax = xEnd - xMax;
+                const xLeftMax = xEnd - widthMax;
+                const yMax = ff(dr, xLeftMax);
+                const heightMax = Math.abs(dv.maxY - yMax);
+
+                const xMid = (xMin + xMax) / 2;
+                const widthMid = xEnd - xMid;
+                const xLeftMid = xEnd - widthMid;
+                const yMid = ff(dr, xLeftMid);
+                const heightMid = Math.abs(dv.maxY - yMid);
+
+                const areaMin = widthMin * heightMin;
+                const areaMid = widthMid * heightMid;
+                const areaMax = widthMax * heightMax;
+
+                const errorMin = (areaMin - areaCirLast);
+                const errorMid = (areaMid - areaCirLast);
+                const errorMax = (areaMax - areaCirLast);
+                // // if (i === 0 || i === 20 - 1)
+                //     console.log(`i = ${i}  errorMin = ${errorMin}  errorMax = ${errorMax}  widthMin = ${widthMin}  widthMax = ${widthMax}  ` +
+                //                 `areaMin = ${areaMin}  areaMax = ${areaMax}  areaCirLast = ${areaCirLast}`
+                //     );
+
+                if (errorMid > 0) {
+                    xMin = xMid;
+                } else {
+                    xMax = xMid;
+                }
+                xBest = xMid;
+            }
+            const widthLastRectBest = xEnd - xBest;
+            return widthLastRectBest;
+        }
+    }
+
+    // //function calculateRectWidthsToMatchSumAreaRatios(dr, ratios, widthLast) {
+    // function calculateRectWidthsToMatchSumAreaRatiosIns(dr, ratiosIns, widthLastRect, heightLastRect, leftFigureArea) {
+    //     //Uses the Newton Raphson method (using approximate slope for the
+    //     //derivative) to calculate the widths for the inscribed rectangles.
+    //     //-Uses the sum of total rectangle areas rather than exact********
+    //     const dv = dr.yVariations;
+    //     if (!dv) return;
+        
+    //     const isMonotonicTemp = dv.changes.length <= 1;
+    //     if (!isMonotonicTemp) return;
+        
+    //     const ff = numModel.curveFun;
+    //     const yVariations = dr.yVariations;
+    //     const xStart = yVariations.x_start;
+    //     const chosenWidth = yVariations.chosenWidth;
+    //     const xEnd = xStart + chosenWidth;
+    //     const figureArea = dr.figureArea;
+
+
+    //     //The width to use for the last rectangle.
+    //     const widthLastRectUse = calculateWidthLastRectUsingArea();//widthLastRect;
+
+
+    //     console.time("Width calculation converged in");
+    //     //Bounds to constrain the scale.
+    //     const scaleMin = 0.01, scaleMax = 100;
+
+    //     //Initial guess for first iteration
+    //     let scaleCurrent = 1;
+    //     let widthDataCurrent = calculateWidthData(scaleCurrent);
+
+    //     //Offset to approximate derivative
+    //     const offset = 0.001;
+
+    //     for(let iteration = 0; iteration < 10; iteration++) {
+    //         //For approximate derivative.
+    //         const widthDataOffset = calculateWidthData(scaleCurrent - offset);
+
+    //         //Width errors
+    //         const errorC = widthDataCurrent.sumWidth - chosenWidth;
+    //         const errorO = widthDataOffset.sumWidth - chosenWidth;
+    //         // const errorDelta = (errorC - errorO);
+    //         //TEMP Don't forget to check if errorDelta is 0****************
+    //         //If errorDelta was zero what would that mean?  Slope is 0.
+    //         //What would that mean?
+    //         const slope = (errorC - errorO) / offset;
+
+    //         //Calculate the scale for the next iteration and clamp if needed
+    //         //(eg. became negative because overshot the root).
+    //         let scaleNew = scaleCurrent - errorC * slope;
+    //         // let scaleNew = scaleCurrent - errorC * offset / errorDelta;
+    //         scaleNew = Math.min(Math.max(scaleNew, scaleMin), scaleMax);
+
+    //         //Update the current scale and check if converged.
+    //         scaleCurrent = scaleNew;
+    //         widthDataCurrent = calculateWidthData(scaleCurrent);
+
+    //         const errorSumWidth = widthDataCurrent.sumWidth / chosenWidth - 1;
+    //         if (Math.abs(errorSumWidth) < 0.001) {
+    //             console.log(`NR Converged in iterations = ${iteration + 1}  ` +
+    //                         `sumWidths = ${widthDataCurrent.sumWidth}  ` +
+    //                         `chosenWidth = ${chosenWidth}`);
+    //             break;
+    //         }
+    //     }
+    //     console.timeEnd("Width calculation converged in");
+    //     //TEMP Should the widths be scaled?**********************
+    //     return widthDataCurrent.widthsReversed.toReversed();
+
+        
+
+    //     function calculateWidthData(scale) {
+    //         //Calculates widths for each inscribed rectangle using a desired
+    //         //sum
+    //         const widthsReversed = [];
+    //         let sumWidth = 0;
+
+    //         const sumAreaDesired = figureArea * scale;
+
+    //         //The last rectangle
+    //         widthsReversed.push(widthLastRectUse);
+    //         sumWidth += widthLastRectUse;
+    //         let xRight = xEnd - widthLastRectUse;
+            
+    //         //Start with the second last rectangle
+    //         for(let i = sconf.basesN - 2; i >= 0; i--) {
+    //             const x = (xRight >= xStart) ? xRight : xStart;
+    //             const y = ff(dr, x);
+    //             const height = Math.abs(dv.maxY - y);
+                
+    //             //                  A1 / A       * B
+    //             const areaDesired = ratiosIns[i] * sumAreaDesired;
+    //             const width = areaDesired / height;
+                    
+    //             widthsReversed.push(width);
+    //             sumWidth += width;
+    //             xRight -= width;
+    //         }
+
+
+    //         return {widthsReversed, sumWidth};
+    //     }
+
+
+
+    //     function calculateWidthLastRectUsingArea() {
+    //         //TEMP
+    //         //Using circumscribed area or right rect on left figure
+
+    //         //As x increases what happens to area
+    //         //Of course area = width * height
+    //         //As x increases width decreases (for the last circumscribed rect or similar)
+    //         //therefore area decreases
+    //         //As x increased height stays the same or decreases (for the last circumscribed rect or similar)
+    //         //therefore area stays the same or decreases
+
+    //         const areaData = [];
+    //         const iMax = 20;
+    //         const xInterval = chosenWidth / iMax;
+    //         for(let i = 0; i <= iMax; i++){
+    //             const x = xStart + xInterval * i;
+    //             const y = ff(dr, x);
+    //             const height = Math.abs(dv.maxY - y);
+    //             const width = xEnd - x;
+    //             const area = width * height;
+    //             areaData.push({x, area, width, height});
+    //         }
+    //         console.log("as x increases  areaData =", areaData);
+
+    //         //                  A1                             / A              * B
+    //         const areaCirLast = widthLastRect * heightLastRect / leftFigureArea * figureArea;//sumB;
+    //         let xMin = xStart;
+    //         let xMax = xEnd;
+    //         let xBest = xMax;
+    //         for(let i = 0; i < 20; i++) {
+    //             const widthMin = xEnd - xMin;
+    //             const xLeftMin = xEnd - widthMin;
+    //             const yMin = ff(dr, xLeftMin);
+    //             const heightMin = Math.abs(dv.maxY - yMin);
+
+    //             const widthMax = xEnd - xMax;
+    //             const xLeftMax = xEnd - widthMax;
+    //             const yMax = ff(dr, xLeftMax);
+    //             const heightMax = Math.abs(dv.maxY - yMax);
+
+    //             const xMid = (xMin + xMax) / 2;
+    //             const widthMid = xEnd - xMid;
+    //             const xLeftMid = xEnd - widthMid;
+    //             const yMid = ff(dr, xLeftMid);
+    //             const heightMid = Math.abs(dv.maxY - yMid);
+
+    //             const areaMin = widthMin * heightMin;
+    //             const areaMid = widthMid * heightMid;
+    //             const areaMax = widthMax * heightMax;
+
+    //             const errorMin = (areaMin - areaCirLast);
+    //             const errorMid = (areaMid - areaCirLast);
+    //             const errorMax = (areaMax - areaCirLast);
+    //             // if (i === 0 || i === 20 - 1)
+    //                 console.log(`i = ${i}  errorMin = ${errorMin}  errorMax = ${errorMax}  widthMin = ${widthMin}  widthMax = ${widthMax}  ` +
+    //                             `areaMin = ${areaMin}  areaMax = ${areaMax}  areaCirLast = ${areaCirLast}`
+    //                 );
+
+    //             if (errorMid > 0) {
+    //                 xMin = xMid;
+    //             } else {
+    //                 xMax = xMid;
+    //             }
+    //             xBest = xMid;
+    //         }
+    //         const widthLastRectBest = xEnd - xBest;
+    //         return widthLastRectBest;
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //TEMP 2025.08.05
+    //Calculate areas of inscribed rectangles using sum areas
+    // function calculateRectWidthsToMatchSumAreaRatiosIns(dr, ratiosIns, widthLastRect, heightLastRect, leftFigureArea) {
+    //     const dv = dr.yVariations;
+    //     if (!dv) return;
+        
+    //     const isMonotonicTemp = dv.changes.length <= 1;
+    //     if (!isMonotonicTemp) return;
+        
+    //     const ff = numModel.curveFun;
+    //     const yVariations = dr.yVariations;
+    //     const xStart = yVariations.x_start;
+    //     const chosenWidth = yVariations.chosenWidth;
+    //     const xEnd = xStart + chosenWidth;
+    //     const figureArea = dr.figureArea;
+
+
+
+    //     const widthLastRectBest = widthLastRect;//calculateWidthLastRectUsingArea();
+    //     // console.log("widthLastRectBest =", widthLastRectBest);
+    //     // const widthsData = calculateWidthsData(scale);
+    //     // const error = widthsData.sumWidth - chosenWidth;
+    //     // const errorAbs = Math.abs(error)
+
+    //     // console.log("heightLastRect =", heightLastRect);
+
+    //     // console.log("widthsData =", widthsData);
+    //     // // console.log("width.reduce =", widths.reduce((acc, cur) => acc + cur));
+
+    //     // const widths = widthsData.widthsReversed.toReversed();
+    //     // console.log("widths =", widths);
+    //     // const scaleWidths = (chosenWidth - widths.at(-1)) / (widthsData.sumWidth - widths.at(-1));
+        
+    //     // console.log("scaleWidths =", scaleWidths);
+    //     // const widthsScaled = widths.map((width, i, arr) => width * (i < arr.length - 1 ? scaleWidths : 1));
+
+
+
+
+
+
+
+
+    //     //TEMP Newton Raphson 2
+    //     console.time("Width calculation converged in");
+    //     let scaleCurrent = 1;
+    //     let widthDataCurrent = calculateWidthData(scaleCurrent);
+    //     const offset = 0.01;
+    //     for(let iteration = 0; iteration < 10; iteration++) {
+    //         const widthDataOffset = calculateWidthData(scaleCurrent - offset);
+
+    //         const errorC = widthDataCurrent.sumWidth - chosenWidth;
+    //         const errorO = widthDataOffset.sumWidth - chosenWidth;
+
+    //         const errorDelta = (errorC - errorO);
+    //         const scaleNew = scaleCurrent - errorC * offset / errorDelta;
+            
+    //         scaleLast = scaleCurrent;
+    //         widthDataLast = widthDataCurrent;
+
+    //         scaleCurrent = scaleNew;
+    //         widthDataCurrent = calculateWidthData(scaleCurrent);
+    //         const errorWidthFactor = widthDataCurrent.sumWidth / chosenWidth - 1;
+    //         // console.log(`Newton Raphson itersion i = ${i}  scaleNew = ${scaleNew}  errorWidthFactor = ${errorWidthFactor}`);
+    //         // console.log(`errorC = ${errorC}  errorL = ${errorL}  slope = ${slope}  scaleCurrent = ${scaleCurrent}  scaleLast = ${scaleLast}`);
+    //         //
+    //         if (Math.abs(errorWidthFactor) < 0.001) {
+    //             // console.log(`NR Converged in iterations = ${iteration + 1}`);
+    //             break;
+    //         }
+    //     }
+    //     console.timeEnd("Width calculation converged in");
+    //     return widthDataCurrent.widthsReversed.toReversed();
+
+
+    //     // //TEMP Newton Raphson
+    //     // console.time("NR");
+    //     // let scaleCurrent = 1;
+    //     // let widthsDataCurrent = calculateWidthsData(scaleCurrent);
+    //     // let scaleLast = scaleCurrent - 0.01;
+    //     // let widthsDataLast = calculateWidthsData(scaleLast);
+
+    //     // for(let i = 0; i < 10; i++) {
+    //     //     const errorC = widthsDataCurrent.sumWidth - chosenWidth;
+    //     //     const errorL = widthsDataLast.sumWidth - chosenWidth;
+    //     //     const slope = (errorC - errorL) / (scaleCurrent - scaleLast);
+    //     //     const scaleNew = scaleCurrent - errorC / slope;
+    //     //     scaleLast = scaleCurrent;
+    //     //     widthsDataLast = widthsDataCurrent;
+
+    //     //     scaleCurrent = scaleNew;
+    //     //     widthsDataCurrent = calculateWidthsData(scaleCurrent);
+    //     //     const errorWidthFactor = widthsDataCurrent.sumWidth / chosenWidth - 1;
+    //     //     // console.log(`Newton Raphson itersion i = ${i}  scaleNew = ${scaleNew}  errorWidthFactor = ${errorWidthFactor}`);
+    //     //     // console.log(`errorC = ${errorC}  errorL = ${errorL}  slope = ${slope}  scaleCurrent = ${scaleCurrent}  scaleLast = ${scaleLast}`);
+    //     //     if (Math.abs(errorWidthFactor) < 0.001)
+    //     //         break;
+    //     // }
+    //     // const widthsNR = widthsDataCurrent.widthsReversed.toReversed();
+    //     // console.timeEnd("NR");
+
+
+    //     // return widthsNR;
+        
+
+    //     function calculateWidthData(scale) {
+    //         const widthsReversed = [];
+    //         let sumWidth = 0;
+
+    //         const sumB = figureArea * scale;
+
+
+    //         //The last rectangle
+    //         //Using same width as the left figure
+    //         widthsReversed.push(widthLastRectBest);
+    //         sumWidth += widthLastRectBest;
+    //         let xRight = xEnd - widthLastRectBest;
+            
+
+    //         for(let i = sconf.basesN - 2; i >= 0; i--) {
+    //             const x = (xRight >= xStart) ? xRight : xStart;
+    //             const y = ff(dr, x);
+    //             const height = Math.abs(dv.maxY - y);
+                
+    //             //                  A1 / A       * B
+    //             const areaDesired = ratiosIns[i] * sumB;
+    //             const width = areaDesired / height;
+                    
+                
+    //             widthsReversed.push(width);
+    //             sumWidth += width;
+    //             xRight -= width;
+    //         }
+
+
+    //         return { widthsReversed, sumWidth };
+    //     }
+
+
+    //     function calculateErrorTemp(widths, scale) {
+    //         const errors = [];
+    //         let errorAbsSum = 0;
+
+    //         const sumB = figureArea * scale;
+    //         let sumWidths = 0;
+    //         let sumAreaDesired = 0;
+    //         for(let i = 0; i < widths.length; i++) {
+    //             const width = widths[i];
+    //             const x = xStart + sumWidths + width;
+    //             const y = ff(dr, x);
+    //             const height = Math.abs(dv.maxY - y);
+    //             const area = width * height;
+                
+    //             //                  A1 / A       * B
+    //             const areaDesired = ratiosIns[i] * sumB;
+
+    //             const errorAbs = Math.abs(area - areaDesired);
+    //             errors.push(errorAbs);
+    //             errorAbsSum += errorAbs;
+    //             sumAreaDesired += areaDesired;
+    //             sumWidths += width;
+    //         }
+
+    //         return {
+    //             errors,
+    //             errorAbsSum,
+    //             sumAreaDesired,
+    //             errorAbsSumDivSumAreaDesired : errorAbsSum / sumAreaDesired,
+    //         };
+    //     }
+
+    //     function calculateWidthLastRectUsingArea() {
+    //         //Using circumscribed area or right rect on left figure
+
+    //         //As x increases what happens to area
+    //         //Of course area = width * height
+    //         //As x increases width decreases (for the last circumscribed rect or similar)
+    //         //therefore area decreases
+    //         //As x increased height stays the same or decreases (for the last circumscribed rect or similar)
+    //         //therefore area stays the same or decreases
+
+    //         const areaData = [];
+    //         const iMax = 20;
+    //         const xInterval = chosenWidth / iMax;
+    //         for(let i = 0; i <= iMax; i++){
+    //             const x = xStart + xInterval * i;
+    //             const y = ff(dr, x);
+    //             const height = Math.abs(dv.maxY - y);
+    //             const width = xEnd - x;
+    //             const area = width * height;
+    //             areaData.push({x, area, width, height});
+    //         }
+    //         console.log("as x increases  areaData =", areaData);
+
+    //         //                  A1                             / A              * B
+    //         const areaCirLast = widthLastRect * heightLastRect / leftFigureArea * figureArea;//sumB;
+    //         let xMin = xStart;
+    //         let xMax = xEnd;
+    //         let xBest = xMax;
+    //         for(let i = 0; i < 20; i++) {
+    //             const widthMin = xEnd - xMin;
+    //             const xLeftMin = xEnd - widthMin;
+    //             const yMin = ff(dr, xLeftMin);
+    //             const heightMin = Math.abs(dv.maxY - yMin);
+
+    //             const widthMax = xEnd - xMax;
+    //             const xLeftMax = xEnd - widthMax;
+    //             const yMax = ff(dr, xLeftMax);
+    //             const heightMax = Math.abs(dv.maxY - yMax);
+
+    //             const xMid = (xMin + xMax) / 2;
+    //             const widthMid = xEnd - xMid;
+    //             const xLeftMid = xEnd - widthMid;
+    //             const yMid = ff(dr, xLeftMid);
+    //             const heightMid = Math.abs(dv.maxY - yMid);
+
+    //             const areaMin = widthMin * heightMin;
+    //             const areaMid = widthMid * heightMid;
+    //             const areaMax = widthMax * heightMax;
+
+    //             // const errorMin = Math.abs(areaMin - areaCirLast);
+    //             // // const errorMid = Math.abs(widthMid * heightMid - areaCirLast);
+    //             // const errorMax = Math.abs(areaMax - areaCirLast);
+    //             const errorMin = (areaMin - areaCirLast);
+    //             const errorMid = (areaMid - areaCirLast);
+    //             const errorMax = (areaMax - areaCirLast);
+    //             // if (i === 0 || i === 20 - 1)
+    //                 console.log(`i = ${i}  errorMin = ${errorMin}  errorMax = ${errorMax}  widthMin = ${widthMin}  widthMax = ${widthMax}  ` +
+    //                             `areaMin = ${areaMin}  areaMax = ${areaMax}  areaCirLast = ${areaCirLast}`
+    //                 );
+
+    //             // const errorMin = Math.abs(heightMin - heightLastRect);
+    //             // const errorMid = Math.abs(heightMid - heightLastRect);
+    //             // const errorMax = Math.abs(heightMax - heightLastRect);
+    //             if (errorMid > 0) {//errorMin > errorMax) {
+    //                 xMin = xMid;
+    //             } else {
+    //                 xMax = xMid;
+    //             }
+    //             xBest = xMid;
+    //         }
+    //         const widthLastRectBest = xEnd - xBest;
+    //         return widthLastRectBest;
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //TEMP 2025.08.01
+    //Calculates areas of inscribed rectangles to match using exact areas
+    function calculateRectWidthsToMatchExactAreaRatiosIns(dr, ratiosIns, useSecondAreaIns) {
         //Calculate rectangle widths for the input datareg, so that the ratio
         //of each of their areas (rectangle area divide by sum of rectangle
         //areas) match the input ratios.
