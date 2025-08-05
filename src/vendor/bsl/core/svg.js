@@ -241,14 +241,19 @@
     };
     
     ///input parameters are in model namespace,
-    nssvg.model_ellipse = function( arg )
+    ///has two optional executions
+    ///    1) haz( arg, 'points' )
+    ///         in this case does only medpos
+    ///    2)   otherwise calls mat.polar_ellipse before
+    ///         and needs arg.stepsCount
+    nssvg.model_ellipse = function( arg, doClose )
     {
         const pe = mat.polar_ellipse;
         const polyline = arg.pivots = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
         const points = haz( arg, 'points' ); //precalculated
-        for( var ii = 0; ii < stepsCount; ii++ ){
+        const len = points ? points.length : arg.stepsCount;
+        const step = 2*Math.PI/len;
+        for( var ii = 0; ii < len; ii++ ){
             arg.q = step * ii;
             if( points ){
                 var medpos = ssF.mod2inn( points[ii] );
@@ -258,9 +263,9 @@
             }
             polyline.push( medpos );
         }
-        polyline.push( medpos );
+        //polyline.push( medpos );
         //makes ellipse closed:
-        polyline.push( polyline[0] );
+        doClose && polyline.push( polyline[0] );
         return nssvg.polyline( arg ); 
     };
 

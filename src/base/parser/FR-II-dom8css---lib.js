@@ -8,7 +8,6 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            BodyMathJax_2_HTML,
             fragment__collectsRawTpLinks,
             rawFragments2htmlText,
             builtFrags_2_dom8mj,
@@ -225,52 +224,6 @@
         //return { collectedTpLinks, collectedDelayedLinks };
     }
 
-    function BodyMathJax_2_HTML( domEl, no_domEl_pretransformation, cbAfterMathJax )
-    {
-        {
-            //skips text block without MathJax
-            let iH = domEl.innerHTML;
-            //todm a bit risky detection of MJ text
-            if( iH.indexOf( '\\(' ) < 0 && iH.indexOf( '\\[' ) < 0 ) return;
-        }
-        var count = 0;
-        mathJax_2_HTML();
-        ///===============================================
-        /// waits for MathJax and fires it up over domEl
-        ///===============================================
-        function mathJax_2_HTML()
-        {
-            count++;
-            if( count > 20 ) return;
-            //c onsole.log( count + ' ' + Date.now() + ' MathJax=',MathJax );
-            if( !window.MathJax_is_fully_loaded_flag ){
-                console.log( 'Still waiting for MathJax. Timestamp=' + Date.now() );
-                setTimeout( mathJax_2_HTML, 500 );
-                return;
-            }
-            //todm possibly need own MJ promise?:
-            //MathJax.startup.promise,
-            //https://docs.mathjax.org/en/latest/web/typeset.html#typeset-async
-            let promise = Promise.resolve();
-            function typeset(code) {
-                promise = promise
-                    .then(() => MathJax.typesetPromise(code()))
-                    .catch((err) => console.log('Typeset failed: ' + err.message));
-                return promise;
-            }
-            let ret = typeset(() => {
-                //ccc( domEl.innerHTML );
-                if( !no_domEl_pretransformation ) {
-                    ssF.finalizes_delayed_anchors(domEl);
-                }  
-                return [domEl];
-            })
-            if( no_domEl_pretransformation && cbAfterMathJax ) {                
-                ret.then( cbAfterMathJax );
-            }
-        }
-    }
-
 
     //Frag. step II. Norm. and anchor-texts.
     //======================================================================
@@ -416,7 +369,6 @@
 
         fid,    //fragment category:
                 //"static" or any custom key: "left", "right", ...
-        dontDoMathJax,
     ){
         //*******************************************************
         //.here page content injects into html for the first time
@@ -464,13 +416,6 @@
         //-----------------------------------------------------------------------
         // \\// inserts book-references in DOM
         //-----------------------------------------------------------------------
-
-        //removed because of emulated by user-options.
-        //updateFrameWorkAnchors_2_basicSiteFeatures();
-
-        //does delayed anchors
-        !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
-        //do later: ssF.puts_delayed_tp_anch_in_syblings( bFrag.dom$() );
     }
 
     function doesInsertSiteHTMLMacros( rawActFrValue )

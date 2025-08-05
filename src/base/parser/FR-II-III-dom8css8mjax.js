@@ -21,9 +21,6 @@
     function exegs__2__tpAn8dom8css8mjax()
     {
 
-        if( sconf.dontDoMathJax ) {
-           // delete window.MathJax;
-        }
         eachprop( exegs, ( logic_phaseAspects, mcat_id ) => {
             eachprop( logic_phaseAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg ) => {
@@ -48,7 +45,7 @@
                         ///converts frags-texts into html
                         eachprop( bFrag.htmlReadyFragText_racks, ( htmlReadyRack, fid ) => {
                             ssF.builtFrags_2_dom8mj(
-                                subexeg.domEl, htmlReadyRack, fid, sconf.dontDoMathJax );
+                                subexeg.domEl, htmlReadyRack, fid);
                         });
                     });
                 });
