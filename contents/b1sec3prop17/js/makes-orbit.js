@@ -180,24 +180,21 @@
         //called 6x on page load (3x per conic)
         //and any time Pv/pv are dragged (only for appropriate conic)
         //and once more per conic when switching tabs
-        //console.log('starting e: ' + eccentricity);
+        //console.log('e: ' + eccentricity);
         
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
-        var SAFE_VALUE = 0.1;
+        var SAFE_VALUE = 0.05;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
 
         // Determine conic type
         if (eccentricity < 1 - SAFE_VALUE) {
             op.conicSignum = 1; // ellipse
-            //console.log('ellipse')
         } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
-            eccentricity = 1-0.0001;
+            eccentricity = 0.9999;
             op.conicSignum = 0; // parabola
-            //console.log('parabola')
         } else {
-            op.conicSignum = -1; // hyperbola            
-            //console.log('hyperbola')
+            op.conicSignum = -1; // hyperbola  
         }
         
         if( doAdjustLatus ) {
