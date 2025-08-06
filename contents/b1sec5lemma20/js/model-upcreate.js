@@ -7,7 +7,7 @@
         {
             model_upcreate,
             deriveParameters,
-            ellmod2arr,
+            curveModel2branches,
         },
     });
     var DID_INITIALIZED = false;
@@ -223,46 +223,23 @@
      
     ///input parameters are in model namespace,
     ///ellipse to array
-    function ellmod2arr( arg )
-    {
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        const pe = mat.polar_ellipse;
-        const brs = sn( 'branches', arg, [] );
-        const points = arg.points = [];
-        let bpoints;
-        let ro;
-        let branchesLen = 0;
-        for( var ii = 0; ii < stepsCount; ii++ ){
-            arg.q = step * ii;
-            const orb = pe(arg);
-            if( !ii || Math.sign(ro)!==Math.sign(orb.ro) ){
-                ro = orb.ro;
-                bpoints = [];
-                brs[ branchesLen ] = brs[ branchesLen ] || {};
-                brs[ branchesLen ].points = bpoints;
-                branchesLen++;
-            }
-            bpoints.push( orb.point );
-            points.push( orb.point );
-        }
-        if( branchesLen === 3 ){
-            ////second hyperbola branch is split, to
-            ////first and third branch, so do
-            ////connect them
-            const ps = brs[2].points;
-            const first = brs[0].points[0];
-            ps[ ps.length ] = [first[0], first[1]];
-        }
-        ///removes dom stuff in brs if leftover
-        for( ii=branchesLen; ii < brs.length; ii++ ){
-            const svgel = haz( brs[ii], 'svgel' );
-            if( svgel ){
-                svgel.remove();
-                delete brs[ii].svgel;
-            }
-        }
-        brs.length = branchesLen;
+    function curveModel2branches(){
+        const brsObj = sData.polar_ell_model;
+        brsObj.step = 2*Math.PI/brsObj.stepsCount;
+        brsObj.start_q = 0;
+        brsObj.BRANCH_COMPLETER = 3;
+        brsObj.formula = function( q ) {
+            brsObj.q = q;
+            const orb = mat.polar_ellipse(brsObj);
+            return {
+                point: orb.point,
+                pointPar : orb.ro,
+            };
+        };
+        brsObj.breakCondition = function( pointPar1,  pointPar2 ){
+            return Math.sign( pointPar1 ) !== Math.sign( pointPar2 );
+        };
+        stdMod.formula2branches(brsObj);
     };
 })();
 
