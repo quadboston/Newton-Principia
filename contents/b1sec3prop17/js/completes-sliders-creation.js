@@ -1,6 +1,6 @@
 ( function() {
     var { 
-        sn, mat, nspaste, fconf, sData, amode, stdMod, sconf, rg,
+        sn, mat, nspaste, sData, amode, stdMod, sconf, rg,
     } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
     var conics = sn( 'conics', mat );
     var sop = sn( 'sampleOrbitParameters', sconf );
@@ -13,9 +13,9 @@
 
         var op = sconf.orbitParameters;
 
-        //=========================================================================
+        //======================================================================
         // //\\ centripetal force slider (f)
-        //=========================================================================
+        //======================================================================
         rg.f.processOwnDownEvent = function() {
             //--------------------------------------------------------
             // //\\ stashes sample
@@ -265,7 +265,6 @@
             var dShift = mat.sm( 1, np, -1, pp );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             var increase = dS / sData.dShift_r;
-            sop.Kepler_v = sData.Kepler_v_stashed_r * increase;
 
             if( subessay == 'corollary2' ){
                 var newSinOmega = sop.om;
@@ -293,34 +292,45 @@
                     }
                 }
                 var newSinOmega = Math.sin( omega );
-                sop.om = newSinOmega;
-                sop.cosOmega = Math.cos( omega );
-                var signCosOmega = Math.sign( sop.cosOmega );
+                var cosOmega = Math.cos( omega );
+                var signCosOmega = Math.sign( cosOmega );
                 //--------------------------------
                 // \\// corrects extreme values
                 //--------------------------------
                 var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega_r );
             }
 
-            sop.latus = sData.stashedLatus4slider_r * momentumIncrease * momentumIncrease;
+            let latus = sData.stashedLatus4slider_r * momentumIncrease * momentumIncrease;
             var { e, fi, } = conics.innerPars2innerPars({
                 r : sData.stashedR_r,
                 om : newSinOmega,
-                lat : sop.latus,
+                lat : latus,
                 signCosOmega,
-            })
-            rg.p.q = fi;
+            });
 
-            //rotates main axis in respect to change q,
-            //bs op.PparQ_initial === initial axis-fi
-            //in respect to SP
-            sop.mainAxisAngle = sop.r2axisX_angle - fi;
+            // sample (green) conic must always be ellipse
+            if(e >= 0.9) {
+                sData.pAtLimit = true;
+                return false;
+            } else {                
+                sop.Kepler_v = sData.Kepler_v_stashed_r * increase;
+                sop.om = newSinOmega;
+                sop.cosOmega = cosOmega;
+                sop.latus = latus;
+                rg.p.q = fi;
 
-            stdMod.establishesEccentricity( e,
-                null,   //null because of latus is already adjusted
-            sop );
+                //rotates main axis in respect to change q,
+                //bs op.PparQ_initial === initial axis-fi
+                //in respect to SP
+                sop.mainAxisAngle = sop.r2axisX_angle - fi;
 
-            stdMod.model8media_upcreate();
+                stdMod.establishesEccentricity( e,
+                    null,   //null because of latus is already adjusted
+                sop );
+
+                stdMod.model8media_upcreate();
+            }
+
         }
         //=========================================================================
         // \\// sample slider for point r
