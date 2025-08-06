@@ -68,9 +68,49 @@
         // \\// making pause at e=1
 	
         sData.polar_ell_model.e = modelPar;
-        stdMod.ellmod2arr( sData.polar_ell_model );
+        stdMod.curveModel2branches();
+        // //\\ parameters' decorational changes
+        //const eChange = (modelPar - sconf.excentricity)-(1-sconf.excentricity);
+        const eChange = modelPar - sconf.excentricity;
+        const change = Math.abs(eChange);
+        {
+            /*
+            const initialFocus = ssF.inn2mod( sconf.focus, !!'original' );
+            c1 = Math.abs(change-1);
+            const focusShift = eChange < 0 ?
+                  1-change*0.5 : 1-(1-c1*c1);
+            const newFocus0 = initialFocus[0] * focusShift;
+            const newFocus1 = initialFocus[1] * focusShift;
+            sData.polar_ell_model.focus = [newFocus0, newFocus1];
+            */
+        }
+        {
+            //const initialLatus = sconf.latus2/sconf.originalMod2inn_scale;
+            //const latusFactor = eChange < 0 ?  1+change*2 :
+                    //1-change*6+change*change*6;
+                    1;
+            //sData.polar_ell_model.latus2 = initialLatus * latusFactor;
+            //c cc( sData.polar_ell_model.latus2, 'change='+change.toFixed(3) );
+            /*
+            const changeHyp = modelPar <=1.001 ?
+                            change : Math.abs(1.001 - sconf.excentricity);
+            const parHyperbolaA = 1-changeHyp*0;
+            const parHyperbolaC = 1+changeHyp*20;
+            const parHyperbolaP = 1-changeHyp*45;
+            const parHyperbolaB = 1-changeHyp*8;
+            sData.initialparC = sconf.initialparC *
+                (eChange < 0 ? 1+change*4 : parHyperbolaC );
+            sData.initialparB = sconf.initialparB *
+                (eChange < 0 ? 1 : parHyperbolaB );
+            sData.initialparA = sconf.initialparA *
+                (eChange < 0 ? 1-change*0.3 : parHyperbolaA );
+            sData.initialparP = sconf.initialparP *
+                (eChange < 0 ? 1 : parHyperbolaP );
+            */
+            // \\// parameters' decorational changes
+        }
         slider_a_value2pos();
-        stdMod.ellmod2arr( sData.polar_ell_model );
+        stdMod.curveModel2branches();
         newPos[1] = rg.eStart.pos[1];
         return true;
     }    

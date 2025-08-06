@@ -70,7 +70,7 @@
                 stepsCount : 1000,
             };
         }
-        stdMod.ellmod2arr( sData.polar_ell_model );
+        stdMod.curveModel2branches();
         sData.eScale = ( rg.eEnd.pos[0] - rg.eStart.pos[0] ) / sconf.eMax;
         stdMod.slider_a_value2pos();
 

@@ -1,11 +1,11 @@
 ( function() {
-	var ns	    = window.b$l;
-    var mat     = ns.sn( 'mat' );
+	const ns	= window.b$l;
+    const mat = ns.sn( 'mat' );
 
-    mat.circumscribeCircleOverChordAndBothNormals = circumscribeCircleOverChordAndBothNormals;
+    mat.circumscribeCircleOverChordAndBothNormals =
+        circumscribeCircleOverChordAndBothNormals;
     mat.pos2angle = pos2angle;
     return;
-
 
 
     ///Assumptions:
@@ -29,7 +29,7 @@
         return [ 0, G ];
     }
 
-    ///returns angle from interval [0,2PI),
+    ///returns andgle from interval [0,2PI),
     ///converts atan2 from interval [-PI,PI] to interval [0,2PI),
     ///when atan2 < 0 returns angle from [0,2PI).
     function pos2angle( pos )
@@ -40,8 +40,4 @@
         }
         return t;
     }
-
-
-}) ();
-
-
+})();

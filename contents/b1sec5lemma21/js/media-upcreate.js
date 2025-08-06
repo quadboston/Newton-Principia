@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, $$, nssvg, has, haz, mat,
+        ns, sn, $$, nssvg, has, haz, mat,
         amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
@@ -20,13 +20,7 @@
     var paintTriangle;
     return;
 
-
-
-
-
-
-
-
+    
     function setModule()
     {
         pointies2line   = ssF.pointies2line;
@@ -52,6 +46,7 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic() //media_upcreate()
     {
+        branches2svg();
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
@@ -60,47 +55,10 @@
         ssF.mediaModelInitialized = true;
     }
 
-
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    function createMedia0updateMediaAUX()
-    {
-        ///===================================================
-        /// study-pars
-        ///===================================================
-        ///-------------------------------------------------
-        ///makes conic first to put point over it later
-        ///-------------------------------------------------
-        var calculateConicPoint_algo = stdMod.calculateConicPoint_algo;
-        var curve = toreg( 'curve' )();
-        (function () {
-            var stepsCount = 400;
-            //var start_g = - 1.5;
-            //var end_g = 1.5;
-            var start_g = - 5;
-            var end_g = 5;
-            var range_g = end_g - start_g;
-            var step = range_g / stepsCount;
-            curve.svgel = nssvg.curve({
-                svgel:curve.svgel,
-                stepsCount,
-                start:start_g,
-                step,
-                curve:function( g ) {
-                    var { D, M, A } = calculateConicPoint_algo( g );
-                    var med = ssF.mod2inn( D );
-                    return { x:med[0], y:med[1] };
-                },
-                parent : stdMod.mmedia,
-                'stroke-width':3,
-                stroke  : ns.arr2rgba( fixedColors[ "ellipse" ] ),
-                dontClose : true,
-            });
-            $$.$(curve.svgel).cls( 'tp-ellipse tostroke thickable' );
-        })();
-
-
+    function createMedia0updateMediaAUX(){
         //---------------------------------------
         // //\\ angles alpha and beta
         //      , static angles
@@ -223,5 +181,28 @@
     //=========================================================
     // \\// updates and creates media
     //=========================================================
-}) ();
+
+    function branches2svg(){
+        ////----------------------------------------------
+        ////branches to svg,
+        ////makes conic first to put point over it later
+        ////----------------------------------------------
+        const bro = ssD.branchesObject;
+        const brs = bro.branches
+        const bN = brs.length;
+        for( var ib = 0; ib < bN; ib++ ){
+            const br = brs[ ib ];
+            if( has( br, 'svgel' ) ){
+                nssvg.branch2svg(br);
+            } else {
+                ////makes ellipse first to put point over it later
+                br.parent = stdMod.mmedia;
+                br['stroke-width'] = 3;
+                br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
+                br.svgel = nssvg.branch2svg(br);
+                $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
+            }
+        }
+    }
+})();
 
