@@ -184,7 +184,7 @@
         
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
-        var SAFE_VALUE = 0.05;
+        var SAFE_VALUE = 0.02;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
 
         // Determine conic type
