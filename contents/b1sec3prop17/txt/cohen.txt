@@ -30,13 +30,13 @@ be found out. Let body ¦P¦¦ go forth from place ¦P¦¦ along line ¦P,vb¦PR
 the compulsion of the centripetal ¦p,f¦force¦¦. Therefore the straight line ¦P,vb¦PR¦¦ will
 touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,vSample¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
 at ¦p¦¦, and if ¦S,Ys SY¦perpendiculars¦¦ are understood to be dropped from ¦S¦¦ to
-¦p,vSample PR¦these tangents¦¦,
+¦p,vSample P,vb¦these tangents¦¦,
 the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
 be to the principal ¦l,ll¦latus rectum of the orbit¦¦ in a ratio compounded of the
 squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,vSample P,vb¦velocities¦¦ and thus is 
 given. Let L be the ¦L,LL¦latus rectum of the conic¦¦. The focus ¦S¦¦ of the ¦orbit¦conic¦¦ is
-also given. Let angle ¦PR PH¦RPH¦¦ be the complement of angle ¦PR SP¦RPS¦¦ to two right
-angles [i.e., the supplement of angle ¦PR SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
+also given. Let angle ¦P,vb PH¦RPH¦¦ be the complement of angle ¦P,vb SP¦RPS¦¦ to two right
+angles [i.e., the supplement of angle ¦P,vb SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
 other focus ¦H¦¦ is located, will be given in position. 
 <br><br>
 Drop the perpendicular
