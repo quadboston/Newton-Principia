@@ -98,6 +98,13 @@ table {
     border-spacing: 0;
 }
 
+.math-table td {
+  line-height: 1.2;				/* Match surrounding line spacing */
+  vertical-align: baseline;	/* Align rows consistently */
+  padding: 0;						/* Avoid added vertical space */
+  text-align: left;					/* Default; override per cell if needed */
+}
+
 h1, h2, h3, h4, h5, h6{
     color: var(--color-main);
     font-weight: 200;
