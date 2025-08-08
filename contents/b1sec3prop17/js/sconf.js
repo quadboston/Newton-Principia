@@ -328,16 +328,9 @@
             //-------------------------------------------
             // //\\ op (brown conic)
             //-------------------------------------------                        
-            { SP : {
-                    pcolor : body,
-                    vectorTipIx : 1 },
-            },   
+            { SP : { pcolor : body},},   
             { SK : { pcolor : proof }, },    
-            { PH : {
-                    pcolor : proof,
-                    vectorTipIx : 0, //arrow head
-                },
-            },  
+            { PH : { pcolor : proof, },},  
             { PK : { pcolor : attention }, },
             { 'L,LL' : { pcolor : result,
                captionShiftNorm : 22, lposYSugar : 3 }, },
