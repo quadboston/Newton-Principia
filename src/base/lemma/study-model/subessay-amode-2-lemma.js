@@ -18,12 +18,7 @@
     });
     return;
 
-
-
-
-
-
-
+    
     ///===================================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
@@ -36,6 +31,19 @@
             doMinimizeTextMenus();
         }
         var { logic_phase, aspect, subessay } = amode;
+        // //\\ patch. works for
+        //      hiding/unhiding optional svg-elements
+        //no other tokens allowed in class attribute for this
+        //element, they will be erased by this statement:
+        //this element is (non comfortably) made holding only
+        //class for visibility:
+        stdMod.svgScene$().setAttribute( 'class', 'bsl--svgscene ' +
+            'logic_phase--' + logic_phase + ' ' +
+            'aspect--' + aspect + ' ' +
+            'subessay--' + subessay
+        );
+        // \\// patch. works for
+        
         //------------------------------------------------
         // //\\ sets "undefined" flag
         //      for registry rg members with defined pname,
@@ -62,8 +70,6 @@
         //------------------------------------------------
         // \\// sets "undefined" flag
         //------------------------------------------------
-
-
 
         var captured = null;
         ///------------------------------------------------------------------
@@ -139,7 +145,6 @@
         }
     }
 
-
     ///modifies only global CSS if configuration is specified doing so,
     //apparently removes astray aspect-menu button,
     function doMinimizeTextMenus()
@@ -182,7 +187,4 @@
             textMenuStyle$.html( html );
         }
     }
-
-
-}) ();
-
+})();

@@ -961,7 +961,7 @@
 ///as page loads at landing
 ///keeping css in one html-style-element;
 ( function() {
-    var DEFAULT_KEY         = 'default';
+    var DEFAULT_KEY         = 'default-style-tag-class';
  	var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
     var nsmethods           = ns.sn('methods');

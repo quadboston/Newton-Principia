@@ -16,12 +16,6 @@
     return;
 
 
-
-
-
-
-
-
     ///==========================================
     /// creates html for text pane
     /// loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs
@@ -95,8 +89,6 @@
             // \\// ajax load
             //=========================================================
         }
-
-
 
         //====================================================
         // //\\ on content Files Load Success
@@ -318,6 +310,7 @@
             //---------------------------------------------
             ///     letting other therorions to script
             ///     this aspect_id in book's text
+            
             eachprop( exegs, (exeg, exeg_id) => {
                 eachprop( exeg, (aspect, asp_id) => {
                     eachprop( exegs, (exegToFill, fill_id) => {
@@ -412,6 +405,7 @@
                 });
             });
 
+            
 
             //-----------
             //this function prepare8do_LANDING_VI_and_beyond___cb
@@ -426,11 +420,6 @@
             //damage the application
             //c cc( fconf.dragPointDecoratorClasses );
             return;
-
-
-
-
-
 
             //=======================================
             // //\\ parses and sets menu
@@ -566,7 +555,6 @@
         // \\// on content Files Load Success
         //====================================================
 
-
         function aspectTurnedOn(aspect_id) {
             if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
                 return true; //userOptions.showingBonusFeatures();
@@ -609,6 +597,4 @@
         }
         return rgba;
     }
-
-}) ();
-
+})();

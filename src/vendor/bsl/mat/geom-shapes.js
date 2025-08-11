@@ -1,11 +1,11 @@
 ( function() {
-	var ns	    = window.b$l;
-    var mat     = ns.sn( 'mat' );
+	const ns	= window.b$l;
+    const mat = ns.sn( 'mat' );
 
-    mat.circumscribeCircleOverChordAndBothNormals = circumscribeCircleOverChordAndBothNormals;
+    mat.circumscribeCircleOverChordAndBothNormals =
+        circumscribeCircleOverChordAndBothNormals;
     mat.pos2angle = pos2angle;
     return;
-
 
 
     ///Assumptions:
@@ -40,8 +40,4 @@
         }
         return t;
     }
-
-
-}) ();
-
-
+})();

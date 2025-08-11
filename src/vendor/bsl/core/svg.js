@@ -196,6 +196,11 @@
         strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
     }
 
+    
+    /*
+     * apparently no longer used,
+     * but should be useful
+    
     ///"manually" created polyline which formes ellipse,
     ///input: in media scale,
     ///       ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
@@ -204,7 +209,7 @@
     ///returns: svg-element;
     nssvg.ellipse = function( arg )
     {
-        const polyline = arg.pivots = [];
+        const pivots = arg.pivots = [];
         const stepsCount = arg.stepsCount;
         const step = 2*Math.PI/stepsCount;
         var { a, b, x0, y0, rotationRads } = arg;
@@ -224,43 +229,32 @@
                 });
             var xx = ell.x;
             var yy = ell.y;
-            /*
             //this is fast but is a code proliferation
-            var t = step * ii;
-            var x = a*Math.cos(t+t0);
-            var y = b*Math.sin(t+t0);
-            var xx = x * rC - y * rS + x0;
-            var yy = x * rS + y * rC + y0;
-            */
-            polyline.push( [ xx, yy ] );
+            //var t = step * ii;
+            //var x = a*Math.cos(t+t0);
+            //var y = b*Math.sin(t+t0);
+            //var xx = x * rC - y * rS + x0;
+            //var yy = x * rS + y * rC + y0;
+            pivots.push( [ xx, yy ] );
         }
-        polyline.push( [ xx, yy ] );
+        pivots.push( [ xx, yy ] );
         //makes ellipse closed:
-        polyline.push( polyline[0] );
+        pivots.push( pivots[0] );
         return nssvg.polyline( arg ); 
     };
+    */
     
     ///input parameters are in model namespace,
-    nssvg.model_ellipse = function( arg )
+    nssvg.branch2svg = function( arg, doClose )
     {
-        const pe = mat.polar_ellipse;
-        const polyline = arg.pivots = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        const points = haz( arg, 'points' ); //precalculated
-        for( var ii = 0; ii < stepsCount; ii++ ){
-            arg.q = step * ii;
-            if( points ){
-                var medpos = ssF.mod2inn( points[ii] );
-            } else {
-                const point = pe( arg ).point;
-                var medpos = ssF.mod2inn( point );
-            }
-            polyline.push( medpos );
+        const pivots = arg.pivots = [];
+        const points = arg.points;
+        const len = points.length;
+        for( var ii = 0; ii < len; ii++ ){
+            pivots.push( ssF.mod2inn( points[ii] ) );
         }
-        polyline.push( medpos );
-        //makes ellipse closed:
-        polyline.push( polyline[0] );
+        //makes branch closed:
+        doClose && pivots.push( pivots[0] );
         return nssvg.polyline( arg ); 
     };
 
@@ -281,7 +275,7 @@
             t1,                 //end angle
             drawExternalSector, //sets to draw a complimentary sector
         } = arg;
-        var polyline = arg.pivots = [];
+        var cpivots = arg.pivots = [];
         if( !t0 && t0 !== 0 ) {
             t0 = 0;
             t1 = Math.PI*2;
@@ -295,7 +289,7 @@
         a = a || 1;
         b = b || 1;
         var step = ( t1 - t0 ) / stepsCount;
-        polyline.push( [x0,y0] );
+        cpivots.push( [x0,y0] );
         for( var ii = 0; ii <= stepsCount; ii++ ) {
             var ell = mat.ellipse({
                 t:step * ii,
@@ -308,12 +302,12 @@
             });
             var xx = ell.x;
             var yy = ell.y;
-            polyline.push( [ xx, yy ] );
+            cpivots.push( [ xx, yy ] );
         }
-        polyline.push( [ xx, yy ] );
+        cpivots.push( [ xx, yy ] );
         //makes sector closed:
         //todm not good:  use arg...
-        polyline.push( polyline[0] );
+        cpivots.push( cpivots[0] );
         return nssvg.polyline( arg ); 
     };
 

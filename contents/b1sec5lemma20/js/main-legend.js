@@ -115,8 +115,6 @@
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        //makeCl( row, 'a', 'semi a', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
-        //makeCl( row, 'b', 'semi b', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'ellipse' );
         var row = $$.c('tr')
             .to(tb)();
         makeCl( row, 'PT', 'PT', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'key-triangle' );

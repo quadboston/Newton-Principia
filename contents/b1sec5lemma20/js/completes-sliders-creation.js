@@ -68,7 +68,7 @@
         // \\// making pause at e=1
 
         sData.polar_ell_model.e = modelPar;
-        stdMod.ellmod2arr( sData.polar_ell_model );
+        stdMod.curveModel2branches();
         // //\\ parameters' decorational changes
         //const eChange = (modelPar - sconf.excentricity)-(1-sconf.excentricity);
         const eChange = modelPar - sconf.excentricity;
@@ -110,7 +110,7 @@
             // \\// parameters' decorational changes
         }
         slider_a_value2pos();
-        stdMod.ellmod2arr( sData.polar_ell_model );
+        stdMod.curveModel2branches();
         newPos[1] = rg.eStart.pos[1];
         return true;
     }    

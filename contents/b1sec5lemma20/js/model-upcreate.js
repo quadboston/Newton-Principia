@@ -1,13 +1,13 @@
 ( function() {
     var {
-        sn, mat,
+        sn, haz, mat,
         stdMod, rg, sconf, ssF, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {
             model_upcreate,
             deriveParameters,
-            ellmod2arr,
+            curveModel2branches,
         },
     });
     var DID_INITIALIZED = false;
@@ -223,16 +223,23 @@
      
     ///input parameters are in model namespace,
     ///ellipse to array
-    function ellmod2arr( arg )
-    {
-        const pe = mat.polar_ellipse;
-        const points = arg.points = [];
-        const stepsCount = arg.stepsCount;
-        const step = 2*Math.PI/stepsCount;
-        for( var ii = 0; ii < stepsCount; ii++ ){
-            arg.q = step * ii;
-            points.push( pe(arg).point );
-        }
+    function curveModel2branches(){
+        const brsObj = sData.polar_ell_model;
+        brsObj.step = 2*Math.PI/brsObj.stepsCount;
+        brsObj.start_q = 0;
+        brsObj.BRANCH_COMPLETER = 3;
+        brsObj.formula = function( q ) {
+            brsObj.q = q;
+            const orb = mat.polar_ellipse(brsObj);
+            return {
+                point: orb.point,
+                pointPar : orb.ro,
+            };
+        };
+        brsObj.breakCondition = function( pointPar1,  pointPar2 ){
+            return Math.sign( pointPar1 ) !== Math.sign( pointPar2 );
+        };
+        stdMod.formula2branches(brsObj);
     };
 })();
 

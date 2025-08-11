@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, mat, nspaste,
-        amode, stdMod, rg, sconf, ssF,
+        amode, stdMod, rg, sconf, ssF, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -14,7 +14,6 @@
     });
     var DID_INITIALIZED = false;
     return;
-    
 
 
     //***************************************************
@@ -55,24 +54,17 @@
                 rg.M.pos[0] += 0.1;
             }
         }
+        curveModel2branches();
     }
     //***************************************************
     // \\// updates figure (and creates if none)
     //***************************************************
-
-
-
-
-
-
-
 
     function baseParams_2_extendedParams()
     {
         rg.b.value = 1- rg.a.value;
         pos8tg_2_rg( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
     }
-
 
     ///input:   parameter g, along the model line OM (former OG)
     function calculateConicPoint_algo( g )
@@ -139,8 +131,6 @@
     // \\// registers model pars into common scope
     //===================================================
 
-
-
     function pos8tg_2_rg( nameP, pos, tangent )
     {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
@@ -157,8 +147,33 @@
         }
         return rg[ nameP ];
     }
-
-}) ();
-
- 
-
+    
+    function curveModel2branches(){
+        ////makes branches
+        const algfun = stdMod.calculateConicPoint_algo;
+        const stepsCount = 400;
+        const start_q = - 5;
+        const end_q = 5;
+        const range_q = end_q - start_q;
+        const step = range_q / stepsCount;
+        const bro = ssD.branchesObject = sn( 'branchesObject', ssD );
+        bro.stepsCount = stepsCount;
+        bro.step = step;
+        bro.start_q = start_q;
+        bro.BRANCH_COMPLETER = 0;
+        bro.formula = function( q ) {
+            let point = algfun( q ).D;
+            return {
+                point,
+                pointPar : point,
+            };
+        };
+        bro.breakCondition = function( pointPar1,  pointPar2 ){
+            return Math.max(
+                Math.abs(pointPar1[0]-pointPar2[0]),
+                Math.abs(pointPar1[1]-pointPar2[1])
+            ) > 1;
+        };
+        stdMod.formula2branches(bro);
+    }
+})();

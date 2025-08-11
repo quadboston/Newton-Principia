@@ -84,7 +84,7 @@
             const a = 1/Math.sqrt( drdqX*drdqX + drdqY*drdqY );
             var tangent = [ drdqX * a, drdqY * a ]; //=unit tangent
         }
-        return { point, tangent };
+        return { point, tangent, ro };
     }
 
     ///definition:  ellipse = ((x-x0)/a)^2 + (y-y0)/b)^2 = 1;

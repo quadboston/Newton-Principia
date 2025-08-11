@@ -254,9 +254,19 @@
                     rgX.undisplay = gshape.undisplay;
                 }
 
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
+                //meaningful for lines yet
+                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); 
                 rgX.notp        = haz( gshape, 'notp' );
-                rgX.cssClass    = haz( gshape, 'cssClass' );
+                let gclass = haz( gshape, 'cssClass' );
+                if( gclass ){
+                    if( gclass.indexOf( '--' )>0 ){
+                        gclass += ' hidee';
+                        gshape.cssClass = gclass;
+                        //c cc( pname +' gclass='+ gclass );
+                    }
+                }
+                rgX.cssClass = gclass;
+
                 if( has( gshape, 'vectorTipIx' ) ) {
                     rgX.vectorTipIx = gshape.vectorTipIx;
                 }
@@ -362,9 +372,17 @@
                 if( has( op, 'undisplayAlways' ) ) {
                     rgX.undisplayAlways = op.undisplayAlways;
                 }
-                if( has( op, 'cssClass' ) ) {
-                    rgX.classmark = op.cssClass;
+                if( has( op, 'cssClass' ) ){
+                    let opclass = op.cssClass;
+                    if( opclass.indexOf( '--' )>0 ){
+                        opclass += ' hidee';
+                        op.cssClass = opclass;
+                    }
+                    rgX.classmark = opclass;
                 } else if( has( op, 'classmark' ) ) {
+                    if( op.classmark.indexOf( '--' )>0 ){
+                        op.classmark += ' hidee';
+                    }
                     rgX.classmark = op.classmark;
                 }
                 if( has( op, 'displayAlways' ) ) {
@@ -435,15 +453,6 @@
                     //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor; 
                     rgX.letterColor = sDomF.getFixedColor( letterColor );
                 }
-
-                /*
-                ccc(
-                    pname,
-                    'letterAngle=' + letterAngle.toFixed(3),
-                    'letterOffsetX ' + rgX.letterOffsetX.toFixed(),
-                    'letterOffsetY ' + rgX.letterOffsetY.toFixed()
-                );
-                */
                 rgX.fontSize = fontSize;
                 //----------------------------------------------------------
                 // \\// sets up point letters

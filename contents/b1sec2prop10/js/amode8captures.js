@@ -63,10 +63,6 @@
         rg[ 'P,tCircleCenter' ].undisplay = hideAnother;
         rg[ 'tCircleCenter' ].undisplay = hideAnother;
 
-        //stdMod.medRoot$.css( 'display',
-        //    logic_phase === 'corollary' || logic_phase === 'scholium' ? 'none' : 'block'
-        //)
-
         //=====================================================
         // //\\ alternates for addendum
         //=====================================================
@@ -75,17 +71,17 @@
         rg.S.undisplayAlways = !isAdden;
         rg.S.doPaintPname = isAdden;
 
-        rg.PF.undisplay = isAdden;
-        rg.GP.undisplay = isAdden;
-        rg.G.undisplay = isAdden;
-        rg.DK.undisplay = isAdden;
-        rg.K.undisplay = isAdden;
-        rg.D.undisplay = isAdden;
+        //rg.PF.undisplay = isAdden;
+        //rg.GP.undisplay = isAdden;
+        //rg.G.undisplay = isAdden;
+        //rg.DK.undisplay = isAdden;
+        //rg.K.undisplay = isAdden;
+        //rg.D.undisplay = isAdden;
         rg.F.undisplay = isAdden;
         rg.A.undisplay = isAdden;
         rg.B.undisplay = isAdden;
-        rg.G.undisplay = isAdden;
-        rg.T.undisplay = isAdden;
+        //rg.G.undisplay = isAdden;
+        //rg.T.undisplay = isAdden;
         rg.Q.undisplay = isAdden;
         rg.R.undisplay = isAdden;
 
@@ -94,22 +90,20 @@
         rg.u.undisplay = isAdden;
         rg.Pv.undisplay = isAdden;
         rg.Qv.undisplay = isAdden;
-        rg.Tv.undisplay = isAdden;
+        //rg.Tv.undisplay = isAdden;
         rg.vG.undisplay = isAdden;
         rg.QT.undisplay = isAdden;
         rg.PT.undisplay = isAdden;
         rg.QR.undisplay = isAdden;
         rg.SQ.undisplay = isAdden;
         rg.GO.undisplay = isAdden;
-        rg.GP.undisplay = isAdden;
-
 
         rg.AO.undisplay = isAdden;
         rg.DO.undisplay = isAdden;
         rg.BO.undisplay = isAdden;
         rg.PO.undisplay = isAdden;
         rg.FO.undisplay = isAdden;
-        rg[ 'P,VV' ].undisplay = isAdden;
+        //rg[ 'P,VV' ].undisplay = isAdden;
         //rg[ 'A,AA' ].undisplay = isAdden;
         //rg[ 'B,BB' ].undisplay = isAdden;
         //=====================================================

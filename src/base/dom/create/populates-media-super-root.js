@@ -12,7 +12,6 @@
     } = window.b$l.apptree({
     });
 
-
     fmethods.populate_mediaSuperRoot = populate_mediaSuperRoot;
     fmethods.cre__medRootDetails = cre__medRootDetails;
     var actuallyLoaded = 0;
@@ -24,7 +23,6 @@
     //=========================================================
     function populate_mediaSuperRoot( bgImagesAreLoaded_cb )
     {
-
         //--------------------------
         // //\\ top media controls
         //--------------------------
@@ -298,13 +296,10 @@
 
     }
 
-
-
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
         createsMediaRoot( bgImagesAreLoaded_cb );
     }
-
 
     function createsMediaRoot( bgImagesAreLoaded_cb )
     {
@@ -353,25 +348,25 @@
                     }
 
 
-                    //***************************************************************
+                    //***************************************************
                     // //\\ makes s ubmodel visible in relevant egreg-GUI
                     //      the first css is for image,
                     //      the second is for svg,
-                    //***************************************************************
-                    var ww = `.${cssp}-approot.logic_phase--${tkey}.aspect--${akey}`;
+                    //***************************************************
+                    var ww =
+                    `.${cssp}-approot.logic_phase--${tkey}.aspect--${akey}`;
+                    
                     css += `
                         ${ww} .${cssId} {
                             display :inline;
                         }
                     `;
-                    //***************************************************************
+                    //***************************************************
                     // \\// makes s ubmodel visible in relevant egreg-GUI
-                    //***************************************************************
+                    //***************************************************
                 });
             });
         });
-        //todm: don't delay update ... bs makes code less readable
-        //ns.globalCss.addText( css );
         ns.globalCss.update( css );
         //..............................
         // \\// study image and s ubmodel
@@ -380,6 +375,4 @@
         //.disabled ... effect is too strong
         //std Mod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
     }
-
-}) ();
-
+})();

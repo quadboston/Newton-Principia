@@ -39,15 +39,7 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic() //media_upcreate()
     {
-        ///creates addendum points non-visibility machinery
-        fapp.fappRoot$.removeClass( 'subessay--case1' );
-        fapp.fappRoot$.removeClass( 'subessay--case2' );
-        fapp.fappRoot$.removeClass( 'subessay--corollary3' );
-        fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
-        fapp.fappRoot$.removeClass( 'subessay--0' );
-        fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
-        
-        createMedia0updateMediaAUX();
+        branches2svg();
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
@@ -70,19 +62,23 @@
     }
 
     /// updates and creates media
-    function createMedia0updateMediaAUX()
+    function branches2svg()
     {
-        var ellipse = toreg( 'ellipse' )();
         const pem = sData.polar_ell_model;
-        if( has( ellipse, 'svgel' ) ){
-            nssvg.model_ellipse(pem);
-        } else {
-            ////makes ellipse first to put point over it later
-            pem.parent = stdMod.mmedia;
-            pem['stroke-width'] = 5;
-            pem.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
-            pem.svgel = ellipse.svgel = nssvg.model_ellipse(pem);
-            $$.$(ellipse.svgel).cls( 'tp-ellipse tostroke thickable' );
+        const brs = pem.branches
+        const bN = brs.length;
+        for( var ib = 0; ib < bN; ib++ ){
+            const br = brs[ ib ];
+            if( has( br, 'svgel' ) ){
+                nssvg.branch2svg(br, bN===1);
+            } else {
+                ////makes ellipse first to put point over it later
+                br.parent = stdMod.mmedia;
+                br['stroke-width'] = 5;
+                br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
+                br.svgel = nssvg.branch2svg(br, bN===1);
+                $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
+            }
         }
     }
 }) ();
