@@ -39,10 +39,24 @@ also given. Let angle ¦P,vb PH¦RPH¦¦ be the complement of angle ¦P,vb SP¦R
 angles [i.e., the supplement of angle ¦P,vb SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
 other focus ¦H¦¦ is located, will be given in position. 
 <br><br>
+
+
+
+
 Drop the perpendicular
 ¦SK¦¦ to ¦PH¦¦ and understand the conjugate semiaxis ¦CB¦BC¦¦ to be erected; then
-¦SP¦¦² − 2¦PK¦KP¦¦ × ¦PH¦¦ + ¦PH¦¦² = ¦CS CH¦SH¦¦² = 4¦CH¦¦² = 4¦BH¦¦² − 4¦CB¦BC¦¦² = (¦SP¦¦ + ¦PH¦¦)² − 
-¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦) = ¦SP¦¦² + 2¦SP¦¦ × ¦PH¦¦ + ¦PH¦¦² − ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦). Add to each side
+
+<table class="math-table">
+  <tr><td style="text-align: right;">¦SP¦¦² − 2¦PK¦KP¦¦ × ¦PH¦¦ + ¦PH¦¦²</td><td>&nbsp;=&nbsp;</td>
+    <td>¦CS CH¦SH¦¦² *</td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
+    <td>4¦CH¦¦²</td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
+    <td>4¦BH¦¦² − 4¦CB¦BC¦¦² </td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
+    <td>(¦SP¦¦ + ¦PH¦¦)² − ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦) </td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
+    <td>¦SP¦¦² + 2¦SP¦¦ × ¦PH¦¦ + ¦PH¦¦² − ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦). </td>
+  </tr>
+</table>
+
+Add to each side
 2(¦PK¦KP¦¦ × ¦PH¦¦) − ¦SP¦¦² − ¦PH¦¦² + ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦), and ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦) will become
 = 2(¦SP¦¦ × ¦PH¦¦) + 2(¦PK¦KP¦¦ × ¦PH¦¦), or ¦SP¦¦ + ¦PH¦¦ will be to ¦PH¦¦ as 2¦SP¦¦ + 2¦PK¦KP¦¦ to ¦L,LL¦L¦¦.
 Hence ¦PH¦¦ is given in length as well as in position. 
@@ -72,6 +86,12 @@ correctly determined, which a ¦P¦body¦¦ will describe under the action of su
 straight line ¦P,vb¦PR¦¦ given in position. &nbsp;&nbsp; Q.E.F.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 470.</div>
+<hr>
+<p style="font-family: sans-serif;">
+* The first edition of <em>The Principia</em> cites 
+<a href="https://mathcs.clarku.edu/~djoyce/java/elements/bookII/propII13.html">
+Euclid's <em>Elements</em>, Book II, Proposition 13</a>.
+</p>
 
 
 

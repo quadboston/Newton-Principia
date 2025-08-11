@@ -49,7 +49,7 @@
         fapp.fappRoot$.removeClass( 'subessay--0' );
         fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
         
-        createMedia0updateMediaAUX();
+        branches2svg();
         if( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
@@ -72,7 +72,7 @@
     }
 
     /// updates and creates media
-    function createMedia0updateMediaAUX()
+    function branches2svg()
     {
         const pem = sData.polar_ell_model;
         const brs = pem.branches
@@ -80,13 +80,13 @@
         for( var ib = 0; ib < bN; ib++ ){
             const br = brs[ ib ];
             if( has( br, 'svgel' ) ){
-                nssvg.model_ellipse(br, bN===1);
+                nssvg.branch2svg(br, bN===1);
             } else {
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 5;
                 br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
-                br.svgel = nssvg.model_ellipse(br, bN===1);
+                br.svgel = nssvg.branch2svg(br, bN===1);
                 $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
             }
         }

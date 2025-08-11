@@ -1,12 +1,12 @@
 ( function() {
     var {
         sn, mat, nspaste,
-        amode, stdMod, rg, sconf, ssF,
+        amode, stdMod, rg, sconf, ssF, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
             model_upcreate,
-            setRgPoint,
+            pos8tg_2_rg,
             baseParams_2_extendedParams,
             calculateConicPoint_algo,
             //deriveParameters,
@@ -14,7 +14,6 @@
     });
     var DID_INITIALIZED = false;
     return;
-    
 
 
     //***************************************************
@@ -25,16 +24,16 @@
         baseParams_2_extendedParams();
         var {D,M,A,P, angleBCM} = calculateConicPoint_algo( rg.g.value );
         rg.angleBCM = angleBCM;
-        setRgPoint( 'D', D );
-        setRgPoint( 'M', M );
-        setRgPoint( 'A', A );
-        setRgPoint( 'P', P );
+        pos8tg_2_rg( 'D', D );
+        pos8tg_2_rg( 'M', M );
+        pos8tg_2_rg( 'A', A );
+        pos8tg_2_rg( 'P', P );
         //decorations:
         var N = [
             rg.gN.value*Math.cos( rg.gamma.value ) + rg.H.pos[0],
             -rg.gN.value*Math.sin(rg.gamma.value) + rg.H.pos[1]
         ];
-        setRgPoint( 'N', N );
+        pos8tg_2_rg( 'N', N );
 
         if( amode.subessay === 'converse-proof' ) {
             let np = rg.n.pos;
@@ -55,24 +54,17 @@
                 rg.M.pos[0] += 0.1;
             }
         }
+        curveModel2branches();
     }
     //***************************************************
     // \\// updates figure (and creates if none)
     //***************************************************
 
-
-
-
-
-
-
-
     function baseParams_2_extendedParams()
     {
         rg.b.value = 1- rg.a.value;
-        setRgPoint( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
+        pos8tg_2_rg( 'H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ] );
     }
-
 
     ///input:   parameter g, along the model line OM (former OG)
     function calculateConicPoint_algo( g )
@@ -139,9 +131,7 @@
     // \\// registers model pars into common scope
     //===================================================
 
-
-
-    function setRgPoint( nameP, pos, tangent )
+    function pos8tg_2_rg( nameP, pos, tangent )
     {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
@@ -157,8 +147,33 @@
         }
         return rg[ nameP ];
     }
-
-}) ();
-
- 
-
+    
+    function curveModel2branches(){
+        ////makes branches
+        const algfun = stdMod.calculateConicPoint_algo;
+        const stepsCount = 400;
+        const start_q = - 5;
+        const end_q = 5;
+        const range_q = end_q - start_q;
+        const step = range_q / stepsCount;
+        const bro = ssD.branchesObject = sn( 'branchesObject', ssD );
+        bro.stepsCount = stepsCount;
+        bro.step = step;
+        bro.start_q = start_q;
+        bro.BRANCH_COMPLETER = 0;
+        bro.formula = function( q ) {
+            let point = algfun( q ).D;
+            return {
+                point,
+                pointPar : point,
+            };
+        };
+        bro.breakCondition = function( pointPar1,  pointPar2 ){
+            return Math.max(
+                Math.abs(pointPar1[0]-pointPar2[0]),
+                Math.abs(pointPar1[1]-pointPar2[1])
+            ) > 1;
+        };
+        stdMod.formula2branches(bro);
+    }
+})();
