@@ -16,12 +16,6 @@
     return;
 
 
-
-
-
-
-
-
     ///==========================================
     /// creates html for text pane
     /// loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs
@@ -95,8 +89,6 @@
             // \\// ajax load
             //=========================================================
         }
-
-
 
         //====================================================
         // //\\ on content Files Load Success
@@ -425,11 +417,6 @@
             //c cc( fconf.dragPointDecoratorClasses );
             return;
 
-
-
-
-
-
             //=======================================
             // //\\ parses and sets menu
             //=======================================
@@ -564,7 +551,6 @@
         // \\// on content Files Load Success
         //====================================================
 
-
         function aspectTurnedOn(aspect_id) {
             if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
                 return userOptions.showingBonusFeatures();
@@ -607,6 +593,4 @@
         }
         return rgba;
     }
-
-}) ();
-
+})();

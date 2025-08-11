@@ -167,7 +167,8 @@
                 },
             t : { pos: [1511, 574],
                   pcolor : pt.aux,
-                  cssClass : 'logic_phase--proof',
+                  cssClass : 'logic_phase--proof subessay--corollary1' +
+                             ' subessay--corollary2',
                   initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
@@ -488,7 +489,9 @@
             },
             { 'Bt' : {
                         pcolor : pt.aux,
-                        cssClass : 'logic_phase--proof',
+                        cssClass : 'logic_phase--proof' +
+                                   ' subessay--corollary1' +
+                                   ' subessay--corollary2',
                     }
             },
             { 'CF' : {

@@ -11,30 +11,8 @@
     return;
 
 
-    //===================================================
-    // //\\ registers model pars into common scope
-    //===================================================
     function init_model_parameters()
     {
-        ///creates addendum points non-visibility machinery
-        globalCss.replace( `
-            .bsl-approot svg .aspect--model,
-            .bsl-approot svg .subessay--0,
-            .bsl-approot svg .subessay--corollary3
-            {
-                display : none;
-            }
-            .bsl-approot.subessay--corollary3 svg .subessay--corollary3
-            {
-                display : block;
-            }
-            .bsl-approot.aspect--model svg .aspect--model
-            {
-                display : block;
-            }
-            `,
-            'lemma-css-overrider'
-        );
         sData.initialparC = sconf.initialparC;
         sData.initialparA = sconf.initialparA;
         sData.initialparB = sconf.initialparB;
@@ -56,8 +34,7 @@
 
         stdMod.deriveParameters( 'do set T' );
         stdMod.completesSlidersCreation();
-        //dev tool:
-        //ellipsePar_create8paint( 1.50 )
+        //dev tool: ellipsePar_create8paint( 1.50 )
     }
 })();
 

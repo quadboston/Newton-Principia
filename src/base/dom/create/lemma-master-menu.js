@@ -234,6 +234,8 @@
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ does select menu-leaf
+    //      possibly used in all cases
+    //      when amode changes,
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     function do_select_leaf__localfun( leafRk, amodel2app_8_extraWork )
     {

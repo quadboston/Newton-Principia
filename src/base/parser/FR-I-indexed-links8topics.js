@@ -16,8 +16,6 @@
     return;
 
 
-
-
     ///builds
     ///         subexeg.subessayCaption
     ///         subexeg.subessayMenuItem$
@@ -154,9 +152,4 @@
         sDomF.menu2lemma( !!'amodel2app_8_extraWork' );
         sDomF.tellActivityEngine_that_userStartedSubessay();
     }
-
-
-
-}) ();
-
-
+})();
