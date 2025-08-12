@@ -15,7 +15,7 @@
 	* lower case letters italicized
 
 * Lemma 21
-	* //removed hyperbola asymptotes
+	* removed hyperbola asymptotes
 
 
 ## 2025-7-31 (Purple Version, 0.13849)
