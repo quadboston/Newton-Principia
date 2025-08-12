@@ -5,10 +5,17 @@
 * Proposition 12
 	* eccentricity slider moves 1:1 with mouse at all zoom levels
 
+* Proposition 17
+	* removed hyperbola asymptotes
+	* Points R and P_v merged
+
 * Lemma 20
 	* eccentricity slider moves 1:1 with mouse at all zoom levels
+	* removed hyperbola asymptotes
 	* lower case letters italicized
-	* removed drawing of hyperbola asymptotes
+
+* Lemma 21
+	* //removed hyperbola asymptotes
 
 
 ## 2025-7-31 (Purple Version, 0.13849)
