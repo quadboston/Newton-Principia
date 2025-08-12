@@ -1,7 +1,6 @@
-
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+    const { nspaste, fconf, sconf, } = 
+            window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -163,17 +162,11 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            O : {
-                pcolor : context,
-                caption : 'C',
-                pos: C,
-                letterAngle : 120,
-                letterRotRadius : 35,
-            },
-
-            B : {
-                pcolor : proof,
-                letterAngle : 90,
+            
+            // //\\ no visibility cssClass            
+            AA : {
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
             BB : {
@@ -182,15 +175,42 @@
                 doPaintPname : false,
             },
 
-            A : {
-                pcolor : proof,
+            O : {
+                pcolor : context,
+                caption : 'C',
+                pos: C,
+                letterAngle : 120,
+                letterRotRadius : 35,
             },
 
-            AA : {
+            Z : {
+                pcolor : body,
+                letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
 
+            Zminus : {
+                pcolor : body,
+                letterAngle : 45,
+                //undisplay : true,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            // \\// no visibility cssClass
+
+            B : {
+                pcolor : proof,
+                letterAngle : 90,
+                cssClass: 'aspect--english',
+            },
+
+            A : {
+                pcolor : proof,
+                cssClass: 'aspect--english',
+            },
+
+            // //\\ proof
             D : {
                 pcolor : proof,
                 letterAngle : 70,
@@ -223,21 +243,6 @@
                 cssClass: 'logic_phase--proof',
             },
 
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-            Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             v : {
                 caption : '𝑣',
                 pcolor : proof,
@@ -259,6 +264,34 @@
                 cssClass: 'logic_phase--proof',
             },
 
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+            },
+            // \\// proof
+  
+  
+            //Book's "another solution"
+            u : {
+                caption : '𝑢',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+                cssClass: 'subessay--another-solution',
+            },
+
+            tCircleCenter : {
+                pos : C,
+                caption : "C'",
+                pcolor : curvature,
+                letterAngle : -45,
+                cssClass: 'subessay--another-solution',
+            },
+
             //center of instant curvature circle
             C : {
                 pos : C,
@@ -268,23 +301,6 @@
                 undisplayAlways : true,
                 cssClass: 'logic_phase--addendum',
                 doPaintPname : false,
-            },
-
-            //Book's "another solution"
-            u : {
-                caption : '𝑢',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
-                cssClass: 'logic_phase--proof',
-            },
-
-            tCircleCenter : {
-                pos : C,
-                caption : "C'",
-                pcolor : curvature,
-                letterAngle : -45,
-                cssClass: 'aspect--addendum',
             },
 
             //---------------------------------------
@@ -312,15 +328,6 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-                cssClass: 'logic_phase--proof',
-            },
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -329,15 +336,33 @@
 
         var linesArray =
         [
+            { 'A,AA' : { pcolor : proof, }, },
+            { 'B,BB' : { pcolor : proof }, },
+            { 'P,Zminus' : { pcolor : body }, },
+            { 'PZ' : { pcolor : body }, },
+            { 'ZR' : { pcolor : body }, },
+
+  
+            { AO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
+            { BO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
+            { PO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
+
+            // //\\ proof
+            { 'P,VV' : { pcolor : proof,
+                         cssClass: 'logic_phase--proof',
+            }, },
+  
             { 'PC' : { pcolor : proof,
                        cssClass: 'logic_phase--proof',
             }, },
 
             { 'SP' : { pcolor : result }, },
-
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
 
             { 'PR' : { pcolor : body,
                        cssClass: 'logic_phase--proof',
@@ -377,47 +402,37 @@
             { PF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { 'A,AA' : { pcolor : proof, }, },
-            { 'B,BB' : { pcolor : proof }, },
-            { AO : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
-            }, },
             { DO : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { BO : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
-            }, },
-            { PO : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
-            }, },
+  
             { GO : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
             { FO : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
+            // \\// proof
 
             //Book's "another solution"
             { Tu : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
+                     cssClass: 'subessay--another-solution',
             }, },
-            { 'u,VV' : { pcolor : proof }, },
+            { 'u,VV' : { pcolor : proof,
+                         cssClass: 'subessay--another-solution',
+            }, },
             { uP : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
+                     cssClass: 'subessay--another-solution',
             }, },
             { PQ : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
-            }, },
-            { 'P,VV' : { pcolor : proof,
-                         cssClass: 'logic_phase--proof',
+                     cssClass: 'subessay--another-solution',
             }, },
             { 'P,tCircleCenter' : { pcolor : curvature,
-                                    cssClass: 'aspect--addendum',
+                                    cssClass: 'subessay--another-solution',
             }, },
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
             TIME_STEPS,
@@ -437,5 +452,4 @@
             handleRadius,
         });
     }
-}) ();
-
+})();

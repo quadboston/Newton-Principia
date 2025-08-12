@@ -35,8 +35,8 @@ sup {
         display : block;
     }
 */
-
-.bsl-approot .bsl--svgscene .undisplay,
+/* setting specifity prevaling "hidee-feature" cssClass */
+div.bsl-approot svg.bsl--svgscene .undisplay,
 .display-none {
     display : none;
 }
