@@ -1,6 +1,6 @@
 ( function () {
     var {
-        sn,
+        sn, mat,
         fapp, sconf,
     } = window.b$l.apptree({
     });
@@ -38,6 +38,8 @@
         findCtrlPtPosWithMaxX,
         findCtrlPtPosWithMinX,
         addsNewBases_8_calculatesMaxWidth,
+        checkIfCurveSlopeOkTemp,    //TEMP
+        checkIfControlPointYOkForSlopeTemp, //TEMP
     });
     //==================================
     // \\// exports methods
@@ -316,6 +318,21 @@
             const drL = stdL2.datareg;
             const drR = stdL2.datareg2;
 
+
+            //TEMP Heights of rectangles
+            const heightFirstL = Math.abs(drL.yVariations.maxY);// - 
+                // drL.basePts.inscribedY.at(0));
+            const height2ndLastL = Math.abs(drL.yVariations.maxY - 
+                drL.basePts.inscribedY.at(-2));
+
+            const heightFirstR = Math.abs(drR.yVariations.maxY);// - 
+                // drR.basePts.inscribedY.at(0));
+            const height2ndLastR = Math.abs(drR.yVariations.maxY - 
+                drR.basePts.inscribedY.at(-2));
+            // console.log("height2ndLastL / heightFirstL =", height2ndLastL / heightFirstL);
+            // console.log("height2ndLastR / heightFirstR =", height2ndLastR / heightFirstR);
+
+
             const sumA = drL.areaIns;
             const sumB = drR.areaIns;
             const exactA = drL.figureArea;
@@ -367,6 +384,101 @@
 
 
 
+    function checkIfCurveSlopeOkTemp(dr, positionsNewTemp) {
+        //TEMP
+        const andleRadTemp = mat.degToRad(15);
+        const ff = stdL2.numModel.curveFun;
+        // const dv = dr.yVariations;
+        //TEMP Is something similar to the following needed?
+        // if (!dv) return true;
+        // const yVariations = dr.yVariations;
+        // const xStart = yVariations.x_start;
+        // const chosenWidth = yVariations.chosenWidth;
+        const xStart = dr.ctrlPts.positions.at(0).x;
+        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
+
+        //TEMP Note that dv.maxY changes when non-monotonic therefore use
+        //an alternative.
+        const maxY = dr.ctrlPts.positions.at(-1).y;
+
+        //TEMP Store current control point positions
+        const positionsStored = [...dr.ctrlPts.positions];
+
+        // dr.ctrlPts.positions = [...positionsNewTemp];
+        const positionsSelected = positionsNewTemp || dr.ctrlPts.positions;
+        dr.ctrlPts.positions = [...positionsSelected];
+
+        //TEMP
+        //Want to check points in between the left and right sides
+        //Eg.  0  1  2  3  should be for 2 points
+        const slopeBound = (maxY * Math.tan(andleRadTemp)) / chosenWidth;
+        // const slopeBound = (dv.maxY * 0.2) / chosenWidth;
+        const countPoints = 30;
+        // const iMax = 5;
+        const xInterval = chosenWidth / (countPoints + 1);
+        for(let i = 1; i <= countPoints; i++) {
+            const x = xStart + xInterval * i;
+            const y = ff(dr, x);
+            
+            // if (!checkIfControlPointYOkForSlopeTemp(dr, x, y)) {
+            if (checkIfControlPointYOkForSlopeTemp(dr, x, y) < 0) {
+                dr.ctrlPts.positions = [...positionsStored];
+                // console.log("return false");
+                return false;
+            }
+
+            // const x = xStart + xInterval * i;
+            // const y = ff(dr, x);
+            // // const height = Math.abs(maxY - y);
+            // const height = maxY - y;
+            // // const height = Math.abs(dv.maxY - y);
+            
+            // const heightBound = slopeBound * (chosenWidth - (x - xStart));
+            // // console.log(`i = ${i}  height = ${height}  heightBound = ${heightBound}`);
+            // if (height < heightBound) {
+            //     dr.ctrlPts.positions = [...positionsStored];
+            //     // console.log("return false");
+            //     return false;
+            // }
+        }
+        dr.ctrlPts.positions = [...positionsStored];
+        // console.log("return true");
+        return true;
+    }
+
+
+    function checkIfControlPointYOkForSlopeTemp(dr, x, y) {
+        //TEMP
+        //Angle for the slope constraint.
+        const andleRadTemp = mat.degToRad(15);
+        // const dv = dr.yVariations;
+        //TEMP Is something similar to the following needed?
+        // if (!dv) return true;
+        // const yVariations = dr.yVariations;
+        // const xStart = yVariations.x_start;
+        // const chosenWidth = yVariations.chosenWidth;
+
+        //TEMP Note that dv.maxY changes when non-monotonic therefore use
+        //an alternative.
+        const maxY = dr.ctrlPts.positions.at(-1).y;
+
+        //TEMP The same is true for the following.
+        const xStart = dr.ctrlPts.positions.at(0).x;
+        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
+
+
+        const slopeBound = (maxY * Math.tan(andleRadTemp)) / chosenWidth;
+        
+        const height = maxY - y;
+            
+        const heightBound = slopeBound * (chosenWidth - (x - xStart));
+        // console.log("height - heightBound =", height - heightBound);
+        // return !(height < heightBound);
+        return height - heightBound;
+    }
+
+
+
     //TEMP Adjust inputs as needed
     //function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLast) {
     function calculateRectWidthsToMatchAreaRatios(dr, ratios, ratioLastTemp,
@@ -393,7 +505,7 @@
 
         //TEMP Testing different widths
         //The width to use for the last rectangle.
-        let widthLastRectUse = widthLastRect;
+        let widthLastRectUse = widthLastRect;//calculateWidthLastRectUsingArea();//widthLastRect;
         // const rangeWidthLast = document.getElementById("range-width-last");
         // if (rangeWidthLast)
         //     widthLastRectUse = parseFloat(rangeWidthLast.value) * chosenWidth;
@@ -415,6 +527,7 @@
         //Constrain max iterations for very unlikely event of eg. infinite loop
         let iteration = 0
         const iterationsMax = 10;
+        let didNewtonRaphsonConverge = false;
         for(; iteration < iterationsMax; iteration++) {
         // for(let iteration = 0; iteration < 10; iteration++) {
             //Estimate derivative
@@ -422,7 +535,15 @@
             const errorC = widthDataCurrent.sumWidth - chosenWidth;
             const errorO = widthDataOffset.sumWidth - chosenWidth;
             const slope = (errorC - errorO) / offset;
-            //Already at minimum error
+            ////Already at minimum error
+
+            //TEMP
+            //-At minima (would likely never reach 0 exactally, but would be an
+            //issue for the math)
+            //-If errorC is zero then so is errorO meaning at a root
+            //  -Otherwise just a local minima.
+            //    -Overall would likely be more usefult to check if within a
+            //     tolerance close to 0.
             if (slope === 0)
                 break;
             
@@ -433,9 +554,11 @@
             //Calculate the scale for the next iteration and clamp if needed
             //(eg. became negative because overshot the root).
             let scaleNew = scaleCurrent - errorC / slope;
-            // console.log(`before clamping scaleNew = ${scaleNew}`);
-            scaleNew = Math.min(Math.max(scaleNew, scaleMin), scaleMax);
-            // if (scaleNew < scaleMin || scaleNew > scaleMax)
+            // // console.log(`before clamping scaleNew = ${scaleNew}`);
+            // scaleNew = Math.min(Math.max(scaleNew, scaleMin), scaleMax);
+            if (scaleNew < scaleMin || scaleNew > scaleMax) {
+                break;
+            }
 
             //Update the current scale and data, then check if converged.
             scaleCurrent = scaleNew;
@@ -444,15 +567,17 @@
             const errorRelative = widthDataCurrent.sumWidth / chosenWidth - 1;
             // console.log(`errorRelative = ${errorRelative}  scale = ${scaleCurrent}  ` +
             //             `sumWidth = ${widthDataCurrent.sumWidth}  widthDataCurrent =`, widthDataCurrent);
-            if (Math.abs(errorRelative) < 0.001)
+            if (Math.abs(errorRelative) < 0.001) {
+                didNewtonRaphsonConverge = true;
                 break;
+            }
         }
         // console.timeEnd("Width calculation converged in");
         const scaleNewtonRaphson = scaleCurrent;
         const widthDataNewtonRaphson = widthDataCurrent;
         
-        // console.log("scaleCurrent =", scaleCurrent);
-        const didNewtonRaphsonConverge = iteration < iterationsMax;
+        // // console.log("scaleCurrent =", scaleCurrent);
+        // didNewtonRaphsonConverge = iteration < iterationsMax;
         if (didNewtonRaphsonConverge)
             console.log(`Newton Raphson  Converged in ${iteration + 1} iteration` + ((iteration + 1) > 1 ? 's' : ''));
         else
@@ -463,68 +588,12 @@
 
 
         //TEMP Linear Search
-        // console.time("bestLS");
-        const bestLS = {};
-        // let dataLS = 'scale, errorRelative\n';
-        let dataLS = 'scale, sumWidth - chosenWidth\n';
-        let dataLSWidths = 'scale, w1, w2, w3, w4, w5, w6, w7\n';
-        const scalesLSIntervalsTemp = [];
-        let rootsApproximate = 'scale  sumWidth  error\n';//[];
-        let signLast = null;
         const dataLSTemp = [];
         for(let scale = scaleMin; scale <= scaleMax; scale += 0.001) {
             const widthDataCurrent = calculateWidthData(scale);
-            const errorRelative = widthDataCurrent.sumWidth / chosenWidth - 1;
-            dataLS += `${scale}, ${widthDataCurrent.sumWidth - chosenWidth}\n`
-            
-            dataLSWidths += `${scale}, `
-            const widths = widthDataCurrent.widthsReversed.toReversed();
-            for(let i = 0; i < widths.length; i++) {
-                dataLSWidths += `${widths[i]}, `;
-            }
-            dataLSTemp.push({scale, error: widthDataCurrent.sumWidth - chosenWidth});
-            dataLSWidths += `\n`;
-            // dataLS += `${scale}, ${errorRelative}\n`
-            if (!bestLS.widthDataCurrent || 
-                Math.abs(errorRelative) < Math.abs(bestLS.errorRelative)) {
-                bestLS.scale = scale;
-                bestLS.errorRelative = errorRelative;
-                bestLS.widthDataCurrent = widthDataCurrent;
-            }
-            // // const sacle2 = Math.floor(scale * 10);
-            // // if (scale < 0.2)
-            // //     console.log(`scale = ${scale}  scale % 0.1 =`, scale % 0.1);
-            // // if (scale % 0.1 === 0) {
-            // const sacleModified1 = Math.floor((scale - 0.001) * 10);
-            // const sacleModified2 = Math.floor(scale * 10);
-            // if (sacleModified1 !== sacleModified2 && scale < 2) {
-            //     console.log(`data scale = ${scale}  ` +
-            //         `errorRelative = ${errorRelative}  ` +
-            //         `widthDataCurrent =`, widthDataCurrent);
-            //         scalesLSIntervalsTemp.push({
-            //             scale,
-            //             errorRelative,
-            //             widthDataCurrent,
-            //         });
-            // }
-            const signCurrent = widthDataCurrent.sumWidth - chosenWidth > 0 ? 1 : -1;
-            if (signLast == null) {
-                signLast = signCurrent;
-            } else if (signCurrent !== signLast) {
-                rootsApproximate += `${scale.toFixed(4)}  ${widthDataCurrent.sumWidth.toFixed(4)}  ${(widthDataCurrent.sumWidth - chosenWidth).toFixed(4)}\n`;
-                // rootsApproximate.push({
-                //     sumWidth: widthDataCurrent.sumWidth,
-                //     error: widthDataCurrent.sumWidth - chosenWidth,
-                // });
-                signLast = signCurrent;
-            }
+            const error = widthDataCurrent.sumWidth - chosenWidth;
+            dataLSTemp.push({scale, error});
         }
-        // console.timeEnd("bestLS");
-        // console.log(`bestLS  scale = ${bestLS.scale}  ` +
-        //             `errorRelative = ${bestLS.errorRelative}  ` +
-        //             `widthDataCurrent =`, bestLS.widthDataCurrent);
-        // console.log("dataLS =", dataLS);
-        // console.log("dataLSWidths =", dataLSWidths);
         //TEMP//
         
 
@@ -649,7 +718,8 @@
 
         let widthDataChosen = null;
         let scaleChosen = null;
-        if (didNewtonRaphsonConverge) {
+        //TEMP Only use Newton Raphson when lots of rectangles.
+        if (didNewtonRaphsonConverge && sconf.basesN > 40) {
             widthDataChosen = widthDataNewtonRaphson;
             scaleChosen = scaleNewtonRaphson;
             console.log('Using Newton Raphson solution');
@@ -658,6 +728,8 @@
             scaleChosen = scaleBinarySearch;
             console.log('Using Binary Search solution');
         }
+        console.log("scaleNewtonRaphson =", scaleNewtonRaphson);
+        console.log("scaleBinarySearch =", scaleBinarySearch);
 
         const widths = widthDataChosen.widthsReversed.reverse();
         // const widths = widthDataCurrent.widthsReversed.reverse();
@@ -666,13 +738,20 @@
         const scaleWidth = chosenWidth / widthDataCurrent.sumWidth;
         const outputTemp = widths.map(width => width * scaleWidth);
 
+
+        //TEMP
+        let curveTooFlat = !checkIfCurveSlopeOkTemp(dr, [...dr.ctrlPts.positions]);
+        // console.log("curveTooFlat =", curveTooFlat);
+        // curveTooFlat = false;
         
         //TEMP Plots
         createTempPlotsIfNeeded();
         //TEMP Plots//
 
-
-        return outputTemp;
+        //TEMP
+        // return outputTemp;
+        const widthsEmpty = outputTemp.map(width => undefined);
+        return curveTooFlat ? widthsEmpty : outputTemp;
         // const outputTemp = widths.map(width => width * scaleWidth);
         // console.log("outputTemp reduce =", outputTemp.reduce((acc, cur) => acc + cur));
         // return outputTemp;
@@ -740,6 +819,26 @@
 
             return {widthsReversed, sumWidth};
         }
+
+
+
+        // function checkIfCurveTooFlat() {
+        //     // console.log("checkIfCurveTooFlat");
+        //     const slopeBound = (dv.maxY * 0.2) / chosenWidth;
+        //     const iMax = 4 + 1;
+        //     const xInterval = chosenWidth / iMax;
+        //     for(let i = 1; i < iMax; i++){
+        //         const x = xStart + xInterval * i;
+        //         const y = ff(dr, x);
+        //         const height = Math.abs(dv.maxY - y);
+                
+        //         const heightBound = slopeBound * (chosenWidth - (x - xStart));
+        //         // console.log(`i = ${i}  height = ${height}  heightBound = ${heightBound}`);
+        //         if (height < heightBound)
+        //             return true;
+        //     }
+        //     return false;
+        // }
         
         
 
@@ -877,13 +976,17 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             let errorMin = Infinity;
             let errorMax = -Infinity;
+            let scaleMin2 = Infinity;
+            let scaleMax2 = -Infinity;
 
             for(let i = 0; i < dataScaleError.length; i++) {
-                const errorCurrent = dataScaleError[i].error;
-                errorMin = Math.min(errorMin, errorCurrent);
-                errorMax = Math.max(errorMax, errorCurrent);
-                if (dataScaleError[i].scale > scaleMax)
-                    break;
+                const { error, scale } = dataScaleError[i];
+                errorMin = Math.min(errorMin, error);
+                errorMax = Math.max(errorMax, error);
+                scaleMin2 = Math.min(scaleMin2, scale);
+                scaleMax2 = Math.max(scaleMax2, scale);
+                // if (dataScaleError[i].scale > scaleMax)
+                //     break;
             }
             
             const border = {
@@ -905,8 +1008,8 @@
             ctx.fillText("Scale vs Width Error", canvas.width / 2, border.y / 2);
 
             ctx.fillText("Scale", canvas.width / 2, canvas.height - border.y / 2);
-            ctx.fillText(scaleMin.toFixed(2), border.x + labelOffset, canvas.height - border.y / 2);
-            ctx.fillText(scaleMax.toFixed(2), border.x + border.w - labelOffset, canvas.height - border.y / 2);
+            ctx.fillText(scaleMin2.toFixed(2), border.x + labelOffset, canvas.height - border.y / 2);
+            ctx.fillText(scaleMax2.toFixed(2), border.x + border.w - labelOffset, canvas.height - border.y / 2);
 
 
             ctx.save();
@@ -936,8 +1039,8 @@
             ctx.beginPath();
             for(let i = 0; i < dataScaleError.length; i++) {
                 const pointC = dataScaleError[i];
-                if (pointC.scale > scaleMax)
-                    break;
+                // if (pointC.scale > scaleMax)
+                //     break;
 
                 const xC = transformX(pointC.scale);
                 const yC = transformY(pointC.error);
@@ -951,7 +1054,7 @@
             ctx.stroke();
 
             function transformX(x) {
-                const xScaled = (x - scaleMin) / (scaleMax - scaleMin);
+                const xScaled = (x - scaleMin2) / (scaleMax2 - scaleMin2);
                 return xScaled * border.w + border.x;
                 // return (xScaled * (1 - fBorder * 2) + fBorder) * canvas.width;
             }

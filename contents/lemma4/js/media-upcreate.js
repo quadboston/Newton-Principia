@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, haz, fapp, ssD, sapp, sconf, rg, amode, stdMod, }
+    var { sn, haz, fapp, ssD, sapp, sconf, rg, amode, sData, stdMod, }
         = window.b$l.apptree({ setModule, stdModExportList : {
              media_upcreate___before_basic_L2,
         },
@@ -58,14 +58,26 @@
         //--------------------------------------
         // //\\ Show/hide message and parts of figure depending on if monotonic
         //--------------------------------------
-        ssD.lastPopupButton.dom$.css( 'display', 'none' );
+        //TEMP
+        const messageMonotonic = sData['proof-pop-up'];
+        const messageSlope = sData['proof-pop-up-2'];
+        //TEMP
+        messageSlope.dom$.css( 'display', 'none' );
+        let messageMonotonicVisibleTemp = false;
+        //TEMP
+        messageMonotonic.dom$.css( 'display', 'none' );
+        // ssD.lastPopupButton.dom$.css( 'display', 'none' );
 
         //TEMP May be able to combine the following forEach with the above one
         [stdL2.datareg, stdL2.datareg2].forEach(dr => {
             const isMonotonic = dr.yVariations.changes.length <= 1;
 
             if(!isMonotonic) {
-                ssD.lastPopupButton.dom$.css( 'display', 'block' );
+                //TEMP
+                messageMonotonic.dom$.css( 'display', 'block' );
+                messageMonotonicVisibleTemp = true;
+                // ssD.lastPopupButton.dom$.css( 'display', 'block' );
+
                 //TEMP Would showing and hiding here cause the code to be run
                 //multiple times?  If so it could probably be improved.  Look
                 //at code in "gui-update.js" eg. function "paints_curve8axes".
@@ -75,6 +87,28 @@
             }
 
             rg[dr.pointLabels.basePtFirst].undisplay = !isMonotonic;
+        });
+
+        //TEMP
+        if (messageMonotonicVisibleTemp)
+            return;
+
+        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+            const isSlopeOk = stdL2.numModel.checkIfCurveSlopeOkTemp(dr);
+            if(!isSlopeOk) {
+                //TEMP
+                messageSlope.dom$.css( 'display', 'block' );
+                // ssD.lastPopupButton.dom$.css( 'display', 'block' );
+
+                //TEMP Would showing and hiding here cause the code to be run
+                //multiple times?  If so it could probably be improved.  Look
+                //at code in "gui-update.js" eg. function "paints_curve8axes".
+                guiup.setsVisibleRange(dr.InscrRects, false);
+            } else {
+                guiup.setsVisibleRange(dr.InscrRects, sdata.view.isInscribed);
+            }
+
+            rg[dr.pointLabels.basePtFirst].undisplay = !isSlopeOk;
         });
         //--------------------------------------
         // \\// Show/hide message and parts of figure depending on if monotonic

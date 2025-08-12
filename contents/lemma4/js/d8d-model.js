@@ -56,8 +56,21 @@
         }
 
         function setDragPoints(dr) {
-            ///Points on x-axis, on the base of the figure.
+            //TEMP Seems like changing the order fixes the drag priority issue.
+            Object.values(dr.transforms.pts).forEach((pointWrap) => {
+                setPoint(dr, pointWrap, pointWrap.index);
+            });
+            //Placed after transform points to have drag priority over them.
+            //Otherwise if a point on the curve gets close to a transform point
+            //it's very hard to move the point on the curve.
+            dr.ctrlPts.list.forEach((pointWrap) => {
+                setPoint(dr, pointWrap, pointWrap.index);
+            });
 
+            //TEMP Moved base points here so that they have priority over the
+            //curve control points.  This is helpful when the curve is close
+            //to the base points.
+            ///Points on x-axis, on the base of the figure.
             if (dr.basePtDraggersEnabled) {
                 const bplist =  dr.basePts.list;
                 const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
@@ -70,16 +83,6 @@
                 //         setPoint(dr, pointWrap, pwix);
                 // });
             }
-            //TEMP Seems like changing the order fixes the drag priority issue.
-            Object.values(dr.transforms.pts).forEach((pointWrap) => {
-                setPoint(dr, pointWrap, pointWrap.index);
-            });
-            //Placed after transform points to have drag priority over them.
-            //Otherwise if a point on the curve gets close to a transform point
-            //it's very hard to move the point on the curve.
-            dr.ctrlPts.list.forEach((pointWrap) => {
-                setPoint(dr, pointWrap, pointWrap.index);
-            });
 
             //for decorator ... todm very easy to forget and be in pain ...
             globalCss.update();
@@ -225,8 +228,7 @@
         //======================================
         // //\\ event to js
         //======================================
-        //function move2js( dr, pointWrap, move, ach )
-        function move2js( pointWrap, move, ach )
+        function move2js(pointWrap, move, ach)
         {
             //TEMP This function is long, maybe it should be split up more?
             const scale = sDomF.out2inn();
@@ -248,6 +250,31 @@
                     posNew[0] = minX + 1;
                 if (maxX != null && posNew[0] > maxX)
                     posNew[0] = maxX - 1;
+
+                // //TEMP
+                // //Check slope
+                // const positionsNewTemp = [...dr.ctrlPts.positions];
+                // positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
+                // if (!stdL2.numModel.checkIfCurveSlopeOkTemp(dr, positionsNewTemp))
+                //     return;
+                // // const posFound = checkIfCurveSlopeOk2(dr, index, posNew);
+                // // if (!posFound)
+                // //     return;
+                // // // posNew = [...posFound];
+                // // posNew[0] = posFound.x;
+                // // posNew[1] = posFound.y;
+                // // // Object.assign(posNew, posFound);
+
+                //TEMP Constrain y value if needed
+                let yTemp = stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, posNew[0], posNew[1]);
+                // console.log("yTemp =", yTemp);
+                //TEMP Add extra padding
+                // yTemp -= 10;
+                if (yTemp < 0)
+                    posNew[1] += yTemp;
+                // if (!stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, posNew[0], posNew[1]))
+                //     return;
+
 
                 //Update stored un-transformed control point position.
                 const pos = dr.ctrlPts.positions.at(index);
@@ -309,6 +336,97 @@
         //======================================
         // \\// event to js
         //======================================
+
+
+        //TEMP
+        // function checkIfCurveSlopeOk2(dr, index, posNew) {
+        //     const posCurrent = dr.ctrlPts.positions[index];
+
+        //     const posNew2 = checkUsingFOffset(1);
+        //     if (posNew2)
+        //         return posNew2;
+
+        //     let fOffsetMin = 0;
+        //     let fOffsetMax = 1;
+        //     let posBest = null;
+        //     for (let i = 0; i < 7; i++){
+        //         const fOffsetMid = (fOffsetMin + fOffsetMax) / 2;
+        //         const posCheck = checkUsingFOffset(fOffsetMid);
+        //         if (posCheck) {
+        //             fOffsetMin = fOffsetMid;
+        //             posBest = posCheck;
+        //         } else {
+        //             fOffsetMax = fOffsetMid;
+        //             posBest = posCheck;
+        //         }
+        //     }
+
+        //     return posBest;
+            
+
+        //     function checkUsingFOffset(fOffset) {
+        //         const posCheck = {
+        //             x: (posNew[0] - posCurrent.x) * fOffset + posCurrent.x,
+        //             y: (posNew[1] - posCurrent.y) * fOffset + posCurrent.y,
+        //         };
+        //         //Check slope
+        //         const positionsNewTemp = [...dr.ctrlPts.positions];
+        //         positionsNewTemp[index] = posCheck;//{x: posCheck[0], y: posCheck[1]};
+        //         if (checkIfCurveSlopeOk(dr, positionsNewTemp))
+        //             return posCheck;
+        //         return null;
+        //     }
+        // }
+
+        //TEMP Moved to numModel in "model-aux.js"
+        // function checkIfCurveSlopeOk(dr, positionsNewTemp) {
+        //     //TEMP
+        //     const ff = stdL2.numModel.curveFun;
+        //     // const dv = dr.yVariations;
+        //     //TEMP Is something similar to the following needed?
+        //     // if (!dv) return true;
+        //     // const yVariations = dr.yVariations;
+        //     // const xStart = yVariations.x_start;
+        //     // const chosenWidth = yVariations.chosenWidth;
+        //     const xStart = dr.ctrlPts.positions.at(0).x;
+        //     const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
+
+        //     //TEMP Note that dv.maxY changes when non-monotonic therefore use
+        //     //an alternative.
+        //     const maxY = dr.ctrlPts.positions.at(-1).y;
+
+        //     //TEMP Store current control point positions
+        //     const positionsStored = [...dr.ctrlPts.positions];
+
+        //     dr.ctrlPts.positions = [...positionsNewTemp];
+
+        //     //TEMP
+        //     //Want to check points in between the left and right sides
+        //     //Eg.  0  1  2  3  should be for 2 points
+        //     const slopeBound = (maxY * 0.2) / chosenWidth;
+        //     // const slopeBound = (dv.maxY * 0.2) / chosenWidth;
+        //     const countPoints = 30;
+        //     // const iMax = 5;
+        //     const xInterval = chosenWidth / (countPoints + 1);
+        //     for(let i = 1; i <= countPoints; i++){
+        //         const x = xStart + xInterval * i;
+        //         const y = ff(dr, x);
+        //         // const height = Math.abs(maxY - y);
+        //         const height = maxY - y;
+        //         // const height = Math.abs(dv.maxY - y);
+                
+        //         const heightBound = slopeBound * (chosenWidth - (x - xStart));
+        //         // console.log(`i = ${i}  height = ${height}  heightBound = ${heightBound}`);
+        //         if (height < heightBound) {
+        //             dr.ctrlPts.positions = [...positionsStored];
+        //             console.log("return false");
+        //             return false;
+        //         }
+        //     }
+        //     dr.ctrlPts.positions = [...positionsStored];
+        //     console.log("return true");
+        //     return true;
+        // }
     }
 
 }) ();
