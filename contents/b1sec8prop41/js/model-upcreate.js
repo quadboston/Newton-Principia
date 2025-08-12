@@ -180,9 +180,6 @@
             let norm = [ -ro[1]*Mfactor, ro[0]*Mfactor ];
             nspaste( rg.Z.pos, mat.sm( rg.I.pos, norm ) );
         }
-
-        //decorates
-        rg[ 'V,v' ].caption = 'vₒ = ' + op.Kepler_v.toFixed(3);
         //---------------------------
         // \\// v and momentum
         //---------------------------
