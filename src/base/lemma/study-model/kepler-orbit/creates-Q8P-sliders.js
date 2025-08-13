@@ -62,10 +62,17 @@
        stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
        return;
 
-       
+
+       ///doing two searches, first sparce
+       ///and the second - precise,
+       ///if argument fromGraph is truthed, then
+       ///first sparce search done via valid graph points and
+       ///then via exact orbit points,
        function gets_orbit_closest_point(
             r, //distance to this point
-            fromGraph //optional, using valid graph points
+            
+            //optional, using valid graph points and leave
+            fromGraph 
         ){
             const arr = fromGraph ? ga : q2o;
             const len = arr.length;
@@ -76,6 +83,7 @@
             const y = r[1]-pos[1];
             let min = x*x + y*y;
             let qix_min = null;
+            ///should be from 0: let qix=0;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
                 const pos = point.rr;

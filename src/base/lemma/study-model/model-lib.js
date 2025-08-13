@@ -163,11 +163,15 @@
     // \\// scriptable arguments in string
     //===============================================================
        
+       
+    ///will be ssF.gets_orbit_closest_point in
+    ///contrary to stdMod.gets_orbit_closest_point
     function gets_orbit_closest_point(
         r, //distance to which point
         orbitPoints
     ){
-        const SEARCH_POINTS = 1000; 
+        ///searches with accuracy not greater than
+        const SEARCH_POINTS = 1000;
         const len = orbitPoints.length;
         const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ) );
         const point = orbitPoints[0];
