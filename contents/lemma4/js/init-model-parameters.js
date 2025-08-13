@@ -67,38 +67,7 @@
                     z-index             : 111111111;
                 `,
             });
-        }    
-
-        {
-            let pid = 'proof-pop-up-2';
-            let button = ssF.createButton({
-                caption                 :
-                    'Curve slope is too flat',
-                buttonUniversalId       : pid,
-                //scenarioEventOnClick    : 'graph-is-plotted',
-                clickCallback           : () => {
-                    sData[ pid ].dom$.css( 'display', 'none' );
-                },
-                noTopicScenario         : true,
-                cssText                 : `
-                    position            : absolute;
-                    width               : 330px;
-                    height              : 18px;
-                    top                 : 0%;
-                    padding             : 8px;
-                    left                : 50%;
-                    transform           : translate( -50%, 0% );
-                    border-radius       : 15px;
-                    border              : 3px outset #cccccc;
-                    font-size           : 16px;
-                    text-align          : center;
-                    background-color    : #dddddd;
-                    color               : red;
-                    cursor              : pointer;
-                    z-index             : 111111111;
-                `,
-            });
-        }     
+        }
 
         // dom z-order patch
         // haff( ssF, 'continue_create_8_prepopulate_svg' );

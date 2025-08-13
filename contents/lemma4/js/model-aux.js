@@ -40,6 +40,7 @@
         addsNewBases_8_calculatesMaxWidth,
         checkIfCurveSlopeOkTemp,    //TEMP
         checkIfControlPointYOkForSlopeTemp, //TEMP
+        checkIfPointOnRightOfCurvePassedSlope, //TEMP
     });
     //==================================
     // \\// exports methods
@@ -386,7 +387,6 @@
 
     function checkIfCurveSlopeOkTemp(dr, positionsNewTemp) {
         //TEMP
-        const andleRadTemp = mat.degToRad(15);
         const ff = stdL2.numModel.curveFun;
         // const dv = dr.yVariations;
         //TEMP Is something similar to the following needed?
@@ -399,7 +399,6 @@
 
         //TEMP Note that dv.maxY changes when non-monotonic therefore use
         //an alternative.
-        const maxY = dr.ctrlPts.positions.at(-1).y;
 
         //TEMP Store current control point positions
         const positionsStored = [...dr.ctrlPts.positions];
@@ -411,46 +410,50 @@
         //TEMP
         //Want to check points in between the left and right sides
         //Eg.  0  1  2  3  should be for 2 points
-        const slopeBound = (maxY * Math.tan(andleRadTemp)) / chosenWidth;
-        // const slopeBound = (dv.maxY * 0.2) / chosenWidth;
         const countPoints = 30;
-        // const iMax = 5;
         const xInterval = chosenWidth / (countPoints + 1);
         for(let i = 1; i <= countPoints; i++) {
             const x = xStart + xInterval * i;
             const y = ff(dr, x);
             
-            // if (!checkIfControlPointYOkForSlopeTemp(dr, x, y)) {
             if (checkIfControlPointYOkForSlopeTemp(dr, x, y) < 0) {
                 dr.ctrlPts.positions = [...positionsStored];
-                // console.log("return false");
                 return false;
             }
-
-            // const x = xStart + xInterval * i;
-            // const y = ff(dr, x);
-            // // const height = Math.abs(maxY - y);
-            // const height = maxY - y;
-            // // const height = Math.abs(dv.maxY - y);
-            
-            // const heightBound = slopeBound * (chosenWidth - (x - xStart));
-            // // console.log(`i = ${i}  height = ${height}  heightBound = ${heightBound}`);
-            // if (height < heightBound) {
-            //     dr.ctrlPts.positions = [...positionsStored];
-            //     // console.log("return false");
-            //     return false;
-            // }
         }
         dr.ctrlPts.positions = [...positionsStored];
-        // console.log("return true");
         return true;
+    }
+
+    
+    function checkIfPointOnRightOfCurvePassedSlope(dr, positionsNewTemp) {
+        //TEMP
+        const ff = stdL2.numModel.curveFun;
+        const xStart = dr.ctrlPts.positions.at(0).x;
+        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
+
+        //TEMP Store current control point positions
+        const positionsStored = [...dr.ctrlPts.positions];
+
+        const positionsSelected = positionsNewTemp || dr.ctrlPts.positions;
+        dr.ctrlPts.positions = [...positionsSelected];
+
+        const x = xStart + chosenWidth * 0.95;
+        const y = ff(dr, x);
+
+        const output = (checkIfControlPointYOkForSlopeTemp(dr, x, y) < 0);
+        dr.ctrlPts.positions = [...positionsStored];
+        return output;
     }
 
 
     function checkIfControlPointYOkForSlopeTemp(dr, x, y) {
         //TEMP
         //Angle for the slope constraint.
-        const andleRadTemp = mat.degToRad(15);
+        const angleDeg = parseFloat(document.getElementById("input-slope-constraint-angle").value);
+        // console.log(`angleDeg = ${angleDeg}  typeof angleDeg = ${typeof angleDeg}`);
+        const andleRadTemp = mat.degToRad(angleDeg);
+        // const andleRadTemp = mat.degToRad(15);
         // const dv = dr.yVariations;
         //TEMP Is something similar to the following needed?
         // if (!dv) return true;
@@ -737,21 +740,14 @@
         //that the above didn't converge closely enough).
         const scaleWidth = chosenWidth / widthDataCurrent.sumWidth;
         const outputTemp = widths.map(width => width * scaleWidth);
-
-
-        //TEMP
-        let curveTooFlat = !checkIfCurveSlopeOkTemp(dr, [...dr.ctrlPts.positions]);
-        // console.log("curveTooFlat =", curveTooFlat);
-        // curveTooFlat = false;
         
-        //TEMP Plots
-        createTempPlotsIfNeeded();
+        
+        //TEMP Plots and interface with other settings
+        createTempPlotsAndInterfaceIfNeeded();
         //TEMP Plots//
 
         //TEMP
-        // return outputTemp;
-        const widthsEmpty = outputTemp.map(width => undefined);
-        return curveTooFlat ? widthsEmpty : outputTemp;
+        return outputTemp;
         // const outputTemp = widths.map(width => width * scaleWidth);
         // console.log("outputTemp reduce =", outputTemp.reduce((acc, cur) => acc + cur));
         // return outputTemp;
@@ -917,7 +913,12 @@
 
 
 
-        function createTempPlotsIfNeeded() {
+        //createTempPlotsIfNeeded
+        function createTempPlotsAndInterfaceIfNeeded() {
+            //Temp
+            //Temporary div to contain the plots and other settings for test
+            //purposes.  It's only intended for test purposes.  If any of this
+            //code ends up being kept but commented out it should be improved.  
             let divPlots = document.getElementById("div-plots");
             if (!divPlots) {
                 divPlots = document.createElement("div");
@@ -926,18 +927,56 @@
                 divPlots.style.position = 'absolute';
                 divPlots.style.left = '0px';
                 divPlots.style.bottom = '0px';
+                divPlots.style.maxWidth = '710px';
                 divPlots.style.zIndex = '9999'; // very high to float above everything
                 divPlots.style.backgroundColor = '#FFF';
                 document.body.appendChild(divPlots);
 
-                //Add range to adjust the figure
+                //Add elements to adjust constraints and plots
                 divPlots.innerHTML = 
+                    '<div>' +
+                    '    <fieldset style="border-width: 1px; border-style: groove; border-color: #000;">' +
+                    '        <legend>Select handle constraint method</legend>' +
+                    // '        <p style="line-height: 1; margin: 5px;">Prevent curve from passing slope constraint when dragging handles.  Ensure curve is above before enabling, otherwise all the handles can get stuck.</p>' +
+                    '        <p style="line-height: 1; margin: 5px;">How should the handles be constrained when they are dragged?  Ensure the curve is above the slope constraint before enabling, otherwise all the handles can get stuck.</p>' +
+                    '        <div>' +
+                    '            <input id="radio-slope-entire" name="radio-slope" type="radio"/>' +
+                    // '            <label for="radio-slope-entire">Check if entire slope passed</label>' +
+                    '            <label for="radio-slope-entire">Option 1: Prevent all parts of curve from passing slope constraint</label>' +
+                    '        </div>' +
+                    '        <div>' +
+                    '            <input id="radio-slope-entire-and-move-others" name="radio-slope" type="radio"/>' +
+                    '            <label for="radio-slope-entire-and-move-others">Option 2: Prevent all parts of curve from passing slope constraint + Move other nearby handles</label>' +
+                    '        </div>' +
+                    '        <div>' +
+                    '            <input id="radio-slope-handle-y-and-right" name="radio-slope" type="radio"/>' +
+                    '            <label for="radio-slope-handle-y-and-right">Option 3: Prevent handle y values from passing slope constraint + Prevent right side of curve from passing slope constraint (checks a single point near the right end only)</label>' +
+                    // '            <label for="radio-slope-handle-y-and-right">Handle y values + Check if single point near right side passed slope constraint</label>' +
+                    '        </div>' +
+                    '        <div>' +
+                    '            <input id="radio-slope-handle-y" name="radio-slope" type="radio" checked/>' +
+                    '            <label for="radio-slope-handle-y">Option 4: Prevent handle y values from passing slope constraint</label>' +
+                    '        </div>' +
+                    '        <div>' +
+                    '            <input id="radio-slope-none" name="radio-slope" type="radio" checked/>' +
+                    '            <label for="radio-slope-none">Disabled</label>' +
+                    '        </div>' +
+                    '    </fieldset>' +
+                    '</div>' +
+                    '<br>' +
+                    '<div>' +
+                    '    <label for="input-slope-constraint-angle">Slope constraint angle in degrees (un-transformed)</label>' +
+                    '    <input type="number" id="input-slope-constraint-angle" value="15" min="1" max="40" style="width: 50px;"/>' +
+                    '</div>' +
+                    '<br>' +
+                    '<br>' +
                     '<div>' +
                     '    <label for="range-figure">Scale</label>' +
                     '    <input id="range-figure" type="range" min="0.01" max="1" step="0.001" value="0.01" style="width: 150px; height: 10px !important; background: #FFF0;"/>' +
                     '    <label id="label-scale"></label>' +
                     '</div>';
 
+                //Add the plots.
                 createAndAppendCanvasIfNeeded("canvas1", divPlots);
                 createAndAppendCanvasIfNeeded("canvas2", divPlots);
             }
