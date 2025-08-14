@@ -93,8 +93,6 @@
         r           = r<INFINITY_PROTECTOR ? INFINITY_PROTECTOR : r;
         var ee      = [ rrr[0]/r, rrr[1]/r, ];
 
-
-
         //:angle between norm n and radius vector rrr
 
         //the same: var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] ) * bk;
@@ -183,11 +181,11 @@
             RC,
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
-
+  
             //this name is too long we need shorter name,
             //sectspeed_ru=momentum0 = [𝗿𝘂] = [𝗿𝘃]/v; for v=ds/dq or v=ds/dt
             staticSectorialSpeed_rrrOnUU, //=algebraic momentum0
-
+  
             angleRV,    //in respect to center rrc
             sinOmega,   //in respect to center rrc
             cosOmega,   //in respect to center rrc
@@ -196,7 +194,4 @@
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }
-
-}) ();
-
-
+})();

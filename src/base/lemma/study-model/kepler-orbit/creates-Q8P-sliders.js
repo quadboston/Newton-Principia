@@ -12,7 +12,6 @@
             creates__gets_orbit_closest_point,
         },
     });
-    const tix2orbit = sn( 'tix2orbit', ssD, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
     const graphArray = sn( 'graphArray', stdMod, [] );
     return;
@@ -51,7 +50,6 @@
         }
     }
 
-
    function creates__gets_orbit_closest_point() {
        //the more, the better: slider accuracy:
        const SEARCH_POINTS = 50;
@@ -76,7 +74,7 @@
         ){
             const arr = fromGraph ? ga : q2o;
             const len = arr.length;
-            const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ));
+            const STEP = fromGraph ? 1 : Math.max( 1, Math.floor( len / SEARCH_POINTS ));
             const point = arr[0];
             const pos = point.rr;
             const x = r[0]-pos[0];

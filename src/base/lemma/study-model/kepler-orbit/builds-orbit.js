@@ -1,6 +1,6 @@
 ( function() {
-    var {
-        sn, has, mcurve, mat, userOptions,
+    const {
+        sn, has, mcurve,
         amode, stdMod, rg, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
@@ -8,8 +8,7 @@
             buildsOrbit,
         },
     });
-    var NON_SOLVABLE_THRESHOLD = 0.05;
-
+    const NON_SOLVABLE_THRESHOLD = 0.05;
     const graphArray = sn( 'graphArray', stdMod, [] );
     const tix2orbit = sn( 'tix2orbit', ssD, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
@@ -64,8 +63,8 @@
             
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
-            cosAbs = Math.abs( sinOmega );
-            if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
+            //cosAbs = Math.abs( sinOmega );
+            if( NON_SOLVABLE_THRESHOLD > Math.abs( sinOmega ) ) {
                 solvable = false;
                 foldPoints.push( [ rr[0], rr[1] ] );
                 bP.solvablePoint = solvable;
@@ -119,5 +118,5 @@
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
     }
-}) ();
+})();
 

@@ -71,8 +71,8 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= plusQ ){
-                    if( !CR && MAKE_RANGE ){
+                if( !CR && sconf.orbit_q_end <= plusQ ){
+                    if( MAKE_RANGE ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
                     }
@@ -86,7 +86,7 @@
                     if( ulitmacy === sData.ULTIM_INSTANT ){
                         bP.instant_displacement = displ;
                     }
-                    displMax = Math.max( Math.abs(displ), displMax );
+                    //displMax = Math.max( Math.abs(displ), displMax );
                 }
                 continue;
             }

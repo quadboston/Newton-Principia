@@ -78,7 +78,7 @@
 
         {
             let graphArg = {
-            }
+            };
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
