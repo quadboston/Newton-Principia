@@ -155,13 +155,8 @@
             remove( 'active-left' );
             add( 'active-right' );
         }
-        if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
-            remove( 'active-higlight-do' );
-            add( 'active-no-higlight-do' );
-        } else {
-            remove( 'active-no-higlight-do' );
-            add( 'active-higlight-do' );
-        }
+		remove( 'active-no-higlight-do' );
+		add( 'active-higlight-do' );
         // \\// resets app modes
     }
 

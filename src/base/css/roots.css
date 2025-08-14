@@ -155,7 +155,6 @@ b {
 
 .bsl-sim-superscene {
     position    : relative;
-    display     : inline-block;
     float       : left;
     box-sizing  : border-box;
     padding     : 0;

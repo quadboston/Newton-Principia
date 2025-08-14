@@ -353,7 +353,7 @@
                 letterAngle : -115,
                 letterRotRadius : 35,
                 draggableX  : true,
-                draggableY  : userOptions.showingBonusFeatures(),
+                draggableY  : false,
             },
 
             P : {

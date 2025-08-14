@@ -32,11 +32,6 @@
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         rg.SS.undisplay = true;
-        if( userOptions.showingBonusFeatures() ) {
-            rg.SS.undisplay = false;
-            rg.SS.pos[0] = -sconf.ellipseFocus;
-            rg.SS.pos[1] = 0;
-        }
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by

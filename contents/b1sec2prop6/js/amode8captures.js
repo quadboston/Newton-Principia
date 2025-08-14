@@ -55,10 +55,8 @@
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
-        if( !userOptions.showingBonusFeatures() ) {
-            rg[ 'S,nonSolvablePoint' ].undisplay = true;
-            rg[ 'nonSolvablePoint' ].undisplay = true;
-        }
+		rg[ 'S,nonSolvablePoint' ].undisplay = true;
+		rg[ 'nonSolvablePoint' ].undisplay = true;
         
         rg[ 'QP' ].undisplay = false;
         rg[ 'Q,rrminus' ].undisplay = true;

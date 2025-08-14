@@ -566,8 +566,8 @@
 
 
         function aspectTurnedOn(aspect_id) {
-            if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
-                return userOptions.showingBonusFeatures();
+            if (aspect_id === 'model' || aspect_id === 'addendum'){
+                return false;
             }
             if (aspect_id === 'latin'){
                 return userOptions.showingLatin();
