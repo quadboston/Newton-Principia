@@ -128,7 +128,6 @@
             let sag_init = 0.16; //affects pos of R
             var PparQ = 0.39 * Math.PI; //affects pos of P,Q,R,Pv (keeps them on conic)
 
-            op.sagittaDelta_q = op.sagittaDelta_q_initial = sag_init;
             op.PparQ_initial = op.PparQ_initial_essay = PparQ;
             op.delta_t = op.delta_t_initial = sag_init * 2.5;
             op.delta_t_LIMIT = op.delta_t_initial * 1.5;

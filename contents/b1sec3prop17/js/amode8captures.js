@@ -100,7 +100,6 @@
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
         op.delta_t  = op.delta_t_initial;
-        op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
         rg.P.abs = mat.unitVector( rg.P.pos ).abs;
 

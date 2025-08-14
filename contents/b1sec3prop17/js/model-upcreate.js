@@ -29,8 +29,8 @@
         // //\\ op (brown orbit)
         //================================================
         const op        = sconf.orbitParameters;
-        var cosAxis   = Math.cos( op.mainAxisAngle );
-        var sinAxis   = Math.sin( op.mainAxisAngle );
+        var cosAxis     = Math.cos( op.mainAxisAngle );
+        var sinAxis     = Math.sin( op.mainAxisAngle );
         const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
         
@@ -77,10 +77,8 @@
         // point Q
         var {
             rr, 
-            sagittaDeltaQ,
         } = deltaT_2_arc();
         nspaste( rg.Q.pos, rr );
-        op.sagittaDelta_q = sagittaDeltaQ;
 
         // dragger vb (aka Pv)
         {
@@ -92,7 +90,7 @@
             );
         }
 
-        //perpendicular dropped from PR to S (referenced in Solution, but not shown for now)
+        //perpendicular dropped from PR to S
         nspaste( rg.Y.pos, projectionOfCenterOnTangent );
 
         // latus rectum
@@ -163,7 +161,7 @@
             nspaste( rg.f.pos, mat.sm( rg.p.pos, -1*newLen, ee ));
         }
 
-        //perpendicular dropped from pr to S (referenced in Solution, but not shown for now)
+        //perpendicular dropped from pr to S
         rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
         rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
 
