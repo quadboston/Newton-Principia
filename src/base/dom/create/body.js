@@ -71,8 +71,7 @@
         // //\\ page master menu
         //==================================================
         var ww = fconf.sappId2lemmaDef[ fconf.sappId ];
-        var caption = userOptions.showingBonusFeatures() ?  ww.book + ', ' : '';
-        caption += ww.caption;
+        let caption = ww.caption;
 
         //pageNavTopBar
         var navBar$ =

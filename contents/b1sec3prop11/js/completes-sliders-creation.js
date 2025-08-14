@@ -21,10 +21,6 @@
         };
         rg.S.acceptPos = newPos => {
             if( mat.p1_to_p2( newPos, sconf.diagramOrigin ).abs > -1 ) {
-                if( userOptions.showingBonusFeatures() ) {
-                    stashedPos[0] = newPos[0];
-                    stashedPos[1] = newPos[1];
-                } else {
                     if( newPos[0] > -0.00001 || newPos[0] < -1.2 ) {
                         return false;
                     }
@@ -41,7 +37,6 @@
                     stdMod.recreates_q2xy();
                     //resets ellpse parameters
                     hafa( stdMod, 'recreatesPosCorrector' )();
-                }
             }
             hafa( stdMod, 'correctApproxMousePosToExact' )(
                 'P', null,
