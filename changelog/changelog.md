@@ -6,10 +6,11 @@
 	* eccentricity slider moves 1:1 with mouse at all zoom levels
 
 * Proposition 17
-	* removed hyperbola asymptotes
-	* force constrained to keep path 𝑝𝑞 an orbit
-	* tangent perpendiculars are more visible
 	* Points R and P_v merged
+	* removed hyperbola asymptotes
+	* force slider constrained to keep path 𝑝𝑞 an ellipse
+	* tangent perpendiculars made more visible
+	* P_v and force sliders move 1:1 with mouse at all zoom levels
 	* equation sequence aligned on equals sign
 
 * Lemma 20
