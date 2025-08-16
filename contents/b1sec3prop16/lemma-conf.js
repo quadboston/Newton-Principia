@@ -2,20 +2,18 @@
     window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
     return;
 
-    function lemmaConfig()
-    {
-        return {
-            sappCodeReference : 'b1sec3prop12',
-            "contents-list" :
-            [
+    function lemmaConfig() {
+        let pre = '../../b1sec3prop14/js/';
+        return {       
+            codesList : [
+                { src: pre + 'sconf.js' },
+            ],
+            "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
                 'txt/addendum.txt',
             ],
-            //optional additional reference html
-            referencesForAllLemmaEssays : '',
+            sappCodeReference : 'b1sec3prop12',
         };
     }
-
 }) ();
-

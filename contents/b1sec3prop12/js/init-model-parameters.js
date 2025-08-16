@@ -1,27 +1,14 @@
 ( function() {
     var {
-        ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat,
-        fconf, ssF, ssD, sData,
+        ns, nspaste, mcurve, mat,
+        fconf, ssD,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
         },
     });
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
-
-
-
-
-
-
-
-
-
-
-
 
 
     ///****************************************************
@@ -52,49 +39,13 @@
             nspaste( rg.P.pos, rr );
             nspaste( rg.Y.pos, projectionOfCenterOnTangent );
             ////establishes rg.omegaHandle.pos
-            let excess = fconf.sappId === "b1sec3prop17" ?
-                0.5 :
-                -0.2
-            ;
+            let excess = -0.2;
             rg.omegaHandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
             nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
-        }
-        if( fconf.sappId === 'b1sec3prop17' ) {
-            //---------------------------------
-            // //\\ sop initials
-            //      stashes some values
-            //---------------------------------
-            
-            ssF.line2abs( 'SP' );
-            ssF.line2abs( 'PK' );
-
-            stdMod.creates_orbitRack( sop );
-            let {
-                rr,
-            } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve-sample' ].t2xy,
-                q   : sop.PparQ_initial,
-                rrc : rg.S.pos,
-            });
-            nspaste( rg.p.pos, rr );
-            rg.p.proofPos = nspaste( [], rr );
-
-            //cor2.
-            let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
-            let DVect = mat.unitVector( Dpos );
-            sop.corII_speed = Math.sqrt( op.Kepler_g / DVect.abs );
-            sop.corII_Dpos = Dpos;
-            sop.corII_DVect = DVect;
-            //---------------------------------
-            // \\// sop initials
-            //---------------------------------
         }
 
         stdMod.completesSlidersCreation();      //in-diagram sliders
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
-        //creates placeholder
-        //toreg( 'curvatureCircle' );
-        //toreg( 'tangentCircle' );
 
         //==================================================
         // //\\ decoration graph
@@ -124,9 +75,6 @@
         //==================================================
         // \\// decoration graph 
         //==================================================
-
-        //too early: overriden later by sconf.rgShapesVisible
-        //rg[ 'S,nonSolvablePoint' ].undisplay = true;
     }
 
 }) ();

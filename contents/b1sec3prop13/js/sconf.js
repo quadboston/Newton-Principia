@@ -12,7 +12,7 @@
     //====================================================
     function init_conf()
     {
-        console.log('init P12');
+        console.log('init P13');
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -27,8 +27,8 @@
         // //\\ decorational parameters
         //***************************************************************
         //media
-        var pictureWidth = 690;
-        var pictureHeight = 836; //728;
+        var pictureWidth = 938;
+        var pictureHeight = 611;
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
@@ -56,7 +56,7 @@
         sconf.text_hover_width      = 1.5;
 
         // points reused in config      
-        var F = [ 492, 565 ]; //x,y of whole svg model
+        var F = [ 560, 554 ]; //x,y of whole svg model
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
         var originY_onPicture = F[1]; //for model's axis y
@@ -78,13 +78,58 @@
         op.mainAxisAngle = op.mainAxisAngle_initial;
         op.delta_v_increase_LIMIT = 1.5;
 
-        //conic pars
-        op.initialEccentricity = 1.365; //hyperbola
-        op.latusInitial = 0.90;
-        var PparQ = 0.49 * Math.PI;
-        
-        op.sagittaDelta_q_initial = 1;
-               
+        fconf.effId = fconf.sappId === 'b1sec3prop14' ||
+                      fconf.sappId === 'b1sec3prop15' ||
+                      fconf.sappId === 'b1sec3prop16' ||
+                      fconf.sappId === 'b1sec3prop17' ? 'b1sec3prop14' : fconf.sappId;
+
+        switch ( fconf.sappId ) {
+            case "b1sec3prop12" :
+
+                //conic pars
+                op.initialEccentricity = 1.365; //hyperbola
+                op.latusInitial = 0.90;
+                var PparQ = 0.49 * Math.PI;
+                //decorations
+                
+                op.sagittaDelta_q_initial = 1;
+                break;
+            case "b1sec3prop13" :
+
+                //conic pars
+                op.latusInitial           = 2.10;
+                op.initialEccentricity    = 1; //parabola
+                var PparQ                 = 0.386 * Math.PI;
+                //decorations
+                op.sagittaDelta_q_initial = 0.39;
+                break;
+
+            default : //14,15,16
+                op.initialEccentricity = fconf.sappId === 'b1sec3prop16' ? 0.67 : 0.68;
+                sconf.insertDelayedBatch = true;
+                //for real picture if diagram's picture is supplied or
+                //for graphical-media work-area if not supplied:
+                var pictureWidth = 884;
+                var pictureHeight = 733;
+                var mod2inn_scale = 260;
+                var F = [ fconf.sappId === 'b1sec3prop16' ? 170 : 160,
+                          fconf.sappId === 'b1sec3prop16' ? 440 : 410
+                        ];
+                op.latusInitial = 0.83;
+                var PparQ       = ( fconf.sappId === 'b1sec3prop16' ? 0.14 : 0.07 ) * Math.PI;
+                {
+                    let sag_q = fconf.sappId === 'b1sec3prop16' ?
+                        //0.2 :
+                        0.4 :
+                        //0.19;
+                        0.62;
+                    op.sagittaDelta_q_initial     = sag_q;
+                    op.Dt0 = sag_q * 2.5;
+                }
+                op.Dt = op.Dt0;
+                op.delta_t_LIMIT = op.Dt0 * 1.5;
+                sconf.Fi_distance = 1.8;
+        }
         op.PparQ_initial        = PparQ;
         op.PparQ_initial_essay  = PparQ;
         op.sagittaDelta_q       = op.sagittaDelta_q_initial;
@@ -603,6 +648,7 @@
             },
         ];
 
+        //stdMod.init_sliders_conf();
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,

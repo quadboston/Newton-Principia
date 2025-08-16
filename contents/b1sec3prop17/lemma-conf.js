@@ -5,12 +5,6 @@
     function lemmaConfig()
     {
         return {
-            "contents-list" :
-            [
-                'txt/latin.txt',
-                'txt/cohen.txt',
-            ],
-
             codesList : [
                 { src : 'sconf.js' },
                 { src : 'init-model-parameters.js' },
@@ -21,9 +15,11 @@
                 { src : 'makes-orbit.js' },
                 { src : 'completes-sliders-creation.js' },
             ],
-
+            "contents-list" :  [
+                'txt/latin.txt',
+                'txt/cohen.txt',
+            ],
         };
     }
-
 }) ();
 

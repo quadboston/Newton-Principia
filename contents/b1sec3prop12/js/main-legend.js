@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ssF, rg, stdMod
+        ssF, stdMod
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -8,10 +8,12 @@
     });
     return;
 
+    ////****************////
+    //// NOT YET IN USE ////
+    ////****************////
 
     function create_digital_legend()
     {
-        return; //todo: remove this return once rg.tForSagitta.val is defined
         create_digital_legend_for_logic_phase( 'claim' );
         create_digital_legend_for_logic_phase( 'proof' );
         create_digital_legend_for_logic_phase( 'corollary' );
@@ -19,13 +21,13 @@
 
     function create_digital_legend_for_logic_phase( logic_phase )
     {
-        ////**********************************************************************************
+        ////********************************************************************
         ////legendScript-format:
         ////[topic, caption, JS-expression-of-value-in-local-JS-context]
         ////
         ////see: function dataSourceParsed1__2__makesBodyCluster({
         ////
-        ////**********************************************************************************
+        ////********************************************************************
 
         var legendScriptParsed = [
             [['dtime<_>data-monospace', 'Δt', '(rg.tForSagitta.val*2).toFixed(4)']]
