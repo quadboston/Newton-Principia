@@ -47,14 +47,14 @@
         };
         [
             //points
-            'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'R', 'vb', 'Q', //op
-            'p', 'vSample', 'f', 'q', 'PY', 'CS', 'CH', 'DH', 'DS',  //sop
+            'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'vb', 'Q', //op
+            'p', 'vSample', 'f', 'CS', 'CH', 'DH', 'DS',  //sop
 
             //lines
-            'SP', 'SK', 'PR', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
+            'SP', 'SK', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
             'p,f', 'l,ll', 'Sp', 'p,vSample', //sop
 
-            //'SY', 'S,Ys', //perpendiculars
+            'SY', 'S,Ys', //perpendiculars
         ].forEach( i => {
             rg[i].undisplay = false;
         });
@@ -100,7 +100,6 @@
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
         op.delta_t  = op.delta_t_initial;
-        op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
         rg.P.abs = mat.unitVector( rg.P.pos ).abs;
 

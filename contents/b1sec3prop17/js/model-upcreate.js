@@ -29,8 +29,8 @@
         // //\\ op (brown orbit)
         //================================================
         const op        = sconf.orbitParameters;
-        var cosAxis   = Math.cos( op.mainAxisAngle );
-        var sinAxis   = Math.sin( op.mainAxisAngle );
+        var cosAxis     = Math.cos( op.mainAxisAngle );
+        var sinAxis     = Math.sin( op.mainAxisAngle );
         const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
         
@@ -77,27 +77,20 @@
         // point Q
         var {
             rr, 
-            sagittaDeltaQ,
         } = deltaT_2_arc();
         nspaste( rg.Q.pos, rr );
-        op.sagittaDelta_q = sagittaDeltaQ;
-
-        // point R = parallel-projection of Q to tangent
-        nspaste( rg.R.pos,
-            mat.linesCross(
-                uu, rr0, //direction, start (rr0 is rg.P.pos)
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start (rrc is rg.S.pos)
-            )
-        ); 
 
         // dragger vb (aka Pv)
         {
             //dropLine(... = start + direction * t
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
-            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
+            nspaste( 
+                rg.vb.pos, 
+                mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos ) 
+            );
         }
 
-        //perpendicular dropped from PR to S (referenced in Solution, but not shown for now)
+        //perpendicular dropped from PR to S
         nspaste( rg.Y.pos, projectionOfCenterOnTangent );
 
         // latus rectum
@@ -135,7 +128,10 @@
             {
                 //dropLine(... = start + direction * t
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
-                nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
+                nspaste( 
+                    rg.vSample.pos, 
+                    mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) 
+                );
             }
             //sample's decorational dt arc
             var {
@@ -165,7 +161,7 @@
             nspaste( rg.f.pos, mat.sm( rg.p.pos, -1*newLen, ee ));
         }
 
-        //perpendicular dropped from pr to S (referenced in Solution, but not shown for now)
+        //perpendicular dropped from pr to S
         rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
         rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
 
