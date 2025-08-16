@@ -32,7 +32,7 @@
     {
         //console.log('media_upcreate___part_of_medupcr_basic')
 
-        //draws curves
+        //draws conics
         //enables curve move when dragging an entire diagram
         rg[ 'approximated-curve' ].poly2svg({});
         rg[ 'approximated-curve-sample' ].poly2svg({});

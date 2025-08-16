@@ -128,7 +128,6 @@
             let sag_init = 0.16; //affects pos of R
             var PparQ = 0.39 * Math.PI; //affects pos of P,Q,R,Pv (keeps them on conic)
 
-            op.sagittaDelta_q = op.sagittaDelta_q_initial = sag_init;
             op.PparQ_initial = op.PparQ_initial_essay = PparQ;
             op.delta_t = op.delta_t_initial = sag_init * 2.5;
             op.delta_t_LIMIT = op.delta_t_initial * 1.5;
@@ -160,6 +159,7 @@
             orbitareaSample,
             orbitarea,
             proof,
+            proofHidden,
             result,
             force,
             shadow,
@@ -236,16 +236,11 @@
                 pcolor : result,
                 letterRotRadius : 20,
             },
-            R : {
-                pcolor : body,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
             vb : { //speed of the body (dragger)
-                caption : '',
+                caption : 'R',
                 pcolor : body,
-                letterAngle : 135,
-                letterRotRadius : 20,
+                letterAngle : 135, // degrees CCW from east
+                letterRotRadius : 25, //distance from point
                 draggableX  : true,
                 draggableY  : true,
             },
@@ -346,22 +341,22 @@
             { CD : { pcolor : result }, },
                         
             //not visible, because behind overlapping lines  
-            //but may be highlighted in text links         
-            { PR : { 
-                pcolor : body, 
-                'stroke-width' : 2, 
-                captionShiftNorm : -18, }, 
-            },   
-            { PY : { pcolor : body }, },                     
+            //but may be highlighted in text links                      
             { CS : { pcolor : result }, },
             { SA : { pcolor : result }, },
             { DS : { pcolor : proof }, },
             { DH : { pcolor : result }, },
             { CH : { pcolor : proof }, }, 
 
-            // perpendiculars referenced in the Solution (not shown for now)
-            { 'SY' : { pcolor : proof, captionShiftNorm : -28 }, }, 
-            { 'S,Ys' : { pcolor : proof, captionShiftNorm : -28 }, },
+            // perpendiculars referenced in the Solution
+            { 'SY' : { 
+                pcolor : proofHidden, 
+                captionShiftNorm : -28 
+            }, }, 
+            { 'S,Ys' : { 
+                pcolor : proofHidden, 
+                captionShiftNorm : -28 
+            }, },
             //-------------------------------------------
             // \\// op (brown conic)
             //------------------------------------------- 
