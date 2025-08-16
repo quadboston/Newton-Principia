@@ -1,5 +1,30 @@
 # Change Log
  
+## 2025-8-16 (Yellow Version, 0.13851)
+### Improved
+* Proposition 12
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+
+* Proposition 17
+	* Points R and P_v merged
+	* removed hyperbola asymptotes
+	* force slider constrained to keep path 𝑝𝑞 an ellipse
+	* tangent perpendiculars made more visible
+	* P_v and force sliders move 1:1 with mouse at all zoom levels
+	* equation sequence aligned on equals sign
+
+* Lemma 20
+	* removed hyperbola asymptotes
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+	* lower case letters italicized
+
+* Lemma 21
+	* removed hyperbola asymptotes
+
+* Proposition 41
+	* diagram simplified by not displaying value of v_0
+
+
 ## 2025-7-31 (Purple Version, 0.13849)
 ### Improved
 * Proposition 17
