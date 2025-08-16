@@ -1,6 +1,6 @@
 # Change Log
  
- ## 2025-8-?? (Purple Version, 0.??)
+## 2025-8-16 (Yellow Version, 0.13851)
 ### Improved
 * Proposition 12
 	* eccentricity slider moves 1:1 with mouse at all zoom levels
