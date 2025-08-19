@@ -1025,7 +1025,7 @@
                     // '        </div>' +
                     '        <div>' +
                     '            <input id="radio-rectangle" name="radio-slope" type="radio" checked/>' +
-                    '            <label for="radio-rectangle">Option 6: Prevent handle from from leaving rectangular boundry</label>' +
+                    '            <label for="radio-rectangle">Option 6: Prevent handle from leaving rectangular boundary</label>' +
                     '        </div>' +
                     '        <div>' +
                     '            <input id="radio-slope-none" name="radio-slope" type="radio"/>' +
