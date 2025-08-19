@@ -13,6 +13,7 @@
             [
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
+                { src:"config-functions.js" },
 
                 {  src:"dom.js" },
                 {  src:"d8d-model.js" },
@@ -27,7 +28,6 @@
                 {  src:"gui-swap-monotonity.js" },
                 {  src:"event-handlers.js" },
                 {  src:"amode2captures.js" },
-                {  src:"config-functions.js" },//TEMP Should this be placed here?
             ],
             "contents-list" :
             [

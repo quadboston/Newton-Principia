@@ -22,6 +22,37 @@
     //-Should some of the following be switched to all uppercase?
 
 
+    //TEMP To set the number of handles
+    const handleOptionsTemp = [
+        [
+            //one middle handle
+            {x: 439.75, y: 89.44},
+        ],
+        [
+            //two middle handles
+            {x: 403.67, y: 62.65},
+            {x: 475.83, y: 126.01},
+        ],
+        [
+            //three middle handles
+            {x:85 + 300,    y: 51.5},
+            {x:139 + 300,   y: 89.0},
+            {x:193 + 300,   y: 148.5 },
+        ],
+        [
+            //four middle handles:
+            {x: 74.8 + 300,  y: 45.97726888798351},
+            {x: 118.1 + 300, y: 72.70148453700233},
+            {x: 161.4 + 300, y: 109.92474464283467},
+            {x: 204.7 + 300, y: 166.52378909964816},
+        ],
+    ];
+    const countHandlesStored = sessionStorage.getItem("count-handles");
+    console.log("countHandlesStored =", countHandlesStored);
+    const countHandles = sessionStorage.getItem("count-handles") || 1;
+
+
+
     //Right figure
     Object.assign(dr2, initDataReg({
         xOffset : 300,
@@ -34,44 +65,27 @@
         },
         transformVerticalPtEnabled : true,
         transformHorizontalPtEnabled : true,
-        // // ctrlPtPositionsTemp : [
-        // //     {x:31.5+300, y:29},
-        // //     {x:100.90301839324853+300, y:238.1442580872202},
-        // //     {x:40.638476153274155+300, y:95.00715884675765},
-        // //     {x:190.3956064125703+300, y:251.73649751576627},
-        // //     {x:236.24848199449696+300, y:257.8532306681781},
-        // //     {x:248+300, y:259.5},
-        // // ],
-        // ctrlPtPositionsTemp : [
-        //     {x:331.5, y:29},
-        //     {x:398.83785088521734, y:242.27459310328263},
-        //     {x:339.9500869839304, y:96.38393718544512},
-        //     {x:479.38137970307054, y:252.42488668511},
-        //     {x:536.248481994497, y:257.8532306681781},
-        //     {x:548, y:259.5},
-        // ],
-        //TEMP Min area example
-        // ctrlPtPositionsTemp : [
-        //     {x:331.5, y:29},
-        //     {x:355.2223605887011, y:94.45523314453311},
-        //     {x:399.45462913209633, y:200.42227498214265},
-        //     {x:426.9060638943782, y:235.7809980011846},
-        //     {x:512.1581483471615, y:254.1570321787955},
-        //     {x:548, y:259.5},
-        // ],
         ctrlPtPositionsTemp : [
             {x:31.5 + 300, y: 29},
             
             //four middle handles:
-            {x: 74.8 + 300, y: 45.97726888798351},
-            {x: 118.1 + 300, y: 72.70148453700233},
-            {x: 161.4 + 300, y: 109.92474464283467},
-            {x: 204.7 + 300, y: 166.52378909964816},
+            // {x: 74.8 + 300, y: 45.97726888798351},
+            // {x: 118.1 + 300, y: 72.70148453700233},
+            // {x: 161.4 + 300, y: 109.92474464283467},
+            // {x: 204.7 + 300, y: 166.52378909964816},
             
             //three middle handles
-            //{x:85,          y: 51.5},
-            //{x:139,         y: 89.0},
-            //{x:193,         y: 148.5 },
+            // {x:85 + 300,          y: 51.5},
+            // {x:139 + 300,         y: 89.0},
+            // {x:193 + 300,         y: 148.5 },
+
+            //two middle handles
+            // {x: 403.67, y: 62.65},
+            // {x: 475.83, y: 126.01},
+
+            //one middle handle
+            // {x: 439.75, y: 89.44},
+            ...handleOptionsTemp[countHandles - 1],
 
             {x:248 + 300, y: 259.5 },
         ],
@@ -97,7 +111,7 @@
         },
         transformHorizontalPtEnabled : false,
         transformVerticalPtEnabled : true,
-        drAdustWidthsTemp : dr2,
+        drAdjustRectWidthsToMatchAreaRatios : dr2,
         // ctrlPtPositionsTemp : [
         //     {x:31.5, y:29},
         //     {x:94.37763941129889, y:55.29995432193536},
@@ -193,7 +207,7 @@
     //     },
     //     transformHorizontalPtEnabled : false,
     //     transformVerticalPtEnabled : true,
-    //     drAdustWidthsTemp : dr2,
+    //     drAdjustRectWidthsToMatchAreaRatios : dr2,
     // }));
 
     appstate.movingBasePt = false;
@@ -207,7 +221,8 @@
     //TEMP To override initial values for testing
     function initDataReg({xOffset, pointLabels, basePtDraggersEnabled, 
         transformHorizontalPtEnabled, transformVerticalPtEnabled,
-        drAdustWidthsTemp, ctrlPtPositionsTemp, partitionWidthsTemp}) {
+        drAdjustRectWidthsToMatchAreaRatios, ctrlPtPositionsTemp,
+        partitionWidthsTemp}) {
         return {
             basePts         : {offset:1, visOffset:0, list:[]},
             curvPts         : {offset:1, visOffset:0, list:[]},
@@ -274,18 +289,18 @@
                 origin              : null,
                 pts                 : {},//To store the draggers
             },
-            //TEMP Fill in function name and folder
-            //Automatically adjust widths of rects in the following datareg to
-            //match the ratio of areas on this datareg.  See "" function in
+            //Automatically adjust rectangle widths in the following datareg to
+            //match the ratio of areas in this datareg.
+            //See "calculateRectWidthsToMatchAreaRatios" function in
             //"model-aux.js" for more.
-            drAdustWidthsTemp,
+            drAdjustRectWidthsToMatchAreaRatios,
         }
     };
 
     //TEMP Current best draft 2025.08.06
     // function initDataReg({xOffset, pointLabels, basePtDraggersEnabled, 
     //     transformHorizontalPtEnabled, transformVerticalPtEnabled,
-    //     drAdustWidthsTemp}) {
+    //     drAdjustRectWidthsToMatchAreaRatios}) {
     //     return {
     //         basePts         : {offset:1, visOffset:0, list:[]},
     //         curvPts         : {offset:1, visOffset:0, list:[]},
@@ -355,7 +370,7 @@
     //         //Automatically adjust widths of rects in the following datareg to
     //         //match the ratio of areas on this datareg.  See "" function in
     //         //"model-aux.js" for more.
-    //         drAdustWidthsTemp,
+    //         drAdjustRectWidthsToMatchAreaRatios,
     //     }
     // };
 

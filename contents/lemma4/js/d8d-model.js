@@ -39,7 +39,7 @@
                     spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
                     spinnerCursorGrab : sconf.spinnerCursorGrabbed,
                 });
-            //TEMP Should be fine as it will just add points to both dataregs.
+            //TEMP Update datareg naming and similar
             [stdL2.datareg, stdL2.datareg2].forEach(dr => {
                 setDragPoints(dr);
             });
@@ -57,6 +57,8 @@
 
         function setDragPoints(dr) {
             //TEMP Seems like changing the order fixes the drag priority issue.
+            //However I still want to double check to ensure it's been dealt
+            //with correctly, otherwise it could have issues.
             Object.values(dr.transforms.pts).forEach((pointWrap) => {
                 setPoint(dr, pointWrap, pointWrap.index);
             });
@@ -67,9 +69,7 @@
                 setPoint(dr, pointWrap, pointWrap.index);
             });
 
-            //TEMP Moved base points here so that they have priority over the
-            //curve control points.  This is helpful when the curve is close
-            //to the base points.
+            //Placed after curve control points to have drag priority over them.
             ///Points on x-axis, on the base of the figure.
             if (dr.basePtDraggersEnabled) {
                 const bplist =  dr.basePts.list;
@@ -78,10 +78,6 @@
                 for(let ix = 1; ix < iMax; ix++) {
                     setPoint(dr, bplist[ix], ix);
                 }
-                // dr.basePts.list.forEach((pointWrap, pwix) => {
-                //     if( pwix > 0 )
-                //         setPoint(dr, pointWrap, pwix);
-                // });
             }
 
             //for decorator ... todm very easy to forget and be in pain ...
@@ -251,47 +247,73 @@
                 if (maxX != null && posNew[0] > maxX)
                     posNew[0] = maxX - 1;
 
-                // //TEMP
-                // //Check slope
-                const constrainSlopeEntire = document.getElementById("radio-slope-entire").checked;
-                if (constrainSlopeEntire) {
-                    // const positionsNewTemp = [...dr.ctrlPts.positions];
-                    const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
-                        const {x, y} = pos;
-                        return {x, y};
-                    });
-                    positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
-                    if (!stdL2.numModel.checkIfCurveSlopeOkTemp(dr, positionsNewTemp))
-                        return;
-                }
-                // // const posFound = checkIfCurveSlopeOk2(dr, index, posNew);
-                // // if (!posFound)
-                // //     return;
-                // // // posNew = [...posFound];
-                // // posNew[0] = posFound.x;
-                // // posNew[1] = posFound.y;
-                // // // Object.assign(posNew, posFound);
+
+                //TEMP
+                // const handleXPreventChange = 
+                //     document.getElementById("radio-handle-x-offset").checked;
+                // if (handleXPreventChange) {
+                //     const pos = dr.ctrlPts.positions.at(index);
+                //     if (pos)
+                //         posNew[0] = pos.x;
+                // }
+
+                // // //TEMP
+                // // //Check slope
+                // const constrainSlopeEntire = document.getElementById("radio-slope-entire").checked;
+                // if (constrainSlopeEntire) {
+                //     // const positionsNewTemp = [...dr.ctrlPts.positions];
+                //     const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
+                //         const {x, y} = pos;
+                //         return {x, y};
+                //     });
+                //     positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
+                //     if (!stdL2.numModel.checkIfCurveSlopeOkTemp(dr, positionsNewTemp))
+                //         return;
+                // }
+                // // // const posFound = checkIfCurveSlopeOk2(dr, index, posNew);
+                // // // if (!posFound)
+                // // //     return;
+                // // // // posNew = [...posFound];
+                // // // posNew[0] = posFound.x;
+                // // // posNew[1] = posFound.y;
+                // // // // Object.assign(posNew, posFound);
 
 
-                //TEMP Check slope point on right only
-                const constrainSlopeHandleYAndRight = document.getElementById("radio-slope-handle-y-and-right").checked;
-                if (constrainSlopeHandleYAndRight) {
-                    // const positionsNewTemp = [...dr.ctrlPts.positions];
-                    const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
-                        const {x, y} = pos;
-                        return {x, y};
-                    });
-                    positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
-                    if (stdL2.numModel.checkIfPointOnRightOfCurvePassedSlope(dr, positionsNewTemp))
-                        return;
-                }
+                // //TEMP Check slope point on right only
+                // const constrainSlopeHandleYAndRight = document.getElementById("radio-slope-handle-y-and-right").checked;
+                // if (constrainSlopeHandleYAndRight) {
+                //     // const positionsNewTemp = [...dr.ctrlPts.positions];
+                //     const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
+                //         const {x, y} = pos;
+                //         return {x, y};
+                //     });
+                //     positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
+                //     if (stdL2.numModel.checkIfPointOnRightOfCurvePassedSlope(dr, positionsNewTemp))
+                //         return;
+                // }
                 
 
 
-                //TEMP Constrain y value if needed
+                //TEMP Prevent handle y values from passing slope constraint
                 const constrainHandleY = document.getElementById("radio-slope-handle-y").checked;
-                if (constrainSlopeHandleYAndRight || constrainHandleY) {
+                // if (constrainSlopeHandleYAndRight || constrainHandleY) {
+                if (constrainHandleY) {
                     let yTemp = stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, posNew[0], posNew[1]);
+                    // console.log("yTemp =", yTemp);
+                    //TEMP Add extra padding
+                    // yTemp -= 10;
+                    if (yTemp < 0)
+                        posNew[1] += yTemp;
+                    // if (!stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, posNew[0], posNew[1]))
+                    //     return;
+                }
+
+                //TEMP Prevent handle y values from passing line offset from slope constraint
+                const constrainHandleYOffset = document.getElementById("radio-slope-handle-y-offset").checked;
+                if (constrainHandleYOffset) {
+                    const offset = document.getElementById("input-slope-constraint-offset")?.value || 0;
+                    let yTemp = stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, posNew[0], posNew[1]);
+                    yTemp -= offset;
                     // console.log("yTemp =", yTemp);
                     //TEMP Add extra padding
                     // yTemp -= 10;
@@ -304,55 +326,55 @@
 
 
 
-                //TEMP Move other handles with this one
-                const constrainSlopeEntireAndMoveOtherHandles =
-                    document.getElementById("radio-slope-entire-and-move-others").checked;
-                // const moveOtherHandlesWithThisOne = true;
-                if (constrainSlopeEntireAndMoveOtherHandles) {//moveOtherHandlesWithThisOne) {
-                    const xStart = dr.ctrlPts.positions.at(0).x;
-                    const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
+                // //TEMP Move other handles with this one
+                // const constrainSlopeEntireAndMoveOtherHandles =
+                //     document.getElementById("radio-slope-entire-and-move-others").checked;
+                // // const moveOtherHandlesWithThisOne = true;
+                // if (constrainSlopeEntireAndMoveOtherHandles) {//moveOtherHandlesWithThisOne) {
+                //     const xStart = dr.ctrlPts.positions.at(0).x;
+                //     const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
 
-                    // const positionsNewTemp = [...dr.ctrlPts.positions];
-                    const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
-                        const {x, y} = pos;
-                        return {x, y};
-                    });
-                    // positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
+                //     // const positionsNewTemp = [...dr.ctrlPts.positions];
+                //     const positionsNewTemp = dr.ctrlPts.positions.map(pos => {
+                //         const {x, y} = pos;
+                //         return {x, y};
+                //     });
+                //     // positionsNewTemp[index] = {x: posNew[0], y: posNew[1]};
 
-                    //A handle at this distance or beyond won't move with the
-                    //handle beign dragged.
-                    const distanceNoMovement = chosenWidth * 0.5;
+                //     //A handle at this distance or beyond won't move with the
+                //     //handle beign dragged.
+                //     const distanceNoMovement = chosenWidth * 0.5;
 
-                    const posOld = dr.ctrlPts.positions[index];
-                    const deltaY = posNew[1] - posOld.y;
+                //     const posOld = dr.ctrlPts.positions[index];
+                //     const deltaY = posNew[1] - posOld.y;
 
-                    positionsNewTemp[index].x = posNew[0];
-                    positionsNewTemp[index].y = posNew[1];
-                    for(let i = 1; i < positionsNewTemp.length - 1; i++) {
-                        if (i === index)
-                            continue;
+                //     positionsNewTemp[index].x = posNew[0];
+                //     positionsNewTemp[index].y = posNew[1];
+                //     for(let i = 1; i < positionsNewTemp.length - 1; i++) {
+                //         if (i === index)
+                //             continue;
 
-                        const pos = positionsNewTemp[i];
-                        const fMoveY = 1 - Math.min(1, 
-                            Math.abs((pos.x - posOld.x) / distanceNoMovement));
+                //         const pos = positionsNewTemp[i];
+                //         const fMoveY = 1 - Math.min(1, 
+                //             Math.abs((pos.x - posOld.x) / distanceNoMovement));
 
-                        pos.y += deltaY * fMoveY;
-                        // const yAdjustment = stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, pos.x, pos.y);
-                        // if (yAdjustment < 0)
-                        //     pos.y += yAdjustment;
-                    }
+                //         pos.y += deltaY * fMoveY;
+                //         // const yAdjustment = stdL2.numModel.checkIfControlPointYOkForSlopeTemp(dr, pos.x, pos.y);
+                //         // if (yAdjustment < 0)
+                //         //     pos.y += yAdjustment;
+                //     }
 
-                    //Check if all new positions ok
-                    if (!stdL2.numModel.checkIfCurveSlopeOkTemp(dr, positionsNewTemp))
-                        return;
+                //     //Check if all new positions ok
+                //     if (!stdL2.numModel.checkIfCurveSlopeOkTemp(dr, positionsNewTemp))
+                //         return;
 
-                    //Update the control points
-                    for(let i = 1; i < positionsNewTemp.length - 1; i++) {
-                        const {x, y} = positionsNewTemp[i];
-                        dr.ctrlPts.positions[i].x = x;
-                        dr.ctrlPts.positions[i].y = y;
-                    }
-                }
+                //     //Update the control points
+                //     for(let i = 1; i < positionsNewTemp.length - 1; i++) {
+                //         const {x, y} = positionsNewTemp[i];
+                //         dr.ctrlPts.positions[i].x = x;
+                //         dr.ctrlPts.positions[i].y = y;
+                //     }
+                // }
 
 
 
@@ -397,6 +419,28 @@
                 //         dr.ctrlPts.positions[i].y = y;
                 //     }
                 // }
+
+                //TEMP Rectangle constraint for testing
+                const constrainRectangle = 
+                    document.getElementById("radio-rectangle").checked;
+                if (constrainRectangle) {
+                    const posTopLeft = dr.ctrlPts.positions.at(0);
+                    const posBottomRight = dr.ctrlPts.positions.at(-1);
+                    if (posTopLeft && posBottomRight) {
+                        const figureWidth = posBottomRight.x - posTopLeft.x;
+                        const figureHeight = posBottomRight.y - posTopLeft.y;
+                        const bound = {
+                            xMin: posTopLeft.x + figureWidth * 0.20,
+                            xMax: posTopLeft.x + figureWidth * (1 - 0.15),
+                            yMin: posTopLeft.y + figureHeight * 0.15,
+                            yMax: posTopLeft.y + figureHeight * (1 - 0.25),
+                        };
+                        posNew[0] = Math.max(Math.min(posNew[0], bound.xMax), bound.xMin);
+                        posNew[1] = Math.max(Math.min(posNew[1], bound.yMax), bound.yMin);
+                    }
+                }
+
+
 
 
                 //Update stored un-transformed control point position.
