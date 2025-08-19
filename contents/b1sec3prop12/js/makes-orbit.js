@@ -156,24 +156,6 @@
             //arc does not have area
             //"no more dq below" ...
             if( doDeltaArc ) return;
-
-            let rgA = rg[ areaName ]; //areaName = orbitarea-[sample]
-            let areaSvg = rgA.areaSvg = nssvg.polyline({
-                pivots  : medpoints,
-                svgel   : rgA.areaSvg,
-                parent  : stdMod.svgScene,
-                //should be overridden by ##tp-machine
-                //stroke           : haz( arg, 'stroke' ),
-                //'stroke-width'   : haz( arg, 'stroke-width' ),
-                //fill             : haz( arg, 'fill' ),
-            });
-
-            if( !has( rgA, 'areaSvg$' ) ) {
-                rgA.areaSvg$ = $$.$( areaSvg );
-            }
-            rgA.areaSvg$
-                .addClass( 'tofill tp-'+areaName )
-                .tgcls( 'undisplay', rgA.undisplay );
         }
 
         function protectedQ( q ) {

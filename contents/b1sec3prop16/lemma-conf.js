@@ -7,6 +7,11 @@
         return {       
             codesList : [
                 { src: pre + 'sconf.js' },
+                { src: pre + 'amode8captures.js' },
+                { src: pre + 'completes-sliders-creation.js' },
+                { src: pre + 'init-model-parameters.js' },
+                { src: pre + 'model-upcreate.js' },
+                { src: pre + 'media-upcreate.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',

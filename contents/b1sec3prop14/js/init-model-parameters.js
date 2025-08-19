@@ -18,7 +18,11 @@
     {
         var op = sconf.orbitParameters;
         toreg( 'approximated-curve' );
+        toreg( 'approximated-curve-sample' );
+        toreg( 'orbitarea' );
+        toreg( 'orbitarea-sample' );
         toreg( 'instanttriangle' );
+        toreg( 'instanttriangle-sample' );
 
         rg.P.q = op.PparQ_initial;
         ////creates both curve and its area
@@ -26,12 +30,18 @@
         {
             let {
                 rr,
+                projectionOfCenterOnTangent,
             } = mcurve.planeCurveDerivatives({
                 fun : rg[ 'approximated-curve' ].t2xy,
                 q : op.PparQ_initial,
                 rrc : rg.S.pos,
             });
             nspaste( rg.P.pos, rr );
+            nspaste( rg.Y.pos, projectionOfCenterOnTangent );
+            ////establishes rg.omegaHandle.pos
+            let excess = -0.2;
+            rg.omegaHandle.initialPos = mat.sm( 1+excess, rg.Y.pos, -excess, rg.P.pos );
+            nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         }
 
         stdMod.completesSlidersCreation();      //in-diagram sliders
@@ -59,8 +69,9 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        if( fconf.effId !== "b1sec3prop14" ) {
+            stdMod.createsGraphFW( stdMod.legendRoot$ );
+        }
         //==================================================
         // \\// decoration graph 
         //==================================================

@@ -7,6 +7,7 @@
         return {          
             codesList : [
                 { src: 'sconf.js' },
+                { src: 'amode8captures.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',

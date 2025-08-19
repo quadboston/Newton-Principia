@@ -119,17 +119,13 @@
             given,
             body,
             orbit,
-            orbitareaSample,
-            orbitareaHiddenStart,
             instanttriangleHiddenStart,
             proof,
             result,
-            force,
             shadow,
             hidden,
             curvature,
             context,
-            attention,
         } = fixedColors;
         let red = [255,0,0]; //for debugging
 
@@ -143,11 +139,7 @@
             curvature,
             body,
             orbit               : orbit,
-            'orbit-sample'      : given,
-            orbitarea           : orbitareaHiddenStart,
-            'orbitarea-sample'  : orbitareaSample,
             orbitdq             : orbit,
-            'orbitdq-sample'    : given, //todm remove
             shadow,
             force               : result,
             instanttriangle     : instanttriangleHiddenStart,
@@ -158,22 +150,110 @@
 
         var originalPoints = {};
         Object.assign( originalPoints, {
-            O : {
-                pcolor : context,
-                caption : 'O',
-                pos: F,
-                letterAngle : 45,
+            // hyperbola
+            S : {
+                pcolor : result,
+                letterAngle : -115,
                 letterRotRadius : 20,
             },
+            P : {
+                pcolor : body,
+                letterAngle : 120,
+                draggableY  : true,
+            },
+            LL : { // opposite of P, unlabelled
+                pcolor : orbit,
+                doPaintPname : false,
+            },
+            A : {
+                pcolor : orbit,
+                letterRotRadius : 20,
+                letterAngle : -90,
+            },            
+            AA : { // opposite A
+                undisplayAlways : true,
+                doPaintPname : false,
+                pcolor : orbit,
+            },
+            B : {
+                letterRotRadius : 20,
+                pcolor : orbit,
+            },            
+            BB : { // opposite B
+                letterAngle : 90,
+                undisplayAlways : true,
+                doPaintPname : false,
+                pcolor : orbit,
+            },
+            C : { //center symmetry of orbit
+                pcolor : orbit,
+                letterAngle : -45,
+            },
+            Zminus : {
+                caption : 'Z',
+                pcolor : body,
+                letterAngle : 145,
+                letterRotRadius : 20,
+            },
+            Z : {
+                pcolor : body,
+                letterAngle : 45,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            Q : {
+                pcolor : proof,
+                letterAngle : 225,
+                letterRotRadius : 20,
+                draggableX  : true,
+                draggableY  : true,
+            },
 
-            //-----------------------------------------
-            // //\\ Book's prop. 11
-            //-----------------------------------------
+
+            // triangle
+            G : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -45,
+            },
+            D : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                //letterAngle : 135,
+            },
+            K : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -60,
+            },
+            F : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : 135,
+            },
+            v : {
+                caption : '𝑣',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+            },
             E : {
                 pcolor : proof,
                 letterRotRadius : 20,
                 //letterAngle : 90,
+            },            
+            x : {
+                caption : "𝑥",
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 20,
             },
+            R : {
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
+            
             H : {
                 pcolor : proof,
                 letterAngle : -90,
@@ -182,263 +262,28 @@
                 pcolor : proof,
                 letterRotRadius : 20,
             },
-            //-----------------------------------------
-            // \\// Book's prop. 11
-            //-----------------------------------------
-
-            B : {
-                letterRotRadius : 20,
-                pcolor : orbit,
-            },
-
-            BB : {
-                letterAngle : 90,
-                undisplayAlways : true,
-                doPaintPname : false,
-                pcolor : orbit,
-            },
-
-            L : {
-                //no need: will be dynamic: caption : 'mmm',
-                pcolor : orbit,
-                letterAngle : -45,
-                letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
-            LL : {
-                pcolor : orbit,
-                doPaintPname : false,
-            },
-
-            l : {
-                //no need: will be dynamic: caption : 'mmm',
-                pcolor : given,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
-
-            ll : {
-                pcolor : given,
-                doPaintPname : false,
-            },
-
-            A : {
-                pcolor : orbit,
-                letterRotRadius : 20,
-                letterAngle : -90,
-            },
-
-            AA : {
-                undisplayAlways : true,
-                doPaintPname : false,
-                pcolor : orbit,
-            },
-
-
-            D : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                //letterAngle : 135,
-            },
-
-            K : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -60,
-            },
-
-            M : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -45,
-            },
-
-            N : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -45,
-            },
-            G : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -45,
-            },
-
-
             T : {
                 pcolor : proof,
                 //letterAngle : 180,
                 letterRotRadius : 20,
             },
-
-            R : {
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
-
-            vSample : {
-                ////prop17
-                caption : 'r',
-                pcolor : given,
-                letterAngle : 135,
-                letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
-            Y : {
-                pcolor : proof,
+            O : {
+                pcolor : context,
+                caption : 'O',
+                pos: F,
                 letterAngle : 45,
-            },
-
-            //speed of the body
-            vb : {
-                caption : '',
-                pcolor : proof,
-                letterAngle : 135,
                 letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
             },
 
-            omegaHandle : {
-                caption : 'ω',
-                pcolor : shadow,
-                letterAngle : 90,
-                letterRotRadius : 17,
-                draggableX  : true,
-                draggableY  : true,
-                fontSize : 20,
-            },
-
-            f : {
-                caption : '𝛾',
-                pcolor : force,
-                letterAngle : 90,
-                letterRotRadius : 17,
-                draggableX  : true,
-                draggableY  : true,
-                fontSize : 20,
-            },
-
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-            Zminus : {
-                caption : 'Z',
-                pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
-                doPaintPname : "b1sec3prop13" !== fconf.sappId,
-            },
-
-            Ys : {
-                caption : '',
-                pcolor : proof,
-                letterAngle : 45,
-            },
-
-            v : {
-                caption : '𝑣',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
-            },
-
-            F : {
-                pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : 135,
-            },
-
-            VV : {
-                caption : 'V',
-                pcolor : proof,
-                letterAngle : -45,
-            },
-
-            //center symmetry of orbit
-            C : {
+            L : { // not shown, but mentionned in text
                 pcolor : orbit,
                 letterAngle : -45,
-            },
-
-            //----------------------------------------
-            // //\\ Prop. 10 Book's "another solution"
-            //----------------------------------------
-            u : {
-                caption : '𝑢',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
-            },
-            //----------------------------------------
-            // \\// Prop. 10 Book's "another solution"
-            //----------------------------------------
-
-            //----------------------------------------
-            // //\\ Prop. 11
-            //----------------------------------------
-            x : {
-                caption : "𝑥",
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
-            //----------------------------------------
-            // \\// Prop. 11
-            //----------------------------------------
-
-            //---------------------------------------
-            // //\\ draggable points
-            //---------------------------------------
-            S : {
-                pcolor : result,
-                letterAngle : -115,
-                letterRotRadius : 20,
-            },
-
-            P : {
-                pcolor : body,
-                letterAngle : 120,
-                draggableY  : true,
-            },
-
-            p : {
-                pcolor : given,
-                letterAngle : 120,
-            },
-
-            Fi : {
-                caption : "φ",
-                pcolor : shadow, //body,
-                letterAngle : 120,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 225,
                 letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
             },
-            q : {
-                ////prop17
-                pcolor : given,
-                letterAngle : -65,
-                letterRotRadius : 20,
-            },
 
-            // //\\ eccentricity slider
+            // eccentricity slider
             Zeta : {
                 caption : 'eccentricity, e',
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
@@ -450,7 +295,6 @@
                 doPaintPname : 'b1sec3prop13' !== fconf.sappId,
                 unscalable  : true,
             },
-
             ZetaCaption : {
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
                 pcolor : orbit,
@@ -460,7 +304,6 @@
                 doPaintPname : 'b1sec3prop13' !== fconf.sappId,
                 unscalable  : true,
             },
-
             ZetaStart : {
                 pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
                 pcolor : orbit,
@@ -468,7 +311,6 @@
                 doPaintPname : false,
                 unscalable  : true,
             },
-
             ZetaEnd : {
                 pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
                 pcolor : orbit,
@@ -476,128 +318,62 @@
                 doPaintPname : false,
                 unscalable  : true,
             },
-            // \\// eccentricity slider
-            //---------------------------------------
-            // \\// draggable points
-            //---------------------------------------
+
         });
 
         var linesArray =
         [
-            //-----------------------------------------
-            // //\\ Book's prop. 11
-            //-----------------------------------------
-            { Qx : { pcolor : proof }, },
-            { Px : { pcolor : proof }, },
-            //todm: proliferation
-            { EP : { pcolor : proof }, },
-            { PE : { pcolor : proof }, },
-            { ES : { pcolor : proof }, },
-            { EI : { pcolor : proof }, },
-            { EO : { pcolor : proof }, },
-            { EC : { pcolor : proof }, },
-            { PH : {
-                        pcolor : proof,
-                        vectorTipIx : 0,
-                   },
-            },
-            { PK : { pcolor : attention }, },
-            { SK : { pcolor : proof }, },
-            { HI : { pcolor : proof }, },
-            { BH : { pcolor : proof }, },
-            //{ OS : { pcolor : proof }, },
-            { OH : { pcolor : proof }, },
-            { PI : { pcolor : proof }, },
-            //-----------------------------------------
-            // \\// Book's prop. 11
-            //-----------------------------------------
-
-            //{ 'CV' : { pcolor : curvature }, },
-            { 'PC' : { pcolor : proof }, },
-            { 'O,Fi' : { pcolor : shadow }, },
-
-            { ST : { pcolor : proof, }, },
-
-            { 'SY' : { pcolor : proof,
-                       captionShiftNorm : -28 }, },
-            { 'S,Ys' : { pcolor : proof,
-                       captionShiftNorm : -28 }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'CS' : { pcolor : proof }, },
-            { 'CH' : { pcolor : proof }, },
-
+            // hyperbola
             { 'P,Zminus' : { pcolor : body }, },
-            { 'P,omegaHandle' : { pcolor : context }, },
             { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
             { 'PR' : { pcolor : body, 'stroke-width' : 2, 
                 captionShiftNorm : -18, }, },
-            { 'P,vb' : { pcolor : body, 'stroke-width' : 2, 
-                captionShiftNorm : -18,
-                       vectorTipIx : 1 }, },
-            { 'p,vSample' : { pcolor : given, 'stroke-width' : 1.1, 
-                captionShiftNorm : -18,
-                       vectorTipIx : 1 }, },
-            { 'p,f' : { pcolor : force, 'stroke-width' : 1.1, 
-                captionShiftNorm : -18,
-                       vectorTipIx : 1 }, },
-
-            { 'QR' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
-
-            { DK : { pcolor : proof }, },
-            { DS : { pcolor : proof }, },
-            { DH : { pcolor : proof }, },
-            { PM : { pcolor : body }, },
-            { SM : { pcolor : body }, },
-
-            { OM : { pcolor : proof }, },
-            { ON : { pcolor : proof }, },
-            { NS : { pcolor : proof }, },
-            { SA : { pcolor : proof }, },
-            { NP : { pcolor : proof }, },
-
-            { GP : { pcolor : proof }, },
-            { Qv : { pcolor : proof }, },
-            { Pv : { pcolor : proof }, },
-            { Tv : { pcolor : proof }, },
-            { xv : { pcolor : proof }, },
-            { Tx : { pcolor : proof }, },
-
-            { Gv : { pcolor : proof }, },
-            { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : orbit }, },
-            { 'B,BB' : { pcolor : orbit }, },
-            { AT : { pcolor : proof }, },
-            { CA : { pcolor : proof }, },
-
-            { CB : { pcolor : proof }, },
-            { 'L,LL' : { pcolor : orbit,
-               captionShiftNorm : 22, lposYSugar : 3 }, },
-            { 'l,ll' : { pcolor : given,
-               captionShiftNorm : 44, lposYSugar : -5, }, },
-            { SL : { pcolor : orbit, }, },
-            { CD : { pcolor : proof }, },
-
-            { PO : { pcolor : proof }, },
-            { FO : { pcolor : proof }, },
             { 'SP' : {
                     pcolor : body,
                     vectorTipIx : 1 },
-            },
-            { 'Sp' : { pcolor : given, 'stroke-width' : 1.1, 
-                        captionShiftNorm : -18,
-                        vectorTipIx : 1 }, },
+            },            
+            { 'B,BB' : { pcolor : orbit }, },
 
-            //Book's "another solution"
-            { Tu : { pcolor : proof }, },
-            { 'u,VV' : { pcolor : proof }, },
-            { uP : { pcolor : proof }, },
-            { PQ : { pcolor : proof }, },
-            { 'P,VV' : { pcolor : proof }, },
+            // triangle            
+            { CA : { pcolor : proof }, },
+            { CB : { pcolor : proof }, },
+            { GP : { pcolor : proof }, },
+            { DK : { pcolor : proof }, },
+            { PF : { pcolor : proof }, },            
+            { Qv : { pcolor : proof }, },
+            { QR : { pcolor : proof }, },
+            { Qx : { pcolor : proof }, },
+            { Px : { pcolor : proof }, },
+            
+            { EP : { pcolor : proof }, },            
+            { HI : { pcolor : proof }, },
+            { EC : { pcolor : proof }, },
+            { ES : { pcolor : proof }, },
+            { EI : { pcolor : proof }, },
+            { CS : { pcolor : proof }, },
+            { CH : { pcolor : proof }, },
+            { PI : { pcolor : proof }, },
+            { PH : {
+                    pcolor : proof,
+                    vectorTipIx : 0,
+                },
+            },
+            
+            { QT : { pcolor : proof }, },
+            { PT : { pcolor : proof }, },
+            { AT : { pcolor : proof }, },
+            { Pv : { pcolor : proof }, },            
+            { xv : { pcolor : proof }, },
+            { PC : { pcolor : proof }, },
+            { PE : { pcolor : proof }, },
+            { Gv : { pcolor : proof }, },
+            { CD : { pcolor : proof }, },
+
+            // latus not shown, but mentionned in text
+            { 'L,LL' : { pcolor : orbit,
+               captionShiftNorm : 22, lposYSugar : 3 }, },
+
+            // e slider
             { 'ZetaStart,ZetaEnd' :
               { pcolor : orbit } 
             },
