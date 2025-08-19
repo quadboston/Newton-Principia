@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monotonic Curve Editor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        canvas {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: crosshair;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .info, .constraints {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border-width: 0px;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Curve Editor</h1>
+        <div class="instructions">
+            Drag the control points to shape your curve.
+        </div>
+        
+        <canvas id="curveCanvas" width="800" height="500"></canvas>
+        
+        <div class="controls">
+            <button onclick="addPoint()">Add Point</button>
+            <button onclick="removePoint()">Remove Point</button>
+            <button onclick="resetCurve()">Reset</button>
+        </div>
+
+        <fieldset class="constraints">
+            <legend>Select point constraint method</legend>
+            <div>
+                <input type="radio" id="input-slope-curve" name="slope"/>
+                <label for="input-slope-curve">Prevent entire curve from passing slope constraint</label>
+            </div>
+            <div>
+                <input type="radio" id="input-slope-point" name="slope"/>
+                <label for="input-slope-point">Prevent points from passing slope constraint</label>
+            </div>
+            <div>
+                <input type="radio" id="input-slope-point-offset" name="slope"/>
+                <label for="input-slope-point-offset">Prevent points from passing line offset from slope constraint</label>
+            </div>
+            <div>
+                <input type="radio" id="input-slope-none"  name="slope" checked/>
+                <label for="input-slope-none">None</label>
+            </div>
+        </fieldset>
+        
+        <div class="info">
+            <strong>How to use:</strong><br>
+            • Click and drag any blue control point to reshape the curve<br>
+            • Add/remove points using the buttons above<br>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('curveCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let points = [];
+
+        //Angle of slope constraint
+        const slopeAngleDegrees = 10;
+        //Offset for second line
+        const slopeOffset = 30;
+        
+        let isDragging = false;
+        let dragIndex = -1;
+        let mousePos = {x: 0, y: 0};
+        
+        // Get mouse position relative to canvas
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        
+        // Check if mouse is near a point
+        function getPointAt(pos) {
+            //Skip end points
+            for (let i = 1; i < points.length-1; i++) {
+                const dx = pos.x - points[i].x;
+                const dy = pos.y - points[i].y;
+                if (Math.sqrt(dx * dx + dy * dy) < 15) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        // Catmull-Rom spline interpolation for smooth curves
+        function catmullRom(t, p0, p1, p2, p3) {
+            const t2 = t * t;
+            const t3 = t2 * t;
+            
+            return 0.5 * (
+                (2 * p1) +
+                (-p0 + p2) * t +
+                (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+                (-p0 + 3 * p1 - 3 * p2 + p3) * t3
+            );
+        }
+        
+        // Draw the curve using spline interpolation
+        function drawCurve() {
+            if (points.length < 2) return;
+            
+            ctx.strokeStyle = doesCurvePassSlope() ? '#ff0000' : '#667eea';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+
+            // Draw curve segments
+            const curveSegments = createCurveSegments();
+            for (let i = 0; i < curveSegments.length; i++) {
+                const {x, y} = curveSegments[i];
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            
+            ctx.stroke();
+        }
+        
+        // Draw control points
+        function drawPoints() {
+            points.forEach((point, index) => {
+                ctx.fillStyle = index === dragIndex ? '#ff6b6b' : '#4ecdc4';
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, 8, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Add white border
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+        }
+        
+        // Draw grid
+        function drawGrid() {
+            ctx.strokeStyle = '#f0f0f0';
+            ctx.lineWidth = 1;
+            
+            // Vertical lines
+            for (let x = 0; x <= canvas.width; x += 50) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            
+            // Horizontal lines
+            for (let y = 0; y <= canvas.height; y += 50) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        //Draw slope constraint
+        function drawSlope(color, offset) {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 3;
+
+            const x1 = points.at(0).x;
+            const y1 = computeYUsingSlope(x1);
+            const x2 = points.at(-1).x;
+            const y2 = points.at(-1).y;
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1 + offset);
+            ctx.lineTo(x2, y2 + offset);
+            ctx.stroke();
+        }
+        
+        // Main draw function
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGrid();
+            drawSlope('#ddd', -slopeOffset);
+            drawSlope('#ff0000', 0);
+            drawCurve();
+            drawPoints();
+        }
+        
+        // Event listeners
+        canvas.addEventListener('mousedown', (e) => {
+            mousePos = getMousePos(e);
+            dragIndex = getPointAt(mousePos);
+            
+            if (dragIndex !== -1) {
+                isDragging = true;
+                canvas.style.cursor = 'grabbing';
+            }
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            mousePos = getMousePos(e);
+            
+            if (isDragging && dragIndex !== -1) {
+                //Constrain points if needed
+                const preventCurvePassingSlope =
+                    document.getElementById("input-slope-curve").checked;
+                const preventPointPassingSlope =
+                    document.getElementById("input-slope-point").checked;
+                const preventPointPassingOffsetSlope =
+                    document.getElementById("input-slope-point-offset").checked;
+
+                const pointStored = {...points[dragIndex]};
+                points[dragIndex] = mousePos;
+
+                if (preventCurvePassingSlope) {
+                    //Prevent move if needed
+                    if (doesCurvePassSlope()) {
+                        points[dragIndex] = pointStored;
+                        return;
+                    }
+                } else if (preventPointPassingSlope || preventPointPassingOffsetSlope) {
+                    //Adjust point if needed
+                    const {x, y} = points[dragIndex];
+                    const offset = preventPointPassingOffsetSlope ? slopeOffset : 0;
+
+                    const distance = y + offset - computeYUsingSlope(x);
+                    if (distance > 0)
+                        points[dragIndex].y -= distance;
+                }
+                draw();
+            } else {
+                // Update cursor
+                const hoverIndex = getPointAt(mousePos);
+                canvas.style.cursor = hoverIndex !== -1 ? 'grab' : 'crosshair';
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+            dragIndex = -1;
+            canvas.style.cursor = 'crosshair';
+        });
+        
+        // Control functions
+        function addPoint() {
+            if (points.length < 10) {
+                const newX = points[points.length - 1].x + 80;
+                const newY = points[points.length - 1].y + 80;
+                // const newY = Math.random() * (canvas.height - 100) + 50;
+                points.push({x: Math.min(newX, canvas.width - 50), y: newY});
+                sortPoints();
+                draw();
+            }
+        }
+        
+        function removePoint() {
+            if (points.length > 2) {
+                points.pop();
+                draw();
+            }
+        }
+        
+        function resetCurve() {
+            points = [
+                {x: 200, y: 100},
+                {x: 300, y: 130},
+                {x: 400, y: 180},
+                {x: 500, y: 260},
+                {x: 600, y: 400}
+            ];
+            draw();
+        }
+        
+        function sortPoints() {
+            points.sort((a, b) => a.x - b.x);
+        }
+
+        //Creates array with all points on curve
+        function createCurveSegments() {
+            const output = [];
+
+            // For smooth curve, we need to handle endpoints specially
+            const extendedPoints = [
+                {x: points[0].x - (points[1].x - points[0].x), y: points[0].y - (points[1].y - points[0].y)},
+                ...points,
+                {x: points[points.length-1].x + (points[points.length-1].x - points[points.length-2].x), 
+                 y: points[points.length-1].y + (points[points.length-1].y - points[points.length-2].y)}
+            ];
+            
+            ctx.moveTo(points[0].x, points[0].y);
+            
+            // Draw curve segments
+            for (let i = 0; i < points.length - 1; i++) {
+                const steps = 50;
+                for (let t = 0; t <= steps; t++) {
+                    const u = t / steps;
+                    const x = catmullRom(u, 
+                        extendedPoints[i].x, 
+                        extendedPoints[i + 1].x, 
+                        extendedPoints[i + 2].x, 
+                        extendedPoints[i + 3].x
+                    );
+                    const y = catmullRom(u,
+                        extendedPoints[i].y,
+                        extendedPoints[i + 1].y,
+                        extendedPoints[i + 2].y,
+                        extendedPoints[i + 3].y
+                    );
+                    
+                    if (i === 0 || t > 0)
+                        output.push({x, y})
+                }
+            }
+
+            return output;
+        }
+
+        function computeYUsingSlope(x) {
+            const xEnd = points.at(-1).x;
+            const yEnd = points.at(-1).y;
+            const angleRad = slopeAngleDegrees / 180 * Math.PI;
+            return yEnd + Math.tan(angleRad) * (x - xEnd);
+        }
+
+        //Check if any part of the curve passes the slope constraint
+        function doesCurvePassSlope() {
+            const curveSegments = createCurveSegments();
+            for (let i = 0; i < curveSegments.length - 1; i++) {
+                const {x, y} = curveSegments[i];
+                if (y > computeYUsingSlope(x))
+                    return true;
+            }
+
+            return false;
+        }
+        
+        // Initialize and draw
+        resetCurve();
+    </script>
+</body>
+</html>
