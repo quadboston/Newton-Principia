@@ -14,10 +14,11 @@
     //analogy of pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
     {
-        // called twice on page load, once per orbit
         //console.log('creates_orbitRack'); 
 
         var op = vop || sconf.orbitParameters;
+        op.qStart = -Math.PI; // these vals are used here & graph-array
+        op.qEnd = Math.PI;
 
         //:only css names
         var curveName   = vop ? 'orbit-sample' : 'orbit';
@@ -66,12 +67,10 @@
         //returns unclosed curve with end point =/= first point exactly
         function ownrange2points({ stepsCount })
         {
-            var qStart = -Math.PI;
-            var qEnd = Math.PI;
             var points = [];
-            var qStep = ( qEnd - qStart ) / stepsCount;
+            var qStep = ( op.qEnd - op.qStart ) / stepsCount;
             for( var qix = 0; qix<=stepsCount; qix++ ) {
-                var q = qStart + qStep * qix;           
+                var q = op.qStart + qStep * qix;        
                 points.push( t2xy( q ) );
             }
             return points;
@@ -209,11 +208,25 @@
         op.B            = op.latus / op.lambda;
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
+        !vop && eccentricity2sliderPos();
         
+        // todo: is there a better place for this?
+        // draws value on e slider
+        function eccentricity2sliderPos()
+        {
+            if( !has( rg, 'ZetaEnd' ) ) return;
+            var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
+            var zeta = Math.atan( op.eccentricity );
+            rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
+            rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
+            rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
+        }
+
         //this function does not change eccentricity (except SAFE_VALUE case), 
         //mostly just flips model from ellipse to hyperbola based on e
         //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
+
 
 }) ();
 

@@ -1,43 +1,31 @@
 ( function() {
     var {
-        sn,
-        $$, nssvg, has, haz, mat, mcurve,
-        fconf, ssF,
+        $$, nssvg, has, haz, ssF,
         stdMod, sconf, rg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    } = window.b$l.apptree({ stdModExportList : {
             creates_orbitRack,
             establishesEccentricity,
         },
     });
-    var op = sn( 'orbitParameters', sconf );
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
-    //analogy of
-    //function  pointsArr_2_singleDividedDifferences()
+    //called from init-model-parameters.js
+    //analogy of pointsArr_2_singleDividedDifferences()
     function creates_orbitRack( vop )
     {
-        var op                         = vop || sconf.orbitParameters;
-        op.protectedQ                  = protectedQ;
-        op.posQ_2_andgleInPIandMinusPI = posQ_2_andgleInPIandMinusPI;
-        op.qStart                      = -Math.PI;
-        op.qEnd                        = Math.PI;
+        //console.log('creates_orbitRack'); 
 
-        var rgP         = vop ? rg.p : rg.P;
+        var op = vop || sconf.orbitParameters;
+        op.qStart = -Math.PI; // these vals are used here & graph-array
+        op.qEnd = Math.PI;
 
         //:only css names
         var curveName   = vop ? 'orbit-sample' : 'orbit';
 
         //both: css and rg names
         var dqName      = vop ? 'orbitdq-sample' : 'orbitdq';
-        var areaName    = vop ? 'orbitarea-sample' : 'orbitarea';
-
         var lowname     = curveName; //sDomF.topicIdUpperCase_2_underscore( curveName );
-        var dqlowname   = dqName; //sDomF.topicIdUpperCase_2_underscore( dqName );
-
         var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
         var rgDq        = rg[ dqName ]; //"twin-object" for rgX
 
@@ -48,148 +36,126 @@
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
-                //trange2points,
                 poly2svg,
         };
         Object.assign( rgX, result );
         Object.assign( rgDq, result );
-        poly2svg({});
+        //poly2svg({}); //unnecessary, called a million times from media-upcreate 
         return result;
 
 
-        ///param t to [x,y]
-        function t2xy(
-            //inner parameter for conics, usually angle,
-            //aka below poz.x = signedRo * Math.cos( q + op.mainAxisAngle );
-            q
-        ){
+        // param q (angle) to [x,y] point on conic
+        // todo: rename? what is t? 
+        // also called from other modules to determine position of specified points
+        function t2xy( q ){
+
+            //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
             if( den === 0 ) {
-                ////floating point error protection:
-                ////protection for cos does not work well when cos = 1-x^2/2,
-                ////this is why we do this validator here,
-                ////for parabala it cannot be < 0 and for hyperbola,
-                ////both > 0 and < 0 can happen, so make (todm) it positive:
-                den = 1e-20;
-            }
-            var signedRo = op.latus / den;
-
-            /*
-            if( fconf.effId === "b1sec3prop14" ) {
-                if( op.conicSignum === -1 && Math.abs( rgP.q ) < op.SINGULARITY_ANGLE ) {
-                    ////in this proposition, we keep position P = constant, so
-                    ////do invert signedRo for opposite branch of hyperbola,
-                    ////alternatively: signedRo = Math.abs( signedRo );
-                    signedRo = -signedRo;
-                }
-            }
-            */
-            if( op.conicSignum === -1 && Math.abs( rgP.q ) < op.SINGULARITY_ANGLE ) {
-                ////in this proposition, we keep position P = constant, so
-                ////do invert signedRo for opposite branch of hyperbola,
-                ////alternatively: signedRo = Math.abs( signedRo );
-                signedRo = -signedRo;
+                den = 1e-20; // avoid singularity (can't divide by zero)
             }
 
-            var x = signedRo * Math.cos( q + op.mainAxisAngle );
-            var y = signedRo * Math.sin( q + op.mainAxisAngle );
+            // radial distance
+            var r = op.latus / den;
+
+            var x = r * Math.cos( q + op.mainAxisAngle );
+            var y = r * Math.sin( q + op.mainAxisAngle );
             return [ x, y ];
         }
 
-        ///draws curve arc for t in [qStart,qEnd)
-        function trange2points({ qStart, qEnd, stepsCount, })
-        {
-            var newpoints = [];
-            var qStep = ( qEnd - qStart ) / stepsCount;
-            for( var qix = 0; qix<=stepsCount; qix++ ) {
-                var q = qStart + qStep * qix;
-                if( 1 !== op.conicSignum ) {
-                    ////hyperbola or parabola
-                    q = protectedQ( q );
-                }
-                newpoints.push( t2xy( q ) );
-            }
-            return newpoints;
-        }
-
-        ///draws full orbit for t in [0,2PI)
+        ///draws full orbit for angle q in [0,2PI)
         //returns unclosed curve with end point =/= first point exactly
-        function ownrange2points({ stepsCount, doDeltaArc })
+        function ownrange2points({ stepsCount })
         {
-            if( doDeltaArc ) {
-                var qStart = rgP.q;
-                var qEnd = rgP.q + op.sagittaDelta_q;
-            } else {
-                var qStart = op.qStart;
-                var qEnd = op.qEnd;
+            var points = [];
+            var qStep = ( op.qEnd - op.qStart ) / stepsCount;
+            for( var qix = 0; qix<=stepsCount; qix++ ) {
+                var q = op.qStart + qStep * qix;        
+                points.push( t2xy( q ) );
             }
-            var points = trange2points({ qStart, qEnd, stepsCount });
-            //points[ points.length - 1 ] = points[ 0 ]; //does close the poly.
             return points;
         }
 
-
-        function poly2svg({
-            doDeltaArc, //do delta arc only, do not try area,
-        }){
-            const rgXX = doDeltaArc ? rgDq : rgX;
-            //rgX = approximated-curve-[sample]
-            //rgDq = orbitdq-[sample]
-            var curvePoints         = ownrange2points({ stepsCount:800, doDeltaArc });
-            var medpoints           = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
-            var polylineSvg         = rgXX.polylineSvg = nssvg.polyline({
-                pivots  : medpoints, 
-                svgel   : rgXX.polylineSvg,
-                parent  : stdMod.svgScene,
-                //should be overridden by ##tp-machine
-                //stroke           : haz( arg, 'stroke' ),
-                //'stroke-width'   : haz( arg, 'stroke-width' ),
-                //fill             : haz( arg, 'fill' ),
+        // split hyperbola into two arrays
+        function splitAtAsymptotes(points) {
+            const n = points.length;
+            // Find distances between consecutive points (looping around)
+            const distances = points.map((p, i) => {
+                const next = points[(i + 1) % n];
+                const dx = next[0] - p[0];
+                const dy = next[1] - p[1];
+                return Math.hypot(dx, dy);
             });
-            if( !has( rgXX, 'polylineSvg$' ) ) {
-                rgXX.polylineSvg$ = $$.$( polylineSvg );
-            }
-            //##tp-machine
-            rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' +
-                                         (doDeltaArc ? dqlowname : lowname) );
-                                         //rgDq has tp - dqlowname, rgXX has tp - lowname
-            //arc does not have area
-            //"no more dq below" ...
-            if( doDeltaArc ) return;
+
+            // Find two largest jumps
+            const jumpIndices = distances
+                .map((d, i) => ({ dist: d, index: i }))
+                .sort((a, b) => b.dist - a.dist)
+                .slice(0, 2)
+                .map(o => o.index)
+                .sort((a, b) => a - b);
+
+            const [cut1, cut2] = jumpIndices;
+
+            // Slice into two arrays
+            const branch1 = points.slice(cut1 + 1, cut2 + 1);
+            const branch2 = points.slice(cut2 + 1).concat(points.slice(0, cut1 + 1));
+
+            return [branch1, branch2];
         }
 
-        function protectedQ( q ) {
-            if( Math.abs( q - op.SINGULARITY_ANGLE ) < op.ANGLE_BOUNDARY ) {
-                ////avoids singularity
-                q = q < 0 ? -op.UPPER_BOUNDARY : op.UPPER_BOUNDARY;
-            }
-            return q;
-        }
+        function poly2svg() {
+            const rgXX = rgX;
 
-        ///converts position of Q-handle to Q-angle
-        function posQ_2_andgleInPIandMinusPI( newPos )
-        {
-            var sing = op.SINGULARITY_ANGLE;
-            var probe = Math.atan2( newPos[1], newPos[0] ) - op.mainAxisAngle;
-            //normalizes
-            probe = ( probe + Math.PI*6 ) % ( Math.PI*2 );
-            probe > Math.PI ? probe - 2*Math.PI : probe;
-            return probe;
+            // called way too much on page load
+            // once for each orbit from creates_orbitRack above
+            // then once each from media-upcreate at which point the model becomes visible
+            // then 4 more times from media-upcreate for no reason
+            // console.log('poly2svg: ' + rgXX.rgId);
+            
+            var curvePoints = ownrange2points({ stepsCount:800 }); // defines conic
+            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) ); // scales up conic
+            if( -1 === op.conicSignum ) {               
+                // draw hyperbola as two svg curves so asymptotes don't show
+                const [branchA, branchB] = splitAtAsymptotes(medpoints); 
+
+                var polylineSvgA = rgXX.polylineSvgA = nssvg.polyline({
+                    pivots  : branchA, 
+                    svgel   : rgXX.polylineSvgA,
+                    parent  : stdMod.svgScene,
+                });                
+                if( !has( rgXX, 'polylineSvgA$' ) ) {
+                    rgXX.polylineSvgA$ = $$.$( polylineSvgA );
+                }
+                rgXX.polylineSvgA$.removeClass( 'hidden' );
+                rgXX.polylineSvgA$.addClass( 'tostroke thickable tp-' + lowname );
+
+                var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
+                    pivots  : branchB, 
+                    svgel   : rgXX.polylineSvg,
+                    parent  : stdMod.svgScene,
+                });                
+                if( !has( rgXX, 'polylineSvg$' ) ) {
+                    rgXX.polylineSvg$ = $$.$( polylineSvg );
+                }
+                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
+            } else {
+                // draw ellipse/parabola in svg
+                var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
+                    pivots  : medpoints, 
+                    svgel   : rgXX.polylineSvg,
+                    parent  : stdMod.svgScene,
+                });
+                if( !has( rgXX, 'polylineSvg$' ) ) {
+                    rgXX.polylineSvg$ = $$.$( polylineSvg );
+                }
+                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
+                if( rgXX.polylineSvgA$ ) {
+                    rgXX.polylineSvgA$.addClass( 'hidden' );
+                }
+            }
         }
     }
-
-
-    ///decorates media
-    function eccentricity2sliderPos()
-    {
-        if( !has( rg, 'ZetaEnd' ) ) return;
-        var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
-        var zeta = Math.atan( op.eccentricity );
-        rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
-        rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
-        rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
-    }
-
 
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
@@ -200,16 +166,26 @@
         doAdjustLatus,  //optional, changes the latus, must be "falsy" if vop is present
         vop             //variable op, for case additional orbit is drawn
     ){
+        //called 6x on page load (3x per conic)
+        //and any time Pv/pv are dragged (only for appropriate conic)
+        //and once more per conic when switching tabs
+        //console.log('e: ' + eccentricity);
+        
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
-        var SAFE_VALUE = 1e-8;
+        var SAFE_VALUE = 0.02;
         op.ANGLE_BOUNDARY = SAFE_VALUE;
 
-        //protects against parabola case by making conic ellipse
-        if( ( eccentricity === 1 || eccentricity < 1 ) && eccentricity > 1-SAFE_VALUE ) {
-            eccentricity = 1-1.2*SAFE_VALUE;
+        // Determine conic type
+        if (eccentricity < 1 - SAFE_VALUE) {
+            op.conicSignum = 1; // ellipse
+        } else if (Math.abs(eccentricity - 1) < SAFE_VALUE) {
+            eccentricity = 0.9999;
+            op.conicSignum = 0; // parabola
+        } else {
+            op.conicSignum = -1; // hyperbola  
         }
-        op.conicSignum = eccentricity >= 1 ? -1 : 1;
+        
         if( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
@@ -233,7 +209,24 @@
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
         !vop && eccentricity2sliderPos();
+        
+        // todo: is there a better place for this?
+        // draws value on e slider
+        function eccentricity2sliderPos()
+        {
+            if( !has( rg, 'ZetaEnd' ) ) return;
+            var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
+            var zeta = Math.atan( op.eccentricity );
+            rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
+            rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
+            rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
+        }
+
+        //this function does not change eccentricity (except SAFE_VALUE case), 
+        //mostly just flips model from ellipse to hyperbola based on e
+        //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
+
 
 }) ();
 

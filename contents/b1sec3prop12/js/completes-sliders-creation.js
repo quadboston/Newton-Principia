@@ -80,7 +80,6 @@
         // //\\ eccentricity slider
         //=========================================================================
         rg.Zeta.acceptPos = newPos => {
-            var sliderAbs = mat.p1_to_p2( rg.P.pos, rg.omegaHandle.pos ).abs;
             var scale = ( rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0] );
             var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] )
                            / scale;
@@ -104,7 +103,6 @@
                 rrc : rg.S.pos,
             });
             nspaste( rg.P.pos, rr );
-            setsOmegaHandle( angleRV, sliderAbs );
 
             return true;
         }
@@ -112,17 +110,6 @@
         // \\// eccentricity slider
         //=========================================================================
 
-    }
-
-    //"normalizes" slider by omega and position of point rg.P.pos
-    function setsOmegaHandle( omega, sliderAbs )
-    {
-        const pp = rg.P.pos;
-        const up = mat.unitVector( pp ).unitVec; //unit radius vector
-        const rv = mat.rotatesVect( up, omega ); //radius vector rotated up to handle direction
-        const np = mat.sm( pp, sliderAbs, rv );  //A,b,B, handle-vector scaled to value of sliderAbs
-                                                 //and ofsetted from rg.P.pos
-        nspaste( rg.omegaHandle.pos, np );
     }
 
     ///newQ and q are in the same branch => returns true
