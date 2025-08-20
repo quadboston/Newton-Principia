@@ -22,6 +22,27 @@
     {
         ///not very standard, the name "Omega" used nowhere except this if-block
         if( fconf.sappId === "b1sec3prop16" ) {
+            ///draws phi
+            ///adds an extra point, rgPhi, at rg.O to comply angle-api
+            var rgPhi = toreg( 'phi' )( 'pname', 'phi' )( 'pos', rg.O.pos )
+                ( 'pcolor', 'rgba(0,0,0,0.1)' ) //rg.Fi.pcolor
+                ();
+            rgPhi.medpos = ssF.mod2inn( rgPhi.pos );
+            ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
+                AB          : "b1sec3prop14" === fconf.effId ?
+                                  rg[ 'O,Fi' ].pivots :
+                                  [ rgPhi,
+                                    { medpos : [ rgPhi.medpos[0]+100,rgPhi.medpos[1] ] }, 
+                                  ],
+                CD          : "b1sec3prop14" === fconf.effId ?
+                                  [ rg.PO.pivots[1], rg.PO.pivots[0] ]
+                                  :
+                                  rg[ 'O,Fi' ].pivots,
+                rgSample    : rgPhi,
+                ANGLE_SIZE  : 1.5,
+                caption     : 'φ',
+            });
+
             let rgOmega = toreg( 'Omega' )( 'pname', 'Omega' )( 'pos', rg.P.pos )
                 ( 'pcolor', 'rgba(0,0,0,0.1)' ) //body of sector
                 ();

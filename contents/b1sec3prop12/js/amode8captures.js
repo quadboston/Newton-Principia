@@ -41,7 +41,9 @@
         // //\\ hide all, then specify which to show
         //==================================================        
         for(key in rg) {
-            rg[key].undisplay = true;
+            if(rg[key]) {
+                rg[key].undisplay = true;
+            }
         };
 
         var hyperbola = [
