@@ -19,6 +19,8 @@
   
     function builds_orbit_data_graph()
     {
+        const DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = 
+              haz( sconf, 'DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX' );
         const ADDENDUM = amode.aspect === 'addendum';
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const GRAPH_PATH = sData.GRAPH_PATH;
@@ -58,8 +60,6 @@
                     sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
                 }
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
-                if( !instantForceMax )
-                    ccc( qix );
                 displMax = Math.max( Math.abs( displacement ), displMax );
                 speedMax = Math.max( speedMax, ds_dt );
                 let graphColumn = {
@@ -77,7 +77,8 @@
         //------------------------------------------
         var arrLen = graphArray.length;
         const instantForceMax1 = 1/instantForceMax;
-        const displMax1 = 1/displMax;
+        const displMax1 = DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+                          1/instantForceMax : 1/displMax;
         const sagittaMax1 = 1/sagittaMax;
         const speedMax1 = 1/speedMax;
         for( var gix = 0; gix<arrLen; gix++ ){

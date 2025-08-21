@@ -117,7 +117,12 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
+        sconf.force_law_function = sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+            null :
+            //can be 
+            //bp.r
+            bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
