@@ -117,7 +117,7 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
+        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = true;
         sconf.force_law_function = sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
             null :
             //can be 
