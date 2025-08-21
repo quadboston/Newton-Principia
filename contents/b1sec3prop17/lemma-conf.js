@@ -12,7 +12,6 @@
                 { src : 'main-legend.js' },
                 { src : 'model-upcreate.js' },
                 { src : 'media-upcreate.js' },
-                { src : '../../b1sec3prop12/js/makes-orbit.js' },
                 { src : 'completes-sliders-creation.js' },
             ],
             "contents-list" :  [

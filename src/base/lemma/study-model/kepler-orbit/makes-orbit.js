@@ -1,3 +1,13 @@
+/*  ***************************************************************************
+ *  Calculates a set number of points along a conic based on the 
+ *  given orbit parameters and adds them as svgs paths in the model.
+ * 
+ *  NOTE: This module is used for Propositions 12-17. There are others
+ *  currently used for P6-11, L20-21, and P41. Though this one can be used
+ *  to draw any conic (ellipse, parabola, hyperbola w/out asymptotes) as needed.
+ *  
+ * ****************************************************************************/
+
 ( function() {
     var {
         $$, nssvg, has, haz, ssF,
@@ -10,8 +20,8 @@
     return;
 
 
-    //called from init-model-parameters.js
-    //analogy of pointsArr_2_singleDividedDifferences()
+    //called from page's init-model-parameters.js
+    //analogy of pointsArr_2_singleDividedDifferences() (P41)
     function creates_orbitRack( vop )
     {
         //console.log('creates_orbitRack'); 
@@ -211,7 +221,7 @@
         !vop && eccentricity2sliderPos();
         
         // todo: is there a better place for this?
-        // draws value on e slider
+        // draws value on e slider (for pages that have one)
         function eccentricity2sliderPos()
         {
             if( !has( rg, 'ZetaEnd' ) ) return;

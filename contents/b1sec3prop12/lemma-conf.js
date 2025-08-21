@@ -12,7 +12,6 @@
                 //{ src: 'main-legend.js' }, // not used for now
                 { src: 'model-upcreate.js' },
                 { src: 'media-upcreate.js' },
-                { src: 'makes-orbit.js' },
                 { src: 'completes-sliders-creation.js' },
                 
                 { src: 'state-capturer.js' },
