@@ -18,11 +18,7 @@
     {
         var op = sconf.orbitParameters;
         toreg( 'approximated-curve' );
-        toreg( 'approximated-curve-sample' );
-        toreg( 'orbitarea' );
-        toreg( 'orbitarea-sample' );
         toreg( 'instanttriangle' );
-        toreg( 'instanttriangle-sample' );
 
         rg.P.q = op.PparQ_initial;
         ////creates both curve and its area
@@ -47,34 +43,6 @@
         stdMod.completesSlidersCreation();      //in-diagram sliders
         stdMod.establishesEccentricity( sconf.orbitParameters.eccentricity );
 
-        //==================================================
-        // //\\ decoration graph
-        //==================================================
-        ssD.zebraCols = {};
-        [ false, ns.rgbaArr2hsla( [0,     0,   255,    1] )[0] ].forEach(
-            ( monoColorHue ) => {
-                var wwCols = ns.builds_zebraNColors_array({
-                    maxColors : 10,
-                    SATUR       : sconf.DEFAULT_TP_SATUR,  //site setting
-
-                    //40 seems better than 40 for distinct graph lines
-                    LIGHT       : 40,  //sconf.default_tp_lightness ||
-                    OPACITY     : 0.8, //apparently irrelevant; sconf.DEFAULT_TP_OPACITY,
-                    zebraNumber : 4,
-                    monoColorHue, //true is for mono, false is for multy,
-                });
-                if( monoColorHue ) {
-                    ssD.zebraCols.monocolor = wwCols;
-                } else {
-                    ssD.zebraCols.multicolor = wwCols;
-                }
-            });
-        if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.createsGraphFW( stdMod.legendRoot$ );
-        }
-        //==================================================
-        // \\// decoration graph 
-        //==================================================
     }
 
 }) ();

@@ -33,248 +33,49 @@
         // \\// returns diagram back at every menu click
         //------------------------------------------------
 
-        var media_scale         = toreg( 'media_scale' )();
-        rg.media_scale.value    = 1;
+        toreg( 'media_scale' )();
+        rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-        var isAdden = aspect === 'addendum';
 
         //==================================================
         // //\\ decorations
         //==================================================
 
-        rg.f.caption = '';
-
         //==================================================
-        // //\\ hiding
-        //==================================================
-        [
+        // //\\ hide
+        //==================================================  
 
-        //sample
-        'q',
-        'p',
-        'vSample',
-        'l',
-        'll',
-        'l,ll',
-        'orbitarea-sample',
-        'Ys',
-        'S,Ys',
+        var common = [
+            'F', 'O', 'x', 'H', 'B', 'A', 'Zminus'
+        ];
 
-        //body
-        'DS',
-        'DH',
-        'PK',
-        'SK',
+        var p14 = [
+            'omegaHandle',
+            'P,omegaHandle', 'SY'
+        ];
 
-        //body local
-        'Y',
-        'SY',
-        'PY',
-        'vb',
-        'P,vb',
-        'omegaHandle',
-        'P,omegaHandle',
+        var p16 = [
+            'vb', 'P,vb',
+        ];
 
-        'VV',
-        'P,VV',
-        'VV',
-        'u',
-
-        'Tv',
-        'FO',
-        'PQ',
-        'SL',
-        'BH',
-        'instanttriangle',
-
-        //orbit as a whole
-        'L,LL',
-        'L',
-        'orbitarea',
-        'Tu',
-        'u,VV',
-        'uP',
-        ].forEach( i => {
+        var items = common.concat("b1sec3prop14" === fconf.sappId ? p14 : p16);
+        
+        items.forEach( i => {
             rg[i].undisplay = true;
         });
-
-        [
-            'vSample',
-            'f',
-            'L',
-            'K',
-            'omegaHandle',
-            'vb',
-        ].forEach( i => {
-            rg[i].hideD8Dpoint = true;
-        });
         //==================================================
-        // \\// hiding
+        // \\// hide
         //==================================================
 
-
-
-
-
-        //==================================================
-        // //\\ decorations alternating
-        //==================================================
-        var undisplay14 = fconf.effId === "b1sec3prop14";
-        [
-            ////hides all of them in this effId
-            'PI',
-            'E',
-            'EP',
-            'DK',
-            'EO',
-            'E',
-            'PO',
-            'GP',
-            'G',
-            'K',
-            'D',
-            'A',
-            'B',
-            'T',
-            'ES',
-            'EI',
-            'v',
-            'x',
-            'Qx',
-            'Pv',
-            'Qv',
-            'Gv',
-            'PT',
-            'HI',
-            'PH',
-            'I',
-            'H',
-            'F',
-            'PF',
-            'Z',
-            'Zminus',
-            'PC',
-            'C',
-        ].forEach( i => {
-            rg[i].undisplay = undisplay14;
-        });
-
-        if( fconf.effId === "b1sec3prop14" ) {
-            rg.Y.undisplay = false;
-
-            rg.PY.undisplay = false;
-            rg.SL.undisplay = false;
-            rg.C.undisplay = false;
-            rg.R.undisplay = false;
-            rg.Q.hideD8Dpoint = true;
-
-            rg.T.undisplay = false;
-            rg[ 'L,LL' ].undisplay = false;
-            rg.L.undisplay = false;
-
-            rg.I.undisplay = true;
-            rg.F.undisplay = true;
-
-            rg.CD.undisplay = true;
-            rg.EC.undisplay = true;
-            rg.xv.undisplay = true;
-            rg.O.undisplay = true;
-            rg.instanttriangle.undisplay = fconf.sappId === "b1sec3prop15" ? true : false;
-        }
-
-        if( fconf.effId === "b1sec3prop14" || "b1sec3prop13" === fconf.sappId ) {
-            rg.G.undisplay = true;
-            rg.AT.undisplay = true;
-            rg.AA.undisplay = true;
-            rg.B.undisplay = true;
-            rg.BB.undisplay = true;
-            rg[ 'B,BB' ].undisplay = true;
-            rg[ 'CB' ].undisplay = true;
-
-            rg.D.undisplay = true;
-            rg.K.undisplay = true;
-            rg.DK.undisplay = true;
-            rg.PH.undisplay = true;
-            rg.H.undisplay = true;
-            rg.OH.undisplay = true;
-            rg.EO.undisplay = true;
-            rg.FO.undisplay = true;
-            rg.EP.undisplay = true;
-            rg.ES.undisplay = true;
-            rg.PE.undisplay = true;
-
-            rg.PF.undisplay = true;
-            rg.PC.undisplay = true;
-            rg[ 'P,VV' ].undisplay = true;
-            rg.PI.undisplay = true;
-            rg.Zminus.undisplay = true;
-        }
-
-
-        //=========================================
-        // //\\ b1sec3prop12
-        //=========================================
-        if( "b1sec3prop12" === fconf.sappId ) {
-            rg.Fi.undisplay = true;
-            rg.Fi.hideD8Dpoint = true;
-            rg['O,Fi'].undisplay = true;
-        }
-        //=========================================
-        // \\// b1sec3prop12
-        //=========================================
-
-
-        //=========================================
-        // //\\ parabola: b1sec3prop13
-        //=========================================
-        if( "b1sec3prop13" === fconf.sappId ) {
-            ////parabola hiding
-            rg[ 'ZetaStart,ZetaEnd' ].undisplay = true;
-            rg.S.hideD8Dpoint = true;
-            rg.O.undisplay = true;
-            
-            rg.Fi.undisplay = true;
-            rg.Fi.hideD8Dpoint = true;
-            rg['O,Fi'].undisplay = true;
-        }
-        {
-            ////parabola showing
-            let und = "b1sec3prop13" !== fconf.sappId;
-            [
-                'M',
-                'N',
-                'PM',
-                'OM',
-                'ON',
-                'SA',
-                'Tx',
-                'SM',
-                'NP',
-            ].forEach( i => {
-                rg[i].undisplay = und;
-            });
-        }
-        //=========================================
-        // \\// parabola: b1sec3prop13
-        //=========================================
 
         if( "b1sec3prop14" === fconf.sappId ) {
             rg.vb.hideD8Dpoint = false;
-            rg.vb.undisplay = false;
-            rg[ 'P,vb' ].undisplay = false;
+            rg.L.hideD8Dpoint = true;
         }
 
         if( fconf.sappId === 'b1sec3prop16' ) {
-            rg.SY.undisplay = false;
             rg.vb.hideD8Dpoint = true;
-            rg.vb.undisplay = true;
-            rg.PY.undisplay = false;
-
-            rg.Y.undisplay = false;
-            rg.omegaHandle.undisplay = false;
             rg.omegaHandle.hideD8Dpoint = false;
-            rg[ 'P,omegaHandle' ].undisplay = false;
-
             rg.L.hideD8Dpoint = false;
             stdMod.imgRk.dom$.css( 'visibility', 'visible' );
             stdMod.svgScene$.css( 'visibility', 'visible' );
@@ -290,8 +91,6 @@
             }
         }
 
-        //==================================================
-        // \\// decorations alternating
         //==================================================
         // \\// decorations
         //==================================================
@@ -329,21 +128,13 @@
         }
 
         if (sconf.Fi_distance != null) {
-            if( fconf.effId === "b1sec3prop14" ) {
-                //op.Dt = op.Dt0;
-                rg.P.abs = mat.unitVector( rg.P.pos ).abs;
-                nspaste( rg.Fi.pos, [
-                    sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
-                    sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
-                ]);
-            } else {
-                nspaste( rg.Fi.pos, [
-                    sconf.Fi_distance * Math.cos( rg.P.q ),
-                    sconf.Fi_distance * Math.sin( rg.P.q ),
-                ]);
-            }
+            //op.Dt = op.Dt0;
+            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+            nspaste( rg.Fi.pos, [
+                sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
+                sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
+            ]);
         }
-
         //=============================================================
         // \\// model
         //=============================================================
