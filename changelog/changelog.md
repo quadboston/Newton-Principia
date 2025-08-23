@@ -1,5 +1,11 @@
 # Change Log
  
+  
+## 2025-8-16 (Yellow Version, 0.13851)
+### Improved
+* Lemmas 2, 3, 7, 8:
+	* lowercase labels are in italic to match original text
+
 ## 2025-8-16 (Yellow Version, 0.13851)
 ### Improved
 * Proposition 12
