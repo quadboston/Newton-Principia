@@ -11,50 +11,8 @@
     return;
 
 
-    //===================================================
-    // //\\ registers model pars into common scope
-    //===================================================
     function init_model_parameters()
     {
-        ///creates addendum points non-visibility machinery
-        globalCss.replace( `
-            .bsl-approot svg .aspect--model,
-            .bsl-approot svg .subessay--0,
-			.bsl-approot svg .subessay--case1,
-			.bsl-approot svg .subessay--case2,
-            .bsl-approot svg .subessay--corollary1,
-			.bsl-approot svg .subessay--corollary2,
-			.bsl-approot svg .subessay--corollary3
-            {
-                display : none;
-            }
-            .bsl-approot.subessay--case1 svg .subessay--case1
-            {
-                display : block;
-            }
-			.bsl-approot.subessay--case2 svg .subessay--case2
-            {
-                display : block;
-            }
-			.bsl-approot.subessay--corollary1 svg .subessay--corollary1
-            {
-                display : block;
-            }
-			.bsl-approot.subessay--corollary2 svg .subessay--corollary2
-            {
-                display : block;
-            }
-			.bsl-approot.subessay--corollary3 svg .subessay--corollary3
-            {
-                display : block;
-            }
-            .bsl-approot.aspect--model svg .aspect--model
-            {
-                display : block;
-            }
-            `,
-            'lemma-css-overrider'
-        );
         sData.initialparC = sconf.initialparC;
         sData.initialparA = sconf.initialparA;
 		sData.initialparB = sconf.initialparB;
@@ -76,8 +34,6 @@
 
         stdMod.deriveParameters( 'do set T' );
         stdMod.completesSlidersCreation();
-        //dev tool:
-        //ellipsePar_create8paint( 1.50 )
     }
 })();
 

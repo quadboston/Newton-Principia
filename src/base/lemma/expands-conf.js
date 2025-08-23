@@ -18,10 +18,6 @@
     return;
 
 
-
-
-
-
     ///==============================================
     /// only for common stdMod:
     ///                     1. expands sconf and
@@ -116,7 +112,6 @@
             point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
 
-
         ///it is vital to set these pars now ...
         ///they are used in function calls a little below this block ...
         Object.assign( sconf, {
@@ -140,7 +135,6 @@
             originX_onPicture : modorInPicX,
             originY_onPicture : modorInPicY,
             //.......................................
-
 
             // **api innerMediaHeight
             innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
@@ -171,7 +165,6 @@
                 fc.isLine = false;
                 fc.isArea = false;
                 fc.isPoint0Line = false;
-                
             });
 
             //--------------------------------------------------
@@ -261,9 +254,19 @@
                     rgX.undisplay = gshape.undisplay;
                 }
 
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); //meaningful for lines yet
+                //meaningful for lines yet
+                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); 
                 rgX.notp        = haz( gshape, 'notp' );
-                rgX.cssClass    = haz( gshape, 'cssClass' );
+                let gclass = haz( gshape, 'cssClass' );
+                if( gclass ){
+                    if( gclass.indexOf( '--' )>0 ){
+                        gclass += ' hidee';
+                        gshape.cssClass = gclass;
+                        //c cc( pname +' gclass='+ gclass );
+                    }
+                }
+                rgX.cssClass = gclass;
+
                 if( has( gshape, 'vectorTipIx' ) ) {
                     rgX.vectorTipIx = gshape.vectorTipIx;
                 }
@@ -369,9 +372,17 @@
                 if( has( op, 'undisplayAlways' ) ) {
                     rgX.undisplayAlways = op.undisplayAlways;
                 }
-                if( has( op, 'cssClass' ) ) {
-                    rgX.classmark = op.cssClass;
+                if( has( op, 'cssClass' ) ){
+                    let opclass = op.cssClass;
+                    if( opclass.indexOf( '--' )>0 ){
+                        opclass += ' hidee';
+                        op.cssClass = opclass;
+                    }
+                    rgX.classmark = opclass;
                 } else if( has( op, 'classmark' ) ) {
+                    if( op.classmark.indexOf( '--' )>0 ){
+                        op.classmark += ' hidee';
+                    }
                     rgX.classmark = op.classmark;
                 }
                 if( has( op, 'displayAlways' ) ) {
@@ -426,7 +437,8 @@
                     rgX.letterOffsetX = letterShift[0];
                     rgX.letterOffsetY = letterShift[1];
                 } else {
-                    var letterAngle     = has( op, 'letterAngle' ) ? op.letterAngle : 0;
+                    var letterAngle     = has( op, 'letterAngle' ) ?
+                                          op.letterAngle : 0;
                     var rad             = letterAngle / 180 * Math.PI;
                     rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
                                           fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
@@ -441,15 +453,6 @@
                     //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor; 
                     rgX.letterColor = sDomF.getFixedColor( letterColor );
                 }
-
-                /*
-                ccc(
-                    pname,
-                    'letterAngle=' + letterAngle.toFixed(3),
-                    'letterOffsetX ' + rgX.letterOffsetX.toFixed(),
-                    'letterOffsetY ' + rgX.letterOffsetY.toFixed()
-                );
-                */
                 rgX.fontSize = fontSize;
                 //----------------------------------------------------------
                 // \\// sets up point letters
