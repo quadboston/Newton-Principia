@@ -174,24 +174,24 @@
             },
 
             b : {
+				caption: "𝑏",
                 pos: b,
                 letterAngle : 0,
                 pcolor      : proof,
             },
             c : {
+				caption: "𝑐",
                 letterAngle : 45,
-                letterRotRadius : 13,
+                letterRotRadius : 20,
                 pcolor      : proof,
             },  
             d : {
+				caption: "𝑑",
                 pos         : d,
                 letterAngle : 90,
                 pcolor      : proof,
             },
-            e : {
-                letterAngle : 90,
-                pcolor      : proof,
-            },
+
 
             r : { //hidden but used to calc pos of b
                 pos: r,
