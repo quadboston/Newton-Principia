@@ -1,7 +1,7 @@
 ( function() {
-    var { sn, nspaste, mcurve, mat, fconf, ssF, stdMod, amode, sconf, rg, }
-        = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
-    var sop = sn( 'sampleOrbitParameters', sconf );
+    var { 
+        nspaste, mcurve, mat, fconf, ssF, stdMod, sconf, rg, 
+    } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
 
@@ -34,19 +34,11 @@
             rrc,
         });
         var {
-            R,
             r,
-            curvatureChordSecondPoint,
-            projectionOfCenterOnTangent,
             uu,
             ee,
-            nn,
-            rr,
             sinOmega,
-            cosOmega,
-            //staticSectorialSpeed_rrrOnUU,
         } = diff;
-        var Rc = R; //curvature radius
         rg.P.sinOmega = sinOmega;
         rg.P.uu = uu;
         rg.P.ee = ee;
@@ -55,56 +47,40 @@
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-        if( fconf.effId === "b1sec3prop14" ) {
-            ////delta q is derived from delta t
-            var {
-                rr, //for pos for Q
-                sagittaDeltaQ,
-            } = deltaT_2_arc();
-            nspaste( rg.Q.pos, rr );
-            op.sagittaDelta_q = sagittaDeltaQ;
-            //rg.R.caption = fconf.sappId === "b1sec3prop15" ?
-            //    'R' : 'Δt = ' + op.Kepler_v.toFixed(3);
-            rg[ 'P,vb' ].caption = fconf.sappId === "b1sec3prop15" || fconf.effId !== 'b1sec3prop14' ?
-                '' :  'v = ' + op.Kepler_v.toFixed(3);
-            rg.SY.caption = fconf.sappId === "b1sec3prop16" ?
-                'SY = ' + (rg.P.sinOmega * rg.P.abs ).toFixed(3) :
-                '';
-        } else {
-            ////delta q is set not from delta t
-            let sag_delta_q = op.sagittaDelta_q;
-            //-pi,+pi locating is irrelevant for move
-            let Q = q + sag_delta_q;
-            {
-                //--------------------------------------------
-                // //\\ validates sagitta q
-                //      and sets it to op.sagittaDelta_q,
-                //      does this job for any slider which
-                //      affects q and Q
-                //--------------------------------------------
-                if( op.conicSignum === -1 ) {
-                    let abs_Q = Math.abs( Q );
-                    let abs_q = Math.abs( q );
-                    let sing = op.SINGULARITY_ANGLE;
-                    ////keeps hyperbola's saggita in the same branch as hyperbola branch
-                    if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
-                        ////singularity is between q and abs_Q,
-                        ////changes Q making it in the same singularity sector,
-                        //creates new sag_delta_q unrelated to value of the former sag_delta_q
-                        var new_sag_delta_q = Math.abs( sing - abs_q )
-                                          / 3; //factor 3 is an arbitraty > 1
-                        ////shifts q down if increment is negative
-                        new_sag_delta_q *= Math.sign( sag_delta_q );
-                        Q = q + new_sag_delta_q;
-                        op.sagittaDelta_q = new_sag_delta_q;
-                    }
+
+        ////delta q is set not from delta t
+        let sag_delta_q = op.sagittaDelta_q;
+        //-pi,+pi locating is irrelevant for move
+        let Q = q + sag_delta_q;
+        {
+            //--------------------------------------------
+            // //\\ validates sagitta q
+            //      and sets it to op.sagittaDelta_q,
+            //      does this job for any slider which
+            //      affects q and Q
+            //--------------------------------------------
+            if( op.conicSignum === -1 ) {
+                let abs_Q = Math.abs( Q );
+                let abs_q = Math.abs( q );
+                let sing = op.SINGULARITY_ANGLE;
+                ////keeps hyperbola's saggita in the same branch as hyperbola branch
+                if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
+                    ////singularity is between q and abs_Q,
+                    ////changes Q making it in the same singularity sector,
+                    //creates new sag_delta_q unrelated to value of the former sag_delta_q
+                    var new_sag_delta_q = Math.abs( sing - abs_q )
+                                        / 3; //factor 3 is an arbitraty > 1
+                    ////shifts q down if increment is negative
+                    new_sag_delta_q *= Math.sign( sag_delta_q );
+                    Q = q + new_sag_delta_q;
+                    op.sagittaDelta_q = new_sag_delta_q;
                 }
-                //--------------------------------------------
-                // \\// validates sagitta q
-                //--------------------------------------------
             }
-            nspaste( rg.Q.pos, fun(Q) );
+            //--------------------------------------------
+            // \\// validates sagitta q
+            //--------------------------------------------
         }
+        nspaste( rg.Q.pos, fun(Q) );
 
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
@@ -113,11 +89,7 @@
                 [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
             )
         );
-        {
-            //dropLine(... = start + direction * t
-            let udir = op.cosOmega * cosOmega + op.om * sinOmega;
-            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
-        }
+
         //T = perp. from Q to radius-vector
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
 
@@ -134,22 +106,16 @@
         //================================================
 
 
-        nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-
-
         //================================================
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
         ///for initial launch only
-        if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.buildsforceGraphArray();
-            stdMod.graphFW.drawGraph_wrap();
-        }
+        stdMod.buildsforceGraphArray();
+        stdMod.graphFW.drawGraph_wrap();
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
-
 
 
         //------------------------------------------------
@@ -272,136 +238,7 @@
         // \\// instant triangle
         //=============================================================
 
-
-        //=============================================================
-        // //\\ prop. 17
-        //=============================================================
-        if( "b1sec3prop17" === fconf.sappId ) {
-            //solved orbit hyperbola or ellipse
-            if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
-                nspaste( rg.D.pos, rg.P.pos );
-            } else {
-                nspaste( rg.D.pos, fun( 0 ) );
-            }
-            nspaste( rg.K.pos, mat.dropPerpendicular( rg.O.pos, rg.H.pos, rg.P.pos ) );
-            {
-                ////sample orbit
-                let fun = rg[ 'approximated-curve-sample' ].t2xy;
-                //orbit
-                let rrc = rg.S.pos;
-                var {
-                    rr,
-                    uu,
-                    ee,
-                    projectionOfCenterOnTangent,
-                    sinOmega,
-                    cosOmega,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q   : rg.p.q,
-                    rrc,
-                });
-                nspaste( rg.p.pos, rr );
-                //sample speed vector
-                {
-                    //dropLine(... = start + direction * t
-                    let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
-                    nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
-                }
-                //sample's decorational dt arc
-                var {
-                    rr,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q : rg.p.q + sop.sagittaDelta_q_initial,
-                    rrc,
-                });
-                nspaste( rg.q.pos, rr );
-                rg.p.abs = mat.unitVector( rg.p.pos ).abs;
-            }
-            const cosAxis   = Math.cos( sop.mainAxisAngle );
-            const sinAxis   = Math.sin( sop.mainAxisAngle );
-
-            //----------------------------------
-            // //\\ force, gamma, and latus
-            //----------------------------------
-            rg.l.pos[0]  = -sinAxis * sop.latus;
-            rg.l.pos[1]  =  cosAxis * sop.latus;
-            rg.ll.pos[0] =  sinAxis * sop.latus;
-            rg.ll.pos[1] = -cosAxis * sop.latus;
-            rg[ 'l,ll' ].caption = 'l=' + (2*sop.latus).toFixed(3);
-            {
-                ////force and gamma
-                let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
-                var newLen = relativeGamma * sop.forceHandleInitial;
-                nspaste( rg.f.pos,
-                         mat.sm( rg.p.pos, -1*newLen, ee )
-                );
-                rg[ 'p,f' ].caption = 'f = ' + relativeGamma.toFixed(2);
-            }
-            //----------------------------------
-            // \\// force, gamma, and latus
-            //----------------------------------
-            rg[ 'p,vSample' ].caption = 'vₛ = ' + sop.Kepler_v.toFixed(3);
-
-            rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
-            rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
-        }
-        //=============================================================
-        // \\// prop. 17
-        //=============================================================
     }
-
-
-
-    ///calculates arc's delta q depending on Dt by
-    ///integrating sag_delta_q and reaching Dt,
-    function deltaT_2_arc()
-    {
-        const INTEGRATION_STEPS = 1000;
-
-        op          = sconf.orbitParameters;
-        const rrc   = rg.S.pos;
-        const fun   = rg[ 'approximated-curve' ].t2xy;
-        var q       = rg.P.q;
-        var {
-                staticSectorialSpeed_rrrOnUU,
-                r,
-                v,
-                uu,
-                sinOmega,
-                cosOmega,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q,
-                rrc,
-            });
-            var udir = op.cosOmega * cosOmega + op.om * sinOmega;
-        var intervalT = 0;
-        var deltaT_isReached = false;
-        //path step
-        const ds_by_dt = udir * op.Dt / INTEGRATION_STEPS * op.Kepler_v;
-        for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
-            var {
-                v, //=ds_by_dfi
-                rr,
-            } = mcurve.planeCurveDerivatives({
-                fun,
-                q,
-                rrc,
-            });
-            //assumes central force, i.e. constant sectorial speed
-            //var Kepler_v_instant = op.Kepler_v * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
-
-            var intervalQ = ds_by_dt / v; //dfi
-            q += intervalQ;
-        }
-        return {
-            rr,
-            sagittaDeltaQ : q - rg.P.q,
-        };
-    }
-
 
 }) ();
 

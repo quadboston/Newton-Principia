@@ -16,9 +16,6 @@
         for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
         {
             var q = qStart + forceArrayIx * ( qEnd - qStart ) / Q_STEPS;
-            if( 1 !== op.conicSignum ) {
-                q = op.protectedQ( q );
-            }
             var {
                 rr,
                 r, //from chosen rrc
