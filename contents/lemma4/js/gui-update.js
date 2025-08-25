@@ -448,12 +448,13 @@
         if (posFirst && posLast) {
             const xMiddle = (posFirst.x + posLast.x) / 2;
             const posMiddle = {x: xMiddle, y: numModel.curveFun(dr, xMiddle)};
+            const posBaseFirst = {x: posFirst.x, y: posLast.y};
 
             const ptLabels = dr.pointLabels;
             syncPointWithPos(dr, ptLabels.ctrlPtFirst, posFirst);
             syncPointWithPos(dr, ptLabels.ctrlPtLast, posLast);
             syncPointWithPos(dr, ptLabels.curveMiddle, posMiddle);
-            syncPointWithPos(dr, ptLabels.basePtFirst, dr.basePts.list[0]);
+            syncPointWithPos(dr, ptLabels.basePtFirst, posBaseFirst);
         }
         //--------------------------------------
         // \\// Syncs points for L4

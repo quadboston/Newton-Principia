@@ -1,9 +1,5 @@
 ( function () {
-    var {
-        sn, mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
-    });
+    var { sn, mat, fapp, stdMod, sconf, } = window.b$l.apptree({});
 
 
     var stdL2       = sn('stdL2', fapp );
@@ -97,7 +93,22 @@
 
 
     function curveFunNew(dr, x) {
-        const points = dr.ctrlPts.positions;
+
+        // const points = dr.ctrlPts.positions;
+        const pointsBtw = [];
+        for(let i = 1; i < dr.ctrlPts.positions.length-1; i++) {
+            pointsBtw.push({...dr.ctrlPts.positions[i]});
+        }
+        pointsBtw.sort((a, b) => a.x - b.x);
+
+        const points = [
+            {...dr.ctrlPts.positions[0]},
+            ...pointsBtw,
+            {...dr.ctrlPts.positions[dr.ctrlPts.positions.length - 1]},
+        ];
+        // points.push({...dr.ctrlPts.positions[0]});
+        // points.push(
+        //     {...dr.ctrlPts.positions[dr.ctrlPts.positions.length - 1]});
 
         // const output = [];
 
@@ -559,16 +570,18 @@
         //what will be displayed in the data tables later.
         if (dr.drAdjustRectWidthsToMatchAreaRatios) {
             console.log("**********Un-transformed Areas**********");
+            // console.log("**********Areas**********");
         } else {
             let dv = dr.yVariations;
             const drL = stdL2.datareg;
             const drR = stdL2.datareg2;
-            
 
-            const sumA = drL.areaIns;
-            const sumB = drR.areaIns;
+            //*****Un-transformed*****
+            // console.log("***Un-transformed***");
             const exactA = drL.figureArea;
             const exactB = drR.figureArea;
+            const sumA = drL.areaIns;
+            const sumB = drR.areaIns;
 
             console.log("exactA =", exactA);
             console.log("exactB =", exactB);
@@ -599,6 +612,95 @@
             console.log("exact_ratio = exactA / exactB =", exactA / exactB);
             console.log("sum_ratio = sumA / sumB =", sumA / sumB);
             console.log("(for all i)   i_ratio = A_i / B_i =", areaRatios);
+
+
+            // //*****Transformed*****
+            // console.log("***Transformed***");
+            // const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
+            // const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
+            // console.log("areaFactorA =", areaFactorA);
+            // console.log("areaFactorB =", areaFactorB);
+
+            // const exactAT = drL.figureArea * areaFactorA;
+            // const exactBT = drR.figureArea * areaFactorB;
+            // const sumAT = drL.areaIns * areaFactorA;
+            // const sumBT = drR.areaIns * areaFactorB;
+
+            // console.log("exactAT =", exactAT);
+            // console.log("exactBT =", exactBT);
+            // console.log("sumAT =", sumAT);
+            // console.log("sumBT =", sumBT);
+            
+
+            // //TEMP As a test calcualte the actual areas of the parallelograms
+            // //to confirm that everything is setup correctly.
+            // const areasLT = [];
+            // let sumWidth = 0;
+            // for(let ib = 0; ib < sconf.basesN; ib++) {
+            //     const barwidth = drL.partitionWidths[ib];
+            //     const heightIns = Math.abs(dv.maxY - drL.basePts.inscribedY[ib]);
+
+            //     const xLeft = drL.transforms.origin[0] + sumWidth;
+            //     const yBottom = drL.transforms.origin[1];
+            //     const posTL = [xLeft, yBottom - heightIns];
+            //     const posTR = [xLeft + barwidth, yBottom - heightIns];
+            //     const posBL = [xLeft, yBottom - 0];
+            //     const posBR = [xLeft + barwidth, yBottom - 0];
+                
+            //     const posTLT = stdMod.xy_2_Txy(drL, posTL);
+            //     const posTRT = stdMod.xy_2_Txy(drL, posTR);
+            //     const posBLT = stdMod.xy_2_Txy(drL, posBL);
+            //     const posBRT = stdMod.xy_2_Txy(drL, posBR);
+
+            //     const base = posBRT[0] - posBLT[0];
+            //     const height = -(posTRT[1] - posBRT[1]);
+            //     const areaInsT = Math.abs(base * height);
+            //     areasLT.push(areaInsT);
+            //     sumWidth += barwidth;
+            // }
+
+
+            // const areasRT = [];
+            // sumWidth = 0;
+            // for(let ib = 0; ib < sconf.basesN; ib++) {
+            //     const barwidth = drR.partitionWidths[ib];
+            //     const heightIns = Math.abs(dv.maxY - drR.basePts.inscribedY[ib]);
+
+            //     const xLeft = drR.transforms.origin[0] + sumWidth;
+            //     const yBottom = drR.transforms.origin[1];
+            //     const posTL = [xLeft, yBottom - heightIns];
+            //     const posTR = [xLeft + barwidth, yBottom - heightIns];
+            //     const posBL = [xLeft, yBottom - 0];
+            //     const posBR = [xLeft + barwidth, yBottom - 0];
+                
+            //     const posTLT = stdMod.xy_2_Txy(drR, posTL);
+            //     const posTRT = stdMod.xy_2_Txy(drR, posTR);
+            //     const posBLT = stdMod.xy_2_Txy(drR, posBL);
+            //     const posBRT = stdMod.xy_2_Txy(drR, posBR);
+
+            //     const base = posBRT[0] - posBLT[0];
+            //     const height = -(posTRT[1] - posBRT[1]);
+            //     const areaInsT = Math.abs(base * height);
+            //     areasRT.push(areaInsT);
+            //     sumWidth += barwidth;
+            // }
+            
+            // console.log("(all)   A_i =", areasLT);
+            // console.log("(all)   B_i =", areasRT);
+            
+            // const sumAll_A_i = areasLT.reduce((acc, cur) => acc + cur);
+            // const sumAll_B_i = areasRT.reduce((acc, cur) => acc + cur);
+            // console.log("sum of (all)   A_i =", sumAll_A_i);
+            // console.log("sum of (all)   B_i =", sumAll_B_i);
+            // console.log("sum of (all)   A_i / B_i =",
+            //     sumAll_A_i / sumAll_B_i);
+
+            // const areaRatiosT = [];
+            // for(let i = 0; i < sconf.basesN - 1; i++)
+            //     areaRatiosT.push(areasLT[i] / areasRT[i]);
+            // console.log("exact_ratio = exactAT / exactBT =", exactAT / exactBT);
+            // console.log("sum_ratio = sumAT / sumBT =", sumAT / sumBT);
+            // console.log("(for all i)   i_ratioT = A_iT / B_iT =", areaRatiosT);
         }
     }
 
@@ -1008,7 +1110,7 @@
                     // // '            <label for="radio-slope-handle-y-and-right">Handle y values + Check if single point near right side passed slope constraint</label>' +
                     // '        </div>' +
                     '        <div>' +
-                    '            <input id="radio-slope-handle-y" name="radio-slope" type="radio"/>' +
+                    '            <input id="radio-slope-handle-y" name="radio-slope" type="radio" checked/>' +
                     '            <label for="radio-slope-handle-y">Option 4: Prevent handle y values from passing slope constraint</label>' +
                     '        </div>' +
                     '        <div>' +
@@ -1024,7 +1126,7 @@
                     // '            <label for="radio-slope-handle-y-offset-x-offset">Option 7: Prevent handle y values from passing line offset from slope constraint + Prevent handle x values from changing</label>' +
                     // '        </div>' +
                     '        <div>' +
-                    '            <input id="radio-rectangle" name="radio-slope" type="radio" checked/>' +
+                    '            <input id="radio-rectangle" name="radio-slope" type="radio"/>' +
                     '            <label for="radio-rectangle">Option 6: Prevent handle from leaving rectangular boundary</label>' +
                     '        </div>' +
                     '        <div>' +
@@ -1048,18 +1150,18 @@
                     '<br>' +
                     '<div>' +
                     '    <label for="input-slope-constraint-angle">Slope constraint angle in degrees (un-transformed)</label>' +
-                    '    <input type="number" id="input-slope-constraint-angle" value="15" min="1" max="40" style="width: 50px;"/>' +
+                    '    <input type="number" id="input-slope-constraint-angle" value="10" min="1" max="40" style="width: 50px;"/>' +
                     '</div>' +
                     '<div>' +
                     '    <label for="input-slope-constraint-offset">Slope constraint offset (un-transformed)</label>' +
-                    '    <input type="number" id="input-slope-constraint-offset" value="20" min="0" max="100" style="width: 50px;"/>' +
+                    '    <input type="number" id="input-slope-constraint-offset" value="15" min="0" max="100" style="width: 50px;"/>' +
                     '</div>' +
                     '<br>' +
                     '<br>' +
                     '<div>' +
                     // '    <label for="input-count-handles">Handle count (requires page refresh)</label>' +
                     '    <label for="input-count-handles">Handle count (change number then refresh page)</label>' +
-                    '    <input type="number" id="input-count-handles" value="1" min="1" max="4" style="width: 50px;"/>' +
+                    '    <input type="number" id="input-count-handles" value="2" min="1" max="4" style="width: 50px;"/>' +
                     // '    <input type="button" id="button-refresh-page" value="Refresh Page"/>' +
                     '</div>' + 
                     '<br>' +
@@ -1098,7 +1200,7 @@
                 //Add event listeners to change the number of handles.
                 const inputCountHandles = document.getElementById("input-count-handles");
                 if (inputCountHandles) {
-                    inputCountHandles.value = sessionStorage.getItem("count-handles") || 1;
+                    inputCountHandles.value = sessionStorage.getItem("count-handles") || inputCountHandles.value;
                     inputCountHandles.addEventListener("input", (e) => {
                         // console.log("e =", e);
                         const count = e.target.value;

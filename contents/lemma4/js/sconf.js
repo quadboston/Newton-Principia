@@ -49,7 +49,7 @@
     ];
     const countHandlesStored = sessionStorage.getItem("count-handles");
     console.log("countHandlesStored =", countHandlesStored);
-    const countHandles = sessionStorage.getItem("count-handles") || 1;
+    const countHandles = sessionStorage.getItem("count-handles") || 2;
 
 
 
@@ -143,12 +143,13 @@
         //     119.92957536602712,
         //     5.000000000000003,
         // ],
-        partitionWidthsTemp : [
-            5,
-            109.25055313328448,
-            97.24944686671552,
-            5,
-        ],
+        partitionWidthsTemp : [1],
+        // partitionWidthsTemp : [
+        //     5,
+        //     109.25055313328448,
+        //     97.24944686671552,
+        //     5,
+        // ],
 
         // ctrlPtPositionsTemp : [
         //     {x:31.5, y:29},
@@ -283,6 +284,7 @@
             },
             basePtDraggersEnabled,
             transforms       : {
+                //TEMP Should these be labeled i, j?
                 horizontalPtEnabled : transformHorizontalPtEnabled,
                 verticalPtEnabled   : transformVerticalPtEnabled,
                 //Pos to transform relative to, automatically set
@@ -498,7 +500,7 @@
             FINEPTS_RADIUS  : 10,
             MOVABLE_BASE_RADIUS : 3,
             CTRL_RADIUS     : 3,
-	        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
+	        BASE_POINTS_REPELLING_DISTANCE : 10,//5, //formerly PAD
 
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices

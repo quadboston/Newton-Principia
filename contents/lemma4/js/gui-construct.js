@@ -88,6 +88,7 @@
 
         //Initialize values for constraints if needed.
         if (ctrlPts.constraints.xEnabled) {
+            //TEMP Would it be better to use at or [] in terms of compatibility 
             ctrlPts.constraints.minX = cp.at(0)?.x;
             ctrlPts.constraints.maxX = cp.at(-1)?.x;
         }
@@ -157,9 +158,16 @@
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-        //TEMP Should the following be all uppercase?
+        //TEMP This function should probably only be called if base points need
+        //to be added.  Probably related to below note about quantity that's
+        //created.
+        // //TEMP Should the following be all uppercase?
         const basePtDraggersEnabled = dr.basePtDraggersEnabled;
         for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
+        //TEMP Testing switching quantity that's created, to only be what's
+        //used.  This caused issues because other parts of the code rely on
+        //them.
+        // for (var i=0; i <= DRAGGABLE_BASE_POINTS; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( dr, "base", i );
 	        if( basePtDraggersEnabled && i < DRAGGABLE_BASE_POINTS ) {
@@ -171,7 +179,7 @@
             pt.dom.style.fill = 'rgba(255,255,255,1)';
   		    bplist.push( pt );
         }
-    };
+    }
 
 
 

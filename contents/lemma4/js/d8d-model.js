@@ -56,20 +56,8 @@
         }
 
         function setDragPoints(dr) {
-            //TEMP Seems like changing the order fixes the drag priority issue.
-            //However I still want to double check to ensure it's been dealt
-            //with correctly, otherwise it could have issues.
-            Object.values(dr.transforms.pts).forEach((pointWrap) => {
-                setPoint(dr, pointWrap, pointWrap.index);
-            });
-            //Placed after transform points to have drag priority over them.
-            //Otherwise if a point on the curve gets close to a transform point
-            //it's very hard to move the point on the curve.
-            dr.ctrlPts.list.forEach((pointWrap) => {
-                setPoint(dr, pointWrap, pointWrap.index);
-            });
+            //In terms of drag priority see "findDraggee" function for more.
 
-            //Placed after curve control points to have drag priority over them.
             ///Points on x-axis, on the base of the figure.
             if (dr.basePtDraggersEnabled) {
                 const bplist =  dr.basePts.list;
@@ -79,6 +67,14 @@
                     setPoint(dr, bplist[ix], ix);
                 }
             }
+
+            dr.ctrlPts.list.forEach((pointWrap) => {
+                setPoint(dr, pointWrap, pointWrap.index);
+            });
+
+            Object.values(dr.transforms.pts).forEach((pointWrap) => {
+                setPoint(dr, pointWrap, pointWrap.index);
+            });
 
             //for decorator ... todm very easy to forget and be in pain ...
             globalCss.update();
@@ -112,7 +108,10 @@
                 orientation = 'rotate';
             }
 
-            if( typeof pointWrap.x === 'number' ) {
+            // if( typeof pointWrap.x === 'number' ) {
+            //TEMP To avoid adding the arrows that appear when hovering the
+            //mouse, for the right most base point that hasn't been added yet.
+            if( pointWrap.type !== 'base' || pwix < sconf.basesN) {
                 decorator = Update_decPoint( pointWrap )
                 var achieved = { x:pointWrap.x, y:pointWrap.y };
             } else {
@@ -179,6 +178,7 @@
         ///Gets movable and visible point which is closest to mousePoint.
         function findDraggee( mousePoint, dragWraps )
         {
+
             //////////////////////////////////////////////////////////
             // //\\ todo. d8d points tmp patch.
             mousePoint = sDomF.outparent2inn( mousePoint );
@@ -189,7 +189,7 @@
             dragWraps.forEach( function( dwrap ) {
                 closest = findClosestPoint( closest, mousePoint, dwrap );
             });
-            return closest;
+            return closest ? closest.dwrap : null;
         }
         function findClosestPoint( closest, mousePoint, dwrap )
         {
@@ -197,7 +197,6 @@
             var DRAGGEE_HALF_SIZE = pointWrap.type === 'base' ?
                     5 : //crowdy base needs pinpointed selection
                     sconf.DRAGGEE_HALF_SIZE;
-            var closestPoint = null;
 
             //.already in sync
             //sconf.modorInPicY + sconf.pictureActiveArea - mousePoint[1];
@@ -206,9 +205,8 @@
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );
             var td  = Math.max( tdX, tdY );
             if( td <= DRAGGEE_HALF_SIZE ) {
-                if( !closestPoint || closestPoint.td > td ) {
-                    closestPoint = { td:td, pt:pointWrap };
-                    closest = dwrap;
+                if( !closest || closest.td > td ) {
+                    closest = { td, dwrap };
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
                     //    //c cc( 'selected' );
                 }
