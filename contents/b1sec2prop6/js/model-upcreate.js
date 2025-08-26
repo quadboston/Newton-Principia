@@ -20,7 +20,6 @@
     ///****************************************************
     function model_upcreate()
     {
-        const ADDENDUM = amode.aspect === 'addendum';
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
         //stdMod.builds_dq8sagit8displace({});
@@ -108,9 +107,10 @@
         //------------------------------------------------
         //core code displays: force, mask[1] and sagitta, mask[3]
         {
+            const ADDENDUM = amode.aspect === 'addendum';
             const mask = stdMod.graphFW_lemma.graphArrayMask;
-            mask[1] = solvable && ADDENDUM; //displ.
-            mask[2] = solvable && ADDENDUM;
+            mask[1] = solvable; //displ.
+            mask[2] = solvable && ADDENDUM; //'body'
             //sagitta in proof, but not in ...
             mask[3] = solvable && sconf.TIME_IS_FREE_VARIABLE;
         }

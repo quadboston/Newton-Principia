@@ -116,7 +116,7 @@
         var axisXLegend =
         [
             {
-                    text    : 'Distance from force (CP)',
+                    text    : 'Distance from force, CP.',
                     x       : -560,
                 y       : 25,
                 style   : {
@@ -162,7 +162,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
+                pcaption : 'r',
                 fontShiftX : 25,
                 fontShiftY : 15,
                 style : {

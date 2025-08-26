@@ -1,0 +1,10 @@
+
+reclones origin/master:
+stan@pc:/var/www/html/np/prj-v/ver$ git reset --hard origin/master
+HEAD is now at d9a221f Update changelog
+stan@pc:/var/www/html/np/prj-v/ver$ gitk
+
+To revert changes made to your working copy, do this:
+git checkout .
+Or equivalently, for git version >= 2.23:
+git restore .

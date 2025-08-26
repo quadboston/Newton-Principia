@@ -1,0 +1,26 @@
+
+To pinpoint to visibility of the shape (say 'AC' )
+in specific text fragment, for example, in lemma10
+the fragment can be named:   "subessay" : "lemma10"
+(any unique name can be used)
+
+*::*proof|english
+{
+  "logic_phaseCaption" : "Proof",
+   "subessay" : "lemma10"
+}
+
+and in sconf.js the ccsClass added
+
+{ 'AC' : { pcolor : given,
+           cssClass : "subessay--lemma10",
+} },
+
+I know, this make takes a burden to add desired classes in too many places.
+In given example, only in two places.
+
+
+To ease this burden, I can develop conjunction of conditions in core code, say
+logic_phase : claim && sappId : lemma10
+but this will take few hours of work.
+

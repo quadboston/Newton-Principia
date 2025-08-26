@@ -93,8 +93,6 @@
         r           = r<INFINITY_PROTECTOR ? INFINITY_PROTECTOR : r;
         var ee      = [ rrr[0]/r, rrr[1]/r, ];
 
-
-
         //:angle between norm n and radius vector rrr
 
         //the same: var sinOmega = -( ee[0]*nn[0] + ee[1]*nn[1] ) * bk;
@@ -196,7 +194,4 @@
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }
-
-}) ();
-
-
+})();

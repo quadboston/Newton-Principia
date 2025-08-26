@@ -12,7 +12,6 @@
             creates__gets_orbit_closest_point,
         },
     });
-    const tix2orbit = sn( 'tix2orbit', ssD, [] );
     const qix2orb = sn( 'qix2orb', ssD, [] );
     const graphArray = sn( 'graphArray', stdMod, [] );
     return;
@@ -51,7 +50,6 @@
         }
     }
 
-
    function creates__gets_orbit_closest_point() {
        //the more, the better: slider accuracy:
        const SEARCH_POINTS = 50;
@@ -62,20 +60,28 @@
        stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
        return;
 
-       
+
+       ///doing two searches, first sparce
+       ///and the second - precise,
+       ///if argument fromGraph is truthed, then
+       ///first sparce search done via valid graph points and
+       ///then via exact orbit points,
        function gets_orbit_closest_point(
             r, //distance to this point
-            fromGraph //optional, using valid graph points
+            
+            //optional, using valid graph points and leave
+            fromGraph 
         ){
             const arr = fromGraph ? ga : q2o;
             const len = arr.length;
-            const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ));
+            const STEP = fromGraph ? 1 : Math.max( 1, Math.floor( len / SEARCH_POINTS ));
             const point = arr[0];
             const pos = point.rr;
             const x = r[0]-pos[0];
             const y = r[1]-pos[1];
             let min = x*x + y*y;
             let qix_min = null;
+            ///should be from 0: let qix=0;
             for( let qix=STEP; qix<len; qix+=STEP ){
                 const point = arr[qix];
                 const pos = point.rr;

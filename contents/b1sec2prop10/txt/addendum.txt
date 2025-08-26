@@ -20,7 +20,11 @@
     <div style="text-align:center;">
                 𝑓  = M²α²β²r. <br>
     </div>
-
+<br>
+Newton's estimation QR/(QT*SP/2)² happens to be for P10 exactly equal to
+2rα²β²/cos²(∆q).
+<br><br>
+Because of ∆q is constant, two normed graphs coinside.
 
 
 <br><br>

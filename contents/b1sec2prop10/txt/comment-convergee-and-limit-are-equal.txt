@@ -1,0 +1,60 @@
+
+This would be misleading:
+    f_actual / f_actual_max
+    f_estimated / f_actual_max
+In P10 this will make an illusion, that process dQ->0 displays convergency of estimated value to limit value. But there is no convergency, but is an exact equality. Equality of a shape of convergee function and shape of ultimate function.
+
+And if to look deeper, f_actual_max is never known to Newton and never known in the Book, and in general is meanngless. All "magnitudes" of force "10 newtons", "100 kilograms", are always a ratios to "ethalone force".
+
+What f_actual_max is in the Book, and in our program is a limit of ratio
+f_estimated / f_estimated_at_some_point
+
+Replacing f_estimated_at_some_point (we do use f_estimated_max for that) with f_actual_max is not how conversion process is done, because to find f_actual_max we find first "f_estimated / f_estimated_at_some_point" during conversion process and then take maximum of that ultimate ratio as
+f_actual_max
+
+(One more time is interesting, f_actual_max is not an actual value of force, but still a ratio. In Physics we never know "actual values" and don't need to know.)
+
+***
+
+A)
+f_actual / f_actual_max
+f_estimated / f_actual_max
+
+Then you changed it back to draw
+
+B)
+f_actual / f_actual_max and
+f_estimated / f_estimated_max.
+
+I never had it like A. 
+
+--What I have change, I did migrate from convergency by ∆t to convergency by ∆q. This removed time grid to speed up calculations. When one "converge" by ∆t, there likely will be different shapes.
+
+ Konstantin Kirillov 3:17 PM
+
+PS: the fact when convergee and unltimate are eual, was quite surprising and quite rare, I first thought there is a bug in my program and as a dummy person was searching for the bug.
+
+
+I think this is atificial. We have two finctions g=f_est/f_est_max
+g'=f_ultimate/f_ulitmate_max which alreade equal g'=g.
+
+
+Now we do "corrupt" converging proces g->g' by artivicially changing g to make a false illusion of existance of convergence which does not exist because what does exist is an exac equality g=g'.
+
+
+Moreover, the ratio f_ultimate(r)/f_ulitmate(r_max) is a ration of two real magnitudes at points r and r_max.
+The ratio f_est(r)/f_est(r_max) has simialr meaning.
+The ratio f_est(r)/f_ultimate(r_max) has less Physical meaning.
+
+
+Functions
+f_est
+and
+f_ultimate,
+
+have no meaning. They are not forces and don't represent an object in material world. f_ultimate/f_ultimate_at_some_point represents the force per unit f_ultimate_at_some_point.
+
+f_est/f_ultimate_max is a clever trick which illustrates how our selected computing model works. Because they are related by computing procedure.
+
+
+

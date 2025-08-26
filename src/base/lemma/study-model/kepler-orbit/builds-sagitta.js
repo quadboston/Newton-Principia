@@ -46,6 +46,10 @@
                 var Dt = sconf.DT_SLIDER_MAX;
                 var Dq = sconf.DQ_SLIDER_MAX;
                 //we are going to rebuid diagram abscissa range:
+                //We do make range for permitted (for cosmetic goals) q and qx
+                //when saggita is built "once per curve" and with 
+                //"ulitmate" accuracy. We do not rebuilt range on
+                //current and big intervals Dq or Dt.
                 MAKE_RANGE = true;
                 ssD.qix_graph_start = 0;
                 ssD.qix_graph_end = QS;
@@ -67,7 +71,7 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= plusQ ){
+                if( !CR && sconf.orbit_q_end <= plusQ ){
                     if( MAKE_RANGE ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
@@ -82,7 +86,6 @@
                     if( ulitmacy === sData.ULTIM_INSTANT ){
                         bP.instant_displacement = displ;
                     }
-                    displMax = Math.max( Math.abs(displ), displMax );
                 }
                 continue;
             }
@@ -106,7 +109,7 @@
                 if( plusTix >= t2o_len ) {
                     plusTix = t2o_len -1;
                     plusT = plusTix * tgrid_step;
-                    if( MAKE_RANGE ){
+                    if( !CR && MAKE_RANGE ){
                         plusQ = null;
                         bP.invalid = true;
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
@@ -141,14 +144,14 @@
                 minusT =  CR ? ( trange + minusT ) % trange : minusT;
                 const minusTix = Math.floor( minusT/tgrid_step );
                 if( minusTix < 1 ) {
-                    if( MAKE_RANGE ){
+                    if( !CR && MAKE_RANGE ){
                         ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
                         bP.invalid = true;
                     }
                     continue;
                 } else if( minusTix >= tix2orbit.length ){
                     ////todo why? helps only in P6 when curve shape changes
-                    if( MAKE_RANGE ){
+                    if( !CR && MAKE_RANGE ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true;
                     }
@@ -180,5 +183,5 @@
         // \\// t is a free variable
         //**********************************************
     }
-}) ();
+})();
 
