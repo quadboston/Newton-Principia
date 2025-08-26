@@ -11,27 +11,6 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
-        //------------------------------------------------
-        // //\\ returns diagram back at every menu click
-        //      todm: this is a patch: do streamline
-        //------------------------------------------------
-        {
-            nspaste( rg[ "media-mover" ].achieved,
-                {
-                    "achieved": [
-                        sconf.originX_onPicture, //492,
-                        sconf.originY_onPicture, //565
-                    ]
-                }
-            );
-            //todm: without this diagram does not return back immediately, only after a click
-            var ach = rg[ "media-mover" ].achieved.achieved;
-            sconf.modorInPicX = ach[0];
-            sconf.modorInPicY = ach[1];
-        }
-        //------------------------------------------------
-        // \\// returns diagram back at every menu click
-        //------------------------------------------------
 
         toreg( 'media_scale' )();
         rg.media_scale.value = 1;

@@ -1,36 +1,8 @@
 ( function() {
-    var { ns, sn, nspaste, capture, toreg, sDomF, ssD, ssF, fconf, stdMod, amode, 
-        rg, sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
-    setCapture();
+    var { 
+        toreg, sDomF, ssF, stdMod, amode, rg, 
+    } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
-
-
-    function setCapture()
-    {
-        nspaste( capture,
-        {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
-        });
-    }
 
 
     ///runs inside "subessay launch" which in turn runs after
