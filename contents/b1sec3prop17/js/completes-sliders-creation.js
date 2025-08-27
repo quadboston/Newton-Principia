@@ -65,7 +65,6 @@
 
             if( subessay === 'corollary2' ){
                 var newLatus = sData.stashedLatus_g;
-                sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
             } else {
                 var newLatus = sData.stashedLatus_g / incr;
             }
@@ -85,6 +84,7 @@
                 return; 
             }
 
+            sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
             sop.Kepler_g = Kepler_g;
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;
