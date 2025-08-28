@@ -1,6 +1,7 @@
 ( function() {
 
     var {
+        ns,
         eachprop,
         exegs,
         topics,
@@ -26,15 +27,6 @@
     //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
     return;
 
-
-
-
-
-
-
-
-
-
     ///===================================================================
     ///Splits bodyscript-of-exegesis into array of "active"-fragments.
     ///Attaches this array to exegesis.
@@ -51,15 +43,28 @@
     ///===================================================================
     function exegs_2_frags()
     {
+        //will collect unique keys for aspect, logical_phase, and subessay keynames:
+        let allTkeys = {};
+        let allAkeys = {};
+        let allSkeys = {};
+
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
         eachprop( exegs, ( logic_phaseAspects, logic_phase_id ) => {
+            allTkeys[ logic_phase_id ] = true;
             eachprop( logic_phaseAspects, ( exAspect, aspect_id ) => {
+                allAkeys[ aspect_id ] = true;
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     //dirt: subexeg.domComponents  = [];
-                    subexeg.classStr       = 'original-text ' + logic_phase_id + ' ' + aspect_id +
-                                             ' subessay-' + subexeg.essayHeader.subessay;
+                    const subessay = subexeg.essayHeader.subessay;
+                    subexeg.classStr = 'original-text ' + 
+                        logic_phase_id + ' ' + aspect_id +
+                        ' subessay-' + subessay;
+                    //we do assume that exegId are already 
+                    //converted to subessay "human names" where possible:
+                    allSkeys[ subessay ] = true;
+                                             
                     //-----------------------------------------------------
                     // //\\ preliminary prepasing to extract active content
                     //-----------------------------------------------------
@@ -90,8 +95,34 @@
         //==============================================
         // \\// sapwns script-embedded-in-text to html
         //==============================================
+        // //\\ unhiders
+        //it is made dynamic because states do depend on lemma's text
+        let hideeCss = '';
+        eachprop( allTkeys, (prop, kname) => {
+            hideeCss += (hideeCss ? ',\n' : '\n') +
+            `svg.bsl--svgscene.logic_phase--${kname} .logic_phase--${kname}`;
+        });
+        eachprop( allAkeys, (prop, kname) => {
+            hideeCss += (hideeCss ? ',\n' : '\n') +
+            `svg.bsl--svgscene.aspect--${kname} .aspect--${kname}`;
+        });
+        eachprop( allSkeys, (prop, kname) => {
+            hideeCss += (hideeCss ? ',\n' : '\n') +
+            `svg.bsl--svgscene.subessay--${kname} .subessay--${kname}`;
+        });
+        hideeCss = `
+            /* facilitates visibility for flagged control and amode: */
+            .bsl--svgscene .hidee
+            {
+                display : none;
     }
-
-}) ();
+        ` +  hideeCss + `
+            {
+                display : block;
+            }`;
+        ns.globalCss.update( hideeCss );
+        // \\// unhiders
+    }
+})();
 
 

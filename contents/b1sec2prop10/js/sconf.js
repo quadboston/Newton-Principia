@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
+    const { nspaste, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -169,17 +169,11 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            O : {
-                pcolor : context,
-                caption : 'C',
-                pos: C,
-                letterAngle : 120,
-                letterRotRadius : 35,
-            },
-
-            B : {
-                pcolor : proof,
-                letterAngle : 90,
+            
+            // //\\ no visibility cssClass            
+            AA : {
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
             BB : {
@@ -188,40 +182,12 @@
                 doPaintPname : false,
             },
 
-            A : {
-                pcolor : proof,
-            },
-
-            AA : {
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-            D : {
-                pcolor : proof,
-                letterAngle : 70,
-            },
-
-            K : {
-                pcolor : proof,
-                letterAngle : 70,
-            },
-
-            G : {
-                pcolor : proof,
-                letterAngle : 90,
-                letterRotRadius : 25,
-            },
-
-            T : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 15,
-            },
-
-            R : {
-                pcolor : proof,
-                letterAngle : 45,
+            O : {
+                pcolor : context,
+                caption : 'C',
+                pos: C,
+                letterAngle : 120,
+                letterRotRadius : 35,
             },
 
             Z : {
@@ -238,23 +204,99 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
+            // \\// no visibility cssClass
+
+            B : {
+                pcolor : proof,
+                letterAngle : 90,
+                cssClass: 'aspect--english',
+            },
+
+            A : {
+                pcolor : proof,
+                cssClass: 'aspect--english',
+            },
+
+            // //\\ proof
+            D : {
+                pcolor : proof,
+                letterAngle : 70,
+                cssClass: 'logic_phase--proof',
+            },
+
+            K : {
+                pcolor : proof,
+                letterAngle : 70,
+                cssClass: 'logic_phase--proof',
+            },
+
+            G : {
+                pcolor : proof,
+                letterAngle : 90,
+                letterRotRadius : 25,
+                cssClass: 'logic_phase--proof',
+            },
+
+            T : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 15,
+                cssClass: 'logic_phase--proof',
+            },
+
+            R : {
+                pcolor : proof,
+                letterAngle : 45,
+                cssClass: 'logic_phase--proof',
+            },
 
             v : {
                 caption : '𝑣',
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
+                cssClass: 'logic_phase--proof',
             },
 
             F : {
                 pcolor : proof,
                 letterAngle : -135,
+                cssClass: 'logic_phase--proof',
             },
 
             VV : {
                 caption : 'V',
                 pcolor : proof,
                 letterAngle : -45,
+                cssClass: 'logic_phase--proof',
+            },
+
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+            },
+            // \\// proof
+  
+
+            //Book's "another solution"
+            u : {
+                caption : '𝑢',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+                cssClass: 'subessay--another-solution',
+            },
+
+            tCircleCenter : {
+                pos : C,
+                caption : "C'",
+                pcolor : curvature,
+                letterAngle : -45,
+                cssClass: 'subessay--another-solution',
             },
 
             //center of instant curvature circle
@@ -264,24 +306,9 @@
                 pcolor : curvature,
                 letterAngle : -45,
                 undisplayAlways : true,
+                cssClass: 'logic_phase--addendum',
                 doPaintPname : false,
             },
-
-            //Book's "another solution"
-            u : {
-                caption : '𝑢',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
-            },
-
-            tCircleCenter : {
-                pos : C,
-                caption : "C'",
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-
 
             //---------------------------------------
             // //\\ draggable points
@@ -301,14 +328,6 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-            },
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -317,45 +336,103 @@
 
         var linesArray =
         [
-            { 'SP' : { pcolor : result }, },
-
+            { 'A,AA' : { pcolor : proof, }, },
+            { 'B,BB' : { pcolor : proof }, },
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
-            { 'PR' : { pcolor : body }, },
-            { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
 
-            { DK : { pcolor : proof }, },
-            { GP : { pcolor : proof }, },
-            { Qv : { pcolor : proof }, },
-            { Pv : { pcolor : proof }, },
-            { Tv : { pcolor : proof }, },
+            { AO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
+            { BO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
+            { PO : { pcolor : proof,
+                     cssClass: 'aspect--english',
+            }, },
 
-            { vG : { pcolor : proof }, },
-            { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : proof }, },
-            { 'B,BB' : { pcolor : proof }, },
-            { AO : { pcolor : proof }, },
-            { DO : { pcolor : proof }, },
-            { BO : { pcolor : proof }, },
-            { PO : { pcolor : proof }, },
-            { GO : { pcolor : proof }, },
-            { FO : { pcolor : proof }, },
+            // //\\ proof
+            { 'P,VV' : { pcolor : proof,
+                         cssClass: 'logic_phase--proof',
+            }, },
+  
+            { 'PC' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+
+            { 'SP' : { pcolor : result }, },
+
+            { 'PR' : { pcolor : body,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { 'QR' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { 'SQ' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { 'QT' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { 'PT' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+
+            { DK : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { GP : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Qv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Pv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Tv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+
+            { vG : { pcolor : proof,                 
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { PF : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { DO : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+  
+            { GO : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { FO : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            // \\// proof
 
             //Book's "another solution"
-            { Tu : { pcolor : proof }, },
-            { 'u,VV' : { pcolor : proof }, },
-            { uP : { pcolor : proof }, },
-            { PQ : { pcolor : proof }, },
-            { 'P,VV' : { pcolor : proof }, },
-            { 'P,tCircleCenter' : { pcolor : curvature }, },
+            { Tu : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { 'u,VV' : { pcolor : proof,
+                         cssClass: 'subessay--another-solution',
+            }, },
+            { uP : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { PQ : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { 'P,tCircleCenter' : { pcolor : curvature,
+                                    cssClass: 'subessay--another-solution',
+            }, },
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
             TIME_STEPS,
@@ -375,5 +452,4 @@
             handleRadius,
         });
     }
-}) ();
-
+})();
