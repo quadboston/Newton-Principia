@@ -377,15 +377,18 @@
         rg.Zeta.acceptPos = newPos => {
             var sliderAbs = mat.p1_to_p2( rg.P.pos, rg.omegaHandle.pos ).abs;
             var scale = ( rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0] );
-            var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] )
-                           / scale;
-            modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  //validates
+            var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] ) / scale;
+
+            // validates (keeps slider from going beyond either end)
+            modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  
+            
             var zeta = Math.PI / 2 * modelPar;
             var eccentricity = Math.tan( zeta );
-            stdMod.establishesEccentricity( eccentricity,
-                        fconf.sappId !== 'b1sec3prop15' &&
-                        "b1sec3prop14" === fconf.effId );
 
+            //console.log(eccentricity);
+            if(eccentricity >= 1) return; // should always be ellipse
+
+            stdMod.establishesEccentricity( eccentricity, true );
             newPos[0] = rg.Zeta.pos[0];         //corrects
             newPos[1] = rg.ZetaStart.pos[1];    //corrects
             var { angleRV, rr } = mcurve.planeCurveDerivatives({
