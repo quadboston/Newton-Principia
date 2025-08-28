@@ -12,6 +12,8 @@
     {
         var { logic_phase, aspect, subessay } = amode;
 
+        sDomF.resetModelPos();
+
         toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );

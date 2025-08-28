@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, 
+        ns, paste, capture,
         sDomF, ssD, globalCss, sData,
         amode, toreg, rg,
     } = window.b$l.apptree({
@@ -101,6 +101,8 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+
+        sDomF.resetModelPos();
 
         //----------------------------------
         // //\\ common values

@@ -88,6 +88,8 @@
     {
         var { logic_phase, aspect, subessay } = amode;
 
+        sDomF.resetModelPos();
+
         //----------------------------------
         // //\\ common values
         //----------------------------------
