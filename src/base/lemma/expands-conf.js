@@ -437,8 +437,7 @@
                     rgX.letterOffsetX = letterShift[0];
                     rgX.letterOffsetY = letterShift[1];
                 } else {
-                    var letterAngle     = has( op, 'letterAngle' ) ?
-                                          op.letterAngle : 0;
+                    var letterAngle     = has( op, 'letterAngle' ) ? op.letterAngle : 0;
                     var rad             = letterAngle / 180 * Math.PI;
                     rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
                                           fontSize*LETTER_CENTER_X_PER_FONT_SIZE;

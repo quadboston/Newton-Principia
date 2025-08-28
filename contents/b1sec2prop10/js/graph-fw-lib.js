@@ -38,7 +38,7 @@
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-            const container$ = $$.div()
+            container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
