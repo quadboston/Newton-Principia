@@ -7,6 +7,9 @@
         },
     });
     var sop = sn( 'sampleOrbitParameters', sconf );
+
+    // to keep track of tab switches
+    var subessay = ''; // todo: is this already tracked somewhere?
     return;
 
 
@@ -123,7 +126,13 @@
                 q   : rg.p.q,
                 rrc,
             });
-            nspaste( rg.p.pos, rr );
+            
+            // only set position of p once, it does not move
+            if( amode.subessay !== subessay ) {
+                subessay = amode.subessay;
+                nspaste( rg.p.pos, rr );
+            }
+
             //sample speed vector
             {
                 //dropLine(... = start + direction * t

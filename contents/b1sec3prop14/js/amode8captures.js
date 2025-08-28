@@ -38,39 +38,62 @@
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //==================================================
-        // //\\ hide all, then specify which to show
-        //==================================================        
-        for(key in rg) {
-            if(rg[key]) {
-                rg[key].undisplay = true;
-            }
-        };
+        // //\\ decorations
+        //==================================================
 
-        var hyperbola = [
-            // conic itself is always shown
-            'S', 'P', 'LL', 'A', 'B', 'C','Zminus', 'Q', // points
-            'P,Zminus', 'PZ', 'PR', 'SP', 'B,BB', // lines
-            'Zeta', 'ZetaCaption', 'ZetaStart,ZetaEnd' // e slider
+        //==================================================
+        // //\\ hide
+        //==================================================  
+
+        var common = [
+            'F', 'O', 'x', 'H', 'B', 'A', 'Zminus'
         ];
 
-        var triangle = [
-            'G', 'D', 'K', 'F', 'v', 'E', 'x', 'R', 'H', 'I', 'T', 'O', // points
-            'CA', 'CB', 'GP', 'DK', 'PF', 'Qv', 'QR', 'Px', 'Qx', // lines
-            'EP', 'HI', 'EC', 'ES', 'EI', 'CS', 'CH', 'PI', 'PH',
-            'PT', 'QT', 'AT', 'Pv', 'xv', 'PC', 'PE', 'Gv', 'CD',
+        var p14 = [
+            'omegaHandle',
+            'P,omegaHandle', 'SY'
         ];
+
+        var p16 = [
+            'vb', 'P,vb',
+        ];
+
+        var items = common.concat("b1sec3prop14" === fconf.sappId ? p14 : p16);
         
-        hyperbola.forEach( i => {
-            rg[i].undisplay = false;
-        });
-
-        triangle.forEach( i => {
-            rg[i].undisplay = false;
+        items.forEach( i => {
+            rg[i].undisplay = true;
         });
         //==================================================
-        // \\// hide all, then specify which to show
+        // \\// hide
         //==================================================
 
+
+        if( "b1sec3prop14" === fconf.sappId ) {
+            rg.vb.hideD8Dpoint = false;
+            rg.L.hideD8Dpoint = true;
+        }
+
+        if( fconf.sappId === 'b1sec3prop16' ) {
+            rg.vb.hideD8Dpoint = true;
+            rg.omegaHandle.hideD8Dpoint = false;
+            rg.L.hideD8Dpoint = false;
+            stdMod.imgRk.dom$.css( 'visibility', 'visible' );
+            stdMod.svgScene$.css( 'visibility', 'visible' );
+            if( logic_phase === 'corollary' ) {
+                if( subessay === "corollary1" ) {
+                    ////latus on others: swaps latus and speed
+                    rg.vb.hideD8Dpoint = false;
+                    rg.L.hideD8Dpoint = true;
+                } else {
+                    stdMod.imgRk.dom$.css( 'visibility', 'hidden' );
+                    stdMod.svgScene$.css( 'visibility', 'hidden' );
+                }
+            }
+        }
+
+        //==================================================
+        // \\// decorations
+        //==================================================
 
         //=============================================================
         // //\\ model
@@ -96,15 +119,22 @@
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
         op.Dt = op.Dt0;
+        nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
         op.sagittaDelta_q = op.sagittaDelta_q_initial;
 
-        if (sconf.Fi_distance != null) {
-            nspaste( rg.Fi.pos, [
-                sconf.Fi_distance * Math.cos( rg.P.q ),
-                sconf.Fi_distance * Math.sin( rg.P.q ),
-            ]);
+        if( fconf.sappId === "b1sec3prop16" ) {
+            op.cosOmega = op.cosOmega_initial;
+            op.om       = op.om_initial;
         }
 
+        if (sconf.Fi_distance != null) {
+            //op.Dt = op.Dt0;
+            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+            nspaste( rg.Fi.pos, [
+                sconf.Fi_distance * Math.cos( op.mainAxisAngle ),
+                sconf.Fi_distance * Math.sin( op.mainAxisAngle ),
+            ]);
+        }
         //=============================================================
         // \\// model
         //=============================================================

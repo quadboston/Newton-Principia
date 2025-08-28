@@ -2,7 +2,8 @@
 ( function() {
     var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
-    //sn points to sconf.orbitParameters if param exisits, these are empty objs here
+    // sn points to sconf.orbitParameters if param exisits, 
+    // these are empty objs here
     var op = sn( 'orbitParameters', sconf ); //conic ABD (brown)
     var sop = sn( 'sampleOrbitParameters', sconf ); //conic pq (green)
     return;
@@ -316,7 +317,6 @@
                 letterAngle : 45,
             },
         });
-
 
         var linesArray =
         [
