@@ -9,6 +9,13 @@
 * Proposition 12
 	* removed hyperbola asymptotes
 
+* Proposition 17
+	* force dragger not "dropped" when past limit
+	
+* Proposition 17, Corollary 2
+	* point p no longer drifts
+	* force dragger stops at limit
+
 
 ## 2025-8-16 (Yellow Version, 0.13851)
 ### Improved
