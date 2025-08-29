@@ -48,7 +48,7 @@
         [
             //points
             'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'vb', 'Q', //op
-            'p', 'vSample', 'f', 'CS', 'CH', 'DH', 'DS',  //sop
+            'p', 'q', 'vSample', 'f', 'CS', 'CH', 'DH', 'DS',  //sop
 
             //lines
             'SP', 'SK', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op

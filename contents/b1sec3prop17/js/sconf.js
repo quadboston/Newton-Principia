@@ -157,16 +157,12 @@
             given,
             body,
             orbit,
-            orbitareaSample,
-            orbitarea,
             proof,
             proofHidden,
             result,
             force,
             shadow,
             hidden,
-            curvature,
-            context,
             attention,
         } = fixedColors;
         let red = [255,0,0]; //for debugging
@@ -177,18 +173,16 @@
             proof,
             result,
             hidden,
-            context,
-            curvature,
             body,
             orbit               : result,
             'orbit-sample'      : given,
-            orbitarea           : orbitarea,
-            'orbitarea-sample'  : orbitareaSample,
             orbitdq             : result,
             'orbitdq-sample'    : given, //todm remove
             shadow,
             force               : force,
-            e                   : result ,
+
+            // table colours
+            e                   : result,
             conic               : result
         };
         //-----------------------------------
@@ -327,7 +321,7 @@
             { SK : { pcolor : proof }, },    
             { PH : { pcolor : proof, },},  
             { PK : { pcolor : attention }, },
-            { 'L,LL' : { pcolor : result,
+            { 'L,LL' : { pcolor : [...result, 0.1, 1],
                captionShiftNorm : 22, lposYSugar : 3 }, },
             { CB : { pcolor : result }, },
             { BH : { pcolor : proof }, },
@@ -365,18 +359,18 @@
             // //\\ sop (green conic)
             //-------------------------------------------  
             { 'p,f' : { 
-                pcolor : force, 
+                pcolor : [...force, 0.1, 1],
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 
             },
             { 'l,ll' : { 
-                pcolor : given,
+                pcolor : [...given, 0.1, 1],
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },
             { 'Sp' : { 
-                pcolor : given, 
+                pcolor : [...given, 0.1, 1], 
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 
