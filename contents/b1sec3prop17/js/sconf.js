@@ -367,6 +367,11 @@
             //-------------------------------------------
             // //\\ sop (green conic)
             //-------------------------------------------  
+			{ 'Sp' : { 
+                pcolor : given,
+                'stroke-width' : 1.1, 
+                captionShiftNorm : -18}, 
+            },
             { 'p,f' : { 
                 pcolor : force,
                 'stroke-width' : 1.1, 
@@ -377,12 +382,6 @@
                 pcolor : givenOnlyVisibleWhenHighlighted,
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
-            },
-            { 'Sp' : { 
-                pcolor : given,
-                'stroke-width' : 1.1, 
-                captionShiftNorm : -18,
-                vectorTipIx : 1 }, 
             },
             { 'p,vSample' : { 
                 pcolor : given, 
