@@ -47,7 +47,7 @@ Drop the perpendicular
 ¦SK¦¦ to ¦PH¦¦ and understand the conjugate semiaxis ¦CB¦BC¦¦ to be erected; then
 
 <table class="math-table">
-  <tr><td style="text-align: right;">¦SP¦¦² − 2¦PK¦KP¦¦ × ¦PH¦¦ + ¦PH¦¦²</td><td>&nbsp;=&nbsp;</td>
+  <tr><td style="text-align: right;">¦SP¦¦²&nbsp;−&nbsp;2¦PK¦KP¦¦&nbsp;×&nbsp;¦PH¦¦&nbsp;+&nbsp;¦PH¦¦²</td><td>&nbsp;=&nbsp;</td>
     <td>¦CS CH¦SH¦¦² *</td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
     <td>4¦CH¦¦²</td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
     <td>4¦BH¦¦² − 4¦CB¦BC¦¦² </td></tr><tr><td></td><td>&nbsp;=&nbsp;</td>
@@ -59,7 +59,7 @@ Drop the perpendicular
 Add to each side
 2(¦PK¦KP¦¦ × ¦PH¦¦) − ¦SP¦¦² − ¦PH¦¦² + ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦), and ¦L,LL¦L¦¦ × (¦SP¦¦ + ¦PH¦¦) will become
 = 2(¦SP¦¦ × ¦PH¦¦) + 2(¦PK¦KP¦¦ × ¦PH¦¦), or ¦SP¦¦ + ¦PH¦¦ will be to ¦PH¦¦ as 2¦SP¦¦ + 2¦PK¦KP¦¦ to ¦L,LL¦L¦¦.
-Hence ¦PH¦¦ is given in length as well as in position. 
+Hence ¦PH¦¦ is given in length as well as in position.
 <br><br>
 Specifically, if the ¦P,vb¦velocity¦¦
 of the body at ¦P¦¦ is such that the latus rectum ¦L,LL¦L¦¦ is less than 2¦SP¦¦ + 2¦PK¦KP¦¦, ¦PH¦¦
