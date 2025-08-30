@@ -158,7 +158,8 @@
             body,
             orbit,
             proof,
-            proofHidden,
+			resultOnlyVisibleWhenHighlighted,
+			givenOnlyVisibleWhenHighlighted,
             result,
             force,
             shadow,
@@ -283,29 +284,35 @@
             
             //not shown as points, but used in calculations to draw lines
             L : {
+				// latus rectum endpoint of orbit PQ
                 pcolor : orbit,
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             LL : {
+				// latus rectum endpoint of orbit PQ
                 pcolor : orbit,
                 doPaintPname : false,
             },
             l : {
+				// latus rectum endpoint of orbit pq
                 pcolor : given,
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             ll : {
+				// latus rectum endpoint of orbit pq
                 pcolor : given,
                 doPaintPname : false,
             },
             
             Y : {
+				// intersection of PR and its ⟂ with S
                 pcolor : proof,
                 letterAngle : 45,
             },
             Ys : {
+				// intersection of pr and its ⟂ with S
                 caption : '',
                 pcolor : proof,
                 letterAngle : 45,
@@ -315,13 +322,13 @@
         var linesArray =
         [
             //-------------------------------------------
-            // //\\ op (brown conic)
+            // //\\ op (PR brown conic)
             //-------------------------------------------                        
             { SP : { pcolor : body},},   
             { SK : { pcolor : proof }, },    
             { PH : { pcolor : proof, },},  
             { PK : { pcolor : attention }, },
-            { 'L,LL' : { pcolor : [...result, 0.1, 1],
+            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },
             { CB : { pcolor : result }, },
             { BH : { pcolor : proof }, },
@@ -344,11 +351,13 @@
 
             // perpendiculars referenced in the Solution
             { 'SY' : { 
-                pcolor : proofHidden, 
+				// perpendicular from S to PR
+                pcolor : resultOnlyVisibleWhenHighlighted,
                 captionShiftNorm : -28 
             }, }, 
             { 'S,Ys' : { 
-                pcolor : proofHidden, 
+				// perpendicular from S to pr
+                pcolor : givenOnlyVisibleWhenHighlighted,
                 captionShiftNorm : -28 
             }, },
             //-------------------------------------------
@@ -359,18 +368,18 @@
             // //\\ sop (green conic)
             //-------------------------------------------  
             { 'p,f' : { 
-                pcolor : [...force, 0.1, 1],
+                pcolor : force,
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 
             },
             { 'l,ll' : { 
-                pcolor : [...given, 0.1, 1],
+                pcolor : givenOnlyVisibleWhenHighlighted,
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },
             { 'Sp' : { 
-                pcolor : [...given, 0.1, 1], 
+                pcolor : given,
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 
