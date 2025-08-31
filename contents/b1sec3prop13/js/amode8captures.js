@@ -1,8 +1,9 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssF, fconf, stdMod, amode,
-        rg, sconf, } = window.b$l.apptree({ 
+    var { 
+        nspaste, toreg, mat, sDomF, ssF, stdMod, amode, rg, sconf, 
+    } = window.b$l.apptree({ 
             ssFExportList : { amode2rgstate, }, 
-        });
+    });
     return;
 
 
@@ -10,7 +11,6 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
         //------------------------------------------------
         // //\\ returns diagram back at every menu click
         //      todm: this is a patch: do streamline
@@ -34,7 +34,7 @@
         //------------------------------------------------
 
         toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        rg.media_scale.value  = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //==================================================
@@ -46,25 +46,14 @@
             }
         };
 
-        var hyperbola = [
-            // conic itself is always shown
-            'S', 'P', 'LL', 'A', 'B', 'C','Zminus', 'Q', // points
-            'P,Zminus', 'PZ', 'PR', 'SP', 'B,BB', // lines
-            'Zeta', 'ZetaCaption', 'ZetaStart,ZetaEnd' // e slider
-        ];
-
-        var triangle = [
-            'G', 'D', 'K', 'F', 'v', 'E', 'x', 'R', 'H', 'I', 'T', 'O', // points
-            'CA', 'CB', 'GP', 'DK', 'PF', 'Qv', 'QR', 'Px', 'Qx', // lines
-            'EP', 'HI', 'EC', 'ES', 'EI', 'CS', 'CH', 'PI', 'PH',
-            'PT', 'QT', 'AT', 'Pv', 'xv', 'PC', 'PE', 'Gv', 'CD',
+        var features = [
+            'M', 'A', 'S', 'N', 'Q', 'R', 'T', 'x', 'v', 'P', // points
+            'QR', 'QT', 'SP', 'GP', 'Pv', 'Qv', 'Qx', 'Px', 'Tx', 'SA', 'xv',
+            'PM', 'SM', 'NS', 'NP', 'A,AA',
+            'PR', 'P,Zminus', //tangent
         ];
         
-        hyperbola.forEach( i => {
-            rg[i].undisplay = false;
-        });
-
-        triangle.forEach( i => {
+        features.forEach( i => {
             rg[i].undisplay = false;
         });
         //==================================================

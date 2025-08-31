@@ -12,7 +12,7 @@
     //====================================================
     function init_conf()
     {
-        console.log('init P12');
+        console.log('init P13');
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -27,8 +27,8 @@
         // //\\ decorational parameters
         //***************************************************************
         //media
-        var pictureWidth = 690;
-        var pictureHeight = 836; //728;
+        var pictureWidth = 938;
+        var pictureHeight = 611;
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
@@ -56,7 +56,7 @@
         sconf.text_hover_width      = 1.5;
 
         // points reused in config      
-        var F = [ 492, 565 ]; //x,y of whole svg model
+        var F = [ 560, 554 ]; //x,y of whole svg model
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
         var originY_onPicture = F[1]; //for model's axis y
@@ -79,12 +79,12 @@
         op.delta_v_increase_LIMIT = 1.5;
 
         //conic pars
-        op.initialEccentricity = 1.365; //hyperbola
-        op.latusInitial = 0.90;
-        var PparQ = 0.49 * Math.PI;
+        op.latusInitial           = 2.10;
+        op.initialEccentricity    = 1; //parabola
+        var PparQ                 = 0.386 * Math.PI;
         
-        op.sagittaDelta_q_initial = 1;
-               
+        op.sagittaDelta_q_initial = 0.39;
+
         op.PparQ_initial        = PparQ;
         op.PparQ_initial_essay  = PparQ;
         op.sagittaDelta_q       = op.sagittaDelta_q_initial;
@@ -150,7 +150,56 @@
 
         var originalPoints = {};
         Object.assign( originalPoints, {
-            // hyperbola
+            L : {
+                //no need: will be dynamic: caption : 'mmm',
+                pcolor : orbit,
+                letterAngle : -45,
+                letterRotRadius : 20,
+                draggableX  : true,
+                draggableY  : true,
+            },
+            LL : {
+                pcolor : orbit,
+                doPaintPname : false,
+            },
+
+            A : {
+                pcolor : orbit,
+                letterRotRadius : 20,
+                letterAngle : -90,
+            },
+            M : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -45,
+            },
+            N : {
+                pcolor : proof,
+                letterRotRadius : 20,
+                letterAngle : -45,
+            },
+            T : {
+                pcolor : proof,
+                //letterAngle : 180,
+                letterRotRadius : 20,
+            },
+            R : {
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
+            v : {
+                caption : '𝑣',
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 15,
+            },            
+            x : {
+                caption : "𝑥",
+                pcolor : proof,
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
             S : {
                 pcolor : result,
                 letterAngle : -115,
@@ -161,46 +210,6 @@
                 letterAngle : 120,
                 draggableY  : true,
             },
-            LL : { // opposite of P, unlabelled
-                pcolor : orbit,
-                doPaintPname : false,
-            },
-            A : {
-                pcolor : orbit,
-                letterRotRadius : 20,
-                letterAngle : -90,
-            },            
-            AA : { // opposite A
-                undisplayAlways : true,
-                doPaintPname : false,
-                pcolor : orbit,
-            },
-            B : {
-                letterRotRadius : 20,
-                pcolor : orbit,
-            },            
-            BB : { // opposite B
-                letterAngle : 90,
-                undisplayAlways : true,
-                doPaintPname : false,
-                pcolor : orbit,
-            },
-            C : { //center symmetry of orbit
-                pcolor : orbit,
-                letterAngle : -45,
-            },
-            Zminus : {
-                caption : 'Z',
-                pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
-            },
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
             Q : {
                 pcolor : proof,
                 letterAngle : 225,
@@ -208,13 +217,85 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-
-
-            // triangle
+            AA : {
+                undisplayAlways : true,
+                doPaintPname : false,
+                pcolor : orbit,
+            },
             G : {
                 pcolor : proof,
                 letterRotRadius : 20,
                 letterAngle : -45,
+            },
+            Zminus : {
+                caption : 'Z',
+                pcolor : body,
+                letterAngle : 145,
+                letterRotRadius : 20,
+                doPaintPname : "b1sec3prop13" !== fconf.sappId,
+            },
+
+            // //\\ eccentricity slider
+            Zeta : {
+                caption : 'eccentricity, e',
+                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                letterAngle : 90,
+                letterRotRadius : 20,
+                draggableX  : 'b1sec3prop13' !== fconf.sappId,
+                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
+                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                unscalable  : true,
+            },
+
+            ZetaCaption : {
+                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                letterAngle : 90,
+                letterRotRadius : 20,
+                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                unscalable  : true,
+            },
+
+            ZetaStart : {
+                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+
+            ZetaEnd : {
+                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
+                pcolor : orbit,
+                undisplayAlways : true,
+                doPaintPname : false,
+                unscalable  : true,
+            },
+
+            // not used but calculated in model-upcreate for P12
+            // todo: if splitting P12 from P13 model-upcreate, can delete
+            C : { //center symmetry of orbit
+                pcolor : orbit,
+                letterAngle : -45,
+            },
+            H : {
+                pcolor : proof,
+                letterAngle : -90,
+            },
+            Z : {
+                pcolor : body,
+                letterAngle : 45,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            O : {
+                pcolor : context,
+                caption : 'O',
+                pos: F,
+                letterAngle : 45,
+                letterRotRadius : 20,
             },
             D : {
                 pcolor : proof,
@@ -231,152 +312,62 @@
                 letterRotRadius : 20,
                 letterAngle : 135,
             },
-            v : {
-                caption : '𝑣',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
+            B : {
+                letterRotRadius : 20,
+                pcolor : orbit,
+            },             
+            BB : { // opposite B
+                letterAngle : 90,
+                undisplayAlways : true,
+                doPaintPname : false,
+                pcolor : orbit,
             },
             E : {
                 pcolor : proof,
                 letterRotRadius : 20,
                 //letterAngle : 90,
-            },            
-            x : {
-                caption : "𝑥",
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
-            R : {
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
-            },
-            
-            H : {
-                pcolor : proof,
-                letterAngle : -90,
-            },
+            }, 
             I : {
                 pcolor : proof,
                 letterRotRadius : 20,
-            },
-            T : {
-                pcolor : proof,
-                //letterAngle : 180,
-                letterRotRadius : 20,
-            },
-            O : {
-                pcolor : context,
-                caption : 'O',
-                pos: F,
-                letterAngle : 45,
-                letterRotRadius : 20,
-            },
-
-            L : { // not shown, but mentionned in text
-                pcolor : orbit,
-                letterAngle : -45,
-                letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
-            // eccentricity slider
-            Zeta : {
-                caption : 'eccentricity, e',
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                draggableX  : 'b1sec3prop13' !== fconf.sappId,
-                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
-                unscalable  : true,
-            },
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
-                unscalable  : true,
-            },
-            ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
             },
 
         });
 
         var linesArray =
         [
-            // hyperbola
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body, 'stroke-width' : 2, 
-                captionShiftNorm : -18, }, },
-            { 'SP' : {
+            { QR : { pcolor : proof }, },
+            { QT : { pcolor : proof }, },
+            { SP : {
                     pcolor : body,
                     vectorTipIx : 1 },
-            },            
-            { 'B,BB' : { pcolor : orbit }, },
-
-            // triangle            
-            { CA : { pcolor : proof }, },
-            { CB : { pcolor : proof }, },
+            },              
+            { PM : { pcolor : body }, },
+            { SM : { pcolor : proof }, },       
             { GP : { pcolor : proof }, },
-            { DK : { pcolor : proof }, },
-            { PF : { pcolor : proof }, },            
-            { Qv : { pcolor : proof }, },
-            { QR : { pcolor : proof }, },
-            { Qx : { pcolor : proof }, },
+            { NS : { pcolor : proof }, },
+            { NP : { pcolor : proof }, },
+            { Pv : { pcolor : proof }, },
+            { Qv : { pcolor : proof }, }, 
+            { Qx : { pcolor : proof }, },  
             { Px : { pcolor : proof }, },
-            
-            { EP : { pcolor : proof }, },            
-            { HI : { pcolor : proof }, },
-            { EC : { pcolor : proof }, },
-            { ES : { pcolor : proof }, },
-            { EI : { pcolor : proof }, },
-            { CS : { pcolor : proof }, },
-            { CH : { pcolor : proof }, },
-            { PI : { pcolor : proof }, },
-            { PH : {
-                    pcolor : proof,
-                    vectorTipIx : 0,
-                },
-            },
-            
-            { QT : { pcolor : proof }, },
-            { PT : { pcolor : proof }, },
-            { AT : { pcolor : proof }, },
-            { Pv : { pcolor : proof }, },            
+            { Tx : { pcolor : proof }, },
+            { SA : { pcolor : proof }, },
             { xv : { pcolor : proof }, },
-            { PC : { pcolor : proof }, },
-            { PE : { pcolor : proof }, },
-            { Gv : { pcolor : proof }, },
-            { CD : { pcolor : proof }, },
 
-            // latus not shown, but mentionned in text
+            // tangent
+            { 'PR' : { 
+                pcolor : body, 
+                'stroke-width' : 2, 
+                captionShiftNorm : -18, }, 
+            },                
+            { 'P,Zminus' : { pcolor : body }, },
+
+            // base line
+            { 'A,AA' : { pcolor : orbit }, },
+
             { 'L,LL' : { pcolor : orbit,
                captionShiftNorm : 22, lposYSugar : 3 }, },
-
-            // e slider
-            { 'ZetaStart,ZetaEnd' :
-              { pcolor : orbit } 
-            },
         ];
 
         ns.paste( sconf, {

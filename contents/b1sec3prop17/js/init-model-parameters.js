@@ -21,10 +21,6 @@
         //add objects to registry (rg)
         toreg( 'approximated-curve' );
         toreg( 'approximated-curve-sample' );
-        toreg( 'orbitarea' );
-        toreg( 'orbitarea-sample' );
-        toreg( 'instanttriangle' );
-        toreg( 'instanttriangle-sample' );
 
         ////creates both curve and its area (defined in makes-orbit.js)
         stdMod.creates_orbitRack();

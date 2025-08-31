@@ -39,39 +39,10 @@
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-        //==================================================
-        // //\\ hide all, then specify which to show
-        //==================================================        
-        for(key in rg) {
-            rg[key].undisplay = true;
-        };
-        [
-            //points
-            'S', 'P', 'K', 'A', 'B', 'C', 'H', 'D', 'vb', 'Q', //op
-            'p', 'vSample', 'f', 'CS', 'CH', 'DH', 'DS',  //sop
-
-            //lines
-            'SP', 'SK', 'PH', 'PK', 'L,LL', 'CB', 'BH', 'P,vb', 'CA', 'CD', //op
-            'p,f', 'l,ll', 'Sp', 'p,vSample', //sop
-
-            'SY', 'S,Ys', //perpendiculars
-        ].forEach( i => {
-            rg[i].undisplay = false;
-        });
-
-        //draggers
-        rg.vb.hideD8Dpoint = false;
-        rg.f.hideD8Dpoint = false;
-        if( logic_phase === 'corollary' && amode.subessay === 'corollary2' ){
-            rg.vSample.hideD8Dpoint = true;
-        } else {
-            rg.vSample.hideD8Dpoint = false;
-        }
-        //==================================================
-        // \\// hide all, then specify which to show
-        //==================================================
-
-
+		rg.vSample.hideD8Dpoint =
+			// for this corollary, p's velocity is determined by the force
+			logic_phase === 'corollary' && amode.subessay === 'corollary2';
+			
         //=============================================================
         // //\\ model (reset to starting positions)
         //=============================================================
