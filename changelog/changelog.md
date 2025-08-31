@@ -1,7 +1,7 @@
 # Change Log
  
   
-## 2025-8-16 (Brown Version, 0.13851)
+## 2025-8-31 (Brown Version, 0.13854)
 ### Improved
 * Lemmas 2, 3, 7, 8:
 	* lowercase labels are in italic to match original text
