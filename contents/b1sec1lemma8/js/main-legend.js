@@ -37,12 +37,12 @@
     };
 
     lemma8Data.proof = [
-        [lemma8Data.claim[0][0], [ 'rAb', '△rAb', 'rg.rAb.area' ]],
-        [lemma8Data.claim[1][0], [ 'rAcb', '△rAcb', 'rg.rAcb.area' ]],
-        [lemma8Data.claim[2][0], [ 'rAd', '△rAd', 'rg.rAd.area' ]],
+        [lemma8Data.claim[0][0], [ 'rAb', '△𝑟A𝑏', 'rg.rAb.area' ]],
+        [lemma8Data.claim[1][0], [ 'rAcb', '△𝑟A𝑐𝑏', 'rg.rAcb.area' ]],
+        [lemma8Data.claim[2][0], [ 'rAd', '△𝑟A𝑑', 'rg.rAd.area' ]],
         [lemma8Data.claim[3][0], [ 'spacer', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△rAcb : △rAb', 'rg.RACB_RAB.ratio' ]],
-        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△rAd : △rAb', 'rg.RAD_RAB.ratio' ]],
+        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△𝑟A𝑐𝑏 : △𝑟A𝑏', 'rg.RACB_RAB.ratio' ]],
+        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△𝑟A𝑑 : △𝑟A𝑏', 'rg.RAD_RAB.ratio' ]],
     ];
 
     lemma8Data.corollary = lemma8Data.proof; 

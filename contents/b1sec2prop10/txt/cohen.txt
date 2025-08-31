@@ -29,7 +29,7 @@ as ¦PO¦PC¦¦² to ¦DO¦CD¦¦², and
 (because
 triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PO FO PF¦PCF¦¦ are similar)
 ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PO¦PC¦¦² to ¦PF¦¦², and,
-when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ is to QT² as ¦PO¦PC¦¦² to
+when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ is to ¦QT¦¦² as ¦PO¦PC¦¦² to
 ¦DO¦CD¦¦² and ¦PO¦PC¦¦² to ¦PF¦¦²; that is, ¦vG¦𝑣G¦¦ is
 to 
 

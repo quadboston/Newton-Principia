@@ -131,18 +131,20 @@
                 draggableY  : true,
             },            
             c : {
+				caption: "𝑐",
                 letterAngle : 45,
                 letterRotRadius : 18,
                 pcolor      : proof,
             },
             b : {
+				caption: "𝑏",
                 letterAngle : 0,
                 pcolor      : proof,
             },
 
             ///modified point r, closer to d
             "r" : {
-                caption : "r",
+				caption : "𝑟",
                 pcolor      : proof,
                 letterAngle : -45,
                 letterRotRadius : 30,
@@ -150,7 +152,7 @@
 
             ///modified point r, closer to d
             "d" : {
-                caption : "d",
+                caption : "𝑑",
                 pos : D,
                 pcolor      : proof,
                 letterAngle : -90,
