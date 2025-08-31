@@ -6,6 +6,9 @@
 * Lemmas 2, 3, 7, 8:
 	* lowercase labels are in italic to match original text
 
+* Proposition 10
+	* added missing QT highlight
+
 * Proposition 12
 	* removed hyperbola asymptotes
 
