@@ -98,6 +98,7 @@
             caption : 'Sec. 3, Proposition 13',
         },
 
+		/* Removed until interaction is redone
         {   sappId : 'b1sec3prop14',
             book : 'Book 1',
             caption : 'Sec. 3, Proposition 14',
@@ -106,7 +107,7 @@
         {   sappId : 'b1sec3prop16',
             book : 'Book 1',
             caption : 'Sec. 3, Proposition 16',
-        },
+        },*/
 
         {   sappId : 'b1sec3prop17',
             book : 'Book 1',
