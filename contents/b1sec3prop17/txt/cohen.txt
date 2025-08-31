@@ -39,10 +39,6 @@ also given. Let angle ¦P,vb PH¦RPH¦¦ be the complement of angle ¦P,vb SP¦R
 angles [i.e., the supplement of angle ¦P,vb SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
 other focus ¦H¦¦ is located, will be given in position. 
 <br><br>
-
-
-
-
 Drop the perpendicular
 ¦SK¦¦ to ¦PH¦¦ and understand the conjugate semiaxis ¦CB¦BC¦¦ to be erected; then
 

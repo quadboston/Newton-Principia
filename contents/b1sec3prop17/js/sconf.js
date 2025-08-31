@@ -168,6 +168,9 @@
         } = fixedColors;
         let red = [255,0,0]; //for debugging
 
+		const ALL_EXCEPT_PROBLEM_TAB = 
+			'subessay--solution subessay--corollary1 subessay--corollary2';
+
         var predefinedTopics =
         {
             given,
@@ -207,29 +210,29 @@
             }, 
             K : {
                 pcolor : proof,
+				cssClass: 'subessay--solution subessay--corollary1',
                 letterRotRadius : 20,
                 letterAngle : -60,
             },           
-            A : {
-                pcolor : result,
-                letterRotRadius : 20,
-                letterAngle : -90,
-            },
             B : {
                 letterRotRadius : 20,
+				cssClass: 'subessay--solution',
                 pcolor : result,
             },
             C : { //center symmetry of orbit
                 pcolor : result,
+				cssClass: 'subessay--solution',
                 letterAngle : -45,
             },
 
             H : {
                 pcolor : result,
+				cssClass: ALL_EXCEPT_PROBLEM_TAB,
                 letterAngle : -90,
             },
             D : {
                 pcolor : result,
+				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
             vb : { //speed of the body (dragger)
@@ -242,6 +245,7 @@
             },
             Q : {
                 pcolor : result,
+				cssClass : 'subessay--solution',
                 letterAngle : 225,
                 letterRotRadius : 20,
             },
@@ -275,6 +279,7 @@
             },
             q : {
                 pcolor : given,
+				cssClass : 'subessay--solution',
                 letterAngle : -65,
                 letterRotRadius : 20,
             },
@@ -283,38 +288,49 @@
             //-------------------------------------------
             
             //not shown as points, but used in calculations to draw lines
+			A : {
+                pcolor : result,
+				cssClass : 'hidden',
+                letterRotRadius : 20,
+                letterAngle : -90,
+            },
             L : {
 				// latus rectum endpoint of orbit PQ
                 pcolor : orbit,
+                cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             LL : {
 				// latus rectum endpoint of orbit PQ
                 pcolor : orbit,
+                cssClass : 'hidden',
                 doPaintPname : false,
             },
             l : {
 				// latus rectum endpoint of orbit pq
                 pcolor : given,
+                cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             ll : {
 				// latus rectum endpoint of orbit pq
                 pcolor : given,
+				cssClass : 'hidden',
                 doPaintPname : false,
             },
             
             Y : {
 				// intersection of PR and its ⟂ with S
                 pcolor : proof,
+				cssClass : 'hidden',
                 letterAngle : 45,
             },
             Ys : {
 				// intersection of pr and its ⟂ with S
-                caption : '',
                 pcolor : proof,
+				cssClass : 'hidden',
                 letterAngle : 45,
             },
         });
@@ -325,29 +341,54 @@
             // //\\ op (PR brown conic)
             //-------------------------------------------                        
             { SP : { pcolor : body},},   
-            { SK : { pcolor : proof }, },    
-            { PH : { pcolor : proof, },},  
-            { PK : { pcolor : attention }, },
-            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
-               captionShiftNorm : 22, lposYSugar : 3 }, },
-            { CB : { pcolor : result }, },
-            { BH : { pcolor : proof }, },
+            { SK : {
+				pcolor : proof,
+				cssClass: 'subessay--solution subessay--corollary1',
+			}, },
+            { PH : { 				
+				pcolor : proof,
+				cssClass: 'subessay--solution subessay--corollary1',
+			}, },
+            { PK : {
+				pcolor : attention,
+				cssClass: 'subessay--solution subessay--corollary1',
+			}, },
+            { 'L,LL' : { 
+				pcolor : resultOnlyVisibleWhenHighlighted,
+               captionShiftNorm : 22, lposYSugar : 3
+			}, },
+            { CB : {
+				pcolor : result,
+				cssClass: 'subessay--solution',
+			}, },   
+            { BH : {
+				pcolor : proof,
+				cssClass: 'subessay--solution',
+			}, },
             { 'P,vb' : { 
                 pcolor : body, 'stroke-width' : 2, 
                 captionShiftNorm : -18,
-                vectorTipIx : 1 }, 
-            },  
-
-            { CA : { pcolor : result }, },
-            { CD : { pcolor : result }, },
+                vectorTipIx : 1
+			}, },
                         
             //not visible, because behind overlapping lines  
             //but may be highlighted in text links                      
-            { CS : { pcolor : result }, },
-            { SA : { pcolor : result }, },
-            { DS : { pcolor : proof }, },
-            { DH : { pcolor : result }, },
-            { CH : { pcolor : proof }, }, 
+            { CS : {
+				pcolor : result,
+				cssClass: 'subessay--solution',
+			}, },
+            { DS : { 
+				pcolor : proof,
+				cssClass: 'subessay--corollary1 subessay--corollary2',
+			}, },
+            { DH : {
+				pcolor : result,
+				cssClass: 'subessay--corollary1 subessay--corollary2',
+			}, },
+            { CH : {
+				pcolor : proof,
+				cssClass: 'subessay--solution',
+			}, },
 
             // perpendiculars referenced in the Solution
             { 'SY' : { 
