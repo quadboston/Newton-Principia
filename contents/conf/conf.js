@@ -146,32 +146,6 @@
 
             putTextDescriptionIntoTopNavigationArrows : false,
         },
-
-        //------------------------------------------------------
-        // //\\ macros
-        //      , keyNames must not include RegEx special chars.
-        //------------------------------------------------------
-        HTMLMacroKey : '<><>',
-        textScriptMacros : {
-            CXX2E :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a>
-                to
-                <a target="_blank" href="?conf=sappId=addd-fw#Eframework">Euclid</a>
-                framwork`
-            ,
-            E2CXX :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Eframework">CalculusXX</a>
-                to
-                <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Euclid</a>
-                framwork`
-            ,
-            CXX :
-                `<a target="_blank" href="?conf=sappId=addd-fw#Cframework">CalculusXX</a> framework`
-            ,
-        },
-        //------------------------------------------------------
-        // \\// macros
-        //------------------------------------------------------
     };
 
     
