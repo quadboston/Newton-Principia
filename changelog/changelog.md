@@ -11,7 +11,11 @@
 
 * Proposition 17
 	* force dragger not "dropped" when past limit
-	
+	* simplified diagram by not showing more than what is described for each section
+	* perpendiculars and latus recta only shown when highlighted
+	* left-hand side of equation does not break across lines
+	* point q added 
+
 * Proposition 17, Corollary 2
 	* point p no longer drifts
 	* force dragger stops at limit
