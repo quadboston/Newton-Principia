@@ -134,14 +134,12 @@
             orbitarea,
             instanttriangle,
             proof,
-            proofHidden,
             result,
             force,
             shadow,
             hidden,
             curvature,
             context,
-            attention,
         } = fixedColors;
         let red = [255,0,0]; //for debugging
 
