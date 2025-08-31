@@ -4,9 +4,6 @@
         amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
-        },
         stdModExportList :
         {
             //media_upcreate,
@@ -33,12 +30,6 @@
         //this is a "policy" ... should be in the state manager if any ...
         rg.detected_user_interaction_effect_DONE = false;
         rg.allLettersAreHidden = false; //!rg.detected_user_interaction_effect_DONE;
-
-        ///creates addendum points non-visibility machinery
-        fapp.fappRoot$.removeClass( 'subessay--direct-proof' );
-        fapp.fappRoot$.removeClass( 'subessay--converse-proof' );
-        fapp.fappRoot$.removeClass( 'subessay--0' );
-        fapp.fappRoot$.addClass( 'subessay--' + amode.subessay );
     }
 
     //=========================================================

@@ -132,7 +132,10 @@
                     fi  : fconf.sappId === 'b1sec3prop15' ? rg.P.q : null,
                     signCosOmega : sData.stashedCosOmega,
                     Kepler_g : op.Kepler_g,
-                })
+                });
+
+                if(e > 0.9) return; // should always be ellipse
+
                 op.Kepler_v         = Kepler_v;
                 rg.P.q              = fi;
 
@@ -192,34 +195,32 @@
             // using sData.stashedOmega prevents error, by limiting to only
             // changes in magnitude of Pv, not the angle
             // this is also used in P14
-            if( fconf.sappId === 'b1sec3prop16' ) {
-                const pp      = rg.P.pos;
-                const sl      = mat.p1_to_p2( pp, newPos ); //slider
-                if( sl.abs < 0.2 ) return;
-                let omega = mat.angleBetweenLines([
-                    [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
-                ]).angle;
-                //--------------------------------
-                // //\\ corrects extreme values
-                //--------------------------------
-                {
-                    //excludes unsafe values
-                    let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
-                        omega = Math.sign( omega ) > 0 ? LIM : -LIM;
-                    }
-                    if( Math.abs( omega ) < 0.000001 ){
-                        omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
-                    }
+            const pp      = rg.P.pos;
+            const sl      = mat.p1_to_p2( pp, newPos ); //slider
+            if( sl.abs < 0.2 ) return;
+            let omega = mat.angleBetweenLines([
+                [ [0,0], pp ],
+                [ [0,0], sl.vector ], 
+            ]).angle;
+            //--------------------------------
+            // //\\ corrects extreme values
+            //--------------------------------
+            {
+                //excludes unsafe values
+                let LIM = Math.PI * 0.99999;
+                if( Math.abs( omega ) > LIM ){
+                    omega = Math.sign( omega ) > 0 ? LIM : -LIM;
                 }
-
-                //--------------------------------
-                // \\// corrects extreme values
-                //--------------------------------
-                var newSinOmega = Math.sin( omega );
-                var signCosOmega = Math.sign( Math.cos( omega ) );
+                if( Math.abs( omega ) < 0.000001 ){
+                    omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
+                }
             }
+
+            //--------------------------------
+            // \\// corrects extreme values
+            //--------------------------------
+            var newSinOmega = Math.sin( omega );
+            var signCosOmega = Math.sign( Math.cos( omega ) );
             //-------------------------------------------------------------------
             // \\// corrects approximate mouse point to exact point on the circle
             //-------------------------------------------------------------------
@@ -310,7 +311,6 @@
             //--------------------------------
             // \\// corrects extreme values
             //--------------------------------
-            setsOmegaHandle( omega, sl.abs );
             var newSinOmega = Math.sin( omega );
             var signCosOmega = Math.sign( Math.cos( omega ) );
             //-------------------------------------------------------------------
@@ -334,6 +334,11 @@
                 signCosOmega,
                 Kepler_g : op.Kepler_g,
             });
+            
+            if(e > 0.9) return; // should always be ellipse
+
+            setsOmegaHandle( omega, sl.abs );
+
             op.cosOmega         = cosOmega;
             op.om               = om;
 
@@ -377,15 +382,18 @@
         rg.Zeta.acceptPos = newPos => {
             var sliderAbs = mat.p1_to_p2( rg.P.pos, rg.omegaHandle.pos ).abs;
             var scale = ( rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0] );
-            var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] )
-                           / scale;
-            modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  //validates
+            var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] ) / scale;
+
+            // validates (keeps slider from going beyond either end)
+            modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  
+            
             var zeta = Math.PI / 2 * modelPar;
             var eccentricity = Math.tan( zeta );
-            stdMod.establishesEccentricity( eccentricity,
-                        fconf.sappId !== 'b1sec3prop15' &&
-                        "b1sec3prop14" === fconf.effId );
 
+            //console.log(eccentricity);
+            if(eccentricity > 0.9) return; // should always be ellipse
+
+            stdMod.establishesEccentricity( eccentricity, true );
             newPos[0] = rg.Zeta.pos[0];         //corrects
             newPos[1] = rg.ZetaStart.pos[1];    //corrects
             var { angleRV, rr } = mcurve.planeCurveDerivatives({
