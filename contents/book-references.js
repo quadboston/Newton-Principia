@@ -11,7 +11,7 @@
         ////no unescaped special chars between backticks `...`
         ////no unescaped $, "\", ...
 
-        latin : `
+        'latin-on-e-rara' : `
             <div class="isclosed">
                 <div class="trigger-option">
                     Philosophiae Naturalis Principia Mathematica.
@@ -23,7 +23,7 @@
                     3rd Edition<br>
                     ETH-Bibliothek Zürich<br>
                     Shelf Mark: Rar 4176<br>
-                    License: public domain.<br>
+                    License: public domain<br>
                     Persistent Link: <a href="http://dx.doi.org/10.3931/e-rara-1235"
                                target="_blank"> http://dx.doi.org/10.3931/e-rara-1235<br>
                                http://www.e-rara.ch/<br>
@@ -85,45 +85,6 @@
                 </div>
             </div>
             `,
-
-
-        'latin-diagram' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                   <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102"
-                      target="_blank">
-                        Diagram. Latin, 3rd Edition.
-                    </a>
-                </a>
-                </div>
-                <div class="trigger-content">
-                </div>
-            </div>
-        `,
-        /*
-        'latin-diagram---inline-style' : `
-            font-size: 11px;
-        `,
-        */
-
-        'IanBruce' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                    Isaac NEWTON: Philosophiae Naturalis Principia
-                </div>
-                <div class="trigger-content">
-                     Mathematica. 3rd Ed.<br>
-                     Translated and annotated by Ian Bruce<br>
-                     <a href="http://www.17centurymaths.com/contents/newtoncontents.html">
-                     http://www.17centurymaths.com/contents/newtoncontents.html</a>
-                </div>
-            </div>
-        `,
-        /*
-        'IanBruce---inline-style' : `
-            font-size: 11px;
-        `,
-        */
 
 
         'kvk' : `

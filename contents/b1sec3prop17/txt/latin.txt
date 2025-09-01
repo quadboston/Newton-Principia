@@ -41,7 +41,7 @@
 
 <img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
 <br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
@@ -52,7 +52,7 @@
 *..*
 <img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
 <br><br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
@@ -62,3 +62,6 @@
   "subessay" : "corollary1"
 }
 *..*
+<img src="contents/b1sec3prop17/img/latin.png" style="width:100%">
+<br><br>
+<div book-reference-id="latin-on-e-rara"></div>

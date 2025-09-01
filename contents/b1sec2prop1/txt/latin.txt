@@ -4,46 +4,22 @@
   "menuCaption" : "Latin"
 }
 *..*
-
 <img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
 
 *::*proof|latin
-
 <img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
 
 *::*corollary|latin
-
-
 <img src="contents/b1sec2prop1/js/img/p1-latin.png" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>
