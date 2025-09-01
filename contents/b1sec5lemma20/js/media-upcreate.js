@@ -48,13 +48,13 @@
             const e = sData.polar_ell_model.e;
             let cap;
             if( e<0.001 ){
-                cap = 'eccentricity 0.00' + ' (circle)';
+                cap = 'eccentricity 0.00 (circle)';
             } else if( e<0.99 ){
                 cap = 'eccentricity ' + e.toFixed(2) + ' (ellipse)';
             } else if ( e<=1.01 ){
                 cap = 'eccentricity 1.00 (parabola)';
             } else {
-                cap = 'eccentricity = ' + e.toFixed(2) + ' (hyperbola)';
+                cap = 'eccentricity ' + e.toFixed(2) + ' (hyperbola)';
             }
             rg.a.caption = cap;
         }
