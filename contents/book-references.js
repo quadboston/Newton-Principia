@@ -56,26 +56,6 @@
         `,
         */
 
-        'Motte-3rd' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                   The Mathematical Principles of Natural Philosophy, by Sir Isaac Newton;
-                </div>
-                <div class="trigger-content">
-                    Translated into English by Andrew Motte.<br>
-                    First American Edition, Carefully Revised and corrected. New York. Published By Daniel
-                    Adee, 45 Liberty Street.<br>
-                    Year is possibly 1846.<br>
-                </div>
-            </div>
-
-        `,
-        /*
-        'Motte-3rd---inline-style' : `
-            font-size: 11px;
-        `,
-        */
-
         'Bernard-Cohen-Anne-Whitman' : `
             <div class="isclosed">
                 <div class="trigger-option">
@@ -105,31 +85,6 @@
                 </div>
             </div>
             `,
-
-
-
-
-
-        //so far used only in lemma2
-        'Bernard-Cohen' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
-                    3rd Edition English translation by I. Bernard Cohen.
-                </a>
-                </div>
-                <div class="trigger-content">
-                </div>
-            </div>
-        `,
-
-        /*
-        'Bernard-Cohen---inline-style' : `
-            font-size: 11px;
-        `,
-        */
-
-
 
 
         'latin-diagram' : `
@@ -175,31 +130,6 @@
             <span style="font-size:9px">
             <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Addendum (c) Konstantin Kirillov</a>.</span><br>
         `,
-
-
-
-        'Krylov' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                    <a target="_blank" href="http://shaping.ru/download/pdffile/newton.pdf">
-                        Исаак Ньютон. Математические начала натуральной философии.
-                    </a>
-                </div>
-                <div class="trigger-content">
-                    Перевод с латинского А.Н. Крылова.
-                    <br>
-                    Изд. Наука. 1989.
-                    <br>
-                    Mathematical Principles of Natural Philosophy.
-                    <br>
-                    Translation by A.N. Krylov.
-                </div>
-            </div>
-        `,
-
-        /*
-            Binet Jacqes Phillipe Marie 1786 1856, cited at Krylov p83, p84
-        */
 
     }
 
