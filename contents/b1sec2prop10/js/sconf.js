@@ -182,9 +182,8 @@
                 doPaintPname : false,
             },
 
-            O : {
-                pcolor : context,
-                caption : 'C',
+            C : {
+                pcolor : proof,
                 pos: C,
                 letterAngle : 120,
                 letterRotRadius : 35,
@@ -299,17 +298,6 @@
                 cssClass: 'subessay--another-solution',
             },
 
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : curvature,
-                letterAngle : -45,
-                undisplayAlways : true,
-                cssClass: 'logic_phase--addendum',
-                doPaintPname : false,
-            },
-
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
@@ -343,13 +331,13 @@
             { 'ZR' : { pcolor : body }, },
 
 
-            { AO : { pcolor : proof,
+            { CA : { pcolor : proof,
                      cssClass: 'aspect--english',
             }, },
-            { BO : { pcolor : proof,
+            { CB : { pcolor : proof,
                      cssClass: 'aspect--english',
             }, },
-            { PO : { pcolor : proof,
+            { PC : { pcolor : proof,
                      cssClass: 'aspect--english',
             }, },
 
@@ -358,9 +346,9 @@
                          cssClass: 'logic_phase--proof',
             }, },
   
-            { 'PC' : { pcolor : proof,
+            /*{ 'PC' : { pcolor : proof,//??
                        cssClass: 'logic_phase--proof',
-            }, },
+            }, },*/
 
             { 'SP' : { pcolor : result }, },
 
@@ -402,14 +390,14 @@
             { PF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { DO : { pcolor : proof,
+            { DC : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
   
-            { GO : { pcolor : proof,
+           /* { GO : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
-            }, },
-            { FO : { pcolor : proof,
+            }, },*/
+            { CF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
             // \\// proof
