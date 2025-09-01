@@ -407,33 +407,6 @@
         //-----------------------------------------------------------------------
     }
 
-    /*
-    //**************************************************************************
-    ///This function duplicates functionality of user-options.
-    ///This function is not required at given app version.
-    //==========================================================================
-    ///if we want to keep link-to-link browsing instead of framework with
-    ///addendums added to original text, then we have to update static
-    ///links referred to Addendums,
-    ///this function does this job and is in effect in two places:
-    ///1) at landing time and 2) in "tutor framework" when scenario adds a new message
-    ///to student's console,
-    function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
-    {
-        if( userOptions.showingBonusFeatures() ) {
-            let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
-            let sea = '?conf=sappId=';
-            let reg = new RegExp( '\\' + sea );
-            anchors.forEach( anch => {
-                if( anch.search.indexOf( sea ) === 0 ) {
-                    anch.search = anch.search.replace(
-                        reg, '?conf=showAddendums=yes,sappId=' );
-                }
-            });
-        }
-    }
-    //**************************************************************************
-    */
 
     ///replaces raw words with value from value found in
     ///collection of collectedDelayedLinks
