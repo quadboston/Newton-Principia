@@ -1,6 +1,6 @@
 ( function() {
     var { mat, } = window.b$l.apptree({ stdModExportList : {
-        recalculateTransforms,
+        recalculateAndStoreTransforms,
         xy_2_Txy,
         Txy_2_xy,
         calculateFactorAreaTransformed, },
@@ -8,35 +8,20 @@
     return;
 
 
-    //TEMP Filename, functions name, and where they are stored may change
-    //TEMP Is the following comment needed here?
-    ///parameters are enclosed in closure for performance
-    
-    // xOutput = xInput * factorI + yInput * factorJHorizontal
-    // yOutput = xInput  * 0         + yInput * factorJVertical
-
-    //TEMP Are the following labeled backwards (skew and scale)?
-    //[horizontalSkew, horizontalScale]
-    //[verticalSkew,   verticalScale  ]
-
-
-
-
-    //TEMP Should this be renamed to one of the following or similar?...
-    //"recalculateTransformsAndStore"
-    //"recalculateAndStoreTransforms"
-    function recalculateTransforms(dr) {
+    function recalculateAndStoreTransforms(dr) {
         //Recalculates and stores matrices used to transform points.
         const transforms = dr.transforms;
 
-        //TEMP Should probably explain this function more including what each
-        //element in the matrix means.
-
-        //TEMP Maybe they should be labeled i, j?
+        //Handles i, j on the figure can be adjusted to transform it, therefore
+        //there needs to be a way to transform any point on the figure.  The
+        //initial positions of i and j are stored and their current positions
+        //are know, therefore the difference between them can be used to
+        //calculate a matrix for this.  Refer to the calculations in the code
+        //below for more details.
         //
-        //The figure can be transformed using transform points where...
-        //-point i controls the horizontal scale
-        //-point j controls the vertical scale and skew
+        // i - controls the horizontal scale
+        // j - controls the vertical scale and skew
+        // O - Transform Origin
         //
         //                  j____
         // j__             /     |
@@ -44,62 +29,34 @@
         // |   \   -->   /       |
         // |____\       /________|
         // O     i      O        i
-        //
-        //TEMP Should O be explained (transform origin)?
-        //
-        //The initial positions of these points are stored, therefore their
-        //current positions can be used to calculate the transform.
-        //
-        //TEMP Add more details
-        //
-        //The transform matrix is described by...
-        //TEMP May be better if comments are moved to the actual calculations
-        //below?
-        //[horizontalScale, verticalSkew ]
-        //[horizontalSkew,  verticalScale]
-        //
-        //TEMP
-        //verticalSkew - I suppose this is how much a point should be moved
-        //               along the x axis, per y coordinate amount?
 
         //Default transformation matrix
         const T = [[1, 0], [0, 1]];
 
-        //TEMP The following could probably have better error checks.
-        //The comments should be improved for the following, perhaps added to
-        //an explanation above.
-        const {origin, pts} = transforms;
+        const {origin, pts, isPointIEnabled, isPointJEnabled} = transforms;
         if (origin && pts) {
-            //TEMP
-            //Horizontal point
-            //////Calculates horizontal scale relat (controls horizontal scale)
-
-            ////Calculate horizontal scale by comparing the 
-            ////Calculate horizontal scale.
-            //Calculate horizontal scale.
-            const ptHorizontal = pts.horizontal;
-            if (ptHorizontal) {
-                const xOffsetInitial = ptHorizontal.xOffsetInitial;
+            const {i, j} = pts;
+            //Calculate matrix values using point i if needed
+            if (isPointIEnabled && i) {
+                const xOffsetInitial = i.xOffsetInitial;
                 if (xOffsetInitial) {//Includes non-zero check
-                    const deltaX = ptHorizontal.x - origin[0];
-                    T[0][0] = deltaX / xOffsetInitial;  //horizontalScale
+                    const xOffsetCurrent = i.x - origin[0];
+                    //horizontalScale - How much to scale a point along x axis
+                    T[0][0] = xOffsetCurrent / xOffsetInitial;
                 }
             }
-            
-            //TEMP
-            ////Vertical point
-            //////Calculate the vertical scale and skew.
-            //Calculate the vertical scale and skew using point j.
-            const ptVertical = pts.vertical;
-            if (ptVertical) {
-                const yOffsetInitial = ptVertical.yOffsetInitial;
+
+            //Calculate matrix values using point j if needed
+            if (isPointJEnabled && j) {
+                const yOffsetInitial = j.yOffsetInitial;
                 if (yOffsetInitial) {//Includes non-zero check
-                    const deltaX = ptVertical.x - origin[0];
-                    const deltaY = ptVertical.y - origin[1];
-                    //TEMP The calculations work, however double check they are
-                    //what's labeled.  Otherwise label them differently.
-                    T[0][1] = deltaX / yOffsetInitial;  //verticalSkew
-                    T[1][1] = deltaY / yOffsetInitial;  //verticalScale
+                    const xOffsetCurrent = j.x - origin[0];
+                    const yOffsetCurrent = j.y - origin[1];
+                    //verticalSkew - How much a point should move along x axis
+                    //per y coordinate amount
+                    T[0][1] = xOffsetCurrent / yOffsetInitial;
+                    //verticalScale - How much to scale a point along y axis
+                    T[1][1] = yOffsetCurrent / yOffsetInitial;
                 }
             }
         }
@@ -107,7 +64,6 @@
         //Set matrix data
         transforms.matrix        = T;
         transforms.matrixInverse = mat.inverse2x2(T);
-        // const breakPoint = ""; //TEMP
     }
 
 
@@ -153,6 +109,12 @@
         //height = 1) calculate its area once transformed.  This represents
         //the change in area of the entire figure.  Note that starting at the
         //origin simplifies the calculation.
+        //
+        // TL  - Top Left
+        // BR  - Bottom right
+        // TLT - Top Left Transformed
+        // BRT - Bottom Right Transformed
+        // O   - Transform Origin
         //
         //                 TLT____
         // TL______          /   /

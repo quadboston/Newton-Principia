@@ -110,7 +110,7 @@
             guicon.constructBasePts_domParless(dr, dr.basePts);
             
             guicon.constructTransformPoints(dr);
-            stdMod.recalculateTransforms(dr);
+            stdMod.recalculateAndStoreTransforms(dr);
             guicon.constructsControlPoints(dr);
         });
 

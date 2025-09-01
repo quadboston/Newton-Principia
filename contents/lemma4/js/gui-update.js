@@ -74,7 +74,7 @@
     ///rather redigitizes model for curves and more
     function paints_curve8axes(dr)
     {
-        var curveFun = numModel.curveFun;
+        // var curveFun = numModel.curveFun;
         var mpRounded = [];
         var dv = dr.yVariations;
         var mp = dr.curveMicroPts;
@@ -442,17 +442,23 @@
         //--------------------------------------
         // //\\ Syncs points for L4
         //--------------------------------------
-        const posFirst = numModel.findCtrlPtPosWithMinX(dr);
-        const posLast = numModel.findCtrlPtPosWithMaxX(dr);
+        // //TEMP Should this use the first and last index in the array rather
+        // //than using functions that sort it?  I believe it's specific to L4 and
+        // //won't be used by L2/3?
+        // const posFirst = numModel.findCtrlPtPosWithMinX(dr);
+        // const posLast = numModel.findCtrlPtPosWithMaxX(dr);
+        const positions = dr.ctrlPts.positions;
+        const ptFirst = positions[0];
+        const ptLast = positions[positions.length - 1];
 
-        if (posFirst && posLast) {
-            const xMiddle = (posFirst.x + posLast.x) / 2;
+        if (ptFirst && ptLast) {
+            const xMiddle = (ptFirst.x + ptLast.x) / 2;
             const posMiddle = {x: xMiddle, y: numModel.curveFun(dr, xMiddle)};
-            const posBaseFirst = {x: posFirst.x, y: posLast.y};
+            const posBaseFirst = {x: ptFirst.x, y: ptLast.y};
 
             const ptLabels = dr.pointLabels;
-            syncPointWithPos(dr, ptLabels.ctrlPtFirst, posFirst);
-            syncPointWithPos(dr, ptLabels.ctrlPtLast, posLast);
+            syncPointWithPos(dr, ptLabels.ctrlPtFirst, ptFirst);
+            syncPointWithPos(dr, ptLabels.ctrlPtLast, ptLast);
             syncPointWithPos(dr, ptLabels.curveMiddle, posMiddle);
             syncPointWithPos(dr, ptLabels.basePtFirst, posBaseFirst);
         }

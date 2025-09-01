@@ -88,9 +88,8 @@
 
         //Initialize values for constraints if needed.
         if (ctrlPts.constraints.xEnabled) {
-            //TEMP Would it be better to use at or [] in terms of compatibility 
-            ctrlPts.constraints.minX = cp.at(0)?.x;
-            ctrlPts.constraints.maxX = cp.at(-1)?.x;
+            ctrlPts.constraints.minX = cp[0]?.x;
+            ctrlPts.constraints.maxX = cp[cp.length - 1]?.x;
         }
 
         //TEMP What about if an end point doesn't have a handle.
@@ -187,12 +186,14 @@
         //Creates and adds the transform points to the input datareg for any
         //that are enabled.
 
-        const ctrlPts = dr.ctrlPts;
+        const positions = dr.ctrlPts.positions;
         const transforms = dr.transforms;
 
+        //TEMP I can't remember do these change at any point?
         //Default positions that aren't transformed.
-        const ptFirst = ctrlPts.positions.at(0);
-        const ptLast = ctrlPts.positions.at(-1);
+        const ptFirst = positions[0];
+        const ptLast = positions[positions.length - 1];
+        //TEMP Is this check needed?
         if (!ptFirst && !ptLast)
             return;
         
@@ -200,10 +201,10 @@
         transforms.origin = [ptFirst.x, ptLast.y];
 
         //Create and add points as required.
-        if (transforms.verticalPtEnabled)
-            transforms.pts.vertical = createPoint(ptFirst, 0, true, true);
-        if (transforms.horizontalPtEnabled)
-            transforms.pts.horizontal = createPoint(ptLast, 1, true, false);
+        if (transforms.isPointJEnabled)
+            transforms.pts.j = createPoint(ptFirst, 0, true, true);
+        if (transforms.isPointIEnabled)
+            transforms.pts.i = createPoint(ptLast, 1, true, false);
 
 
         function createPoint(cp, i, draggableX, draggableY) {

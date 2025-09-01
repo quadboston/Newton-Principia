@@ -11,6 +11,8 @@
         calculatesMajorantRect,
         calcsMonotIntervalArea,
         calculates_inscr8circums,
+        calculateCurve2Temp, //TEMP
+        constrainCurveAtSidesTemp, //TEMP
     });
     //==================================
     // //\\ declares data
@@ -34,9 +36,7 @@
         findCtrlPtPosWithMaxX,
         findCtrlPtPosWithMinX,
         addsNewBases_8_calculatesMaxWidth,
-        checkIfCurveSlopeOkTemp,    //TEMP
-        checkIfControlPointYOkForSlopeTemp, //TEMP
-        checkIfPointOnRightOfCurvePassedSlope, //TEMP
+        curveFunOldTemp,//TEMP
     });
     //==================================
     // \\// exports methods
@@ -47,53 +47,320 @@
     //***********************************************
     // //\\  auxiliary prepprocessing functions
     //***********************************************
-    //TEMP Commented
+    // function curveFun2Temp(dr, x) {
+    //     const positions = dr.ctrlPts.positions;
+    //     const ptFirst = positions[0];
+    //     const ptLast = positions[positions.length - 1];
+
+    //     const slope = (ptLast.y - ptFirst.y) / (ptLast.x - ptFirst.x);
+    //     // const deltaX = ptLast.x - x;
+    //     const y = ptLast.y - slope * (ptLast.x - x);
+    //     // const y = 
+    //     return y;
+    // }
+
+    function createCurveSegments2(dr) {
+        //TEMP
+        //Outputs a list of points that approximate the curve as line segments.
+
+        const steps = 50;
+        //
+        //TEMP May want to create a generic function for this that can be used
+        //throughout the project.  I believe most of the project is mainly
+        //interested in the first and last points.  For L4 they never change,
+        //however I believe they can for L2/3.  Therefore sorting them for all
+        //those models could probably work fine, and the check to ensure they
+        //don't pass the end points could be when a handle attempts to move.
+        //There is something similar to this that needs to be finalized.
+        const points = [...dr.ctrlPts.positions].sort((a, b) => a.x - b.x);
+
+
+        const ptFirst = points[0];
+        const ptLast = points[points.length - 1];
+
+
+        const figureWidth = ptLast.x - ptFirst.x;
+        //TEMP Think about how the height might change for L2/L3
+        const figureHeight = ptLast.y - ptFirst.y;
+
+
+        //TEMP Add comment for the following
+        const extendedPoints = [
+            {x: ptFirst.x - figureWidth * 0.05,
+             y: ptFirst.y + figureHeight * 0},
+            ...points,
+            {x: ptLast.x - figureWidth * 0, 
+            //TEMP Think about how the height might change for L2/L3
+             y: ptLast.y + figureHeight * 0.05}
+        ];
+
+        const distanceMax = Math.hypot(figureWidth, figureHeight) * 0.25;
+
+
+        const output = [];
+
+        //TEMP Maybe the last one should be added to ensure it's exact?
+        //Calculate curve line segments
+        for (let i = 0; i < extendedPoints.length - 3; i++) {
+            const p0 = {...extendedPoints[i]};
+            const p1 = {...extendedPoints[i + 1]};
+            const p2 = {...extendedPoints[i + 2]}; 
+            const p3 = {...extendedPoints[i + 3]};
+
+            const adjustExtendedPointsTemp =
+                document.getElementById("checkbox-extended-points")?.checked;
+            if (adjustExtendedPointsTemp) {
+                // //if i === 0 and p3 too far from p2
+                if (i === 0) {
+                    const delta = {x: p3.x - p2.x, y: p3.y- p2.y};
+                    const distance = Math.hypot(delta.x, delta.y);
+                    if (distance > distanceMax) {
+                        const n = {x: delta.x / distance, y: delta.y / distance};
+                        p3.x = p2.x + n.x * distanceMax;
+                        p3.y = p2.y + n.y * distanceMax;
+                    }
+                }
+                // //if i === 1 and p1 too far from p2
+                if (i === 2) {
+                    const delta = {x: p0.x - p1.x, y: p0.y - p1.y};
+                    const distance = Math.hypot(delta.x, delta.y);
+                    if (distance > distanceMax) {
+                        const n = {x: delta.x / distance, y: delta.y / distance};
+                        p0.x = p1.x + n.x * distanceMax;
+                        p0.y = p1.y + n.y * distanceMax;
+                    }
+                }
+            }
+
+
+            //Skip first point unless just starting to avoid duplicates
+            const t0 = (i === 0 ? 0 : 1);
+            for (let t = t0; t <= steps; t++) {
+                const u = t / steps;
+                const x = catmullRom2(u,
+                    p0.x, p1.x, p2.x, p3.x
+                    // extendedPoints[i].x, 
+                    // extendedPoints[i + 1].x, 
+                    // extendedPoints[i + 2].x, 
+                    // extendedPoints[i + 3].x
+                );
+                const y = catmullRom2(u,
+                    p0.y, p1.y, p2.y, p3.y
+                    // extendedPoints[i].y,
+                    // extendedPoints[i + 1].y,
+                    // extendedPoints[i + 2].y,
+                    // extendedPoints[i + 3].y
+                );
+                
+                output.push({x, y})
+            }
+        }
+
+        return output;
+    }
+
+
+    // Catmull-Rom spline interpolation for smooth curves
+    function catmullRom2(t, p0, p1, p2, p3) {
+        const t2 = t * t;
+        const t3 = t2 * t;
+        
+        return 0.5 * (
+            (2 * p1) +
+            (-p0 + p2) * t +
+            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+            (-p0 + 3 * p1 - 3 * p2 + p3) * t3
+        );
+    }
+
+
+    function calculateCurve2Temp(dr) {
+        console.time("calculateCurve2Temp");
+        // function createCurveSegments2() {
+        //TEMP Ensure this is the correct number, should it really be +1?
+        //Eg. if there are 4 line segments, there should be 5 points.
+        // const steps = sconf.BASE_MAX_NUM;
+        const segments = sconf.BASE_MAX_NUM;
+        const output = [];
+
+        const curveSegments = createCurveSegments2(dr);
+
+
+        //TEMP May need to change the following
+        if (curveSegments.length < 2)
+        // if (curveSegments.length === 0)
+            return null;
+
+        //TEMP
+        //Could first and last points be backwards sometimes?  I suppose it
+        //depends on how the array gets created.  Therefore should probably
+        //ensure it starts from left to right in that function.
+        const ptFirst = curveSegments[0];
+        const ptLast = curveSegments[curveSegments.length - 1];
+        const xRange = ptLast.x - ptFirst.x;
+
+        //Add the first point
+        output.push({...curveSegments[0]});
+
+        // for(let i = 0; i < curveSegments.length - 1; i++) {
+        //     const ptA = curveSegments[i-1];
+        //     const ptB = curveSegments[i];
+        // }
+        let indexLeft = 0;
+        //TEMP
+        //Skip the first and last points.
+        //0  1  2  3  4
+        for (let i = 1; i < segments; i++) {
+            const x = ptFirst.x + xRange * i / segments;
+
+
+            while(indexLeft < curveSegments.length - 1) {
+                let xRight = curveSegments[indexLeft + 1].x;
+
+                if (xRight >= x) {
+                    const ptLeft = curveSegments[indexLeft];
+                    const ptRight = curveSegments[indexLeft + 1];
+                    const slope = (ptRight.y - ptLeft.y) / (ptRight.x - ptLeft.x);
+                    const y = ptLeft.y + slope * (x - ptLeft.x);
+                    output.push({x, y});
+                    break;
+                } else {
+                    indexLeft++;
+                }
+            }
+        }
+        
+        //Add the last point
+        output.push({...curveSegments[curveSegments.length - 1]});
+        console.timeEnd("calculateCurve2Temp");
+
+        return output;
+    }
+
+
+    function constrainCurveAtSidesTemp(points) {
+        //90 is vertical
+        // const angleDeg = 85;
+        const angleDeg =
+            parseFloat(document.getElementById("input-slope-sides").value);
+        
+        const ptFirst = points[0];
+        const ptLast = points[points.length - 1];
+        // const xRange = ptLast.x - ptFirst.x;
+
+        const slope = Math.tan(mat.degToRad(angleDeg));
+
+        return points.map((pt) => {
+            const x = pt.x;
+
+            const yMin = ptLast.y  + slope * (x - ptLast.x);
+            const yMax = ptFirst.y + slope * (x - ptFirst.x);
+            const y = Math.max(Math.min(pt.y, yMax), yMin);
+            return {x, y};
+        });
+    }
+
+
     function curveFun(dr, x) {
-        if (document.getElementById("radio-handle-type-new")?.checked) {
-            return curveFunNew(dr, x);
+
+
+
+        const ptFirst = dr.curveMicroPts[0];
+        const ptLast = dr.curveMicroPts[dr.curveMicroPts.length - 1];
+        const xRange = ptLast[0] - ptFirst[0];
+
+        const len = dr.curveMicroPts.length;
+        // const x = ptFirst.x + xRange * i / (len - 1);
+
+        //x - ptFirst.x = xRange * i / (len - 1);
+        //(x - ptFirst.x) * (len - 1) / xRange = i;
+
+        const indexLeft = Math.floor((x - ptFirst[0]) * (len - 1) / xRange);
+        // console.log("indexLeft =", indexLeft);
+        if (indexLeft >= 0 && indexLeft < dr.curveMicroPts.length - 1) {
+            const ptLeft = dr.curveMicroPts[indexLeft];
+            const ptRight = dr.curveMicroPts[indexLeft + 1];
+            
+            // // const xLeftCalculated = ptFirst[0] + xRange * (indexLeft) / (len - 1);
+            // // const xRightCalculated = ptFirst[0] + xRange * (indexLeft + 1) / (len - 1);
+
+            // // console.log(`errorX = ${xLeftCalculated - ptLeft[0]}  ` +
+            // //             `errorY = ${xRightCalculated - ptRight[0]}`);
+
+            // if (x >= ptLeft[0] && x <= ptRight[0]) {
+                const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
+                const y = ptLeft[1] + slope * (x - ptLeft[0]);
+                return y;//[x, y];
+            // // } else{
+            // //     console.error("Problem with indexLeft");
+            // }
+        }
+
+
+
+        // //TEMP To interpolate positions
+        // for(let i = 0; i < dr.curveMicroPts.length - 1; i++) {
+        //     const ptLeft = dr.curveMicroPts[i];
+        //     const ptRight = dr.curveMicroPts[i + 1];
+
+        //     if (x >= ptLeft[0] && x <= ptRight[0]) {
+        //         const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
+        //         const y = ptLeft[1] + slope * (x - ptLeft[0]);
+        //         return y;//[x, y];
+        //     }
+        // }
+
+        if (x < dr.curveMicroPts[0][0]) {
+            return dr.curveMicroPts[0][1];//[...dr.curveMicroPts[0]];
         } else {
-            return curveFunOld(dr, x);
+            return dr.curveMicroPts[dr.curveMicroPts.length - 1][1];
+            // return [...dr.curveMicroPts[dr.curveMicroPts.length - 1]];
         }
     }
 
-
-    // ///should be interpolated function via control points
     // function curveFun(dr, x) {
-    function curveFunOld(dr, x) {
-        //.in legacy code, this depends on order of
-        //.modules-load "intergral.js" must be before "model.js"
-        //Un-transformed positions
-        const pts = dr.ctrlPts.positions;
-        var sum = 0;
-        for (var i=0; i<pts.length; i++) {
-	        var num = pts[i].y;
-	        var den = 1;
-	        for (var j=0; j<pts.length; j++) {
-		        if (j == i) {
-			        continue;
-		        }
-		        num *= (x - pts[j].x);
-	        }
-	        for (var j=0; j<pts.length; j++) {
-		        if (j == i) {
-			        continue;
-		        }
-		        var diff = pts[i].x - pts[j].x;
-		        if (diff != 0) {
-			        den *= diff;
-		        } else {
-			        den = .4;
-		        }
-	        }
-	        sum += (num/den);
-        }
-        return sum;
+    //     //TEMP To interpolate positions
+    //     for(let i = 0; i < dr.curveMicroPts.length - 1; i++) {
+    //         const ptLeft = dr.curveMicroPts[i];
+    //         const ptRight = dr.curveMicroPts[i + 1];
+
+    //         if (x >= ptLeft[0] && x <= ptRight[0]) {
+    //             const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
+    //             const y = ptLeft[1] + slope * (x - ptLeft[0]);
+    //             return y;//[x, y];
+    //         }
+    //     }
+
+    //     if (x < dr.curveMicroPts[0][0]) {
+    //         return dr.curveMicroPts[0][1];//[...dr.curveMicroPts[0]];
+    //     } else {
+    //         return dr.curveMicroPts[dr.curveMicroPts.length - 1][1];
+    //         // return [...dr.curveMicroPts[dr.curveMicroPts.length - 1]];
+    //     }
+    // }
+
+
+
+
+
+
+    function curveStraightLineTemp(x, ptFirst, ptLast) {
+        // const positions = dr.ctrlPts.positions;
+        // const ptFirst = positions[0];
+        // const ptLast = positions[positions.length - 1];
+
+        const slope = (ptLast.y - ptFirst.y) / (ptLast.x - ptFirst.x);
+        // const deltaX = ptLast.x - x;
+        const y = ptLast.y - slope * (ptLast.x - x);
+        // const y = 
+        return y;
     }
 
 
-
-    function curveFunNew(dr, x) {
-
+    function curveFunOldTemp(dr, x) {
+    // function curveFun(dr, x) {
+        // return curveFun2Temp(dr, x);
+        //TEMP Needs to be improved
         // const points = dr.ctrlPts.positions;
         const pointsBtw = [];
         for(let i = 1; i < dr.ctrlPts.positions.length-1; i++) {
@@ -179,10 +446,24 @@
             console.error(`i2 out of bounds temp.  i2 = ${i2}  x = ${x}`);
             // console.error("i2 out of bounds temp.  i2 =", i2);
 
+        // //TEMP Test that makes the last part of the curve a straight line.
+        // if (i2 >= 2)
+        //     return curveStraightLineTemp(x, extendedPoints[i2 + 1],
+        //                                     extendedPoints[i2 + 2]);
+        
+        // //TEMP Test that makes the last part of the curve a horizontal line
+        // if (i2 >= 2)
+        //     return extendedPoints[i2 + 2].y;
+
+        //TEMP
+        if (x === extendedPoints[i2 + 1 + 1].x)
+            return extendedPoints[i2 + 1 + 1].y;
+
         let uMin = 0;
         let uMax = 1;
         let uBest = null;
-        for(let i = 0; i < 15; i++) {
+        // for(let i = 0; i < 15; i++) {
+        for(let i = 0; i < 30; i++) {
             const uMid = (uMin + uMax) / 2;
             const x2 = catmullRom(uMid, 
                 extendedPoints[i2].x, 
@@ -358,7 +639,7 @@
     //TEMP Should the following be combined into one function?
     //Un-transformed positions
     function findCtrlPtPosWithMaxX(dr) {
-        //TEMP Double check browser compatibility for toSorted etc.
+        //TEMP Double check browser compatibility for toSorted, at etc.
         return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(-1);
     }
     function findCtrlPtPosWithMinX(dr) {
@@ -471,6 +752,7 @@
         var insYar = sn( 'inscribedY', dr.basePts, [] );
         var cirYar = sn( 'circumscribedY', dr.basePts, [] );
         var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
+        //TEMP Is the following used outside of this function?
         var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
         insYar.length = 0;
         cirYar.length = 0;
@@ -495,6 +777,12 @@
             let yRef = dr.yVariations.yRef;
             let dir = dr.yVariations.chchosen.dir;
             for( var ib = 0; ib < basesN; ib++ ) {
+                //TEMP Would this calculate most y values twice?  Eg. rect 1
+                //left and right, then rect2's left side is the same as rect 1.
+                //Previously with the old handles the function was expensive to
+                //call and likely still will be with the new handles.
+                //Therefore storing the previous value or similar would
+                //probably improve performance.
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
                 if( dir <=0 ) {
@@ -538,6 +826,9 @@
         if (dr.drAdjustRectWidthsToMatchAreaRatios) {
             const drOther = dr.drAdjustRectWidthsToMatchAreaRatios;
 
+            //TEMP It may be possible to combine the following with the above.
+            //GIven that they use slightly different methods, use whatever
+            //method works best for both.
             //Calculate data for ratio of areas.
             let sumAreaIns = 0;
             const areasIns = [];
@@ -554,8 +845,8 @@
                 const widthLastRect = pwidths[basesN-1];
                 
                 //Calculate new widths and update them if successful
-                const widths = calculateRectWidthsToMatchAreaRatios(
-                    drOther, ratiosIns, widthLastRect, dr.partitionWidths);
+                const widths = calculateRectWidthsToMatchAreaRatios(drOther,
+                    ratiosIns, widthLastRect);
                 if (widths)
                     //TEMP Confirm if this is the correct place for this
                     drOther.partitionWidths = widths;
@@ -569,30 +860,35 @@
         //TEMP Output important data for the figures, that's similar to
         //what will be displayed in the data tables later.
         if (dr.drAdjustRectWidthsToMatchAreaRatios) {
-            console.log("**********Un-transformed Areas**********");
-            // console.log("**********Areas**********");
+            console.log("**********Transformed Areas**********");
         } else {
             let dv = dr.yVariations;
             const drL = stdL2.datareg;
             const drR = stdL2.datareg2;
 
-            //*****Un-transformed*****
-            // console.log("***Un-transformed***");
-            const exactA = drL.figureArea;
-            const exactB = drR.figureArea;
-            const sumA = drL.areaIns;
-            const sumB = drR.areaIns;
+            //Factors to multiply un-transformed areas by to get transformed
+            //areas, see the function that calculates them for more detail.
+            const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
+            const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
+            // console.log("areaFactorA =", areaFactorA);
+            // console.log("areaFactorB =", areaFactorB);
+
+            const exactA = drL.figureArea * areaFactorA;
+            const exactB = drR.figureArea * areaFactorB;
+            const sumA = drL.areaIns * areaFactorA;
+            const sumB = drR.areaIns * areaFactorB;
 
             console.log("exactA =", exactA);
             console.log("exactB =", exactB);
             console.log("sumA =", sumA);
             console.log("sumB =", sumB);
 
+
             const areasL = [];
             for(let ib = 0; ib < sconf.basesN; ib++) {
                 const barwidth = drL.partitionWidths[ib];
                 const heightIns = Math.abs(dv.maxY - drL.basePts.inscribedY[ib]);
-                const areaIns = barwidth * heightIns;
+                const areaIns = barwidth * heightIns * areaFactorA;
                 areasL.push(areaIns);
             }
 
@@ -600,7 +896,7 @@
             for(let ib = 0; ib < sconf.basesN; ib++) {
                 const barwidth = drR.partitionWidths[ib];
                 const heightIns = Math.abs(dv.maxY - drR.basePts.inscribedY[ib]);
-                const areaIns = barwidth * heightIns;
+                const areaIns = barwidth * heightIns * areaFactorB;
                 areasR.push(areaIns);
             }
             console.log("(all)   A_i =", areasL);
@@ -612,107 +908,25 @@
             console.log("exact_ratio = exactA / exactB =", exactA / exactB);
             console.log("sum_ratio = sumA / sumB =", sumA / sumB);
             console.log("(for all i)   i_ratio = A_i / B_i =", areaRatios);
-
-
-            // //*****Transformed*****
-            // console.log("***Transformed***");
-            // const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
-            // const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
-            // console.log("areaFactorA =", areaFactorA);
-            // console.log("areaFactorB =", areaFactorB);
-
-            // const exactAT = drL.figureArea * areaFactorA;
-            // const exactBT = drR.figureArea * areaFactorB;
-            // const sumAT = drL.areaIns * areaFactorA;
-            // const sumBT = drR.areaIns * areaFactorB;
-
-            // console.log("exactAT =", exactAT);
-            // console.log("exactBT =", exactBT);
-            // console.log("sumAT =", sumAT);
-            // console.log("sumBT =", sumBT);
-            
-
-            // //TEMP As a test calcualte the actual areas of the parallelograms
-            // //to confirm that everything is setup correctly.
-            // const areasLT = [];
-            // let sumWidth = 0;
-            // for(let ib = 0; ib < sconf.basesN; ib++) {
-            //     const barwidth = drL.partitionWidths[ib];
-            //     const heightIns = Math.abs(dv.maxY - drL.basePts.inscribedY[ib]);
-
-            //     const xLeft = drL.transforms.origin[0] + sumWidth;
-            //     const yBottom = drL.transforms.origin[1];
-            //     const posTL = [xLeft, yBottom - heightIns];
-            //     const posTR = [xLeft + barwidth, yBottom - heightIns];
-            //     const posBL = [xLeft, yBottom - 0];
-            //     const posBR = [xLeft + barwidth, yBottom - 0];
-                
-            //     const posTLT = stdMod.xy_2_Txy(drL, posTL);
-            //     const posTRT = stdMod.xy_2_Txy(drL, posTR);
-            //     const posBLT = stdMod.xy_2_Txy(drL, posBL);
-            //     const posBRT = stdMod.xy_2_Txy(drL, posBR);
-
-            //     const base = posBRT[0] - posBLT[0];
-            //     const height = -(posTRT[1] - posBRT[1]);
-            //     const areaInsT = Math.abs(base * height);
-            //     areasLT.push(areaInsT);
-            //     sumWidth += barwidth;
-            // }
-
-
-            // const areasRT = [];
-            // sumWidth = 0;
-            // for(let ib = 0; ib < sconf.basesN; ib++) {
-            //     const barwidth = drR.partitionWidths[ib];
-            //     const heightIns = Math.abs(dv.maxY - drR.basePts.inscribedY[ib]);
-
-            //     const xLeft = drR.transforms.origin[0] + sumWidth;
-            //     const yBottom = drR.transforms.origin[1];
-            //     const posTL = [xLeft, yBottom - heightIns];
-            //     const posTR = [xLeft + barwidth, yBottom - heightIns];
-            //     const posBL = [xLeft, yBottom - 0];
-            //     const posBR = [xLeft + barwidth, yBottom - 0];
-                
-            //     const posTLT = stdMod.xy_2_Txy(drR, posTL);
-            //     const posTRT = stdMod.xy_2_Txy(drR, posTR);
-            //     const posBLT = stdMod.xy_2_Txy(drR, posBL);
-            //     const posBRT = stdMod.xy_2_Txy(drR, posBR);
-
-            //     const base = posBRT[0] - posBLT[0];
-            //     const height = -(posTRT[1] - posBRT[1]);
-            //     const areaInsT = Math.abs(base * height);
-            //     areasRT.push(areaInsT);
-            //     sumWidth += barwidth;
-            // }
-            
-            // console.log("(all)   A_i =", areasLT);
-            // console.log("(all)   B_i =", areasRT);
-            
-            // const sumAll_A_i = areasLT.reduce((acc, cur) => acc + cur);
-            // const sumAll_B_i = areasRT.reduce((acc, cur) => acc + cur);
-            // console.log("sum of (all)   A_i =", sumAll_A_i);
-            // console.log("sum of (all)   B_i =", sumAll_B_i);
-            // console.log("sum of (all)   A_i / B_i =",
-            //     sumAll_A_i / sumAll_B_i);
-
-            // const areaRatiosT = [];
-            // for(let i = 0; i < sconf.basesN - 1; i++)
-            //     areaRatiosT.push(areasLT[i] / areasRT[i]);
-            // console.log("exact_ratio = exactAT / exactBT =", exactAT / exactBT);
-            // console.log("sum_ratio = sumAT / sumBT =", sumAT / sumBT);
-            // console.log("(for all i)   i_ratioT = A_iT / B_iT =", areaRatiosT);
         }
     }
 
 
 
-    //TEMP Adjust inputs as needed
-    function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLastRect, widthsOtherTemp) {
+    function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLastRect) {
         //Calculate rectangle widths for the input datareg, so that the ratio
         //of each of their areas (inscribed rectangle area divide by sum of
         //inscribed rectangle areas) match the input ratios.
 
+        //TEMP Should probably mention something about jumping in this
+        //function, as there are some comments that reference it.
+
         //TEMP The following will need to be adjusted.
+        //TEMP Should probably use points that are reliable even if the figure
+        //is non-monotonic to prevent issues.  Also probably shouldn't
+        //calculate if a figure is non-monotonic or similar.
+        //Maybe using hte below values is fine as long as there is a monotonic
+        //check?
         //Uses the Newton
         //Raphson method (using approximate slope for the derivative).
         const dv = dr.yVariations;
@@ -734,11 +948,19 @@
         const xEnd = xStart + chosenWidth;
 
         const figureArea = dr.figureArea;
+    
+        //TEMP
+        {
+            const x = 548;
+            const y = ff(dr, x);
+            console.log(`x = ${x}  y = ${y}`);
+        }
+        {
+            const x = 547.999;
+            const y = ff(dr, x);
+            console.log(`x = ${x}  y = ${y}`);
+        }
 
-
-        //TEMP Testing different widths
-        //The width to use for the last rectangle.
-        let widthLastRectUse = widthLastRect;
 
 
         //Bounds to constrain the scale.
@@ -758,14 +980,14 @@
         //**********TEMP Newton Raphson Method**********/
         
 
-        //TEMP Bisection
-        const dataBisection = solveUsingBisection();
-        if (dataBisection)
-            console.log(`Bisection  Converged iterations =`,
-                dataBisection.iteration);
-        else
-            console.log(`Bisection  Didn't converge`);
-
+        // //TEMP Bisection
+        // const dataBisection = solveUsingBisection();
+        // if (dataBisection)
+        //     console.log(`Bisection  Converged iterations =`,
+        //         dataBisection.iteration);
+        // else
+        //     console.log(`Bisection  Didn't converge`);
+        let dataBisection = null;
 
         //TEMP Data for the plots
         const dataLSTemp = [];
@@ -774,54 +996,6 @@
             const error = widthDataCurrent.sumWidth - chosenWidth;
             dataLSTemp.push({scale, error});
         }
-        //TEMP//
-        // {
-        //     const x = chosenWidth * 0.5 + xStart;
-        //     const y = ff(dr, x);
-        //     console.log(`x = ${x}, y = ${y}`);
-        // }
-        // {
-        //     const x = chosenWidth / 3 * 2 + xStart;
-        //     const y = ff(dr, x);
-        //     console.log(`x = ${x}, y = ${y}`);
-        // }
-
-
-        const selectRootWithClosestWidths = 
-            document.getElementById("checkbox-root-closest-widths")?.checked;
-        //TEMP Find all roots (approximate)
-        const roots = [];
-        if (selectRootWithClosestWidths) {
-            for(let i = 0; i < dataLSTemp.length - 1; i++) {
-                const data1 = dataLSTemp[i];
-                const data2 = dataLSTemp[i+1];
-                if (data1.error < 0 !== data2.error < 0) {
-                    const deltaError = data2.error - data1.error;
-                    const t =  Math.abs(data1.error / deltaError);
-                    
-                    const deltaScale = data2.scale - data1.scale;
-                    const scale = data1.scale + deltaScale * t;
-                    const error = data1.error + deltaError * t;
-
-                    const widthsData = calculateWidthData(scale);
-                    const widthsNotScaled = widthsData.widthsReversed.toReversed();
-                    const scaleWidth = chosenWidth / widthsData.sumWidth;
-                    const widths = widthsNotScaled.map(width => width * scaleWidth);
-
-                    const errorWidthsSquared = widthsOtherTemp.reduce((acc, cur, i) => {
-                        const width = widths[i];
-                        return acc + (cur - width) ** 2
-                    });
-                    roots.push({scale, error, widths, errorWidthsSquared});
-                    // roots.push(data1);
-                }
-            }
-            // TEMP Sort the roots based on the width error
-            roots.sort((a, b) => a.errorWidthsSquared - b.errorWidthsSquared);
-            console.log("roots =", roots);
-        }
-        // return roots[0].widths;
-        //TEMP//
 
 
 
@@ -830,18 +1004,34 @@
         let widthDataChosen = null;
         let scaleChosen = null;
         //TEMP Only use Newton Raphson when lots of rectangles.
+        //I believe there's a comment (in that function) that mentions why
+        //there's more than one root finding algorithm, as well as some details
+        //on why it makes sense to switch between them.  Perhaps it would be
+        //best to move some of those details here?
         if (dataNewtonRaphson && sconf.basesN > 40) {
             widthDataChosen = dataNewtonRaphson.widthData;
             scaleChosen = dataNewtonRaphson.scale;
             console.log('Using Newton Raphson solution');
-        } else if (dataBisection) {
-            widthDataChosen = dataBisection.widthData;
-            scaleChosen = dataBisection.scale;
-            console.log('Using Bisection solution');
+        // } else if (dataBisection) {
         } else {
-            //TEMP
-            //Solution not found (unlikely to happen).
-            return null;
+            //TEMP Bisection
+            dataBisection = solveUsingBisection();
+            if (dataBisection)
+                console.log(`Bisection  Converged iterations =`,
+                    dataBisection.iteration);
+            else
+                console.log(`Bisection  Didn't converge`);
+
+            if (dataBisection) {
+                widthDataChosen = dataBisection.widthData;
+                scaleChosen = dataBisection.scale;
+                console.log('Using Bisection solution');
+            // }
+            } else {
+                //TEMP
+                //Solution not found (unlikely to happen).
+                return null;
+            }
         }
 
         console.log("Scale Newton Raphson", dataNewtonRaphson ? dataNewtonRaphson.scale : "N/A");
@@ -859,11 +1049,6 @@
         createTempPlotsAndInterfaceIfNeeded();
         //TEMP Plots//
 
-        //TEMP
-        if (selectRootWithClosestWidths) {
-            //TEMP Testing picking the best root when there are multiple.
-            return roots[0].widths;
-        }
         return outputTemp;
 
 
@@ -905,9 +1090,9 @@
 
             //Set the last width to a fixed value, as that rectangle's height
             //is zero, a width can't be calculated for it using area.
-            widthsReversed.push(widthLastRectUse);
-            sumWidth += widthLastRectUse;
-            let xRight = xEnd - widthLastRectUse;
+            widthsReversed.push(widthLastRect);
+            sumWidth += widthLastRect;
+            let xRight = xEnd - widthLastRect;
             
             //All remaining rectangles should have a non-zero height. //TEMP
             //Start with the second last rectangle
@@ -1089,99 +1274,22 @@
                 document.body.appendChild(divPlots);
 
                 //Add elements to adjust constraints and plots
-                divPlots.innerHTML = 
+                divPlots.innerHTML =
+                    // '<p>After checking/unchecking one of the following checkboxes, click a curve handle to refresh the curves.</p>' +
+                    '<p>After changing one of the following settings, click a curve handle to refresh the curves.</p>' +
                     '<div>' +
-                    '    <fieldset style="border-width: 1px; border-style: groove; border-color: #000;">' +
-                    '        <legend>Select handle constraint method</legend>' +
-                    // '        <p style="line-height: 1; margin: 5px;">Prevent curve from passing slope constraint when dragging handles.  Ensure curve is above before enabling, otherwise all the handles can get stuck.</p>' +
-                    '        <p style="line-height: 1; margin: 5px;">How should the handles be constrained when they are dragged?  <s>Ensure the curve is above the slope constraint before enabling, otherwise all the handles can get stuck.</s></p>' +
-                    // '        <div>' +
-                    // '            <input id="radio-slope-entire" name="radio-slope" type="radio"/>' +
-                    // // '            <label for="radio-slope-entire">Check if entire slope passed</label>' +
-                    // '            <label for="radio-slope-entire">Option 1: Prevent all parts of curve from passing slope constraint</label>' +
-                    // '        </div>' +
-                    // '        <div>' +
-                    // '            <input id="radio-slope-entire-and-move-others" name="radio-slope" type="radio"/>' +
-                    // '            <label for="radio-slope-entire-and-move-others">Option 2: Prevent all parts of curve from passing slope constraint + Move other nearby handles</label>' +
-                    // '        </div>' +
-                    // '        <div>' +
-                    // '            <input id="radio-slope-handle-y-and-right" name="radio-slope" type="radio"/>' +
-                    // '            <label for="radio-slope-handle-y-and-right">Option 3: Prevent handle y values from passing slope constraint + Prevent right side of curve from passing slope constraint (checks a single point near the right end only)</label>' +
-                    // // '            <label for="radio-slope-handle-y-and-right">Handle y values + Check if single point near right side passed slope constraint</label>' +
-                    // '        </div>' +
-                    '        <div>' +
-                    '            <input id="radio-slope-handle-y" name="radio-slope" type="radio" checked/>' +
-                    '            <label for="radio-slope-handle-y">Option 4: Prevent handle y values from passing slope constraint</label>' +
-                    '        </div>' +
-                    '        <div>' +
-                    '            <input id="radio-slope-handle-y-offset" name="radio-slope" type="radio"/>' +
-                    '            <label for="radio-slope-handle-y-offset">Option 5: Prevent handle y values from passing line offset from slope constraint</label>' +
-                    '        </div>' +
-                    // '        <div>' +
-                    // '            <input id="radio-handle-x-offset" name="radio-slope" type="radio"/>' +
-                    // '            <label for="radio-handle-x-offset">Option 6: Prevent handle x values from changing</label>' +
-                    // '        </div>' +
-                    // '        <div>' +
-                    // '            <input id="radio-slope-handle-y-offset-x-offset" name="radio-slope" type="radio"/>' +
-                    // '            <label for="radio-slope-handle-y-offset-x-offset">Option 7: Prevent handle y values from passing line offset from slope constraint + Prevent handle x values from changing</label>' +
-                    // '        </div>' +
-                    '        <div>' +
-                    '            <input id="radio-rectangle" name="radio-slope" type="radio"/>' +
-                    '            <label for="radio-rectangle">Option 6: Prevent handle from leaving rectangular boundary</label>' +
-                    '        </div>' +
-                    '        <div>' +
-                    '            <input id="radio-slope-none" name="radio-slope" type="radio"/>' +
-                    '            <label for="radio-slope-none">Disabled</label>' +
-                    '        </div>' +
-                    '    </fieldset>' +
-                    // '    <fieldset style="border-width: 1px; border-style: groove; border-color: #000;">' +
-                    // '        <legend>Select x handle constraint method</legend>' +
-                    // '        <p style="line-height: 1; margin: 5px;">How should the handles be constrained when they are dragged horozontally?</p>' +
-                    // '        <div>' +
-                    // '            <input id="radio-handle-x-prevent-change" name="radio-handle-x" type="radio"/>' +
-                    // '            <label for="radio-handle-x-prevent-change">Prevent handle x values from changing <s>(mainly intended to be enabled after page load)</s></label>' +
-                    // '        </div>' +
-                    // '        <div>' +
-                    // '            <input id="radio-handle-x-none" name="radio-handle-x" type="radio" checked/>' +
-                    // '            <label for="radio-handle-x-none">Disabled</label>' +
-                    // '        </div>' +
-                    // '    </fieldset>' +
+                    '    <input type="checkbox" id="checkbox-constrain-sides"/>' +
+                    '    <label for="checkbox-constrain-sides">Constrain curve at sides - Slope angle of line (degrees)</label>' + // - Prevents the curve from passing sloped lines on both sides of the figure.</label>' +
+                    '    <input type="number" id="input-slope-sides" value="85" min="45" max="89"/>' +
                     '</div>' +
-                    '<br>' +
-                    '<div>' +
-                    '    <label for="input-slope-constraint-angle">Slope constraint angle in degrees (un-transformed)</label>' +
-                    '    <input type="number" id="input-slope-constraint-angle" value="10" min="1" max="40" style="width: 50px;"/>' +
-                    '</div>' +
-                    '<div>' +
-                    '    <label for="input-slope-constraint-offset">Slope constraint offset (un-transformed)</label>' +
-                    '    <input type="number" id="input-slope-constraint-offset" value="15" min="0" max="100" style="width: 50px;"/>' +
-                    '</div>' +
-                    '<br>' +
-                    '<br>' +
-                    '<div>' +
-                    // '    <label for="input-count-handles">Handle count (requires page refresh)</label>' +
-                    '    <label for="input-count-handles">Handle count (change number then refresh page)</label>' +
-                    '    <input type="number" id="input-count-handles" value="2" min="1" max="4" style="width: 50px;"/>' +
-                    // '    <input type="button" id="button-refresh-page" value="Refresh Page"/>' +
-                    '</div>' + 
-                    '<br>' +
-                    '    <fieldset style="border-width: 1px; border-style: groove; border-color: #000;">' +
-                    '    <legend>Select handle type</legend>' +
-                    '        <div>' +
-                    '            <input type="radio" id="radio-handle-type-new" name="radio-handle-types" checked/>' +
-                    '            <label for="radio-handle-type-new">New (interactive-curve.html style)</label>' +
-                    '        </div>' +
-                    '        <div>' +
-                    '            <input type="radio" id="radio-handle-type-old" name="radio-handle-types"/>' +
-                    '            <label for="radio-handle-type-old">Old (L2/3 style)</label>' +
-                    '        </div>' +
-                    '    </fieldset>' +
-                    // '<br>' +
-                    // '<br>' +
                     // '<div>' +
-                    // '    <input type="checkbox" id="checkbox-root-closest-widths"/>' +
-                    // '    <label for="checkbox-root-closest-widths">(Experimental) When there are multiple roots, choose the one with the closest widths to the left figure. It works well in some situations, but creates problems in others.  Overall probably best not to use or keep.</label>' +
-                    // '</div>' + 
+                    // '    <label for="input-slope-sides">Slope on sides</label>' +
+                    // '    <input type="number" id="input-slope-sides" value="85" min="45" max="89"/>' +
+                    // '</div>' +
+                    '<div>' +
+                    '    <input type="checkbox" id="checkbox-extended-points"/>' +
+                    '    <label for="checkbox-extended-points">Adjust points used to generate curve</label>' +// - Makes the curve appear more round when handle 1 and/or 2 is close to the side of the figure, and they are far apart.</label>' +
+                    '</div>' +
                     '<br>' +
                     '<br>' +
                     '<br>' +
@@ -1195,26 +1303,6 @@
                 //Add the plots.
                 createAndAppendCanvasIfNeeded("canvas1", divPlots);
                 createAndAppendCanvasIfNeeded("canvas2", divPlots);
-
-
-                //Add event listeners to change the number of handles.
-                const inputCountHandles = document.getElementById("input-count-handles");
-                if (inputCountHandles) {
-                    inputCountHandles.value = sessionStorage.getItem("count-handles") || inputCountHandles.value;
-                    inputCountHandles.addEventListener("input", (e) => {
-                        // console.log("e =", e);
-                        const count = e.target.value;
-                        sessionStorage.setItem("count-handles", count);
-                    });
-                }
-
-                // const buttonRefreshPage = document.getElementById("button-refresh-page");
-                // if (buttonRefreshPage) {
-                //     buttonRefreshPage.addEventListener("click", () => {
-                //         console.log("Button pressed");
-                //         window.location.reload();
-                //     });
-                // }
             }
 
             const range = document.getElementById("range-figure");
@@ -1379,103 +1467,6 @@
                 return (1 - (y - yMin) / (yMax - yMin)) * canvas.height;
             }
         }
-    }
-
-
-
-    function checkIfCurveSlopeOkTemp(dr, positionsNewTemp) {
-        //TEMP
-        const ff = stdL2.numModel.curveFun;
-        // const dv = dr.yVariations;
-        //TEMP Is something similar to the following needed?
-        // if (!dv) return true;
-        // const yVariations = dr.yVariations;
-        // const xStart = yVariations.x_start;
-        // const chosenWidth = yVariations.chosenWidth;
-        const xStart = dr.ctrlPts.positions.at(0).x;
-        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
-
-        //TEMP Note that dv.maxY changes when non-monotonic therefore use
-        //an alternative.
-
-        //TEMP Store current control point positions
-        const positionsStored = [...dr.ctrlPts.positions];
-
-        // dr.ctrlPts.positions = [...positionsNewTemp];
-        const positionsSelected = positionsNewTemp || dr.ctrlPts.positions;
-        dr.ctrlPts.positions = [...positionsSelected];
-
-        //TEMP
-        //Want to check points in between the left and right sides
-        //Eg.  0  1  2  3  should be for 2 points
-        const countPoints = 30;
-        const xInterval = chosenWidth / (countPoints + 1);
-        for(let i = 1; i <= countPoints; i++) {
-            const x = xStart + xInterval * i;
-            const y = ff(dr, x);
-            
-            if (checkIfControlPointYOkForSlopeTemp(dr, x, y) < 0) {
-                dr.ctrlPts.positions = [...positionsStored];
-                return false;
-            }
-        }
-        dr.ctrlPts.positions = [...positionsStored];
-        return true;
-    }
-
-    
-    function checkIfPointOnRightOfCurvePassedSlope(dr, positionsNewTemp) {
-        //TEMP
-        const ff = stdL2.numModel.curveFun;
-        const xStart = dr.ctrlPts.positions.at(0).x;
-        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
-
-        //TEMP Store current control point positions
-        const positionsStored = [...dr.ctrlPts.positions];
-
-        const positionsSelected = positionsNewTemp || dr.ctrlPts.positions;
-        dr.ctrlPts.positions = [...positionsSelected];
-
-        const x = xStart + chosenWidth * 0.95;
-        const y = ff(dr, x);
-
-        const output = (checkIfControlPointYOkForSlopeTemp(dr, x, y) < 0);
-        dr.ctrlPts.positions = [...positionsStored];
-        return output;
-    }
-
-
-    function checkIfControlPointYOkForSlopeTemp(dr, x, y) {
-        //TEMP
-        //Angle for the slope constraint.
-        const angleDeg = parseFloat(document.getElementById("input-slope-constraint-angle").value);
-        // console.log(`angleDeg = ${angleDeg}  typeof angleDeg = ${typeof angleDeg}`);
-        const andleRadTemp = mat.degToRad(angleDeg);
-        // const andleRadTemp = mat.degToRad(15);
-        // const dv = dr.yVariations;
-        //TEMP Is something similar to the following needed?
-        // if (!dv) return true;
-        // const yVariations = dr.yVariations;
-        // const xStart = yVariations.x_start;
-        // const chosenWidth = yVariations.chosenWidth;
-
-        //TEMP Note that dv.maxY changes when non-monotonic therefore use
-        //an alternative.
-        const maxY = dr.ctrlPts.positions.at(-1).y;
-
-        //TEMP The same is true for the following.
-        const xStart = dr.ctrlPts.positions.at(0).x;
-        const chosenWidth = dr.ctrlPts.positions.at(-1).x - xStart;
-
-
-        const slopeBound = (maxY * Math.tan(andleRadTemp)) / chosenWidth;
-        
-        const height = maxY - y;
-            
-        const heightBound = slopeBound * (chosenWidth - (x - xStart));
-        // console.log("height - heightBound =", height - heightBound);
-        // return !(height < heightBound);
-        return height - heightBound;
     }
     //***********************************************
     // \\// auxiliary postprocessing functions

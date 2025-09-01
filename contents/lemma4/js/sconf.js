@@ -8,6 +8,8 @@
     //TEMP Maybe it would be better to rename them datareg1, datareg2 or
     //dataregFigure1, dataregFigure2, or replace 1 and 2 with left and right
     //respectively.
+    //Probably something more like L and R, perhaps it would be best to store
+    //themp in an array?
     var dr          = sn('datareg', stdL2 );
     var dr2         = sn('datareg2', stdL2 );//TEMP
     var appstate    = sn('appstate', stdL2 );
@@ -17,40 +19,9 @@
     //=====================================
     
     //TEMP
-    //-L2 should probably set basePtDraggersEnabled to false rather than bave
+    //-L2 should probably set basePtDraggersEnabled to false rather than have
     //  a check such as "if( fconf.sappId.indexOf('lemma2') === 0 ) return;"
     //-Should some of the following be switched to all uppercase?
-
-
-    //TEMP To set the number of handles
-    const handleOptionsTemp = [
-        [
-            //one middle handle
-            {x: 439.75, y: 89.44},
-        ],
-        [
-            //two middle handles
-            {x: 403.67, y: 62.65},
-            {x: 475.83, y: 126.01},
-        ],
-        [
-            //three middle handles
-            {x:85 + 300,    y: 51.5},
-            {x:139 + 300,   y: 89.0},
-            {x:193 + 300,   y: 148.5 },
-        ],
-        [
-            //four middle handles:
-            {x: 74.8 + 300,  y: 45.97726888798351},
-            {x: 118.1 + 300, y: 72.70148453700233},
-            {x: 161.4 + 300, y: 109.92474464283467},
-            {x: 204.7 + 300, y: 166.52378909964816},
-        ],
-    ];
-    const countHandlesStored = sessionStorage.getItem("count-handles");
-    console.log("countHandlesStored =", countHandlesStored);
-    const countHandles = sessionStorage.getItem("count-handles") || 2;
-
 
 
     //Right figure
@@ -63,41 +34,9 @@
             ctrlPtLast  : 'T',
             basePtFirst : 'P',
         },
-        transformVerticalPtEnabled : true,
-        transformHorizontalPtEnabled : true,
-        ctrlPtPositionsTemp : [
-            {x:31.5 + 300, y: 29},
-            
-            //four middle handles:
-            // {x: 74.8 + 300, y: 45.97726888798351},
-            // {x: 118.1 + 300, y: 72.70148453700233},
-            // {x: 161.4 + 300, y: 109.92474464283467},
-            // {x: 204.7 + 300, y: 166.52378909964816},
-            
-            //three middle handles
-            // {x:85 + 300,          y: 51.5},
-            // {x:139 + 300,         y: 89.0},
-            // {x:193 + 300,         y: 148.5 },
-
-            //two middle handles
-            // {x: 403.67, y: 62.65},
-            // {x: 475.83, y: 126.01},
-
-            //one middle handle
-            // {x: 439.75, y: 89.44},
-            ...handleOptionsTemp[countHandles - 1],
-
-            {x:248 + 300, y: 259.5 },
-        ],
-        partitionWidthsTemp : [1],
+        transformPtIEnabled : true,
+        transformPtJEnabled : true,
     }));
-
-    //TEMP Positions copy
-    const ctrlPtPositionsTempCopy = dr2.ctrlPts.positions.map(pos => {
-        const {x, y} = pos;
-        return {x: x-300, y };
-    });
-
 
     //Left figure
     Object.assign(dr, initDataReg({
@@ -109,107 +48,11 @@
             ctrlPtLast  : 'E',
             basePtFirst : 'A',
         },
-        transformHorizontalPtEnabled : false,
-        transformVerticalPtEnabled : true,
+        transformPtIEnabled : false,
+        transformPtJEnabled : true,
         drAdjustRectWidthsToMatchAreaRatios : dr2,
-        // ctrlPtPositionsTemp : [
-        //     {x:31.5, y:29},
-        //     {x:94.37763941129889, y:55.29995432193536},
-        //     {x:159.1198159093881, y:73.63375308039753},
-        //     {x:202.41981590938815, y:108.0602075560443},
-        //     {x:226.14217649808924, y:162.79471492606743},
-        //     {x:248, y:259.5},
-        // ],
-        // // ctrlPtPositionsTemp : [
-        // //     {x:31.5, y:29},
-        // //     {x:100.90301839324853, y:238.1442580872202},
-        // //     {x:40.638476153274155, y:95.00715884675765},
-        // //     {x:190.3956064125703, y:251.73649751576627},
-        // //     {x:236.24848199449696, y:257.8532306681781},
-        // //     {x:248, y:259.5},
-        // // ],
-        ctrlPtPositionsTemp : ctrlPtPositionsTempCopy,
-        // // ctrlPtPositionsTemp : [
-        // //     {x:331.5-300, y:29},
-        // //     {x:398.83785088521734-300, y:242.27459310328263},
-        // //     {x:339.9500869839304-300, y:96.38393718544512},
-        // //     {x:479.38137970307054-300, y:252.42488668511},
-        // //     {x:536.248481994497-300, y:257.8532306681781},
-        // //     {x:548-300, y:259.5},
-        // // ],
-        // partitionWidthsTemp : [
-        //     9.130335016062418,
-        //     82.44008961791046,
-        //     119.92957536602712,
-        //     5.000000000000003,
-        // ],
-        partitionWidthsTemp : [1],
-        // partitionWidthsTemp : [
-        //     5,
-        //     109.25055313328448,
-        //     97.24944686671552,
-        //     5,
-        // ],
-
-        // ctrlPtPositionsTemp : [
-        //     {x:31.5, y:29},
-        //     {x:94.37763941129889, y:55.29995432193536},
-        //     {x:159.1198159093881, y:73.63375308039753},
-        //     {x:202.41981590938815, y:108.0602075560443},
-        //     {x:226.14217649808924, y:162.79471492606743},
-        //     {x:248, y:259.5},
-        // ],
-        // partitionWidthsTemp : [
-        //     0.8965138710777648,
-        //     0.8965160581642239,
-        //     0.8967860809709538,
-        //     0.8973046728305017,
-        //     137.2215088188454461,
-        //     58.8092180652194769,
-        //     16.882152432891623,
-        // ],
-
-        // partitionWidthsTemp : [
-        //     26.267228711595514,
-        //     24.402691624805136,
-        //     36.52218268894255,
-        //     19.74134890782919,
-        //     62.42111735885439,
-        //     16.216859279401774,
-        //     30.928571428571438,
-        // ],
     }));
 
-
-    //TEMP Current best draft 2025.08.06
-    // //Right figure
-    // Object.assign(dr2, initDataReg({
-    //     xOffset : 300,
-    //     basePtDraggersEnabled : false,
-    //     pointLabels     : {
-    //         ctrlPtFirst : 'p',
-    //         curveMiddle : 'r',
-    //         ctrlPtLast  : 'T',
-    //         basePtFirst : 'P',
-    //     },
-    //     transformVerticalPtEnabled : true,
-    //     transformHorizontalPtEnabled : true,
-    // }));
-
-    // //Left figure
-    // Object.assign(dr, initDataReg({
-    //     xOffset : 0,
-    //     basePtDraggersEnabled : true,
-    //     pointLabels     : {
-    //         ctrlPtFirst : 'a',
-    //         curveMiddle : 'c',
-    //         ctrlPtLast  : 'E',
-    //         basePtFirst : 'A',
-    //     },
-    //     transformHorizontalPtEnabled : false,
-    //     transformVerticalPtEnabled : true,
-    //     drAdjustRectWidthsToMatchAreaRatios : dr2,
-    // }));
 
     appstate.movingBasePt = false;
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
@@ -220,10 +63,9 @@
 
 
     //TEMP To override initial values for testing
-    function initDataReg({xOffset, pointLabels, basePtDraggersEnabled, 
-        transformHorizontalPtEnabled, transformVerticalPtEnabled,
-        drAdjustRectWidthsToMatchAreaRatios, ctrlPtPositionsTemp,
-        partitionWidthsTemp}) {
+    function initDataReg({xOffset = 0, pointLabels, basePtDraggersEnabled,
+        transformPtIEnabled, transformPtJEnabled,
+        drAdjustRectWidthsToMatchAreaRatios}) {
         return {
             basePts         : {offset:1, visOffset:0, list:[]},
             curvPts         : {offset:1, visOffset:0, list:[]},
@@ -240,29 +82,38 @@
             //is on the right
             figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
             ctrlPts         : {
+                //TEMP It specifies transformed is that correct?
                 //Control point draggers with transformed positions.
                 list:[],
                 //Default positions which are never transformed but modified
                 //as the control points are dragged.  Note the transforms use
-                //the first and last points to initialize the vertical and
-                //horizontal handles respectively, and the origin.
-                positions   : ctrlPtPositionsTemp,
-                // positions : [
-                //     {x:31.5 + (xOffset || 0), y: 29},
-                    
-                //     //four middle handles:
-                //     {x: 74.8 + (xOffset || 0), y: 45.97726888798351},
-                //     {x: 118.1 + (xOffset || 0), y: 72.70148453700233},
-                //     {x: 161.4 + (xOffset || 0), y: 109.92474464283467},
-                //     {x: 204.7 + (xOffset || 0), y: 166.52378909964816},
-                    
-                //     //three middle handles
-                //     //{x:85,          y: 51.5},
-                //     //{x:139,         y: 89.0},
-                //     //{x:193,         y: 148.5 },
+                //the first and last points for their initialization.
+                //
+                //TEMP Should the naming be modified to specify un-transformed?
+                //This would probably be best for clarity.
+                positions : [
+                    {x:31.5 + xOffset, y: 29},
 
-                //     {x:248 + (xOffset || 0), y: 259.5 },
-                // ],
+                    //four middle handles:
+                    // {x: 74.8  + xOffset, y: 45.97726888798351},
+                    // {x: 118.1 + xOffset, y: 72.70148453700233},
+                    // {x: 161.4 + xOffset, y: 109.92474464283467},
+                    // {x: 204.7 + xOffset, y: 166.52378909964816},
+                    
+                    //three middle handles
+                    // {x:85  + xOffset, y: 51.5},
+                    // {x:139 + xOffset, y: 89.0},
+                    // {x:193 + xOffset, y: 148.5},
+
+                    //two middle handles
+                    {x: 103.67 + xOffset, y: 62.65},
+                    {x: 175.83 + xOffset, y: 126.01},
+
+                    //one middle handle
+                    // {x: 139.75 + xOffset, y: 89.44},
+
+                    {x:248 + xOffset, y: 259.5 },
+                ],
                 //Should draggers be constrained between initial min and max
                 constraints : {
                     xEnabled: true, 
@@ -272,7 +123,7 @@
                 //Are the first and last control points on the curve draggable
                 draggableEndPoints : false,
             },
-            partitionWidths      : partitionWidthsTemp,//[1],
+            partitionWidths : [1],
             movables        : {}, //key-value for movable jswrap
             //Specifies what points have what labels
             pointLabels     : {
@@ -284,97 +135,26 @@
             },
             basePtDraggersEnabled,
             transforms       : {
-                //TEMP Should these be labeled i, j?
-                horizontalPtEnabled : transformHorizontalPtEnabled,
-                verticalPtEnabled   : transformVerticalPtEnabled,
+                isPointIEnabled : transformPtIEnabled,
+                isPointJEnabled : transformPtJEnabled,
                 //Pos to transform relative to, automatically set
-                origin              : null,
-                pts                 : {},//To store the draggers
+                origin          : null,
+                pts             : {},//To store the draggers
             },
+            //TEMP
             //Automatically adjust rectangle widths in the following datareg to
             //match the ratio of areas in this datareg.
+            //See "calculateRectWidthsToMatchAreaRatios" function in
+            //"model-aux.js" for more.
+            //
+            //TEMP
+            //Automatically adjust rectangle widths in the following datareg
+            //based on the rectangles in this datareg.
             //See "calculateRectWidthsToMatchAreaRatios" function in
             //"model-aux.js" for more.
             drAdjustRectWidthsToMatchAreaRatios,
         }
     };
-
-    //TEMP Current best draft 2025.08.06
-    // function initDataReg({xOffset, pointLabels, basePtDraggersEnabled, 
-    //     transformHorizontalPtEnabled, transformVerticalPtEnabled,
-    //     drAdjustRectWidthsToMatchAreaRatios}) {
-    //     return {
-    //         basePts         : {offset:1, visOffset:0, list:[]},
-    //         curvPts         : {offset:1, visOffset:0, list:[]},
-    //         transPts        : {offset:1, visOffset:0, list:[]},
-    //         circRects       : {offset:0, visOffset:0, list:[]},
-    //         InscrRects       : {offset:0, visOffset:0, list:[]},
-    //         differenceRects  : {offset:0, visOffset:0, list:[]},
-            
-    //         //baseLabels      : {offset:1, visOffset:0, list:[]},
-    //         curvLabels      : {offset:0, visOffset:0, list:[]},
-    //         leftLabels      : {offset:0, visOffset:0, list:[]},
-    //         //righLabels      : {offset:0, visOffset:0, list:[]},
-    //         //deltaOnLeft historically means "virtual majoranta-rectangle"
-    //         //is on the right
-    //         figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
-    //         ctrlPts         : {
-    //             //Control point draggers with transformed positions.
-    //             list:[],
-    //             //Default positions which are never transformed but modified
-    //             //as the control points are dragged.  Note the transforms use
-    //             //the first and last points to initialize the vertical and
-    //             //horizontal handles respectively, and the origin.
-    //             positions : [
-    //                 {x:31.5 + (xOffset || 0), y: 29},
-                    
-    //                 //four middle handles:
-    //                 {x: 74.8 + (xOffset || 0), y: 45.97726888798351},
-    //                 {x: 118.1 + (xOffset || 0), y: 72.70148453700233},
-    //                 {x: 161.4 + (xOffset || 0), y: 109.92474464283467},
-    //                 {x: 204.7 + (xOffset || 0), y: 166.52378909964816},
-                    
-    //                 //three middle handles
-    //                 //{x:85,          y: 51.5},
-    //                 //{x:139,         y: 89.0},
-    //                 //{x:193,         y: 148.5 },
-
-    //                 {x:248 + (xOffset || 0), y: 259.5 },
-    //             ],
-    //             //Should draggers be constrained between initial min and max
-    //             constraints : {
-    //                 xEnabled: true, 
-    //                 minX    : null,//Automatically set
-    //                 maxX    : null,//Automatically set
-    //             },
-    //             //Are the first and last control points on the curve draggable
-    //             draggableEndPoints : false,
-    //         },
-    //         partitionWidths      : [1],
-    //         movables        : {}, //key-value for movable jswrap
-    //         //Specifies what points have what labels
-    //         pointLabels     : {
-    //             ctrlPtFirst : '',
-    //             curveMiddle : '',
-    //             ctrlPtLast  : '',
-    //             basePtFirst : '',
-    //             ...pointLabels,
-    //         },
-    //         basePtDraggersEnabled,
-    //         transforms       : {
-    //             horizontalPtEnabled : transformHorizontalPtEnabled,
-    //             verticalPtEnabled   : transformVerticalPtEnabled,
-    //             //Pos to transform relative to, automatically set
-    //             origin              : null,
-    //             pts                 : {},//To store the draggers
-    //         },
-    //         //TEMP Fill in function name and folder
-    //         //Automatically adjust widths of rects in the following datareg to
-    //         //match the ratio of areas on this datareg.  See "" function in
-    //         //"model-aux.js" for more.
-    //         drAdjustRectWidthsToMatchAreaRatios,
-    //     }
-    // };
 
 
 
@@ -492,19 +272,32 @@
             //----------------------------------
 
             //:model
-            basesN                : 4,//7,//4, TEMP
+            basesN                : 4,
             BASE_MAX_NUM          : 500,
-            DRAGGABLE_BASE_POINTS : 15,//4,//15,
+            DRAGGABLE_BASE_POINTS : 15,
 
             ////GUI
             FINEPTS_RADIUS  : 10,
             MOVABLE_BASE_RADIUS : 3,
             CTRL_RADIUS     : 3,
-	        BASE_POINTS_REPELLING_DISTANCE : 10,//5, //formerly PAD
+            //TEMP Maybe mention more about what this does and why it's a bit
+            //larger?
+	        BASE_POINTS_REPELLING_DISTANCE : 10,
 
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
+
+            //Values for a sloped line offset from the bottom of the figure,
+            //which the control point draggers are prevented from passing.
+            //This helps reduce "jumping" issues with the algorithm that
+            //automatically adjusts rectangle widths on the right figure based
+            //on the left figure.  See the following functions for more...
+            //-"computeYForOffsetSlopeConstraint" in "d8d-model.js"
+            //-"calculateRectWidthsToMatchAreaRatios" in "model-aux.js"
+            //TEMP The above function names may change, check them.
+            SLOPE_CONSTRAINT_ANGLE_DEG : 12,
+            SLOPE_CONSTRAINT_OFFSET    : 15,
 
             default_tp_stroke_width : 8,
             //rubbish: 

@@ -41,26 +41,63 @@
 
     function calculates_microPoints(dr)
     {
-        //part I: intervals
-        let fP = dr.figureParams;
+        // //part I: intervals
+        // let fP = dr.figureParams;
 
-        let minX = fP.minX = numModel.findCtrlPtPosWithMinX(dr)?.x || 0;
-        let maxX = fP.maxX = numModel.findCtrlPtPosWithMaxX(dr)?.x || 0;
+        // //TEMP I believe this is the only spot that references these functions.
+        // let minX = fP.minX = numModel.findCtrlPtPosWithMinX(dr)?.x || 0;
+        // let maxX = fP.maxX = numModel.findCtrlPtPosWithMaxX(dr)?.x || 0;
 
-        let xRange = fP.maxX - fP.minX;
-        let curveMicroPts = dr.curveMicroPts = [];
-        let curveFun = numModel.curveFun;
-        let len = sconf.BASE_MAX_NUM;
-        let step = xRange/len;
-        ///calculates curve
-        for (var ii = 0; ii < len; ii++) {
-            let xx = minX+ii*step;
-            let yy = curveFun( dr, xx );
-            let cix = curveMicroPts.length;
-            curveMicroPts.push([xx,yy]);
+        // let xRange = fP.maxX - fP.minX;
+        // let curveMicroPts = dr.curveMicroPts = [];
+        // let curveFun = numModel.curveFunOldTemp;//TEMP numModel.curveFun;
+        // let len = sconf.BASE_MAX_NUM;
+        // let step = xRange/len;
+        // ///calculates curve
+        // for (var ii = 0; ii < len; ii++) {
+        //     let xx = minX+ii*step;
+        //     let yy = curveFun( dr, xx );
+        //     let cix = curveMicroPts.length;
+        //     curveMicroPts.push([xx,yy]);
+        // }
+        // let yy = curveFun( dr, maxX );
+        // curveMicroPts.push([maxX,yy]);
+
+        //TEMP
+        const calculatedCurve = study.calculateCurve2Temp(dr);
+        // // let errorXAbsMax = 0;
+        // // let errorYAbsMax = 0;
+        // const errors = calculatedCurve.map((pt, i) => {
+        //     const pt2 = curveMicroPts[i];
+        //     const x = pt.x - pt2[0];
+        //     const y = pt.y - pt2[1];
+        //     // errorXAbsMax = Math.max(Math.abs(errorX), errorXAbsMax);
+        //     // errorYAbsMax = Math.max(Math.abs(errorY), errorYAbsMax);
+        //     return {x, y};
+        // });
+        // const errorsXAbsSorted = errors.map((e) => e.x).sort((a, b) => b - a);
+        // const errorsYAbsSorted = errors.map((e) => e.y).sort((a, b) => b - a);
+        // console.log("curve data =", {
+        //     curveMicroPts,
+        //     calculatedCurve,
+        //     errors,
+        //     errorsXAbsSorted,
+        //     errorsYAbsSorted,
+        //     // errorXAbsMax,
+        //     // errorYAbsMax,
+        // });
+
+
+        const constrainCurveAtSides =
+            document.getElementById("checkbox-constrain-sides")?.checked;
+        if (constrainCurveAtSides) {
+            dr.curveMicroPts = study.constrainCurveAtSidesTemp(
+                calculatedCurve).map(pt => [pt.x, pt.y]);
+        } else {
+            dr.curveMicroPts = calculatedCurve.map(pt => [pt.x, pt.y]);
         }
-        let yy = curveFun( dr, maxX );
-        curveMicroPts.push([maxX,yy]);
+        // dr.curveMicroPts = dr.curveMicroPts.map(pt => [pt.x, pt.y]);
+        // // console.log("dr.curveMicroPts modified =", dr.curveMicroPts);
     }
 
     
