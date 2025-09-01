@@ -50,11 +50,6 @@ PT ut Pq ad PT; unde PR &amp; Pq sibi invicem aequantur, contra hypothesin.
 </pre>
 
 
-<br><br>
-<div book-reference-id="IanBruce"></div>
-Book I Section V.<br>
-
-
 
 
 *::*proof|latin

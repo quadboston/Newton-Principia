@@ -87,45 +87,6 @@
             `,
 
 
-        'latin-diagram' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                   <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338102"
-                      target="_blank">
-                        Diagram. Latin, 3rd Edition.
-                    </a>
-                </a>
-                </div>
-                <div class="trigger-content">
-                </div>
-            </div>
-        `,
-        /*
-        'latin-diagram---inline-style' : `
-            font-size: 11px;
-        `,
-        */
-
-        'IanBruce' : `
-            <div class="isclosed">
-                <div class="trigger-option">
-                    Isaac NEWTON: Philosophiae Naturalis Principia
-                </div>
-                <div class="trigger-content">
-                     Mathematica. 3rd Ed.<br>
-                     Translated and annotated by Ian Bruce<br>
-                     <a href="http://www.17centurymaths.com/contents/newtoncontents.html">
-                     http://www.17centurymaths.com/contents/newtoncontents.html</a>
-                </div>
-            </div>
-        `,
-        /*
-        'IanBruce---inline-style' : `
-            font-size: 11px;
-        `,
-        */
-
-
         'kvk' : `
             <span style="font-size:9px">
             <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Addendum (c) Konstantin Kirillov</a>.</span><br>
