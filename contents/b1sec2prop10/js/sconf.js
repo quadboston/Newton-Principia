@@ -74,7 +74,6 @@
         // //\\ points reused in config
         //=============================================
         var C = [443, 375 ];
-        var S = C;
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -144,7 +143,6 @@
             hidden,
             curvature,
             context,
-            displacement,
         } = fixedColors;
 
 
@@ -183,7 +181,7 @@
             },
 
             C : {
-                pcolor : proof,
+                pcolor : given,
                 pos: C,
                 letterAngle : 120,
                 letterRotRadius : 35,
@@ -195,25 +193,17 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-            Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
             // \\// no visibility cssClass
 
             B : {
                 pcolor : proof,
                 letterAngle : 90,
-                cssClass: 'aspect--english',
+				cssClass: 'subessay--solution',
             },
 
             A : {
                 pcolor : proof,
-                cssClass: 'aspect--english',
+                cssClass: 'subessay--solution',
             },
 
             // //\\ proof
@@ -246,7 +236,7 @@
             R : {
                 pcolor : proof,
                 letterAngle : 45,
-                cssClass: 'logic_phase--proof',
+                cssClass: 'subessay--solution',
             },
 
             v : {
@@ -267,7 +257,7 @@
                 caption : 'V',
                 pcolor : proof,
                 letterAngle : -45,
-                cssClass: 'logic_phase--proof',
+                cssClass: 'subessay--another-solution',
             },
 
             Q : {
@@ -298,18 +288,14 @@
                 cssClass: 'subessay--another-solution',
             },
 
+			// to make kepler-orbit/builds-orbit happy, which assumes point S
+            S : {
+                pos: C,
+            },
+
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
-            S : {
-                pos: S,
-                pcolor : result,
-                letterAngle : -115,
-                letterRotRadius : 25,
-                // draggableX  : true,
-                // draggableY  : true,
-            },
-
             P : {
                 pcolor : body,
                 letterAngle : 70,
@@ -324,42 +310,38 @@
 
         var linesArray =
         [
-            { 'A,AA' : { pcolor : proof, }, },
-            { 'B,BB' : { pcolor : proof }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
-
+            { 'A,AA' : { pcolor : proof,
+					 cssClass: 'subessay--corollary2',
+			}, },
+            { 'B,BB' : { pcolor : proof,
+					 cssClass: 'subessay--corollary2',
+			 }, },
+            { 'PZ' : { pcolor : body,
+					 cssClass: 'subessay--solution',
+			}, },
+            { 'ZR' : { pcolor : body,
+					 cssClass: 'subessay--solution',
+			}, },
             { CA : { pcolor : proof,
-                     cssClass: 'aspect--english',
+                     cssClass: 'subessay--solution',
             }, },
             { CB : { pcolor : proof,
-                     cssClass: 'aspect--english',
+                     cssClass: 'subessay--solution',
             }, },
             { PC : { pcolor : proof,
-                     cssClass: 'aspect--english',
+                     cssClass: 'logic_phase--proof subessay--corollary1',
             }, },
 
             // //\\ proof
             { 'P,VV' : { pcolor : proof,
-                         cssClass: 'logic_phase--proof',
+                         cssClass: 'subessay--another-solution',
             }, },
-  
-            /*{ 'PC' : { pcolor : proof,//??
-                       cssClass: 'logic_phase--proof',
-            }, },*/
-
-            { 'SP' : { pcolor : result }, },
-
+            //{ 'SP' : { pcolor : result }, },
             { 'PR' : { pcolor : body,
-                       cssClass: 'logic_phase--proof',
+                       cssClass: 'subessay--solution',
             }, },
             { 'QR' : { pcolor : proof,
-                       cssClass: 'logic_phase--proof',
-            }, },
-            { 'SQ' : { pcolor : proof,
-                       cssClass: 'logic_phase--proof',
+                       cssClass: 'subessay--solution',
             }, },
             { 'QT' : { pcolor : proof,
                        cssClass: 'logic_phase--proof',
@@ -367,7 +349,6 @@
             { 'PT' : { pcolor : proof,
                        cssClass: 'logic_phase--proof',
             }, },
-
             { DK : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
@@ -393,10 +374,6 @@
             { DC : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-  
-           /* { GO : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
-            }, },*/
             { CF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },

@@ -24,10 +24,10 @@ of the centripetal
 *..*
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
 ¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
-then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
+then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
 as ¦PC¦¦² to ¦DC¦CD¦¦², and
 (because
-triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PC FC PF¦PCF¦¦ are similar)
+triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PC CF PF¦PCF¦¦ are similar)
 ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PC¦¦² to ¦PF¦¦², and,
 when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ is to ¦QT¦¦² as ¦PC¦¦² to
 ¦DC¦CD¦¦² and ¦PC¦¦² to ¦PF¦¦²; that is, ¦vG¦𝑣G¦¦ is
@@ -165,9 +165,9 @@ that is (because 2¦DC¦¦² × ¦PF¦¦² is given), as ¦PC¦¦ directly. Q.E.
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-Therefore, the ¦force¦¦ is as ¦SP¦the distance¦¦ of ¦P¦the body¦¦ from
+Therefore, the ¦force¦¦ is as ¦PC¦the distance¦¦ of ¦P¦the body¦¦ from
 ¦C¦the center¦¦ of the ¦orbit¦ellipse¦¦; and, conversely,
-if the ¦force¦¦ is as the ¦SP¦distance¦¦, the
+if the ¦force¦¦ is as the ¦PC¦distance¦¦, the
 body will move in an ellipse having ¦C¦its center¦¦ in the center of ¦force¦forces¦¦, or
 perhaps it will move in a circle, into which an ellipse can be changed.
 <br><br>
@@ -186,7 +186,8 @@ And the periodic times of the revolutions made in all ellipses universally aroun
 those times are equal (by prop. 4, corols. 3 and 8), while in ellipses having a
 common ¦A,AA¦major axis¦¦ they are to one another as the total areas of the ellipses
 directly and the particles of the areas described in the same time inversely;
-that is, as the ¦B,BB¦minor axes¦¦ directly and the velocities of bodies in their principal vertices inversely; that is, as those minor axes directly and the ordinates
+that is, as the ¦B,BB¦minor axes¦¦ directly and the velocities of bodies in their principal 
+vertices inversely; that is, as those ¦B,BB¦minor axes¦¦ directly and the ordinates
 to the same point of the common axis inversely; and therefore (because of
 the equality of the direct and inverse ratios) in the ratio of equality.
 <br><br>
