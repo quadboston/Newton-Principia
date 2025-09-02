@@ -7,29 +7,7 @@
 
     function setCapture()
     {
-        nspaste( capture,
-        {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
-        });
+        nspaste( capture,{});
     }
 
     ///runs inside "subessay launch" which in turn runs after
@@ -49,22 +27,8 @@
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
 
-        rg.S.pos[0] = 0;
-        rg.S.pos[1] = 0;
-
         rg.tangentCircle.undisplay = subessay !== 'another-solution';
         rg.Q.hideD8Dpoint = logic_phase !== 'proof';
-
-        //=====================================================
-        // //\\ alternates for addendum
-        //=====================================================
-        var isAdden = aspect === 'addendum';
-        rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !isAdden;
-        rg.S.undisplayAlways = !isAdden;
-        rg.S.doPaintPname = isAdden;
-        //=====================================================
-        // \\// alternates for addendum
-        //=====================================================
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;

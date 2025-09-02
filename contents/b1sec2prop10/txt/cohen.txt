@@ -202,22 +202,22 @@ the equality of the direct and inverse ratios) in the ratio of equality.
   "logic_phaseCaption" : "Scholium"
 }
 *..*
-If the center of the ellipse goes off to infinity, so that the ellipse turns into
+If the ¦C¦center¦¦ of the ellipse goes off to infinity, so that the ellipse turns into
 a parabola, the body will move in this parabola, and the ¦force¦¦, now tending
-toward an infinitely distant center, will prove to be uniform. This is Galileo's
+toward an infinitely distant ¦C¦center¦¦, will prove to be uniform. This is Galileo's
 theorem. And if (by changing the inclination of the cutting plane to the
 cone) the parabolic section of the cone turns into a hyperbola, the body will
 move in the perimeter of the hyperbola, with the centripetal ¦force¦¦ turned
 into a centrifugal ¦force¦¦. And just as in a circle or an ellipse, if the ¦force¦forces¦¦
-tend toward a figure's center located in the abscissa, and if the ordinates are
+tend toward a figure's ¦C¦center¦¦ located in the abscissa, and if the ordinates are
 increased or decreased in any given ratio or even if the angle of the inclination
 of the ordinates to the abscissa is changed, these ¦force¦forces¦¦ are always increased
-or decreased in the ratio of the distances from the center, provided that the
+or decreased in the ratio of the ¦PC¦distances¦¦ from the ¦C¦center¦¦, provided that the
 periodic times remain equal; so also in all figures universally, if the ordinates
 are increased or decreased in any given ratio or the angle of inclination of
 the ordinates is changed in any way while the periodic time remains the
-same, the ¦force¦forces¦¦ tending toward any center located in the abscissa are, for
+same, the ¦force¦forces¦¦ tending toward any ¦C¦center¦¦ located in the abscissa are, for
 each individual ordinate, increased or decreased in the ratio of the distances
-from the center.
+from the ¦C¦center¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>

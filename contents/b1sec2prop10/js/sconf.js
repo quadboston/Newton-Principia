@@ -175,7 +175,6 @@
             },
 
             BB : {
-                letterAngle : 90,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -189,7 +188,6 @@
 
             Z : {
                 pcolor : body,
-                letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -291,6 +289,8 @@
 			// to make kepler-orbit/builds-orbit happy, which assumes point S
             S : {
                 pos: C,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
             //---------------------------------------
@@ -329,7 +329,8 @@
                      cssClass: 'subessay--solution',
             }, },
             { PC : { pcolor : proof,
-                     cssClass: 'logic_phase--proof subessay--corollary1',
+                cssClass: 
+				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
 
             // //\\ proof
@@ -393,7 +394,7 @@
                      cssClass: 'subessay--another-solution',
             }, },
             { 'P,tCircleCenter' : { pcolor : curvature,
-                                    cssClass: 'subessay--another-solution',
+                     cssClass: 'subessay--another-solution',
             }, },
         ];
 
