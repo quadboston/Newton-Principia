@@ -94,16 +94,11 @@
             rg.EI.undisplay = hideExtras;
             rg.OS.undisplay = hideExtras;
 
-            rg.v.undisplay = hideExtras;
-            rg.x.undisplay = hideExtras;
-            rg.Qx.undisplay = hideExtras;
             rg.Pv.undisplay = hideExtras;
-            rg.Qv.undisplay = hideExtras;
             rg.vG.undisplay = hideExtras;
             rg.QT.undisplay = hideExtras;
             rg.PT.undisplay = hideExtras;
             rg.QR.undisplay = hideExtras;
-            rg.SQ.undisplay = hideExtras;
             rg.GO.undisplay = hideExtras;
             rg.GP.undisplay = hideExtras;
 

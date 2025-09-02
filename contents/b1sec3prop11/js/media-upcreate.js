@@ -13,11 +13,6 @@
     return;
 
 
-
-
-
-
-
     function media_upcreate___before_basic()
     {
         //this is a "policy" ... should be in the state manager if any ...
@@ -32,36 +27,6 @@
     {
         //enables curve move when dragging an entire diagram
         stdMod.poly2svgP11({});
-
-        //=============================================================
-        // //\\ tan. cir.
-        //=============================================================
-        var tCircleName = 'tangentCircle';
-        var rgTCir = rg[ tCircleName ];
-
-        var RCmedpos = ssF.mod2inn( rg.tCircleCenter.pos, stdMod );
-        var RRmedpos = sconf.mod2inn_scale * rgTCir.tangentCircleRadius;
-
-        //todo nearly bug: why create svg and set cls every time?
-        rgTCir.svgel = nssvg.u({
-            svgel   : rgTCir.svgel,
-            parent  : stdMod.mmedia,
-            type    : 'circle',
-            stroke  : rg.C.pcolor,
-            fill    : 'transparent',
-            'stroke-width' : '1',
-            cx : RCmedpos[0],
-            cy : RCmedpos[1],
-            r : RRmedpos,
-        });
-        $$.$( rgTCir.svgel ).addClass(
-            'tostroke tp-' + nsmethods.camelName2cssName( tCircleName )
-        );
-        rgTCir.svgel.style.display =
-            rgTCir.undisplay ? 'none' : 'block';
-        //=============================================================
-        // \\// tan. cir.
-        //=============================================================
     }
     //=========================================================
     // \\// lemma custom addons

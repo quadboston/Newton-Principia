@@ -74,7 +74,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var C = [409, 408 ];
+        var Cxy = [409, 408 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -85,8 +85,8 @@
         //vital to set to non-0 value
         var mod2inn_scale = 360;
 
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
+        var originX_onPicture = Cxy[0]; //for model's axis x
+        var originY_onPicture = Cxy[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
@@ -186,10 +186,10 @@
         var originalPoints =
         {
             O : {
-                pcolor : context,
+                pcolor : proof,
                 caption : 'C',
-                pos: C,
-                letterAngle : 155,
+                pos: Cxy,
+                letterAngle : -120,
                 letterRotRadius : 35,
             },
 
@@ -280,6 +280,7 @@
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
+				cssClass: 'subessay--solution',
             },
 
             F : {
@@ -293,16 +294,6 @@
                 letterAngle : -45,
             },
 
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : curvature,
-                letterAngle : -45,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             //----------------------------------------
             // //\\ Prop. 10 Book's "another solution"
             //----------------------------------------
@@ -314,7 +305,7 @@
             },
 
             tCircleCenter : {
-                pos : C,
+                pos : Cxy,
                 caption : "C'",
                 pcolor : curvature,
                 letterAngle : -45,
@@ -333,6 +324,7 @@
                 pcolor : proof,
                 letterAngle : 100,
                 letterRotRadius : 20,
+				cssClass: 'subessay--solution',
             },
             SS : { //focus
                 caption : 'Sₛ',
@@ -386,7 +378,9 @@
             //-----------------------------------------
             // //\\ Book's prop. 11
             //-----------------------------------------
-            { Qx : { pcolor : proof }, },
+            { Qx : { pcolor : proof,
+				cssClass: 'subessay--solution',
+			 },},
             { EP : { pcolor : proof }, },
             { ES : { pcolor : proof }, },
             { EI : { pcolor : proof }, },
@@ -408,20 +402,20 @@
 
             { 'PR' : { pcolor : body }, },
             { 'QR' : { pcolor : displacement }, },
-            { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
             { DK : { pcolor : proof }, },
             { GP : { pcolor : proof }, },
-            { Qv : { pcolor : proof }, },
+            { Qv : { pcolor : proof,
+				cssClass: 'subessay--solution',
+			 },},
             { Pv : { pcolor : proof }, },
             { Tv : { pcolor : proof }, },
 
             { vG : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
             { 'A,AA' : { pcolor : proof }, },
-            { 'B,BB' : { pcolor : proof }, },
             { AO : { pcolor : proof }, },
             { DO : { pcolor : proof }, },
             { BO : { pcolor : proof }, },
