@@ -186,10 +186,10 @@
         var originalPoints =
         {
             O : {
-                pcolor : context,
+                pcolor : proof,
                 caption : 'C',
                 pos: C,
-                letterAngle : 155,
+                letterAngle : -120,
                 letterRotRadius : 35,
             },
 
@@ -386,7 +386,9 @@
             //-----------------------------------------
             // //\\ Book's prop. 11
             //-----------------------------------------
-            { Qx : { pcolor : proof }, },
+            { Qx : { pcolor : proof,
+				cssClass: 'subessay--solution',
+			 },},
             { EP : { pcolor : proof }, },
             { ES : { pcolor : proof }, },
             { EI : { pcolor : proof }, },
@@ -408,7 +410,6 @@
 
             { 'PR' : { pcolor : body }, },
             { 'QR' : { pcolor : displacement }, },
-            { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
 
@@ -421,7 +422,6 @@
             { vG : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
             { 'A,AA' : { pcolor : proof }, },
-            { 'B,BB' : { pcolor : proof }, },
             { AO : { pcolor : proof }, },
             { DO : { pcolor : proof }, },
             { BO : { pcolor : proof }, },
