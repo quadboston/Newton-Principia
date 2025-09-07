@@ -192,10 +192,6 @@
                 letterAngle : -120,
                 letterRotRadius : 35,
             },
-
-            //-----------------------------------------
-            // //\\ Book's prop. 11
-            //-----------------------------------------
             E : {
                 pcolor : proof,
                 letterAngle : 90,
@@ -208,12 +204,6 @@
                 pcolor : proof,
                 letterAngle : 90,
             },
-            //-----------------------------------------
-            // \\// Book's prop. 11
-            //-----------------------------------------
-
-
-
             B : {
                 pcolor : proof,
                 letterAngle : 90,
@@ -224,7 +214,6 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
 
             A : {
                 pcolor : proof,
@@ -294,31 +283,12 @@
                 letterAngle : -45,
             },
 
-            //----------------------------------------
-            // //\\ Prop. 10 Book's "another solution"
-            //----------------------------------------
-            u : {
-                caption : '𝑢',
-                pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 15,
-            },
-
             tCircleCenter : {
                 pos : Cxy,
                 caption : "C'",
                 pcolor : curvature,
                 letterAngle : -45,
             },
-            //----------------------------------------
-            // \\// Prop. 10 Book's "another solution"
-            //----------------------------------------
-
-
-
-            //----------------------------------------
-            // //\\ Prop. 11
-            //----------------------------------------
             x : {
                 caption : "𝑥",
                 pcolor : proof,
@@ -424,9 +394,6 @@
             { FO : { pcolor : proof }, },
 
             //Book's "another solution"
-            { Tu : { pcolor : proof }, },
-            { 'u,VV' : { pcolor : proof }, },
-            { uP : { pcolor : proof }, },
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
             { 'P,tCircleCenter' : { pcolor : curvature }, },

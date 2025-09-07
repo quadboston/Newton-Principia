@@ -31,7 +31,6 @@
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
-        rg.SS.undisplay = true;
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -46,20 +45,10 @@
             rg.VV.undisplay = true;
             rg[ 'P,VV' ].undisplay = true;
             rg.VV.undisplay = true;
-            rg.u.undisplay = true;
 
-            rg.u.undisplay = true;
             rg.Tv.undisplay = true;
             rg.FO.undisplay = true;
             rg.PQ.undisplay = true;
-
-            rg.Tu.undisplay = true;
-            rg[ 'u,VV' ].undisplay = true;
-            rg.uP.undisplay = true;
-            
-            //rg.R.undisplay = ADDENDUM;
-            //rg.T.undisplay = hideExtras;
-            //rg.Q.undisplay = hideExtras;
             
             var hideExtras = ADDENDUM || subessay === 'another-solution';
 
@@ -109,7 +98,6 @@
             // //\\ we don't know why one needs chorde-scribed circle
             //      so we disable it forever here
             rg[ 'P,tCircleCenter' ].undisplay = true; //hideExtras;
-            rg.tCircleCenter.undisplay = true; //hideExtras;
             rg.tangentCircle.undisplay = true; //hideExtras;
             // \\// we don't know why one needs chorde-scribed circle
 
@@ -126,7 +114,6 @@
             var hideAnother = subessay !== 'another-solution';
             rg.u.undisplay = hideAnother;
             rg.Tu.undisplay = hideAnother;
-            rg[ 'u,VV' ].undisplay = hideAnother;
             rg.uP.undisplay = hideAnother;
             rg.PQ.undisplay = hideAnother;
             rg.tangentCircle.undisplay = hideAnother;

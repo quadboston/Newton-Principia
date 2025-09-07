@@ -110,16 +110,12 @@
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
 
-        rg.u.pos[0] = 2*rg.T.pos[0] - rg.v.pos[0];
-        rg.u.pos[1] = 2*rg.T.pos[1] - rg.v.pos[1];
-
         //getting V
         var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
         var wwu = mat.pointPlusTVector(
             DCsq_PCsq, //t,
             rg.v.pos, //A,
             rg.G.pos, //B,
-            rg.u.pos, //start, //optional
         );
         rg.VV.pos[0] = wwu[0];
         rg.VV.pos[1] = wwu[1];
