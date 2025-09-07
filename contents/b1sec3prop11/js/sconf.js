@@ -271,12 +271,6 @@
                 letterAngle : -135,
             },
 
-            VV : {
-                caption : 'V',
-                pcolor : proof,
-                letterAngle : -45,
-            },
-
             x : {
                 caption : "𝑥",
                 pcolor : proof,
@@ -371,11 +365,6 @@
             { PC : { pcolor : proof }, },
             { GC : { pcolor : proof }, },
             { FC : { pcolor : proof }, },
-
-            //Book's "another solution"
-            { PQ : { pcolor : proof }, },
-            { 'P,VV' : { pcolor : proof }, },
-
         ];
 
         ns.paste( sconf, {

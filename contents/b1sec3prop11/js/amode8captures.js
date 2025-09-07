@@ -42,13 +42,8 @@
         var ADDENDUM = aspect === 'addendum';
 
         if( fconf.sappId === 'b1sec3prop11' ) {
-            rg.VV.undisplay = true;
-            rg[ 'P,VV' ].undisplay = true;
-            rg.VV.undisplay = true;
-
             rg.Tv.undisplay = true;
             rg.FC.undisplay = true;
-            rg.PQ.undisplay = true;
             
             var hideExtras = ADDENDUM || subessay === 'another-solution';
 
@@ -109,7 +104,6 @@
             rg.u.undisplay = hideAnother;
             rg.Tu.undisplay = hideAnother;
             rg.uP.undisplay = hideAnother;
-            rg.PQ.undisplay = hideAnother;
             stdMod.medRoot$.css( 'display',
                 logic_phase === 'corollary' || logic_phase === 'scholium' ? 'none' : 'block'
             )
@@ -139,7 +133,6 @@
             rg.Q.undisplay = ADDENDUM;
             rg.R.undisplay = ADDENDUM;
 
-            rg.VV.undisplay = ADDENDUM;
             rg.v.undisplay = ADDENDUM;
             rg.u.undisplay = ADDENDUM;
             rg.Pv.undisplay = ADDENDUM;
@@ -157,7 +150,6 @@
             rg.DO.undisplay = ADDENDUM;
             rg.BO.undisplay = ADDENDUM;
             rg.PO.undisplay = ADDENDUM;
-            rg[ 'P,VV' ].undisplay = ADDENDUM;
             //=====================================================
             // \\// alternates for addendum
             //=====================================================
