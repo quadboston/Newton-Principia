@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, userOptions, fconf, sconf, fixedColors, } = 
+    var { ns, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({  ssFExportList : { init_conf } });
     return;
 
@@ -95,7 +95,7 @@
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
-        sconf.DT_SLIDER_MAX = 0.32;
+        sconf.DT_SLIDER_MAX = 0.48;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1500;
@@ -446,4 +446,3 @@
         });
     }
 }) ();
-

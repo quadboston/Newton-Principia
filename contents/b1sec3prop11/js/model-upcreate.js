@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { nspaste, mat, 
+        ssD, stdMod, rg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -20,10 +20,8 @@
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
-        var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-        var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
         
         // **api-input---plane-curve-derivatives
         var {
