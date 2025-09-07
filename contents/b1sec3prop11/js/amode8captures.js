@@ -97,7 +97,6 @@
             
             // //\\ we don't know why one needs chorde-scribed circle
             //      so we disable it forever here
-            rg[ 'P,tCircleCenter' ].undisplay = true; //hideExtras;
             rg.tangentCircle.undisplay = true; //hideExtras;
             // \\// we don't know why one needs chorde-scribed circle
 

@@ -127,30 +127,6 @@
         nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
         nspaste( rg.BB.pos, q2xy( Math.PI*3/2 ) );
 
-        //=============================================================
-        // //\\ tan. cir.
-        //=============================================================
-        var tangentDiameterPoint = mat.linesCross(
-            nn,  //direction-1
-            rg.P.pos,  //start-1
-            [-rg.Q.pos[1] + rg.P.pos[1],
-              rg.Q.pos[0] - rg.P.pos[0],
-            ], //direction-2'
-            rg.Q.pos  //start-2'
-        )
-        rg.tCircleCenter.pos[0] = (tangentDiameterPoint[0]+rg.P.pos[0])/2;
-        rg.tCircleCenter.pos[1] = (tangentDiameterPoint[1]+rg.P.pos[1])/2;
-        var rgTCir = rg.tangentCircle;
-        rgTCir.tangentCircleRadiusVector = [
-            rg.P.pos[0] - rg.tCircleCenter.pos[0],
-            rg.P.pos[1] - rg.tCircleCenter.pos[1],
-        ];
-        rgTCir.tangentCircleRadius =
-            mat.unitVector( rgTCir.tangentCircleRadiusVector ).abs;
-        //=============================================================
-        // \\// tan. cir.
-        //=============================================================
-
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
             rg.T.pos, rg.P.pos,

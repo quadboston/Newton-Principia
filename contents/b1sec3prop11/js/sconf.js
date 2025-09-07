@@ -283,24 +283,12 @@
                 letterAngle : -45,
             },
 
-            tCircleCenter : {
-                pos : Cxy,
-                caption : "C'",
-                pcolor : curvature,
-                letterAngle : -45,
-            },
             x : {
                 caption : "𝑥",
                 pcolor : proof,
                 letterAngle : 100,
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
-            },
-            SS : { //focus
-                caption : 'Sₛ',
-                pcolor : result,
-                letterAngle : -45,
-                letterRotRadius : 35,
             },
             //----------------------------------------
             // \\// Prop. 11
@@ -396,7 +384,6 @@
             //Book's "another solution"
             { PQ : { pcolor : proof }, },
             { 'P,VV' : { pcolor : proof }, },
-            { 'P,tCircleCenter' : { pcolor : curvature }, },
 
         ];
 
