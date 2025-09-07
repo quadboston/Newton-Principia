@@ -94,11 +94,6 @@
             rg.AO.undisplay = hideExtras;
             rg.DO.undisplay = hideExtras;
             rg.BO.undisplay = hideExtras;
-            
-            // //\\ we don't know why one needs chorde-scribed circle
-            //      so we disable it forever here
-            rg.tangentCircle.undisplay = true; //hideExtras;
-            // \\// we don't know why one needs chorde-scribed circle
 
             rg.HI.undisplay = hideExtras;
             rg.PH.undisplay = hideExtras;
@@ -115,8 +110,6 @@
             rg.Tu.undisplay = hideAnother;
             rg.uP.undisplay = hideAnother;
             rg.PQ.undisplay = hideAnother;
-            rg.tangentCircle.undisplay = hideAnother;
-
             stdMod.medRoot$.css( 'display',
                 logic_phase === 'corollary' || logic_phase === 'scholium' ? 'none' : 'block'
             )

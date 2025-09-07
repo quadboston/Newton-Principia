@@ -174,7 +174,6 @@
             body,
             orbit,
             force,
-            tangentCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
