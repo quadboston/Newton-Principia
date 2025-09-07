@@ -92,10 +92,10 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
-        sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
+        sconf.DQ_SLIDER_MAX = null;
+        sconf.DT_SLIDER_MAX = 0.32;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1500;
@@ -136,11 +136,7 @@
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
-        if( FT ){
-            sconf.Dt0 = 0.39;
-        } else {
-            sconf.Dq0 = 0.19;
-        }
+        sconf.Dt0 = 0.39;
 
         //pos of P
         sconf.parQ = 0.250 * Math.PI;
@@ -184,9 +180,8 @@
         //---------------------------------------------------
         var originalPoints =
         {
-            O : {
+            C : {
                 pcolor : proof,
-                caption : 'C',
                 pos: Cxy,
                 letterAngle : -120,
                 letterRotRadius : 35,
@@ -289,9 +284,6 @@
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
             },
-            //----------------------------------------
-            // \\// Prop. 11
-            //----------------------------------------
 
 
             //---------------------------------------
@@ -341,11 +333,11 @@
             { EP : { pcolor : proof }, },
             { ES : { pcolor : proof }, },
             { EI : { pcolor : proof }, },
-            { EO : { pcolor : proof }, },
+            { EC : { pcolor : proof }, },
             { PH : { pcolor : proof }, },
             { HI : { pcolor : proof }, },
-            { OS : { pcolor : proof }, },
-            { OH : { pcolor : proof }, },
+            { CS : { pcolor : proof }, },
+            { CH : { pcolor : proof }, },
             { PI : { pcolor : proof }, },
             //-----------------------------------------
             // \\// Book's prop. 11
@@ -373,12 +365,12 @@
             { vG : { pcolor : proof }, },
             { PF : { pcolor : proof }, },
             { 'A,AA' : { pcolor : proof }, },
-            { AO : { pcolor : proof }, },
-            { DO : { pcolor : proof }, },
-            { BO : { pcolor : proof }, },
-            { PO : { pcolor : proof }, },
-            { GO : { pcolor : proof }, },
-            { FO : { pcolor : proof }, },
+            { AC : { pcolor : proof }, },
+            { DC : { pcolor : proof }, },
+            { BC : { pcolor : proof }, },
+            { PC : { pcolor : proof }, },
+            { GC : { pcolor : proof }, },
+            { FC : { pcolor : proof }, },
 
             //Book's "another solution"
             { PQ : { pcolor : proof }, },

@@ -47,7 +47,7 @@
             rg.VV.undisplay = true;
 
             rg.Tv.undisplay = true;
-            rg.FO.undisplay = true;
+            rg.FC.undisplay = true;
             rg.PQ.undisplay = true;
             
             var hideExtras = ADDENDUM || subessay === 'another-solution';
@@ -57,11 +57,11 @@
             rg.PI.undisplay = ADDENDUM;
             rg.E.undisplay = ADDENDUM;
             rg.EP.undisplay = ADDENDUM;
-            rg.EO.undisplay = ADDENDUM;
-            rg.EO.undisplay = ADDENDUM;
+            rg.EC.undisplay = ADDENDUM;
+            rg.EC.undisplay = ADDENDUM;
             rg.E.undisplay = ADDENDUM;
 
-            rg.PO.undisplay = ADDENDUM;
+            rg.PC.undisplay = ADDENDUM;
             // \\// another solution
 
             //=====================================================
@@ -81,19 +81,19 @@
             rg.Zminus.undisplay = hideExtras;
             rg.ES.undisplay = hideExtras;
             rg.EI.undisplay = hideExtras;
-            rg.OS.undisplay = hideExtras;
+            rg.CS.undisplay = hideExtras;
 
             rg.Pv.undisplay = hideExtras;
             rg.vG.undisplay = hideExtras;
             rg.QT.undisplay = hideExtras;
             rg.PT.undisplay = hideExtras;
             rg.QR.undisplay = hideExtras;
-            rg.GO.undisplay = hideExtras;
+            rg.GC.undisplay = hideExtras;
             rg.GP.undisplay = hideExtras;
 
-            rg.AO.undisplay = hideExtras;
-            rg.DO.undisplay = hideExtras;
-            rg.BO.undisplay = hideExtras;
+            rg.AC.undisplay = hideExtras;
+            rg.DC.undisplay = hideExtras;
+            rg.BC.undisplay = hideExtras;
 
             rg.HI.undisplay = hideExtras;
             rg.PH.undisplay = hideExtras;

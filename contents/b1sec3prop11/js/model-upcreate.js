@@ -105,7 +105,7 @@
         var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
         var wwR = mat.linesCross(
             DK, rg.Q.pos, //direction, start
-            PG, rg.O.pos, //direction, start
+            PG, rg.C.pos, //direction, start
         );
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
