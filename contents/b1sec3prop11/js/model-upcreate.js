@@ -32,7 +32,6 @@
             uu,
             nn,
         } = Porb;
-        var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
@@ -121,9 +120,7 @@
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         nspaste( rg.A.pos, q2xy( 0 ) );
-        nspaste( rg.AA.pos, q2xy( Math.PI ) );
         nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
-        nspaste( rg.BB.pos, q2xy( Math.PI*3/2 ) );
 
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
