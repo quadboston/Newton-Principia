@@ -93,6 +93,8 @@
         //given parameters of the claim or proof
         fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
         fixedColors.givenArea   = [...fixedColors.given, 1];
+		fixedColors.givenOnlyVisibleWhenHighlighted  
+			= [...fixedColors.given, 0, 1],
 
         //relates to moving body, to an orbit
         fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
@@ -112,8 +114,9 @@
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
         fixedColors.proofArea   = [...fixedColors.proof, 1];
-        fixedColors.proofHidden = [0, 0, 255, 0.5]; //P17 
-        fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
+		fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
+		fixedColors.resultOnlyVisibleWhenHighlighted
+			= [...fixedColors.result, 0, 1];
 
         //alert, invalid user actions
         fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");

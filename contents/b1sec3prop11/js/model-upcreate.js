@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { nspaste, mat, 
+        ssD, stdMod, rg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -20,10 +20,8 @@
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
-        var rr = Qpos;
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-        var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
         
         // **api-input---plane-curve-derivatives
         var {
@@ -32,7 +30,6 @@
             uu,
             nn,
         } = Porb;
-        var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
@@ -62,16 +59,6 @@
         // \\// arc, sagittae and related
         //================================================
 
-        //================================================
-        // //\\ curvature circle
-        //================================================
-        rg.C.pos[0] = RC[0];
-        rg.C.pos[1] = RC[1];
-        var RCmedpos = ssF.mod2inn( RC, stdMod );
-        var RRmedpos = sconf.mod2inn_scale * Rc;
-        //================================================
-        // \\// curvature circle
-        //================================================
 
         //================================================
         // //\\ decorations
@@ -115,13 +102,10 @@
         var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
         var wwR = mat.linesCross(
             DK, rg.Q.pos, //direction, start
-            PG, rg.O.pos, //direction, start
+            PG, rg.C.pos, //direction, start
         );
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
-
-        rg.u.pos[0] = 2*rg.T.pos[0] - rg.v.pos[0];
-        rg.u.pos[1] = 2*rg.T.pos[1] - rg.v.pos[1];
 
         //getting V
         var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
@@ -129,41 +113,12 @@
             DCsq_PCsq, //t,
             rg.v.pos, //A,
             rg.G.pos, //B,
-            rg.u.pos, //start, //optional
         );
-        rg.VV.pos[0] = wwu[0];
-        rg.VV.pos[1] = wwu[1];
 
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         nspaste( rg.A.pos, q2xy( 0 ) );
-        nspaste( rg.AA.pos, q2xy( Math.PI ) );
         nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
-        nspaste( rg.BB.pos, q2xy( Math.PI*3/2 ) );
-
-        //=============================================================
-        // //\\ tan. cir.
-        //=============================================================
-        var tangentDiameterPoint = mat.linesCross(
-            nn,  //direction-1
-            rg.P.pos,  //start-1
-            [-rg.Q.pos[1] + rg.P.pos[1],
-              rg.Q.pos[0] - rg.P.pos[0],
-            ], //direction-2'
-            rg.Q.pos  //start-2'
-        )
-        rg.tCircleCenter.pos[0] = (tangentDiameterPoint[0]+rg.P.pos[0])/2;
-        rg.tCircleCenter.pos[1] = (tangentDiameterPoint[1]+rg.P.pos[1])/2;
-        var rgTCir = rg.tangentCircle;
-        rgTCir.tangentCircleRadiusVector = [
-            rg.P.pos[0] - rg.tCircleCenter.pos[0],
-            rg.P.pos[1] - rg.tCircleCenter.pos[1],
-        ];
-        rgTCir.tangentCircleRadius =
-            mat.unitVector( rgTCir.tangentCircleRadiusVector ).abs;
-        //=============================================================
-        // \\// tan. cir.
-        //=============================================================
 
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(

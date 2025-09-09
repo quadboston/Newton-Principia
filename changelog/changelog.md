@@ -1,5 +1,34 @@
 # Change Log
  
+  
+## 2025-8-31 (Brown Version, 0.13854)
+### Improved
+* Lemmas 2, 3, 7, 8:
+	* lowercase labels are in italic to match original text
+
+* Proposition 10
+	* added missing QT highlight
+
+* Proposition 12
+	* removed hyperbola asymptotes
+
+* Proposition 17
+	* force dragger not "dropped" when past limit
+	* simplified diagram by not showing more than what is described for each section
+	* perpendiculars and latus recta only shown when highlighted
+	* left-hand side of equation does not break across lines
+	* point q added 
+
+* Proposition 17, Corollary 2
+	* point p no longer drifts
+	* force dragger stops at limit
+
+### Removed
+* Proposition 14
+* Proposition 16
+	* these propositions are removed until the interaction is redone
+
+
 ## 2025-8-16 (Yellow Version, 0.13851)
 ### Improved
 * Proposition 12

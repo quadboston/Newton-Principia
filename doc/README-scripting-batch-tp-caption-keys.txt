@@ -17,7 +17,6 @@ EXAMPLE and INSTRUCTIONS
     Meta parsing spawns key-phrases by finding "caption-key" in texts.
             (for depth, see JS-source code in FR-II-dom8css---lib.js
                    //these subs are the KINGs of processing the Book:
-                   //  doesInsertSiteHTMLMacros( fragBody_raw )
                    //  insertDelayedBatch( fragBody_raw )
                    //fragBody_raw = UTF-string of minimal(i.e. atomic)
                    //Book-text-fragment

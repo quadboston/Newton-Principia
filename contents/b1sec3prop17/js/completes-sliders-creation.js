@@ -1,6 +1,6 @@
 ( function() {
     var { 
-        sn, mat, nspaste, sData, amode, stdMod, sconf, rg,
+        sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
     } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
     var conics = sn( 'conics', mat );
     var sop = sn( 'sampleOrbitParameters', sconf );
@@ -49,15 +49,7 @@
             //--------------------------------------------------------
         };
 
-        rg.f.processOwnUpEvent = function() {
-            sData.minForce = false;
-        }
-
         rg.f.acceptPos = ( newPos, dragMove ) => {
-
-            //prevents user from being able to drag too far
-            if(sData.minForce) return; 
-
             var { logic_phase, aspect, subessay } = amode;
             var newPos0 = dragMove[0] + sData.Lpos0_g;
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
@@ -73,7 +65,6 @@
 
             if( subessay === 'corollary2' ){
                 var newLatus = sData.stashedLatus_g;
-                sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
             } else {
                 var newLatus = sData.stashedLatus_g / incr;
             }
@@ -87,11 +78,13 @@
             });
 
             // sample (green) conic should always be ellipse
-            if(e >= 0.9) {
-                sData.minForce = true;
-                return false; 
+            let Sp = ssF.line2abs('Sp').abs; // distance from S to p
+            let S2mouse = ssF.linePoints2abs(newPos, rg.S.pos).abs; //S to mouse
+            if(e >= 0.9 || S2mouse >= Sp) {
+                return; 
             }
 
+            sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
             sop.Kepler_g = Kepler_g;
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;

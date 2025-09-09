@@ -24,7 +24,7 @@
 *..*
 
             <dense class='orig';>For let ¦AF¦¦ be equal to the greatest width,
-            and let the ¦widest-rectangular widt-txt¦parallelogram FAaf¦¦ be completed. 
+            and let the ¦widest-rectangular widt-txt¦parallelogram FA𝑎𝑓¦¦ be completed. 
             This parallelogram will be greater than the ¦difference¦¦ of 
             the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
             but if its width ¦AF¦¦ is diminished indefinitely,
@@ -42,20 +42,20 @@
 }
 *..*
 
-COROLLARY 1. Hence the ultimate sum of
-the vanishing parallelograms coincides with the curvilinear ¦figure Aa¦AacE¦¦ in its every
+Cᴏʀᴏʟʟᴀʀʏ 1. Hence the ultimate sum of
+the vanishing parallelograms coincides with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦ in its every
 part.
 <br><br>
 
-COROLLARY 2. And, all the more, the rectilinear figure that is comprehended 
-by the chords of the vanishing arcs ab, bc, cd, ... coincides ultimately with the curvilinear ¦figure Aa¦AacE¦¦.
+Cᴏʀᴏʟʟᴀʀʏ 2. And, all the more, the rectilinear figure that is comprehended 
+by the chords of the vanishing arcs 𝑎𝑏, 𝑏𝑐, 𝑐𝑑, ... coincides ultimately with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦.
 <br><br>
 
-COROLLARY 3. And it is the same for the circumscribed rectilinear figure
+Cᴏʀᴏʟʟᴀʀʏ 3. And it is the same for the circumscribed rectilinear figure
 that is comprehended by the tangents of those same arcs.
 <br><br>
 
-COROLLARY 4. And therefore these ultimate figures (with respect to their
-perimeters acE) are not rectilinear, but curvilinear limits of rectilinear figures.
+Cᴏʀᴏʟʟᴀʀʏ 4. And therefore these ultimate figures (with respect to their
+perimeters ¦curve¦𝑎𝑐E¦¦) are not rectilinear, but curvilinear limits of rectilinear figures.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434.</div>

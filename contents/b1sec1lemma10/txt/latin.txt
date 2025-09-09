@@ -3,12 +3,9 @@
   "menuCaption" : "Latin"
 }
 *..*
-
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
@@ -19,10 +16,8 @@
 }
 *..*
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
@@ -33,10 +28,5 @@
 }
 *..*
 <img src="contents/b1sec1lemma10/img/lemma10-latin.jpg" style="width:100%">
-
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>

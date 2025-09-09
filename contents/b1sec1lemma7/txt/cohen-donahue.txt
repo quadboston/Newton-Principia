@@ -18,10 +18,22 @@ the ¦AB¦chord¦¦, and the ¦AD¦tangent¦¦ ¦claimRatio¦to one another ¦¦
   "logic_phaseCaption" : "Proof"
 }
 *..*
-For as the point ¦B¦¦ approaches the point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be understood always to be produced to the distant points <i>¦b ¦¦</i> and <i>¦d¦d¦¦</i>, and let <i>¦bd ¦¦</i> be drawn parallel to the intersecting line ¦BD¦¦. And let the arc ¦arc-Ab¦A<i>cb </i>¦¦ be always similar to the arc ¦arc-AB¦ACB¦¦. And, the points ¦A¦¦, ¦B¦¦, coming together, the angle ¦Ab Ad *anch-color*proof¦<i>d</i>A<i>b</i>¦¦, by
+For as the point ¦B¦¦ approaches the 
+point ¦A¦¦, let ¦AB¦¦ and ¦AD¦¦ be 
+understood always to be produced 
+to the distant points ¦b¦𝑏¦¦ and ¦d¦𝑑¦¦, and let 
+¦bd¦𝑏𝑑¦¦ be drawn 
+parallel to the intersecting 
+line ¦BD¦¦. And let the arc 
+¦arc-Ab¦A𝑐𝑏¦¦ be always similar to the arc 
+¦arc-AB¦ACB¦¦. And, the points ¦A¦¦, ¦B¦¦, 
+coming together, the angle ¦Ab Ad *anch-color*proof¦𝑑A𝑏¦¦, by
 the 
 <a target="_blank" href="?conf=sappId=b1sec1lemma6">previous lemma</a>,
- vanishes; and therefore the straight lines ¦Ab¦A<i>b</i>¦¦, ¦Ad¦A<i>d</i>¦¦, always finite, and the arc ¦arc-Ab¦A<i>cb</i>¦¦ lying between them, coincide, and therefore ¦proofRatio¦will be equal¦¦. Therefore, both the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying between, will vanish, and will have the ¦claimRatio¦ultimate ratio of equality¦¦. &nbsp;&nbsp; Q.E.D.
+vanishes; and therefore the straight lines ¦Ab¦A𝑏¦¦, ¦Ad¦A𝑑¦¦, always finite, and 
+the arc ¦arc-Ab¦A𝑐𝑏¦¦ lying between them, coincide, and therefore ¦proofRatio¦will be equal¦¦. Therefore, both 
+the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying 
+between, will vanish, and will have the ¦claimRatio¦ultimate ratio of equality¦¦. &nbsp;&nbsp; Q.E.D.
 <br><br>
 <div book-reference-id="Donahue">Page 83.</div>
 

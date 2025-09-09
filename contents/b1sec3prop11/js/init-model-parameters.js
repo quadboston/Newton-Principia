@@ -15,9 +15,6 @@
 
         //body moves backward on x,
         toreg( 'vt' )( 'val', 1 );
-        //creates placeholder
-        //toreg( 'curvatureCircle' );
-        toreg( 'tangentCircle' );
 
         //==================================================
         // //\\ decoration graph

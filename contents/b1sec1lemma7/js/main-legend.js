@@ -37,12 +37,12 @@
     };
 
     lemma7Data.proof = [
-        [lemma7Data.claim[0][0], [ 'Ab', 'Ab', getVal('rg.Ab.abs', 'rg.Ab.abs') ]],
-        [lemma7Data.claim[1][0], [ 'Ad', 'Ad', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
-        [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc Acb', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
+        [lemma7Data.claim[0][0], [ 'Ab', 'A𝑏', getVal('rg.Ab.abs', 'rg.Ab.abs') ]],
+        [lemma7Data.claim[1][0], [ 'Ad', 'A𝑑', getVal('rg.Ad.abs', 'rg.Ab.abs') ]],
+        [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc A𝑐𝑏', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
         [[ 'spacer', '', '' ], [ 'spacer', '', '' ]], //small space
-        [lemma7Data.claim[4][0], [ 'proofRatio', 'Ad : Ab', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
-        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc Acb : Ab', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
+        [lemma7Data.claim[4][0], [ 'proofRatio', 'A𝑑 : A𝑏', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
+        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc A𝑐𝑏 : A𝑏', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
     ];
 
     // all 3 corollaries defined as one big table so framework updates their data properly

@@ -4,44 +4,40 @@
   "menuCaption" : "Latin"
 }
 *..*
-
 Si recta ¦AE¦AE¦¦ &amp;
-If the straight line ¦AE¦AE¦¦ and
+<!--If the straight line ¦AE¦AE¦¦ and -->
 
 curva ¦ABC¦ABC¦¦
-the curve ¦ABC¦ABC¦¦,
+<!--the curve ¦ABC¦ABC¦¦, -->
 
 positione datæ
-both given in position,
+<!--both given in position, -->
 
 se mutio secent in angulo dato ¦A¦¦, &amp;
-intersect each other at a given angle ¦A¦¦, and
+<!--intersect each other at a given angle ¦A¦¦, and -->
 
 ad rectam illam in alio dato angulo ordinatim applicentur ¦DB¦BD¦¦, ¦EC¦CE¦¦
-if ¦DB¦BD¦¦ and ¦EC¦CE¦¦ are drawn as ordinates to the straight line ¦AE¦AE¦¦ at another given angle
+<!--if ¦DB¦BD¦¦ and ¦EC¦CE¦¦ are drawn as ordinates to the straight line ¦AE¦AE¦¦ at another given angle -->
 
 curvæ occurrentes in ¦B¦¦, ¦C¦¦,
-and meet the curve in ¦B¦¦ and ¦C¦¦,
+<!--and meet the curve in ¦B¦¦ and ¦C¦¦, -->
 
 dein puncta ¦B¦¦, ¦C¦¦ simul accedant and punctum ¦A¦¦:
-and if then points ¦B¦¦ and ¦C¦¦ simultaneously approach point ¦A¦¦,
+<!--and if then points ¦B¦¦ and ¦C¦¦ simultaneously approach point ¦A¦¦, -->
 
 dico quod areæ triangulorum ¦ABD¦ABD¦¦, ¦ACE¦ACE¦¦ erunt ul[t]imo invicem 
-I say that the areas of the triangles ¦ABD¦ABD¦¦ and ¦ACE¦ACE¦¦ will
-ultimately ¦ABDPerACE¦be to each other¦¦
+<!--I say that the areas of the triangles ¦ABD¦ABD¦¦ and ¦ACE¦ACE¦¦ will
+ultimately ¦ABDPerACE¦be to each other¦¦ -->
 
 in ¦AD2PerAE2¦duplicata ratione¦¦ laterum.
-as the ¦AD2PerAE2¦squares of the sides¦¦.
-
+<!--as the ¦AD2PerAE2¦squares of the sides¦¦. -->
+<br><br>
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
 
 *::*proof|latin
-
 <img src="contents/b1sec1lemma9/img/lemma9.jpg" style="width:100%">
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
+<div book-reference-id="latin-on-e-rara"></div>

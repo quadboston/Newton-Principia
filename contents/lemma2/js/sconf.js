@@ -230,6 +230,7 @@
             },
 
             a : {
+				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
@@ -248,6 +249,7 @@
             },
 
             f : {
+				caption: '𝑓',
                 pcolor      : predT.given,
                 letterAngle : 90,
                 initialR    : 1.6,
@@ -272,12 +274,14 @@
             },
 
             l : {
+				caption: '𝑙',
                 pcolor      : predT.given,
                 letterAngle : 135,
                 initialR    : 1.6,
             },
 
             b : {
+				caption: '𝑏',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
@@ -285,35 +289,41 @@
 
             //invisible point
             c : {
+				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
 
             d : {
+				caption: '𝑑',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
             m : {
+				caption: '𝑚',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
 
             n : {
+				caption: '𝑛',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
 
             o : {
+				caption: '𝑜',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
             },
 
             e : {
+				caption: '𝑒',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,

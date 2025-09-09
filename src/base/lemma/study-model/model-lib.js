@@ -63,9 +63,10 @@
         return AB;
     }
 
+    // returns object describing the line between the points given as params
     function linePoints2abs(
-        posA,
-        posB,
+        posA, // [ x, y ]
+        posB, // [ x, y ]
         dropPointParam, //=t, adds point p=u*t along the line, u is unit vector
                         //    applied to point posA.
     ) {
