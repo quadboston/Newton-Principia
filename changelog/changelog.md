@@ -1,6 +1,15 @@
 # Change Log
- 
   
+## 2025-9-?? (DarkGoldenRod Version, 0.138??)
+### Improved
+* Proposition 10
+	* simplified diagram by not showing more than what is described for each section
+
+* Proposition 11
+	* simplified diagram by not showing more than what is described for each section
+	* fixed point Q's range to include its initial position (fixes initial jumping issue)
+
+
 ## 2025-8-31 (Brown Version, 0.13854)
 ### Improved
 * Lemmas 2, 3, 7, 8:
