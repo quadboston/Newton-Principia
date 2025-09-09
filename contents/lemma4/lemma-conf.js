@@ -14,6 +14,7 @@
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
                 { src:"config-functions.js" },
+                { src:"curve-functions.js" },
 
                 {  src:"dom.js" },
                 {  src:"d8d-model.js" },

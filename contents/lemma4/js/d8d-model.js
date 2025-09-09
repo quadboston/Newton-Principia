@@ -268,6 +268,7 @@
                 if (maxX != null && posNew[0] > maxX)
                     posNew[0] = maxX - 1;
 
+                //TEMP Should probably be disabled for L2/3
                 //Prevent the y value from passing the following constraint.
                 const yLine = computeYForOffsetSlopeConstraint(dr, posNew[0]);
                 if (posNew[1] > yLine)

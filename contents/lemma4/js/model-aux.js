@@ -11,32 +11,13 @@
         calculatesMajorantRect,
         calcsMonotIntervalArea,
         calculates_inscr8circums,
-        calculateCurve2Temp, //TEMP
-        constrainCurveAtSidesTemp, //TEMP
     });
-    //==================================
-    // //\\ declares data
-    //==================================
-    //TEMP
-    [stdL2.datareg, stdL2.datareg2].forEach(dr => {
-        Object.assign( dr,
-        {
-            figureArea  : 0,
-        });
-    });
-    //==================================
-    // \\// declares data
-    //==================================
 
     //==================================
     // //\\ exports methods
     //==================================
     Object.assign( numModel, {
-        curveFun,
-        findCtrlPtPosWithMaxX,
-        findCtrlPtPosWithMinX,
         addsNewBases_8_calculatesMaxWidth,
-        curveFunOldTemp,//TEMP
     });
     //==================================
     // \\// exports methods
@@ -47,604 +28,36 @@
     //***********************************************
     // //\\  auxiliary prepprocessing functions
     //***********************************************
-    // function curveFun2Temp(dr, x) {
-    //     const positions = dr.ctrlPts.positions;
-    //     const ptFirst = positions[0];
-    //     const ptLast = positions[positions.length - 1];
 
-    //     const slope = (ptLast.y - ptFirst.y) / (ptLast.x - ptFirst.x);
-    //     // const deltaX = ptLast.x - x;
-    //     const y = ptLast.y - slope * (ptLast.x - x);
-    //     // const y = 
-    //     return y;
+
+
+
+
+    // //TEMP The following comment was taken from elsewhere.
+    // //TEMP May want to create a generic function for this that can be used
+    // //throughout the project.  I believe most of the project is mainly
+    // //interested in the first and last points.  For L4 they never change,
+    // //however I believe they can for L2/3.  Therefore sorting them for all
+    // //those models could probably work fine, and the check to ensure they
+    // //don't pass the end points could be when a handle attempts to move.
+    // //There is something similar to this that needs to be finalized.
+    // //TEMP Should the following be combined into one function?
+    // //Un-transformed positions
+    // function findCtrlPtPosWithMaxX(dr) {
+    //     //TEMP Double check browser compatibility for toSorted, at etc.
+    //     return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(-1);
+    // }
+    // function findCtrlPtPosWithMinX(dr) {
+    //     return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(0);
     // }
 
-    function createCurveSegments2(dr) {
-        //TEMP
-        //Outputs a list of points that approximate the curve as line segments.
-
-        const steps = 50;
-        //
-        //TEMP May want to create a generic function for this that can be used
-        //throughout the project.  I believe most of the project is mainly
-        //interested in the first and last points.  For L4 they never change,
-        //however I believe they can for L2/3.  Therefore sorting them for all
-        //those models could probably work fine, and the check to ensure they
-        //don't pass the end points could be when a handle attempts to move.
-        //There is something similar to this that needs to be finalized.
-        const points = [...dr.ctrlPts.positions].sort((a, b) => a.x - b.x);
-
-
-        const ptFirst = points[0];
-        const ptLast = points[points.length - 1];
-
-
-        const figureWidth = ptLast.x - ptFirst.x;
-        //TEMP Think about how the height might change for L2/L3
-        const figureHeight = ptLast.y - ptFirst.y;
-
-
-        //TEMP Add comment for the following
-        const extendedPoints = [
-            {x: ptFirst.x - figureWidth * 0.05,
-             y: ptFirst.y + figureHeight * 0},
-            ...points,
-            {x: ptLast.x - figureWidth * 0, 
-            //TEMP Think about how the height might change for L2/L3
-             y: ptLast.y + figureHeight * 0.05}
-        ];
-
-        const distanceMax = Math.hypot(figureWidth, figureHeight) * 0.25;
-
-
-        const output = [];
-
-        //TEMP Maybe the last one should be added to ensure it's exact?
-        //Calculate curve line segments
-        for (let i = 0; i < extendedPoints.length - 3; i++) {
-            const p0 = {...extendedPoints[i]};
-            const p1 = {...extendedPoints[i + 1]};
-            const p2 = {...extendedPoints[i + 2]}; 
-            const p3 = {...extendedPoints[i + 3]};
-
-            const adjustExtendedPointsTemp =
-                document.getElementById("checkbox-extended-points")?.checked;
-            if (adjustExtendedPointsTemp) {
-                // //if i === 0 and p3 too far from p2
-                if (i === 0) {
-                    const delta = {x: p3.x - p2.x, y: p3.y- p2.y};
-                    const distance = Math.hypot(delta.x, delta.y);
-                    if (distance > distanceMax) {
-                        const n = {x: delta.x / distance, y: delta.y / distance};
-                        p3.x = p2.x + n.x * distanceMax;
-                        p3.y = p2.y + n.y * distanceMax;
-                    }
-                }
-                // //if i === 1 and p1 too far from p2
-                if (i === 2) {
-                    const delta = {x: p0.x - p1.x, y: p0.y - p1.y};
-                    const distance = Math.hypot(delta.x, delta.y);
-                    if (distance > distanceMax) {
-                        const n = {x: delta.x / distance, y: delta.y / distance};
-                        p0.x = p1.x + n.x * distanceMax;
-                        p0.y = p1.y + n.y * distanceMax;
-                    }
-                }
-            }
-
-
-            //Skip first point unless just starting to avoid duplicates
-            const t0 = (i === 0 ? 0 : 1);
-            for (let t = t0; t <= steps; t++) {
-                const u = t / steps;
-                const x = catmullRom2(u,
-                    p0.x, p1.x, p2.x, p3.x
-                    // extendedPoints[i].x, 
-                    // extendedPoints[i + 1].x, 
-                    // extendedPoints[i + 2].x, 
-                    // extendedPoints[i + 3].x
-                );
-                const y = catmullRom2(u,
-                    p0.y, p1.y, p2.y, p3.y
-                    // extendedPoints[i].y,
-                    // extendedPoints[i + 1].y,
-                    // extendedPoints[i + 2].y,
-                    // extendedPoints[i + 3].y
-                );
-                
-                output.push({x, y})
-            }
-        }
-
-        return output;
-    }
-
-
-    // Catmull-Rom spline interpolation for smooth curves
-    function catmullRom2(t, p0, p1, p2, p3) {
-        const t2 = t * t;
-        const t3 = t2 * t;
-        
-        return 0.5 * (
-            (2 * p1) +
-            (-p0 + p2) * t +
-            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
-            (-p0 + 3 * p1 - 3 * p2 + p3) * t3
-        );
-    }
-
-
-    function calculateCurve2Temp(dr) {
-        console.time("calculateCurve2Temp");
-        // function createCurveSegments2() {
-        //TEMP Ensure this is the correct number, should it really be +1?
-        //Eg. if there are 4 line segments, there should be 5 points.
-        // const steps = sconf.BASE_MAX_NUM;
-        const segments = sconf.BASE_MAX_NUM;
-        const output = [];
-
-        const curveSegments = createCurveSegments2(dr);
-
-
-        //TEMP May need to change the following
-        if (curveSegments.length < 2)
-        // if (curveSegments.length === 0)
-            return null;
-
-        //TEMP
-        //Could first and last points be backwards sometimes?  I suppose it
-        //depends on how the array gets created.  Therefore should probably
-        //ensure it starts from left to right in that function.
-        const ptFirst = curveSegments[0];
-        const ptLast = curveSegments[curveSegments.length - 1];
-        const xRange = ptLast.x - ptFirst.x;
-
-        //Add the first point
-        output.push({...curveSegments[0]});
-
-        // for(let i = 0; i < curveSegments.length - 1; i++) {
-        //     const ptA = curveSegments[i-1];
-        //     const ptB = curveSegments[i];
-        // }
-        let indexLeft = 0;
-        //TEMP
-        //Skip the first and last points.
-        //0  1  2  3  4
-        for (let i = 1; i < segments; i++) {
-            const x = ptFirst.x + xRange * i / segments;
-
-
-            while(indexLeft < curveSegments.length - 1) {
-                let xRight = curveSegments[indexLeft + 1].x;
-
-                if (xRight >= x) {
-                    const ptLeft = curveSegments[indexLeft];
-                    const ptRight = curveSegments[indexLeft + 1];
-                    const slope = (ptRight.y - ptLeft.y) / (ptRight.x - ptLeft.x);
-                    const y = ptLeft.y + slope * (x - ptLeft.x);
-                    output.push({x, y});
-                    break;
-                } else {
-                    indexLeft++;
-                }
-            }
-        }
-        
-        //Add the last point
-        output.push({...curveSegments[curveSegments.length - 1]});
-        console.timeEnd("calculateCurve2Temp");
-
-        return output;
-    }
-
-
-    function constrainCurveAtSidesTemp(points) {
-        //90 is vertical
-        // const angleDeg = 85;
-        const angleDeg =
-            parseFloat(document.getElementById("input-slope-sides").value);
-        
-        const ptFirst = points[0];
-        const ptLast = points[points.length - 1];
-        // const xRange = ptLast.x - ptFirst.x;
-
-        const slope = Math.tan(mat.degToRad(angleDeg));
-
-        return points.map((pt) => {
-            const x = pt.x;
-
-            const yMin = ptLast.y  + slope * (x - ptLast.x);
-            const yMax = ptFirst.y + slope * (x - ptFirst.x);
-            const y = Math.max(Math.min(pt.y, yMax), yMin);
-            return {x, y};
-        });
-    }
-
-
-    function curveFun(dr, x) {
-
-
-
-        const ptFirst = dr.curveMicroPts[0];
-        const ptLast = dr.curveMicroPts[dr.curveMicroPts.length - 1];
-        const xRange = ptLast[0] - ptFirst[0];
-
-        const len = dr.curveMicroPts.length;
-        // const x = ptFirst.x + xRange * i / (len - 1);
-
-        //x - ptFirst.x = xRange * i / (len - 1);
-        //(x - ptFirst.x) * (len - 1) / xRange = i;
-
-        const indexLeft = Math.floor((x - ptFirst[0]) * (len - 1) / xRange);
-        // console.log("indexLeft =", indexLeft);
-        if (indexLeft >= 0 && indexLeft < dr.curveMicroPts.length - 1) {
-            const ptLeft = dr.curveMicroPts[indexLeft];
-            const ptRight = dr.curveMicroPts[indexLeft + 1];
-            
-            // // const xLeftCalculated = ptFirst[0] + xRange * (indexLeft) / (len - 1);
-            // // const xRightCalculated = ptFirst[0] + xRange * (indexLeft + 1) / (len - 1);
-
-            // // console.log(`errorX = ${xLeftCalculated - ptLeft[0]}  ` +
-            // //             `errorY = ${xRightCalculated - ptRight[0]}`);
-
-            // if (x >= ptLeft[0] && x <= ptRight[0]) {
-                const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
-                const y = ptLeft[1] + slope * (x - ptLeft[0]);
-                return y;//[x, y];
-            // // } else{
-            // //     console.error("Problem with indexLeft");
-            // }
-        }
-
-
-
-        // //TEMP To interpolate positions
-        // for(let i = 0; i < dr.curveMicroPts.length - 1; i++) {
-        //     const ptLeft = dr.curveMicroPts[i];
-        //     const ptRight = dr.curveMicroPts[i + 1];
-
-        //     if (x >= ptLeft[0] && x <= ptRight[0]) {
-        //         const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
-        //         const y = ptLeft[1] + slope * (x - ptLeft[0]);
-        //         return y;//[x, y];
-        //     }
-        // }
-
-        if (x < dr.curveMicroPts[0][0]) {
-            return dr.curveMicroPts[0][1];//[...dr.curveMicroPts[0]];
-        } else {
-            return dr.curveMicroPts[dr.curveMicroPts.length - 1][1];
-            // return [...dr.curveMicroPts[dr.curveMicroPts.length - 1]];
-        }
-    }
-
-    // function curveFun(dr, x) {
-    //     //TEMP To interpolate positions
-    //     for(let i = 0; i < dr.curveMicroPts.length - 1; i++) {
-    //         const ptLeft = dr.curveMicroPts[i];
-    //         const ptRight = dr.curveMicroPts[i + 1];
-
-    //         if (x >= ptLeft[0] && x <= ptRight[0]) {
-    //             const slope = (ptRight[1] - ptLeft[1]) / (ptRight[0] - ptLeft[0]);
-    //             const y = ptLeft[1] + slope * (x - ptLeft[0]);
-    //             return y;//[x, y];
-    //         }
-    //     }
-
-    //     if (x < dr.curveMicroPts[0][0]) {
-    //         return dr.curveMicroPts[0][1];//[...dr.curveMicroPts[0]];
-    //     } else {
-    //         return dr.curveMicroPts[dr.curveMicroPts.length - 1][1];
-    //         // return [...dr.curveMicroPts[dr.curveMicroPts.length - 1]];
-    //     }
+    // function findFirstAndLastCtrlPts(dr) {
+    //     const sorted = [...dr.ctrlPts.positions].sort((a, b) => a.x - b.x);
+    //     return {
+    //         ptFirst: sorted[0],
+    //         ptLast: sorted[sorted.length - 1],
+    //     };
     // }
-
-
-
-
-
-
-    function curveStraightLineTemp(x, ptFirst, ptLast) {
-        // const positions = dr.ctrlPts.positions;
-        // const ptFirst = positions[0];
-        // const ptLast = positions[positions.length - 1];
-
-        const slope = (ptLast.y - ptFirst.y) / (ptLast.x - ptFirst.x);
-        // const deltaX = ptLast.x - x;
-        const y = ptLast.y - slope * (ptLast.x - x);
-        // const y = 
-        return y;
-    }
-
-
-    function curveFunOldTemp(dr, x) {
-    // function curveFun(dr, x) {
-        // return curveFun2Temp(dr, x);
-        //TEMP Needs to be improved
-        // const points = dr.ctrlPts.positions;
-        const pointsBtw = [];
-        for(let i = 1; i < dr.ctrlPts.positions.length-1; i++) {
-            pointsBtw.push({...dr.ctrlPts.positions[i]});
-        }
-        pointsBtw.sort((a, b) => a.x - b.x);
-
-        const points = [
-            {...dr.ctrlPts.positions[0]},
-            ...pointsBtw,
-            {...dr.ctrlPts.positions[dr.ctrlPts.positions.length - 1]},
-        ];
-        // points.push({...dr.ctrlPts.positions[0]});
-        // points.push(
-        //     {...dr.ctrlPts.positions[dr.ctrlPts.positions.length - 1]});
-
-        // const output = [];
-
-        // // For smooth curve, we need to handle endpoints specially
-        // const extendedPoints = [
-        //     {x: points[0].x - (points[1].x - points[0].x), y: points[0].y - (points[1].y - points[0].y)},
-        //     ...points,
-        //     {x: points[points.length-1].x + (points[points.length-1].x - points[points.length-2].x), 
-        //         y: points[points.length-1].y + (points[points.length-1].y - points[points.length-2].y)}
-        // ];
-
-        const figureWidth = points.at(-1).x - points.at(0).x;
-        const figureHeight = points.at(-1).y - points.at(0).y;
-
-        // const factor = 0.05;
-        
-        // //Seems pretty good overall when 2 handles
-        // const extendedPoints = [
-        //     {x: points[0].x - figureWidth * 0.05,
-        //         y: points[0].y + figureHeight * 0.05},
-        //     ...points,
-        //     {x: points.at(-1).x - figureWidth * 0.4, 
-        //         y: points.at(-1).y + figureHeight * 0.4}
-        // ];
-
-
-
-        // const extendedPoints = [
-        //     {x: points[0].x - figureWidth * 0.2,
-        //         y: points[0].y + figureHeight * 0},
-        //     ...points,
-        //     {x: points.at(-1).x - figureWidth * 0, 
-        //         y: points.at(-1).y + figureHeight * 0.4}
-        // ];
-
-        const extendedPoints = [
-            {x: points[0].x - figureWidth * 0.05,
-                y: points[0].y + figureHeight * 0},
-            ...points,
-            {x: points.at(-1).x - figureWidth * 0, 
-                y: points.at(-1).y + figureHeight * 0.05}
-        ];
-
-
-
-        //Determine which control points x is between.
-        const i2MinTemp = 1;
-        const i2MaxTemp = points.length - 1 - 1;
-        let i2 = i2MaxTemp;//points.length - 1 - 1;
-        for (let i = i2MinTemp; i <= i2MaxTemp; i++) {
-        // for (let i = 1; i < extendedPoints.length-1; i++) {
-            const point1 = extendedPoints[i];
-            const point2 = extendedPoints[i + 1];
-
-            if (x >= point1.x && x <= point2.x) {
-                // const deltaX = (point2.x - point1.x);
-                // const deltaY = (point2.y - point1.y);
-                // const t = (x - point1.x) / deltaX;
-                // // const x = point1.x + deltaX * t;
-                // const y = point1.y + deltaY * t;
-                // return y;
-                i2 = i - 1;
-                break;
-            }
-        }
-
-        if (i2 > points.length - 1 - 1)
-            console.error(`i2 out of bounds temp.  i2 = ${i2}  x = ${x}`);
-            // console.error("i2 out of bounds temp.  i2 =", i2);
-
-        // //TEMP Test that makes the last part of the curve a straight line.
-        // if (i2 >= 2)
-        //     return curveStraightLineTemp(x, extendedPoints[i2 + 1],
-        //                                     extendedPoints[i2 + 2]);
-        
-        // //TEMP Test that makes the last part of the curve a horizontal line
-        // if (i2 >= 2)
-        //     return extendedPoints[i2 + 2].y;
-
-        //TEMP
-        if (x === extendedPoints[i2 + 1 + 1].x)
-            return extendedPoints[i2 + 1 + 1].y;
-
-        let uMin = 0;
-        let uMax = 1;
-        let uBest = null;
-        // for(let i = 0; i < 15; i++) {
-        for(let i = 0; i < 30; i++) {
-            const uMid = (uMin + uMax) / 2;
-            const x2 = catmullRom(uMid, 
-                extendedPoints[i2].x, 
-                extendedPoints[i2 + 1].x, 
-                extendedPoints[i2 + 2].x, 
-                extendedPoints[i2 + 3].x
-            );
-            // const y2 = catmullRom(uMid,
-            //     extendedPoints[i2].y,
-            //     extendedPoints[i2 + 1].y,
-            //     extendedPoints[i2 + 2].y,
-            //     extendedPoints[i2 + 3].y
-            // );
-            if (x2 < x)
-                uMin = uMid;
-            else
-                uMax = uMid;
-            uBest = uMid;
-        }
-
-        const y = catmullRom(uBest,
-            extendedPoints[i2].y,
-            extendedPoints[i2 + 1].y,
-            extendedPoints[i2 + 2].y,
-            extendedPoints[i2 + 3].y
-        );
-
-        return y;
-        
-        // const steps = 50;
-        // for (let t = 0; t <= steps; t++) {
-        //     const u = t / steps;
-        //     const x = catmullRom(u, 
-        //         extendedPoints[i].x, 
-        //         extendedPoints[i + 1].x, 
-        //         extendedPoints[i + 2].x, 
-        //         extendedPoints[i + 3].x
-        //     );
-        //     const y = catmullRom(u,
-        //         extendedPoints[i].y,
-        //         extendedPoints[i + 1].y,
-        //         extendedPoints[i + 2].y,
-        //         extendedPoints[i + 3].y
-        //     );
-            
-        //     // if (t === steps)
-        //     //     output.push({
-        //     //         x: extendedPoints[i + 2].x,
-        //     //         y: extendedPoints[i + 2].y,
-        //     //     })
-        //     // else if (i === 0 || t > 0)
-        //     //     output.push({x, y})
-        //     if (i === 0 || t > 0)
-        //         output.push({x, y})
-        // }
-    }
-
-
-
-    // function curveFun(dr, x) {
-    //     //TEMP A simple but inefficient and unfinished way to calculate the
-    //     //y value of the function.
-    //     const curvePointsTemp = createCurveSegments(dr);
-
-    //     for (let i = 0; i < curvePointsTemp.length-1; i++) {
-    //         const point1 = curvePointsTemp[i];
-    //         const point2 = curvePointsTemp[i + 1];
-
-    //         if (x >= point1.x && x <= point2.x) {
-    //             const deltaX = (point2.x - point1.x);
-    //             const deltaY = (point2.y - point1.y);
-    //             const t = (x - point1.x) / deltaX;
-    //             // const x = point1.x + deltaX * t;
-    //             const y = point1.y + deltaY * t;
-    //             return y;
-    //         }
-    //     }
-
-    //     const breakPointTemp = "";
-    //     //TEMP Just use the last point for now
-    //     const point = curvePointsTemp.at(-1);
-    //     // const x = curvePointsTemp.at(-1).x;
-    //     // const y = curvePointsTemp.at(-1).y;
-    //     console.error("curveFun x not found using last point.  x - xLast =", x - point.x);
-    //     return point.y;
-    //     // return null;
-    // }
-
-    //Creates array with all points on curve
-    function createCurveSegments(dr) {
-        const points = dr.ctrlPts.positions;
-
-        const output = [];
-
-        // For smooth curve, we need to handle endpoints specially
-        const extendedPoints = [
-            {x: points[0].x - (points[1].x - points[0].x), y: points[0].y - (points[1].y - points[0].y)},
-            ...points,
-            {x: points[points.length-1].x + (points[points.length-1].x - points[points.length-2].x), 
-                y: points[points.length-1].y + (points[points.length-1].y - points[points.length-2].y)}
-        ];
-        
-        // Draw curve segments
-        for (let i = 0; i < points.length - 1; i++) {
-            const steps = 50;
-            for (let t = 0; t <= steps; t++) {
-                const u = t / steps;
-                const x = catmullRom(u, 
-                    extendedPoints[i].x, 
-                    extendedPoints[i + 1].x, 
-                    extendedPoints[i + 2].x, 
-                    extendedPoints[i + 3].x
-                );
-                const y = catmullRom(u,
-                    extendedPoints[i].y,
-                    extendedPoints[i + 1].y,
-                    extendedPoints[i + 2].y,
-                    extendedPoints[i + 3].y
-                );
-                
-                // if (t === steps)
-                //     output.push({
-                //         x: extendedPoints[i + 2].x,
-                //         y: extendedPoints[i + 2].y,
-                //     })
-                // else if (i === 0 || t > 0)
-                //     output.push({x, y})
-                if (i === 0 || t > 0)
-                    output.push({x, y})
-            }
-        }
-
-        return output;
-    }
-        
-    // Catmull-Rom spline interpolation for smooth curves
-    // function catmullRom(t, p0, p1, p2, p3) {
-    //     const t2 = t * t;
-    //     const t3 = t2 * t;
-        
-    //     return 0.5 * (
-    //         (2 * p1) +
-    //         (-p0 + p2) * t +
-    //         (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
-    //         (-p0 + 3 * p1 - 3 * p2 + p3) * t3
-    //     );
-    // }
-
-    function catmullRom(t, p0, p1, p2, p3, tension = 0) {
-        const t2 = t * t;
-        const t3 = t2 * t;
-
-        // Tangent scaling (tau = 0 → standard Catmull-Rom)
-        const s = (1 - tension) / 2;
-
-        const m1 = s * (p2 - p0);
-        const m2 = s * (p3 - p1);
-
-        const a = 2*t3 - 3*t2 + 1;
-        const b = t3 - 2*t2 + t;
-        const c = -2*t3 + 3*t2;
-        const d = t3 - t2;
-
-        return a*p1 + b*m1 + c*p2 + d*m2;
-    }
-
-
-
-
-
-
-
-    //TEMP Should the following be combined into one function?
-    //Un-transformed positions
-    function findCtrlPtPosWithMaxX(dr) {
-        //TEMP Double check browser compatibility for toSorted, at etc.
-        return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(-1);
-    }
-    function findCtrlPtPosWithMinX(dr) {
-        return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(0);
-    }
     //***********************************************
     // \\// auxiliary prepprocessing functions
     //***********************************************
@@ -935,6 +348,7 @@
         //TEMP
         const isMonotonicTemp = dv.changes.length <= 1;
         if (!isMonotonicTemp) return;
+        // console.time("calculateRectWidthsToMatchAreaRatios");
         
         //Useful values
         const ff = numModel.curveFun;
@@ -948,18 +362,6 @@
         const xEnd = xStart + chosenWidth;
 
         const figureArea = dr.figureArea;
-    
-        //TEMP
-        {
-            const x = 548;
-            const y = ff(dr, x);
-            console.log(`x = ${x}  y = ${y}`);
-        }
-        {
-            const x = 547.999;
-            const y = ff(dr, x);
-            console.log(`x = ${x}  y = ${y}`);
-        }
 
 
 
@@ -989,13 +391,13 @@
         //     console.log(`Bisection  Didn't converge`);
         let dataBisection = null;
 
-        //TEMP Data for the plots
+        // //TEMP Data for the plots
         const dataLSTemp = [];
-        for(let scale = scaleMin; scale <= scaleMax; scale += 0.001) {
-            const widthDataCurrent = calculateWidthData(scale);
-            const error = widthDataCurrent.sumWidth - chosenWidth;
-            dataLSTemp.push({scale, error});
-        }
+        // for(let scale = scaleMin; scale <= scaleMax; scale += 0.001) {
+        //     const widthDataCurrent = calculateWidthData(scale);
+        //     const error = widthDataCurrent.sumWidth - chosenWidth;
+        //     dataLSTemp.push({scale, error});
+        // }
 
 
 
@@ -1045,10 +447,11 @@
         const outputTemp = widths.map(width => width * scaleWidth);
         
         
-        //TEMP Plots and interface with other settings
-        createTempPlotsAndInterfaceIfNeeded();
-        //TEMP Plots//
+        // //TEMP Plots and interface with other settings
+        // createTempPlotsAndInterfaceIfNeeded();
+        // //TEMP Plots//
 
+        // console.timeEnd("calculateRectWidthsToMatchAreaRatios");
         return outputTemp;
 
 
@@ -1275,24 +678,6 @@
 
                 //Add elements to adjust constraints and plots
                 divPlots.innerHTML =
-                    // '<p>After checking/unchecking one of the following checkboxes, click a curve handle to refresh the curves.</p>' +
-                    '<p>After changing one of the following settings, click a curve handle to refresh the curves.</p>' +
-                    '<div>' +
-                    '    <input type="checkbox" id="checkbox-constrain-sides"/>' +
-                    '    <label for="checkbox-constrain-sides">Constrain curve at sides - Slope angle of line (degrees)</label>' + // - Prevents the curve from passing sloped lines on both sides of the figure.</label>' +
-                    '    <input type="number" id="input-slope-sides" value="85" min="45" max="89"/>' +
-                    '</div>' +
-                    // '<div>' +
-                    // '    <label for="input-slope-sides">Slope on sides</label>' +
-                    // '    <input type="number" id="input-slope-sides" value="85" min="45" max="89"/>' +
-                    // '</div>' +
-                    '<div>' +
-                    '    <input type="checkbox" id="checkbox-extended-points"/>' +
-                    '    <label for="checkbox-extended-points">Adjust points used to generate curve</label>' +// - Makes the curve appear more round when handle 1 and/or 2 is close to the side of the figure, and they are far apart.</label>' +
-                    '</div>' +
-                    '<br>' +
-                    '<br>' +
-                    '<br>' +
                     '<div>' +
                     '    <label for="range-figure">Scale</label>' +
                     '    <input id="range-figure" type="range" min="0.01" max="1" step="0.001" value="0.01" style="width: 150px; height: 10px !important; background: #FFF0;"/>' +

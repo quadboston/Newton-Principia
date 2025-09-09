@@ -71,8 +71,8 @@
             curvPts         : {offset:1, visOffset:0, list:[]},
             transPts        : {offset:1, visOffset:0, list:[]},
             circRects       : {offset:0, visOffset:0, list:[]},
-            InscrRects       : {offset:0, visOffset:0, list:[]},
-            differenceRects  : {offset:0, visOffset:0, list:[]},
+            InscrRects      : {offset:0, visOffset:0, list:[]},
+            differenceRects : {offset:0, visOffset:0, list:[]},
             
             //baseLabels      : {offset:1, visOffset:0, list:[]},
             curvLabels      : {offset:0, visOffset:0, list:[]},
@@ -81,6 +81,8 @@
             //deltaOnLeft historically means "virtual majoranta-rectangle"
             //is on the right
             figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
+            figureArea      : 0,
+            curveMicroPts   : {points:[], sectionIndices:[]},
             ctrlPts         : {
                 //TEMP It specifies transformed is that correct?
                 //Control point draggers with transformed positions.
@@ -116,7 +118,7 @@
                 ],
                 //Should draggers be constrained between initial min and max
                 constraints : {
-                    xEnabled: true, 
+                    xEnabled: true,
                     minX    : null,//Automatically set
                     maxX    : null,//Automatically set
                 },
@@ -298,6 +300,11 @@
             //TEMP The above function names may change, check them.
             SLOPE_CONSTRAINT_ANGLE_DEG : 12,
             SLOPE_CONSTRAINT_OFFSET    : 15,
+
+            //Approximate number of line segments used to generate the curve.
+            //The actual number used can vary slightly (by a few) see
+            //"curve-functions.js" for more.
+            CURVE_SEGMENTS_APPROXIMATE : 500,
 
             default_tp_stroke_width : 8,
             //rubbish: 

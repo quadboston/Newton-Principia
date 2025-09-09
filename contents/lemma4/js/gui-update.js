@@ -77,14 +77,16 @@
         // var curveFun = numModel.curveFun;
         var mpRounded = [];
         var dv = dr.yVariations;
-        var mp = dr.curveMicroPts;
+        var mp = dr.curveMicroPts.points;
         var mp_start_ix  = dv.mp_start_ix;
         var mp_end_ix = dv.mp_end_ix;
         var maxY= dv.maxY;
         var x_start = dv.x_start;
         var x_end = dv.x_end;
         var mp_len1 = mp.length-1;
-        for( var ix = mp_start_ix ; ix < mp_end_ix; ix++ ) {
+        //Include mp_end_ix to ensure there can't be a gap on the right side of
+        //the figure.
+        for( var ix = mp_start_ix ; ix <= mp_end_ix; ix++ ) {
             const posT = stdMod.xy_2_Txy(dr, mp[ix]);
             mpRounded.push([posT[0].toFixed(2),posT[1].toFixed(2)]);
         }
@@ -97,6 +99,8 @@
         xy2lineShape(dr.baseAxis, posBaseStart[0], posBaseStart[1],
             posBaseEnd[0], posBaseEnd[1]);
         //TEMP
+        //Could potentially add this to dr.figureParams in the
+        //"calculates_monotIntervals8ref" function?
         const isMonotonicTemp = dv.changes.length <= 1;
         $$.$(dr.baseAxis).css( 'display', !isMonotonicTemp ? 'none' : 'block' );
         //=============================================
@@ -117,15 +121,15 @@
         ///calculates red curves
         if(!isMonotonicTemp) {
             let pre_Rounded = [];
-            for( let ix = 0; ix < mp_start_ix; ix++ ) {
-                let mpt = mp[ix];
-                const posT = stdMod.xy_2_Txy(dr, mpt);
-                pre_Rounded.push(
-                    [posT[0].toFixed(2), posT[1].toFixed(2)]
-                );
+            //Include mp_start_ix to ensure there can't be a gap between lines.
+            for( let ix = 0; ix <= mp_start_ix; ix++ ) {
+                const posT = stdMod.xy_2_Txy(dr, mp[ix]);
+                pre_Rounded.push([posT[0].toFixed(2), posT[1].toFixed(2)]);
             }
             let past_Rounded = [];
-            for( let ix = mp_end_ix; ix < mp_len1; ix++ ) {
+            //Include the last point on curveMicroPts to ensure there can't be
+            //a gap on the right side of the figure.
+            for( let ix = mp_end_ix; ix <= mp_len1; ix++ ) {
                 const pos = stdMod.xy_2_Txy(dr,  mp[ix]);
                 past_Rounded.push([pos[0].toFixed(2),pos[1].toFixed(2)]);
             }
