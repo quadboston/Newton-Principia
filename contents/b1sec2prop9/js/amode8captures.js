@@ -1,16 +1,8 @@
 ( function() {
-    var { ns, sn, nspaste, capture, toreg, sDomF, ssD, ssF, fconf, stdMod, amode, rg, sconf, } 
+    var { toreg, sDomF, ssF, stdMod, amode, rg,  } 
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
-    setCapture();
     return;
 
-
-    function setCapture()
-    {
-        nspaste( capture,
-        {
-        });
-    }
 
     function hide(...items) {
         for (const item of items) {
