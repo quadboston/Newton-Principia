@@ -26,7 +26,6 @@
         plotLabels_2_plotsPars,
         
         //optional:
-        doDrawToolline,
         graphAxisX,
         graphAxisY,
         setsGraphTpClasses,
@@ -128,15 +127,8 @@
                 plotsCount_overrider : 1000,
                 plotsPars : plotLabels_2_plotsPars( colorThreadArray ),
                 doPaintGridOnlyOnce : false,
-                doDrawToolline : (doDrawToolline && doDrawToolline()) || {
-                    toollineStyle : {
-                        stroke : colorThreadArray[2],
-                        'stroke-width' : 3,
-                    },
-                    abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                    numberMarks : true, 
-                },
-                brightenGrid : 0.3,
+                doDrawToolline : doDrawToolline(),
+				brightenGrid : 0.3,
                 xMin,
                 xMax,
                 yMin,
@@ -152,6 +144,18 @@
         //===================================================
         // \\// top tier painter which wraps low tier painter
         //===================================================
+
+
+		function doDrawToolline()
+        {
+            return {
+                toollineStyle : {
+                    'stroke-width' : 2,
+                },
+                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                numberMarks : false, 
+            };
+        }
 
 
         //==================================================

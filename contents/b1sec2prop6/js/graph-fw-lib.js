@@ -14,7 +14,6 @@
             setsGraphAxes,
             plotLabels_2_plotsPars,
             setsGraphTpClasses,
-            doDrawToolline,
             graphAxisX,
             graphAxisY,
             setsGraphTpClasses,
@@ -226,18 +225,6 @@
                     case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
                 }
             });
-        }
-
-        function doDrawToolline()
-        {
-            return {
-                toollineStyle : {
-                    stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : 3,
-                },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : false,
-            };
         }
 
         ///horizontal axis x pars, font, etc,

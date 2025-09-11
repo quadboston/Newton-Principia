@@ -14,7 +14,6 @@
             setsGraphAxes,
             plotLabels_2_plotsPars,
             setsGraphTpClasses,
-            doDrawToolline,
             graphAxisX,
             graphAxisY,
             setsGraphTpClasses,
@@ -205,18 +204,6 @@
                 $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
                 svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
                 svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
-        }
-
-        function doDrawToolline()
-        {
-            return {
-                toollineStyle : {
-                    //stroke : sData.colorThreadArray[2],
-                    'stroke-width' : 1,
-                },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : false, 
-            };
         }
 
         ///horizontal axis x pars, font, etc,
