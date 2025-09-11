@@ -9,14 +9,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     ///==========================================
     /// API engine
     ///==========================================
@@ -37,8 +29,6 @@
         graphFM_self.nonefyDom              = nonefyDom;
         graphFM_self.changesInnerDimensions = changesInnerDimensions;
         return graphFM_self;
-
-
 
 
         ///==========================================
@@ -320,6 +310,7 @@
                     pivots  : pl,
                     parent  : gMedia,
                     style   : effStyle,
+					'stroke-width' : 2,
                 });
                 if( !svg.parentNode ) {
                     //todo why parent is always lost?
@@ -467,4 +458,3 @@
     }
 
 }) ();
-
