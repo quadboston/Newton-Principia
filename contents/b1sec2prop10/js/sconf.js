@@ -73,7 +73,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var C = [443, 375 ];
+        var posC = [443, 375 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -83,8 +83,8 @@
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 360;
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
+        var originX_onPicture = posC[0]; //for model's axis x
+        var originY_onPicture = posC[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
@@ -181,7 +181,7 @@
 
             C : {
                 pcolor : given,
-                pos: C,
+                pos: posC,
                 letterAngle : 120,
                 letterRotRadius : 35,
             },
@@ -279,7 +279,7 @@
             },
 
             tCircleCenter : {
-                pos : C,
+                pos : posC,
                 caption : "C'",
                 pcolor : curvature,
                 letterAngle : -45,
@@ -288,7 +288,7 @@
 
 			// to make kepler-orbit/builds-orbit happy, which assumes point S
             S : {
-                pos: C,
+                pos: posC,
 				undisplayAlways : true,
 				doPaintPname : false,
             },
@@ -337,7 +337,6 @@
             { 'P,VV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
-            //{ 'SP' : { pcolor : result }, },
             { 'PR' : { pcolor : body,
                        cssClass: 'subessay--solution',
             }, },
