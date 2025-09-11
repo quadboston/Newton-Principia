@@ -38,7 +38,7 @@
             type    : 'circle',
             stroke  : rg.C.pcolor,
             fill    : 'transparent',
-            'stroke-width' : '1',
+            'stroke-width' : sconf.PATH_WIDTH,
             cx : RCmedpos[0],
             cy : RCmedpos[1],
             r : RRmedpos,
