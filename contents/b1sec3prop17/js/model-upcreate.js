@@ -177,6 +177,11 @@
         //=============================================================
         // \\// sop (green orbit)
         //=============================================================
+
+        // todo: duplicate sop to show whole ellipse faintly
+        // draw arc (segment of sop around p)
+        sop.qStart = rg.p.q + 0.4;
+        sop.qEnd = sop.qStart - 0.8;
     }
 
     ///calculates arc's delta q depending on delta_t by

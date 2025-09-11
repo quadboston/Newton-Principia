@@ -27,11 +27,13 @@
         //console.log('creates_orbitRack'); 
 
         var op = vop || sconf.orbitParameters;
-        op.qStart = -Math.PI; // these vals are used here & graph-array
-        op.qEnd = Math.PI;
+
+        // specify these in vop to draw segment, otherwise full ellpse will be drawn
+        op.qStart = op.qStart ? op.qStart: -Math.PI; // these vals are used here & graph-array
+        op.qEnd = op.qEnd ? op.End: Math.PI;
 
         //:only css names
-        var curveName   = vop ? 'orbit-sample' : 'orbit';
+        var curveName = op.curveName ? op.curveName : 'orbit';
 
         //both: css and rg names
         var dqName      = vop ? 'orbitdq-sample' : 'orbitdq';

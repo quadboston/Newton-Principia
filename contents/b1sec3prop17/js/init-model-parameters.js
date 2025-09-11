@@ -5,6 +5,7 @@
         stdModExportList : { init_model_parameters, },
     });
     var sop = sn( 'sampleOrbitParameters', sconf ); //green conic
+    var arcp = sn( 'arcParameters', sconf ); //green arc
     return;
 
 
@@ -21,11 +22,14 @@
         //add objects to registry (rg)
         toreg( 'approximated-curve' );
         toreg( 'approximated-curve-sample' );
+        //toreg( 'approximated-arc-sample' );
 
         ////creates both curve and its area (defined in makes-orbit.js)
         stdMod.creates_orbitRack();
-        stdMod.creates_orbitRack( sop );
-
+        sop.curveName = 'orbit-sample';
+        stdMod.creates_orbitRack( sop );  
+        //stdMod.creates_orbitRack( arcp );  // todo: make dup of sop to draw both arc and ellipse    
+        
         //cor2.
         let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
         let DVect = mat.unitVector( Dpos );
