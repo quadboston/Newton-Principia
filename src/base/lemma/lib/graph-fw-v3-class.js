@@ -26,9 +26,6 @@
         plotLabels_2_plotsPars,
         
         //optional:
-        doDrawToolline,
-        graphAxisX,
-        graphAxisY,
         setsGraphTpClasses,
     }){
         var graphFW__self = graphFW;
@@ -55,12 +52,6 @@
 
         createsLowTireGlobalCSS();
         return; //no, this must be supplied: graphFW__self;
-
-
-
-
-
-
 
 
 
@@ -97,24 +88,8 @@
                 style : {
                    //'stroke-width' : 2, //destroys tp-machine
                 },
-                axisX : (graphAxisX && graphAxisX( xColor )) || {
-                    'font-size'     : '18px',
-                    fontShiftX      : -12, //in media scale
-                    fontShiftY      : +14,
-                    decimalDigits   : 3,
-                    stroke          : xColor,
-                    fill            : xColor,
-                   'stroke-width'   : '0.2',
-                },
-                axisY : (graphAxisY && graphAxisY( yColor )) || {
-                    'font-size'     : '20px',
-                    fontShiftX      : -45, //in media scale
-                    fontShiftY      : +5,
-                    decimalDigits   : 1,
-                    stroke          : yColor,
-                    fill            : yColor,
-                   'stroke-width'   : '1',
-                },
+                axisX : graphAxisX( xColor ),
+                axisY : graphAxisY( yColor ),
                 drawDecimalY,
                 drawDecimalX,
                 doSideAxes : true,
@@ -128,15 +103,8 @@
                 plotsCount_overrider : 1000,
                 plotsPars : plotLabels_2_plotsPars( colorThreadArray ),
                 doPaintGridOnlyOnce : false,
-                doDrawToolline : (doDrawToolline && doDrawToolline()) || {
-                    toollineStyle : {
-                        stroke : colorThreadArray[2],
-                        'stroke-width' : 3,
-                    },
-                    abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                    numberMarks : true, 
-                },
-                brightenGrid : 0.3,
+                doDrawToolline : doDrawToolline(),
+				brightenGrid : 0.3,
                 xMin,
                 xMax,
                 yMin,
@@ -153,6 +121,44 @@
         // \\// top tier painter which wraps low tier painter
         //===================================================
 
+
+		function doDrawToolline()
+        {
+            return {
+                toollineStyle : {
+                    'stroke-width' : 2,
+                },
+                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
+                numberMarks : false, 
+            };
+        }
+
+        ///horizontal axis x pars, font, etc,
+        function graphAxisX( xColor )
+        {
+            return {
+                'font-size'     : '18px',
+                fontShiftX      : -12, //in media scale
+                fontShiftY      : +14,
+                decimalDigits   : 3,
+                stroke          : xColor,
+                fill            : xColor,
+                'stroke-width'  : '0.2',
+            };
+        }
+
+        function graphAxisY( yColor )
+        {
+            return {
+                'font-size'     : '20px',
+                fontShiftX      : -45, //in media scale
+                fontShiftY      : +5,
+                decimalDigits   : 1,
+                stroke          : yColor,
+                fill            : yColor,
+                'stroke-width'  : '1',
+            };
+        }
 
         //==================================================
         // //\\ shows/hides graph container
