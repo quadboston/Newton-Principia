@@ -24,8 +24,9 @@
 
         ////creates both curve and its area (defined in makes-orbit.js)
         stdMod.creates_orbitRack();
-        stdMod.creates_orbitRack( sop );
-
+        sop.curveName = 'orbit-sample';
+        stdMod.creates_orbitRack( sop );  
+        
         //cor2.
         let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
         let DVect = mat.unitVector( Dpos );
