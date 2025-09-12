@@ -6,7 +6,7 @@
 }
 *..*
 Let a ¦P¦body¦¦ move in a ¦orbit¦hyperbola¦¦; it is required to find the law of the
-¦centripetal force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
+centripetal ¦force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
 
@@ -62,7 +62,7 @@ ratios are combined, L × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦ × L ×
 ¦QT¦¦², which are proportional to these, are also equal. Multiply these equals by
 ¦SP¦¦²/¦QR¦¦, and L × ¦SP¦¦² will become equal to ¦SP¦¦² × ¦QT¦¦² / ¦QR¦¦. Therefore 
 (by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
-the centripetal force is inversely as L × ¦SP¦¦², that is, inversely
+the centripetal ¦force¦¦ is inversely as L × ¦SP¦¦², that is, inversely
 as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
@@ -78,13 +78,13 @@ as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Find the force that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
+Find the ¦force¦¦ that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
 come out proportional to the distance ¦PC¦CP¦¦. And hence
 (
 <a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 by prop. 7, corol. 3</a>
 )
-the force tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is
+the ¦force¦¦ tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is
 given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 465.</div>
@@ -98,7 +98,7 @@ given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
   "logic_phaseCaption" : "Newton's Comment"
 }
 *..*
-It is shown in the same way that if this centripetal force is turned into a
+It is shown in the same way that if this centripetal ¦force¦¦ is turned into a
 centrifugal force, a body will move in the opposite branch of the hyperbola.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 465.</div>
