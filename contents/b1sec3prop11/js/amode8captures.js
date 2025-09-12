@@ -9,7 +9,6 @@
             amode2rgstate,
         },
     });
-    setCapture();
     return;
 
 

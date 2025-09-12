@@ -28,7 +28,7 @@
 
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
-                //'stroke-width'   : haz( arg, 'stroke-width' ),
+                'stroke-width' : sconf.PATH_WIDTH,
                 //fill             : haz( arg, 'fill' ),
             });
             const lowname = sDomF.topicIdUpperCase_2_underscore( 'orbit' );
