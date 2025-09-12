@@ -180,8 +180,7 @@
             body,
             orbit               : result,
             'orbit-sample'      : given,
-            orbitdq             : result,
-            'orbitdq-sample'    : given, //todm remove
+            trace               : [...given, 0.5], // show only faint line for full sample orbit
             shadow,
             force               : force,
 
