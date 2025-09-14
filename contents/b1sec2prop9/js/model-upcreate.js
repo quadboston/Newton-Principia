@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { $$, nsmethods, nssvg, mat,
+        ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -115,22 +115,6 @@
                 //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
-            /*
-            if( !bonus ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax =0;
-                for( ix = 0; ix<len; ix++ ) {
-                    let yy = Math.abs( ga[ix].y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------

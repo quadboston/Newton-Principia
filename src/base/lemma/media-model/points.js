@@ -86,7 +86,7 @@
             };
 
             ///shapes without pName presribed in Topics do
-            ///paint colors in own atributes
+            ///paint colors in own attributes
             var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
             var tpactive = haz( lowId2topics, lowId );
             if( !tpactive ) {

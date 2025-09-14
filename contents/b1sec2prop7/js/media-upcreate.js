@@ -3,7 +3,6 @@
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         }, });
-    let foldPointsRemovedFromTp = false;
     return;
 
 
@@ -21,26 +20,6 @@
     {
         //enables curve move when dragging an entire diagram
         stdMod.poly2svgP11({});
-        
-        /*
-        ///possibly redundant because gap points are good
-        if( has( rg[ 'foldPoints-' + 1 ], 'svgel$' ) ){
-           if( !foldPointsRemovedFromTp ) {
-               foldPointsRemovedFromTp = true;
-
-               let gapColor = userOptions.showingBonusFeatures() ?
-                              '#ffffff' : '#ff0000';
-               rg[ 'S,nonSolvablePoint' ].svgel$.css( 'stroke', gapColor );
-               sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
-                    fp.rgX.svgel$
-                        .removeClass( 'tp-fold_points-'+ppix )
-                        .css( 'fill', gapColor )
-                        .css( 'stroke', gapColor )
-                    ;
-               });
-            }
-        }
-        */
     }
     //=========================================================
     // \\// lemma custom addons

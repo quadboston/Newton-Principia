@@ -1,14 +1,9 @@
 ( function() {
-    const { nspaste, capture, toreg, sDomF, ssF, stdMod, amode, rg, sconf, } =
-            window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
-    setCapture();
+    var { 
+        toreg, sDomF, ssF, stdMod, amode, rg, 
+    } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
-
-    function setCapture()
-    {
-        nspaste( capture,{});
-    }
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"

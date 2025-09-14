@@ -32,7 +32,7 @@ vanish.
 *..*
     For if that ¦angleBAD AB AD *anch-color*given¦angle¦¦ does not vanish, 
     the angle contained by the arc ¦arc-AB¦ACB¦¦ 
-    and the tangent ¦AD¦¦ will be equal to a ¦AL Ad L¦rectilinear angle¦¦, 
+    and the tangent ¦AD¦¦ will be equal to a ¦AL AD L¦rectilinear angle¦¦, 
     and therefore the curvature at point ¦A¦¦ will not be continuous,
     contrary to the hypothesis.
 <br><br>
