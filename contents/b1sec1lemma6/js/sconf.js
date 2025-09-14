@@ -94,8 +94,6 @@
         var b = [514, 254];
         //var M = [50, modorInPicY];
 
-        //sets position of axis-y for Calculus-framework, not for model axis-y
-        var ytop = [-151, 50];  
         //================================================================
         // \\// original positions
         //================================================================      
