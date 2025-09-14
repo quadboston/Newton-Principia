@@ -33,12 +33,30 @@
             if( sconf.TIME_IS_FREE_VARIABLE ){
                 let tt = qIndexToOrbit[ Qqix ].timeAtQ;
                 let Dt = tt - qIndexToOrbit[ qix ].timeAtQ;
+                if( sconf.CURVE_REVOLVES ){
+                    if( Dt<0 ) {
+                        ////the point P crossed start of the coninc,
+                        ////usually point A and point t(Q) became less than t(P),
+                        ////this line adjusts Dt by using "cycled t change",
+                        ////where time period is ssD.timeRange,
+                        Dt = (Dt + ssD.timeRange) % ssD.timeRange;
+                    }
+                }
                 if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
                     sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
             } else {
                 const q = qIndexToOrbit[ Qqix ].q;
                 let Dq = q - qIndexToOrbit[ qix ].q;
+                if( sconf.CURVE_REVOLVES ){
+                    if( Dq<0 ) {
+                        ////the point P crossed start of the coninc,
+                        ////usually point A and point q(Q) became less than q(P),
+                        ////this line adjusts Da by using "cycled a change",
+                        ////where q period is sconf.curveQRange,
+                        Dq = (Dq + sconf.curveQRange ) % sconf.curveQRange;
+                    }
+                }
                 if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
                 ssD.Dq = Dq;
             }
