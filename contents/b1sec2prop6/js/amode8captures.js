@@ -1,38 +1,9 @@
 ( function() {
-    var { ns, sn, nspaste, has, paste, capture, userOptions, sDomF, ssD, ssF,
-        fconf, sData, sconf, amode, toreg, stdMod, rg, }
+    var { sDomF, ssD, ssF,
+        sData, sconf, amode, toreg, stdMod, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
-    setCapture();
     foldPointsRemovedFromTp = false;
     return;
-
-
-    function setCapture()
-    {
-        paste( capture,
-        {
-            /*
-            "reset-to-origin": {
-                    "curveRotationAngle": {
-                        "angle": 0,
-                        "sin": 0,
-                        "cos": 1
-                    },
-                    "media-mover": {
-                        "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
-                        }
-                    },
-                    "B": {
-                            "unrotatedParameterX": 0.7745228215767634
-                    }
-            },
-            */
-        });
-    }
 
 
     function amode2rgstate( captured )
@@ -97,17 +68,6 @@
             rg.C.undisplay = true;
             rg.PC.undisplay = true;
             rg[ 'Q,rrminus' ].undisplay = false;
-            /*
-            fapp.captureState(
-                ns.paste(
-                    {
-                        curvePivots_points : cpPoints,
-                        curveRightPivots_points : rpPoints,
-                    },
-                    ast
-                )
-            );
-            */
             if( logic_phase === 'proof' ){
                 rg[ 'Q,rrminus' ].undisplay = false;
             }

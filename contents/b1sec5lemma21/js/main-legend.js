@@ -28,9 +28,7 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-        ww[ 'a' ].innerHTML = rg.a.value.toFixed(3);
-        ww[ 'b' ].innerHTML = rg.b.value.toFixed(3);
-
+		
         //todm this is a patch: do use Pr/Pt
         let grad = '<sup>ᵒ</sup>';
         let rad2grad = 180/Math.PI;
@@ -62,13 +60,6 @@
         //===================
         // //\\
         //===================
-        var row = $$.c('tr')
-            .to(tb)
-            .addClass( 'aspect--model' )
-            ();
-        makeCl( row, 'a', 'c', 'core' );
-        makeCl( row, 'b', '1-c', 'core' );
-
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();

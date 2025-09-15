@@ -173,6 +173,11 @@
         //perpendicular dropped from pr to S
         rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
         rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
+        
+        // highlight arc (segment of sop around p)
+        sop.highlightSeg = true;
+        sop.segStart = rg.p.q + 0.4;
+        sop.segEnd = sop.segStart - 0.8;
 
         //=============================================================
         // \\// sop (green orbit)

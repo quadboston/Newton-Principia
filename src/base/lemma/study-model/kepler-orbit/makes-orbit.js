@@ -27,21 +27,20 @@
         //console.log('creates_orbitRack'); 
 
         var op = vop || sconf.orbitParameters;
-        op.qStart = -Math.PI; // these vals are used here & graph-array
-        op.qEnd = Math.PI;
+
+        // specify these in vop to draw segment, otherwise full ellpse will be drawn
+        op.qStart = op.qStart ? op.qStart: -Math.PI; // these vals are used here & graph-array
+        op.qEnd = op.qEnd ? op.End: Math.PI;
 
         //:only css names
-        var curveName   = vop ? 'orbit-sample' : 'orbit';
+        var curveName = op.curveName ? op.curveName : 'orbit';
 
         //both: css and rg names
-        var dqName      = vop ? 'orbitdq-sample' : 'orbitdq';
         var lowname     = curveName; //sDomF.topicIdUpperCase_2_underscore( curveName );
         var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
-        var rgDq        = rg[ dqName ]; //"twin-object" for rgX
 
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
-        rgDq.polylineSvg = haz( rgX, dqName );
 
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
@@ -49,7 +48,6 @@
                 poly2svg,
         };
         Object.assign( rgX, result );
-        Object.assign( rgDq, result );
         //poly2svg({}); //unnecessary, called a million times from media-upcreate 
         return result;
 
@@ -75,12 +73,12 @@
 
         ///draws full orbit for angle q in [0,2PI)
         //returns unclosed curve with end point =/= first point exactly
-        function ownrange2points({ stepsCount })
+        function ownrange2points({ stepsCount, start, end })
         {
             var points = [];
-            var qStep = ( op.qEnd - op.qStart ) / stepsCount;
-            for( var qix = 0; qix<=stepsCount; qix++ ) {
-                var q = op.qStart + qStep * qix;        
+            var qStep = ( end - start ) / stepsCount;
+            for( var qix = 0; qix <= stepsCount; qix++ ) {
+                var q = start + qStep * qix;        
                 points.push( t2xy( q ) );
             }
             return points;
@@ -123,8 +121,24 @@
             // then 4 more times from media-upcreate for no reason
             // console.log('poly2svg: ' + rgXX.rgId);
             
-            var curvePoints = ownrange2points({ stepsCount:800 }); // defines conic
+            // defines conic
+            var curvePoints = ownrange2points({ 
+                stepsCount:800,
+                start: op.qStart,
+                end: op.qEnd
+            }); 
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) ); // scales up conic
+
+            // defines segment of conic
+            if(op.highlightSeg) {
+                var segPoints = ownrange2points({ 
+                    stepsCount:800,
+                    start: op.segStart,
+                    end: op.segEnd
+                }); 
+                segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
+            }
+
             if( -1 === op.conicSignum ) {               
                 // draw hyperbola as two svg curves so asymptotes don't show
                 const [branchA, branchB] = splitAtAsymptotes(medpoints); 
@@ -162,6 +176,23 @@
                 rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
                 if( rgXX.polylineSvgA$ ) {
                     rgXX.polylineSvgA$.addClass( 'hidden' );
+                }
+            }
+
+            // draw highlighted segment of conic and only trace of full conic
+            if(op.highlightSeg) {
+                var polylineSvg2 = rgXX.polylineSvg2 = nssvg.polyline({
+                    pivots  : segPoints, 
+                    svgel   : rgXX.polylineSvg2,
+                    parent  : stdMod.svgScene,
+                });
+                if( !has( rgXX, 'polylineSvg2$' ) ) {
+                    rgXX.polylineSvg2$ = $$.$( polylineSvg2 );
+                }
+                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-trace' );
+                rgXX.polylineSvg2$.addClass( 'tostroke thickable tp-' + lowname );
+                if( rgXX.polylineSvgA2$ ) {
+                    rgXX.polylineSvgA2$.addClass( 'hidden' );
                 }
             }
         }

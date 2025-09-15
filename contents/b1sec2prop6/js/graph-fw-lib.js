@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, nsmethods, globalCss, sDomF, sData, amode, stdMod, }
+    var { $$, sDomF, sData, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
@@ -14,9 +14,6 @@
             setsGraphAxes,
             plotLabels_2_plotsPars,
             setsGraphTpClasses,
-            doDrawToolline,
-            graphAxisX,
-            graphAxisY,
             setsGraphTpClasses,
         });
         return graphFW;
@@ -227,45 +224,5 @@
                 }
             });
         }
-
-        function doDrawToolline()
-        {
-            return {
-                toollineStyle : {
-                    stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : 3,
-                },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : false,
-            };
-        }
-
-        ///horizontal axis x pars, font, etc,
-        function graphAxisX( xColor )
-        {
-            return {
-                'font-size'     : '18px',
-                fontShiftX      : -12, //in media scale
-                fontShiftY      : +14,
-                decimalDigits   : 3,
-                stroke          : xColor,
-                fill            : xColor,
-            'stroke-width'   : '0.2',
-            };
-        }
-
-        function graphAxisY( yColor )
-        {
-            return {
-                'font-size'     : '20px',
-                fontShiftX      : -45, //in media scale
-                fontShiftY      : +5,
-                decimalDigits   : 1,
-                stroke          : yColor,
-                fill            : yColor,
-            'stroke-width'   : '1',
-            };
-        }
     }
 }) ();
-
