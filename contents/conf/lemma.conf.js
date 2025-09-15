@@ -1,6 +1,6 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var { fapp, sconf, userOptions, fixedColors, } = 
+    var { fapp, sconf, fixedColors, } = 
         window.b$l.apptree({});
 
     fapp.doesConfigLemma = doesConfigLemma;
@@ -85,48 +85,116 @@
 
         //-Many more similar color variables could likely be combined together.
 
-        // background color used to highlight text and table rows on hover
+		// background color used to highlight text and table rows on hover
         fixedColors.highlight = rgbToArray("rgb(234, 234, 234)");
+
+        // colors defined to make experimental reassignment easier;
+        // current assignment in comments
+
+        /*
+        const VIVID_INDIGO     = rgbToArray("rgb(85, 40, 180)");//act. force
+        const VIVID_SIENNA     = rgbToArray("rgb(200, 60, 40)");
+        const VIVID_GREEN      = rgbToArray("rgb(0, 113, 0)");//given
+        const VIVID_PLUM       = rgbToArray("rgb(150, 60, 160)");//est. force
+        const VIVID_COPPER     = rgbToArray("rgb(190, 80, 50)");
+        const VIVID_TEAL       = rgbToArray("rgb(0, 160, 170)");
+        const VIVID_OLIVE      = rgbToArray("rgb(112, 88, 22)");//sun
+        const VIVID_ROSE       = rgbToArray("rgb(210, 70, 110)");
+        const VIVID_BLUE       = rgbToArray("rgb(0, 0, 255)");//proof
+        const VIVID_MAROON     = rgbToArray("rgb(140, 40, 70)");
+        const DARK_GRAY        = rgbToArray("rgb(90, 90, 90)");//velocity
+
+        const PLANET1            = rgbToArray("rgb(0, 105, 148)");//planet
+        const PLANET2            = rgbToArray("rgb(40, 120, 90)");//planet
+        const PLANET3            = rgbToArray("rgb(100, 140, 180)");//planet
+
+
+        const DEEP_BLUE      = rgbToArray("rgb(30, 90, 160)");  // body (planet)
+        const TEAL           = rgbToArray("rgb(0, 120, 130)");  // proof
+        const OLIVE_GREEN    = rgbToArray("rgb(85, 110, 40)");  // given
+        const PURPLE         = rgbToArray("rgb(100, 60, 150)"); // act force
+        const DARK_GOLD      = rgbToArray("rgb(160, 120, 40)"); // sun
+        const SLATE          = rgbToArray("rgb(90, 100, 115)"); // diagram supplement
+        const MUTED_MAGENTA  = rgbToArray("rgb(160, 70, 160)"); // est force
+        
+
+        const DEEP_BLUE     = rgbToArray("rgb(30, 90, 160)");   // body (planet)
+        const TEAL          = rgbToArray("rgb(0, 120, 130)");   // proof
+        const OLIVE_GREEN   = rgbToArray("rgb(85, 110, 40)");
+        const GREEN         = rgbToArray("rgb(85, 160, 40)");   // given
+        const BURNT_ORANGE  = rgbToArray("rgb(200, 90, 40)");
+        const DARK_GOLD     = rgbToArray("rgb(160, 120, 40)");  // sun
+        const SLATE         = rgbToArray("rgb(90, 100, 115)");  // diagram supplement
+        const COOL_LILAC    = rgbToArray("rgb(130, 100, 180)"); // estimatedForce
+        const INDIGO        = rgbToArray("rgb(60, 60, 160)");   // force
+        */
+
+        // 15 colors
+        /*const DARK_GREEN    = rgbToArray("rgb(0, 100, 0)");
+        const MEDIUM_GREEN  = rgbToArray("rgb(84, 152, 0)");
+        const DARK_BLUE     = rgbToArray("rgb(0, 0, 255)");
+        const MEDIUM_BLUE   = rgbToArray("rgb(50, 109, 207)");
+        const DARK_ORANGE   = rgbToArray("rgb(165, 46, 0)");
+        const MEDIUM_ORANGE = rgbToArray("rgb(255, 69, 0)");
+        const DARK_PINK     = rgbToArray("rgb(176, 48, 96)");
+        const MEDIUM_PINK   = rgbToArray("rgb(255, 0, 255)");
+        const DARK_BROWN    = rgbToArray("rgb(122, 82, 48)");
+        const MEDIUM_BROWN  = rgbToArray("rgb(183, 123, 72)");
+        const DARK_PURPLE   = rgbToArray("rgb(98, 76, 148)");// too gray?
+        const MEDIUM_PURPLE = rgbToArray("rgb(147, 112, 219)");*/
+        const DARK_GRAY     = rgbToArray("rgb(99, 99, 99)");
+        /*
+        const MEDIUM_GRAY   = rgbToArray("rgb(155, 155, 155)");
+        const DARK_YELLOW   = rgbToArray("rgb(255, 222, 0)");
+        const SUN_YELLOW    = rgbToArray("rgb(188, 166, 0)");*/
+
+        const LIGHT_BLUE    = rgbToArray("rgb(45, 131, 157)");
+        const MEDIUM_BLUE   = rgbToArray("rgb(29, 96, 204)");
+        const DARK_BLUE     = rgbToArray("rgb(2, 74, 180)");
+        const BLUE_GREEN    = rgbToArray("rgb(42, 157, 143)");
+        const LIGHT_GREEN   = rgbToArray("rgb(39, 222, 0)");
+        const MEDIUM_GREEN  = rgbToArray("rgb(119, 187, 65)");
+        const DARK_GREEN    = rgbToArray("rgb(35, 109, 16)");
+        const BROWN         = rgbToArray("rgb(83, 51, 1)");
+        const PURPLE        = rgbToArray("rgb(131, 56, 236)");
+        const PINK          = rgbToArray("rgb(255, 105, 180)");
+        const ORANGE        = rgbToArray("rgb(202, 131, 0)");
+        const ENGAGING      = rgbToArray("rgb(102, 153, 204)");
+        const DYNAMIC       = rgbToArray("rgb(153, 0, 255)");
+        const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
+        const RED           = rgbToArray("rgb(255, 0, 0)");
+
+
+        fixedColors.invalid     = RED;  //alert, invalid user actions
+        fixedColors.sunColor    = ORANGE; // center of force (S or C in propositions)
+        fixedColors.body        = LIGHT_BLUE;
 
         //usually as a condition of a claim,
         //condition of the theorem,
         //given parameters of the claim or proof
-        fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
+		fixedColors.given       = DARK_BLUE;
         fixedColors.givenArea   = [...fixedColors.given, 1];
-		fixedColors.givenOnlyVisibleWhenHighlighted  
+ 		fixedColors.givenOnlyVisibleWhenHighlighted  
 			= [...fixedColors.given, 0, 1],
 
-        //relates to moving body, to an orbit
-        fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.orbit   = fixedColors.body;
-        
-        fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-        fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
-        fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-        fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
-        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
+        fixedColors.force       = PURPLE;
+        fixedColors.estimatedForce  = MAGENTA;
 
-        fixedColors.time      = rgbToArray("rgb(0, 150, 200)");
-        fixedColors.dtime     = fixedColors.time;
-        fixedColors.distance  = rgbToArray("rgb(60, 20, 0)");
-        
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
+        fixedColors.proof       = DARK_GREEN;
         fixedColors.proofArea   = [...fixedColors.proof, 1];
 		fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
 		fixedColors.resultOnlyVisibleWhenHighlighted
 			= [...fixedColors.result, 0, 1];
 
-        //alert, invalid user actions
-        fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
-        //force, energy
-        fixedColors.force   = rgbToArray("rgb(200, 150, 0)");
-        //conclusion of the proof
-
+		// merge misc: used?
+        fixedColors.speed       = DARK_GRAY;
+        fixedColors.orbit       = fixedColors.body;
         fixedColors.forceMove       = fixedColors.force;
-        fixedColors.speed           = rgbToArray("rgb(90, 90, 90)");
+		// end merge misc
 
+		
         //neutral elements
         fixedColors.shadow  = rgbToArray("rgb(50, 50, 50)");
         fixedColors.hidden  = [0, 0, 0, 0];
@@ -134,14 +202,21 @@
 
         fixedColors.context = rgbToArray("rgb(0, 0, 0)");
 
-        fixedColors.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
         fixedColors.sagitta         = fixedColors.estimatedForce;
         fixedColors.displacement    = fixedColors.estimatedForce;
-        fixedColors.curvature       = rgbToArray("rgb(200, 40, 200)");
+        fixedColors.curvature       = BROWN;//rgbToArray("rgb(200, 40, 200)");
         fixedColors.chord           = rgbToArray("rgb(0, 0, 255)");
         fixedColors.attention       = rgbToArray("rgb(200, 200, 0)");
 
+        fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
+        fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
+        fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
+        fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
+        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
+		fixedColors.time      = BLUE_GREEN;
+        fixedColors.dtime     = fixedColors.time;
+        fixedColors.distance  = rgbToArray("rgb(60, 20, 0)");
 
         //From L20, L21
         fixedColors.static              = rgbToArray("rgb(0, 200, 255)");
@@ -177,8 +252,8 @@
 
         //P1 (Shared with P2)
         fixedColors.freeMove        = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.diagram         = rgbToArray("rgb(150, 0, 90)");
-        fixedColors.path            = rgbToArray("rgb(0, 0, 150)");
+        fixedColors.diagram         = rgbToArray("rgb(150, 0, 90)", 0);
+        fixedColors.path            = fixedColors.body;//rgbToArray("rgb(0, 0, 150)");
         fixedColors.sagittaeChords  = fixedColors.sagitta;
 
         fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
@@ -253,10 +328,10 @@
 
             TP_OPACITY_HIGH : 1,
     
-            AREA_DEFAULT_OPACITY : 0.35,
+            AREA_DEFAULT_OPACITY : 0.20,
             AREA_HIGHLIGHT_OPACITY : 0.7,
 
-            ANCHOR_OPACITY_LOW : '0.7',
+            ANCHOR_OPACITY_LOW : '0.65',
             ANCHOR_OPACITY_HIGH : '1',
             ANCHOR_DEFAULT_COLOR : 'rgba( 150, 0, 150, 1 )',
     
@@ -290,13 +365,14 @@
             // //\\ moved to site conf from expand-conf.js
             //---------------------------------------------------------------
             default_tp_stroke_width     : 10,
+            defaultLineWidth            : 2,
             //---------------------------------------------------------------
             // \\// moved to site conf from expand-conf.js
             //***************************************************
             // \\// TOPIC COLORS AND SHAPES
             //***************************************************
                 
-             PATH_WIDTH : '2',   
+                
                 
                 
             //***************************************************

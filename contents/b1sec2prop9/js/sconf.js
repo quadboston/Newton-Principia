@@ -146,7 +146,8 @@
             hidden,
             curvature,
             context,
-            displacement,
+            sunColor,
+            estimatedForce
         } = fixedColors;
 
 
@@ -158,7 +159,7 @@
             hidden,
             context,
             curvature,
-            curvatureCircle : curvature,    //Actually uses "rg.C.pcolor" see "model-upcreate.js" section "curvature circle"
+            curvatureCircle : proof,
             body,
             orbit,
             force,
@@ -178,7 +179,7 @@
 
             S : {
                 pos: S,
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -90,
                 //draggableX  : true,
                 //draggableY  : true,
@@ -197,7 +198,7 @@
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
             },
 
@@ -232,7 +233,7 @@
 
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
@@ -240,7 +241,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -251,9 +252,6 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proof }, },
-
-            { 'SP' : { pcolor : given }, },
-
             { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
@@ -261,10 +259,11 @@
 
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
             { 'SQ' : { pcolor : given }, },
-            { 'QT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
             { 'PT' : { pcolor : proof }, },
+            { 'SP' : { pcolor : estimatedForce }, },
         ];
 
         ns.paste( sconf, {

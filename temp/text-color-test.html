@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editable Word Colors (15)</title>
+  <style>
+    body {
+      background-color: rgb(254, 244, 234);
+      font-family: sans-serif;
+      padding: 2em;
+      color: #333;
+    }
+    .controls {
+      margin-top: 2em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+    .color-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.9em;
+    }
+    .color-label {
+      margin-bottom: 0.25em;
+    }
+    .rgb-value {
+      font-family: monospace;
+      margin-top: 0.25em;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 1em;
+      margin-top: 2em;
+      border-left: 4px solid #ccc;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sample Text with Editable Word Colors</h2>
+
+  <p id="sampleText">
+    This is a <span id="word1">vivid</span>,
+    <span id="word2">colorful</span>,
+    <span id="word3">different</span> way to
+    <span id="word4">stand</span> out by
+    <span id="word5">responsive</span> use of
+    <span id="word6">changing</span>
+    <span id="word7">colors</span> in
+    <span id="word8">simple</span> HTML
+    <span id="word9">inputs</span> and
+    <span id="word10">JavaScript</span>,
+    adding <span id="word11">power</span>,
+    being <span id="word12">flexible</span>,
+    and <span id="word13">engaging</span>,
+    <span id="word14">dynamic</span>, and
+    <span id="word15">accessible</span>.
+  </p>
+
+  <div class="controls" id="controlPanel"></div>
+
+  <pre id="jsOutput"></pre>
+
+  <script>
+    const colorEntries = [
+      ["VIVID",        "#e63946"],
+      ["COLORFUL",     "#49bee3"],
+      ["DIFFERENT",    "#2a9d8f"],
+      ["STAND",        "#77bb41"],
+      ["RESPONSIVE",   "#27de00"],
+      ["CHANGING",     "#466d21"],
+      ["COLORS",       "#a96800"],
+      ["SIMPLE",       "#0052cb"],
+      ["INPUTS",       "#3a86ff"],
+      ["JAVASCRIPT",   "#8338ec"],
+      ["POWER",        "#ff69b4"],
+      ["FLEXIBLE",     "#ffa500"],
+      ["ENGAGING",     "#6699cc"],
+      ["DYNAMIC",      "#9900ff"],
+      ["ACCESSIBLE",   "#009966"]
+    ];
+
+    const colorMap = Object.fromEntries(colorEntries);
+
+    function hexToRgbString(hex) {
+      const bigint = parseInt(hex.slice(1), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function updateColor(wordId, input, name) {
+      const hex = input.value;
+      document.getElementById(wordId).style.color = hex;
+      document.getElementById("rgb" + wordId).textContent = hexToRgbString(hex);
+      colorMap[name] = hex;
+      updateJsOutput();
+    }
+
+    function updateJsOutput() {
+      const lines = Object.entries(colorMap).map(([name, hex]) => {
+        const rgb = hexToRgbString(hex);
+        return `const ${name.padEnd(13)} = rgbToArray("${rgb}");`;
+      });
+      document.getElementById("jsOutput").textContent = lines.join("\n");
+    }
+
+    function initControls() {
+      const controlPanel = document.getElementById("controlPanel");
+
+      colorEntries.forEach(([name, hex], index) => {
+        const wordId = "word" + (index + 1);
+
+        // Apply initial color
+        document.getElementById(wordId).style.color = hex;
+
+        // Create control group
+        const group = document.createElement("div");
+        group.className = "color-group";
+
+        const label = document.createElement("label");
+        label.className = "color-label";
+        label.innerHTML = `${name.toLowerCase()}: `;
+
+        const input = document.createElement("input");
+        input.type = "color";
+        input.value = hex;
+        input.onchange = () => updateColor(wordId, input, name);
+
+        const rgbDisplay = document.createElement("div");
+        rgbDisplay.id = "rgb" + wordId;
+        rgbDisplay.className = "rgb-value";
+        rgbDisplay.textContent = hexToRgbString(hex);
+
+        label.appendChild(input);
+        group.appendChild(label);
+        group.appendChild(rgbDisplay);
+        controlPanel.appendChild(group);
+      });
+
+      updateJsOutput();
+    }
+
+    initControls();
+  </script>
+</body>
+</html>

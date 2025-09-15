@@ -143,6 +143,7 @@
             hidden,
             curvature,
             context,
+			sunColor,
         } = fixedColors;
 
 
@@ -157,7 +158,7 @@
             body,
             orbit,
             force,
-            tangentCircle : curvature,
+            tangentCircle : proof,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -179,13 +180,6 @@
                 doPaintPname : false,
             },
 
-            C : {
-                pcolor : given,
-                pos: posC,
-                letterAngle : 120,
-                letterRotRadius : 35,
-            },
-
             Z : {
                 pcolor : body,
                 undisplayAlways : true,
@@ -193,6 +187,13 @@
             },
             // \\// no visibility cssClass
 
+            C : {
+                pcolor : sunColor,
+                pos: posC,
+                letterAngle : 120,
+                letterRotRadius : 35,
+            },
+			
             B : {
                 pcolor : proof,
                 letterAngle : 90,

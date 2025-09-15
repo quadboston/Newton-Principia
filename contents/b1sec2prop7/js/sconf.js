@@ -157,6 +157,7 @@
             curvature,
             context,
             chord,
+            sunColor
         } = fixedColors;
 
 
@@ -209,7 +210,7 @@
 
             S : {
                 pos: S,
-                pcolor : force,
+                pcolor : sunColor,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -224,7 +225,7 @@
             },
 
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -242,12 +243,12 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
             },
 
@@ -288,12 +289,12 @@
 
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
             L : {
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
@@ -323,19 +324,19 @@
             //corollary 2
             Tcol2 : {
                 caption : 'T',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
             Rcol2 : {
                 caption : 'R',
-                pcolor : curvature,
+                pcolor : sunColor,
                 letterAngle : -45,
                 draggableX  : true,
                 draggableY  : true,
             },
             Gcol2 : {
                 caption : 'G',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
         });
@@ -345,7 +346,6 @@
         [
             { 'PV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : orbit }, },
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : body }, },
@@ -360,10 +360,10 @@
             { 'RL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
             { 'PT' : { pcolor : proof }, },
 
             { 'PC' : { pcolor : curvature }, },
@@ -378,6 +378,8 @@
             { 'Gcol2,S' : { pcolor : proof }, },
             { 'Gcol2,P' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            
+            { 'SP' : { pcolor : estimatedForce }, },
         ];
 
         ns.paste( sconf, {

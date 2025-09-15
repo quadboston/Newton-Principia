@@ -12,7 +12,6 @@
     //====================================================
     function init_conf()
     {
-        console.log('init P12');
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -126,6 +125,7 @@
             hidden,
             curvature,
             context,
+			force,
         } = fixedColors;
         let red = [255,0,0]; //for debugging
 
@@ -141,7 +141,7 @@
             orbit               : orbit,
             orbitdq             : orbit,
             shadow,
-            force               : result,
+            force,
             instanttriangle     : instanttriangleHiddenStart,
         };
         //-----------------------------------

@@ -854,6 +854,7 @@
 
             perpendicular,
             tangent,
+            sunColor
         } = fixedColors;
 
 
@@ -921,7 +922,7 @@
             "force-4-applied"   : forceMove,
 
             "force-center"      : force,
-            "S"                 : force,
+            "S"                 : sunColor,
 
             "SA"                : diagram,
             "SB"                : diagram,

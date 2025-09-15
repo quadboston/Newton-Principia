@@ -74,7 +74,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var Cxy = [409, 408 ];
+        var posC = [409, 408 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -85,8 +85,8 @@
         //vital to set to non-0 value
         var mod2inn_scale = 360;
 
-        var originX_onPicture = Cxy[0]; //for model's axis x
-        var originY_onPicture = Cxy[1]; //for model's axis y
+        var originX_onPicture = posC[0]; //for model's axis x
+        var originY_onPicture = posC[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
@@ -155,7 +155,8 @@
             hidden,
             curvature,
             context,
-            displacement,
+            sunColor,
+            estimatedForce
         } = fixedColors;
 
 
@@ -182,7 +183,7 @@
         {
             C : {
                 pcolor : proof,
-                pos: Cxy,
+                pos: posC,
                 letterAngle : -120,
                 letterRotRadius : 35,
 				cssClass: 'logic_phase--proof',
@@ -290,7 +291,7 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 35,
                 draggableX  : true,
@@ -355,7 +356,7 @@
 				cssClass: 'subessay--solution',
 			 },},
 
-            { 'SP' : { pcolor : proof, 
+            { 'SP' : { pcolor : estimatedForce, 
 				cssClass: 'logic_phase--proof',
 			},},
 
@@ -372,10 +373,10 @@
             { 'PR' : { pcolor : body,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'QR' : { pcolor : displacement,
+            { 'QR' : { pcolor : estimatedForce,
 				cssClass: 'subessay--solution',
 			 }, },
-            { 'QT' : { pcolor : proof,
+            { 'QT' : { pcolor : estimatedForce,
 				cssClass: 'subessay--solution',
 			 },},
             { 'PT' : { pcolor : proof,
