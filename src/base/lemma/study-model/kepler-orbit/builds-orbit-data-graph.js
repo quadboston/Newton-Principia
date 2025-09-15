@@ -20,6 +20,9 @@
 
     function builds_orbit_data_graph()
     {
+        const DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = 
+              haz( sconf, 'DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX' );
+        const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const GRAPH_PATH = sData.GRAPH_PATH;
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
@@ -55,7 +58,9 @@
             }
             bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
-                sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                if( TIME ){
+                    sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                }
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
                 displMax = Math.max( Math.abs( displacement ), displMax );
                 speedMax = Math.max( speedMax, ds_dt );
@@ -79,22 +84,32 @@
         // //\\ resets graphArray
         //------------------------------------------
         var arrLen = graphArray.length;
+        const instantForceMax1 = 1/instantForceMax;
+        const displMax1 = DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+                          1/instantForceMax : 1/displMax;
+        const sagittaMax1 = 1/sagittaMax;
+        const speedMax1 = 1/speedMax;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
-            const instf = Math.abs(bP.instantForce) / instantForceMax;
-            const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
-                        instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
-            const ds_dt = bP.ds_dt / speedMax;
-            const sagitta = Math.abs(bP.sagitta) / sagittaMax;
+            let instf = bP.instantForce;
+            instf = instf * instantForceMax1 * Math.sign(instf);
+            let disp = bP.displacement;
+            disp *= displMax1 * Math.sign(disp);
+            let ds_dt = bP.ds_dt;
+            ds_dt *= speedMax1;
             ga.y = [
                 instf,
                 disp,
                 ds_dt,
-                sagitta,
             ];
+            if( TIME ){
+                let sagitta = bP.sagitta;
+                sagitta *= sagittaMax1 * Math.sign(sagitta);
+                ga.y.sagitta = sagitta;
+            }
         }
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()

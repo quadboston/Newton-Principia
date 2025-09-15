@@ -59,8 +59,8 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= plusQ ){
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
+                if( !CURVE_REVOLVES && sconf.orbit_q_end <= plusQ ){
+                    if( MAKE_RANGE ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
                     }
@@ -102,12 +102,13 @@
                         bP.invalid = true;
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                     }
+                /*   
                 }else if( plusTix < 0 ){
                     //Seems to only occur when eg. P6 "Orbits are disconnected".
                     //For now this is just an error check, however additional
                     //code could be added if needed, perhaps similar to bounds
                     //check for minusTix code below and plusTix code above.
-
+                */  
                 } else {
                     const plusQix = tIndexToOrbit[plusTix].qix;
                     const plusP = qIndexToOrbit[ plusQix ];

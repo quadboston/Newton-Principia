@@ -90,10 +90,12 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
+        sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.66 : null;
+        TIME_STEPS = FT ? 1000 : null;
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
@@ -115,7 +117,12 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = true;
+        sconf.force_law_function = sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+            null :
+            //can be 
+            //bp.r
+            bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
