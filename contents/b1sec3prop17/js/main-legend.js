@@ -11,8 +11,8 @@
 
     function create_digital_legend()
     {
-        //create_digital_legend_for_logic_phase( 'claim' ); //todo: remove
         create_digital_legend_for_logic_phase( 'proof' );
+		create_digital_legend_for_logic_phase( 'corollary' );
     }
 
     function create_digital_legend_for_logic_phase( logic_phase )
