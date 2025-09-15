@@ -1,6 +1,20 @@
 # Change Log
- 
   
+## 2025-9-15 (DarkGoldenRod Version, 0.13858)
+### Improved
+* Proposition 10
+	* simplified diagram by not showing more than what is described for each section
+	* fixed Q getting stuck when P and Q straddle A
+
+* Proposition 11
+	* simplified diagram by not showing more than what is described for each section
+	* fixed point Q's range to include its initial position (fixes initial jumping issue)
+	* fixed Q getting stuck when P and Q straddle A
+
+* Proposition 17
+	* most of orbit pq de-emphasized to declutter diagram and better match original diagram
+
+
 ## 2025-8-31 (Brown Version, 0.13854)
 ### Improved
 * Lemmas 2, 3, 7, 8:
