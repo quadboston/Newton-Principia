@@ -1,6 +1,6 @@
 # Change Log
   
-## 2025-9-?? (DarkGoldenRod Version, 0.138??)
+## 2025-9-15 (DarkGoldenRod Version, 0.13856)
 ### Improved
 * Proposition 10
 	* simplified diagram by not showing more than what is described for each section
