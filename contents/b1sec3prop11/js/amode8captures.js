@@ -1,6 +1,6 @@
 ( function() {
     var {
-        nspaste, capture, toreg,
+        toreg,
         sDomF, ssF,
         stdMod, amode, rg, sconf,
     } = window.b$l.apptree({
@@ -10,12 +10,6 @@
         },
     });
     return;
-
-
-    function setCapture()
-    {
-        nspaste( capture,{});
-    }
 
 
     ///runs inside "subessay launch" which in turn runs after
@@ -44,4 +38,3 @@
     }
 
 }) ();
-
