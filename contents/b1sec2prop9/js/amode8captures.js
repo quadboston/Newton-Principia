@@ -47,7 +47,8 @@
                 'PV',
                 'QR',
                 'V',
-                'curvatureCircle'
+                'curvatureCircle',
+                'arc-QP'
             );
         } else if (subessay === 'solution') {
             hide(
@@ -72,6 +73,7 @@
                 'PT',
                 'QR',
                 'V',
+                'arc-QP'
             );
         }
 
