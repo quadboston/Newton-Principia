@@ -86,12 +86,6 @@
         var offsetY = sconf.originY_onPicture;
         var flipY1 = sconf.MONITOR_Y_FLIP;
 
-        //Initialize values for constraints if needed.
-        if (ctrlPts.constraints.xEnabled) {
-            ctrlPts.constraints.minX = cp[0]?.x;
-            ctrlPts.constraints.maxX = cp[cp.length - 1]?.x;
-        }
-
         //TEMP What about if an end point doesn't have a handle.
         //Should any of the code that adds the colored (non-white) point
         //be kept or is a point added for those in another way?

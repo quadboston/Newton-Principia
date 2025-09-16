@@ -254,6 +254,9 @@
             const item = pointWrap;
             const index = item.index;
             const dr = item.datareg;
+            const positions = dr.ctrlPts.positions;
+            const draggableEndPoints = dr.ctrlPts.draggableEndPoints;
+            const slopeConstraintEnabled = dr.ctrlPts.slopeConstraintEnabled;
 	        appstate.movingBasePt = false;//Default
 
             if ( "ctrl" === item.type ) {
@@ -261,22 +264,28 @@
                 //Calculate new un-transformed position.
                 const posNew = stdMod.Txy_2_xy(dr, [newX, newY]);
 
-                //Constrain x value if needed.
-                const {minX, maxX} = dr.ctrlPts.constraints;
-                if (minX != null && posNew[0] < minX)
-                    posNew[0] = minX + 1;
-                if (maxX != null && posNew[0] > maxX)
-                    posNew[0] = maxX - 1;
 
-                //TEMP Should probably be disabled for L2/3
+                //Constrain x value if needed.
+                if (!draggableEndPoints) {
+                    const minX = positions[0].x;
+                    const maxX = positions[positions.length - 1].x;
+
+                    if (posNew[0] < minX)
+                        posNew[0] = minX;
+                    if (posNew[0] > maxX)
+                        posNew[0] = maxX;
+                }
+
                 //Prevent the y value from passing the following constraint.
-                const yLine = computeYForOffsetSlopeConstraint(dr, posNew[0]);
-                if (posNew[1] > yLine)
-                    posNew[1] = yLine;
+                if (!draggableEndPoints) {
+                    const yLine = yOffsetSlopeConstraint(dr, posNew[0]);
+                    if (posNew[1] > yLine)
+                        posNew[1] = yLine;
+                }
 
 
                 //Update stored un-transformed control point position.
-                const pos = dr.ctrlPts.positions.at(index);
+                const pos = positions[index];
                 if (pos) {
                     pos.x = posNew[0];
                     pos.y = posNew[1];
@@ -307,6 +316,11 @@
                                 
             } else if(index > 0 && index < sconf.basesN) {
                 //Base points
+                //TEMP There is an issue where clicking base handles when the
+                //number of bases is a bit larger (eg. 42) causes rectangles
+                //to get reversed.  Would this area be where the fix is needed?
+                //TEMP Also think about how addsNewBases_8_scaleWidths
+                //affects this as well.
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
                 var lst         = dr.basePts.list;
@@ -337,14 +351,13 @@
 
 
 
-        function computeYForOffsetSlopeConstraint(dr, x) {
-            //Computes the y coordinate of a sloped line offset from the bottom
-            //of the figure.
+        function yOffsetSlopeConstraint(dr, x) {
+            //Computes y coordinate of a sloped line offset from figure bottom.
 
             //When the right side of the figure’s curve is very low and flat,
-            //the area under it becomes small which leads to jumping issues
-            //(see "calculateRectWidthsToMatchAreaRatios" in "model-aux.js" for
-            //more about jumping).  
+            //the area under it becomes small.  This leads to jumping issues
+            //where the algorithm that automatically adjusts rectangle widths
+            //can jump between different possible solutions.
             //
             //Slope...
             //Constraining the curve control points to be above a sloped line
@@ -354,8 +367,9 @@
             //Offset...
             //Suppose there are two control points (1, 2) excluding the end
             //points.  When point 1 is moved towards the top of the screen, the
-            //size of the area decreases, and adding offset to the slope
-            //constraint helps keep the area large.
+            //size of this area decreases.  Adding offset to the slope
+            //constraint keeps point 2 further from the bottom of the figure,
+            //which helps keep this area large.
 
             const positions = dr.ctrlPts.positions;
             const ptLast = positions[positions.length - 1];
@@ -369,182 +383,6 @@
             const ySlopedLine = ptLast.y - slope * (ptLast.x - x);
             return ySlopedLine - offset;
         }
-
-
-        //TEMP
-        // function distanceToSlopeConstraintOffset(dr, pos) {
-        //     //The vertical distance from the input coordinate to a sloped line
-        //     //offset from the bottom of the figure.
-
-        //     //When the right side of the figure’s curve is very low and flat,
-        //     //the area under it becomes small which leads to jumping issues
-        //     //(see "calculateRectWidthsToMatchAreaRatios" in "model-aux.js" for
-        //     //more about jumping).  
-        //     //
-        //     //Slope...
-        //     //Constraining the curve control points to be above a sloped line
-        //     //helps keep the this area on the larger side, which is helpful to
-        //     //reduce jumping.
-        //     //
-        //     //Offset...
-        //     //Suppose there are two control points excluding the end points.
-        //     //When point 1 is moved towards the top of the screen, the size of
-        //     //the area decreases, and adding offset to the slope constraint
-        //     //helps keep the area large.
-
-        //     const positions = dr.ctrlPts.positions;
-        //     const ptLast = positions[positions.length - 1];
-
-        //     const andleRad = mat.degToRad(sconf.SLOPE_CONSTRAINT_ANGLE_DEG);
-        //     const offset = sconf.SLOPE_CONSTRAINT_OFFSET;
-
-        //     //Amount to move in the y direction per x
-        //     const slope = Math.tan(andleRad);
-
-        //     const ySlopedLine = ptLast.y - slope * (ptLast.x - pos[0]);
-        //     return pos[1] - (ySlopedLine - offset);
-        // }
-
-
-        // //function adjustYToBeAboveSlopeConstraintOffset(dr, pos) {
-        // function computeYAboveSlopeConstraintOffset(dr, pos) {
-        //     //Checks if the y coordinate for the input pos passed a sloped line
-        //     //offset from the bottom of the figure.  If so 
-
-        //     //When the right side of the figure’s curve is very low and
-        //     //flat, the area under it becomes small which leads to jumping
-        //     //issues (see "calculateRectWidthsToMatchAreaRatios" in
-        //     //"model-aux.js" for more about jumping).  
-        //     //
-        //     //Slope...
-        //     //Constraining the curve control points to be above a sloped
-        //     //line helps keep the this area on the larger side, which is
-        //     //helpful to reduce jumping.
-        //     //
-        //     //Offset...
-        //     //Suppose there are two control points excluding the end
-        //     //points.  When point 1 is moved towards the top of the screen,
-        //     //the size of the area decreases, and adding offset to the
-        //     //slope constraint helps keep the area large.
-
-        // }
-        // //Prevent the y value from passing the following constraint.
-        //         //When the right side of the figure’s curve is very low and
-        //         //flat, the area under it becomes small which leads to jumping
-        //         //issues (see "calculateRectWidthsToMatchAreaRatios" in
-        //         //"model-aux.js" for more about jumping).
-        //         //
-        //         //Constraining the
-        //         //curve control points to be above a sloped line helps keep the
-        //         //this area on the larger side, which is helpful to reduce
-        //         //jumping.  When point 1 is moved towards the top of the
-        //         //screen, the size of the area decreases, and adding offset to
-        //         //the slope constraint helps keep the area large.
-
-        //         //Prevent the y value from passing the following constraint.
-        //         //When the right side of the figure’s curve is very low and
-        //         //flat, the area under it becomes small which leads to jumping
-        //         //issues (see "calculateRectWidthsToMatchAreaRatios" in
-        //         //"model-aux.js" for more about jumping).  
-        //         //
-        //         //Slope...
-        //         //Constraining the curve control points to be above a sloped
-        //         //line helps keep the this area on the larger side, which is
-        //         //helpful to reduce jumping.
-        //         //
-        //         //Offset...
-        //         //Suppose there are two control points excluding the end
-        //         //points.  When point 1 is moved towards the top of the screen,
-        //         //the size of the area decreases, and adding offset to the
-        //         //slope constraint helps keep the area large.
-
-        //         //sNew[1] = adjustYToBeAboveSlopeConstraintOffset(dr, posNew);
-        //         const distanceY = distanceToSlopeConstraintOffset(dr, posNew);
-        //         if (distanceY > 0)
-        //             posNew[1] -= distanceY;
-
-
-
-
-        // //TEMP Should this function be here or in a different file?
-        // //I believe it's only used in "d8d-model.js"
-        // //TEMP Possible alternate names...
-        // //distancePointAboveSlopeConstraint
-        // //distanceAboveSlopeConstraint
-        // //distanceToSlopeConstraintOffset()
-        // function distanceToSlopeConstraintOffset(dr, x, y) {
-        //     //Output the vertical distance from the input coordinate to a
-        //     //sloped line offset from the bottom of the figure.
-        //     //
-        //     //TEMP
-        //     //Maybe better to have the note about the origin later?
-        //     //sloped line offset from the bottom of the figure.  The origin of
-        //     //the slope is the bottom right of the figure.
-        //     //
-        //     //TEMP
-        //     //-Should probably mention why this has been added
-        //     //-Perhaps here of maybe where it's called?
-        //     //-Also probably in the sconf file
-        //     //
-        //     // |      \
-        //     // |       \
-        //     // |        \
-        //     // |         \
-        //     // |__________\
-        //     //
-        //     //
-        //     //TEMP
-        //     //What does this function do?
-        //     //-Outputs how far a point is above or below the slope constraint
-        //     //-Perhaps it would be best if it included offset?
-
-
-        //     //
-        //     //-Slope origin would use the last point on dr.ctrlPts.positions
-        //     //
-
-        //     //TEMP
-
-        //     //TEMP Note that dv.maxY changes when non-monotonic therefore use an
-        //     //alternative.
-        //     //TEMP Be careful with the points that are selected to ensure that they
-        //     //always work and behave the same, even if eg. the figure is
-        //     //transformed.  I forget do the ctrlPts positions always stay the same
-        //     //no matter what, even when eg. any of the transform points are moved?
-        //     //TEMP
-        //     //Should generic functions be created to get the first and last
-        //     //positions?  I believe there may already be some that could be used.
-        //     const positions = dr.ctrlPts.positions;
-            
-        //     //TEMP
-        //     const ptFirst = positions[0];
-        //     const ptLast = positions[positions.length - 1];
-        //     //If the points couldn't be found then 
-        //     //TEMP Should this output 0 ot eg. Infinity or -Infinity?
-        //     if (!ptFirst && !ptLast)
-        //         return 0;
-            
-        //     //TEMP Angle and offset for the slope constraint.
-        //     const andleRad = mat.degToRad(11.933733957246143106397232250154);//sconf.SLOPE_CONSTRAINT_ANGLE_DEG);
-        //     //TEMP
-        //     const offset = sconf.SLOPE_CONSTRAINT_OFFSET;
-
-        //     //Math.tan(andleRad) - The amount to move in the y direction per x
-        //     //x - ptLast.x
-        //     //
-        //     //Therefore would it simplify to the following, at least to get the y
-        //     //position of the slope constraint?...
-        //     //ptLast.y - Math.tan(andleRad) * (x - ptLast.x)
-
-        //     //x distance to the right side of the figure
-        //     const xOffset = (ptLast.x - x);
-
-        //     //The slope origin is the bottom right of the figure
-        //     const slope = Math.tan(andleRad);
-        //     const constraintY = ptLast.y - slope * (ptLast.x - x);
-        //     return (constraintY - offset) - y;
-        // }
     }
-
 }) ();
 

@@ -234,7 +234,7 @@
         //TEMP
         //Update curve handle positions (for when transforming)
         dr.ctrlPts.list.forEach((pt) => {
-            const pos = dr.ctrlPts.positions.at(pt.index);
+            const pos = dr.ctrlPts.positions[pt.index];
             if (pos) {
                 const posT = stdMod.xy_2_Txy(dr, [pos.x, pos.y]);
                 guiup.xy_2_xy8shape(pt, "cx", posT[0], "cy", posT[1]);
@@ -276,6 +276,7 @@
     /// framework points with L2/3 legacy
     /// code points (with rg[ name ].pos)
     ///======================================
+    //TEMP
     //Intended for L2/3 only.  L4 syncs points differently.
     function syncPoint( dr, item )
     {

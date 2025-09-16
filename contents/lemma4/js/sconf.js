@@ -24,20 +24,6 @@
     //-Should some of the following be switched to all uppercase?
 
 
-    //Right figure
-    Object.assign(dr2, initDataReg({
-        xOffset : 300,
-        basePtDraggersEnabled : false,
-        pointLabels     : {
-            ctrlPtFirst : 'p',
-            curveMiddle : 'r',
-            ctrlPtLast  : 'T',
-            basePtFirst : 'P',
-        },
-        transformPtIEnabled : true,
-        transformPtJEnabled : true,
-    }));
-
     //Left figure
     Object.assign(dr, initDataReg({
         xOffset : 0,
@@ -50,7 +36,21 @@
         },
         transformPtIEnabled : false,
         transformPtJEnabled : true,
-        drAdjustRectWidthsToMatchAreaRatios : dr2,
+    }));
+
+    //Right figure
+    Object.assign(dr2, initDataReg({
+        xOffset : 300,
+        basePtDraggersEnabled : false,
+        pointLabels     : {
+            ctrlPtFirst : 'p',
+            curveMiddle : 'r',
+            ctrlPtLast  : 'T',
+            basePtFirst : 'P',
+        },
+        transformPtIEnabled : true,
+        transformPtJEnabled : true,
+        drAdjustRectWidthsToMatchAreaRatios : dr,
     }));
 
 
@@ -116,14 +116,11 @@
 
                     {x:248 + xOffset, y: 259.5 },
                 ],
-                //Should draggers be constrained between initial min and max
-                constraints : {
-                    xEnabled: true,
-                    minX    : null,//Automatically set
-                    maxX    : null,//Automatically set
-                },
                 //Are the first and last control points on the curve draggable
                 draggableEndPoints : false,
+                //TEMP Should something similar to the following be added?
+                //Also it only works if draggableEndPoints is enabled.
+                //slopeConstraintEnabled : true,
             },
             partitionWidths : [1],
             movables        : {}, //key-value for movable jswrap
@@ -137,23 +134,17 @@
             },
             basePtDraggersEnabled,
             transforms       : {
+                //TEMP Should a comment or similar be added to mention that
+                //the following shouldn't be active at the same time as
+                //draggableEndPoints?
                 isPointIEnabled : transformPtIEnabled,
                 isPointJEnabled : transformPtJEnabled,
                 //Pos to transform relative to, automatically set
                 origin          : null,
                 pts             : {},//To store the draggers
             },
-            //TEMP
-            //Automatically adjust rectangle widths in the following datareg to
-            //match the ratio of areas in this datareg.
-            //See "calculateRectWidthsToMatchAreaRatios" function in
-            //"model-aux.js" for more.
-            //
-            //TEMP
-            //Automatically adjust rectangle widths in the following datareg
-            //based on the rectangles in this datareg.
-            //See "calculateRectWidthsToMatchAreaRatios" function in
-            //"model-aux.js" for more.
+            //Automatically adjust rectangle widths in this datareg to match
+            //the ratio of areas in the following datareg.
             drAdjustRectWidthsToMatchAreaRatios,
         }
     };
@@ -290,20 +281,15 @@
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
 
-            //Values for a sloped line offset from the bottom of the figure,
-            //which the control point draggers are prevented from passing.
-            //This helps reduce "jumping" issues with the algorithm that
-            //automatically adjusts rectangle widths on the right figure based
-            //on the left figure.  See the following functions for more...
-            //-"computeYForOffsetSlopeConstraint" in "d8d-model.js"
-            //-"calculateRectWidthsToMatchAreaRatios" in "model-aux.js"
-            //TEMP The above function names may change, check them.
+            //Curve handles can't pass sloped line offset from figure bottom.
+            //This reduces "jumping" issues where algorithm that automatically
+            //adjusts rectangle widths can jump between different possible
+            //solutions.
             SLOPE_CONSTRAINT_ANGLE_DEG : 12,
             SLOPE_CONSTRAINT_OFFSET    : 15,
 
             //Approximate number of line segments used to generate the curve.
-            //The actual number used can vary slightly (by a few) see
-            //"curve-functions.js" for more.
+            //The actual number used can vary slightly (by a few).
             CURVE_SEGMENTS_APPROXIMATE : 500,
 
             default_tp_stroke_width : 8,

@@ -12,18 +12,24 @@
     Object.assign( study,
     {
         calculates_monotIntervals8ref,
+        isMonotonic, //TEMP Is this the correct spot?
     });
     return;
 
 
     function model_upcreate()
     {
+        //Calculate the following for both figures first, before calling the
+        //function to match the ratio of areas.
         [stdL2.datareg, stdL2.datareg2].forEach(dr => {
             study.calculates_microPoints(dr);
             study.calculates_monotIntervals8ref(dr);
-            numModel.addsNewBases_8_calculatesMaxWidth(dr);
-
+            numModel.addsNewBases_8_convertWidths(dr);
             study.calcsMonotIntervalArea(dr);
+        });
+
+        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+            study.adjustRectWidthsToMatchAreaRatiosIfNeeded(dr);
             study.calculates_inscr8circums(dr);
             study.calculatesMajorantRect(dr);
         });
@@ -124,6 +130,12 @@
         dr.yVariations.yRef = dr.yVariations.maxY;
     }
 
+
+
+    //TEMP Is this the correct location for the following?
+    function isMonotonic(dr) {
+        return dr?.yVariations?.changes?.length === 1;
+    }
 }) ();
 
 

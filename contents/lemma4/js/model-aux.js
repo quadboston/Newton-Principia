@@ -11,13 +11,14 @@
         calculatesMajorantRect,
         calcsMonotIntervalArea,
         calculates_inscr8circums,
+        adjustRectWidthsToMatchAreaRatiosIfNeeded,
     });
 
     //==================================
     // //\\ exports methods
     //==================================
     Object.assign( numModel, {
-        addsNewBases_8_calculatesMaxWidth,
+        addsNewBases_8_convertWidths,
     });
     //==================================
     // \\// exports methods
@@ -70,7 +71,7 @@
     //      after micropoints
     //      and monotonity interval
     //==================================
-    function addsNewBases_8_calculatesMaxWidth(dr)
+    function addsNewBases_8_convertWidths(dr)
     {
         var basesN = sconf.basesN;
         var sum = 0;
@@ -97,23 +98,16 @@
 
         //===================================================
         // //\\ converts balanced widths to real media widths
-        //      , finds dr.widest
         //===================================================
         {
-            let widestIndex = 0;
-            let widestSize = 0;
+            //Wait to calculate widestSize as it can change, for example by the
+            //algorithm that automatically adjusts the rectangle widths.
             let pwidths = dr.partitionWidths; //normless
             let chosenWidth = dr.yVariations.chosenWidth;
             let factor = 1/sum*chosenWidth;
             for (var i=0; i<basesN; i++) {
                 pwidths[i] = pwidths[i] * factor; //normed
-                if ( !i || pwidths[i] > widestSize ) {
-                    widestSize = pwidths[i]
-                    widestIndex = i;
-                }
             }
-            dr.widestSize = widestSize;
-            dr.widestIndex = widestIndex;
         }
         //===================================================
         // \\// converts balanced widths to real media widths
@@ -137,17 +131,23 @@
         sum *= step;
         dr.figureArea = dv.complimentaryAreaBar-sum;
     }
-    ///must run after finding maxWidth
+    ///must run after widths have been finalized
     function calculatesMajorantRect(dr)
     {
+        let widestSize = 0;
+        for(let i=0; i<sconf.basesN; i++ ) {
+            const width = dr.partitionWidths[i];
+            widestSize = Math.max(widestSize, width);
+        }
+
         let dv = dr.yVariations;
         let chchosen = dv.chchosen;
         if( dv.chchosen.dir > 0 ) {
             var left = dv.x_start;
-            var right = left + dr.widestSize;
+            var right = left + widestSize;
         } else {
             var right = dv.x_end;
-            var left = right - dr.widestSize;
+            var left = right - widestSize;
         }
         var top = dv.minY;
         var bottom = dv.maxY;
@@ -233,38 +233,6 @@
 
         //TEMP
         outputImportantDataForFiguresTemp(dr);
-
-        //Automatically adjust rectangle widths in the specified datareg to
-        //match the ratio of areas in dr if needed.
-        if (dr.drAdjustRectWidthsToMatchAreaRatios) {
-            const drOther = dr.drAdjustRectWidthsToMatchAreaRatios;
-
-            //TEMP It may be possible to combine the following with the above.
-            //GIven that they use slightly different methods, use whatever
-            //method works best for both.
-            //Calculate data for ratio of areas.
-            let sumAreaIns = 0;
-            const areasIns = [];
-            for(let ib = 0; ib < basesN; ib++) {
-                const barwidth = pwidths[ib];
-                const heightIns = Math.abs(dv.maxY - insYar[ib]);
-                const areaIns = barwidth * heightIns;
-                areasIns.push(areaIns);
-                sumAreaIns += areaIns;
-            }
-
-            if (sumAreaIns !== 0) {
-                const ratiosIns = areasIns.map(area => area / sumAreaIns);
-                const widthLastRect = pwidths[basesN-1];
-                
-                //Calculate new widths and update them if successful
-                const widths = calculateRectWidthsToMatchAreaRatios(drOther,
-                    ratiosIns, widthLastRect);
-                if (widths)
-                    //TEMP Confirm if this is the correct place for this
-                    drOther.partitionWidths = widths;
-            }
-        }
     }
 
 
@@ -272,7 +240,7 @@
     function outputImportantDataForFiguresTemp(dr) {
         //TEMP Output important data for the figures, that's similar to
         //what will be displayed in the data tables later.
-        if (dr.drAdjustRectWidthsToMatchAreaRatios) {
+        if (!dr.drAdjustRectWidthsToMatchAreaRatios) {
             console.log("**********Transformed Areas**********");
         } else {
             let dv = dr.yVariations;
@@ -296,11 +264,12 @@
             console.log("sumA =", sumA);
             console.log("sumB =", sumB);
 
-
+            //TEMP In the future may be able to just use dr.areaIns, however
+            //the following is great for testing.
             const areasL = [];
             for(let ib = 0; ib < sconf.basesN; ib++) {
                 const barwidth = drL.partitionWidths[ib];
-                const heightIns = Math.abs(dv.maxY - drL.basePts.inscribedY[ib]);
+                const heightIns = dv.yRef - drL.basePts.inscribedY[ib];
                 const areaIns = barwidth * heightIns * areaFactorA;
                 areasL.push(areaIns);
             }
@@ -308,7 +277,7 @@
             const areasR = [];
             for(let ib = 0; ib < sconf.basesN; ib++) {
                 const barwidth = drR.partitionWidths[ib];
-                const heightIns = Math.abs(dv.maxY - drR.basePts.inscribedY[ib]);
+                const heightIns = dv.yRef - drR.basePts.inscribedY[ib];
                 const areaIns = barwidth * heightIns * areaFactorB;
                 areasR.push(areaIns);
             }
@@ -326,139 +295,128 @@
 
 
 
+    function adjustRectWidthsToMatchAreaRatiosIfNeeded(dr) {
+        //Automatically adjust rectangle widths in the input datareg to match
+        //the ratio of areas in the other specified datareg if needed.
+        const drOther = dr.drAdjustRectWidthsToMatchAreaRatios;
+        if (!drOther)
+            return;
+
+        //Only adjust the widths if both figures are monotonic.
+        if (!study.isMonotonic(dr) || !study.isMonotonic(drOther))
+            return;
+
+
+        const ratioData = calculateRatioInscribedAreasAndWidthLast(drOther);
+        if (!ratioData)
+            return;
+        const {ratios, widthLastRect} = ratioData;
+
+
+        const widths = calculateRectWidthsToMatchAreaRatios(dr, ratios,
+            widthLastRect);
+        if (widths)
+            dr.partitionWidths = widths;
+    }
+
+
+
+    function calculateRatioInscribedAreasAndWidthLast(dr) {
+        const dv = dr.yVariations;
+        if (!dv)
+            return null;
+
+        const pwidths = dr.partitionWidths;
+        const ff = numModel.curveFun;
+        let xLast = dv.x_start;
+
+        let sumAreaIns = 0;
+        const areasIns = [];
+        for(let i = 0; i < sconf.basesN; i++) {
+            const width = pwidths[i];
+            const x = xLast + width;
+            const y = ff(dr, x);
+            const height = dv.yRef - y;
+            const area = width * height;
+            areasIns.push(area);
+            sumAreaIns += area;
+            xLast = x;
+        }
+
+        if (sumAreaIns <= 0)
+            return null;
+
+        return {
+            ratios: areasIns.map(area => area / sumAreaIns),
+            widthLastRect: pwidths[sconf.basesN-1],
+        };
+    }
+
+
+
     function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLastRect) {
         //Calculate rectangle widths for the input datareg, so that the ratio
         //of each of their areas (inscribed rectangle area divide by sum of
         //inscribed rectangle areas) match the input ratios.
 
-        //TEMP Should probably mention something about jumping in this
-        //function, as there are some comments that reference it.
-
-        //TEMP The following will need to be adjusted.
-        //TEMP Should probably use points that are reliable even if the figure
-        //is non-monotonic to prevent issues.  Also probably shouldn't
-        //calculate if a figure is non-monotonic or similar.
-        //Maybe using hte below values is fine as long as there is a monotonic
-        //check?
-        //Uses the Newton
-        //Raphson method (using approximate slope for the derivative).
-        const dv = dr.yVariations;
-        if (!dv) return;
-        
-        //TEMP
-        const isMonotonicTemp = dv.changes.length <= 1;
-        if (!isMonotonicTemp) return;
-        // console.time("calculateRectWidthsToMatchAreaRatios");
-        
-        //Useful values
-        const ff = numModel.curveFun;
-        const yVariations = dr.yVariations;
-        //TEMP Given that the following can have issues when non-monotonic,
-        //should it be adjuted to use eg. the curve control point positions?
-        //There is the temporary monotonic check above of course, however it
-        //may not be enough.
-        const xStart = yVariations.x_start;
-        const chosenWidth = yVariations.chosenWidth;
-        const xEnd = xStart + chosenWidth;
-
-        const figureArea = dr.figureArea;
-
-
-
-        //Bounds to constrain the scale.
-        const scaleMin = 0.01, scaleMax = 1;
-
-        //TEMP May want to rename
-        //
+        //Tolerance for calculated sum of widths
         const errorTolerance = 0.001;
 
-        //**********TEMP Newton Raphson Method**********
-        const dataNewtonRaphson = solveUsingNewtonRaphson();
-        if (dataNewtonRaphson)
-            console.log(`Newton Raphson  Converged iterations =`,
-                dataNewtonRaphson.iteration);
-        else
-            console.log(`Newton Raphson  Didn't converge`);
-        //**********TEMP Newton Raphson Method**********/
+
+        //Ensure the following has been initialized.
+        const dv = dr.yVariations;
+        if (!dv)
+            return null;
         
 
-        // //TEMP Bisection
-        // const dataBisection = solveUsingBisection();
-        // if (dataBisection)
-        //     console.log(`Bisection  Converged iterations =`,
-        //         dataBisection.iteration);
-        // else
-        //     console.log(`Bisection  Didn't converge`);
-        let dataBisection = null;
+        const {x_start, x_end, chosenWidth} = dv;
+        const ff = numModel.curveFun;
+        const figureArea = dr.figureArea;
 
-        // //TEMP Data for the plots
-        const dataLSTemp = [];
-        // for(let scale = scaleMin; scale <= scaleMax; scale += 0.001) {
-        //     const widthDataCurrent = calculateWidthData(scale);
-        //     const error = widthDataCurrent.sumWidth - chosenWidth;
-        //     dataLSTemp.push({scale, error});
-        // }
+        //Bounds to constrain the scale (1 means exact figure area).
+        const scaleMin = 0.01, scaleMax = 1;
 
 
+        //Calculate the widths.  Sometimes there are multiple roots/solutions
+        //and the algorithm can "jump" between them.  This issue mainly occurs
+        //when the number of bases is small.  Sticking to one root finding
+        //method under these conditions is more consistent, and helps to reduce
+        //this issue, as different methods often prefer different roots.
+        //Overall multiple methods are used below because each have strengths
+        //and weaknesses (refer to their respective functions for more).
+        let solvedData = null;
+
+        //Only use the Newton Raphson method when the number of bases is large.
+        if (sconf.basesN > 40)
+            solvedData = solveUsingNewtonRaphson();
+        //Use bisection when number of bases is small, or as a backup if the
+        //Newton Raphson method failed.
+        if (!solvedData)
+            solvedData = solveUsingBisection();
 
 
+        //If solution not found (unlikely to happen).
+        if (!solvedData || !solvedData.widthData)
+            return null;
 
-        let widthDataChosen = null;
-        let scaleChosen = null;
-        //TEMP Only use Newton Raphson when lots of rectangles.
-        //I believe there's a comment (in that function) that mentions why
-        //there's more than one root finding algorithm, as well as some details
-        //on why it makes sense to switch between them.  Perhaps it would be
-        //best to move some of those details here?
-        if (dataNewtonRaphson && sconf.basesN > 40) {
-            widthDataChosen = dataNewtonRaphson.widthData;
-            scaleChosen = dataNewtonRaphson.scale;
-            console.log('Using Newton Raphson solution');
-        // } else if (dataBisection) {
-        } else {
-            //TEMP Bisection
-            dataBisection = solveUsingBisection();
-            if (dataBisection)
-                console.log(`Bisection  Converged iterations =`,
-                    dataBisection.iteration);
-            else
-                console.log(`Bisection  Didn't converge`);
+        //If calculated data not usable (unlikely to happen).
+        const {widthsReversed, sumWidth} = solvedData.widthData;
+        if (!widthsReversed || sumWidth <= 0)
+            return null;
 
-            if (dataBisection) {
-                widthDataChosen = dataBisection.widthData;
-                scaleChosen = dataBisection.scale;
-                console.log('Using Bisection solution');
-            // }
-            } else {
-                //TEMP
-                //Solution not found (unlikely to happen).
-                return null;
-            }
-        }
-
-        console.log("Scale Newton Raphson", dataNewtonRaphson ? dataNewtonRaphson.scale : "N/A");
-        console.log("Scale Bisection", dataBisection ? dataBisection.scale : "N/A");
 
         //Reverse widths so in correct order.
-        const widths = widthDataChosen.widthsReversed.reverse();
-        //Scale to ensure fills figure base (mainly for the very unlikely event
-        //that the above didn't converge closely enough).
-        const scaleWidth = chosenWidth / widthDataChosen.sumWidth;
-        const outputTemp = widths.map(width => width * scaleWidth);
-        
-        
-        // //TEMP Plots and interface with other settings
-        // createTempPlotsAndInterfaceIfNeeded();
-        // //TEMP Plots//
+        const widths = widthsReversed.reverse();
 
-        // console.timeEnd("calculateRectWidthsToMatchAreaRatios");
-        return outputTemp;
+        //Scale to ensure fills figure width (mainly for the very unlikely
+        //event the above didn't converge closely enough).
+        const scaleWidth = chosenWidth / sumWidth;
+
+        return widths.map(width => width * scaleWidth);
 
 
 
         function calculateWidthData(scale) {
-            //TEMP If this can output null then adjust anywhere this is called.
-
             //Calculate widths for each inscribed rectangle using a chosen sum
             //for their combined area (scaled by the input scale), and a fixed
             //width for the last one.  If there's extra space the sum of their
@@ -493,24 +451,33 @@
 
             //Set the last width to a fixed value, as that rectangle's height
             //is zero, a width can't be calculated for it using area.
+            if (widthLastRect <= 0)
+                return null;
             widthsReversed.push(widthLastRect);
             sumWidth += widthLastRect;
-            let xRight = xEnd - widthLastRect;
-            
-            //All remaining rectangles should have a non-zero height. //TEMP
-            //Start with the second last rectangle
+            let xRight = x_end - widthLastRect;
+
+            //All remaining rectangles, start with the second last.
             for(let i = sconf.basesN - 2; i >= 0; i--) {
-                //TEMP May want to improve x constraint eg. to check right side?
-                const x = (xRight >= xStart) ? xRight : xStart;
+                //If x is beyond the left side, constrain it so the height of
+                //that side is used.  This is helpful for estimating how much
+                //the scale is off by, because it still allows a width to be
+                //calculated.  Otherwise when the sum of widths is greater than
+                //the width of the figure, it wouldn't be possible to know how
+                //much it's off by.
+                const x = Math.max(x_start, xRight);
                 const y = ff(dr, x);
-                const height = Math.abs(dv.maxY - y);
-                //TEMP Add check if height 0
+                const height = dv.yRef - y;
+                if (height === 0)
+                    return null;
                 
                 //                  A1 / A    * B
                 const areaDesired = ratios[i] * sumAreaChosen;
                 const width = areaDesired / height;
-                //TEMP Should ensure width is +ve
-                
+
+                //Width must be +ve otherwise an error occured
+                if (width <= 0)
+                    return null;
                 widthsReversed.push(width);
                 sumWidth += width;
                 xRight -= width;
@@ -522,7 +489,7 @@
 
 
         function solveUsingNewtonRaphson() {
-            //Use the Newton Raphson method to find a root of the mathmatic
+            //Use the Newton Raphson method to find a root of the mathematic
             //function created by calculateWidthData().  In many cases it's a
             //straight or slightly curved line, especially when the number of
             //bases gets large.  This means it often converges in just a few
@@ -550,8 +517,9 @@
                 //Calculate new scale or skip to check initial guess.
                 if (widthData) {
                     //Estimate derivative
-                    const widthDataOffset =
-                        calculateWidthData(scale - offset);
+                    const widthDataOffset = calculateWidthData(scale - offset);
+                    if (!widthDataOffset)
+                        return null;
                     const errorC = widthData.sumWidth - chosenWidth;
                     const errorO = widthDataOffset.sumWidth - chosenWidth;
                     const slope = (errorC - errorO) / offset;
@@ -570,6 +538,8 @@
 
                 //Update width data and check if converged.
                 widthData = calculateWidthData(scale);
+                if (!widthData)
+                    return null;
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
                     return {scale, widthData, iteration};
@@ -581,11 +551,11 @@
 
 
         function solveUsingBisection() {
-            //Use the Bisection method to find a root of the mathmatic function
-            //created by calculateWidthData().  This method slow but very
-            //reliable at finding a root, even when the function isn't very
-            //straight (eg. has one or more local minimums).  It works best
-            //when the number of bases is low.
+            //Use the bisection method to find a root of the mathematic
+            //function created by calculateWidthData().  This method is slow
+            //but very reliable at finding a root, even when the function isn't
+            //very straight (eg. has one or more local minimums).  It works
+            //best when the number of bases is low.
 
             //Lower and upper bound of interval.
             let scaleL = scaleMin;
@@ -598,6 +568,8 @@
 
                 //Update width data and interval.
                 const widthData = calculateWidthData(scale);
+                if (!widthData)
+                    return null;
                 if (widthData.sumWidth < chosenWidth)
                     scaleL = scale;
                 else
@@ -611,246 +583,6 @@
 
             //Didn't converge
             return null;
-        }
-
-
-
-
-        function rangeFigureChanged(event) {
-            renderCanvasFigureTemp2(parseFloat(event.target.value, false));
-        }
-
-        function renderCanvasFigureTemp2(scale, updateRangeValue) {
-            // console.log("scale =", scale);
-            const range = document.getElementById("range-figure");
-            if(updateRangeValue && range)
-                range.value = scaleChosen.toString();
-            const labelScale = document.getElementById("label-scale");
-            if (labelScale)
-                labelScale.textContent = scale.toFixed(4);
-
-
-            const {widthsReversed} = calculateWidthData(scale);
-
-            const dataWHReversed = [];
-            let xRightLast = xEnd;
-            for(let i = 0; i < widthsReversed.length; i++) {
-                const w = widthsReversed[i];
-                
-                const y = ff(dr, xRightLast);
-                const h = Math.abs(dv.maxY - y);
-                
-                dataWHReversed.push({w, h});
-                xRightLast -= w;
-            }
-
-            const dataWHTemp = {
-                wh: dataWHReversed.toReversed(),
-                widthMax: chosenWidth,
-                heightMax: Math.abs(dv.maxY - ff(dr, xStart)),
-            };
-
-            renderCanvasPlotTemp("canvas1", dataLSTemp, scale);
-            renderCanvasFigureTemp("canvas2", dataWHTemp);//[{w:5, h:30}, {w:15, h: 10}]);
-        }
-
-
-
-
-        //createTempPlotsIfNeeded
-        function createTempPlotsAndInterfaceIfNeeded() {
-            //Temp
-            //Temporary div to contain the plots and other settings for test
-            //purposes.  It's only intended for test purposes.  If any of this
-            //code ends up being kept but commented out it should be improved.  
-            let divPlots = document.getElementById("div-plots");
-            if (!divPlots) {
-                divPlots = document.createElement("div");
-                divPlots.id = "div-plots";
-                divPlots.style.border = '1px solid green';
-                divPlots.style.position = 'absolute';
-                divPlots.style.left = '0px';
-                divPlots.style.bottom = '0px';
-                divPlots.style.maxWidth = '710px';
-                divPlots.style.zIndex = '9999'; // very high to float above everything
-                divPlots.style.backgroundColor = '#FFF';
-                document.body.appendChild(divPlots);
-
-                //Add elements to adjust constraints and plots
-                divPlots.innerHTML =
-                    '<div>' +
-                    '    <label for="range-figure">Scale</label>' +
-                    '    <input id="range-figure" type="range" min="0.01" max="1" step="0.001" value="0.01" style="width: 150px; height: 10px !important; background: #FFF0;"/>' +
-                    '    <label id="label-scale"></label>' +
-                    '</div>';
-
-
-                //Add the plots.
-                createAndAppendCanvasIfNeeded("canvas1", divPlots);
-                createAndAppendCanvasIfNeeded("canvas2", divPlots);
-            }
-
-            const range = document.getElementById("range-figure");
-            if(range) {
-                if (range.eventListenerStoredTemp)
-                    range.removeEventListener("input", range.eventListenerStoredTemp);
-                range.addEventListener("input", rangeFigureChanged);
-                range.eventListenerStoredTemp = rangeFigureChanged;
-
-                renderCanvasFigureTemp2(scaleChosen, true);
-            }
-        }
-
-        function createAndAppendCanvasIfNeeded(id, parent) {
-            let canvas = document.getElementById(id);
-            if (!canvas) {
-                canvas = document.createElement("canvas");
-                canvas.width = 350;
-                canvas.height = 350;
-                canvas.id = id;
-                canvas.style.border = '1px solid black';
-                parent.appendChild(canvas);
-            }
-        }
-
-        function renderCanvasPlotTemp(id, dataScaleError, scaleDisplay) {
-            const fBorder = 0.15;
-            const canvas = document.getElementById(id);
-            if (!canvas)
-                return;
-
-            const ctx = canvas.getContext("2d");
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            let errorMin = Infinity;
-            let errorMax = -Infinity;
-            let scaleMin2 = Infinity;
-            let scaleMax2 = -Infinity;
-
-            for(let i = 0; i < dataScaleError.length; i++) {
-                const { error, scale } = dataScaleError[i];
-                errorMin = Math.min(errorMin, error);
-                errorMax = Math.max(errorMax, error);
-                scaleMin2 = Math.min(scaleMin2, scale);
-                scaleMax2 = Math.max(scaleMax2, scale);
-                // if (dataScaleError[i].scale > scaleMax)
-                //     break;
-            }
-            
-            const border = {
-                x: canvas.width * fBorder,
-                // x: canvas.width * fBorder,
-                y: canvas.height * fBorder,
-                // w: canvas.width * (1 - fBorder),
-                w: canvas.width * (1 - fBorder * 2),
-                h: canvas.height * (1 - fBorder * 2),
-            }
-
-            const labelOffset = canvas.width * 0.03;
-
-            const fontSize = 18;
-            ctx.fillStyle = "black";
-            ctx.font = `${fontSize}px serif`;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("Scale vs Width Error", canvas.width / 2, border.y / 2);
-
-            ctx.fillText("Scale", canvas.width / 2, canvas.height - border.y / 2);
-            ctx.fillText(scaleMin2.toFixed(2), border.x + labelOffset, canvas.height - border.y / 2);
-            ctx.fillText(scaleMax2.toFixed(2), border.x + border.w - labelOffset, canvas.height - border.y / 2);
-
-
-            ctx.save();
-            ctx.translate(canvas.width / 2, canvas.height / 2);
-            ctx.rotate(-90 * Math.PI / 180);
-            ctx.translate(-canvas.width / 2, -canvas.height / 2);
-            ctx.fillText("sumWidth - figureWidth", canvas.width / 2, border.y / 2);
-            ctx.fillText(errorMin.toFixed(2), border.x - labelOffset, border.y / 2);
-            ctx.fillText(errorMax.toFixed(2), border.x + border.w + labelOffset, border.y / 2);
-            ctx.restore();
-            
-
-            ctx.strokeStyle = "black";
-            ctx.strokeRect(border.x, border.y, border.w, border.h);
-
-            const yErrorZero = transformY(0);
-            ctx.fillStyle = "black";
-            ctx.fillRect(border.x, yErrorZero, border.w, 1);
-
-            if (scaleDisplay != null) {
-                const x = transformX(scaleDisplay);
-                ctx.fillStyle = "blue";
-                ctx.fillRect(x, border.y, 1, border.h);
-            }
-
-            ctx.strokeStyle = "green";
-            ctx.beginPath();
-            for(let i = 0; i < dataScaleError.length; i++) {
-                const pointC = dataScaleError[i];
-                // if (pointC.scale > scaleMax)
-                //     break;
-
-                const xC = transformX(pointC.scale);
-                const yC = transformY(pointC.error);
-
-                if (i === 0) {
-                    ctx.moveTo(xC, yC);
-                } else {
-                    ctx.lineTo(xC, yC);
-                }
-            }
-            ctx.stroke();
-
-            function transformX(x) {
-                const xScaled = (x - scaleMin2) / (scaleMax2 - scaleMin2);
-                return xScaled * border.w + border.x;
-                // return (xScaled * (1 - fBorder * 2) + fBorder) * canvas.width;
-            }
-
-            function transformY(y) {
-                const yScaled = (1 - (y - errorMin) / (errorMax - errorMin));
-                return yScaled * border.h + border.y;
-                // return (yScaled * (1 - fBorder * 2) + fBorder) * canvas.height;
-            }
-        }
-
-        function renderCanvasFigureTemp(id, dataTemp) {
-            const canvas = document.getElementById(id);
-            if (!canvas)
-                return;
-
-            const ctx = canvas.getContext("2d");
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const dataWidthHeight = dataTemp.wh;
-            const xMin = 0;
-            const xMax = dataTemp.widthMax;
-            const yMin = 0;
-            const yMax = dataTemp.heightMax;
-
-            
-
-            ctx.fillStyle = "purple";
-            let xRightLast = xMax;
-            for(let i = dataWidthHeight.length - 1; i >= 0; i--) {
-                const {w, h} = dataWidthHeight[i];
-                const x2 = transformX(xRightLast - w);
-                const y2 = transformY(h);
-                const w2 = transformX(xRightLast) - x2;
-                const h2 = transformY(0) - y2;
-
-                ctx.fillRect(x2, y2, w2, h2);
-                xRightLast -= w;
-            }
-
-            function transformX(x) {
-                return (x - xMin) / (xMax - xMin) * canvas.width;
-            }
-
-            function transformY(y) {
-                return (1 - (y - yMin) / (yMax - yMin)) * canvas.height;
-            }
         }
     }
     //***********************************************
