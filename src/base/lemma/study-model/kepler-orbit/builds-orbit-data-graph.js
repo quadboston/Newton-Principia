@@ -108,7 +108,7 @@
             if( TIME ){
                 let sagitta = bP.sagitta;
                 sagitta *= sagittaMax1 * Math.sign(sagitta);
-                ga.y.sagitta = sagitta;
+                ga.y[3]=sagitta;
             }
         }
         ///this is a common graph lines, but this mask can be
