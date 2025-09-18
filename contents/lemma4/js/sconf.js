@@ -84,7 +84,6 @@
             figureArea      : 0,
             curveMicroPts   : {points:[], sectionIndices:[]},
             ctrlPts         : {
-                //TEMP It specifies transformed is that correct?
                 //Control point draggers with transformed positions.
                 list:[],
                 //Default positions which are never transformed but modified
@@ -471,10 +470,14 @@
             //             pcolor : predT.given,
             //        },
             // },
-            // { Aa : {
-            //             pcolor : predT.given,
-            //        },
-            // },
+            { Aa : {
+                        pcolor : predT.figure,
+                   },
+            },
+            { Pp : {
+                        pcolor : predT.figure,
+                   },
+            },
 
             // { AK : {
             //             pcolor : predT.given,

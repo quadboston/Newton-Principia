@@ -98,11 +98,17 @@
         const posBaseEnd = stdMod.xy_2_Txy(dr, [x_end, maxY]);
         xy2lineShape(dr.baseAxis, posBaseStart[0], posBaseStart[1],
             posBaseEnd[0], posBaseEnd[1]);
-        //TEMP
-        //Could potentially add this to dr.figureParams in the
-        //"calculates_monotIntervals8ref" function?
-        const isMonotonicTemp = dv.changes.length <= 1;
-        $$.$(dr.baseAxis).css( 'display', !isMonotonicTemp ? 'none' : 'block' );
+
+        //Show/hide figure base as needed
+        $$.$(dr.baseAxis).css( 'display',
+            !study.isMonotonic(dr) ? 'none' : 'block' );
+
+        //Show/hide the line on the left side of the figure as needed
+        const {ctrlPtFirst, basePtFirst} = dr.pointLabels;
+        const lineLeftSide = rg[basePtFirst + ctrlPtFirst];
+        if (lineLeftSide)
+            lineLeftSide.undisplay = !study.isMonotonic(dr);
+
         //=============================================
         // //\\ builds bottom part of curve area string
         //=============================================
@@ -119,7 +125,7 @@
         //=============================================
 
         ///calculates red curves
-        if(!isMonotonicTemp) {
+        if(!study.isMonotonic(dr)) {
             let pre_Rounded = [];
             //Include mp_start_ix to ensure there can't be a gap between lines.
             for( let ix = 0; ix <= mp_start_ix; ix++ ) {
@@ -144,10 +150,7 @@
         if (appstate.showRectPts) {
             setsVisibleRange(dr.curvPts,1);
         }
-        // setsVisibleRange(dr.basePts,1);//TEMP
-        //TEMP The following seems to work to hide the base points when
-        //non-monotonic, otherwise it keeps them visible.
-        setsVisibleRange(dr.basePts, isMonotonicTemp);
+        setsVisibleRange(dr.basePts, study.isMonotonic(dr));
         shows_rects(dr);
 
         //TEMP For the following do they need to be different depending on
@@ -447,11 +450,6 @@
         //--------------------------------------
         // //\\ Syncs points for L4
         //--------------------------------------
-        // //TEMP Should this use the first and last index in the array rather
-        // //than using functions that sort it?  I believe it's specific to L4 and
-        // //won't be used by L2/3?
-        // const posFirst = numModel.findCtrlPtPosWithMinX(dr);
-        // const posLast = numModel.findCtrlPtPosWithMaxX(dr);
         const positions = dr.ctrlPts.positions;
         const ptFirst = positions[0];
         const ptLast = positions[positions.length - 1];

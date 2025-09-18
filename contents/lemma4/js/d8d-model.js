@@ -319,7 +319,7 @@
                 //TEMP There is an issue where clicking base handles when the
                 //number of bases is a bit larger (eg. 42) causes rectangles
                 //to get reversed.  Would this area be where the fix is needed?
-                //TEMP Also think about how addsNewBases_8_scaleWidths
+                //TEMP Also think about how addsNewBases_8_convertWidths
                 //affects this as well.
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
