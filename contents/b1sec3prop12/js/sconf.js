@@ -120,6 +120,7 @@
             body,
             orbit,
             instanttriangleHiddenStart,
+            resultOnlyVisibleWhenHighlighted,
             proof,
             result,
             shadow,
@@ -369,8 +370,7 @@
             { Gv : { pcolor : proof }, },
             { CD : { pcolor : proof }, },
 
-            // latus not shown, but mentionned in text
-            { 'L,LL' : { pcolor : orbit,
+            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
             // e slider

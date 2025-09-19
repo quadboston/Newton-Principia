@@ -22,9 +22,7 @@
                 ellipseB * Math.sin( q ) + center[1],
             ];
         }
-    }
-
-    
+    }    
     
     function recreatesPosCorrector()
     {

@@ -30,7 +30,7 @@ in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦Pxv¦¦ and ¦SP PM SM¦SPM
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
 equal. But from the <i>Conics</i> the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
-rectangle contained by the latus rectum and the segment ¦Pv¦P𝑣¦¦ of the diameter,
+rectangle contained by the ¦L,LL¦latus rectum¦¦ and the segment ¦Pv¦P𝑣¦¦ of the diameter,
 that is 
 (by lem. 13), 
 equal to the rectangle 4¦SP¦PS¦¦ ✕ ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ ✕ ¦QR¦¦, and, the
@@ -99,7 +99,7 @@ If the velocity with which the body departs from its ¦P¦place P¦¦ is
 such that the ¦PR¦line-element PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
 body through space ¦QR¦¦ in that same time, this body will move in
-¦orbit¦some conic¦¦ whose principal latus rectum is the quantity ¦QT¦¦² / ¦QR¦¦ which ultimately
+¦orbit¦some conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity ¦QT¦¦² / ¦QR¦¦ which ultimately
 results when the line-elements ¦PR¦¦ and ¦QR¦¦ are diminished indefinitely. In
 these corollaries I include the circle along with the ellipse, but not for the
 case where the body descends straight down to a center.
