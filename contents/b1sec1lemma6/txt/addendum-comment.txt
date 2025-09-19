@@ -5,6 +5,68 @@
   "subessay" : "observations"
 }
 *..*
+Draft.
+
+In this essay, the tangent means Eucledian tangent line. Otherwise, for differential  tangent, lemma's 6 claim is a part of tangent definition and lemma loses its content.
+<br><br>
+In this essay, "curvature" means "circular curvature". Otherwise, lemma looses its content, because differential curvatue depends on existance of derivative when there exists differential tangent.
+<br><br>
+
+In lemma's claim, "continuous curvature" can imply that 
+<br><br>
+
+1) the angle between tangents to the left and right curvature circles is zero. 
+<br><br>
+
+    <svg viewBox="0 0 1000 1000"
+        style="position:relative; width:40%; left:30%;"
+    >
+        <style>
+            <circle cx="50" cy="100" r="25" fill="black"/>
+            <circle cx="50" cy="50"  r="25" fill="black"/>
+            <path
+                stroke="black" fill="transparent"
+                d="M 10,180 C 100,180 200,160 200,50"
+            />
+            path { stroke-width: 3px; }
+        </style>
+        <text x="870" y="35" fill="black">left tangent</text>
+        <text x="820" y="70" fill="black">right tangent</text>
+   </svg>
+
+2) claim requires to prove that chord does approaches the right side Eucledian tangent when chord's length approaches the zero.
+
+So, claim's "hidden, implicit" precondition is that 
+
+3) the right Euclidean tangent does exist.
+
+Condition (1) is excessive. It is enough to say right curvature exists. However, if it is zero, condition (3) is required. Because for curve "infinitely swinging" around "zero", Euclidean tangent does not exist.
+
+5) If non-zero right side curvature exists, then condition (3) is aslo excessive.
+
+Core of the lemma:
+6) If right side curvature exists, then the angle between a chord and the tangent of the curvature circle approaches zero when length of the chord approaches zero.
+Proof. If diameter current circumscribed circle approaches finite value, then angle of view of the chord approaches zero. If diameter approaches infinity, then angle also approaches zero.[]
+
+7) Lemma. Part 2. If Eucledian tangent does exist, then it coinsides with curvature circle tangent. 
+
+8) All said is correct for curves, which distance to the point of limit approaches zero, when curve's parameter approaches zero. This is another implicit condition of the claim. Otherwise, chord may never approches the tangent. See example of arc swinging along curvature circle.
+
+Let us prove 7 by the Lemma 1.
+
+If tangent exist, then for each neighborhood N of limit point A=c(Q), there exist neighborhood of  curve parameter point Q, where that curve belongs N. For any arbitrary angle eps, there exist point p of the curve (p is not eqal Q) which chord [c(p),A] is closer to the tangent than eps.
+
+In other words, there exist a sequence of points of the curve appraching the tangent. But from (6) it follows, that this sequence approaching the curvature tangent. Now from Lemma 1, since the  difference between these points is approaching 0 (it is always 0), then the two limits "tangent" and "curvature tangent" belong the same line. []
+
+
+
+
+
+
+
+
+
+
 
 Curve L. "Continuous curvature". This means a
 

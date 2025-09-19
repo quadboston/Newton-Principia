@@ -100,7 +100,7 @@
             if( TIME ){
                 let sagitta = bP.sagitta;
                 sagitta *= sagittaMax1 * ( ADDENDUM ? 1 : Math.sign(sagitta) );
-                ga.y.sagitta;
+                ga.y[3]=sagitta;
             }
         }
         //c cc( graphArray );

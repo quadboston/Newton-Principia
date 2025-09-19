@@ -90,7 +90,7 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //true; //vs q is free variable
+        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
@@ -98,8 +98,6 @@
         sconf.TIME_STEPS = FT ? 1000 : null;;
         sconf.Q_STEPS = 1500;
         sconf.DATA_GRAPH_STEPS = 500;
-        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_FACTOR = 0.5;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
