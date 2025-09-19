@@ -107,8 +107,6 @@
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
-        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_FACTOR = 4;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
         // \\// calculation algo parameters

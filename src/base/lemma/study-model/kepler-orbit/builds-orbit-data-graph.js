@@ -27,8 +27,6 @@
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const force_law_function = sconf.force_law_function;
-        const IS_DEVIATION_SCALED_BY_FORCE_MAX = sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
-        const DEVIATION_SCALE_FACTOR = sconf.DEVIATION_SCALE_FACTOR || 1;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
         stdMod.graphFW_lemma.graphArray = graphArray;

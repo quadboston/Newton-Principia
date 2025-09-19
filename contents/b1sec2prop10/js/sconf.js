@@ -99,8 +99,6 @@
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
-        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_FACTOR = 0.5;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
