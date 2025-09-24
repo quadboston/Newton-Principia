@@ -13,6 +13,44 @@
 
         var op = sconf.orbitParameters;
 
+        //=========================================================================
+        // //\\ point P slider
+        //=========================================================================
+        //todo: P doesn't quite move correctly in relation to mouse
+        rg.P.acceptPos = newPos => {
+            const offset = rg.C.pos[0];
+            const dx = newPos[0] - offset;
+            const dy = newPos[1];
+
+            const ecc = op.eccentricity;
+            const a = op.latus / (ecc ** 2 - 1);
+            const b = a * Math.sqrt(Math.abs(ecc ** 2 - 1)); // always positive
+
+            let x, y, q;
+
+            if (op.conicSignum === -1) {
+                // Hyperbola: use real parameter t
+                const t = Math.acosh(Math.max((dx) / a, 1)); // ensure domain of acosh
+                const sign = dy >= 0 ? 1 : -1; // preserve vertical direction
+                x = a * Math.cosh(t) + offset;
+                y = sign * b * Math.sinh(t);
+                q = t; // store t as q for consistency
+            } else {
+                // Ellipse: use angle q
+                q = Math.atan2(dy, dx);
+                x = a * Math.cos(q) + offset;
+                y = b * Math.sin(q);
+            }
+
+            rg.P.q = q;
+            nspaste(rg.P.pos, [x, y]);
+
+            return true;
+        };
+        //=========================================================================
+        // \\// point P slider
+        //=========================================================================
+
         //======================================================================
         // //\\ centripetal force slider (f)
         //======================================================================

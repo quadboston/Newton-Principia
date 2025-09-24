@@ -36,10 +36,10 @@
         var sinAxis     = Math.sin( op.mainAxisAngle );
         const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
-        
-        const rr0       = fun( q ); // rg.P.pos
+        //console.log(q);
+        const rr0       = fun( q ); // rg.P.pos, keeps P on orbit
         const rrc       = rg.S.pos; // rg.S.pos is [0,0] as defined in amode8captures.js
-        //nspaste( rg.P.pos, rr0 ); // rg.P.pos does not move   
+        nspaste( rg.P.pos, rr0 );   
 
         // **api-input---plane-curve-derivatives
         var diff = mcurve.planeCurveDerivatives({ fun, q, rrc, });
@@ -83,13 +83,15 @@
         } = deltaT_2_arc();
         nspaste( rg.Q.pos, rr );
 
-        // dragger vb (aka Pv)
+        // dragger vb (aka R)
         {
-            //dropLine(... = start + direction * t
-            let udir = op.cosOmega * cosOmega + op.om * sinOmega;
+            let c = 0.75; // tweak to adjust relative length of PR
+            let SP = ssF.line2abs('SP').abs;
+            let a = ssF.line2abs('BC').abs * 2;
+            let v = c * Math.sqrt((2 / SP) - (1 / a)); // speed of P
             nspaste( 
                 rg.vb.pos, 
-                mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos ) 
+                mat.sm( op.Kepler_v*v, uu, 1, rg.P.pos ) 
             );
         }
 

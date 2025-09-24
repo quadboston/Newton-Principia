@@ -205,7 +205,8 @@
             //------------------------------------------- 
             P : {
                 pcolor : body,
-                letterAngle : 225
+                letterAngle : 225,
+                draggableY  : true,
             }, 
             K : {
                 pcolor : proof,

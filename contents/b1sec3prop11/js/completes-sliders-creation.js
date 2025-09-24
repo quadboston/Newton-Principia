@@ -4,6 +4,8 @@
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
 
+    // NOTE: sliders P and Q are defined in 
+    // src/base/lemma/study-model/kepler-orbit/creates-Q8P-sliders.js
 
     //=====================================================================
     // //\\ point S slider
