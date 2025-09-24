@@ -17,36 +17,67 @@
         // //\\ point P slider
         //=========================================================================
         //todo: P doesn't quite move correctly in relation to mouse
-        rg.P.acceptPos = newPos => {
-            const offset = rg.C.pos[0];
-            const dx = newPos[0] - offset;
-            const dy = newPos[1];
+// State for continuity across a drag
+let prevTheta = null;
 
-            const ecc = op.eccentricity;
-            const a = op.latus / (ecc ** 2 - 1);
-            const b = a * Math.sqrt(Math.abs(ecc ** 2 - 1)); // always positive
+rg.P.onDragEnd = () => {
+  prevTheta = null;
+};
 
-            let x, y, q;
+rg.P.acceptPos = newPos => {
+  const sx = rg.S.pos[0], sy = rg.S.pos[1];
+  const cx = rg.C.pos[0], cy = rg.C.pos[1];
 
-            if (op.conicSignum === -1) {
-                // Hyperbola: use real parameter t
-                const t = Math.acosh(Math.max((dx) / a, 1)); // ensure domain of acosh
-                const sign = dy >= 0 ? 1 : -1; // preserve vertical direction
-                x = a * Math.cosh(t) + offset;
-                y = sign * b * Math.sinh(t);
-                q = t; // store t as q for consistency
-            } else {
-                // Ellipse: use angle q
-                q = Math.atan2(dy, dx);
-                x = a * Math.cos(q) + offset;
-                y = b * Math.sin(q);
-            }
+  const e = op.eccentricity;      // >0
+  const l = op.latus;             // latus rectum
+  const isHyperbola = (op.conicSignum === -1);
 
-            rg.P.q = q;
-            nspaste(rg.P.pos, [x, y]);
+  // Local frame: transverse axis points from focus S to center C
+  const ux0 = cx - sx, uy0 = cy - sy;
+  const uLen = Math.hypot(ux0, uy0) || 1;
+  const ux = ux0 / uLen, uy = uy0 / uLen;        // unit along axis
+  const vx = -uy,        vy = ux;                // unit perpendicular
 
-            return true;
-        };
+  // Mouse direction from focus, expressed in local frame
+  const mx = newPos[0] - sx, my = newPos[1] - sy;
+  const m_u = mx * ux + my * uy;   // component along axis
+  const m_v = mx * vx + my * vy;   // component perpendicular
+
+  // Angle in the local frame
+  let theta = Math.atan2(m_v, m_u);
+
+  // Unwrap to keep continuity across ±π
+  if (prevTheta !== null) {
+    const TWO_PI = 2 * Math.PI;
+    const delta = theta - prevTheta;
+    const k = Math.round(delta / TWO_PI);
+    theta -= k * TWO_PI;
+  }
+
+  // Hyperbola: restrict to valid branch angles so r stays positive
+  if (isHyperbola) {
+    // Valid angles satisfy 1 + e cos(theta) > 0  ⇒  cos(theta) > -1/e
+    const thetaMax = Math.acos(-1 / e); // open angle to asymptote
+    const EPS = 1e-6;
+    if (theta >  thetaMax - EPS) theta =  thetaMax - EPS;
+    if (theta < -thetaMax + EPS) theta = -thetaMax + EPS;
+  }
+
+  // Polar radius from the focus (works for ellipse and hyperbola)
+  const r = l / (1 + e * Math.cos(theta));
+
+  // Map back to world coordinates using the local frame
+  const cosT = Math.cos(theta), sinT = Math.sin(theta);
+  const x = sx + r * (cosT * ux + sinT * vx);
+  const y = sy + r * (cosT * uy + sinT * vy);
+
+  // Store for continuity
+  prevTheta = theta;
+  rg.P.q = theta;
+
+  nspaste(rg.P.pos, [x, y]);
+  return true;
+};
         //=========================================================================
         // \\// point P slider
         //=========================================================================
