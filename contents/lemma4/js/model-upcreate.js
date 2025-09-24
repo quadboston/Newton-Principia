@@ -33,6 +33,10 @@
             study.calculates_inscr8circums(dr);
             study.calculatesMajorantRect(dr);
         });
+
+        //The following must be called after the above functions, because it
+        //requires all figures to be updated first.
+        study.calculateAndStoreTransformedFigureAreaRatios();
     }
 
     

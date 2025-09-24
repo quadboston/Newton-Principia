@@ -1,17 +1,9 @@
 // //\\// Main entrance into sub-application.
 
 (function() {
-    var {
-        sn, eachprop, haff, numModel,
-        fapp, sapp, ssF, sDomF, sData, //TEMP Added sData to prevent bug when clicking popup
-        stdMod,
-    } = window.b$l.apptree({
-        setModule,
-        stdModExportList :
-        {
-            init_model_parameters,
-        },
-    });
+    var { sn, haff, fapp, sapp, ssF, sDomF, sData, stdMod, }
+        = window.b$l.apptree({ setModule,
+        stdModExportList : { init_model_parameters, }, });
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
@@ -19,11 +11,6 @@
     var numModel    = sn('numModel', stdL2 );
     var guicon      = sn('guiConstruct', gui );
     return;
-
-
-
-
-
 
 
     function setModule()

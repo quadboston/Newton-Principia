@@ -449,6 +449,16 @@
             //     initialR    : 1.6,
             //     hideCaption  : true,
             // },
+
+            // //TEMP For testing to see if other dragging code can be used
+            // S : {
+            //     pos: [20, 20],
+            //     pcolor : given,
+            //     letterAngle : -90,
+            //     draggableX  : true,
+            //     draggableY  : true,
+            //     initialR    : 5,
+            // },
         };
 
         //AB, BC, CD

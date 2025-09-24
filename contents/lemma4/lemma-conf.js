@@ -17,6 +17,7 @@
                 { src:"curve-functions.js" },
 
                 {  src:"dom.js" },
+                {  src : 'main-legend.js' },
                 {  src:"d8d-model.js" },
                 {  src:"gui-construct.js" },
                 {  src:"gui-slider.js" },

@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, mat, fapp, stdMod, sconf, } = window.b$l.apptree({});
+    var { sn, rg, mat, fapp, toreg, stdMod, sconf, } = window.b$l.apptree({});
 
 
     var stdL2       = sn('stdL2', fapp );
@@ -11,6 +11,7 @@
         calculatesMajorantRect,
         calcsMonotIntervalArea,
         calculates_inscr8circums,
+        calculateAndStoreTransformedFigureAreaRatios,
         adjustRectWidthsToMatchAreaRatiosIfNeeded,
     });
 
@@ -23,6 +24,11 @@
     //==================================
     // \\// exports methods
     //==================================
+    
+    //TEMP L4 Only
+    //Initial values to ensure they exist for the data table.
+    toreg('exact_ratio')('value', 0);
+    toreg('sum_ratio')('value', 0);
     return;
 
     
@@ -229,67 +235,42 @@
         dr.areaCir = dv.complimentaryAreaBar - areaCir;
         dr.areaIns = dv.complimentaryAreaBar - areaIns;
         // \\// calculates min and max on separate bases
-
-
-        //TEMP
-        outputImportantDataForFiguresTemp(dr);
     }
 
 
 
-    function outputImportantDataForFiguresTemp(dr) {
-        //TEMP Output important data for the figures, that's similar to
-        //what will be displayed in the data tables later.
-        if (!dr.drAdjustRectWidthsToMatchAreaRatios) {
-            console.log("**********Transformed Areas**********");
-        } else {
-            let dv = dr.yVariations;
-            const drL = stdL2.datareg;
-            const drR = stdL2.datareg2;
+    function calculateAndStoreTransformedFigureAreaRatios() {
+        //TEMP L4 only
+        const drL = stdL2.datareg;
+        const drR = stdL2.datareg2;
 
-            //Factors to multiply un-transformed areas by to get transformed
-            //areas, see the function that calculates them for more detail.
-            const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
-            const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
-            // console.log("areaFactorA =", areaFactorA);
-            // console.log("areaFactorB =", areaFactorB);
+        //Only calculate if both figures are monotonic.
+        if (!study.isMonotonic(drL) || !study.isMonotonic(drR))
+            return;
 
-            const exactA = drL.figureArea * areaFactorA;
-            const exactB = drR.figureArea * areaFactorB;
-            const sumA = drL.areaIns * areaFactorA;
-            const sumB = drR.areaIns * areaFactorB;
+        //Factors to multiply un-transformed areas to get transformed areas
+        const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
+        const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
 
-            console.log("exactA =", exactA);
-            console.log("exactB =", exactB);
-            console.log("sumA =", sumA);
-            console.log("sumB =", sumB);
+        const exactA = drL.figureArea * areaFactorA;
+        const exactB = drR.figureArea * areaFactorB;
+        const sumA = drL.areaIns * areaFactorA;
+        const sumB = drR.areaIns * areaFactorB;
 
-            //TEMP In the future may be able to just use dr.areaIns, however
-            //the following is great for testing.
-            const areasL = [];
-            for(let ib = 0; ib < sconf.basesN; ib++) {
-                const barwidth = drL.partitionWidths[ib];
-                const heightIns = dv.yRef - drL.basePts.inscribedY[ib];
-                const areaIns = barwidth * heightIns * areaFactorA;
-                areasL.push(areaIns);
-            }
 
-            const areasR = [];
-            for(let ib = 0; ib < sconf.basesN; ib++) {
-                const barwidth = drR.partitionWidths[ib];
-                const heightIns = dv.yRef - drR.basePts.inscribedY[ib];
-                const areaIns = barwidth * heightIns * areaFactorB;
-                areasR.push(areaIns);
-            }
-            console.log("(all)   A_i =", areasL);
-            console.log("(all)   B_i =", areasR);
+        toreg('exact_ratio')('value', calculateRatio(exactA, exactB));
+        toreg('sum_ratio')('value', calculateRatio(sumA, sumB));
 
-            const areaRatios = [];
-            for(let i = 0; i < sconf.basesN - 1; i++)
-                areaRatios.push(areasL[i] / areasR[i]);
-            console.log("exact_ratio = exactA / exactB =", exactA / exactB);
-            console.log("sum_ratio = sumA / sumB =", sumA / sumB);
-            console.log("(for all i)   i_ratio = A_i / B_i =", areaRatios);
+
+        function calculateRatio(a, b) {
+            //Calculate the ratio safely
+            const maxRatio = 1e7;
+            if (Math.abs(b) < 1e-5)
+                return maxRatio;
+            const ratio = Math.abs(a / b);
+            if (ratio > maxRatio)
+                return maxRatio;
+            return ratio;
         }
     }
 

@@ -1,15 +1,7 @@
 ( function () {
-    var {
-        sn, $$, userOptions,
-        fapp, fconf, sconf, sDomN, ssF,
-        rg, amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            syncPoint,
-            syncPoints,
-        },
-    });
+    var { sn, $$, userOptions, fapp, fconf, sconf, sDomN, ssF, rg, amode,
+        stdMod, } = window.b$l.apptree({
+        stdModExportList : { syncPoint, syncPoints, }, });
     var stdL2       = sn('stdL2', fapp );
     // var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
@@ -248,17 +240,18 @@
         //-----------------------------------------------------
         // //\\ legend amounts
         //-----------------------------------------------------
-        //TEMP The following looks like it sets the text for the areas overlay.
-        //It may be useful for L4 later when the data tables are added.
+        // //TEMP The following looks like it sets the text for the areas overlay.
+        // //It may be useful for L4 later when the data tables are added.
 
-        //TEMP Intended for L2/3 only.  If this code ends up getting used by
-        //L2/3 it should only be updated by the original datareg or similar.
-        document.getElementById("figAmt").innerHTML =
-            ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
-        document.getElementById("inAmtd").innerHTML =
-            normalizedStr( dr, dr.areaIns, dr.figureArea);
-        document.getElementById("circAmtd").innerHTML =
-            normalizedStr( dr, dr.areaCir, dr.figureArea);
+        //TEMP Should only be needed by L2/3, data table
+        // //TEMP Intended for L2/3 only.  If this code ends up getting used by
+        // //L2/3 it should only be updated by the original datareg or similar.
+        // document.getElementById("figAmt").innerHTML =
+        //     ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
+        // document.getElementById("inAmtd").innerHTML =
+        //     normalizedStr( dr, dr.areaIns, dr.figureArea);
+        // document.getElementById("circAmtd").innerHTML =
+        //     normalizedStr( dr, dr.areaCir, dr.figureArea);
         //-----------------------------------------------------
         // \\// legend amounts
         //-----------------------------------------------------
@@ -513,6 +506,9 @@
         }
     }
 
+    //TEMP Should only be needed by L2/3, data table
+    //For L4 I suppose the inscribed rectangles are always shown unless
+    //non-monotonic, meaning view probably doesn't need to be checked.
     function shows_rects(dr)
     {
         var view = sdata.view;
