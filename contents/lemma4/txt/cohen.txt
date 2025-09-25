@@ -2,7 +2,6 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "mediaBgImage" : "lemma-23-3rd-ed.png",
   "logic_phaseCaption" : "Claim"
 }
 *..*

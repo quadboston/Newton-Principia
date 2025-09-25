@@ -588,6 +588,7 @@
             mod2inn_scale : 1, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
+			mediaBgImage : "l4-diagram.png",
         });
         //=====================================
         // \\// patch for quick slider creation
