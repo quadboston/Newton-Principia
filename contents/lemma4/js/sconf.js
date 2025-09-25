@@ -26,7 +26,9 @@
 
     //Left figure
     Object.assign(dr, initDataReg({
-        xOffset : 0,
+        xLeft  : 80,
+        width  : 258,
+        height : 282,
         basePtDraggersEnabled : true,
         pointLabels     : {
             ctrlPtFirst : 'a',
@@ -40,7 +42,9 @@
 
     //Right figure
     Object.assign(dr2, initDataReg({
-        xOffset : 300,
+        xLeft  : 383,
+        width  : 258,
+        height : 252,
         basePtDraggersEnabled : false,
         pointLabels     : {
             ctrlPtFirst : 'p',
@@ -62,8 +66,8 @@
     return;
 
 
-    //TEMP To override initial values for testing
-    function initDataReg({xOffset = 0, pointLabels, basePtDraggersEnabled,
+    function initDataReg({xLeft, width, height,
+        basePtDraggersEnabled, pointLabels,
         transformPtIEnabled, transformPtJEnabled,
         drAdjustRectWidthsToMatchAreaRatios}) {
         return {
@@ -92,29 +96,7 @@
                 //
                 //TEMP Should the naming be modified to specify un-transformed?
                 //This would probably be best for clarity.
-                positions : [
-                    {x:31.5 + xOffset, y: 29},
-
-                    //four middle handles:
-                    // {x: 74.8  + xOffset, y: 45.97726888798351},
-                    // {x: 118.1 + xOffset, y: 72.70148453700233},
-                    // {x: 161.4 + xOffset, y: 109.92474464283467},
-                    // {x: 204.7 + xOffset, y: 166.52378909964816},
-                    
-                    //three middle handles
-                    // {x:85  + xOffset, y: 51.5},
-                    // {x:139 + xOffset, y: 89.0},
-                    // {x:193 + xOffset, y: 148.5},
-
-                    //two middle handles
-                    {x: 103.67 + xOffset, y: 62.65},
-                    {x: 175.83 + xOffset, y: 126.01},
-
-                    //one middle handle
-                    // {x: 139.75 + xOffset, y: 89.44},
-
-                    {x:248 + xOffset, y: 259.5 },
-                ],
+                positions : computeControlPointPositions(xLeft, width, height),
                 //Are the first and last control points on the curve draggable
                 draggableEndPoints : false,
                 //TEMP Should something similar to the following be added?
@@ -147,6 +129,35 @@
             drAdjustRectWidthsToMatchAreaRatios,
         }
     };
+
+    
+    function computeControlPointPositions(xLeft, width, height) {
+        //Bottom of figure (same for all figures)
+        const yBottom = 332;
+
+        //Unscaled positions (used as a template)
+        const positionsUnscaled = [
+            //Top left
+            {x: 0, y: 0},
+            //Two middle handles
+            {x: 102.7, y: 44.5},
+            {x: 218.3, y: 147.0},
+            //Bottom right
+            {x: 265, y: 252},
+        ];
+
+        const pLast = positionsUnscaled[positionsUnscaled.length-1];
+        const xScale = width / pLast.x;
+        const yScale = height / pLast.y;
+
+        //Offset and scale positions relative to bottom left
+        return positionsUnscaled.map(p => {
+            return {
+                x: Math.round(p.x * xScale + xLeft),
+                y: Math.round((p.y - pLast.y) * yScale + yBottom),
+            };
+        });
+    }
 
 
 
