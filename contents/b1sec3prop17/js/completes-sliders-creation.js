@@ -25,6 +25,10 @@ rg.P.onDragEnd = () => {
 };
 
 rg.P.acceptPos = newPos => {
+    if(amode.logic_phase === 'corollary') {
+        return false;
+    }  
+
   const sx = rg.S.pos[0], sy = rg.S.pos[1];
   const cx = rg.C.pos[0], cy = rg.C.pos[1];
 
