@@ -39,7 +39,6 @@
         rg.L.pos[1] = latus;
         rg.LL.pos[0] = rg.S.pos[0];
         rg.LL.pos[1] = -latus;
-        rg[ 'L,LL' ].value = (2*latus).toFixed(3);
 
         //================================================
         // //\\ arc, sagittae and related
