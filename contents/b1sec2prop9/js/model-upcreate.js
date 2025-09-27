@@ -11,6 +11,7 @@
     ///****************************************************
     function model_upcreate()
     {
+        //console.log('model_upcreate');
         stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
@@ -37,7 +38,7 @@
         var Rc = R; //curvature radius
 
         //================================================
-        // //\\ arc, sagittae and related
+        // //\\ arc, sagittae and related (both Solutions tabs)
         //================================================
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
@@ -65,7 +66,7 @@
         //================================================
 
         //================================================
-        // //\\ curvature circle
+        // //\\ curvature circle (Another solution tab)
         //================================================
         rg.C.pos[0] = RC[0];
         rg.C.pos[1] = RC[1];
@@ -99,6 +100,28 @@
             rgCurvatureCircle.undisplay ? 'none' : 'block';
         //================================================
         // \\// curvature circle
+        //================================================
+
+        //================================================
+        // //\\ highlightable arc PQ (Solution tab)
+        //================================================
+        var cfun = stdMod.q2xy;
+        let Qrev = JSON.parse(JSON.stringify(rg.Q)); // deep copies
+        let Prev = JSON.parse(JSON.stringify(rg.P));   
+        let qQ = stdMod.xyToQ(rg.Q.pos[0], rg.Q.pos[1]);
+        let qP = stdMod.xyToQ(rg.P.pos[0], rg.P.pos[1]);
+        Qrev.pos[0] = qQ; //adjusted values to ensure arc lines up with points
+        Prev.pos[0] = qP;
+
+        ssF.paintsCurve({
+                //rgName    : will become 'arc-QP',
+                fun         : cfun,
+                pointA      : Qrev,
+                pointB      : Prev,
+                mmedia      : stdMod.mmedia,
+        });
+        //================================================
+        // \\// highlightable arc PQ
         //================================================
 
         //================================================
