@@ -120,6 +120,7 @@
             body,
             orbit,
             instanttriangleHiddenStart,
+            resultOnlyVisibleWhenHighlighted,
             proof,
             result,
             shadow,
@@ -366,7 +367,7 @@
             // base line
             { 'A,AA' : { pcolor : orbit }, },
 
-            { 'L,LL' : { pcolor : orbit,
+            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
