@@ -1,5 +1,11 @@
 # Change Log
   
+
+## 2025-9-27 (PaleGreen Version, 0.13858)
+### Improved
+* Proposition 9
+	* fixed highlighting of arc QPR
+
 ## 2025-9-15 (DarkGoldenRod Version, 0.13858)
 ### Improved
 * Proposition 10
