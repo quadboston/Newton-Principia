@@ -6,6 +6,9 @@
 * Proposition 9
 	* fixed highlighting of arc QPR
 
+* Propositions 11, 12, 13
+	* Latus rectum shown when text highlighted
+
 ## 2025-9-15 (DarkGoldenRod Version, 0.13858)
 ### Improved
 * Proposition 10
