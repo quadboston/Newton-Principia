@@ -100,6 +100,33 @@
         ///------------------------------------------------------------------
         /// \\// takes conditions scripted at the bottom of professor-script,
         ///------------------------------------------------------------------
+
+        ///enables or disables conditional drag point if preset in sconf.js,
+        eachprop( rg, (shape, pname) => {
+            if( has( shape, 'conditionalDrag' ) ){
+                let dohide = true;
+                //options which do activate drag
+                'logic_phase aspect subessay sappId'
+
+                .split( ' ' ).forEach(
+                    aname => {
+                    //https://javascript.info/regexp-introduction
+                    //can be \-\-(\S*)(?:$|\s)/g
+                    const RE = new RegExp( '\\b' + aname + '\\-\\-(\\S*)\\b', 'g' );
+                    let matches = shape.conditionalDrag.matchAll( RE );
+                    for (const match of matches) {
+                        if( amode[aname] === match[1] ||
+                            ( aname === 'sappId' && fconf.sappId === match[1] )
+                        ) {
+                            dohide = false;
+                            //c cc( pname, match[1] );
+                        }
+                    }
+                })
+                rg.Q.hideD8Dpoint = dohide;
+            }
+        });
+
         if( haz( ssF, 'amode2rgstate' ) ){
             //appar. can do this
             //ssF.amode2rgstate();
