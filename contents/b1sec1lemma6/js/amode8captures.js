@@ -146,7 +146,6 @@
                 'curve-AB',
                 'AD',
             ].forEach( gname => { rg[ gname ].undisplay = false; });
-            rg.L.hideD8Dpoint   = false;
         }
 
         //below we do add points and lines which are absent in N. proof

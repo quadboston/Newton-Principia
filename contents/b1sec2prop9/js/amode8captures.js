@@ -25,11 +25,6 @@
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
 
-        //rg.Q.hideD8Dpoint = false;
-        //rg.Q.d8d_find_is_LOCKED = false;
-        //nspaste( rg.S.pos, [ 0., 0.] ); //Book's value
-
-
         //Modify visibility for the below decorations based on the following settings.
         if (logic_phase === 'claim') {
             hide(
