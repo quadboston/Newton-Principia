@@ -100,9 +100,6 @@
      */
     function modifyDecorationVisibility() {
         const { logic_phase, aspect, subessay } = amode;
-
-        rg.Q.hideD8Dpoint = rg.Q.d8d_find_is_LOCKED = logic_phase === 'claim';
-
         if (logic_phase === 'claim') {
             showOnly(
                 'S',

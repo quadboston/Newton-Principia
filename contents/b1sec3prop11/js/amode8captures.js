@@ -30,8 +30,6 @@
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 
-		rg.Q.hideD8Dpoint = subessay !== 'solution';
-
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;

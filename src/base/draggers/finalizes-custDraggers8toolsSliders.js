@@ -126,13 +126,7 @@
                 unfoundDragger = dragWrap;
                 return;
             }
-            //if( dragPoint.pname === 'loose1' ) {
-            //    ccc( dragPoint.pname, dragPoint );
-            //}
-            if( haz( dragPoint, 'hideD8Dpoint' ) ||
-                haz( dragPoint, 'd8d_find_is_LOCKED' )  ) {
-                return;
-            }
+            if( haz( dragPoint, 'hideD8Dpoint' ) ) return;
 
             var tdX = Math.abs( testMediaX - dragPoint.medpos[0] );
             var tdY = Math.abs( testMediaY - dragPoint.medpos[1] );

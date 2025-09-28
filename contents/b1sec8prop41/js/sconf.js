@@ -280,6 +280,8 @@
                 letterAngle : 120,
                 draggableX  : true,
                 draggableY  : true,
+                undisplayAlways : true,
+                hideD8Dpoint : true,
             },
             // \\// speed
             //-------------------------

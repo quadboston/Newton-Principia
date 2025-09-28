@@ -327,6 +327,7 @@
                 draggableX  : true,
                 draggableY  : true,
 				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             //---------------------------------------
             // \\// draggable points
