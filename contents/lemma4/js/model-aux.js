@@ -244,10 +244,6 @@
         const drL = stdL2.datareg;
         const drR = stdL2.datareg2;
 
-        //Only calculate if both figures are monotonic.
-        if (!study.isMonotonic(drL) || !study.isMonotonic(drR))
-            return;
-
         //Factors to multiply un-transformed areas to get transformed areas
         const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
         const areaFactorB = stdMod.calculateFactorAreaTransformed(drR);
@@ -284,7 +280,7 @@
             return;
 
         //Only adjust the widths if both figures are monotonic.
-        if (!study.isMonotonic(dr) || !study.isMonotonic(drOther))
+        if(!study.areBothFiguresMonotonic())
             return;
 
 

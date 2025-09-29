@@ -12,7 +12,8 @@
     Object.assign( study,
     {
         calculates_monotIntervals8ref,
-        isMonotonic, //TEMP Is this the correct spot?
+        isMonotonic,
+        areBothFiguresMonotonic,
     });
     return;
 
@@ -136,9 +137,16 @@
 
 
 
-    //TEMP Is this the correct location for the following?
     function isMonotonic(dr) {
         return dr?.yVariations?.changes?.length === 1;
+    }
+
+
+    function areBothFiguresMonotonic() {
+        const drL = stdL2.datareg;
+        const drR = stdL2.datareg2;
+
+        return (isMonotonic(drL) && isMonotonic(drR));
     }
 }) ();
 

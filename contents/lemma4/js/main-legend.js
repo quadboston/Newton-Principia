@@ -3,6 +3,7 @@
         stdModExportList : { create_digital_legend, }, });
     return;
 
+
     //TEMP This file is used by L4 only
     function create_digital_legend()
     {
@@ -30,14 +31,24 @@
             [[
                 'figure',
                 'AacE : PprT',
-                'rg.exact_ratio.value'
+                getMonotonic('rg.exact_ratio.value')
             ]],
             [[
                 'inscribed-rectangles',
                 'ratio of corresponding parallelograms, AacE : PprT',
-                'rg.sum_ratio.value'
+                getMonotonic('rg.sum_ratio.value')
             ]],
         ];
+
+
+        function getMonotonic(val) {
+            return `
+                fapp?.stdL2?.study?.areBothFiguresMonotonic() ?
+                ${val} :
+                "<span class='limit'>N/A<span>";
+                `;
+        }
+
 
         var rowsCount       = legendScriptParsed.length;
         var clustersCount   = legendScriptParsed[0].length;
