@@ -339,10 +339,7 @@
         [
             { QR : { pcolor : proof }, },
             { QT : { pcolor : proof }, },
-            { SP : {
-                    pcolor : body,
-                    vectorTipIx : 1 },
-            },              
+            { SP : { pcolor : body },},              
             { PM : { pcolor : body }, },
             { SM : { pcolor : proof }, },       
             { GP : { pcolor : proof }, },
