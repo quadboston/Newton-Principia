@@ -1,6 +1,6 @@
 # Change Log
   
-## 2025-9-30 (PaleGreen Version, 0.13858)
+## 2025-9-30 (PaleGreen Version, 0.13859)
 ### Improved
 * Proposition 6
 	*  SP not shown before it's referenced
