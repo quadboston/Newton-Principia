@@ -9,7 +9,12 @@
 	* fixed highlighting of arc QPR
 
 * Propositions 11, 12, 13
-	* Latus rectum shown when text highlighted
+	* latus rectum shown when text highlighted
+
+* Propoition 13
+	* corrected text
+	* fractions changed from linear style to stacked
+	* added link to the _Conics_
 
 ## 2025-9-15 (DarkGoldenRod Version, 0.13858)
 ### Improved
