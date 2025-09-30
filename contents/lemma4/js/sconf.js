@@ -298,6 +298,15 @@
             SLOPE_CONSTRAINT_ANGLE_DEG : 12,
             SLOPE_CONSTRAINT_OFFSET    : 15,
 
+            //Keep curve handles from getting too close to right side of
+            //figure.  This prevents issue where a "gap" appears on the right
+            //figure, and it's area can't converge on the left figure area.
+            //This occurs because the width of the second last rectangle on the
+            //right figure gets very large.  It mainly occurs when the right
+            //side of the curve on the right figure is very flat, and the right
+            //side of the curve on the left figure is very vertical.
+            HORIZONTAL_CONSTRAINT      : 25,
+
             //Approximate number of line segments used to generate the curve.
             //The actual number used can vary slightly (by a few).
             CURVE_SEGMENTS_APPROXIMATE : 500,

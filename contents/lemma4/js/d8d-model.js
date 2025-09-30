@@ -268,7 +268,8 @@
                 //Constrain x value if needed.
                 if (!draggableEndPoints) {
                     const minX = positions[0].x;
-                    const maxX = positions[positions.length - 1].x;
+                    const maxX = positions[positions.length - 1].x
+                        - sconf.HORIZONTAL_CONSTRAINT;
 
                     if (posNew[0] < minX)
                         posNew[0] = minX;
