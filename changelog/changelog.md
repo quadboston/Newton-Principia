@@ -1,5 +1,21 @@
 # Change Log
   
+## 2025-9-30 (PaleGreen Version, 0.13859)
+### Improved
+* Proposition 6
+	*  SP not shown before it's referenced
+
+* Proposition 9
+	* fixed highlighting of arc QPR
+
+* Propositions 11, 12, 13
+	* latus rectum shown when text highlighted
+
+* Propoition 13
+	* corrected text
+	* fractions changed from linear style to stacked
+	* added link to the _Conics_
+
 ## 2025-9-15 (DarkGoldenRod Version, 0.13858)
 ### Improved
 * Proposition 10
