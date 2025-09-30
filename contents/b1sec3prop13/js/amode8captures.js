@@ -28,7 +28,7 @@
         var features = [
             'M', 'A', 'S', 'N', 'Q', 'R', 'T', 'x', 'v', 'P', // points
             'QR', 'QT', 'SP', 'GP', 'Pv', 'Qv', 'Qx', 'Px', 'Tx', 'SA', 'xv',
-            'PM', 'SM', 'NS', 'NP', 'A,AA',
+            'PM', 'SM', 'NS', 'NP', 'A,AA', 'L,LL',
             'PR', 'P,Zminus', //tangent
         ];
         
