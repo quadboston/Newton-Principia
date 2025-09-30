@@ -26,35 +26,51 @@ the perimeter of the ¦orbit¦parabola¦¦; from the ¦Q¦place Q¦¦ into which
 next, draw ¦QR¦¦ parallel and ¦QT¦¦ perpendicular to ¦SP¦¦ and draw ¦Qv¦Q𝑣¦¦ parallel
 to the ¦PR P,Zminus¦tangent¦¦ and meeting both the diameter ¦GP¦PG¦¦ in ¦v¦𝑣¦¦ and
 the distance ¦SP¦¦
-in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦Pxv¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
+in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
-equal. But from the <i>Conics</i> the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
+equal. But from the 
+<a target="_blank" href="http://whistleralley.com/conics/conica/Rosenfeld/Books1-7new.pdf#page=14"><i>Conics</i></a>
+the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
 rectangle contained by the ¦L,LL¦latus rectum¦¦ and the segment ¦Pv¦P𝑣¦¦ of the diameter,
 that is 
 (by lem. 13), 
-equal to the rectangle 4¦SP¦PS¦¦ ✕ ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ ✕ ¦QR¦¦, and, the
+equal to the rectangle 4¦SP¦PS¦¦ × ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ × ¦QR¦¦, and, the
 points ¦P¦¦ and ¦Q¦¦ coming together, the ratio of ¦Qv¦Q𝑣¦¦ to ¦Qx¦Q𝑥¦¦ 
 (by <a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>),
-becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑣¦¦²
+becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑥¦¦²
  is equal to the
-rectangle 4¦SP¦PS¦¦ ✕ ¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦QxT¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
-¦Qx¦Q𝑣¦¦²
+rectangle 4¦SP¦PS¦¦ × ¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦Q𝑥T¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
+¦Qx¦Q𝑥¦¦²
  is to ¦QT¦¦²
  as ¦SP¦PS¦¦²
  to ¦NS¦SN¦¦²
 , that is 
 (by lem. 14, corol. 1),
  as ¦SP¦PS¦¦ to ¦SA¦¦,
-that is, as 4¦SP¦PS¦¦ ✕ ¦QR¦¦ to 4¦SA¦¦ x ¦QR¦¦, and hence 
-(<a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's Elements, book 5, prop. 9</a>)
+that is, as 4¦SP¦PS¦¦ × ¦QR¦¦ to 4¦SA¦¦ × ¦QR¦¦, and hence 
+(by <a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's Elements, book 5, prop. 9</a>)
  ¦QT¦¦²
- and 4¦SA¦¦ ✕ ¦QR¦¦ are equal. Multiply these equals by ,
-¦SP¦¦² / ¦QR¦¦, and ¦SP¦¦² ✕ ¦Qx¦Q𝑣¦¦² / ¦QR¦¦ will become equal to ¦SP¦¦² x 4¦SA¦¦;
+ and 4¦SA¦¦ × ¦QR¦¦ are equal. Multiply these equals by
+
+<!-- SP² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>,
+
+and 
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>,
+
+will become equal to ¦SP¦¦² × 4¦SA¦¦;
 and therefore 
 (by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
 the centripetal force is inversely as ¦SP¦¦²
- ✕ 4¦SA¦¦, that is,
+ × 4¦SA¦¦, that is,
 because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 466.</div>
