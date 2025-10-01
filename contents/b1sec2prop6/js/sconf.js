@@ -289,6 +289,7 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
+                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,

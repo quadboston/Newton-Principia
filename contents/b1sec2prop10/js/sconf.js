@@ -265,6 +265,7 @@
                 draggableX  : true,
                 draggableY  : true,
                 cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
             },
             // \\// proof
   

@@ -27,7 +27,6 @@
         //sconf.rgShapesVisible
 
         rg.APQ.undisplay = false;
-        rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -40,7 +39,6 @@
         } else if( logic_phase === 'corollary' && subessay === 'corollary1' ){
             rg.curvatureCircle.undisplay = true;
         } else if( logic_phase === 'corollary' && subessay === 'corollary3' ){
-            rg.Q.d8d_find_is_LOCKED = false;
             rg.APQ.undisplay = false;
             rg.timearc.undisplay = true;
         } else if( logic_phase === 'corollary' && subessay === 'corollary5' ){

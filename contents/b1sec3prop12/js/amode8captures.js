@@ -30,7 +30,7 @@
         var hyperbola = [
             // conic itself is always shown
             'S', 'P', 'LL', 'A', 'B', 'C','Zminus', 'Q', // points
-            'P,Zminus', 'PZ', 'PR', 'SP', 'B,BB', // lines
+            'P,Zminus', 'PZ', 'PR', 'SP', 'B,BB', 'L,LL', // lines
             'Zeta', 'ZetaCaption', 'ZetaStart,ZetaEnd' // e slider
         ];
 

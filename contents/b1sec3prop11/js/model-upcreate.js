@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, mat, 
+    var { nspaste, mat, sconf, 
         ssD, stdMod, rg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
@@ -30,6 +30,15 @@
             uu,
             nn,
         } = Porb;
+
+        // latus rectum
+        let semiAxisLen = sconf.ellipseA;
+        let e = sconf.eccentricity;
+        let latus = semiAxisLen * (1 - e * e); // length
+        rg.L.pos[0] = rg.S.pos[0];
+        rg.L.pos[1] = latus;
+        rg.LL.pos[0] = rg.S.pos[0];
+        rg.LL.pos[1] = -latus;
 
         //================================================
         // //\\ arc, sagittae and related

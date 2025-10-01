@@ -150,6 +150,7 @@
             body,
             orbit,
             proof,
+            resultOnlyVisibleWhenHighlighted,
             force,
             result,
             hidden,
@@ -285,6 +286,19 @@
 				cssClass: 'subessay--solution',
             },
 
+            // latus rectum
+            L : {
+                pcolor : orbit,
+                cssClass : 'hidden',
+                letterAngle : -45,
+                letterRotRadius : 20,
+            },
+            LL : {
+                pcolor : orbit,
+                cssClass : 'hidden',
+                doPaintPname : false,
+            },
+
 
             //---------------------------------------
             // //\\ draggable points
@@ -313,6 +327,7 @@
                 draggableX  : true,
                 draggableY  : true,
 				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             //---------------------------------------
             // \\// draggable points
@@ -358,6 +373,11 @@
             { 'SP' : { pcolor : proof, 
 				cssClass: 'logic_phase--proof',
 			},},
+
+            { 'L,LL' : { 
+			    pcolor : resultOnlyVisibleWhenHighlighted,
+                captionShiftNorm : 22, lposYSugar : 3
+			}, },
 
             { 'P,Zminus' : { pcolor : body,
 				cssClass: 'logic_phase--proof',

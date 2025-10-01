@@ -321,6 +321,9 @@
                     //completely disables dragging
                     rgX.hideD8Dpoint = op.hideD8Dpoint;
                 }
+                ////sets or passes option conditionalDrag to point registry
+                rgX.conditionalDrag = haz( op, 'conditionalDrag' );
+
                 if( has( op, 'nospinner' ) ) {
                     //keeps dragging but hides spinning drag overlay
                     rgX.nospinner = op.nospinner;
