@@ -207,6 +207,7 @@
                 pcolor : body,
                 letterAngle : 225,
                 draggableY  : true,
+                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             }, 
             K : {
                 pcolor : proof,
@@ -267,6 +268,7 @@
                 letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
+                conditionalDrag : 'logic_phase--proof logic_phase--claim subessay--corollary1',
             },
             f : { //force dragger
                 caption : '',

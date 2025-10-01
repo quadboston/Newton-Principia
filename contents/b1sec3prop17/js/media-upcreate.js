@@ -32,17 +32,6 @@
     {
         //console.log('media_upcreate___part_of_medupcr_basic')
 
-        // P is not a dragger in the corollaries
-        // todo: is there a build in mechanism for this somewhere?
-        let P_svg = document.getElementsByClassName('tp-_p-kernel')[0];
-        if(amode.logic_phase === 'corollary') {
-            let P_elem = document.getElementsByClassName('point-_p-slider')[0];
-            if(P_elem) P_elem.remove();
-            if(P_svg) P_svg.style.display = 'none';
-        } else {            
-            if(P_svg) P_svg.style.display = 'block';
-        }
-
         //draws conics
         //enables curve move when dragging an entire diagram
         rg[ 'approximated-curve' ].poly2svg();
