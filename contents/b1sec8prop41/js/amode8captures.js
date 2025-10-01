@@ -41,8 +41,6 @@
 
         // //\\ hiding
         rg.nonSolvablePoint.undisplay = true;
-        rg.Vangle.undisplay = true;
-        rg.Vangle.hideD8Dpoint = true;
         rg[ 'V,Vangle' ].undisplay = true;
         rg.R.undisplay = false;
         rg.M.undisplay = true;
@@ -52,8 +50,6 @@
         if( fconf.sappId === 'b1sec8prop41' ) {
             //nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
             if( aspect === 'addendum' ) {
-                //rg.Vangle.undisplay = false;
-                //rg.Vangle.hideD8Dpoint = false;
                 rg.R.undisplay = true;
             }
         }

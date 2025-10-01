@@ -163,6 +163,7 @@
             body,
             orbit,
             force,
+            "arc-QP" : body
         };
         //-----------------------------------
         // \\// topic group colors,

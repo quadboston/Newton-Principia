@@ -112,9 +112,9 @@
             hidden,
 
             //claim
-            "curve-AB"      : given,
+            "curve-AB"      : given, //arc-AB plus extension past B
             "left-curve-AB" : given, //extends curve ACB to the left of A
-            "arc-AB"        : given, //curve-AB plus extension past B
+            "arc-AB"        : given, 
             "claimRatio"    : given, //data table
 
             //proof
