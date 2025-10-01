@@ -16,68 +16,67 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
-        //todo: P doesn't quite move correctly in relation to mouse
-// State for continuity across a drag
-let prevTheta = null;
+        // State for continuity across a drag
+        let prevTheta = null;
 
-rg.P.onDragEnd = () => {
-  prevTheta = null;
-};
+        rg.P.onDragEnd = () => {
+            prevTheta = null;
+        };
 
-rg.P.acceptPos = newPos => {
-  const sx = rg.S.pos[0], sy = rg.S.pos[1];
-  const cx = rg.C.pos[0], cy = rg.C.pos[1];
+        rg.P.acceptPos = newPos => {
+            const sx = rg.S.pos[0], sy = rg.S.pos[1];
+            const cx = rg.C.pos[0], cy = rg.C.pos[1];
 
-  const e = op.eccentricity;      // >0
-  const l = op.latus;             // latus rectum
-  const isHyperbola = (op.conicSignum === -1);
+            const e = op.eccentricity;      // >0
+            const l = op.latus;             // latus rectum
+            const isHyperbola = (op.conicSignum === -1);
 
-  // Local frame: transverse axis points from focus S to center C
-  const ux0 = cx - sx, uy0 = cy - sy;
-  const uLen = Math.hypot(ux0, uy0) || 1;
-  const ux = ux0 / uLen, uy = uy0 / uLen;        // unit along axis
-  const vx = -uy,        vy = ux;                // unit perpendicular
+            // Local frame: transverse axis points from focus S to center C
+            const ux0 = cx - sx, uy0 = cy - sy;
+            const uLen = Math.hypot(ux0, uy0) || 1;
+            const ux = ux0 / uLen, uy = uy0 / uLen;        // unit along axis
+            const vx = -uy,        vy = ux;                // unit perpendicular
 
-  // Mouse direction from focus, expressed in local frame
-  const mx = newPos[0] - sx, my = newPos[1] - sy;
-  const m_u = mx * ux + my * uy;   // component along axis
-  const m_v = mx * vx + my * vy;   // component perpendicular
+            // Mouse direction from focus, expressed in local frame
+            const mx = newPos[0] - sx, my = newPos[1] - sy;
+            const m_u = mx * ux + my * uy;   // component along axis
+            const m_v = mx * vx + my * vy;   // component perpendicular
 
-  // Angle in the local frame
-  let theta = Math.atan2(m_v, m_u);
+            // Angle in the local frame
+            let theta = Math.atan2(m_v, m_u);
 
-  // Unwrap to keep continuity across ±π
-  if (prevTheta !== null) {
-    const TWO_PI = 2 * Math.PI;
-    const delta = theta - prevTheta;
-    const k = Math.round(delta / TWO_PI);
-    theta -= k * TWO_PI;
-  }
+            // Unwrap to keep continuity across ±π
+            if (prevTheta !== null) {
+                const TWO_PI = 2 * Math.PI;
+                const delta = theta - prevTheta;
+                const k = Math.round(delta / TWO_PI);
+                theta -= k * TWO_PI;
+            }
 
-  // Hyperbola: restrict to valid branch angles so r stays positive
-  if (isHyperbola) {
-    // Valid angles satisfy 1 + e cos(theta) > 0  ⇒  cos(theta) > -1/e
-    const thetaMax = Math.acos(-1 / e); // open angle to asymptote
-    const EPS = 1e-6;
-    if (theta >  thetaMax - EPS) theta =  thetaMax - EPS;
-    if (theta < -thetaMax + EPS) theta = -thetaMax + EPS;
-  }
+            // Hyperbola: restrict to valid branch angles so r stays positive
+            if (isHyperbola) {
+                // Valid angles satisfy 1 + e cos(theta) > 0  ⇒  cos(theta) > -1/e
+                const thetaMax = Math.acos(-1 / e); // open angle to asymptote
+                const EPS = 1e-6;
+                if (theta >  thetaMax - EPS) theta =  thetaMax - EPS;
+                if (theta < -thetaMax + EPS) theta = -thetaMax + EPS;
+            }
 
-  // Polar radius from the focus (works for ellipse and hyperbola)
-  const r = l / (1 + e * Math.cos(theta));
+            // Polar radius from the focus (works for ellipse and hyperbola)
+            const r = l / (1 + e * Math.cos(theta));
 
-  // Map back to world coordinates using the local frame
-  const cosT = Math.cos(theta), sinT = Math.sin(theta);
-  const x = sx + r * (cosT * ux + sinT * vx);
-  const y = sy + r * (cosT * uy + sinT * vy);
+            // Map back to world coordinates using the local frame
+            const cosT = Math.cos(theta), sinT = Math.sin(theta);
+            const x = sx + r * (cosT * ux + sinT * vx);
+            const y = sy + r * (cosT * uy + sinT * vy);
 
-  // Store for continuity
-  prevTheta = theta;
-  rg.P.q = theta;
+            // Store for continuity
+            prevTheta = theta;
+            rg.P.q = theta;
 
-  nspaste(rg.P.pos, [x, y]);
-  return true;
-};
+            nspaste(rg.P.pos, [x, y]);
+            return true;
+        };
         //=========================================================================
         // \\// point P slider
         //=========================================================================
@@ -189,7 +188,6 @@ rg.P.acceptPos = newPos => {
                 }
             }
 
-            rg.P.q              = fi;
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP

@@ -36,7 +36,7 @@
         var sinAxis     = Math.sin( op.mainAxisAngle );
         const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
-        //console.log(q);
+        
         const rr0       = fun( q ); // rg.P.pos, keeps P on orbit
         const rrc       = rg.S.pos; // rg.S.pos is [0,0] as defined in amode8captures.js
         nspaste( rg.P.pos, rr0 );   
