@@ -84,6 +84,7 @@
         }
         dr.curve_middle$.a( "points", mpRounded.join(" ") );
 
+
         //:paints axes
         //horizontal axis x
         const posBaseStart = stdMod.xy_2_Txy(dr, [x_start, maxY]);
@@ -95,11 +96,17 @@
         $$.$(dr.baseAxis).css( 'display',
             !study.isMonotonic(dr) ? 'none' : 'block' );
 
-        //Show/hide the line on the left side of the figure as needed
-        const {ctrlPtFirst, basePtFirst} = dr.pointLabels;
+
+        //Show/hide the following lines on the figure as needed
+        const {ctrlPtFirst, ctrlPtLast, basePtFirst} = dr.pointLabels;
         const lineLeftSide = rg[basePtFirst + ctrlPtFirst];
         if (lineLeftSide)
             lineLeftSide.undisplay = !study.isMonotonic(dr);
+
+        const lineBottomSide = rg[basePtFirst + ctrlPtLast];
+        if (lineBottomSide)
+            lineBottomSide.undisplay = !study.isMonotonic(dr);
+
 
         //=============================================
         // //\\ builds bottom part of curve area string
@@ -478,6 +485,7 @@
         //--------------------------------------
         // \\// majorant
         //--------------------------------------
+        //TEMP Is this only needed for L2/3?
         stdMod.setsDifferenceBarsMonotonity(dr);
         //TEMP Commenting the following seems to disable swapping monotonity?
         //Actually I'm not sure that it does, eg. the right figure still seems

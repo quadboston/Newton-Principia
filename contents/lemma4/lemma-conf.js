@@ -5,12 +5,12 @@
     return;
 
 
-
     function lemmaConfig()
     {
         return {
             codesList :
             [
+                //todm: automate this list
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
                 { src:"config-functions.js" },
@@ -33,11 +33,11 @@
             ],
             "contents-list" :
             [
-                "../lemma4/txt/latin.txt",
-                "../lemma4/txt/cohen.txt",
-                "../lemma4/txt/video.txt",
+                'txt/latin.txt',
+                'txt/english.txt',
             ],
-
+            //optional additional reference html
+            referencesForAllLemmaEssays : '',
         };
     }
 

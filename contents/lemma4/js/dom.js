@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, fapp, fconf, sDomN, ssF, stdMod, amode, }
+    var { sn, $$, fapp, fconf, sDomF, sDomN, ssF, stdMod, amode, }
         = window.b$l.apptree({ setModule, });
     var stdL2   = sn('stdL2', fapp );
     var gui     = sn('gui', stdL2 );
@@ -22,7 +22,7 @@
     }
 
 
-    function constructsCurve8Area(dr, ix)
+    function constructsCurve8Area(dr)
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
         dr.curve_pre$ = $$.cNS( 'polyline' )
@@ -33,9 +33,16 @@
             .aNS( 'class', "outline-cls" )
             .css( 'stroke', 'red' )
             .to(svg);
+
+        //Generate curve name using letters from input datareg
+        const {ctrlPtFirst, curveMiddle, ctrlPtLast} = dr.pointLabels;
+        const curveName = ctrlPtFirst + curveMiddle + ctrlPtLast;
+        const lowname = sDomF.topicIdUpperCase_2_underscore(curveName);
         dr.curve_middle$ = $$.cNS( 'polyline' )
-            .aNS( 'class', "tp-figure tp-curve figure outline-cls tostroke" )
+            .aNS( 'class', `tp-${lowname} tp-figure tp-curve figure` +
+                ` outline-cls tostroke` )
             .to(svg);
+
         dr.figureInternalArea$ = $$.cNS( 'polyline' )
             .aNS( 'class', "tp-figure-area tofill hidden tohidden" )
             .to(svg);
@@ -50,7 +57,7 @@
         //====================================================================
         // //\\ paints preliminary elements
         //====================================================================
-        //creates "shallow axis line"
+        //creates "shallow axis line" (line that extends entire base of figure)
         dr.baseAxis = $$.cNS( 'line' )
             .aNS( 'class', "tp-figure tp-base figure outline-cls tostroke" )
             .to(svg)

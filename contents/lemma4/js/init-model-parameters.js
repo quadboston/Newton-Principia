@@ -57,11 +57,10 @@
         }
 
         // dom z-order patch
-        // haff( ssF, 'continue_create_8_prepopulate_svg' );
-        [stdL2.datareg, stdL2.datareg2].forEach((dr, ix) => {
-            ssF.continue_create_8_prepopulate_svg(dr);//TEMP
+        [stdL2.datareg, stdL2.datareg2].forEach((dr) => {
+            ssF.continue_create_8_prepopulate_svg(dr);
         });
-        
+
         //----------------------------------------------
         // //\\ fits lemma to modern framework
         // //\\ trick
@@ -87,12 +86,12 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        [stdL2.datareg, stdL2.datareg2].forEach((dr, ix) => {
+        [stdL2.datareg, stdL2.datareg2].forEach((dr) => {
             guicon.constructsWidestRect(dr);
             guicon.constructsRects_tillExtraOffset_parlessDom(dr);
             
             //numberless:
-            guicon.constructsCurve8Area(dr, ix); //do on top of ancestors
+            guicon.constructsCurve8Area(dr); //do on top of ancestors
 
             guicon.constructBasePts_domParless(dr, dr.basePts);
             

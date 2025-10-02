@@ -1,13 +1,8 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, $$, svgNS,
-        fapp, fconf, sconf,
-        sDomF,
-        stdMod,
-    } = window.b$l.apptree({
-        setModule,
-    });
+        sn, $$, svgNS, fapp, fconf, sconf, sDomF, stdMod, }
+        = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
     var guicon              = sn('guiConstruct', gui );
@@ -39,9 +34,20 @@
     function constructsRects_tillExtraOffset_parlessDom(dr)
     {
         //this is just an empty list
+        //TEMP Should only be needed by L2/3
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
 
-        makes_rects( dr.InscrRects, "tp-inscribed-rectangles inscribed");
+        //Generate figure name using letters from input datareg
+        const labels = dr.pointLabels;
+        const {ctrlPtFirst, curveMiddle, ctrlPtLast, basePtFirst} = labels;
+        const figureName = basePtFirst + ctrlPtFirst + curveMiddle + ctrlPtLast;
+        const lowname = sDomF.topicIdUpperCase_2_underscore(figureName);
+        makes_rects(dr.InscrRects,
+            `tp-inscribed-rectangles-${lowname} inscribed`,
+            `tp-inscribed-rectangle-${lowname}-`
+        );
+
+        //TEMP Should only be needed by L2/3
         makes_rects( dr.differenceRects, "tp-difference difference");
         /*
         $$.$(dr.differenceRects.list[0]).addClass( 'tp-a--_k--b--l' );
@@ -53,7 +59,7 @@
     //listWrap can hold an empt arry
     //reserves "empty junk" and includes
     //cells 0,...,listWrap.offset-1 there.
-    function makes_rects( listWrap, classStyle )
+    function makes_rects( listWrap, classStyle, classPrefixSingle = null )
     {
         classStyle += ' rect tofill';
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
@@ -61,8 +67,12 @@
         let len = BASE_MAX_NUM+listWrap.offset;
         for (var i=0; i<len; i++){
             //"makes an empty junk"
-            //Really a polygon so it can be transformed
-            list.push( makeSType( "polygon", classStyle ) );
+            //Class for individual ones if applicable
+            let classSingle = "";
+            if (classPrefixSingle)
+                classSingle = classPrefixSingle + i.toString() + " ";
+            //A polygon (rather than "rect") so it can be transformed
+            list.push( makeSType( "polygon", classSingle + classStyle ) );
         }
     }
     //======================================================

@@ -93,6 +93,8 @@
         //given parameters of the claim or proof
         fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
         fixedColors.givenArea   = [...fixedColors.given, 1];
+        fixedColors.givenOnlyVisibleWhenHighlighted  
+            = [...fixedColors.given, 0, 1],
 
         //relates to moving body, to an orbit
         fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
@@ -112,8 +114,9 @@
         //of a proof
         fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
         fixedColors.proofArea   = [...fixedColors.proof, 1];
-        fixedColors.proofHidden = [0, 0, 255, 0.05]; //P17 (in P12 sconf)
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
+        fixedColors.resultOnlyVisibleWhenHighlighted
+            = [...fixedColors.result, 0, 1];
 
         //alert, invalid user actions
         fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
@@ -151,7 +154,7 @@
 
 
 
-        //From L2, L3
+        //From L2, L3, L4
         fixedColors.difference  = [150, 50, 0, 0, 0.64];
         fixedColors.base        = rgbToArray("rgb(0, 150, 0)");
         fixedColors.curve       = rgbToArray("rgb(0, 150, 0)");
@@ -165,6 +168,8 @@
 
         fixedColors["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
         fixedColors["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+
+        fixedColors.widths                      = [150, 0, 150, 0, 0.64],
 
         fixedColors.widestRectangular           = [0, 0, 150, 0.28, 0.49],
         fixedColors.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
@@ -287,14 +292,13 @@
             // //\\ moved to site conf from expand-conf.js
             //---------------------------------------------------------------
             default_tp_stroke_width     : 10,
-            defaultLineWidth            : 2,
             //---------------------------------------------------------------
             // \\// moved to site conf from expand-conf.js
             //***************************************************
             // \\// TOPIC COLORS AND SHAPES
             //***************************************************
                 
-                
+             PATH_WIDTH : '2',   
                 
                 
             //***************************************************

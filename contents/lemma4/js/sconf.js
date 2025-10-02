@@ -198,23 +198,56 @@
         const {
             given,
             difference,
-            base,
-            curve,
+            //TEMP
+            // base,
+            // curve,
             figure,
+            widths,
 
             widestRectangular,
             widestRectangularHiddenStart,
         } = fixedColors;
 
 
+        //TEMP Given that many of the above are the same "figure" color, it
+        //would probably make more sense to only have the "figure" color above
+        //and in the global color constants file.  Then set the others
+        //(eg. base, curve) below to the "figure" color.  Since those are
+        //shared with L2/3, it would probably be best make this change at the
+        //same time as L2/3.
         const predT =
         {
             given,
             difference,
-            base,
-            curve,
-
             figure,
+
+            //For a line along the base of the figure...
+            //-L2/3 uses it for the bottom of the figure, because line "AE"
+            // doesn't extend the entire width when there are many bases.
+            //-L4 uses it so parallelogram widths can be highlighted, and uses
+            // line "AE" and "PT" for the bottom of the figure.
+            "base" : fconf.sappId.indexOf('lemma4')===0 ? widths : figure,
+
+            curve   : figure, //TEMP Probably only really needed for L2/3
+            //The figure curves (so they can be highlighted separately)
+            'acE'   : figure,
+            'prT'   : figure,
+
+            //For highlighting the data table
+            'figuresRatio'  : figure,
+            'parallelogramsRatio'   : fixedColors["inscribed-rectangles"],
+
+            //Individual parallelograms (for highlighting)
+            "inscribed-rectangle-AacE-1" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangle-PprT-1" : fixedColors["inscribed-rectangles"],
+
+            //For each figure so they can be highlighted separately
+            "inscribed-rectangles-AacE" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangles-PprT" : fixedColors["inscribed-rectangles"],
+
+
+
+            //TEMP The following probably aren't needed for L4
             "figure-area"               : fixedColors["figure-area"],
             "figure-area-txt"           : fixedColors["figure-area-txt"],
 
@@ -328,32 +361,6 @@
         //=====================================
         var originalPoints =
         {
-            // B : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -45,
-            //     initialR    : 1.6,
-            // },
-
-            // K : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -145,
-            //     letterRotRadius : 40,
-            //     initialR    : 1.6,
-            // },
-
-            // L : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -145,
-            //     initialR    : 1.6,
-            // },
-
-            // M : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -145,
-            //     letterRotRadius : 40,
-            //     initialR    : 1.6,
-            // },
-
             a : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -377,7 +384,6 @@
                 letterAngle : 45,
                 initialR    : 1.6,
             },
-
 
 
             p : {
@@ -404,72 +410,6 @@
                 initialR    : 1.6,
             },
 
-            // F : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-
-            // f : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 90,
-            //     initialR    : 1.6,
-            // },
-
-            // C : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -45,
-            //     initialR    : 1.6,
-            // },
-
-            // D : {
-            //     pcolor      : predT.given,
-            //     letterAngle : -45,
-            //     initialR    : 1.6,
-            // },
-
-            // l : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 135,
-            //     initialR    : 1.6,
-            // },
-
-            // b : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-
-            // d : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-            // m : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-
-            // n : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-
-            // o : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            // },
-
-            // e : {
-            //     pcolor      : predT.given,
-            //     letterAngle : 45,
-            //     initialR    : 1.6,
-            //     hideCaption  : true,
-            // },
-
             // //TEMP For testing to see if other dragging code can be used
             // S : {
             //     pos: [20, 20],
@@ -481,26 +421,18 @@
             // },
         };
 
-        //AB, BC, CD
         var linesArray =
         [
-            // { AB : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { BC : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { CD : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { AE : {
-            //             pcolor : predT.given,
-            //        },
-            // },
+            { AE : {
+                        pcolor : predT.figure,
+                   },
+            },
             { Aa : {
+                        pcolor : predT.figure,
+                   },
+            },
+
+            { PT : {
                         pcolor : predT.figure,
                    },
             },
@@ -508,92 +440,6 @@
                         pcolor : predT.figure,
                    },
             },
-
-            // { AK : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { LB : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { MC : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // // //\\ top rect sides
-            // //lower
-            // { cL : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { dM : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // //circ, right rect sides
-            // // { lB : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { mC : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { nD : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { oE : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-
-
-            // //upper
-            // // { od : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { nc : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { mb : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // { la : {
-            // //             pcolor : predT.given,
-            // //        },
-            // // },
-            // // \\// top rect sides
-
-
-            // { Bb : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { Cc : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { Dd : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-            // { AF : {
-            //             pcolor : predT.given,
-            //        },
-            // },
-
-            // { Kb : {
-            //             pcolor : predT.given,
-            //             //undisplayAlways : true,
-            //             //undisplay : true,
-            //        },
-            // },
-
         ];
 
         nspaste( sconf, {
