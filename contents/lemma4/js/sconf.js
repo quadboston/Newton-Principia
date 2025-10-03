@@ -316,8 +316,7 @@
             FINEPTS_RADIUS  : 10,
             MOVABLE_BASE_RADIUS : 3,
             CTRL_RADIUS     : 3,
-            //TEMP Maybe mention more about what this does and why it's a bit
-            //larger?
+            //Minimum distance between base handles
 	        BASE_POINTS_REPELLING_DISTANCE : 10,
 
             //:d8d

@@ -1,22 +1,13 @@
 // //\\// application-level d8d module
 ( function () {
-    var {
-        sn, mat, dpdec, d8dp, fmethods, globalCss,
-        fapp, sconf, sDomN, sDomF, ssF,
-        fconf,
-        amode, stdMod,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    var { sn, mat, dpdec, d8dp, fmethods, globalCss, fapp, sconf, sDomN, sDomF,
+        ssF, fconf, amode, stdMod, } = window.b$l.apptree({ setModule, });
     var stdL2 = sn('stdL2', fapp );
-    // var datareg = sn('datareg', stdL2 );
     return;
 
 
     function setModule()
     {
-        // var datareg     = sn('datareg', stdL2 );
-        //var dr          = sn('datareg', stdL2 );
         var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate',gui);
         var appstate    = sn('appstate', stdL2 );
@@ -317,23 +308,27 @@
                                 
             } else if(index > 0 && index < sconf.basesN) {
                 //Base points
-                //TEMP There is an issue where clicking base handles when the
-                //number of bases is a bit larger (eg. 42) causes rectangles
-                //to get reversed.  Would this area be where the fix is needed?
-                //TEMP Also think about how addsNewBases_8_convertWidths
-                //affects this as well.
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;
                 var lst         = dr.basePts.list;
                 var itemM       = lst[index];   //middle
                 var itemL       = lst[index-1]; //left
                 var itemR       = lst[index+1]; //right
-                newX            = Math.max( newX, itemL.x + PAD );
-                newX            = Math.min( newX, itemR.x - PAD );
+
+                const minX = itemL.x + PAD;
+                const maxX = itemR.x - PAD;
+
+                const xConstrained = Math.min(Math.max(newX, minX), maxX);
+                //Ensure the constrained value is in bounds before moving the
+                //handle.  Otherwise when the number of bases is large, it's
+                //possible that it can be out of bounds, which can cause the
+                //rectangles to get reversed.
+                if (xConstrained < minX || xConstrained > maxX)
+                    return;
                 // \\// limitifies newX by dom-neighbors
 
                 // //\\ applies newX to js-model
-                itemM.x = newX;
+                itemM.x = xConstrained;
                 //TEMP Really only for L2/L3
                 // if( itemM.index < 4 )
                 //   stdMod.syncPoint(dr, item);
