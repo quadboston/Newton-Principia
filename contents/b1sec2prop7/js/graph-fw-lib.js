@@ -1,5 +1,5 @@
 ( function() {
-    var { $$, sDomF, stdMod }
+    var { $$, rg, sDomF, stdMod, ssD }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
@@ -136,8 +136,21 @@
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
 
+		function magnitude(a, b) {
+			const x0 = a.pos[0];
+			const x1 = b.pos[0];
+			const y0 = a.pos[1];
+			const y1 = b.pos[1];
+			const x = x1 - x0;
+			const y = y1 - y0;
+			return Math.sqrt(x*x + y*y);
+		}
+
         function plotLabels_2_plotsPars( colorThreadArray )
         {
+			ssD.lengthQR = magnitude(rg.Q, rg.R);
+			ssD.lengthQT = magnitude(rg.Q, rg.T);
+			ssD.ratio = ssD.lengthQT**2 / ssD.lengthQR;
             return [
                 {
                     fraqX : 0.01,

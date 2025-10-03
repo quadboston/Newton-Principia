@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ssF, rg, stdMod
+        ssF, rg, stdMod, ssD
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -27,7 +27,10 @@
         ////**********************************************************************************
 
         var legendScriptParsed = [
-            [['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']]
+            [['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']],
+			[['QR', 'QT', 'ssD.lengthQT.toFixed(4)']],
+			[['QR', 'QR', 'ssD.lengthQR.toFixed(4)']],
+			[['QR', 'QT² / QR', 'ssD.ratio.toFixed(4)']],
         ];
 
         var rowsCount       = legendScriptParsed.length;
