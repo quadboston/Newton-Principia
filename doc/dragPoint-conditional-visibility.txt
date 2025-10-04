@@ -1,0 +1,22 @@
+
+
+sconf.js
+    P : {
+        draggableX  : true,
+        draggableY  : true,
+        conditionalDrag : 'sappId--b1sec2prop10',
+    },
+
+    Q : {
+        draggableX  : true,
+        draggableY  : true,
+        cssClass: 'logic_phase--proof',
+        conditionalDrag : 'logic_phase--proof' +
+                          ' aspect--addendum subessay--corollary2',
+
+functionality is coded in subessay-amode-2-lemma.js
+
+This switch became redundant: haz( pointWrap, 'd8d_find_is_LOCKED'
+This variable should be gradually removed from contents/ lemmas and then from the src core.
+
+

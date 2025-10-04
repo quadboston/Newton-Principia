@@ -1,0 +1,35 @@
+
+ssssssssssssssssssssssssssssss
+Thank you for rasing the question. They wake mind up.
+
+"If f_ultimate is the same"
+
+No. Not the same. The proportionality coefficient is M^2, (square of angular momentum).
+
+Formulas (i.e. Ms ) all are different, depending on which measure of unit is chosen for time. 1/r^2 is for specific choice of this unit.
+
+(And we just ignore mass for it will be introduced in the Book later.)
+
+I must write detailed addendum following these questions.
+
+ssssssssssssssssssssssssssssss
+PS: correcting error: was: ½M², correct: 2M².
+
+We can consider 2 ultimate mathematical functions:
+
+By the Book's numerical method: fₚ = lim QR / SP² x QT², 
+By the modern numerical method: fₛ = dr²/dt² = 𝜎 (M/r)²/ρ⟂,
+https://landkey.net/z/bs/nl9/demo/addk/addendum.prod.html?conf=sappId=addd-kepler-task
+
+This is already discussed here (spring 2022?):
+https://landkey.net/z/bs/nl9/demo/addk/addendum.prod.html?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=addendum,subessayId=corollary1
+
+In less rigit language:
+
+QR ~= ½fₛ(∆t)², (Taylor sequence)
+fₛ ~= 2 QR/(∆t)²,
+∆S/∆t = ½M (Kepler's area law),
+fₛ ~= 2 QR/(∆S)²(½M)² ~= ½M² QR/(SP² x QT²/4),
+fₛ = 2M² fₚ 
+
+Proportionality coefficient is 2M².

@@ -51,9 +51,7 @@
 
         rg.S.pos[0] = 0;
         rg.S.pos[1] = 0;
-
         rg.tangentCircle.undisplay = subessay !== 'another-solution';
-        rg.Q.hideD8Dpoint = logic_phase !== 'proof';
 
         //=====================================================
         // //\\ alternates for addendum
