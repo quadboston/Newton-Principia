@@ -29,7 +29,6 @@
 
             const e = op.eccentricity;      // >0
             const l = op.latus;             // latus rectum
-            const isHyperbola = (op.conicSignum === -1);
 
             // Local frame: transverse axis points from focus S to center C
             const ux0 = cx - sx, uy0 = cy - sy;
@@ -51,15 +50,6 @@
                 const delta = theta - prevTheta;
                 const k = Math.round(delta / TWO_PI);
                 theta -= k * TWO_PI;
-            }
-
-            // Hyperbola: restrict to valid branch angles so r stays positive
-            if (isHyperbola) {
-                // Valid angles satisfy 1 + e cos(theta) > 0  ⇒  cos(theta) > -1/e
-                const thetaMax = Math.acos(-1 / e); // open angle to asymptote
-                const EPS = 1e-6;
-                if (theta >  thetaMax - EPS) theta =  thetaMax - EPS;
-                if (theta < -thetaMax + EPS) theta = -thetaMax + EPS;
             }
 
             // Polar radius from the focus (works for ellipse and hyperbola)
@@ -286,7 +276,7 @@
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
-            op.mainAxisAngle  = op.PparQ_initial - fi;
+            op.mainAxisAngle  = op.PparQ_initial - rg.P.q;
 
             stdMod.establishesEccentricity( e, null );
             stdMod.model8media_upcreate();
