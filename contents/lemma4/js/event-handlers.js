@@ -76,26 +76,35 @@
             //--------------------------------------------------------
             // //\\ attaches ownself to resize manager
             //--------------------------------------------------------
-            var hazR = haz( fmethods, 'resizeHappened' );
-            fmethods.resizeHappened  = hazR ?
-                    () => {
-                        hazR();
-                        doFitScene();
-                    }
-                :
-                    doFitScene
-                ;
+            //TEMP Should only be needed by L2/3, may end up getting removed
+            //if code below is combined.
+            // var hazR = haz( fmethods, 'resizeHappened' );
+            // fmethods.resizeHappened  = hazR ?
+            //         () => {
+            //             hazR();
+            //             doFitScene();
+            //         }
+            //     :
+            //         doFitScene
+            //     ;
             //--------------------------------------------------------
             // \\// attaches ownself to resize manager
             //--------------------------------------------------------
-            return;
+            //return;
 
-            function doFitScene()
-            {
-                sDomN.sliderGroup$.css( 'top',
-                    ( stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp ).toFixed() + 'px'
-                );
-            }
+            //TEMP Should only be needed by L2/3, may end up getting combined
+            //with generic code used by L4 in
+            //"src\base\resize8slide\finish-resize8upcreate.js".
+            //Note this top calculation was called after the code in the file
+            //mentioned above, meaning it overrode the top value set there.
+            //For the generic code used by L4, this same calculation was moved
+            //into that file.
+            // function doFitScene()
+            // {
+            //     sDomN.sliderGroup$.css( 'top',
+            //         ( stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp ).toFixed() + 'px'
+            //     );
+            // }
         };
 
 

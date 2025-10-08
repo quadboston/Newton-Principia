@@ -26,7 +26,7 @@
 
     //Left figure
     Object.assign(dr, initDataReg({
-        xLeft  : 80,
+        xLeft  : 57,
         width  : 258,
         height : 282,
         basePtDraggersEnabled : true,
@@ -42,7 +42,7 @@
 
     //Right figure
     Object.assign(dr2, initDataReg({
-        xLeft  : 383,
+        xLeft  : 359,
         width  : 258,
         height : 252,
         basePtDraggersEnabled : false,
@@ -170,8 +170,8 @@
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
-        var pictureWidth = 699; //282;
-        var pictureHeight = 375;//290;
+        var pictureWidth = 676;
+        var pictureHeight = 375;
         var modorInPicX = 31.5;
         var modorInPicY = 29;
         //.set it from graph editor
@@ -193,6 +193,15 @@
         sconf.mediaMoverPointDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
         sconf.enableTools     = !true;
+
+        //Used to calculate slider width (left side of left figure, to right
+        //side of right figure).
+        const xSliderL = dr.ctrlPts.positions[0].x;
+        const positionsR = dr2.ctrlPts.positions;
+        const xSliderR = positionsR[positionsR.length - 1].x;
+        const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
+
+
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -300,6 +309,8 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
+            BASES_SLIDER_WIDTH_FACTOR,
+
             //todm ... this still makes?? a gap between svg and slider
             SLIDERS_LEGEND_HEIGHT : SLIDERS_LEGEND_HEIGHT,
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,

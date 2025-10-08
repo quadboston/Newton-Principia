@@ -306,15 +306,6 @@
             var simSceneW = proposedRightW; // bgImgOffset * 2 + bgImgW;
             var svgSceneW = simSceneW;
         }
-
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
-            fconf.sappId === 'lemma4') {
-            sliderGroup$
-                .css( 'top', svgSceneH.toFixed() + 'px' )
-                .css( 'width', '300px' ) //todm patch
-                .css( 'left', (( simSceneW - 300 ) / 2 ).toFixed() + 'px' )
-                ;
-        }
         //===============================================
         // \\// phase 4. allocates widths and heights
         //===============================================
@@ -355,6 +346,27 @@
         //===============================================
         // //\\ phase 5. finalizes widths and heights
         //===============================================
+        //If needed this could be updated/replaced with the generic part below
+        if(fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3') {
+            sliderGroup$
+                .css( 'top', svgSceneH.toFixed() + 'px' )
+                .css( 'width', '120px' ) //todm patch
+                .css( 'left', (( simSceneW - 120 ) / 2 ).toFixed() + 'px' )
+                ;
+        }
+        //Placed after "exports sizes" section to ensure slider width
+        //calculation has updated values.
+        if (sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+            const sliderWidth = calculateSliderWidth();
+            sliderGroup$
+                .css( 'top',
+                    (bgImgW * stdMod.simSceSvg_narrowestAsp).toFixed() + 'px')
+                .css( 'width', `${sliderWidth}px` )
+                .css( 'left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
+                ;
+        }
+
+
         makes_svgViewBox();
         doesTopContainersSizing();
 
@@ -403,13 +415,34 @@
         stdMod.svgVB_H      = sconf.innerMediaHeight;
         stdMod.svgVB_offsX  = 0;
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
-            fconf.sappId === 'lemma4' ) {
+
+        //If needed this could be updated/replaced with the generic part below
+        if(fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3') {
             sDomN.sliderGroup$
                 .css( 'display', 'inline-block' )
                 .css( 'position', 'static' )
                 ;
         }
+        if (sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+            //Ensure the width gets updated as the window changes size
+            const sliderWidth = calculateSliderWidth();
+            sDomN.sliderGroup$
+                .css( 'display', 'inline-block' )
+                //'relative' rather than 'static' so the z-index is enabled for
+                //slider-group in mobile mode.  Otherwise an issue can occur
+                //where the slider can't be dragged in mobile mode, eg. for L4.
+                //When "overlay original diagrams" mode is disabled (the
+                //default), and an empty image gets displayed instead of
+                //the background image, and it's position and dimensions are
+                //such that it can be on top of the slider.
+                .css( 'position', 'relative' )
+                .css( 'top', '0px' )
+                .css( 'left', '0px' )
+                .css( 'width', `${sliderWidth}px` );
+                ;
+        }
+
+
         makes_svgViewBox();
         doesTopContainersSizing();
         wrkwin.buildsMobile({});
@@ -457,6 +490,15 @@
     function gets_LEGEND_FIXED_FRACTION()
     {
         return false;
+    }
+
+    function calculateSliderWidth() {
+        //Uses bgImgW rather than eg. simSceneW.  This ensures the slider
+        //always lines up with the same parts of the figures.  If simSceneW is
+        //used, it doesn't take into account additional padding that's added
+        //to the model area sometimes.  This leads to the width being wrong
+        //sometimes.
+        return stdMod.bgImgW * sconf.BASES_SLIDER_WIDTH_FACTOR;
     }
 }) ();
 
