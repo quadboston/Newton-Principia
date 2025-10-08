@@ -30,7 +30,7 @@
             [['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']],
 			[['QR', 'QT', 'ssD.lengthQT.toFixed(4)']],
 			[['QR', 'QR', 'ssD.lengthQR.toFixed(4)']],
-			[['QR', 'QT² / QR', 'ssD.ratio.toFixed(4)']],
+			[['QR', 'QT² * SP² / QR', 'ssD.ratio.toFixed(4)']],
         ];
 
         var rowsCount       = legendScriptParsed.length;

@@ -1,3 +1,5 @@
+// In lite-app used only in Prop12,
+
 // Contains two graph framework creators which
 // are wraps over (possibly low level) fw creator in bsl
 // The seacond one is more object oriented, lets create

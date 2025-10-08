@@ -34,7 +34,7 @@
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
-        var displMax = 0;
+        var displMax = null;
         var sagittaMax = 0;
         var instantForceMax = 0;
         var speedMax = 0;
@@ -58,6 +58,9 @@
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 if( TIME ){
                     sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                }
+                if( displMax === null ) {
+                    displMax = Math.abs( displacement );
                 }
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
                 displMax = Math.max( Math.abs( displacement ), displMax );

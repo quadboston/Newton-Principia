@@ -150,7 +150,8 @@
         {
 			ssD.lengthQR = magnitude(rg.Q, rg.R);
 			ssD.lengthQT = magnitude(rg.Q, rg.T);
-			ssD.ratio = ssD.lengthQT**2 / ssD.lengthQR;
+            ssD.lengthSP = magnitude(rg.S, rg.P);
+			ssD.ratio = (ssD.lengthQT*ssD.lengthSP)**2 / ssD.lengthQR;
             return [
                 {
                     fraqX : 0.01,
