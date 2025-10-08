@@ -73,8 +73,6 @@
 
 
         function setPoint(dr, pointWrap, pwix) {
-            var nospinner = false;
-            var decorator;
             let orientation = false;
             pointWrap.datareg = dr;
 
@@ -99,19 +97,10 @@
                 orientation = 'rotate';
             }
 
-            // if( typeof pointWrap.x === 'number' ) {
-            //TEMP To avoid adding the arrows that appear when hovering the
-            //mouse, for the right most base point that hasn't been added yet.
-            if( pointWrap.type !== 'base' || pwix < sconf.basesN) {
-                decorator = Update_decPoint( pointWrap )
-                var achieved = { x:pointWrap.x, y:pointWrap.y };
-            } else {
-                ////avoids excessive nospinner assignment to idle points
-                ////which are not yet ready
-                ////one must code "decorator" for new points
-                ////when they are created
-                nospinner = true;
-            }
+            //Always add the arrows that appear when hovering the mouse
+            var nospinner = false;
+            var decorator = Update_decPoint( pointWrap )
+            var achieved = { x:pointWrap.x, y:pointWrap.y };
 
             ///small test-case
             //if( pointWrap.spinnerClsId === "base-2" ) {
@@ -140,6 +129,16 @@
                     );
                     decPoint.style.left = dompos[0] + 'px';
                     decPoint.style.top = dompos[1] + 'px';
+                }
+
+                //Hide/show the arrows for the base points depending on the
+                //number of bases selected.  Without this arrows are visible
+                //for base handles that aren't shown, and appear at point "E"
+                //and sometimes the upper left corner of the model area.
+                if(pw.type === 'base') {
+                    const index = pw.index;
+                    const undisplay = !(index > 0 && index < sconf.basesN);
+                    decPoint.style.display = undisplay ? 'none' : 'block';
                 }
             });
         }
