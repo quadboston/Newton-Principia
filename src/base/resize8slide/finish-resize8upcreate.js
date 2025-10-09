@@ -1,12 +1,7 @@
 ( function() {
-    var {
-        ns, $$, fmethods, haff, haz, has, nspaste, eachprop,
-        wrkwin,
-        fconf, sconf, ssD, ssF, sDomN, dividorFractions,
-        stdMod, amode,
-    } = window.b$l.apptree({
-        sDomNExportList :
-        {
+    var { ns, $$, fmethods, haff, haz, has, nspaste, eachprop, wrkwin, fconf,
+        sconf, ssD, ssF, sDomN, dividorFractions, stdMod, amode, }
+        = window.b$l.apptree({ sDomNExportList : {
             bgImgOffset : 0,    //fake initial value before resize ran
             bgImgW : 1000,      //fake initial value before resize ran
         },
@@ -29,13 +24,6 @@
     wrkwin.start8finish_media8Ess8Legend_resize__upcreate =
            start8finish_media8Ess8Legend_resize__upcreate;
     return;
-
-
-
-
-
-
-
 
 
     ///=============================================================================
@@ -98,17 +86,15 @@
                             sDomN.pageNavTopBar$.box().height : 0
                           );
         ///-------------------------------------------
-        ///slider group patch for lemmas 2 and 3
+        ///slider group patch for lemmas 2, 3, 4
         ///-------------------------------------------
-        var lemma2_slidersH = 0;
-
-        // for lemmas 2 and 3, plus variations on lemma 2
-        if (fconf.sappId === 'lemma2' || fconf.sappId.indexOf('lemma2-') === 0 || fconf.sappId === 'lemma3' ||
-            fconf.sappId === 'lemma4') {
-            var sliderGroup$ = sDomN.sliderGroup$;
-            var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
-            lemma2_slidersH += 35; //nicer
-            sDomN.sliderGroup$.css('position', 'absolute');
+        var bases_slidersH = 0;
+        var sliderGroup$ = sDomN.sliderGroup$;
+        if (sliderGroup$) {
+            var bases_slidersH = sliderGroup$() ?
+                sliderGroup$.box().height : 0;
+            bases_slidersH += 35; //nicer
+            sliderGroup$.css('position', 'absolute');
         }
 
         //-------------------------------------------
@@ -135,8 +121,7 @@
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
             legendHeight += 20; //todm: patch: adds gap at bottom page
-            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ||
-                fconf.sappId === 'lemma4')
+            if(sliderGroup$)
                 legendHeight += 20; //todm: patch: adds gap at bottom page
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
@@ -223,7 +208,7 @@
         // //\\ phase 4. allocates widths and heights
         //===============================================
         var simSceneH = SSceneH
-            - lemma2_slidersH
+            - bases_slidersH
 
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
@@ -346,17 +331,9 @@
         //===============================================
         // //\\ phase 5. finalizes widths and heights
         //===============================================
-        //If needed this could be updated/replaced with the generic part below
-        if(fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3') {
-            sliderGroup$
-                .css( 'top', svgSceneH.toFixed() + 'px' )
-                .css( 'width', '120px' ) //todm patch
-                .css( 'left', (( simSceneW - 120 ) / 2 ).toFixed() + 'px' )
-                ;
-        }
         //Placed after "exports sizes" section to ensure slider width
         //calculation has updated values.
-        if (sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+        if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
             sliderGroup$
                 .css( 'top',
@@ -384,7 +361,7 @@
             legendWidth,
             legendHeight,
             legendMargin,
-            lemma2_slidersH,
+            bases_slidersH,
         });
         //===============================================
         // \\// phase 5. finalizes widths and heights
@@ -416,17 +393,11 @@
         stdMod.svgVB_offsX  = 0;
 
 
-        //If needed this could be updated/replaced with the generic part below
-        if(fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3') {
-            sDomN.sliderGroup$
-                .css( 'display', 'inline-block' )
-                .css( 'position', 'static' )
-                ;
-        }
-        if (sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+        const sliderGroup$ = sDomN.sliderGroup$;
+        if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             //Ensure the width gets updated as the window changes size
             const sliderWidth = calculateSliderWidth();
-            sDomN.sliderGroup$
+            sliderGroup$
                 .css( 'display', 'inline-block' )
                 //'relative' rather than 'static' so the z-index is enabled for
                 //slider-group in mobile mode.  Otherwise an issue can occur

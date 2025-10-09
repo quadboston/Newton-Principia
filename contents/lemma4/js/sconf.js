@@ -309,6 +309,7 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
+            ADD_BASES_SLIDER : true,
             BASES_SLIDER_WIDTH_FACTOR,
 
             //todm ... this still makes?? a gap between svg and slider

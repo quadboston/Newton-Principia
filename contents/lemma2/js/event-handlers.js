@@ -1,18 +1,8 @@
 ( function () {
-    var {
-        ns, sn, $$, haz,
-        fapp, sconf, fmethods, sDomN, ssF,
-        stdMod,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    var { ns, sn, $$, haz, fapp, sconf, fmethods, sDomN, ssF, stdMod, }
+        = window.b$l.apptree({ setModule, });
     var stdL2 = sn('stdL2', fapp );
     return;
-
-
-
-
-
 
 
     function setModule()
@@ -78,32 +68,6 @@
                 ssF.media_upcreate_generic();
             }
             // \\// copy-pasted from gui-art
-
-
-
-            //--------------------------------------------------------
-            // //\\ attaches ownself to resize manager
-            //--------------------------------------------------------
-            var hazR = haz( fmethods, 'resizeHappened' );
-            fmethods.resizeHappened  = hazR ?
-                    () => {
-                        hazR();
-                        doFitScene();
-                    }
-                :
-                    doFitScene
-                ;
-            //--------------------------------------------------------
-            // \\// attaches ownself to resize manager
-            //--------------------------------------------------------
-            return;
-
-            function doFitScene()
-            {
-                sDomN.sliderGroup$.css( 'top',
-                    ( stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp ).toFixed() + 'px'
-                );
-            }
         };
 
 
