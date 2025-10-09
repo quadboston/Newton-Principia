@@ -16,19 +16,10 @@
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
-        // State for continuity across a drag
-        let prevTheta = null;
-
-        rg.P.onDragEnd = () => {
-            prevTheta = null;
-        };
 
         rg.P.acceptPos = newPos => {
             const sx = rg.S.pos[0], sy = rg.S.pos[1];
             const cx = rg.C.pos[0], cy = rg.C.pos[1];
-
-            const e = op.eccentricity;      // >0
-            const l = op.latus;             // latus rectum
 
             // Local frame: transverse axis points from focus S to center C
             const ux0 = cx - sx, uy0 = cy - sy;
@@ -43,28 +34,8 @@
 
             // Angle in the local frame
             let theta = Math.atan2(m_v, m_u);
-
-            // Unwrap to keep continuity across ±π
-            if (prevTheta !== null) {
-                const TWO_PI = 2 * Math.PI;
-                const delta = theta - prevTheta;
-                const k = Math.round(delta / TWO_PI);
-                theta -= k * TWO_PI;
-            }
-
-            // Polar radius from the focus (works for ellipse and hyperbola)
-            const r = l / (1 + e * Math.cos(theta));
-
-            // Map back to world coordinates using the local frame
-            const cosT = Math.cos(theta), sinT = Math.sin(theta);
-            const x = sx + r * (cosT * ux + sinT * vx);
-            const y = sy + r * (cosT * uy + sinT * vy);
-
-            // Store for continuity
-            prevTheta = theta;
             rg.P.q = theta;
 
-            nspaste(rg.P.pos, [x, y]);
             return true;
         };
         //=========================================================================
@@ -199,9 +170,7 @@
         // //\\  body speed slider vb (R)
         //=========================================================================
         rg.vb.processOwnDownEvent = function() {
-            const pp                    = rg.P.pos;
-            sData.vbpos                 = nspaste( [], rg.vb.pos );
-            var dShift                  = mat.sm( 1, rg.vb.pos, -1, pp );
+            var dShift                  = mat.sm( 1, rg.vb.pos, -1, rg.P.pos );
             sData.dShift                = Math.sqrt( 
                                             dShift[0]*dShift[0] + 
                                             dShift[1]*dShift[1] 
@@ -209,19 +178,13 @@
             sData.stashedOmega          = op.om;
             sData.stashedCosOmega       = op.cosOmega;
             sData.Kepler_v_stashed      = op.Kepler_v;
-            sData.stashedR              = rg.P.abs;
             sData.stashedLatus4slider   = op.latus;
         };
 
         rg.vb.acceptPos = ( newPos, dragMove ) => {
             //console.log('moving vb');
             var { logic_phase, aspect, subessay } = amode;
-            const pp = rg.P.pos;
-            let np = nspaste( [], [
-                dragMove[0] + sData.vbpos[0],
-                -dragMove[1] + sData.vbpos[1]
-            ]);
-            var dShift = mat.sm( 1, np, -1, pp );
+            var dShift = mat.sm( 1, newPos, -1, rg.P.pos );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             var increase = dS / sData.dShift;
             op.Kepler_v = sData.Kepler_v_stashed * increase; 
@@ -230,43 +193,24 @@
                 // can only be dragged vertically
                 var newSinOmega = sData.stashedOmega;
                 var signCosOmega = Math.sign( sData.stashedCosOmega );
+                var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega );
+                op.latus = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
             } else {
-                const sl = mat.p1_to_p2( pp, np ); //slider
-                if( sl.abs < 0.2 ) return;
+                const sl = mat.p1_to_p2( rg.P.pos, newPos ); //slider
                 let omega = mat.angleBetweenLines([
-                    [ [0,0], pp ],
+                    [ [0,0], rg.P.pos ],
                     [ [0,0], sl.vector ], 
                 ]).angle;
-
-                //--------------------------------
-                // //\\ corrects extreme values
-                //--------------------------------
-                {
-                    //excludes unsafe values
-                    let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
-                        //console.log('too close to pi')
-                        omega = Math.sign( omega ) > 0 ? LIM : -LIM;
-                    }
-                    if( Math.abs( omega ) < 0.000001 ){
-                        //console.log('too close to zero')
-                        omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
-                    }
-                }
+                
                 var newSinOmega = Math.sin( omega ); 
-                op.om               = newSinOmega;    
-                op.cosOmega         = Math.cos( omega );
+                op.om = newSinOmega;    
+                op.cosOmega = Math.cos( omega );
                 var signCosOmega = Math.sign( op.cosOmega );
-                //--------------------------------
-                // \\// corrects extreme values
-                //--------------------------------
             }
 
-            var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega );
-
-            op.latus = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
+            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
             var { e, fi, } = conics.innerPars2innerPars({
-                r   : sData.stashedR, //rg.P.abs
+                r   : rg.P.abs,
                 om  : newSinOmega,
                 lat : op.latus,
                 signCosOmega,
@@ -276,7 +220,11 @@
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
-            op.mainAxisAngle  = op.PparQ_initial - rg.P.q;
+            if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
+                op.mainAxisAngle = op.PparQ_initial - rg.P.q;
+            } else {
+                // todo
+            }
 
             stdMod.establishesEccentricity( e, null );
             stdMod.model8media_upcreate();
