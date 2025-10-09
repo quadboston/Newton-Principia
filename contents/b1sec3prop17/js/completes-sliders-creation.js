@@ -34,7 +34,8 @@
 
             // Angle in the local frame
             let theta = Math.atan2(m_v, m_u);
-            rg.P.q = theta;
+            rg.P.q = theta;  
+            if(op.conicSignum < 0) rg.P.q += Math.PI; // keeps it on correct branch 
 
             return true;
         };
