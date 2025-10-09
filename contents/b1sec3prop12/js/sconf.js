@@ -329,10 +329,7 @@
             { 'PZ' : { pcolor : body }, },
             { 'PR' : { pcolor : body, 'stroke-width' : 2, 
                 captionShiftNorm : -18, }, },
-            { 'SP' : {
-                    pcolor : body,
-                    vectorTipIx : 1 },
-            },            
+            { 'SP' : { pcolor : body },},            
             { 'B,BB' : { pcolor : orbit }, },
 
             // triangle            
@@ -354,11 +351,7 @@
             { CS : { pcolor : proof }, },
             { CH : { pcolor : proof }, },
             { PI : { pcolor : proof }, },
-            { PH : {
-                    pcolor : proof,
-                    vectorTipIx : 0,
-                },
-            },
+            { PH : { pcolor : proof, },},
             
             { QT : { pcolor : proof }, },
             { PT : { pcolor : proof }, },
