@@ -163,8 +163,8 @@
                 draggableY  : true,
             },
             LL : { // opposite of P, unlabelled
-                pcolor : orbit,
                 doPaintPname : false,
+				undisplayAlways : true,
             },
             A : {
                 pcolor : orbit,
@@ -181,8 +181,6 @@
                 pcolor : orbit,
             },            
             BB : { // opposite B
-                letterAngle : 90,
-                undisplayAlways : true,
                 doPaintPname : false,
                 pcolor : orbit,
             },
