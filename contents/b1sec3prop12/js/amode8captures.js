@@ -35,7 +35,7 @@
         ];
 
         var triangle = [
-            'G', 'D', 'K', 'F', 'v', 'E', 'x', 'R', 'H', 'I', 'T', 'O', // points
+            'G', 'D', 'K', 'F', 'v', 'E', 'x', 'R', 'H', 'I', 'T', // points
             'CA', 'CB', 'GP', 'DK', 'PF', 'Qv', 'QR', 'Px', 'Qx', // lines
             'EP', 'HI', 'EC', 'ES', 'EI', 'CS', 'CH', 'PI', 'PH',
             'PT', 'QT', 'AT', 'Pv', 'xv', 'PC', 'PE', 'Gv', 'CD',

@@ -56,10 +56,10 @@
         sconf.text_hover_width      = 1.5;
 
         // points reused in config      
-        var F = [ 492, 565 ]; //x,y of whole svg model
+        var origin = [ 492, 565 ]; //x,y of whole svg model
         sconf.diagramOrigin = [ 0, 0 ];
-        var originX_onPicture = F[0]; //for model's axis x
-        var originY_onPicture = F[1]; //for model's axis y
+        var originX_onPicture = origin[0]; //for model's axis x
+        var originY_onPicture = origin[1]; //for model's axis y
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
@@ -283,13 +283,6 @@
                 //letterAngle : 180,
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
-            },
-            O : {
-                pcolor : context,
-                caption : 'O',
-                pos: F,
-                letterAngle : 45,
-                letterRotRadius : 20,
             },
 
             L : {
