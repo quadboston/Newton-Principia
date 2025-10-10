@@ -3,9 +3,9 @@
 ## 2025-10-?? (SkyBlue Version, 0.13859)
 ### Improved
 * Proposition 12
+	* simplified diagram by not showing more than what is described for each section
 	* added missing text-diagram highlights
 	* fractions changed from linear style to stacked
-	* spurious points removed from diagram
 
 ## 2025-9-30 (PaleGreen Version, 0.13859)
 ### Improved
