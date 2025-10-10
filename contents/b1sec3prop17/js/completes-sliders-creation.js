@@ -148,6 +148,7 @@
                 if( e > 1 ) {
                     op.mainAxisAngle = -Math.PI;
                 }
+                rg.P.q = fi;
             }
 
             //rotates main axis in respect to change q,
@@ -183,12 +184,11 @@
         };
 
         rg.vb.acceptPos = ( newPos, dragMove ) => {
-            //console.log('moving vb');
+            //console.log('moving vb: ' + dragMove);
             var { logic_phase, aspect, subessay } = amode;
             var dShift = mat.sm( 1, newPos, -1, rg.P.pos );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             var increase = dS / sData.dShift;
-            op.Kepler_v = sData.Kepler_v_stashed * increase; 
 
             if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
                 // can only be dragged vertically
@@ -203,12 +203,26 @@
                     [ [0,0], sl.vector ], 
                 ]).angle;
                 
+                // corrects extreme values
+                {
+                    //excludes unsafe values
+                    let LIM = Math.PI * 0.9;
+                    if( Math.abs( omega ) > LIM ){
+                        //console.log('too close to pi')
+                        omega = Math.sign( omega ) > 0 ? LIM : -LIM;
+                    }
+                    if( Math.abs( omega ) < 0.1 ){
+                        //console.log('too close to zero')
+                        omega = Math.sign( omega ) > 0 ? 0.1 : -0.1;
+                    }
+                }
                 var newSinOmega = Math.sin( omega ); 
                 op.om = newSinOmega;    
                 op.cosOmega = Math.cos( omega );
                 var signCosOmega = Math.sign( op.cosOmega );
             }
 
+            op.Kepler_v = sData.Kepler_v_stashed * increase; 
             rg.P.abs = mat.unitVector( rg.P.pos ).abs;
             var { e, fi, } = conics.innerPars2innerPars({
                 r   : rg.P.abs,
@@ -216,15 +230,13 @@
                 lat : op.latus,
                 signCosOmega,
             });
-            rg.P.q = fi;  
+            rg.P.q = fi; // todo: if we keep old fi instead, P's angle doesn't change but it moves offscreen quickly when changing its direction
 
-            //rotates main axis in respect to change q,
-            //bs op.PparQ_initial === initial axis-fi
-            //in respect to SP
+            //doing this in claim/proof causes P to jump, moves smoothly without
             if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
+                // todo: should these just be able to stay put?
+                rg.P.q = fi;
                 op.mainAxisAngle = op.PparQ_initial - rg.P.q;
-            } else {
-                // todo
             }
 
             stdMod.establishesEccentricity( e, null );

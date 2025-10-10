@@ -108,7 +108,11 @@
                     //throw 'err. ' + key;
                 //}
 
-                svgel.setAttributeNS( null, key, val );
+                if(typeof(val) === "string" && val.includes("NaN")) {
+                    console.log(val);
+                } else {
+                    svgel.setAttributeNS( null, key, val );
+                }
             }
             //-------------------------------------
             // \\// sets remaining attributes
