@@ -154,8 +154,8 @@
             // hyperbola
             S : {
                 pcolor : result,
-                letterAngle : -115,
-                letterRotRadius : 20,
+                letterAngle : -90,
+				letterRotRadius : 26,
             },
             P : {
                 pcolor : body,
@@ -168,8 +168,7 @@
             },
             A : {
                 pcolor : orbit,
-                letterRotRadius : 20,
-                letterAngle : -90,
+                letterAngle : -120,
 				cssClass: 'subessay--solution',
             },            
             AA : { // opposite A
@@ -194,13 +193,11 @@
             Zminus : {
                 caption : 'Z',
                 pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
+                letterAngle : 90,
 				cssClass: 'subessay--solution',
             },
             Z : {
                 pcolor : body,
-                letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
 				cssClass: 'subessay--solution',
@@ -208,7 +205,6 @@
             Q : {
                 pcolor : proof,
                 letterAngle : 225,
-                letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
 				cssClass: 'subessay--solution',
@@ -225,14 +221,13 @@
             },
             D : {
                 pcolor : proof,
-                letterRotRadius : 20,
-                //letterAngle : 135,
+                letterRotRadius : 25,
+                letterAngle : 135,
 				cssClass: 'subessay--solution',
             },
             K : {
                 pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -60,
+                letterAngle : 180,
 				cssClass: 'subessay--solution',
             },
             F : {
@@ -263,8 +258,8 @@
             },
             R : {
                 pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
+                letterAngle : 120,
+                letterRotRadius : 22,
 				cssClass: 'subessay--solution',
             },
             
