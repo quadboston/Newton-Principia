@@ -12,7 +12,6 @@
     //====================================================
     function init_conf()
     {
-        console.log('init P12');
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -128,7 +127,6 @@
             curvature,
             context,
         } = fixedColors;
-        let red = [255,0,0]; //for debugging
 
         var predefinedTopics =
         {
@@ -174,7 +172,6 @@
             AA : { // opposite A
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
             },
             B : {
                 letterRotRadius : 20,
@@ -184,6 +181,7 @@
             BB : { // opposite B
                 doPaintPname : false,
                 pcolor : orbit,
+				cssClass: 'subessay--solution',
             },
             C : { //center symmetry of orbit
                 pcolor : orbit,
@@ -197,7 +195,6 @@
 				cssClass: 'subessay--solution',
             },
             Z : {
-                pcolor : body,
                 undisplayAlways : true,
                 doPaintPname : false,
 				cssClass: 'subessay--solution',
@@ -210,7 +207,6 @@
 				cssClass: 'subessay--solution',
 				conditionalDrag: 'subessay--solution',
             },
-
 
             // triangle
             G : {
@@ -246,7 +242,6 @@
             E : {
                 pcolor : proof,
                 letterRotRadius : 20,
-                //letterAngle : 90,
 				cssClass: 'logic_phase--proof',
             },            
             x : {
@@ -275,17 +270,13 @@
             },
             T : {
                 pcolor : proof,
-                //letterAngle : 180,
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
             },
 
             L : {
-                pcolor : orbit,
-                letterAngle : -45,
-                letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
             // eccentricity slider
@@ -323,7 +314,6 @@
                 doPaintPname : false,
                 unscalable  : true,
             },
-
         });
 
         var linesArray =
