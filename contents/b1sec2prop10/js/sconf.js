@@ -113,8 +113,8 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
-        //to be studied in given proposition:
         sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
+        //to be studied in given proposition:
         sconf.force_law_function = sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
             null :
             //can be 

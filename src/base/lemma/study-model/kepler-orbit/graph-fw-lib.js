@@ -1,10 +1,10 @@
 ( function() {
-    var {
+    const {
         $$, nsmethods, globalCss, userOptions,
-        sDomF, sData,
+        ssF, sDomF, sData,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
-        stdModExportList :
+        ssFExportList : 
         {
             createsGraph_FW_lemma,
         },
@@ -19,7 +19,7 @@
             digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
-            setsGraphAxes,
+            setsGraphAxes : null,
             plotLabels_2_plotsPars,
             setsGraphTpClasses,
             doDrawToolline,
@@ -30,12 +30,11 @@
         return graphFW;
 
         ///this thing is not dynamic (missed in design),
-        ///but, colorThreadArray is accessible for reset
-        ///dynamically,
+        ///but, colorThreadArray is accessible for reset dynamically,
         ///
         //this is just an example how to reset colors dynamically
-        //in model_upcreate():
-        //stdMod.graphFW_lemma.colorThreadArray[0] =
+        //in model_upcreate(): 
+        //    stdMod.graphFW_lemma.colorThreadArray[0] =
         //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         function doSetColorThreadArray()
         {
@@ -44,6 +43,7 @@
                 sDomF.getFixedColor( 'displacement' ),
                 sDomF.getFixedColor( 'body' ),
                 sDomF.getFixedColor( 'sagitta' ),
+                sDomF.getFixedColor( 'formula' ),
             ];
             return colorThreadArray;
         }
@@ -69,29 +69,38 @@
             return {container$, graph_dimX, graph_dimY}
         }
 
+        /*
         function setsGraphAxes()
         {
+            ccc( 'setsGraphAxes' );
             const ADDENDUM = amode.aspect === 'addendum';
-            let n2c = sDomF.getFixedColor; //name to color
             
+            let n2c = sDomF.getFixedColor; //name to color
+           
             //==================================================
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-            var yColor = graphFW.colorThreadArray[ 0 ];
+            const yColor = graphFW.colorThreadArray[ 0 ];
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = sData.GRAPH_PATH ? n2c( 'orbit' ) : n2c( 'force' );
-            var axisYLegend =
+            const c_orbit = n2c( 'orbit' );
+            const c_body = n2c( 'body' );
+            const c_force = n2c( 'force' );
+            const c_sagitta = n2c( 'sagitta' );
+            const c_displacement = n2c( 'displacement' );
+            const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
+            const axisYLegend =
             [
                 {
                     //"hover-width" decreases gigantict bold
                     //together, tobold hover-width and tostroke can be redundant
-                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Force</tspan></text>',
+                    text    :
+    '<text>Force: <tspan class="tp-force tofill tobold hover-width"' +
+    //overrides tp machinery
+    ' style="fill:' + c_force + '; stroke:'+c_force + ';"' +
+    '></tspan></text>',
                     x       : 40,
                     y       : 25,
                     style   : {
@@ -100,27 +109,31 @@
                                 //'fill'   : yColor,
                     },
                 },
-
+            ];
+            axisYLegend[1] = ADDENDUM ?
                 {
-                    text    :  'Force f, sagitta, -1/r², per their max.',
-                               /* 
-                                :
+                    text    : '<text>' +
+    '<tspan class="tp-force tofill tobold hover-width" ' +                    
+    'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
+    'actual f;' +
+    '</tspan>' +
+    
+    '<tspan class="tp-displacement tofill tobold hover-width" ' +                    
+    ' style="fill:' + c_displacement + '; stroke:' + c_displacement + ';"' +
+    '>est, QR/Δt;' +
+    '</tspan>' +
 
-                                '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Actual</tspan>' +
-                                '<tspan> and </tspan>' +
+    '<tspan class="tp-body tofill tobold hover-width" ' +                    
+    ' style="fill:' + c_body + '; stroke:' + c_body + ';"' +
+    '>speed v;' +
+    '</tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+n2c( 'sagitta' ) + ';"' +
-                                '>Estimated' +
-                                '</tspan>' +
-
-                                '<tspan> forces (per their max)</tspan>' +
-                                '</text>',
-                                */
+    '<tspan class="tp-sagitta tofill tobold hover-width" ' +                    
+    'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
+    'sagitta;' +
+    '</tspan>' +
+    
+    ',  -1/r², per their max.',
                     x       : 250,
                     y       : 40,
                     style   : {
@@ -128,9 +141,34 @@
                                 //'stroke' : 'black',
                                 //'fill'   : 'black',
                     },
-                },
-
-            ];
+                }
+    :
+                {
+                    
+                    text    : '<text>' +
+    '<tspan class="tp-force tofill tobold hover-width" ' +                    
+    'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
+    'actual f, ' +
+    '</tspan>' +
+    
+    '<tspan class="tp-displacement tofill tobold hover-width" ' +                    
+    ' style="fill:' + c_displacement + '; stroke:' + c_displacement + ';"' +
+    '>estimated.' +
+    '</tspan>' +
+    
+    '<tspan class="tp-sagitta tofill tobold hover-width" ' +                    
+    'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
+    'sagitta;' +
+    '</tspan>'
+     ,
+                    x       : 250,
+                    y       : 40,
+                    style   : {
+                                'font-size' : '30',
+                                //'stroke' : 'black',
+                                //'fill'   : 'black',
+                    },
+                };
             var axisXLegend =
             [
                 {
@@ -157,7 +195,8 @@
             ];
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
-
+        */
+        
         function plotLabels_2_plotsPars( colorThreadArray )
         {
             return [
@@ -283,5 +322,5 @@
             };
         }
     }
-}) ();
+})();
 

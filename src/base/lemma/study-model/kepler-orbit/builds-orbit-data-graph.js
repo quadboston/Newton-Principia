@@ -103,20 +103,13 @@
                 ga.y[3]=sagitta;
             }
         }
-        //c cc( graphArray );
-        ///this is a common graph lines mask sample, but this mask can be
-        ///overriden in model_upcreate(),
-        stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
-            [ 
-                'force',
-                'displacement',
-                'body',
-                TIME && 'sagitta',
-            ] :
-            [ 
-                'force',
-                'displacement',
-            ];
+        ///this is a common graph lines, but this mask can be
+        ///overriden in model_upcreate()
+        stdMod.graphFW_lemma.graphArrayMask = 
+        [ 
+            'force',
+            'displacement',
+        ];
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------

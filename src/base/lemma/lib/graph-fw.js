@@ -93,7 +93,9 @@
         function drawGraph_wrap()
         {
             var graphArray = stdMod.graphArray;
-            var { yColor, xColor, axisYLegend, axisXLegend, } = stdMod.setsGraphAxes();
+            var { yColor, xColor, axisYLegend, axisXLegend, } = 
+                ( haz( ssF, 'graph_axes8mask' ) || stdMod.setsGraphAxes )();
+            
             //==================================================
             // //\\ calls api
             // //\\ calls low tire api

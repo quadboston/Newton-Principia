@@ -1,0 +1,28 @@
+sssssssssssssssssssssssssssssssssssssss
+
+// In lite-app used only in Prop12,
+// Contains graph framework creator
+// This creator, however dependent via createsLowTireGlobalCSS.
+
+( function() {
+    var { ns, sn, nsmethods, haz, haff, hafa, globalCss, sData, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { createsGraphFW, }, });
+
+sssssssssssssssssssssssssssssssssssssss
+P10, P7
+stdMod.initiates_orbit8graph();
+
+ssssssssssssssssssssssssssssssssssssssss
+
+do fix: kepler:
+
+                if( TIME ){
+                     sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                 }
++                if( displMax === null ) {
++                    displMax = Math.abs( displacement );
++                }
+  
+ssssssssssssssssssssssssssssssssssssssssss 
+ 
+

@@ -82,7 +82,8 @@ M/2 is "Kepler constant" for constant sectorial speed:
 (*) gives:
     <div style="text-align:center;">
         ¦force¦𝗮¦¦ = M²/2 lim( ¦P,sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> → 0,<br>
-        ¦force¦a¦¦ = 2M² lim( ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )² ) at δ → 0, &nbsp;&nbsp;&nbsp;(**)<br>
+        ¦force¦a¦¦ = 2M² lim( f<sub>QR</sub> ) at δ → 0, &nbsp;&nbsp;&nbsp;(**)<br>
+        ¦displacement¦f<sub>QR</sub>¦¦ = ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )²
     </div>
 
 where
@@ -90,7 +91,7 @@ where
         Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, Δ<sub>S</sub> =
             (¦SP¦¦ x ¦QT¦¦) / 2, <br>
         Δ<sub>S</sub> = ΔS + o(δ³), where δ = Δt, <br>
-        ¦QR¦saggtta QR¦¦ = ¦P,sagitta¦𝔓¦¦ + o(δ²).
+        ¦QR¦QR¦¦ = ¦P,sagitta¦𝔓¦¦ + o(δ²).
     </div>
 <br><br>
 

@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, nspaste, haff, haz,
-        rg, stdMod, sconf, ssD, sData,
+        rg, stdMod, sconf, ssD, ssF, sData,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -33,8 +33,9 @@
     
     function initiates_orbit8graph() {
         initiates_kepler_config();
-        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
-               digramParentDom$:stdMod.legendRoot$ });
+        const cf = 'createsGraph_FW_lemma';
+        stdMod.graphFW_lemma = ( haz( stdMod, cf ) || ssF[cf] )
+                               ({ digramParentDom$:stdMod.legendRoot$ });
         stdMod.creates_poly2svg_for_lemma();
         stdMod.rebuilds_orbit();
         

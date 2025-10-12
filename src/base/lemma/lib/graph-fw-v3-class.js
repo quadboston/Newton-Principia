@@ -8,7 +8,7 @@
 ( function() {
     var {
         ns, sn, nsmethods, haz, haff, hafa, globalCss, $$,
-        ssD, sDomN, sDomF, sData,
+        ssD, ssF, sDomN, sDomF, sData,
         stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
@@ -88,10 +88,10 @@
             drawDecimalY = typeof drawDecimalY === 'undefined' ? true : drawDecimalY;
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
             
-            //first array mast be enabled
+            var { yColor, xColor, axisYLegend, axisXLegend, } = 
+                ( haz( ssF, 'graph_axes8mask' ) || setsGraphAxes )();
+            //first array must be enabled
             let graphArrayMask = haz( graphFW__self, 'graphArrayMask' );
-
-            var { yColor, xColor, axisYLegend, axisXLegend, } = setsGraphAxes();
             //==================================================
             // //\\ calls api
             // //\\ calls low tier api

@@ -125,6 +125,8 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
+        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
+
         //the law to be studied in given lemma:
         //fe: for 1/r^2, the assigment is
         //    sconf.force_law = bP => 1/(bP.r2);
@@ -199,6 +201,7 @@
             invalid,
             sagitta,
             chord,
+            displacement,
         };
         //-----------------------------------
         // \\// topic group colors,

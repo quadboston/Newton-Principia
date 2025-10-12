@@ -105,49 +105,12 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //core code displays: force, mask[1] and sagitta, mask[3]
-        {
-            const ADDENDUM = amode.aspect === 'addendum';
-            const mask = stdMod.graphFW_lemma.graphArrayMask;
-            mask[1] = solvable; //displ.
-            mask[2] = solvable && ADDENDUM; //'body'
-            //sagitta in proof, but not in ...
-            mask[3] = solvable && sconf.TIME_IS_FREE_VARIABLE;
-        }
-
-        {
-            let graphArg = {
-                //drawDecimalY : true,
-                //drawDecimalX : false,
-                printAxisXDigits : true,
-                //printAxisYDigits : true,
-            }
-            /*
-            if( !B ONUS ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax = 0;
-                let leny = ga[0].y.length;
-                for( ix = 0; ix<len; ix++ ) {
-                    let gaix = ga[ix];
-                    //if( !solvable ){
-                    //    for( let iy=0; iy<leny; iy++ ){
-                    //        gaix.y[iy] = ix/len;
-                    //    }
-                    //}
-                    let yy = Math.abs( gaix.y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
-        }
+        stdMod.graphFW_lemma.drawGraph_wrap({
+            //drawDecimalY : true,
+            //drawDecimalX : false,
+            printAxisXDigits : true,
+            //printAxisYDigits : true,
+        });
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
