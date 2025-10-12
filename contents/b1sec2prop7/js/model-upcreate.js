@@ -349,8 +349,6 @@
                     switch(okey) {
                         case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
                         break;
-                        case 'Q.d8d_find_is_LOCKED' : rg.Q.d8d_find_is_LOCKED = val;
-                        break;
                         default : rg[ okey ].undisplay = val;
                     }
                 });
@@ -370,7 +368,6 @@
                 'QtimeDecor'            : rg.QtimeDecor.undisplay,
                 'APQ'                   : rg.APQ.undisplay,
                 'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
-                'Q.d8d_find_is_LOCKED'  : rg.Q.d8d_find_is_LOCKED,
                 'R'                     : rg.R.undisplay,
                 'QR'                    : rg.QR.undisplay,
                 'QP'                    : rg.QP.undisplay,
@@ -386,8 +383,6 @@
             Object.keys(ssD.stashedVisibility).forEach( okey => {
                 switch(okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
-                    break;
-                    case 'Q.d8d_find_is_LOCKED' : rg.Q.d8d_find_is_LOCKED = true;
                     break;
                     default : rg[ okey ].undisplay = true;
                 }

@@ -57,7 +57,6 @@
 
         //rg.VQ.undisplay = true;
         rg.Q.hideD8Dpoint = false;
-        rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -87,7 +86,6 @@
             rg.timearc.undisplay = true;
 
             rg.Q.hideD8Dpoint = true;
-            rg.Q.d8d_find_is_LOCKED = true;
 
         } else {
 
@@ -164,14 +162,12 @@
             ){
                 if( aspect === 'addendum' ) {
                     rg.Q.hideD8Dpoint = true;
-                    rg.Q.d8d_find_is_LOCKED = true;
                     rg.Q.undisplay = true;
                     rg.QP.undisplay = true;
                     rg.QR.undisplay = true;
                     rg.R.undisplay = true;
                 } else {
                     rg.Q.hideD8Dpoint = false;
-                    rg.Q.d8d_find_is_LOCKED = false;
                     rg.Q.undisplay = false;
                     rg.QP.undisplay = false;
                     rg.QR.undisplay = false;

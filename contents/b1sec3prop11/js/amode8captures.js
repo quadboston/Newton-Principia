@@ -136,7 +136,8 @@
             //=====================================================
 
         } else {
-            rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !ADDENDUM;
+            //todotodo replace with sconf setting:
+            //rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !ADDENDUM;
             var hideAnother = subessay !== 'another-solution';
             rg.u.undisplay = hideAnother;
             rg.Tu.undisplay = hideAnother;

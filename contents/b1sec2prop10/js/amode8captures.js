@@ -57,7 +57,6 @@
         // //\\ alternates for addendum
         //=====================================================
         var isAdden = aspect === 'addendum';
-        rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !isAdden;
         rg.S.undisplayAlways = !isAdden;
         rg.S.doPaintPname = isAdden;
         //=====================================================

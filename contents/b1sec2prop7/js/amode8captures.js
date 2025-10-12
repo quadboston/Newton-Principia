@@ -86,7 +86,6 @@
         rg.PC.undisplay = true;
         rg.timearc.undisplay = true;
         rg.Q.hideD8Dpoint = false;
-        rg.Q.d8d_find_is_LOCKED = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
