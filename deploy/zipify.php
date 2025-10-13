@@ -79,6 +79,10 @@
         {
             $skips_images = true;
         }
+        if( count($argv) > 4 and $argv[4] == 'local-version' )
+        {
+            $local_version = true;
+        }
     }
     //=====================================================
     // \\// does gets zippee name from cmd
@@ -136,7 +140,8 @@
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $path_to_version_file = "changelog/version.js";
+    $path_to_version_file = 'changelog/' . 
+        ( $local_version ? 'local-' : '' ) . 'version.js'; 
     $list = glob( $path_to_version_file );
     if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
