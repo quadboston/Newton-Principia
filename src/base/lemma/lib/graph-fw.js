@@ -8,7 +8,7 @@
 ( function() {
     var {
         ns, sn, nsmethods, haz, haff, hafa, globalCss, $$,
-        ssD, sDomN, sDomF, sData,
+        ssD, ssF, sDomN, sDomF, sData,
         stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
@@ -94,7 +94,7 @@
         {
             var graphArray = stdMod.graphArray;
             var { yColor, xColor, axisYLegend, axisXLegend, } = 
-                ( haz( ssF, 'graph_axes8mask' ) || stdMod.setsGraphAxes )();
+                ( haz( stdMod, 'setsGraphAxes' ) || haz( ssF, 'graph_axes8mask' ) )();
             
             //==================================================
             // //\\ calls api
