@@ -35,8 +35,8 @@
             .to(svg);
 
         //Generate curve name using letters from input datareg
-        const {ctrlPtFirst, curveMiddle, ctrlPtLast} = dr.pointLabels;
-        const curveName = ctrlPtFirst + curveMiddle + ctrlPtLast;
+        const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST} = dr.POINT_LABELS;
+        const curveName = CTRL_PT_FIRST + CURVE_MIDDLE + CTRL_PT_LAST;
         const lowname = sDomF.topicIdUpperCase_2_underscore(curveName);
         dr.curve_middle$ = $$.cNS( 'polyline' )
             .aNS( 'class', `tp-${lowname} tp-figure tp-curve figure` +

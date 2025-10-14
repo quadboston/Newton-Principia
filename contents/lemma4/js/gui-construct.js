@@ -8,7 +8,6 @@
     var guicon              = sn('guiConstruct', gui );
     var guiup               = sn('guiUpdate',gui);
     var appstate            = sn('appstate', stdL2 );
-    // var dr                  = sn('datareg', stdL2 );
 
     var study               = sn('study', stdL2 );
     var sdata               = sn('sdata', study );
@@ -38,9 +37,10 @@
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
 
         //Generate figure name using letters from input datareg
-        const labels = dr.pointLabels;
-        const {ctrlPtFirst, curveMiddle, ctrlPtLast, basePtFirst} = labels;
-        const figureName = basePtFirst + ctrlPtFirst + curveMiddle + ctrlPtLast;
+        const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST} =
+            dr.POINT_LABELS;
+        const figureName = BASE_PT_FIRST + CTRL_PT_FIRST + CURVE_MIDDLE +
+            CTRL_PT_LAST;
         const lowname = sDomF.topicIdUpperCase_2_underscore(figureName);
         makes_rects(dr.InscrRects,
             `tp-inscribed-rectangles-${lowname} inscribed`,
@@ -90,18 +90,14 @@
     function constructsControlPoints(dr)
     {
         const ctrlPts = dr.ctrlPts;
-        const cp = ctrlPts.positions;
+        const cp = ctrlPts.untransformed;
         var scale = 1/sconf.originalMod2inn_scale;
         var offsetX = sconf.originX_onPicture;
         var offsetY = sconf.originY_onPicture;
         var flipY1 = sconf.MONITOR_Y_FLIP;
 
-        //TEMP What about if an end point doesn't have a handle.
-        //Should any of the code that adds the colored (non-white) point
-        //be kept or is a point added for those in another way?
-
         //Only create and add points for the control points that are enabled.
-        const offset = ctrlPts.draggableEndPoints ? 0 : 1;
+        const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
         for (var i=offset, len=cp.length-offset; i < len; i++) {
             const posTransformed = stdMod.xy_2_Txy(dr, [cp[i].x, cp[i].y]);
             ctrlPts.list.push(createCurvePoint(dr, posTransformed, "ctrl", i));
@@ -126,7 +122,7 @@
                 resetPoint(cpList[i], !isFig);
         }
 
-        if( onBase && dr.basePtDraggersEnabled) {
+        if( onBase && dr.BASE_PT_DRAGGERS_ENABLED) {
             // //\\ dehollowfies basePts
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
@@ -161,19 +157,11 @@
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-        //TEMP This function should probably only be called if base points need
-        //to be added.  Probably related to below note about quantity that's
-        //created.
-        // //TEMP Should the following be all uppercase?
-        const basePtDraggersEnabled = dr.basePtDraggersEnabled;
+        const BASE_PT_DRAGGERS_ENABLED = dr.BASE_PT_DRAGGERS_ENABLED;
         for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
-        //TEMP Testing switching quantity that's created, to only be what's
-        //used.  This caused issues because other parts of the code rely on
-        //them.
-        // for (var i=0; i <= DRAGGABLE_BASE_POINTS; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( dr, "base", i );
-	        if( basePtDraggersEnabled && i < DRAGGABLE_BASE_POINTS ) {
+	        if( BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS ) {
                 //todo-patch-disable-base-drag 1 of 2
                 if( i>0 ) {
                     guiup.sets_pt2movable( pt );
@@ -190,24 +178,22 @@
         //Creates and adds the transform points to the input datareg for any
         //that are enabled.
 
-        const positions = dr.ctrlPts.positions;
+        const ptsUntransformed = dr.ctrlPts.untransformed;
         const transforms = dr.transforms;
 
-        //TEMP I can't remember do these change at any point?
-        //Default positions that aren't transformed.
-        const ptFirst = positions[0];
-        const ptLast = positions[positions.length - 1];
-        //TEMP Is this check needed?
-        if (!ptFirst && !ptLast)
+        //Must use default positions that aren't transformed.
+        const ptFirst = ptsUntransformed[0];
+        const ptLast = ptsUntransformed[ptsUntransformed.length - 1];
+        if (!ptFirst || !ptLast)
             return;
         
         //Set pos to transform relative to.
         transforms.origin = [ptFirst.x, ptLast.y];
 
         //Create and add points as required.
-        if (transforms.isPointJEnabled)
+        if (transforms.POINT_J_ENABLED)
             transforms.pts.j = createPoint(ptFirst, 0, true, true);
-        if (transforms.isPointIEnabled)
+        if (transforms.POINT_I_ENABLED)
             transforms.pts.i = createPoint(ptLast, 1, true, false);
 
 

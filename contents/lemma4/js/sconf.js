@@ -5,13 +5,9 @@
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
-    //TEMP Maybe it would be better to rename them datareg1, datareg2 or
-    //dataregFigure1, dataregFigure2, or replace 1 and 2 with left and right
-    //respectively.
-    //Probably something more like L and R, perhaps it would be best to store
-    //themp in an array?
-    var dr          = sn('datareg', stdL2 );
-    var dr2         = sn('datareg2', stdL2 );//TEMP
+    var dataregs    = sn('dataregs', stdL2 );
+    var drL         = sn('drL', dataregs );
+    var drR         = sn('drR', dataregs );
     var appstate    = sn('appstate', stdL2 );
 
     //=====================================
@@ -19,42 +15,40 @@
     //=====================================
     
     //TEMP
-    //-L2 should probably set basePtDraggersEnabled to false rather than have
+    //-L2 should probably set BASE_PT_DRAGGERS_ENABLED to false rather than
     //  a check such as "if( fconf.sappId.indexOf('lemma2') === 0 ) return;"
-    //-Should some of the following be switched to all uppercase?
-
 
     //Left figure
-    Object.assign(dr, initDataReg({
+    Object.assign(drL, initDataReg({
         xLeft  : 57,
         width  : 258,
         height : 282,
-        basePtDraggersEnabled : true,
-        pointLabels     : {
-            ctrlPtFirst : 'a',
-            curveMiddle : 'c',
-            ctrlPtLast  : 'E',
-            basePtFirst : 'A',
+        BASE_PT_DRAGGERS_ENABLED : true,
+        POINT_LABELS      : {
+            CTRL_PT_FIRST : 'a',
+            CURVE_MIDDLE  : 'c',
+            CTRL_PT_LAST  : 'E',
+            BASE_PT_FIRST : 'A',
         },
-        transformPtIEnabled : false,
-        transformPtJEnabled : true,
+        TRANSFORM_PT_I_ENABLED : false,
+        TRANSFORM_PT_J_ENABLED : true,
     }));
 
     //Right figure
-    Object.assign(dr2, initDataReg({
+    Object.assign(drR, initDataReg({
         xLeft  : 359,
         width  : 258,
         height : 252,
-        basePtDraggersEnabled : false,
-        pointLabels     : {
-            ctrlPtFirst : 'p',
-            curveMiddle : 'r',
-            ctrlPtLast  : 'T',
-            basePtFirst : 'P',
+        BASE_PT_DRAGGERS_ENABLED : false,
+        POINT_LABELS      : {
+            CTRL_PT_FIRST : 'p',
+            CURVE_MIDDLE  : 'r',
+            CTRL_PT_LAST  : 'T',
+            BASE_PT_FIRST : 'P',
         },
-        transformPtIEnabled : true,
-        transformPtJEnabled : true,
-        drAdjustRectWidthsToMatchAreaRatios : dr,
+        TRANSFORM_PT_I_ENABLED : true,
+        TRANSFORM_PT_J_ENABLED : true,
+        DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS : drL,
     }));
 
 
@@ -67,9 +61,9 @@
 
 
     function initDataReg({xLeft, width, height,
-        basePtDraggersEnabled, pointLabels,
-        transformPtIEnabled, transformPtJEnabled,
-        drAdjustRectWidthsToMatchAreaRatios}) {
+        BASE_PT_DRAGGERS_ENABLED, POINT_LABELS,
+        TRANSFORM_PT_I_ENABLED, TRANSFORM_PT_J_ENABLED,
+        DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS}) {
         return {
             basePts         : {offset:1, visOffset:0, list:[]},
             curvPts         : {offset:1, visOffset:0, list:[]},
@@ -93,45 +87,44 @@
                 //Default positions which are never transformed but modified
                 //as the control points are dragged.  Note the transforms use
                 //the first and last points for their initialization.
-                //
-                //TEMP Should the naming be modified to specify un-transformed?
-                //This would probably be best for clarity.
-                positions : computeControlPointPositions(xLeft, width, height),
+                untransformed : controlPointPositions(xLeft, width, height),
                 //Are the first and last control points on the curve draggable
-                draggableEndPoints : false,
-                //TEMP Should something similar to the following be added?
-                //Also it only works if draggableEndPoints is enabled.
-                //slopeConstraintEnabled : true,
+                DRAGGABLE_END_POINTS : false,
+                //TEMP Check the following when working on L2/3
+                //Should something similar to the following be added?
+                //Also it only works if DRAGGABLE_END_POINTS is enabled.
+                //SLOPE_CONSTRAINT_ENABLED : true,
             },
             partitionWidths : [1],
             movables        : {}, //key-value for movable jswrap
             //Specifies what points have what labels
-            pointLabels     : {
-                ctrlPtFirst : '',
-                curveMiddle : '',
-                ctrlPtLast  : '',
-                basePtFirst : '',
-                ...pointLabels,
+            POINT_LABELS      : {
+                CTRL_PT_FIRST : '',
+                CURVE_MIDDLE  : '',
+                CTRL_PT_LAST  : '',
+                BASE_PT_FIRST : '',
+                ...POINT_LABELS,
             },
-            basePtDraggersEnabled,
+            BASE_PT_DRAGGERS_ENABLED,
             transforms       : {
-                //TEMP Should a comment or similar be added to mention that
+                //TEMP Check the following when working on L2/3
+                //Should a comment or similar be added to mention that
                 //the following shouldn't be active at the same time as
-                //draggableEndPoints?
-                isPointIEnabled : transformPtIEnabled,
-                isPointJEnabled : transformPtJEnabled,
+                //DRAGGABLE_END_POINTS?
+                POINT_I_ENABLED : TRANSFORM_PT_I_ENABLED,
+                POINT_J_ENABLED : TRANSFORM_PT_J_ENABLED,
                 //Pos to transform relative to, automatically set
                 origin          : null,
                 pts             : {},//To store the draggers
             },
             //Automatically adjust rectangle widths in this datareg to match
             //the ratio of areas in the following datareg.
-            drAdjustRectWidthsToMatchAreaRatios,
+            DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS,
         }
     };
 
     
-    function computeControlPointPositions(xLeft, width, height) {
+    function controlPointPositions(xLeft, width, height) {
         //Bottom of figure (same for all figures)
         const yBottom = 332;
 
@@ -196,9 +189,9 @@
 
         //Used to calculate slider width (left side of left figure, to right
         //side of right figure).
-        const xSliderL = dr.ctrlPts.positions[0].x;
-        const positionsR = dr2.ctrlPts.positions;
-        const xSliderR = positionsR[positionsR.length - 1].x;
+        const xSliderL = drL.ctrlPts.untransformed[0].x;
+        const ptsUntransformedR = drR.ctrlPts.untransformed;
+        const xSliderR = ptsUntransformedR[ptsUntransformedR.length - 1].x;
         const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
 
 
@@ -207,7 +200,7 @@
         const {
             given,
             difference,
-            //TEMP
+            //TEMP Check the following when working on L2/3
             // base,
             // curve,
             figure,

@@ -4,8 +4,7 @@
     });
 
     var stdL2       = sn('stdL2', fapp );
-    // var dr          = sn('datareg', stdL2 );
-    // var dr2         = sn('datareg2', stdL2 );//TEMP
+    var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var study       = sn('study', stdL2 );
 
@@ -22,14 +21,14 @@
     {
         //Calculate the following for both figures first, before calling the
         //function to match the ratio of areas.
-        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+        Object.values(dataregs).forEach(dr => {
             study.calculates_microPoints(dr);
             study.calculates_monotIntervals8ref(dr);
             numModel.addsNewBases_8_convertWidths(dr);
             study.calcsMonotIntervalArea(dr);
         });
 
-        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+        Object.values(dataregs).forEach(dr => {
             study.adjustRectWidthsToMatchAreaRatiosIfNeeded(dr);
             study.calculates_inscr8circums(dr);
             study.calculatesMajorantRect(dr);
@@ -143,8 +142,8 @@
 
 
     function areBothFiguresMonotonic() {
-        const drL = stdL2.datareg;
-        const drR = stdL2.datareg2;
+        const drL = stdL2.dataregs.drL;
+        const drR = stdL2.dataregs.drR;
 
         return (isMonotonic(drL) && isMonotonic(drR));
     }

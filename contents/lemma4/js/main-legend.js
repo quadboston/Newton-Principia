@@ -7,8 +7,6 @@
     //TEMP This file is used by L4 only
     function create_digital_legend()
     {
-        //TEMP Once the text area is updated for L4, double check that the data
-        //table is visible for the following tabs.
         create_digital_legend_for_logic_phase( 'claim' );
         create_digital_legend_for_logic_phase( 'proof' );
         create_digital_legend_for_logic_phase( 'corollary' );

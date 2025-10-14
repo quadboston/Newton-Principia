@@ -2,7 +2,8 @@
 ( function () {
     var { sn, mat, dpdec, d8dp, fmethods, globalCss, fapp, sconf, sDomN, sDomF,
         ssF, fconf, amode, stdMod, } = window.b$l.apptree({ setModule, });
-    var stdL2 = sn('stdL2', fapp );
+    var stdL2       = sn('stdL2', fapp );
+    var dataregs    = sn('dataregs', stdL2 );
     return;
 
 
@@ -17,7 +18,6 @@
         return;
 
 
-
         function createDragModel() {
             medD8D = stdMod.medD8D =
                 d8dp.crePointFW_BSLd8d1CHAMBER ({
@@ -30,8 +30,7 @@
                     spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
                     spinnerCursorGrab : sconf.spinnerCursorGrabbed,
                 });
-            //TEMP Update datareg naming and similar
-            [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+            Object.values(dataregs).forEach(dr => {
                 setDragPoints(dr);
             });
         }
@@ -50,7 +49,7 @@
             //In terms of drag priority see "findDraggee" function for more.
 
             ///Points on x-axis, on the base of the figure.
-            if (dr.basePtDraggersEnabled) {
+            if (dr.BASE_PT_DRAGGERS_ENABLED) {
                 const bplist =  dr.basePts.list;
                 const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
                 const iMax = Math.min(bplist.length, DRAGGABLE_BASE_POINTS);
@@ -153,8 +152,6 @@
                 } else {
                     //reshapes the curve
                     move2js( pw, arg.surfMove, pw.achieved );
-                    // recent framework
-                    ssF.media_upcreate_generic();
                 }
                 guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
                 stdMod.model8media_upcreate();
@@ -237,16 +234,16 @@
         //======================================
         function move2js(pointWrap, move, ach)
         {
-            //TEMP This function is long, maybe it should be split up more?
             const scale = sDomF.out2inn();
-            let newX = ach.achieved.x + move[0]*scale;
-            let newY = ach.achieved.y + move[1]*scale;
+            const newX = ach.achieved.x + move[0]*scale;
+            const newY = ach.achieved.y + move[1]*scale;
             const item = pointWrap;
             const index = item.index;
             const dr = item.datareg;
-            const positions = dr.ctrlPts.positions;
-            const draggableEndPoints = dr.ctrlPts.draggableEndPoints;
-            const slopeConstraintEnabled = dr.ctrlPts.slopeConstraintEnabled;
+            const ctrlPts = dr.ctrlPts;
+            const ptsUntransformed = ctrlPts.untransformed;
+            const DRAGGABLE_END_POINTS = ctrlPts.DRAGGABLE_END_POINTS;
+            const SLOPE_CONSTRAINT_ENABLED = ctrlPts.SLOPE_CONSTRAINT_ENABLED;
 	        appstate.movingBasePt = false;//Default
 
             if ( "ctrl" === item.type ) {
@@ -256,9 +253,9 @@
 
 
                 //Constrain x value if needed.
-                if (!draggableEndPoints) {
-                    const minX = positions[0].x;
-                    const maxX = positions[positions.length - 1].x
+                if (!DRAGGABLE_END_POINTS) {
+                    const minX = ptsUntransformed[0].x;
+                    const maxX = ptsUntransformed[ptsUntransformed.length-1].x
                         - sconf.HORIZONTAL_CONSTRAINT;
 
                     if (posNew[0] < minX)
@@ -268,7 +265,7 @@
                 }
 
                 //Prevent the y value from passing the following constraint.
-                if (!draggableEndPoints) {
+                if (!DRAGGABLE_END_POINTS) {
                     const yLine = yOffsetSlopeConstraint(dr, posNew[0]);
                     if (posNew[1] > yLine)
                         posNew[1] = yLine;
@@ -276,7 +273,7 @@
 
 
                 //Update stored un-transformed control point position.
-                const pos = positions[index];
+                const pos = ptsUntransformed[index];
                 if (pos) {
                     pos.x = posNew[0];
                     pos.y = posNew[1];
@@ -286,13 +283,6 @@
                 const posNewT = stdMod.xy_2_Txy(dr, posNew);
                 item.x = posNewT[0];
                 item.y = posNewT[1];
-
-                //TEMP The following can probably be removed.
-                // //\\ rescaling
-                //let mscale = sconf.mod2inn_scale;
-                //dr.ctrlPts_unscaled[pw.ix][0] = item.x/mscale;
-                //dr.ctrlPts_unscaled[pw.ix][1] = item.y/mscale;
-                // \\// rescaling
 
 
             } else if ("trans" === item.type) {
@@ -366,8 +356,8 @@
             //constraint keeps point 2 further from the bottom of the figure,
             //which helps keep this area large.
 
-            const positions = dr.ctrlPts.positions;
-            const ptLast = positions[positions.length - 1];
+            const ptsUntransformed = dr.ctrlPts.untransformed;
+            const ptLast = ptsUntransformed[ptsUntransformed.length - 1];
 
             const andleRad = mat.degToRad(sconf.SLOPE_CONSTRAINT_ANGLE_DEG);
             const offset = sconf.SLOPE_CONSTRAINT_OFFSET;

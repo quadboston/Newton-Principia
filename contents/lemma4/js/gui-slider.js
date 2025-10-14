@@ -1,15 +1,12 @@
 ( function () {
-    var {
-        sn,
-        fapp, fconf, sconf, sDomF, ssF,
-        stdMod,
-    } = window.b$l.apptree({});
+    var { sn, fapp, fconf, sconf, sDomF, ssF, stdMod, }
+        = window.b$l.apptree({});
     var stdL2       = sn('stdL2', fapp );
     var gui         = sn('gui', stdL2 );
     var guiup       = sn('guiUpdate',gui);
+    var dataregs    = sn('dataregs', stdL2 );
     var appstate    = sn('appstate', stdL2 );
-    //TEMP Don't forget to remove or replace the following.
-    // var dr          = sn('datareg', stdL2 );
+
 
     //=====================================
     // //\\ does gui configuration
@@ -56,9 +53,8 @@
         slider.oninput = function() {
             const newBases = interpretSlider( this.value );
             appstate.movingBasePt = false; // better way?
-            //TEMP Does the following forEach have the correct functions etc.
-            //within and outside of it?
-            [stdL2.datareg, stdL2.datareg2].forEach((dr) => {
+            Object.values(dataregs).forEach((dr) => {
+                //TEMP removeOutdatedClasses should only be needed by L2/3
                 stdMod.removeOutdatedClasses(dr);
                 aduptPartitionChange(dr, newBases);
             });
@@ -70,15 +66,11 @@
       	}
 
         function aduptPartitionChange(dr, newBases, undef) {
-            if (dr.basePtDraggersEnabled) {
+            if (dr.BASE_PT_DRAGGERS_ENABLED) {
                 const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
                 ///dynamically adds more base points
                 for (var i=sconf.basesN; i<pointsLimit; i++) {
                     ///prevents making too many draggable base points
-                    //TEMP This seems to have more to do with adjusting which
-                    //handles are visible.  The code in "d8d-model.js" is
-                    //responsible for the code that's run when dragging.
-                    //Therefore code should probably be added there for that.
    		            guiup.sets_pt2movable(dr.basePts.list[i]);
                 }
             }

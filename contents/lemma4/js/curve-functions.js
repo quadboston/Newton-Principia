@@ -69,18 +69,18 @@
         //per x) which this "cleans up".
 
         
-        const positions = dr.ctrlPts.positions;
-        const draggableEndPoints = dr.ctrlPts.draggableEndPoints;
-        const segmentsApproximate = sconf.CURVE_SEGMENTS_APPROXIMATE;
+        const ptsUntransformed = dr.ctrlPts.untransformed;
+        const DRAGGABLE_END_POINTS = dr.ctrlPts.DRAGGABLE_END_POINTS;
+        const CURVE_SEGMENTS_APPROXIMATE = sconf.CURVE_SEGMENTS_APPROXIMATE;
 
 
-        const sorted = copySortAdjustHandlePositions(positions,
-            draggableEndPoints);
+        const sorted = copySortAdjustHandlePositions(ptsUntransformed,
+            DRAGGABLE_END_POINTS);
 
         //Approximate line segment spacing for each section.
         const xStart = sorted[0].x;
         const xEnd = sorted[sorted.length - 1].x;
-        const spacingApproximate = (xEnd - xStart) / segmentsApproximate;
+        const spacingApproximate = (xEnd - xStart) / CURVE_SEGMENTS_APPROXIMATE;
 
 
         const curveSections = curveSectionsForInterpolation(sorted);
@@ -117,7 +117,8 @@
 
 
 
-    function copySortAdjustHandlePositions(positions, draggableEndPoints) {
+    function copySortAdjustHandlePositions(ptsUntransformed,
+        DRAGGABLE_END_POINTS) {
         //Make a copy of the handle positions, sort them by x value, and adjust
         //them to ensure the x values aren't the exact same (ultimately so the
         //curve will only have one y value for each x value).
@@ -125,12 +126,12 @@
         // //\\ Copy
         //Copies values rather than references, so modifications won't affect
         //the original.
-        let copy = positions.map(p => ({...p}));
+        let copy = ptsUntransformed.map(p => ({...p}));
         // \\// Copy
 
 
         // //\\ Sort
-        if (draggableEndPoints) {
+        if (DRAGGABLE_END_POINTS) {
             copy = sortByX(copy);
         } else {
             //Exclude end points from sorting so they can't move by accident.

@@ -13,7 +13,7 @@
                 //todm: automate this list
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
-                { src:"config-functions.js" },
+                { src:"transform-functions.js" },
                 { src:"curve-functions.js" },
 
                 {  src:"dom.js" },

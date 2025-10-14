@@ -7,7 +7,7 @@
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
-    // var dr          = sn('datareg', stdL2 );
+    var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var guicon      = sn('guiConstruct', gui );
     return;
@@ -57,7 +57,7 @@
         }
 
         // dom z-order patch
-        [stdL2.datareg, stdL2.datareg2].forEach((dr) => {
+        Object.values(dataregs).forEach((dr) => {
             ssF.continue_create_8_prepopulate_svg(dr);
         });
 
@@ -71,8 +71,6 @@
         //it will not call stdMod.media_upcreate___before_basic because this
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
-        //TEMP Should the above only be called once, or is it ok if it's part
-        //of the forEach?
 
         //*************************************************************
         //this completes media_upcreate_generic and media_upcreate
@@ -86,7 +84,7 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        [stdL2.datareg, stdL2.datareg2].forEach((dr) => {
+        Object.values(dataregs).forEach((dr) => {
             guicon.constructsWidestRect(dr);
             guicon.constructsRects_tillExtraOffset_parlessDom(dr);
             
@@ -146,7 +144,7 @@
 
     function finish_sapp_UI()
     {
-        gui.createDragModel();//TEMP Does this need dr?
+        gui.createDragModel();
         study.setupEvents();
     }
 

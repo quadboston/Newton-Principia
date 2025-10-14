@@ -33,11 +33,11 @@
         //Default transformation matrix
         const T = [[1, 0], [0, 1]];
 
-        const {origin, pts, isPointIEnabled, isPointJEnabled} = transforms;
+        const {origin, pts, POINT_I_ENABLED, POINT_J_ENABLED} = transforms;
         if (origin && pts) {
             const {i, j} = pts;
             //Calculate matrix values using point i if needed
-            if (isPointIEnabled && i) {
+            if (POINT_I_ENABLED && i) {
                 const xOffsetInitial = i.xOffsetInitial;
                 if (xOffsetInitial) {//Includes non-zero check
                     const xOffsetCurrent = i.x - origin[0];
@@ -47,7 +47,7 @@
             }
 
             //Calculate matrix values using point j if needed
-            if (isPointJEnabled && j) {
+            if (POINT_J_ENABLED && j) {
                 const yOffsetInitial = j.yOffsetInitial;
                 if (yOffsetInitial) {//Includes non-zero check
                     const xOffsetCurrent = j.x - origin[0];

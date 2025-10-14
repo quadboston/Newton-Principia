@@ -9,7 +9,7 @@
     var gui     = sn('gui', stdL2 );
     var guicon  = sn('guiConstruct', gui );
     var sdata   = sn('sdata', study );
-    // var dr      = sn('datareg', stdL2 );
+    var dataregs= sn('dataregs', stdL2 );
     var guiup   = sn('guiUpdate', gui);
     return;
 
@@ -28,8 +28,7 @@
     //======================================
     function media_upcreate___before_basic_L2() {
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-        //TEMP
-        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+        Object.values(dataregs).forEach(dr => {
             guiup.paints_curve8axes(dr);
             guiup.updatePtsRectsLabelsAreas(dr);
         });
@@ -38,8 +37,7 @@
             ////it may be not defined at application landing up
             medD8D.updateAllDecPoints();
         }
-        //TEMP
-        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
+        Object.values(dataregs).forEach(dr => {
             stdMod.syncPoints(dr);
             {
                 //todm via global css by setting state on parent container
@@ -59,22 +57,15 @@
         // //\\ Show/hide message and parts of figure depending on if monotonic
         //--------------------------------------
         ssD.lastPopupButton.dom$.css( 'display', 'none' );
-
-        //TEMP May be able to combine the following forEach with the above one
-        [stdL2.datareg, stdL2.datareg2].forEach(dr => {
-            const isMonotonic = dr.yVariations.changes.length <= 1;
-
-            if(!isMonotonic) {
+        Object.values(dataregs).forEach(dr => {
+            if(!study.isMonotonic(dr)) {
                 ssD.lastPopupButton.dom$.css( 'display', 'block' );
-                //TEMP Would showing and hiding here cause the code to be run
-                //multiple times?  If so it could probably be improved.  Look
-                //at code in "gui-update.js" eg. function "paints_curve8axes".
                 guiup.setsVisibleRange(dr.InscrRects, false);
             } else {
                 guiup.setsVisibleRange(dr.InscrRects, sdata.view.isInscribed);
             }
 
-            rg[dr.pointLabels.basePtFirst].undisplay = !isMonotonic;
+            rg[dr.POINT_LABELS.BASE_PT_FIRST].undisplay = !study.isMonotonic(dr);
         });
         //--------------------------------------
         // \\// Show/hide message and parts of figure depending on if monotonic

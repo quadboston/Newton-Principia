@@ -1,8 +1,8 @@
 ( function () {
     var { sn, rg, mat, fapp, toreg, stdMod, sconf, } = window.b$l.apptree({});
 
-
     var stdL2       = sn('stdL2', fapp );
+    var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var study       = sn('study', stdL2 );
 
@@ -31,43 +31,6 @@
     toreg('sum_ratio')('value', 0);
     return;
 
-    
-    //***********************************************
-    // //\\  auxiliary prepprocessing functions
-    //***********************************************
-
-
-
-
-
-    // //TEMP The following comment was taken from elsewhere.
-    // //TEMP May want to create a generic function for this that can be used
-    // //throughout the project.  I believe most of the project is mainly
-    // //interested in the first and last points.  For L4 they never change,
-    // //however I believe they can for L2/3.  Therefore sorting them for all
-    // //those models could probably work fine, and the check to ensure they
-    // //don't pass the end points could be when a handle attempts to move.
-    // //There is something similar to this that needs to be finalized.
-    // //TEMP Should the following be combined into one function?
-    // //Un-transformed positions
-    // function findCtrlPtPosWithMaxX(dr) {
-    //     //TEMP Double check browser compatibility for toSorted, at etc.
-    //     return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(-1);
-    // }
-    // function findCtrlPtPosWithMinX(dr) {
-    //     return dr?.ctrlPts?.positions?.toSorted((a, b) => a.x - b.x)?.at(0);
-    // }
-
-    // function findFirstAndLastCtrlPts(dr) {
-    //     const sorted = [...dr.ctrlPts.positions].sort((a, b) => a.x - b.x);
-    //     return {
-    //         ptFirst: sorted[0],
-    //         ptLast: sorted[sorted.length - 1],
-    //     };
-    // }
-    //***********************************************
-    // \\// auxiliary prepprocessing functions
-    //***********************************************
 
     //***********************************************
     // //\\ auxiliary postprocessing functions
@@ -171,7 +134,6 @@
         var insYar = sn( 'inscribedY', dr.basePts, [] );
         var cirYar = sn( 'circumscribedY', dr.basePts, [] );
         var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
-        //TEMP Is the following used outside of this function?
         var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
         insYar.length = 0;
         cirYar.length = 0;
@@ -196,12 +158,6 @@
             let yRef = dr.yVariations.yRef;
             let dir = dr.yVariations.chchosen.dir;
             for( var ib = 0; ib < basesN; ib++ ) {
-                //TEMP Would this calculate most y values twice?  Eg. rect 1
-                //left and right, then rect2's left side is the same as rect 1.
-                //Previously with the old handles the function was expensive to
-                //call and likely still will be with the new handles.
-                //Therefore storing the previous value or similar would
-                //probably improve performance.
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
                 if( dir <=0 ) {
@@ -241,8 +197,8 @@
 
     function calculateAndStoreTransformedFigureAreaRatios() {
         //TEMP L4 only
-        const drL = stdL2.datareg;
-        const drR = stdL2.datareg2;
+        const drL = dataregs.drL;
+        const drR = dataregs.drR;
 
         //Factors to multiply un-transformed areas to get transformed areas
         const areaFactorA = stdMod.calculateFactorAreaTransformed(drL);
@@ -275,7 +231,7 @@
     function adjustRectWidthsToMatchAreaRatiosIfNeeded(dr) {
         //Automatically adjust rectangle widths in the input datareg to match
         //the ratio of areas in the other specified datareg if needed.
-        const drOther = dr.drAdjustRectWidthsToMatchAreaRatios;
+        const drOther = dr.DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS;
         if (!drOther)
             return;
 

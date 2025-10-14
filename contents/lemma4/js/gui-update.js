@@ -3,7 +3,6 @@
         stdMod, } = window.b$l.apptree({
         stdModExportList : { syncPoint, syncPoints, }, });
     var stdL2       = sn('stdL2', fapp );
-    // var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
@@ -62,7 +61,6 @@
 
 
 
-
     ///rather redigitizes model for curves and more
     function paints_curve8axes(dr)
     {
@@ -98,12 +96,12 @@
 
 
         //Show/hide the following lines on the figure as needed
-        const {ctrlPtFirst, ctrlPtLast, basePtFirst} = dr.pointLabels;
-        const lineLeftSide = rg[basePtFirst + ctrlPtFirst];
+        const {CTRL_PT_FIRST, CTRL_PT_LAST, BASE_PT_FIRST} = dr.POINT_LABELS;
+        const lineLeftSide = rg[BASE_PT_FIRST + CTRL_PT_FIRST];
         if (lineLeftSide)
             lineLeftSide.undisplay = !study.isMonotonic(dr);
 
-        const lineBottomSide = rg[basePtFirst + ctrlPtLast];
+        const lineBottomSide = rg[BASE_PT_FIRST + CTRL_PT_LAST];
         if (lineBottomSide)
             lineBottomSide.undisplay = !study.isMonotonic(dr);
 
@@ -152,32 +150,25 @@
         setsVisibleRange(dr.basePts, study.isMonotonic(dr));
         shows_rects(dr);
 
-        //TEMP For the following do they need to be different depending on
-        //which datareg is being used?
-        // //\\ resets app modes
-        let remove = sDomN.essaionsRoot$.removeClass;
-        let add = sDomN.essaionsRoot$.addClass;
-        if( dr.figureParams.deltaOnLeft ) {
-            remove( 'active-right' );
-            add( 'active-left' );
-        } else {
-            remove( 'active-left' );
-            add( 'active-right' );
-        }
-        //TEMP The following can probably be removed.
-        //Does the following need to be called every time now that bonus mode
-        //no longer exists?
-        // if( userOptions.showingBonusFeatures() && dr.basesN > 4 ) {
-        //     remove( 'active-higlight-do' );
-        //     add( 'active-no-higlight-do' );
+        //TEMP Should only be needed by L2/3
+        //Also note the classes don't seem to exist, therefore this code may no
+        //longer be needed.
+        // // //\\ resets app modes
+        // let remove = sDomN.essaionsRoot$.removeClass;
+        // let add = sDomN.essaionsRoot$.addClass;
+        // if( dr.figureParams.deltaOnLeft ) {
+        //     remove( 'active-right' );
+        //     add( 'active-left' );
         // } else {
-            remove( 'active-no-higlight-do' );
-            add( 'active-higlight-do' );
+        //     remove( 'active-left' );
+        //     add( 'active-right' );
         // }
-        // \\// resets app modes
+        // //TEMP Does the following need to be called every time now that
+        // //bonus mode no longer exists?
+        // remove( 'active-no-higlight-do' );
+        // add( 'active-higlight-do' );
+        // // \\// resets app modes
     }
-
-
 
 
 
@@ -191,14 +182,14 @@
         const h = typeof height === 'undefined' ? yRef-y : height;
 
         //Transformed positions
-        const positions = [
+        const positionsT = [
             stdMod.xy_2_Txy(dr, [x, y]),
             stdMod.xy_2_Txy(dr, [x + w, y]),
             stdMod.xy_2_Txy(dr, [x + w, y + h]),
             stdMod.xy_2_Txy(dr, [x, y + h]),
         ];
 
-        rectDom.setAttributeNS(null, "points", positions.join(" "));
+        rectDom.setAttributeNS(null, "points", positionsT.join(" "));
     }
     
 
@@ -233,26 +224,25 @@
         gui.drawsWidestRect(dr, dr.basePts.list[basN].dom, false, sdata.view);
 
 
-        //TEMP
         //Update curve handle positions (for when transforming)
-        dr.ctrlPts.list.forEach((pt) => {
-            const pos = dr.ctrlPts.positions[pt.index];
-            if (pos) {
-                const posT = stdMod.xy_2_Txy(dr, [pos.x, pos.y]);
-                guiup.xy_2_xy8shape(pt, "cx", posT[0], "cy", posT[1]);
-            }
-        });
+        const transforms = dr.transforms;
+        if (transforms.POINT_I_ENABLED || transforms.POINT_J_ENABLED) {
+            dr.ctrlPts.list.forEach((pt) => {
+                const pos = dr.ctrlPts.untransformed[pt.index];
+                if (pos) {
+                    const posT = stdMod.xy_2_Txy(dr, [pos.x, pos.y]);
+                    guiup.xy_2_xy8shape(pt, "cx", posT[0], "cy", posT[1]);
+                }
+            });
+        }
 
 
         //-----------------------------------------------------
         // //\\ legend amounts
         //-----------------------------------------------------
-        // //TEMP The following looks like it sets the text for the areas overlay.
-        // //It may be useful for L4 later when the data tables are added.
-
         //TEMP Should only be needed by L2/3, data table
-        // //TEMP Intended for L2/3 only.  If this code ends up getting used by
-        // //L2/3 it should only be updated by the original datareg or similar.
+        //If this code ends up getting used by L2/3 it should only be updated
+        //by the original datareg or similar.
         // document.getElementById("figAmt").innerHTML =
         //     ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
         // document.getElementById("inAmtd").innerHTML =
@@ -279,8 +269,7 @@
     /// framework points with L2/3 legacy
     /// code points (with rg[ name ].pos)
     ///======================================
-    //TEMP
-    //Intended for L2/3 only.  L4 syncs points differently.
+    //TEMP Intended for L2/3 only.  L4 syncs points differently.
     function syncPoint( dr, item )
     {
         var dv = dr.yVariations;
@@ -400,97 +389,50 @@
     }
 
 
-
     function syncPointWithPos(dr, pname, pos) {
         //Move point to position on the transformed figure.
-
-        //Move the point specified by pname to pos
-        //TEMP
-        //Move the input point to the input position.
-        //Move the input point to the specified position on the transformed figure.
-        //Transform the input position and move the input point to it.
 
         const pt = rg[pname];
         if (!pt)
             return;
-        //TEMP Should probably look into the screen scaling for the following
-        //as that may provide the answer and lead to a better explanation here.
-        //TEMP Note for eg. point 'a' its initial desired position is
-        //(x = 31.5, y = 29).  It's then transformed as follows
-        //     rg[pname].pos[0] = (pos.x - xoff) / scale;
-        //     rg[pname].pos[1] = -(pos.y - yoff) / scale;
-        //The position for rg[pname].pos ends up very different but the
-        //coordinates that point 'a' ends up at eventually is what it initially
-        //was (x = 31.5, y = 29).  This must mean that there are further
-        //transformations that occur later on.
+
+        const posTransformed = stdMod.xy_2_Txy(dr, [pos.x, pos.y]);
+
+        //Additional offset and scaling required for rg points, to ensure they
+        //end up in the correct position.
         var xoff = sconf.originX_onPicture;
         //yoff is equal to 0 in "numerical space" of "rg.point.pos"
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
 
-        const posTransformed = stdMod.xy_2_Txy(dr, [pos.x, pos.y]);
-
-        //TEMP See above note about how this could be improved.
-        //Additional offset and scaling required for rg points, to ensure they
-        //end up in the correct position.
         pt.pos[0] = (posTransformed[0] - xoff) / scale;
         pt.pos[1] = -(posTransformed[1] - yoff) / scale;
     }
 
 
-
-    //TEMP Only some of the following code may be needed for the original datareg
     function syncPoints(dr) {
-        let view = sdata.view;
-        let isFig = !!view.isFigureChecked;
-        let isIn = !!view.isInscribed;
-        let isCir = !!view.isCircumscribed;
-        let onlyFig = !isIn&&!isCir;
-
         //--------------------------------------
         // //\\ Syncs points for L4
         //--------------------------------------
-        const positions = dr.ctrlPts.positions;
-        const ptFirst = positions[0];
-        const ptLast = positions[positions.length - 1];
+        const ptsUntransformed = dr.ctrlPts.untransformed;
+        const ptFirst = ptsUntransformed[0];
+        const ptLast = ptsUntransformed[ptsUntransformed.length - 1];
 
         if (ptFirst && ptLast) {
             const xMiddle = (ptFirst.x + ptLast.x) / 2;
             const posMiddle = {x: xMiddle, y: numModel.curveFun(dr, xMiddle)};
             const posBaseFirst = {x: ptFirst.x, y: ptLast.y};
 
-            const ptLabels = dr.pointLabels;
-            syncPointWithPos(dr, ptLabels.ctrlPtFirst, ptFirst);
-            syncPointWithPos(dr, ptLabels.ctrlPtLast, ptLast);
-            syncPointWithPos(dr, ptLabels.curveMiddle, posMiddle);
-            syncPointWithPos(dr, ptLabels.basePtFirst, posBaseFirst);
+            const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST} =
+                dr.POINT_LABELS;
+            syncPointWithPos(dr, CTRL_PT_FIRST, ptFirst);
+            syncPointWithPos(dr, CTRL_PT_LAST, ptLast);
+            syncPointWithPos(dr, CURVE_MIDDLE, posMiddle);
+            syncPointWithPos(dr, BASE_PT_FIRST, posBaseFirst);
         }
         //--------------------------------------
         // \\// Syncs points for L4
         //--------------------------------------
-
-        //--------------------------------------
-        // //\\ majorant
-        //--------------------------------------
-        {
-            let l2 = fconf.sappId.indexOf('lemma4') === 0;
-            let checked = amode.logic_phase !== 'claim';
-            let undisplay = !checked || onlyFig;
-            // rg.F.undisplay = undisplay||l2;
-            // rg.f.undisplay = undisplay||l2;
-            // rg.AF.undisplay = undisplay||l2;
-            //majorant bar:
-            $$.$(dr.faaf).css( 'display', undisplay ? 'none' : 'block' );
-        }
-        //--------------------------------------
-        // \\// majorant
-        //--------------------------------------
-        //TEMP Is this only needed for L2/3?
-        stdMod.setsDifferenceBarsMonotonity(dr);
-        //TEMP Commenting the following seems to disable swapping monotonity?
-        //Actually I'm not sure that it does, eg. the right figure still seems
-        //to swap the rectangles at the very least.
-        // ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity(dr);
     }
 
     //======================================
