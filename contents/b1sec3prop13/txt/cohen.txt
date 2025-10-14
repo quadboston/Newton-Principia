@@ -80,21 +80,20 @@ because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &n
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "corollary1",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
 From the last three propositions it follows that if any
-¦P¦body P¦¦ departs from the ¦P¦place P¦¦ along any ¦PR¦straight line PR¦¦ with any velocity
-whatever and is at the same time acted upon by ¦Px force¦a centripetal force¦¦ that is
+body ¦P¦¦ departs from the place ¦P¦¦ along any straight line ¦PR¦¦ with any velocity
+whatever and is at the same time acted upon by a centripetal ¦Px force¦force¦¦ that is
 inversely proportional to the square of the distance of places from the center,
-¦P¦this body¦¦ will move in ¦orbit¦some one of the conies¦¦ having ¦S¦a focus¦¦ in the center
+¦P¦this body¦¦ will move in ¦orbit¦some one of the conics¦¦ having a ¦S¦focus¦¦ in the center
 of forces; and conversely. For if ¦O¦the focus¦¦ and the point of contact and the
-position of ¦P,Zminus PR¦the tangent¦¦ are given, ¦orbit¦a conic¦¦ can be described that will have
-a given curvature at that point. But the curvature is given from the given
-¦force Px¦centripetal force¦¦ and velocity of the body; and two different orbits touching
+position of the ¦P,Zminus PR¦tangent¦¦ are given, ¦orbit¦a conic¦¦ can be described that will have
+a given curvature at that point. But the curvature is given from the given 
+centripetal ¦force Px¦force¦¦ and velocity of the body; and two different orbits touching
 each other cannot be described with the same centripetal force and the same
 velocity.
 <br><br>
@@ -105,17 +104,23 @@ velocity.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "corollary2",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
-If the velocity with which the body departs from its ¦P¦place P¦¦ is
-such that the ¦PR¦line-element PR¦¦ can be described by it in some minimally
+If the velocity with which the body departs from its place ¦P¦¦ is
+such that the line-element ¦PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
-body through space ¦QR¦¦ in that same time, this body will move in
-¦orbit¦some conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity ¦QT¦¦² / ¦QR¦¦ which ultimately
+body through space ¦QR¦¦ in that same time, this body will move in some 
+¦orbit¦conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity 
+
+<!-- QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>
+
+which ultimately
 results when the line-elements ¦PR¦¦ and ¦QR¦¦ are diminished indefinitely. In
 these corollaries I include the circle along with the ellipse, but not for the
 case where the body descends straight down to a center.
