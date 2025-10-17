@@ -107,7 +107,6 @@
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH += 35; //nicer
-            sDomN.sliderGroup$.css('position', 'absolute');
         }
 
         //-------------------------------------------

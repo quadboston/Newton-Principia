@@ -14,10 +14,6 @@
     return;
 
 
-
-
-
-
     ///===========================================================
     /// //\\ inits common framework for the set of  point-draggees
     ///      There can be as many frameworks as one wishes.
@@ -437,8 +433,9 @@
             {
                 var dompos   = inn2outparent.call( pointWrap );
                 //c cc( pointWrap.rgId, pointWrap.pos, dompos );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top  = dompos[1] + 'px';
+                //console.log(dompos);
+                decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration          
+                decPoint.style.top  = dompos[1] + 'px'; // not the actual draggable element
 
                 if( nonenify === 'nonenify' ) {
                     decPoint.style.display = 'none';

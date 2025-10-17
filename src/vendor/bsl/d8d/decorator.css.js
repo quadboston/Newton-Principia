@@ -53,12 +53,6 @@
     return;
 
 
-
-
-
-
-
-
     ///creates spinner own global CSS
     ///appar. overrides spinner's-default CSS by means of
     ///parent_classes
@@ -79,6 +73,9 @@
         spinnerCursorGrabbed,
         makeCentralDiskInvisible,
     ) {
+        //sets up each draggable object, but does not set position here
+        //console.log('spinner: ' + spinnerClsId);
+
         //fixing missed parameters
         individual_color = individual_color || 'grey';
         parent_classes = parent_classes || [''];

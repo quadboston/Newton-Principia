@@ -203,10 +203,10 @@
                 .css( 'top','0px' )
                 ;
         } else {
-            stdMod.legendRoot$
-                .css( 'top',   (lemma2_slidersH + stdMod.svgSceneH).toFixed()+'px' )
-                .css( 'left',  legendMargin.toFixed(2) + 'px' )
-                ;
+            // stdMod.legendRoot$
+            //     .css( 'top',   (lemma2_slidersH + stdMod.svgSceneH).toFixed()+'px' )
+            //     .css( 'left',  legendMargin.toFixed(2) + 'px' )
+            //     ;
         }
         //---------------------------------------------------------
         // \\// legend css

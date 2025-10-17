@@ -5,6 +5,7 @@ Styles for the model slider range
     height: 24px;
     padding-top : 10px;
     z-index : 100;
+    margin: auto;
 }
   
 input[type=range] {
