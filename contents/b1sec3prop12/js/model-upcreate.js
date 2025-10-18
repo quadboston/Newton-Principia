@@ -172,9 +172,6 @@
             )
         );
 
-        //extra points
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-
         nspaste( rg.A.pos, fun( Math.PI ) );
         nspaste( rg.AA.pos, fun( 0 ) );
         {

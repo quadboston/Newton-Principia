@@ -1,5 +1,8 @@
 # Change Log
   
+* Proposition 13
+	* simplified diagram by not showing more than what is described for each section
+
 ## 2025-9-30 (PaleGreen Version, 0.13859)
 ### Improved
 * Proposition 6
