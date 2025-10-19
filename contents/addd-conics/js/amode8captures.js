@@ -149,7 +149,7 @@
         {
             let vis = subessay === 'interval' ? 'visible' : 'hidden';
             stdMod.svgScene$.css( 'visibility', vis );
-            stdMod.graphFW.container$.css( 'visibility', vis );
+            stdMod.graphFW_lemma.container$.css( 'visibility', vis );
         }
 
         //comment out to remove Book's diagram after timeout

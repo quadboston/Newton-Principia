@@ -12,9 +12,6 @@
     return;
 
 
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
     function init_model_parameters()
     {
         rg.S.pos[0] = -sconf.ellipseFocus;
@@ -28,7 +25,7 @@
         toreg( 'tangentCircle' );
 
         //==================================================
-        // //\\ decoration graph
+        // //\\ zebraCols
         //==================================================
         ssD.zebraCols = {};
         [ false, ns.rgbaArr2hsla( [0,     0,   255,    1] )[0] ].forEach(
@@ -49,9 +46,8 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        //stdMod.createsGraphFW( stdMod.legendRoot$ );
         //==================================================
-        // \\// decoration graph 
+        // \\// zebraCols 
         //==================================================
 
         rg.allLettersAreHidden = true;

@@ -9,6 +9,7 @@
             P2gix,
         },
     });
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
@@ -71,8 +72,11 @@
         }
 
         var arrLen = forceGraphArray.length;
-        stdMod.graphArray = [];
-        stdMod.graphArray = forceGraphArray;
+        graphArray.length = 0;
+        for (let fix = 0; fix<arrLen; fix++ )
+        {
+            graphArray[ fix ] = forceGraphArray[ fix ];
+        }
     }
 
 

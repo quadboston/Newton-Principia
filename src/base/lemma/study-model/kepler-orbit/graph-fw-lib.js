@@ -1,7 +1,7 @@
 ( function() {
     const {
         $$, nsmethods, globalCss, userOptions,
-        ssF, sDomF, sData,
+        ssF, sDomF,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         ssFExportList : 
@@ -66,7 +66,7 @@
             //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
-            return {container$, graph_dimX, graph_dimY}
+            return {container$, graph_dimX, graph_dimY};
         }
 
         function plotLabels_2_plotsPars( colorThreadArray )

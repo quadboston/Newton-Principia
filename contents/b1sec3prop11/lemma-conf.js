@@ -12,7 +12,6 @@
                 //todm: automate this list
                 { src: sm + 'sconf.js' },
                 { src: sm + 'init-model-parameters.js' },
-                { src: sm + 'graph-fw-lib.js' },
                 { src: sm + 'config-functions.js' },
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },

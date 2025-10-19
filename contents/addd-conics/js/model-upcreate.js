@@ -12,21 +12,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
@@ -120,7 +105,7 @@
         // //\\ graph
         //------------------------------------------------
         stdMod.buildsforceGraphArray();
-        stdMod.graphFW.drawGraph_wrap();
+        stdMod.graphFW_lemma.drawGraph_wrap({});
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
