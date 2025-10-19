@@ -161,6 +161,8 @@
         //      todm: possibly proliferation
         //-----------------------------------
         var estimatedForce = [200,0,200];
+        var fQR = [100,0,200];
+        
         var sagitta = [100,50,0];
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
@@ -184,6 +186,7 @@
         var predefinedTopics =
         {
             estimatedForce,
+            fQR,
             given,
             proof,
             result,

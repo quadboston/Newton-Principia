@@ -121,10 +121,11 @@
                 xMax = graphX;
             }
             gaix.y[0] = force;
-            gaix.y[1] = ssagitta;
-            gaix.y[2] = fsignum * r2m;
-            gaix.y[4] = estimatedForce;
-            gaix.y[5] = fsignum * r5m;
+            gaix.y[1] = estimatedForce;
+            gaix.y[2] = 1; //body
+            gaix.y[3] = ssagitta;
+            gaix.y[4] = fsignum * r5m; //for show
+            gaix.y[5] = fsignum * r2m; //for show
         }
         let xMargin = (xMax-xMin)*0.05;
         graphArg.xMax = xMax + xMargin;
@@ -146,10 +147,11 @@
         for( ix = 0; ix<glen; ix++ ) {
             let gaix = ga[ix];
             gaix.y[0] /= forceNorm;
-            gaix.y[1] /= sagittaNorm;
-            gaix.y[2] /= eLaw2Norm;
-            gaix.y[4] /= estimatedNorm;
-            gaix.y[5] /= eLaw5Norm;
+            gaix.y[1] /= estimatedNorm;
+            gaix.y[2] /= 1; //body
+            gaix.y[3] /= sagittaNorm;
+            gaix.y[4] /= eLaw5Norm;
+            gaix.y[5] /= eLaw2Norm;
         }
 
         ///gives more space on graph on the bottom and top
@@ -163,23 +165,22 @@
         //first array mast be enabled
         stdMod.graphFW_lemma.graphArrayMask = addendum ?
             [   'force',
-  
-                //saggita, yet broke
-                false,
-                //ssD.solvable && !ssD.doMaskSagitta,
-  
-                (fsignum < 0 ? '-1/r^2' : '1/r^2' ),
-                !'body',
                 'estimated force',
-                !!'-1/r^5'
+                !'body',
+
+                !'saggita, yet broke',
+                //ssD.solvable && !ssD.doMaskSagitta,
+
+                (fsignum < 0 ? '-1/r^2' : '1/r^2' ),
+                !!'-1/r^5',
             ]
         :
             [ 'force',
-              !'sagitta',
-              !'sample-force',
-              !'body',
               'estimated force',
-              !'-1/r^5'
+              !'body',
+              !'sagitta',
+              !'-1/r^5',
+              !'sample-force',
             ];
         
         stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

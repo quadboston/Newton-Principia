@@ -8,3 +8,28 @@ To revert changes made to your working copy, do this:
 git checkout .
 Or equivalently, for git version >= 2.23:
 git restore .
+
+stan@pc:/var/www/html/np/prj-v/ver$ git update-index --skip-worktree ./changelog/version.js
+    let's see what this will do
+        For now, it creates conflict: nothing to commit, but first commit your changes when switching the branch, ps. because of this file is also in .git/info/exclude So, I did undo this command:
+    To undo and start tracking again:
+        git update-index --no-skip-worktree ./changelog/version.js
+            variants:    
+                git update-index --assume-unchanged [<file> ...]
+                To undo and start tracking again:
+                git update-index --no-assume-unchanged [<file> ...]
+Cannot use .gitattributes
+    this file is already version-controlled,
+        path/to/your/file.ext merge=ours
+        path/to/your/file.ext merge=theirs
+        
+Variant:
+        git checkout --theirs ./changelog/version.js
+        git add ./changelog/version.js 
+        git commit -m "Merge branch_to_merge with specific file resolution"
+        
+to: /var/www/html/np/prj-v/ver/.git/info/exclude
+    /changelog/version.js
+    /changelog/local-version.js               
+    
+    

@@ -89,7 +89,7 @@
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
             
             var { yColor, xColor, axisYLegend, axisXLegend, } = 
-                ( haz( ssF, 'graph_axes8mask' ) || setsGraphAxes )();
+                ( setsGraphAxes || haz( ssF, 'graph_axes8mask' ) )();
             //first array must be enabled
             let graphArrayMask = haz( graphFW__self, 'graphArrayMask' );
             //==================================================

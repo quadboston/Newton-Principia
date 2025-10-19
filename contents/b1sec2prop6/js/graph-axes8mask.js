@@ -18,6 +18,10 @@
         const solvable = ssD.solvable;
 
         const graphFW = stdMod.graphFW_lemma;
+
+        //----------------------------------------------
+        // //\\ mask
+        //----------------------------------------------
         const mask = stdMod.graphFW_lemma.graphArrayMask;
         mask[1] = solvable && (
             subessay === 'corollary1' ||
@@ -25,7 +29,9 @@
         ),
         mask[2] = solvable && ADDENDUM; //'body'
         mask[3] = solvable && TIME; //sagitta
-        
+        //----------------------------------------------
+        // \\// mask
+        //----------------------------------------------
         
         //==================================================
         // //\\ calls api
@@ -40,7 +46,7 @@
         const c_body = n2c( 'body' );
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
-        const c_displacement = n2c( 'displacement' );
+        const c_displacement = n2c( 'fQR' );
         const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
         const axisYLegend = [
             {
@@ -61,17 +67,22 @@
                 },
             },
         ];
-        let text = 
-            '<text>' +
+        let text = '<text>';
+        text += 
             '<tspan class="tp-force tofill tobold hover-width" ' +                    
             'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
             'actual f' +
             '</tspan>';
-        text += !mask[1] ? '' :
-            ', <tspan class="tp-displacement tofill tobold hover-width" ' +                    
+        
+        var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +                    
             ' style="fill:' + c_displacement + '; stroke:' +
-            c_displacement + ';"' +
-            '>fQR' +
+            c_displacement +';';
+        text += !mask[1] ? '' :
+            ', <tspan ' + attrib + '"' +
+            '>f</tspan>' +
+            '<tspan baseline-shift="sub"' + attrib +
+            ' font-size : 23;' + '"' +
+            '>QR</span>' +
             '</tspan>';
         text += !mask[2] ? '' :
             ', <tspan class="tp-body tofill tobold hover-width" ' +                    
@@ -79,7 +90,7 @@
             '>speed v' +
             '</tspan>';            
         text += !mask[3] ? '' :
-            ', <tspan class="tp-sagitta tofill tobold hover-width" ' +                    
+            ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +                    
             'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
             'sagitta' +
             '</tspan>';

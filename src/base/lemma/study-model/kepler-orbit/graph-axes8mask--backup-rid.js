@@ -1,7 +1,8 @@
 ( function() {
     const {
-        ssD, ssF, sDomF, sData,
-        amode, stdMod, sconf,
+        $$, nsmethods, globalCss, userOptions,
+        ssF, sDomF, sData,
+        amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         ssFExportList : 
         {
@@ -10,30 +11,29 @@
     });
     return;
     
-    
-    function graph_axes8mask() {
-        const subessay = amode.subessay;
+    function graph_axes8mask()
+    {
+        const graphFW = stdMod.graphFW_lemma;
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
-        const solvable = ssD.solvable;
-        ccc( 'ssD.solvable'+ssD.solvable );
-        const graphFW = stdMod.graphFW_lemma;
+        stdMod.graphFW_lemma.graphArrayMask = ADDENDUM ?
+        [
+            'force',
+            'displacement',
+            //amode.subessay === 'corollary1' ||
+            //    amode.subessay === 'corollary5',
+            'body',
+            TIME && 'sagitta',
+        ] :
+        [ 
+            'force',
+            !'displacement',
+            !'body',
+            TIME && 'sagitta',
+        ];
         
-        //----------------------------------------------
-        // //\\ mask
-        //----------------------------------------------
-        const mask = stdMod.graphFW_lemma.graphArrayMask;
-        mask[1] = solvable 
-            //&& (
-            //   subessay === 'corollary1' ||
-            //   subessay === 'corollary5'
-            //)
-        ,
-        mask[2] = solvable && ADDENDUM; //'body'
-        mask[3] = solvable && TIME; //sagitta
-        //----------------------------------------------
-        // \\// mask
-        //----------------------------------------------
+        
+        let n2c = sDomF.getFixedColor; //name to color
         
         //==================================================
         // //\\ calls api
@@ -43,20 +43,19 @@
 
         //axis x and legend x color:
         //manually picked color, not from plot,
-        let n2c = sDomF.getFixedColor; //name to color
         const c_orbit = n2c( 'orbit' );
         const c_body = n2c( 'body' );
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
-        const c_displacement = n2c( 'fQR' );
+        const c_displacement = n2c( 'displacement' );
         const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
-        const axisYLegend = [
+        const axisYLegend =
+        [
             {
                 //"hover-width" decreases gigantict bold
                 //together, tobold hover-width and tostroke can be redundant
                 text    :
-                    '<text>Force: <tspan class=' +
-                    '"tp-force tofill tobold hover-width"' +
+'<text>Force: <tspan class="tp-force tofill tobold hover-width"' +
 //overrides tp machinery
 ' style="fill:' + c_force + '; stroke:'+c_force + ';"' +
 '></tspan></text>',
@@ -69,38 +68,30 @@
                 },
             },
         ];
-        let text = '<text>';
-        text += 
+        axisYLegend[1] = ADDENDUM ?
+            {
+                text    : '<text>' +
 '<tspan class="tp-force tofill tobold hover-width" ' +                    
 'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
-            'actual f' +
-            '</tspan>';
+'actual f;' +
+'</tspan>' +
 
-        var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +                    
-            ' style="fill:' + c_displacement + '; stroke:' +
-            c_displacement +';';
-        text += !mask[1] ? '' :
-            ', <tspan ' + attrib + '"' +
-            '>f</tspan>' +
-            '<tspan baseline-shift="sub"' + attrib +
-            ' font-size : 23;' + '"' +
-            '>QR</span>' +
-            '</tspan>';
-        text += !mask[2] ? '' :
-            ', <tspan class="tp-body tofill tobold hover-width" ' +                    
+'<tspan class="tp-displacement tofill tobold hover-width" ' +                    
+' style="fill:' + c_displacement + '; stroke:' + c_displacement + ';"' +
+'>est, QR/Δt;' +
+'</tspan>' +
+
+'<tspan class="tp-body tofill tobold hover-width" ' +                    
 ' style="fill:' + c_body + '; stroke:' + c_body + ';"' +
-            '>speed v' +
-            '</tspan>';            
-        text += !mask[3] ? '' :
-            ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +                    
+'>speed v;' +
+'</tspan>' +
+
+'<tspan class="tp-sagitta tofill tobold hover-width" ' +                    
 'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
-            'sagitta' +
-            '</tspan>';
-        text += ADDENDUM ? ' normed by their max.' : '';
-        text += '.</text>';
-        axisYLegend[1] = {
-            text,
-            //',  -1/r², per their max.',
+'sagitta;' +
+'</tspan>' +
+
+',  -1/r², per their max.',
                 x       : 250,
                 y       : 40,
                 style   : {
@@ -109,8 +100,35 @@
                             //'fill'   : 'black',
                 },
             }
+:
+            {
                 
-        var axisXLegend = [
+                text    : '<text>' +
+'<tspan class="tp-force tofill tobold hover-width" ' +                    
+'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
+'actual f, ' +
+'</tspan>' +
+
+'<tspan class="tp-displacement tofill tobold hover-width" ' +                    
+' style="fill:' + c_displacement + '; stroke:' + c_displacement + ';"' +
+'>estimated.' +
+'</tspan>' +
+
+'<tspan class="tp-sagitta tofill tobold hover-width" ' +                    
+'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
+'sagitta;' +
+'</tspan>'
+    ,
+                x       : 250,
+                y       : 40,
+                style   : {
+                            'font-size' : '30',
+                            //'stroke' : 'black',
+                            //'fill'   : 'black',
+                },
+            };
+        var axisXLegend =
+        [
             {
                 text    :  sData.GRAPH_PATH ?
                             'Distance along arc' : 'Distance from force center, r', 

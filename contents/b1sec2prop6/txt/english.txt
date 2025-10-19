@@ -56,7 +56,7 @@ while the ¦PZ PR¦straight line ZPR¦¦ touch ¦APQ¦that curve¦¦ at any poin
 ¦P¦¦, and from any other point on the curve you please ¦Q¦¦ there be drawn ¦QR¦¦ to
 the ¦PZ PR¦tangent¦¦ parallel to the distance ¦SP¦¦, and ¦QT¦¦ be dropped perpendicular
 to that distance ¦SP¦¦, the ¦force¦centripetal force¦¦ will be inversely as the solid
-sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦, provided that the quantity of that solid always be taken
+sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦, provided that the ¦fQR¦quantity of that solid¦¦ always be taken
 which it has ultimately, when the points ¦P¦¦ and ¦Q¦¦ come
 together. For ¦QR¦¦ is equal to the ¦P,sagitta¦sagitta¦¦ of
 ¦timearc¦double the arc QP¦¦ at whose
