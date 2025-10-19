@@ -15,6 +15,6 @@
 #**************************************************
 
 cd ..
-ver/deploy/zipify.php ver none none local-version
+adk/deploy/zipify.php adk none none local-version
 
 
