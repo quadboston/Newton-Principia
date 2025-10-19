@@ -10,23 +10,10 @@
         },
     });
     var sop = sn( 'sampleOrbitParameters', sconf );
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
+    
     function init_model_parameters()
     {
         var op = sconf.orbitParameters;
@@ -115,7 +102,10 @@
                 }
             });
         if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.createsGraphFW( stdMod.legendRoot$ );
+            stdMod.graphFW_lemma = ssF.createsGraph_FW_lemma({
+                digramParentDom$:stdMod.legendRoot$
+            });
+            stdMod.graphFW_lemma.graphArray = graphArray;
         }
         //==================================================
         // \\// decoration graph 

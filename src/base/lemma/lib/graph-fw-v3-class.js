@@ -1,10 +1,7 @@
-// Contains two graph framework creators which
-// are wraps over (possibly low level) fw creator in bsl
-// The seacond one is more object oriented, lets create
-// any number of instances,
+// Contains graph framework class which
+// is a wrap over (possibly low level) fw creator in bsl
 //
-// These creators, however dependent via createsLowTireGlobalCSS.
-
+// ?? This creator, however is dependent via createsLowTireGlobalCSS.
 ( function() {
     var {
         ns, sn, nsmethods, haz, haff, hafa, globalCss, $$,
@@ -60,16 +57,9 @@
         //===========================================
         // \\// fills wrap-object
         //===========================================
-
+        
         createsLowTireGlobalCSS();
         return; //no, this must be supplied: graphFW__self;
-
-
-
-
-
-
-
 
 
         //===================================================
@@ -96,6 +86,7 @@
             // //\\ calls api
             // //\\ calls low tier api
             //==================================================
+            
             graphFW__self.fw.drawGraph({
                 //first array mast be enabled
                 graphArrayMask,

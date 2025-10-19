@@ -1,6 +1,6 @@
 ( function() {
     const {
-        ssD, ssF, sDomF, sData,
+        has, haz, ssD, ssF, sDomF, sData,
         amode, stdMod, sconf,
     } = window.b$l.apptree({
         ssFExportList : 
@@ -15,14 +15,14 @@
         const subessay = amode.subessay;
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
-        const solvable = ssD.solvable;
-        ccc( 'ssD.solvable'+ssD.solvable );
+        const solvable = has( ssD, 'solvable' ) ? ssD.solvable : true;
         const graphFW = stdMod.graphFW_lemma;
         
         //----------------------------------------------
         // //\\ mask
         //----------------------------------------------
-        const mask = stdMod.graphFW_lemma.graphArrayMask;
+        const mask = haz( stdMod.graphFW_lemma, 'graphArrayMask' ) || [];
+        stdMod.graphFW_lemma.graphArrayMask = mask;
         mask[1] = solvable 
             //&& (
             //   subessay === 'corollary1' ||

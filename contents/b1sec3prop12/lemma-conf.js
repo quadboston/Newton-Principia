@@ -18,7 +18,6 @@
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
                 { src: sm + 'graph-array.js' },
-                { src: sm + 'graph-fw-lib.js' },
                 { src: sm + 'makes-orbit.js' },
 
                 { src : sm + 'inits/finalizes-subessay-relaunch.js' },

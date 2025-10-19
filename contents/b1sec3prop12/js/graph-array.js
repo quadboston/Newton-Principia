@@ -9,6 +9,7 @@
             P2gix,
         },
     });
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
@@ -90,16 +91,16 @@
         }
 
         var arrLen = forceGraphArray.length;
-        stdMod.graphArray = [];
-        for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
+        graphArray.length = 0;
+        for (let fix = 0; fix<arrLen; fix++ )
         {
-            var far = forceGraphArray[ forceArrayIx ];
+            var far = forceGraphArray[ fix ];
             far.y[0] = far.y[0] / comparLawMax;
             //force element is second to visually overlap by force color
             far.y[1] = far.y[1] / forceMax;
             far.y[2] = far.y[2] / speedMax;
+            graphArray[ fix ] = far;
         }
-        stdMod.graphArray = forceGraphArray;
     }
 
 

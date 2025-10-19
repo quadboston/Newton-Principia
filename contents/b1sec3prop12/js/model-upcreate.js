@@ -167,7 +167,13 @@
         ///for initial launch only
         if( fconf.effId !== "b1sec3prop14" ) {
             stdMod.buildsforceGraphArray();
-            stdMod.graphFW.drawGraph_wrap();
+            stdMod.graphFW_lemma.drawGraph_wrap({
+                //drawDecimalY : true,
+                //drawDecimalX : false,
+                printAxisXDigits : true,
+                //printAxisYDigits : true,
+            });
+            //stdMod.graphFW.drawGraph_wrap();
         }
         //------------------------------------------------
         // \\// graph
