@@ -56,9 +56,6 @@
                         //.css( 'position', 'absolute' )
 
                         //:this data sets outer dimensions of the graph
-                        //.css( 'width', '400px' )
-                        //.css( 'height', '230px' )
-
                         .css( 'width', '500px' )
                         .css( 'height', '290x' )
 

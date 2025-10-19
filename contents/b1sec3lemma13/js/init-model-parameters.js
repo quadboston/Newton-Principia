@@ -9,23 +9,10 @@
             init_model_parameters,
         },
     });
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
     function init_model_parameters()
     {
         //=================================================
@@ -80,7 +67,10 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.createsGraphFW( stdMod.legendRoot$ );
+        stdMod.graphFW_lemma = ssF.createsGraph_FW_lemma({
+            digramParentDom$:stdMod.legendRoot$
+        });
+        stdMod.graphFW_lemma.graphArray = graphArray;
         //==================================================
         // \\// decoration graph 
         //==================================================
@@ -90,6 +80,5 @@
 
         rg.allLettersAreHidden = true;
     }
-
-}) ();
+})();
 

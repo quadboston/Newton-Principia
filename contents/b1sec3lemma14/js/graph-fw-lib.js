@@ -1,11 +1,22 @@
 ( function() {
-    var {
-        ns, sn, $$, nsmethods, haz, globalCss,
-        ssD, sDomN, sDomF, sData,
-        stdMod, sconf, rg
+    const {
+        $$, nsmethods, globalCss, userOptions,
+        ssF, sDomF,
+        amode, stdMod, sconf, rg
     } = window.b$l.apptree({
-        stdModExportList :
+        ssFExportList : 
         {
+            createsGraph_FW_lemma,
+        },
+    });
+    return;
+
+
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
+        stdMod.createsGraphFW_class({
+            graphFW,
+            digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
@@ -14,13 +25,9 @@
             doDrawToolline,
             graphAxisX,
             graphAxisY,
-        },
+            setsGraphTpClasses,
     });
-    return;
-
-
-
-
+        return graphFW;
 
 
     function doSetColorThreadArray()
@@ -28,36 +35,20 @@
         //===========================================
         // //\\ prepares color ThreadArray
         //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
-        }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
-        sData.colorThreadArray = [
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'context' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+        let colorThreadArray = [
+            sDomF.getFixedColor( 'force' ),
+            sDomF.getFixedColor( 'context' ),
+            sDomF.getFixedColor( 'body' ),
         ];
-        return sData.colorThreadArray;
+        return colorThreadArray;
         //===========================================
         // \\// prepares color ThreadArray
         //===========================================
     }
 
-
     function setsGraphContainerAttributes( digramParentDom$ )
     {
-        stdMod.graphFW.container$ = $$.div()
+            const container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -69,13 +60,18 @@
                     .css( 'top', '0' )
                     .css( 'left', '0' )
                     .css( 'z-index', '111111' )
-            )
-            ;
+            );
         ///creates low tire api
-        sData.graph_dimX = 1000;  //innerWidth
-        sData.graph_dimY = 580;   //innerHeight
-    }
 
+            //does thicker? curves, but needs work on fonts
+            //sData.graph_dimX = 500; //1000;  //innerWidth
+            //sData.graph_dimY = 250; //580;   //innerHeight
+
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            graphFW.container$ = container$;
+            return {container$, graph_dimX, graph_dimY};
+    }
 
     function setsGraphAxes()
     {
@@ -83,7 +79,7 @@
         // //\\ calls api
         //==================================================
         //y-legend color; taken from first plot color:
-        var yColor      = sData.colorThreadArray[ 0 ]; //equilibConst;
+        const yColor = graphFW.colorThreadArray[ 0 ];
 
         //axis x and legend x color:
         //manually picked color, not from plot,
@@ -116,7 +112,6 @@
         ];
         var axisXLegend =
         [
-
             {
                     text    : 'Distance, r',
                 x       : -700,
@@ -141,11 +136,8 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 
-
-
     function plotLabels_2_plotsPars( colorThreadArray )
     {
-
         ///make sure, the number of plot labels is equal to plot functions y(x)
         return [
             {
@@ -164,6 +156,7 @@
                 //    'stroke-width'  : '5',   //optional
                 //},
             },
+
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
@@ -175,6 +168,7 @@
                     'stroke'  : colorThreadArray[1],
                 },
             },
+
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
@@ -189,21 +183,23 @@
         ];
     }
 
-
-
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
     function setsGraphTpClasses()
     {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
+                switch(pix) {
+                    case 0: pl && $$.$( pl ).addClass( 'tp-force tostroke' ); break;
+                    case 2: pl && $$.$( pl ).addClass( 'tp-body tostroke' ); break;
+                }
+            });
     }
-
-
 
     function doDrawToolline()
     {
         return {
             toollineStyle : {
-                stroke : sData.colorThreadArray[2],
+                    stroke : graphFW.colorThreadArray[2],
                 'stroke-width' : 3,
             },
             abscissaIxValue : stdMod.P2gix(),
@@ -225,7 +221,6 @@
         };
     }
 
-
     function graphAxisY( yColor )
     {
         return {
@@ -238,6 +233,6 @@
            'stroke-width'   : '1',
         };
     }
-
-}) ();
+    }
+})();
 

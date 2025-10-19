@@ -9,6 +9,7 @@
             P2gix,
         },
     });
+    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
@@ -82,7 +83,6 @@
         }
 
         var arrLen = forceGraphArray.length;
-        stdMod.graphArray = [];
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
         {
             var far = forceGraphArray[ forceArrayIx ];
@@ -90,7 +90,11 @@
             far.y[1] = far.y[1] / comparLawMax;
             far.y[2] = far.y[2] / speedMax;
         }
-        stdMod.graphArray = forceGraphArray;
+        graphArray.length = 0;
+        for (let fix = 0; fix<arrLen; fix++ )
+        {
+            graphArray[ fix ] = forceGraphArray[ fix ];
+        }
     }
 
 
