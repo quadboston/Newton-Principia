@@ -27,6 +27,11 @@
                     detected_user_interaction_effect    :
                                     sDomF.detected_user_interaction_effect,
                     processMouseDown                    : processMouseDown,
+                    //Enabled the following so only the arrows for the dragger
+                    //closest to the mouse will be shown.  Otherwise when
+                    //draggers are close together, arrows are sometimes shown
+                    //for a different dragger than the one which gets selected.
+                    doCreateDynamicSpinners : true,
                     spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
                     spinnerCursorGrab : sconf.spinnerCursorGrabbed,
                 });
@@ -121,7 +126,7 @@
         function Update_decPoint( pointWrap )
         {
             var pw = pointWrap;
-            return ( function( decPoint ) {
+            return ( function( decPoint, dragSurface, pointWrap, nonenify ) {
                 if( pw.x || pw.x === 0 ) {
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
@@ -130,14 +135,9 @@
                     decPoint.style.top = dompos[1] + 'px';
                 }
 
-                //Hide/show the arrows for the base points depending on the
-                //number of bases selected.  Without this arrows are visible
-                //for base handles that aren't shown, and appear at point "E"
-                //and sometimes the upper left corner of the model area.
-                if(pw.type === 'base') {
-                    const index = pw.index;
-                    const undisplay = !(index > 0 && index < sconf.basesN);
-                    decPoint.style.display = undisplay ? 'none' : 'block';
+                //Hide arrows for all the draggers (for when they are created)
+                if( nonenify === 'nonenify' ) {
+                    decPoint.style.display = 'none';
                 }
             });
         }
@@ -172,48 +172,29 @@
             // \\// todo. d8d points tmp patch.
             //////////////////////////////////////////////////////////
 
-            //TEMP
-            console.log("**********findDraggee**********");
             var closest = null;
             dragWraps.forEach( function( dwrap ) {
                 closest = findClosestPoint( closest, mousePoint, dwrap );
             });
-            console.log("closest =", closest);
             return closest ? closest.dwrap : null;
         }
         function findClosestPoint( closest, mousePoint, dwrap )
         {
             var pointWrap = dwrap.pointWrap;
-            // var DRAGGEE_HALF_SIZE = pointWrap.type === 'base' ?
-            //         5 : //crowdy base needs pinpointed selection
-            //         sconf.DRAGGEE_HALF_SIZE;
             var DRAGGEE_HALF_SIZE = sconf.DRAGGEE_HALF_SIZE;
 
+            if(
+                //.excludes excess of non-used points
+                pointWrap.type === 'base' && pointWrap.index >= sconf.basesN
+            ) {
+                return closest;
+            }
             //.already in sync
             //sconf.modorInPicY + sconf.pictureActiveArea - mousePoint[1];
 
-            //TEMP
-            //Does this code actually get the closest point?  I believe it
-            //probably doesn't always do that.  To get the closest point
-            //shouldn't it always use the exact distance from the mouse to the
-            //point?  Suppose the mouse is somewhat close to base point 1 and
-            //2.  When looping through it first selects point 1 because no
-            //closest point has been selected yet.  Next it looks at point 2
-            //and determines that it is also close enough to the mouse meaning
-            //it could be selected.  If checks the distance td which happens to
-            //be the exact same as point 1.  Note that the distances (straight
-            //line) to the mouse likely aren't actually the same.  The td value
-            //is only part of the distance.  Therefore point 1 stays chosen
-            //even if point 2 is actually closer.
-
-            //One possibility would be to check if a point is within the square
-            //half size distance, then use the exact distance to determine if
-            //it's closest.
             var tdX = Math.abs( mousePoint[0] - pointWrap.x );
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );
             var td  = Math.max( tdX, tdY );
-            //TEMP
-            console.log("td =", td);
             if( td <= DRAGGEE_HALF_SIZE ) {
                 if( !closest || closest.td > td ) {
                     closest = { td, dwrap };

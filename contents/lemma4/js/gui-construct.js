@@ -253,7 +253,7 @@
         const pt = makeDragP_tpl( dr, type, i );
         const pdom = pt.dom;
 
-        pdom.setAttributeNS(null, "class", `movable ${type}Pt`);
+        pdom.setAttributeNS(null, "class", `${type}Pt`);
         pdom.setAttributeNS(null, "cx", pos[0]);
         pdom.setAttributeNS(null, "cy", pos[1]);
         pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
