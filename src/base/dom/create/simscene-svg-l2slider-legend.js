@@ -44,7 +44,11 @@
         stdMod.mmedia = stdMod.svgScen = stdMod.svgScene =
         ( stdMod.mmedia$ = stdMod.svgScen$ = stdMod.svgScene$ =
             $$.svg()
-                .a( 'class', 'bsl--svgscene' )
+                
+                 //reserved, will be overriden in
+                 //in_subessay_launch____amode2lemma:
+                 //.a( 'class', 'bsl--svgscene' ) 
+                
                 .a( 'preserveAspectRatio', "xMidYMid meet" )
                 .a( 'draggable', "false" )
                 .to( stdMod.simScene )
@@ -87,7 +91,6 @@
         }
     }
 
-
     function addBasesSliderGroup()
     {
         sDomN.sliderGroup$ = $$.c('div')
@@ -101,5 +104,4 @@
                 </span>
             `);
     }
-}) ();
-
+})();

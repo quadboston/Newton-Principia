@@ -322,32 +322,13 @@
             }
         }
 
-        ///Input: note: "childEvent" can be missed for touches
 		function do_complete_end( childEvent, rootEvent )
 		{
-            var eventPoint = childEvent &&
-                             ( childEvent.clientX || childEvent.clientX === 0 ) &&
-                             [ childEvent.clientX , childEvent.clientY ];
-            var surfPoint = eventPoint && eventPos_2_surfacePos( childEvent );
             if( startPoint ) {
+                //todo: dontStopEndAfteshocks is always undefined?
                 !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
-                //.programmer may want to make d8d_cb_middle2lowest throttable:
-                //.this is why it is importan to provide "up" with surfPoint
-                //.in case the "move" event will be erased by "up"
-                //var surf_point = surfPoint || lastPoint;
-
-                ///todm this must be worked out for mobile,
-                ///mobile possible does not have meaningful spatial parameters,
-                if( surfPoint ) {
-                    var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
-                    var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
-                 	d8d_cb_middle2lowest( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
-                } else {
-                 	d8d_cb_middle2lowest( null, 'up', null, childEvent );
-                }
+                d8d_cb_middle2lowest( null, 'up', null, childEvent );
 	            startPoint = null;
-                //ns.d('end fw' + frameworkId + ' eid' + eventId + ' startPoint cleared');
-            //} else { ////broken scenario
             }
 		};
         //*****************************************
