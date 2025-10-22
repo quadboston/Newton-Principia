@@ -146,11 +146,8 @@ b {
     width       : 100%;
     margin      : 0;
     padding     : 0;
-    /* todo patch, just to hide accidental misfits, but there
-       must be no misfits
-    */
-    /* ?? todo why needed for shift-up-bug-making-hidden? */
-    overflow    : hidden;
+
+    overflow    : hidden; /* weird but req'd to keep version # in correct place */
  }
 
 .bsl-sim-superscene {
@@ -193,19 +190,19 @@ b {
    may take absolute positioning
 */
 .bsl--svgscene {
-    position    : relative;
+    position    : absolute;
     left        : 0;
     top         : 0;
     box-sizing  : border-box;
-    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
-    height: 60vh;
+    box-shadow  : 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
 }
 
 .bsl-legend-root {
-    position    : absolute; /* must be absolute for dividor dragger to work */
-    padding-top  : 5px;
-    left: 50%;
-    transform: translateX(-50%);
+    position     : absolute; /* must be absolute for dividor dragger to work */
+    padding-top  : 5px;  
+    padding-left : 20px;  
+    box-sizing   : border-box;
+    text-align   : center;
 }
 
 

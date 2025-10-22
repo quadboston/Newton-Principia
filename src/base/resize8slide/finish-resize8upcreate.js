@@ -31,13 +31,6 @@
     return;
 
 
-
-
-
-
-
-
-
     ///=============================================================================
     /// //\\ restricts and sets super root and text pane sizes,
     //       main resize engine manager,
@@ -107,6 +100,7 @@
             var sliderGroup$ = sDomN.sliderGroup$;
             var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
             lemma2_slidersH += 35; //nicer
+            sDomN.sliderGroup$.css('position', 'absolute');
         }
 
         //-------------------------------------------
@@ -390,21 +384,33 @@
         //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;
 
-        stdMod.simSceneW    = wid;
-        stdMod.simSceneH    = wid * stdMod.simSceSvg_narrowestAsp;
+        stdMod.simSceneW    = wid - 50;
         stdMod.svgSceneW    = stdMod.simSceneW;
-        stdMod.svgSceneH    = stdMod.simSceneH; //useless?
+        //stdMod.svgSceneH    = stdMod.simSceneH; //useless?
 
         stdMod.svgVB_W      = sconf.innerMediaWidth;
         stdMod.svgVB_H      = sconf.innerMediaHeight;
         stdMod.svgVB_offsX  = 0;
 
+        let legendHeight = document.querySelector('.bsl-legend-root').offsetHeight;        
+        stdMod.simSceneH = stdMod.svgVB_H + legendHeight + 100;
+
+        // todo: these conditionals aren't ideal but do the trick
         if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+            console.log('l2/l3')
+            stdMod.simSceneH += 400;
             sDomN.sliderGroup$
                 .css( 'display', 'inline-block' )
                 .css( 'position', 'static' )
                 ;
+        } else if(fconf.sappId === 'b1sec1lemma9' || fconf.sappId === 'b1sec1lemma10' ) {
+            stdMod.simSceneH += 200;
+        } else if(fconf.sappId === 'b1sec1lemma11') {
+            stdMod.simSceneH += 400;
         }
+
+        stdMod.legendRoot$.css( 'left',  '0px' ); //so it doesn't get offset on page resize
+
         makes_svgViewBox();
         doesTopContainersSizing();
         wrkwin.buildsMobile({});
