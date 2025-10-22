@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { $$, nsmethods, nssvg, mat,
+        ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -11,6 +11,7 @@
     ///****************************************************
     function model_upcreate()
     {
+        //console.log('model_upcreate');
         stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
@@ -37,7 +38,7 @@
         var Rc = R; //curvature radius
 
         //================================================
-        // //\\ arc, sagittae and related
+        // //\\ arc, sagittae and related (both Solutions tabs)
         //================================================
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
@@ -65,7 +66,7 @@
         //================================================
 
         //================================================
-        // //\\ curvature circle
+        // //\\ curvature circle (Another solution tab)
         //================================================
         rg.C.pos[0] = RC[0];
         rg.C.pos[1] = RC[1];
@@ -102,6 +103,28 @@
         //================================================
 
         //================================================
+        // //\\ highlightable arc PQ (Solution tab)
+        //================================================
+        var cfun = stdMod.q2xy;
+        let Qrev = JSON.parse(JSON.stringify(rg.Q)); // deep copies
+        let Prev = JSON.parse(JSON.stringify(rg.P));   
+        let qQ = stdMod.xyToQ(rg.Q.pos[0], rg.Q.pos[1]);
+        let qP = stdMod.xyToQ(rg.P.pos[0], rg.P.pos[1]);
+        Qrev.pos[0] = qQ; //adjusted values to ensure arc lines up with points
+        Prev.pos[0] = qP;
+
+        ssF.paintsCurve({
+                //rgName    : will become 'arc-QP',
+                fun         : cfun,
+                pointA      : Qrev,
+                pointB      : Prev,
+                mmedia      : stdMod.mmedia,
+        });
+        //================================================
+        // \\// highlightable arc PQ
+        //================================================
+
+        //================================================
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
@@ -115,22 +138,6 @@
                 //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
-            /*
-            if( !bonus ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax =0;
-                for( ix = 0; ix<len; ix++ ) {
-                    let yy = Math.abs( ga[ix].y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------

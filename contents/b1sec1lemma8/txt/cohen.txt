@@ -45,34 +45,6 @@ to these, will ultimately become similar and ¦RACB-RAB RAD-RAB¦equal to one an
 
 
 
-*::*proof|english
-{
-  "isBonus" : "true",
-  "subessayCaption" : "Interpretation 2. Unbounded triangles.",
-  "subessay" : "interpretation2",
-  "logic_phaseCaption" : "Proof"
-}
-*..*
-For while point ¦B¦¦ approaches
-point ¦A¦¦, let ¦AB¦¦, ¦AD¦AD¦¦, and ¦AR¦¦ be
-understood always to be produced
-to the distant points ¦b¦b¦¦, ¦d¦d¦¦, and ¦r¦r¦¦, and
-¦r,d¦rbd¦¦ to be drawn parallel to ¦RD¦¦;
-and let arc ¦arc-Ab¦Acb¦¦ be always similar
-to arc ¦arc-AB¦ACB¦¦. Then as points ¦A¦¦ and
-¦B¦¦ come together, the angle ¦Ab Ad¦bAd¦¦ will
-vanish, and therefore the three triangles ¦rAb area-rAb¦rAb¦¦,
-¦rAcb area-rAcb¦rAcb¦¦,
-and ¦rAd area-rAd¦rAd¦¦, which are always finite, will coincide and on that account are similar and equal. Hence
-also ¦RAB area-RAB¦RAB¦¦, ¦RACB area-RACB¦RACB¦¦,
-and ¦RAD area-RAD¦RAD¦¦, which will always be similar and proportional
-to these, will ultimately become similar and equal to one another. &nbsp;&nbsp; Q.E.D
-<br><br>
-<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 436.</div>
-
-
-
-
 *::*corollary|english
 {
   "logic_phaseCaption" : "Corollary"

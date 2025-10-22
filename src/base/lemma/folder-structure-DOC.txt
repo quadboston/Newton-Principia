@@ -1,0 +1,11 @@
+The intended purpose for media-model and study-model:
+
+media-model:
+	Common code for painting the shapes, points, lines, and curves using SVG.
+
+study-model:
+	Model-calculational code specific to certain motion. 
+	For example, to Kepler-motion (motion with constant sectorial speed.)
+	Such code that is specific to a single model is intended to be found
+	in that model's 'model-upcreate.js' file
+	(contents/[model]/js/model-upcreate.js).

@@ -1,11 +1,11 @@
 ( function() {
-    var { $$, nsmethods, globalCss, sDomF, amode, stdMod, sconf, rg }
-        = window.b$l.apptree({ stdModExportList : { createsGraphFW_lemma, }, });
+    var { $$, sDomF, stdMod }
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
     return;
 
 
-    function createsGraphFW_lemma({ digramParentDom$ }){
-        let graphFW = {};
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
@@ -13,29 +13,25 @@
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            
-            //optional:
-            doDrawToolline,
-            graphAxisX,
-            graphAxisY,
+            setsGraphTpClasses,
             setsGraphTpClasses,
         });
+        //first array must be enabled
+        //but can be dynamically overridden,
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
         return graphFW;
 
-        
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset
+        ///dynamically,        
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
                 sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'sagitta' ),
-                sDomF.getFixedColor( 'context' ),
-                sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'estimatedForce' ),
-                sDomF.getFixedColor( 'proof' ),
+                sDomF.getFixedColor( 'displacement' ),
             ];
             return colorThreadArray;
         }
-
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
@@ -53,12 +49,11 @@
                         .css( 'z-index', '111111' )
                 )
                 ;
-            ///creates low tire api
+            //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
             return {container$, graph_dimX, graph_dimY}
         }
-
 
         function setsGraphAxes()
         {
@@ -68,11 +63,11 @@
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-            var yColor = graphFW.colorThreadArray[ 0 ]; //equilibConst;
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
             //axis x and legend x color:
             //manually picked color, not from plot,
-            var xColor = 'rgba(0,0,0,1)';
+            var xColor      = 'rgba(0,0,0,1)';
             var axisYLegend =
             [
                 {
@@ -86,26 +81,20 @@
                     y       : 25,
                     style   : {
                                 'font-size' : 28 + 'px',
-                                //'stroke' : yColor,
-                                //'fill'   : yColor,
+                                'stroke' : yColor,
+                                'fill'   : yColor,
                     },
                 },
-
                 {
-                    text    :   // Actual and Estimated forces
-                                '<text><tspan class="tp-force tofill ' +
-                                'tobold hover-width"' +
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) +
-                                '; stroke:'+n2c( 'force' ) + ';"' +
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
                                 '>Actual</tspan>' +
                                 '<tspan> and </tspan>' +
 
-                                '<tspan class="tp-_p_-sagitta tofill' +
-                                'tobold hover-width"' +
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
                                 //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+
-                                                n2c( 'sagitta' ) + ';"' +
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:' + n2c( 'displacement' ) + ';"' +
                                 '>Estimated' +
                                 '</tspan>' +
 
@@ -115,15 +104,14 @@
                     y       : 40,
                     style   : {
                                 'font-size' : '30',
-                                //'stroke' : 'black',
-                                //'fill'   : 'black',
+                                'stroke' : 'black',
+                                'fill'   : 'black',
                     },
                 },
 
             ];
             var axisXLegend =
             [
-
                 {
                     text    : 'Distance from force (SP)', 
                     x       : -560,
@@ -148,39 +136,18 @@
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
 
-
-
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            ///make sure, the number of plot labels is equal to plot functions y(x)
             return [
                 {
-                    fraqX : 0.2,
+                    fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Actual force',
+                    //pcaption : '',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
-                        'font-size' : '40px',
+                        'font-size' : '30px',
                         'stroke'  : colorThreadArray[0],
-                        //'stroke-width' : '10px',
-                        //'display' : 'none',
-                        //'fill' : colorThreadArray[0],
-                    },
-                    //overrides tp class
-                    //plotStyle : {
-                        //'stroke-width'  : '5',   //optional
-                    //},
-                },
-                {
-                    fraqX : 0.6,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Estimated force',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[1],
                         //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
@@ -189,111 +156,40 @@
                     //},
                 },
                 {
-                    fraqX : 0.8,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '-r⁻²',
-                    fontShiftX : -50,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[2],
-                    },
-                },
-                {
-                    fraqX : 0.9,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[3],
-                    },
-                },
-                {
-                    fraqX : 0.6,
+                    fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
                     //pcaption : 'Estimated force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                        //'fill' : colorThreadArray[4],
+                        'font-size' : '30px',
+                        'stroke'  : colorThreadArray[1],
                     },
                 },
                 {
-                    //compare law 1/r⁵
-                    fraqX : 0.8,
+                    fraqX : 0.01,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '-r⁻⁵',
-                    fontShiftX : 30,
+                    //pcaption : '-r⁻²',
+                    fontShiftX : -50,
                     fontShiftY : 0,
                     style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[5],
+                        'font-size' : '30px',
+                        'stroke'  : colorThreadArray[2],
                     },
                 },
             ];
         }
 
-
-
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            //let m = graphFW.graphArrayMask;
-            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break; //r2
-                    case 4: pl && $$.$(pl).addClass( 'tp-estimated_force tostroke' ); break; //est
-                    case 5: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break; //law5
-                }
-            });
-        }
-
-
-        function doDrawToolline()
-        {
-            return {
-                toollineStyle : {
-                    stroke : graphFW.colorThreadArray[2],
-                    'stroke-width' : 1.5,
-                },
-                abscissaIxValue : stdMod.qValueFromPointPToQIndex(),
-                numberMarks : false,
-            };
-        }
-
-        ///horizontal axis x pars, font, etc,
-        function graphAxisX( xColor )
-        {
-            return {
-                'font-size'     : '18px',
-                fontShiftX      : -12, //in media scale
-                fontShiftY      : +14,
-                decimalDigits   : 3,
-                stroke          : xColor,
-                fill            : xColor,
-            'stroke-width'   : '0.2',
-            };
-        }
-
-
-        function graphAxisY( yColor )
-        {
-            return {
-                'font-size'     : '20px',
-                fontShiftX      : -45, //in media scale
-                fontShiftY      : +5,
-                decimalDigits   : 1,
-                stroke          : yColor,
-                fill            : yColor,
-            'stroke-width'   : '1',
-            };
+            const svg = graphFW.fw.plotIx2plotSvg;
+            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
+            // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+            // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
         }
     }
-
 }) ();
 

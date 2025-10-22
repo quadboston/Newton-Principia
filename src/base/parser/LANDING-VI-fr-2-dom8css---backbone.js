@@ -62,7 +62,7 @@
 
 
     ///apparently this thing ruins performance and pollutes css
-    function digestsSingleMessage_2_topics( messageDomEl, singleMessageText, dontDoMathJax )
+    function digestsSingleMessage_2_topics( messageDomEl, singleMessageText )
     {
         //Frag. step I.
         //collects and adds more entries into l caseId2allLemTopics,
@@ -96,7 +96,6 @@
             messageDomEl,
             ready_for_html_act8stat_fragments_texts_rack[ 'static' ],
             'static',
-            dontDoMathJax,
         );
         //***********************************************************
 

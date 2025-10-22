@@ -37,7 +37,7 @@ the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ diminis
 <br>
 
 If we assume the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangent¦¦ does not ultimately disappear,
-then the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ would contain a ¦AL Ad L¦rectilinear angle¦¦, 
+then the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ would contain a ¦AL AD L¦rectilinear angle¦¦, 
 which could only happen if the ¦arc-AB¦arc¦¦ was not continuous at the ¦AD¦tangent¦¦. 
 Since we stipulated that the ¦arc-AB¦arc¦¦ <em>is</em> continuous at the ¦AD¦tangent¦¦, 
 our assumption must be wrong, 
@@ -45,7 +45,7 @@ meaning that the ¦AB AD¦angle¦¦ made by the ¦AB¦chord¦¦ and ¦AD¦tangen
 <br><br>
 
 The model visualizes what the assumption might look like. 
-The ¦AL L¦red adjustable line¦¦ forms an ¦AL Ad L¦angle¦¦ with the ¦AD¦tangent¦¦, 
+The ¦AL L¦red adjustable line¦¦ forms an ¦AL AD L¦angle¦¦ with the ¦AD¦tangent¦¦, 
 and it is this angle that we could, wrongly, 
 imagine is always contained within the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦, 
 even after the ¦A B¦endpoints¦¦ of the ¦AB¦chord¦¦ meet. 
@@ -58,4 +58,4 @@ as we bring the ¦A B¦endpoints¦¦ of the ¦AB¦chord¦¦ together.
 
 This visualization is meant only as a supplement to Newton’s argument. 
 The proof is based on the understanding that a continuous curvature 
-will not allow the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ to contain a ¦AL Ad L¦rectilinear angle¦¦.
+will not allow the ¦arc-AB¦arc¦¦ and ¦AD¦tangent¦¦ to contain a ¦AL AD L¦rectilinear angle¦¦.

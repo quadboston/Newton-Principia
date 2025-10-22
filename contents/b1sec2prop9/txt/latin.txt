@@ -5,8 +5,11 @@
 }
 *..*
 <img src="contents/b1sec2prop9/img/latin.png" style="width:100%">
-<br>
-<div book-reference-id="latin"></div>
+<br><br>
+<div book-reference-id="latin-on-e-rara"></div>
+
+
+
 
 *::*proof|latin
 {
@@ -15,4 +18,4 @@
 *..*
 <img src="contents/b1sec2prop9/img/latin.png" style="width:100%">
 <br><br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>

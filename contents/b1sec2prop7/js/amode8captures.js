@@ -1,16 +1,7 @@
 ( function() {
-    var { ns, sn, nspaste, capture, userOptions, amode, toreg, stdMod, rg, sDomF, ssD, ssF, 
-        fconf, sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
-    setCapture();
+    var { nspaste, amode, toreg, stdMod, rg, sDomF, ssD, ssF, 
+        sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
-
-
-    function setCapture()
-    {
-        nspaste( capture,
-        {
-        });
-    }
 
 
     ///runs inside "subessay launch" which in turn runs after
@@ -18,6 +9,7 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
+        const q2xy = stdMod.q2xy;
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
         });
@@ -33,8 +25,7 @@
 
         //interval of t to construct an arc for
         //Newton's sagitta
-        //toreg( 'sForSagitta' )( 'val', 0.210 );
-        toreg( 'sForSagitta' )( 'val', 0.310 );
+        //toreg( 'sForSagitta' )( 'val', 0.310 );
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by
@@ -50,7 +41,6 @@
         rg[ 'P,rrminus' ].undisplay     = true;
         rg.curvatureCircle.undisplay    = true;
         rg.PC.undisplay                 = true;
-        rg.timearc.undisplay            = true;
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -58,19 +48,19 @@
 
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
             sDomF.detected_user_interaction_effect( !'doUndetected' );
-            nspaste( rg.A.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.A.pos, q2xy(
                 -0.5, //chosen value for A
             ));
-            nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.P.pos, q2xy(
                 0.5, //chosen value for P
             ));
             var Ss = Math.PI * 1.2;
-            var S = rg[ 'approximated-curve' ].t2xy( Ss );
+            var S = q2xy( Ss );
             rg.S.pos[0] = S[0]*0.4;
             rg.S.pos[1] = S[1]*0.4;
 
             var Rcol2_s = Math.PI * 0.75;
-            var Rcol2 = rg[ 'approximated-curve' ].t2xy( Rcol2_s );
+            var Rcol2 = q2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
 
@@ -81,7 +71,7 @@
             nspaste( rg.S.pos,
                 [-0.6030729600066013, 0.13447833820836858] //Book's value
             );
-            nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.P.pos, q2xy(
                 0.7262954797868 // Book's value for P
             ));
             if( subessay === 'corollary1' ) {
@@ -94,7 +84,7 @@
         modifyDecorationVisibility();
 
         ssD.stashedVisibility = null;
-        stdMod.curveIsSolvable();
+        stdMod.rebuilds_orbit(ssD.Dt);
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
@@ -110,9 +100,6 @@
      */
     function modifyDecorationVisibility() {
         const { logic_phase, aspect, subessay } = amode;
-
-        rg.Q.hideD8Dpoint = rg.Q.d8d_find_is_LOCKED = logic_phase === 'claim';
-
         if (logic_phase === 'claim') {
             showOnly(
                 'S',

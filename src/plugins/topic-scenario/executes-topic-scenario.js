@@ -209,7 +209,7 @@
     //:-        - no scroll
     //::-       - no scroll
     //::#       - do condence message to equal previous message
-    function executesMessageAction( ecommand, ctype, noMathJax )
+    function executesMessageAction( ecommand, ctype )
     {
         doDebugMessage( 'p r o m p t   ' + ecommand );
         if( ctype === '::#' && ecommand === previousMessage ) return;
@@ -231,22 +231,11 @@
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
         var newMessage_dom  = $$.c('div')();
         $$.$( fbFrame_dom ).ch( newMessage_dom );
-
-        //todm: why there are two MathJax flags? here and below,
-        ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand, !!'dontDoMathJax' );
+        ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand );
 
         //updates only for newMessage
         //removed because of emulated by user-options.
         //ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
-
-        if( noMathJax ) return;
-
-        ///we put new message in MathJax queue:
-        ssF.BodyMathJax_2_HTML(
-            newMessage_dom,
-            !!'no_domEl_pretransformation',
-            doScroll,
-        );
     }
 
 

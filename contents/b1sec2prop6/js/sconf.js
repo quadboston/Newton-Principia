@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, userOptions, fconf, sconf, fixedColors,} = 
+    var { ns, fconf, sconf, fixedColors,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -141,10 +141,9 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var Y = [263,66];
-        var A = [540, 338];
+        var posS = [originX_onPicture, originY_onPicture];
+        var posP = [453, 177];
+        var posA = [540, 338];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -202,7 +201,7 @@
         //---------------------------------------------------
         var curvePivots =
         [
-            A,
+            posA,
             [ 527,248 ],
             [ 485,203 ],
             //P,
@@ -261,12 +260,13 @@
 
         Object.assign( originalPoints, {
             A : {
-                pos: A,
+                pos: posA,
                 pcolor : given,
+				cssClass: 'logic_phase--corollary',
             },
 
             S : {
-                pos: S,
+                pos: posS,
                 pcolor : given,
                 letterAngle : -90,
                 draggableX  : true,
@@ -275,7 +275,7 @@
             },
 
             P : {
-                pos: P,
+                pos: posP,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -284,12 +284,12 @@
             },
 
             Q : {
-                //pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
+                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -306,32 +306,34 @@
                 pos: [0,0],
                 pcolor : proof,
                 letterAngle : 180,
+				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
 
             R : {
                 //pos: Q,
                 pcolor : displacement,
                 letterAngle : 45,
+				cssClass: 'logic_phase--corollary',
             },
 
             Z : {
                 pos: [111111,111111],
                 pcolor : body,
                 letterAngle : 45,
+				cssClass: 'subessay--corollary1',
             },
 
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
-                //pos: Q,
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
+				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
             },
 
             sagitta : {
                 caption : 'I',
-                //pos: Q,
                 pcolor : sagitta,
                 letterAngle : 270,
                 letterRotRadius : 35,
@@ -340,68 +342,83 @@
             },
 
             Y : {
-                //pos: Q,
                 pcolor : proof,
                 letterAngle : 80,
+				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
-                pos: S,
+                pos: posS,
                 pcolor : curvature,
                 letterAngle : -45,
+				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             //center of instant curvature circle
             C : {
-                pos: [0,0], //will be calculated
+                //pos will be calculated
                 caption : '',
                 pcolor : curvature,
                 letterAngle : -45,
+				cssClass: 'subessay--corollary3',
             },
 
             nonSolvablePoint : {
-                pos: [0,0], //will be calculated
+                //pos will be calculated
                 caption : 'Orbits are disconnected.',
                 fontSize : '25',
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
                 undisplayAlways : true,
                 pcolor : invalid,
                 letterAngle : 0,
-
-                //already toggled by amode8captures
-                //undisplay : true,
             }
         });
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
+        var mod2inn_scale = ( posA[0] - posS[0] );
 
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature }, },
-            //{ 'SA' : { pcolor : context }, },
-            { 'SP' : { pcolor : given }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body }, },
-
-            { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : displacement }, },
+            { 'PV' : { pcolor : curvature,
+				cssClass: 'subessay--corollary3 subessay--corollary5',
+			 }, },
+            { 'SP' : { pcolor : given,
+				cssClass: 'subessay--corollary1 subessay--corollary5',
+			 }, },
+            { 'PY' : { pcolor : body,
+				cssClass: 'subessay--corollary3 subessay--corollary5',
+			 }, },
+            { 'PZ' : { pcolor : body,
+				cssClass: 'subessay--corollary1 subessay--corollary3',
+			 }, },
+            { 'PR' : { pcolor : body,
+				cssClass: 'logic_phase--corollary',
+			 }, },
+            { 'SY' : { pcolor : proof,
+				cssClass: 'subessay--corollary3 subessay--corollary5',
+			 }, },
+            { 'QR' : { pcolor : displacement,
+				cssClass: 'logic_phase--corollary',
+			 }, },
             { 'QP' : { pcolor : proof }, },
-            //{ 'VQ' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : displacement }, },
-            { 'PC' : { pcolor : curvature }, },
-            { 'Q,rrminus' : { pcolor : proof }, },
-            { 'P,rrminus' : { pcolor : proof }, },
-            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
-            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            { 'SQ' : { pcolor : proof,
+				cssClass: 'subessay--corollary1',
+			 }, },
+            { 'QT' : { pcolor : displacement,
+				cssClass: 'subessay--corollary1 subessay--corollary5',
+			 }, },
+            { 'PC' : { pcolor : curvature,
+				cssClass: 'subessay--corollary3',
+			 }, },
+            { 'Q,rrminus' : { pcolor : proof,
+				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
+			 }, },
+            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1,
+				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
+			 }, },
+            { 'S,nonSolvablePoint' : { pcolor : invalid,
+				undisplayAlways : true,
+			 }, },
         ];
 
         ns.paste( sconf, {
@@ -427,4 +444,3 @@
         });
     }
 }) ();
-

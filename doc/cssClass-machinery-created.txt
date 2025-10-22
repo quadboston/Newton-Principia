@@ -1,0 +1,40 @@
+
+"Can you provide a version of the code where the only logic changes to the master branch are what we need to accomplish component visibility through CSS?"
+
+The branch is:
+cssClass-base-code-change-and-P10 Author: Konstantin Kirillov <github@landkey.net>  2025-08-11 13:51:10
+
+There are three type of changes, all of them are necesary to change the logic.
+Other changes should be formattings or minor fixes.
+
+1) implement cssClass control in core code:
+
+src/base/parser/LANDING-VI-exegs2frags.js - principal css. Hides all and unhides when parent and child-svg-shape classes do correlate.
+
+principal:
+src/base/lemma/study-model/subessay-amode-2-lemma.js  - for svg-scene to enable parent-child classes correlation in css for correct visiblity.
+when user changes view inside lemma.
+
+improves spawning the property cssClass configured in sconf for lines and points: 
+rc/base/lemma/expands-conf.js - adds cssClass to registry of the line and point
+
+src/base/dom/create/simscene-svg-l2slider-legend.js - minor fix, competing class assignment removed
+
+
+2) removes previous cssClass control (which did you like and which was the predecessor of the functionality) and which become a rubbish for now.
+
+contents/b1sec5lemma21/js/init-model-parameters.js -
+contents/b1sec5lemma21/js/media-upcreate.js
+contents/b1sec5lemma20/js/init-model-parameters.js
+contents/b1sec5lemma20/js/media-upcreate.js
+etc.
+
+3) "accomplishes component visibility through CSS?"
+The only thing the future programmer should know about the settings. The only things are the settings in sconf.js The setting cssClass for points and lines. In this branch this is done for P10, L20.
+
+contents/b1sec5lemma20/js/sconf.js
+
+This is what done in P10 as an example for future lemmas settings.
+contents/b1sec2prop10/js/sconf.js 
+
+

@@ -6,19 +6,19 @@
   "logic_phaseCaption" : "Claim"
 }
 *..*
-        If in any figure ¦figure Aa¦AacE¦¦,
-        comprehended by the straight lines ¦Aa¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve acE¦¦,
-        any number of parallelograms ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦, ...
+        If in any figure ¦figure Aa¦A𝑎𝑐E¦¦,
+        comprehended by the straight lines ¦Aa¦A𝑎¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve 𝑎𝑐E¦¦,
+        any number of parallelograms ¦inscribed-rectangles insc-txt¦A𝑏, B𝑐, C𝑑¦¦, ...
         are inscribed upon equal bases ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ...
 
-        and have sides ¦Bb¦¦, ¦Cc¦¦, ¦Dd¦¦, ...
-        parallel to the ¦Aa¦side Aa¦¦ of the figure;
-        and if the parallelograms ¦difference¦aKbl, bLcm, cMdn¦¦, ... are completed;
+        and have sides ¦Bb¦B𝑏¦¦, ¦Cc¦C𝑐¦¦, ¦Dd¦D𝑑¦¦, ...
+        parallel to the ¦Aa¦side A𝑎¦¦ of the figure;
+        and if the parallelograms ¦difference¦aK𝑏𝑙, 𝑏L𝑐𝑚, 𝑐M𝑑𝑛¦¦, ... are completed;
         if then the ¦BC¦width¦¦ of these parallelograms is diminished and their number increased indefinitely,
 
-        I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AKbLcMdD¦¦,
-        the ¦circumscribed-rectangles circ-txt¦circumscribed figure AalbmcndoE¦¦,
-        and the ¦figure-area figure-area-txt¦curvilinear figure AabcdE¦¦
+        I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AK𝑏L𝑐M𝑑D¦¦,
+        the ¦circumscribed-rectangles circ-txt¦circumscribed figure A𝑎𝑙𝑏𝑚𝑐𝑛𝑑𝑜E¦¦,
+        and the ¦figure-area figure-area-txt¦curvilinear figure A𝑎𝑏𝑐𝑑E¦¦
         have to one another are ratios of equality.
             
         <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433.</div>
@@ -32,7 +32,7 @@
 }
 *..*
             For the ¦difference¦¦ of the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures
-            is the ¦difference¦sum¦¦ of the parallelograms ¦a--K--b--l¦Kl¦¦, ¦b--L--c--m¦Lm¦¦, ¦c--M--d--n¦Mn¦¦, and
+            is the ¦difference¦sum¦¦ of the parallelograms ¦a--K--b--l¦K𝑙¦¦, ¦b--L--c--m¦L𝑚¦¦, ¦c--M--d--n¦M𝑛¦¦, and
             
             <!-- addendum uses mathematically strict variant by removing 
                  notation Do from incorrect rect.
@@ -40,12 +40,12 @@
             ¿?
             {
                 "no-higlight-do" : "Do,",
-                "higlight-do" : "¦d--e--p--o¦Do¦¦,"
+                "higlight-do" : "¦d--e--p--o¦D𝑜¦¦,"
             }¿
             
             that is (because they all have equal bases),
-            the rectangle having as base ¦Kb¦¦ (the base of one of them)
-            and as altitude ¦Aa¦¦ (the sum of the altitudes), that is, the rectangle ¦widest-rectangular widt-txt¦ABla¦¦.
+            the rectangle having as base ¦Kb¦K𝑏¦¦ (the base of one of them)
+            and as altitude ¦Aa¦A𝑎¦¦  (the sum of the altitudes), that is, the rectangle ¦widest-rectangular widt-txt¦AB𝑙𝑎¦¦.
 
             But this rectangle, because its width ¦AB¦¦ is diminished indefinitely, becomes less than any given rectangle.
             Therefore (by lem. 1) the ¦inscribed-rectangles insc-txt¦inscribed figure¦¦ and the ¦circumscribed-rectangles circ-txt¦circumscribed figure¦¦ and,

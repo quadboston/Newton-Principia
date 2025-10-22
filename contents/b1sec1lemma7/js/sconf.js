@@ -112,9 +112,9 @@
             hidden,
 
             //claim
-            "curve-AB"      : given,
+            "curve-AB"      : given, //arc-AB plus extension past B
             "left-curve-AB" : given, //extends curve ACB to the left of A
-            "arc-AB"        : given, //curve-AB plus extension past B
+            "arc-AB"        : given, 
             "claimRatio"    : given, //data table
 
             //proof
@@ -174,24 +174,24 @@
             },
 
             b : {
+				caption: "𝑏",
                 pos: b,
                 letterAngle : 0,
                 pcolor      : proof,
             },
             c : {
+				caption: "𝑐",
                 letterAngle : 45,
-                letterRotRadius : 13,
+                letterRotRadius : 20,
                 pcolor      : proof,
             },  
             d : {
+				caption: "𝑑",
                 pos         : d,
                 letterAngle : 90,
                 pcolor      : proof,
             },
-            e : {
-                letterAngle : 90,
-                pcolor      : proof,
-            },
+
 
             r : { //hidden but used to calc pos of b
                 pos: r,

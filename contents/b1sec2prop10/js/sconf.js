@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
+    const { nspaste, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -73,8 +73,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var C = [443, 375 ];
-        var S = C;
+        var posC = [443, 375 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -84,8 +83,8 @@
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 360;
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
+        var originX_onPicture = posC[0]; //for model's axis x
+        var originY_onPicture = posC[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
@@ -144,7 +143,6 @@
             hidden,
             curvature,
             context,
-            displacement,
         } = fixedColors;
 
 
@@ -169,74 +167,74 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            O : {
-                pcolor : context,
-                caption : 'C',
-                pos: C,
-                letterAngle : 120,
-                letterRotRadius : 35,
-            },
-
-            B : {
-                pcolor : proof,
-                letterAngle : 90,
-            },
-
-            BB : {
-                letterAngle : 90,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-            A : {
-                pcolor : proof,
-            },
-
+            
+            // //\\ no visibility cssClass            
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
             },
 
+            BB : {
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+
+            C : {
+                pcolor : given,
+                pos: posC,
+                letterAngle : 120,
+                letterRotRadius : 35,
+            },
+
+            Z : {
+                pcolor : body,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            // \\// no visibility cssClass
+
+            B : {
+                pcolor : proof,
+                letterAngle : 90,
+				cssClass: 'subessay--solution',
+            },
+
+            A : {
+                pcolor : proof,
+                cssClass: 'subessay--solution',
+            },
+
+            // //\\ proof
             D : {
                 pcolor : proof,
                 letterAngle : 70,
+                cssClass: 'logic_phase--proof',
             },
 
             K : {
                 pcolor : proof,
                 letterAngle : 70,
+                cssClass: 'logic_phase--proof',
             },
 
             G : {
                 pcolor : proof,
                 letterAngle : 90,
                 letterRotRadius : 25,
+                cssClass: 'logic_phase--proof',
             },
 
             T : {
                 pcolor : proof,
                 letterAngle : 180,
                 letterRotRadius : 15,
+                cssClass: 'logic_phase--proof',
             },
 
             R : {
                 pcolor : proof,
                 letterAngle : 45,
-            },
-
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-            Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
+                cssClass: 'subessay--solution',
             },
 
             v : {
@@ -244,28 +242,33 @@
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
+                cssClass: 'logic_phase--proof',
             },
 
             F : {
                 pcolor : proof,
                 letterAngle : -135,
+                cssClass: 'logic_phase--proof',
             },
 
             VV : {
                 caption : 'V',
                 pcolor : proof,
                 letterAngle : -45,
+                cssClass: 'subessay--another-solution',
             },
 
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : curvature,
-                letterAngle : -45,
-                undisplayAlways : true,
-                doPaintPname : false,
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
             },
+            // \\// proof
+  
 
             //Book's "another solution"
             u : {
@@ -273,39 +276,30 @@
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
+                cssClass: 'subessay--another-solution',
             },
 
             tCircleCenter : {
-                pos : C,
+                pos : posC,
                 caption : "C'",
                 pcolor : curvature,
                 letterAngle : -45,
+                cssClass: 'subessay--another-solution',
             },
 
+			// to make kepler-orbit/builds-orbit happy, which assumes point S
+            S : {
+                pos: posC,
+				undisplayAlways : true,
+				doPaintPname : false,
+            },
 
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
-            S : {
-                pos: S,
-                pcolor : result,
-                letterAngle : -115,
-                letterRotRadius : 25,
-                // draggableX  : true,
-                // draggableY  : true,
-            },
-
             P : {
                 pcolor : body,
                 letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
-            },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
             },
@@ -317,45 +311,94 @@
 
         var linesArray =
         [
-            { 'SP' : { pcolor : result }, },
+            { 'A,AA' : { pcolor : proof,
+					 cssClass: 'subessay--corollary2',
+			}, },
+            { 'B,BB' : { pcolor : proof,
+					 cssClass: 'subessay--corollary2',
+			 }, },
+            { 'PZ' : { pcolor : body,
+					 cssClass: 'subessay--solution',
+			}, },
+            { 'ZR' : { pcolor : body,
+					 cssClass: 'subessay--solution',
+			}, },
+            { CA : { pcolor : proof,
+                     cssClass: 'subessay--solution',
+            }, },
+            { CB : { pcolor : proof,
+                     cssClass: 'subessay--solution',
+            }, },
+            { PC : { pcolor : proof,
+                cssClass: 
+				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
+            }, },
 
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
+            // //\\ proof
+            { 'P,VV' : { pcolor : proof,
+                         cssClass: 'subessay--another-solution',
+            }, },
+            { 'PR' : { pcolor : body,
+                       cssClass: 'subessay--solution',
+            }, },
+            { 'QR' : { pcolor : proof,
+                       cssClass: 'subessay--solution',
+            }, },
+            { 'QT' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { 'PT' : { pcolor : proof,
+                       cssClass: 'logic_phase--proof',
+            }, },
+            { DK : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { GP : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Qv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Pv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { Tv : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
 
-            { 'PR' : { pcolor : body }, },
-            { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
-
-            { DK : { pcolor : proof }, },
-            { GP : { pcolor : proof }, },
-            { Qv : { pcolor : proof }, },
-            { Pv : { pcolor : proof }, },
-            { Tv : { pcolor : proof }, },
-
-            { vG : { pcolor : proof }, },
-            { PF : { pcolor : proof }, },
-            { 'A,AA' : { pcolor : proof }, },
-            { 'B,BB' : { pcolor : proof }, },
-            { AO : { pcolor : proof }, },
-            { DO : { pcolor : proof }, },
-            { BO : { pcolor : proof }, },
-            { PO : { pcolor : proof }, },
-            { GO : { pcolor : proof }, },
-            { FO : { pcolor : proof }, },
+            { vG : { pcolor : proof,                 
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { PF : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { DC : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            { CF : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
+            }, },
+            // \\// proof
 
             //Book's "another solution"
-            { Tu : { pcolor : proof }, },
-            { 'u,VV' : { pcolor : proof }, },
-            { uP : { pcolor : proof }, },
-            { PQ : { pcolor : proof }, },
-            { 'P,VV' : { pcolor : proof }, },
-            { 'P,tCircleCenter' : { pcolor : curvature }, },
+            { Tu : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { 'u,VV' : { pcolor : proof,
+                         cssClass: 'subessay--another-solution',
+            }, },
+            { uP : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { PQ : { pcolor : proof,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { 'P,tCircleCenter' : { pcolor : curvature,
+                     cssClass: 'subessay--another-solution',
+            }, },
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
             TIME_STEPS,
@@ -375,5 +418,4 @@
             handleRadius,
         });
     }
-}) ();
-
+})();

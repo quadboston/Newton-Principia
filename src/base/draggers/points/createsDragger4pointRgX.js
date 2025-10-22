@@ -102,7 +102,9 @@
                 if( ns.haz( pWrap, 'mediaMover' ) ) {
                     var css2model = sDomF.out2inn();
                     var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
-
+                } else if( haz(pWrap, 'unscalable' ) ){
+                    ////good for bottom side sliders which must igonre zooming
+                    var css2model = sDomF.out2inn() / sconf.originalMod2inn_scale;
                 } else {
                     //move in model units
                     var css2model = sDomF.out2inn() * sconf.inn2mod_scale;

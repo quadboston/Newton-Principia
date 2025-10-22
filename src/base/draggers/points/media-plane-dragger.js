@@ -1,27 +1,20 @@
 //todm: apparently vital to merge this module with proper s ubmodel
 ( function() {
     var {
-        ns, $$, sn, ssF, sconf, fconf,
-        stdMod, sDomF, sDomN,
+        ns, $$, sn, ssF, sconf, nspaste,
+        stdMod, sDomF, sDomN, rg
     } = window.b$l.apptree({
         setModule,
+        resetModelPos
     });
     return;
-
-
-
-
-
-
-
-
-
 
 
     function setModule()
     {
         sDomF.creates_mediaMover_in_rgX8dragWrapGenList =
             creates_mediaMover_in_rgX8dragWrapGenList;
+        sDomF.resetModelPos = resetModelPos;
     }
 
 
@@ -64,7 +57,21 @@
         );
     }
 
-
+    
+    // reset model back to its original [x,y] position
+    function resetModelPos() {
+        nspaste( rg[ "media-mover" ].achieved,
+            {
+                "achieved": [
+                    sconf.originX_onPicture, //492,
+                    sconf.originY_onPicture, //565
+                ]
+            }
+        );
+        var ach = rg[ "media-mover" ].achieved.achieved;
+        sconf.modorInPicX = ach[0];
+        sconf.modorInPicY = ach[1];
+    }
 
 }) ();
 

@@ -1,12 +1,16 @@
 ( function() {
 	const ns	  = window.b$l;
-    const nssvg   = ns.sn( 'svg' );
-    const mat     = ns.sn( 'mat' );
-    const svgNS   = ns.svgNS;
     const has     = ns.h;
     const haz     = ns.haz;
     const $$      = ns.$$;
+    const svgNS   = ns.svgNS;
+    const sn      = ns.sn;
+    const nssvg   = sn( 'svg' );
+    const mat     = sn( 'mat' );
 
+    const fapp      = sn('fapp' ); 
+    var ss          = sn('ss', fapp);
+    var ssF         = sn('ssFunctions',ss);
 
     ///Updates svg-shape. Svg-shape creates before update if arg.svgel
     ///is missed in arg.
@@ -192,47 +196,65 @@
         strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
     }
 
+    
+    /*
+     * apparently no longer used,
+     * but should be useful
+    
     ///"manually" created polyline which formes ellipse,
-    ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
-    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
+    ///input: in media scale,
+    ///       ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
+    ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ],
     //        rotationRads rotates around position x0,y0;
     ///returns: svg-element;
     nssvg.ellipse = function( arg )
     {
-        var { stepsCount, a, b, x0, y0, rotationRads } = arg;
-        var polyline = arg.pivots = [];
-        var step = 2*Math.PI/stepsCount;
-
-        //var rC = Math.cos( rotationRads );
-        //var rS = Math.sin( rotationRads );
-
-        var t0 = arg.t0 || 0;
+        const pivots = arg.pivots = [];
+        const stepsCount = arg.stepsCount;
+        const step = 2*Math.PI/stepsCount;
+        var { a, b, x0, y0, rotationRads } = arg;
+        var q0 = arg.t0 || 0;
         for( var ii = 0; ii < stepsCount; ii++ ) {
+            let q = step * ii;
             ///this is slow but unified ... keep it for a while
+            arg.q = q;
             var ell = mat.ellipse({
-                t:step * ii,
-                a,
-                b,
-                x0,
-                y0,
-                t0,
-                rotationRads,
-            });
+                    t:q,
+                    a,
+                    b,
+                    x0,
+                    y0,
+                    t0:q0,
+                    rotationRads,
+                });
             var xx = ell.x;
             var yy = ell.y;
-            /*
             //this is fast but is a code proliferation
-            var t = step * ii;
-            var x = a*Math.cos(t+t0);
-            var y = b*Math.sin(t+t0);
-            var xx = x * rC - y * rS + x0;
-            var yy = x * rS + y * rC + y0;
-            */
-            polyline.push( [ xx, yy ] );
+            //var t = step * ii;
+            //var x = a*Math.cos(t+t0);
+            //var y = b*Math.sin(t+t0);
+            //var xx = x * rC - y * rS + x0;
+            //var yy = x * rS + y * rC + y0;
+            pivots.push( [ xx, yy ] );
         }
-        polyline.push( [ xx, yy ] );
+        pivots.push( [ xx, yy ] );
         //makes ellipse closed:
-        polyline.push( polyline[0] );
+        pivots.push( pivots[0] );
+        return nssvg.polyline( arg ); 
+    };
+    */
+    
+    ///input parameters are in model namespace,
+    nssvg.branch2svg = function( arg, doClose )
+    {
+        const pivots = arg.pivots = [];
+        const points = arg.points;
+        const len = points.length;
+        for( var ii = 0; ii < len; ii++ ){
+            pivots.push( ssF.mod2inn( points[ii] ) );
+        }
+        //makes branch closed:
+        doClose && pivots.push( pivots[0] );
         return nssvg.polyline( arg ); 
     };
 
@@ -253,7 +275,7 @@
             t1,                 //end angle
             drawExternalSector, //sets to draw a complimentary sector
         } = arg;
-        var polyline = arg.pivots = [];
+        var cpivots = arg.pivots = [];
         if( !t0 && t0 !== 0 ) {
             t0 = 0;
             t1 = Math.PI*2;
@@ -267,7 +289,7 @@
         a = a || 1;
         b = b || 1;
         var step = ( t1 - t0 ) / stepsCount;
-        polyline.push( [x0,y0] );
+        cpivots.push( [x0,y0] );
         for( var ii = 0; ii <= stepsCount; ii++ ) {
             var ell = mat.ellipse({
                 t:step * ii,
@@ -280,15 +302,14 @@
             });
             var xx = ell.x;
             var yy = ell.y;
-            polyline.push( [ xx, yy ] );
+            cpivots.push( [ xx, yy ] );
         }
-        polyline.push( [ xx, yy ] );
+        cpivots.push( [ xx, yy ] );
         //makes sector closed:
         //todm not good:  use arg...
-        polyline.push( polyline[0] );
+        cpivots.push( cpivots[0] );
         return nssvg.polyline( arg ); 
     };
-
 
     ///"manually" creates polyline which formes curve,
     ///signature:           nssvg.curve({ stepsCount, step, curve:function })
@@ -339,7 +360,6 @@
         return nssvg.polyline( arg ); 
     };
 
-
     ///====================================
     ///Creates or updates svg-text element
     ///====================================
@@ -363,7 +383,5 @@
         }
         return svgEl;
     }
-
 }) ();
-
 

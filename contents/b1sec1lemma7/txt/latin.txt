@@ -4,32 +4,21 @@
 }
 *..*
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
 
 *::*proof|latin
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
-
 <br><br>
-<div book-reference-id="latin"></div>
-
-
-
+<div book-reference-id="latin-on-e-rara"></div>
 
 
 
 
 *::*corollary|latin
 <img src="contents/b1sec1lemma7/img/l7.jpg" style="width:100%">
-
 <br><br>
-<div book-reference-id="latin"></div>
+<div book-reference-id="latin-on-e-rara"></div>

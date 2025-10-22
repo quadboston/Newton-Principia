@@ -19,7 +19,7 @@
         &amp; ¦figure¦curvilinea AabcdE¦¦,
         sunt rationes æqualitatis.
 
-        <br><br><div book-reference-id="latin"></div>
+        <br><br><div book-reference-id="latin-on-e-rara"></div>
 
 
 
@@ -40,4 +40,4 @@
             Ergo per Lemma I, figura ¦inscribed-rectangles insc-txt¦inscripta¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscripta¦¦ &amp;
             multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q.E.D.
         
-            <br><br><div book-reference-id="latin"></div>
+            <br><br><div book-reference-id="latin-on-e-rara"></div>

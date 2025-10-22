@@ -15,6 +15,7 @@
         mat.atan2PI = atan2PI;
         mat.degToRad = degToRad;
         mat.radToDeg = radToDeg;
+        mat.polar_ellipse = polar_ellipse;
     })();
 
     
@@ -55,14 +56,40 @@
     //ccc( '1,-2,  0: [0,2]     =', mat.squarePolyRoot( 1, -2, 0 ) );
     //ccc( '1,-2,  2: [1+i, 1-i]=', mat.squarePolyRoot( 1, -2, 2 ) );
 
-
     mat.ellipse = ellipse;
     return;
 
+    
+    function polar_ellipse({
+        q,      //angle
+        q0,     //starting angle
+        e,      //excentricity
+        latus2, //half of the latus rectum
+        focus,
+    }){
+        const fi = q-q0;
+        const cosFi = Math.cos( fi );
+        const sinFi = Math.sin( fi );
+        const cosQ = Math.cos(q);
+        const sinQ = Math.sin(q);
+        
+        const e1 = 1-e*cosFi;
+        const inve = Math.abs(e1) < 1e-30 ? 1e+30 : 1/e1;
+        let ro = latus2 * inve;
+        let point = [ro*cosQ+focus[0], ro*sinQ+focus[1]];
+        {
+            const drodq = -e*sinFi*inve*inve;
+            const drdqX = drodq * cosQ - inve * sinQ;
+            const drdqY = drodq * sinQ + inve * cosQ;
+            const a = 1/Math.sqrt( drdqX*drdqX + drdqY*drdqY );
+            var tangent = [ drdqX * a, drdqY * a ]; //=unit tangent
+        }
+        return { point, tangent, ro };
+    }
 
     ///definition:  ellipse = ((x-x0)/a)^2 + (y-y0)/b)^2 = 1;
     ///input:       ellipse = r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
-    //              rotationRads rotates around position x0,y0;
+    //              if given, rotationRads rotates around position x0,y0;
     ///returns:     point x,y at parameter t and other data
     function ellipse( args )
     {
@@ -74,17 +101,20 @@
 
         var cos = Math.cos(t+t0);
         var sin = Math.sin(t+t0);
-        var xx = a*cos;
+        var xx = a*cos; //real coordinate
         var yy = b*sin;
 
-        var tan = [ -sin*a, cos*b ]; //~dr/dt
+        var tan = [ -sin*a, cos*b ]; //=dr/dt, r is a real coordinate,
         var wwt = Math.sqrt( tan[0]*tan[0] + tan[1]*tan[1] );
-        tan = [ tan[0]/wwt, tan[1]/wwt ];
+        tan = [ tan[0]/wwt, tan[1]/wwt ]; //=unit tangent
+        
+        // //\\ rotates r and tan if rotationRads is  given,
         var tanX = tan[0] * rC - tan[1] * rS;
         var tanY = tan[0] * rS + tan[1] * rC;
 
         var x = xx * rC - yy * rS + x0;
         var y = xx * rS + yy * rC + y0;
+        // \\// rotates r and tan if rotationRads is  given,
         return { x, y, cos, sin, tangent:[tanX,tanY], args};
     }
 
@@ -106,5 +136,4 @@
         return angle * 180 / Math.PI;
     }
 }) ();
-
 

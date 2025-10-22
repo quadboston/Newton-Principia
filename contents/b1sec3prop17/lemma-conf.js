@@ -5,14 +5,20 @@
     function lemmaConfig()
     {
         return {
-            sappCodeReference : 'b1sec3prop12',
-            "contents-list" :
-            [
+            codesList : [
+                { src : 'sconf.js' },
+                { src : 'init-model-parameters.js' },
+                { src : 'amode8captures.js' },
+                { src : 'main-legend.js' },
+                { src : 'model-upcreate.js' },
+                { src : 'media-upcreate.js' },
+                { src : 'completes-sliders-creation.js' },
+            ],
+            "contents-list" :  [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],
         };
     }
-
 }) ();
 

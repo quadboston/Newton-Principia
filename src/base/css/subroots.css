@@ -19,7 +19,8 @@ sup {
 /* ||// media pane                        */
 /******************************************/
 
-.bsl-approot .bsl--svgscene .undisplay,
+/* setting specifity prevaling "hidee-feature" cssClass */
+div.bsl-approot svg.bsl--svgscene .undisplay,
 .display-none {
     display : none;
 }
@@ -152,6 +153,16 @@ sup {
 .main-legend .tp-spacer {
     height: 1px !important;
     padding: 0 !important;
+}
+
+/* make two cells look like one (used in P17) */
+.main-legend .merge-cells:nth-child(odd) {
+    border-right: 0 !important;
+}
+.main-legend .merge-cells:nth-child(even) {
+    border-left: 0 !important;
+    position: relative;
+    left: -4rem;
 }
 
 /* patch for L7 corollaries */

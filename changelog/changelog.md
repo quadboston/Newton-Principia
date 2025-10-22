@@ -1,9 +1,112 @@
 # Change Log
- 
+  
+## 2025-9-30 (PaleGreen Version, 0.13859)
+### Improved
+* Proposition 6
+	*  SP not shown before it's referenced
+
+* Proposition 9
+	* fixed highlighting of arc QPR
+
+* Propositions 11, 12, 13
+	* latus rectum shown when text highlighted
+
+* Propoition 13
+	* corrected text
+	* fractions changed from linear style to stacked
+	* added link to the _Conics_
+
+## 2025-9-15 (DarkGoldenRod Version, 0.13858)
+### Improved
+* Proposition 10
+	* simplified diagram by not showing more than what is described for each section
+	* fixed Q getting stuck when P and Q straddle A
+
+* Proposition 11
+	* simplified diagram by not showing more than what is described for each section
+	* fixed point Q's range to include its initial position (fixes initial jumping issue)
+	* fixed Q getting stuck when P and Q straddle A
+
+* Proposition 17
+	* most of orbit pq de-emphasized to declutter diagram and better match original diagram
+
+
+## 2025-8-31 (Brown Version, 0.13854)
+### Improved
+* Lemmas 2, 3, 7, 8:
+	* lowercase labels are in italic to match original text
+
+* Proposition 10
+	* added missing QT highlight
+
+* Proposition 12
+	* removed hyperbola asymptotes
+
+* Proposition 17
+	* force dragger not "dropped" when past limit
+	* simplified diagram by not showing more than what is described for each section
+	* perpendiculars and latus recta only shown when highlighted
+	* left-hand side of equation does not break across lines
+	* point q added 
+
+* Proposition 17, Corollary 2
+	* point p no longer drifts
+	* force dragger stops at limit
+
+### Removed
+* Proposition 14
+* Proposition 16
+	* these propositions are removed until the interaction is redone
+
+
+## 2025-8-16 (Yellow Version, 0.13851)
+### Improved
+* Proposition 12
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+
+* Proposition 17
+	* Points R and P_v merged
+	* removed hyperbola asymptotes
+	* force slider constrained to keep path 𝑝𝑞 an ellipse
+	* tangent perpendiculars made more visible
+	* P_v and force sliders move 1:1 with mouse at all zoom levels
+	* equation sequence aligned on equals sign
+
+* Lemma 20
+	* removed hyperbola asymptotes
+	* eccentricity slider moves 1:1 with mouse at all zoom levels
+	* lower case letters italicized
+
+* Lemma 21
+	* removed hyperbola asymptotes
+
+* Proposition 41
+	* diagram simplified by not displaying value of v_0
+
+
+## 2025-7-31 (Purple Version, 0.13849)
+### Improved
+* Proposition 17
+	* parabolas generated as well as ellipses and hyperbolas
+	* fixed erroneous placement of H near eccentricity of 1
+	* simplified diagram by not showing values for velocities, force, and latus recta
+	* eccentricity and conic reported in table
+
+* Lemma 20
+	* eccentricity ranges from 0 to 1.5, to show circles, ellipses, parabolas, and hyperbolas
+	* point D now manipulatable
+	* simplified diagram by not showing more than what is described for each section
+	* fixed text and highlighting errors
+
+* Proposition 41
+    * fractions changed from linear style to stacked
+	* added highlighting for angle KIN
+
+    
 ## 2025-6-26 (Tan Version, 0.13660)
 ### Improved
 * Lemmas 2, 3
-    * cursor changes to crosshair for handle manipulation
+    * cursor changes to crosshair for dragger manipulation
 
 * Lemma 8, 9, 10
     * areas shaded
@@ -24,7 +127,7 @@
     * fractions changed from linear style to stacked
 
 * Propositions 12, 13
-    * point P now a handle; handle φ removed
+    * point P now manipulatable; φ removed
 
 * Proposition 17
     * improved text-diagram highlighting
@@ -41,8 +144,8 @@
     * red color reassigned when not indicating invalid situations
 
 * Lemma 11
-    * handle b takes priority except when B and b are at A
-    * handle b cannot be moved too far away from B
+    * dragger b takes priority except when B and b are at A
+    * dragger b cannot be moved too far away from B
 
 * Proposition 9
     * changed graph's estimated force to match other models
@@ -228,7 +331,7 @@
     * point rendering consistent with later models
 
 * Lemmas 2, 3
-    * lowest curve handle constrained vertically so as to not create inscribed rectangle, as Newton implies
+    * lowest curve dragger constrained vertically so as to not create inscribed rectangle, as Newton implies
     * curve handles moved so as to not be confused with intersection points
  
 
@@ -237,7 +340,7 @@
 ### Improved
 * Proposition 6
     * graph shows convergence of estimated and actual force
-    * handle priority now Q > P > orbit
+    * dragger priority now Q > P > orbit
     * reported values moved from model and graph to separate data section
     * removed option for constant chord length because it complicated more than it helped
     * better graph labels

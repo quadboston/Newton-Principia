@@ -19,11 +19,6 @@
     return;
 
 
-
-
-
-
-
     ///===================================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
@@ -36,6 +31,19 @@
             doMinimizeTextMenus();
         }
         var { logic_phase, aspect, subessay } = amode;
+        // //\\ patch. works for
+        //      hiding/unhiding optional svg-elements
+        //no other tokens allowed in class attribute for this
+        //element, they will be erased by this statement:
+        //this element is (non comfortably) made holding only
+        //class for visibility:
+        stdMod.svgScene$().setAttribute( 'class', 'bsl--svgscene ' +
+            'logic_phase--' + logic_phase + ' ' +
+            'aspect--' + aspect + ' ' +
+            'subessay--' + subessay
+        );
+        // \\// patch. works for
+        
         //------------------------------------------------
         // //\\ sets "undefined" flag
         //      for registry rg members with defined pname,
@@ -62,8 +70,6 @@
         //------------------------------------------------
         // \\// sets "undefined" flag
         //------------------------------------------------
-
-
 
         var captured = null;
         ///------------------------------------------------------------------
@@ -94,6 +100,33 @@
         ///------------------------------------------------------------------
         /// \\// takes conditions scripted at the bottom of professor-script,
         ///------------------------------------------------------------------
+
+        ///enables or disables conditional drag point if preset in sconf.js,
+        eachprop( rg, (shape, pname) => {
+            if( has( shape, 'conditionalDrag' ) ){
+                let dohide = true;
+                //options which do activate drag
+                'logic_phase aspect subessay sappId'
+
+                .split( ' ' ).forEach(
+                    aname => {
+                    //https://javascript.info/regexp-introduction
+                    //can be \-\-(\S*)(?:$|\s)/g
+                    const RE = new RegExp( '\\b' + aname + '\\-\\-(\\S*)\\b', 'g' );
+                    let matches = shape.conditionalDrag.matchAll( RE );
+                    for (const match of matches) {
+                        if( amode[aname] === match[1] ||
+                            ( aname === 'sappId' && fconf.sappId === match[1] )
+                        ) {
+                            dohide = false;
+                            //c cc( pname, match[1] );
+                        }
+                    }
+                })
+                rg.Q.hideD8Dpoint = dohide;
+            }
+        });
+
         if( haz( ssF, 'amode2rgstate' ) ){
             //appar. can do this
             //ssF.amode2rgstate();
@@ -139,7 +172,6 @@
         }
     }
 
-
     ///modifies only global CSS if configuration is specified doing so,
     //apparently removes astray aspect-menu button,
     function doMinimizeTextMenus()
@@ -182,7 +214,4 @@
             textMenuStyle$.html( html );
         }
     }
-
-
-}) ();
-
+})();
