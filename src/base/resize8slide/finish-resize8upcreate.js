@@ -109,6 +109,7 @@
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
         if (STATIC_LEGEND) {
+            console.log('static legend');
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
@@ -126,9 +127,7 @@
             const boxLegend = stdMod.legendRoot$().getBoundingClientRect();
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
-            legendHeight += 20; //todm: patch: adds gap at bottom page
-            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' )
-                legendHeight += 20; //todm: patch: adds gap at bottom page
+            legendHeight += 60; //adds gap at bottom page so data doesn't overlap version number
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
         const consideredLegendWidth = Math.min(legendWidth, winW - fconf.ESSAY_MIN_WIDTH);
@@ -262,7 +261,7 @@
             var simSceneW       = bgImgOffset * 2 +
                                   bgImgW; // + Math.max( 0, proposedRightW - medSupW );
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
-            var svgSceneH       = simSceneH;
+            var svgSceneH       = simSceneH - 30;
         //-------------------------------------------------------------
         // \\// wide screen,
         //-------------------------------------------------------------
@@ -271,8 +270,8 @@
             ////narrow screen
             var wideScreen_flag = false;
 
-            //apparently, this is a final media-height which is synch with
-            var svgSceneH = svgH_min;
+            //svg canvas height is dynamic to maximize use of space
+            var svgSceneH = simSceneH - legendHeight;
 
             //-------------------------------------------------
             //does set media width
@@ -294,7 +293,7 @@
                 ((proposedRightW - bgImgW
                     //- 20    //todm:
                 )) / 2);
-            var simSceneW = proposedRightW; // bgImgOffset * 2 + bgImgW;
+            var simSceneW = proposedRightW + 20; // bgImgOffset * 2 + bgImgW;
             var svgSceneW = simSceneW;
         }
 
@@ -308,9 +307,6 @@
         //===============================================
         // \\// phase 4. allocates widths and heights
         //===============================================
-
-
-
 
 
         //--------------------------------------------------------------------

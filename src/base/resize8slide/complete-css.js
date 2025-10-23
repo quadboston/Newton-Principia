@@ -13,15 +13,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
     function buildsMobile({})
     {
         //------------------------------------------------------------------
@@ -103,11 +94,6 @@
         // \\// video css
         //------------------------------------------------------------------
     }
-
-
-
-
-
 
 
     function buildsNonMobile({
@@ -204,8 +190,8 @@
                 ;
         } else {
             stdMod.legendRoot$
-                .css( 'top',   (lemma2_slidersH + stdMod.svgSceneH).toFixed()+'px' )
-                .css( 'left',  legendMargin.toFixed(2) + 'px' )
+                .css( 'top', (lemma2_slidersH + stdMod.svgSceneH + 10).toFixed()+'px' )
+                .css( 'left', legendMargin.toFixed(2) + 'px' )
                 ;
         }
         //---------------------------------------------------------

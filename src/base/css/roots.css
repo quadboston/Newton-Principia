@@ -198,8 +198,7 @@ b {
 }
 
 .bsl-legend-root {
-    position     : absolute; /* must be absolute for dividor dragger to work */
-    padding-top  : 5px;  
+    position     : absolute; /* must be absolute for dividor dragger to work */  
     padding-left : 20px;  
     box-sizing   : border-box;
     text-align   : center;

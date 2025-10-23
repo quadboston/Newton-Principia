@@ -180,7 +180,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 
 /* graphs in P6, P7, etc ...weird name */
 .lost-diagram-parent {
-    padding-bottom: 2rem; /* so there's space between graph and data table */
+    padding-bottom: 1rem; /* so there's space between graph and data table */
     margin: auto;
 }
 
