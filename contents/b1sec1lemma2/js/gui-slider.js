@@ -69,7 +69,7 @@
       	}
 
         function aduptPartitionChange( newBases, basePts, undef) {
-	        if( fconf.sappId === 'lemma3' ) {
+	        if( fconf.sappId === 'b1sec1lemma3' ) {
                 const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
                 ///dynamically adds more base points
                 for (var i=dr.basesN; i<pointsLimit; i++) {

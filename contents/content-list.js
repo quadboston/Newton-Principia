@@ -8,19 +8,14 @@
             caption : 'Principia models',
         },
 
-        {   sappId : 'lemma2',
+        {   sappId : 'b1sec1lemma2',
             book : 'Book 1',
             caption : 'Sec. 1, Lemma 2',
         },
 
-        {   sappId : 'lemma3',
+        {   sappId : 'b1sec1lemma3',
             book : 'Book 1',
             caption : 'Sec. 1, Lemma 3',
-        },
-
-        {   sappId : 'lemma4',
-            book : 'Book 1',
-            caption : 'Sec. 1, Lemma 4',
         },
 
         {   sappId : 'b1sec1lemma4',
