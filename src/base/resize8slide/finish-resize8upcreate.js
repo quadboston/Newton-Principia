@@ -245,21 +245,19 @@
                 simSceneH/proposedRightW < 3*legendHeight/consideredLegendWidth
             )
         ) {
+            console.log('wide screen');
             ////wide screen
             var wideScreen_flag = true;
             //now we calculate H-restriction again
-            var svgW            = proposedRightW
-                                    - sconf.main_horizontal_dividor_width_px
-                                    - consideredLegendWidth
-                                    - 10; //given gap before legend
+            var svgW            = proposedRightW - legendWidth + 20;
+            // -25 to ensure svg sliders don't get cut off
             var bgImgW          = Math.min(
-                                    simSceneH / stdMod.simSceSvg_narrowestAsp,
+                                    (simSceneH / stdMod.simSceSvg_narrowestAsp - 25), 
                                     svgW );
-            var legendMargin    = 0;
+            var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
             var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
-            var simSceneW       = bgImgOffset * 2 +
-                                  bgImgW; // + Math.max( 0, proposedRightW - medSupW );
+            var simSceneW       = proposedRightW;
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
             var svgSceneH       = simSceneH - 30;
         //-------------------------------------------------------------

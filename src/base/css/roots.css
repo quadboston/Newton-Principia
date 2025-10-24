@@ -146,14 +146,12 @@ b {
     width       : 100%;
     margin      : 0;
     padding     : 0;
-
     overflow    : hidden; /* weird but req'd to keep version # in correct place */
  }
 
 .bsl-sim-superscene {
     position    : relative;
     display     : inline-block;
-    float       : left;
     box-sizing  : border-box;
     padding     : 0;
     margin      : 0;
@@ -198,8 +196,7 @@ b {
 }
 
 .bsl-legend-root {
-    position     : absolute; /* must be absolute for dividor dragger to work */  
-    padding-left : 20px;  
+    position     : absolute; /* must be absolute for dividor dragger to work */
     box-sizing   : border-box;
     text-align   : center;
 }
