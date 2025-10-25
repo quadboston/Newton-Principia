@@ -28,12 +28,12 @@
         var legendScriptParsed = [
             [[
                 'figuresRatio',
-                'AacE : PprT',
+                'A𝑎𝑐E : P𝑝𝑟T',
                 getMonotonic('rg.exact_ratio.value')
             ]],
             [[
                 'parallelogramsRatio',
-                'ratio of corresponding parallelograms, AacE : PprT',
+                'ratio of corresponding parallelograms, A𝑎𝑐E : P𝑝𝑟T',
                 getMonotonic('rg.sum_ratio.value')
             ]],
         ];

@@ -366,6 +366,7 @@
         var originalPoints =
         {
             a : {
+				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
@@ -384,6 +385,7 @@
             },
 
             c : {
+				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
@@ -391,6 +393,7 @@
 
 
             p : {
+				caption: '𝑝',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
@@ -409,6 +412,7 @@
             },
 
             r : {
+				caption: '𝑟',
                 pcolor      : predT.given,
                 letterAngle : 45,
                 initialR    : 1.6,
