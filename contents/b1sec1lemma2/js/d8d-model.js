@@ -71,7 +71,7 @@
             var decorator;
             if( pointWrap.type === 'base' ) {
                 if( pwix === 0 ) return; //point A is "unmovable"
-                if( fconf.sappId.indexOf('lemma2') === 0 ) return; //base is "dead" in lemma2
+                if( fconf.sappId.indexOf('b1sec1lemma2') === 0 ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
             } else {

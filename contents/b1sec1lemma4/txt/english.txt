@@ -10,9 +10,9 @@
 }
 *..*
 
-If in two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ ¦left-bars right-bars¦two series of parallelograms¦¦ are inscribed (as
+If in two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ ¦inscribed-rectangles-AacE inscribed-rectangles-PprT¦two series of parallelograms¦¦ are inscribed (as
 above) and the number of parallelograms in both series is the same; and if, when
-their ¦right-bars-breadths left-bars-breadths¦widths¦¦ are diminished indefinitely, the ultimate ¦barsRatio¦ratios¦¦ of the parallelograms
+their ¦base¦widths¦¦ are diminished indefinitely, the ultimate ¦parallelogramsRatio¦ratios¦¦ of the parallelograms
 in one figure to the corresponding parallelograms in the other are the same; then
 I say that the two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ are to each other in that same ¦figuresRatio¦ratio¦¦.
 
@@ -24,16 +24,15 @@ I say that the two figures ¦acE Aa AE¦AacE¦¦ and ¦prT Pp PT¦PprT¦¦ are t
 
 *::*proof|english
 {
-      "APPARENTLY IS NOT IMPLEMENTED, LOADS, DOES NOT APPEAR mediaBgImage" : "l4-diagram.png",
       "logic_phaseCaption" : "Proof"
 }
 *..*
 
-For as the ¦left-bar-1¦individual parallelograms in the one figure¦¦ are to the corresponding 
-¦right-bar-1¦individual parallelograms in the other¦¦, 
+For as the ¦inscribed-rectangle-AacE-1¦individual parallelograms in the one figure¦¦ are to the corresponding 
+¦inscribed-rectangle-PprT-1¦individual parallelograms in the other¦¦, 
 so (by composition [or componendo]) will the 
-¦leftBarsArea left-bars¦sum of all the parallelograms in the one¦¦ 
-become ¦barsRatio¦to¦¦ the ¦rightBarsArea right-bars¦sum of all the parallelograms in the other¦¦, 
+¦inscribed-rectangles-AacE¦sum of all the parallelograms in the one¦¦ 
+become ¦parallelogramsRatio¦to¦¦ the ¦inscribed-rectangles-PprT¦sum of all the parallelograms in the other¦¦, 
 and so also the one ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦other¦¦—the 
 first figure, of course, being (by lem. 3) to the first sum,
 and the second figure to the second sum, in a ratio of equality. &nbsp;&nbsp;&nbsp;Q.E.D.

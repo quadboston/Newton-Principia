@@ -1,9 +1,6 @@
 ( function() {
-    const {
-        ns, sn, $$,
-        stdMod, fconf, sconf, sDomF, sDomN, ssD,
-    } = window.b$l.apptree({
-    });
+    const { ns, sn, $$, stdMod, fconf, sconf, sDomF, sDomN, ssD, }
+        = window.b$l.apptree({ });
     sDomF.cre_simscene8svg8legendIIslider = cre_simscene8svg8legendIIslider;
     return;
 
@@ -82,19 +79,19 @@
                     // /16438416/cross-browser-svg-preserveaspectratio
         */
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
-            ////l2 patch:
-            sliderGroupLemma2();
+        if (sconf.ADD_BASES_SLIDER) {
+            //l2, 3, 4 patch:
+            addBasesSliderGroup();
         }
 
         stdMod.legendRoot$ = $$
             .dct( 'bsl-legend-root', stdMod.simScene );
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if(sconf.ADD_BASES_SLIDER) {
             stdMod.legendRoot$.css( 'padding-bottom', '15px' );
         }
     }
 
-    function sliderGroupLemma2()
+    function addBasesSliderGroup()
     {
         sDomN.sliderGroup$ = $$.c('div')
             .addClass("slider-group")

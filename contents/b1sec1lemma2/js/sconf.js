@@ -53,7 +53,7 @@
         //----------------------------------
         var pictureWidth = 282;
         var pictureHeight = 290;
-        var modorInPicX = 31.5;
+        var modorInPicX = 32.5;
         var modorInPicY = 29;
         //.set it from graph editor
         var pictureActiveArea = 259 - modorInPicY;
@@ -74,6 +74,30 @@
         sconf.mediaMoverPointDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
         sconf.enableTools     = !true;
+
+
+        const ctrlPtXYs_js = [
+            {x:modorInPicX,             y: modorInPicY},
+            
+            //four middle handles:
+            {x: 75.8, y: 45.97726888798351},
+            {x: 119.1, y: 72.70148453700233},
+            {x: 162.4, y: 109.92474464283467},
+            {x: 205.7, y: 166.52378909964816},
+            
+            //three middle handles
+            //{x:85,          y: 51.5},
+            //{x:139,         y: 89.0},
+            //{x:193,         y: 148.5 },
+
+            {x:249,         y: 259.5 }
+        ];
+        //Used to calculate slider width (left side to right side of figure).
+        const xSliderL = ctrlPtXYs_js[0].x;
+        const xSliderR = ctrlPtXYs_js[ctrlPtXYs_js.length - 1].x;
+        const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
+
+
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -102,7 +126,7 @@
             "circumscribed-rectangles"  : fixedColors["circumscribed-rectangles"],
             "inscribed-rectangles"      : fixedColors["inscribed-rectangles"],
 
-            "widest-rectangular"        : fconf.sappId.indexOf('lemma2')===0 ?
+            "widest-rectangular"        : fconf.sappId.indexOf('b1sec1lemma2')===0 ?
                                             widestRectangularHiddenStart :
                                             widestRectangular,
 
@@ -147,6 +171,9 @@
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
+            ADD_BASES_SLIDER : true,
+            BASES_SLIDER_WIDTH_FACTOR,
+
             //todm ... this still makes?? a gap between svg and slider
             SLIDERS_LEGEND_HEIGHT : SLIDERS_LEGEND_HEIGHT,
             MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
@@ -158,23 +185,7 @@
             BASE_MAX_NUM         : 500,
             DRAGGABLE_BASE_POINTS : 15,
             //user-adjustable points
-            ctrlPtXYs_js    :
-            [
-                {x:modorInPicX,             y: modorInPicY},
-                
-                //four middle handles:
-                {x: 74.8, y: 45.97726888798351},
-                {x: 118.1, y: 72.70148453700233},
-                {x: 161.4, y: 109.92474464283467},
-                {x: 204.7, y: 166.52378909964816},
-                
-                //three middle handles
-                //{x:85,          y: 51.5},
-                //{x:139,         y: 89.0},
-                //{x:193,         y: 148.5 },
-
-                {x:248,         y: 259.5 }
-            ],
+            ctrlPtXYs_js,
 
             ////GUI
             FINEPTS_RADIUS  : 10,
