@@ -306,6 +306,7 @@
         // \\// phase 4. allocates widths and heights
         //===============================================
 
+        //stdMod.legendRoot$.css( 'margin-top',  '0' );
 
         //--------------------------------------------------------------------
         // //\\ exports sizes
@@ -380,30 +381,56 @@
 
         stdMod.simSceneW    = wid - 50;
         stdMod.svgSceneW    = stdMod.simSceneW;
-        //stdMod.svgSceneH    = stdMod.simSceneH; //useless?
 
         stdMod.svgVB_W      = sconf.innerMediaWidth;
         stdMod.svgVB_H      = sconf.innerMediaHeight;
         stdMod.svgVB_offsX  = 0;
 
-        let legendHeight = document.querySelector('.bsl-legend-root').offsetHeight;        
-        stdMod.simSceneH = stdMod.svgVB_H + legendHeight + 100;
+        const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
+        stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
 
         // todo: these conditionals aren't ideal but do the trick
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
-            console.log('l2/l3')
-            stdMod.simSceneH += 400;
-            sDomN.sliderGroup$
-                .css( 'display', 'inline-block' )
-                .css( 'position', 'static' )
-                ;
-        } else if(fconf.sappId === 'b1sec1lemma9' || fconf.sappId === 'b1sec1lemma10' ) {
-            stdMod.simSceneH += 200;
-        } else if(fconf.sappId === 'b1sec1lemma11') {
-            stdMod.simSceneH += 400;
+        // note: the narrower the window, the greater the space at bottom of page...
+        switch(fconf.sappId) {           
+            case 'lemma2': case 'lemma3':
+                stdMod.simSceneH += 500;
+                sDomN.sliderGroup$
+                    .css( 'display', 'inline-block' )
+                    .css( 'position', 'static' )
+                    ;
+                    break;
+            case 'b1sec1lemma9': case 'b1sec1lemma10':
+                stdMod.simSceneH += 320;
+                break;
+            case 'b1sec1lemma11':
+                stdMod.simSceneH += 570;
+                break;
+            case 'b1sec2prop1': case 'b1sec2prop2':
+                stdMod.simSceneH += 100;
+                break;
+            case 'b1sec2prop6': 
+                stdMod.simSceneH += 150;
+                break;
+            case 'b1sec2prop7': case 'b1sec2prop9': case 'b1sec2prop10': 
+            case 'b1sec3prop13':
+                stdMod.simSceneH -= 100;
+                break;
+            case 'b1sec3prop12':
+                stdMod.simSceneH += 100;
+                break;
+            case 'b1sec3prop17':
+                stdMod.simSceneH -= 170;
+                break;
+            case 'b1sec5lemma20':              
+                stdMod.simSceneH -= 1190;
+                break;
+            case 'b1sec5lemma21':              
+                stdMod.simSceneH -= 1150;
+                break;
+            default:
+                //the rest are fine as is
+                break;
         }
-
-        stdMod.legendRoot$.css( 'left',  '0px' ); //so it doesn't get offset on page resize
 
         makes_svgViewBox();
         doesTopContainersSizing();
