@@ -72,9 +72,9 @@ of the lines ¦SP¦¦ and ¦PH¦¦, and hence will be given.
 <br><br>
 For if the ¦P¦body¦¦ in these
 cases revolves in a ¦orbit¦conic¦¦ thus found, it has been demonstrated in props.
-<a target="_blank" href="?conf=sappId=b1sec3prop11">11</a>,
-<a target="_blank" href="?conf=sappId=b1sec3prop12">12</a>, and
-<a target="_blank" href="?conf=sappId=b1sec3prop13">13</a>,
+<a href="?conf=sappId=b1sec3prop11">11</a>,
+<a href="?conf=sappId=b1sec3prop12">12</a>, and
+<a href="?conf=sappId=b1sec3prop13">13</a>,
 that the centripetal ¦p,f¦force¦¦ will be inversely as the square of the
 distance of the ¦P¦body¦¦ from the center of forces ¦S¦¦; and thus the line ¦orbit¦PQ¦¦ is
 correctly determined, which a ¦P¦body¦¦ will describe under the action of such a

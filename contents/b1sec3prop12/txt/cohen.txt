@@ -28,11 +28,11 @@ ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter DK in ¦E¦¦ 
 <!--
 <br><br>
 b.
-<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
+<a href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
 This result</a>
 
 is given in <a href="#cohensource"><i>Source</i></a>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
-[<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
+[<a href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
 and in CalculusXX, (A)</a>
 ]
 <br><br>
@@ -51,7 +51,7 @@ to ¦Pv¦P𝑣¦¦, that is (because the triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and
 or ¦CA¦AC¦¦ to ¦PC¦¦. ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ will also be to ¦Gv¦G𝑣¦¦ × ¦Pv¦P𝑣¦¦ as ¦L,LL¦L¦¦ to ¦Gv¦G𝑣¦¦; and (from the
 nature of conics) the rectangle ¦Gv¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
 (by
-<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
+<a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
 by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦², the points ¦Q¦¦ and ¦P¦¦ coming
 together, comes to be the ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦AT¦¦² as ¦EP¦¦²
@@ -61,7 +61,7 @@ ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC
 ¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦Gv¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦ × ¦QR¦¦ and
 ¦QT¦¦², which are proportional to these, are also equal. Multiply these equals by
 ¦SP¦¦²/¦QR¦¦, and ¦L,LL¦L¦¦ × ¦SP¦¦² will become equal to ¦SP¦¦² × ¦QT¦¦² / ¦QR¦¦. Therefore 
-(by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
+(by <a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
 the centripetal ¦force¦¦ is inversely as ¦L,LL¦L¦¦ × ¦SP¦¦², that is, inversely
 as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
@@ -81,7 +81,7 @@ as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 Find the ¦force¦¦ that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
 come out proportional to the distance ¦PC¦CP¦¦. And hence
 (
-<a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
+<a href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 by prop. 7, corol. 3</a>
 )
 the ¦force¦¦ tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is
