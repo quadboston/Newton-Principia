@@ -3,10 +3,7 @@
 //        The active point is elected by "findDraggee" function
 //        which is supplied at initialization time.
 ( function() {
-    var {
-        ns, sn, d8dp, haz, $$,
-        dpdec,
-    } = window.b$l.nstree();
+    var { ns, sn, d8dp, haz, $$, dpdec, sconf } = window.b$l.apptree({});
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
 
     d8dp.throttles_eventMove = throttles_eventMove;
@@ -159,7 +156,9 @@
                     activeDecPoint = decPoint;
                 }
             } else {
-                dragSurface.style.cursor = 'grab';
+                //Only switch cursor (from default) if media mover is enabled.
+                 dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
+                    '' : 'grab';
             }
         }
 
