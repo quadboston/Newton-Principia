@@ -122,8 +122,6 @@
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
             legendHeight += 60; //adds gap at bottom page so data doesn't overlap version number
-            if(sliderGroup$)
-                legendHeight += 20; //todm: patch: adds gap at bottom page
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
         const consideredLegendWidth = Math.min(legendWidth, winW - fconf.ESSAY_MIN_WIDTH);
@@ -253,7 +251,7 @@
             var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
             var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
-            var simSceneW       = proposedRightW;
+            var simSceneW       = svgW + 20; // so tool tip and sliderGroup$ line up to svg canvas
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
             var svgSceneH       = simSceneH - 30;
         //-------------------------------------------------------------
@@ -293,8 +291,6 @@
         //===============================================
         // \\// phase 4. allocates widths and heights
         //===============================================
-
-        //stdMod.legendRoot$.css( 'margin-top',  '0' );
 
         //--------------------------------------------------------------------
         // //\\ exports sizes
@@ -406,6 +402,7 @@
                 .css( 'left', '0px' )
                 .css( 'width', `${sliderWidth}px` );
                 ;
+                stdMod.simSceneH += 60;
         } else {
             const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
             stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
