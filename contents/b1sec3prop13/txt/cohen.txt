@@ -30,14 +30,14 @@ in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦SP PM S
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
 equal. But from the 
-<a target="_blank" href="http://whistleralley.com/conics/conica/Rosenfeld/Books1-7new.pdf#page=14"><i>Conics</i></a>
+<a href="http://whistleralley.com/conics/conica/Rosenfeld/Books1-7new.pdf#page=14"><i>Conics</i></a>
 the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
 rectangle contained by the ¦L,LL¦latus rectum¦¦ and the segment ¦Pv¦P𝑣¦¦ of the diameter,
 that is 
 (by lem. 13), 
 equal to the rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦, and, the
 points ¦P¦¦ and ¦Q¦¦ coming together, the ratio of ¦Qv¦Q𝑣¦¦ to ¦Qx¦Q𝑥¦¦ 
-(by <a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>)
+(by <a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>)
 becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑥¦¦²
  is equal to the
 rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦Q𝑥T¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
@@ -48,7 +48,7 @@ rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦. Moreover (because triangles ¦Qx 
 (by lem. 14, corol. 1),
  as ¦SP¦PS¦¦ to ¦SA¦¦,
 that is, as 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦ to 4¦SA¦¦&nbsp;×&nbsp;¦QR¦¦, and hence 
-(by <a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's <i>Elements</i>, book 5, prop. 9</a>)
+(by <a href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's <i>Elements</i>, book 5, prop. 9</a>)
  ¦QT¦¦²
  and 4¦SA¦¦&nbsp;×&nbsp;¦QR¦¦ are equal. Multiply these equals by
 
@@ -67,7 +67,7 @@ and
 
 will become equal to ¦SP¦¦²&nbsp;×&nbsp;4¦SA¦¦;
 and therefore 
-(by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>)
+(by <a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>)
 the centripetal force is inversely as ¦SP¦¦²&nbsp;×&nbsp;4¦SA¦¦, that is,
 because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>

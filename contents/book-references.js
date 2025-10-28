@@ -24,9 +24,9 @@
                     ETH-Bibliothek Zürich<br>
                     Shelf Mark: Rar 4176<br>
                     License: public domain<br>
-                    Persistent Link: <a href="http://dx.doi.org/10.3931/e-rara-1235"
-                               target="_blank"> http://dx.doi.org/10.3931/e-rara-1235<br>
-                               http://www.e-rara.ch/<br>
+                    Persistent Link: <a href="http://dx.doi.org/10.3931/e-rara-1235">
+						http://dx.doi.org/10.3931/e-rara-1235<br>
+                        http://www.e-rara.ch/<br>
                     </a>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="trigger-content">
                     Dana Densmore and William H. Donahue (2003, 2010).<br>
-                    <a href="https://www.greenlion.com/books/NewtonPrincipia.html" target="_blank">
+                    <a href="https://www.greenlion.com/books/NewtonPrincipia.html">
                     <i>Newton’s Principia: The Central Argument</i> (3rd ed.)</a><br>
                     Green Lion Press.<br>
                 </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="trigger-content">
                     Cohen, I. B., Whitman, A., & Budenz, J. (1999).<br>
-                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z" target="_blank">
+                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
                     <i>The Principia: Mathematical Principles of Natural Philosophy</i> (1st ed.)</a>.<br>
                     University of California Press.<br>
                 </div>
@@ -74,8 +74,7 @@
         'Bernard-Cohen-Anne-Whitman-without-Guide' : `
             <div class="isclosed">
                 <div class="trigger-option">
-                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z"
-                       target="_blank">
+                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
                        NEWTON, THE <i>PRINCIPIA</i></a>
                 </div>
                 <div class="trigger-content">
@@ -85,12 +84,6 @@
                 </div>
             </div>
             `,
-
-
-        'kvk' : `
-            <span style="font-size:9px">
-            <a href="http://landkey.org/Sandbox/z/82b-visualiz/scenarios/intro/full-stack/" target="_blank">Addendum (c) Konstantin Kirillov</a>.</span><br>
-        `,
 
     }
 
