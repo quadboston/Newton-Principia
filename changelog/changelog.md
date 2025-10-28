@@ -1,11 +1,17 @@
 # Change Log
   
-## 2025-10-?? (SkyBlue Version, 0.13859)
+## 2025-10-28 (SkyBlue Version, 0.13860)
 ### Improved
 * All models
 	* model boundary shown with drop shadow 
 	* fixed data not showing on narrow browsers
 	* more vertical space allotted to models on tall browsers
+
+* Lemma 4
+	* reworked model to look and behave more like lemmas 2 and 3
+		* all parallelogram widths are diminished rather than a random one being split
+		* colors follow pattern set by lemmas 2 and 3
+		* feedback given when figures are not monotonic
 
 * Proposition 12
 	* simplified diagram by not showing more than what is described for each section
@@ -21,7 +27,7 @@
 	* fixed highlighting of arc QPR
 
 * Propositions 11, 12, 13
-	* latus rectum shown when text highlighted
+	* latus rectum shown only when text highlighted
 
 * Propoition 13
 	* corrected text
