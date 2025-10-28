@@ -2,6 +2,11 @@
   
 ## 2025-10-?? (SkyBlue Version, 0.13859)
 ### Improved
+* All models
+	* model boundary shown with drop shadow 
+	* fixed data not showing on narrow browsers
+	* more vertical space allotted to models on tall browsers
+
 * Proposition 12
 	* simplified diagram by not showing more than what is described for each section
 	* added missing text-diagram highlights
@@ -145,7 +150,7 @@
 
 
 ## 2025-5-29 (Orange Version, 0.13657)
-### Improved presentation
+### Improved
 * Multiple models
     * opacity tuned (some data text more readable; lines and curves more visible)
     * red color reassigned when not indicating invalid situations
@@ -167,7 +172,7 @@
 
 
 ## 2025-5-20 [0.13654]
-### Improved presentation
+### Improved
 * All models
     * ratios shown using colon (not as fractions)
     * data shown in higher opacity (to be more readable); highlighted using background
@@ -209,7 +214,7 @@
     
 
 ## 2025-4-30 [0.13618]
-### Improved core presentation
+### Improved
 * Homepage
     * mission statement
 
