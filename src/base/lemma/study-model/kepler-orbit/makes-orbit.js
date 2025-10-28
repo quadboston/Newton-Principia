@@ -232,6 +232,9 @@
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
         }
         op.eccentricity = eccentricity;
+        if(eccentricity <= 0.01) {
+            op.eccentricity = 0.0001; // approx circle
+        }
 
         //// orbit parameters,
         //// derived from eccentricity and latus

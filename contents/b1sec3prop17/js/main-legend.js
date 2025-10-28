@@ -38,6 +38,7 @@
                 let e = op.eccentricity;
 
                 if(e > 1.0001) 'hyperbola'
+                else if(e === 0.0001) 'circle'
                 else if(e < 0.9999) 'ellipse'
                 else 'parabola'
             `;
