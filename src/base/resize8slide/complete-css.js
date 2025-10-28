@@ -58,14 +58,8 @@
         //------------------------------------------------------------------
         // //\\ legend css
         //------------------------------------------------------------------
-        stdMod.legendRoot$
-            .css( 'top', '0px' )
-            ;
-        if(sDomN.sliderGroup$) {
-            stdMod.legendRoot$
-                .css( 'left', '0px' )
-                ;
-        }
+        stdMod.legendRoot$.css( 'top', '10px' );
+        stdMod.legendRoot$.css( 'left', '0px' );
         //------------------------------------------------------------------
         // \\// legend css
         //------------------------------------------------------------------
@@ -87,11 +81,6 @@
         // \\// video css
         //------------------------------------------------------------------
     }
-
-
-
-
-
 
 
     function buildsNonMobile({
@@ -187,8 +176,8 @@
                 ;
         } else {
             stdMod.legendRoot$
-                .css( 'top',   (bases_slidersH + stdMod.svgSceneH).toFixed()+'px' )
-                .css( 'left',  legendMargin.toFixed(2) + 'px' )
+                .css( 'top', (bases_slidersH + stdMod.svgSceneH + 10).toFixed()+'px' )
+                .css( 'left', legendMargin.toFixed(2) + 'px' )
                 ;
         }
         //---------------------------------------------------------
