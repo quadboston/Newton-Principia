@@ -41,7 +41,7 @@
         //var fullPath = qix2orb[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qix2orb[ qix ];
-            const displacement = bP.displacement;
+            const fQR = bP.fQR;
             const sagitta = bP.sagitta;
             const ds_dt = bP.ds_dt;
             if( known_force_law ){
@@ -52,7 +52,7 @@
             //    var instantForce = bP.instant_sagitta;
 
             } else {
-                var instantForce = bP.instant_displacement;
+                var instantForce = bP.instant_fQR;
             }
             bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===QS ){
@@ -60,7 +60,7 @@
                     sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
                 }
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
-                displMax = Math.max( Math.abs( displacement ), displMax );
+                displMax = Math.max( Math.abs( fQR ), displMax );
                 speedMax = Math.max( speedMax, ds_dt );
                 let graphColumn = {
                     qix,
@@ -88,13 +88,13 @@
             bP.gix = gix;
             let instf = bP.instantForce;
             instf = instf * instantForceMax1 * (ADDENDUM ? 1 : Math.sign(instf));
-            let disp = bP.displacement;
-            disp *= displMax1 * ( ADDENDUM ? 1 : Math.sign(disp) );
+            let fQR = bP.fQR;
+            fQR *= displMax1 * ( ADDENDUM ? 1 : Math.sign(fQR) );
             let ds_dt = bP.ds_dt;
             ds_dt *= speedMax1;
             ga.y = [
                 instf,
-                disp,
+                fQR,
                 ds_dt,
             ];
             if( TIME ){
@@ -108,7 +108,7 @@
         stdMod.graphFW_lemma.graphArrayMask = 
         [ 
             'force',
-            'displacement',
+            'fQR',
         ];
         //------------------------------------------
         // \\// resets graphArray

@@ -84,7 +84,7 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        stdMod.graphFW_lemma = stdMod.createsGraphFW_lemma({ 
+        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({ 
             digramParentDom$:stdMod.legendRoot$ });
         //==================================================
         // \\// decoration graph 

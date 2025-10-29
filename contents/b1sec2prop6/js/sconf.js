@@ -112,6 +112,9 @@
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.GRAPH_PATH = true; //only for not-"addendum"
+        sconf.SHOW_FORMULAS = [
+            { label:'1/r²', fun:(x,y) => 1/(x*x+y*y) },
+        ];
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -135,7 +138,7 @@
         sconf.force_law = null;
         
         //intervals of dt or dq to construct an arc for
-        //displacement or sagitta,
+        //fQR or sagitta,
         if( FT ){
             var Dt0 = 0.168; //0.1;
         } else {
@@ -168,7 +171,7 @@
         var proof   = [0,     0,   255,    1];
         var result  = [200,150,0,1];
         var curvature  = [200,   40,  200, 1];
-        var displacement = [200,   0,  200, 1];
+        var fQR = [200,   0,  200, 1];
         var timeColor  = [200,  0,  255, 1];
         var body    = [0,     150,  200,   1];
         var dtime   = [0,     150,  200,  1];
@@ -204,7 +207,7 @@
             invalid,
             sagitta,
             chord,
-            displacement,
+            fQR,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -326,7 +329,7 @@
 
             R : {
                 //pos: Q,
-                pcolor : displacement,
+                pcolor : fQR,
                 letterAngle : 45,
             },
 
@@ -407,11 +410,11 @@
             { 'PR' : { pcolor : body }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : displacement }, },
+            { 'QR' : { pcolor : fQR }, },
             { 'QP' : { pcolor : proof }, },
             //{ 'VQ' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : displacement }, },
+            { 'QT' : { pcolor : fQR }, },
             { 'PC' : { pcolor : curvature }, },
             { 'Q,rrminus' : { pcolor : proof }, },
             { 'P,rrminus' : { pcolor : proof }, },

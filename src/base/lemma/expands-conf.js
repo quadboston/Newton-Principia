@@ -49,6 +49,8 @@
             mod2inn_scale,
         } = sconf;
 
+        //secures omitted settings
+        const formulas = sn( 'SHOW_FORMULAS', sconf, [] );
 
         //-----------------------------------------------------------
         // //\\ transition from poor name in legacy code

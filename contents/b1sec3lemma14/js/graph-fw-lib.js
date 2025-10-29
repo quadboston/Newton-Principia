@@ -4,7 +4,7 @@
         ssF, sDomF,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
-        ssFExportList : 
+        stdModExportList : 
         {
             createsGraph_FW_lemma,
         },

@@ -78,13 +78,13 @@
                     }
                 } else {
                     bP.plusQ = plusQ;
-                    const displ = stdMod.calcs__displacement({ 
+                    const fQR = stdMod.calcs_fQR({ 
                         parq: plusQ,
                         bP
                     });
-                    bP.displacement = displ;
+                    bP.fQR = fQR;
                     if( ulitmacy === sData.ULTIM_INSTANT ){
-                        bP.instant_displacement = displ;
+                        bP.instant_fQR = fQR;
                     }
                 }
                 continue;
@@ -128,13 +128,13 @@
             }
 
             if( plusQ !== null ){
-                const displ = stdMod.calcs__displacement({ 
+                const fQR = stdMod.calcs_fQR({ 
                     parq: plusQ,
                     bP
                 });
-                bP.displacement = displ;
+                bP.fQR = fQR;
                 if( ulitmacy === sData.ULTIM_INSTANT ){
-                    bP.instant_displacement = displ;
+                    bP.instant_fQR = fQR;
                 }
             }
             
@@ -184,4 +184,3 @@
         //**********************************************
     }
 })();
-

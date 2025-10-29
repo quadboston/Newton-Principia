@@ -1,24 +1,25 @@
 ( function() {
-    var {
+    const {
         $$, nsmethods, globalCss, userOptions,
         sDomF,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
         stdModExportList :
         {
-            createsGraphFW_lemma,
+            createsGraph_FW_lemma,
         },
     });
     return;
 
-    function createsGraphFW_lemma({ digramParentDom$ }){
-        let graphFW = {};
+
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
-            setsGraphAxes,
+            setsGraphAxes : null,
             plotLabels_2_plotsPars,
             
             //optional:
@@ -29,7 +30,13 @@
         });
         return graphFW;
 
-        
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset dynamically,
+        ///
+        //this is just an example how to reset colors dynamically
+        //in model_upcreate(): 
+        //    stdMod.graphFW_lemma.colorThreadArray[0] =
+        //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
@@ -43,14 +50,13 @@
             return colorThreadArray;
         }
 
-
         function setsGraphContainerAttributes( digramParentDom$ )
         {
-            container$ = $$.div()
+            const container$ = $$.div()
                 .addClass( 'chem-equiibr-graph-container' )
                 .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
+                .addClass( 'lost-diagram-parent' )
+                //.css( 'position', 'absolute' )
 
                         //:this data sets outer dimensions of the graph
                         .css( 'width', '400px' )
@@ -58,133 +64,12 @@
                         .css( 'top', '0' )
                         .css( 'left', '0' )
                         .css( 'z-index', '111111' )
-                )
-                ;
-            ///creates low tire api
+            );
+            //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
-            return {container$, graph_dimX, graph_dimY}
+            return {container$, graph_dimX, graph_dimY};
         }
-
-
-        function setsGraphAxes()
-        {
-            let n2c = sDomF.getFixedColor; //name to color
-            const addendum = amode.aspect === 'addendum';
-
-            //==================================================
-            // //\\ calls api
-            //==================================================
-            //y-legend color; taken from first plot color:
-            var yColor = graphFW.colorThreadArray[ 0 ]; //equilibConst;
-
-            //axis x and legend x color:
-            //manually picked color, not from plot,
-            var xColor = n2c( 'orbit' );
-            var axisYLegend =
-            [
-                {
-                    //"hover-width" decreases gigantict bold
-                    //together, tobold hover-width and tostroke can be redundant
-                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Force</tspan></text>',
-                    x       : 40,
-                    y       : 25,
-                    style   : {
-                                'font-size' : 28 + 'px',
-                                //'stroke' : yColor,
-                                //'fill'   : yColor,
-                    },
-                },
-
-                {
-                    text    : addendum ?
-                                //'Forces f, -1/r² their max.'
-                                
-                                '<text><tspan>Forces </tspan>' +
-                                '<tspan class="tp-force tofill tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>f </tspan>' +
-                                '<tspan>, </tspan>' +
-                                
-                                '<tspan class="tp-estimated_force tofill' +
-                                'tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:'+
-                                                n2c( 'estimatedForce' ) + ';"' +
-                                '>fₑ' +
-                                '</tspan>' +
-                                
-                                '<tspan' +
-                                '>, r⁻², r⁻⁵ per own min.' +
-                                '</tspan>' +
-                                '</text>'
-                                
-                                :   // Actual and Estimated forces
-                                
-                                
-                                '<text><tspan class="tp-force tofill ' +
-                                'tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'force' ) +
-                                '; stroke:'+n2c( 'force' ) + ';"' +
-                                '>Actual</tspan>' +
-                                '<tspan> and </tspan>' +
-
-                                '<tspan class="tp-_p_-sagitta tofill' +
-                                'tobold hover-width"' +
-                                //overrides tp machinery
-                                ' style="fill:'+n2c( 'sagitta' ) + '; stroke:'+
-                                                n2c( 'sagitta' ) + ';"' +
-                                '>Estimated' +
-                                '</tspan>' +
-
-                                '<tspan> forces</tspan>' +
-                                '</text>',
-  
-  
-  
-                    x       : addendum ? 250 : 310,
-                    y       : 40,
-                    style   : {
-                                'font-size' : '30',
-                                //'stroke' : 'black',
-                                //'fill'   : 'black',
-                    },
-                },
-
-            ];
-            var axisXLegend =
-            [
-
-                {
-                    text    : 'Distance from force (SP / AV)', 
-                    x       : -700,
-                    y       : 25,
-                    style   : {
-                                'font-size' : '30',
-                                'stroke' : xColor,
-                                'fill' : xColor,
-                    },
-                },
-                {
-                    text    : '',
-                    x       : 50,
-                    y       : -20,
-                    style   : {
-                                'font-size' : '23',
-                                'stroke' : xColor,
-                                'fill' : xColor,
-                    },
-                },
-            ];
-            return { yColor, xColor, axisYLegend, axisXLegend, };
-        }
-
-
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
@@ -204,13 +89,13 @@
                     },
                     //overrides tp class
                     //plotStyle : {
-                        //'stroke-width'  : '5',   //optional
+                    //    'stroke-width'  : '5',   //optional
                     //},
                 },
                 {
                     fraqX : 0.6,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Estimated force',
+                    //pcaption : 'Displacement/area^2',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -272,11 +157,10 @@
             ];
         }
 
-
-
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            //let m = graphFW.graphArrayMask;
             graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
                 switch(pix) {
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
@@ -288,7 +172,6 @@
             });
         }
 
-
         function doDrawToolline()
         {
             return {
@@ -297,7 +180,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),
-                numberMarks : false, //true, 
+                numberMarks : false,
             };
         }
 
@@ -315,7 +198,6 @@
             };
         }
 
-
         function graphAxisY( yColor )
         {
             return {
@@ -329,6 +211,5 @@
             };
         }
     }
-
-}) ();
+})();
 

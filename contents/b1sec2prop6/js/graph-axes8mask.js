@@ -1,6 +1,6 @@
 ( function() {
     const {
-        ssD, ssF, sDomF, sData,
+        has, haz, ssD, ssF, sDomF, sData,
         amode, stdMod, sconf,
     } = window.b$l.apptree({
         ssFExportList : 
@@ -15,18 +15,20 @@
         const subessay = amode.subessay;
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
-        const solvable = ssD.solvable;
-
+        const solvable = has( ssD, 'solvable' ) ? ssD.solvable : true;
         const graphFW = stdMod.graphFW_lemma;
 
         //----------------------------------------------
         // //\\ mask
         //----------------------------------------------
-        const mask = stdMod.graphFW_lemma.graphArrayMask;
-        mask[1] = solvable && (
-            subessay === 'corollary1' ||
-            subessay === 'corollary5'
-        ),
+        const mask = haz( stdMod.graphFW_lemma, 'graphArrayMask' ) || [];
+        stdMod.graphFW_lemma.graphArrayMask = mask;
+        mask[1] = solvable 
+            && (
+               subessay === 'corollary1' ||
+               subessay === 'corollary5'
+            )
+        ,
         mask[2] = solvable && ADDENDUM; //'body'
         mask[3] = solvable && TIME; //sagitta
         //----------------------------------------------
@@ -46,7 +48,7 @@
         const c_body = n2c( 'body' );
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
-        const c_displacement = n2c( 'fQR' );
+        const c_fQR = n2c( 'fQR' );
         const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
         const axisYLegend = [
             {
@@ -75,8 +77,8 @@
             '</tspan>';
         
         var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +                    
-            ' style="fill:' + c_displacement + '; stroke:' +
-            c_displacement +';';
+            ' style="fill:' + c_fQR + '; stroke:' +
+            c_fQR +';';
         text += !mask[1] ? '' :
             ', <tspan ' + attrib + '"' +
             '>f</tspan>' +
@@ -94,6 +96,7 @@
             'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
             'sagitta' +
             '</tspan>';
+        text += ADDENDUM ? ' normed by their max.' : '';
         text += '.</text>';
         axisYLegend[1] = {
             text,

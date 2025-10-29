@@ -31,9 +31,6 @@
         ,
         mask[2] = solvable && ADDENDUM; //'body'
         mask[3] = solvable && TIME; //sagitta
-        sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-            mask[3+fix] = solvable;
-        });
         //----------------------------------------------
         // \\// mask
         //----------------------------------------------
@@ -41,22 +38,20 @@
         //==================================================
         // //\\ calls api
         //==================================================
+        //axis x and legend x color:
+        //manually picked color, not from plot,
         //y-legend color; taken from first plot color:
         const yColor = graphFW.colorThreadArray[ 0 ];
 
-        //axis x and legend x color:
-        //manually picked color, not from plot,
         let n2c = sDomF.getFixedColor; //name to color
         const c_orbit = n2c( 'orbit' );
         const c_body = n2c( 'body' );
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
         const c_fQR = n2c( 'fQR' );
-        const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
-        
-        //-----------------------------------
-        // //\\ axisYLegend
-        //-----------------------------------
+        //manually picked color, not from plot,
+        const xColor      = 'rgba(0,0,0,1)';
+        //const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
         const axisYLegend = [
             {
                 //"hover-width" decreases gigantict bold
@@ -115,18 +110,11 @@
                         //'stroke' : 'black',
                         //'fill'   : 'black',
             },
-        }
-        //-----------------------------------
-        // \\// axisYLegend
-        //-----------------------------------
+        };
         
-        //-----------------------------------
-        // //\\ axisXLegend
-        //-----------------------------------
         var axisXLegend = [
             {
-                text    :  sData.GRAPH_PATH ?
-                           'Distance along arc' : 'Distance from force center, r', 
+                text    : 'Distance from force (SP / AV)', 
                 x       : -700,
                 y       : 25,
                 style   : {
@@ -146,9 +134,6 @@
                 },
             },
         ];
-        //-----------------------------------
-        // \\// axisXLegend
-        //-----------------------------------
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 })();

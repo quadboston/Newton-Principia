@@ -4,7 +4,7 @@
         ssF, sDomF,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
-        ssFExportList : 
+        stdModExportList :
         {
             createsGraph_FW_lemma,
         },
@@ -21,7 +21,8 @@
             setsGraphContainerAttributes,
             setsGraphAxes : null,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
+            
+            //optional:
             doDrawToolline,
             graphAxisX,
             graphAxisY,
@@ -66,11 +67,13 @@
             //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
+            graphFW.container$ = container$;
             return {container$, graph_dimX, graph_dimY};
         }
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
+            ///make sure, the number of plot labels is equal to plot functions y(x)
             return [
                 {
                     fraqX : 0.2,
@@ -81,6 +84,8 @@
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
+                        //'stroke-width' : '10px',
+                        //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
                     //plotStyle : {
@@ -144,7 +149,6 @@
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            //let m = graphFW.graphArrayMask;
             graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
                 switch(pix) {
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;

@@ -20,6 +20,7 @@
                 { src: sm + 'lib.js' },
                 { src: sm + 'graph-array.js' },
                 { src: sm + 'graph-fw-lib.js' },
+                { src: sm + 'graph-axes8mask.js' },
             ],
             "contents-list" :
             [
