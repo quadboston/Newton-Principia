@@ -281,8 +281,8 @@
 
             // eccentricity slider
             Zeta : {
-                caption : 'eccentricity, e',
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
+                caption : 'eccentricity',
+                pos : [ pictureWidth * 0.5, pictureHeight * 1.05 ],
                 pcolor : orbit,
                 letterAngle : 90,
                 letterRotRadius : 20,
@@ -290,25 +290,27 @@
                 undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
                 doPaintPname : 'b1sec3prop13' !== fconf.sappId,
                 unscalable  : true,
+                fontSize : 16,
             },
             ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
+                pos : [ pictureWidth * 0.5, pictureHeight * 1.09 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 letterAngle : 90,
                 letterRotRadius : 20,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                doPaintPname : false, // set to true to show value
                 unscalable  : true,
+                fontSize : 16,
             },
             ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
+                pos : [ pictureWidth * 0.3, pictureHeight * 1.05 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
+                pos : [ pictureWidth * 0.7, pictureHeight * 1.05 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
