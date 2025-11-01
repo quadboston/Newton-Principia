@@ -5,6 +5,9 @@
 * General
 	* dropdown menu scrolls for short browser windows
 
+* Prop 17
+	* reported conics include circles
+
 ## 2025-10-28 (SkyBlue Version, 0.13860)
 ### Improved
 * All models

@@ -38,6 +38,7 @@
                 let e = op.eccentricity;
 
                 if(e > 1.0001) 'hyperbola'
+				else if(e < 0.004) 'circle'
                 else if(e < 0.9999) 'ellipse'
                 else 'parabola'
             `;
@@ -57,6 +58,12 @@
             updatesDataInCell,
         });
 
+		function reportEccentricityAs0WhenNearlyCircle() {
+			// threshold should match getEqn()
+			legendScriptParsed[0][0][2] = op.eccentricity < 0.004 ?
+				 0 : 'op.eccentricity';
+		}
+
         function makesBodyCluster({ rowIx, clusterIx, }){
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
@@ -69,7 +76,8 @@
         {
             //called 12x when switching to tab with table, then 4x each time model moves
             //console.log('updates table'); 
-
+			
+			reportEccentricityAs0WhenNearlyCircle();
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,
