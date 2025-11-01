@@ -197,12 +197,6 @@
   cursor: default;
 }
 
-.content-list>div {
-   height:622px;
-   padding-right:10px;
-   overflow: auto;
-}
-
 .content-list .lemma-item-title {
     display : inline-block;
     padding : 4px 8px 4px 1px;
@@ -299,4 +293,10 @@ img.isclosed {
     background-color:#efefef;
     margin-left:20px;
     padding:5px;
+    padding-right: 15px;
+}
+.scrollable-content {
+    /* menu content scrolls when page is too short */
+    max-height: 80vh; 
+    overflow-y: auto;
 } 
