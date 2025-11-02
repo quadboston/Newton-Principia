@@ -9,7 +9,7 @@
 <b>Unscripting Book's logic,</b> we do:
 <br><br>
 
-¦estimatedForce¦Estimated force fₑ¦¦ ~ ¦P,sagitta QR sagitta¦move¦¦/time² =
+¦fQR¦Estimated force fₑ¦¦ ~ ¦P,sagitta QR sagitta¦move¦¦/time² =
 ¦P,sagitta¦sagitta¦¦/(Δt)²~ᵘ       <br>
 ¦QR¦¦/area² ~ ¦QR¦¦/(¦QT¦¦*¦SP¦¦)² .  <br><br>
 
@@ -17,7 +17,7 @@ From triangles similarity ¦QR¦¦ = ¦PR¦RP¦¦²/¦RL¦¦ <br>
 From triangles similarity ¦PR¦RP¦¦ = ¦QT¦¦ * ¦AV¦¦/¦PV¦¦ and
 <br><br>
 
-¦estimatedForce¦fₑ¦¦~1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦²/¦AV¦¦² ) ~ 1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦² )   &nbsp;&nbsp;&nbsp;&nbsp; (*)      
+¦fQR¦fₑ¦¦~1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦²/¦AV¦¦² ) ~ 1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦² )   &nbsp;&nbsp;&nbsp;&nbsp; (*)      
 <br><br>
 
 and ultimately: <br>
@@ -50,7 +50,7 @@ in following notations:
 For example, the same lemma's circular motion of the body can be created via "smart impact radar", or "roller coaster", or rocket engine operator.
 <br><br>
 
-Imagine a "smart impact radar" which to control the body in the circular trajectory, imposes the force with inverse square proportinality of the measured distance r and with a multiplier of deviation angle ¦PR SP¦ω¦¦ of the body from the direction from radar. In this case, there should be just a multiplier sin⁻³¦PR SP¦ω¦¦ in formulae (**).
+Imagine a "smart impact radar" which to control the body in the circular trajectory, imposes the force with inverse square proportinality of the measured distance r and with a multiplier of deviation angle ¦PR SP¦ω¦¦ of the body from the direction from radar. In this case, there should be just a multiplier sin⁻³¦PR SP¦ω¦¦ in formula (**).
 <br><br>
 
 
@@ -91,7 +91,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,logic_
         𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =
             ρ<sub>φ</sub>⁻<sup>1</sup> ρ<sub>𝛙</sub>⁻² 𝘨³   &nbsp;&nbsp;&nbsp;  (ft)
     </div>
-Replacing linear intervals correspondingly we obtain Newton's formulae:
+Replacing linear intervals correspondingly we obtain Newton's formula:
 
     <div style="text-align:center;">
         𝑓<sub>𝛙</sub> / 𝑓<sub>φ</sub> =

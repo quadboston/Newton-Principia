@@ -122,8 +122,13 @@
             ));
             setsCoroll2( !'yes0not' );
             if( subessay === 'corollary1' ) {
-                ////placing S to the circle
-                nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
+                //this setting
+                //      nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
+                //has non-resolved problem for norming by fmax,
+                //apparently force -> oo and disappears from the graph,
+                //when placing S to close to the circle,
+                //we partially solve it by making the S close to the circle,
+                nspaste( rg.S.pos, [-0.97, -0.16] );
             }
             sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
         }

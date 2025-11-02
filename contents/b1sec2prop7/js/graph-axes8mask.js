@@ -1,6 +1,6 @@
 ( function() {
     const {
-        has, haz, ssD, ssF, sDomF, sData,
+        sn, has, haz, ssD, ssF, sDomF, sData,
         amode, stdMod, sconf,
     } = window.b$l.apptree({
         ssFExportList :
@@ -21,16 +21,20 @@
         //----------------------------------------------
         // //\\ mask
         //----------------------------------------------
-        const mask = haz( stdMod.graphFW_lemma, 'graphArrayMask' ) || [];
+        const mask = sn( 'graphArrayMask', stdMod.graphFW_lemma, [] );
         stdMod.graphFW_lemma.graphArrayMask = mask;
+        mask[0] = solvable 
         mask[1] = solvable 
             //&& (
             //   subessay === 'corollary1' ||
             //   subessay === 'corollary5'
             //)
-        ,
-        mask[2] = solvable && ADDENDUM; //'body'
-        mask[3] = solvable && TIME; //sagitta
+        mask[2] = false; //'body'
+        mask[3] = false; //sagitta
+        sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+            //too much work: mask[4+fix] = ADDENDUM || subessay === 'corollary1';
+            mask[4+fix] = ADDENDUM;
+        });
         //----------------------------------------------
         // \\// mask
         //----------------------------------------------
@@ -100,13 +104,10 @@
         text += '.</text>';
         axisYLegend[1] = {
             text,
-            //',  -1/r², per their max.',
             x       : 250,
             y       : 40,
             style   : {
                         'font-size' : '30',
-                        //'stroke' : 'black',
-                        //'fill'   : 'black',
             },
         };
         
@@ -135,4 +136,3 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 })();
-

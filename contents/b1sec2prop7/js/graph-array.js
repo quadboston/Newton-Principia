@@ -10,13 +10,12 @@
     });
     return;
 
+    
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
         const addendum = amode.aspect === 'addendum';
-        // //\\ graph
-        //------------------------------------------------
+        const subessay = amode.subessay;
         let graphArg = {
-            //drawDecimalY : true,
             //drawDecimalX : false,
             printAxisXDigits : addendum,
             //printAxisYDigits : true,
@@ -29,13 +28,14 @@
         var forceMax;
         var estimatedMin;
         var estimatedMax;
-        var eLaw5Max;
-        var eLaw2Max;
-        var eLaw5Min;
-        var eLaw2Min;
         var sagittaMax;
         var xMin;
         var xMax;
+        
+        //for SHOW_FORMULAS
+        let toshow = [];
+        let toshowNorm = [];
+        
         for( ix = 0; ix<glen; ix++ ) {
             let gaix = ga[ix];
             var ssagitta = ssD.ssigned[ix];
@@ -46,11 +46,13 @@
             let graphX = r/prop7R;//normed distance
             gaix.x = graphX; 
             var r2 = cP.r2;
-            var r5 = r2*r2;
-            r5 *= r;
-            let r5m = 1/r5;
-            let r2m = 1/r2;
             let PV = 2*prop7R*sinw;
+            
+            //for SHOW_FORMULAS
+            let toshowVal = [];
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                toshowVal[fix] = f.fun( cP ); 
+            });
             
             //central angle =
             let qQP = rg.Q.q - rg.P.q;
@@ -76,8 +78,7 @@
                 force = forceAbs * fsignum;
                 estimatedForce = estimatedForceAbs * fsignum;
             } else {
-                //this is inaccurate: but this is a 
-                //project stakeholders requirement:
+                //this is inaccurate: but this is project requirement:
                 var estimatedForceAbs = 1/(r2*RL*RL*RL);
                 var force = forceAbs;
                 var estimatedForce = estimatedForceAbs;                
@@ -101,19 +102,18 @@
             if( ix === 0 || estimatedMax < estimatedForceAbs ) {
                 estimatedMax = estimatedForceAbs;
             }
-            if( ix === 0 || eLaw5Max < r5m ) {
-                eLaw5Max = r5m;
-            }
-            if( ix === 0 || eLaw2Max < r2m ) {
-                eLaw2Max = r2m;
-            }
-            if( ix === 0 || eLaw5Min > r5m ) {
-                eLaw5Min = r5m;
-            }
-            if( ix === 0 || eLaw2Min > r2m ) {
-                eLaw2Min = r2m;
-            }
-
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                let val = toshowVal[fix];
+                if( ix === 0 ){
+                    toshow[fix] = { max : val, min : val };
+                }
+                if( toshow[fix].max < val ) {
+                    toshow[fix].max = val;
+                }
+                if( toshow[fix].min > val ) {
+                    toshow[fix].min = val;
+                }
+            });
             if( ix === 0 || xMin > graphX ) {
                 xMin = graphX;
             }
@@ -124,35 +124,54 @@
             gaix.y[1] = estimatedForce;
             gaix.y[2] = 1; //body
             gaix.y[3] = ssagitta;
-            gaix.y[4] = fsignum * r5m; //for show
-            gaix.y[5] = fsignum * r2m; //for show
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                gaix.y[4+fix] = fsignum * toshowVal[fix]; 
+            });
         }
         let xMargin = (xMax-xMin)*0.05;
         graphArg.xMax = xMax + xMargin;
         graphArg.xMin = xMin - xMargin;
-        
+
+        //------------------------------------------
+        // //\\ sets norm depending on addendum mode
+        //------------------------------------------
         if( addendum ){
             var forceNorm = forceMin;
             var sagittaNorm = sagittaMin;
-            var eLaw2Norm = eLaw2Min;
             var estimatedNorm = estimatedMin;
-            var eLaw5Norm = eLaw5Min;
         } else {
             var forceNorm = forceMax;
             var sagittaNorm = sagittaMax;
-            var eLaw2Norm = eLaw2Max;
-            var estimatedNorm = estimatedMax;
-            var eLaw5Norm = eLaw5Max;
+            var estimatedNorm = sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
+                forceAbs : estimatedMax;
         }
+        sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+            //too much work
+            //toshowNorm[fix] = addendum || subessay === 'corollary1' ?
+            
+            toshowNorm[fix] = addendum ?
+                toshow[fix].min : toshow[fix].max; 
+        });
+        //------------------------------------------
+        // \\// sets norm depending on addendum mode
+        //------------------------------------------
+
+        //------------------------------------------
+        // //\\ completes norming
+        //------------------------------------------
         for( ix = 0; ix<glen; ix++ ) {
             let gaix = ga[ix];
             gaix.y[0] /= forceNorm;
             gaix.y[1] /= estimatedNorm;
-            gaix.y[2] /= 1; //body
+            gaix.y[2] /= 1; //non-important, will be skipped,
             gaix.y[3] /= sagittaNorm;
-            gaix.y[4] /= eLaw5Norm;
-            gaix.y[5] /= eLaw2Norm;
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                gaix.y[4+fix] /= toshowNorm[fix];
+            });
         }
+        //------------------------------------------
+        // \\// completes norming
+        //------------------------------------------
 
         ///gives more space on graph on the bottom and top
         graphArg.yMax = 1.1;
@@ -161,32 +180,6 @@
             graphArg.yMax = -0.5;
             graphArg.yMin = -10; //for partial y range,
         }
-        
-        //first array mast be enabled
-        stdMod.graphFW_lemma.graphArrayMask = addendum ?
-            [   'force',
-                'estimated force',
-                !'body',
-
-                !'saggita, yet broke',
-                //ssD.solvable && !ssD.doMaskSagitta,
-
-                (fsignum < 0 ? '-1/r^2' : '1/r^2' ),
-                !!'-1/r^5',
-            ]
-        :
-            [ 'force',
-              'estimated force',
-              !'body',
-              !'sagitta',
-              !'-1/r^5',
-              !'sample-force',
-            ];
-        
         stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
     }
-}) ();
-
+})();

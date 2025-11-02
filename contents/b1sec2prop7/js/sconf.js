@@ -10,28 +10,15 @@
     return;
 
 
-
-
-
-
-
-
-
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-
-        //true enables framework zoom
-        sconf.enableTools               = true;
-
         sconf.rgShapesVisible           = true;
+        //true enables framework zoom:
+        sconf.enableTools               = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -45,13 +32,11 @@
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 892; //630;  //892, 1.4158
-        var pictureHeight = 840; //400; //840, 2.1
+        var pictureWidth = 892;
+        var pictureHeight = 840;
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
-
-
 
         //***************************************************************
         // //\\ decorational parameters
@@ -67,6 +52,26 @@
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
 
+        
+        //-------------------------------------------
+        // //\\ display cosmetic forlulae
+        //-------------------------------------------
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
+        sconf.SHOW_FORMULAS = [
+            { label:'1/r⁵',
+              fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
+              cssclass : 'tp-context tostroke',
+            }, 
+            { label:'1/r²',
+              fun:(bP) => 1/bP.r2,
+              cssclass : 'tp-context tostroke',
+            }, 
+        ];
+        //-------------------------------------------
+        // \\// display cosmetic forlulae
+        //-------------------------------------------
+        
+        
         //--------------------------------------
         // //\\ do override engine defaults,
         //      in expands-conf.js,
@@ -137,6 +142,7 @@
         //      todm: possibly proliferation
         //-----------------------------------
         var estimatedForce = [100,50,0];
+        var fQR = estimatedForce;
         var sagitta = [100,0,100];
         var orbit   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
@@ -154,6 +160,7 @@
         var predefinedTopics =
         {
             estimatedForce,
+            fQR,
             body,
             force,
             sagitta,
@@ -408,5 +415,4 @@
         // \\// geometics parameters
         //***************************************************************
     }
-}) ();
-
+})();

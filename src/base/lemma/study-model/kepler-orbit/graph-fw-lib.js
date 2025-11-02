@@ -73,6 +73,7 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
+            const ga = stdMod.graphFW_lemma.graphArray;
             ///make sure, the number of plot labels is equal to plot functions y(x)
             return [
                 {
@@ -134,7 +135,7 @@
                     //sample force
                     fraqX : 0.8,
                     //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '-1/r²',
+                    pcaption : ( Math.sign(ga[0].y[0]) <0 ? '-' : '' ) + '1/r²',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {

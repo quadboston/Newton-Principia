@@ -361,9 +361,12 @@
                     xIndex = Math.min( ownPolyline.length-1, xIndex );
                     var [ mediaX, mediaY ] = ownPolyline[ xIndex ];
                     //polylinesLablesSVGs$[ pix ] = 
-                    pp.svgTextEl = nssvg.printText({
+                    //pp.svgTextEl = nssvg.printText({
+                    pp.svgTextEl = nssvg.printTextInnerHTML({
                         svgel   : !doPaintGridOnlyOnce ? null : haz( pp, 'svgTextEl' ),
-                        text    : pp.pcaption,
+                        //text    : 'w'+pp.pcaption,
+                        innerHTML : pp.pcaption,
+                        'class' : haz( pp, 'class' ) || '', //todo pick up from plot line,
                         x       : mediaX + pp.fontShiftX,
                         y       : mediaY + pp.fontShiftY,
                         parent  : graphFM_self.gmedia$(),

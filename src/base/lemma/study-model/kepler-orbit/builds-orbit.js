@@ -119,4 +119,3 @@
         ssD.foldPoints = foldPoints;
     }
 })();
-

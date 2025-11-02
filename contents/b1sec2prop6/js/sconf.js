@@ -10,9 +10,6 @@
     return;
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
         //***************************************************************
@@ -107,13 +104,16 @@
         //sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.GRAPH_PATH = true; //only for not-"addendum"
         sconf.SHOW_FORMULAS = [
-            { label:'1/r²', fun:(x,y) => 1/(x*x+y*y) },
+            { label:'1/r²',
+              //bP is context of "plane-cureve-derivatives"  
+              fun:(bP) => 1/bP.r2 }, 
         ];
         //-------------------------------------------
         // \\// calculation algo parameters
@@ -127,8 +127,6 @@
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
-
-        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
 
         //the law to be studied in given lemma:
         //fe: for 1/r^2, the assigment is

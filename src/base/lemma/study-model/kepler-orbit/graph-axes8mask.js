@@ -32,7 +32,7 @@
         mask[2] = solvable && ADDENDUM; //'body'
         mask[3] = solvable && TIME; //sagitta
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-            mask[3+fix] = solvable;
+            mask[4+fix] = solvable;
         });
         //----------------------------------------------
         // \\// mask

@@ -113,9 +113,9 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
-        sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = false;
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
         //to be studied in given proposition:
-        sconf.force_law_function = sconf.DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+        sconf.force_law_function = sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
             null :
             //can be 
             //bp.r

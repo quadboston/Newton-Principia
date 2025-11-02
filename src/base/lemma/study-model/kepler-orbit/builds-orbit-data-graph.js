@@ -19,8 +19,8 @@
   
     function builds_orbit_data_graph()
     {
-        const DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX = 
-              haz( sconf, 'DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX' );
+        const NORMALIZE_BY_ULTIM_IN_NON_ADDEN = 
+              haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         const ADDENDUM = amode.aspect === 'addendum';
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const GRAPH_PATH = sData.GRAPH_PATH;
@@ -37,6 +37,8 @@
         var displMax = 0;
         var sagittaMax = -1;
         var instantForceMax = 0;
+        let show_force_max = [];
+        let show_force_min = [];
         var speedMax = 0;
         //var fullPath = qix2orb[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
@@ -66,8 +68,26 @@
                     qix,
                     rr : bP.rr,
                     x : GRAPH_PATH ? bP.pathAtQ : bP.r,
+                    y : [],
                 };
                 graphArray.push( graphColumn );
+                let show_init = !show_force_max.length;
+
+                sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                    const val = f.fun(bP);
+                    const abs = Math.abs(val);
+                    if( show_init ){
+                        show_force_max[fix] = abs;
+                        show_force_min[fix] = abs;
+                    }
+                    if( show_force_min[fix] > abs ) {
+                        show_force_min[fix] = abs;
+                    }
+                    if( show_force_max[fix] < abs ) {
+                        show_force_max[fix] = abs;
+                    }
+                    graphColumn.y[4+fix] = val;
+                });
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
@@ -77,10 +97,17 @@
         //------------------------------------------
         var arrLen = graphArray.length;
         const instantForceMax1 = 1/instantForceMax;
-        const displMax1 = DO_NORMALIZE_FORCE_BY_ULTIMATE_MAX ?
+        const displMax1 = NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
                           1/instantForceMax : 1/displMax;
         const sagittaMax1 = 1/sagittaMax;
         const speedMax1 = 1/speedMax;
+        
+        //we estimate the sign of force by the sign of the first element
+        //of instant force calculated as instant_fQR,
+        //if, in the future, this method become inaccurate,
+        //this line needs modification,
+        const fsignum = Math.sign(qix2orb[0].instant_fQR);
+
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
@@ -92,16 +119,17 @@
             fQR *= displMax1 * ( ADDENDUM ? 1 : Math.sign(fQR) );
             let ds_dt = bP.ds_dt;
             ds_dt *= speedMax1;
-            ga.y = [
-                instf,
-                fQR,
-                ds_dt,
-            ];
+            ga.y[0]=instf;
+            ga.y[1]=fQR;
+            ga.y[2]=ds_dt;
             if( TIME ){
                 let sagitta = bP.sagitta;
                 sagitta *= sagittaMax1 * ( ADDENDUM ? 1 : Math.sign(sagitta) );
                 ga.y[3]=sagitta;
             }
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                ga.y[4+fix] /= fsignum * show_force_max[fix];
+            });
         }
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
