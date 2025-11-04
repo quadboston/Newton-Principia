@@ -1,25 +1,12 @@
 ( function() {
-    var {
-        nsmethods,
-        haz,
-        nssvg,
-        $$,
+    const {
+        nsmethods, haz, nssvg, $$,
     } = window.b$l.nstree();
     nsmethods.createsGraphFramework = createsGraphFramework;
     return;
 
-
-
-
-
-
-
-
-
-
-    ///==========================================
-    /// API engine
-    ///==========================================
+    
+    /// API
     function createsGraphFramework({
             parent,
             svgWidthCssValue,
@@ -29,9 +16,7 @@
     }){
         var graphFM_self = { gmedia$ : null, gridIsPainted : false };
         creates_svgDomEl();
-
-        //todm: way to go to speed up graphs
-        //var polylinesLablesSVGs$ = [];
+        graphFM_self.plotIx2plotBaseClasses = []; 
         var plotIx2plotSvg = graphFM_self.plotIx2plotSvg = [];
         graphFM_self.drawGraph              = drawGraph;
         graphFM_self.nonefyDom              = nonefyDom;
@@ -39,11 +24,6 @@
         return graphFM_self;
 
 
-
-
-        ///==========================================
-        /// API engine
-        ///==========================================
         function drawGraph({
                 //first array mast be enabled
                 graphArrayMask,
@@ -53,7 +33,6 @@
                 
                 colorThreadArray,
                 style,
-
 
                 //optional, if not set will be found,
                 //does not find yMin, yMax for each single function y(x), finds
@@ -126,8 +105,6 @@
             // \\// finds number of polylines
             //----------------------------------------------
 
-
-
             //----------------------------------------
             // //\\ autosets x and y ranges preventing
             //      x and y to go outside dimX, dimY
@@ -194,10 +171,7 @@
             //----------------------------------------
 
 
-
-
             if( doSideAxes ) {
-
                 //shrinks graph area to leave space for axes
                 var SHRINK_RATIO = 0.2;
                 var marginY = dimY * SHRINK_RATIO / 2;
@@ -214,7 +188,6 @@
                     }
                     dimX_withMarg -= extraAxisWidth;
                 }
-
             } else {
                 var marginY = 0;
                 var marginX = 0;
@@ -338,17 +311,16 @@
                 }
                 */
             });
-            //ccc( plotIx2plotSvg );
             //======================================================
             // \\// draws svg-plots from polylines
             //======================================================
-
 
             //======================================================
             // //\\ user plotPars to legens and more
             //======================================================
             ///unmasked, full length array for all plots
             if( plotsPars ) {
+                const basecls = graphFM_self.plotIx2plotBaseClasses;
                 plotsPars.forEach( (pp,pix) => {
                     var ownPolyline = polylines[ pix ];
 
@@ -366,7 +338,7 @@
                         svgel   : !doPaintGridOnlyOnce ? null : haz( pp, 'svgTextEl' ),
                         //text    : 'w'+pp.pcaption,
                         innerHTML : pp.pcaption,
-                        'class' : haz( pp, 'class' ) || '', //todo pick up from plot line,
+                        'class' : haz( pp, 'class' ) || basecls[ pix ] || '',
                         x       : mediaX + pp.fontShiftX,
                         y       : mediaY + pp.fontShiftY,
                         parent  : graphFM_self.gmedia$(),
@@ -412,8 +384,6 @@
             return;
         }
 
-
-
         //==================================================
         // //\\ builds svg-graph-container
         //==================================================
@@ -439,9 +409,6 @@
         // \\// builds svg-graph-container
         //==================================================
 
-
-
-
         ///==========================================
         /// resizing helper
         ///==========================================
@@ -459,7 +426,6 @@
             }
         }
 
-
         ///==========================================
         /// cleanup helper
         ///==========================================
@@ -468,6 +434,4 @@
             graphFM_self.gmedia$ && graphFM_self.gmedia$.css( 'display', 'none' );
         }
     }
-
-}) ();
-
+})();

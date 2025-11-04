@@ -19,9 +19,8 @@
   
     function builds_orbit_data_graph()
     {
-        const NORMALIZE_BY_ULTIM_IN_NON_ADDEN = 
-              haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         const ADDENDUM = amode.aspect === 'addendum';
+        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const GRAPH_PATH = sData.GRAPH_PATH;
         const QS = sconf.Q_STEPS;
@@ -34,7 +33,7 @@
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
-        var displMax = 0;
+        var fQR_max = 0;
         var sagittaMax = -1;
         var instantForceMax = 0;
         let show_force_max = [];
@@ -62,7 +61,7 @@
                     sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
                 }
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
-                displMax = Math.max( Math.abs( fQR ), displMax );
+                fQR_max = Math.max( Math.abs( fQR ), fQR_max );
                 speedMax = Math.max( speedMax, ds_dt );
                 let graphColumn = {
                     qix,
@@ -97,8 +96,7 @@
         //------------------------------------------
         var arrLen = graphArray.length;
         const instantForceMax1 = 1/instantForceMax;
-        const displMax1 = NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
-                          1/instantForceMax : 1/displMax;
+        const fQR_max1 = ULTIM_NORM ? 1/instantForceMax : 1/fQR_max;
         const sagittaMax1 = 1/sagittaMax;
         const speedMax1 = 1/speedMax;
         
@@ -106,40 +104,35 @@
         //of instant force calculated as instant_fQR,
         //if, in the future, this method become inaccurate,
         //this line needs modification,
-        const fsignum = Math.sign(qix2orb[0].instant_fQR);
-
+        const fsignum = Math.sign( qix2orb[0].instant_fQR );
+        const showSign = ADDENDUM ? fsignum : 1;
+        const cancelSign = !ADDENDUM && fsignum < 0 ? -1 : 1;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qix2orb[ qix ];
             bP.gix = gix;
-            let instf = bP.instantForce;
-            instf = instf * instantForceMax1 * (ADDENDUM ? 1 : Math.sign(instf));
-            let fQR = bP.fQR;
-            fQR *= displMax1 * ( ADDENDUM ? 1 : Math.sign(fQR) );
             let ds_dt = bP.ds_dt;
             ds_dt *= speedMax1;
-            ga.y[0]=instf;
-            ga.y[1]=fQR;
+            ga.y[0]= bP.instantForce * instantForceMax1 * cancelSign;
+            ga.y[1]= bP.fQR * fQR_max1 *cancelSign;
             ga.y[2]=ds_dt;
             if( TIME ){
-                let sagitta = bP.sagitta;
-                sagitta *= sagittaMax1 * ( ADDENDUM ? 1 : Math.sign(sagitta) );
-                ga.y[3]=sagitta;
+                ga.y[3] = bP.sagitta * sagittaMax1 * cancelSign;
             }
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                ga.y[4+fix] /= fsignum * show_force_max[fix];
+                ga.y[4+fix] /= showSign * show_force_max[fix];
             });
         }
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
-        stdMod.graphFW_lemma.graphArrayMask = 
-        [ 
-            'force',
-            'fQR',
-        ];
+        //stdMod.graphFW_lemma.graphArrayMask = 
+        //[ 
+        //    'force',
+        //    'fQR',
+        //];
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------
     }
-}) ();
+})();

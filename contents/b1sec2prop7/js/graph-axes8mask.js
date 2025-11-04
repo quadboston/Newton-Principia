@@ -23,14 +23,14 @@
         //----------------------------------------------
         const mask = sn( 'graphArrayMask', stdMod.graphFW_lemma, [] );
         stdMod.graphFW_lemma.graphArrayMask = mask;
-        mask[0] = solvable 
-        mask[1] = solvable 
+        mask[0] = solvable;
+        mask[1] = solvable;
             //&& (
             //   subessay === 'corollary1' ||
             //   subessay === 'corollary5'
             //)
-        mask[2] = false; //'body'
-        mask[3] = false; //sagitta
+        mask[2] = false; //body's speed
+        mask[3] = solvable && TIME; //sagitta
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             //too much work: mask[4+fix] = ADDENDUM || subessay === 'corollary1';
             mask[4+fix] = ADDENDUM;
@@ -53,7 +53,7 @@
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
         const c_fQR = n2c( 'fQR' );
-        const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
+        const xColor = c_orbit; //sData.GRAPH_PATH ? c_orbit : c_force;
         const axisYLegend = [
             {
                 //"hover-width" decreases gigantict bold
@@ -68,8 +68,6 @@
                 y       : 25,
                 style   : {
                             'font-size' : 28 + 'px',
-                            //'stroke' : yColor,
-                            //'fill'   : yColor,
                 },
             },
         ];
@@ -100,7 +98,9 @@
             'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
             'sagitta' +
             '</tspan>';
-        text += ADDENDUM ? ' normed by their max.' : '';
+        text += ADDENDUM ?
+                    ' normed by own ' + ( sconf.ADDENDUM_NORM_BY_MIN ? 'min' : 'max' )
+                    : 'normed by f<tspan baseline-shift="sub">ultimate max</tspan>';
         text += '.</text>';
         axisYLegend[1] = {
             text,
@@ -113,7 +113,7 @@
         
         var axisXLegend = [
             {
-                text    : 'Distance from force (SP / AV)', 
+                text    : 'Distance from force center.', 
                 x       : -700,
                 y       : 25,
                 style   : {

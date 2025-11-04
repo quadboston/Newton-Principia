@@ -1,6 +1,6 @@
 ( function() {
     const {
-        $$, sDomF, amode, stdMod, sconf,
+        sn, $$, sDomF, amode, stdMod, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -62,6 +62,7 @@
             //creates low tire api
             graph_dimX = 1000;  //innerWidth
             graph_dimY = 580;   //innerHeight
+            graphFW.container$ = container$;
             return {container$, graph_dimX, graph_dimY};
         }
 
@@ -72,9 +73,13 @@
             const labels = [
                 {
                     fraqX : 0.2,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
                     pcaption : 'f',
+  
+                    //todm needs more work to automate this, at
+                    //the moment tp-machinery makes letter too thick and
+                    //it is not clear how hover-width css class must be used,
                     class : 'tp-force',
+  
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -97,7 +102,6 @@
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[1],
-                        //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
                     //plotStyle : {
@@ -148,17 +152,17 @@
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            const p2svg = graphFW.fw.plotIx2plotSvg;
-            p2svg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-f_q_r tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-sagitta tostroke' ); break;
-                }
-            });
+            const basecls = sn( 'plotIx2plotBaseClasses', graphFW.fw, [] );
+            basecls[0] = 'tp-force tostroke';
+            basecls[1] = 'tp-f_q_r tostroke';
+            basecls[2] = 'tp-body tostroke';
+            basecls[3] = 'tp-_p_-sagitta tostroke';
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                const pl = p2svg[ 4+fix ];
-                pl && $$.$(pl).addClass( f.cssclass );
+                basecls[4+fix] = f.cssclass;
+            });
+            const p2svg = graphFW.fw.plotIx2plotSvg;
+            basecls.forEach( (b,pix) => {
+                p2svg[pix] && $$.$( p2svg[pix] ).addClass( b );
             });
         }
 
@@ -170,7 +174,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),
-                numberMarks : false,
+                numberMarks : amode.aspect !== 'addendum',
             };
         }
 

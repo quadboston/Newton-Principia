@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, mcurve, ssD,
+        sn, haz, mcurve, ssD,
         amode, stdMod, rg, sconf,
     } = window.b$l.apptree({
         stdModExportList :
@@ -13,11 +13,12 @@
     
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
-        const addendum = amode.aspect === 'addendum';
         const subessay = amode.subessay;
+        const ADDENDUM = amode.aspect === 'addendum';
+        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         let graphArg = {
             //drawDecimalX : false,
-            printAxisXDigits : addendum,
+            printAxisXDigits : ADDENDUM,
             //printAxisYDigits : true,
         }
         
@@ -74,12 +75,13 @@
             var estimatedForceAbs = 1/(r2*RL*PV*PV);
 
             var fsignum = Math.sign(gaix.y[0]);
-            if( addendum ) {
+            if( ADDENDUM ) {
                 force = forceAbs * fsignum;
                 estimatedForce = estimatedForceAbs * fsignum;
             } else {
                 //this is inaccurate: but this is project requirement:
                 var estimatedForceAbs = 1/(r2*RL*RL*RL);
+
                 var force = forceAbs;
                 var estimatedForce = estimatedForceAbs;                
             }
@@ -133,27 +135,28 @@
         graphArg.xMin = xMin - xMargin;
 
         //------------------------------------------
-        // //\\ sets norm depending on addendum mode
+        // //\\ sets norm depending on ADDENDUM mode
         //------------------------------------------
-        if( addendum ){
+        if( ADDENDUM ){
             var forceNorm = forceMin;
             var sagittaNorm = sagittaMin;
-            var estimatedNorm = estimatedMin;
+            var estimatedNorm = sconf.ADDENDUM_NORM_BY_MIN ?
+                estimatedMin : estimatedMax;
         } else {
             var forceNorm = forceMax;
             var sagittaNorm = sagittaMax;
             var estimatedNorm = sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
-                forceAbs : estimatedMax;
+                forceMax : estimatedMax;
         }
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             //too much work
-            //toshowNorm[fix] = addendum || subessay === 'corollary1' ?
+            //toshowNorm[fix] = ADDENDUM || subessay === 'corollary1' ?
             
-            toshowNorm[fix] = addendum ?
+            toshowNorm[fix] = ADDENDUM ?
                 toshow[fix].min : toshow[fix].max; 
         });
         //------------------------------------------
-        // \\// sets norm depending on addendum mode
+        // \\// sets norm depending on ADDENDUM mode
         //------------------------------------------
 
         //------------------------------------------
@@ -176,7 +179,7 @@
         ///gives more space on graph on the bottom and top
         graphArg.yMax = 1.1;
         graphArg.yMin = -0.1;
-        if( addendum && fsignum < 0 ){
+        if( ADDENDUM && fsignum < 0 ){
             graphArg.yMax = -0.5;
             graphArg.yMin = -10; //for partial y range,
         }

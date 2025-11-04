@@ -1,10 +1,5 @@
-
 ( function() {
-    var { //import from apptree
-        ns, userOptions,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
     return;
@@ -12,8 +7,18 @@
 
     function init_conf()
     {
+        //tools
+        sconf.enableStudylab = false;
+        //true enables framework zoom:
+        sconf.enableTools = true;
+
+        //navigation
+        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+        
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ original picture dimensions for svg scene
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -23,23 +28,25 @@
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
+
+        var originX_onPicture = 117; //for model's axis x
+        var originY_onPicture = 322; //for model's axis y
+        
+        var S = [originX_onPicture, originY_onPicture];
+        var P = [453, 177];
+        var Y = [263,66];
+        var A = [540, 338];
+
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = ( A[0] - S[0] );
         //***************************************************************
-        // \\// geometical scales
+        // \\// original picture dimensions for svg scene
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab = false;
-        //true enables framework zoom
-        sconf.enableTools = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
 
         //***************************************************************
-        // //\\ decorational parameters
+        // //\\ GUI cosmetics
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         sconf.rgShapesVisible = true;
@@ -47,12 +54,11 @@
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
 
         //--------------------------------------
-        // //\\ do override engine defaults,
+        // //\\ these do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
@@ -67,10 +73,6 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-
-        //make effect apparently only for line-captions,
-        //not for point-captions bs
-        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
         //overrides hover_width for texts
         //for activation, needs class "hover-width" in element
         sconf.text_nonhover_width   = 0.2;
@@ -79,45 +81,39 @@
 
         sconf.default_tp_lightness = 30;
         //--------------------------------------
-        // \\// do override engine defaults,
-        // \\// decorational parameters
+        // \\// these do override engine defaults,
+        //***************************************************************
+        // \\// GUI cosmetics
         //***************************************************************
 
-        //:diagram sandbox spatial parameters
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = 360;
-
-        var originX_onPicture = 117; //for model's axis x
-        var originY_onPicture = 322; //for model's axis y
-
-        //-------------------------------------------
-        // //\\ calculation algo parameters
-        //-------------------------------------------
-        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
-        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
-
+        
+        //***************************************************************
+        // //\\ math model auxilaries
+        //***************************************************************
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
         //sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+
+        //calculation decoration and quality
+        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
         sconf.GRAPH_PATH = true; //only for not-"addendum"
         sconf.SHOW_FORMULAS = [
             { label:'1/r²',
               //bP is context of "plane-cureve-derivatives"  
               fun:(bP) => 1/bP.r2 }, 
         ];
-        //-------------------------------------------
-        // \\// calculation algo parameters
-        //-------------------------------------------
+        //***************************************************************
+        // \\// math model auxilaries
+        //***************************************************************
+
 
         //-------------------------------------------
         // //\\ curve shape parameters
@@ -146,21 +142,12 @@
         //pos of P
         sconf.parQ = 0.250;
 
-        //=============================================
-        // //\\ points reused in config
-        //=============================================
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var Y = [263,66];
-        var A = [540, 338];
-        //=============================================
-        // \\// points reused in config
-        //=============================================
+        
+        
 
-        //-----------------------------------
+        //*************************************
         // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //*************************************
         var estimatedForce = [200,0,200];
         var fQR = [100,0,200];
         
@@ -183,6 +170,7 @@
         var force = invalid;
         var invalid = [0,     0,   0,      1];
         result = [255,0,0,1];
+        distanceToCenter = body; //[ 70,100,0, 1]; 
         
         var predefinedTopics =
         {
@@ -205,15 +193,16 @@
             invalid,
             sagitta,
             chord,
-            fQR,
+            distanceToCenter,
         };
-        //-----------------------------------
+        //*************************************
         // \\// topic group colors,
-        //-----------------------------------
+        //*************************************
+
         
-        //---------------------------------------------------
-        // //\\ points to approximate and draw original curve
-        //---------------------------------------------------
+        //=============================================
+        // //\\ points reused in config
+        //=============================================
         var curvePivots =
         [
             A,
@@ -263,15 +252,15 @@
             pcolor      : invalid,
             doPaintPname : false,
         }));
-
-        //---------------------------------------------------
+        //=============================================
+        // \\// points reused in config
+        //=============================================
+        
         var originalPoints =
         {
             curvePivots,
             foldPoints,
         };
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
 
         Object.assign( originalPoints, {
             A : {
@@ -393,15 +382,11 @@
             }
         });
 
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
-
         var linesArray =
         [
             { 'PV' : { pcolor : curvature }, },
             //{ 'SA' : { pcolor : context }, },
-            { 'SP' : { pcolor : result }, },
+            { 'SP' : { pcolor : distanceToCenter }, },
 
             { 'PY' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
@@ -420,7 +405,7 @@
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             orbit_q_start,
             Dt0,
             Q_STEPS,
@@ -441,6 +426,6 @@
             defaultLineWidth,
             handleRadius,
         });
+        //sconf.pointDecoration.r = sconf.handleRadius;
     }
-}) ();
-
+})();

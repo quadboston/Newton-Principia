@@ -1,8 +1,6 @@
 ( function() {
     const {
-        $$, nsmethods, globalCss, userOptions,
-        ssF, sDomF,
-        amode, stdMod, sconf, rg
+        sn, $$, sDomF, amode, stdMod, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -30,9 +28,6 @@
         });
         return graphFW;
 
-        ///this thing is not dynamic (missed in design),
-        ///but, colorThreadArray is accessible for reset dynamically,
-        ///
         //this is just an example how to reset colors dynamically
         //in model_upcreate(): 
         //    stdMod.graphFW_lemma.colorThreadArray[0] =
@@ -44,8 +39,10 @@
                 sDomF.getFixedColor( 'fQR' ),
                 sDomF.getFixedColor( 'body' ),
                 sDomF.getFixedColor( 'sagitta' ),
-                sDomF.getFixedColor( 'formula' ),
             ];
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                colorThreadArray[4+fix] = sDomF.getFixedColor( 'context' );
+            });
             return colorThreadArray;
         }
 
@@ -54,15 +51,13 @@
             const container$ = $$.div()
                 .addClass( 'chem-equiibr-graph-container' )
                 .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
-
-                        //:this data sets outer dimensions of the graph
-                        .css( 'width', '400px' )
-                        .css( 'height', '230px' )
-                        .css( 'top', '0' )
-                        .css( 'left', '0' )
-                        .css( 'z-index', '111111' )
+                .addClass( 'lost-diagram-parent' )
+                    //:this data sets outer dimensions of the graph
+                    .css( 'width', '400px' )
+                    .css( 'height', '230px' )
+                    .css( 'top', '0' )
+                    .css( 'left', '0' )
+                    .css( 'z-index', '111111' )
             );
             //creates low tire api
             graph_dimX = 1000;  //innerWidth
@@ -73,13 +68,18 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-            const ga = stdMod.graphFW_lemma.graphArray;
+            const addendum = amode.aspect === 'addendum';
             ///make sure, the number of plot labels is equal to plot functions y(x)
-            return [
+            const labels = [
                 {
                     fraqX : 0.2,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Actual force',
+                    pcaption : 'f',
+  
+                    //todm needs more work to automate this, at
+                    //the moment tp-machinery makes letter too thick and
+                    //it is not clear how hover-width css class must be used,
+                    class : 'tp-force',
+  
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -94,48 +94,34 @@
                     //},
                 },
                 {
-                    fraqX : 0.6,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Displacement/area^2',
+                    fraqX : addendum ? 0.25 : 0.3,
+                    pcaption : 'f<tspan baseline-shift="sub">QR</tspan>',
+                    'class' : 'tp-f_q_r',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[1],
-                        //'fill' : colorThreadArray[0],
                     },
                     //overrides tp class
                     //plotStyle : {
                     //    'stroke-width'  : '5',   //optional
                     //},
                 },
-                {
-                    fraqX : 0.9,
-                    pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sagitta
-                    fraqX : 0.9,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sample force
+                {   //ix=2
                     fraqX : 0.8,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : ( Math.sign(ga[0].y[0]) <0 ? '-' : '' ) + '1/r²',
+                    pcaption : 'skipped',
+                    fontShiftX : -50,
+                    fontShiftY : 0,
+                    style : {
+                        'font-size' : '40px',
+                        'stroke'  : colorThreadArray[2],
+                    },
+                },
+                {
+                    //ix = 3
+                    fraqX : 0.9,
+                    pcaption : '',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -144,19 +130,39 @@
                     },
                 },
             ];
+            var fsignum = Math.sign( stdMod.graphFW_lemma.graphArray[0].y[0] );
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                const pix = 4+fix; //plot index
+                labels[ pix ] = 
+                {  
+                    fraqX : 0.25 + fix/10, //plot cosmetics
+                    pcaption : ( fsignum < 0 ? '-' : '' ) + f.label,
+                    fontShiftX : 0,
+                    fontShiftY : 20,
+                    style : {
+                        'font-size' : '40px',
+                        'stroke'  : colorThreadArray[ pix ],
+                    },
+                };
+            });
+            return labels;
         }
 
         ///this thing fails if not to synch it with mask,
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-f_q_r tostroke' ); break;
-                    case 2: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
-                }
+            const basecls = sn( 'plotIx2plotBaseClasses', graphFW.fw, [] );
+            basecls[0] = 'tp-force tostroke';
+            basecls[1] = 'tp-f_q_r tostroke';
+            basecls[2] = 'tp-body tostroke';
+            basecls[3] = 'tp-_p_-sagitta tostroke';
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                basecls[4+fix] = f.cssclass;
+            });
+            const p2svg = graphFW.fw.plotIx2plotSvg;
+            basecls.forEach( (b,pix) => {
+                p2svg[pix] && $$.$( p2svg[pix] ).addClass( b );
             });
         }
 
@@ -168,7 +174,7 @@
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),
-                numberMarks : false,
+                numberMarks : amode.aspect !== 'addendum',
             };
         }
 
@@ -182,7 +188,7 @@
                 decimalDigits   : 3,
                 stroke          : xColor,
                 fill            : xColor,
-            'stroke-width'   : '0.2',
+                'stroke-width'   : '0.2',
             };
         }
 
@@ -195,9 +201,8 @@
                 decimalDigits   : 1,
                 stroke          : yColor,
                 fill            : yColor,
-            'stroke-width'   : '1',
+                'stroke-width'   : '1',
             };
         }
     }
 })();
-

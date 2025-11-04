@@ -1,6 +1,6 @@
 ( function() {
     const {
-        has, haz, ssD, ssF, sDomF, sData,
+        has, haz, ssD, ssF, sDomF, sData, rg,
         amode, stdMod, sconf,
     } = window.b$l.apptree({
         ssFExportList : 
@@ -23,13 +23,14 @@
         //----------------------------------------------
         const mask = haz( stdMod.graphFW_lemma, 'graphArrayMask' ) || [];
         stdMod.graphFW_lemma.graphArrayMask = mask;
+        mask[0] = solvable;
         mask[1] = solvable 
             && (
                subessay === 'corollary1' ||
                subessay === 'corollary5'
             )
         ,
-        mask[2] = solvable && ADDENDUM; //'body'
+        mask[2] = false; //solvable && ADDENDUM; //'body'
         mask[3] = solvable && TIME; //sagitta
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             mask[4+fix] = solvable;
@@ -52,7 +53,8 @@
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
         const c_fQR = n2c( 'fQR' );
-        const xColor = sData.GRAPH_PATH ? c_orbit : c_force;
+        const c_SP = rg.SP.pcolor; //n2c( 'distanceToCenter' );
+        const xColor = sData.GRAPH_PATH ? c_orbit : c_SP;
         const axisYLegend = [
             {
                 //"hover-width" decreases gigantict bold
@@ -99,7 +101,8 @@
             'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
             'sagitta' +
             '</tspan>';
-        text += ADDENDUM ? ' normed by their max.' : '';
+        text += sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN && !ADDENDUM ?
+                ' normed by f<tspan baseline-shift="sub">ult. max</tspan>' : ' normed by own max';
         text += '.</text>';
         axisYLegend[1] = {
             text,
@@ -112,11 +115,10 @@
                         //'fill'   : 'black',
             },
         }
-        
+
         var axisXLegend = [
             {
-                text    :  sData.GRAPH_PATH ?
-                           'Distance along arc' : 'Distance from force center, r', 
+                text    :  'r, distance from force center', 
                 x       : -700,
                 y       : 25,
                 style   : {
@@ -139,4 +141,3 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 })();
-

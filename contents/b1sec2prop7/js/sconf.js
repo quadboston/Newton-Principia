@@ -1,10 +1,6 @@
 
 ( function() {
-    var { //import from apptree
-        ns, userOptions,
-        fconf,
-        sconf,
-    } = window.b$l.apptree({ //export to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
     return;
@@ -12,19 +8,13 @@
 
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        sconf.rgShapesVisible           = true;
+        //tools
+        sconf.enableStudylab = false;
         //true enables framework zoom:
-        sconf.enableTools               = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
+        sconf.enableTools = true;
 
+        //navigation
         sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
         sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
         //***************************************************************
@@ -34,17 +24,19 @@
         //for graphical-media work-area if not supplied:
         var pictureWidth = 892;
         var pictureHeight = 840;
+        //to comply standard layout, one must add these 2 lines:
+        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
 
+
         //***************************************************************
-        // //\\ decorational parameters
+        // //\\ GUI cosmetics
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        sconf.rgShapesVisible = true;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
@@ -52,26 +44,6 @@
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
 
-        
-        //-------------------------------------------
-        // //\\ display cosmetic forlulae
-        //-------------------------------------------
-        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
-        sconf.SHOW_FORMULAS = [
-            { label:'1/r⁵',
-              fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
-              cssclass : 'tp-context tostroke',
-            }, 
-            { label:'1/r²',
-              fun:(bP) => 1/bP.r2,
-              cssclass : 'tp-context tostroke',
-            }, 
-        ];
-        //-------------------------------------------
-        // \\// display cosmetic forlulae
-        //-------------------------------------------
-        
-        
         //--------------------------------------
         // //\\ do override engine defaults,
         //      in expands-conf.js,
@@ -96,18 +68,34 @@
         sconf.text_nonhover_width   = 1;
         sconf.text_hover_width      = 1;
         // \\// principal tp-css pars
-        //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------
-        //***************************************************************
         // \\// decorational parameters
         //***************************************************************
-
-
+        // \\// GUI cosmetics
+        //***************************************************************
 
         //***************************************************************
-        // //\\ geometics parameters
+        // //\\ math model auxilaries
         //***************************************************************
+
+        //calculation decoration and quality
+        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+        sconf.ADDENDUM_NORM_BY_MIN = true;
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
+        sconf.SHOW_FORMULAS = [
+            { label:'1/r⁵',
+              fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
+              cssclass : 'tp-context tostroke',
+            }, 
+            { label:'1/r²',
+              fun:(bP) => 1/bP.r2,
+              cssclass : 'tp-context tostroke',
+            }, 
+        ];
+        //***************************************************************
+        // \\// math model auxilaries
+        //***************************************************************
+
 
         //=============================================
         // //\\ points reused in config
@@ -137,10 +125,12 @@
         // \\// points reused in config
         //=============================================
 
-        //-----------------------------------
+
+
+
+        //*************************************
         // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //*************************************
         var estimatedForce = [100,50,0];
         var fQR = estimatedForce;
         var sagitta = [100,0,100];
@@ -153,7 +143,7 @@
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
         var force = [255,    0,  0,      1];
-        var invalid = [0,     0,   0,      1];;
+        var invalid = [0,     0,   0,      1];
         
         //var chord = [0,0,255, 0.5]; //no dice
         var chord = [0,0,255, 1];
@@ -177,9 +167,9 @@
             timearc : proof,
             APQ     : orbit,
         };
-        //-----------------------------------
+        //*************************************
         // \\// topic group colors,
-        //-----------------------------------
+        //*************************************
 
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
@@ -395,7 +385,7 @@
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,
@@ -411,8 +401,5 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
     }
 })();
