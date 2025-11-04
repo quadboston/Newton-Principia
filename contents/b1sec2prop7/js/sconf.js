@@ -1,6 +1,5 @@
-
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({ //export to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({ //exports to apptree
         ssFExportList : { init_conf }
     });
     return;
@@ -17,8 +16,9 @@
         sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
         sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
+        
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ original picture dimensions for svg scene
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -27,8 +27,35 @@
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
+
+        var A = [785, 441];
+        var V = [64, 462 ];
+        var S = [207, 403];
+        var P = [693, 213];
+        var Q = [646.0, 168.0 ];
+
+        let C;
+        let RR;
+        {
+            const ww1 = A[0]-V[0];
+            RR = ww1*ww1;
+            const ww2 = A[1]-V[1];
+            RR += ww2*ww2;
+            RR = Math.sqrt( RR ) / 2;
+            C = [ V[0] + ww1/2, V[1] + ww2/2, ];
+        }
+ 
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = RR;
+
+        sconf.prop7R = 1;
+        sconf.prop7Center = [ 0, 0 ];
         //***************************************************************
-        // \\// geometical scales
+        // \\// original picture dimensions for svg scene
         //***************************************************************
 
 
@@ -45,12 +72,13 @@
         sconf.pointDecoration.r= 3;
 
         //--------------------------------------
-        // //\\ do override engine defaults,
+        // //\\ these do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 4 * controlsScale ),
+
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -68,11 +96,13 @@
         sconf.text_nonhover_width   = 1;
         sconf.text_hover_width      = 1;
         // \\// principal tp-css pars
+
         // \\// do override engine defaults,
         // \\// decorational parameters
         //***************************************************************
         // \\// GUI cosmetics
         //***************************************************************
+
 
         //***************************************************************
         // //\\ math model auxilaries
@@ -82,50 +112,27 @@
         sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
         sconf.ADDENDUM_NORM_BY_MIN = true;
         sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
-        sconf.SHOW_FORMULAS = [
-            { label:'1/r⁵',
-              fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
-              cssclass : 'tp-context tostroke',
-            }, 
-            { label:'1/r²',
-              fun:(bP) => 1/bP.r2,
-              cssclass : 'tp-context tostroke',
-            }, 
-        ];
         //***************************************************************
         // \\// math model auxilaries
         //***************************************************************
 
 
-        //=============================================
-        // //\\ points reused in config
-        //=============================================
-        var A = [785, 441];
-        var V = [64, 462 ];
-        var ww1 = A[0]-V[0];
-        var RR = ww1*ww1;
-        var ww2 = A[1]-V[1];
-        RR += ww2*ww2;
-        RR = Math.sqrt( RR ) / 2;
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = RR;
-        var C = [ V[0] + ww1/2, V[1] + ww2/2, ];
-
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
-
-        var S = [207, 403];
-        var P = [693, 213];
-        var Q = [646.0, 168.0 ];
-
-        sconf.prop7R = 1;
-        sconf.prop7Center = [ 0, 0 ];
-        //=============================================
-        // \\// points reused in config
-        //=============================================
-
-
+        //***************************************************************
+        // //\\ model comparison demo
+        //***************************************************************
+        sconf.SHOW_FORMULAS = [
+            //usually, bP is context of "plane-cureve-derivatives"  
+            { label:'1/r⁵',
+              fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
+              //e// cssclass : 'tp-context tostroke',
+            }, 
+            { label:'1/r²',
+              fun:(bP) => 1/bP.r2,
+            }, 
+        ];
+        //***************************************************************
+        // \\// model comparison demo
+        //***************************************************************
 
 
         //*************************************
@@ -188,14 +195,18 @@
             pcolor      : invalid,
             doPaintPname : false,
         }));
+        //*************************************
+        // \\// locals to reuse locally
+        //*************************************
 
-        //---------------------------------------------------
+
+        //*************************************
+        // //\\ original app points
+        //*************************************
         var originalPoints =
         {
             foldPoints,
         };
-        // \\// points to approximate and draw original curve
-        //---------------------------------------------------
 
         Object.assign( originalPoints, {
             A : {
@@ -344,8 +355,14 @@
             },
 
         });
+        //*************************************
+        // \\// original app points
+        //*************************************
 
 
+        //*************************************
+        // //\\ original app lines
+        //*************************************
         var linesArray =
         [
             { 'PV' : { pcolor : proof }, },
@@ -385,6 +402,9 @@
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
 
+        //*************************************
+        // //\\ passing locals to sconf
+        //*************************************
         nspaste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -401,5 +421,8 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
+        //*************************************
+        // \\// passing locals to sconf
+        //*************************************
     }
 })();

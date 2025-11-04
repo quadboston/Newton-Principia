@@ -10,12 +10,12 @@
     });
     return;
 
-    
+
     function graph_axes8mask() {
         const subessay = amode.subessay;
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
-        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );       
+        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         const solvable = has( ssD, 'solvable' ) ? ssD.solvable : true;
         const graphFW = stdMod.graphFW_lemma;
 
@@ -38,7 +38,7 @@
         //----------------------------------------------
         // \\// mask
         //----------------------------------------------
-        
+
         //==================================================
         // //\\ calls api
         //==================================================
@@ -72,13 +72,13 @@
             },
         ];
         let text = '<text>';
-        text += 
-            '<tspan class="tp-force tofill tobold hover-width" ' +                    
+        text +=
+            '<tspan class="tp-force tofill tobold hover-width" ' +
             'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
             'actual f' +
             '</tspan>';
-        
-        var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +                    
+
+        var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +
             ' style="fill:' + c_fQR + '; stroke:' +
             c_fQR +';';
         text += !mask[1] ? '' :
@@ -89,12 +89,12 @@
             '>QR</span>' +
             '</tspan>';
         text += !mask[2] ? '' :
-            ', <tspan class="tp-body tofill tobold hover-width" ' +                    
+            ', <tspan class="tp-body tofill tobold hover-width" ' +
             ' style="fill:' + c_body + '; stroke:' + c_body + ';"' +
             '>speed v' +
-            '</tspan>';            
+            '</tspan>';
         text += !mask[3] ? '' :
-            ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +                    
+            ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +
             'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
             'sagitta' +
             '</tspan>';
@@ -109,11 +109,12 @@
                         'font-size' : '30',
             },
         };
-        
+
+
         var axisXLegend = [
             {
                 text    :  sData.GRAPH_PATH ?
-                           'Path along arc.' : 'r, distance from force center.', 
+                           'Path along arc.' : 'r, distance from force center.',
                 x       : -700,
                 y       : 25,
                 style   : {

@@ -1,6 +1,6 @@
 ( function() {
     const {
-        sn, $$, sDomF, amode, stdMod, sconf,
+        sn, $$, has, sDomF, amode, stdMod, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -19,7 +19,7 @@
             setsGraphContainerAttributes,
             setsGraphAxes : null,
             plotLabels_2_plotsPars,
-            
+
             //optional:
             doDrawToolline,
             graphAxisX,
@@ -29,7 +29,7 @@
         return graphFW;
 
         //this is just an example how to reset colors dynamically
-        //in model_upcreate(): 
+        //in model_upcreate():
         //    stdMod.graphFW_lemma.colorThreadArray[0] =
         //    ADDENDUM ? 'green' : sDomF.getFixedColor( 'force' );
         function doSetColorThreadArray()
@@ -74,12 +74,12 @@
                 {
                     fraqX : 0.2,
                     pcaption : 'f',
-  
+
                     //todm needs more work to automate this, at
                     //the moment tp-machinery makes letter too thick and
                     //it is not clear how hover-width css class must be used,
                     class : 'tp-force',
-  
+
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
@@ -133,17 +133,19 @@
             var fsignum = Math.sign( stdMod.graphFW_lemma.graphArray[0].y[0] );
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
                 const pix = 4+fix; //plot index
-                labels[ pix ] = 
-                {  
+                labels[ pix ] =
+                {
                     fraqX : 0.25 + fix/10, //plot cosmetics
                     pcaption : ( fsignum < 0 ? '-' : '' ) + f.label,
                     fontShiftX : 0,
                     fontShiftY : 20,
+                    cssclass : 'tp-formula-' + fix + 'tostroke',
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[ pix ],
                     },
                 };
+                has( f, 'cssclass' ) && ( labels[ pix ] = f.cssclass );
             });
             return labels;
         }

@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({ //export to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({ //exports to apptree
         ssFExportList : { init_conf }
     });
     return;
@@ -16,30 +16,30 @@
         sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
         sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
-        
+
         //***************************************************************
         // //\\ original picture dimensions for svg scene
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 630;
-        var pictureHeight = 400;
+        let pictureWidth = 630;
+        let pictureHeight = 400;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        let realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        let controlsScale = realSvgSize / sconf.standardSvgSize
 
-        var originX_onPicture = 117; //for model's axis x
-        var originY_onPicture = 322; //for model's axis y
-        
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var Y = [263,66];
-        var A = [540, 338];
+        let S = [117, 322 ];
+        let P = [453, 177];
+        let Y = [263,66];
+        let A = [540, 338];
+
+        let originX_onPicture = S[0]; //for model's axis x
+        let originY_onPicture = S[1]; //for model's axis y
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
+        let mod2inn_scale = ( A[0] - S[0] );
         //***************************************************************
         // \\// original picture dimensions for svg scene
         //***************************************************************
@@ -64,6 +64,7 @@
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 4 * controlsScale ),
+
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -76,7 +77,7 @@
         //overrides hover_width for texts
         //for activation, needs class "hover-width" in element
         sconf.text_nonhover_width   = 0.2;
-        sconf.text_hover_width      = 0.5; 
+        sconf.text_hover_width      = 0.5;
         // \\// principal tp-css pars
 
         sconf.default_tp_lightness = 30;
@@ -86,7 +87,27 @@
         // \\// GUI cosmetics
         //***************************************************************
 
-        
+
+
+        //******************************************
+        // //\\ model principals parameters
+        //******************************************
+        //pos of P
+        sconf.parQ = 0.250;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 1;
+
+        //the law to be studied in given lemma:
+        //fe: for 1/r^2, the assigment is
+        //    sconf.force_law = bP => 1/(bP.r2);
+        //null means that program will calculated the law
+        //based on dt -> 0:
+        sconf.force_law = null;
+        //******************************************
+        // \\// model principals parameters
+        //******************************************
+
+
         //***************************************************************
         // //\\ math model auxilaries
         //***************************************************************
@@ -97,60 +118,48 @@
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true;
-        var Q_STEPS = 1500;
-        var TIME_STEPS = 1000;
-        var DATA_GRAPH_STEPS = 200;
+        sconf.Q_STEPS = 1500;
+        sconf.TIME_STEPS = 1000;
+        sconf.DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
         //calculation decoration and quality
         sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
         sconf.GRAPH_PATH = true; //only for not-"addendum"
-        sconf.SHOW_FORMULAS = [
-            { label:'1/r²',
-              //bP is context of "plane-cureve-derivatives"  
-              fun:(bP) => 1/bP.r2 }, 
-        ];
+
+        //intervals of dt or dq to construct an arc for
+        //fQR or sagitta,
+        if( FT ){
+            sconf.Dt0 = 0.168; //0.1;
+        } else {
+            sconf.Dq0 = 0.2;
+        }
         //***************************************************************
         // \\// math model auxilaries
         //***************************************************************
 
 
-        //-------------------------------------------
-        // //\\ curve shape parameters
-        //-------------------------------------------
-        const orbit_q_start = 0;
-        sconf.orbit_q_end = 1;
-        //-------------------------------------------
-        // \\// curve shape parameters
-        //-------------------------------------------
+        //***************************************************************
+        // //\\ model comparison demo
+        //***************************************************************
+        sconf.SHOW_FORMULAS = [
+            //usually, bP is aka context of "plane-cureve-derivatives"
+            { label:'1/r²',
+              fun:(bP) => 1/bP.r2,
+              //e// cssclass : 'tp-formula-1 tostroke',
+            },
+        ];
+        //***************************************************************
+        // \\// model comparison demo
+        //***************************************************************
 
-        //the law to be studied in given lemma:
-        //fe: for 1/r^2, the assigment is
-        //    sconf.force_law = bP => 1/(bP.r2);
-        //null means that program will calculated the law
-        //based on dt -> 0:
-        sconf.force_law = null;
-        
-        //intervals of dt or dq to construct an arc for
-        //fQR or sagitta,
-        if( FT ){
-            var Dt0 = 0.168; //0.1;
-        } else {
-            sconf.Dq0 = 0.2;
-        }
-
-        //pos of P
-        sconf.parQ = 0.250;
-
-        
-        
 
         //*************************************
         // //\\ topic group colors,
         //*************************************
         var estimatedForce = [200,0,200];
         var fQR = [100,0,200];
-        
+
         var sagitta = [100,50,0];
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
@@ -170,8 +179,8 @@
         var force = invalid;
         var invalid = [0,     0,   0,      1];
         result = [255,0,0,1];
-        distanceToCenter = body; //[ 70,100,0, 1]; 
-        
+        distanceToCenter = body; //[ 70,100,0, 1];
+
         var predefinedTopics =
         {
             estimatedForce,
@@ -199,10 +208,10 @@
         // \\// topic group colors,
         //*************************************
 
-        
-        //=============================================
-        // //\\ points reused in config
-        //=============================================
+
+        //*************************************
+        // //\\ locals to reuse locally
+        //*************************************
         var curvePivots =
         [
             A,
@@ -252,10 +261,14 @@
             pcolor      : invalid,
             doPaintPname : false,
         }));
-        //=============================================
-        // \\// points reused in config
-        //=============================================
-        
+        //*************************************
+        // \\// locals to reuse locally
+        //*************************************
+
+
+        //*************************************
+        // //\\ original app points
+        //*************************************
         var originalPoints =
         {
             curvePivots,
@@ -299,7 +312,7 @@
             },
             QtimeDecor : {
                 undisplayAlways : true,
-                //pos: will be as Q, 
+                //pos: will be as Q,
                 cssClass : 'tp-dtime',
                 pcolor : dtime, //proof,
                 fontSize : 20,
@@ -381,7 +394,14 @@
                 //undisplay : true,
             }
         });
+        //*************************************
+        // \\// original app points
+        //*************************************
 
+
+        //*************************************
+        // //\\ original app lines
+        //*************************************
         var linesArray =
         [
             { 'PV' : { pcolor : curvature }, },
@@ -404,14 +424,15 @@
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
+        //*************************************
+        // \\// original app lines
+        //*************************************
 
+
+        //*************************************
+        // //\\ passing locals to sconf
+        //*************************************
         nspaste( sconf, {
-            orbit_q_start,
-            Dt0,
-            Q_STEPS,
-            DATA_GRAPH_STEPS,
-            TIME_STEPS,
-
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,
@@ -426,6 +447,9 @@
             defaultLineWidth,
             handleRadius,
         });
-        //sconf.pointDecoration.r = sconf.handleRadius;
+        //e/ sconf.pointDecoration.r = sconf.handleRadius;
+        //*************************************
+        // \\// passing locals to sconf
+        //*************************************
     }
 })();
