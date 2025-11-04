@@ -14,7 +14,8 @@ window.MathJax = {
       MathJax.startup.defaultReady();
       MathJax.startup.promise.then(() => {
         window.MathJax_is_fully_loaded_flag = true;
-        console.log('MathJax initial typesetting complete');
+        //good debug, but annoying in production
+        //console.log('MathJax initial typesetting complete');
       });
     }
   }

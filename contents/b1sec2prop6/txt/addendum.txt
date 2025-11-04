@@ -186,7 +186,12 @@ This Corollary paraphrases Corollary 1.
 <br>
 
 We can replace ¦PV¦¦ in above formulae from similarity of triangles
-¦PV QP VQ¦VPQ¦¦ to ¦QP QR PR¦QRP¦¦ :
+
+Do edit this
+|PV QP VQ|VPQ||
+with real pipe.
+
+ to ¦QP QR PR¦QRP¦¦ :
 
     <div style="text-align:center;">
        PV / QP = QP / QR
