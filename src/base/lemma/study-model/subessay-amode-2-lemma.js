@@ -27,6 +27,10 @@
     ///===================================================================
     function in_subessay_launch____amode2lemma( amodel2app_8_extraWork,  )
     {
+        // called once on page load from init-sapp.js
+        // called again on tab switch from lemma-master-menu.js
+        // console.log('in_subessay_launch____amode2lemma');
+
         if( amodel2app_8_extraWork ) {
             doMinimizeTextMenus();
         }
