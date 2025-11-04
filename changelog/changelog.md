@@ -1,11 +1,19 @@
 # Change Log
   
+## 2025-11-?? (LightSalmon Version, 0.1386?)
+### Improved
+* General
+	* dropdown menu scrolls for short browser windows
+
+* Prop 17
+	* reported conics include circles
+
 ## 2025-10-28 (SkyBlue Version, 0.13860)
 ### Improved
 * All models
 	* model boundary shown with drop shadow 
-	* fixed data not showing on narrow browsers
-	* more vertical space allotted to models on tall browsers
+	* fixed data not showing on narrow browser windows
+	* more vertical space allotted to models on tall browser windows
 
 * Lemma 4
 	* reworked model to look and behave more like lemmas 2 and 3
