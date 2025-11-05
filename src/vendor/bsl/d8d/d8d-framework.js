@@ -3,19 +3,12 @@
 //        The active point is elected by "findDraggee" function
 //        which is supplied at initialization time.
 ( function() {
-    var {
-        ns, sn, d8dp, haz, $$,
-        dpdec,
-    } = window.b$l.nstree();
+    var { ns, sn, d8dp, haz, $$, dpdec, sconf } = window.b$l.apptree({});
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
 
     d8dp.throttles_eventMove = throttles_eventMove;
     var createdFrameworks = [];
     return;
-
-
-
-
 
 
     ///===========================================================
@@ -163,7 +156,9 @@
                     activeDecPoint = decPoint;
                 }
             } else {
-                dragSurface.style.cursor = 'grab';
+                //Only switch cursor (from default) if media mover is enabled.
+                 dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
+                    '' : 'grab';
             }
         }
 
@@ -437,8 +432,9 @@
             {
                 var dompos   = inn2outparent.call( pointWrap );
                 //c cc( pointWrap.rgId, pointWrap.pos, dompos );
-                decPoint.style.left = dompos[0] + 'px';            
-                decPoint.style.top  = dompos[1] + 'px';
+                //console.log(dompos);
+                decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration          
+                decPoint.style.top  = dompos[1] + 'px'; // not the actual draggable element
 
                 if( nonenify === 'nonenify' ) {
                     decPoint.style.display = 'none';

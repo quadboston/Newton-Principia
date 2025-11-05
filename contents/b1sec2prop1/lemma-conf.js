@@ -38,22 +38,12 @@
                 //model and media subroutimes
                 { src : '../js/model8media-lib.js' },
                 { src : '../js/main-legend.js' },
-
-                //projectile model
-                /*
-                { src : '../projectile-model/sconf.js' },
-                { src : '../projectile-model/study-model.js' },
-                { src : '../projectile-model/media-model.js' },
-                */
             ],
             "contents-list" :
             [
                 'txt/latin.txt',
                 'txt/cohen.txt',
-                'txt/addendum-comment.txt',
             ],
-            //optional additional reference html
-            referencesForAllLemmaEssays : ``,
         };
     }
 

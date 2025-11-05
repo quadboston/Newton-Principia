@@ -5,7 +5,6 @@
     return;
 
 
-
     function lemmaConfig()
     {
         return {
@@ -13,23 +12,29 @@
             [
                 //todm: automate this list
                 { src:'sconf.js' },
-                { src:'model-functions.js' },
-                { src:'study-model.js' },
-                { src:'model-statistify.js' },
-                { src:'master-n-slider.js' },
-                { src:'model-helpers.js' },
-                { src:'media-upcreate.js' },
-                { src:'main-legend.js' },
-                { src:'amode8captures.js' },
-                { src:'state-capturer.js' },
-                { src:'convergence-graph-framework.js' },
-                { src:'lib.js' },
+                { src:'init-model-parameters.js' },
+                { src:"transform-functions.js" },
+                { src:"curve-functions.js" },
+
+                {  src:"dom.js" },
+                {  src : 'main-legend.js' },
+                {  src:"d8d-model.js" },
+                {  src:"gui-construct.js" },
+                {  src:"gui-slider.js" },
+
+                {  src:"model-upcreate.js" },
+                {  src:"model-aux.js" },
+                {  src:"media-upcreate.js" },
+                {  src:"gui-update.js" },
+                {  src:"gui-update-widest.js" },
+                {  src:"gui-swap-monotonity.js" },
+                {  src:"event-handlers.js" },
+                {  src:"amode2captures.js" },
             ],
             "contents-list" :
             [
                 'txt/latin.txt',
-                'txt/english.txt',
-                'txt/addendum.txt',
+                'txt/cohen.txt',
             ],
             //optional additional reference html
             referencesForAllLemmaEssays : '',

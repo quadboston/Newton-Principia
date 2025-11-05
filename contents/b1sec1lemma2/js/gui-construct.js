@@ -145,7 +145,7 @@
         }
 
         // //\\ dehollowfies basePts
-        if( onBase && fconf.sappId === 'lemma3' ) {
+        if( onBase && fconf.sappId === 'b1sec1lemma3' ) {
             let bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0,
@@ -177,7 +177,7 @@
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-        const l3 = fconf.sappId === 'lemma3';
+        const l3 = fconf.sappId === 'b1sec1lemma3';
         for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( "base", i );

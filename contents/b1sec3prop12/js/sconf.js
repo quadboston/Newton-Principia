@@ -12,7 +12,6 @@
     //====================================================
     function init_conf()
     {
-        console.log('init P12');
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -56,10 +55,10 @@
         sconf.text_hover_width      = 1.5;
 
         // points reused in config      
-        var F = [ 492, 565 ]; //x,y of whole svg model
+        var origin = [ 492, 565 ]; //x,y of whole svg model
         sconf.diagramOrigin = [ 0, 0 ];
-        var originX_onPicture = F[0]; //for model's axis x
-        var originY_onPicture = F[1]; //for model's axis y
+        var originX_onPicture = origin[0]; //for model's axis x
+        var originY_onPicture = origin[1]; //for model's axis y
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
@@ -128,7 +127,6 @@
             curvature,
             context,
         } = fixedColors;
-        let red = [255,0,0]; //for debugging
 
         var predefinedTopics =
         {
@@ -154,8 +152,8 @@
             // hyperbola
             S : {
                 pcolor : result,
-                letterAngle : -115,
-                letterRotRadius : 20,
+                letterAngle : -90,
+				letterRotRadius : 26,
             },
             P : {
                 pcolor : body,
@@ -163,212 +161,235 @@
                 draggableY  : true,
             },
             LL : { // opposite of P, unlabelled
-                pcolor : orbit,
                 doPaintPname : false,
+				undisplayAlways : true,
             },
             A : {
                 pcolor : orbit,
-                letterRotRadius : 20,
-                letterAngle : -90,
+                letterAngle : -120,
+				cssClass: 'subessay--solution',
             },            
             AA : { // opposite A
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
             },
             B : {
                 letterRotRadius : 20,
                 pcolor : orbit,
+				cssClass: 'subessay--solution',
             },            
             BB : { // opposite B
-                letterAngle : 90,
-                undisplayAlways : true,
                 doPaintPname : false,
                 pcolor : orbit,
+				cssClass: 'subessay--solution',
             },
             C : { //center symmetry of orbit
                 pcolor : orbit,
                 letterAngle : -45,
+				cssClass: 'logic_phase--proof',
             },
             Zminus : {
                 caption : 'Z',
                 pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
+                letterAngle : 90,
+				cssClass: 'subessay--solution',
             },
             Z : {
-                pcolor : body,
-                letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
+				cssClass: 'subessay--solution',
             },
             Q : {
                 pcolor : proof,
                 letterAngle : 225,
-                letterRotRadius : 20,
                 draggableX  : true,
                 draggableY  : true,
+				cssClass: 'subessay--solution',
+				conditionalDrag: 'subessay--solution',
             },
-
 
             // triangle
             G : {
                 pcolor : proof,
                 letterRotRadius : 20,
                 letterAngle : -45,
+				cssClass: 'subessay--solution',
             },
             D : {
                 pcolor : proof,
-                letterRotRadius : 20,
-                //letterAngle : 135,
+                letterRotRadius : 25,
+                letterAngle : 135,
+				cssClass: 'subessay--solution',
             },
             K : {
                 pcolor : proof,
-                letterRotRadius : 20,
-                letterAngle : -60,
+                letterAngle : 180,
+				cssClass: 'subessay--solution',
             },
             F : {
                 pcolor : proof,
                 letterRotRadius : 20,
                 letterAngle : 135,
+				cssClass: 'subessay--solution',
             },
             v : {
                 caption : '𝑣',
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
+				cssClass: 'subessay--solution',
             },
             E : {
                 pcolor : proof,
                 letterRotRadius : 20,
-                //letterAngle : 90,
+				cssClass: 'logic_phase--proof',
             },            
             x : {
                 caption : "𝑥",
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 20,
+				cssClass: 'subessay--solution',
             },
             R : {
                 pcolor : proof,
-                letterAngle : -45,
-                letterRotRadius : 20,
+                letterAngle : 120,
+                letterRotRadius : 22,
+				cssClass: 'subessay--solution',
             },
             
             H : {
                 pcolor : proof,
                 letterAngle : -90,
+				cssClass: 'subessay--solution',
             },
             I : {
                 pcolor : proof,
                 letterRotRadius : 20,
+				cssClass: 'subessay--solution',
             },
             T : {
                 pcolor : proof,
-                //letterAngle : 180,
                 letterRotRadius : 20,
-            },
-            O : {
-                pcolor : context,
-                caption : 'O',
-                pos: F,
-                letterAngle : 45,
-                letterRotRadius : 20,
+				cssClass: 'subessay--solution',
             },
 
-            L : { // not shown, but mentionned in text
-                pcolor : orbit,
-                letterAngle : -45,
-                letterRotRadius : 20,
-                draggableX  : true,
-                draggableY  : true,
+            L : {
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
             // eccentricity slider
             Zeta : {
-                caption : 'eccentricity, e',
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
+                caption : 'eccentricity',
+                pos : [ pictureWidth * 0.5, pictureHeight * 1.05 ],
                 pcolor : orbit,
-                letterAngle : 90,
-                letterRotRadius : 20,
+                letterAngle : 150,
+                letterRotRadius : 38,
                 draggableX  : 'b1sec3prop13' !== fconf.sappId,
                 undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
                 doPaintPname : 'b1sec3prop13' !== fconf.sappId,
                 unscalable  : true,
+                fontSize : 16,
             },
             ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
+                pos : [ pictureWidth * 0.5, pictureHeight * 1.09 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 letterAngle : 90,
                 letterRotRadius : 20,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                doPaintPname : false, // set to true to show value
                 unscalable  : true,
+                fontSize : 16,
             },
             ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
+                pos : [ pictureWidth * 0.3, pictureHeight * 1.05 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
+                pos : [ pictureWidth * 0.7, pictureHeight * 1.05 ],
                 pcolor : orbit,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
-
         });
 
         var linesArray =
         [
             // hyperbola
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : body,
+						cssClass: 'subessay--solution',}, },
+            { 'PZ' : { pcolor : body,
+						cssClass: 'subessay--solution',}, },
             { 'PR' : { pcolor : body, 'stroke-width' : 2, 
-                captionShiftNorm : -18, }, },
-            { 'SP' : {
-                    pcolor : body,
-                    vectorTipIx : 1 },
-            },            
-            { 'B,BB' : { pcolor : orbit }, },
+                		captionShiftNorm : -18,
+						cssClass: 'subessay--solution',}, },
+            { 'SP' : { pcolor : body,
+						cssClass: 'logic_phase--proof',}, },
+            { 'B,BB' : { pcolor : orbit,
+						cssClass: 'subessay--solution',}, },
 
             // triangle            
-            { CA : { pcolor : proof }, },
-            { CB : { pcolor : proof }, },
-            { GP : { pcolor : proof }, },
-            { DK : { pcolor : proof }, },
-            { PF : { pcolor : proof }, },            
-            { Qv : { pcolor : proof }, },
-            { QR : { pcolor : proof }, },
-            { Qx : { pcolor : proof }, },
-            { Px : { pcolor : proof }, },
+            { CA : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { CB : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { GP : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { DK : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { PF : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { Qv : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { QR : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { Qx : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { Px : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
             
-            { EP : { pcolor : proof }, },            
-            { HI : { pcolor : proof }, },
-            { EC : { pcolor : proof }, },
-            { ES : { pcolor : proof }, },
-            { EI : { pcolor : proof }, },
-            { CS : { pcolor : proof }, },
-            { CH : { pcolor : proof }, },
-            { PI : { pcolor : proof }, },
-            { PH : {
-                    pcolor : proof,
-                    vectorTipIx : 0,
-                },
-            },
+            { EP : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { HI : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { EC : { pcolor : proof,
+						cssClass: 'logic_phase--proof',}, },
+            { ES : { pcolor : proof,
+						cssClass: 'logic_phase--proof',}, },
+            { EI : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { CS : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { CH : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { PI : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { PH : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
             
-            { QT : { pcolor : proof }, },
-            { PT : { pcolor : proof }, },
-            { AT : { pcolor : proof }, },
-            { Pv : { pcolor : proof }, },            
-            { xv : { pcolor : proof }, },
-            { PC : { pcolor : proof }, },
-            { PE : { pcolor : proof }, },
-            { Gv : { pcolor : proof }, },
-            { CD : { pcolor : proof }, },
+            { QT : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { PT : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { AT : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { Pv : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { xv : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { PC : { pcolor : proof,
+						cssClass: 'logic_phase--proof',}, },
+            { PE : { pcolor : proof,
+						cssClass: 'logic_phase--proof',}, },
+            { Gv : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
+            { CD : { pcolor : proof,
+						cssClass: 'subessay--solution',}, },
 
             { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },

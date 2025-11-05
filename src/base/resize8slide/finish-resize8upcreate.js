@@ -1,12 +1,7 @@
 ( function() {
-    var {
-        ns, $$, fmethods, haff, haz, has, nspaste, eachprop,
-        wrkwin,
-        fconf, sconf, ssD, ssF, sDomN, dividorFractions,
-        stdMod, amode,
-    } = window.b$l.apptree({
-        sDomNExportList :
-        {
+    var { ns, $$, fmethods, haff, haz, has, nspaste, eachprop, wrkwin, fconf,
+        sconf, ssD, ssF, sDomN, dividorFractions, stdMod, amode, }
+        = window.b$l.apptree({ sDomNExportList : {
             bgImgOffset : 0,    //fake initial value before resize ran
             bgImgW : 1000,      //fake initial value before resize ran
         },
@@ -29,13 +24,6 @@
     wrkwin.start8finish_media8Ess8Legend_resize__upcreate =
            start8finish_media8Ess8Legend_resize__upcreate;
     return;
-
-
-
-
-
-
-
 
 
     ///=============================================================================
@@ -98,16 +86,15 @@
                             sDomN.pageNavTopBar$.box().height : 0
                           );
         ///-------------------------------------------
-        ///slider group patch for lemmas 2 and 3
+        ///slider group patch for lemmas 2, 3, 4
         ///-------------------------------------------
-        var lemma2_slidersH = 0;
-
-        // for lemmas 2 and 3, plus variations on lemma 2
-        if (fconf.sappId === 'lemma2' || fconf.sappId.indexOf('lemma2-') === 0 || fconf.sappId === 'lemma3') {
-            var sliderGroup$ = sDomN.sliderGroup$;
-            var lemma2_slidersH = sliderGroup$() ? sliderGroup$.box().height : 0;
-            lemma2_slidersH += 35; //nicer
-            sDomN.sliderGroup$.css('position', 'absolute');
+        var bases_slidersH = 0;
+        var sliderGroup$ = sDomN.sliderGroup$;
+        if (sliderGroup$) {
+            var bases_slidersH = sliderGroup$() ?
+                sliderGroup$.box().height : 0;
+            bases_slidersH += 35; //nicer
+            sliderGroup$.css('position', 'absolute');
         }
 
         //-------------------------------------------
@@ -116,6 +103,7 @@
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
         if (STATIC_LEGEND) {
+            console.log('static legend');
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
@@ -133,9 +121,7 @@
             const boxLegend = stdMod.legendRoot$().getBoundingClientRect();
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
-            legendHeight += 20; //todm: patch: adds gap at bottom page
-            if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' )
-                legendHeight += 20; //todm: patch: adds gap at bottom page
+            legendHeight += 60; //adds gap at bottom page so data doesn't overlap version number
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
         const consideredLegendWidth = Math.min(legendWidth, winW - fconf.ESSAY_MIN_WIDTH);
@@ -221,7 +207,7 @@
         // //\\ phase 4. allocates widths and heights
         //===============================================
         var simSceneH = SSceneH
-            - lemma2_slidersH
+            - bases_slidersH
 
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
@@ -253,23 +239,21 @@
                 simSceneH/proposedRightW < 3*legendHeight/consideredLegendWidth
             )
         ) {
+            console.log('wide screen');
             ////wide screen
             var wideScreen_flag = true;
             //now we calculate H-restriction again
-            var svgW            = proposedRightW
-                                    - sconf.main_horizontal_dividor_width_px
-                                    - consideredLegendWidth
-                                    - 10; //given gap before legend
+            var svgW            = proposedRightW - legendWidth + 20;
+            // -25 to ensure svg sliders don't get cut off
             var bgImgW          = Math.min(
-                                    simSceneH / stdMod.simSceSvg_narrowestAsp,
+                                    (simSceneH / stdMod.simSceSvg_narrowestAsp - 25), 
                                     svgW );
-            var legendMargin    = 0;
+            var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
             var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
-            var simSceneW       = bgImgOffset * 2 +
-                                  bgImgW; // + Math.max( 0, proposedRightW - medSupW );
+            var simSceneW       = svgW + 20; // so tool tip and sliderGroup$ line up to svg canvas
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
-            var svgSceneH       = simSceneH;
+            var svgSceneH       = simSceneH - 30;
         //-------------------------------------------------------------
         // \\// wide screen,
         //-------------------------------------------------------------
@@ -278,8 +262,8 @@
             ////narrow screen
             var wideScreen_flag = false;
 
-            //apparently, this is a final media-height which is synch with
-            var svgSceneH = svgH_min;
+            //svg canvas height is dynamic to maximize use of space
+            var svgSceneH = simSceneH - legendHeight;
 
             //-------------------------------------------------
             //does set media width
@@ -301,24 +285,12 @@
                 ((proposedRightW - bgImgW
                     //- 20    //todm:
                 )) / 2);
-            var simSceneW = proposedRightW; // bgImgOffset * 2 + bgImgW;
+            var simSceneW = proposedRightW + 20; // bgImgOffset * 2 + bgImgW;
             var svgSceneW = simSceneW;
-        }
-
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
-            sliderGroup$
-                .css( 'top', svgSceneH.toFixed() + 'px' )
-                .css( 'width', '300px' ) //todm patch
-                .css( 'left', (( simSceneW - 300 ) / 2 ).toFixed() + 'px' )
-                ;
         }
         //===============================================
         // \\// phase 4. allocates widths and heights
         //===============================================
-
-
-
-
 
         //--------------------------------------------------------------------
         // //\\ exports sizes
@@ -352,6 +324,19 @@
         //===============================================
         // //\\ phase 5. finalizes widths and heights
         //===============================================
+        //Placed after "exports sizes" section to ensure slider width
+        //calculation has updated values.
+        if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+            const sliderWidth = calculateSliderWidth();
+            sliderGroup$
+                .css( 'top',
+                    (bgImgW * stdMod.simSceSvg_narrowestAsp).toFixed() + 'px')
+                .css( 'width', `${sliderWidth}px` )
+                .css( 'left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
+                ;
+        }
+
+
         makes_svgViewBox();
         doesTopContainersSizing();
 
@@ -369,7 +354,7 @@
             legendWidth,
             legendHeight,
             legendMargin,
-            lemma2_slidersH,
+            bases_slidersH,
         });
         //===============================================
         // \\// phase 5. finalizes widths and heights
@@ -391,21 +376,76 @@
         //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;
 
-        stdMod.simSceneW    = wid;
-        stdMod.simSceneH    = wid * stdMod.simSceSvg_narrowestAsp;
+        stdMod.simSceneW    = wid - 50;
         stdMod.svgSceneW    = stdMod.simSceneW;
-        stdMod.svgSceneH    = stdMod.simSceneH; //useless?
 
         stdMod.svgVB_W      = sconf.innerMediaWidth;
         stdMod.svgVB_H      = sconf.innerMediaHeight;
         stdMod.svgVB_offsX  = 0;
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
-            sDomN.sliderGroup$
+
+        const sliderGroup$ = sDomN.sliderGroup$;
+        if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
+            //Ensure the width gets updated as the window changes size
+            const sliderWidth = calculateSliderWidth();
+            sliderGroup$
                 .css( 'display', 'inline-block' )
-                .css( 'position', 'static' )
+                //'relative' rather than 'static' so the z-index is enabled for
+                //slider-group in mobile mode.  Otherwise an issue can occur
+                //where the slider can't be dragged in mobile mode, eg. for L4.
+                //When "overlay original diagrams" mode is disabled (the
+                //default), and an empty image gets displayed instead of
+                //the background image, and it's position and dimensions are
+                //such that it can be on top of the slider.
+                .css( 'position', 'relative' )
+                .css( 'top', '0px' )
+                .css( 'left', '0px' )
+                .css( 'width', `${sliderWidth}px` );
                 ;
+                stdMod.simSceneH += 60;
+        } else {
+            const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
+            stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
+
+            // todo: these conditionals aren't ideal but do the trick
+            // note: the narrower the window, the greater the space at bottom of page...
+            switch(fconf.sappId) { 
+                case 'b1sec1lemma9': case 'b1sec1lemma10':
+                    stdMod.simSceneH += 320;
+                    break;
+                case 'b1sec1lemma11':
+                    stdMod.simSceneH += 570;
+                    break;
+                case 'b1sec2prop1': case 'b1sec2prop2':
+                    stdMod.simSceneH += 100;
+                    break;
+                case 'b1sec2prop6': 
+                    stdMod.simSceneH += 150;
+                    break;
+                case 'b1sec2prop7': case 'b1sec2prop9': case 'b1sec2prop10': 
+                case 'b1sec3prop13':
+                    stdMod.simSceneH -= 100;
+                    break;
+                case 'b1sec3prop12':
+                    stdMod.simSceneH += 100;
+                    break;
+                case 'b1sec3prop17':
+                    stdMod.simSceneH -= 170;
+                    break;
+                case 'b1sec5lemma20':              
+                    stdMod.simSceneH -= 1190;
+                    break;
+                case 'b1sec5lemma21':              
+                    stdMod.simSceneH -= 1150;
+                    break;
+                default:
+                    //the rest are fine as is
+                    break;
+            }
         }
+
+
+
         makes_svgViewBox();
         doesTopContainersSizing();
         wrkwin.buildsMobile({});
@@ -453,6 +493,15 @@
     function gets_LEGEND_FIXED_FRACTION()
     {
         return false;
+    }
+
+    function calculateSliderWidth() {
+        //Uses bgImgW rather than eg. simSceneW.  This ensures the slider
+        //always lines up with the same parts of the figures.  If simSceneW is
+        //used, it doesn't take into account additional padding that's added
+        //to the model area sometimes.  This leads to the width being wrong
+        //sometimes.
+        return stdMod.bgImgW * sconf.BASES_SLIDER_WIDTH_FACTOR;
     }
 }) ();
 

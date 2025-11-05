@@ -23,7 +23,7 @@ Let the times be represented by lines ¦AD¦¦ and ¦AE¦¦, and the generated
 velocities by ordinates ¦DB¦¦ and ¦EC¦¦; then the spaces described by these 
 velocities will be as the areas ¦ABD¦¦ and ¦ACE¦¦ described by these ordinates, that
 is, at the very beginning of the motion these spaces will be (by 
-<a target="_blank" href="?conf=sappId=b1sec1lemma9">lem. 9</a>) in the
+<a href="?conf=sappId=b1sec1lemma9">lem. 9</a>) in the
 ¦AD2PerAE2¦squared ratio of the times¦¦ ¦AD¦¦ and ¦AE¦¦. &nbsp;&nbsp; Q.E.D.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 438.</div>

@@ -23,18 +23,18 @@ inversely.
 }
 *..*
 For the ¦P,sagitta¦sagitta¦¦ in a given ¦dtime¦time¦¦ is as the ¦force¦¦ (by 
-<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">prop. 1, corol. 4</a>),
+<a href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">prop. 1, corol. 4</a>),
 and
 if the ¦dtime¦time¦¦ is increased in any ratio, then—because the ¦timearc¦arc¦¦ is increased in the
 same ratio—the ¦P,sagitta¦the sagitta¦¦ is increased in that ratio squared (by 
-<a target="_blank" href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 11, corols. 2
+<a href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 11, corols. 2
 and 3</a>).
 and therefore is as the ¦force¦¦ once and the ¦dtime¦time¦¦ twice [i.e., as the ¦force¦¦
 and the square of the ¦dtime¦time¦¦ jointly]. Take away from both sides the squared
 ratio of the ¦dtime¦time¦¦, and the ¦force¦¦ will become as the ¦P,sagitta¦sagitta¦¦ directly and as the
 ¦dtime¦time¦¦ twice [or as the square of the ¦dtime¦time¦¦] inversely. &nbsp;&nbsp; Q.E.D.<br>
 &emsp; This proposition is also easily proved by 
-(<a target="_blank" href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">lem. 10, corol. 4</a>).
+(<a href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">lem. 10, corol. 4</a>).
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 454.</div>
 
