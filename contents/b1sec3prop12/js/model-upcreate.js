@@ -198,11 +198,11 @@
         //point E
         nspaste( rg.E.pos, mat.lineSegmentsCross(
             rg.D.pos, rg.K.pos,
-            rg.O.pos, rg.P.pos,
+            rg.S.pos, rg.P.pos,
         ));
         nspaste( rg.I.pos, mat.linesCross(
             DK, rg.H.pos, //direction, start
-            mat.sm( rg.O.pos, -1, rg.P.pos ), rg.O.pos, //direction, start
+            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
         //=============================================================
         // \\// for prop. 11,12
@@ -216,8 +216,6 @@
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
-        rg[ 'L,LL' ].value = (2*op.latus).toFixed(3);
-        rg[ 'L,LL' ].caption = 'L=' + rg[ 'L,LL' ].value;
         //=============================================================
         // \\// latus
         //=============================================================

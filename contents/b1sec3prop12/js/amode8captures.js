@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssF, stdMod, amode,
+    var { nspaste, toreg, mat, sDomF, ssF, stdMod,
         rg, sconf, } = window.b$l.apptree({ 
             ssFExportList : { amode2rgstate, }, 
         });
@@ -10,48 +10,11 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
-
         sDomF.resetModelPos();
 
         toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-
-        //==================================================
-        // //\\ hide all, then specify which to show
-        //==================================================        
-        for(key in rg) {
-            if(rg[key]) {
-                rg[key].undisplay = true;
-            }
-        };
-
-        var hyperbola = [
-            // conic itself is always shown
-            'S', 'P', 'LL', 'A', 'B', 'C','Zminus', 'Q', // points
-            'P,Zminus', 'PZ', 'PR', 'SP', 'B,BB', // lines
-            'Zeta', 'ZetaCaption', 'ZetaStart,ZetaEnd' // e slider
-        ];
-
-        var triangle = [
-            'G', 'D', 'K', 'F', 'v', 'E', 'x', 'R', 'H', 'I', 'T', 'O', // points
-            'CA', 'CB', 'GP', 'DK', 'PF', 'Qv', 'QR', 'Px', 'Qx', // lines
-            'EP', 'HI', 'EC', 'ES', 'EI', 'CS', 'CH', 'PI', 'PH',
-            'PT', 'QT', 'AT', 'Pv', 'xv', 'PC', 'PE', 'Gv', 'CD',
-        ];
-        
-        hyperbola.forEach( i => {
-            rg[i].undisplay = false;
-        });
-
-        triangle.forEach( i => {
-            rg[i].undisplay = false;
-        });
-        //==================================================
-        // \\// hide all, then specify which to show
-        //==================================================
-
 
         //=============================================================
         // //\\ model

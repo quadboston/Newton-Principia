@@ -21,40 +21,54 @@ the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figu
   "logic_phaseCaption" : "Solution"
 }
 *..*
-Let the construction be the same as in lem. 14, and let ¦P¦P be the body¦¦ in
-the perimeter of the ¦orbit¦parabola¦¦; from the ¦Q¦place Q¦¦ into which the body moves
+Let the construction be the same as in lem. 14, and let ¦P¦¦ be the body in
+the perimeter of the ¦orbit¦parabola¦¦; from the place ¦Q¦¦ into which the body moves
 next, draw ¦QR¦¦ parallel and ¦QT¦¦ perpendicular to ¦SP¦¦ and draw ¦Qv¦Q𝑣¦¦ parallel
 to the ¦PR P,Zminus¦tangent¦¦ and meeting both the diameter ¦GP¦PG¦¦ in ¦v¦𝑣¦¦ and
 the distance ¦SP¦¦
-in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦Pxv¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
+in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
-equal. But from the <i>Conics</i> the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
-rectangle contained by the latus rectum and the segment ¦Pv¦P𝑣¦¦ of the diameter,
+equal. But from the 
+<a href="http://whistleralley.com/conics/conica/Rosenfeld/Books1-7new.pdf#page=14"><i>Conics</i></a>
+the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
+rectangle contained by the ¦L,LL¦latus rectum¦¦ and the segment ¦Pv¦P𝑣¦¦ of the diameter,
 that is 
 (by lem. 13), 
-equal to the rectangle 4¦SP¦PS¦¦ ✕ ¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦ ✕ ¦QR¦¦, and, the
+equal to the rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦, and, the
 points ¦P¦¦ and ¦Q¦¦ coming together, the ratio of ¦Qv¦Q𝑣¦¦ to ¦Qx¦Q𝑥¦¦ 
-(by <a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>),
-becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑣¦¦²
+(by <a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 7, corol. 2</a>)
+becomes the ratio of equality. Therefore, in this case ¦Qx¦Q𝑥¦¦²
  is equal to the
-rectangle 4¦SP¦PS¦¦ ✕ ¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦QxT¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
-¦Qx¦Q𝑣¦¦²
+rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦. Moreover (because triangles ¦Qx Tx QT¦Q𝑥T¦¦ and ¦SP NS NP¦SPN¦¦ are similar),
+¦Qx¦Q𝑥¦¦²
  is to ¦QT¦¦²
  as ¦SP¦PS¦¦²
- to ¦NS¦SN¦¦²
-, that is 
+ to ¦NS¦SN¦¦², that is 
 (by lem. 14, corol. 1),
  as ¦SP¦PS¦¦ to ¦SA¦¦,
-that is, as 4¦SP¦PS¦¦ ✕ ¦QR¦¦ to 4¦SA¦¦ x ¦QR¦¦, and hence 
-(<a target="_blank" href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's Elements, book 5, prop. 9</a>)
+that is, as 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦ to 4¦SA¦¦&nbsp;×&nbsp;¦QR¦¦, and hence 
+(by <a href="http://aleph0.clarku.edu/~djoyce/elements/bookV/propV9.html">Euclid's <i>Elements</i>, book 5, prop. 9</a>)
  ¦QT¦¦²
- and 4¦SA¦¦ ✕ ¦QR¦¦ are equal. Multiply these equals by ,
-¦SP¦¦² / ¦QR¦¦, and ¦SP¦¦² ✕ ¦Qx¦Q𝑣¦¦² / ¦QR¦¦ will become equal to ¦SP¦¦² x 4¦SA¦¦;
+ and 4¦SA¦¦&nbsp;×&nbsp;¦QR¦¦ are equal. Multiply these equals by
+
+<!-- SP² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac><mo linebreak="nobreak">,</mo></math>
+
+and 
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>
+
+will become equal to ¦SP¦¦²&nbsp;×&nbsp;4¦SA¦¦;
 and therefore 
-(by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
-the centripetal force is inversely as ¦SP¦¦²
- ✕ 4¦SA¦¦, that is,
+(by <a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>)
+the centripetal force is inversely as ¦SP¦¦²&nbsp;×&nbsp;4¦SA¦¦, that is,
 because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 466.</div>
@@ -64,22 +78,21 @@ because 4¦SA¦¦ is given, inversely as the square of the distance ¦SP¦¦. &n
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 1",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 1",
   "subessay" : "corollary1",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
 From the last three propositions it follows that if any
-¦P¦body P¦¦ departs from the ¦P¦place P¦¦ along any ¦PR¦straight line PR¦¦ with any velocity
-whatever and is at the same time acted upon by ¦Px force¦a centripetal force¦¦ that is
-inversely proportional to the square of the distance of places from the center,
-¦P¦this body¦¦ will move in ¦orbit¦some one of the conies¦¦ having ¦S¦a focus¦¦ in the center
-of forces; and conversely. For if ¦O¦the focus¦¦ and the point of contact and the
-position of ¦P,Zminus PR¦the tangent¦¦ are given, ¦orbit¦a conic¦¦ can be described that will have
-a given curvature at that point. But the curvature is given from the given
-¦force Px¦centripetal force¦¦ and velocity of the body; and two different orbits touching
-each other cannot be described with the same centripetal force and the same
+body ¦P¦¦ departs from the place ¦P¦¦ along any straight line ¦PR¦¦ with any velocity
+whatever and is at the same time acted upon by a centripetal ¦force Px¦force¦¦ that is
+inversely proportional to the square of the ¦SP¦distance¦¦ of places from the center,
+this ¦P¦body¦¦ will move in ¦orbit¦some one of the conics¦¦ having a ¦S¦focus¦¦ in the center
+of forces; and conversely. For if the ¦S¦focus¦¦ and the point of ¦P¦contact¦¦ and the
+position of the ¦P,Zminus PR¦tangent¦¦ are given, ¦orbit¦a conic¦¦ can be described that will have
+a given curvature at that ¦P¦point¦¦. But the curvature is given from the given 
+centripetal ¦force Px¦force¦¦ and velocity of the body; and two different orbits touching
+each other cannot be described with the same centripetal ¦force Px¦force¦¦ and the same
 velocity.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 467.</div>
@@ -89,17 +102,23 @@ velocity.
 
 *::*corollary|english
 {
-  "subessayCaption" : "Corollary 2",
+  "subessayCaption" : "Cᴏʀᴏʟʟᴀʀʏ 2",
   "subessay" : "corollary2",
   "logic_phaseCaption" : "Corollaries"
 }
 *..*
-
-If the velocity with which the body departs from its ¦P¦place P¦¦ is
-such that the ¦PR¦line-element PR¦¦ can be described by it in some minimally
+If the velocity with which the body departs from its place ¦P¦¦ is
+such that the line-element ¦PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
-body through space ¦QR¦¦ in that same time, this body will move in
-¦orbit¦some conic¦¦ whose principal latus rectum is the quantity ¦QT¦¦² / ¦QR¦¦ which ultimately
+body through space ¦QR¦¦ in that same time, this body will move in some 
+¦orbit¦conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity 
+
+<!-- QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>
+
+which ultimately
 results when the line-elements ¦PR¦¦ and ¦QR¦¦ are diminished indefinitely. In
 these corollaries I include the circle along with the ellipse, but not for the
 case where the body descends straight down to a center.

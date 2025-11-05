@@ -79,7 +79,7 @@ will become equal to
 ¦PC¦¦ </mi></mrow></mfrac></math>.
 
 Therefore
-(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), 
+(<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), 
 the centripetal ¦force¦¦ is as 
 
 <!-- 2BC² × CA² / PC -->
@@ -140,7 +140,7 @@ be equal to
 
 Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
 revolves in the ellipse will 
-(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) 
+(<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) 
 be as 
 
 <!-- 2DC² / PC -->

@@ -30,9 +30,9 @@
             ],
             "contents-list" :
             [
-                "../lemma2/txt/latin.txt",
-                "../lemma2/txt/cohen.txt",
-                "../lemma2/txt/video.txt",
+                "txt/latin.txt",
+                "txt/cohen.txt",
+                "txt/video.txt",
             ],
 
         };

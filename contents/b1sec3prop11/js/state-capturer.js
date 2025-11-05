@@ -9,13 +9,7 @@
     });
     return;
 
-
-
-
-
-
-
-
+    
     ///=====================================================
     /// called by User from lab-button, sDomN.captureButton$
     /// put rg-subtrees you desire to capture here

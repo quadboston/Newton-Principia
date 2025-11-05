@@ -9,7 +9,7 @@
     function lemmaConfig()
     {
         return {
-            sappCodeReference : 'lemma2',
+            sappCodeReference : 'b1sec1lemma2',
             "contents-list" :
             [
                 "txt/latin.txt",

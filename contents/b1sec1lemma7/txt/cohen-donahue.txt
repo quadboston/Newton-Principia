@@ -29,7 +29,7 @@ line ¦BD¦¦. And let the arc
 ¦arc-AB¦ACB¦¦. And, the points ¦A¦¦, ¦B¦¦, 
 coming together, the angle ¦Ab Ad *anch-color*proof¦𝑑A𝑏¦¦, by
 the 
-<a target="_blank" href="?conf=sappId=b1sec1lemma6">previous lemma</a>,
+<a href="?conf=sappId=b1sec1lemma6">previous lemma</a>,
 vanishes; and therefore the straight lines ¦Ab¦A𝑏¦¦, ¦Ad¦A𝑑¦¦, always finite, and 
 the arc ¦arc-Ab¦A𝑐𝑏¦¦ lying between them, coincide, and therefore ¦proofRatio¦will be equal¦¦. Therefore, both 
 the straight lines ¦AB¦¦, ¦AD¦¦ always proportional to these, and the arc ¦arc-AB¦ACB¦¦ lying 

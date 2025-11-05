@@ -23,7 +23,6 @@
         //sconf.rgShapesVisible
 
         rg.tangentCircle.undisplay = subessay !== 'another-solution';
-        rg.Q.hideD8Dpoint = logic_phase !== 'proof';
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;

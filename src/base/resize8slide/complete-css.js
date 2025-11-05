@@ -1,25 +1,9 @@
 ( function() {
-    var {
-        sn, $$, haz, has, fmethods, eachprop,
-        fconf, sconf, sDomN, wrkwin,
-        stdMod,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-        },
-    });
+    var { sn, $$, haz, has, fmethods, eachprop, fconf, sconf, sDomN, wrkwin,
+        stdMod, } = window.b$l.apptree({ ssFExportList : { }, });
     wrkwin.buildsMobile     = buildsMobile;
     wrkwin.buildsNonMobile  = buildsNonMobile;
     return;
-
-
-
-
-
-
-
-
-
 
 
     function buildsMobile({})
@@ -74,14 +58,8 @@
         //------------------------------------------------------------------
         // //\\ legend css
         //------------------------------------------------------------------
-        stdMod.legendRoot$
-            .css( 'top', '0px' )
-            ;
-        if( fconf.sappId.indexOf('lemma2') === 0|| fconf.sappId === 'lemma3' ) {
-            stdMod.legendRoot$
-                .css( 'left', '0px' )
-                ;
-        }
+        stdMod.legendRoot$.css( 'top', '10px' );
+        stdMod.legendRoot$.css( 'left', '0px' );
         //------------------------------------------------------------------
         // \\// legend css
         //------------------------------------------------------------------
@@ -105,11 +83,6 @@
     }
 
 
-
-
-
-
-
     function buildsNonMobile({
         wideScreen_flag,
         SSceneH,
@@ -124,7 +97,7 @@
         legendWidth,
         legendHeight,
         legendMargin,
-        lemma2_slidersH,
+        bases_slidersH,
     }) {
 
         //-------------------------------------------------------------
@@ -196,16 +169,15 @@
         //---------------------------------------------------------
         if( wideScreen_flag ) {
             //todo ???
-            var ww = fconf.sappId.indexOf('lemma2') === 0 ||
-                     fconf.sappId === 'lemma3' ? 20 : 0;
+            var ww = sDomN.sliderGroup$ ? 20 : 0; //for lemma 2, 3, 4
             stdMod.legendRoot$
                 .css( 'left', ( svgSceneW + legendMargin ).toFixed() + 'px' )
                 .css( 'top','0px' )
                 ;
         } else {
             stdMod.legendRoot$
-                .css( 'top',   (lemma2_slidersH + stdMod.svgSceneH).toFixed()+'px' )
-                .css( 'left',  legendMargin.toFixed(2) + 'px' )
+                .css( 'top', (bases_slidersH + stdMod.svgSceneH + 10).toFixed()+'px' )
+                .css( 'left', legendMargin.toFixed(2) + 'px' )
                 ;
         }
         //---------------------------------------------------------

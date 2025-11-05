@@ -170,10 +170,7 @@
                 'area-rAcb'
             ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
-
-        rg.B.hideD8Dpoint   = false;
-        rg.R.hideD8Dpoint   = false; // enables mouse events on point R
-        
+       
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;

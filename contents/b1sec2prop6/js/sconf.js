@@ -141,9 +141,9 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var S = [originX_onPicture, originY_onPicture];
-        var P = [453, 177];
-        var A = [540, 338];
+        var posS = [originX_onPicture, originY_onPicture];
+        var posP = [453, 177];
+        var posA = [540, 338];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -201,7 +201,7 @@
         //---------------------------------------------------
         var curvePivots =
         [
-            A,
+            posA,
             [ 527,248 ],
             [ 485,203 ],
             //P,
@@ -260,13 +260,13 @@
 
         Object.assign( originalPoints, {
             A : {
-                pos: A,
+                pos: posA,
                 pcolor : given,
 				cssClass: 'logic_phase--corollary',
             },
 
             S : {
-                pos: S,
+                pos: posS,
                 pcolor : given,
                 letterAngle : -90,
                 draggableX  : true,
@@ -275,7 +275,7 @@
             },
 
             P : {
-                pos: P,
+                pos: posP,
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
@@ -289,6 +289,7 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
+                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -347,7 +348,7 @@
             },
 
             V : {
-                pos: S,
+                pos: posS,
                 pcolor : curvature,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -374,19 +375,21 @@
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( A[0] - S[0] );
+        var mod2inn_scale = ( posA[0] - posS[0] );
 
         var linesArray =
         [
             { 'PV' : { pcolor : curvature,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'SP' : { pcolor : given }, },
+            { 'SP' : { pcolor : given,
+				cssClass: 'subessay--corollary1 subessay--corollary5',
+			 }, },
             { 'PY' : { pcolor : body,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'PZ' : { pcolor : body,
-				cssClass: 'subessay--corollary1',
+				cssClass: 'subessay--corollary1 subessay--corollary3',
 			 }, },
             { 'PR' : { pcolor : body,
 				cssClass: 'logic_phase--corollary',

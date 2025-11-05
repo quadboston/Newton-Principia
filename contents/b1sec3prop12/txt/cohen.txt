@@ -22,47 +22,59 @@ centripetal ¦force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure
 }
 *..*
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦hyperbola¦¦, ¦GP¦PG¦¦ and ¦DK¦KD¦¦ other
-conjugate diameters, ¦PF¦¦ a perpendicular to the diameter KD, and ¦Qv¦Q𝑣¦¦ an
-ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter DK in ¦E¦¦ and ordinate ¦Qv¦Q𝑣¦¦ in 𝑥, and complete the parallelogram ¦QR PR Px Qx¦QRP𝑥¦¦. It is evident that ¦EP¦¦ is
-
-<!--
-<br><br>
-b.
-<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
-This result</a>
-
-is given in <a href="#cohensource"><i>Source</i></a>, prop. 10 with reference to "the Conies"; see the Guide, §10.10.
-[<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=interval#in-focus">
-and in CalculusXX, (A)</a>
-]
-<br><br>
--->
-
+conjugate diameters, ¦PF¦¦ a perpendicular to the diameter ¦DK¦KD¦¦, and ¦Qv¦Q𝑣¦¦ an
+ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter ¦DK¦¦ in ¦E¦¦ and ordinate 
+¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram ¦QR PR Px Qx¦QRP𝑥¦¦. It is evident that ¦EP¦¦ is
 equal to the transverse semiaxis ¦CA¦AC¦¦, because when line ¦HI¦¦ is drawn parallel
-to ¦EC¦¦ 
-from the other ¦H¦focus H¦¦ of the hyperbola, ¦ES¦¦ and ¦EI¦¦ are equal because
+to ¦EC¦¦ from the other ¦H¦focus H¦¦ of the ¦orbit¦hyperbola¦¦, ¦ES¦¦ and ¦EI¦¦ are equal because
 ¦CS¦¦ and ¦CH¦¦ are equal;
 so that ¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PI¦¦, that
 is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PI¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
 of ¦SP¦PS¦¦ and ¦PH¦¦, the difference of which equals the whole axis 2¦CA¦AC¦¦. Drop
-¦QT¦¦ perpendicular to ¦SP¦¦. Then, if L denotes the principal latus rectum of
-the hyperbola (or 2BC² / ¦CA¦AC¦¦), L × ¦QR¦¦ will be to L × ¦Pv¦P𝑣¦¦ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, or ¦Px¦P𝑥¦¦
+¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the principal ¦L,LL¦latus rectum¦¦ of
+the ¦orbit¦hyperbola¦¦
+
+<!-- (or 2BC² / AC), -->
+<math><mrow>
+<mo stretchy="true">(</mo><mrow><mtext>
+or&nbsp;</mtext><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦CB¦BC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦CA¦AC¦¦</mi></mrow></mfrac></mrow>
+<mo stretchy="true">)</mo><mo linebreak="nobreak">,</mo></mrow></math>
+
+¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, or ¦Px¦P𝑥¦¦
 to ¦Pv¦P𝑣¦¦, that is (because the triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦EP EC PC¦PEC¦¦ are similar), as ¦PE¦¦ to ¦PC¦¦,
-or ¦CA¦AC¦¦ to ¦PC¦¦. L × ¦Pv¦P𝑣¦¦ will also be to ¦Gv¦G𝑣¦¦ × ¦Pv¦P𝑣¦¦ as L to ¦Gv¦G𝑣¦¦; and (from the
+or ¦CA¦AC¦¦ to ¦PC¦¦. ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ will also be to ¦Gv¦G𝑣¦¦ × ¦Pv¦P𝑣¦¦ as ¦L,LL¦L¦¦ to ¦Gv¦G𝑣¦¦; and (from the
 nature of conics) the rectangle ¦Gv¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
 (by
-<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
+<a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
 by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦², the points ¦Q¦¦ and ¦P¦¦ coming
 together, comes to be the ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦AT¦¦² as ¦EP¦¦²
 to ¦PF¦¦², that is, as ¦CA¦¦² to ¦PF¦¦², or (by lem. 12) as ¦CD¦¦² to ¦CB¦¦²; and if all these
-ratios are combined, L × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦ × L × ¦PC¦¦² × ¦CD¦¦² or
+ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦ × ¦L,LL¦L¦¦ × ¦PC¦¦² × ¦CD¦¦² or
 2¦CB¦¦² × ¦PC¦¦² × ¦CD¦¦² to ¦PC¦¦ × ¦Gv¦G𝑣¦¦ × ¦CD¦¦² × ¦CB¦¦², or as 2¦PC¦¦ to ¦Gv¦G𝑣¦¦. But, the points
-¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦Gv¦G𝑣¦¦ are equal. Therefore, L × ¦QR¦¦ and
+¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦Gv¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦ × ¦QR¦¦ and
 ¦QT¦¦², which are proportional to these, are also equal. Multiply these equals by
-¦SP¦¦²/¦QR¦¦, and L × ¦SP¦¦² will become equal to ¦SP¦¦² × ¦QT¦¦² / ¦QR¦¦. Therefore 
-(by <a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
-the centripetal ¦force¦¦ is inversely as L × ¦SP¦¦², that is, inversely
+
+<!-- SP² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>,
+
+and ¦L,LL¦L¦¦ × ¦SP¦¦² will become equal to
+
+<!-- SP² × QT² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦SP¦¦</mi><mn>2</mn></msup><mo>×</mo><msup><mi>
+¦QT¦¦</mi><mn>2</mn></msup></mrow><mi>
+¦QR¦¦</mi></mfrac></math>.
+
+Therefore 
+(by <a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
+the centripetal ¦force¦¦ is inversely as ¦L,LL¦L¦¦ × ¦SP¦¦², that is, inversely
 as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
@@ -78,13 +90,20 @@ as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Find the ¦force¦¦ that tends from the center ¦C¦¦ of ¦orbit¦the hyperbola¦¦. This will
+Find the ¦force¦¦ that tends from the center ¦C¦¦ of the ¦orbit¦hyperbola¦¦. This will
 come out proportional to the distance ¦PC¦CP¦¦. And hence
-(
-<a target="_blank" href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
-by prop. 7, corol. 3</a>
-)
-the ¦force¦¦ tending toward the focus ¦S¦¦ will be as ¦PE¦¦³/¦SP¦¦², that is, because ¦PE¦¦ is
+(by <a href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
+prop. 7, corol. 3</a>)
+the ¦force¦¦ tending toward the focus ¦S¦¦ will be as 
+
+<!-- ¦PE¦¦³ / ¦SP¦¦², -->
+<math><mfrac><msup><mi>
+¦PE¦¦</mi><mn>
+3</mn></msup><msup><mi>
+¦SP¦¦</mi><mn>
+2</mn></msup></mfrac></math>,
+
+that is, because ¦PE¦¦ is
 given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 465.</div>

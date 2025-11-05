@@ -1,0 +1,58 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Claim"
+}
+*..*
+If in two figures ¦acE Aa AE¦A𝑎𝑐E¦¦ and ¦prT Pp PT¦P𝑝𝑟T¦¦ ¦inscribed-rectangles-AacE inscribed-rectangles-PprT¦two series of parallelograms¦¦ are inscribed (as
+above) and the number of parallelograms in both series is the same; and if, when
+their ¦base¦widths¦¦ are diminished indefinitely, the ultimate ¦parallelogramsRatio¦ratios¦¦ of the parallelograms
+in one figure to the corresponding parallelograms in the other are the same; then
+I say that the two figures ¦acE Aa AE¦A𝑎𝑐E¦¦ and ¦prT Pp PT¦P𝑝𝑟T¦¦ are to each other in that same ¦figuresRatio¦ratio¦¦.
+<br><br>
+ <div book-reference-id="Bernard-Cohen-Anne-Whitman">pg. 434.</div>
+
+
+
+
+*::*proof|english
+{
+      "logic_phaseCaption" : "Proof"
+}
+*..*
+For as the ¦inscribed-rectangle-AacE-1¦individual parallelograms in the one figure¦¦ are to the corresponding 
+¦inscribed-rectangle-PprT-1¦individual parallelograms in the other¦¦, 
+so (by composition [or componendo]) will the 
+¦inscribed-rectangles-AacE¦sum of all the parallelograms in the one¦¦ 
+become ¦parallelogramsRatio¦to¦¦ the ¦inscribed-rectangles-PprT¦sum of all the parallelograms in the other¦¦, 
+and so also the one ¦acE Aa AE¦figure¦¦ ¦figuresRatio¦to¦¦ the ¦prT Pp PT¦other¦¦—the 
+first figure, of course, being (by 
+<a href="?conf=sappId=b1sec1lemma3">lem. 3</a>) 
+to the first sum,
+and the second figure to the second sum, in a ratio of equality. &nbsp;&nbsp; Q.E.D.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">pg. 434.</div>
+
+
+
+
+*::*corollary|english
+{  
+  "logic_phaseCaption" : "Corollary"
+}
+*..*
+Hence, if two quantities of any kind are divided in any
+way into the same number of parts, and these parts—when their number is
+increased and their size is diminished indefinitely—maintain a ¦parallelogramsRatio¦given ratio
+to one another¦¦, the first to the first, the second to the second, and so on
+in sequence, then the ¦figuresRatio¦wholes will be to each other¦¦ in the same given ratio.
+For if the parallelograms in the figures of this lemma are taken in the same
+proportion to one another as those parts, the sums of the parts will always
+be as the sums of the parallelograms; and therefore, when the number of
+parts and parallelograms is increased and their size diminished indefinitely,
+the sums of the parts will be in the ultimate ratio of a ¦inscribed-rectangle-AacE-1¦parallelogram in one
+figure¦¦ to a ¦inscribed-rectangle-PprT-1¦corresponding parallelogram in the other¦¦, that is (by hypothesis),
+in the ultimate ratio of part to part.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">pg. 435.</div>
