@@ -1,29 +1,16 @@
 // //\\// Main entrance into sub-application.
 
 (function() {
-    var {
-        sn, eachprop, haff, numModel,
-        fapp, sapp, ssF, sDomF, rg,
-        stdMod,
-    } = window.b$l.apptree({
-        setModule,
-        stdModExportList :
-        {
-            init_model_parameters,
-        },
-    });
+    var { sn, haff, fapp, sapp, ssF, sDomF, sData, stdMod, }
+        = window.b$l.apptree({ setModule,
+        stdModExportList : { init_model_parameters, }, });
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
-    var dr          = sn('datareg', stdL2 );
+    var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var guicon      = sn('guiConstruct', gui );
     return;
-
-
-
-
-
 
 
     function setModule()
@@ -67,11 +54,13 @@
                     z-index             : 111111111;
                 `,
             });
-        }        
+        }
 
         // dom z-order patch
-        haff( ssF, 'continue_create_8_prepopulate_svg' );
-        
+        Object.values(dataregs).forEach((dr) => {
+            ssF.continue_create_8_prepopulate_svg(dr);
+        });
+
         //----------------------------------------------
         // //\\ fits lemma to modern framework
         // //\\ trick
@@ -95,17 +84,19 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        guicon.constructsWidestRect();
-        guicon.constructsRects_tillExtraOffset_parlessDom();
-        
-        //numberless:
-        guicon.constructsCurve8Area(); //do on top of ancestors
+        Object.values(dataregs).forEach((dr) => {
+            guicon.constructsWidestRect?.(dr);
+            guicon.constructsRects_tillExtraOffset_parlessDom(dr);
+            
+            //numberless:
+            guicon.constructsCurve8Area(dr); //do on top of ancestors
 
-        guicon.constructBasePts_domParless(dr.basePts);
-        
-        //sets their positions:
-        guicon.constructsControlPoints();
-        //guicon.constructsCtrPoints();
+            guicon.constructBasePts_domParless(dr, dr.basePts);
+            
+            guicon.constructTransformPoints(dr);
+            stdMod.recalculateAndStoreTransforms(dr);
+            guicon.constructsControlPoints(dr);
+        });
 
         stdMod.model_upcreate();
         //now, this call does
@@ -154,7 +145,7 @@
     function finish_sapp_UI()
     {
         gui.createDragModel();
-        study.setupEvents();
+        study.setupEventsAreasLegend?.();
     }
 
 }) ();

@@ -4,7 +4,6 @@
     return;
 
 
-    //TEMP This file is used by L4 only
     function create_digital_legend()
     {
         create_digital_legend_for_logic_phase( 'claim' );

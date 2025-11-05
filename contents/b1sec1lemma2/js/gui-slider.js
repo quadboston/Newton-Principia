@@ -1,14 +1,12 @@
 ( function () {
-    var {
-        sn,
-        fapp, fconf, sconf, sDomF, ssF,
-        stdMod,
-    } = window.b$l.apptree({});
+    var { sn, fapp, fconf, sconf, sDomF, ssF, stdMod, }
+        = window.b$l.apptree({});
     var stdL2       = sn('stdL2', fapp );
     var gui         = sn('gui', stdL2 );
     var guiup       = sn('guiUpdate',gui);
+    var dataregs    = sn('dataregs', stdL2 );
     var appstate    = sn('appstate', stdL2 );
-    var dr          = sn('datareg', stdL2 );
+
 
     //=====================================
     // //\\ does gui configuration
@@ -35,9 +33,6 @@
     return;
 
 
-
-
-
     //======================================
     // //\\ slider
     //======================================
@@ -49,44 +44,45 @@
         slider.setAttributeNS( null, "max", sconf.MAXP );
 
         //.appar. sets current base-points-number
-        slider.setAttributeNS( null, "value", dr.basesN );
+        slider.setAttributeNS( null, "value", sconf.basesN );
 
         var sliderOutput = document.getElementById("baseSpan");
         var baseLabel = document.getElementById("baseLabelSpan");
         showBasesNumberInGui( sliderOutput, baseLabel );
 
         slider.oninput = function() {
-            stdMod.removeOutdatedClasses();
+            const newBases = interpretSlider( this.value );
             appstate.movingBasePt = false; // better way?
-	        var newBases = interpretSlider( this.value );
-            //dr.basesN === basesAmount
+            Object.values(dataregs).forEach((dr) => {
+                stdMod.removeOutdatedClasses?.(dr);
+                aduptPartitionChange(dr, newBases);
+            });
             sDomF.detected_user_interaction_effect();
-	        aduptPartitionChange( newBases, dr.basePts );
-	        dr.basesN = newBases;
-	        showBasesNumberInGui( sliderOutput, baseLabel );
+            sconf.basesN = newBases;
+            showBasesNumberInGui( sliderOutput, baseLabel );
 
             stdMod.model8media_upcreate();
       	}
 
-        function aduptPartitionChange( newBases, basePts, undef) {
-	        if( fconf.sappId === 'b1sec1lemma3' ) {
+        function aduptPartitionChange(dr, newBases, undef) {
+            if (dr.BASE_PT_DRAGGERS_ENABLED) {
                 const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
                 ///dynamically adds more base points
-                for (var i=dr.basesN; i<pointsLimit; i++) {
+                for (var i=sconf.basesN; i<pointsLimit; i++) {
                     ///prevents making too many draggable base points
-   		            guiup.sets_pt2movable( basePts.list[i] );
+   		            guiup.sets_pt2movable(dr.basePts.list[i]);
                 }
             }
             var partitionWidths = dr.partitionWidths;
-            for (var i=newBases; i < dr.basesN; i++) {
+            for (var i=newBases; i < sconf.basesN; i++) {
 	            partitionWidths[i] = undef;
             }
         }
 
         function showBasesNumberInGui( sliderOutput, baseLabel )
         {
-            sliderOutput.innerHTML = dr.basesN;
-            baseLabel.innerHTML = dr.basesN === 1 ? " base":" bases";
+            sliderOutput.innerHTML = sconf.basesN;
+            baseLabel.innerHTML = sconf.basesN === 1 ? " base":" bases";
         }
 
         function interpretSlider(val)

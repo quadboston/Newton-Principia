@@ -156,8 +156,6 @@
 
         //From L2, L3, L4
         fixedColors.difference  = [150, 50, 0, 0, 0.64];
-        fixedColors.base        = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.curve       = rgbToArray("rgb(0, 150, 0)");
         fixedColors.figure      = rgbToArray("rgb(0, 150, 0)");
 
         fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],

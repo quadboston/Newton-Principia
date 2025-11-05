@@ -1,18 +1,12 @@
 ( function () {
-    var {
-        sn, $$, userOptions,
-        fapp, fconf, sconf, sDomN, ssF,
-        rg, amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    var { sn, $$, userOptions, fapp, fconf, sconf, sDomN, ssF, rg, amode,
+        stdMod, } = window.b$l.apptree({ stdModExportList : {
             swapMonotonity,
             setsDifferenceBarsMonotonity,
             removeOutdatedClasses,
         },
     });
     var stdL2       = sn('stdL2', fapp );
-    var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var swap = [
         [ 'tp-a--_k--b--l', 'tp-d--e--p--o' ],
@@ -21,9 +15,7 @@
     return;
 
 
-
-
-    function swapMonotonity()
+    function swapMonotonity(dr)
     {
         var xoff = sconf.originX_onPicture;
         var yoff = sconf.originY_onPicture;
@@ -34,24 +26,24 @@
         rg.f.pos[0] = ( left - xoff ) / scale;
         
         let bl = dr.basePts.list;
-        var bN = dr.basesN;
+        var bN = sconf.basesN;
         {
             [ 'a', 'b', 'c', 'd', 'e' ].forEach( (pt,ix) => {
                let newX = bl[ bN - ix ];
                rg[pt].pos[0] =  ( newX.x - xoff ) / scale;
-               rg[pt].pos[1] =  -( numModel.curveFun( newX.x ) - yoff ) / scale;
+               rg[pt].pos[1] = -(numModel.curveFun(dr, newX.x) - yoff) / scale;
             });
             [ 'l', 'm', 'n', 'o', ].forEach( (pt,ix) => {
                let newY = bl[ bN - ix ];
                let newX = bl[ bN - ix - 1 ];
                rg[pt].pos[0] =  ( newX.x - xoff ) / scale;
-               rg[pt].pos[1] =  -( numModel.curveFun( newY.x ) - yoff ) / scale;
+               rg[pt].pos[1] = -(numModel.curveFun(dr, newY.x) - yoff) / scale;
             });
             [ 'K', 'L', 'M', ].forEach( (pt,ix) => {
                let newX = bl[ bN - ix ];
                let newY = bl[ bN - ix - 1 ];
                rg[pt].pos[0] =  ( newX.x - xoff ) / scale;
-               rg[pt].pos[1] =  -( numModel.curveFun( newY.x ) - yoff ) / scale;
+               rg[pt].pos[1] = -(numModel.curveFun(dr, newY.x) - yoff) / scale;
             });
             [ 'A', 'B', 'C', 'D', 'E', ].forEach( (pt,ix) => {
                let newX = bl[ bN - ix ];
@@ -61,11 +53,11 @@
     }
 
 
-    function removeOutdatedClasses()
+    function removeOutdatedClasses(dr)
     {
         let dv = dr.yVariations;
         let dl = dr.differenceRects.list;
-        let bN = dr.basesN;
+        let bN = sconf.basesN;
         let dir = dv.chchosen.dir > 0;
         for( var ii=0; ii<4; ii++ ) {
             swap.forEach( sw => {
@@ -82,13 +74,13 @@
         }
     }
     
-    function setsDifferenceBarsMonotonity()
+    function setsDifferenceBarsMonotonity(dr)
     {
-        removeOutdatedClasses();
+        removeOutdatedClasses(dr);
         
         let dv = dr.yVariations;
         let dl = dr.differenceRects.list;
-        var bN = dr.basesN;
+        var bN = sconf.basesN;
         let dir = dv.chchosen.dir > 0;
         for( var ii=0; ii<2; ii++ ) {
             let pair = swap[ii];

@@ -1,79 +1,42 @@
 ( function () {
-    var {
-        sn,
-        fapp, sconf,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-             model_upcreate,
-        },
+    var { sn, fapp, sconf, stdMod, } = window.b$l.apptree({ stdModExportList :
+        { model_upcreate, },
     });
+
     var stdL2       = sn('stdL2', fapp );
-    var dr          = sn('datareg', stdL2 );
+    var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var study       = sn('study', stdL2 );
 
     Object.assign( study,
     {
         calculates_monotIntervals8ref,
-        calculates_microPoints,
+        isMonotonic,
+        areBothFiguresMonotonic,
     });
     return;
 
 
-
-
     function model_upcreate()
     {
-        // //\\ rescaling
-        //      patch where only dr.ctrlPts_unscaled
-        //      is a model,
-        //let mscale = sconf.mod2inn_scale;
-        /*
-        dr.ctrlPts_unscaled.forEach( (pt,ix) => {
-            dr.ctrlPts[ix].x = pt[0]*mscale;
-            dr.ctrlPts[ix].y = pt[1]*mscale;
+        //Calculate the following for both figures first, before calling the
+        //function to match the ratio of areas.
+        Object.values(dataregs).forEach(dr => {
+            study.calculates_microPoints(dr);
+            study.calculates_monotIntervals8ref(dr);
+            numModel.addsNewBases_8_convertWidths(dr);
+            study.calcsMonotIntervalArea(dr);
         });
-        */
-        // \\// rescaling
 
-        let max = numModel.ctrlPt_2_maxIx();
-        let min = numModel.ctrlPt_2_minIx();
-        dr.figureParams.minX= dr.ctrlPts[min].x;
-        dr.figureParams.maxX= dr.ctrlPts[max].x;
+        Object.values(dataregs).forEach(dr => {
+            study.adjustRectWidthsToMatchAreaRatiosIfNeeded(dr);
+            study.calculates_inscr8circums(dr);
+            study.calculatesMajorantRect(dr);
+        });
 
-        study.calculates_microPoints();
-        study.calculates_monotIntervals8ref();
-        numModel.addsNewBases_8_calculatesMaxWidth();
-
-        study.calcsMonotIntervalArea();
-        study.calculates_inscr8circums();
-        study.calculatesMajorantRect();
-    }
-
-
-    function calculates_microPoints()
-    {
-        //part I: intervals
-        let fb = dr.figureParams;
-        let max = numModel.ctrlPt_2_maxIx();
-        let min = numModel.ctrlPt_2_minIx();
-        let minX = fb.minX = dr.ctrlPts[min].x;
-        let maxX = fb.maxX = dr.ctrlPts[max].x;
-        let xRange = fb.maxX - fb.minX;
-        let curveMicroPts = dr.curveMicroPts = [];
-        let curveFun = numModel.curveFun;
-        let len = sconf.BASE_MAX_NUM;
-        let step = xRange/len;
-        ///calculates curve
-        for (var ii = 0; ii < len; ii++) {
-            let xx = minX+ii*step;
-            let yy = curveFun( xx );
-            let cix = curveMicroPts.length;
-            curveMicroPts.push([xx,yy]);
-        }
-        let yy = curveFun( maxX );
-        curveMicroPts.push([maxX,yy]);
+        //The following must be called after the above functions, because it
+        //requires all figures to be updated first.
+        study.calculateAndStoreTransformedFigureAreaRatios();
     }
 
     
@@ -81,15 +44,13 @@
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only
     ///"one turning point" - a last one
-    function calculates_monotIntervals8ref()
+    function calculates_monotIntervals8ref(dr)
     {
         //part I: intervals
-        let fb = dr.figureParams;
-        let max = numModel.ctrlPt_2_maxIx();
-        let min = numModel.ctrlPt_2_minIx();
+        let fP = dr.figureParams;
 
         let changes = [];
-        let p = dr.curveMicroPts;
+        let p = dr.curveMicroPts.points;
         let ix = 0;
         var minY = p[0][1];
         var maxY = p[0][1];
@@ -102,8 +63,6 @@
             minY = minY > y ? y : minY;
             maxY = maxY > y ? maxY : y;
             let newDir = p[ix][1] > p[ix-1][1] ? 1 : 0;
-            let stashedChanIx = changes.length-1;
-            var stashedChan = changes[stashedChanIx];
             if( newDir !== dir ) {
                 dir = newDir;
                 let ch = {
@@ -118,6 +77,11 @@
                 stashedChan.mp_end_ix = ix-1;
                 stashedChan.widthx = p[ix-1][0] - stashedChan.pstart[0];
                 stashedChan.widthy = p[ix-1][1] - stashedChan.pstart[1];
+                //It's important to update stashedChan here.  Previously it was
+                //located above before this if statement, and didn't get
+                //updated if it was the last time looping though this for loop.
+                let stashedChanIx = changes.length-1;
+                var stashedChan = changes[stashedChanIx];
             }
         }
         ix = p.length-1;
@@ -164,8 +128,8 @@
                 x_end : chon.pend[0],
             };
         }
-        //part II: flag: fb.deltaOnLeft
-        fb.deltaOnLeft = chchosen.dir > 0;
+        //part II: flag: fP.deltaOnLeft
+        fP.deltaOnLeft = chchosen.dir > 0;
 
         //part III: flag and rects-bottom: dr.yVariations.yRef
         //awkward algo, we use this for inverted area:
@@ -173,6 +137,19 @@
         dr.yVariations.yRef = dr.yVariations.maxY;
     }
 
+
+
+    function isMonotonic(dr) {
+        return dr?.yVariations?.changes?.length === 1;
+    }
+
+
+    function areBothFiguresMonotonic() {
+        const drL = stdL2.dataregs.drL;
+        const drR = stdL2.dataregs.drR;
+
+        return (isMonotonic(drL) && isMonotonic(drR));
+    }
 }) ();
 
 

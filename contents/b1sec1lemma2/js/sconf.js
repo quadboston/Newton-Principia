@@ -1,36 +1,16 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, sapp, fixedColors, } = 
+    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, fixedColors, } =
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
-    var dr          = sn('datareg', stdL2 );
+    var dataregs    = sn('dataregs', stdL2 );
     var appstate    = sn('appstate', stdL2 );
 
     //=====================================
     // //\\ presets data
     //=====================================
-    Object.assign( dr,
-    {
-        basePts         : {offset:1, visOffset:0, list:[]},
-        curvPts         : {offset:1, visOffset:0, list:[]},
-        circRects       : {offset:0, visOffset:0, list:[]},
-        InscrRects       : {offset:0, visOffset:0, list:[]},
-        differenceRects  : {offset:0, visOffset:0, list:[]},
-        
-        //baseLabels      : {offset:1, visOffset:0, list:[]},
-        curvLabels      : {offset:0, visOffset:0, list:[]},
-        leftLabels      : {offset:0, visOffset:0, list:[]},
-        //righLabels      : {offset:0, visOffset:0, list:[]},
-        //deltaOnLeft historically means "virtual majoranta-rectangle"
-        //is on the right
-        figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
-        ctrlPts         : [],
-        partitionWidths      : [1],
-        basesN         : 4,
-        movables        : {} //key-value for movable jswrap
-    });
     appstate.movingBasePt = false;
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
     //=====================================
@@ -39,15 +19,8 @@
     return;
 
 
-
-
-
     function init_conf()
     {
-        //as of Ap/13 2023 sets data in preset-data.js
-
-        //sconf.TP_OPACITY_FROM_fixed_colors = true;
-
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -62,49 +35,37 @@
         //----------------------------------
 
 
-
         //----------------------------------
-        //:app view parameters
+        // //\\ datareg
         //----------------------------------
-        var MONITOR_Y_FLIP = 0;
-        var SLIDERS_LEGEND_HEIGHT = 0;
+        dataregs.dr = ssF.initDataReg({
+            xLeft  : 32.5,
+            width  : 216.5,
+            height : 230.5,
+            yBottom: 259.5,
+            BASE_PT_DRAGGERS_ENABLED : (fconf.sappId === 'b1sec1lemma3'),
+            DRAGGABLE_END_POINTS : true,
+        });
+        //----------------------------------
+        // \\// datareg
+        //----------------------------------
 
-        sconf.default_tp_lightness = 30;
-        sconf.ONLY_MONOTONIC_CURVE = false;
-        sconf.mediaMoverPointDisabled = !false;
-        sconf.skipGenDragList = !false; //false is for media mover,
-        sconf.enableTools     = !true;
 
-
-        const ctrlPtXYs_js = [
-            {x:modorInPicX,             y: modorInPicY},
-            
-            //four middle handles:
-            {x: 75.8, y: 45.97726888798351},
-            {x: 119.1, y: 72.70148453700233},
-            {x: 162.4, y: 109.92474464283467},
-            {x: 205.7, y: 166.52378909964816},
-            
-            //three middle handles
-            //{x:85,          y: 51.5},
-            //{x:139,         y: 89.0},
-            //{x:193,         y: 148.5 },
-
-            {x:249,         y: 259.5 }
-        ];
         //Used to calculate slider width (left side to right side of figure).
-        const xSliderL = ctrlPtXYs_js[0].x;
-        const xSliderR = ctrlPtXYs_js[ctrlPtXYs_js.length - 1].x;
+        const ptsUntransformed = dataregs.dr.ctrlPts.untransformed;
+        const xSliderL = ptsUntransformed[0].x;
+        const xSliderR = ptsUntransformed[ptsUntransformed.length - 1].x;
         const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
 
+
+        //Common settings
+        ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
             given,
             difference,
-            base,
-            curve,
             figure,
 
             widestRectangular,
@@ -116,10 +77,14 @@
         {
             given,
             difference,
-            base,
-            curve,
-
             figure,
+            //For a line along the base of the figure.  Used for the bottom of
+            //the figure, because line "AE" doesn't extend the entire width
+            //when there are many bases.
+            "base"  : figure,
+
+            "curve" : figure,
+
             "figure-area"               : fixedColors["figure-area"],
             "figure-area-txt"           : fixedColors["figure-area-txt"],
 
@@ -138,74 +103,6 @@
             'c--M--d--n'                : difference,
             'd--e--p--o'                : difference,
         }
-        
-        
-        //todm: this disables functionality ... not only CSS:
-        fconf.appDecor.helpBox_opacity0             = true;
-        fconf.appDecor.idleHelpButtonTooltip        = '';
-        
-        //to make legend nicely seen, the legend needs
-        //own css independent of rectangulars:
-        //then so, we can decreas opacities below for nicer diagram:
-
-        //these are additional over high and low opacities in color itself:
-        sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
-        sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
-        
-        //no dice: sconf.default_tp_lightness = 0;
-
-        //=====================================
-        // //\\ configures application engine
-        //=====================================
-        Object.assign( sconf,
-        {
-            //====================================================
-            // //\\ subapp regim switches
-            //====================================================
-            enableStudylab  : false,
-            //====================================================
-            // \\// subapp regim switches
-            //====================================================
-
-            dontRun_ExpandConfig : false,
-            //----------------------------------
-            // //\\ model-view parameters
-            //----------------------------------
-            ADD_BASES_SLIDER : true,
-            BASES_SLIDER_WIDTH_FACTOR,
-
-            //todm ... this still makes?? a gap between svg and slider
-            SLIDERS_LEGEND_HEIGHT : SLIDERS_LEGEND_HEIGHT,
-            MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-            //----------------------------------
-            // \\// model-view parameters
-            //----------------------------------
-
-            //:model
-            BASE_MAX_NUM         : 500,
-            DRAGGABLE_BASE_POINTS : 15,
-            //user-adjustable points
-            ctrlPtXYs_js,
-
-            ////GUI
-            FINEPTS_RADIUS  : 10,
-            MOVABLE_BASE_RADIUS : 3,
-            CTRL_RADIUS     : 3,
-	        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
-
-            //:d8d
-            //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
-            DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
-
-            default_tp_stroke_width : 8,
-            //rubbish: 
-            //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
-        });
-
-        //=====================================
-        // \\// configures application engine
-        //=====================================
-
 
 
         //=====================================
