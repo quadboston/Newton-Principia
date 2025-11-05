@@ -5,6 +5,9 @@
 * General
 	* dropdown menu scrolls for short browser windows
 
+* Prop 12
+	* eccentricity slider de-emphasized
+
 * Prop 17
 	* reported conics include circles
 
