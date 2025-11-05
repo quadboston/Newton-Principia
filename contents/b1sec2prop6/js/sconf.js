@@ -413,7 +413,7 @@
             { 'Q,rrminus' : { pcolor : proof,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
-            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1,
+            { 'P,sagitta' : { pcolor : sagitta,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid,
