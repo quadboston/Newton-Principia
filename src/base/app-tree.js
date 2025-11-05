@@ -60,14 +60,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     function setsEngineDefaults()
     {
         //these are pre-professorscripts values: at engine level
@@ -89,6 +81,8 @@
         sDomNExportList,
         expoFun,
     }) {
+        //todo: why does it execute so many times??
+        //console.log('apptree');
 
         ssFExportList && Object.assign( ssF, ssFExportList );
 
@@ -137,9 +131,12 @@
                     //ccc( 'Remodel: in app-tree: ' +
                     //     'model_upcreate does exist, creating model8media_upcreate' );
                     stdMod.model8media_upcreate = () => {
-                        stdMod.model_upcreate();
-                        ns.haff( stdMod, 'media_upcreate' );
-                  }
+                        // todo called twice why? 
+                        // console.log('model and media upcreate');
+                        
+                        stdMod.model_upcreate();                        
+                        ns.haff( stdMod, 'media_upcreate' ); 
+                    }
                 }
             }
             //==========================================================

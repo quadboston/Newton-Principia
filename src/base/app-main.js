@@ -46,6 +46,9 @@
     //***********************************************
     function LANDING_I___app_main() 
     {
+        // each page is independent so this gets re-run on each page load
+        // console.log('domContentLoaded - app_main');
+
         //=========================
         // //\\ home8lemmas
         // //\\ sets ids and titles
@@ -170,11 +173,6 @@
             }
             // \\// loads jscodes and continues
         }
-
-
-
-
-
 
         //loads images (if any) and then JS-scripts for specific lemma
         function LANDING_IV___loadLemmaJSCodes()
@@ -315,10 +313,6 @@
             }
         }
     }
-
-
-
-
 
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
     function LANDING_VI___exegs_2_frags8majorInit()

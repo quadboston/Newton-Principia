@@ -24,6 +24,9 @@
     
     function doesConfigLemma()
     {
+        // runs once per page load
+        // console.log('doesConfigLemma');
+
         //====================================================
         // //\\ optionally overriden by url-query-config
         //====================================================
