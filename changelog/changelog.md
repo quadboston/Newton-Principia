@@ -8,6 +8,9 @@
 * Prop 12
 	* eccentricity slider de-emphasized
 
+* Proposition 13
+	* simplified diagram by not showing more than what is described for each section
+
 * Prop 17
 	* reported conics include circles
 
