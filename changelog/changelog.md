@@ -8,6 +8,12 @@
 * Lemmas 2, 3
 	* curve manipulation made less twitchy
 
+* Proposition 12
+	* eccentricity slider de-emphasized
+
+* Proposition 13
+	* simplified diagram by not showing more than what is described for each section
+
 * Proposition 17
 	* reported conics include circles
 

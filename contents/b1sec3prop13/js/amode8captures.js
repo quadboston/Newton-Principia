@@ -16,30 +16,6 @@
         rg.media_scale.value  = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-        //==================================================
-        // //\\ hide all, then specify which to show
-        //==================================================        
-        for(key in rg) {
-            if(rg[key]) {
-                rg[key].undisplay = true;
-            }
-        };
-
-        var features = [
-            'M', 'A', 'S', 'N', 'Q', 'R', 'T', 'x', 'v', 'P', // points
-            'QR', 'QT', 'SP', 'GP', 'Pv', 'Qv', 'Qx', 'Px', 'Tx', 'SA', 'xv',
-            'PM', 'SM', 'NS', 'NP', 'A,AA', 'L,LL',
-            'PR', 'P,Zminus', //tangent
-        ];
-        
-        features.forEach( i => {
-            rg[i].undisplay = false;
-        });
-        //==================================================
-        // \\// hide all, then specify which to show
-        //==================================================
-
-
         //=============================================================
         // //\\ model
         //=============================================================
@@ -83,4 +59,3 @@
     }
 
 }) ();
-
