@@ -1,13 +1,16 @@
 ( function() {
-    var {
-        ssF,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            amode2rgstate,
-        },
-    });
+    var { nspaste, capture, ssF, stdMod, amode, } = window.b$l.apptree({
+        ssFExportList : { amode2rgstate, }, });
+    setCapture();
     return;
+
+
+    function setCapture()
+    {
+        nspaste( capture,
+        {
+        });
+    }
 
 
     ///runs inside "subessay launch" which in turn runs after
