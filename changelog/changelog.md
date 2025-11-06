@@ -5,7 +5,10 @@
 * General
 	* dropdown menu scrolls for short browser windows
 
-* Prop 17
+* Lemmas 2, 3
+	* curve manipulation made less twitchy
+
+* Proposition 17
 	* reported conics include circles
 
 ## 2025-10-28 (SkyBlue Version, 0.13860)

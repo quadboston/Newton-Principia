@@ -9,16 +9,14 @@
             style="position:absolute;top:0;left:0;width:100%;height:100%;">
           </iframe></div>
         <script src="https://player.vimeo.com/api/player.js"></script>
-
         <br>
-        Consider any ¦curve figure¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦Aa¦side¦¦.
+        Consider any ¦figure-area¦figure¦¦ bounded by a ¦curve¦curve¦¦, a ¦base¦base¦¦, and a ¦Aa¦side¦¦.
         Its ¦base¦base¦¦ can be divided into any number of equal-length bases
         for ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦.
         If we increase the number of these rectangles indefinitely,
-        then the areas of the ¦figure¦¦, the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, and the
+        then the areas of the ¦figure-area¦figure¦¦, the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦, and the
         ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦ all converge to the
-        ¦figure-area¦same value¦¦.
-
+        ¦figure-area figure-area-txt¦same value¦¦.
 
 
 
@@ -31,7 +29,6 @@
             style="position:absolute;top:0;left:0;width:100%;height:100%;">
           </iframe></div>
         <script src="https://player.vimeo.com/api/player.js"></script>
-        
         <br>
         The difference in area between the ¦inscribed-rectangles insc-txt¦inscribed rectangles¦¦ and
         ¦circumscribed-rectangles circ-txt¦circumscribed rectangles¦¦
