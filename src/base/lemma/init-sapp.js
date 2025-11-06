@@ -106,8 +106,10 @@
         haff( stdMod, 'sliders_value2pos' );
 
         // todo: this shouldn't need to be called here (is called from app-tree.js)
-        // however, removing it breaks L9, L10, P1, and P2
-        stdMod.media_upcreate(); 
+        // however, removing it breaks P1, and P2
+        if(sconf.sappId === "b1sec2prop1" || sconf.sappId === "b1sec2prop2") {
+            stdMod.media_upcreate(); 
+        }
 
         !sconf.skipGenDragList && sDomF.createsFW__8__executes_dragWr_gens_list();
 

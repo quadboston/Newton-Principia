@@ -21,6 +21,8 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
+        // console.log('media-upcreate');
+
         //vital for letters/picture conflict
         //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
@@ -146,7 +148,7 @@
         //------------------------------------------
         //  //\\ given curved areas
         //------------------------------------------
-        console.log(medCurvPivots + '; ' + tC)
+        //console.log(medCurvPivots + '; ' + tC)
         wCCA( 'area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos );
         wCCA( 'area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
         //.null makes this element present in all(?) theoreons
@@ -181,6 +183,11 @@
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
         }
+
+        // init here to ensure all req'd vars are inited first
+        // so we don't need to call media-upcreate() from init-sapp.js
+        stdMod.initDragModel( stdMod.medD8D ); 
+
         return;
         // \\//\\// ends imperative part of the module
 
