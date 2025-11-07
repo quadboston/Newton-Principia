@@ -66,13 +66,6 @@
     ///=============================================================================
 
 
-
-
-
-
-
-
-
     function preparesDesktop({
         draggerMove,
         doDividorSynch,
@@ -365,24 +358,24 @@
     ///=============================================================================
 
 
-
     ///========================================
     ///
     ///========================================
     function preparesMobile()
     {
-        var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN);
+        var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN) - 50;
         stdMod.bgImgW       = wid;
-        //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
+        stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;
+        var picCSS_2_svgmodel = sconf.innerMediaWidth / stdMod.bgImgW;
 
-        stdMod.simSceneW    = wid - 50;
+        stdMod.simSceneW    = wid;
         stdMod.svgSceneW    = stdMod.simSceneW;
+        stdMod.svgSceneH    = stdMod.bgImgH;
 
-        stdMod.svgVB_W      = sconf.innerMediaWidth;
-        stdMod.svgVB_H      = sconf.innerMediaHeight;
+        stdMod.svgVB_W        = stdMod.svgSceneW * picCSS_2_svgmodel;
+        stdMod.svgVB_H        = stdMod.svgSceneH * picCSS_2_svgmodel;
         stdMod.svgVB_offsX  = 0;
-
 
         const sliderGroup$ = sDomN.sliderGroup$;
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
@@ -402,7 +395,7 @@
                 .css( 'left', '0px' )
                 .css( 'width', `${sliderWidth}px` );
                 ;
-                stdMod.simSceneH += 60;
+                stdMod.simSceneH = stdMod.svgVB_H + 700;
         } else {
             const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
             stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
@@ -433,18 +426,16 @@
                     stdMod.simSceneH -= 170;
                     break;
                 case 'b1sec5lemma20':              
-                    stdMod.simSceneH -= 1190;
+                    stdMod.simSceneH -= 1150;
                     break;
                 case 'b1sec5lemma21':              
-                    stdMod.simSceneH -= 1150;
+                    stdMod.simSceneH -= 1100;
                     break;
                 default:
                     //the rest are fine as is
                     break;
             }
         }
-
-
 
         makes_svgViewBox();
         doesTopContainersSizing();
