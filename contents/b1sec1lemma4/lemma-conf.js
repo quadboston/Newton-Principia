@@ -7,29 +7,32 @@
 
     function lemmaConfig()
     {
+        var ref = '../../b1sec1lemma2/js/';
+
         return {
             codesList :
             [
                 //todm: automate this list
-                { src:'sconf.js' },
-                { src:'init-model-parameters.js' },
-                { src:"transform-functions.js" },
-                { src:"curve-functions.js" },
+                { src: ref + 'sconf-common.js' },
+                { src: 'sconf.js' },
+                { src: ref + 'init-datareg.js' },
+                { src: ref + 'init-model-parameters.js' },
+                { src: ref + "transform-functions.js" },
+                { src: ref + "curve-functions.js" },
 
-                {  src:"dom.js" },
-                {  src : 'main-legend.js' },
-                {  src:"d8d-model.js" },
-                {  src:"gui-construct.js" },
-                {  src:"gui-slider.js" },
+                { src: "gui-figure.js" },
+                { src: ref + "dom.js" },
+                { src: "main-legend.js" },
+                { src: ref + "d8d-model.js" },
+                { src: ref + "gui-construct.js" },
+                { src: ref + "gui-slider.js" },
 
-                {  src:"model-upcreate.js" },
-                {  src:"model-aux.js" },
-                {  src:"media-upcreate.js" },
-                {  src:"gui-update.js" },
-                {  src:"gui-update-widest.js" },
-                {  src:"gui-swap-monotonity.js" },
-                {  src:"event-handlers.js" },
-                {  src:"amode2captures.js" },
+                { src: ref + "model-upcreate.js" },
+                { src: ref + "model-aux.js" },
+                { src: ref + "media-upcreate.js" },
+                { src: ref + "gui-update.js" },
+                { src: "gui-sync-points.js" },
+                { src: ref + "amode2captures.js" },
             ],
             "contents-list" :
             [

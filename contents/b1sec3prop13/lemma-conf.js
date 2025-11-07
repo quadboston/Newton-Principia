@@ -12,11 +12,9 @@
             "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
-                'txt/addendum.txt',
             ],
             sappCodeReference : 'b1sec3prop12',  
         };
     }
 
 }) ();
-

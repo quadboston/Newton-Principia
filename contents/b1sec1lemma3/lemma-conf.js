@@ -5,7 +5,6 @@
     return;
 
 
-
     function lemmaConfig()
     {
         return {
@@ -16,7 +15,6 @@
                 "txt/cohen.txt",
                 "txt/video.txt",
             ],
-
         };
     }
 
