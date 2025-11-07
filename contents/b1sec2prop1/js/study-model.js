@@ -13,14 +13,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     //===================================================
     // //\\ registers model pars into common scope
     //===================================================
@@ -92,6 +84,7 @@
     //=========================================================
     function model_upcreate()
     {
+        //console.log('model_upcreate');
         //for case if captured click does not have curtime set
         stdMod.protects_curTime_ranges();
 

@@ -19,19 +19,13 @@
     return;
 
 
-
-
-
-
-
-
-
     ///=========================================================
     /// engine legacy function,
     /// GUIfies what is still not GUIfied,
     ///=========================================================
     function media_upcreate()
     {
+        //console.log('P1 media_upcreate');
         //reestablishes detecton to hide/unhide image for case the state
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect( !rg.detected_user_interaction_effect_DONE );
@@ -97,8 +91,9 @@
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
-        if( !ssF.mediaModelInitialized ) {
+        if( !stdMod.digital_legend_created ) {
             ns.haff( stdMod, 'create_digital_legend' );
+            stdMod.digital_legend_created = true;
         }
 
         //:updates subessay menu
