@@ -140,11 +140,10 @@
 
         ///???for past-lemmas: lemma 1, lemma 2, ...
         //haf( stdMod, 'astate_ 2_rg8model' )(
-        //also does execute "stdMod.model_upcreate",
 
         //reminder: captured here is the last satisfied captured,
         //the last after recent loop via code fragements above
-        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], );
+        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ] );
 
         //=================================================================
         // //\\ makes s ubmodel displayed
