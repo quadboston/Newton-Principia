@@ -7,7 +7,6 @@
  *  to draw any conic (ellipse, parabola, hyperbola w/out asymptotes) as needed.
  *  
  * ****************************************************************************/
-
 ( function() {
     var {
         $$, nssvg, has, haz, ssF,
@@ -41,31 +40,27 @@
 
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
-
+    
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
                 poly2svg,
         };
         Object.assign( rgX, result );
-        //poly2svg({}); //unnecessary, called a million times from media-upcreate 
+        //transitional notation:
+        stdMod.q2xy = t2xy;
         return result;
 
-
-        // param q (angle) to [x,y] point on conic
-        // todo: rename? what is t? 
-        // also called from other modules to determine position of specified points
+        // algorithm: q -> conic in polar coordinates -> cartesian [x,y]
+        // also called from other modules to determine position of specified points,
         function t2xy( q ){
-
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
             if( den === 0 ) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
-
-            // radial distance
+            //radial distance
             var r = op.latus / den;
-
             var x = r * Math.cos( q + op.mainAxisAngle );
             var y = r * Math.sin( q + op.mainAxisAngle );
             return [ x, y ];
@@ -267,7 +262,4 @@
         //mostly just flips model from ellipse to hyperbola based on e
         //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
     }
-
-
-}) ();
-
+})();

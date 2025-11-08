@@ -1,6 +1,6 @@
 ( function() {
     var { 
-        nspaste, mcurve, mat, fconf, ssF, stdMod, sconf, rg, 
+        nspaste, mcurve, mat, fconf, ssF, stdMod, sconf, amode, rg, 
     } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -81,7 +81,7 @@
             //--------------------------------------------
         }
         nspaste( rg.Q.pos, fun(Q) );
-
+        rg.Q.q = Q; //todm redundant, needed only for calculation fQR,
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
             mat.linesCross(
@@ -110,9 +110,19 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
+        ///this is a common graph lines, but this mask can be
+        ///overriden in model_upcreate()
         ///for initial launch only
         stdMod.buildsforceGraphArray();
-        stdMod.graphFW.drawGraph_wrap();
+        stdMod.graphFW.graphArrayMask =
+        [
+            'force',
+            amode.logic_phase === 'proof',
+        ];
+        stdMod.graphFW.drawGraph_wrap({
+                graphArrayMask : stdMod.graphFW.graphArrayMask,
+            }
+        );
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------

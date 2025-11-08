@@ -124,7 +124,8 @@
         //    sconf.force_law_function = bP => 1/(bP.r2);
         //null means that program will calculated the law
         //based on dt -> 0:
-        sconf.force_law_function = null;
+        //incompatible with fultim norm
+        //sconf.force_law_function = null;
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,

@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, sn, $$, nsmethods, haz, globalCss, sDomF, sData, stdMod, }
+    const { ns, sn, $$, nsmethods, haz, globalCss, sDomF, sData, amode, stdMod, }
         = window.b$l.apptree({ stdModExportList :
         {
             doSetColorThreadArray,
@@ -17,35 +17,13 @@
 
     function doSetColorThreadArray()
     {
-        //===========================================
-        // //\\ prepares color ThreadArray
-        //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
-        }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
+        /// prepares color ThreadArray
         sData.colorThreadArray = [
             sDomF.getFixedColor( 'shadow' ), //predefinedTopics.P, !!'makeOpacity1' ),
             sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
         ];
         return sData.colorThreadArray;
-        //===========================================
-        // \\// prepares color ThreadArray
-        //===========================================
     }
-
 
     function setsGraphContainerAttributes( digramParentDom$ )
     {
@@ -81,6 +59,10 @@
         //manually picked color, not from plot,
         var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
 
+        let yCaption = 'Force ln(f)';
+        if( amode.logic_phase === 'proof' ){
+            yCaption += ', ln( fQR ).';
+        }        
         var axisYLegend =
         [
             {
@@ -95,7 +77,7 @@
             },
 
             {
-                text    : 'Force f, 1/r², and speed v per their maximums.',
+                text    : yCaption,
                 x       : 250,
                 y       : 40,
                 style   : {
@@ -133,8 +115,6 @@
         return { yColor, xColor, axisYLegend, axisXLegend, };
     }
 
-
-
     function plotLabels_2_plotsPars( colorThreadArray )
     {
 
@@ -143,7 +123,7 @@
             {
                 fraqX : 0.01,
                 //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
+                pcaption : 'f',
                 fontShiftX : 185,
                 fontShiftY : 15,
                 style : {
@@ -153,43 +133,23 @@
             },
             {
                 fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'f',
+                pcaption : 'fQR',
                 fontShiftX : 0,
                 fontShiftY : 15,
                 style : {
                     'font-size' : '40px',
                     'stroke'  : colorThreadArray[1],
-                    //'fill' : colorThreadArray[0],
-                },
-                //overrides tp class
-                //plotStyle : {
-                //    'stroke-width'  : '5',   //optional
-                //},
-            },
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'v',
-                fontShiftX : 40,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[2],
                 },
             },
         ];
     }
 
-
-
     function setsGraphTpClasses()
     {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
+        const mask = stdMod.graphFW.graphArrayMask; 
+        mask[0] && $$.$( stdMod.graphFW.fw.plotIx2plotSvg[0] ).addClass( 'tp-force tostroke' );
+        mask[1] && $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-f_q_r tostroke' );
     }
-
-
 
     function doDrawToolline()
     {
@@ -202,7 +162,6 @@
             numberMarks : true, 
         };
     }
-
 
     function graphAxisX( xColor )
     {
@@ -230,6 +189,4 @@
            'stroke-width'   : '1',
         };
     }
-
-}) ();
-
+})();

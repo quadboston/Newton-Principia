@@ -82,8 +82,10 @@
         //===================================================
         // //\\ top tire painter which wraps low tire painter
         //===================================================
-        function drawGraph_wrap()
+        function drawGraph_wrap(arg)
         {
+            var graphArrayMask = arg && arg.graphArrayMask;
+            
             var graphArray = stdMod.graphArray;
             var { yColor, xColor, axisYLegend, axisXLegend, } = stdMod.setsGraphAxes();
             //==================================================
@@ -92,6 +94,7 @@
             //==================================================
             graphFW__self.fw.drawGraph({
                 graphArray,
+                graphArrayMask,
                 colorThreadArray,
                 style : {
                    //'stroke-width' : 2, //destroys tp-machine

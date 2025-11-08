@@ -118,7 +118,7 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.force_law_function = bP => 1/(bP.r2*bP.r);
+        //sconf.force_law_function = bP => 1/(bP.r2*bP.r); //incompatible with fultim norm
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,

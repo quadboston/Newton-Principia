@@ -23,7 +23,7 @@
         const GRAPH_PATH = sData.GRAPH_PATH;
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
-        const force_law_function = sconf.force_law_function;
+        //const force_law_function = sconf.force_law_function;
         const DEVIATION_SCALE_FACTOR = sconf.DEVIATION_SCALE_FACTOR || 1;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
@@ -43,16 +43,16 @@
             const displacement = bP.displacement;
             const sagitta = bP.sagitta;
             const ds_dt = bP.ds_dt;
-            if( force_law_function ){
-                var instantForce = force_law_function(bP);
+            //if( force_law_function ){
+            //    var instantForce = force_law_function(bP);
 
             //this is a stub for non-Kepler orbits:
             //} else if( sconf.TIME_IS_FREE_VARIABLE ){
             //    var instantForce = bP.instant_sagitta;
 
-            } else {
-                var instantForce = bP.instant_displacement;
-            }
+            //} else {
+            var instantForce = bP.instant_displacement;
+            //}
             bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 instantFQR_max = Math.max( bP.instant_displacement, instantFQR_max );
@@ -86,7 +86,9 @@
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
             const instf = Math.abs(bP.instantForce) / instantForceMax;
-            const disp = Math.abs(bP.displacement) / instantFQR_max;
+            //project board requirement:
+            const disp = Math.abs(bP.displacement) / instantForceMax;
+
             const ds_dt = bP.ds_dt / speedMax;
             const sagitta = Math.abs(bP.sagitta) / sagittaMax;
             ga.y = [

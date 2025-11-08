@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, mcurve, stdMod, rg, sconf, } = window.b$l.apptree({
+    const { sn, mcurve, stdMod, rg, sconf, } = window.b$l.apptree({
         stdModExportList : { buildsforceGraphArray, posFromPointPToQIndex, }, });
     return;
 
@@ -13,94 +13,70 @@
         var t2xy    = rg[ 'approximated-curve' ].t2xy;
         var forceGraphArray = [];
         var Q_STEPS = 400;
+        let calcs__displacement = stdMod.calcs__displacement;
         for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
         {
             var q = qStart + forceArrayIx * ( qEnd - qStart ) / Q_STEPS;
-            var {
-                rr,
-                r, //from chosen rrc
-                r2,
-                R,
-                sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
-                staticSectorialSpeed_rrrOnUU,
-            } = mcurve.planeCurveDerivatives({
+            let bP = mcurve.planeCurveDerivatives({
                 fun : t2xy,
                 q,
                 rrc,
             });
-            var sinAbs = Math.abs( sinOmega );
-            if( sinAbs < 1e-100 ) {
-                sinOmega = 1e-100 * Math.sign( sinOmega );
-            }
-
-            // Kepler's motion: rvₜcos(w) = M
-            // f = M²/(Rr²cos³(w))
-            var sinOmegaSquared = sinOmega*sinOmega;
-
-            //M is excluded in following lines:
-            var comparLaw = 1/r2;
-            var unitlessForce = 1/(R*r2*sinOmega*sinOmegaSquared);
-            var forceSafe = Math.max( Math.abs( unitlessForce ), 1e-150 );
-
-            var sectSpeedSafe = 1e-150 > Math.abs( staticSectorialSpeed_rrrOnUU ) ?
-                    1e+150 : 1/staticSectorialSpeed_rrrOnUU;
-            sectSpeedSafe = Math.abs( sectSpeedSafe );
-
-            //-----------------------------------------------------------
-            // //\\ builds coefficients at maximum |force|
-            //-----------------------------------------------------------
+            var {
+                r, //from chosen rrc
+            } = bP;            
+            var fQR = Math.abs( calcs__displacement({ 
+                        parq: q + op.sagittaDelta_q,
+                        bP,
+            }));
+            let fQR_instant_abs = bP.fQR_instant_abs =
+                Math.abs( calcs__displacement({ 
+                        parq: q + op.sagittaDelta_q_instant,
+                        bP,
+            }));
+            //----------------------------------------
+            // //\\ builds norms
+            //----------------------------------------
             if( forceArrayIx === 0 ) {
-                var forceMax        = forceSafe;
-                var comparLawMax    = comparLaw;
-                var speedMax        = sectSpeedSafe;
+                var forceMax        = fQR;
+                fQR_instant_max     = fQR_instant_abs;
             }
-            if( forceMax < forceSafe ) {
-                var forceMax = forceSafe;
+            if( forceMax < fQR ) {
+                var forceMax = fQR;
             }
-            if( comparLawMax < comparLaw ) {
-                var comparLawMax = comparLaw;
+            if( fQR_instant_max < fQR_instant_abs ){
+                fQR_instant_max = fQR_instant_abs;
             }
-            if( speedMax < sectSpeedSafe ) {
-                var speedMax = sectSpeedSafe;
-            }
-            //-----------------------------------------------------------
-            // \\// builds coefficients at maximum |force|
-            //-----------------------------------------------------------
+            //----------------------------------------
+            // \\// builds norms
+            //----------------------------------------
 
             forceGraphArray[ forceArrayIx ] = {
                 x : Math.log( r ),
                 y : [
-                        comparLaw,      //for comparision
-                        unitlessForce, //actual
-                        //=vt=tangent speed
-                        sectSpeedSafe,
+                        fQR_instant_abs,
+                        fQR,
                 ],
             };
         }
-
         var arrLen = forceGraphArray.length;
         stdMod.graphArray = [];
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
         {
             var far = forceGraphArray[ forceArrayIx ];
-            far.y[0] = far.y[0] / comparLawMax;
-            //force element is second to visually overlap by force color
-            far.y[1] = far.y[1] / forceMax;
-            far.y[2] = far.y[2] / speedMax;
+            far.y[0] = Math.log( far.y[0] / fQR_instant_max );
+            far.y[1] = Math.log( far.y[1] / fQR_instant_max );
         }
         stdMod.graphArray = forceGraphArray;
     }
 
-
     ///to be used in slow code
     function posFromPointPToQIndex()
     {
-        var q = rg.P.q;
-        var qixMax = stdMod.graphArray.length-1;
-        var qix = Math.floor(   qixMax * (q-sconf.orbitParameters.qStart)
+        const q = rg.P.q;
+        const qixMax = stdMod.graphArray.length-1;
+        const qix = Math.floor(   qixMax * (q-sconf.orbitParameters.qStart)
                   / (2*Math.PI) ); //=angle Ix,
         return Math.max( 0, Math.min( qixMax, qix ) );
     }
-
-}) ();
-
+})();

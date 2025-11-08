@@ -2,17 +2,16 @@
 ///notations are from Prop6, cor. 5,
 ///displacement = QR, area = QT*SP,
 ( function() {
-    var { sn, mat, stdMod, }
+    const { sn, mat, stdMod, }
         = window.b$l.apptree({ stdModExportList : { calcs__displacement, }, });
     return;
 
 
     function calcs__displacement({
-        parq, //orbit argument
+        parq, //q of Q
         bP    //orbit point P rack
     }){
-       const q2xy = stdMod.q2xy;
-       const Q = q2xy( parq );
+       const Q = stdMod.q2xy( parq );
        const P = bP.rr;
        const S = bP.rrc;
        const R = mat.linesCross(
@@ -36,5 +35,4 @@
        const displacement = QR/(area*area);
        return sign * displacement;
     }
-}) ();
-
+})();
