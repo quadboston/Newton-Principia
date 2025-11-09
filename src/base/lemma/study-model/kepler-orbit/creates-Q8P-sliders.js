@@ -90,6 +90,7 @@
             //optional, using valid graph points and leave
             fromGraph 
         ){
+            fromGraph = !sn( 'solvable', ssD, true ) ? false : fromGraph;
             const arr = fromGraph ? ga : q2o;
             const len = arr.length;
             const STEP = fromGraph ? 1 : Math.max( 1, Math.floor( len / SEARCH_POINTS ));

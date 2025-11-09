@@ -1,6 +1,6 @@
 ( function() {
     const {
-        has, haz, ssD, ssF, sDomF, sData, rg,
+        sn, has, haz, ssD, ssF, sDomF, sData, rg,
         amode, stdMod, sconf,
     } = window.b$l.apptree({
         ssFExportList : 
