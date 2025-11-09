@@ -1,10 +1,10 @@
-///builds two force estimations, 1) as finite sagitta,
-///2) as Prop6, cor5 dev/area^2,
-///which is calculated from preintegrated synchronized
-///grids of t and q, time t and curve parameter q,
+///builds two force estimations,
+///1) as Prop6, cor5 dev/area^2,
+///2) as finite sagitta, which is calculated from preintegrated synchronized
+///grids of time t and parameterq,
 ( function() {
     var {
-        sn,
+        sn, has,
         stdMod, amode, sconf, ssD, sData,
     } = window.b$l.apptree({
         stdModExportList :
@@ -22,6 +22,8 @@
 
 
     function builds_dq8sagit8displace({ ulitmacy }){
+        sn( 'solvable', ssD, true );
+        if( !ssD.solvable ) return;
         const ADDENDUM = amode.aspect === 'addendum';
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CR = sconf.CURVE_REVOLVES;

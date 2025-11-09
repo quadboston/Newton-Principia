@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns, sn, $$, mat,
+        ns, sn, $$, has, mat,
         sconf,
         rg,
         ssF, ssD,
@@ -57,6 +57,7 @@
         legendScriptParsed,
         noEqualSignInNumber,
     }){
+        if( !sn( 'solvable', ssD, true ) ) return;
         var clusterCellIx = 1;
 
         var ds      = legendScriptParsed[ rowIx ][ clusterIx ];

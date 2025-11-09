@@ -1,6 +1,6 @@
 ( function() {
     const {
-        sn, $$, has, sDomF, amode, stdMod, sconf,
+        sn, $$, has, sDomF, amode, stdMod, sconf, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -68,6 +68,7 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
+            if( !sn( 'solvable', ssD, true ) ) return;
             const addendum = amode.aspect === 'addendum';
             ///make sure, the number of plot labels is equal to plot functions y(x)
             const labels = [

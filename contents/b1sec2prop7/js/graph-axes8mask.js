@@ -15,7 +15,7 @@
         const subessay = amode.subessay;
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
-        const solvable = has( ssD, 'solvable' ) ? ssD.solvable : true;
+        const solvable = sn( 'solvable', ssD, true );
         const graphFW = stdMod.graphFW_lemma;
 
         //----------------------------------------------

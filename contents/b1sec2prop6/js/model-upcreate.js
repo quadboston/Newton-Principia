@@ -21,7 +21,7 @@
     function model_upcreate()
     {
         const sectSpeed0 = ssD.sectSpeed0;
-        const solvable = ssD.solvable;
+        const solvable = sn( 'solvable', ssD, true );
         //stdMod.builds_dq8sagit8displace({});
         const Porb = ssD.qix2orb[ rg.P.qix ];
         var {

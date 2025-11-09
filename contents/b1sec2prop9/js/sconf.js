@@ -83,7 +83,6 @@
         //***************************************************************
 
 
-
         //******************************************
         // //\\ model principals parameters
         //******************************************
@@ -147,19 +146,26 @@
         //*************************************
         // //\\ topic group colors,
         //*************************************
-
-        var given   = [0,     150, 0,      1];
+        var estimatedForce = [100,50,0];
+        //e/var fQR = estimatedForce;
+        //e/var sagitta = [100,0,100];
+        var orbit   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
         var curvature  = [200,   40,  200, 1];
+        //e/var timeColor  = [200,  0,  255, 1];
         var displacement = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
+        //e/var dtime   = [0,     150,  200,  1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
+        var force =   [255,    0,  0,      1];
         var invalid = [200,  150,  0,      1];
+        //e/var chord = [0,0,255, 1];
+
         var predefinedTopics =
         {
-            given,
+            //e/given,
             proof,
             result,
             displacement,
@@ -168,8 +174,8 @@
             curvature,
             curvatureCircle : curvature,
             body,
-            orbit   : given,
-            force   : result,
+            orbit,
+            force,
         };
         //*************************************
         // \\// topic group colors,
@@ -187,38 +193,37 @@
         //*************************************
         // //\\ original app points
         //*************************************
-        var originalPoints = {
-            Or : {
-                doPaintPname : false,
-                pos: C,
-            },
+        var originalPoints =
+        {
+        };
 
+        Object.assign( originalPoints, {
+            //e/ X : {
+            //e/    cssClass : 'tp-dtime',
+            //e/    pos: S,
+            //e/    pcolor : force,
+            //e/    letterAngle : -90,
+            //e/    letterRotRadius : 40,
+            //e/    draggableX  : true,
+            //e/    draggableY  : fconf.sappId === 'b1sec2prop7',
+            //e/    initialR    : 5 * controlsScale,
+            //e/    fontSize : 30,
+            //e/    undisplayAlways : true,
+            //e/    doPaintPname : false,
+            //e/},
             S : {
                 pos: S,
-                pcolor : result,
+                pcolor : force,
                 letterAngle : -90,
                 //draggableX  : true,
                 //draggableY  : true,
                 //initialR    : 5 * controlsScale,
             },
-
             P : {
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
             },
-
-
-            T : {
-                pcolor : proof,
-                letterAngle : 180,
-            },
-
-            R : {
-                pcolor : proof,
-                letterAngle : 45,
-            },
-
             Q : {
                 pcolor : proof,
                 letterAngle : 225,
@@ -226,15 +231,20 @@
                 draggableX  : true,
                 draggableY  : fconf.sappId === 'b1sec2prop7',
             },
-
+            R : {
+                pcolor : proof,
+                letterAngle : 45,
+            },
+            T : {
+                pcolor : proof,
+                letterAngle : 180,
+            },
             Z : {
                 pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-
             Zminus : {
                 pcolor : body,
                 letterAngle : 45,
@@ -242,26 +252,27 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-            Y : {
-                pcolor : proof,
-                letterAngle : -90,
-            },
-
             V : {
                 pos: V,
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
-            //center of instant curvature circle
+            //?center of instant curvature circle
             C : {
                 pos : C,
                 caption : 'Rc',
                 pcolor : curvature,
                 letterAngle : -45,
             },
-        };
+            Y : {
+                pcolor : proof,
+                letterAngle : -90,
+            },
+            Or : {
+                doPaintPname : false,
+                pos: C,
+            },
+        });
         //*************************************
         // \\// original app points
         //*************************************
@@ -272,16 +283,8 @@
         //*************************************
         var linesArray =
         [
+            { 'SP' : { pcolor : body }, },
             { 'PV' : { pcolor : proof }, },
-            { 'CV' : { pcolor : curvature }, },
-
-            { 'SP' : { pcolor : result }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
@@ -289,8 +292,13 @@
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
-
             { 'PC' : { pcolor : curvature }, },
+            { 'PY' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : body }, },
+            { 'PZ' : { pcolor : body }, },
+            { 'ZR' : { pcolor : body }, },
+
+            { 'CV' : { pcolor : curvature }, },
         ];
         //*************************************
         // \\// original app lines

@@ -97,8 +97,8 @@
         sconf.text_hover_width      = 1;
         // \\// principal tp-css pars
 
-        // \\// do override engine defaults,
-        // \\// decorational parameters
+        //--------------------------------------
+        // \\// these do override engine defaults,
         //***************************************************************
         // \\// GUI cosmetics
         //***************************************************************
@@ -145,15 +145,15 @@
         var proof   = [0,     0,   255,    1];
         var curvature  = [200,   40,  200, 1];
         var timeColor  = [200,  0,  255, 1];
+        //e/var displacement = [200,   0,  200, 1];
         var body    = [0,     150,  200,   1];
         var dtime   = [0,     150,  200,  1];
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
         var force = [255,    0,  0,      1];
         var invalid = [0,     0,   0,      1];
-        
-        //var chord = [0,0,255, 0.5]; //no dice
         var chord = [0,0,255, 1];
+
         var predefinedTopics =
         {
             estimatedForce,
@@ -209,14 +209,19 @@
         };
 
         Object.assign( originalPoints, {
-            A : {
-                pos: A,
-                pcolor : orbit,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
-            },
-
+            //e/ X : {
+            //e/    cssClass : 'tp-dtime',
+            //e/    pos: S,
+            //e/    pcolor : force,
+            //e/    letterAngle : -90,
+            //e/    letterRotRadius : 40,
+            //e/    draggableX  : true,
+            //e/    draggableY  : fconf.sappId === 'b1sec2prop7',
+            //e/    initialR    : 5 * controlsScale,
+            //e/    fontSize : 30,
+            //e/    undisplayAlways : true,
+            //e/    doPaintPname : false,
+            //e/},
             S : {
                 pos: S,
                 pcolor : force,
@@ -225,7 +230,6 @@
                 draggableY  : true,
                 initialR    : 5,
             },
-
             P : {
                 pos: P,
                 pcolor : body,
@@ -233,7 +237,6 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-
             Q : {
                 pos: Q,
                 pcolor : proof,
@@ -252,23 +255,18 @@
                 letterShift : [30,0],
                 letterRotRadius : 180,
             },
-
-            T : {
-                pcolor : proof,
-                letterAngle : 180,
-            },
-
             R : {
                 pcolor : proof,
                 letterAngle : 45,
             },
-
+            T : {
+                pcolor : proof,
+                letterAngle : 180,
+            },
             Z : {
                 pcolor : body,
                 letterAngle : 45,
             },
-
-
             Zminus : {
                 pcolor : body,
                 letterAngle : 45,
@@ -276,14 +274,40 @@
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
+            V : {
+                pos: V,
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+            //?center of instant curvature circle
+            C : {
+                pos : C,
+                caption : 'Rc',
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+            Y : {
+                pos: Q,
+                pcolor : proof,
+                letterAngle : -90,
+            },
+            L : {
+                pcolor : curvature,
+                letterAngle : -45,
+            },
+            A : {
+                pos: A,
+                pcolor : orbit,
+                //letterAngle : -90,
+                //undisplayAlways : true,
+                //doPaintPname : false,
+            },
             rrminus : {
                 caption : 'Q-',
                 pcolor : proof,
                 letterAngle : 225,
                 letterRotRadius : 40,
             },
-
             sagitta : {
                 caption : 'I',
                 //pos: Q,
@@ -293,33 +317,6 @@
                 //initial setting does not work well bs poor code design
                 //undisplay : true,
             },
-
-
-            Y : {
-                pos: Q,
-                pcolor : proof,
-                letterAngle : -90,
-            },
-
-            V : {
-                pos: V,
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-
-            L : {
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
                 caption : 'Orbits are disconnected.',
@@ -353,7 +350,6 @@
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
         });
         //*************************************
         // \\// original app points
@@ -365,30 +361,25 @@
         //*************************************
         var linesArray =
         [
+            { 'SP' : { pcolor : body }, },
             { 'PV' : { pcolor : proof }, },
-            { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : orbit }, },
-            { 'AP' : { pcolor : proof }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
             { 'PR' : { pcolor : body }, },
-            { 'ZQ' : { pcolor : body }, },
-
-
-            { 'RL' : { pcolor : proof }, },
-
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
-
             { 'PC' : { pcolor : curvature }, },
+            { 'PY' : { pcolor : body }, },
+            { 'P,Zminus' : { pcolor : body }, },
+            { 'PZ' : { pcolor : body }, },
+            { 'ZR' : { pcolor : body }, },
+
+            { 'ZQ' : { pcolor : body }, },
+            { 'AV' : { pcolor : proof }, },
+            { 'AP' : { pcolor : proof }, },
+            { 'RL' : { pcolor : proof }, },
             { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
             { 'Q,rrminus' : { pcolor : proof }, },
@@ -401,6 +392,10 @@
             { 'Gcol2,P' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
+        //*************************************
+        // \\// original app lines
+        //*************************************
+
 
         //*************************************
         // //\\ passing locals to sconf

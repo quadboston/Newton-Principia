@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, haz, rg, amode, stdMod, sconf, ssD, sData, } 
+    var { sn, has, haz, rg, amode, stdMod, sconf, ssD, sData, } 
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             P2gix,
@@ -30,6 +30,8 @@
 
         stdMod.graphFW_lemma.graphArray = graphArray;
         graphArray.length = 0;
+        if( !sn( 'solvable', ssD, true ) ) return;
+        
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;

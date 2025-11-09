@@ -8,7 +8,7 @@
 
 ( function() {
     var {
-        ns, sn, $$, mat,
+        ns, sn, $$, mat, has,
         sconf, ssF, ssD, sDomF, sDomN,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -338,6 +338,13 @@
         //=========================================
         function upcreate_mainLegend()
         {
+            ssD.solvable = sn( 'solvable', ssD, true );
+            if( !ssD.solvable ) {
+                stdMod.legendRoot$.css( 'display', 'none' );
+                return;
+            } else {
+                stdMod.legendRoot$.css( 'display', 'block' );
+            }
             !noTableTitle && updatesTableTitle && updatesTableTitle({ tableCaption$ });
             updateCaptionsRow();
             for( var rowIx = 0; rowIx < rowsCount; rowIx++ )

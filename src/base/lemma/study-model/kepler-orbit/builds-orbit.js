@@ -34,7 +34,7 @@
         const qgrid_step = sconf.qgrid_step;
         var momentum0; //at start of the path
         
-        var solvable = true;
+        var solvable = ssD.solvable = true;
         var foldPoints = [];
         
         //there is no prebilt orbit points, they are built and
@@ -67,7 +67,8 @@
             if( NON_SOLVABLE_THRESHOLD > Math.abs( sinOmega ) ) {
                 solvable = false;
                 foldPoints.push( [ rr[0], rr[1] ] );
-                bP.solvablePoint = solvable;
+                bP.solvablePoint = false;
+                ssD.solvable = false
             }
             
             //------------------------------------------

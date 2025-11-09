@@ -16,7 +16,8 @@
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
         const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
-        const solvable = has( ssD, 'solvable' ) ? ssD.solvable : true;
+        const solvable = sn( 'solvable', ssD, true );
+        if( !ssD.solvable ) return;
         const graphFW = stdMod.graphFW_lemma;
 
         //----------------------------------------------
