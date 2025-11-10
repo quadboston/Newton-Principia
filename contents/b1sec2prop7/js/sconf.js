@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({ //exports to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
@@ -16,7 +16,7 @@
         sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
         sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
-        
+
         //***************************************************************
         // //\\ original picture dimensions for svg scene
         //***************************************************************
@@ -104,6 +104,27 @@
         //***************************************************************
 
 
+        //******************************************
+        // //\\ model principals parameters
+        //******************************************
+        //pos of P
+        //s/sconf.parQ = 0.250;
+        //s/sconf.orbit_q_start = 0;
+        //s/sconf.orbit_q_end = 1;
+        sconf.tForSagitta0 = 0.168;
+
+        //the law to be studied in given lemma:
+        //fe: for 1/r^2, the assigment is
+        //    sconf.force_law = bP => 1/(bP.r2);
+        //null means that program will calculated the law
+        //based on dt -> 0:
+        sconf.force_law = null;
+
+        //******************************************
+        // \\// model principals parameters
+        //******************************************
+
+
         //***************************************************************
         // //\\ math model auxilaries
         //***************************************************************
@@ -178,9 +199,6 @@
         // \\// topic group colors,
         //*************************************
 
-        //---------------------------------------------------
-        // //\\ points to approximate and draw original curve
-        //---------------------------------------------------
         /*
             //apparently this is not enough, need following in study-model.js
                 //except point P which will be user-slided along curve,
@@ -190,14 +208,10 @@
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
         */
-        sconf.tForSagitta0 = 0.168;
         var foldPoints  = (new Array(200)).fill({}).map( fp => ({
             pcolor      : invalid,
             doPaintPname : false,
         }));
-        //*************************************
-        // \\// locals to reuse locally
-        //*************************************
 
 
         //*************************************

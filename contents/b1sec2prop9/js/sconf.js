@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({ //exports to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
@@ -11,6 +11,11 @@
         sconf.enableStudylab = false;
         //true enables framework zoom:
         sconf.enableTools = true;
+
+        //navigation
+        //e/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //e/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
 
         //***************************************************************
         // //\\ original picture dimensions for svg scene
@@ -48,6 +53,7 @@
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         sconf.rgShapesVisible = true;
 
+        //?/sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         //overrides "global", lemma.conf.js::sconf
@@ -76,6 +82,7 @@
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
 
+        //?/sconf.default_tp_lightness = 30;
         //--------------------------------------
         // \\// these do override engine defaults,
         //***************************************************************
@@ -287,11 +294,13 @@
             { 'PV' : { pcolor : proof }, },
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
+
             { 'QR' : { pcolor : proof }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : proof }, },
             { 'PT' : { pcolor : proof }, },
+
             { 'PC' : { pcolor : curvature }, },
             { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },

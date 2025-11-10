@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({ //exports to apptree
+    const { nspaste, fconf, sconf } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
@@ -88,7 +88,6 @@
         //***************************************************************
 
 
-
         //******************************************
         // //\\ model principals parameters
         //******************************************
@@ -96,6 +95,8 @@
         sconf.parQ = 0.250;
         sconf.orbit_q_start = 0;
         sconf.orbit_q_end = 1;
+        sconf.rgPq = 0.270;
+        //sconf.tForSagitta0 = 0.168;
 
         //the law to be studied in given lemma:
         //fe: for 1/r^2, the assigment is
@@ -103,6 +104,7 @@
         //null means that program will calculated the law
         //based on dt -> 0:
         sconf.force_law = null;
+
         //******************************************
         // \\// model principals parameters
         //******************************************
@@ -157,34 +159,36 @@
         //*************************************
         // //\\ topic group colors,
         //*************************************
-        var estimatedForce = [200,0,200];
-        var fQR = [100,0,200];
+        var estimatedForce  = [200,0,200];
+        var fQR             = [200,   0,  200, 1];
 
-        var sagitta = [100,50,0];
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,150,0,1];
-        var curvature  = [200,   40,  200, 1];
-        var fQR = [200,   0,  200, 1];
-        var timeColor  = [200,  0,  255, 1];
-        var body    = [0,     150,  200,   1];
-        var dtime   = [0,     150,  200,  1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var invalid = [255,    0,  0,      1];
-        var chord = [0,0,255, 1];
+        var sagitta         = [100,50,0];
+        var given           = [0,     150, 0,      1];
+        var proof           = [0,     0,   255,    1];
+        var result          = [200,150,0,1];
+        var curvature       = [200,   40,  200, 1];
+        var timeColor       = [200,  0,  255, 1];
+        var body            = [0,     150,  200,   1];
+        var dtime           = [0,     150,  200,  1];
+        var hidden          = [0,     0,   0,      0];
+        var context         = [0,     0,   0,      1];
+        var invalid         = [255,    0,  0,      1];
+        var chord           = [0,0,255, 1];
 
-        var force   = [200,  70,  70,      1];
+        var force           = [200,  70,  70,      1];
         ////swaps colors
-        var force = invalid;
-        var invalid = [0,     0,   0,      1];
-        result = [255,0,0,1];
-        distanceToCenter = body; //[ 70,100,0, 1];
+        var force           = invalid;
+        var invalid         = [0,     0,   0,      1];
+        result              = [255,0,0,1];
+        distanceToCenter    = body; //[ 70,100,0, 1];
 
         var predefinedTopics =
         {
             estimatedForce,
             fQR,
+            body,
+            force,
+            sagitta,
             given,
             proof,
             result,
@@ -194,13 +198,10 @@
             dtime,
             time    : timeColor,
             curvatureCircle : curvature,
-            body,
             orbit   : given,
             timearc : proof,
             APQ     : given,
-            force,
             invalid,
-            sagitta,
             chord,
             distanceToCenter,
         };
@@ -210,8 +211,19 @@
 
 
         //*************************************
-        // //\\ locals to reuse locally
+        // //\\ bricks for originalPoints
         //*************************************
+        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+        //e/var curvePivots = [];
+        //e/curvePivots.push( [22,315] );
+        //e/if( sconf.BESIER_PIVOTS === 5 ) {
+        //e/curvePivots = curvePivots.map( pivot => ({
+        //e/ pos         : pivot,
+        //e/ pcolor      : given,
+        //e/}));
+        //e/var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
         var curvePivots =
         [
             A,
@@ -224,9 +236,9 @@
             [102,184],
             [51,238 ],
         ];
-        sconf.rgPq = 0.270;
+ 
         curvePivots.push( [22,315] );
-        //sconf.tForSagitta0 = 0.168;
+
         if( sconf.BESIER_PIVOTS === 5 ) {
             ////adjustements of initial positions
             //sconf.tForSagitta0 = 0.172;
@@ -262,7 +274,7 @@
             doPaintPname : false,
         }));
         //*************************************
-        // \\// locals to reuse locally
+        // \\// bricks for originalPoints
         //*************************************
 
 
@@ -276,14 +288,19 @@
         };
 
         Object.assign( originalPoints, {
-            A : {
-                pos: A,
-                pcolor : given,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
-            },
-
+            //e/ X : {
+            //e/    cssClass : 'tp-dtime',
+            //e/    pos: S,
+            //e/    pcolor : force,
+            //e/    letterAngle : -90,
+            //e/    letterRotRadius : 40,
+            //e/    draggableX  : true,
+            //e/    draggableY  : fconf.sappId === 'b1sec2prop7',
+            //e/    initialR    : 5 * controlsScale,
+            //e/    fontSize : 30,
+            //e/    undisplayAlways : true,
+            //e/    doPaintPname : false,
+            //e/},
             S : {
                 pos: S,
                 pcolor : result,
@@ -292,7 +309,6 @@
                 draggableY  : true,
                 initialR    : 5,
             },
-
             P : {
                 pos: P,
                 pcolor : body,
@@ -301,7 +317,6 @@
                 draggableY  : true,
                 initialR    : 5,
             },
-
             Q : {
                 //pos: Q,
                 pcolor : proof,
@@ -321,24 +336,21 @@
                 letterRotRadius : 40,
             },
 
-            T : {
-                pos: [0,0],
-                pcolor : proof,
-                letterAngle : 180,
-            },
-
             R : {
                 //pos: Q,
                 pcolor : fQR,
                 letterAngle : 45,
             },
-
+            T : {
+                pos: [0,0],
+                pcolor : proof,
+                letterAngle : 180,
+            },
             Z : {
                 pos: [111111,111111],
                 pcolor : body,
                 letterAngle : 45,
             },
-
             rrminus : {
                 caption : 'Q-',
                 //pos: Q,
@@ -346,7 +358,6 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
             },
-
             sagitta : {
                 caption : 'I',
                 //pos: Q,
@@ -356,19 +367,11 @@
                 //initial setting does not work well bs poor code design
                 //undisplay : true,
             },
-
-            Y : {
-                //pos: Q,
-                pcolor : proof,
-                letterAngle : 80,
-            },
-
             V : {
                 pos: S,
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
             //center of instant curvature circle
             C : {
                 pos: [0,0], //will be calculated
@@ -376,7 +379,18 @@
                 pcolor : curvature,
                 letterAngle : -45,
             },
-
+            Y : {
+                //pos: Q,
+                pcolor : proof,
+                letterAngle : 80,
+            },
+           A : {
+                pos: A,
+                pcolor : given,
+                //letterAngle : -90,
+                //undisplayAlways : true,
+                //doPaintPname : false,
+            },
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
                 caption : 'Orbits are disconnected.',
@@ -404,24 +418,23 @@
         //*************************************
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature }, },
-            //{ 'SA' : { pcolor : context }, },
             { 'SP' : { pcolor : distanceToCenter }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
+            { 'PV' : { pcolor : curvature }, },
             { 'PR' : { pcolor : body }, },
-
             { 'SY' : { pcolor : proof }, },
+
             { 'QR' : { pcolor : fQR }, },
             { 'QP' : { pcolor : proof }, },
-            //{ 'VQ' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : fQR }, },
+
             { 'PC' : { pcolor : curvature }, },
-            { 'Q,rrminus' : { pcolor : proof }, },
+            { 'PY' : { pcolor : body }, },
+            { 'PZ' : { pcolor : body }, },
+
             { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
+            { 'Q,rrminus' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
         ];
         //*************************************

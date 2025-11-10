@@ -1,16 +1,24 @@
 ( function() {
-    const { nspaste, fconf, sconf, } = 
-            window.b$l.apptree({ ssFExportList : { init_conf } });
+    const { nspaste, fconf, sconf } = window.b$l.apptree({
+        ssFExportList : { init_conf }
+    });
     return;
 
 
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
+        //tools
+        sconf.enableStudylab = false;
+        //true enables framework zoom:
+        sconf.enableTools = true;
+
+        //navigation
+        //e/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //e/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+        
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ original picture dimensions for svg scene
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -20,34 +28,36 @@
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
+
+        var C = [443, 375 ];
+        var S = C;
+
+        var originX_onPicture = C[0]; //for model's axis x
+        var originY_onPicture = C[1]; //for model's axis y
+        sconf.diagramOrigin = [ 0, 0 ];
+
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = 360;
         //***************************************************************
-        // \\// geometical scales
+        // \\// original picture dimensions for svg scene
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
 
         //***************************************************************
-        // //\\ decorational parameters
+        // //\\ GUI cosmetics
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
         sconf.rgShapesVisible = true;
-        
+
+        //e/? sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
 
         //--------------------------------------
-        // //\\ do override engine defaults,
+        // //\\ these do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
@@ -62,35 +72,52 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
+        //overrides hover_width for texts
+        //for activation, needs class "hover-width" in element
+
+        //sconf.text_nonhover_width   = 1000; //todm why such a big value?
+        //sconf.text_hover_width      = 2000;
         sconf.text_nonhover_width   = 1000;
         sconf.text_hover_width      = 2000;
         // \\// principal tp-css pars
-        // \\// do override engine defaults,
-        // \\// decorational parameters
+
+        //--------------------------------------
+        // \\// these do override engine defaults,
+        //***************************************************************
+        // \\// GUI cosmetics
         //***************************************************************
 
-        //=============================================
-        // //\\ points reused in config
-        //=============================================
-        var C = [443, 375 ];
-        var S = C;
-        //=============================================
-        // \\// points reused in config
-        //=============================================
+
+        //******************************************
+        // //\\ model principals parameters
+        //******************************************
+        //pos of P
+        sconf.parQ = 0.255 * Math.PI;
+        sconf.tForSagitta0 = 0.168;
+
+        sconf.ellipseA  = 1.03;
+        sconf.ellipseB  = 0.86;
+        sconf.orbit_q_start = 0;
+        sconf.orbit_q_end = 2.0 * Math.PI;
+ 
+
+       //to be studied in given proposition:
+        sconf.force_law_function = sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
+            null :
+            //can be 
+            //bp.r
+            bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+
+        //******************************************
+        // \\// model principals parameters
+        //******************************************
 
 
-        //:diagram sandbox spatial parameters
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        var mod2inn_scale = 360;
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
-
-        //-------------------------------------------
-        // //\\ calculation algo parameters
-        //-------------------------------------------
+        //***************************************************************
+        // //\\ math model auxilaries
+        //***************************************************************
         const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
+        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
@@ -98,28 +125,6 @@
         sconf.TIME_STEPS = FT ? 1000 : null;;
         sconf.Q_STEPS = 1500;
         sconf.DATA_GRAPH_STEPS = 500;
-        //-------------------------------------------
-        // \\// calculation algo parameters
-        //-------------------------------------------
-
-        //-------------------------------------------
-        // //\\ curve shape parameters
-        //-------------------------------------------
-        sconf.ellipseA  = 1.03;
-        sconf.ellipseB  = 0.86;
-        sconf.orbit_q_start = 0;
-        sconf.orbit_q_end = 2.0 * Math.PI;
-        //-------------------------------------------
-        // \\// curve shape parameters
-        //-------------------------------------------
-
-        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
-        //to be studied in given proposition:
-        sconf.force_law_function = sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN ?
-            null :
-            //can be 
-            //bp.r
-            bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
@@ -129,14 +134,36 @@
         } else {
             sconf.Dq0 = 0.42;
         }
+        //calculation decoration and quality
+        //e/?sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+        //e/?sconf.ADDENDUM_NORM_BY_MIN = true;
+        //e/?sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
+        //***************************************************************
+        // \\// math model auxilaries
+        //***************************************************************
 
-        //pos of P
-        sconf.parQ = 0.255 * Math.PI;
 
-        //-----------------------------------
+        //***************************************************************
+        // //\\ model comparison demo
+        //***************************************************************
+        //e/ sconf.SHOW_FORMULAS = [
+        //e/     //usually, bP is context of "plane-cureve-derivatives"  
+        //e/     { label:'1/r⁵',
+        //e/       fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
+        //e/       //e// cssclass : 'tp-context tostroke',
+        //e/     }, 
+        //e/     { label:'1/r²',
+        //e/       fun:(bP) => 1/bP.r2,
+        //e/     }, 
+        //e/ ];
+        //***************************************************************
+        // \\// model comparison demo
+        //***************************************************************
+
+
+        //*************************************
         // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //*************************************
         var given   = [0,     150, 0,      1];
         var proof   = [0,     0,   255,    1];
         var result  = [200,   40,  0,      1];
@@ -158,14 +185,26 @@
             force   : result,
             tangentCircle : curvature,
         };
-        //-----------------------------------
+        //*************************************
         // \\// topic group colors,
-        //-----------------------------------
+        //*************************************
 
-        //---------------------------------------------------
-        // //\\ points to approximate and draw original curve
-        //---------------------------------------------------
-        var originalPoints = {
+
+        //*************************************
+        // //\\ original app points
+        //*************************************
+
+        //e/ var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        //e/     pcolor      : invalid,
+        //e/     doPaintPname : false,
+        //e/ }));
+
+        var originalPoints =
+        {
+            //e/foldPoints,
+        };
+
+        Object.assign( originalPoints, {
             
             // //\\ no visibility cssClass            
             AA : {
@@ -309,9 +348,6 @@
                 doPaintPname : false,
             },
 
-            //---------------------------------------
-            // //\\ draggable points
-            //---------------------------------------
             S : {
                 pos: S,
                 pcolor : result,
@@ -334,12 +370,15 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-            //---------------------------------------
-            // \\// draggable points
-            //---------------------------------------
-        };
+        });
+        //*************************************
+        // \\// original app points
+        //*************************************
 
 
+        //*************************************
+        // //\\ original app lines
+        //*************************************
         var linesArray =
         [
             { 'A,AA' : { pcolor : proof, }, },
@@ -437,7 +476,14 @@
                                     cssClass: 'subessay--another-solution',
             }, },
         ];
+        //*************************************
+        // \\// original app lines
+        //*************************************
 
+
+        //*************************************
+        // //\\ passing locals to sconf
+        //*************************************
         nspaste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,
@@ -453,5 +499,9 @@
             defaultLineWidth,
             handleRadius,
         });
+        //e/sconf.pointDecoration.r = sconf.handleRadius;
+        //*************************************
+        // \\// passing locals to sconf
+        //*************************************
     }
 })();

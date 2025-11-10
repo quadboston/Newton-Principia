@@ -1,9 +1,8 @@
 
 ( function() {
-    var { //import from apptree
-        ns, sn, mat,
-        fconf,
-        sconf, rg, stdMod,
+    const {
+        sn, nspaste, mat,
+        fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
@@ -12,33 +11,32 @@
     return;
 
 
-
-
-
-
-
-
-
-    //====================================================
-    // //\\ inits and sets config pars
-    //====================================================
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
-        sconf.rgShapesVisible           = true;
-        //fconf.timeToShowOriginalDiagram = 11111111;
-        sconf.default_tp_lightness = 30;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
+        //tools
+        sconf.enableStudylab = false;
+        //true enables framework zoom:
+        sconf.enableTools = true;
+
+        //navigation
+        //?/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //?/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+
+        //***************************************************************
+        // //\\ original picture dimensions for svg scene
+        //***************************************************************
+        //to comply standard layout, one must add these 2 lines:
+        //wrong var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        //wrong var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 145;
+        //***************************************************************
+        // \\// original picture dimensions for svg scene
+        //***************************************************************
+
 
         //sets model offset
         op.mainAxisAngle_initial = 0;
@@ -230,13 +228,15 @@
 
 
         //***************************************************************
-        // //\\ decorational parameters
+        // //\\ GUI cosmetics
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
+        sconf.default_tp_lightness = 30;
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = fconf.sappId === "b1sec3prop17" ? 20 : 30;
@@ -245,7 +245,7 @@
         sconf.pointDecoration.r= 3;
 
         //--------------------------------------
-        // //\\ do override engine defaults,
+        // //\\ these do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
@@ -264,10 +264,9 @@
         sconf.text_hover_width      = 1.5;
         // \\// principal tp-css pars
         //--------------------------------------
-        // \\// do override engine defaults,
-        //--------------------------------------
+        // \\// these do override engine defaults,
         //***************************************************************
-        // \\// decorational parameters
+        // \\// GUI cosmetics
         //***************************************************************
 
 
@@ -283,10 +282,9 @@
         // \\// points reused in config
         //=============================================
 
-        //-----------------------------------
+        //*************************************
         // //\\ topic group colors,
-        //      todm: possibly proliferation
-        //-----------------------------------
+        //*************************************
         var given   = [0,     150, 0,      1];
         var orbitareaSample = [0,     150, 0,  0.05];
         var orbit   = given;
@@ -333,24 +331,17 @@
             //curvatureCircle : curvature,
             //tangentCircle : curvature,
         };
-        //-----------------------------------
+        //*************************************
         // \\// topic group colors,
-        //-----------------------------------
+        //*************************************
 
-        //---------------------------------------------------
-        // //\\ points to approximate and draw original curve
-        //---------------------------------------------------
-        /*
-            //apparently this is not enough, need following in study-model.js
-                //except point P which will be user-slided along curve,
-                //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
-                //merges positions to help d8d
-                rg.a.pos = cPivots[0].rgX.pos;
-                rg.c.pos = cPivots[2].rgX.pos;
-        */
+
+        //*************************************
+        // //\\ original app points
+        //*************************************
         var originalPoints =
         {
+            //e/curvePivots,
         };
 
         Object.assign( originalPoints, {
@@ -707,8 +698,14 @@
             // \\// draggable points
             //---------------------------------------
         });
+        //*************************************
+        // \\// original app points
+        //*************************************
 
 
+        //*************************************
+        // //\\ original app lines
+        //*************************************
         var linesArray =
         [
             //-----------------------------------------
@@ -831,9 +828,15 @@
               { pcolor : p17_result_orbit } 
             },
         ];
+        //*************************************
+        // \\// original app lines
+        //*************************************
 
-        //stdMod.init_sliders_conf();
-        ns.paste( sconf, {
+
+        //*************************************
+        // //\\ passing locals to sconf
+        //*************************************
+        nspaste( sconf, {
             mediaBgImage : "diagram.png",
             predefinedTopics,
             originalPoints,
@@ -849,9 +852,8 @@
             handleRadius,
         });
         sconf.pointDecoration.r = sconf.handleRadius;
-        //***************************************************************
-        // \\// geometics parameters
-        //***************************************************************
+        //*************************************
+        // \\// passing locals to sconf
+        //*************************************
     }
-}) ();
-
+})();
