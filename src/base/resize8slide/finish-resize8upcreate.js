@@ -47,7 +47,6 @@
         //stdMod.bgImgAsp = haz( sconf, 'bgImgAsp' ) ||
         //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
-
         if(
             ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]() //isMobile
         ) {
@@ -65,18 +64,11 @@
     /// \\// restricts and sets super root and text pane sizes,
     ///=============================================================================
 
-
-
-
-
-
-
-
-
     function preparesDesktop({
         draggerMove,
         doDividorSynch,
     }){
+        //console.log('preparesDesktop');
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
@@ -103,7 +95,7 @@
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
         if (STATIC_LEGEND) {
-            console.log('static legend');
+            console.log('static legend'); //todo: this doesn't ever seem to be true
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
@@ -115,6 +107,7 @@
                 var boxChild = child.getBoundingClientRect();
                 legendWidth = Math.max(legendWidth, boxChild.width);
                 legendHeight = Math.max(legendHeight, boxChild.height);
+                //console.log('boxChild: ' + boxChild);
             });
 
             //measures container legend box itself

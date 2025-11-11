@@ -10,7 +10,7 @@
     function amode2rgstate( captured )
     {
         //called 1x on page load, then once more when switching tabs
-        console.log('amode8captures.js'); 
+        //console.log('amode8captures.js'); 
 
         var { logic_phase, aspect, subessay } = amode;
 

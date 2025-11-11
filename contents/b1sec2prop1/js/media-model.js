@@ -91,11 +91,6 @@
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
-        if( !stdMod.digital_legend_created ) {
-            ns.haff( stdMod, 'create_digital_legend' );
-            stdMod.digital_legend_created = true;
-        }
-
         //:updates subessay menu
         var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];

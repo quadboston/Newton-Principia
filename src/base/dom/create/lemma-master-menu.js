@@ -376,14 +376,16 @@
 
             //**********************************************************************************
             //todo patch: this is a vital patch, without it to appear legend needs
-            //second resize event,
-            //the reason for the bug is unknown,
-            setTimeout(
-                function() {
-                    res( null, !!'doDividorSynch' );
-                },
-                100
-            );
+            //second resize event, the reason for the bug is unknown,
+            //only needed for L7, P1 corollaries 
+            if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+                setTimeout(
+                    function() {
+                        res( null, !!'doDividorSynch' );
+                    },
+                    100
+                );
+            }
             //**********************************************************************************
         }
     }

@@ -300,10 +300,9 @@
         ///inits effective or empty astate_2_.... functions
         sapp.init_astate2sapp();
 
-
-        //this works for outdated-lemmas ... l9, l2, (l3) l21, l20,
-        //new lemmas may use stdMod ns,
-        //note, here, legend is created too early, before model,
+        // init legends here to ensure they are in DOM when layout it calculated
+        // todo: some pages use stdMod, others ssF - should be same
+        ns.haff( stdMod, 'create_digital_legend' );
         ns.haff( ssF, 'create_digital_legend' );
 
         stdModPatch();
@@ -314,10 +313,6 @@
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
         fmethods.setupEvents();
-
-        // todo: this isn't really necessary here, 
-        // except that L6, L7, L8 tables are misaligned on page load without it...
-        wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
 
         ///.this is a patch: the cause and real solution is not known;
         ///.and it still does not work for l2,3

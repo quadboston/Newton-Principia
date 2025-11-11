@@ -125,15 +125,11 @@
                     //this condition indicates we are in module "study-model.js" now,
                     //assuming this is a most indicative property,
                     ns.h( stdModExportList, 'model_upcreate' ) &&
-
                     !ns.h( stdModExportList, 'model8media_upcreate' )
                 ) {
-                    //ccc( 'Remodel: in app-tree: ' +
-                    //     'model_upcreate does exist, creating model8media_upcreate' );
                     stdMod.model8media_upcreate = () => {
-                        // todo called twice why? 
-                        // console.log('model and media upcreate');
-                        
+                        // called once on page load and again any time the model/data changes
+                        console.log('model and media upcreate');                        
                         stdMod.model_upcreate();                        
                         ns.haff( stdMod, 'media_upcreate' ); 
                     }
@@ -146,6 +142,7 @@
             sDomFExportList && Object.assign( sDomF, sDomFExportList );
             //==========================================================
         };
+
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
         // \\// module and s ubmodel sugar

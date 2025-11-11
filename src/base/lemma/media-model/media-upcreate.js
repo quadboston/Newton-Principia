@@ -126,12 +126,6 @@
         }
         // \\// upcreates lines after points
         //=============================================
-
-
-        if( !stdMod.digital_legend_created ) {
-            haff( stdMod, 'create_digital_legend' );
-            stdMod.digital_legend_created = true;
-        }
         
         //**************************************************
         // //\\ note, former lemmas
