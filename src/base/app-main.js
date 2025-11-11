@@ -53,11 +53,10 @@
         // //\\ home8lemmas
         // //\\ sets ids and titles
         //===============================
-        //ns.url2conf( fconf );
-        //sn( 'pathToContentSite', fconf, '.' );
-        sn( 'sappId', fconf, 'home-pane' );
-        ssF.spawns_lemsDefArr();
-        fapp.doesConfigLemma();
+        // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
+        sn( 'sappId', fconf, 'home-pane' ); 
+        ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
+        fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
@@ -67,6 +66,7 @@
 
         //===============================
         // //\\ preconstructs home8lemmas
+        // adds bsl-approot, bsl-home-pane, page-top-nav-bar to DOM
         //===============================
         html.builds_body_4_home8lemma();
         html.builds_homePane();
@@ -85,40 +85,17 @@
             if( !haz( fconf, 'lemmaHasHomeButton' ) ) {
                 sDomN.homeButton$.css( 'display', 'none' );
             }
-            //// lemma
-            LANDING_II___main_lemma();
+            /// removed LANDING_II___main_lemma() bc it was just making redundant calls
+            ns.globalCss.clearStyleTag( 'home' )
+            LANDING_III___config8run_lemmaModules(); //no home-pane modules
         }
-    }
-
-    function LANDING_II___main_lemma()
-    {
-        //=============================================================
-        // does first round (of two) of executing setModule for modules
-        //=============================================================
-        eachprop( srg_modules, function( setModule, debugIdleName ) {
-            //// if order insignificant: todo needless?:
-            //// can? be executed when module loaded right away
-            setModule();
-        });
-        ///purges list to avoid executing setModule twice when lemma's
-        ///modules are loaded
-        Object.keys( srg_modules ).forEach( mkey => {
-            delete srg_modules[ mkey ];
-        });
-
-
-        //====================================
-        // further-modules-loads: lemmas
-        //====================================
-        ns.globalCss.clearStyleTag( 'home' )
-        LANDING_III___config8run_lemmaModules(); //no home-pane modules
     }
     //***********************************************
     // \\// begins establish home and lemmas
     //***********************************************
 
     //***********************************************
-    // //\\ establishes lemmas
+    // //\\ establishes lemmas (loads page specific scrips)
     //***********************************************
     function LANDING_III___config8run_lemmaModules()
     {
@@ -338,16 +315,9 @@
         sapp.isInitialized = true;
         fmethods.setupEvents();
 
-        //todm:
-        //this call is vital for l2: placing it here does
-        //restore proportion text/media to normal: othewise media is small;
-        //this restoration is still abrupt, media is small then jerks to big;
-        //
-        //this resize should fix any graphic misfits
-        //.todm code proliferation with "setStates_when_entering..." for upcreate ...
-        //.includes sapp.up-create();
-        wrkwin.start8finish_media8Ess8Legend_resize__upcreate(
-            null, !!'doDividorSynch');
+        // todo: this isn't really necessary here, 
+        // except that L6, L7, L8 tables are misaligned on page load without it...
+        wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
 
         ///.this is a patch: the cause and real solution is not known;
         ///.and it still does not work for l2,3
