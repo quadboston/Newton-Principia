@@ -100,16 +100,26 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
+        sconf.DQ_SLIDER_MIN = FT ? null : 0.001;
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 4;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.39;
+        } else {
+            sconf.Dq0 = 0.42;
+        }
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------

@@ -59,11 +59,11 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= plusQ ){
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
-                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
-                        bP.invalid = true
-                    }
+                if( sconf.orbit_q_end <= plusQ &&
+                    MAKE_RANGE && !CURVE_REVOLVES
+                ){
+                    ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                    bP.invalid = true
                 } else {
                     bP.plusQ = plusQ;
                     const displ = stdMod.calcs__displacement({ 

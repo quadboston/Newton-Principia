@@ -49,10 +49,8 @@
             //this is a stub for non-Kepler orbits:
             //} else if( sconf.TIME_IS_FREE_VARIABLE ){
             //    var instantForce = bP.instant_sagitta;
-
-            //} else {
             var instantForce = bP.instant_displacement;
-            //}
+
             bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 instantFQR_max = Math.max( bP.instant_displacement, instantFQR_max );
@@ -86,9 +84,8 @@
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
             const instf = Math.abs(bP.instantForce) / instantForceMax;
-            //project board requirement:
+            //not fully consistent with convergence logic:
             const disp = Math.abs(bP.displacement) / instantForceMax;
-
             const ds_dt = bP.ds_dt / speedMax;
             const sagitta = Math.abs(bP.sagitta) / sagittaMax;
             ga.y = [

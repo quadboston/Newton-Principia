@@ -27,19 +27,34 @@
         const Rc = R; //curvature radius
 
         if(solvable){
+            {
+                //patch which adds missed values
+                //for case T is not free var,
+                const q = Porb.q;
+                const qp = rg.Q.q = Porb.plusQ;
+                const qm = rg.Q.q_minus = Porb.minusQ = 2*q - qp;
+                const Qp = stdMod.q2xy( qp );
+                const Qm = stdMod.q2xy( qm );
+                Porb.rrplus = [ Qp[0], Qp[1] ];
+                Porb.rrminus = [ Qm[0], Qm[1] ];
+            }
             const rrplus = Porb.rrplus;
             const rrminus = rg.rrminus.pos = Porb.rrminus;
-            rg.Q.q = Porb.plusQ;
-            rg.Q.q_minus = Porb.minusQ;
+           
             rg.Q.pos[0] = rrplus[0];
             rg.Q.pos[1] = rrplus[1];
             rg.QtimeDecor.caption = '';
             rg.QtimeDecor.pos = Porb.rrplus;
-            let sagV = Porb.sagittaVector;
-            rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
+            
+            // //\\ perhaps, these are obsolete for this proposition:
             const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
-
+            if( sconf.TIME_IS_FREE_VARIABLE ){
+                let sagV = Porb.sagittaVector;
+                rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
+            }
+            // \\// perhaps, these are obsolete for this proposition:
+            
             //R = parallel-projection of Q to tangent
             var RR = mat.linesCross(
                 uu, rr0, //direction, start

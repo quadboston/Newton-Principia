@@ -87,8 +87,8 @@
         op.PparQ_initial        = PparQ;
         op.PparQ_initial_essay  = PparQ;
         op.sagittaDelta_q       = op.sagittaDelta_q_initial;
-        op.sagittaDelta_q_instant = 0.001;
-
+        op.sagittaDelta_q_instant = 0.0001;
+        //sconf.Q_STEPS=1500;
         //-----------------------------------------------------
         // //\\ sets Kepler_v
         //-----------------------------------------------------

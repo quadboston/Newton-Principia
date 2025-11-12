@@ -92,15 +92,26 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
-        sconf.DQ_SLIDER_MAX = null;
+        sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DT_SLIDER_MAX = 0.48;
+        sconf.DQ_SLIDER_MIN = FT ? null : 0.001;
+       
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var TIME_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+        
+        //intervals of dt or dq to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        if( FT ){
+            sconf.Dt0 = 0.39;
+        } else {
+            sconf.Dq0 = 0.42;
+        }
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -133,14 +144,9 @@
         //to be studied in given proposition:
         //sconf.force_law_function = bP => 1/(bP.r2); incompatible with fultim norm
 
-        //intervals of dt or dq to construct an arc for
-        //displacement or sagitta,
-        //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.39;
-
         //pos of P
         sconf.parQ = 0.250 * Math.PI;
-
+        
         //-----------------------------------
         // //\\ topic group colors,
         //      todm: possibly proliferation
