@@ -8,6 +8,9 @@
 * Lemmas 2, 3
 	* curve manipulation made less twitchy
 
+* Propositions 1, 2
+	*  zoom capability added
+
 * Proposition 12
 	* eccentricity slider de-emphasized
 
