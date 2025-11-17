@@ -1,6 +1,6 @@
 # Change Log
   
-## 2025-11-?? (LightSalmon Version, 0.1386?)
+## 2025-11-17 (LightSalmon Version, 0.13861)
 ### Improved
 * General
 	* dropdown menu scrolls for short browser windows
