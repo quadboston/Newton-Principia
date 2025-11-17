@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, $$, svgNS, fapp, sapp, sconf, stdMod, } = window.b$l.apptree({
+    var { sn, $$, svgNS, fapp, stdMod, } = window.b$l.apptree({
         setModule, });
     var stdL2 = sn('stdL2', fapp );
     return;
@@ -33,7 +33,7 @@
         gui.drawsWidestRect = function(dr)
         {
             let { left, right, top, } = dr.widestRect;
-            guiup.updatesRect(
+            guiup.assignRectValues(
                 dr,
                 dr.faaf, //item
                 left,
@@ -48,4 +48,3 @@
     }
 
 }) ();
-

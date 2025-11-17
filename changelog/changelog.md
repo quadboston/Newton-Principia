@@ -7,6 +7,7 @@
 
 * Lemmas 2, 3
 	* curve manipulation made less twitchy
+	* fixed checkbox response
 
 * Propositions 1, 2
 	*  zoom capability added
