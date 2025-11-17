@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, fixedColors, } =
+    var { sn, nspaste, fapp, fconf, sconf, ssF, fixedColors, } =
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
@@ -262,7 +262,10 @@
                         pcolor : predT.given,
                    },
             },
-
+            { aK : {
+                        pcolor : predT.given,
+                   },
+            },
             { AK : {
                         pcolor : predT.given,
                    },
@@ -366,8 +369,6 @@
         //=====================================
         // \\// patch for quick slider creation
         //=====================================
-
-        //fapp.stdL2.setupL2data();
     };
 
 

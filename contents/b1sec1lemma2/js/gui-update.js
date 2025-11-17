@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, $$, fapp, sconf, sDomN, rg, stdMod, } = window.b$l.apptree({});
+    var { sn, fapp, sconf, sDomN, stdMod, } = window.b$l.apptree({});
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
@@ -13,8 +13,7 @@
     Object.assign( guiup, {
         updatePtsRectsLabelsAreas,
         sets_pt2movable,
-        //updateLabel,
-        updatesRect,
+        assignRectValues,
         xy2shape,
         xy_2_xy8shape,
         paints_curve8axes,
@@ -129,7 +128,7 @@
         }
 
         if (appstate.showRectPts) {
-            setsVisibleRange(dr.curvPts,1);
+            setsVisibleRange(dr.curvPts, true);
         }
         setsVisibleRange(dr.basePts, !sconf.HIDE_WHEN_NON_MONOTONIC ||
             study.isMonotonic(dr));
@@ -155,7 +154,7 @@
     //========================================
     // //\\ possibly move to gui-update module
     //========================================
-    function updatesRect(dr, rectDom, x, y, width, height) {
+    function assignRectValues(dr, rectDom, x, y, width, height) {
         //Update the rect (polygon) with transformed rectangular parameters
         const yRef = dr.yVariations.maxY;
         const w = width;
@@ -196,18 +195,17 @@
 
             //Only update rects that are visible
             if (view.isInscribed)
-                updatesRect( dr, dr.InscrRects.list[i], x, insY, width, );
+                assignRectValues( dr, dr.InscrRects.list[i], x, insY, width, );
             if (view.isCircumscribed) {
-                updatesRect( dr, dr.circRects.list[i], x, cirY, width, );
-                updatesRect( dr, dr.differenceRects.list[i], x, cirY, width,
-                         insY-cirY );
+                assignRectValues( dr, dr.circRects.list[i], x, cirY, width, );
+                assignRectValues( dr, dr.differenceRects.list[i], x, cirY, 
+						width, insY-cirY );
             }
 
             updatePts(dr, i, x);
         }
         updatePts(dr, basN, dr.yVariations.x_end);
         gui.drawsWidestRect?.(dr);
-
 
         //Update curve handle positions (for when transforming)
         const transforms = dr.transforms;
@@ -220,7 +218,6 @@
                 }
             });
         }
-
 
         guiup.updateLegendAmounts?.(dr);
     }
@@ -265,4 +262,3 @@
     
     
 }) ();
-
