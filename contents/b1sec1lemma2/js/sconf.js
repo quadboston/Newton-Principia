@@ -61,6 +61,8 @@
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
+        //radius of points
+        sconf.pointDecoration.r = 1.6; // only works on solid green points, not draggers
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -114,85 +116,72 @@
             B : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             K : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 1.6,
             },
 
             L : {
                 pcolor      : predT.given,
                 letterAngle : -145,
-                initialR    : 1.6,
             },
 
             M : {
                 pcolor      : predT.given,
                 letterAngle : -145,
                 letterRotRadius : 40,
-                initialR    : 1.6,
             },
 
             a : {
 				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             F : {
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             f : {
 				caption: '𝑓',
                 pcolor      : predT.given,
                 letterAngle : 90,
-                initialR    : 1.6,
             },
 
             C : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             D : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             l : {
 				caption: '𝑙',
                 pcolor      : predT.given,
                 letterAngle : 135,
-                initialR    : 1.6,
             },
 
             b : {
 				caption: '𝑏',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             //invisible point
@@ -200,41 +189,35 @@
 				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             d : {
 				caption: '𝑑',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
             m : {
 				caption: '𝑚',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             n : {
 				caption: '𝑛',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             o : {
 				caption: '𝑜',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             e : {
 				caption: '𝑒',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
                 hideCaption  : true,
             },
         };
@@ -352,7 +335,7 @@
             },
 
         ];
-
+        
         nspaste( sconf, {
             predefinedTopics : predT,
             originalPoints,

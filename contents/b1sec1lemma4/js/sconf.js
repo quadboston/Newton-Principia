@@ -88,6 +88,9 @@
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
+        //point sizes
+        sconf.pointDecoration.r = 1.6; // resizes solid points, not hollow draggers
+
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -166,26 +169,22 @@
 				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             c : {
 				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
 
@@ -193,26 +192,22 @@
 				caption: '𝑝',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
 
             P : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             T : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
             },
 
             r : {
 				caption: '𝑟',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
             },
         };
 
@@ -246,7 +241,7 @@
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : 1, //was pictureActiveArea,
+            mod2inn_scale : 5, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
 			mediaBgImage : "l4-diagram.png",

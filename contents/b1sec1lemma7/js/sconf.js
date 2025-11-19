@@ -32,8 +32,6 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 5;
         
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
@@ -45,7 +43,9 @@
         sconf.default_tp_stroke_width = 8;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3 * controlsScale ),
+        handleRadius            = Math.floor( 4 * controlsScale ),
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js

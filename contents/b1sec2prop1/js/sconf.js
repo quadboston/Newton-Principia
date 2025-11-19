@@ -30,6 +30,8 @@
         //.todm: trully 611 and rotated
         var pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
 
+        //sconf.pointDecoration.r = 5; // todo: why this doesn't work?
+
         var initialPath =
         [
             { name:'A', pos:[531, 613] },

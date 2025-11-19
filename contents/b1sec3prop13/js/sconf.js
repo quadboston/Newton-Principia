@@ -39,7 +39,7 @@
         // override engine defaults, in expands-conf.js,
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3 * controlsScale ),        
+        handleRadius            = Math.floor( 4 * controlsScale ),        
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 
