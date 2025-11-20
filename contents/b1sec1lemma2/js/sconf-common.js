@@ -74,8 +74,8 @@
 
             ////GUI
             FINEPTS_RADIUS  : 10,
-            MOVABLE_BASE_RADIUS : 3,
-            CTRL_RADIUS     : 3,
+            MOVABLE_BASE_RADIUS : 2.5,
+            CTRL_RADIUS     : 2.5,
             //Minimum distance between base handles
 	        BASE_POINTS_REPELLING_DISTANCE : 10,
 

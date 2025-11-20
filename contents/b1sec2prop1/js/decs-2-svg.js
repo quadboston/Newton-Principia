@@ -359,7 +359,7 @@
                     'fill'          : 'white',
                     'stroke'        : sDomF.getFixedColor( 'force' ), //wrong, todm, killed tp-classes
                     'stroke-width'  : 1,
-                    r               : handleR+2,
+                    r               : handleR+1,
                 }
             );
             //rg[ fakeName ].svgel$.addClass( 'tp-force' );

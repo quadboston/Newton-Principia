@@ -89,7 +89,9 @@
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
         //point sizes
-        sconf.pointDecoration.r = 1.6; // resizes solid points, not hollow draggers
+        sconf.pointDecoration.r = 3; // resizes solid points, not hollow draggers
+        sconf.MOVABLE_BASE_RADIUS = 4; // overwrites defaults from sconf-common.js
+        sconf.CTRL_RADIUS = 4;
 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]

@@ -61,8 +61,10 @@
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
-        //radius of points
-        sconf.pointDecoration.r = 1.6; // only works on solid green points, not draggers
+        // radius of points
+        // only works on solid green points, not draggers
+        // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js 
+        sconf.pointDecoration.r = 1.0; 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {

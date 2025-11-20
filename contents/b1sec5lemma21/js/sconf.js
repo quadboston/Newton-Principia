@@ -48,7 +48,7 @@
         sconf.default_tp_lightness = 30;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 7 * controlsScale ),
+        handleRadius            = Math.floor( 5.5 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
