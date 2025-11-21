@@ -33,7 +33,7 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;        
         
-        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
         
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 

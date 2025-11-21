@@ -563,7 +563,7 @@
                 var tdY         = Math.abs( testMediaY - dompos[1] );
                 var td          = Math.max( tdX, tdY );
 
-                var distLim = fconf.DRAGGEE_HALF_SIZE;
+                var distLim = fconf.DRAGGER_TOLERANCE;
                 //console.log('distLim' + distLim); // todo: is this ever called?
 
                 //.td is a "rect-metric" for distance between

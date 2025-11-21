@@ -37,7 +37,7 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ do override engine defaults,

@@ -25,7 +25,7 @@
             sconf.controlsScale = realSvgSize / sconf.standardSvgSize
         }
         
-        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         var modorInPicX = 47; //28; 
         var activeAreaOffsetOnPictureY = 0; 

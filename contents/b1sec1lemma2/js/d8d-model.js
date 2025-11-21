@@ -181,7 +181,7 @@
         function findClosestPoint( closest, mousePoint, dwrap )
         {
             var pointWrap = dwrap.pointWrap;
-            var DRAGGEE_HALF_SIZE = sconf.DRAGGEE_HALF_SIZE;
+            var DRAGGER_TOLERANCE = sconf.DRAGGER_TOLERANCE;
 
             if(
                 //.excludes excess of non-used points
@@ -195,7 +195,7 @@
             var tdX = Math.abs( mousePoint[0] - pointWrap.x );
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );
             var td  = Math.max( tdX, tdY );
-            if( td <= DRAGGEE_HALF_SIZE ) {
+            if( td <= DRAGGER_TOLERANCE ) {
                 if( !closest || closest.td > td ) {
                     closest = { td, dwrap };
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {

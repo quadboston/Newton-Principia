@@ -41,7 +41,7 @@
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
         
-        fconf.DRAGGEE_HALF_SIZE = 25; // distance where crosshair appears
+        fconf.DRAGGER_TOLERANCE = 25; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ does override engine defaults,

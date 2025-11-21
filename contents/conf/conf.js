@@ -76,7 +76,7 @@
         LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
-        DRAGGEE_HALF_SIZE : 15, // distance from point that is draggable
+        DRAGGER_TOLERANCE : 15, // distance from point that is draggable
 
         //setting this to "false" does hide slider
         //decoration spinning arrows

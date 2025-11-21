@@ -108,7 +108,7 @@
         var pOnS = point_on_dragSurf;
         //.if distance to pOnS is "outside" of this par.,
         //.then dragWrap is not "considered" for drag
-        var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
+        var DRAGGER_TOLERANCE = fconf.DRAGGER_TOLERANCE;
 
         var closestDragWrap = null;
         var closestTd = null;
@@ -132,7 +132,7 @@
             var tdY = Math.abs( testMediaY - dragPoint.medpos[1] );
             var td  = Math.max( tdX, tdY );
 
-            var distLim = haz( dragPoint, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
+            var distLim = haz( dragPoint, 'DRAGGER_TOLERANCE' ) || DRAGGER_TOLERANCE;
             //console.log('distLim ' + distLim);
             if( td <= distLim ) {
                 let dpp = dragPoint.dragPriority;
