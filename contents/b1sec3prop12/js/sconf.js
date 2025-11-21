@@ -35,11 +35,13 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
+        
+        fconf.DRAGGEE_HALF_SIZE = 15; // distance where crosshair appears
 
         // override engine defaults, in expands-conf.js,
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),        
+        handleRadius            = Math.floor( 4.5 * controlsScale ),        
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 

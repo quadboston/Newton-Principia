@@ -1,6 +1,6 @@
 // //\\// widget config
 ( function() {
-    var { mat, fapp, sconf, fixedColors, } = 
+    var { mat, fapp, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -40,6 +40,8 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
+        
+        fconf.DRAGGEE_HALF_SIZE = 25; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ does override engine defaults,

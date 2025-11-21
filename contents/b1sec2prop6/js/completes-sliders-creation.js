@@ -8,7 +8,6 @@
     // //\\ point S slider
     //=========================================================================
     function creates_S_slider() {
-        rg.S.DRAGGEE_HALF_SIZE = 15;
         rg.S.acceptPos = newPos => {
             //does this for decorational purposes
             stdMod.rebuilds_orbit( ssD.Dt );
@@ -31,8 +30,6 @@
         pivs.forEach( (cp,cpix) => {
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
-            var stashedCurveP = null;
-            cp.rgX.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
             cp.rgX.processOwnDownEvent = () => {
                 let pos = stdMod.q2xy( bezio.ix2parameter[cpix] );
                 stashedPos = [ pos[0], pos[1] ];

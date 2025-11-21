@@ -81,7 +81,7 @@
 
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
-            DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
+            DRAGGEE_HALF_SIZE : 5, //"rectangular-distance" to point to be detected
 
             //Approximate number of line segments used to generate the curve.
             //The actual number used can vary slightly (by a few).

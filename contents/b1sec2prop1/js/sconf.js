@@ -1,6 +1,9 @@
 ( function() {
-    var { haff, has, eachprop, nspaste, capture, toreg, sconf, ssF, ssD, sDomF, fixedColors, 
-        fixedColorsOriginal, } = window.b$l.apptree({ ssFExportList : { init_conf } });
+    var { 
+        haff, has, eachprop, nspaste, capture, toreg, 
+        fconf, sconf, ssF, ssD, sDomF, 
+        fixedColors, fixedColorsOriginal, 
+    } = window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -21,6 +24,8 @@
             let realSvgSize = pictureWidth + pictureHeight;
             sconf.controlsScale = realSvgSize / sconf.standardSvgSize
         }
+        
+        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
 
         var modorInPicX = 47; //28; 
         var activeAreaOffsetOnPictureY = 0; 

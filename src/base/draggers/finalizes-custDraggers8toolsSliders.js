@@ -133,6 +133,7 @@
             var td  = Math.max( tdX, tdY );
 
             var distLim = haz( dragPoint, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
+            //console.log('distLim ' + distLim);
             if( td <= distLim ) {
                 let dpp = dragPoint.dragPriority;
                 if( !closestDragWrap ||

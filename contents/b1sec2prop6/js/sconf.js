@@ -45,6 +45,8 @@
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
+        
+        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -52,7 +54,7 @@
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3 * controlsScale ),
+        handleRadius            = Math.floor( 4 * controlsScale ),
         //console.log(handleRadius);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...

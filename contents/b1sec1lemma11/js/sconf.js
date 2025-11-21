@@ -40,7 +40,8 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        //overrides "global", lemma.conf.js::sconf
+        
+        fconf.DRAGGEE_HALF_SIZE = 10; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ do override engine defaults,

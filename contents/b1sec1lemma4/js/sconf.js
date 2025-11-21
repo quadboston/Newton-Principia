@@ -155,6 +155,8 @@
 
             //Hides the rectangles, lines etc. when non-monotonic
             HIDE_WHEN_NON_MONOTONIC : true,
+
+            DRAGGEE_HALF_SIZE : 8,
         });
         //=====================================
         // \\// configures application engine

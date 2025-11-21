@@ -1,5 +1,5 @@
 ( function() {
-    var { eachprop, mat, fapp, sconf, fixedColors, } = 
+    var { eachprop, mat, fapp, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -40,6 +40,8 @@
         //sconf.standardSvgSize = 250;
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
+        
+        fconf.DRAGGEE_HALF_SIZE = 25; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -48,7 +50,7 @@
         sconf.default_tp_lightness = 30;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 5.5 * controlsScale ),
+        handleRadius            = Math.floor( 6 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
