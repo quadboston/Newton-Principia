@@ -300,7 +300,7 @@
         stdMod.bgImgOffset  = bgImgOffset; //positive or 0
         stdMod.bgImgW       = bgImgW;      //svgSceneW - offsets
         //used only in lemma2:
-        //stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;   
+        stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;   
         //-------------------------------------------------------
 
         //see **api innerMediaHeight
@@ -321,9 +321,16 @@
         //calculation has updated values.
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
+            const extendCanvas = stdMod.svgVB_H * 0.1;
+            stdMod.svgVB_H += extendCanvas; // to give space for slider
+            let sliderTop; // offset slider so it appears within canvas
+            if(sconf.sappId === 'b1sec1lemma4') {
+                sliderTop = stdMod.bgImgH - 10; 
+            } else { // L1, L2
+                sliderTop = stdMod.bgImgH - 20; 
+            }
             sliderGroup$
-                .css( 'top',
-                    (bgImgW * stdMod.simSceSvg_narrowestAsp).toFixed() + 'px')
+                .css( 'top', sliderTop.toFixed() + 'px')
                 .css( 'width', `${sliderWidth}px` )
                 .css( 'left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
                 ;
@@ -358,29 +365,34 @@
     ///=============================================================================
 
 
-
     ///========================================
     ///
     ///========================================
     function preparesMobile()
     {
-        var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN);
+        var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN) - 50;
         stdMod.bgImgW       = wid;
-        //stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
+        stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
         stdMod.bgImgOffset  = 0;
+        var picCSS_2_svgmodel = sconf.innerMediaWidth / stdMod.bgImgW;
 
-        stdMod.simSceneW    = wid - 50;
+        stdMod.simSceneW    = wid;
         stdMod.svgSceneW    = stdMod.simSceneW;
+        stdMod.svgSceneH    = stdMod.bgImgH;
 
-        stdMod.svgVB_W      = sconf.innerMediaWidth;
-        stdMod.svgVB_H      = sconf.innerMediaHeight;
+        stdMod.svgVB_W        = stdMod.svgSceneW * picCSS_2_svgmodel;
+        stdMod.svgVB_H        = stdMod.svgSceneH * picCSS_2_svgmodel;
         stdMod.svgVB_offsX  = 0;
-
 
         const sliderGroup$ = sDomN.sliderGroup$;
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             //Ensure the width gets updated as the window changes size
             const sliderWidth = calculateSliderWidth();
+            let extendCanvas = stdMod.svgVB_H * 0.1;
+            if(sconf.sappId === 'b1sec1lemma4') {
+                extendCanvas = stdMod.svgVB_H * 0.25;
+            }
+            stdMod.svgVB_H += extendCanvas;
             sliderGroup$
                 .css( 'display', 'inline-block' )
                 //'relative' rather than 'static' so the z-index is enabled for
@@ -391,11 +403,11 @@
                 //the background image, and it's position and dimensions are
                 //such that it can be on top of the slider.
                 .css( 'position', 'relative' )
-                .css( 'top', '0px' )
+                .css( 'top', '-80px' )
                 .css( 'left', '0px' )
                 .css( 'width', `${sliderWidth}px` );
                 ;
-                stdMod.simSceneH += 60;
+                stdMod.simSceneH = stdMod.svgVB_H + 750;
         } else {
             const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
             stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
@@ -426,18 +438,16 @@
                     stdMod.simSceneH -= 170;
                     break;
                 case 'b1sec5lemma20':              
-                    stdMod.simSceneH -= 1190;
+                    stdMod.simSceneH -= 1150;
                     break;
                 case 'b1sec5lemma21':              
-                    stdMod.simSceneH -= 1150;
+                    stdMod.simSceneH -= 1100;
                     break;
                 default:
                     //the rest are fine as is
                     break;
             }
         }
-
-
 
         makes_svgViewBox();
         doesTopContainersSizing();

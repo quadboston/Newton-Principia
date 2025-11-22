@@ -134,34 +134,23 @@
 
     function syncPoints(dr) {
         let view = sdata.view;
-        let isFig = !!view.isFigureChecked;
-        let isIn = !!view.isInscribed;
-        let isCir = !!view.isCircumscribed;
-        let onlyFig = !isIn&&!isCir;
-        {
-            let s = onlyFig;
-            [ 'a', 'b', 'c', 'd', 
-              'A', 'B', 'C', 'D', 'E',
-            ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-                    rg[ l ].doPaintPname = !s;
-            });
-            [ 'AE', 'AB', 'BC', 'CD' ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-            });
-            [ 'Bb', 'Cc', 'Dd', 'oE', 'Aa' ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-            });
-            if( !isFig && isIn && !isCir ) {
-                rg["a"].undisplay = true;
-            }
-            if( isFig ) {
-                rg["Aa"].undisplay = false;
-            } else if( !isCir ) {
-                rg["Aa"].undisplay = true;
-            }
-        }
-        
+		const showFigure = !!view.isFigureChecked;
+		const showInscribed = !!view.isInscribed;
+		const showCircumscribed = !!view.isCircumscribed;
+		const onlyFigure = !showInscribed && !showCircumscribed;
+		const inscribedFeatures = ['K','L','M','Kb','cL','dM'];
+		inscribedFeatures.forEach(function(item){
+			rg[item].undisplay = !showInscribed;
+		});
+		const circumscribedFeatures = 
+			['f','l','m','n','o','la','mb','nc','od',
+				'Aa','aK','lB','mC','nD','oE'];
+		circumscribedFeatures.forEach(function(item){
+			rg[item].undisplay = !showCircumscribed;
+		});
+		rg['aK'].undisplay = !showFigure;
+        rg['a'].undisplay = !(showCircumscribed || showFigure);
+
         //order of statements seems vital
         [0,1,2,3,4].forEach( ix => { syncPoint(dr, dr.basePts.list[ ix ]); });
         dr.ctrlPts.list.forEach( item => { syncPoint(dr, item); });
@@ -185,7 +174,7 @@
         {
             let l2 = fconf.sappId.indexOf('b1sec1lemma2') === 0;
             let checked = amode.logic_phase !== 'claim';
-            let undisplay = !checked || onlyFig;
+            let undisplay = !checked || onlyFigure;
             rg.F.undisplay = undisplay||l2;
             rg.f.undisplay = undisplay||l2;
             rg.AF.undisplay = undisplay||l2;
@@ -199,6 +188,4 @@
         ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity(dr);
     }
     
-    
 }) ();
-

@@ -6,14 +6,14 @@
   "logic_phaseCaption" : "Claim"
 }
 *..*
-        If in any figure ¦figure Aa¦A𝑎𝑐E¦¦,
-        comprehended by the straight lines ¦Aa¦A𝑎¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve 𝑎𝑐E¦¦,
-        any number of parallelograms ¦inscribed-rectangles insc-txt¦A𝑏, B𝑐, C𝑑¦¦, ...
-        are inscribed upon equal bases ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, ...
+        If in any figure ¦figure-area¦A𝑎𝑐E¦¦,
+        comprehended by the straight lines ¦aK AK¦A𝑎¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve 𝑎𝑐E¦¦,
+        any number of parallelograms ¦inscribed-rectangles insc-txt¦A𝑏, B𝑐, C𝑑¦¦,&nbsp;.&nbsp;.&nbsp;.
+        are inscribed upon equal bases ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,&nbsp;.&nbsp;.&nbsp;.
 
-        and have sides ¦Bb¦B𝑏¦¦, ¦Cc¦C𝑐¦¦, ¦Dd¦D𝑑¦¦, ...
+        and have sides ¦Bb¦B𝑏¦¦, ¦Cc¦C𝑐¦¦, ¦Dd¦D𝑑¦¦,&nbsp;.&nbsp;.&nbsp;.
         parallel to the ¦Aa¦side A𝑎¦¦ of the figure;
-        and if the parallelograms ¦difference¦aK𝑏𝑙, 𝑏L𝑐𝑚, 𝑐M𝑑𝑛¦¦, ... are completed;
+        and if the parallelograms ¦difference¦aK𝑏𝑙, 𝑏L𝑐𝑚, 𝑐M𝑑𝑛¦¦,&nbsp;.&nbsp;.&nbsp;. are completed;
         if then the ¦BC¦width¦¦ of these parallelograms is diminished and their number increased indefinitely,
 
         I say that the ultimate ratios which the ¦inscribed-rectangles insc-txt¦inscribed figure AK𝑏L𝑐M𝑑D¦¦,
