@@ -46,15 +46,17 @@
     //***********************************************
     function LANDING_I___app_main() 
     {
+        // each page is independent so this gets re-run on each page load
+        // console.log('domContentLoaded - app_main');
+
         //=========================
         // //\\ home8lemmas
         // //\\ sets ids and titles
         //===============================
-        //ns.url2conf( fconf );
-        //sn( 'pathToContentSite', fconf, '.' );
-        sn( 'sappId', fconf, 'home-pane' );
-        ssF.spawns_lemsDefArr();
-        fapp.doesConfigLemma();
+        // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
+        sn( 'sappId', fconf, 'home-pane' ); 
+        ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
+        fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
@@ -64,6 +66,7 @@
 
         //===============================
         // //\\ preconstructs home8lemmas
+        // adds bsl-approot, bsl-home-pane, page-top-nav-bar to DOM
         //===============================
         html.builds_body_4_home8lemma();
         html.builds_homePane();
@@ -82,40 +85,17 @@
             if( !haz( fconf, 'lemmaHasHomeButton' ) ) {
                 sDomN.homeButton$.css( 'display', 'none' );
             }
-            //// lemma
-            LANDING_II___main_lemma();
+            /// removed LANDING_II___main_lemma() bc it was just making redundant calls
+            ns.globalCss.clearStyleTag( 'home' )
+            LANDING_III___config8run_lemmaModules(); //no home-pane modules
         }
-    }
-
-    function LANDING_II___main_lemma()
-    {
-        //=============================================================
-        // does first round (of two) of executing setModule for modules
-        //=============================================================
-        eachprop( srg_modules, function( setModule, debugIdleName ) {
-            //// if order insignificant: todo needless?:
-            //// can? be executed when module loaded right away
-            setModule();
-        });
-        ///purges list to avoid executing setModule twice when lemma's
-        ///modules are loaded
-        Object.keys( srg_modules ).forEach( mkey => {
-            delete srg_modules[ mkey ];
-        });
-
-
-        //====================================
-        // further-modules-loads: lemmas
-        //====================================
-        ns.globalCss.clearStyleTag( 'home' )
-        LANDING_III___config8run_lemmaModules(); //no home-pane modules
     }
     //***********************************************
     // \\// begins establish home and lemmas
     //***********************************************
 
     //***********************************************
-    // //\\ establishes lemmas
+    // //\\ establishes lemmas (loads page specific scrips)
     //***********************************************
     function LANDING_III___config8run_lemmaModules()
     {
@@ -170,11 +150,6 @@
             }
             // \\// loads jscodes and continues
         }
-
-
-
-
-
 
         //loads images (if any) and then JS-scripts for specific lemma
         function LANDING_IV___loadLemmaJSCodes()
@@ -316,10 +291,6 @@
         }
     }
 
-
-
-
-
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
     function LANDING_VI___exegs_2_frags8majorInit()
     {
@@ -329,10 +300,9 @@
         ///inits effective or empty astate_2_.... functions
         sapp.init_astate2sapp();
 
-
-        //this works for outdated-lemmas ... l9, l2, (l3) l21, l20,
-        //new lemmas may use stdMod ns,
-        //note, here, legend is created too early, before model,
+        // init legends here to ensure they are in DOM when layout it calculated
+        // todo: some pages use stdMod, others ssF - should be same
+        ns.haff( stdMod, 'create_digital_legend' );
         ns.haff( ssF, 'create_digital_legend' );
 
         stdModPatch();
@@ -343,17 +313,6 @@
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
         fmethods.setupEvents();
-
-        //todm:
-        //this call is vital for l2: placing it here does
-        //restore proportion text/media to normal: othewise media is small;
-        //this restoration is still abrupt, media is small then jerks to big;
-        //
-        //this resize should fix any graphic misfits
-        //.todm code proliferation with "setStates_when_entering..." for upcreate ...
-        //.includes sapp.up-create();
-        wrkwin.start8finish_media8Ess8Legend_resize__upcreate(
-            null, !!'doDividorSynch');
 
         ///.this is a patch: the cause and real solution is not known;
         ///.and it still does not work for l2,3

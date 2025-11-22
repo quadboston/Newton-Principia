@@ -28,7 +28,7 @@
     //=========================================
     function upcreate_mainLegend()
     {
-        //c cc( 'does upcreate_mainLegend' );
+       //console.log( 'upcreate_mainLegend' );
         var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
         ww.step.innerHTML       = rg.displayPathStep.value + '';
@@ -59,6 +59,7 @@
 
     function doCreateTables(mlegend)
     {
+        //console.log('doCreateTables');
         //==========================
         // //\\ proof
         //==========================

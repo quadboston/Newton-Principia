@@ -11,11 +11,6 @@
     return;
 
 
-
-
-
-
-
     function creates_mainWorkspace_domRoots()
     {
         //==============================================================
@@ -63,8 +58,7 @@
             fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram ) {
             setTimeout(
                 () => {
-                    doesShowDiagram( false ),
-                    stdMod.media_upcreate();
+                    doesShowDiagram( false );
                 },
                 fconf.timeToShowOriginalDiagram_effective
             );

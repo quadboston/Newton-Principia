@@ -1,5 +1,10 @@
 # Change Log
   
+## 2025-11-? (MediumVioletRed Version, 0.2)
+### Improved
+* General
+	* performance improvements
+
 ## 2025-11-17 (LightSalmon Version, 0.13861)
 ### Improved
 * General

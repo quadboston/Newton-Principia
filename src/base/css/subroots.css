@@ -104,7 +104,6 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     box-sizing   : border-box;
     margin-left  : auto; /* table is centered within .bsl-legend-root */
     margin-right : auto;
-    margin-bottom : 2rem; /* ensures layout shifts don't push table below the fold */
 }
 
 .bsl-legend-root table { /* bc L2, L3 'tables' are given .main-lengend class, even though they aren't tables... */
