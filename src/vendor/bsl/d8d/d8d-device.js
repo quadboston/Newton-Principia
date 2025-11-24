@@ -11,10 +11,8 @@
 //                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
 //***************************************************************************************************
 ( function () {
-    var ns = window.b$l;
-    var haz = ns.haz;
+    var { ns, d8dp, haz, sconf } = window.b$l.apptree({});
     var eventId = 0;
-    var d8dp = ns.sn( 'd8dp' ); //d8d platform framework
     var mouseMoveCount = 0;
 
 
@@ -181,7 +179,15 @@
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
             }
-            if( movesAndFindsHandle && mouseMoveCount ) {
+            //If media mover is disabled only remove the event listener if not
+            //forbidden (a dragger was found).  Otherwise if media mover is
+            //disabled and doCreateDynamicSpinners is enabled, there's an issue
+            //where the arrows for all draggers no longer appear, when moving
+            //the mouse around after clicking empty space (where there aren't
+            //any draggers).  Then they only reappear on mouse up after
+            //clicking a dragger.
+            if( movesAndFindsHandle && mouseMoveCount && (
+                !sconf.mediaMoverPointDisabled || !forbidden )) {
                 //c cc( mouseMoveCount + ' removes' );
                 att.removeEventListener( 'mousemove', movesAndFindsHandle );
                 mouseMoveCount--;

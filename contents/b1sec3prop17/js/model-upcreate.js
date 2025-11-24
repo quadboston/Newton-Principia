@@ -16,16 +16,9 @@
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
-    /// called from src/base/lemma/astate2app.js (2x on page load, 1x on tab switch)
-    ///
-    /// called from src/base/app-tree.js (2x on page load and tab switch, 1x when moving draggers)
-    /// todo: investigate this redundant behaviour
     ///****************************************************
     function model_upcreate()
     {
-        //called 4x on page load, 
-        //then 3x when switching tabs; 
-        //and again when draggers move
         //console.log('model_upcreate'); 
 
         //================================================

@@ -6,7 +6,7 @@
 
 
 <b>In <><>CXX:</b><br>
-<a target="_blank" href="?conf=sappId=b1sec3prop14,logic_phaseId=proof,aspectId=addendum">
+<a href="?conf=sappId=b1sec3prop14,logic_phaseId=proof,aspectId=addendum">
 From proof addendum (S):
 </a>
 
@@ -53,7 +53,7 @@ Returning from <><>CXX2E, for fixed interval time Δt,
 *..*
 
 <b>In <><>CXX:</b><br>
-<a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
+<a href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
 
     <div style="text-align:center;">
         f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦

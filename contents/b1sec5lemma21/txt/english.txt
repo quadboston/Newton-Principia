@@ -49,7 +49,7 @@ and therefore triangles ¦MN BN/MB¦NBM¦¦ and ¦PT PB/BT¦PBT¦¦ are similar,
 
 And therefore PT is to NM as PB to ¦BN¦NB¦¦, and PR is to NM as PC to NC. But the points B, C, N, and P are stationary. Therefore, PT and PR have a given ratio to NM and accordingly a given ratio to each other; and thus
 
-(<a target="_blank" href="?conf=sappId=b1sec5lemma20">by lem. 20</a>)
+(<a href="?conf=sappId=b1sec5lemma20">by lem. 20</a>)
 
 the point ¦D¦¦, the perpetual meeting-point of the movable straight lines BT and CR, lies in a conic passing through points B, C, and P. Q.E.D.
 
@@ -70,7 +70,7 @@ Page 487.
 
 And conversely, if the movable point ¦D¦¦ lies in a conic passing through the given points B, C, and ¦A¦¦; and if angle DBM is always equal to the given angle ABC, and the angle DCM is always equal to the given angle ACB; and if, when point ¦D¦¦ falls successively on any two stationary points p and P of the conic, the movable point M falls successively on the two stationary points n and N; then through these same points n and N draw the straight line nN, and this will be the perpetual locus of the movable point M. For, if it can be done, let point M move in some curved line. Then the point ¦D¦¦ will lie in a conic passing through the five points B, C, ¦A¦¦, p, and P when the point M perpetually lies in a curved line. But from what has already been demonstrated, point ¦D¦¦ will also lie in a conic passing through the same five points B, C, ¦A¦¦, p, and P when point M perpetually lies in a straight line. Therefore, two conies will pass through the same five points, contrary to
  
-<a target="_blank" href="?conf=sappId=b1sec5lemma20,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
+<a href="?conf=sappId=b1sec5lemma20,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 lem. 20, corol. 3.</a>
 
 Therefore, it is absurd to suppose the point M to be moving in a curved line. Q.E.D. 

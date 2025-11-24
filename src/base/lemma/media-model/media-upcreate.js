@@ -31,6 +31,9 @@
     ///overrides lemma's stdMod.media_upcreate if missed
     function media_upcreate_generic()
     {
+        // called 3x on page load (more in L2, L3, L4...?)
+        // console.log('media_upcreate_generic');
+
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
 
@@ -123,11 +126,6 @@
         }
         // \\// upcreates lines after points
         //=============================================
-
-
-        if( !ssF.mediaModelInitialized ) {
-            haff( stdMod, 'create_digital_legend' );
-        }
         
         //**************************************************
         // //\\ note, former lemmas
@@ -140,10 +138,13 @@
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:
                 stdMod.upcreate_mainLegend();
+                //console.log('upcreate_mainLegend 1');
             } else if( tlegend ) {
                 tlegend.upcreate_mainLegend();
+                //console.log('upcreate_mainLegend 2');
             } else {
                 ns.haf( ssF, 'upcreate_mainLegend' );
+                //console.log('upcreate_mainLegend 3');
             }
         }
         //**************************************************

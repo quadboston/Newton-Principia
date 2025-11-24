@@ -32,14 +32,14 @@
         ///seems wrong approach, should be model upcreate
         function astate_2_rg8model8media( astate4rg, )
         {
-            astate_2_rg8model( astate4rg, );
+            astate_2_rg8model( astate4rg );
             haff( stdMod, 'sliders_value2pos' );
             //haff is for lemmas from the past: l1, l2, ...
             haff( stdMod, 'media_upcreate' ); //todm swap to ...generic
         }
 
         ///poor name, should be capture_2_rg8modelUpcreate
-        function astate_2_rg8model( astate, dontRun_model_upcreate )
+        function astate_2_rg8model( astate )
         {
             if( astate ) {
                 nspaste( rg, astate );
@@ -63,7 +63,6 @@
                     amode.subessay = subessay;
                 }
             }
-            !dontRun_model_upcreate && haff( stdMod, 'model_upcreate' );
         }
     }    
 }) ();

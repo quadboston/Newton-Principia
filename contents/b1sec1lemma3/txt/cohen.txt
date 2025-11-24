@@ -1,0 +1,61 @@
+
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "mediaBgImage" : "../../b1sec1lemma2/img/lemma-23-3rd-ed.png",
+  "logic_phaseCaption" : "Claim"
+}
+*..*
+
+        <dense class='orig';>The same ultimate ratios are also ratios of equality when the widths ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,...
+        of the parallelograms are unequal and are all diminished indefinitely.</dense>
+
+        <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 433.</div>
+
+
+
+
+
+*::*proof|english
+{
+  "logic_phaseCaption" : "Proof"
+}
+*..*
+
+            <dense class='orig';>For let ¦AF¦¦ be equal to the greatest width,
+            and let the ¦widest-rectangular widt-txt¦parallelogram FA𝑎𝑓¦¦ be completed. 
+            This parallelogram will be greater than the ¦difference¦¦ of 
+            the ¦inscribed-rectangles insc-txt¦inscribed¦¦ and ¦circumscribed-rectangles circ-txt¦circumscribed¦¦ figures; 
+            but if its width ¦AF¦¦ is diminished indefinitely,
+            it will become less than any given rectangle. &nbsp;&nbsp; Q.E.D.</dense>
+
+            <br><br><div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessay" : "cor-4",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+
+Cᴏʀᴏʟʟᴀʀʏ 1. Hence the ultimate sum of
+the vanishing parallelograms coincides with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦ in its every
+part.
+<br><br>
+
+Cᴏʀᴏʟʟᴀʀʏ 2. And, all the more, the rectilinear figure that is comprehended 
+by the chords of the vanishing arcs 𝑎𝑏, 𝑏𝑐, 𝑐𝑑, ... coincides ultimately with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦.
+<br><br>
+
+Cᴏʀᴏʟʟᴀʀʏ 3. And it is the same for the circumscribed rectilinear figure
+that is comprehended by the tangents of those same arcs.
+<br><br>
+
+Cᴏʀᴏʟʟᴀʀʏ 4. And therefore these ultimate figures (with respect to their
+perimeters ¦curve¦𝑎𝑐E¦¦) are not rectilinear, but curvilinear limits of rectilinear figures.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 434.</div>

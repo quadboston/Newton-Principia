@@ -14,7 +14,7 @@
 *..*
 <b>In <><>CXX:</b><br>
 
-Geometry: <a target="_blank" href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
+Geometry: <a href="?conf=sappId=addd-kepler-task#in-focus-of-conic">Conic motion with force origin in conic's focus:</a>
 
     <div style="text-align:center;">
         f = 𝜎 (M/¦SP¦r¦¦)²/¦SL¦ρ<sub>⟂</sub>¦¦
@@ -43,5 +43,5 @@ Therefore:
 }
 *..*
 
-<b>Corollary 1: <><>CXX:</b> <a target="_blank" href="?conf=sappId=b1sec3prop16,logic_phaseId=proof,aspectId=addendum">see addendum for proof</a>
+<b>Corollary 1: <><>CXX:</b> <a href="?conf=sappId=b1sec3prop16,logic_phaseId=proof,aspectId=addendum">see addendum for proof</a>
 

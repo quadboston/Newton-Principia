@@ -75,7 +75,7 @@ will become equal to
 ¦QR¦¦</mi></mfrac></math>.
 
 Therefore
-<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">
+<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">
 (by prop. 6, corols. 1 and 5),</a>
 the ¦force¦centripetal force¦¦ is inversely as
 
@@ -122,7 +122,7 @@ will be equal to ¦SY¦¦, and
 will be equal to ¦SY¦¦² × ¦PV¦¦.
 And therefore 
 
-<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
+<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">
 (by prop. 6, corols. 3 and 5),</a>
 
 the ¦force¦centripetal force¦¦ is inversely

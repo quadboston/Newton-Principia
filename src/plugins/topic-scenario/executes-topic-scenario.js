@@ -71,6 +71,8 @@
         eventId,
         runOnSubessay, //rerouts script to this name from amode.subessay
     ){
+        // todo: this function never seems to run. remove?
+        console.log('executesTopicScenario');
 
         if( eventFlow_locked ) {
             //basic-console-output  //bbbbbbbbbbbbbb

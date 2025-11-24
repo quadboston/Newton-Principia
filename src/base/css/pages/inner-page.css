@@ -13,7 +13,7 @@
 */
 #areadesk {
     display:inline-block;
-    margin-top : 20px;
+    margin-top : 10px;
     width : 230px;
     z-index : 1000;
 }

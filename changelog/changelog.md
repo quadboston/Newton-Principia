@@ -1,5 +1,49 @@
 # Change Log
   
+## 2025-11-? (MediumVioletRed Version, 0.2)
+### Improved
+* General
+	* performance improvements
+
+## 2025-11-17 (LightSalmon Version, 0.13861)
+### Improved
+* General
+	* dropdown menu scrolls for short browser windows
+
+* Lemmas 2, 3
+	* curve manipulation made less twitchy
+	* fixed checkbox response
+
+* Propositions 1, 2
+	*  zoom capability added
+
+* Proposition 12
+	* eccentricity slider de-emphasized
+
+* Proposition 13
+	* simplified diagram by not showing more than what is described for each section
+
+* Proposition 17
+	* reported conics include circles
+
+## 2025-10-28 (SkyBlue Version, 0.13860)
+### Improved
+* All models
+	* model boundary shown with drop shadow 
+	* fixed data not showing on narrow browser windows
+	* more vertical space allotted to models on tall browser windows
+
+* Lemma 4
+	* reworked model to look and behave more like lemmas 2 and 3
+		* all parallelogram widths are diminished rather than a random one being split
+		* colors follow pattern set by lemmas 2 and 3
+		* feedback given when figures are not monotonic
+
+* Proposition 12
+	* simplified diagram by not showing more than what is described for each section
+	* added missing text-diagram highlights
+	* fractions changed from linear style to stacked
+
 ## 2025-9-30 (PaleGreen Version, 0.13859)
 ### Improved
 * Proposition 6
@@ -9,7 +53,7 @@
 	* fixed highlighting of arc QPR
 
 * Propositions 11, 12, 13
-	* latus rectum shown when text highlighted
+	* latus rectum shown only when text highlighted
 
 * Propoition 13
 	* corrected text
@@ -138,7 +182,7 @@
 
 
 ## 2025-5-29 (Orange Version, 0.13657)
-### Improved presentation
+### Improved
 * Multiple models
     * opacity tuned (some data text more readable; lines and curves more visible)
     * red color reassigned when not indicating invalid situations
@@ -160,7 +204,7 @@
 
 
 ## 2025-5-20 [0.13654]
-### Improved presentation
+### Improved
 * All models
     * ratios shown using colon (not as fractions)
     * data shown in higher opacity (to be more readable); highlighted using background
@@ -202,7 +246,7 @@
     
 
 ## 2025-4-30 [0.13618]
-### Improved core presentation
+### Improved
 * Homepage
     * mission statement
 

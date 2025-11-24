@@ -86,15 +86,7 @@
             modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  //validates
             var zeta = Math.PI / 2 * modelPar;
             var eccentricity = Math.tan( zeta );
-            if( fconf.sappId === 'b1sec3prop15' && eccentricity > 0.99) {
-                ////draws ellipse only
-                return;
-            }
-            //let stashedExc = op.eccentricity;
-            stdMod.establishesEccentricity( eccentricity,
-                        fconf.sappId !== 'b1sec3prop15' &&
-                        "b1sec3prop14" === fconf.effId );
-
+            stdMod.establishesEccentricity( eccentricity, false );
             newPos[0] = rg.Zeta.pos[0];         //corrects
             newPos[1] = rg.ZetaStart.pos[1];    //corrects
             var { angleRV, rr } = mcurve.planeCurveDerivatives({
@@ -103,7 +95,6 @@
                 rrc : rg.S.pos,
             });
             nspaste( rg.P.pos, rr );
-
             return true;
         }
         //=========================================================================

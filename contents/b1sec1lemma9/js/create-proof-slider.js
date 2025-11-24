@@ -19,13 +19,6 @@
     return;
 
 
-
-
-
-
-
-
-
     function create_proofSlider()
     {
         //=====================================================
@@ -63,7 +56,7 @@
             //.callback when handler stops
             dataInArrival:      function( dataArg ) {
                                     //.does synch secondary slider
-                                    rg.C.achieved.achieved = dataArg;
+                                    if(rg.C.achieved) rg.C.achieved.achieved = dataArg;
                                 },
             setCaption: setCaption //apparently this is for dom-el created internally,
                                    //nothing to do with app or parent

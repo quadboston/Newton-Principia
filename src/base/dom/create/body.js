@@ -164,7 +164,7 @@
                     Contents
                 </div>
                 <div class="trigger-content content-list">
-                   <div>
+                   <div class='scrollable-content'> <!-- only scrolls when page is short -->
         `;//rid content-book-title, content-book-title left-home- button
         coreText += `
                 <div>

@@ -27,6 +27,10 @@
     ///===================================================================
     function in_subessay_launch____amode2lemma( amodel2app_8_extraWork,  )
     {
+        // called once on page load from init-sapp.js
+        // called again on tab switch from lemma-master-menu.js
+        // console.log('in_subessay_launch____amode2lemma');
+
         if( amodel2app_8_extraWork ) {
             doMinimizeTextMenus();
         }
@@ -136,11 +140,10 @@
 
         ///???for past-lemmas: lemma 1, lemma 2, ...
         //haf( stdMod, 'astate_ 2_rg8model' )(
-        //also does execute "stdMod.model_upcreate",
 
         //reminder: captured here is the last satisfied captured,
         //the last after recent loop via code fragements above
-        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ], );
+        stdMod.astate_2_rg8model( captured && ssD.capture[ captured ] );
 
         //=================================================================
         // //\\ makes s ubmodel displayed

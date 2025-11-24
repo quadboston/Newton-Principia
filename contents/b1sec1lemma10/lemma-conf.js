@@ -17,23 +17,7 @@
         [
             'txt/latin.txt',
             'txt/cohen.txt',
-            'txt/addendum.txt',
         ],
-
-        /*
-        //optional additional reference html
-        referencesForAllLemmaEssays : `
-            <br><br>
-            Sources:
-            <a href="https://www.e-rara.ch/zut/wihibe/content/pageview/338107">
-                Latin text and figure. 3rd Edition.
-            </a>
-        `,
-        */
-
-
-
-
     }; }
 }) ();
 

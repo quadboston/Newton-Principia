@@ -9,10 +9,6 @@
     return;
 
 
-    //each of these functions are called 5x on page load,
-    //once each time a dragger is moved,
-    //and 3x each when switching tabs
-
     function media_upcreate___before_basic()
     {
         //console.log('media_upcreate___before_basic');

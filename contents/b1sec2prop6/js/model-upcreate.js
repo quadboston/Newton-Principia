@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nssvg, mcurve, integral, mat, has, userOptions,
-        ssF, ssD, sData, amode, stdMod, sconf, rg, toreg, } 
+    var { $$, nsmethods, nssvg, mat, has,
+        ssF, ssD, stdMod, sconf, rg, toreg, } 
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -232,7 +232,6 @@
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
                 'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
-                'P,rrminus'             : rg[ 'P,rrminus' ].undisplay,
                 'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
                 'QtimeDecor'            : rg.QtimeDecor.undisplay,
@@ -264,4 +263,3 @@
         //================================================
     }
 }) ();
-

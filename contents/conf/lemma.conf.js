@@ -24,6 +24,9 @@
     
     function doesConfigLemma()
     {
+        // runs once per page load
+        // console.log('doesConfigLemma');
+
         //====================================================
         // //\\ optionally overriden by url-query-config
         //====================================================
@@ -184,9 +187,9 @@
         //of a proof
         fixedColors.proof       = DARK_GREEN;
         fixedColors.proofArea   = [...fixedColors.proof, 1];
-		fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
-		fixedColors.resultOnlyVisibleWhenHighlighted
-			= [...fixedColors.result, 0, 1];
+        fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
+        fixedColors.resultOnlyVisibleWhenHighlighted
+            = [...fixedColors.result, 0, 1];
 
 		// merge misc: used?
         fixedColors.speed       = DARK_GRAY;
@@ -229,10 +232,8 @@
 
 
 
-        //From L2, L3
+        //From L2, L3, L4
         fixedColors.difference  = [150, 50, 0, 0, 0.64];
-        fixedColors.base        = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.curve       = rgbToArray("rgb(0, 150, 0)");
         fixedColors.figure      = rgbToArray("rgb(0, 150, 0)");
 
         fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],
@@ -243,6 +244,8 @@
 
         fixedColors["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
         fixedColors["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+
+        fixedColors.widths                      = [150, 0, 150, 0, 0.64],
 
         fixedColors.widestRectangular           = [0, 0, 150, 0.28, 0.49],
         fixedColors.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],

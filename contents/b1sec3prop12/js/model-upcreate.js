@@ -172,9 +172,6 @@
             )
         );
 
-        //extra points
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-
         nspaste( rg.A.pos, fun( Math.PI ) );
         nspaste( rg.AA.pos, fun( 0 ) );
         {
@@ -198,11 +195,11 @@
         //point E
         nspaste( rg.E.pos, mat.lineSegmentsCross(
             rg.D.pos, rg.K.pos,
-            rg.O.pos, rg.P.pos,
+            rg.S.pos, rg.P.pos,
         ));
         nspaste( rg.I.pos, mat.linesCross(
             DK, rg.H.pos, //direction, start
-            mat.sm( rg.O.pos, -1, rg.P.pos ), rg.O.pos, //direction, start
+            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
         //=============================================================
         // \\// for prop. 11,12
