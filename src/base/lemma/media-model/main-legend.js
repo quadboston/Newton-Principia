@@ -37,6 +37,9 @@
         updatesCaptionCluster,
         updatesTableTitle,
     }){
+        // called once per table on page load (all tables, not just one first shown)
+        // console.log('createLogic_phaseLegend');
+
         //stdMod_given.upcreate_mainLegend  = upcreate_mainLegend;
         toreg( 'main-legend' )
             ( logic_phase,     {
@@ -249,6 +252,9 @@
         //=========================================
         function upcreate_mainLegend()
         {
+            // called 3x when should only be called once
+            // console.log('upcreate_mainLegend actual');
+
             !noTableTitle && updatesTableTitle && updatesTableTitle({ tableCaption$ });
             updateCaptionsRow();
             for( var rowIx = 0; rowIx < rowsCount; rowIx++ )

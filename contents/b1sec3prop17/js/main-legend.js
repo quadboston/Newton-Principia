@@ -65,6 +65,8 @@
 		}
 
         function makesBodyCluster({ rowIx, clusterIx, }){
+            //called 4x on page load, once per "cluster"
+            //console.log('makesBodyCluster');
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,
@@ -74,7 +76,7 @@
 
         function updatesDataInCell({ rowIx, clusterIx, })
         {
-            //called 12x when switching to tab with table, then 4x each time model moves
+            //called 4x when switching to tab with table
             //console.log('updates table'); 
 			
 			reportEccentricityAs0WhenNearlyCircle();

@@ -352,6 +352,7 @@
     ///this happens only on 2 click events(ver Dec10,2020)
     ///one click is for top-text-menu?,
     ///second click is for submenu,
+    ///param = false on initial page load, true on tab switch
     function menu2lemma( amodel2app_8_extraWork )
     {
         //we need to run "media" updater because we need to update
@@ -359,10 +360,11 @@
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
 
-        //possibly for lemmas from the past: lemma1, l2, ...
-        ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
-
         if( amodel2app_8_extraWork ) {
+            // runs from init-sapp.js on page load
+            // we need to run again here when switching tabs to update model
+            ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
+
             haff(stdMod, 'sliders_value2pos');
             
             //Tab (text or video) changed so load the following.
@@ -374,14 +376,16 @@
 
             //**********************************************************************************
             //todo patch: this is a vital patch, without it to appear legend needs
-            //second resize event,
-            //the reason for the bug is unknown,
-            setTimeout(
-                function() {
-                    res( null, !!'doDividorSynch' );
-                },
-                100
-            );
+            //second resize event, the reason for the bug is unknown,
+            //only needed for L7, P1 corollaries 
+            if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+                setTimeout(
+                    function() {
+                        res( null, !!'doDividorSynch' );
+                    },
+                    100
+                );
+            }
             //**********************************************************************************
         }
     }
