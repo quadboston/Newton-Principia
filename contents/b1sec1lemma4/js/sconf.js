@@ -89,7 +89,7 @@
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
         //point sizes
-        sconf.pointDecoration.r = 3; // resizes solid points, not hollow draggers
+        sconf.pointDecoration.r = 2.5; // resizes solid points, not hollow draggers
         sconf.MOVABLE_BASE_RADIUS = 4; // overwrites defaults from sconf-common.js
         sconf.CTRL_RADIUS = 4;
 
@@ -167,28 +167,33 @@
         // //\\ patch for quick slider creation
         //      see //modern approach ... abandoned
         //=====================================
+        const labelFontSize = 22;
         var originalPoints =
         {
             a : {
 				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
+                fontSize : labelFontSize
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
+                fontSize : labelFontSize
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
+                fontSize : labelFontSize
             },
 
             c : {
 				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
+                fontSize : labelFontSize
             },
 
 
@@ -196,22 +201,26 @@
 				caption: '𝑝',
                 pcolor      : predT.given,
                 letterAngle : 45,
+                fontSize : labelFontSize
             },
 
             P : {
                 pcolor      : predT.given,
                 letterAngle : -45,
+                fontSize : labelFontSize
             },
 
             T : {
                 pcolor      : predT.given,
                 letterAngle : -45,
+                fontSize : labelFontSize
             },
 
             r : {
 				caption: '𝑟',
                 pcolor      : predT.given,
                 letterAngle : 45,
+                fontSize : labelFontSize
             },
         };
 

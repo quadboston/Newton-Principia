@@ -64,7 +64,7 @@
         // radius of points
         // only works on solid green points, not draggers
         // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js 
-        sconf.pointDecoration.r = 1.0; 
+        sconf.pointDecoration.r = 0.5; 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {

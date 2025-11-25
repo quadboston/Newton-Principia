@@ -74,8 +74,8 @@
 
             ////GUI
             FINEPTS_RADIUS  : 10,
-            MOVABLE_BASE_RADIUS : 2.5,
-            CTRL_RADIUS     : 2.5,
+            MOVABLE_BASE_RADIUS : 2.25,
+            CTRL_RADIUS     : 2.25,
             //Minimum distance between base handles
 	        BASE_POINTS_REPELLING_DISTANCE : 10,
 
@@ -87,7 +87,7 @@
             //The actual number used can vary slightly (by a few).
             CURVE_SEGMENTS_APPROXIMATE : 500,
 
-            default_tp_stroke_width : 8,
+            default_tp_stroke_width : 4, // when hovering text
             //rubbish: 
             //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
