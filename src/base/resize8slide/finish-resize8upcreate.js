@@ -321,7 +321,13 @@
         //calculation has updated values.
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
-            const extendCanvas = stdMod.svgVB_H * 0.1;
+            const viewportHeight = window.innerHeight;
+            var extendCanvas = 0;
+            if(wideScreen_flag) {
+                extendCanvas = stdMod.svgVB_H * 0.05;
+            } else if(viewportHeight < 1300) {
+                extendCanvas = stdMod.svgVB_H * 0.08;
+            }
             stdMod.svgVB_H += extendCanvas; // to give space for slider
             let sliderTop; // offset slider so it appears within canvas
             if(sconf.sappId === 'b1sec1lemma4') {
