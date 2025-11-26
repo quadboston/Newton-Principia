@@ -37,8 +37,12 @@
                 arg.rgX.svgel = svgel;
                 arg.rgX.svgel$ = $$.$( svgel );
             }
+        } else if( !svgel.parentNode && has( arg, 'parent' ) ) {
+            //todm perhaps this condition is non relilable:
+            //parent node can exist, but be removed and svgel will be "lost"
+            //as similar case happened with graph's tool line:
+            arg.parent.appendChild( svgel );
         }
-
         Object.keys( arg ).forEach( function( key ) {
  
             //--------------------------------------
@@ -107,7 +111,9 @@
                     //ccc( wwPname, key, val );
                     //throw 'err. ' + key;
                 //}
-
+                //if( arg.type === 'text' && key==='class' ){
+                //    ccc( 'ns-svg: class='+val, svgel );
+                //}
                 svgel.setAttributeNS( null, key, val );
             }
             //-------------------------------------

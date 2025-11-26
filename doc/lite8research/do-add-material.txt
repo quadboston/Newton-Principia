@@ -2,7 +2,7 @@ sssssssssssssssssssssssssssssssssssssss
 
 // In lite-app used only in Prop12,
 // Contains graph framework creator
-// This creator, however dependent via createsLowTireGlobalCSS.
+// This creator, however dependent via creates_global_css.
 
 ( function() {
     var { ns, sn, nsmethods, haz, haff, hafa, globalCss, sData, stdMod, }

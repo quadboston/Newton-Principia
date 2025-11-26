@@ -1,37 +1,35 @@
-
 ( function() {
-    var {
+    const {
         sn, haz, has, eachprop, own, nsmethods,
-        fconf, sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
-        originalPoints_cssNames, toreg,
-        stdMod,
+        fconf, sconf, sf, ssF, sDomF, fixedColors, fixedColorsOriginal,
+        originalPoints, originalPoints_cssNames, toreg, stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
             doExpandConfig,
         }
     });
-
-    var LETTER_ROTATION_RADIUS_PER_1000 = 30;
-    var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
-    var LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
+    const LETTER_ROTATION_RADIUS_PER_1000 = 30;
+    const LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
+    const LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
+    const graphCss = sn( 'graphCss', sconf );
+    const diagramCss = sn( 'diagramCss', sconf );
     return;
 
 
     ///==============================================
     /// only for common stdMod:
-    ///                     1. expands sconf and
-    //                      2. expnds sconf into rg
+    ///                     1. expands sf and
+    //                      2. expnds sf into rg
     ///==============================================
     function doExpandConfig() 
     {
         var {
             predefinedTopics,
-            originalPoints,
             lines,
             linesArray,
 
-            //required, part of sconf api,
+            //required, part of sf api,
             //done in picture-system y-coord:
             //(pic.bottom-y=+picHeight)
             modorInPicX,
@@ -47,10 +45,9 @@
             svgModel_height,
 
             mod2inn_scale,
-        } = sconf;
-
+        } = sf;
         //secures omitted settings
-        const formulas = sn( 'SHOW_FORMULAS', sconf, [] );
+        const formulas = sn( 'SHOW_FORMULAS', sf, [] );
 
         //-----------------------------------------------------------
         // //\\ transition from poor name in legacy code
@@ -58,13 +55,13 @@
         //-----------------------------------------------------------
         pictureWidth = ( svgModel_width || svgModel_width === 0 ) ?
                          svgModel_width : pictureWidth;
-        sconf.pictureWidth = pictureWidth;
-        sconf.svgModel_width = pictureWidth;
+        sf.pictureWidth = pictureWidth;
+        sf.svgModel_width = pictureWidth;
 
         pictureHeight = ( svgModel_height || svgModel_height === 0 ) ?
                           svgModel_height : pictureHeight;
-        sconf.pictureHeight = pictureHeight;
-        sconf.svgModel_height = pictureHeight;
+        sf.pictureHeight = pictureHeight;
+        sf.svgModel_height = pictureHeight;
         //-----------------------------------------------------------
         // \\// transition from poor name in legacy code
         //-----------------------------------------------------------
@@ -79,12 +76,10 @@
         modorInPicY = originY_onPicture;
 
         //allocates missed placeholders
-        lines = lines || sn( 'lines', sconf, [] );
-        originalPoints = originalPoints || sn( 'originalPoints', sconf );
-        Object.assign( sconf.originalPoints, originalPoints );
+        lines = lines || sn( 'lines', sf, [] );
 
         //todo: this thing also gets more members from "dragger engine": poor job,
-        var pname2point = sn( 'pname2point', sconf );
+        var pname2point = sn( 'pname2point', sf );
 
         //----------------------------------
         // //\\ MONITOR Y FLIP
@@ -116,7 +111,7 @@
 
         ///it is vital to set these pars now ...
         ///they are used in function calls a little below this block ...
-        Object.assign( sconf, {
+        Object.assign( sf, {
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -139,7 +134,7 @@
             //.......................................
 
             // **api innerMediaHeight
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaHeight    : pictureHeight + sf.SLIDERS_LEGEND_HEIGHT,
             innerMediaWidth     : pictureWidth,
             //----------------------------------
             // \\// model-view parameters
@@ -160,8 +155,10 @@
             //--------------------------------------------------
             Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
-                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                let fc = fixedColors[ tk ] = predefinedTopics[ topicKey ];
+                var lowkey = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                
+                //populates fixedColors from blesson.predefinedTopics
+                let fc = fixedColors[ lowkey ] = predefinedTopics[ topicKey ];
                 fixedColorsOriginal[ topicKey ] = fc;
                 fc.isPoint = false;
                 fc.isLine = false;
@@ -203,7 +200,7 @@
             //----------------------------------
             // //\\ expands lines placeholders
             //----------------------------------
-            linesArray = haz( sconf, 'linesArray' );
+            linesArray = haz( sf, 'linesArray' );
             if( linesArray ) {
                 lines = {};
                 linesArray.forEach( (lineConf) => {
@@ -290,7 +287,8 @@
                     nsmethods.camelName2cssName( pname )
                 ] = op;
                
-                //todo ... non-readable: it tranfers properties from ??original points to here,
+                //todo ... non-readable: it tranfers properties from
+                //??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
                 var pictureP    = op.own( 'pos' );
@@ -356,7 +354,8 @@
 
                 /*
                 if( has( op, 'ignore_hideD8Dpoint_for_CSS' ) ) {
-                    rgX.ignore_hideD8Dpoint_for_CSS = op.ignore_hideD8Dpoint_for_CSS;
+                    rgX.ignore_hideD8Dpoint_for_CSS =
+                    op.ignore_hideD8Dpoint_for_CSS;
                 }
                 */
 
@@ -394,7 +393,7 @@
                 }
 
                 //initialR is simply a point-disk radius
-                //before multiplication by initialR * sconf.thickness,
+                //before multiplication by initialR * sf.thickness,
                 if( has( op, 'initialR' ) ) {
                     rgX.initialR = op.initialR;
                 }
@@ -468,11 +467,10 @@
         //---------------------------------------------------------------------------
 
 
-
         //----------------------------------------------------
-        // //\\  prepares sconf data holder
+        // //\\  prepares sf data holder
         //----------------------------------------------------
-        Object.assign( sconf, {
+        Object.assign( sf, {
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -491,29 +489,49 @@
             // \\// scenario
             //----------------------------------
         });
-        sn( 'hover_width', sconf,
-            Math.max( 1,  sconf.default_tp_stroke_width ) );
-        sn( 'text_hover_width', sconf,
-            Math.max( 1,  sconf.hover_width ) );
-        sn( 'nonhover_width', sconf,
-            Math.max( 1,  sconf.hover_width/2 ) );
-        sn( 'text_nonhover_width', sconf,
-            Math.max( 1,  sconf.text_hover_width/2 ) );
-
-        if( !has( sconf, 'enableStudylab' ) ) {
+        sf.realSvgSize = sf.realSvgSize ||
+           ( sf.pictureWidth + sf.pictureHeight );
+        const DIAGRAM_SCALE = sf.realSvgSize / sf.standardSvgSize;
+        const GRAPH_SCALE = 4* sf.graphSvgSize / sf.standardSvgSize;
+        //=========================================
+        // //\\ thickness
+        //=========================================
+        [
+            'default_tp_stroke_width',
+            'defaultLineWidth',
+            'hover_width',
+            'nonhover_width',
+            'text_hover_width',
+            'text_nonhover_width', 
+            'handleRadius',
+        ]
+        .forEach( pn => {
+            diagramCss[pn] = ( sf[pn] * DIAGRAM_SCALE ).toFixed(2) + 'px';
+            graphCss[pn] = ( sf[pn] * GRAPH_SCALE ).toFixed(2) + 'px';
+            sf[pn] *= DIAGRAM_SCALE; //do remove
+            sf[pn] = sf[pn].toFixed(2);
+        });
+        //this looks not very consistent because of
+        //this object takes special attention:
+        sf.pointDecoration.r *= DIAGRAM_SCALE;
+        sf.pointDecoration['stroke-width'] *= DIAGRAM_SCALE;
+        //=========================================
+        // \\// thickness
+        //=========================================
+        
+        
+        if( !has( sf, 'enableStudylab' ) ) {
             ////this way, the legacy lemmas are preserved,
-            ////new lemmas must set this in own "sconf",
-            sconf.enableStudylab = true;
+            ////new lemmas must set this in own "sf",
+            sf.enableStudylab = true;
         }
-        if( !has( sconf, 'enableTools' ) ) {
+        if( !has( sf, 'enableTools' ) ) {
             ////this way, the legacy lemmas are preserved,
-            ////new lemmas must set this in own "sconf",
-            sconf.enableTools = true;
+            ////new lemmas must set this in own "sf",
+            sf.enableTools = true;
         }
         //----------------------------------
-        // \\// prepares sconf data holder
+        // \\// prepares sf data holder
         //----------------------------------------------------
     }
-
-}) ();
-
+})();

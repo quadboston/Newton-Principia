@@ -1,20 +1,16 @@
 // For b$l framework, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-
 ( function() {
-    var ns          = window.b$l;
-    var sn          = ns.sn;
+    const ns        = window.b$l;
+    const sn        = ns.sn;
     //simplifies adding test-modules designed for
     //master b$l application,
-    var mat         = sn('mat');
-    fapp            = sn('fapp' );
-    fconf           = sn('fconf',fapp);
-    sconf           = sn('sconf',fconf);
-
+    const mat       = sn('mat');
+    const fapp      = sn('fapp' );
+    const fconf     = sn('fconf',fapp);
+    const sconf     = sn('sconf',fconf);
     ns.nstree       = nstree;
     return;
-
-
 
 
     function nstree()
@@ -74,10 +70,9 @@
             fapp,
             fconf,
             sconf,
-            nsconf : sn( 'conf' ),
+            sf          : sconf, //just providing a shorter name,
+            nsconf      : sn( 'conf' ),
         };
         return ret;
     }
-
-}) ();
-
+})();

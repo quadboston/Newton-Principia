@@ -14,3 +14,24 @@ variable color-main cannot be changed by user's action or when body's orbit ente
 Some dynamic css constructs have <style> id in html <head>, like for example, glocss-id-force or glocss-id-sagitta (see picture).
 
 
+//\\ LIGHT ==========
+            //***************************************************
+            // //\\ TOPIC COLORS AND SHAPES
+            // //\\ tp color
+            //===================================================
+            //takes precedence in: ssF.colorArray_2_rgba
+            //                     ssF.topics__2__topicsColorModel
+
+            //this solution is not good:
+            //some lemmas need bright red, but
+            //bright green text is hard to read ...
+            //so we resort to dark color LIGHT = 30
+
+            //This sets L-paramter in SHL color model.
+            //Range of L is from 0 to 100. 100 is 100% lightness which mean
+            //all colors are equaly bright and diagram becomes
+            //invisible. 0 - is complete darkness.
+    
+            //topics:
+            DEFAULT_TP_SATUR : 99,
+\\// LIGHT ==========

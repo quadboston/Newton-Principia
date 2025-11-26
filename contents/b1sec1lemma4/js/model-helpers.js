@@ -18,15 +18,8 @@
     return;
 
 
-
-
-
-
-
-
-
-    function establishes_right_and_left_curve_pivots()
-    {   //-----------------------------------------------------------
+    function establishes_right_and_left_curve_pivots(){
+        //-----------------------------------------------------------
         // //\\ establishes right curve pivot draggers
         //-----------------------------------------------------------
         var cPivots          = sconf.originalPoints.curvePivots;
@@ -56,6 +49,7 @@
             //--------------------------------------------------------
             rgX.acceptPos = newPos =>
             {
+                const graph_fw = rg.pHGraph.fw;
                 if( !haz( rgX, 'draggableX' ) ) {
                     ////blocks horizontal move: this method is a trick,
                     ////todm: it must be set in the d8d API
@@ -88,7 +82,7 @@
                 //------------------------------------------
                 // \\// makes raw validation over 100 points
                 //------------------------------------------
-            
+
                 //enables bars repaint because repaint works only for
                 //small number of bars
                 var wwLim = sconf.DONT_PAINT_BARS_MORE_THAN;
@@ -97,9 +91,8 @@
                     stdMod.sliderN_n2pos( wwLim );
                     stdMod.sliderN_mastN2caption();
                 }
-
                 //perhaps graph must be redrawn:
-                stdMod.graphArray.length = 0;
+                rg.pHGraph.fw.content.pix2values.length = 0;
                 return true;
             };
             //--------------------------------------------------------
@@ -176,8 +169,7 @@
                     stdMod.sliderN_mastN2caption();
                 }
                 //perhaps graph must be redrawn:
-                stdMod.graphArray.length = 0;
-
+                fw.content.pix2values.length = 0;
                 return true;
             };
         });
@@ -294,7 +286,9 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-        
+        //rg.pHGraph.fw.content.pix2color = ssD.zebraCols.multicolor
+        //  .map( col => col.rgba_high );
+
         //bar sides stoke is redundant and proliferates bar area ...
         //except for breadth segment
         globalCss.update(`

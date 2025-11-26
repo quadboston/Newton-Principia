@@ -1,7 +1,7 @@
 ( function() {
     var {
         eachprop, mat,
-        fapp, sconf,
+        fapp, fconf, sconf,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
@@ -13,11 +13,7 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.insertDelayedBatch        = true;
-        sconf.enableStudylab            = false;
-        //for some standard sliders
-        sconf.enableTools               = true;
         sconf.hideProofSlider           = true; //todo
-        //sconf.rgShapesVisible         = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================

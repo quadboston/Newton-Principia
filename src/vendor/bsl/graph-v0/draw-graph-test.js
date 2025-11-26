@@ -35,14 +35,14 @@
         // //\\ prepares params
         //=================================================
         /*
-        var colorThreadArray = [];
+        var pix2color = [];
         for( var ord=0; ord<ORDINATES_MAX; ord++ )
         {
             //variable opacity
-            //colorThreadArray[ ord ] = 'rgba( 0,0,0,' + (ord/ORDINATES_MAX).toFixed(3) + ')';
+            //pix2color[ ord ] = 'rgba( 0,0,0,' + (ord/ORDINATES_MAX).toFixed(3) + ')';
         }
         */
-        colorThreadArray = ns.builds_zebraNColors_array({
+        pix2color = ns.builds_zebraNColors_array({
             maxColors   : ORDINATES_MAX,
             SATUR       : 100,
             LIGHT       : 50,
@@ -64,7 +64,7 @@
             {
                 x : ix,
                 //this thing creates array of points y for each "abscissa x"
-                y : colorThreadArray.map( (c,ix) => Math.random()*ix )
+                y : pix2color.map( (c,ix) => Math.random()*ix )
             });
         }
 
@@ -91,7 +91,7 @@
         });
         fw.drawGraph({
             graphArray,
-            colorThreadArray,
+            pix2color,
             style,
         });
         //==================================================
@@ -104,7 +104,7 @@ return;
             () => {
             fw.drawGraph({
                 graphArray,
-                colorThreadArray,
+                pix2color,
                 style : {
                    'stroke-width' : 11,
                 },
@@ -135,7 +135,7 @@ return;
                 });
                 fw.drawGraph({
                     graphArray,
-                    colorThreadArray,
+                    pix2color,
                     style,
                     xMin : -10,
                     xMax : +10,
@@ -153,7 +153,7 @@ return;
                 ///this proves that graph can be extended
                 fw.drawGraph({
                     graphArray,
-                    colorThreadArray,
+                    pix2color,
                     style,
                     xMin : -10,
                     xMax : +10,

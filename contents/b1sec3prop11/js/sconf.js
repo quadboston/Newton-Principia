@@ -7,15 +7,9 @@
 
     function init_conf()
     {
-        //tools
-        sconf.enableStudylab = false;
-        //true enables framework zoom:
-        sconf.enableTools = true;
-
         //navigation
-        //e/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        //e/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
-
+        //t/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //t/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
         //***************************************************************
         // //\\ original picture dimensions for svg scene
@@ -46,8 +40,8 @@
         //***************************************************************
         // //\\ GUI cosmetics
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
+        //t/fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        //t/sconf.rgShapesVisible = true;
 
         //?/sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
@@ -184,16 +178,16 @@
         //*************************************
         // //\\ bricks for originalPoints
         //*************************************
-        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        //e/var curvePivots = [];
-        //e/curvePivots.push( [22,315] );
-        //e/if( sconf.BESIER_PIVOTS === 5 ) {
-        //e/curvePivots = curvePivots.map( pivot => ({
-        //e/ pos         : pivot,
-        //e/ pcolor      : given,
-        //e/}));
-        //e/var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+        //t/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+        //t/var curvePivots = [];
+        //t/curvePivots.push( [22,315] );
+        //t/if( sconf.BESIER_PIVOTS === 5 ) {
+        //t/curvePivots = curvePivots.map( pivot => ({
+        //t/ pos         : pivot,
+        //t/ pcolor      : given,
+        //t/}));
+        //t/var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        //t/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
         //*************************************
         // \\// bricks for originalPoints
         //*************************************
@@ -204,8 +198,8 @@
         //*************************************
         var originalPoints =
         {
-            //e/curvePivots,
-            //e/foldPoints,
+            //t/curvePivots,
+            //t/foldPoints,
         };
 
         Object.assign( originalPoints, {
@@ -498,7 +492,7 @@
             defaultLineWidth,
             handleRadius,
         });
-        //e/ sconf.pointDecoration.r = sconf.handleRadius;
+        //t/ sconf.pointDecoration.r = sconf.handleRadius;
         //*************************************
         // \\// passing locals to sconf
         //*************************************

@@ -13,8 +13,8 @@
         sconf.enableTools = true;
 
         //navigation
-        //e/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        //e/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+        //t/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //t/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
         
         //***************************************************************
@@ -47,10 +47,7 @@
         //***************************************************************
         // //\\ GUI cosmetics
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
-
-        //e/? sconf.TP_OPACITY_FROM_fixed_colors = true;
+        //t/? sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         //overrides "global", lemma.conf.js::sconf
@@ -135,9 +132,9 @@
             sconf.Dq0 = 0.42;
         }
         //calculation decoration and quality
-        //e/?sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
-        //e/?sconf.ADDENDUM_NORM_BY_MIN = true;
-        //e/?sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
+        //t/?sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+        //t/?sconf.ADDENDUM_NORM_BY_MIN = true;
+        //t/?sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
         //***************************************************************
         // \\// math model auxilaries
         //***************************************************************
@@ -146,16 +143,16 @@
         //***************************************************************
         // //\\ model comparison demo
         //***************************************************************
-        //e/ sconf.SHOW_FORMULAS = [
-        //e/     //usually, bP is context of "plane-cureve-derivatives"  
-        //e/     { label:'1/r⁵',
-        //e/       fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
-        //e/       //e// cssclass : 'tp-context tostroke',
-        //e/     }, 
-        //e/     { label:'1/r²',
-        //e/       fun:(bP) => 1/bP.r2,
-        //e/     }, 
-        //e/ ];
+        //t/ sconf.SHOW_FORMULAS = [
+        //t/     //usually, bP is context of "plane-cureve-derivatives"  
+        //t/     { label:'1/r⁵',
+        //t/       fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
+        //t/       //t// cssclass : 'tp-context tostroke',
+        //t/     }, 
+        //t/     { label:'1/r²',
+        //t/       fun:(bP) => 1/bP.r2,
+        //t/     }, 
+        //t/ ];
         //***************************************************************
         // \\// model comparison demo
         //***************************************************************
@@ -194,14 +191,14 @@
         // //\\ original app points
         //*************************************
 
-        //e/ var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-        //e/     pcolor      : invalid,
-        //e/     doPaintPname : false,
-        //e/ }));
+        //t/ var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        //t/     pcolor      : invalid,
+        //t/     doPaintPname : false,
+        //t/ }));
 
         var originalPoints =
         {
-            //e/foldPoints,
+            //t/foldPoints,
         };
 
         Object.assign( originalPoints, {
@@ -499,7 +496,7 @@
             defaultLineWidth,
             handleRadius,
         });
-        //e/sconf.pointDecoration.r = sconf.handleRadius;
+        //t/sconf.pointDecoration.r = sconf.handleRadius;
         //*************************************
         // \\// passing locals to sconf
         //*************************************

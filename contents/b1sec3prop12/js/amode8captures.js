@@ -539,7 +539,6 @@
         //because is overriden in in_subessay_launch____amode2lemma by
         //sconf.rgShapesVisible
 
-
         if( fconf.sappId === 'b1sec3prop17' ) {
             //-------------------------------------------------
             // //\\ op 

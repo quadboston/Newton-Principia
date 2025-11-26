@@ -13,25 +13,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    /// model scenario
-    /// is required; to skip define as ()=>{};
-    ///****************************************************
     function model_upcreate()
     {
         const op        = sconf.orbitParameters;
@@ -164,16 +145,17 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        ///for initial launch only
         if( fconf.effId !== "b1sec3prop14" ) {
             stdMod.buildsforceGraphArray();
-            stdMod.graphFW_lemma.drawGraph_wrap({
-                //drawDecimalY : true,
-                //drawDecimalX : false,
+            const mask = stdMod.graphFW_lemma.fw.content.pix2mask;
+            mask[0] = 'force';
+            mask[1] = amode.logic_phase === 'proof';
+            stdMod.graphFW_lemma.wraps_draw_graph({
                 printAxisXDigits : true,
-                //printAxisYDigits : true,
+                //t/drawDecimalY : true,
+                //t/drawDecimalX : false,
+                //t/printAxisYDigits : true,
             });
-            //stdMod.graphFW.drawGraph_wrap();
         }
         //------------------------------------------------
         // \\// graph
@@ -216,9 +198,9 @@
 
         ////hyperbola or ellipse
         let D = mat.sm( rg.C.pos, -1, uu );
-        nspaste( rg.D.pos, D );    
+        nspaste( rg.D.pos, D );
         let K = mat.sm( rg.C.pos,  1, uu );
-        nspaste( rg.K.pos, K );    
+        nspaste( rg.K.pos, K );
         //is this a numerical glitch in the Book?:
         //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
 
@@ -374,13 +356,16 @@
 
             rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
             rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
+
+            // highlight arc (segment of sop around p)
+            sop.highlightSeg = true;
+            sop.segStart = rg.p.q + 0.4;
+            sop.segEnd = sop.segStart - 0.8;
         }
         //=============================================================
         // \\// prop. 17
         //=============================================================
     }
-
-
 
     ///calculates arc's delta q depending on Dt by
     ///integrating sag_delta_q and reaching Dt,
@@ -429,7 +414,4 @@
             sagittaDeltaQ : q - rg.P.q,
         };
     }
-
-
-}) ();
-
+})();

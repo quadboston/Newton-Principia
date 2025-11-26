@@ -130,7 +130,7 @@
         //------------------------------------------------
         ///for initial launch only
         stdMod.buildsforceGraphArray();
-        stdMod.graphFW_lemma.drawGraph_wrap({});
+        stdMod.graphFW_lemma.wraps_draw_graph({});
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------

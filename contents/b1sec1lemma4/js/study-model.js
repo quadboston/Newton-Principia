@@ -1,5 +1,5 @@
 ( function() {
-    var {
+    const {
         sn, nspaste, mat,
         sconf, ssD, sDomF,
         stdMod, toreg, rg,
@@ -18,20 +18,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
     function init_model_parameters()
     {
         //-------------------------------------------------
@@ -49,8 +35,6 @@
         //-------------------------------------------------
         // \\// configs model parameters
         //-------------------------------------------------
-
-
 
         //-------------------------------------------------
         // //\\ merges lemma legacy points a, c, ...
@@ -72,22 +56,11 @@
         stdMod.establishes_x_partition();
         stdMod.establishes_transform_T();
         stdMod.establishes_slider_n();
-        rg.convergenceGraphFW = stdMod.createsPHGraphFW({});
+        stdMod.wraps_graph_fw({});
         //stashes fraction of decorational point r on interval PT
         rg.r.r2T = ( rg.r.pos[0]-rg.P.pos[0] ) / ( rg.T.pos[0]-rg.P.pos[0] );
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
@@ -116,8 +89,7 @@
         // \\// this is breadth-points d8d limitator,
         //-------------------------------------------------
 
-
-
+        
         //=============================================================================
         // //\\ removes and recreates ordered bars
         //=============================================================================
@@ -160,7 +132,6 @@
         // \\// incorporates three user-draggable-original-x-controls
         //-----------------------------------------------------------
 
-
         //--------------------------------------------------------------------
         // //\\ orders and integrates
         //--------------------------------------------------------------------
@@ -180,7 +151,6 @@
         // \\// orders and integrates
         // \\// removes and recreates ordered bars
         //=============================================================================
-
 
         //=============================================================================
         // //\\ validates
@@ -208,8 +178,4 @@
         stdMod.calculateBars( 'left', leftBarsAreas );
         stdMod.calculateBars( 'right', leftBarsAreas );
     }
-
-
-
-}) ();
-
+})();

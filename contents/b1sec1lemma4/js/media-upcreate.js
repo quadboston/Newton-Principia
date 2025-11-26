@@ -101,9 +101,9 @@
         if(
             amode.subessay === 'non-similar-curves'
         ) {
-            rg.convergenceGraphFW.callPHGraph({});
+            rg.pHGraph.wraps_draw_graph({});
         } else {
-            rg.convergenceGraphFW.fw.nonefyDom();
+            rg.pHGraph.fw.meth.nonefyDom();
         }
     }
     //=========================================================

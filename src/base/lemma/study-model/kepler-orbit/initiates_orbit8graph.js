@@ -17,7 +17,7 @@
     
     function initiates_kepler_config() {
         sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        sconf.pointDecoration.r = sconf.handleRadius;
+        //sconf.pointDecoration.r = sconf.handleRadius;
         sconf.qgrid_step = sconf.curveQRange / sconf.Q_STEPS;
 
         //todm competing aliases:
@@ -31,10 +31,10 @@
         sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
-    function initiates_orbit8graph() {
+    function initiates_orbit8graph( graph_methods ) {
         initiates_kepler_config();
-        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma
-            ({ digramParentDom$:stdMod.legendRoot$ });
+        stdMod.graphFW_lemma = stdMod.wraps_graph_fw
+            ({ digramParentDom$:stdMod.legendRoot$, graph_methods });
         stdMod.creates_poly2svg_for_lemma();
         stdMod.rebuilds_orbit();
         

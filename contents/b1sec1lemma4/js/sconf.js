@@ -77,11 +77,6 @@
         // \\// geometical scales
         //***************************************************************
 
-
-
-
-        sconf.rgShapesVisible = true;
-
         sconf.DONT_PAINT_BARS_MORE_THAN = 200;
 
         sconf.ZEBRA_COLORS = 6;

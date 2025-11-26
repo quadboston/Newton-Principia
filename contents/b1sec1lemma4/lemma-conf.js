@@ -22,7 +22,8 @@
                 { src:'main-legend.js' },
                 { src:'amode8captures.js' },
                 { src:'state-capturer.js' },
-                { src:'convergence-graph-framework.js' },
+                { src:'graph/creates-fw.js' },
+                { src:'graph/decorations.js' },
                 { src:'lib.js' },
             ],
             "contents-list" :

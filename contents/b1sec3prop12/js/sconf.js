@@ -13,15 +13,9 @@
 
     function init_conf()
     {
-        //tools
-        sconf.enableStudylab = false;
-        //true enables framework zoom:
-        sconf.enableTools = true;
-
         //navigation
         //?/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
         //?/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
-
 
         //***************************************************************
         // //\\ original picture dimensions for svg scene
@@ -39,6 +33,7 @@
 
 
         //sets model offset
+        op.curveName = 'orbit';
         op.mainAxisAngle_initial = 0;
         op.mainAxisAngle = op.mainAxisAngle_initial;
         op.delta_v_increase_LIMIT = 1.5;
@@ -99,6 +94,7 @@
                 // //\\ sop
                 //-------------------------------------------
                 //sets cinematics
+                sop.curveName ='orbit-sample';
                 sop.latusInitial       = 1;
                 sop.latus              = sop.latusInitial;
                 sop.forceHandleInitial = forceHandleInitial;
@@ -203,6 +199,7 @@
         op.PparQ_initial        = PparQ;
         op.PparQ_initial_essay  = PparQ;
         op.sagittaDelta_q       = op.sagittaDelta_q_initial;
+        op.sagittaDelta_q_instant = 0.001;
 
         //-----------------------------------------------------
         // //\\ sets Kepler_v
@@ -235,8 +232,6 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         sconf.default_tp_lightness = 30;
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = fconf.sappId === "b1sec3prop17" ? 20 : 30;
@@ -341,7 +336,7 @@
         //*************************************
         var originalPoints =
         {
-            //e/curvePivots,
+            //t/curvePivots,
         };
 
         Object.assign( originalPoints, {

@@ -7,15 +7,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
     ///==========================================
     /// API engine
     /*
@@ -25,14 +16,14 @@
     */
     ///==========================================
     function drawGrid8Axes({
-        graphFM_self,
-        colorThreadArray,
+        fw_self,
+        pix2color,
         marginX,
         marginY,
         printAxisDigits,
             printAxisXDigits,
             printAxisYDigits,
-        
+
         drawDecimalX,
         drawDecimalY,
         rangeY,
@@ -119,7 +110,7 @@
                 drawAllAxesInGrid : drawAllAxes,    //flag and its params
                     plotsCount,
                     extraAxisY,
-                    colorThreadArray,
+                    pix2color,
             });
         }
         if( drawDecimalX && rangeX > 1e-100 ) {
@@ -137,9 +128,6 @@
             });
         }
         return;
-
-
-
 
 
         ///======================================================
@@ -161,7 +149,7 @@
             drawAllAxesInGrid,
                 plotsCount,
                 extraAxisY,
-                colorThreadArray,
+                pix2color,
         }){
             var style = {};
 
@@ -180,7 +168,7 @@
                     var prnDigitalSymbols = printAxisXDigits;
                 }
             }
-            
+
             var decUnitlog     = Math.max(
                 Math.floor( Math.log10( rangeA ) ),
                 Math.floor( Math.log10( Math.abs( minA ) ) - 13 ),
@@ -208,14 +196,12 @@
                 var labelCountEstimation = Math.floor( ( maxA - linesStart ) / decUnit );
 
                 for( var gline=linesStart; gline<=maxA; gline+=decUnit ) {
-
-
-
                     //======================================================
                     // //\\ prepares grid and axes params
                     //======================================================
                     //l_media is a value of static-part of the grid line:
-                    //for "gridAlongX", the line is horizontal, and l_media is an y-coordinate
+                    //for "gridAlongX", the line is horizontal,
+                    //and l_media is an y-coordinate
                     var l_media = ( gline - minA ) / rangeA * dimA;
 
                     if( gridAlongY ) {
@@ -241,20 +227,17 @@
                     // \\// prepares grid and axes params
                     //======================================================
 
-
                     //======================================================
                     // //\\ prints grid lines
                     //======================================================
                     nssvg.polyline({
                         pivots,
-                        parent  : graphFM_self.gmedia$(),
+                        parent  : fw_self.gmedia$(),
                         style,
                     });
                     //======================================================
                     // \\// prints grid lines
                     //======================================================
-
-
 
                     //======================================================
                     // //\\ prints axes digits
@@ -267,9 +250,9 @@
                             var effectiveAxis = axisA;
 
                             var fontStroke = drawAllAxesInGrid ?
-                                                colorThreadArray[ aIx ] : axisA[ 'stroke' ];
+                                                pix2color[ aIx ] : axisA[ 'stroke' ];
                             var fontFill = drawAllAxesInGrid ?
-                                                colorThreadArray[ aIx ] : axisA[ 'fill' ];
+                                                pix2color[ aIx ] : axisA[ 'fill' ];
 
                             if( gridAlongY ) {
                                 ////we have horiz. line, putting a serie of dig.
@@ -278,9 +261,9 @@
                                     var x = pivots[0][0] + axisA.fontShiftX;
                                 } else {
                                     var effectiveAxis = extraAxisY;
-                                    var fontStroke = colorThreadArray[ aIx ];
-                                    var fontFill = colorThreadArray[ aIx ];
-                                    var x = pivots[0][0] + marginX + 
+                                    var fontStroke = pix2color[ aIx ];
+                                    var fontFill = pix2color[ aIx ];
+                                    var x = pivots[0][0] + marginX +
                                             dimB + (aIx-1) * EXTRA_AXIS_OFFSET_STEP +
                                             effectiveAxis.fontShiftX;
                                 }
@@ -299,7 +282,7 @@
                                     text : gline.toFixed( decimalDigits ),
                                     x,
                                     y,
-                                    parent  : graphFM_self.gmedia$(),
+                                    parent  : fw_self.gmedia$(),
                                     style   : {
                                                 'font-size'     : effectiveAxis[ 'font-size' ],
                                                 'font-weight'   : effectiveAxis[ 'font-weight' ],
@@ -320,19 +303,17 @@
         }
     }
 
-
-
-
     ///======================================================
     /// generic: draws x or y grid and axes
     ///======================================================
     function drawToolline({
         polylines,
-        graphFM_self,
-        graphArray,
+        plotsPars, //curveLabels
+        fw_self,
+        pix2values,
         abscissaIxValue,
 
-        colorThreadArray,
+        pix2color,
         marginX,
         marginY,
 
@@ -351,8 +332,8 @@
     }){
         toollineStyle = toollineStyle || {};
         sn( 'stroke', toollineStyle, 'rgba( 0,0,0, 1 )' );
-        var graphElement = graphArray[ Math.floor( abscissaIxValue ) ];
-        var svgParent = graphFM_self.gmedia$();
+        var graphElement = pix2values[ Math.floor( abscissaIxValue ) ];
+        var svgParent = fw_self.gmedia$();
 
         var l_media = marginX + ( graphElement.x - xMin ) / rangeX * dimA;
         var pivots = [ [ l_media, marginY ], [ l_media, marginY + dimB ], ];
@@ -360,16 +341,16 @@
         //======================================================
         // //\\ prints toolline
         //======================================================
-        nssvg.polyline({
+        let tool_line_svg = haz( fw_self, 'tool_line_svg' );
+        fw_self.tool_line_svg = nssvg.polyline({
+            svgel : tool_line_svg, //makes garbage collection
             pivots,
-            parent  : graphFM_self.gmedia$(),
+            parent  : fw_self.gmedia$(),
             style : toollineStyle,
         });
         //======================================================
         // \\// prints toolline
         //======================================================
-
-
 
         //======================================================
         // //\\ prints numerical labels
@@ -383,40 +364,49 @@
                         graphIx : yix,
                         decimalDigits : 2,
                         fontSize : 22,
-                        fontFill : colorThreadArray[ yix ],
+                        fontFill : pix2color[ yix ],
                         fontWeight : 'normal',
                         strokeWidth : 0.1,
                     }
                 ));
             }
             ///prints labels only on live numberMarks
-            numberMarks.forEach( (nm,nmix) => {
-                if( !polylines[nmix] ) return;
+            let pix2bc = fw_self.content.pix2tpcls;
+            numberMarks.forEach( (nm,pix) => {
+                if( !polylines[pix] ) return;
                 var gix = nm.graphIx;
                 var decimalDigits = nm.decimalDigits;
                 var nmVal = graphElement.y[ gix ];
                 var x = l_media;
                 var y = marginY + dimB - ( nmVal - yMin ) / rangeY * dimB;
 
-                nssvg.printText({
+                let ttArg = {
                     text : nmVal.toFixed( decimalDigits ),
                     x,
                     y,
-                    parent  : graphFM_self.gmedia$(),
+                    parent  : fw_self.gmedia$(),
+                    ///todm: questionable design: inline-css:
                     style   : {
                                 'font-size'     : nm.fontSize,
                                 'font-weight'   : nm.fontWeight,
-                                'stroke-width'  : nm.strokeWidth,
                                 'stroke'        : nm.fontFill,
                                 'fill'          : nm.fontFill,
                     },
-                });
+                };
+                let pp = plotsPars[pix];
+                let csscls = haz( pp, 'class' ) || pix2bc[pix] || '';
+                if( csscls ){
+                    ///here is a default 'tobold' flag is added,
+                    ///tobold is a hard-coded defaut flag here
+                    ttArg['class'] = csscls + ' hover-width tostroke tobold';
+                } else {
+                    ttArg.style['stroke-width'] = nm.strokeWidth;
+                }
+                const ww = nssvg.printText(ttArg);
             });
         }
         //======================================================
         // \\// prints numerical labels
         //======================================================
     }
-
-}) ();
-
+})();

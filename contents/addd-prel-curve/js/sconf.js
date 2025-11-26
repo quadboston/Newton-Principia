@@ -19,8 +19,6 @@
     {
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
-        sconf.rgShapesVisible = true;
-
         //max diagram magnitude for scale
         //mouse-wheel sliders
         sconf.MAX_MAGNITUDE = 10;

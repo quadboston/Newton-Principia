@@ -1,4 +1,6 @@
 // //\\// site-wide conf
+//        as of nov 13, 2025, the execution order is:
+//        this file then lemma.conf.js
 (function() {
     var {
         ns, url2conf,userOptions,

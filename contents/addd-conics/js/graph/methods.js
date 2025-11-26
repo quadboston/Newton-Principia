@@ -1,88 +1,78 @@
 ( function() {
     const {
-        $$, nsmethods, globalCss, userOptions,
+        $$, nspaste, nsmethods, globalCss, userOptions,
         ssF, sDomF,
         amode, stdMod, sconf, rg
     } = window.b$l.apptree({
-        ssFExportList : 
+        ssFExportList :
         {
-            createsGraph_FW_lemma,
+            attach_graph_methods,
         },
     });
     return;
 
 
-    function createsGraph_FW_lemma({ digramParentDom$ }){
-        const graphFW = {};
-        stdMod.createsGraphFW_class({
-            graphFW,
-            digramParentDom$,
-            doSetColorThreadArray,
-            setsGraphContainerAttributes,
-            setsGraphAxes,
-            plotLabels_2_plotsPars,
-            setsGraphTpClasses,
-            doDrawToolline,
-            graphAxisX,
-            graphAxisY,
-            setsGraphTpClasses,
-        });
-        return graphFW;
+    function attach_graph_methods ( graph_wrap, graph_methods ){
+        graph_wrap.sets_axes = sets_axes;
+        graph_wrap.setsGraphTpClasses = setsGraphTpClasses;
+        graph_wrap.doSetpix2color = doSetpix2color;
+        graph_wrap.creates_global_css = creates_global_css;
+        graph_wrap.creates_chain_of_containers_under_parent =
+                   creates_chain_of_containers_under_parent;
+        graph_wrap.plotLabels_2_plotsPars = plotLabels_2_plotsPars;
+        graph_wrap.doDrawToolline = doDrawToolline;
+        graph_wrap.graphAxisX = graphAxisX;
+        graph_wrap.graphAxisY = graphAxisY;
+        nspaste( graph_wrap, graph_methods );
+        return;
 
 
-        function doSetColorThreadArray()
-        {
-            //===========================================
-            // //\\ prepares color ThreadArray
-            //===========================================
-            let colorThreadArray = [
-                sDomF.getFixedColor( 'proof' ), //predefinedTopics.P, !!'makeOpacity1' ),
+        //=====================================
+        // //\\ tp classes, colors, and masks
+        //=====================================
+        function SETS_PLOTS_TP_NAME (){
+            const tpnames = [
+                'proof',
+                'orbit',
+                'force',
+            ];
+            sconf.SHOW_FORMULAS.forEach( (f,fix) => {
+                tpnames[tpnames.length + fix] = 'context';
+            });
+            return tpnames;
+        }
+
+        function doSetpix2color (){
+            let pix2color = [
+                sDomF.getFixedColor( 'proof' ),
                 sDomF.getFixedColor( 'orbit' ),
                 sDomF.getFixedColor( 'force' ),
                 sDomF.getFixedColor( 'semiaxes' ),
             ];
-            return colorThreadArray;
-            //===========================================
-            // \\// prepares color ThreadArray
-            //===========================================
+            graph_wrap.pix2color = pix2color;
+            return pix2color;
         }
 
-        function setsGraphContainerAttributes( digramParentDom$ )
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
+        function setsGraphTpClasses()
         {
-            const container$ = $$.div()
-                .addClass( 'chem-equiibr-graph-container' )
-                .to( $$.div().to( digramParentDom$ )
-                        .addClass( 'lost-diagram-parent' )
-                        //.css( 'position', 'absolute' )
-
-                        //:this data sets outer dimensions of the graph
-                        .css( 'width', '500px' )
-                        .css( 'height', '290x' )
-
-
-                        .css( 'top', '0' )
-                        .css( 'left', '0' )
-                        .css( 'z-index', '111111' )
-            );
-            ///creates low tire api
-
-            //does thicker? curves, but needs work on fonts
-            //sData.graph_dimX = 500; //1000;  //innerWidth
-            //sData.graph_dimY = 250; //580;   //innerHeight
-
-            graph_dimX = 1000;  //innerWidth
-            graph_dimY = 580;   //innerHeight
-            graphFW.container$ = container$;
-            return {container$, graph_dimX, graph_dimY};
+                graph_wrap.fw.pix2psvg.forEach( (pl,pix) => {
+                switch(pix) {
+                    case 0: pl && $$.$( pl ).addClass( 'tp-_e_p tostroke' ); break;
+                    case 1: pl && $$.$( pl ).addClass( 'tp-_p_o tostroke' ); break;
+                    case 2: pl && $$.$( pl ).addClass( 'tp-_s_p tostroke' ); break;
+                    case 3: pl && $$.$( pl ).addClass( 'tp-_a_o tostroke' ); break;
+                }
+            });
         }
 
-        function setsGraphAxes()
-        {
+        function sets_axes (){
             //==================================================
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-        const yColor = graphFW.colorThreadArray[ 0 ];
+            const yColor = graph_wrap.pix2color[ 0 ];
 
             //axis x and legend x color:
             //manually picked color, not from plot,
@@ -138,9 +128,65 @@
             ];
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
+        //=====================================
+        // \\// tp classes, colors, and masks
+        //=====================================
 
-        function plotLabels_2_plotsPars( colorThreadArray )
-        {
+        //=========================================
+        // //\\ containers
+        //=========================================
+        function creates_global_css (){
+            globalCss.update( `
+                .blesson-graph-svg-parent {
+                    position: relative;
+                    width   : 95%;
+                    left    : 2%;
+                    top     : 10px;
+                    z-index : 1100;
+                    transition : top 1s ease-in-out;
+                }
+
+                .blesson-graph-svg-parent.hidden {
+                    top     : -200%;
+                }
+
+                .comment-inside-of-style-element___php-media,
+                .graph-box-svg {
+                    position: relative;
+                    border  : 2px solid black;
+                    width   : 100%;
+                    left    : 0%;
+                    top     : 0%;
+                    background-color : rgba( 255,255,255,1 );
+                },
+                'chem-equilibr-graph-style'
+            `);
+        }
+
+        function creates_chain_of_containers_under_parent( digramParentDom$ ){
+            const container$ = $$.div()
+                .addClass( 'blesson-graph-svg-parent' )
+                .to( $$.div().to( digramParentDom$ )
+                        .addClass( 'graph-super-parent' )
+                        //:this data sets outer dimensions of the graph
+                        .css( 'width', '500px' )
+                        .css( 'height', '290x' )
+
+                        .css( 'top', '0' )
+                        .css( 'left', '0' )
+                        .css( 'z-index', '111111' )
+            );
+            const graph_dimX = 1000;  //innerWidth
+            const graph_dimY = 580;   //innerHeight
+            graph_wrap.container$ = container$;
+            return {container$, graph_dimX, graph_dimY};
+        }
+        //=========================================
+        // \\// containers
+        //=========================================
+
+        function plotLabels_2_plotsPars( //curveLabels
+            pix2color ){
             ///make sure, the number of plot labels is equal to plot functions y(x)
             return [
                 {
@@ -151,8 +197,8 @@
                     fontShiftY : 15,
                     style : {
                         'font-size' : '40px',
-                        'stroke'  : colorThreadArray[0],
-                        //'fill' : colorThreadArray[0],
+                        'stroke'  : pix2color[0],
+                        //'fill' : pix2color[0],
                     },
                     //overrides tp class
                     //plotStyle : {
@@ -168,7 +214,7 @@
                     fontShiftY : 15,
                     style : {
                         'font-size' : '40px',
-                        'stroke'  : colorThreadArray[1],
+                        'stroke'  : pix2color[1],
                     },
                 },
 
@@ -180,7 +226,7 @@
                     fontShiftY : 15,
                     style : {
                         'font-size' : '40px',
-                        'stroke'  : colorThreadArray[2],
+                        'stroke'  : pix2color[2],
                     },
                 },
 
@@ -192,35 +238,20 @@
                     fontShiftY : 15,
                     style : {
                         'font-size' : '40px',
-                        'stroke'  : colorThreadArray[3],
+                        'stroke'  : pix2color[3],
                     },
                 },
             ];
         }
 
-        ///this thing fails if not to synch it with mask,
-        ///the unmasked indices must be the same as here:
-        function setsGraphTpClasses()
-        {
-            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$( pl ).addClass( 'tp-_e_p tostroke' ); break;
-                    case 1: pl && $$.$( pl ).addClass( 'tp-_p_o tostroke' ); break;
-                    case 2: pl && $$.$( pl ).addClass( 'tp-_s_p tostroke' ); break;
-                    case 3: pl && $$.$( pl ).addClass( 'tp-_a_o tostroke' ); break;
-                }
-            });
-        }
-
-        function doDrawToolline()
-        {
+        function doDrawToolline (){
             return {
                 toollineStyle : {
-                    stroke : graphFW.colorThreadArray[2],
+                        stroke : graph_wrap.pix2color[2],
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),
-                numberMarks : true, 
+                numberMarks : true,
             };
         }
 
@@ -238,8 +269,7 @@
             };
         }
 
-        function graphAxisY( yColor )
-        {
+        function graphAxisY( yColor ){
             return {
                 'font-size'     : '20px',
                 fontShiftX      : -45, //in media scale
@@ -252,4 +282,3 @@
         }
     }
 })();
-

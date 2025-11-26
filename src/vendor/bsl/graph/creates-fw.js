@@ -1,79 +1,134 @@
-( function() {
-    const {
-        nsmethods, haz, nssvg, $$,
-    } = window.b$l.nstree();
-    nsmethods.createsGraphFramework = createsGraphFramework;
+( function(){
+    const {sn, $$, nsmethods, haz, nssvg, } = window.b$l.nstree();
+    nsmethods.createsGraphFW = createsGraphFW;
+    let FW_ID_INDEX = 0;
     return;
 
-    
-    /// API
-    function createsGraphFramework({
+
+    //functional class constructor
+    function createsGraphFW ( gwrap ){
+        ///API
+        const {
             parent,
             svgWidthCssValue,
             svgHeightCssValue,
             dimX,   //svg inner width in svg-ViewBox
             dimY,   //svg inner height in svg-ViewBox
-    }){
-        var graphFM_self = { gmedia$ : null, gridIsPainted : false };
+        } = gwrap;
+        //auto-generates own cssid if missed
+        let cssid = sn( 'cssid', gwrap, 'graph-fw-'+(FW_ID_INDEX++) );
+
+        var fw_self = { gmedia$ : null, gridIsPainted : false };
         creates_svgDomEl();
-        graphFM_self.plotIx2plotBaseClasses = []; 
-        var plotIx2plotSvg = graphFM_self.plotIx2plotSvg = [];
-        graphFM_self.drawGraph              = drawGraph;
-        graphFM_self.nonefyDom              = nonefyDom;
-        graphFM_self.changesInnerDimensions = changesInnerDimensions;
-        return graphFM_self;
+        fw_self.gmedia$
+            .css( 'z-index', 100 )
+            .cls( cssid );
+        var pix2psvg = fw_self.pix2psvg = [];
+        ///sets externally accessible methods:
+        fw_self.meth = {
+            drawGraph,
+            nonefyDom,
+            changesInnerDimensions,
+            resetsGraph : () => {},
+        };
+        ///sets externally accessible properties:
+        fw_self.content = {
+            pix2mask : [],
+            pix2values : [],
+            pix2color : [],
+            pix2tpcls : [],
+            style : {},
+        };
+        gwrap.fw = fw_self;
+        return fw_self;
 
 
         function drawGraph({
-                //first array mast be enabled
-                graphArrayMask,
+            //optional, if not set will be found,
+            //does not find yMin, yMax for each
+            //single function y(x), finds
+            //only for an entire population of functions y(x),
+            xMin,
+            xMax,
+            yMin,
+            yMax,
+            //yRangeFromAverageY //todm a flage to
+            //set meaningful y-max,
 
-                //first index along the path, next=number of plots
-                graphArray,
-                
-                colorThreadArray,
-                style,
-
-                //optional, if not set will be found,
-                //does not find yMin, yMax for each single function y(x), finds
-                //only for an entire population of functions y(x),
-                xMin,
-                xMax,
-                yMin,
-                yMax,
-                //yRangeFromAverageY //todm a flage to set meaningful y-max,
-
-                xRangeFilter,   //optional, restricts data arrays: ignores abscissas out of
-                                //prescribed range
-                drawDecimalY,
-                drawDecimalX,
-                doSideAxes,
-                printAxisDigits,
-                    printAxisXDigits,
-                    printAxisYDigits,
-                
-                axisX,      //optional, set to default if missed, API is as in default below
-                axisY,      //optional, set to default if missed, API is as in default below
-                axisYLegend,
-                axisXLegend,
-                title,
-                drawAllAxes,
-                plotsCount_overrider,
-                plotsPars,
-                doTruncateOutOfRangeY,
-                doPaintGridOnlyOnce,
-                doDrawToolline,
-                brightenGrid,
+            //optional, restricts data arrays:
+            //ignores abscissas out of
+            //prescribed range
+            xRangeFilter,
+            drawDecimalY,
+            drawDecimalX,
+            doSideAxes,
+            printAxisDigits,
+                printAxisXDigits,
+                printAxisYDigits,
+            //optional, set to default if missed,
+            //API is as in default below
+            axisX,
+            //optional, set to default if missed,
+            //API is as in default below
+            axisY,
+            axisYLegend,
+            axisXLegend,
+            title,
+            drawAllAxes,
+            plotsCount_overrider,
+            plotsPars,  //curveLabels
+            doTruncateOutOfRangeY,
+            doPaintGridOnlyOnce,
+            doDrawToolline,
+            brightenGrid,
         }){
-            style = style || {};
-            //nonefyDom();
-            //creates_svgDomEl();
-            //perhaps too expensive ... we already do reattach plots later, but not
-            //preserve grid yet .. but grid is a hell expesive ... plot is nothing,
-            graphFM_self.gmedia$.css( 'display', 'block' );
-            if( !doPaintGridOnlyOnce || !graphFM_self.gridIsPainted ) {
-                graphFM_self.gmedia$.html( '' );
+            const content = fw_self.content;
+            const pix2values = content.pix2values;
+            const graphlen = pix2values.length;
+            if( graphlen === 0 ) return;
+
+            const pix2mask = content.pix2mask;
+            const pix2color = content.pix2color;
+            const pstyle = content.style;
+            //==================================
+            // //\\ sets defaults if missed
+            //==================================
+            if( pix2mask.length === 0 ){
+                ////if no mask, draws all
+                const graphlen = pix2values.length;
+                for( let ix=0; ix<graphlen; ix++ ){
+                    if( pix2values[ix] ){
+                        pix2values[ix].y.forEach( (v,ix) => {
+                            pix2mask[ix] = true;
+                        });
+                        break;
+                    }
+                }
             }
+            if( pix2color.length === 0 ){
+                ////if no colors, draws black
+                for( let ix=0; ix<graphlen; ix++ ){
+                    if( pix2values[ix] ){
+                        pix2values[ix].y.forEach( (v,ix) => {
+                            pix2color[ix] = 'rgb(0.0.0)';
+                        });
+                        break;
+                    }
+                }
+            }
+            //==================================
+            // \\// sets defaults if missed
+            //==================================
+
+            fw_self.gmedia$.css( 'display', 'block' );
+            if( !doPaintGridOnlyOnce || !fw_self.gridIsPainted ){
+                //perhaps too expensive ... we already do
+                //reattach plots later, but not
+                //preserve grid yet .. but grid is a
+                //hell expesive ... plot is nothing,
+                fw_self.gmedia$.html( '' );
+            }
+
             var polylines = [];
             var rangeX;
             var find_xMin = typeof xMin === 'undefined';
@@ -87,12 +142,12 @@
             //      plotsScaffold - format definition
             //----------------------------------------------
             var plotsScaffold = [];
-            graphArray.forEach( (points,pix) => {
+            pix2values.forEach( (points,pix) => {
                 //"undefined", '' skipped
                 //they are skipped anyway:
                 //if( !points ) return;
                 points.y.forEach( (pointY,yix) => {
-                    if( graphArrayMask && !graphArrayMask[yix] ) return;
+                    if( !pix2mask[yix] ) return;
                     plotsScaffold[ yix ] = plotsScaffold[ yix ] || [];
                     // plotsScaffold - format definition
                     plotsScaffold[ yix ].push( [points.x, pointY] );
@@ -110,7 +165,7 @@
             //      x and y to go outside dimX, dimY
             //----------------------------------------
             if( doFind ) {
-                graphArray.forEach( (points,pix) => {
+                pix2values.forEach( (points,pix) => {
                     //"undefined", null, '' skipped
                     if( !points ) return;
                     if( find_xMin ) {
@@ -142,7 +197,7 @@
 
                     if( find_y ) {
                         points.y.forEach( (pointY,yix) => {
-                            if( graphArrayMask && !graphArrayMask[yix] ) return;
+                            if( pix2mask && !pix2mask[yix] ) return;
                             if( find_yMin && yMin > pointY ) {
                                 yMin = pointY;
                             }
@@ -196,12 +251,12 @@
             }
 
             //==================================================
-            // //\\ converts graphArray to polylines
+            // //\\ converts pix2values to polylines
             //==================================================
             ///effective polylines - masked lines are erased,
             ///
             ///note: this must work for sparse array too
-            graphArray.forEach( (points,pix) => {
+            pix2values.forEach( (points,pix) => {
                 //"undefined", null, '' skipped
                 if( !points ) return;
 
@@ -213,9 +268,9 @@
                 }
                 //masks makes polylines[ yix ] undefined where yix has empty mask
                 points.y.forEach( (pointY,yix) => {
-                    
+
                     //creates holes in polylines array
-                    if( graphArrayMask && !graphArrayMask[yix] ) return;
+                    if( !pix2mask[yix] ) return;
 
                     if( plotCurvesCount <= yix ) return;
                     if( doTruncateOutOfRangeY && ( pointY < yMin || pointY > yMax ) ) {
@@ -229,20 +284,19 @@
                 });
             });
             //==================================================
-            // \\// converts graphArray to polylines
+            // \\// converts pix2values to polylines
             //==================================================
 
-            if( !graphFM_self.gridIsPainted ) {
+            if( !fw_self.gridIsPainted ) {
                 nsmethods.drawGrid8Axes({
-                    graphFM_self,
-                    colorThreadArray,
+                    fw_self,
                     marginX,
                     marginY,
                     printAxisDigits,
 
                     printAxisXDigits,
                     printAxisYDigits,
-                    
+
                     drawDecimalX,
                     drawDecimalY,
                     rangeY,
@@ -262,7 +316,7 @@
                     brightenGrid,
                 });
                 nsmethods.drawGraphLegend({
-                    graphFM_self,
+                    fw_self,
                     axisXLegend,
                     axisYLegend,
                     dimX_withMarg,
@@ -271,45 +325,39 @@
                     marginY,
                 });
                 if( doPaintGridOnlyOnce ) {
-                    graphFM_self.gridIsPainted = true;
+                    fw_self.gridIsPainted = true;
                 }
             }
 
             //======================================================
             // //\\ draws svg-plots from polylines
             //======================================================
-            let gMedia = graphFM_self.gmedia$();
+            const pix2bc = fw_self.content.pix2tpcls;
+            let gMedia = fw_self.gmedia$();
+            //polylines is usually a small number of graph curved lines
+            //and polylines have common index with pix2color and
+            //with plotsPars,
             polylines.forEach( (pl,plix) => {
                 if( !pl ) return;
-                var effStyle = Object.assign( {}, style );
-                effStyle.stroke = colorThreadArray[ plix ];
+                var effStyle = Object.assign( {}, pstyle );
+                effStyle.stroke = pix2color[ plix ];
                 var plotStyle = haz( plotsPars && plotsPars[ plix ], 'plotStyle' );
                 if( plotStyle ) {
                     Object.assign( effStyle, plotStyle );
                 }
-                let svg = plotIx2plotSvg[ plix ];
-                svg = plotIx2plotSvg[ plix ] = nssvg.polyline({
+                let svg = pix2psvg[ plix ];
+                svg = pix2psvg[ plix ] = nssvg.polyline({
                     svgel : svg,
                     pivots  : pl,
                     parent  : gMedia,
                     style   : effStyle,
                 });
-                if( !svg.parentNode ) {
-                    //todo why parent is always lost?
-                    //ccc( plix+' lost' );
-                    //if( svg ) {
-                    ////todm why?
-                    ////???? adding plot created at the previous graph call
-                    gMedia.appendChild( svg );
+                //hoverizing
+                let csscls = (plotsPars && haz( plotsPars[plix], 'class' ))
+                    || pix2bc[plix] || '';
+                if( csscls ){
+                    $$.$( svg ).addClass( csscls + ' hover-width tostroke');
                 }
-                /*
-                if( plix === 0 ) {
-                    if( svg.parentNode !== pervParent ) {
-                        ccc( 'not equal' );
-                    }
-                    pervParent = svg.parentNode;
-                }
-                */
             });
             //======================================================
             // \\// draws svg-plots from polylines
@@ -319,9 +367,9 @@
             // //\\ user plotPars to legens and more
             //======================================================
             ///unmasked, full length array for all plots
-            if( plotsPars ) {
-                const basecls = graphFM_self.plotIx2plotBaseClasses;
-                plotsPars.forEach( (pp,pix) => {
+            if( plotsPars ) {//curveLabels
+                const pix2bc = fw_self.content.pix2tpcls;
+                plotsPars.forEach( (pp,pix) => {//curveLabels
                     var ownPolyline = polylines[ pix ];
 
                     //occasionally and conveniently there can be more labels,
@@ -332,24 +380,29 @@
                     var xIndex = Math.floor( ( ownPolyline.length - 0.001 ) * pp.fraqX );
                     xIndex = Math.min( ownPolyline.length-1, xIndex );
                     var [ mediaX, mediaY ] = ownPolyline[ xIndex ];
-                    //polylinesLablesSVGs$[ pix ] = 
-                    //pp.svgTextEl = nssvg.printText({
-                    pp.svgTextEl = nssvg.printTextInnerHTML({
+
+                    let txtarg = {
                         svgel   : !doPaintGridOnlyOnce ? null : haz( pp, 'svgTextEl' ),
-                        //text    : 'w'+pp.pcaption,
                         innerHTML : pp.pcaption,
-                        'class' : haz( pp, 'class' ) || basecls[ pix ] || '',
                         x       : mediaX + pp.fontShiftX,
                         y       : mediaY + pp.fontShiftY,
-                        parent  : graphFM_self.gmedia$(),
+                        parent  : fw_self.gmedia$(),
                         //svgel   : polylinesLablesSVGs$[ pix ],
                         style   : Object.assign( {
-                                        stroke : colorThreadArray[ pix ],
-                                        fill : colorThreadArray[ pix ],
+                                        stroke : pix2color[ pix ],
+                                        fill : pix2color[ pix ],
                                       },
                                       pp.style
-                                  ),  
-                    });
+                                  ),
+                    };
+                    //hoverizing
+                    let csscls = haz( pp, 'class' ) || pix2bc[pix] || '';
+                    if( csscls ){
+                        //here is a default 'tobold' flag is added,
+                        //tobold is a hard-coded defaut flag here,
+                        txtarg['class'] = csscls + ' hover-width tostroke tobold';
+                    }
+                    pp.svgTextEl = nssvg.printTextInnerHTML(txtarg);
                 });
             }
             //======================================================
@@ -359,10 +412,11 @@
             if( doDrawToolline ) {
                 nsmethods.drawToolline({
                     polylines,
-                    graphFM_self,
-                    graphArray,
+                    plotsPars, //curveLabels
+                    fw_self,
+                    pix2values,
 
-                    colorThreadArray,
+                    pix2color,
                     marginX,
                     marginY,
 
@@ -389,8 +443,9 @@
         //==================================================
         function creates_svgDomEl()
         {
-            var g$ = graphFM_self.gmedia$ = $$.svg()
+            var g$ = fw_self.gmedia$ = $$.svg()
                 .to( parent )
+                .addClass( 'graph-box-svg' )
                 ;
             if( typeof svgWidthCssValue !== 'undefined' ) {
                 g$.css( 'width', svgWidthCssValue );
@@ -419,7 +474,7 @@
             dimX = dimXnew;
             dimY = dimYnew;
             ///secures the case if no media yet exists
-            var gm$ = haz( graphFM_self, 'gmedia$' );
+            var gm$ = haz( fw_self, 'gmedia$' );
             if( gm$ ) {
                 gm$.aNS( 'viewBox', '0 0 ' +
                          dimXnew.toFixed() + ' ' + dimYnew.toFixed() );
@@ -431,7 +486,7 @@
         ///==========================================
         function nonefyDom()
         {
-            graphFM_self.gmedia$ && graphFM_self.gmedia$.css( 'display', 'none' );
+            fw_self.gmedia$ && fw_self.gmedia$.css( 'display', 'none' );
         }
     }
 })();

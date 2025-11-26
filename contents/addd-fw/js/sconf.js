@@ -57,7 +57,6 @@
         sconf.mediaMoverPointDisabled   = true;
         sconf.enableStudylab            = false;
         sconf.enableTools               = false;
-        sconf.GENERIC_SLIDERS_COUNT     = 0;
         sconf.SLIDERS_LEGEND_HEIGHT     = 0;
         //====================================================
         // \\// subapp regim switches

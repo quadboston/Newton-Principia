@@ -1,468 +1,398 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({
-        ssFExportList : { init_conf }
+    const { nspaste, fconf, sf, fixedColors, originalPoints } =
+            window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
 
 
-    function init_conf()
-    {
-        //tools
-        sconf.enableStudylab = false;
-        //true enables framework zoom:
-        sconf.enableTools = true;
+function init_conf()
+{
+    //navigation
+    sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+    sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
-        //navigation
-        sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+    //***************************************************************
+    // //\\ original picture dimensions for svg scene
+    //***************************************************************
+    //for real picture if diagram's picture is supplied or
+    //for graphical-media work-area if not supplied:
+    sf.pictureWidth = 630;
+    sf.pictureHeight = 400;
 
+    //to comply standard layout, one must add these 2 lines:
+    let realSvgSize = sf.pictureWidth + sf.pictureHeight;
+    let controlsScale = realSvgSize / sf.standardSvgSize
 
-        //***************************************************************
-        // //\\ original picture dimensions for svg scene
-        //***************************************************************
-        //for real picture if diagram's picture is supplied or
-        //for graphical-media work-area if not supplied:
-        let pictureWidth = 630;
-        let pictureHeight = 400;
+    let S = [117, 322 ];
+    let P = [453, 177];
+    let Y = [263,66];
+    let A = [540, 338];
 
-        //to comply standard layout, one must add these 2 lines:
-        let realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        let controlsScale = realSvgSize / sconf.standardSvgSize
+    sf.originX_onPicture = S[0]; //for model's axis x
+    sf.originY_onPicture = S[1]; //for model's axis y
 
-        let S = [117, 322 ];
-        let P = [453, 177];
-        let Y = [263,66];
-        let A = [540, 338];
+    //model's spacial unit expressed in pixels of the picture:
+    //vital to set to non-0 value
+    sf.mod2inn_scale = ( A[0] - S[0] );
+    //***************************************************************
+    // \\// original picture dimensions for svg scene
+    //***************************************************************
 
-        let originX_onPicture = S[0]; //for model's axis x
-        let originY_onPicture = S[1]; //for model's axis y
+    //***************************************************************
+    // //\\ GUI cosmetics
+    //      to see templates what to override here, do
+    //      look at conf/conf.js or especally at conf/lemma.conf.js:
+    //      //t/sf.text_nonhover_width   = 0.01;
+    //***************************************************************
+    sf.mediaBgImage = "diagram.png";
+    sf.default_tp_lightness = 30;
+    //***************************************************************
+    // \\// GUI cosmetics
+    //***************************************************************
 
-        //model's spacial unit expressed in pixels of the picture:
-        //vital to set to non-0 value
-        let mod2inn_scale = ( A[0] - S[0] );
-        //***************************************************************
-        // \\// original picture dimensions for svg scene
-        //***************************************************************
+    //******************************************
+    // //\\ model principals parameters
+    //******************************************
+    sf.parQ = 0.250;
+    sf.orbit_q_start = 0;
+    sf.orbit_q_end = 1;
+    //pos of P
+    sf.rgPq = 0.270;
 
+    //the law to be studied in given lemma:
+    //fe: for 1/r^2, the assigment is
+    //    sf.force_law = bP => 1/(bP.r2);
+    //null means that program will calculated the law
+    //based on dt -> 0:
+    sf.force_law = null;
+    //******************************************
+    // \\// model principals parameters
+    //******************************************
 
-        //***************************************************************
-        // //\\ GUI cosmetics
-        //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
+    //***************************************************************
+    // //\\ math model auxilaries
+    //***************************************************************
+    sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
+    const FT = sf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+    sf.CURVE_REVOLVES = false; //true for cyclic orbit
+    sf.ADDENDUM_NORM_BY_MIN = false;
+    sf.DQ_SLIDER_MAX = FT ? null : 0.69;
+    //sf.DQ_SLIDER_MIN = FT ? null : 0.0001;
+    sf.DT_SLIDER_MAX = FT ? 0.18 : null;
+    sf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+    sf.Q_STEPS = 1500;
+    sf.TIME_STEPS = 1000;
+    sf.DATA_GRAPH_STEPS = 200;
+    sf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
-        sconf.TP_OPACITY_FROM_fixed_colors = true;
-        //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+    //calculation decoration and quality
+    sf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
+    //true can be in effect only for not-"addendum":
+    sf.GRAPH_PATH = false;
+    //intervals of dt or dq to construct an arc for
+    //fQR or sagitta,
+    if( FT ){
+        sf.Dt0 = 0.168; //0.1;
+    } else {
+        sf.Dq0 = 0.2;
+    }
+    //***************************************************************
+    // \\// math model auxilaries
+    //***************************************************************
 
-        //--------------------------------------
-        // //\\ these do override engine defaults,
-        //      in expands-conf.js,
-        //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4 * controlsScale ),
+    //***************************************************************
+    // //\\ model comparison demo
+    //      , even if no sf.SHOW_FORMULAS, do preserve this as
+    //      a commented template,
+    //***************************************************************
+    sf.SHOW_FORMULAS = [
+        //usually, bP is aka context of "plane-cureve-derivatives"
+        { label:'1/r²',
+          fun:(bP) => 1/bP.r2,
+          //t/ cssclass : 'tp-formula-1 tostroke',
+        },
+    ];
+    //***************************************************************
+    // \\// model comparison demo
+    //***************************************************************
 
-        // //\\ principal tp-css pars
-        //      see: topics-media-glocss.js
-        //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+    //*************************************
+    // //\\ topic group colors,
+    //      to see templates what to override here, do
+    //      look at conf/lemma.conf.js:
+    //*************************************
+    ///does import topic colors
+    const {
+        force,
+        estimatedForce,
+        fQR,
+        //displacement
+        curvature,
+        curvatureCircle,
+        sagitta,
+        distanceToCenter,
 
-        //make effect apparently only for line-captions,
-        //not for point-captions bs
-        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        //overrides hover_width for texts
-        //for activation, needs class "hover-width" in element
-        sconf.text_nonhover_width   = 0.2;
-        sconf.text_hover_width      = 0.5;
-        // \\// principal tp-css pars
+        orbit,
+        body,
+        distance,
+        chord,
 
-        sconf.default_tp_lightness = 30;
-        //--------------------------------------
-        // \\// these do override engine defaults,
-        //***************************************************************
-        // \\// GUI cosmetics
-        //***************************************************************
+        time,
+        dtime,
 
+        given,
+        proof,
+        result,
 
-        //******************************************
-        // //\\ model principals parameters
-        //******************************************
-        //pos of P
-        sconf.parQ = 0.250;
-        sconf.orbit_q_start = 0;
-        sconf.orbit_q_end = 1;
-        sconf.rgPq = 0.270;
-        //sconf.tForSagitta0 = 0.168;
+        hidden,
+        context,
+        invalid,
+        shadow,
+    } = fixedColors;
 
-        //the law to be studied in given lemma:
-        //fe: for 1/r^2, the assigment is
-        //    sconf.force_law = bP => 1/(bP.r2);
-        //null means that program will calculated the law
-        //based on dt -> 0:
-        sconf.force_law = null;
+    ///does export topic colors
+    sf.predefinedTopics = nspaste( {}, { //need deep copy
+        force,
+        estimatedForce,
+        fQR,
+        //t/displacement
+        curvature,
+        curvatureCircle,
+        sagitta,
+        distanceToCenter,
 
-        //******************************************
-        // \\// model principals parameters
-        //******************************************
+        orbit,
+        body,
+        distance,
+        chord,
 
+        time,
+        dtime,
 
-        //***************************************************************
-        // //\\ math model auxilaries
-        //***************************************************************
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
-        sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        //sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
-        sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
-        sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-        sconf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true;
-        sconf.Q_STEPS = 1500;
-        sconf.TIME_STEPS = 1000;
-        sconf.DATA_GRAPH_STEPS = 200;
-        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+        given,
+        proof,
+        result,
 
-        //calculation decoration and quality
-        sconf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
-        sconf.GRAPH_PATH = true; //only for not-"addendum"
+        hidden,
+        context,
+        invalid,
+        shadow,
 
-        //intervals of dt or dq to construct an arc for
-        //fQR or sagitta,
-        if( FT ){
-            sconf.Dt0 = 0.168; //0.1;
-        } else {
-            sconf.Dq0 = 0.2;
-        }
-        //***************************************************************
-        // \\// math model auxilaries
-        //***************************************************************
+        timearc : [...time],
+        APQ     : [...orbit],
+    });
+    //*************************************
+    // \\// topic group colors,
+    //*************************************
 
+    //*************************************
+    // //\\ bricks for originalPoints
+    //*************************************
+    let curvePivots =
+    [
+        A,
+        [ 527,248 ],
+        [ 485,203 ],
+        //P,
+        [ 396, 148 ],
+        [300, 130], //near Q
+        [217,132],
+        [102,184],
+        [51,238 ],
+    ];
+    curvePivots.push( [22,315] );
 
-        //***************************************************************
-        // //\\ model comparison demo
-        //***************************************************************
-        sconf.SHOW_FORMULAS = [
-            //usually, bP is aka context of "plane-cureve-derivatives"
-            { label:'1/r²',
-              fun:(bP) => 1/bP.r2,
-              //e// cssclass : 'tp-formula-1 tostroke',
-            },
-        ];
-        //***************************************************************
-        // \\// model comparison demo
-        //***************************************************************
-
-
-        //*************************************
-        // //\\ topic group colors,
-        //*************************************
-        var estimatedForce  = [200,0,200];
-        var fQR             = [200,   0,  200, 1];
-
-        var sagitta         = [100,50,0];
-        var given           = [0,     150, 0,      1];
-        var proof           = [0,     0,   255,    1];
-        var result          = [200,150,0,1];
-        var curvature       = [200,   40,  200, 1];
-        var timeColor       = [200,  0,  255, 1];
-        var body            = [0,     150,  200,   1];
-        var dtime           = [0,     150,  200,  1];
-        var hidden          = [0,     0,   0,      0];
-        var context         = [0,     0,   0,      1];
-        var invalid         = [255,    0,  0,      1];
-        var chord           = [0,0,255, 1];
-
-        var force           = [200,  70,  70,      1];
-        ////swaps colors
-        var force           = invalid;
-        var invalid         = [0,     0,   0,      1];
-        result              = [255,0,0,1];
-        distanceToCenter    = body; //[ 70,100,0, 1];
-
-        var predefinedTopics =
-        {
-            estimatedForce,
-            fQR,
-            body,
-            force,
-            sagitta,
-            given,
-            proof,
-            result,
-            hidden,
-            context,
-            curvature,
-            dtime,
-            time    : timeColor,
-            curvatureCircle : curvature,
-            orbit   : given,
-            timearc : proof,
-            APQ     : given,
-            invalid,
-            chord,
-            distanceToCenter,
-        };
-        //*************************************
-        // \\// topic group colors,
-        //*************************************
-
-
-        //*************************************
-        // //\\ bricks for originalPoints
-        //*************************************
-        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        //e/var curvePivots = [];
-        //e/curvePivots.push( [22,315] );
-        //e/if( sconf.BESIER_PIVOTS === 5 ) {
-        //e/curvePivots = curvePivots.map( pivot => ({
-        //e/ pos         : pivot,
-        //e/ pcolor      : given,
-        //e/}));
-        //e/var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-        //e/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-
-        var curvePivots =
-        [
-            A,
-            [ 527,248 ],
-            [ 485,203 ],
-            //P,
-            [ 396, 148 ],
-            [300, 130], //near Q
-            [217,132],
-            [102,184],
-            [51,238 ],
-        ];
- 
-        curvePivots.push( [22,315] );
-
-        if( sconf.BESIER_PIVOTS === 5 ) {
-            ////adjustements of initial positions
-            //sconf.tForSagitta0 = 0.172;
-            Dt0 = 0.172;
-            sconf.rgPq = 0.28;
-            let wwcp = [];
-            for( var i=0; i<curvePivots.length; i++ ) {
-                if( (i-1)%2 ) {
-                    let cp = curvePivots[i];
-                    if( i!==0 && i!==curvePivots.length-1 ) {
-                        let x = cp[0] - originX_onPicture;
-                        let y = cp[1] - originY_onPicture;
-                        x *=1.1
-                        y *= i==6 ? 1.45 : ( i==4 ? 1.05 : 1.1 );
-                        cp=[ x+originX_onPicture, y+originY_onPicture  ];
-                    }
-                    wwcp.push( cp );
+    if( sf.BESIER_PIVOTS === 5 ) {
+        ////adjustements of initial positions
+        //sf.tForSagitta0 = 0.172;
+        Dt0 = 0.172;
+        sf.rgPq = 0.28;
+        let wwcp = [];
+        for( let i=0; i<curvePivots.length; i++ ) {
+            if( (i-1)%2 ) {
+                let cp = curvePivots[i];
+                if( i!==0 && i!==curvePivots.length-1 ) {
+                    let x = cp[0] - sf.originX_onPicture;
+                    let y = cp[1] - sf.originY_onPicture;
+                    x *=1.1
+                    y *= i==6 ? 1.45 : ( i==4 ? 1.05 : 1.1 );
+                    cp=[ x+sf.originX_onPicture,
+                         y+sf.originY_onPicture ];
                 }
+                wwcp.push( cp );
             }
-            curvePivots = wwcp;
         }
-        curvePivots = curvePivots.map( pivot => ({
-            pos         : pivot,
-            pcolor      : given,
-            letterAngle : 45,
+        curvePivots = wwcp;
+    }
+    //*************************************
+    // \\// bricks for originalPoints
+    //*************************************
+
+    //*************************************
+    // //\\ original app points
+    //*************************************
+    curvePivots = curvePivots.map( pivot => ({
+        pos         : pivot,
+        pcolor      : given,
+        letterAngle : 45,
+        draggableX  : true,
+        draggableY  : true,
+        doPaintPname : false,
+    }));
+
+    const foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        pcolor      : invalid,
+        doPaintPname : false,
+    }));
+
+    Object.assign( originalPoints, {
+        curvePivots,
+        foldPoints,
+
+        //t/ X : {
+        //t/    cssClass : 'tp-dtime',
+        //t/    pos: S,
+        //t/    pcolor : force,
+        //t/    letterAngle : -90,
+        //t/    letterRotRadius : 40,
+        //t/    draggableX  : true,
+        //t/    draggableY  : fconf.sappId === 'b1sec2prop7',
+        //t/    initialR    : 5 * controlsScale,
+        //t/    fontSize : 30,
+        //t/    undisplayAlways : true,
+        //t/    doPaintPname : false,
+        //t/},
+        S : {
+            pos: S,
+            pcolor : force,
+            letterAngle : -90,
             draggableX  : true,
             draggableY  : true,
-            doPaintPname : false,
-        }));
+            initialR    : 5,
+        },
+        P : {
+            pos: P,
+            pcolor : body,
+            letterAngle : 70,
+            draggableX  : true,
+            draggableY  : true,
+            initialR    : 5,
+        },
+        Q : {
+            //pos: Q,
+            pcolor : proof,
+            letterAngle : 225,
+            letterRotRadius : 40,
+            draggableX  : true,
+            draggableY  : true,
+        },
+        QtimeDecor : {
+            undisplayAlways : true,
+            //pos: will be as Q,
+            cssClass : 'tp-dtime',
+            pcolor : dtime, //proof,
+            fontSize : 20,
+            letterAngle : 225,
+            letterShift : [10,0],
+            letterRotRadius : 40,
+        },
 
-        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-            pcolor      : invalid,
-            doPaintPname : false,
-        }));
-        //*************************************
-        // \\// bricks for originalPoints
-        //*************************************
+        R : {
+            //pos: Q,
+            pcolor : fQR,
+            letterAngle : 45,
+        },
+        T : {
+            pos: [0,0],
+            pcolor : proof,
+            letterAngle : 180,
+        },
+        Z : {
+            pos: [111111,111111],
+            pcolor : body,
+            letterAngle : 45,
+        },
+        rrminus : {
+            caption : 'Q-',
+            //pos: Q,
+            pcolor : proof,
+            letterAngle : 225,
+            letterRotRadius : 40,
+        },
+        sagitta : {
+            caption : 'I',
+            //pos: Q,
+            pcolor : sagitta,
+            letterAngle : 270,
+            letterRotRadius : 35,
+            //initial setting does not work well bs poor code design
+            //undisplay : true,
+        },
+        V : {
+            pos: S,
+            pcolor : curvature,
+            letterAngle : -45,
+        },
+        //center of instant curvature circle
+        C : {
+            pos: [0,0], //will be calculated
+            caption : 'Rc',
+            pcolor : curvature,
+            letterAngle : -45,
+        },
+        Y : {
+            //pos: Q,
+            pcolor : proof,
+            letterAngle : 80,
+        },
+        A : {
+            pos: A,
+            pcolor : given,
+            //letterAngle : -90,
+            //undisplayAlways : true,
+            //doPaintPname : false,
+        },
+        nonSolvablePoint : {
+            pos: [0,0], //will be calculated
+            caption : 'Orbits are disconnected.',
+            fontSize : '25',
+            undisplayAlways : true,
+            pcolor : invalid,
+            letterAngle : 0,
+            //already toggled by amode8captures
+            //undisplay : true,
+        }
+    });
+    //*************************************
+    // \\// original app points
+    //*************************************
 
+    //*************************************
+    // //\\ original app lines
+    //*************************************
+    sf.linesArray = nspaste( {},
+    [
+        { 'SP' : { pcolor : distanceToCenter }, },
+        { 'PV' : { pcolor : curvature }, },
+        { 'PR' : { pcolor : body }, },
+        { 'SY' : { pcolor : proof }, },
 
-        //*************************************
-        // //\\ original app points
-        //*************************************
-        var originalPoints =
-        {
-            curvePivots,
-            foldPoints,
-        };
+        { 'QR' : { pcolor : fQR }, },
+        { 'QP' : { pcolor : proof }, },
+        { 'SQ' : { pcolor : proof }, },
+        { 'QT' : { pcolor : fQR }, },
 
-        Object.assign( originalPoints, {
-            //e/ X : {
-            //e/    cssClass : 'tp-dtime',
-            //e/    pos: S,
-            //e/    pcolor : force,
-            //e/    letterAngle : -90,
-            //e/    letterRotRadius : 40,
-            //e/    draggableX  : true,
-            //e/    draggableY  : fconf.sappId === 'b1sec2prop7',
-            //e/    initialR    : 5 * controlsScale,
-            //e/    fontSize : 30,
-            //e/    undisplayAlways : true,
-            //e/    doPaintPname : false,
-            //e/},
-            S : {
-                pos: S,
-                pcolor : result,
-                letterAngle : -90,
-                draggableX  : true,
-                draggableY  : true,
-                initialR    : 5,
-            },
-            P : {
-                pos: P,
-                pcolor : body,
-                letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
-                initialR    : 5,
-            },
-            Q : {
-                //pos: Q,
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-                draggableX  : true,
-                draggableY  : true,
-            },
-            QtimeDecor : {
-                undisplayAlways : true,
-                //pos: will be as Q,
-                cssClass : 'tp-dtime',
-                pcolor : dtime, //proof,
-                fontSize : 20,
-                letterAngle : 225,
-                letterShift : [10,0],
-                letterRotRadius : 40,
-            },
+        { 'PC' : { pcolor : curvature }, },
+        { 'PY' : { pcolor : body }, },
+        { 'PZ' : { pcolor : body }, },
 
-            R : {
-                //pos: Q,
-                pcolor : fQR,
-                letterAngle : 45,
-            },
-            T : {
-                pos: [0,0],
-                pcolor : proof,
-                letterAngle : 180,
-            },
-            Z : {
-                pos: [111111,111111],
-                pcolor : body,
-                letterAngle : 45,
-            },
-            rrminus : {
-                caption : 'Q-',
-                //pos: Q,
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-            },
-            sagitta : {
-                caption : 'I',
-                //pos: Q,
-                pcolor : sagitta,
-                letterAngle : 270,
-                letterRotRadius : 35,
-                //initial setting does not work well bs poor code design
-                //undisplay : true,
-            },
-            V : {
-                pos: S,
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-            //center of instant curvature circle
-            C : {
-                pos: [0,0], //will be calculated
-                caption : 'Rc',
-                pcolor : curvature,
-                letterAngle : -45,
-            },
-            Y : {
-                //pos: Q,
-                pcolor : proof,
-                letterAngle : 80,
-            },
-           A : {
-                pos: A,
-                pcolor : given,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
-            },
-            nonSolvablePoint : {
-                pos: [0,0], //will be calculated
-                caption : 'Orbits are disconnected.',
-                fontSize : '25',
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
-                undisplayAlways : true,
-                pcolor : invalid,
-                letterAngle : 0,
-
-                //already toggled by amode8captures
-                //undisplay : true,
-            }
-        });
-        //*************************************
-        // \\// original app points
-        //*************************************
-
-
-        //*************************************
-        // //\\ original app lines
-        //*************************************
-        var linesArray =
-        [
-            { 'SP' : { pcolor : distanceToCenter }, },
-            { 'PV' : { pcolor : curvature }, },
-            { 'PR' : { pcolor : body }, },
-            { 'SY' : { pcolor : proof }, },
-
-            { 'QR' : { pcolor : fQR }, },
-            { 'QP' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : fQR }, },
-
-            { 'PC' : { pcolor : curvature }, },
-            { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-
-            { 'P,rrminus' : { pcolor : proof }, },
-            { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
-            { 'Q,rrminus' : { pcolor : proof }, },
-            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
-        ];
-        //*************************************
-        // \\// original app lines
-        //*************************************
-
-
-        //*************************************
-        // //\\ passing locals to sconf
-        //*************************************
-        nspaste( sconf, {
-            mediaBgImage : "diagram.png",
-            predefinedTopics,
-            originalPoints,
-            linesArray,
-            originX_onPicture,
-            originY_onPicture,
-            pictureWidth,
-            pictureHeight,
-            mod2inn_scale,
-
-            default_tp_stroke_width,
-            defaultLineWidth,
-            handleRadius,
-        });
-        //e/ sconf.pointDecoration.r = sconf.handleRadius;
-        //*************************************
-        // \\// passing locals to sconf
-        //*************************************
-    }
+        { 'P,rrminus' : { pcolor : proof }, },
+        { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
+        { 'Q,rrminus' : { pcolor : proof }, },
+        { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+    ]);
+    //*************************************
+    // \\// original app lines
+    //*************************************
+}
 })();

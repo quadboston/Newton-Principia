@@ -29,12 +29,12 @@ Force
 <br><br>
 
     <div style="text-align:center;">
-        ¦force¦𝗿˙˙¦¦ = ¦P,sagitta¦𝕻¦¦˙˙ = <br>
-        2 lim( ¦P,sagitta¦𝕻¦¦ / (¦dtime¦Δt¦¦)² ) <br>
+        ¦force¦𝗿˙˙¦¦ = ¦P,sagitta sagitta¦𝕻¦¦˙˙ = <br>
+        2 lim( ¦P,sagitta sagitta¦𝕻¦¦ / (¦dtime¦Δt¦¦)² ) <br>
         ¦dtime¦Δt¦¦ → 0.
     </div>
 
-where ¦P,sagitta¦sagitta 𝕻 ¦¦
+where ¦P,sagitta sagitta¦sagitta 𝕻 ¦¦
 
 <a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
@@ -60,10 +60,10 @@ is defined here</a>,
 
 Force
     <div style="text-align:center;">
-        ¦force¦𝗮 = 𝗿˙˙¦¦ = M²/4 d²¦P,sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
+        ¦force¦𝗮 = 𝗿˙˙¦¦ = M²/4 d²¦P,sagitta sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
     </div>
 
-where ¦P,sagitta¦sagitta 𝕻 ¦¦
+where ¦P,sagitta sagitta¦sagitta 𝕻 ¦¦
 
 <a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
 is defined here</a>,
@@ -81,7 +81,7 @@ M/2 is "Kepler constant" for constant sectorial speed:
 
 (*) gives:
     <div style="text-align:center;">
-        ¦force¦𝗮¦¦ = M²/2 lim( ¦P,sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> → 0,<br>
+        ¦force¦𝗮¦¦ = M²/2 lim( ¦P,sagitta sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> → 0,<br>
         ¦force¦a¦¦ = 2M² lim( f<sub>QR</sub> ) at δ → 0, &nbsp;&nbsp;&nbsp;(**)<br>
         ¦fQR¦f<sub>QR</sub>¦¦ = ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )²
     </div>
@@ -91,7 +91,7 @@ where
         Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, Δ<sub>S</sub> =
             (¦SP¦¦ x ¦QT¦¦) / 2, <br>
         Δ<sub>S</sub> = ΔS + o(δ³), where δ = Δt, <br>
-        ¦QR¦QR¦¦ = ¦P,sagitta¦𝔓¦¦ + o(δ²).
+        ¦QR¦QR¦¦ = ¦P,sagitta sagitta¦𝔓¦¦ + o(δ²).
     </div>
 <br><br>
 
@@ -103,7 +103,7 @@ To simulate this method numerically, we can chose two functions:
 
 We can consider 2 ultimate mathematical functions:
 
-By the Book's numerical method: fₚ = lim QR / SP² x QT², 
+By the Book's numerical method: fₚ = lim QR / SP² x QT²,
 By the modern numerical method: fₛ = dr²/dt² = 𝜎 (M/r)²/ρ⟂,
 https://landkey.net/z/bs/nl9/demo/addk/addendum.prod.html?conf=sappId=addd-kepler-task
 
@@ -111,7 +111,7 @@ QR ~= ½fₛ(∆t)², (Taylor sequence)
 fₛ ~= 2 QR/(∆t)²,
 ∆S/∆t = ½M (Kepler's area law),
 fₛ ~= 2 QR/(∆S)²(½M)² ~= ½M² QR/(SP² x QT²/4),
-fₛ = 2M² fₚ 
+fₛ = 2M² fₚ
 
 Proportionality coefficient is 2M².
 
@@ -175,7 +175,7 @@ correspondingly:
 
 This Corollary paraphrases Corollary 1.
 
-<!-- 
+<!--
 
 <b>Proof from corollary 3</b>
 <br>

@@ -1,8 +1,8 @@
 ( function() {
-    var {
+    const {
         sn, mat,
         ssD, sData,
-        stdMod, sconf, rg, toreg,
+        stdMod, fconf, sconf, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -12,22 +12,7 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    ///****************************************************
-    ///****************************************************
-    function completesSlidersCreation()
-    {
-        
+    function completesSlidersCreation(){
         //=========================================================================
         // //\\ point Q slider
         //      for delta t
@@ -44,7 +29,6 @@
 
         rg.Q.acceptPos = newPos => {
             var REPELLING_DISTANCE = 0.01;
-
             //--------------------------------------------------------------------
             // //\\ sets delta t
             //--------------------------------------------------------------------
@@ -112,17 +96,14 @@
         // \\// point Q slider
         //=========================================================================
 
-        
         //=========================================================================
         // //\\ point P slider
         //=========================================================================
-
         //note: combination of relative priorities of Q and P and
         //relative sizes allows splitting user motions for Q and P:
         // P.DRAGGEE_HALF_SIZE = 60 and for Q is 30,
         rg.P.dragPriority = 60;
         rg.P.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
-        
         
         rg.P.processOwnDownEvent = () => {
             const rgCurve = rg[ 'approximated-curve' ];

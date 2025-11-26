@@ -13,7 +13,7 @@
     const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
-    
+
     function init_model_parameters()
     {
         var op = sconf.orbitParameters;
@@ -102,18 +102,16 @@
                 }
             });
         if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
+            stdMod.graphFW_lemma = stdMod.wraps_graph_fw({
                 digramParentDom$:stdMod.legendRoot$
             });
-            stdMod.graphFW_lemma.graphArray = graphArray;
+            stdMod.graphFW_lemma.fw.content.pix2values = graphArray;
         }
         //==================================================
-        // \\// decoration graph 
+        // \\// decoration graph
         //==================================================
 
         //too early: overriden later by sconf.rgShapesVisible
         //rg[ 'S,nonSolvablePoint' ].undisplay = true;
     }
-
-}) ();
-
+})();

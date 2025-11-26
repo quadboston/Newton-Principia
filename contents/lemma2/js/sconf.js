@@ -1,7 +1,7 @@
 ( function () {
     var {
         sn, nspaste,
-        fapp, fconf, sconf,
+        fapp, fconf, sconf, sf,
         sapp,
     } = window.b$l.apptree({
         ssFExportList :
@@ -9,7 +9,6 @@
             init_conf,
         },
     });
-    
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
@@ -77,12 +76,11 @@
         var MONITOR_Y_FLIP = 0;
         var SLIDERS_LEGEND_HEIGHT = 0;
 
+        sf.mediaMoverPointDisabled = true;
         sconf.default_tp_lightness = 30;
         sconf.ONLY_MONOTONIC_CURVE = false;
-        sconf.mediaMoverPointDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
-        sconf.enableTools     = !true;
-
+        sconf.enableTools     = false;
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {
             let difference = [150, 50, 0, 0, 0.8 ];

@@ -45,7 +45,7 @@
         ///==========================================
         function drawGraph({
             graphArray,
-            colorThreadArray,
+            pix2color,
             style,
             xMin,
             xMax,
@@ -130,7 +130,7 @@
             style = style || {};
             polylines.forEach( (pl,plix) => {
                 //pl.push( pl[0] ); //to close
-                style.stroke = colorThreadArray[ plix  ];
+                style.stroke = pix2color[ plix  ];
                 pl.svgel = nssvg.polyline({
                     svgel   : haz( pl, 'svgel' ), //reuses svgel
                     pivots  : pl,

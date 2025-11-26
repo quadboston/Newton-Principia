@@ -1,20 +1,14 @@
-
 ( function() {
-    var {
+    const {
         sn, mat, eachprop, nspaste, userOptions, fixedColors,
         fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
-    var op = sn( 'orbitParameters', sconf );
+    const op = sn( 'orbitParameters', sconf );
+    const sf = sconf;
+    const fc = fixedColors;
     return;
-
-
-
-
-
-
-
 
 
     function init_conf()
@@ -31,23 +25,12 @@
         // \\// study model parameters
         //----------------------------------
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
-        //sconf.rgShapesVisible           = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //----------------------------------
         // //\\ paper diagram parameters
         //----------------------------------
         if( fconf.sappId === 'b1sec8prop41' ) {
             switch ( fconf.sappId ) {
             case "b1sec8prop41" :
-
                     //for real picture if diagram's picture is supplied or
                     //for graphical-media work-area if not supplied:
                     var pictureWidth = 912;
@@ -85,10 +68,6 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
-
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
@@ -102,30 +81,9 @@
         TP_OPACITY_LOW_POINT = 1;
         TP_OPACITY_HIGH = 1;
         TP_OPACITY_FROM_fixed_colors = false;
-
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3 * controlsScale ),
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r = handleRadius;
-
-        // //\\ principal tp-css pars
-        //      see: topics-media-glocss.js
-        //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
-
-        //make effect apparently only for line-captions,
-        //not for point-captions bs
-        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
-        sconf.text_hover_width      = 1.5;
-        // \\// principal tp-css pars
         // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
-
-
 
         //=============================================
         // //\\ points reused in config
@@ -139,9 +97,8 @@
 
         //-----------------------------------
         // //\\ topic group colors,
-        //      todm: possibly proliferation
         //-----------------------------------
-        var {
+        const {
             given,
             body,
             orbit,
@@ -152,22 +109,22 @@
             invalid,
             result,
             shadow,
+            angleArea,
+            angle,
+            hidden,
         } = fixedColors;
 
-        var hidden    = [0,     0,   0];
-
         //special or derivative parameters
-        var fi        = [0,  0,  150,   0.1, 0.4 ];
+        const fi      = [...fc.angle];
+        const fiArea  = [...fc.angleArea];
         var Fkernel   = [0,  0,  150,   0.5, 1 ];
-        var fiArea    = [0,  0,  150,   0.1, 0.3];
 
-        var Zgraph    = body; //[100,  0, 20, 0.01,  1];
+        var Zgraph    = [...fc.body];
         Zgraph[3]     = 0.01;
         Zgraph[4]     = 1;
-        var Z2graph   = body;
+        var Z2graph   = [...fc.body];
         Z2graph[3]    = 0.4;
         Z2graph[4]    = 1;
-        
         
         var ro        = distance;
 
@@ -188,6 +145,8 @@
         Tarea[3]      = 0.01;
         Tarea[4]      = 0.7;
 
+        ///they will add up (will reexport) to sconf.fixedColors and
+        //initiate keys in rg when they expanded in expand-config.js
         var predefinedTopics =
         {
             given,
@@ -196,7 +155,6 @@
             hidden,
             body,
             orbit,
-
             shadow,
             force,
             fi,
@@ -238,9 +196,7 @@
         var curvePivots =
         [
             forceStart,
-
             B,
-
             [467,69],
             [484,147],
             [516, 245],
@@ -552,11 +508,6 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-
-            default_tp_stroke_width,
-            defaultLineWidth,
-            handleRadius,
         });
     }
-}) ();
-
+})();

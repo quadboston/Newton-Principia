@@ -12,8 +12,6 @@
             { src: sm + 'main-legend.js' },
             { src: sm + 'amode8captures.js' },
             { src: sm + 'state-capturer.js' },
-            { src: sm + 'graph-fw-lib.js' },
-            { src: sm + 'graph-axes8mask.js' },
         ],
         "contents-list" :
         [

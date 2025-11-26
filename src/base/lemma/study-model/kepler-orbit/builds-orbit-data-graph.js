@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, has, haz, rg, amode, stdMod, sconf, ssD, sData, } 
+    var { sn, has, haz, rg, amode, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             P2gix,
@@ -16,7 +16,7 @@
         const gix = qix2orb[ qix ].gix;
         return gix;
     }
-  
+
     function builds_orbit_data_graph()
     {
         const ADDENDUM = amode.aspect === 'addendum';
@@ -28,10 +28,10 @@
         const known_force_law = sconf.force_law;
         const dataPeriod = Math.max( 1, Math.floor( QS/DS ) );
 
-        stdMod.graphFW_lemma.graphArray = graphArray;
+        stdMod.graphFW_lemma.fw.content.pix2values = graphArray;
         graphArray.length = 0;
         if( !sn( 'solvable', ssD, true ) ) return;
-        
+
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
@@ -49,8 +49,8 @@
             const ds_dt = bP.ds_dt;
             if( known_force_law ){
                 var instantForce = known_force_law(bP);
-                
-            //this is a stub for non-Kepler orbits:    
+
+            //this is a stub for non-Kepler orbits:
             //} else if( sconf.TIME_IS_FREE_VARIABLE ){
             //    var instantForce = bP.instant_sagitta;
 
@@ -101,7 +101,7 @@
         const fQR_max1 = ULTIM_NORM ? 1/instantForceMax : 1/fQR_max;
         const sagittaMax1 = 1/sagittaMax;
         const speedMax1 = 1/speedMax;
-        
+
         //we estimate the sign of force by the sign of the first element
         //of instant force calculated as instant_fQR,
         //if, in the future, this method become inaccurate,
@@ -126,13 +126,6 @@
                 ga.y[4+fix] /= showSign * show_force_max[fix];
             });
         }
-        ///this is a common graph lines, but this mask can be
-        ///overriden in model_upcreate()
-        //stdMod.graphFW_lemma.graphArrayMask = 
-        //[ 
-        //    'force',
-        //    'fQR',
-        //];
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------

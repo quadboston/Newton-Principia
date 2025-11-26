@@ -1,9 +1,6 @@
 // //\\// widget config
 ( function() {
-    var {
-        mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
+    const { mat, fapp, fconf, sconf, } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
@@ -15,11 +12,8 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.insertDelayedBatch        = true;
-        sconf.enableStudylab            = false;
         //for some standard sliders
-        sconf.enableTools               = true;
         sconf.hideProofSlider           = true; //todo
-        //sconf.rgShapesVisible         = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================

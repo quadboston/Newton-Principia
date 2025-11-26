@@ -10,14 +10,14 @@
 <br><br>
 
 ¦fQR¦Estimated force fₑ¦¦ ~ ¦P,sagitta QR sagitta¦move¦¦/time² =
-¦P,sagitta¦sagitta¦¦/(Δt)²~ᵘ       <br>
+¦P,sagitta sagitta¦sagitta¦¦/(Δt)²~ᵘ       <br>
 ¦QR¦¦/area² ~ ¦QR¦¦/(¦QT¦¦*¦SP¦¦)² .  <br><br>
 
 From triangles similarity ¦QR¦¦ = ¦PR¦RP¦¦²/¦RL¦¦ <br>
 From triangles similarity ¦PR¦RP¦¦ = ¦QT¦¦ * ¦AV¦¦/¦PV¦¦ and
 <br><br>
 
-¦fQR¦fₑ¦¦~1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦²/¦AV¦¦² ) ~ 1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦² )   &nbsp;&nbsp;&nbsp;&nbsp; (*)      
+¦fQR¦fₑ¦¦~1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦²/¦AV¦¦² ) ~ 1/( ¦SP¦¦² * ¦RL¦¦ * ¦PV¦¦² )   &nbsp;&nbsp;&nbsp;&nbsp; (*)
 <br><br>
 
 and ultimately: <br>
@@ -84,7 +84,7 @@ In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task#excent
 
 
 In Vector Calculus <a target="_blank" href="?conf=sappId=addd-kepler-task,logic_phaseId=proof,aspectId=addendum,subessayId=force-center-change">
-    section "Two force fields ... ", (ft)</a> gives: 
+    section "Two force fields ... ", (ft)</a> gives:
 <br>
 
     <div style="text-align:center;">

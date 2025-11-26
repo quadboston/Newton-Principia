@@ -1,6 +1,6 @@
 ( function() {
-    var {
-        ns, sn, cssp, $$, eachprop, globalCss, nsmethods,
+    const {
+        sn, cssp, $$, eachprop, globalCss, nsmethods,
         fapp, sconf, topics,
     } = window.b$l.apptree({
         ssFExportList :
@@ -9,8 +9,9 @@
             v2_topics_2_unhighCss,
         },
     });
-    var tpid2cssColor = {};
-    var ROOT = '.' + cssp + '-approot';
+    const graphCss = sn( 'graphCss', sconf );
+    const diagramCss = sn( 'diagramCss', sconf );
+    const ROOT = '.' + cssp + '-approot';
     return;
 
 
@@ -24,8 +25,9 @@
         eachprop( topics.lowId2topics, ( topi_c, lowId ) => {
             var { fillOpacity, strokeOpacity, rgba_own } = topi_c;
             var Rtp = ROOT + ' .tp-' + lowId;
-            var tpOpacityLow_str = topi_c.lowOpacity.toFixed(3); 
+            var tpOpacityLow_str = topi_c.lowOpacity.toFixed(3);
             var ts = '';
+
             ts += `
 ${Rtp} {
     opacity: ${tpOpacityLow_str};
@@ -39,7 +41,7 @@ ${Rtp}.tofill {
 ${Rtp}.tostroke {
     stroke: ${rgba_own};
 }
-    
+
 ${Rtp}.tocolor {
     color : ${rgba_own};
 }
@@ -53,12 +55,27 @@ ${Rtp}.tobg {
 ${ROOT} svg image.tp-${lowId} {
     opacity : ${ sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY };
 }
+
 ${ROOT} svg .tp-${lowId}.hover-width {
     stroke-width:${ sconf.nonhover_width }px;
 }
-            `;
-            //todo experiment
-            ts += `
+${ROOT} svg text.tp-${lowId}.hover-width {
+    stroke-width:${ sconf.text_nonhover_width }px;
+}
+
+${ROOT} svg.graph-box-svg .tp-${lowId}.hover-width {
+    stroke-width:${ graphCss.nonhover_width };
+}
+${ROOT} svg.graph-box-svg text.tp-${lowId}.hover-width,
+${ROOT} svg.graph-box-svg tspan.tp-${lowId}.hover-width {
+    stroke-width:${ graphCss.text_nonhover_width };
+}
+
+      `;
+
+
+//todo experiment
+ts += `
 ${Rtp}.tocolor {
     color : ${rgba_own};
 }
@@ -69,18 +86,17 @@ ${Rtp}.tobg {
             globalCss.replace( ts, 'glocss-'+lowId );
         });
     }
-    
 
     function v2_tplinks_2_highlightCss( nextTplinks )
     {
         nextTplinks.forEach( (tplink,tplink_ix) => {
             Object.keys( tplink.tpid2true ).forEach( lowId => {
-                var Rtp = ROOT + ' .tp-' + lowId;
                 var Rix = ROOT + '.tp-' + tplink_ix;
                 var topi_c = topics.lowId2topics[ lowId ];
                 var ts = '';
                 var { highOpacity, rgba_own} = topi_c;
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
+
                 ts += `
 ${Rix} .tp-${lowId} {
     opacity: ${tpOpacityHigh_str};
@@ -88,37 +104,46 @@ ${Rix} .tp-${lowId} {
                      `;
                     //competes with tobold, do we need all of them?
                     ts += `
-${Rix} .tp-${lowId}.tobold,
-
-${Rix} svg text.tp-${lowId},
-${Rix} svg tspan.tp-${lowId},
-${Rix} span.tp-${lowId} {
+${Rix} .tp-${lowId}.tobold {
     font-weight : bold;
 }
                     `;
                         ///todm: very crude and wordy stroke width control
-                     ts += `
+                    ts += `
 ${Rix} svg .tp-${lowId}.tostroke {
     stroke-width:${ sconf.default_tp_stroke_width }px;
 }
                     `;
-                    
-ts += `
-                    
+
+                    ts += `
+
 ${Rix} svg .tp-${lowId}.tostroke.hover-width {
     stroke-width:${ sconf.hover_width }px;
 }
+
+${Rix} svg text.tp-${lowId}.tostroke.hover-width {
+    stroke-width:${ sconf.text_hover_width }px;
+}
+
+${Rix} svg.graph-box-svg .tp-${lowId}.tostroke.hover-width {
+    stroke-width:${ graphCss.hover_width };
+}
+${Rix} svg.graph-box-svg text.tp-${lowId}.tostroke.hover-width,
+${Rix} svg.graph-box-svg tspan.tp-${lowId}.tostroke.hover-width {
+    stroke-width:${ graphCss.text_hover_width };
+}
                     `;
+
                     //todm: can be done via tpOpacityLow = 0;
                     ts += `
 ${Rix} .tohidden.tp-${lowId} {
     visibility:visible;
 }
                 `;
+
+
                 globalCss.update( ts, 'glocss-id-' + lowId + '-glocss-ix-'+tplink_ix );
             });
         });
     }
 })();
-
-

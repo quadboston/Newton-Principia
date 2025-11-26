@@ -17,15 +17,8 @@
     //====================================================
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
+        //in particular, blocks zoom
         sconf.enableTools               = false;
-        sconf.rgShapesVisible           = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
 
         //--------------------------------------
         // //\\ geometics parameters

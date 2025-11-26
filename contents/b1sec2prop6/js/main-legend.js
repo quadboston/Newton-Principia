@@ -47,8 +47,8 @@
             ////**********************************************************************************
             //'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(rg.tForSagitta.val*2).toFixed(4)',
             'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(ssD.Dt*2).toFixed(4)',
-            'P<>sagitta<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.P2gix()].y[1].toFixed(4)',
-            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.graphArray[stdMod.P2gix()].y[0].toFixed(4)',
+            'P<>sagitta<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[1].toFixed(4)',
+            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+stdMod.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[0].toFixed(4)',
             'none,_,"<_>"', //dummy row for spacing at foot
             'none,_,"<_>"' //dummy row for spacing at foot
         ];
@@ -103,7 +103,7 @@
                 noEqualSignInNumber : true,
             })
         }
-        
+
         function createsIdleFirstRow_forFormat( tb, logic_phase )
         {
             //=====================================================
@@ -125,7 +125,7 @@
             // \\// idle first row to format table for fixed-layout
             //=====================================================
         }
-        
+
     }
     //=========================================
     // \\// creates logic_phase table

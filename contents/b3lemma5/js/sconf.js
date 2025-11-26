@@ -179,7 +179,6 @@
             enableStudylab : true,
             hideProofSlider : true, //false,
             enableCapture : true,
-            enableTools : true,
             enableDataFunctionsRepository : true,
             //----------------------------------
             // \\// scenario

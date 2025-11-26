@@ -1,16 +1,13 @@
 ( function() {
-    var {
+    const {
         sn, haz, mcurve, ssD,
         amode, stdMod, rg, sconf,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
-            buildsforceGraphArray,
-        },
+        stdModExportList : { buildsforceGraphArray,},
     });
     return;
 
-    
+
     function buildsforceGraphArray() ///legacy force sample, rid later
     {
         const subessay = amode.subessay;
@@ -21,9 +18,9 @@
             printAxisXDigits : ADDENDUM,
             //printAxisYDigits : true,
         }
-        
+
         let prop7R = sconf.prop7R;
-        let ga = stdMod.graphFW_lemma.graphArray;
+        let ga = stdMod.graphFW_lemma.fw.content.pix2values;
         let glen = ga.length;
         var forceMin;
         var forceMax;
@@ -32,11 +29,11 @@
         var sagittaMax;
         var xMin;
         var xMax;
-        
+
         //for SHOW_FORMULAS
         let toshow = [];
         let toshowNorm = [];
-        
+
         for( ix = 0; ix<glen; ix++ ) {
             let gaix = ga[ix];
             var ssagitta = ssD.ssigned[ix];
@@ -45,16 +42,16 @@
             let r = cP.r;
             let sinw = cP.sinOmega;
             let graphX = r/prop7R;//normed distance
-            gaix.x = graphX; 
+            gaix.x = graphX;
             var r2 = cP.r2;
             let PV = 2*prop7R*sinw;
-            
+
             //for SHOW_FORMULAS
             let toshowVal = [];
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                toshowVal[fix] = f.fun( cP ); 
+                toshowVal[fix] = f.fun( cP );
             });
-            
+
             //central angle =
             let qQP = rg.Q.q - rg.P.q;
             //VP at tangent angle - QP at tangent angle =
@@ -83,7 +80,7 @@
                 var estimatedForceAbs = 1/(r2*RL*RL*RL);
 
                 var force = forceAbs;
-                var estimatedForce = estimatedForceAbs;                
+                var estimatedForce = estimatedForceAbs;
             }
 
             if( ix === 0 || sagittaMax < sagittaAbs ) {
@@ -127,7 +124,7 @@
             gaix.y[2] = 1; //body
             gaix.y[3] = ssagitta;
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                gaix.y[4+fix] = fsignum * toshowVal[fix]; 
+                gaix.y[4+fix] = fsignum * toshowVal[fix];
             });
         }
         let xMargin = (xMax-xMin)*0.05;
@@ -151,9 +148,9 @@
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             //too much work
             //toshowNorm[fix] = ADDENDUM || subessay === 'corollary1' ?
-            
+
             toshowNorm[fix] = ADDENDUM ?
-                toshow[fix].min : toshow[fix].max; 
+                toshow[fix].min : toshow[fix].max;
         });
         //------------------------------------------
         // \\// sets norm depending on ADDENDUM mode
@@ -183,6 +180,6 @@
             graphArg.yMax = -0.5;
             graphArg.yMin = -10; //for partial y range,
         }
-        stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+        stdMod.graphFW_lemma.wraps_draw_graph(graphArg);
     }
 })();

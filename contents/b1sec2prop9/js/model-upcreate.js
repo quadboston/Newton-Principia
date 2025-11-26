@@ -21,7 +21,7 @@
         stdMod.builds_dq8sagit8displace({});
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qix2orb[ rg.P.qix ];
-        
+
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
@@ -112,9 +112,6 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //stdMod.graphFW_lemma.graphArrayMask[1] =
-        //       ssD.solvable && !ssD.doMaskSagitta;
-               
         {
             let graphArg = {
                 //drawDecimalY : true,
@@ -123,7 +120,7 @@
             }
             /*
             if( !b onus ) {
-                let ga = stdMod.graphFW_lemma.graphArray;
+                let ga = stdMod.graphFW_lemma..fw.content.pix2values;
                 let len = ga.length;
                 let sumAbs = 0;
                 var yMax =0;
@@ -137,7 +134,7 @@
                 graphArg.yMin = 0;
             }
             */
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graphFW_lemma.wraps_draw_graph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

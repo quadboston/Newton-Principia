@@ -2,7 +2,7 @@
     var {
         sn, $$, nssvg, haz, mat, mcurve, userOptions, //vendor
         ssD, ssF,                                     //app
-        sconf, amode, stdMod, rg, sDomF,              //lemma (sub application)  
+        sconf, amode, stdMod, rg, sDomF,              //lemma (sub application)
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -21,7 +21,7 @@
     function curveIsSolvable()
     {
         const ADDENDUM = amode.aspect === 'addendum';
-        const DDD = 1e-5; 
+        const DDD = 1e-5;
         var NON_SOLVABLE_THRESHOLD = 0.05;
         //too many steps, todm: make analytical validation or
         var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
@@ -31,7 +31,7 @@
         var STEPS = rgCurve.stepsCount;
         var end_q = rgCurve.tEnd;
         var start_q = rgCurve.tStart;
-        
+
         var rrc      = rg.S.pos;
         var solvable = true;
         var fun = rgCurve.t2xy;
@@ -45,11 +45,11 @@
         }
         //no need for f/fmax
         let sectSpeed0 = ssD.sectSpeed0;
-        
+
         var forceGraphArray = [];
         var foldPoints = [];
         var curve = ssD.curve = (new Array(STEPS+1)).fill({});
-        
+
         //how rare we will output graph points on svg
         //ba
         var stepScale=( end_q - start_q ) / STEPS;
@@ -61,7 +61,7 @@
             //grows from small to big
             //curve paramter is coordinate x:
             var q = start_q + solix * i2q;
-            
+
             var curvePars = mcurve.planeCurveDerivatives({
                 fun,
                 q,
@@ -82,7 +82,7 @@
             } = curvePars;
             curvePars.curveIx = solix;
             curve[solix] = curvePars;
-            
+
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
             cosAbs = Math.abs( sinOmega );
@@ -139,19 +139,19 @@
                         speed,
                     ],
                     ix : solix,
-                    
+
                     //mostly for debug or sandbox
                         q : q,
                         force : force,
-                        
+
                 });
                 path += v*stepScale;
             }
         }
-        
+
         stdMod.graphFW_lemma.forceMax = forceMax;
         ///resets forceGraphArray
-        stdMod.graphFW_lemma.graphArray = forceGraphArray;
+        stdMod.graphFW_lemma.fw.content.pix2values = forceGraphArray;
         var arrLen = forceGraphArray.length;
         ///renorms 1/r2 graph for better comparision
         for (var forceArrayIx = 0; forceArrayIx<arrLen; forceArrayIx++ )
@@ -169,7 +169,7 @@
         ssD.foldPoints = foldPoints;
         return;
 
-        
+
         ///todm fix or rename to P2gix,
         ///this function must be initiated out of scope isSolvable()
         ///     these vars must be done in small closure:
@@ -182,7 +182,7 @@
             return Math.max( 0, Math.min( qixMax, qix ) );
         }
     }
-    
+
     ///finds and fills finite sagitta in the
     ///stdMod.graphFW_lemma.graphArray
     ///finite sagitta is normalized by its sMax,
@@ -192,13 +192,13 @@
         const ADDENDUM = amode.aspect === 'addendum';
         const fun = rg[ 'approximated-curve' ].t2xy;
         const c = ssD.curve;
-        const garr = stdMod.graphFW_lemma.graphArray;
+        const garr = stdMod.graphFW_lemma.fw.content.pix2values;
         const len = garr.length;
         const dt = rg.tForSagitta.val;
         const sectSpeed0 = ssD.sectSpeed0;
         const rrc = rg.S.pos;
 
-        
+
         let sMax = 1e-100;
         let ssigned = ssD.ssigned = [];
         for (let gix = 0; gix<len; gix++ ) {
@@ -221,10 +221,10 @@
             //mostly for degub or sandbox
             garr[ gix ].qmin = qmin;
             garr[ gix ].qmax = qmax;
-            
+
             let rmax = fun(qmax);
             let rmin = fun(qmin);
-            
+
             // //\\ splits integration path to more points
             /*
             let dq_dt0 = sectSpeed0 / (v * staticSectorialSpeed_rrrOnUU);
@@ -261,7 +261,7 @@
             sMax = sMax < sagittaAbs ? sagittaAbs : sMax;
         }
         ssD.sagittaMax = sMax;
-        
+
         ///stores sagitta
         for (let gix = 0; gix<len; gix++ )
         {
@@ -344,7 +344,7 @@
             var curvePoints = ownrange2points();
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
-                pivots  : medpoints, 
+                pivots  : medpoints,
                 svgel   : rgX.polylineSvg,
                 parent  : stdMod.svgScene,
 

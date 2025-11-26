@@ -105,12 +105,22 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        stdMod.graphFW_lemma.drawGraph_wrap({
-            //drawDecimalY : true,
-            //drawDecimalX : false,
-            printAxisXDigits : true,
-            //printAxisYDigits : true,
-        });
+        {
+            const mask = stdMod.graphFW_lemma.fw.content.pix2mask;
+            mask[1] = solvable
+                && (
+                amode.subessay === 'corollary1' ||
+                amode.subessay === 'corollary5'
+            );
+        }
+        if( solvable ) {
+            stdMod.graphFW_lemma.wraps_draw_graph({
+                //drawDecimalY : true,
+                //drawDecimalX : false,
+                printAxisXDigits : true,
+                //printAxisYDigits : true,
+            });
+        }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
@@ -143,7 +153,7 @@
             if( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
                 for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
@@ -156,7 +166,7 @@
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations

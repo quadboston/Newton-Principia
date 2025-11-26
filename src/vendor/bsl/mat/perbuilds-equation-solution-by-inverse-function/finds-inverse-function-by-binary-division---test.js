@@ -83,7 +83,7 @@
         //=================================================
         // //\\ prepares params
         //=================================================
-        colorThreadArray = ns.builds_zebraNColors_array({
+        pix2color = ns.builds_zebraNColors_array({
             maxColors   : ORDINATES_MAX,
             SATUR       : 100,
             LIGHT       : 50,
@@ -106,7 +106,7 @@
         });
         fw.drawGraph({
             graphArray,
-            colorThreadArray,
+            pix2color,
                 style   : {
                'stroke-width' : 2,
             },

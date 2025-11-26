@@ -7,36 +7,17 @@
         amode,
         toreg,
         stdMod,
-        
+
     } = window.b$l.apptree({
         stdModExportList :
         {
             calculateBars,
         },
     });
-
     toreg( 'barRatioMax' );
     toreg( 'barRatioMin' );
     toreg( 'mediaBars' )( 'val', [] );
-    var graphArray = stdMod.graphArray = [];
     return;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //=========================================================
@@ -47,6 +28,9 @@
         left0right,
         leftBarsAreas
     ){
+        let graph_fw = rg.pHGraph.fw;
+        const graphArray = graph_fw.content.pix2values;
+
         var T               = rg.ptransform.val;
         var transformVolume = T[0][0] * T[1][1];
         var ordPP           = rg.orderedPartPoints.val;
@@ -62,7 +46,7 @@
             if( left0right !== 'left' ) {
                 if( PP_COUNT === sconf.BARS_NUMBER_INITIAL + 1 ) {
                     //starts bar sequence over
-                    graphArray.length = 0;
+                    graph_fw.content.pix2values.length = 0;
                 }
                 graphArray[ BCOUNT ] = {
                     x : BCOUNT,
@@ -71,7 +55,6 @@
                 var graphArrayY = graphArray[ BCOUNT ].y;
             }
         }
-
 
         var barsArea = 0;
         ordPP.forEach( (bar, bix) => {
@@ -90,7 +73,6 @@
             if( DO_COLLECT_MEDIA_BARS ) {
                 rg.mediaBars.val[ bix ][ left0right ] = { p1X, p2X };
             }
-
             //=======================================================
             //gets function values
             var leftFun     = integX.fun;
@@ -99,8 +81,6 @@
             //ccc( left0right + ' ' + bix + ' figArea/barArea=' +
             //     ( integX.figArea/barArea ).toFixed(3) );
             //=======================================================
-
-
 
             //=======================================================
             // //\\ builds stats in loop
@@ -132,12 +112,10 @@
             //=======================================================
         });
 
-
         //=======================================================
         // //\\ builds stats
         //      for areas and ratios
         //=======================================================
-
         //for legend
         rg.barRatioMax.val = barRatioMax ?
                 //( barRatioMax / transformVolume ).toFixed(3) : '';
@@ -160,7 +138,4 @@
     //=========================================================
     // \\// calculates figure, bars areas
     //=========================================================
-
-
-}) ();
-
+})();

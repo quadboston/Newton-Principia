@@ -101,15 +101,6 @@
         {
             dontDoMathJax : false, //true,
             skipGenDragList : true,
-            //====================================================
-            // //\\ subapp regim switches
-            //====================================================
-            enableStudylab  : false,
-            enableTools     : false,
-            //====================================================
-            // \\// subapp regim switches
-            //====================================================
-
             dontRun_ExpandConfig : false,
             //----------------------------------
             // //\\ model-view parameters

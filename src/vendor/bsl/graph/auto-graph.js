@@ -6,11 +6,6 @@
     return;
 
 
-
-
-
-
-
     //==================================================
     // //\\ creates pHGraph wrap around fw
     //==================================================
@@ -35,7 +30,7 @@
         //=================================================
         // //\\ prepares params
         //=================================================
-        colorThreadArray =
+        pix2color =
             ns.builds_zebraNColors_array({
                 maxColors   : ZEBRA_COLORS*2,
                 SATUR       : 100,
@@ -46,7 +41,7 @@
 
         /*
         for manual setup
-        colorThreadArray = [
+        pix2color = [
             equilibConst,
             dColor,
             inputColor,
@@ -127,7 +122,7 @@
                 }
 
                 /* php media */
-                .ph-graph {
+                .graph-box-svg {
                     position: relative;
                     border  : 2px solid black;
                     width   : 100%;
@@ -174,11 +169,11 @@
             if( printAxisDigits ) {
 
                 //y-legend color; taken from first plot color:
-                var yColor      = colorThreadArray[ 0 ];
+                var yColor      = pix2color[ 0 ];
 
                 //axis x and legend x color:
                 //manually picked color, not from plot,
-                var xColor      = colorThreadArray[ 0 ];
+                var xColor      = pix2color[ 0 ];
 
                 var axisYLegend =
                 [
@@ -236,8 +231,8 @@
             }
 
             fw.drawGraph({
-                graphArray : arrayToPaint,
-                colorThreadArray,
+                pix2values : arrayToPaint,
+                pix2color,
                 style,
                 xMin,
                 xMax,
@@ -274,7 +269,7 @@
                     plotsPars_manual,
                 )
             });
-            fw.gmedia$.addClass( 'ph-graph' );
+            fw.gmedia$.addClass( 'graph-box-svg' );
             //==================================================
             // \\// calls api
             //==================================================
@@ -293,7 +288,7 @@
                 autoGraph__self.container$.removeClass( 'hidden' );
             } else {
                 autoGraph__self.container$.addClass( 'hidden' );
-            } 
+            }
         }
         //==================================================
         // \\// shows/hides graph container
