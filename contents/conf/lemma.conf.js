@@ -317,6 +317,10 @@
                 "inscribed-rectangles" : [150, 0, 150, 0.32, 0.64],
                 "insc-txt" : [150, 0, 150, 0.7, 1],
 
+				sunColor    : DYNAMIC, // center of force (S or C in propositions)
+				orbit: RED,
+				body: RED
+
                 // ** copy more colors as defined above here **
             },
             {
