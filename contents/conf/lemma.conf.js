@@ -185,7 +185,7 @@
 
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = DARK_GREEN;
+        fixedColors.proof       = RED;//DARK_GREEN;
         fixedColors.proofArea   = [...fixedColors.proof, 1];
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
         fixedColors.resultOnlyVisibleWhenHighlighted
@@ -305,7 +305,7 @@
         const colorSets = [ 
             {
                 // copy of above for reference and so it's included in the options
-                given : rgbToArray("rgb(0, 113, 0)"),
+                given : RED,//rgbToArray("rgb(0, 113, 0)"),
                 givenArea : [0, 113, 0, 1],
 
                 proof : rgbToArray("rgb(0, 0, 255)"),
@@ -342,6 +342,8 @@
 
                 proof : rgbToArray("rgb(rgb(255, 0, 0)"),
                 proofArea : [255, 0, 0, 1],
+
+				sunColor    : RED, // center of force (S or C in propositions)
                 
                 // L2, L3 only
                 "circumscribed-rectangles" : [255, 0, 0, 0.32, 0.64],

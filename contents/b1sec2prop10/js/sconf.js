@@ -150,7 +150,7 @@
         var predefinedTopics =
         {
             given,
-            proof,
+            //proof,
             result,
             hidden,
             context,
