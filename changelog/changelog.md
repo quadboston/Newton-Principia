@@ -4,6 +4,7 @@
 ### Improved
 * General
 	* performance improvements
+	* more consistent look and behavior across models
 
 ## 2025-11-17 (LightSalmon Version, 0.13861)
 ### Improved
