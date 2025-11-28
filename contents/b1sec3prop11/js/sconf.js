@@ -371,6 +371,9 @@
             { PI : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
+			{ 'PT' : { pcolor : proof,
+				cssClass: 'subessay--solution',
+			 },},
 
             { 'SP' : { pcolor : estimatedForce, 
 				cssClass: 'logic_phase--proof',
@@ -398,9 +401,6 @@
 				cssClass: 'subessay--solution',
 			 }, },
             { 'QT' : { pcolor : estimatedForce,
-				cssClass: 'subessay--solution',
-			 },},
-            { 'PT' : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
 
