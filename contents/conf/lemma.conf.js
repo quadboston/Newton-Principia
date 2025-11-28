@@ -185,7 +185,7 @@
 
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = RED;//DARK_GREEN;
+        fixedColors.proof       = DARK_GREEN;
         fixedColors.proofArea   = [...fixedColors.proof, 1];
         fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
         fixedColors.resultOnlyVisibleWhenHighlighted
@@ -305,59 +305,40 @@
         const colorSets = [ 
             {
                 // copy of above for reference and so it's included in the options
-                given : RED,//rgbToArray("rgb(0, 113, 0)"),
-                givenArea : [0, 113, 0, 1],
+                given : rgbToArray("rgb(0, 113, 0)"),
+                givenArea : [...fixedColors.given, 1],
 
                 proof : rgbToArray("rgb(0, 0, 255)"),
-                proofArea : [0, 0, 255, 1],
+                proofArea : [...fixedColors.proof, 1],
 
-                // these are L2, L3 only - can they be combined with colors from other pages to reduce total number of global colors needed?
-                "circumscribed-rectangles" : [0, 80, 150, 0.32, 0.64], 
-                "circ-txt" : [0, 80, 150, 0.7, 1],
-                "inscribed-rectangles" : [150, 0, 150, 0.32, 0.64],
-                "insc-txt" : [150, 0, 150, 0.7, 1],
+				sunColor    : rgbToArray("rgb(0, 113, 0)"),
+				orbit: rgbToArray("rgb(0, 113, 0)"),
+				body: rgbToArray("rgb(0, 113, 0)"),
 
-				sunColor    : DYNAMIC, // center of force (S or C in propositions)
-				orbit: RED,
-				body: RED
-
+				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
+				displacement: rgbToArray("rgb(200, 0, 200)"),
+				force: rgbToArray("rgb(200, 150, 0)"),
                 // ** copy more colors as defined above here **
             },
+			{},
             {
                 given : rgbToArray("rgb(124, 57, 201)"),
                 givenArea : [124, 57, 201, 1],
 
                 proof : rgbToArray("rgb(39, 161, 182)"),
                 proofArea : [39, 182, 39, 1],
-
-                // L2, L3 only
-                "circumscribed-rectangles" : [14, 128, 148, 0.32, 0.64], 
-                "circ-txt" : [14, 128, 148, 0.7, 1],                
-                "inscribed-rectangles" : [124, 57, 201, 0.32, 0.64],
-                "insc-txt" : [124, 57, 201, 0.7, 1],
                 
-                // ** add colors here, ensure all objects in colorSets have the same members **
+                sunColor    : rgbToArray("rgb(222, 200, 0)"),
+				orbit: rgbToArray("rgb(176, 48, 48)"),
+				body: rgbToArray("rgb(176, 48, 48)"),
+
+				estimatedForce: rgbToArray("rgb(183, 155, 172)"),
+				displacement: rgbToArray("rgb(183, 155, 172)"),
+				force: rgbToArray("rgb(180, 63, 0)"),
             },            
             // ** add as many color sets as you like here **
-            {
-                // for testing, to clearly indicate which elems are included in colorSets
-                given : rgbToArray("rgb(255, 0, 0)"),
-                givenArea : [255, 0, 0, 1],
-
-                proof : rgbToArray("rgb(rgb(255, 0, 0)"),
-                proofArea : [255, 0, 0, 1],
-
-				sunColor    : RED, // center of force (S or C in propositions)
-                
-                // L2, L3 only
-                "circumscribed-rectangles" : [255, 0, 0, 0.32, 0.64],
-                "circ-txt" : [255, 0, 0, 1],                
-                "inscribed-rectangles" : [255, 0, 0, 0.32, 0.64],
-                "insc-txt" : [255, 0, 0, 1],
-
-                // ** add colors here, ensure all objects in colorSets have the same members **
-            },
-        ];      
+        ];    
+		//fixedColors.displacement    = fixedColors.estimatedForce;
         
         const prevBtn = document.getElementsByClassName("prev")[0];
         const nextBtn = document.getElementsByClassName("next")[0];
