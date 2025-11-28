@@ -1,6 +1,6 @@
 // //\\// widget config
 ( function() {
-    var { mat, fapp, sconf, fixedColors, } = 
+    var { mat, fapp, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -40,6 +40,8 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
+        
+        fconf.DRAGGER_TOLERANCE = 25; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -48,7 +50,7 @@
         sconf.default_tp_lightness = 30;
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        handleRadius            = Math.floor( 3 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
@@ -103,14 +105,12 @@
             P : { pos: [996, 570],
                   pcolor: pt.static,
                   cssClass: 'tp-key-triangle',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             A : { pos: [623, 1232],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
@@ -118,12 +118,10 @@
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   //style: {fill: '#ffffff'}, works
-                  initialR: pointRadius,
                 },
             C : { pos: [509,383],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
@@ -168,7 +166,6 @@
 				  caption : '𝑡',
                   pcolor : pt.aux,
                   cssClass : 'subessay--corollary1 subessay--corollary2',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
@@ -176,13 +173,11 @@
 				  caption : '𝑟',
                   pcolor : pt.aux,
                   cssClass :  'subessay--corollary1 subessay--corollary2',
-                  initialR: pointRadius,
                 },
             q : { pos: [1028, 830],
 				  caption : '𝑞',
                   pcolor : pt.aux,
                   cssClass : 'subessay--corollary3',
-                  initialR: pointRadius,
                 },
             d : { pos: [1028, 830],
 					caption : '𝑑',
@@ -205,14 +200,12 @@
             Q : { pos: [1077, 1231],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             D : { pos: [1410, 965],
                   pcolor: predefinedTopics['generators'],
                   cssClass: 'tp-generators',
-                  initialR: pointRadius,
                   letterRotRadius : 20,
                   draggableX : true,
                   draggableY : true,
@@ -220,14 +213,12 @@
             R : { pos: [1010, 712],
                   pcolor: predefinedTopics['key-triangle'],
                   cssClass: 'tp-key-triangle',
-                  initialR: pointRadius,
                   letterAngle : -10,
                   letterRotRadius : 20,
                 },
             S : { pos: [532,561],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },

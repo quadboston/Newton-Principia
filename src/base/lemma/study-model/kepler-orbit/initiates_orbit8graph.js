@@ -46,8 +46,6 @@
         // //\\ scenario: coincided P and Q: Q splits first
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
-        rg.P.DRAGGEE_HALF_SIZE = 40; //lets to catch P before Q,
-        rg.Q.DRAGGEE_HALF_SIZE = 15; //usual default in fconf,
         // \\// scenario: coincided P and Q: Q splits first
         
         stdMod.creates_Q8P_sliders();

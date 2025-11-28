@@ -3,7 +3,7 @@
 //        The active point is elected by "findDraggee" function
 //        which is supplied at initialization time.
 ( function() {
-    var { ns, sn, d8dp, haz, $$, dpdec, sconf } = window.b$l.apptree({});
+    var { ns, sn, d8dp, haz, $$, dpdec, sconf, fconf } = window.b$l.apptree({});
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
 
     d8dp.throttles_eventMove = throttles_eventMove;
@@ -51,8 +51,6 @@
             spinnerCursorGrab,
             spinnerCursorGrabbed,
     }) {
-
-        var DRAGGEE_HALF_SIZE = 40;
         findDraggee = findDraggee || findDraggee_default;
         handle2dragsurf_pos = handle2dragsurf_pos || handle2dragsurf_pos_default;
 
@@ -565,7 +563,8 @@
                 var tdY         = Math.abs( testMediaY - dompos[1] );
                 var td          = Math.max( tdX, tdY );
 
-                var distLim = haz( pointWrap, 'DRAGGEE_HALF_SIZE' ) || DRAGGEE_HALF_SIZE;
+                var distLim = fconf.DRAGGER_TOLERANCE;
+                //console.log('distLim' + distLim); // todo: is this ever called?
 
                 //.td is a "rect-metric" for distance between
                 //.point_on_dragSurf and drag-point-candidate

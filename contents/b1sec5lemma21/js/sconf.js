@@ -1,5 +1,5 @@
 ( function() {
-    var { eachprop, mat, fapp, sconf, fixedColors, } = 
+    var { eachprop, mat, fapp, fconf, sconf, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -40,6 +40,8 @@
         //sconf.standardSvgSize = 250;
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
+        
+        fconf.DRAGGER_TOLERANCE = 25; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -184,7 +186,6 @@
                   pos: [0,0], //fake pos
                   pcolor: pt.static,
                   cssClass: 'tp-static tp-_C',
-                  initialR: pointRadius,
                   letterAngle : -90,
                   letterRotRadius : 20,
             },
@@ -192,14 +193,12 @@
                   pos: pop.B,
                   pcolor: pt.static,
                   cssClass: 'tp-static',
-                  initialR: pointRadius,
                   letterAngle : -90,
                   letterRotRadius : 20,
             },
             D : {
                   pcolor: pt[ "constructors" ],
                   //cssClass: 'tp-g-parameter',
-                  initialR: pointRadius,
                   letterAngle : 180,
                   letterRotRadius : 20,
             },
@@ -209,7 +208,6 @@
                   //cssClass: 'tp-static',
                   //cssClass : 'logic_phase--proof',
                   cssClass: 'aspect--model',
-                  initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
                   doPaintPname:false,
@@ -217,28 +215,24 @@
             P : {
                   cssClass: 'logic_phase--proof',
                   pcolor: pt.static,
-                  initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
             N : {
                   pos: pop.N,
                   pcolor: pt.static,
-                  initialR: pointRadius,
                   letterAngle : -45,
                   letterRotRadius : 20,
             },
             n : {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.core,
-                  initialR: pointRadius,
                   letterAngle : -45,
                   letterRotRadius : 20,
             },
             p : {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.constructors,
-                  initialR: pointRadius,
                   letterAngle : 180,
                   letterRotRadius : 20,
             },
@@ -246,7 +240,6 @@
                   cssClass: 'subessay--direct-proof',
                   pos: pop.T,
                   pcolor: pt.core,
-                  initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
@@ -254,7 +247,6 @@
                   cssClass: 'subessay--direct-proof',
                   pos: pop.R,
                   pcolor: pt.core,
-                  initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
@@ -268,7 +260,6 @@
                   pcolor: pt.static,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  initialR: pointRadius,
                   letterAngle : 0,
                   letterRotRadius : 20,
             },
@@ -279,7 +270,6 @@
                   pcolor: pt.static,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  initialR: pointRadius,
                   letterAngle : 45,
                   letterRotRadius : 20,
                   doPaintPname:false,
@@ -289,7 +279,6 @@
                   pcolor: pt.core,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  initialR: pointRadius,
                   letterAngle : 225,
                   letterRotRadius : 25,
             },

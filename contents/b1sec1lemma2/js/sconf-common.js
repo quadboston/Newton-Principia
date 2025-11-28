@@ -74,20 +74,20 @@
 
             ////GUI
             FINEPTS_RADIUS  : 10,
-            MOVABLE_BASE_RADIUS : 3,
-            CTRL_RADIUS     : 3,
+            MOVABLE_BASE_RADIUS : 2.25,
+            CTRL_RADIUS     : 2.25,
             //Minimum distance between base handles
 	        BASE_POINTS_REPELLING_DISTANCE : 10,
 
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices
-            DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
+            DRAGGER_TOLERANCE : 5, //"rectangular-distance" to point to be detected
 
             //Approximate number of line segments used to generate the curve.
             //The actual number used can vary slightly (by a few).
             CURVE_SEGMENTS_APPROXIMATE : 500,
 
-            default_tp_stroke_width : 8,
+            default_tp_stroke_width : 4, // when hovering text
             //rubbish: 
             //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
