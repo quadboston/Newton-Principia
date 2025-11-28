@@ -176,7 +176,7 @@
                 ;
         } else {
             stdMod.legendRoot$
-                .css( 'top', (bases_slidersH + stdMod.svgSceneH + 10).toFixed()+'px' )
+                .css( 'top', (stdMod.svgSceneH + 10).toFixed()+'px' )
                 .css( 'left', legendMargin.toFixed(2) + 'px' )
                 ;
         }

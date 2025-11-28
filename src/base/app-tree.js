@@ -129,7 +129,7 @@
                 ) {
                     stdMod.model8media_upcreate = () => {
                         // called once on page load and again any time the model/data changes
-                        console.log('model and media upcreate');                        
+                        //console.log('model and media upcreate');                        
                         stdMod.model_upcreate();                        
                         ns.haff( stdMod, 'media_upcreate' ); 
                     }

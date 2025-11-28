@@ -77,6 +77,7 @@
                           ( fconf.doDisplayPageTopNavigatMenu ?
                             sDomN.pageNavTopBar$.box().height : 0
                           );
+        //console.log('SSceneH: ' + SSceneH); // height of bsl-sim-superscene
         ///-------------------------------------------
         ///slider group patch for lemmas 2, 3, 4
         ///-------------------------------------------
@@ -85,9 +86,9 @@
         if (sliderGroup$) {
             var bases_slidersH = sliderGroup$() ?
                 sliderGroup$.box().height : 0;
-            bases_slidersH += 35; //nicer
             sliderGroup$.css('position', 'absolute');
         }
+        //console.log('bases_slidersH: ' + bases_slidersH);
 
         //-------------------------------------------
         // //\\ calculates legend
@@ -200,7 +201,6 @@
         // //\\ phase 4. allocates widths and heights
         //===============================================
         var simSceneH = SSceneH
-            - bases_slidersH
 
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
@@ -235,18 +235,20 @@
             console.log('wide screen');
             ////wide screen
             var wideScreen_flag = true;
+            simSceneH -= 50; // margin at bottom of page (give version # space)
             //now we calculate H-restriction again
             var svgW            = proposedRightW - legendWidth + 20;
-            // -25 to ensure svg sliders don't get cut off
+            // bases_slidersH to ensure svg sliders don't get cut off
             var bgImgW          = Math.min(
-                                    (simSceneH / stdMod.simSceSvg_narrowestAsp - 25), 
+                                    (simSceneH / stdMod.simSceSvg_narrowestAsp 
+                                        - bases_slidersH), 
                                     svgW );
             var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
             var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
             var simSceneW       = svgW + 20; // so tool tip and sliderGroup$ line up to svg canvas
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
-            var svgSceneH       = simSceneH - 30;
+            var svgSceneH       = simSceneH;
         //-------------------------------------------------------------
         // \\// wide screen,
         //-------------------------------------------------------------
@@ -261,7 +263,8 @@
             //-------------------------------------------------
             //does set media width
             //-------------------------------------------------
-            var bgImgW = svgW_min;
+            // if bases_slidersH (L2-4) shrink model so slider fits inside canvas too
+            var bgImgW = svgW_min - bases_slidersH;
             //-------------------------------------------------
             //:does set setting legendMarginr
             //-------------------------------------------------
@@ -313,25 +316,19 @@
         // \\// exports sizes
         //--------------------------------------------------------------------
 
+        //console.log(stdMod.simSceneH);
 
         //===============================================
         // //\\ phase 5. finalizes widths and heights
         //===============================================
         //Placed after "exports sizes" section to ensure slider width
         //calculation has updated values.
+
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
-            const viewportHeight = window.innerHeight;
-            var extendCanvas = 0;
-            if(wideScreen_flag) {
-                extendCanvas = stdMod.svgVB_H * 0.05;
-            } else if(viewportHeight < 1300) {
-                extendCanvas = stdMod.svgVB_H * 0.08;
-            }
-            stdMod.svgVB_H += extendCanvas; // to give space for slider
             let sliderTop; // offset slider so it appears within canvas
             if(sconf.sappId === 'b1sec1lemma4') {
-                sliderTop = stdMod.bgImgH - 10; 
+                sliderTop = stdMod.bgImgH - 25; 
             } else { // L1, L2
                 sliderTop = stdMod.bgImgH - 20; 
             }
