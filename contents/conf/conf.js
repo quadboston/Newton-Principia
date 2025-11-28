@@ -24,7 +24,7 @@
     to_fconf =
     {
         
-        DRAG_HANDLE_HALFHOTSPOT : 15,
+        DRAG_HANDLE_HALFHOTSPOT : 15, // size of spinner
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
@@ -76,7 +76,7 @@
         LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
-        DRAGGEE_HALF_SIZE : 15, //40, //px
+        DRAGGER_TOLERANCE : 15, // distance from point that is draggable
 
         //setting this to "false" does hide slider
         //decoration spinning arrows

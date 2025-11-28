@@ -20,7 +20,7 @@
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
@@ -45,9 +45,8 @@
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+        
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -56,6 +55,10 @@
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 4 * controlsScale ),
+        //console.log(handleRadius);
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...
+
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -271,7 +274,6 @@
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
-                initialR    : 5,
             },
 
             P : {
@@ -280,7 +282,6 @@
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
-                initialR    : 5,
             },
 
             Q : {

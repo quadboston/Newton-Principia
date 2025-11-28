@@ -15,9 +15,9 @@
     /*r:2.4;*/ 
 }
   
-.outline, .outline-cls {
+.outline, .outline-cls { /* L2, L3, L4 only */
     fill: transparent;
-    stroke-width: 2; 
+    stroke-width: 1.5; 
 }  
   
 .flex {

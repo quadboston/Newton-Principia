@@ -14,7 +14,7 @@
         //overrides "global", lemma.conf.js::sconf
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles
-        sconf.pointDecoration.r= 5; // radius of all points, both static and slider
+        sconf.pointDecoration.r = 4; // radius of all points, both static and slider
         sconf.b_per_B_original = 1.931578947; // determines distance between B and b
 
         //====================================================
@@ -28,7 +28,9 @@
         //====================================================
         
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels        
+        
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 

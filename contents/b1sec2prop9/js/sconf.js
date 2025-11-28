@@ -43,9 +43,8 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+        
+        fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -54,6 +53,8 @@
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 4 * controlsScale ),
+        //overrides "global", lemma.conf.js::sconf
+        sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -183,7 +184,6 @@
                 letterAngle : -90,
                 //draggableX  : true,
                 //draggableY  : true,
-                //initialR    : 5 * controlsScale,
             },
 
             P : {

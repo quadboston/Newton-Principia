@@ -328,9 +328,6 @@
                     //keeps dragging but hides spinning drag overlay
                     rgX.nospinner = op.nospinner;
                 }
-                if( has( op, 'DRAGGEE_HALF_SIZE' ) ) {
-                    rgX.DRAGGEE_HALF_SIZE = op.DRAGGEE_HALF_SIZE;
-                }
                 if( has( op, 'dragDecorColor' ) ) {
                     rgX.dragDecorColor = op.dragDecorColor;
                 }

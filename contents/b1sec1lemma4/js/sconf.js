@@ -88,6 +88,11 @@
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
+        //point sizes
+        sconf.pointDecoration.r = 2.5; // resizes solid points, not hollow draggers
+        sconf.MOVABLE_BASE_RADIUS = 4; // overwrites defaults from sconf-common.js
+        sconf.CTRL_RADIUS = 4;
+
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -150,6 +155,8 @@
 
             //Hides the rectangles, lines etc. when non-monotonic
             HIDE_WHEN_NON_MONOTONIC : true,
+
+            DRAGGER_TOLERANCE : 8,
         });
         //=====================================
         // \\// configures application engine
@@ -160,32 +167,33 @@
         // //\\ patch for quick slider creation
         //      see //modern approach ... abandoned
         //=====================================
+        const labelFontSize = 22;
         var originalPoints =
         {
             a : {
 				caption: '𝑎',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             A : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             E : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             c : {
 				caption: '𝑐',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
 
@@ -193,26 +201,26 @@
 				caption: '𝑝',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             P : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             T : {
                 pcolor      : predT.given,
                 letterAngle : -45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
 
             r : {
 				caption: '𝑟',
                 pcolor      : predT.given,
                 letterAngle : 45,
-                initialR    : 1.6,
+                fontSize : labelFontSize
             },
         };
 
@@ -246,7 +254,7 @@
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : 1, //was pictureActiveArea,
+            mod2inn_scale : 5, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
 			mediaBgImage : "l4-diagram.png",

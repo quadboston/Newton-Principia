@@ -1,6 +1,9 @@
 ( function() {
-    var { haff, has, eachprop, nspaste, capture, toreg, sconf, ssF, ssD, sDomF, fixedColors, 
-        fixedColorsOriginal, } = window.b$l.apptree({ ssFExportList : { init_conf } });
+    var { 
+        haff, has, eachprop, nspaste, capture, toreg, 
+        fconf, sconf, ssF, ssD, sDomF, 
+        fixedColors, fixedColorsOriginal, 
+    } = window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -21,6 +24,8 @@
             let realSvgSize = pictureWidth + pictureHeight;
             sconf.controlsScale = realSvgSize / sconf.standardSvgSize
         }
+        
+        fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         var modorInPicX = 47; //28; 
         var activeAreaOffsetOnPictureY = 0; 
@@ -29,6 +34,8 @@
         //.set it from graph editor
         //.todm: trully 611 and rotated
         var pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
+
+        //sconf.pointDecoration.r = 5; // todo: why this doesn't work?
 
         var initialPath =
         [

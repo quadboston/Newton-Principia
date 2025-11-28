@@ -304,11 +304,15 @@
         var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
         var lpoints = str.split( splitToken );
         cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
+        let strokeWidth = 2;
+        if(sconf.sappId === "b1sec1lemma2" || sconf.sappId === "b1sec1lemma3") {
+            strokeWidth = 1;
+        }
         var lineAttrPassed =
         {
             cssClass        : 'tostroke thickable' +
                                ( cssClass ? ' ' + cssClass : '' ),
-            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, 2 ),
+            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ), // most model lines
             stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
             //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
             //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),

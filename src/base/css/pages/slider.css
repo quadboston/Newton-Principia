@@ -2,8 +2,8 @@
 Styles for the model slider range
 ~~~~~~~~~~~~~~~~~~~~*/
 .slider-group {
-    height: 24px;
     padding-top : 10px;
+    padding-bottom : 10px;
     z-index : 100;
 }
   
