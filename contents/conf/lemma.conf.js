@@ -310,6 +310,7 @@
 
                 proof : rgbToArray("rgb(0, 0, 255)"),
                 proofArea : [...fixedColors.proof, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
 
 				sunColor    : rgbToArray("rgb(0, 113, 0)"),
 				orbit: rgbToArray("rgb(0, 113, 0)"),
@@ -320,20 +321,23 @@
 				force: rgbToArray("rgb(200, 150, 0)"),
                 // ** copy more colors as defined above here **
             },
-			{},
+			{
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
+			},
             {
                 given : rgbToArray("rgb(124, 57, 201)"),
                 givenArea : [124, 57, 201, 1],
 
-                proof : rgbToArray("rgb(39, 161, 182)"),
+                proof : rgbToArray("rgb(29, 111, 182)"),
                 proofArea : [39, 182, 39, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(39, 161, 182)"), 0, 1],
                 
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
-				orbit: rgbToArray("rgb(176, 48, 48)"),
-				body: rgbToArray("rgb(176, 48, 48)"),
+				orbit: rgbToArray("rgb(0, 0, 222)"),
+				body: rgbToArray("rgb(0, 0, 222)"),
 
-				estimatedForce: rgbToArray("rgb(183, 155, 172)"),
-				displacement: rgbToArray("rgb(183, 155, 172)"),
+				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
+				displacement: rgbToArray("rgb(123, 105, 112)"),
 				force: rgbToArray("rgb(180, 63, 0)"),
             },            
             // ** add as many color sets as you like here **
