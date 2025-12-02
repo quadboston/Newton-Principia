@@ -91,6 +91,8 @@
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
             var newLoc = window.location.pathname + '?conf=' +
                 'sappId=' + nextSapp.sappId;
+            //console.log(newLoc); //sets links for forward/back buttons
+            //todo: add params for tab states
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
