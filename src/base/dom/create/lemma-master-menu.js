@@ -249,13 +249,10 @@
                     const match = link.href.match(/sappId=([^,]+)/);
                     if (match) {
                         sappId = match[1];
-                        console.log("sappId:", sappId);
-                        //todo: don't update link if video tab doesn't exist
+                        var aspect = ns.getAspectId(sappId);
+                        link.href.replace(/aspectId=[^,]*/, `aspectId=${aspect}`);
                     }
-                    var linkUrl = currentUrl.replace(/aspectId=[^,]*/, `aspectId=${scat}`);
-                    link.href = linkUrl;
                 }
-
             });
 
         } else {
@@ -274,7 +271,6 @@
         // Update the browser URL without reload
         window.history.replaceState({}, "", newUrl);
     }
-
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ does select menu-leaf
