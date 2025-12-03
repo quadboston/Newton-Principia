@@ -281,9 +281,7 @@
             }
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             //when navigating to a new page, vertical tab persists, horizontal tab reset to claim
-            let aspectId = ns.url2conf(fconf).aspectId;
-            console.log(aspectId);
-            if(!aspectId) aspectId = 'english';
+            let aspectId = ns.getAspectId(sappItem.sappId);
             coreText += `
                 <li><a href="${landingPath}?conf=sappId=${sappItem.sappId},logic_phaseId=claim,aspectId=${aspectId}"
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
