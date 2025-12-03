@@ -89,9 +89,10 @@
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
         //point sizes
-        sconf.pointDecoration.r = 2.5; // resizes solid points, not hollow draggers
-        sconf.MOVABLE_BASE_RADIUS = 4; // overwrites defaults from sconf-common.js
-        sconf.CTRL_RADIUS = 4;
+        sconf.pointDecoration.r = 2; // solid points
+				// (overwrites defaults from sconf-common.js)
+        sconf.MOVABLE_BASE_RADIUS = 3.2; // movable base points
+        sconf.CTRL_RADIUS = 3.2;	// curve control points
 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
@@ -256,7 +257,7 @@
             pictureHeight,
             mod2inn_scale : 5, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
-            handleRadius : 55,
+            handleRadius : 155,
 			mediaBgImage : "l4-diagram.png",
         });
         //=====================================
