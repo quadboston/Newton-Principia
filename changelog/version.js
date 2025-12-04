@@ -4,7 +4,7 @@
 
     // //\\ updated automatically. Don't edit these strings.
     fapp.version = 2; //application version
-    fapp.buildDateString = "2025-11-17"; //build date
+    fapp.buildDateString = "2025-12-04"; //build date
     // \\// updated automatically. Don't edit these strings.
 
     fapp.versionColor = 'MediumVioletRed'; //color for version display
