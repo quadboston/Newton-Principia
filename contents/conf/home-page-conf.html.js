@@ -153,7 +153,11 @@
                         <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
                             concept, production, programming, video<br>
                         <span class="dd-label"><a href="https://bastyon.com/konstantin_kirillov">Konstantin Kirillov:</a></span>
-                            lead programming, addenda, UI<br>
+                            lead programming, UI<br>
+						<span class="dd-label"><a href=" https://sarahrosannabusch.ca">Sarah Rosanna Busch:</a></span>
+                            programming<br>
+						<span class="dd-label"><a href="https://www.funneractic.com/About.html">David McMurtrie:</a></span>
+                            programming<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
