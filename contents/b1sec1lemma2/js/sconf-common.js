@@ -74,7 +74,7 @@
 
             ////GUI
             FINEPTS_RADIUS  : 10,
-            MOVABLE_BASE_RADIUS : 2.25,
+            MOVABLE_BASE_RADIUS : 2.25, //L3 draggable base points
             CTRL_RADIUS     : 2.25,
             //Minimum distance between base handles
 	        BASE_POINTS_REPELLING_DISTANCE : 10,

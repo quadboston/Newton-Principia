@@ -1,6 +1,6 @@
 # Change Log
   
-## 2025-11-? (MediumVioletRed Version, 0.2)
+## 2025-12-4 (MediumVioletRed Version, 0.2)
 ### Improved
 * General
 	* performance improvements
