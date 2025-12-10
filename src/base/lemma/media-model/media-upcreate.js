@@ -47,7 +47,7 @@
             amode.subessay = match[1];
         }
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
-        console.log(amode.subessay);
+        //console.log(amode.subessay);
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
