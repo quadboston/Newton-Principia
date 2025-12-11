@@ -763,6 +763,20 @@
     // \\// configures from URL
     //=========================================================
 
+    //=========================================================
+    // //\\ if pages doesn't have passed in aspect, return default
+    //=========================================================
+    ns.getAspectId = function(sappId) {
+        // todo: return current aspect only for pages that have it
+        var aspectId = 'english';
+        return aspectId;
+    }
+    //=========================================================
+    // \\// if pages doesn't have passed in aspect, return default
+    //=========================================================
+
+
+
     // //\\ helpers
     ns.prop2prop = function( target, source )
     {

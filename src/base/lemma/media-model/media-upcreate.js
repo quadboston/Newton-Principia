@@ -37,9 +37,17 @@
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
 
+        var url = window.location.href;
+        const match = url.match(/subessayId=([^,&]*)/);
+
         //:updates subessay menu
         var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
+        if ( match && haz(exAspect.subessay2subexeg, match[1] )) {
+            // selected subessay persists when toggling tabs
+            amode.subessay = match[1];
+        }
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
+        //console.log(amode.subessay);
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         ssF.toogle_detectablilitySliderPoints4Tools();//"optional"

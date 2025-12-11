@@ -7,7 +7,7 @@
         fconf,
         fmethods,
         stdMod,
-        rg,
+        rg, ns,
         wrkwin,
         ssF, ssD,
         amode,
@@ -89,8 +89,10 @@
         } else {
             var nextSapp = fconf.ix2lemmaDefAllowed[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
+
             var newLoc = window.location.pathname + '?conf=' +
-                'sappId=' + nextSapp.sappId;
+                'sappId=' + nextSapp.sappId + 
+                ',logic_phaseId=claim,aspectId=english';
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
@@ -107,7 +109,13 @@
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better
-            pager$.e( 'click', function() {
+            pager$.e( 'click', function() {                     
+                const match = newLoc.match(/sappId=([^,]+)/);
+                if (match) {
+                    var sappId = match[1];              
+                    var aspect = ns.getAspectId(sappId);
+                    newLoc = newLoc.replace(/aspectId=[^,]*/, `aspectId=${aspect}`);
+                }
                 window.location = newLoc;
                 return false;
             });
