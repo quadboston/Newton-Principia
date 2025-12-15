@@ -12,6 +12,7 @@
                 { src: sm + 'sconf.js' },
                 { src: sm + 'config-functions.js' },
                 { src: sm + 'init-model-parameters.js' },
+                { src: sm + 'completes-sliders-creation.js' },
                 { src: sm + 'model-upcreate.js' },
                 { src: sm + 'media-upcreate.js' },
                 { src: sm + 'main-legend.js' },

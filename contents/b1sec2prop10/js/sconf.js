@@ -98,6 +98,7 @@
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
+        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 0.5;
         //-------------------------------------------
@@ -200,11 +201,6 @@
 				cssClass: 'subessay--solution',
             },
 
-            A : {
-                pcolor : proof,
-                cssClass: 'subessay--solution',
-            },
-
             // //\\ proof
             D : {
                 pcolor : proof,
@@ -301,6 +297,13 @@
             P : {
                 pcolor : body,
                 letterAngle : 70,
+                draggableX  : true,
+                draggableY  : true,
+            },            
+
+            A : {
+                pcolor : proof,
+                cssClass: 'subessay--solution',
                 draggableX  : true,
                 draggableY  : true,
             },
