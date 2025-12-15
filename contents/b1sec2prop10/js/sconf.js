@@ -254,16 +254,6 @@
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
             },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-                cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
-            },
             // \\// proof
   
 
@@ -299,13 +289,24 @@
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
-            },            
+            },   
+
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
+            },         
 
             A : {
                 pcolor : proof,
-                cssClass: 'subessay--solution',
                 draggableX  : true,
                 draggableY  : true,
+				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             //---------------------------------------
             // \\// draggable points

@@ -127,7 +127,7 @@
                         }
                     }
                 })
-                rg.Q.hideD8Dpoint = dohide;
+                rg[pname].hideD8Dpoint = dohide;
             }
         });
 

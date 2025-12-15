@@ -19,27 +19,29 @@
             sp[1] = stashedPos[1];
         };
         rg.A.acceptPos = newPos => {
-            console.log('dragging A');
-            if( mat.p1_to_p2( newPos, sconf.diagramOrigin ).abs > -1 ) {
-                    stashedPos[0] = newPos[0];
-                    newPos[1] = stashedPos[1];
-                    sconf.ellipseFocus = -stashedPos[0];
-                    let ellA2 = sconf.ellipseFocus*sconf.ellipseFocus +
-                                sconf.ellipseB*sconf.ellipseB;
-                    sconf.ellipseA = Math.sqrt( ellA2 );
-                    let lambda2 = sconf.ellipseB/sconf.ellipseA;
-                    lambda2 *= lambda2;
-                    sconf.eccentricity = Math.sqrt( 1 - lambda2 );
-                    stdMod.recreates_q2xy();
-                    //resets ellpse parameters
-                    hafa( stdMod, 'recreatesPosCorrector' )();
-            }
-            rg.A.pos[0] = newPos[0];
-            rg.A.pos[1] = newPos[1];
+            // lock Y
+            newPos = [ newPos[0], stashedPos[1] ];
 
-            stdMod.rebuilds_orbit();
-            stdMod.model8media_upcreate();
-        }
+            // enforce ellipse equation: solve for a given x,y
+            let x = newPos[0];
+            let y = newPos[1];
+            let b = sconf.ellipseB;
+
+            // compute semi-major axis a from ellipse equation
+            let a = Math.sqrt( x*x / (1 - (y*y)/(b*b)) );
+
+            sconf.ellipseA = a;
+            sconf.ellipseB = b;
+            sconf.ellipseFocus = Math.sqrt(a*a - b*b);
+            sconf.eccentricity = sconf.ellipseFocus / a;
+            if(sconf.eccentricity) {
+                rg.A.pos[0] = x;
+                rg.A.pos[1] = y;
+
+                stdMod.rebuilds_orbit(); // draws ellipse
+                stdMod.model8media_upcreate(); // repositions points
+            }
+        };
     };
     //=====================================================================
     // \\// point A slider
