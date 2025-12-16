@@ -24,6 +24,9 @@
 
             // enforce ellipse equation: solve for a given x,y
             let x = newPos[0];
+			if (x < 0) { // don't drag A on the far left
+				return;
+			}
             let y = newPos[1];
             let b = sconf.ellipseB;
 
