@@ -30,17 +30,17 @@
             // compute semi-major axis a from ellipse equation
             let a = Math.sqrt( x*x / (1 - (y*y)/(b*b)) );
 
+			// allow ellipse to be circle, rather than abort at last ellipse
+			a = Math.max(a, b);
+
             sconf.ellipseA = a;
-            sconf.ellipseB = b;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
-            if(sconf.eccentricity) {
-                rg.A.pos[0] = x;
-                rg.A.pos[1] = y;
+			rg.A.pos[0] = x;
+			rg.A.pos[1] = y;
 
-                stdMod.rebuilds_orbit(); // draws ellipse
-                stdMod.model8media_upcreate(); // repositions points
-            }
+			stdMod.rebuilds_orbit(); // draws ellipse
+			stdMod.model8media_upcreate(); // repositions points
         };
     };
     //=====================================================================
