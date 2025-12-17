@@ -282,8 +282,8 @@
             //---------------------------------------------------------------
             // //\\ anchor control
             //---------------------------------------------------------------
-            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.6,
-            ANCHOR_TOPIC__OPACITY_IN_FOCUS : 0.9,
+            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.8,
+            ANCHOR_TOPIC__OPACITY_IN_FOCUS : 1.0,
             ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
             //---------------------------------------------------------------
             // \\// anchor control

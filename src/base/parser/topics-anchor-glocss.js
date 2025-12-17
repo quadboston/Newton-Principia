@@ -88,6 +88,10 @@
         //todm needs more work to proofcheck other texts:
         let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb_low : rgba_high;
         
+        // adjust darkness with second param
+        // decrease to make darker, increase to lighten
+        baseColor = adjustRGBA(baseColor, 1); 
+        
         anchors__cssHighlighter.value += `
             ${tplink_str} {
                border-radius : 4px;
@@ -108,6 +112,19 @@
         `;
     }
 
+    function adjustRGBA(rgbaString, factor) {
+        // Extract numbers from rgba(...) string
+        const match = rgbaString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+        if (!match) throw new Error("Invalid RGBA format");
+
+        let [ , r, g, b, a ] = match;
+        r = Math.min(255, Math.max(0, parseInt(r) * factor));
+        g = Math.min(255, Math.max(0, parseInt(g) * factor));
+        b = Math.min(255, Math.max(0, parseInt(b) * factor));
+        a = parseFloat(a); // alpha unchanged
+
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
 
     function setsAnchor_mouseHighlightEvents( anchor, coreName )
     {
