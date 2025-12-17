@@ -7,7 +7,6 @@
 
     function init_model_parameters() {
         stdMod.initiates_orbit8graph();
-        stdMod.creates_A_slider();
         //body moves backward on x,
         toreg( 'vt' )( 'val', 1 );
         //creates placeholder
