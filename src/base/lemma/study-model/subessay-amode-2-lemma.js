@@ -31,9 +31,9 @@
         // called again on tab switch from lemma-master-menu.js
         // console.log('in_subessay_launch____amode2lemma');
 
-        if( amodel2app_8_extraWork ) {
-            doMinimizeTextMenus();
-        }
+        //if( amodel2app_8_extraWork ) {
+            //doMinimizeTextMenus(); // gets rid of "text" tab if there is no "video"
+        //}
         var { logic_phase, aspect, subessay } = amode;
         // //\\ patch. works for
         //      hiding/unhiding optional svg-elements
