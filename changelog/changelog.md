@@ -4,6 +4,7 @@
 ### Improved
 * General
 	* browser refresh does not change tab or submenu state
+	* higher contrast for highlightable text
  
 ## 2025-12-4 (MediumVioletRed Version, 0.2)
 ### Improved
