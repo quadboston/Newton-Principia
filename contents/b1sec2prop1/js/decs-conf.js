@@ -1,9 +1,8 @@
 ( function() {
-    var { sn, eachprop, mapp, nspaste, haz, has, sconf, toreg, rg, ssF, ssD, sDomF, amode, 
-        stdMod, } = window.b$l.apptree({ stdModExportList : { decShapes_conf, }, });
-
+    const { sn, eachprop, mapp, nspaste, haz, has, sconf,
+          toreg, rg, ssF, ssD, sDomF, amode, stdMod, } =
+          window.b$l.apptree({ stdModExportList : { decShapes_conf, }, });
     var decor = sn( 'decor', stdMod );
-    
     var LOGIC = false; //true; //makes logic steps c and C clearer;
     return;
 
@@ -15,8 +14,8 @@
     //
     //      runs only once at start of init_model_parameters,
     //----------------------------------------
-    function decShapes_conf()
-    {
+    function decShapes_conf (){
+        ccc( 'decShapes_conf' );
         var pcolorForce = sDomF.getFixedColor( 'force' )
         var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
         //var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
@@ -257,6 +256,7 @@
 
         //---------------------------------------------------
         // //\\ synching rg and dec pos with pname2point
+        //      , only A.pos, nor other A props are synched
         //---------------------------------------------------
         sconf.pname2point = {};
         Object.assign( sconf.pname2point, mapp( firstSteps_conf,    dc => dc.pos ) );
@@ -426,7 +426,7 @@
             rgElem.decEnd = decEnd;
             ////---------------------------------------------------
         });
-
+ccc( rg.VVaracc );
         //note: in svg-z-order, these fall behind
         //      decorational-"kepler-triangles" etc, but
         //      due transparency are still well-visible,
@@ -473,7 +473,7 @@
         //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
         [
             rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
-            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd, 
+            rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd,
             rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
             rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf,
         ].forEach( pn => {
@@ -530,6 +530,7 @@
             var lp = rg[ pNames[ 2 ] ];
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
+            //ccc(rgElem);
         });
 
         ///makes first few free-triangles living
@@ -566,6 +567,6 @@
         });
     }
 
-    
+
 }) ();
 

@@ -6,7 +6,7 @@
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
     var engCssMs    = sn('engCssMs');
-    var fapp        = sn('fapp' ); 
+    var fapp        = sn('fapp' );
     var fmethods    = sn('methods',fapp);
     var fconf       = sn('fconf',fapp);
 
@@ -30,9 +30,9 @@
     var references  = sn('references', ssD);
     var capture     = sn( 'capture', ssD );
     var topics      = sn('topics', ssD);
-    var lowId2topics= sn('lowId2topics', topics);
-    var id2tplink   = sn('id2tplink', topics);
-    var ix2tplink   = sn('ix2tplink', topics, []);
+    var lowtpid_2_glocss8anchorRack= sn('lowtpid_2_glocss8anchorRack', topics);
+    var anid2anrack   = sn('anid2anrack', topics);
+    var anix2anrack   = sn('anix2anrack', topics, []);
 
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
@@ -42,15 +42,15 @@
     var sDomN       = sn('dnative',sapp);
     var sData       = sn('sappDat',sapp);
     var amode       = sapp.mode = {};
-    
+
     var sconf       = sn('sconf', sapp);
     var originalPoints = sn( 'originalPoints', sconf );
     var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
-    
+
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     //non-consistent: srg should be under fapp or sapp, not both:
-    var srg         = sn('sapprg', fapp ); 
+    var srg         = sn('sapprg', fapp );
     var srg_modules = sn('srg_modules', sapp);
 
     //site-wide user options
@@ -120,7 +120,7 @@
                 ///if "model_upcreate" does exist in the list, but
                 ///"model8media_upcreate" does not, then latter is created
                 ///and added possible "media_upcreate".
-                if( 
+                if(
                     //todm patch
                     //this condition indicates we are in module "study-model.js" now,
                     //assuming this is a most indicative property,
@@ -129,9 +129,9 @@
                 ) {
                     stdMod.model8media_upcreate = () => {
                         // called once on page load and again any time the model/data changes
-                        //console.log('model and media upcreate');                        
-                        stdMod.model_upcreate();                        
-                        ns.haff( stdMod, 'media_upcreate' ); 
+                        //console.log('model and media upcreate');
+                        stdMod.model_upcreate();
+                        ns.haff( stdMod, 'media_upcreate' );
                     }
                 }
             }
@@ -170,7 +170,7 @@
             //ario,
             arios,
             originalPoints,
-            originalPoints_cssNames,            
+            originalPoints_cssNames,
 
             rg    : sapp.rg,
             topos : sapp.topos,
@@ -180,9 +180,9 @@
 
             capture,
             topics,
-            lowId2topics,
-            id2tplink,
-            ix2tplink,
+            lowtpid_2_glocss8anchorRack,
+            anid2anrack,
+            anix2anrack,
 
             sapp,
             amode,

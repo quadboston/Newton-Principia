@@ -1,11 +1,7 @@
-( function() {
-    var {
-        sn, haff, hafff, haz,
-        sconf, ssF,
-        stdMod, amode, toreg, rg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+(function(){
+    const { sn, haff, hafff, haz, globalCss,
+            sconf, ssF, ssD, stdMod, amode, toreg, rg,
+    } = window.b$l.apptree({ stdModExportList : {
             init_model_parameters,
             model_upcreate,
         },
@@ -13,14 +9,22 @@
     return;
 
 
-    //===================================================
-    // //\\ registers model pars into common scope
-    //===================================================
-    function init_model_parameters()
-    {
+    function init_model_parameters (){
         // complimentary to and runs after
         // sconf.js::init_conf(),
+        ccc( 'init_model_parameters' );
+
+        //patch cor prop1,2
         stdMod.decShapes_conf();
+        ssF.v2_topics_2_unhighCss();
+        ssF.v2_tplinks_2_highlightCss( ssD.nextTplinks, !!'doReplace');
+        //inserts tp-highlight-machinery css into html-document
+        //globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
+        globalCss.replace( ssD.styleAnchors, 'style8afrag8media8anchors-anchors' );
+
+        //ssF.lowtpid__2__glocss8anchorRack();
+        //ssF.v2_tplinks_2_highlightCss,
+        //ssF.v2_topics_2_unhighCss,
 
         //=========================================================
         // //\\ placeholders for body states along trajectory,
@@ -97,6 +101,4 @@
         stdMod.traj2decs__II();
         stdMod.trajectoryShapes_2_groups__III();
     }
-    
-}) ();
-
+})();

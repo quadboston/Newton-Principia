@@ -9,7 +9,7 @@
         fixedColorsOriginal,
         srg_modules, amode,
         //:nearly a patch
-        stdMod, ssD, ssF, wrkwin, lowId2topics,
+        stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
     } = window.b$l.apptree({
     });
     //======================================================
@@ -44,7 +44,7 @@
     //***********************************************
     // //\\ begins establish home and lemmas
     //***********************************************
-    function LANDING_I___app_main() 
+    function LANDING_I___app_main()
     {
         // each page is independent so this gets re-run on each page load
         // console.log('domContentLoaded - app_main');
@@ -54,7 +54,7 @@
         // //\\ sets ids and titles
         //===============================
         // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
-        sn( 'sappId', fconf, 'home-pane' ); 
+        sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
         fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
@@ -215,7 +215,7 @@
                     {
                         haff( stdMod, 'init_conf' );
                         //expansion patch: todm: make function for this:
-                        //unscaled mediaSize = originalMod2inn_scale * modelSize, 
+                        //unscaled mediaSize = originalMod2inn_scale * modelSize,
                         sconf.originalMod2inn_scale = sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
                         !haz( sconf, 'dontRun_ExpandConfig' ) &&
@@ -248,11 +248,11 @@
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
                             //l caseId2allLemTopics is empty at this moment,
                             eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
-                                var lowId = wwCase( camelId );
-                                lowId2topics[ lowId ] = {
+                                var low_tpID = wwCase( camelId );
+                                lowtpid_2_glocss8anchorRack[ low_tpID ] = {
                                     'fixed-color' : colorArray,
                                     camelId,
-                                    lowId, 
+                                    low_tpID,
                                 };
                             });
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
@@ -309,7 +309,7 @@
         sapp.init_sapp();
 
         sDomF.populateMenu();
-        ns.haff( sapp, 'finish_sapp_UI' ); 
+        ns.haff( sapp, 'finish_sapp_UI' );
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
         fmethods.setupEvents();
@@ -349,7 +349,7 @@
         fmethods.does_set_next_lemma_button_event( 'left' );
 
         //todo: do observe does it fix vertical-misplacement-bug?
-        //      remove this fix, reproduce 
+        //      remove this fix, reproduce
         //      vertical-misplacement-bug and solve it thoroughtly:
         document.body.scrollTop = 0; //todo ... type number? not a "0px"
     }
@@ -361,7 +361,7 @@
         //       d8d creation and decorational points
         //       before first resize set these pars
         //       appar. needed for:
-        //              dom2model-scales.js::out2inn() and 
+        //              dom2model-scales.js::out2inn() and
         //              dom2model-scales.js::inn2outparent()
         stdMod.bgImgOffset = sDomN.bgImgOffset;
         stdMod.bgImgW = sDomN.bgImgW;

@@ -1,17 +1,9 @@
-
-( function() {
-    var {
+(function(){
+    const {
         sn, haz, has, eachprop, own, nsmethods,
         fconf, sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
-        originalPoints_cssNames, toreg,
-        stdMod,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            doExpandConfig,
-        }
-    });
-
+        originalPoints_cssNames, toreg, stdMod,
+    } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
     var LETTER_ROTATION_RADIUS_PER_1000 = 30;
     var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
     var LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
@@ -19,12 +11,10 @@
 
 
     ///==============================================
-    /// only for common stdMod:
     ///                     1. expands sconf and
-    //                      2. expnds sconf into rg
+    //                      2. expands sconf into rg
     ///==============================================
-    function doExpandConfig() 
-    {
+    function doExpandConfig (){
         var {
             predefinedTopics,
             originalPoints,
@@ -159,8 +149,17 @@
             Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+
+                //this adds colors generated in specific lemma and
+                //bases them on the lowkey:
                 let fc = fixedColors[ tk ] = predefinedTopics[ topicKey ];
+
+                //this does the same completion as for fixedColors, but
+                //based on camel key:
                 fixedColorsOriginal[ topicKey ] = fc;
+
+                //lemma-specific flags are set to false in fixedColors and
+                //fixedColorsOriginal,
                 fc.isPoint = false;
                 fc.isLine = false;
                 fc.isArea = false;
@@ -255,7 +254,7 @@
                 }
 
                 //meaningful for lines yet
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); 
+                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' );
                 rgX.notp        = haz( gshape, 'notp' );
                 let gclass = haz( gshape, 'cssClass' );
                 if( gclass ){
@@ -282,13 +281,16 @@
             //----------------------------------
             return;
 
-            function expandsOrPoints( op, pname )
-            {
+            ///expands into rgX, ?proliferation?
+            ///rg becomes normalized expansion of originalPoints
+            function expandsOrPoints( op, pname ){
+                //duplicates orig. points by indexing them by lowname
                 originalPoints_cssNames[
                     nsmethods.camelName2cssName( pname )
                 ] = op;
-               
-                //todo ... non-readable: it tranfers properties from ??original points to here,
+
+                //todo ... non-readable: it tranfers properties from
+                //??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
                 var pictureP    = op.own( 'pos' );
@@ -404,9 +406,9 @@
 
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    let fc =  fixedColors[ tk ] = op.pcolor;
-                    fixedColorsOriginal[ pname ] = fc;
-                    fc.isPoint = true;
+                    let fc =  fixedColors[ tk ] = op.pcolor; //low
+                    fixedColorsOriginal[ pname ] = fc;       //camel
+                    fc.isPoint = true;                       //adds prop to array
                     fc.isLine = false;
                     fc.isArea = false;
                     fc.isPoint0Line = true;
@@ -446,10 +448,10 @@
                 }
                 rgX.letterOffsetY   *= -1; //for screen y-direction
 
-                var letterColor = haz( op, 'letterColor' ); 
+                var letterColor = haz( op, 'letterColor' );
                 if( letterColor ) {
-                    //todm ... 
-                    //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor; 
+                    //todm ...
+                    //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor;
                     rgX.letterColor = sDomF.getFixedColor( letterColor );
                 }
                 rgX.fontSize = fontSize;
@@ -509,6 +511,4 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
     }
-
-}) ();
-
+})();

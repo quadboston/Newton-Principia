@@ -1,15 +1,13 @@
 /*
- * "low8high" "interface signature" { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
- * following functions do return it:
- *      ns.hslo_2_rgba_low8high
- *      ssF.colorArray_2_rgba,
- * 
- *      ns.builds_zebraNColors_array (returns array of signatures)
- *      
-        (topics__2__topicsColorModel builds following:)
- *      l caseId2allLemTopics dictionary has elements with signature:
-             *topi_c properties*:
-                lowId //aka "circ-txt"
+ "low8high" "interface signature"
+    { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
+ following functions do return it:
+       ns.hslo_2_rgba_low8high
+       ssF.colorArray_2_rgba,
+       ns.builds_zebraNColors_array (returns array of signatures)
+
+       (lowtpid__2__glocss8anchorRack builds following:)
+                low_tpID //aka "circ-txt"
 
                 fixed-color   //original raw color in array-format aka [x,x,x,...],
                 tpOpacityHigh //??? used in topic-media-glocss
@@ -22,54 +20,36 @@
                 highOpacity
                 lowOpacity
 */
-
-
-( function() {
-    var {
+(function(){
+    const {
         ns, sn, $$, nsmethods, haz, has, eachprop,
-        sconf, rg, sDomF, topics, lowId2topics,
+        sconf, rg, sDomF, topics, lowtpid_2_glocss8anchorRack,
     } = window.b$l.apptree({
         ssFExportList :
         {
             colorArray_2_rgba,
-            topics__2__topicsColorModel,
+            lowtpid__2__glocss8anchorRack,
         },
     });
     sDomF.topicIdUpperCase_2_underscore = nsmethods.camelName2cssName;
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ///assigns colors to topics,
     ///     assigns either zebra-colors or "fixed-color"s,
-    ///     sets topi_c props including low8high signature which is =
+    ///     sets gcssRack props including low8high signature which is =
     ///     { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
-    function topics__2__topicsColorModel()
-    {
-        eachprop( lowId2topics,
-                  ( topi_c, lowId, tcount, allTopicsCount ) => {
-            var fc = haz( topi_c, 'fixed-color' );
-            //c cc( topi_c.camelId + ' shrinked=' + fc.isPoint0Line );
-            topi_c.tcount = tcount;
+    function lowtpid__2__glocss8anchorRack (){
+        eachprop( lowtpid_2_glocss8anchorRack,
+                  ( gcssRack, low_tpID, tcount, allTopicsCount ) => {
+            var fc = haz( gcssRack, 'fixed-color' );
+            //c cc( gcssRack.camelId + ' shrinked=' + fc.isPoint0Line );
+ if( 'kepler-triangle-odd' === low_tpID ){
+    ccc('lowtpid__2__glocss8anchorRack ()', gcssRack);
+    gcssRack.strokeOpacity = 0;
+}            gcssRack.tcount = tcount;
             if( fc ) {
-                colArray_2_flags( topi_c );
+                colArray_2_flags( gcssRack );
                 return;
             } else {
                 ////***********************************************
@@ -78,86 +58,80 @@
                 ////***********************************************
                 ////with TP_OPACITY_LOW
                 var rem = tcount%2;
-                var zebra = rem ? (tcount-rem)/2 : tcount/2 + Math.floor( allTopicsCount / 2 );
+                var zebra = rem ? (tcount-rem)/2 :
+                            tcount/2 + Math.floor( allTopicsCount / 2 );
                 var hue = 359 / allTopicsCount * zebra; // topicsCount * zebra;
 
                 var lh = ns.hslo_2_rgba_low8high(
                     hue,
                     sconf.DEFAULT_TP_SATUR,
                     sconf.default_tp_lightness,
-                    //fc.isPoint0Line ? sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW,
+                    //fc.isPoint0Line ? sconf.TP_OPACITY_LOW_POINT :
+                    //                  sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_HIGH,
                 );
             }
             //lh==={ rgba_low, rgba_high, lowOpacity, highOpacity }
-            Object.assign( topi_c, lh, );
-            
+            Object.assign( gcssRack, lh, );
+
             //to coexist with version2, rid later
-            topi_c.rgba_own = topi_c.rgba_low;
+            gcssRack.rgba_own = gcssRack.rgba_low;
         });
     }
 
-
-    function colArray_2_flags( topi_c )
-    {
-        var colorArray = haz( topi_c, 'fixed-color' );
+    function colArray_2_flags( gcssRack ){
+        var colorArray = haz( gcssRack, 'fixed-color' );
         var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
         var ownHighOp = colorArray[4];
         var ownFlag = !!(ownHighOp || ownHighOp === 0);
-        topi_c.forAnchor = rgba; //patch
+        gcssRack.forAnchor = rgba; //patch
         if( ownFlag ) {
             ////low and high opacity do exist,
             ////moves them in global css,
             ////(and removes them from own color)
-            topi_c.highOpacity = ownHighOp;
-            topi_c.lowOpacity = colorArray[3];
-            topi_c.rgba_own = rgb;
+            gcssRack.highOpacity = ownHighOp;
+            gcssRack.lowOpacity = colorArray[3];
+            gcssRack.rgba_own = rgb;
         } else {
-            
             ////high opacity does not exist,
             ////preserves own color and takes
             ////opacities from global setting
-            let fc = topi_c['fixed-color'];
-            
-            if (isArea(topi_c)) {
-                topi_c.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
-                topi_c.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
-            } else {
-                topi_c.highOpacity = topi_c.lowOpacity = 1;
-            }
+            let fc = gcssRack['fixed-color'];
 
-            topi_c.rgba_own = rgba;
+            if (hasHigherOpacity(gcssRack)) {
+                gcssRack.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
+                gcssRack.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
+            } else {
+                gcssRack.highOpacity = gcssRack.lowOpacity = 1;
+            }
+            gcssRack.rgba_own = rgba;
         };
 
-        var rgX = haz( rg, topi_c.camelId );
-        topi_c.strokeOpacity = 1;
-        topi_c.fillOpacity = 1;
+        var rgX = haz( rg, gcssRack.camelId );
+        gcssRack.strokeOpacity = 1;
+        gcssRack.fillOpacity = 1;
 
         var classmark = haz( rgX, 'classmark' );
         if( classmark ) {
             //legacy rubbish, rid
             let tofill = !!classmark.match( /(\s+|^)tofill(\s+|$)/ );
             let tostroke = !!classmark.match( /(\s+|^)tostroke(\s+|$)/ );
-            
+
             if( tofill && !tostroke ) {
-                topi_c.strokeOpacity = 0;
+                gcssRack.strokeOpacity = 0;
             }
             if( !tofill && tostroke ) {
-                topi_c.fillOpacity = 0;
+                gcssRack.fillOpacity = 0;
             }
         }
     }
 
-
     // kludge
-    function isArea(topi_c) {
-        return typeof topi_c['fixed-color'][3] == 'number';
+    function hasHigherOpacity (gcssRack){
+        return typeof gcssRack['fixed-color'][3] === 'number';
     }
 
-    
-    
-    
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }
     ///works only for anchors in text
     function colorArray_2_rgba(
@@ -171,14 +145,14 @@
         //ccc(isPoint +  'tp P=' + sconf.TP_OPACITY_LOW_POINT, sconf.TP_OPACITY_LOW);
         if( opacityFromColorArray && colorArray ) {
             if( colorArray[3] || colorArray[3]===0 ) {
-                var lowOpacity = colorArray[3]; 
+                var lowOpacity = colorArray[3];
             } else {
-                var lowOpacity = sconfOPACITY_LOW; 
+                var lowOpacity = sconfOPACITY_LOW;
             }
             if( colorArray[4] || colorArray[4]===0 ) {
-                var highOpacity = colorArray[4]; 
+                var highOpacity = colorArray[4];
             } else {
-                var highOpacity = sconf.TP_OPACITY_HIGH; 
+                var highOpacity = sconf.TP_OPACITY_HIGH;
             }
         } else {
             var lowOpacity = sconfOPACITY_LOW;
@@ -195,10 +169,7 @@
             let rgba_high = ns.arr2rgb_a(
                 colorArray[0], colorArray[1], colorArray[2], highOpacity
             );
-            var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
-
-            
-            
+            var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity };
         } else {
             var hsl_lh = ns.rgbaArr2hsla( colorArray );
             var result = ns.hslo_2_rgba_low8high(
@@ -214,14 +185,11 @@
 
                 //opacityLow,
                 lowOpacity,
-                
+
                 //opacityHigh,
                 highOpacity,
             );
         }
         return result;
     }
-
-}) ();
-
-
+})();

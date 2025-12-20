@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, sv, nsmethods, han, haz, has, mat,
-        sconf, ssF, ssD, sDomF, sDomN, lowId2topics, rg, toreg,
+        sconf, ssF, ssD, sDomF, sDomN, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -73,11 +73,11 @@
             pv1.medpos = ssF.mod2inn( pv1.pos );
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
-        
+
         //this is a wrong place for changing a model of a
         //line interval, so removing from media manager:
         //line.vector = mat.p1_to_p2(pv0,pv1);
-        
+
         ///this property helps to optimize svg painting
         var dressed = ownProp.call( line, 'pointIsAlreadyDressed' );
         if( !dressed ) {
@@ -87,14 +87,15 @@
             );
             var ww          = sDomF.getFixedColor( tpclass );
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
-            var cssClass    = ns.h( lineAttr, 'cssClass' ) ? lineAttr['cssClass'] + ' ' :  '';
+            var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
+                              lineAttr['cssClass'] + ' ' :  '';
 
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
             line.pivotNames     = [ pv0.pname, pv1.pname ];
-            
+
             var argsvg = {
                 svgel   : ns.haz( line, 'svgel' ),
 
@@ -108,8 +109,8 @@
             }
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
-            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lowId2topics, lowId );
+            var low_tpID = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.stroke = line.stroke;
             };
@@ -139,7 +140,7 @@
         //updates pivots in line:
         line.pivots = [ pv0, pv1 ];
 
-
+//ccc(all);
         //=================================================
         // //\\ draws line caption
         //=================================================
@@ -251,7 +252,7 @@
             svgel   : ns.haz( line, 'vectorArrowSvg' ),
             parent  : stdMod.mmedia,
             pivots,
-            //'stroke-width' : strokeWidth * sconf.thickness, 
+            //'stroke-width' : strokeWidth * sconf.thickness,
         });
         let tipFill = haz( line, 'tipFill' );
         if( tipFill ) {
@@ -279,7 +280,7 @@
                 'stroke-width'  : 2,
             }
         );
-        
+
     }
 
     ///makes short line name: AB from A and B
@@ -383,7 +384,7 @@
             stroke,
             parent  : stdMod.mmedia,
             pivots,
-            'stroke-width' : strokeWidth * sconf.thickness, 
+            'stroke-width' : strokeWidth * sconf.thickness,
         });
         poly.svgel$ = $$.$(poly.svgel)
             .tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) )

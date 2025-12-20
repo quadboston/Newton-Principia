@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowId2topics, rg, toreg,
+        sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -34,7 +34,7 @@
     ///       optional:
     ///         attrs, 'tpclass',
     ///         haz( pt, 'svgel' )
-    ///         attrs: see below: //optional attrs 
+    ///         attrs: see below: //optional attrs
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = //mod 2 inn//
@@ -87,8 +87,8 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lowId2topics, lowId );
+            var low_tpID = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
@@ -100,6 +100,7 @@
             //but patches only for lemmas covered with this subroutine and this patch,
             svgel$().style[ 'fill-opacity' ] = '1';
             var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
+            //ccc( pt.pname );
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS( null, 'class', wwClass );
             //if( pName === 'fret-0-0' ) {
@@ -111,7 +112,7 @@
             //fails
             if( has( pt, 'title' ) ) {;
                 svgel$.ch( $$.c( 'title' ).html( pt.title ) );
-                //svgel$.e( 'mouseover', 
+                //svgel$.e( 'mouseover',
             }
             */
 
@@ -124,7 +125,6 @@
             svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
             svgel.setAttributeNS( null, 'r', pt.initialR * sconf.thickness );
         }
-
 
 
         //*****************************************************
@@ -277,7 +277,7 @@
             );
             rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
                     let me = rgX.pnameLabelsvg;
-                    me.style.cursor = 
+                    me.style.cursor =
                         //wrong: me.parentNode.style.cursor;
                         stdMod.simScene.style.cursor;
             });
@@ -286,7 +286,7 @@
             if( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
-            
+
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {
