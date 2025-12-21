@@ -1,5 +1,11 @@
 # Change Log
   
+## 2025-12-17 (Green Version, 0.3)
+### Improved
+* General
+	* browser refresh does not change tab or submenu state
+	* higher contrast for highlightable text
+ 
 ## 2025-12-4 (MediumVioletRed Version, 0.2)
 ### Improved
 * General
