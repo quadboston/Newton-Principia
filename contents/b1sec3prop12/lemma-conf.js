@@ -7,6 +7,7 @@
         return {
             codesList : [
                 { src: 'sconf.js' },
+                { src: 'config-functions.js' },
                 { src: 'init-model-parameters.js' },
                 { src: 'amode8captures.js' },
                 //{ src: 'main-legend.js' }, // not used for now
@@ -15,7 +16,7 @@
                 { src: 'completes-sliders-creation.js' },
                 
                 { src: 'state-capturer.js' },
-                { src: 'graph-array.js' },
+                // { src: 'graph-array.js' }, //TEMP Probably not needed anymore
                 { src: 'graph-fw-lib.js' },
 
                 { src : 'inits/finalizes-subessay-relaunch.js' },

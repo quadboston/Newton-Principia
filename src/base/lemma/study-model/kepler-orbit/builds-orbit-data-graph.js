@@ -62,7 +62,9 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
+                    // x : GRAPH_PATH ? bP.pathAtQ : bP.r, //TEMP
+                    x : GRAPH_PATH ? bP.pathAtQ : 
+                        (sconf.USE_LOG_SCALE ? Math.log(bP.r) : bP.r),
                 };
                 graphArray.push( graphColumn );
             }
@@ -78,6 +80,8 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
+        // console.log("Graph Data");//TEMP
+        // let output = `q, SP, instf, disp, P.x, P.y\n`;//TEMP
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
@@ -85,10 +89,13 @@
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
             const instf = Math.abs(bP.instantForce) / instantForceMax;
-            const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
-                        instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
+            const disp = Math.abs(bP.displacement) / instantForceMax;
+            // const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
+            //             instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
             const ds_dt = bP.ds_dt / speedMax;
             const sagitta = Math.abs(bP.sagitta) / sagittaMax;
+            // output += `${bP.q}, ${bP.r}, ${instf}, ${disp}, ${bP.rr[0]}, ` +
+            //           `${bP.rr[1]}\n`;//TEMP
             ga.y = [
                 instf,
                 disp,
@@ -96,6 +103,7 @@
                 sagitta,
             ];
         }
+        // console.log(output);//TEMP
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = 

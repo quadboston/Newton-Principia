@@ -1,55 +1,42 @@
 ( function() {
-    var { ns, sn, $$, nsmethods, haz, globalCss, sDomF, sData, stdMod, }
-        = window.b$l.apptree({ stdModExportList :
-        {
+    var { $$, sDomF, sconf, stdMod, }
+        = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
+        return;
+
+
+        function createsGraph_FW_lemma({ digramParentDom$ }){
+            const graphFW = {};
+            stdMod.createsGraphFW_class({
+            graphFW,
+            digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
             setsGraphTpClasses,
-            doDrawToolline,
-            graphAxisX,
-            graphAxisY,
-        },
-    });
-    return;
+            //TEMP Isn't this the same as above, why are there two
+            setsGraphTpClasses,
+        });
+        //first array must be enabled
+        //but can be dynamically overridden,
+        graphFW.graphArrayMask = [ 'force', 'estforce', ];
+        return graphFW;
 
-
-    function doSetColorThreadArray()
-    {
-        //===========================================
-        // //\\ prepares color ThreadArray
-        //===========================================
-        /*
-        //:alternatives: raw colorThreadArray or from ZEBRA_COLORS
-        if( !colorThreadArray ) {
-            ZEBRA_COLORS        = ZEBRA_COLORS || 9;
-            colorThreadArray =
-                ns.builds_zebraNColors_array({
-                    maxColors   : ZEBRA_COLORS*2,
-                    SATUR       : 100,
-                    LIGHT       : 30,
-                    zebraNumber : ZEBRA_COLORS,
-                    //monoColorHue, //optional, makes zebra via lightness, not via colors
-            }).map( col => col.rgba_high );
+        ///this thing is not dynamic (missed in design),
+        ///but, colorThreadArray is accessible for reset
+        ///dynamically,
+        function doSetColorThreadArray()
+        {
+            let colorThreadArray = [
+                sDomF.getFixedColor( 'force' ),
+                sDomF.getFixedColor( 'displacement' ),
+            ];
+            return colorThreadArray;
         }
-        colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
-        */
-        sData.colorThreadArray = [
-            sDomF.getFixedColor( 'shadow' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
-        ];
-        return sData.colorThreadArray;
-        //===========================================
-        // \\// prepares color ThreadArray
-        //===========================================
-    }
 
-
-    function setsGraphContainerAttributes( digramParentDom$ )
-    {
-        stdMod.graphFW.container$ = $$.div()
+        function setsGraphContainerAttributes( digramParentDom$ )
+        {
+            container$ = $$.div()
             .addClass( 'chem-equiibr-graph-container' )
             .to( $$.div().to( digramParentDom$ )
                     .addClass( 'lost-diagram-parent' )
@@ -63,173 +50,138 @@
                     .css( 'z-index', '111111' )
             )
             ;
-        ///creates low tire api
-        sData.graph_dimX = 1000;  //innerWidth
-        sData.graph_dimY = 580;   //innerHeight
-    }
+            //creates low tire api
+            graph_dimX = 1000;  //innerWidth
+            graph_dimY = 580;   //innerHeight
+            return {container$, graph_dimX, graph_dimY}
+        }
 
+        function setsGraphAxes()
+        {
+            let n2c = sDomF.getFixedColor; //name to color
 
-    function setsGraphAxes()
-    {
-        //==================================================
-        // //\\ calls api
-        //==================================================
-        //y-legend color; taken from first plot color:
-        var yColor      = sData.colorThreadArray[ 0 ]; //equilibConst;
+            //==================================================
+            // //\\ calls api
+            //==================================================
+            //y-legend color; taken from first plot color:
+            var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
 
-        //axis x and legend x color:
-        //manually picked color, not from plot,
-        var xColor      = 'rgba(0,0,0,1)'; //'rgba(0,0,255,1)';
-
-        var axisYLegend =
-        [
-            {
-                text    : 'Force',
-                x       : 40,
-                y       : 25,
-                style   : {
-                            'font-size' : 28 + 'px',
-                            'stroke' : yColor,
-                            'fill'   : yColor,
+            //axis x and legend x color:
+            //manually picked color, not from plot,
+            var xColor      = 'rgba(0,0,0,1)';
+            var axisYLegend =
+            [
+                {
+                    //"hover-width" decreases gigantict bold
+                    //together, tobold hover-width and tostroke can be redundant
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Force</tspan></text>',
+                    x       : 40,
+                    y       : 25,
+                    style   : {
+                                'font-size' : 28 + 'px',
+                                'stroke' : yColor,
+                                'fill'   : yColor,
+                    },
                 },
-            },
+                {
+                    text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+                                '>Actual</tspan>' +
+                                '<tspan> and </tspan>' +
 
-            {
-                text    : 'Force f, 1/r², and speed v per their maximums.',
-                x       : 250,
-                y       : 40,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : 'black',
-                            'fill'   : 'black',
+                                '<tspan class="tp-displacement tofill tobold hover-width"' +
+                                //overrides tp machinery
+                                ' style="fill:'+n2c( 'displacement' ) + '; stroke:' + n2c( 'displacement' ) + ';"' +
+                                '>Estimated' +
+                                '</tspan>' +
+
+                                '<tspan> forces</tspan>' +
+                                // '<tspan> forces (per their max)</tspan>' +
+                                '</text>',
+                    x       : 250,
+                    y       : 40,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : 'black',
+                                'fill'   : 'black',
+                    },
                 },
-            },
-
-        ];
-        var axisXLegend =
-        [
-
-            {
-                text    : 'Distance, ln(r)',
-                x       : -700,
-                y       : 25,
-                style   : {
-                            'font-size' : '30',
-                            'stroke' : xColor,
-                            'fill' : xColor,
+            ];
+            var axisXLegend =
+            [
+                {
+                    text    : sconf.USE_LOG_SCALE ? 'Distance from force ln(SP)' :
+                                                    'Distance from force (SP)', 
+                    x       : -560,
+                    y       : 25,
+                    style   : {
+                                'font-size' : '30',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
                 },
-            },
-            {
-                text    : '',
-                x       : 50,
-                y       : -20,
-                style   : {
-                            'font-size' : '23',
-                            'stroke' : xColor,
-                            'fill' : xColor,
+                {
+                    text    : '',
+                    x       : 50,
+                    y       : -20,
+                    style   : {
+                                'font-size' : '23',
+                                'stroke' : xColor,
+                                'fill' : xColor,
+                    },
                 },
-            },
-        ];
-        return { yColor, xColor, axisYLegend, axisXLegend, };
-    }
+            ];
+            return { yColor, xColor, axisYLegend, axisXLegend, };
+        }
 
-
-
-    function plotLabels_2_plotsPars( colorThreadArray )
-    {
-
-        ///make sure, the number of plot labels is equal to plot functions y(x)
-        return [
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : '1/r²',
-                fontShiftX : 185,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[0],
+        function plotLabels_2_plotsPars( colorThreadArray )
+        {
+        //TEMP Are so many still needed?
+            return [
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption : '',
+                    fontShiftX : -222,
+                    fontShiftY : 0,
+                    style : {
+                        'font-size' : '30px',
+                        'stroke'  : colorThreadArray[0],
+                        //'fill' : colorThreadArray[0],
+                    },
+                    //overrides tp class
+                    //plotStyle : {
+                    //    'stroke-width'  : '5',   //optional
+                    //},
                 },
-            },
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'f',
-                fontShiftX : 0,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[1],
-                    //'fill' : colorThreadArray[0],
+                {
+                    fraqX : 0.01,
+                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
+                    pcaption :  '',
+                    fontShiftX : -33,
+                    fontShiftY : 15,
+                    style : {
+                        'font-size' : '30px',
+                        'stroke'  : colorThreadArray[1],
+                    },
                 },
-                //overrides tp class
-                //plotStyle : {
-                //    'stroke-width'  : '5',   //optional
-                //},
-            },
-            {
-                fraqX : 0.01,
-                //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                pcaption : 'v',
-                fontShiftX : 40,
-                fontShiftY : 15,
-                style : {
-                    'font-size' : '40px',
-                    'stroke'  : colorThreadArray[2],
-                },
-            },
-        ];
+            ];
+        }
+
+        ///this thing fails if not to synch it with mask,
+        ///the unmasked indices must be the same as here:
+        function setsGraphTpClasses()
+        {
+                const svg = graphFW.fw.plotIx2plotSvg;
+                $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+                $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
+                //TEMP
+                // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
+                // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
+        }
     }
-
-
-
-    function setsGraphTpClasses()
-    {
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[1] ).addClass( 'tp-force tostroke' );
-        $$.$( stdMod.graphFW.fw.plotIx2plotSvg[2] ).addClass( 'tp-body tostroke' );
-    }
-
-
-
-    function doDrawToolline()
-    {
-        return {
-            toollineStyle : {
-                stroke : sData.colorThreadArray[1],
-                'stroke-width' : 3,
-            },
-            abscissaIxValue : stdMod.posFromPointPToQIndex(),
-            numberMarks : true, 
-        };
-    }
-
-
-    function graphAxisX( xColor )
-    {
-        return {
-            'font-size'     : '18px',
-            fontShiftX      : -12, //in media scale
-            fontShiftY      : +14,
-            decimalDigits   : 3,
-            stroke          : xColor,
-            fill            : xColor,
-           'stroke-width'   : '0.2',
-        };
-    }
-
-
-    function graphAxisY( yColor )
-    {
-        return {
-            'font-size'     : '20px',
-            fontShiftX      : -45, //in media scale
-            fontShiftY      : +5,
-            decimalDigits   : 1,
-            stroke          : yColor,
-            fill            : yColor,
-           'stroke-width'   : '1',
-        };
-    }
-
 }) ();
-

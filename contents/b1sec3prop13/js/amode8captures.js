@@ -1,9 +1,6 @@
 ( function() {
-    var { 
-        nspaste, toreg, mat, sDomF, ssF, stdMod, rg, sconf, 
-    } = window.b$l.apptree({ 
-            ssFExportList : { amode2rgstate, }, 
-    });
+    var { nspaste, toreg, mat, sDomF, ssF, stdMod, rg, sconf, }
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
 
@@ -12,8 +9,9 @@
     function amode2rgstate( captured )
     {
         sDomF.resetModelPos();
+
         toreg( 'media_scale' )();
-        rg.media_scale.value  = 1;
+        rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //=============================================================
@@ -30,7 +28,7 @@
         //3
         rg.P.q      = op.PparQ_initial;
         //4
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
+        //nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
         // \\// "draws" conics and P
 
         rg.S.pos[0] = 0;

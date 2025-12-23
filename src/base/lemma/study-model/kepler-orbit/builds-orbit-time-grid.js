@@ -13,6 +13,7 @@
         const Q_STEPS = sconf.Q_STEPS;
         const TIME_STEPS = sconf.TIME_STEPS;
         tIndexToOrbit.length = 0;
+        console.time("builds_orbit_time_grid");
         {
             ssD.timeRange =qIndexToOrbit[ Q_STEPS ].timeAtQ -qIndexToOrbit[0].timeAtQ;
             const delta_t_between_steps = ssD.timeRange/TIME_STEPS;
@@ -54,6 +55,7 @@
                 timeAtQ = qIndexToOrbit[qix].timeAtQ;
             }
         }
+        console.timeEnd("builds_orbit_time_grid");
     }
 }) ();
 

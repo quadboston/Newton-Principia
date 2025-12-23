@@ -47,10 +47,11 @@
                 var Dq = ssD.Dq;
                 break;
             case sData.ULTIM_INSTANT:
-                var Dt = ssD.delta_t_between_steps*(SACC+1);
+                var Dt = 0.0001;//ssD.delta_t_between_steps*(SACC+1); //TEMP
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
         }
+        // let outputTemp = "qix, q, timeAtQ, dq_dt, plusQ\n";//TEMP
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
             MAKE_RANGE && ( bP.invalid = false );
@@ -109,10 +110,18 @@
                     //check for minusTix code below and plusTix code above.
 
                 } else {
-                    const plusQix = tIndexToOrbit[plusTix].qix;
+                    //TEMP
+                    const time = bodyTime + Dt;
+                    const found = findQixTempBisection(time, bP.qix);
+                    // const found = findQixTempLinearSearch(time, bP.qix);
+                    const plusQix = found.qix;
+                    //TEMP//
+                    // const plusQix = tIndexToOrbit[plusTix].qix;
                     const plusP = qIndexToOrbit[ plusQix ];
                     const plusTQix = plusP.timeAtQ;
                     const plusT_reminder = plusT - plusTQix;
+                    //TEMP Wrong qix (plusQix) often chosen when using
+                    //tIndexToOrbit, and therefore wrong dq_dt
                     var plusQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
                     //saves data for model-upcreate;
                     bP.plusQ = plusQ;
@@ -172,10 +181,102 @@
                     bP.instant_sagitta = bP.sagitta;
                 }
             }
+            // outputTemp += `${bP.qix}, ${bP.q}, ${bP.timeAtQ}, ${bP.dq_dt}, ` +
+            //               `${bP.plusQ}\n`;
         }
         //**********************************************
         // \\// t is a free variable
         //**********************************************
+        //console.log("outputTemp =", outputTemp);
+    }
+
+
+    // function performanceTest() {
+    //     const Dt = ssD.Dt;
+    //     const Q_STEPS = sconf.Q_STEPS;
+    //     const qIndexToOrbit = ssD.qIndexToOrbit;
+    //     console.time("performanceTest");
+    //     for( let qix=0; qix<=Q_STEPS; qix++ ) {
+    //         const bP = qIndexToOrbit[ qix ]; //body point data
+    //         const bodyTime = bP.timeAtQ; //body time
+    //         const foundData = findQixTempBisection(bodyTime + Dt, bP.qix);
+    //     }
+    //     console.timeEnd("performanceTest");
+    // }
+
+
+    function findQixTempBisection(time, qixStart) {
+        //Temporary test to find the q index that corresponds to the input time
+        //using bisection
+        const qIndexToOrbit = ssD.qIndexToOrbit;
+        let qixL = 0;
+        let qixU = qIndexToOrbit.length - 1 - 1;
+        // let qixU = qIndexToOrbit.length - 1;
+
+        let count = 0;
+
+        while(qixU - qixL >= 1) {
+            const qixNew = Math.floor((qixL + qixU) / 2);
+            const qix1 = qixStart + qixNew;
+            const qix2 = qix1 + 1;
+
+            const wrapQix1 = (qix1 >= qIndexToOrbit.length);
+            const wrapQix2 = (qix2 >= qIndexToOrbit.length);
+
+            const qix1Use = qix1 - (wrapQix1 ? qIndexToOrbit.length : 0);
+            const qix2Use = qix2 - (wrapQix2 ? qIndexToOrbit.length : 0);
+
+            const time1 = qIndexToOrbit[qix1Use].timeAtQ +
+                (wrapQix1 ? ssD.timeRange : 0);
+            const time2 = qIndexToOrbit[qix2Use].timeAtQ +
+                (wrapQix2 ? ssD.timeRange : 0);
+
+            count++;
+
+            if (time >= time1 && time <= time2) {
+                return {
+                    qix: qix1Use,
+                    count,
+                };
+            }
+
+            if (time <= time1) {
+                qixU = qixNew;
+            } else {
+                qixL = qixNew;
+            }
+        }
+        return null;
+    }
+
+
+    function findQixTempLinearSearch(time, qixStart) {
+        //Temporary test to find the q index that corresponds to the input time
+        //using linear search
+        const qIndexToOrbit = ssD.qIndexToOrbit;
+        for(let i = 0; i < qIndexToOrbit.length; i++) {
+            let qix1 = qixStart + i;
+            let qix2 = qix1 + 1;
+
+            const wrapQix1 = (qix1 >= qIndexToOrbit.length);
+            const wrapQix2 = (qix2 >= qIndexToOrbit.length);
+
+            const qix1Use = qix1 - (wrapQix1 ? qIndexToOrbit.length : 0);
+            const qix2Use = qix2 - (wrapQix2 ? qIndexToOrbit.length : 0);
+
+            const time1 = qIndexToOrbit[qix1Use].timeAtQ +
+                (wrapQix1 ? ssD.timeRange : 0);
+            const time2 = qIndexToOrbit[qix2Use].timeAtQ +
+                (wrapQix2 ? ssD.timeRange : 0);
+
+            if (time >= time1 && time <= time2) {
+                return {
+                    qix: qix1Use,
+                    count: i + 1,
+                };
+            }
+        }
+        return null;
     }
 }) ();
 

@@ -16,19 +16,25 @@
         rg.P.acceptPos = newPos => {
             //Ensure solvable and qix exist to help prevent P6 errors when orbits
             //are disconnected
-            if (ssD.solvable) {
+            //TEMP Disable check for testing
+            // if (ssD.solvable) {//TEMP
                 const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
-                if (qix) {
+                if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
                 }
-            }
+            // }
         }
 
         /// point Q slider
         rg.Q.acceptPos = newPos => {
             const qix = rg.P.qix;
             var Qqix = stdMod.gets_orbit_closest_point( newPos );
+            // console.log("**********");//TEMP
+            // console.log("rg.Q.acceptPos  Qqix =", Qqix);//TEMP
+            // console.log(`newPos = [${newPos[0]}, ${newPos[1]}]`);
+            // const posPTemp = qIndexToOrbit[Qqix].rr;
+            // console.log(`posPTemp = [${posPTemp[0]}, ${posPTemp[1]}]`);
             if( Qqix === qix ) return;
             if( sconf.TIME_IS_FREE_VARIABLE ){
                 let tt = qIndexToOrbit[ Qqix ].timeAtQ;
@@ -42,8 +48,9 @@
                         Dt = (Dt + ssD.timeRange) % ssD.timeRange;
                     }
                 }
-                if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
-                    sconf.DT_SLIDER_MAX <= Dt ) return;
+                //TEMP Disable check for testing
+                // if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
+                //     sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
             } else {
                 const q = qIndexToOrbit[ Qqix ].q;

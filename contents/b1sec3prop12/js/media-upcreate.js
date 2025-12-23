@@ -1,27 +1,18 @@
 ( function() {
-    var { 
-        rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    var { rg, stdMod, } = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
-        },
-    });
+        }, });
     return;
 
+    //TEMP Does function "media_upcreate___before_basic" need to be added here?
 
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
-
-        //=============================================================
-        // //\\ draws curves
-        //=============================================================
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg({});
-        //=============================================================
-        // \\// draws curves
-        //=============================================================
+        stdMod.poly2svgP11({});
     }
     //=========================================================
     // \\// lemma custom addons

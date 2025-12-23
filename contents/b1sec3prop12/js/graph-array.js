@@ -2,7 +2,7 @@
     var { sn, mcurve, stdMod, rg, sconf, } = window.b$l.apptree({
         stdModExportList : { buildsforceGraphArray, posFromPointPToQIndex, }, });
     return;
-
+    //TEMP This file will be removed after needed code is copied to elsewhere.
 
     function buildsforceGraphArray()
     {

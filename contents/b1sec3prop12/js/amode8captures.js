@@ -1,8 +1,6 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssF, stdMod,
-        rg, sconf, } = window.b$l.apptree({ 
-            ssFExportList : { amode2rgstate, }, 
-        });
+    var { nspaste, toreg, mat, sDomF, ssF, stdMod, rg, sconf, }
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
 
@@ -30,7 +28,7 @@
         //3
         rg.P.q      = op.PparQ_initial;
         //4
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
+        //nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
         // \\// "draws" conics and P
 
         rg.S.pos[0] = 0;
@@ -59,4 +57,3 @@
     }
 
 }) ();
-
