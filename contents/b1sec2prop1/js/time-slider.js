@@ -9,7 +9,7 @@
             //creates_sliderDomModel__4__time,
         },
     });
-    stdMod.creates_sliderDomModel__4__time = creates_sliderDomModel__4__time; 
+    stdMod.creates_sliderDomModel__4__time = creates_sliderDomModel__4__time;
     return;
 
 
@@ -28,7 +28,7 @@
     function creates_sliderDomModel__4__time()
     {
         var pos2pointy    = ssF.pos2pointy;
-        var pointies2line = ssF.pointies2line;
+        var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
         //=========================================
         // //\\ slider api pars
@@ -120,7 +120,7 @@
         ///draws rails
         ///if tpclass does exist, it apparently overrides stroke and
         ///some other styles,
-        var rails = pointies2line(
+        var rails = pivots_2_svgLineInRg(
              rails_rgid,
              [ railsStart, railsEnd ],
              { stroke           : COLOR,
@@ -206,7 +206,7 @@
 
 
         ///this function does "minor" update: it does not
-        ///recalculate the evolution, but 
+        ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
         function upates_timeSlider8unmasksSvgDom()
@@ -215,7 +215,7 @@
 
             //interpolates slider GUI position
             var sliderXpos =
-                 railsStart.pos[0] + 
+                 railsStart.pos[0] +
                  rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 
@@ -224,7 +224,7 @@
 
             api.slCaption = slCaption0 + ' = ' +
                             //discrete time:
-                            rg.displayTime.value;                                
+                            rg.displayTime.value;
                             //continuous time: api[ apiValueName ].toFixed(2);
             //at curr. ver.,
             //    does pos to GUI, does slCaption
@@ -246,7 +246,7 @@
     //----------------------------------------
     // \\// makes up time slider
     //----------------------------------------
-    
+
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
@@ -280,17 +280,17 @@
         //stdMod.model_upcreate();
         //======================================================
     }
-    
-   
+
+
     function slTime_2_stepIndice8tCaption()
     {
         var sp8ep   = haz( rg, 'slider_sltime' );
         var ctime    = rg.slider_sltime.curtime;
         //----------------------------------------
         // //\\ establishes model step and substep
-        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
+        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ...
         //      substepIx = 0,1,2,3,  0,1,2,3,  0,1, 2, 3, ...
-        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ... 
+        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ...
         //      point     = A,A,A,A,  -,-,-,B,  -,-, C, C, ...
         //----------------------------------------
         //virtual thing, just stretches time to better subdivide stepIx

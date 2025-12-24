@@ -6,24 +6,17 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            pointies2line,
+            pivots_2_svgLineInRg,
             pointnames2line,
-            pnames2line,
+            twoLetters_2_svgLine8rg,
             str2line,
-            pnames2poly,
+            namesArr_2_svgpoly,
             paintTriangle,
             poly_2_updatedPolyPos8undisplay,
         },
     });
     var ownProp = Object.prototype.hasOwnProperty;
     return;
-
-
-
-
-
-
-
 
 
     //==============================================
@@ -52,8 +45,7 @@
     ///         sconf.thickness
     ///
     /// Output: adds pivots-media-positions to line
-    function pointies2line( pName, pivots, lineAttr )
-    {
+    function pivots_2_svgLineInRg( pName, pivots, lineAttr ){
         var lineAttr    = lineAttr || {};
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
@@ -140,7 +132,6 @@
         //updates pivots in line:
         line.pivots = [ pv0, pv1 ];
 
-//ccc(all);
         //=================================================
         // //\\ draws line caption
         //=================================================
@@ -267,27 +258,26 @@
 
 
     ///a bit of proliferation
-    ///adds "sugar" to pointies2line: point names
+    ///adds "sugar" to pivots_2_svgLineInRg: point names
     function pointnames2line( name1, name2, cssClass, )
     {
         //line_rg =
-        return pointies2line(
+        return pivots_2_svgLineInRg(
             'line-' + name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],
             {
                 cssClass        : 'tostroke thickable' +
-                                   ( cssClass ? ' ' + cssClass : '' ),
+                                  ( cssClass ? ' ' + cssClass : '' ),
                 'stroke-width'  : 2,
             }
         );
-
     }
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function pnames2line( name1, name2, tpCssClass, )
+    function twoLetters_2_svgLine8rg( name1, name2, tpCssClass, )
     {
-        return pointies2line(
+        return pivots_2_svgLineInRg(
             name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],
             {
@@ -325,7 +315,7 @@
         }
         lineAttrPassed.lposYSugar = haz( lineAttr, 'lposYSugar' );
 
-        return pointies2line(
+        return pivots_2_svgLineInRg(
             str,
             [ rg[ lpoints[0] ], rg[ lpoints[1] ] ],
             lineAttrPassed,
@@ -337,7 +327,7 @@
 
 
 
-    function pnames2poly(
+    function namesArr_2_svgpoly(
         pNames,
         cssClass,
         correctJoin, //fix all lemmas and remove this par. then
@@ -468,6 +458,4 @@
     //==========================================
     // \\// paints svg triangles
     //==========================================
-
-}) ();
-
+})();

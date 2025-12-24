@@ -236,6 +236,7 @@
                     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
                         function() {
                             ////exegs are ready now,
+                    ccc('LANDING_V');
 
                             //this place looks like
                             //the best to establish initial topics,
@@ -250,6 +251,7 @@
                             eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
                                 var low_tpID = wwCase( camelId );
                                 lowtpid_2_glocss8anchorRack[ low_tpID ] = {
+                                    //todo why fixed-color
                                     'fixed-color' : colorArray,
                                     camelId,
                                     low_tpID,

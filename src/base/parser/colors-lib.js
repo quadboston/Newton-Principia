@@ -43,11 +43,7 @@
         eachprop( lowtpid_2_glocss8anchorRack,
                   ( gcssRack, low_tpID, tcount, allTopicsCount ) => {
             var fc = haz( gcssRack, 'fixed-color' );
-            //c cc( gcssRack.camelId + ' shrinked=' + fc.isPoint0Line );
- if( 'kepler-triangle-odd' === low_tpID ){
-    ccc('lowtpid__2__glocss8anchorRack ()', gcssRack);
-    gcssRack.strokeOpacity = 0;
-}            gcssRack.tcount = tcount;
+            gcssRack.tcount = tcount;
             if( fc ) {
                 colArray_2_flags( gcssRack );
                 return;

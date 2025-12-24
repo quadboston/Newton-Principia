@@ -1,6 +1,6 @@
 ( function() {
     const { sn, eachprop, mapp, nspaste, haz, has, sconf,
-          toreg, rg, ssF, ssD, sDomF, amode, stdMod, } =
+          toreg, rg, ssF, ssD, sDomF, amode, stdMod, fixedColors } =
           window.b$l.apptree({ stdModExportList : { decShapes_conf, }, });
     var decor = sn( 'decor', stdMod );
     var LOGIC = false; //true; //makes logic steps c and C clearer;
@@ -16,12 +16,16 @@
     //----------------------------------------
     function decShapes_conf (){
         ccc( 'decShapes_conf' );
-        var pcolorForce = sDomF.getFixedColor( 'force' )
         var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
-        //var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
+
+
+        //******************************
+        // //\\ points config
+        //******************************
         //------------------------------------
         // //\\ declares decorational points
-        //      A,B are special d8d points
+        //      A,B are special d8d points,
+        //      in model space
         //------------------------------------
         var firstSteps_conf = {
             A   : { decStart : -2, decEnd : 1111111111, pos : sconf.A.concat() },
@@ -48,8 +52,6 @@
         //----------------------------------------------------
         // \\// proof points initial settings
         //----------------------------------------------------
-
-
 
         //----------------------------------------------------
         // //\\ theor 2 coroll. path decor
@@ -79,8 +81,6 @@
         // \\// theor 2 coroll. path decor
         //----------------------------------------------------
 
-
-
         var middleSteps_conf = {
             // //\\ c,d,e,f
             c   : {
@@ -103,13 +103,15 @@
             // \\// c,d,e,f
 
             // //\\ c-col3
-            h   : {     //Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            h   : {     //Duplicate used by P1 Corollary 3 see
+                        //"sconf.js" predefinedTopics for more
                 caption : 'c',
                 decStart : decor.C.decStart+1,
                 decEnd : decor.F.decStart+4,
                 cssClass : 'theor1corollary theor2proof',
             },
-            g   : {     //Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            g   : {     //Duplicate used by P1 Corollary 3 see
+                        //"sconf.js" predefinedTopics for more
                 caption : 'f',
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
@@ -131,7 +133,7 @@
 
         var mixedSteps_conf = ssD.mixedSteps_conf = {
             S   : {
-                    pos      : [0,0],
+                    //pos      :  //medpos in common app
                     decStart : -2, //always visible
                   },
             v   : {
@@ -188,7 +190,7 @@
             let nam1 = 'VVV'+ix;
             let nam1f = nam1+'-white-filler';
             let doPaintPname = false;
-            let pcolor = sDomF.getFixedColor( 'force' );
+            let pcolor = fixedColors.force;
             mixedSteps_conf[ nam0 ] = {
                 doPaintPname,
                 pointWrap : { doPaintPname },
@@ -208,24 +210,60 @@
         Object.assign( decor, mixedSteps_conf );
 
         //---------------------------------------------------
-        // //\\ comprises decor
+        // //\\ fills decor
         //---------------------------------------------------
         Object.assign( decor, middleSteps_conf );
         Object.assign( decor, forceTip_conf );
         Object.assign( decor, aracc_conf );
         //---------------------------------------------------
-        // \\// comprises decor
+        // \\// fills decor
         //---------------------------------------------------
 
+        ///fits other lemmas expand-config machinery
+        Object.keys( decor ).forEach( propKey => {
+            const point = decor[propKey];
+            const pointRack = sconf.originalPoints[propKey]={};
+            Object.keys( point ).forEach( pointKey => {
+                let pointProp = point[pointKey];
+                if( pointKey === 'pos' ) {
+                    pointProp = ssF.mod2inn( pointProp )
+                }
+                pointRack[propKey] = pointProp;
+            });
+        });
+
         //---------------------------------------------------
-        // //\\ syncs decor and rg
+        // //\\ equalizing points in decor and rg
         //---------------------------------------------------
-        eachprop( decor, (dec,kName) => {
-            var pname           = kName;
-            var pos             = haz( dec, 'pos' ) || [0,0];
+        eachprop( decor, (dec,pname) => {
+            rgElem = sn( pname, rg );
+            rgElem.pname = pname;
+            rgElem.isPoint = true;
             var doPaintPname    = has( dec, 'doPaintPname' ) ?
                                   dec.doPaintPname : true;
-            toreg( kName );
+             Object.assign( dec, {
+                //pos,
+                //medpos : [0,0], //fake reasonA, //todm reasonA seems weird ... why?
+                //pname,
+                doPaintPname,
+                isPoint : true,
+                //todm ? ... proliferated coding: medpos, pos, ...  are two places:
+                //           because of pWrap of itself is a
+                //           proliferation of rg.pname rack
+                pointWrap : {
+                    pos : [0,0],
+                    pname,
+                    doPaintPname,
+                },
+            });
+            Object.assign( rg[ pname ], dec );
+            Object.assign( dec, rg[ pname ] );
+            rg[ pname ] = dec;
+        });
+            /*
+            var pname           = kName;
+            var pos             = haz( dec, 'pos' ) || [0,0];
+           toreg( kName );
             Object.assign( decor[ kName ], rg[ kName ] );
             Object.assign( rg[ kName ], decor[ kName ] );
             Object.assign( rg[ kName ], {
@@ -235,7 +273,8 @@
                 doPaintPname,
                 isPoint : true,
                 //todm ? ... proliferated coding: medpos, pos, ...  are two places:
-                //           because of pWrap of itself is a proliferation of rg.pname rack
+                //           because of pWrap of itself is a
+                //           proliferation of rg.pname rack
                 pointWrap : {
                     pos,
                     pname,
@@ -244,21 +283,17 @@
             });
             decor[ kName ] = rg[ kName ];
         });
-
-        ///syncs these points with hidden force-displacement-handles bases
-        ['B','C','D','E','F'].forEach( (name, ix) => {
-            let nam0='VV'+ix;
-            rg[nam0].pos = rg[name].pos;
-        });
+        */
         //---------------------------------------------------
-        // \\// syncs decor and rg
+        // \\// equalizing decor and rg
         //---------------------------------------------------
 
+        /*
         //---------------------------------------------------
         // //\\ synching rg and dec pos with pname2point
         //      , only A.pos, nor other A props are synched
         //---------------------------------------------------
-        sconf.pname2point = {};
+        sconf.pname2point = {}; //pointCamelName -> pointPos by reference
         Object.assign( sconf.pname2point, mapp( firstSteps_conf,    dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( forceTip_conf,      dc => dc.pos ) );
         Object.assign( sconf.pname2point, mapp( mixedSteps_conf,    dc => dc.pos ) );
@@ -269,8 +304,14 @@
         // \\// synching rg and dec pos with pname2point
         // \\// declares decorational points
         //------------------------------------
+        */
+        //******************************
+        // \\// points config
+        //******************************
 
-
+        //******************************
+        // //\\ lines config
+        //******************************
         [
             { nam : ['A', 'B'], },  // AB
             ////todm possibly redundant, isn't pathSegment-' + pix enougth?
@@ -361,10 +402,11 @@
             { nam : ['C','Paracc'], cssClass : 'theor2corollary', },        // CParacc
             { nam : ['V','Varacc'], cssClass : 'theor2corollary', },        // VVaracc
             { nam : ['B','Varacc'], cssClass : 'theor2corollary', },        // BVaracc
-            { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },   // CaraccParacc
+            { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },
+            // CaraccParacc
 
         ].forEach( pNam => {
-            if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
+             if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
                 ////patch for purpose of drawing a vector tip
                 let pcolor = sDomF.getFixedColor( 'speed' );
                 let line = toreg( 'Av' )
@@ -396,21 +438,41 @@
                 ////patch for purpose of drawing a vector tip
                 let line = toreg( 'BV' )();
             }
-            var rgElem = ssF.pnames2line(
+            /*
+            var rgElem = ssF.twoLetters_2_svgLine8rg(
                 pNam.nam[0],
                 pNam.nam[1],
                 haz( pNam, 'cssClass' ), //for tp-links
             );
+            */
+            //adding el. to l. arr. to fit expand-conf machine:
+            let laObj = {};
+            const lineName = pNam.nam[0]+pNam.nam[1];
+            laObj[ lineName ] = {};
+            const cssClass = haz( pNam, 'cssClass' );
+            if( cssClass ) {
+                laObj[ lineName ].cssClass = cssClass;
+            }
+            sconf.linesArray.push(laObj);
+            rgElem = sn( lineName, rg );
+            rgElem.pname = lineName;
+            rgElem.pivotNames = [pNam.nam[0],pNam.nam[1]];
+            rgElem.isPoint = false;
+            //rgElem.isLine = true;
+
+            /*
             //var rgElem = toreg( pNam.nam[0] + pNam.nam[1] )();
             if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
-                rgElem.svgel.style.strokeWidth = '1';
+               // rgElem.svgel.style.strokeWidth = '1';
                 //rgElem.svgel.style.stroke = '#00ff00';
                 //rgElem.vectorArrowSvg.style.fill = '#00ff00';
                 //rgElem.vectorArrowSvg.style.stroke = '#00ff00';
                 //rgElem.vectorArrowSvg.style.strokeWidth = '1';
             }
-            decor[ rgElem.pname ] = rgElem;
-            decor[ rgElem.pname ].isPoint = false;
+            */
+            //equalizing rg and decor elements:
+            decor[ lineName ] = rgElem;
+            decor[ lineName ].isPoint = false;
 
             ///if there is not explicit decStart in the line element, then
             ///decStart in extracted from the directional point of the line segment
@@ -426,21 +488,15 @@
             rgElem.decEnd = decEnd;
             ////---------------------------------------------------
         });
-ccc( rg.VVaracc );
-        //note: in svg-z-order, these fall behind
-        //      decorational-"kepler-triangles" etc, but
-        //      due transparency are still well-visible,
-        saggPolyNames_2_rg8media();
-        keplerPolyNames_2_rg8media();
-        acceleratingArea_2_rg8media();
 
         toreg( 'displayTime' )( 'value', '' );
         toreg( 'thoughtStep' )( 'value', '' );
 
         //---------------------------------------------------
-        // //\\ syncs decor and rg
+        // //\\ equalizes decor and rg
         //---------------------------------------------------
         eachprop( decor, (dec,kName) => {
+            if( dec.isPoint ) return; //avoids dubbing work
             var pname = kName;
             toreg( kName );
             Object.assign( decor[ kName ], rg[ kName ] );
@@ -448,12 +504,11 @@ ccc( rg.VVaracc );
             decor[ kName ] = rg[ kName ];
         });
         //---------------------------------------------------
-        // \\// syncs decor and rg
+        // \\// equalizes decor and rg
         //---------------------------------------------------
 
-
-
-        //Update decStart for the following decorations if needed, to ensure they start becoming visible for the specified steps.
+        //Update decStart for the following decorations if needed,
+        //to ensure they start becoming visible for the specified steps.
         if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
             rg.SC.decStart = 7;
 
@@ -463,14 +518,17 @@ ccc( rg.VVaracc );
             [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
                 pn.decStart = rg.SC.decStart + 8;
             });
-            [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF, rg.SF, rg.Sf, rg.SEf,
-              rg.g, rg.Eg, rg.Fg ].forEach( pn => { //Duplicate g, Eg, Fg used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
-                pn.decStart = rg.SC.decStart + 12;
+            [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
+              rg.SF, rg.Sf, rg.SEf,
+              rg.g, rg.Eg, rg.Fg ].forEach( pn => {
+              //Duplicate g, Eg, Fg used by P1 Corollary 3 see "sconf.js"
+              //predefinedTopics for more
+              pn.decStart = rg.SC.decStart + 12;
             });
         }
 
-
-        //Update decEnd for the following decorations, to ensure they are hidden once the time slider is advanced beyond point F.
+        //Update decEnd for the following decorations, to ensure they are
+        //hidden once the time slider is advanced beyond point F.
         [
             rg.c, rg.Cc, rg.Bc, rg.Sc, rg.SBc,
             rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd,
@@ -479,94 +537,8 @@ ccc( rg.VVaracc );
         ].forEach( pn => {
             pn.decEnd = rg.f.decStart + 3;
         });
+        //******************************
+        // \\// lines config
+        //******************************
     }
-    //----------------------------------------
-    // \\// declares decorations
-    //----------------------------------------
-
-
-
-    function saggPolyNames_2_rg8media(
-    ){
-        [
-            ['A', 'B', 'C', 'V'],   //ABCV
-            ['D', 'E', 'F', 'Z'],   //DEFZ
-        ].forEach( pNames => {
-            var rgElem = ssF.pnames2poly(
-                pNames,
-                'theor1corollary tostroke',
-                null,
-                !!'undisplay',
-                null,
-            );
-            decor[ rgElem.pname ] = rgElem;
-            //lead Point defines range and ix
-            var leadPoint = 2;
-            rgElem.decStart = rg[ pNames[leadPoint] ].decStart;
-            rgElem.decEnd = rg[ pNames[leadPoint] ].decEnd;
-        });
-        rg.ABCV.decStart = 7;
-        rg.DEFZ.decStart += 1;
-        rg.DEFZ.decEnd += 1;
-    }
-
-    function keplerPolyNames_2_rg8media(
-    ){
-        [   ////these triangles override free triangles attached to path
-            ////in path-2-media js-code,
-            ['S', 'B', 'c',],   //SBc
-            ['S', 'C', 'd',],   //SCd
-            ['S', 'D', 'e',],   //SDe
-            ['S', 'E', 'f',],   //SEf
-        ].forEach( pNames => {
-            var rgElem = ssF.pnames2poly(
-                pNames,
-                'theor1proof theor2proof tofill theor2corollary ', //makes green
-                null,
-                !!'undisplay',
-                !'tostroke',
-            );
-            decor[ rgElem.pname ] = rgElem;
-            var lp = rg[ pNames[ 2 ] ];
-            rgElem.decStart = lp.decStart;
-            rgElem.decEnd = lp.decEnd;
-            //ccc(rgElem);
-        });
-
-        ///makes first few free-triangles living
-        ///until the passing of the point f
-        [
-            ['S', 'B', 'c',],   //SBc
-            ['S', 'C', 'd',],   //SCd
-            ['S', 'D', 'e',],   //SDe
-            ['S', 'E', 'f',],   //SEf
-        ].forEach( pNames => {
-            var pn = pNames.join('');
-            rg[pn].decEnd = rg.f.decEnd;
-        });
-    }
-
-
-
-    function acceleratingArea_2_rg8media(
-    ){
-        [
-            ['S', 'B', 'Caracc',],  //SBCaracc
-        ].forEach( pNames => {
-            var rgElem = ssF.pnames2poly(
-                pNames,
-                'theor2corollary tofill',
-                null,
-                !!'undisplay',
-                !'tostroke',
-            );
-            var lp = rg[ pNames[ pNames.length-1 ] ];
-            decor[ rgElem.pname ] = rgElem;
-            rgElem.decStart = lp.decStart;
-            rgElem.decEnd = lp.decEnd;
-        });
-    }
-
-
-}) ();
-
+})();

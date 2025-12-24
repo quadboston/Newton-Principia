@@ -45,8 +45,6 @@
 
     var sconf       = sn('sconf', sapp);
     var originalPoints = sn( 'originalPoints', sconf );
-    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
-
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     //non-consistent: srg should be under fapp or sapp, not both:
@@ -170,7 +168,6 @@
             //ario,
             arios,
             originalPoints,
-            originalPoints_cssNames,
 
             rg    : sapp.rg,
             topos : sapp.topos,

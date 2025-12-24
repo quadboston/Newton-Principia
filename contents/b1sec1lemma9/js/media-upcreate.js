@@ -6,14 +6,14 @@
     } = window.b$l.apptree({
         setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
     function setModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
@@ -47,7 +47,7 @@
         var pointE     = rg.E;
         var pointB     = rg.B;
         var pointC     = rg.C;
-        
+
         rg.B.doWhiteKernel = true;
         rg.C.doWhiteKernel = true;
         rg.E.doWhiteKernel = true;
@@ -78,7 +78,7 @@
             {
                 'stroke-width' : 1 * sconf.thickness
             },
-            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would 
+            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
             paintPivots : {
                 topaint : [ null, null, true ],
@@ -138,7 +138,7 @@
         wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
         wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
         paintCurveArea( 'area-Ace', 'logic_phase--proof', '_ace' );
-        //.apparently makes this shape-element exclusively present in 
+        //.apparently makes this shape-element exclusively present in
         //.'logic_phase--proof' mode
         paintCurveArea( 'area-Abd', 'logic_phase--proof', '_abd' );
         //------------------------------------------
@@ -186,7 +186,7 @@
 
         // init here to ensure all req'd vars are inited first
         // so we don't need to call media-upcreate() from init-sapp.js
-        stdMod.initDragModel( stdMod.medD8D ); 
+        stdMod.initDragModel( stdMod.medD8D );
 
         return;
         // \\//\\// ends imperative part of the module
@@ -200,14 +200,14 @@
             var area = rg[ areaId ];
 
             var lowCurve = rg[ areaId ].curve;
-            
+
             var dd = '';
             dd += "M" + area.startPoint[0] + ' ' +
                         area.startPoint[1] + ' ';
-            dd += "Q" + 
+            dd += "Q" +
                   lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
                   lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
-            dd += "L" + 
+            dd += "L" +
                         area.endPoint[0] + ' ' +
                         area.endPoint[1] + ' ';
 

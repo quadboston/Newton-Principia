@@ -1,38 +1,57 @@
 (function(){
     const {
-        haff, has, eachprop, nspaste, capture, toreg,
+        sn, haff, has, eachprop, nspaste, capture, toreg,
         stdMod, fconf, sconf, ssF, ssD, sDomF,
         fixedColors, fixedColorsOriginal,
     } = window.b$l.apptree({ ssFExportList : { init_conf } });
+    const linesArray = sn( 'linesArray', sconf, [] );
     return;
 
 
-    function init_conf()
-    {
+    function init_conf (){
         ccc( 'init_conf' );
-
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
         //point e    28x46
         //point A    28x456
-        var pictureWidth = 687;
-        var pictureHeight = 657;
-
+        sconf.pictureWidth = 687;
+        sconf.pictureHeight = 657;
         {
-            let realSvgSize = pictureWidth + pictureHeight;
+            let realSvgSize = sconf.pictureWidth + sconf.pictureHeight;
             sconf.controlsScale = realSvgSize / sconf.standardSvgSize
         }
 
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
-        var modorInPicX = 47; //28;
+        //----------------------------------
+        // //\\ app view parameters
+        //      ,in svg or media space,
+        //----------------------------------
         var activeAreaOffsetOnPictureY = 0;
-        var modorInPicY = 'to be calculated';
+        //  lemma-model coordinate y
+        //  -1 if it goes in opposite-to-screen
+        //      direction starting from
+        //      modorInPicY
+        //  1  codirectional with the screen
+        //     which means from screen-top to
+        //      screen bottom
+        var MONITOR_Y_FLIP = -1;
+        var pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
 
+        const originX_onPicture = 47; //28
+        var modorInPicX = originX_onPicture;
+
+        //done in picture-system y-coord:
+        //(pic.bottom-y=+picHeight)
+        const originY_onPicture = activeAreaOffsetOnPictureY +
+            ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 );
+        var modorInPicY = originY_onPicture;
         //.set it from graph editor
         //.todm: trully 611 and rotated
-        var pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
+        //----------------------------------
+        // \\// app view parameters
+        //----------------------------------
 
         //sconf.pointDecoration.r = 5; // todo: why this doesn't work?
 
@@ -50,29 +69,6 @@
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
-
-
-
-        //----------------------------------
-        // //\\ app view parameters
-        //----------------------------------
-        //  lemma-model coordinate y
-        //  -1 if it goes in opposite-to-screen
-        //      direction starting from
-        //      modorInPicY
-        //  1  codirectional with the screen
-        //     which means from screen-top to
-        //      screen bottom
-        var MONITOR_Y_FLIP = -1;
-
-        //done in picture-system y-coord:
-        //(pic.bottom-y=+picHeight)
-        var modorInPicY = activeAreaOffsetOnPictureY +
-            ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 );
-        //----------------------------------
-        // \\// app view parameters
-        //----------------------------------
-
 
         //----------------------------------------------------
         // //\\  prepares sconf data holder
@@ -95,7 +91,7 @@
             TIMER_AND_LOGIC_STEPS_COINSIDE : false,
             FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
             hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
-            //nonhover_width    : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
+            //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
             //this collaborates with impulse line-segment, we are afraide to
             //keep this "undefined",
             nonhover_width : 5,
@@ -106,7 +102,7 @@
 
             default_tp_lightness : 30,
             mediaBgImage : "../js/img/b1s2p1t1.png",
-            dontRun_ExpandConfig : true,
+            dontRun_ExpandConfig : 0,
 
             //-----------
             // //\\ model
@@ -157,9 +153,8 @@
             pictureActiveArea   : pictureActiveArea,
             modorInPicX,
             modorInPicY,
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
-            pictureWidth,       //needed only to paint vecor's Av tip
+            innerMediaHeight    : sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaWidth     : sconf.pictureWidth,
 
             thickness           : 1,
             default_tp_stroke_width : 10,
@@ -184,8 +179,6 @@
             originX_onPicture : modorInPicX,
             originY_onPicture : modorInPicY,
         };
-
-
 
         //----------------------------------
         // //\\ spawns to_conf
@@ -240,15 +233,12 @@
         // \\// spawns to_conf
         // \\// prepares sconf data holder
         //----------------------------------------------------
-
-
         to_sconf.originalPoints = {
             A : {
+                //pos: [...initialPath[0].pos], //todo redundant
             },
-            S : {
-            },
+            S : { pos: [originX_onPicture, initialPath[0].pos[1] ]},
         };
-
 
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
@@ -259,30 +249,34 @@
         //----------------------------------------------------
         // \\// copy-pastes to sconf
         //----------------------------------------------------
-
         {
-            ////--------------------------------------------------
-            ////expands predefinedTopic colors into rg
-            ////--------------------------------------------------
-            var { pt_all, p2_pt } = predefinedTopics();
-            ////array pt_all will be discraded upon leaving this function,
-            Object.keys( pt_all ).forEach( topicKey => {
+            ///--------------------------------------------------
+            ///expands predefinedTopic colors into rg,
+            ///fixedColors, and fixedColorsOriginal
+            ///as in expands-conf.js
+            ///--------------------------------------------------
+            var { all_elected, p2_elected } = tpCamel__2__electedColArray();
+            sconf.predefinedTopics = all_elected;
+            ////array all_elected will be discraded upon leaving this function,
+            Object.keys( all_elected ).forEach( tpCamel => {
                 //generates rg for all topics,
                 //this code is a substitute of expand-config.js
-                toreg( topicKey )( 'pname', topicKey );
-                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                toreg( tpCamel )( 'pname', tpCamel );
+                var tpLowKey = sDomF.topicIdUpperCase_2_underscore( tpCamel );
                 //compliments fixedColors from stuff created in this sconf,
                 //fixedColors are based on non-Camel id,
-                var fck = fixedColors[ tk ] = pt_all[ topicKey ].concat();
+                var fck = fixedColors[ tpLowKey ] = all_elected[ tpCamel ].concat();
                 //compensates missing of "extend-confib" in engine core
-                fixedColorsOriginal[ topicKey ] = fck; //based on Camel Id
+                fixedColorsOriginal[ tpCamel ] = fck; //based on Camel Id
                 //todo why rg colors are not set here?
             });
          }
-         if( has( ssD, 'P2_predefinedTopics' ) ) {
-             /////we are working in prop 2,
+
+         ///adds flag isPoint0Line to P2_electedTopicColors
+         if( has( ssD, 'P2_electedTopicColors' ) ) {
+             ////we are working in prop 2,
              ////above condition is a flag
-             Object.keys( p2_pt ).forEach( camelId => {
+             Object.keys( p2_elected ).forEach( camelId => {
                 if( camelId === 'SBCaracc' ) return;
                 let fc = fixedColorsOriginal[ camelId ];
 
@@ -293,572 +287,39 @@
                 fc.isPoint0Line = true;
              })
          }
-        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {  //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
+         //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
+        'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
             let fc = fixedColorsOriginal[ camelId ];
             fc.isPoint = true;
             fc.isPoint0Line = true;
         });
-        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +      //Duplicate Ch and Fg used by P1 Corollary 3 see predefinedTopics for more
+        //Duplicate Ch and Fg used by P1 Corollary 3 see predefinedTopics for more
+        ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
         'force-0-applied force-1-applied force-2-applied ' +
         'force-3-applied force-4-applied')
         .split(' ')
             .forEach( camelId => {
                 let fc = fixedColorsOriginal[ camelId ];
+                laObj = {};
+                laObj[ camelId ] = { pcolor : [...fc]};
+                sconf.linesArray.push( laObj );
                 fc.isLine = true;
                 fc.isPoint0Line = true;
             });
-
-        setsCommonT1andT2capture();
+        ssF.setsCommonT1andT2capture();
         //this comes from theorem P2; this does not exist in P1;
         if( has( ssF, 'init_conf_addon' ) ) {
             haff( ssF, 'init_conf_addon' );
         } else {
-            makesProfessorsCaptureFootnotes();
+            ssF.makesProfessorsCaptureFootnotes();
         }
-        //fails here, why?
-        //stdMod.decShapes_conf();
+        stdMod.decShapes_conf();
     };
-    //====================================================
-    // \\// inits and sets config pars
-    //====================================================
     return;
 
 
-    function setsCommonT1andT2capture()
-    {
-        nspaste( capture, {
-            //"1-B", replaced with 1-4
-            "1-C": {
-                "slider_sltime": {
-                    //"curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep
-                    "curtime": 3.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "1-D": {
-                "slider_sltime": {
-                    //"curtime": 3.45
-                    "curtime": 4.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "1-E": {
-                "slider_sltime": {
-                    //"curtime": 4.26
-                    "curtime": 5.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-        });
-    }
-
-    ///sets captured states of the simulator,
-    ///used in by-click-actions in text,
-    ///jsobject has indices of this these actions,
-    function makesProfessorsCaptureFootnotes()
-    {
-        nspaste( capture, {
-
-            "1-0": {
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "speeds": {
-                    "pos": [
-                        [
-                            0.2618140190615299 / sconf.initialTimieStep,
-                            0.9651183447758357 / sconf.initialTimieStep
-                        ]
-                    ]
-                },
-                "A": {
-                    "pos": [
-                        2.4846663769760875,
-                        -0.010267216433785486
-                    ]
-                },
-
-                "slider_sltime": {
-                    //"curtime": 1.75000001 * sconf.initialTimieStep
-                    "curtime": 1.01  * sconf.initialTimieStep
-                },
-            },
-
-            "1-1": {
-                "slider_sltime": {
-                    //"curtime": 2.099161816013016 * sconf.initialTimieStep
-                    "curtime": 1.26 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "1-2": {
-                "slider_sltime": {
-                    //"curtime": 2.099161816013016 * sconf.initialTimieStep
-                    "curtime": 1.51 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "1-3": {
-                "slider_sltime": {
-                    //"curtime": 2.765743445674228 * sconf.initialTimieStep
-                    "curtime": 1.751 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "motion-F": {
-                "slider_sltime": {
-                    "curtime": 5.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-            },
-            "more-triangles": {
-                "speeds": {
-                    "pos": [
-                        [
-                            0.15653007129470273/sconf.initialTimieStep,
-                            0.9876731933086345/sconf.initialTimieStep
-                        ]
-                    ]
-                },
-                "slider_sltime": {
-                    "curtime":
-                        sconf.numberOfManyBases * sconf.timeStepOfManyBases,
-                },
-                "rgslid_dt": {
-                    "val": sconf.timeStepOfManyBases
-                },
-            },
-            ///see also __amode2rgstate,
-            ///the very first generic statement
-            "initial-state" : {
-                "A": {
-                    "pos": [
-                        2.4846663769760875,
-                        -0.010267216433785486
-                    ]
-                },
-                "slider_sltime": {
-                    "curtime": 5.01 * sconf.initialTimieStep
-                },
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "speeds": {
-                    "pos": [
-                        [
-                            0.2618140190615299 / sconf.initialTimieStep,
-                            0.9651183447758357 / sconf.initialTimieStep
-                        ]
-                    ]
-                },
-                "force" : {
-                    'lawPower' : sconf.force[0][0],
-                    'lawConstant' : sconf.force[0][1]
-                }
-            },
-
-            "corollary-1": {
-                "media-mover": {
-                    "achieved": {
-                        "achieved": [
-                            47,
-                            611
-                        ]
-                    }
-                },
-                 "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "slider_sltime": {
-                    "curtime": 3.00,
-                },
-
-                 "A": {
-                    "pos": [
-                        2.4846663769760875,
-                        -0.010267216433785486
-                    ]
-                },
-                //---------------------------
-                // //\\ perpendicular
-                //---------------------------
-                "SP": {
-                    //normal step=stepIx4=23
-                    "decStart" :1, "decEnd" : 1111111111111
-                },
-                "TP": {
-                    //normal step=stepIx4=23
-                    "decStart" :1, "decEnd" : 1111111111111
-                },
-                "P": {
-                    "decStart" :1, "decEnd" : 1111111111111
-                },
-                "T": {
-                    "decStart" :1, "decEnd" : 1111111111111
-                },
-                //---------------------------
-                // \\// perpendicular
-                //---------------------------
-            },
-            "corollary-2": {
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "speeds": {
-                    "pos": [
-                        [
-                            0.2618140190615299/sconf.initialTimieStep,
-                            0.9651183447758357/sconf.initialTimieStep
-                        ]
-                    ]
-                },
-                "slider_sltime": {
-                    "curtime": 2.9897076114077104 * sconf.initialTimieStep
-                }
-            },
-            "corollary-4" : {
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "AC": {
-                    //stepIx4=23
-                    "decStart" :10, "decEnd" :111111111111,
-                },
-                "DF": {
-                    "decStart" :21, "decEnd" :111111111111,
-                },
-                "BU": {
-                    "decStart" :10, "decEnd" :111111111111,
-                },
-                "EW": {
-                    "decStart" :21, "decEnd" :111111111111,
-                },
-                "slider_sltime": {
-                    "curtime": 4.8 * sconf.initialTimieStep,
-                },
-                "speeds": {
-                    "pos": [
-                        [
-                            0.29155658394042205/sconf.initialTimieStep,
-                            0.9565535836329252/sconf.initialTimieStep
-                        ]
-                    ]
-                },
-            },
-
-
-            "corollary-3" : {
-                "rgslid_dt": {
-                    "val": sconf.initialTimieStep
-                },
-                "speeds": {
-                    "pos": [
-                        [
-                            0.2618140190615299/sconf.initialTimieStep,
-                            0.9651183447758357/sconf.initialTimieStep
-                        ]
-                    ]
-                },
-                "slider_sltime": {
-                    "curtime": 4.8 * sconf.initialTimieStep
-                }
-            },
-
-
-
-
-            "__amode2rgstate" :
-            [
-                [
-                    "true",
-                    {
-                        //this clears up state for all lemmas and all subessays,
-                        //every time, even when capture-by-capture-toggler-in-text is clicked,
-                        //this block does its job:
-                        rg : {
-                            "V": {
-                                "decEnd" : 1,
-                            },
-                            'V-white-filler' : {
-                                "decStart" : -2,
-                            },
-                            "AC": {
-                                //normal step=stepIx4=23
-                                "decStart" :10, "decEnd" :1
-                            },
-                            "DF": {
-                                "decStart" :10, "decEnd" :1
-                            },
-                            //saggitas
-                            "BU": {
-                                "decStart" :10, "decEnd" :1
-                            },
-                            "EW": {
-                                "decStart" :10, "decEnd" :1
-                            },
-
-                            //---------------------------
-                            // //\\ perpendicular
-                            //---------------------------
-                            "SP": {
-                                //normal step=stepIx4=23
-                                "decStart" :10, "decEnd" :1
-                            },
-                            "TP": {
-                                //normal step=stepIx4=23
-                                "decStart" :10, "decEnd" :1
-                            },
-                            "P": {
-                                //normal step=stepIx4=23
-                                "decStart" :10, "decEnd" :1
-                            },
-                            "T": {
-                                //normal step=stepIx4=23
-                                "decStart" :10, "decEnd" :1
-                            },
-                            //---------------------------
-                            // \\// perpendicular
-                            //---------------------------
-                        }
-                    }
-                ],
-                [
-                    "!ssF.mediaModelInitialized",
-                    {
-                        "captured" : "initial-state",
-                        "rg" :
-                        {
-                        }
-                    }
-                ],
-                [
-                    "( logic_phase === 'proof' )",
-                    {
-                        "captured" : "1-0",
-                        "rg" :
-                        {
-                            "V": {
-                                "decEnd" : 11111111,
-                                "doPaintPname" : true,
-                            },
-                        }
-                    }
-                ],
-
-                [
-                    "( logic_phase === 'claim' && aspect !== 'model' )",
-                    {
-                        "captured" : "initial-state",
-                        "rg" :
-                        {
-                        }
-                    }
-                ],
-
-                [
-                    "( logic_phase === 'corollary' )",
-                    {
-                        "captured" : "initial-state",
-                        "rg" :
-                        {
-                        }
-                    }
-                ],
-                [
-                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
-                    "( subessay === 'cor-1' )",
-                    {
-                        "captured" : "corollary-1",
-                        "rg" : {
-                        }
-                    }
-                ],
-                [
-                    "( subessay === 'cor-2' )",
-                    {
-                        "captured" : "corollary-2",
-                        "rg" : {
-                        }
-                    }
-                ],
-                [
-                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
-                    "( subessay === 'cor-3' )",
-                    {
-                        "captured" : "corollary-3",
-                        "rg" : {
-                        }
-                    }
-                ],
-                [
-                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
-                    "( subessay === 'cor-4' )",
-                    {
-                        //we set here condisions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "corollary-4",
-                        "rg" : {
-                        }
-                    }
-                ],
-
-                //---------------------------
-                // //\\ redundant points
-                //---------------------------
-                [
-                    "( subessay === 'cor-2' || subessay === 'cor-3' || subessay === 'cor-4' )",
-                    {
-                        //we set here condisions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "",
-                        "rg" : {
-                            "Z": {
-                                "decEnd" : 11111111
-                            },
-                            "V": {
-                                "decEnd" : 11111111,
-                            },
-                            "ABCV": {
-                                "decEnd" : 11111111
-                            },
-                            "DEFZ" : {
-                                "decEnd" : 11111111
-                            },
-                        }
-                    }
-                ],
-                [
-                    "( subessay !== 'cor-2' && subessay !== 'cor-3' && subessay !== 'cor-4' )",
-                    {
-                        //we set here condisions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "",
-                        "rg" : {
-                            "Z" : {
-                                "decEnd" : 1
-                            },
-                            "ABCV": {
-                                "decEnd" : 1
-                            },
-                            "DEFZ" : {
-                                "decEnd" : 1
-                            },
-                        }
-                    }
-                ],
-                //---------------------------
-                // \\// redundant points
-                //---------------------------
-
-                [
-                    "( subessay !== 'cor-3' )",
-                    {
-                        //we set here condisions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "",
-                        "rg" : {
-                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1
-                            },
-                        }
-                    }
-                ],
-                [
-                    "( subessay === 'cor-3' )",
-                    {
-                        //we set here conditions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "",
-                        "rg" : {
-                            "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                            "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                            "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                            "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                            "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                            "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
-                                "decEnd" : 1111111111
-                            },
-                        }
-                    }
-                ],
-
-                [
-                    //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
-                    "( logic_phase === 'corollary' && aspect === 'model' )",
-                    {
-                        //we set here condisions of cor4, but saggita will depend on time
-                        //which is good for cor2
-                        "captured" : "corollary-4",
-                        "rg" : {
-                            //---------------------------
-                            // //\\ perpendicular
-                            //---------------------------
-                            "SP": {
-                                //normal step=stepIx4=23
-                                "decStart" :1, "decEnd" : 1111111111111
-                            },
-                            "TP": {
-                                //normal step=stepIx4=23
-                                "decStart" :1, "decEnd" : 1111111111111
-                            },
-                            "P": {
-                                "decStart" :1, "decEnd" : 1111111111111
-                            },
-                            "T": {
-                                "decStart" :1, "decEnd" : 1111111111111
-                            },
-                            //---------------------------
-                            // \\// perpendicular
-                            //---------------------------
-                        }
-                    }
-                ],
-            ]
-        });
-        }
-
     ///local function, discarded upon leaving parent function,
-    function predefinedTopics()
-    {
+    function tpCamel__2__electedColArray (){
         const {
             force,
 
@@ -877,8 +338,7 @@
             tangent,
         } = fixedColors;
 
-
-        const pt_all = {
+        const all_elected = {
             speed,
             force,
             forceMove,
@@ -887,11 +347,16 @@
             path,
             "path-change"       : path,
 
-            //The following sets the color of the text in the text area for these triangles.  If
-            //these are placed after "kepler-triangle-odd" and "kepler-triangle-even", they will
-            //also set the triangle color in the model area.  If these are removed the triangles
-            //default to red and green "zebra-colors" (for more see "colors-lib.js" section
-            //"generates pseudo-random zebra colors" in function lowtpid__2__glocss8anchorRack).
+            //The following sets the color of the text in
+            //the text area for these triangles.  If
+            //these are placed after "kepler-triangle-odd" and
+            //"kepler-triangle-even", they will
+            //also set the triangle color in the model area.
+            //If these are removed the triangles
+            //default to red and green "zebra-colors"
+            //(for more see "colors-lib.js" section
+            //"generates pseudo-random zebra colors" in function
+            //lowtpid__2__glocss8anchorRack).
             "SBC"               : trianglePurpleTextAreaColor,
             "SCD"               : trianglePurpleTextAreaColor,
             "SDE"               : trianglePurpleTextAreaColor,
@@ -992,12 +457,12 @@
 
             "free-triangle"     : freeMove,
         };
-        var p2_pt = haff( ssD, 'P2_predefinedTopics' );
-        if( p2_pt ) {
-            Object.assign( pt_all, p2_pt );
+        var p2_elected = haff( ssD, 'P2_electedTopicColors' );
+        if( p2_elected ) {
+            Object.assign( all_elected, p2_elected );
         }
-        return { pt_all, //all possible topics accumulated
-                 p2_pt   //from prop 2.
+        return { all_elected, //all possible topics accumulated
+                 p2_elected   //from prop 2.
         };
     }
 })();

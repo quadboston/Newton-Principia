@@ -15,13 +15,13 @@
         },
     });
 
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
     function setModule()
     {
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
@@ -105,11 +105,11 @@
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
         //sunday service: start here:
-        
+
         //appar. for preemptive svg-position. and z-order,
         //if( !p2p ) return;
         ssF.doPaintPoints();
-        
+
         if( ssF.mediaModelInitialized ) {
             //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
@@ -134,7 +134,7 @@
         }
         // \\// upcreates lines after points
         //=============================================
-        
+
         //**************************************************
         // //\\ note, former lemmas
         //**************************************************

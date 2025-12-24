@@ -1,8 +1,8 @@
 ( function() {
-    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, fixedColors, } = 
+    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, fixedColors, } =
         window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
-    ssD.P2_predefinedTopics = predefinedTopics;
+    ssD.P2_P2_electedTopicColors = P2_electedTopicColors;
     return;
 
 
@@ -20,8 +20,8 @@
             ////expands predefinedTopic colors into rg
             ////--------------------------------------------------
             /*
-            let pt = predefinedTopics();
-            Object.keys( predefinedTopics() ).forEach( topicKey => {
+            let pt = P2_electedTopicColors();
+            Object.keys( P2_electedTopicColors() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
                 fixedColors[ tk ] = pt[ topicKey ];
@@ -128,7 +128,7 @@
     // \\// makes capture
     }
 
-    function predefinedTopics()
+    function P2_electedTopicColors()
     {
         const {
             forceMove,

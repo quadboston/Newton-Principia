@@ -12,7 +12,7 @@
     var initialization_is_done = false;
     //enables steps BC, CD, ... by clicks on B, C, ...
     var POINTS_BCDE_ARE_ACTIVE = false;
-    
+
     var lemmaP2coroll =
         ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc' +
          ' CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
@@ -33,7 +33,7 @@
             (haz( amode, 'logic_phase') === 'proof' && fconf.sappId === "b1sec2prop1") ) {
             //Adjust when the following decorations start becoming visible for the P1 proof tab.
 
-            //There was a bug where even though the step’s value was the same, decoration visibility was different depending on whether the 
+            //There was a bug where even though the step’s value was the same, decoration visibility was different depending on whether the
             //user clicked text in the text area vs the time slider.  Therefore they are now both set with the exact same code below.
 
             //decStart = 5 corresponds to clicking “the second part of the time” in the 2nd paragraph.
@@ -115,7 +115,7 @@
         //if used non-properly, f.e. create and dress svg first,
         stdMod.dec2svg();
 
-        
+
         if( initialization_is_done ) {
             stdMod.hollowHandles_2_dynamicMedpos();
             stdMod.hollowForceHandlers_2_dynamicMedpos();
@@ -134,9 +134,9 @@
         hafff( rg.rgslid_dt, 'updates_sliderGUI' );
         //***********************************************************
 
-        //----------------------------------------------------        
+        //----------------------------------------------------
         // //\\ shows next move of the proof
-        //----------------------------------------------------        
+        //----------------------------------------------------
         if( !initialization_is_done ) {
             ///launch time work
             initialization_is_done = true;
@@ -183,10 +183,10 @@
                         pointsAreOn ? 'show next move' : '';
                 }
         });
-        //----------------------------------------------------        
+        //----------------------------------------------------
         // \\// shows next move of the proof
-        //----------------------------------------------------        
-        
+        //----------------------------------------------------
+
         rg['main-legend'].tb.corollary.style.display =
             ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
             'table' : 'none';
@@ -201,6 +201,7 @@
             ////over this triangle,
             let svg = rg.VVaracc.svgel;
             let parent = svg.parentNode;
+            if( !parent ) return; //todo fix rightly, fix the cause
             svg.remove();
             parent.appendChild( svg );
             svg = rg.BVaracc.svgel;
@@ -219,7 +220,7 @@
         ssF.mediaModelInitialized = true;
     }
 
-    
+
     function pathDelays2forceDraggers()
     {
         ['B','C','D','E','F'].forEach( (pname, ix) => {
@@ -249,7 +250,7 @@
             });
         });
     }
-    
-    
+
+
 }) ();
 

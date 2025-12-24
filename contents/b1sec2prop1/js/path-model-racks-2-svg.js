@@ -1,13 +1,13 @@
 ( function() {
-    var { sn, $$, eachprop, sconf, ssF, ssD, sDomF, toreg, rg, amode, } = 
+    var { sn, $$, eachprop, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
-    
+
     ///this fun. completes the split model and media code,
     function allPathRacks_2_unseenSVGs()
     {
-        var pointies2line   = ssF.pointies2line;
+        var pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;
 
@@ -128,7 +128,7 @@
                     ( 'tipFill', pcolor )
 
                     ();
-                let forceShape = pointies2line(
+                let forceShape = pivots_2_svgLineInRg(
                     wwpname,
                     fview.pivots,
                     {
@@ -176,7 +176,7 @@
             if( pix >= freePathRacks.length ) return;
             var wwpname = 'freePathSegment-' + pix;
             toreg( wwpname )({ undisplay : true })();
-            pointies2line(
+            pivots_2_svgLineInRg(
                 wwpname,
                 !'wwPivots',
                 {
@@ -201,7 +201,7 @@
             if( pix === pathRacks.length - 1 ) return;
             var wwpname = 'pathSegment-' + pix;
             toreg( wwpname )({ undisplay : true })();
-            pointies2line(
+            pivots_2_svgLineInRg(
                 wwpname,
                 !'wwPivots',
                 {

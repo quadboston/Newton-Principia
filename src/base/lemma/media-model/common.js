@@ -17,7 +17,8 @@
 
 
 
-    ///declares whirl for model and simulation/user scenario;
+    ///declares whirl (do call it modShape?)
+    ///for model and simulation/user scenario;
     ///               not for view for media and GUI;
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg

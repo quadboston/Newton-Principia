@@ -13,7 +13,7 @@
         setModule,
     });
     var mod2inn;
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     var pos2pointy;
     var paintTriangle;
     var ellipseColor;
@@ -23,7 +23,7 @@
     function setModule()
     {
         mod2inn         = ssF.mod2inn;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
     }

@@ -1,8 +1,8 @@
 (function(){
     const {
-        sn, haz, has, eachprop, own, nsmethods,
+        sn, haz, has, eachprop, own, nsmethods, nspaste,
         fconf, sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
-        originalPoints_cssNames, toreg, stdMod,
+        toreg, stdMod,
     } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
     var LETTER_ROTATION_RADIUS_PER_1000 = 30;
     var LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
@@ -15,6 +15,7 @@
     //                      2. expands sconf into rg
     ///==============================================
     function doExpandConfig (){
+        ccc( 'doExpandConfig' );
         var {
             predefinedTopics,
             originalPoints,
@@ -38,7 +39,6 @@
 
             mod2inn_scale,
         } = sconf;
-
 
         //-----------------------------------------------------------
         // //\\ transition from poor name in legacy code
@@ -97,7 +97,7 @@
         var inn2mod_scale = 1/mod2inn_scale;
 
 
-        ///adds point's color from predefinedTopics if missed
+        ///pulls point's color from predefinedTopics if missed
         eachprop( originalPoints, (point,pname) => {
             point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
         });
@@ -110,7 +110,6 @@
             //----------------------------------
             MONITOR_Y_FLIP,
 
-            mod2inn_scale,
             inn2mod_scale,
 
             //mod2inn_scale_initial : mod2inn_scale,
@@ -142,10 +141,11 @@
 
         var factor = MONITOR_Y_FLIP * inn2mod_scale;
         (function() {
-
-            //--------------------------------------------------
-            ///expands predefinedTopic colors into rg
-            //--------------------------------------------------
+            ///--------------------------------------------------
+            ///expands predefinedTopic colors into rg,
+            ///fixedColors, and fixedColorsOriginal,
+            ///and adds flags (why?)
+            ///--------------------------------------------------
             Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
@@ -157,7 +157,6 @@
                 //this does the same completion as for fixedColors, but
                 //based on camel key:
                 fixedColorsOriginal[ topicKey ] = fc;
-
                 //lemma-specific flags are set to false in fixedColors and
                 //fixedColorsOriginal,
                 fc.isPoint = false;
@@ -173,8 +172,10 @@
                 if( Array.isArray( op ) ) {
                     ////handles array of originalPoints
 
-                    //allows set this props without setting them to each point in orig. def.
-                    var doPaintPname = has( op, 'doPaintPname' ) ? op.doPaintPname : true;
+                    //allows set this props without setting them to each
+                    //point in orig. def.
+                    var doPaintPname = has( op, 'doPaintPname' ) ?
+                                       op.doPaintPname : true;
                     var draggableX   = haz( op, 'draggableX' );
                     var draggableY   = haz( op, 'draggableY' );
 
@@ -185,22 +186,22 @@
                                              opInArr.draggableY : draggableY;
                         opInArr.doPaintPname = has( opInArr, 'doPaintPname' ) ?
                                              opInArr.doPaintPname : doPaintPname;
-                        expandsOrPoints( opInArr, pname + '-' + inIx );
+                        expandsOrPoint( opInArr, pname + '-' + inIx );
                     });
                 } else {
                     ////handles single originalPoint
-                    expandsOrPoints( op, pname );
+                    expandsOrPoint( op, pname );
                 }
             });
             //--------------------------------------------------
             // \\// expands originalPoints placeholders
             //--------------------------------------------------
 
-
             //----------------------------------
             // //\\ expands lines placeholders
             //----------------------------------
             linesArray = haz( sconf, 'linesArray' );
+            ///equalizes lines and linesArray from linesArray into lines:
             if( linesArray ) {
                 lines = {};
                 linesArray.forEach( (lineConf) => {
@@ -208,8 +209,6 @@
                     lines[ lname ] = lineConf[ lname ];
                 });
             }
-
-
             ///apparently non-unified with shapes-points, points have more properties
             eachprop( lines, ( gshape, pname ) => {
                 var rgX = toreg( pname )( 'pname', pname )();
@@ -283,17 +282,12 @@
 
             ///expands into rgX, ?proliferation?
             ///rg becomes normalized expansion of originalPoints
-            function expandsOrPoints( op, pname ){
-                //duplicates orig. points by indexing them by lowname
-                originalPoints_cssNames[
-                    nsmethods.camelName2cssName( pname )
-                ] = op;
-
+            function expandsOrPoint( op, pname ){
                 //todo ... non-readable: it tranfers properties from
                 //??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
-                var pictureP    = op.own( 'pos' );
+                var pictureP    = op.own( 'pos' );  //=media pos
                 var modelP      = op.own( 'mpos' );
 
                 //at the moment for missing flag, doPaintPname === true,
@@ -463,8 +457,6 @@
         //---------------------------------------------------------------------------
         // \\// derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
-
-
 
         //----------------------------------------------------
         // //\\  prepares sconf data holder

@@ -15,7 +15,7 @@
         },
         setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     var rgPos2rgMedia;
     var handleR = 5;
     return;
@@ -29,7 +29,7 @@
 
     function setModule()
     {
-        pointies2line = ssF.pointies2line;
+        pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
@@ -130,15 +130,14 @@
     //==============================================
     // //\\ updates decors with 'pivotNames':
     //      aka for created with
-    //      ssF.pnames2line and ssF.pnames2poly
+    //      ssF.twoLetters_2_svgLine8rg and ssF.namesArr_2_svgpoly
     //==============================================
     function paintDec_nonPoints( dec )
     {
-        /// ssF.pnames2line
         if( dec.pivotNames.length === 2 ) {
             ///refreshes line position and presence
             ///for special lines
-            ssF.pnames2line(
+            ssF.twoLetters_2_svgLine8rg(
                 dec.pivotNames[0],
                 dec.pivotNames[1],
                 haz( dec, 'cssClass' ), //works: 'hidden'
@@ -162,11 +161,11 @@
         ['S'].forEach( pname => {
             ssF.rgPos2rgMedia(
                 pname,
-                { 
+                {
                     cssClass: 'tofill tostroke',
                 }
             );
-        });    
+        });
         //==========================================
         // \\// S to media
         //==========================================
@@ -204,7 +203,7 @@
         //-------------------------------------------------
         rgPos2rgMedia(
             'v',
-            { 
+            {
                 //this possibly collides with white filling
                 //cssClass : 'tostroke',
 
@@ -232,7 +231,7 @@
         //-------------------------------------------------
         rgPos2rgMedia(
             'V',
-            { 
+            {
                 //this possibly collides with white filling
                 //cssClass : 'tostroke',
 
@@ -253,7 +252,7 @@
         //-------------------------------------------------
         // //\\ paints first radius
         //-------------------------------------------------
-        pointies2line(
+        pivots_2_svgLineInRg(
             'radiusToFirstPoint',
             [ rg.S, rg.A ], //pivots,
             {
@@ -290,8 +289,8 @@
             pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
         });
     }
-    
-    
+
+
     ///one-time call
     ///move to media launch except pos setting
     function hollowHandles_2_rgPlaces8media()
@@ -319,9 +318,9 @@
         // \\// non-standard patch,
         //------------------------------------------------------
     }
-    
 
-    
+
+
     function hollowForceHandlers_2_dynamicMedpos()
     {
         ['B','C','D','E','F'].forEach( (pname, ix) => {
@@ -338,8 +337,8 @@
             pt.svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
             pt.svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
         });
-    }    
-    
+    }
+
     ///one-time call
     ///move to media launch except pos setting
     function hollowForceHandlers_2_rgPlaces8media()
@@ -357,7 +356,8 @@
                 fakeName,
                 {
                     'fill'          : 'white',
-                    'stroke'        : sDomF.getFixedColor( 'force' ), //wrong, todm, killed tp-classes
+                    'stroke'        : sDomF.getFixedColor( 'force' ),
+                                      //wrong, todm, killed tp-classes
                     'stroke-width'  : 1,
                     r               : handleR+1,
                 }
@@ -367,7 +367,7 @@
         //------------------------------------------------------
         // \\// non-standard patch,
         //------------------------------------------------------
-    }    
+    }
     //=========================================
     // \\// V,v,A launch and dynamic calls
     //=========================================
