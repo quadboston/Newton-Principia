@@ -46,18 +46,21 @@
     ///         (rgX = this)
     ///
     ///===================================================
+    ///possibly outdated, the only lemma 11 relies on this:
     function pname__2__rgX8dragwrap_gen_list( pname,)
-    { 
+    {
         return params__2__rgX8dragwrap_gen_list({ pname,});
     }
     function params__2__rgX8dragwrap_gen_list({
         pname, acceptPos, orientation, pos, nospinner,
     }) {
+        ccc( pname + ' adds to list in common' );
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
         var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
-        //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
+        //premature?: rgX.processDownEvent    = processDownEvent ||
+        //sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
         rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
@@ -161,8 +164,8 @@
     function processUpEvent( arg )
     {
         if( ns.haz( this, 'mediaMover' ) ) {
-            this.achieved.achieved[ 0 ] = sconf.modorInPicX; 
-            this.achieved.achieved[ 1 ] = sconf.modorInPicY; 
+            this.achieved.achieved[ 0 ] = sconf.modorInPicX;
+            this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 
             //// non-ordinary case:
             this.undisplay = true;

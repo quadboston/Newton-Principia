@@ -7,7 +7,7 @@
         stdModExportList :
         {
             paints_draggableDecPoints8Line,
-            dec2svg,
+            //dec2svg,
             hollowHandles_2_rgPlaces8media,
             hollowHandles_2_dynamicMedpos,
             hollowForceHandlers_2_rgPlaces8media,
@@ -21,35 +21,15 @@
     return;
 
 
-
-
-
-
-
-
     function setModule()
     {
         pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
-    function dec2svg()
+    function rid_paintDec_point( rgPoint, pname )
     {
-        eachprop( stdMod.decor, (dec,pname) => {
-            if( dec.isPoint ) {
-                paintDec_point( dec, pname );
-            } else {
-                paintDec_nonPoints( dec );
-            }
-        });
-    }
-
-
-
-
-
-    function paintDec_point( rgPoint, pname )
-    {
+        /*
         ////doing points
         var pWrap           = rgPoint.pointWrap;
         var pcolor          = sDomF.getFixedColor( pWrap.ptype );
@@ -57,13 +37,21 @@
         pWrap.pcolor        = pcolor;   //todm: overengineering ...
 
         if(
+
+            (
             ////all these points are not drawn here, because of
             ////they have special place in code where they are drawn as
             ////their representaion with white hole,
             ////this special place is hollowHandles_2_rgPlaces8media(),
             pname !== 'v' && pname !== 'V' && pname !== 'A' &&
             pname !== 'v-white-filler' && pname !== 'V-white-filler' &&
-            pname !== 'A-white-filler' && !pname.match( /VVV\d-white-filler/ )
+            pname !== 'A-white-filler' && !pname.match( /VVV\d-white-filler/
+                                                 )
+
+            && pname !== 'C' //todo debug
+
+
+            )
         ) {
             var cls = 'tostroke tofill thickable';
             cssClass = haz( rgPoint, 'cssClass' );
@@ -123,29 +111,15 @@
         //==============================================
         // \\// decors rgPoint to rgPos2rgMedia and
         //==============================================
+        */
     }
-
-
 
     //==============================================
     // //\\ updates decors with 'pivotNames':
     //      aka for created with
     //      ssF.twoLetters_2_svgLine8rg and ssF.namesArr_2_svgpoly
     //==============================================
-    function paintDec_nonPoints( dec )
-    {
-        if( dec.pivotNames.length === 2 ) {
-            ///refreshes line position and presence
-            ///for special lines
-            ssF.twoLetters_2_svgLine8rg(
-                dec.pivotNames[0],
-                dec.pivotNames[1],
-                haz( dec, 'cssClass' ), //works: 'hidden'
-            );
-        } else {
-            dec.poly_2_updatedPolyPos8undisplay();
-        }
-    }
+
     //==============================================
     // \\// updates decors with 'pivotNames':
     //==============================================
@@ -194,8 +168,6 @@
         // \\// updates point A
         //-------------------------------------------------
 
-
-
         //-------------------------------------------------
         // //\\ creates point B to slide
         //      put this el-definition last to
@@ -219,9 +191,6 @@
         //-------------------------------------------------
         // \\// creates point B to slide
         //-------------------------------------------------
-
-
-
 
         //-------------------------------------------------
         // //\\ updates medpos and svg el for point V to slide
@@ -247,7 +216,6 @@
         //-------------------------------------------------
         // \\// updates medpos and svg el for point V to slide
         //-------------------------------------------------
-
 
         //-------------------------------------------------
         // //\\ paints first radius
@@ -290,7 +258,6 @@
         });
     }
 
-
     ///one-time call
     ///move to media launch except pos setting
     function hollowHandles_2_rgPlaces8media()
@@ -318,8 +285,6 @@
         // \\// non-standard patch,
         //------------------------------------------------------
     }
-
-
 
     function hollowForceHandlers_2_dynamicMedpos()
     {
@@ -371,8 +336,4 @@
     //=========================================
     // \\// V,v,A launch and dynamic calls
     //=========================================
-
-
-
-}) ();
-
+})();

@@ -28,7 +28,10 @@
     // //\\ updater helper
     //      - runs every time model changes
     //=========================================================
-    ///overrides lemma's stdMod.media_upcreate if missed
+    ///overrides lemma's stdMod.media_upcreate if missed,
+    ///how? media_upcreate prevales when finalizing lemma in
+    ///init_sapp: if lemma does not provide the latter, then
+    ///this function takes over:
     function media_upcreate_generic()
     {
         // called 3x on page load (more in L2, L3, L4...?)
@@ -90,12 +93,15 @@
                     var lname   = Object.keys( lineConf )[0];
                     lineAttr    = lineConf[ lname ];
                     if( !lineAttr.zOrderAfter ) {
+                        //ccc( '+++++ paints linesArray el. ' +lname + ' in first-zoom' );
                         ssF.str2line( lname, null, lineAttr );
                     }
             });
         } else {
             ns.eachprop( sconf.lines, (lineAttr,lname) => {
+                ccc( 'retarded code' );
                 if( !lineAttr.zOrderAfter ) {
+                    ccc( '+++++ paints line ' +lname + ' in first-zoom' );
                     ssF.str2line( lname, null, lineAttr );
                 }
             });
@@ -122,13 +128,16 @@
                 var lname   = Object.keys( lineConf )[0];
                 lineAttr    = lineConf[ lname ];
                 if( lineAttr.zOrderAfter ) {
+                    ccc( '+++++ paints linesArray el. ' +lname + ' in second-zoom' );
                     ssF.str2line( lname, null, lineAttr );
                 }
             });
         } else {
             ns.eachprop( sconf.lines, (lineAttr,lname) => {
+                ccc( 'bad' );
                 if( lineAttr.zOrderAfter ) {
                     ssF.str2line( lname, null, lineAttr );
+                    ccc( '+++++ paints lines el. ' +lname + ' in second-zoom' );
                 }
             });
         }

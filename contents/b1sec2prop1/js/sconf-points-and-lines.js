@@ -1,7 +1,7 @@
 ( function() {
     const { sn, eachprop, mapp, nspaste, haz, has, sconf,
           toreg, rg, ssF, ssD, sDomF, amode, stdMod, fixedColors } =
-          window.b$l.apptree({ stdModExportList : { decShapes_conf, }, });
+          window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
     var decor = sn( 'decor', stdMod );
     var LOGIC = false; //true; //makes logic steps c and C clearer;
     return;
@@ -14,10 +14,12 @@
     //
     //      runs only once at start of init_model_parameters,
     //----------------------------------------
-    function decShapes_conf (){
-        ccc( 'decShapes_conf' );
+    function sconf_points8lines (){
+        ccc( 'sconf_points8lines' );
         var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
-
+        //elected topics:
+        const et = sconf.predefinedTopics;
+        //ccc( 'sconf.linesArray=', nspaste( {}, sconf.linesArray ));
 
         //******************************
         // //\\ points config
@@ -28,17 +30,38 @@
         //      in model space
         //------------------------------------
         var firstSteps_conf = {
-            A   : { decStart : -2, decEnd : 1111111111, pos : sconf.A.concat() },
+            A   : { decStart : -2, decEnd : 1111111111,
+                    pos : sconf.A.concat(),
+                    draggableX : true, draggableY : true,
+            },
             //todo redundant
             B   : { decStart : -2, decEnd : 1111111111, pos : sconf.B.concat() },
         };
         Object.assign( decor, firstSteps_conf );
-
         //----------------------------------------------------
         // //\\ proof points initial settings
         //----------------------------------------------------
         var CDEF_conf = {
-            C   : { decStart : 6, },
+            C   : {
+                decStart : 6,
+                //t/ X : {
+                //t/
+                cssClass : 'tp-force',
+                //t/    pos: S,
+                        pcolor : et.force,
+                //works
+                //works letterAngle : -90,
+                //works
+                //t/ letterRotRadius : 40,
+                //t/    draggableX  : true,
+                //t/    draggableY  : fconf.sappId === 'b1sec2prop7',
+                //works:
+                //t/    initialR    : 5 * sconf.controlsScale,
+                //t/    fontSize : 30,
+                //t/    undisplayAlways : true,
+                //t/    doPaintPname : false,
+                //t/},
+            },
             D   : { decStart : 10, },
             E   : { decStart : 14, },
             F   : { decStart : 18 },
@@ -139,6 +162,7 @@
             v   : {
                     pos      : sconf.B.concat(),
                     decStart : -2, //always visible
+                    draggableX : true, draggableY : true,
                   },
             P   : {
                     decStart : -2, //always visible
@@ -218,20 +242,20 @@
         //---------------------------------------------------
         // \\// fills decor
         //---------------------------------------------------
-
-        ///fits other lemmas expand-config machinery
+        ///unifies with other lemmas expand-config machinery
+        let wrongOriginalPoints = {};
         Object.keys( decor ).forEach( propKey => {
             const point = decor[propKey];
             const pointRack = sconf.originalPoints[propKey]={};
             Object.keys( point ).forEach( pointKey => {
                 let pointProp = point[pointKey];
                 if( pointKey === 'pos' ) {
-                    pointProp = ssF.mod2inn( pointProp )
+                    pointProp = ssF.mod2inn( pointProp );
                 }
-                pointRack[propKey] = pointProp;
+                pointRack[pointKey] = pointProp;
             });
         });
-
+        //ccc( 'originalPoints=', nspaste({}, sconf.originalPoints ));
         //---------------------------------------------------
         // //\\ equalizing points in decor and rg
         //---------------------------------------------------
@@ -367,7 +391,9 @@
             { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },    // Bh   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
             { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },    // Ch   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
             { nam : ['E', 'g'], cssClass : 'theor1corollary', },                // Eg   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
-            { nam : ['F', 'g'], cssClass : 'theor1corollary', },                // Fg   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+            { nam : ['F', 'g'], cssClass : 'theor1corollary', },
+            // Fg   Duplicate used by P1 Corollary 3 see "sconf.js"
+            //predefinedTopics for more
 
             { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
             { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
@@ -410,8 +436,9 @@
                 ////patch for purpose of drawing a vector tip
                 let pcolor = sDomF.getFixedColor( 'speed' );
                 let line = toreg( 'Av' )
+                        //expand config misses some of these
                         ( 'vectorTipIx', 1 )
-                        ( 'tipFraction', 0.15 )
+                        ( 'tipFraction', 0.15 ) //works
                         ( 'pcolor', pcolor )
                         ( 'tipFill', pcolor )
                         ();
@@ -448,7 +475,11 @@
             //adding el. to l. arr. to fit expand-conf machine:
             let laObj = {};
             const lineName = pNam.nam[0]+pNam.nam[1];
-            laObj[ lineName ] = {};
+            laObj[ lineName ] = {
+                //placeholder to add for expand array,
+                //fe caption
+                //caption : "MOO", //works
+            };
             const cssClass = haz( pNam, 'cssClass' );
             if( cssClass ) {
                 laObj[ lineName ].cssClass = cssClass;

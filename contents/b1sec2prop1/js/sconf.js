@@ -10,6 +10,48 @@
 
     function init_conf (){
         ccc( 'init_conf' );
+
+        {
+            ///--------------------------------------------------
+            ///expands predefinedTopic colors into rg,
+            ///fixedColors, and fixedColorsOriginal
+            ///as in expands-conf.js
+            ///--------------------------------------------------
+            var { all_elected, p2_elected } = tpCamel__2__electedColArray();
+            const tpel = all_elected;
+            sconf.predefinedTopics = all_elected;
+            ////array all_elected will be discraded upon leaving this function,
+            Object.keys( all_elected ).forEach( tpCamel => {
+                //generates rg for all topics,
+                //this code is a substitute of expand-config.js
+                toreg( tpCamel )( 'pname', tpCamel );
+                var tpLowKey = sDomF.topicIdUpperCase_2_underscore( tpCamel );
+                //compliments fixedColors from stuff created in this sconf,
+                //fixedColors are based on non-Camel id,
+                var fck = fixedColors[ tpLowKey ] = all_elected[ tpCamel ].concat();
+                //compensates missing of "extend-confib" in engine core
+                fixedColorsOriginal[ tpCamel ] = fck; //based on Camel Id
+                //todo why rg colors are not set here?
+            });
+         }
+
+         ///adds flag isPoint0Line to P2_electedTopicColors
+         if( has( ssD, 'P2_electedTopicColors' ) ) {
+             ////we are working in prop 2,
+             ////above condition is a flag
+             Object.keys( p2_elected ).forEach( camelId => {
+                if( camelId === 'SBCaracc' ) return;
+                let fc = fixedColorsOriginal[ camelId ];
+
+                 //this thing only affects difference between strokable
+                 //and areas like this:
+                 //sconfOPACITY_LOW = isPoint0Line ?
+                 //sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
+                fc.isPoint0Line = true;
+             })
+         }
+
+
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -249,44 +291,8 @@
         //----------------------------------------------------
         // \\// copy-pastes to sconf
         //----------------------------------------------------
-        {
-            ///--------------------------------------------------
-            ///expands predefinedTopic colors into rg,
-            ///fixedColors, and fixedColorsOriginal
-            ///as in expands-conf.js
-            ///--------------------------------------------------
-            var { all_elected, p2_elected } = tpCamel__2__electedColArray();
-            sconf.predefinedTopics = all_elected;
-            ////array all_elected will be discraded upon leaving this function,
-            Object.keys( all_elected ).forEach( tpCamel => {
-                //generates rg for all topics,
-                //this code is a substitute of expand-config.js
-                toreg( tpCamel )( 'pname', tpCamel );
-                var tpLowKey = sDomF.topicIdUpperCase_2_underscore( tpCamel );
-                //compliments fixedColors from stuff created in this sconf,
-                //fixedColors are based on non-Camel id,
-                var fck = fixedColors[ tpLowKey ] = all_elected[ tpCamel ].concat();
-                //compensates missing of "extend-confib" in engine core
-                fixedColorsOriginal[ tpCamel ] = fck; //based on Camel Id
-                //todo why rg colors are not set here?
-            });
-         }
 
-         ///adds flag isPoint0Line to P2_electedTopicColors
-         if( has( ssD, 'P2_electedTopicColors' ) ) {
-             ////we are working in prop 2,
-             ////above condition is a flag
-             Object.keys( p2_elected ).forEach( camelId => {
-                if( camelId === 'SBCaracc' ) return;
-                let fc = fixedColorsOriginal[ camelId ];
-
-                 //this thing only affects difference between strokable
-                 //and areas like this:
-                 //sconfOPACITY_LOW = isPoint0Line ?
-                 //sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
-                fc.isPoint0Line = true;
-             })
-         }
+        //todo get rid all of this: let core do this:
          //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
         'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
             let fc = fixedColorsOriginal[ camelId ];
@@ -313,7 +319,8 @@
         } else {
             ssF.makesProfessorsCaptureFootnotes();
         }
-        stdMod.decShapes_conf();
+        stdMod.sconf_points8lines();
+        ssF.sets_A_v_forces_sliders();
     };
     return;
 

@@ -85,8 +85,8 @@
         //----------------------------------------------
         //See "model-groupify-steps.js" function "trajectoryShapes_2_groups__III" where the groups are setup for more details.
 
-        //Each step has decorations that should be shown.  Each step corresponds to a group, and each group has sub-groups which 
-        //correspond to substeps.  Therefore any group before the current step ("stepIx") should show its final sub-group, the 
+        //Each step has decorations that should be shown.  Each step corresponds to a group, and each group has sub-groups which
+        //correspond to substeps.  Therefore any group before the current step ("stepIx") should show its final sub-group, the
         //current step should show its sub-group corresponding to the current substep ("substepIx"), and any remaining groups
         //shouldn't be shown.
 
@@ -96,7 +96,7 @@
         for (let index = 1; index <= indexMax; index++) {
             const fgroups = pathIx_2_pathSubsteps[index];
             const indexFGroupsMax = fgroups.length-1;
-            
+
             const indexSubstep = Math.min((index < stepIx ? indexFGroupsMax : substepIx), indexFGroupsMax);
             if (indexSubstep > -1) {
                 fgroups[indexSubstep].forEach( (paintee) => {
@@ -127,11 +127,20 @@
                 dec.undisplay = false;
             }
             if( dec.isPoint ) {
-                dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                if( has( dec, 'svgel$' )){
+                    dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                } else {
+                    ccc( dec.pname + ' missed svg in lemma`s unmask' );
+                }
                 if( dec.doPaintPname &&
                     !haz( rg, 'allLettersAreHidden' )
                 ) {
-                    dec.pnameLabelsvg$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                    if( has( dec, 'pnameLabelsvg$' )){
+                        dec.pnameLabelsvg$.tgcls( 'undisplay',
+                                                  haz( dec, 'undisplay' ) );
+                    } else {
+                        ccc( 'missed pnameLabelsvg$ in lemmas`s unmask' );
+                    }
                 }
             } else {
                 let arrow$ = haz( dec, 'vectorArrowSvg$' );
@@ -140,7 +149,9 @@
                     arrow$.tgcls( 'undisplay', act );
                     //act && rgX.vectorArrowSvg$.removeClass( 'hidden' );
                 }
-                dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                if( has( dec, 'svgel$' )){ //todo patch
+                    dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                }
             }
         });
         //==============================================

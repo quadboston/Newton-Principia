@@ -336,9 +336,10 @@
                     rgX.individual_zindex = op.individual_zindex;
                 }
 
-                rgX.draggableX = draggableX;
-                rgX.draggableY = draggableY;
-
+                //in some weird lemmas, rgX.draggableX is defined
+                //in sconf.js, don't erase it:
+                sn( 'draggableX', rgX, draggableX );
+                sn( 'draggableY', rgX, draggableY );
 
                 //rgX.noKernel === true does remove "the bonus",
                 //the bouns is an extra "fake" disk over dragger,

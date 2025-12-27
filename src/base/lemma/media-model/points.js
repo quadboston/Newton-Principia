@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
+        sn, $$, nsmethods, nspaste, haz, has, han, nssvg, eachprop,
         sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
@@ -45,7 +45,6 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
-        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -137,7 +136,6 @@
         var pointWrap = haz( pt, 'pointWrap' );
         pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
-
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
@@ -164,7 +162,10 @@
     function doPaintLetter8kernel( pname, )
     {
         var rgX = rg[ pname ];
+if ( pname === 'Q' ){
 
+    ccc( 'Q, look for hole' );
+}
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee

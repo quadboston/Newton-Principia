@@ -211,6 +211,7 @@
         ///  shows evolution corresponding to time;
         function upates_timeSlider8unmasksSvgDom()
         {
+            ccc( 'upates_timeSlider8unmasksSvgDom()' );
             var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
             //interpolates slider GUI position

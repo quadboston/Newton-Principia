@@ -1,7 +1,7 @@
 
 ( function() {
     var {
-        ns, sn, has, haz, haff, eachprop,
+        ns, sn, nspaste, has, haz, haff, eachprop,
         sapp, fapp, sconf, fconf, arios, ssF, sDomF, sDomN, ssD, exegs,
         stdMod, amode, rg,
     } = window.b$l.apptree({
@@ -34,10 +34,10 @@
     /// inits model, media, dragges, and sliders
     /// makes loop via study-s ubmodels,
     ///=========================================================
-    function init_sapp() 
+    function init_sapp()
     {
         //console.log('init_sapp');
-        
+
         //======================================================
         // //\\ definitions
         //======================================================
@@ -46,12 +46,12 @@
         //------------------------------------------------------------------
         // //\\ rerouts name "media_upcreate_generic"
         //------------------------------------------------------------------
-        //      to           "media_upcreate" 
+        //      to           "media_upcreate"
         //      todm patch
         //makes importan choice:
         //      media_upcreate          -       for non-standard, past lemmas
         //      media_upcreate_generic    -     for modern, half-automated lemmas
-        //ccc( 'Remodel: media_upcreate exists = ' + !!haz( stdMod, 'media_upcreate' ) ); 
+        //ccc( 'Remodel: media_upcreate exists = ' + !!haz( stdMod, 'media_upcreate' ) );
         stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
                                 ssF.media_upcreate_generic;
         //------------------------------------------------------------------
@@ -132,28 +132,21 @@
 
 
     ///adds plain point dragger if either draggableX, ...Y is defined
-    function rgDict__2__dragWrap_gen_list()
-    {
+    ///todo bad: dragWrap_gen_list --> rgDict__2__draggers_list
+    function rgDict__2__dragWrap_gen_list (){
         eachprop( rg, (shape,pname) => {
             var drX = haz( shape, 'draggableX' );
             var drY = haz( shape, 'draggableY' );
             if( !drX && !drY ) return;
-
-            //if( shape.pname === 'fret-0-0' ) {
-            //  ccc( 'automatically ads drag-ability for ' + shape.pname + ' ' +
-            //        ' nospinner=' + haz( shape, 'nospinner' ) );
-            //}
-
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
                 pname,
                 nospinner : haz( shape, 'nospinner' ),
-
-                //todm 
+                //todm
                 //orientation : drY&drX ? 'rotate' : ( drX ? 'axis-x' : 'axis-y' ),
 
-                //pos,
-                acceptPos : newPos =>
+                pos : rg.pos, //todo not tested app wide, and why one needs pos?
+                acceptPos : haz( shape, 'acceptPos' ) || ( newPos =>
                 {
                     if( drX ) {
                         shape.pos[0] = newPos[0];
@@ -166,15 +159,13 @@
                         newPos[1] = shape.pos[1]; //blocks movement
                     }
                     return true;
-                },
+                }),
             });
         });
     }
 
-
-    function finish_sapp_UI() 
+    function finish_sapp_UI()
     {
         ssF.mediaModelInitialized = true;
     }
-}) ();
-
+})();

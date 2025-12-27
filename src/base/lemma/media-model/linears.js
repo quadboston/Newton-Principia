@@ -7,7 +7,7 @@
         ssFExportList :
         {
             pivots_2_svgLineInRg,
-            pointnames2line,
+            //pointnames2line,
             twoLetters_2_svgLine8rg,
             str2line,
             namesArr_2_svgpoly,
@@ -46,6 +46,7 @@
     ///
     /// Output: adds pivots-media-positions to line
     function pivots_2_svgLineInRg( pName, pivots, lineAttr ){
+        //c cc( 'ccccc ' +pName+ ' core line paint' );
         var lineAttr    = lineAttr || {};
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
@@ -54,6 +55,10 @@
         line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
         let pv0 = pivots[0];
         let pv1 = pivots[1];
+        if( !pv0 ) {
+            ccc( pName+ ' LINEARS missed first pivot' );
+            return;
+        }
         if( haz( pv0, 'unscalable' ) ) {
             pv0.medpos = ssF.mod2inn_original( pv0.pos );
         } else if( !has(pv0, 'medpos' ) ) {
@@ -62,7 +67,12 @@
         if( haz( pv1, 'unscalable' ) ) {
             pv1.medpos = ssF.mod2inn_original( pv1.pos );
         } else if( !has(pv1, 'medpos' ) ) {
-            pv1.medpos = ssF.mod2inn( pv1.pos );
+            if( pv1 ){
+                pv1.medpos = ssF.mod2inn( pv1.pos );
+            } else {
+                ccc( pName + ' LINEARS missed second pivot' );
+                return;
+            }
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
@@ -256,11 +266,12 @@
             ;
     }
 
-
+    /*
     ///a bit of proliferation
     ///adds "sugar" to pivots_2_svgLineInRg: point names
     function pointnames2line( name1, name2, cssClass, )
     {
+        ccc( '+++++core?=', name1, name2 );
         //line_rg =
         return pivots_2_svgLineInRg(
             'line-' + name1 + name2,
@@ -272,11 +283,15 @@
             }
         );
     }
+    */
 
     ///makes short line name: AB from A and B
     ///returns: rg element
     function twoLetters_2_svgLine8rg( name1, name2, tpCssClass, )
     {
+
+        ccc( 'twoLetters_2_svgLine8rg=', name1, name2 );
+
         return pivots_2_svgLineInRg(
             name1 + name2,
             [ rg[ name1 ], rg[ name2 ] ],

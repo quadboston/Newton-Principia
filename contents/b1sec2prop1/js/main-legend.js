@@ -26,12 +26,11 @@
     //      at this lemma, it is called from
     //      slider;
     //=========================================
-    function upcreate_mainLegend()
-    {
+    function upcreate_mainLegend (){
        //console.log( 'upcreate_mainLegend' );
         var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
-        ww.step.innerHTML       = rg.displayPathStep.value + '';
+        ww.step.innerHTML = rg.displayPathStep.value + '';
         var stepIx = rg.stepIx.value;
 
         var speed = rg.speeds.pos[stepIx-1];
@@ -76,12 +75,12 @@
         makeCl( row, 'step', 'path step' );
         //==========================
         // \\// proof
-        //==========================       
+        //==========================
 
 
         //-----------------------------------------------------
         // //\\ corollary 1
-        //-----------------------------------------------------        
+        //-----------------------------------------------------
         var tbc = mlegend.tb.corollary = $$
             .c('table')
             .cls( 'main-legend corollary' )
@@ -112,7 +111,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name, just an ID of a cell and
     ///        tip for the css-class

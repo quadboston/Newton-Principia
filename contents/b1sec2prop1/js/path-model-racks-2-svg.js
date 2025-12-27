@@ -48,7 +48,8 @@
                 const kix           = pix-1;
                 const pkey          = 'kepltr-' + kix;
 
-                //Add the following classes as required so that the those triangles can be highlighted.
+                //Add the following classes as required so that the
+                //those triangles can be highlighted.
                 let cssCls = '';
                 switch (pix) {
                     case 1: cssCls += 'tp-_s_a_b'; break;
@@ -57,8 +58,10 @@
                     case 4: cssCls += 'tp-_s_d_e'; break;
                     case 5: cssCls += 'tp-_s_e_f'; break;
                 }
-                //Set the following class to either odd or even, to set the color and for highlighting.
-                const tpclass = pix % 2 ? 'kepler-triangle-odd' : 'kepler-triangle-even';
+                //Set the following class to either odd or even, to set
+                //the color and for highlighting.
+                const tpclass = pix % 2 ?
+                      'kepler-triangle-odd' : 'kepler-triangle-even';
 
                 //sets up model vertices for triangle
                 // paints Kepler's triangles rg[pkey] along the path:
