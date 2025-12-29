@@ -26,13 +26,11 @@
     ///
     ///called from main.js::bgImagesAreLoaded()...
     ///
-    function frags__2__dom_css_mjax_tpanchors()
-    {
+    function frags__2__dom_css_mjax_tpanchors (){
         //***********************************************************
         //contains //Frag. step I.
         ssF.exegs__2__dom_indexedLinks_indexedTopics();
         //***********************************************************
-ccc( 'landing 6' );
 
         //***********************************************************
         //Frag. step Ib. Colors.
@@ -41,7 +39,6 @@ ccc( 'landing 6' );
         ///Frag. step III. Html and global-css-visib-of-active-category.
         ssF.exegs__2__tpAn8dom8css8mjax();
         //***********************************************************
-
 
         //***********************************************************
         // styles

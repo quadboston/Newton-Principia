@@ -401,7 +401,7 @@
 
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    let fc =  fixedColors[ tk ] = op.pcolor; //low
+                    let fc = fixedColors[ tk ] = op.pcolor; //low
                     fixedColorsOriginal[ pname ] = fc;       //camel
                     fc.isPoint = true;                       //adds prop to array
                     fc.isLine = false;

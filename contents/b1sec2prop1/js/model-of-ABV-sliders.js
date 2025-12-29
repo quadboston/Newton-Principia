@@ -32,8 +32,9 @@
         ['B','C','D','E','F'].forEach( (name, ix) => {
             let nam1='VVV'+ix;
             rgX = sn( nam1, rg );
-            rgX.draggableX = true;
-            rgX.draggableY = true;
+            //rgX.draggableX = true;
+            //rgX.draggableY = true;
+            //rgX.initialR = 60;
             rgX.acceptPos =
                 function( newVPos, dummyPar, enforceNewPos ) {
                     return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);

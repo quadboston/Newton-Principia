@@ -1,4 +1,4 @@
-( function() {
+(function(){
     var {
         sn, $$, sv, globalCss, haz,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -13,20 +13,12 @@
     return;
 
 
-
-
-
-
-
-
-
     //----------------------------------------
     // //\\ makes up time slider
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function creates_sliderDomModel__4__time()
-    {
+    function creates_sliderDomModel__4__time (){
         var pos2pointy    = ssF.pos2pointy;
         var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
@@ -64,7 +56,6 @@
         var tpId        = sliderId;
         var tptpId      = 'tp-' + tpId;
 
-
         //----------------------------------------------------------------------------
         // //\\ in model units and reference system
         //----------------------------------------------------------------------------
@@ -87,7 +78,6 @@
         //----------------------------------------------------------------------------
         // \\// in model units and reference system
         //----------------------------------------------------------------------------
-
 
         //:spawns api pars
         var startPos          = [ startX, startY ];
@@ -134,7 +124,6 @@
         // \\// adds helpers
         //-------------------------------------
 
-
         //------------------------------------------------
         // //\\ makes svg representation of api
         //      as a point, adds medpos to api
@@ -178,9 +167,6 @@
             `,
             'svg-text-special'
         );
-
-
-
         api.apiValueName        = apiValueName;
         api.move_2_updates      = move_2_updates;
         api.processDownEvent    = processDownEvent;
@@ -199,19 +185,12 @@
         });
         return;
 
-
-
-
-
-
-
         ///this function does "minor" update: it does not
         ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function upates_timeSlider8unmasksSvgDom()
-        {
-            ccc( 'upates_timeSlider8unmasksSvgDom()' );
+        function upates_timeSlider8unmasksSvgDom (){
+            //c cc( 'upates_timeSlider8unmasksSvgDom()' );
             var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
             //interpolates slider GUI position
@@ -249,15 +228,13 @@
     //----------------------------------------
 
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent( arg )
-    {
+    function processDownEvent( arg ){
         this.achieved.achieved = this.curtime;
     }
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates( move_in_model )
-    {
+    function move_2_updates( move_in_model ){
         var api = this;
         amode.userControl = 'diagram';
         sDomF.detected_user_interaction_effect();
@@ -282,9 +259,7 @@
         //======================================================
     }
 
-
-    function slTime_2_stepIndice8tCaption()
-    {
+    function slTime_2_stepIndice8tCaption (){
         var sp8ep   = haz( rg, 'slider_sltime' );
         var ctime    = rg.slider_sltime.curtime;
         //----------------------------------------
@@ -301,11 +276,15 @@
         rg.substepIx    = stepIx4%4;
         //steps in its original meaning
         var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
-        //The following line caused some bugs, has been commented out, and left for reference.  If the delta time slider is moved to the
-        //left of its maximum eg. 0.73, then when the time slider is moved to the left from its maximum, the time shown first increases
-        //then decreases (eg. 9.43 to 10.15 then back to 9.43).  This caused similar increasing/decreasing issues for the “path step” text
-        //in the Proof tab, and showing/hiding the last red force vector in the model area.
-        // stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
+        //The following line caused some bugs, has been commented out,
+        //and left for reference.  If the delta time slider is moved to the
+        //left of its maximum eg. 0.73, then when the time slider is moved
+        //to the left from its maximum, the time shown first increases
+        //then decreases (eg. 9.43 to 10.15 then back to 9.43).
+        //This caused similar increasing/decreasing issues for the “path step”
+        //text in the Proof tab, and showing/hiding the last red force vector
+        //in the model area.
+        // stepIx = Math.min( stepIx, rg.spatialSteps - 1 );
         toreg( 'stepIx' )( 'value', stepIx );
         /*
             c cc( 'ctime=' + ctime +
@@ -323,6 +302,4 @@
         rg.displayTime.value = ( nexStepDisplay * rg.rgslid_dt.val ).toFixed(2);
         rg.displayPathStep = { value:nexStepDisplay };
     }
-
-}) ();
-
+})();

@@ -84,6 +84,7 @@
                     var tipKey      = fkey+'-1';
                     fgroup.push( rg[ fappliedKey ] );   
                     fgroup.push( rg[ tipKey ] );   
+                    fgroup.push( rg[ 'VVV'+pix ] );   
                     //this is a blue thickable path line:
                     //we show it here in prelast proof-substep of motion-step
                     //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
@@ -111,6 +112,7 @@
                 fgroup.push( rg[ fkey+'-1' ] );
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
+                fgroup.push( rg[ 'VVV'+pix ] );   
 
                 //The following previously checked "pix<pathRacks.length-1", however pathRacks.length varies even when the desired result doesn't.
                 //As the delta time slider is moved to the left pathRacks.length increases, however when moved back to the right pathRacks.length 

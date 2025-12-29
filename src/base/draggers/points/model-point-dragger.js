@@ -54,7 +54,7 @@
     function params__2__rgX8dragwrap_gen_list({
         pname, acceptPos, orientation, pos, nospinner,
     }) {
-        ccc( pname + ' adds to list in common' );
+        //ccc( pname + ' adds to list in common' );
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
         var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, })
         rgX.acceptPos           = acceptPos || ( _=>true );

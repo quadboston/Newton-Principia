@@ -25,7 +25,6 @@
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect(
             !rg.detected_user_interaction_effect_DONE );
-        ccc( sconf.linesArray[4] );
 
         //***********************************************************
         //wraps remained tasks into d8d slider
@@ -38,9 +37,9 @@
         sn( 'stepIx', rg, { value : 1 } );
         sn( 'p', rg.P, { abs : 1 } );
         //***********************************************************
-    }
+    //}
 
-    function media_upcreate___after_basic (){
+    //function media_upcreate___after_basic (){
         if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
             ( haz( amode, 'logic_phase') === 'proof' &&
               fconf.sappId === "b1sec2prop1"
@@ -145,6 +144,7 @@
             }
         });
 
+        /*
         if( initialization_is_done ) {
             stdMod.hollowHandles_2_dynamicMedpos();
             stdMod.hollowForceHandlers_2_dynamicMedpos();
@@ -155,12 +155,11 @@
             stdMod.hollowHandles_2_rgPlaces8media();
             stdMod.hollowForceHandlers_2_rgPlaces8media();
         }
+        */
         //***********************************************************
         //wraps remained tasks into d8d slider
         //if slider is already created ...
-        ccc( 'media-model.js, does value to life for main-legend' );
         hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
-        //c cc( 'media rg.rgslid_dt,' + rg.rgslid_dt.val );
         hafff( rg.rgslid_dt, 'updates_sliderGUI' );
         //***********************************************************
 
@@ -210,7 +209,8 @@
                     rgX.svgel.style[ 'fill' ] = pointsAreOn ?
                     '#cccccc' : sDomF.getFixedColor( 'path' );
                 } else {
-                    ccc( rgX.pname + ' svg is missed in media-model.js' );
+                    //todo why is this?
+                    //c cc( rgX.pname + ' svg is missed in media-model.js' );
                 }
                 if( POINTS_BCDE_ARE_ACTIVE ) {
                     rg[ id + 'title' ].textContent =
@@ -234,6 +234,7 @@
             ////we do a manual patch to remove and add them
             ////over this triangle,
             let svg = rg.VVaracc.svgel;
+            if( !svg ) return;
             let parent = svg.parentNode;
             if( !parent ) return; //todo fix rightly, fix the cause
             svg.remove();
@@ -282,5 +283,15 @@
                 pointWrap : { doPaintPname },
             });
         });
+    }
+    
+    
+    function media_upcreate___after_basic (){
+        //***********************************************************
+        //wraps remained tasks into d8d slider
+        //if slider is already created ...
+        //hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
+        //hafff( rg.rgslid_dt, 'updates_sliderGUI' );
+        //***********************************************************
     }
 })();

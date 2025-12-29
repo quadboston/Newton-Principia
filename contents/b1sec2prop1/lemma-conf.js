@@ -20,7 +20,7 @@
         { src : '../js/path-2-path-model-racks.js' },
         { src : '../js/path-2-custom-decs.js' },
         { src : '../js/path-model-racks-2-svg.js' },
-        { src : '../js/does-mask-all-svg.js' },
+        { src : '../js/hides-all-shapes.js' },
         { src : '../js/unmasks-visible-path-svg.js' },
 
         //sliders

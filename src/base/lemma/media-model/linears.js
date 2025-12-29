@@ -7,8 +7,6 @@
         ssFExportList :
         {
             pivots_2_svgLineInRg,
-            //pointnames2line,
-            twoLetters_2_svgLine8rg,
             str2line,
             namesArr_2_svgpoly,
             paintTriangle,
@@ -46,7 +44,6 @@
     ///
     /// Output: adds pivots-media-positions to line
     function pivots_2_svgLineInRg( pName, pivots, lineAttr ){
-        //c cc( 'ccccc ' +pName+ ' core line paint' );
         var lineAttr    = lineAttr || {};
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
@@ -55,10 +52,6 @@
         line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
         let pv0 = pivots[0];
         let pv1 = pivots[1];
-        if( !pv0 ) {
-            ccc( pName+ ' LINEARS missed first pivot' );
-            return;
-        }
         if( haz( pv0, 'unscalable' ) ) {
             pv0.medpos = ssF.mod2inn_original( pv0.pos );
         } else if( !has(pv0, 'medpos' ) ) {
@@ -67,12 +60,7 @@
         if( haz( pv1, 'unscalable' ) ) {
             pv1.medpos = ssF.mod2inn_original( pv1.pos );
         } else if( !has(pv1, 'medpos' ) ) {
-            if( pv1 ){
-                pv1.medpos = ssF.mod2inn( pv1.pos );
-            } else {
-                ccc( pName + ' LINEARS missed second pivot' );
-                return;
-            }
+            pv1.medpos = ssF.mod2inn( pv1.pos );
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
@@ -186,11 +174,13 @@
                         'font-size' : line.fontSize + 'px',
                     },
                 });
+                ccc( line.pname + ' do set label ' );
                 line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
                     .cls( line.finalCssClass )
                     .addClass( 'tofill hover-width' )
                     ;
             }
+            ccc( line.pname + ' 2 do set label ' );
             line.pnameLabelsvg$
                 .aNS( 'x', finalPosX.toFixed()+'px' )
                 .aNS( 'y', finalPosY.toFixed()+'px' )
@@ -218,9 +208,7 @@
         return line;
     }
 
-
-    function paintsVectorTips({ vectorTipIx, pivots, line, })
-    {
+    function paintsVectorTips({ vectorTipIx, pivots, line, }){
         let tipFraction = haz( line, 'tipFraction' );
         var TIP_FRACTION = Math.abs( tipFraction ) ||  0.2;
         var vectEnd = pivots[ vectorTipIx ].medpos;
@@ -235,19 +223,18 @@
                     10 * sconf.pictureWidth * 0.0025, tF
                 );
         var tipStart = abs-tipLength;
-        var vecTipStart = [ vectStart[0] + unit[0] * tipStart, vectStart[1] + unit[1] * tipStart ];
-
+        var vecTipStart = [ vectStart[0] + unit[0] * tipStart,
+                            vectStart[1] + unit[1] * tipStart ];
         var ARROW_TANGENT = tipFraction < 0 ?
             0.15 :
             line.finalStrokeWidth * 1.5 / tipLength;
         var tipHeight = Math.max( sconf.thickness*1.5, tipLength * ARROW_TANGENT );
-
         var pivots = [
-                [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
-                [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
-                vectEnd,
-                //this point closes poly.
-                [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
+            [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
+            [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
+              vectEnd,
+            //this point closes poly.
+            [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
         ];
         line.vectorArrowSvg = sv.polyline({
             svgel   : ns.haz( line, 'vectorArrowSvg' ),
@@ -266,49 +253,26 @@
             ;
     }
 
-    /*
-    ///a bit of proliferation
-    ///adds "sugar" to pivots_2_svgLineInRg: point names
-    function pointnames2line( name1, name2, cssClass, )
-    {
-        ccc( '+++++core?=', name1, name2 );
-        //line_rg =
-        return pivots_2_svgLineInRg(
-            'line-' + name1 + name2,
-            [ rg[ name1 ], rg[ name2 ] ],
-            {
-                cssClass        : 'tostroke thickable' +
-                                  ( cssClass ? ' ' + cssClass : '' ),
-                'stroke-width'  : 2,
+    ///makes short line name: AB from A and B
+    ///returns: rg element
+    function str2line( str, cssClass, lineAttr, caption, ){
+        //all this fuss with pivotNames is for Prop1,2 non-standard
+        //line names without comma,
+        //there is no pivotNames param. in "normal lemma",
+        var pns = haz( rg[str], 'pivotNames' );
+        if( !pns ){
+            if( str.indexOf( ',' ) > -1 ){
+                ////legally built line name
+                var splitToken = ',';
+            } else if( str.length === 2 ){
+                var splitToken = '';
+            } else {
+                throw new Error( 'ambiguous line pivots name' );
             }
-        );
-    }
-    */
+            var pns = str.split( splitToken );
+        }
+        const pivots = [ rg[ pns[0] ], rg[ pns[1] ] ];
 
-    ///makes short line name: AB from A and B
-    ///returns: rg element
-    function twoLetters_2_svgLine8rg( name1, name2, tpCssClass, )
-    {
-
-        ccc( 'twoLetters_2_svgLine8rg=', name1, name2 );
-
-        return pivots_2_svgLineInRg(
-            name1 + name2,
-            [ rg[ name1 ], rg[ name2 ] ],
-            {
-                cssClass        : 'tostroke thickable' +
-                                   ( tpCssClass ? ' ' + tpCssClass : '' ),
-                'stroke-width'  : 2,
-            },
-        );
-    }
-
-    ///makes short line name: AB from A and B
-    ///returns: rg element
-    function str2line( str, cssClass, lineAttr, caption, )
-    {
-        var splitToken = str.indexOf( ',' ) > -1 ? ',' : '';
-        var lpoints = str.split( splitToken );
         cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
         let strokeWidth = 2;
         if(sconf.sappId === "b1sec1lemma2" || sconf.sappId === "b1sec1lemma3") {
@@ -318,7 +282,8 @@
         {
             cssClass        : 'tostroke thickable' +
                                ( cssClass ? ' ' + cssClass : '' ),
-            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ), // most model lines
+            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ),
+                              // most model lines
             stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
             //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
             //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
@@ -329,18 +294,15 @@
             lineAttrPassed.captionShiftNorm = lineAttr.captionShiftNorm;
         }
         lineAttrPassed.lposYSugar = haz( lineAttr, 'lposYSugar' );
-
         return pivots_2_svgLineInRg(
             str,
-            [ rg[ lpoints[0] ], rg[ lpoints[1] ] ],
+            pivots,
             lineAttrPassed,
         );
     }
     //==============================================
     // \\// creates svg-line or updates it if exists
     //==============================================
-
-
 
     function namesArr_2_svgpoly(
         pNames,
@@ -410,7 +372,8 @@
         var pNames = poly.pNames;
         if( poly.UPDATE_MPOS_BEFORE_POLY ) {
             let mod2inn = ssF.mod2inn;
-            pNames.forEach( pname => { rg[ pname ].medpos = mod2inn( rg[ pname ].pos ) } );
+            pNames.forEach( pname =>
+                { rg[ pname ].medpos = mod2inn( rg[ pname ].pos ) } );
         }
         var pivots = pNames.map( pname => rg[ pname ].medpos );
         if( CLOSED_POLYLINE ) {

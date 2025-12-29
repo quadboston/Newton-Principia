@@ -117,7 +117,7 @@
     //==============================================
     // //\\ updates decors with 'pivotNames':
     //      aka for created with
-    //      ssF.twoLetters_2_svgLine8rg and ssF.namesArr_2_svgpoly
+    //      ssF.t woLetters_2_svgLine8rg and ssF.namesArr_2_svgpoly
     //==============================================
 
     //==============================================
@@ -240,6 +240,7 @@
     //dynamic call for speeding up
     function hollowHandles_2_dynamicMedpos()
     {
+        ccc( 'what' );
         //------------------------------------------------------
         // //\\ non-standard patch,
         //      white kernels over drag points 'V', 'v', 'A',
@@ -262,6 +263,7 @@
     ///move to media launch except pos setting
     function hollowHandles_2_rgPlaces8media()
     {
+        ccc( '*********hollowHandles_2_rgPlaces8media what' );
         //------------------------------------------------------
         // //\\ non-standard patch,
         //      white kernels over drag points 'V', 'v', 'A',

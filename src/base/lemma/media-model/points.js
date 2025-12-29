@@ -162,10 +162,6 @@
     function doPaintLetter8kernel( pname, )
     {
         var rgX = rg[ pname ];
-if ( pname === 'Q' ){
-
-    ccc( 'Q, look for hole' );
-}
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
