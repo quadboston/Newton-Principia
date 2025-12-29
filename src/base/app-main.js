@@ -218,8 +218,7 @@
                         //unscaled mediaSize = originalMod2inn_scale * modelSize,
                         sconf.originalMod2inn_scale = sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
-                        !haz( sconf, 'dontRun_ExpandConfig' ) &&
-                                ssF.doExpandConfig();
+                        ssF.doExpandConfig();
                         ns.url2conf( sconf );
                     }
                     ns.url2conf( fconf ); //overriding url-query one more time

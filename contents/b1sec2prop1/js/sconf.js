@@ -101,7 +101,6 @@ function init_conf (){
 
         default_tp_lightness : 30,
         mediaBgImage : "../js/img/b1s2p1t1.png",
-        dontRun_ExpandConfig : 0,
 
         //no dice: handleRadius : Math.floor( 13.5 * sconf.controlsScale ),
 

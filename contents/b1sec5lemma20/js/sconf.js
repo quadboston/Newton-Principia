@@ -537,7 +537,6 @@
             originalPoints,
             linesArray,
             mediaBgImage : "l20.jpg",
-            //dontRun_ExpandConfig : true,
 
             //for e slider
             eMax : 1.5,

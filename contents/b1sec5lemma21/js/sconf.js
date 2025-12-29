@@ -517,7 +517,6 @@
             linesArray,
             mediaBgImage : "diagram.png",
             //mediaBgImage : "diagram3.png", //bigger diagram
-            //dontRun_ExpandConfig : true,
 
             //----------------------------------
             // //\\ model-view parameters
