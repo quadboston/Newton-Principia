@@ -18,7 +18,6 @@
 function sconf_points8lines (){
     var {
         force,
-        pcolorForceMove,
         freeMove,
         forceMove,
         diagram,
@@ -34,6 +33,7 @@ function sconf_points8lines (){
         tangent,
     } = fixedColors;
     ///topic names elected
+    
     var tpel = {
         speed,
         force,
@@ -109,12 +109,12 @@ function sconf_points8lines (){
         "force-center"      : force,
         "S"                 : force,
 
-        "SA"                : diagram,
-        "SB"                : diagram,
-        "SC"                : diagram,
-        "SD"                : [255,0,0], //diagram,
-        "SE"                : diagram,
-        "SF"                : diagram,
+        "SA"                : path,
+        "SB"                : path,
+        "SC"                : path,
+        "SD"                : path,
+        "SE"                : path,
+        "SF"                : path,
 
         "BU"                : forceMove,
         "EW"                : forceMove,
@@ -245,21 +245,28 @@ function sconf_points8lines (){
     var middleSteps_conf = {
         // //\\ c,d,e,f
         c   : {
+            caption : '𝑐',
             decStart : LOGIC ? 5 : decor.C.decStart,
             decEnd : decor.F.decStart+2, //22, //10,
             cssClass : 'theor1proof theor2proof theor2corollary',
         },
-        d   : { decStart : LOGIC ? 9 : decor.D.decStart,
-                decEnd : decor.F.decStart+2,
+        d   : {
+            caption : '𝑑',
+            decStart : LOGIC ? 9 : decor.D.decStart,
+            decEnd : decor.F.decStart+2,
             cssClass : 'theor1proof theor2proof theor2corollary',
         },
-        e   : { decStart : LOGIC ? 13 : decor.E.decStart,
+        e   : {
+            caption : '𝑒',
+            decStart : LOGIC ? 13 : decor.E.decStart,
                 decEnd : decor.F.decStart+2,
                 cssClass : 'theor1proof theor2proof theor2corollary',
         },
-        f   : { decStart : LOGIC ? 17 : decor.F.decStart,
-                decEnd : decor.F.decStart+2,
-                cssClass : 'theor1proof theor2proof theor2corollary',
+        f   : {
+            caption : '𝑓',
+            decStart : LOGIC ? 17 : decor.F.decStart,
+            decEnd : decor.F.decStart+2,
+            cssClass : 'theor1proof theor2proof theor2corollary',
         },
         // \\// c,d,e,f
 
@@ -287,7 +294,7 @@ function sconf_points8lines (){
                 decEnd : decor.F.decEnd,
                 cssClass : 'theor1corollary',
               },
-        V   : { decStart : 2, decEnd : 1111111,
+        V   : { decStart : -2, decEnd : 1111111,
                 cssClass : 'theor1corollary theor2corollary'
               },
     };
@@ -434,7 +441,8 @@ function sconf_points8lines (){
 
         { nam : ['S', 'A'], },  // SA
         { nam : ['S', 'B'], },  // SB
-        { nam : ['S', 'C'], },  // SC
+        { nam : ['S', 'C'],
+        },  // SC
         { nam : ['S', 'D'], },  // SD
         { nam : ['S', 'E'], },  // SE
         { nam : ['S', 'F'], },  // SF
@@ -501,7 +509,14 @@ function sconf_points8lines (){
         { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
         { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
 
-        { nam : ['A', 'v'], decStart : -2, cssClass : 'tp-speed' },         // Av
+        { nam : ['A', 'v'],
+          decStart : -2,
+          cssClass : 'tp-speed',
+          vectorTipIx : 1,
+          tipFraction : 0.15,
+          pcolor : tpel.speed,
+          tipFill : tpel.speed,            
+        },
 
         { nam : ['S', 'P'], decStart : -2,                                  // SP
             cssClass : 'theor1corollary', }, //for perpendicular
@@ -509,7 +524,12 @@ function sconf_points8lines (){
             cssClass : 'theor1corollary', }, //for tangent
 
         { nam : ['B', 'U'], //saggitae at B                                 // BU
-            cssClass : 'hover-width theor1corollary' //for specaial width at hover
+            cssClass : 'hover-width theor1corollary',
+            //for specaial width at hover
+            'vectorTipIx' : 1,
+            'tipFraction' : 0.2,
+            'pcolor' : tpel.forceMove,
+            'tipFill' : tpel.forceMove,
         },
         { nam : ['B', 'V'],                                                 // BV
             cssClass : 'hover-width theor1corollary theor1proof'
@@ -517,10 +537,15 @@ function sconf_points8lines (){
 
         { nam : ['E', 'W'],  //saggitae at E                                // EW
             decStart : rg.F.decStart,
-            cssClass : 'hover-width theor1corollary'
+            cssClass : 'hover-width theor1corollary',
+            'vectorTipIx' : 1,
+            'tipFraction' : 0.4,
+            'pcolor' :  tpel.forceMove,
+            'tipFill' :  tpel.forceMove,
         },
 
-        { nam : ['A', 'C'], cssClass : 'theor1corollary' },                 // AC
+        { nam : ['A', 'C'], cssClass : 'theor1corollary',
+        },                 // AC
         { nam : ['D', 'F'], cssClass : 'theor1corollary' },                 // DF
 
         { nam : ['c','Caracc'], cssClass : 'theor2corollary', },        // cCaracc
@@ -534,68 +559,47 @@ function sconf_points8lines (){
         { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },
         // CaraccParacc
 
-    ].forEach( pNam => {
-        const lineName = pNam.nam[0]+pNam.nam[1];
-        let laObj = {};
-        laObj[ lineName ] = {
+    ].forEach( ln => {
+        let linesArrElem = {};
+        sconf.linesArray.push(linesArrElem);
+        const lineName = ln.nam[0]+ln.nam[1];
+        const lineConf = linesArrElem[ lineName ] = {
             isLine : true,
-            //placeholder to add for expand array,
-            //fe caption
-            //caption : "MOO", //works
         };
-        sconf.linesArray.push(laObj);
-
-        if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
-            ////patch for purpose of drawing a vector tip
-            let pcolor = sDomF.getFixedColor( 'speed' );
-            let line = toreg( 'Av' )
-                    //expand config misses some of these
-                    ( 'vectorTipIx', 1 )
-                    ( 'tipFraction', 0.15 ) //works
-                    ( 'pcolor', pcolor )
-                    ( 'tipFill', pcolor )
-                    ();
-        }
-        if( pNam.nam[0] === 'B' && pNam.nam[1] === 'U' ) {
-            ////patch for purpose of drawing a vector tip
-            let line = toreg( 'BU' )
-                    ( 'vectorTipIx', 1 )
-                    ( 'tipFraction', 0.2 )
-                    ( 'pcolor', pcolorForceMove )
-                    ( 'tipFill', pcolorForceMove )
-                    ();
-        }
-        if( pNam.nam[0] === 'E' && pNam.nam[1] === 'W' ) {
-            ////patch for purpose of drawing a vector tip
-            let line = toreg( 'EW' )
-                    ( 'vectorTipIx', 1 )
-                    ( 'tipFraction', 0.4 )
-                    ( 'pcolor', pcolorForceMove )
-                    ( 'tipFill', pcolorForceMove )
-                    ();
-        }
-        if( pNam.nam[0] === 'B' && pNam.nam[1] === 'V' ) {
+        //equalizing rg, decor elements and lineConf,
+        let rgElem = decor[ lineName ] = sn( lineName, rg );
+        rgElem.pname = lineName;
+        rgElem.pivotNames = [ln.nam[0],ln.nam[1]];
+        rgElem.isPoint = false;
+        [   'cssClass',
+            'pcolor',
+            'caption',
+            'captionShiftNorm',
+            'undisplay',
+            'zOrderAfter',  
+            'notp',
+            'vectorTipIx',
+            'fontSize',
+            'tipFraction',
+            'tipFill'
+        ].forEach( pname => {
+            has(ln,pname) && (lineConf[pname] = ln[pname]);
+            has(ln,pname) && (rgElem[pname] = ln[pname]);
+        })
+        /*
+        if( ln.nam[0] === 'B' && ln.nam[1] === 'V' ) {
             ////patch for purpose of drawing a vector tip
             let line = toreg( 'BV' )();
         }
-         const cssClass = haz( pNam, 'cssClass' );
-        if( cssClass ) {
-            laObj[ lineName ].cssClass = cssClass;
-        }
-        //equalizing rg and decor elements:
-        let rgElem = decor[ lineName ] = sn( lineName, rg );
-        rgElem.pname = lineName;
-        rgElem.pivotNames = [pNam.nam[0],pNam.nam[1]];
-        rgElem.isPoint = false;
-
+        */
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
-        var decStart = has( pNam, 'decStart' ) ?
-            pNam.decStart : rg[ pNam.nam[1] ].decStart;
+        var decStart = has( ln, 'decStart' ) ?
+            ln.decStart : rg[ ln.nam[1] ].decStart;
         ///the same procedure happens with "end" setting
-        var decEnd = has( pNam, 'decEnd' ) ?
-            pNam.decEnd : rg[ pNam.nam[1] ].decEnd;
-        if( pNam.nam[0] === 'S' && pNam.nam[1] === 'C' ) {
+        var decEnd = has( ln, 'decEnd' ) ?
+            ln.decEnd : rg[ ln.nam[1] ].decEnd;
+        if( ln.nam[0] === 'S' && ln.nam[1] === 'C' ) {
             decStart = 7;
         }
         rgElem.decStart = decStart;
@@ -604,23 +608,6 @@ function sconf_points8lines (){
 
     toreg( 'displayTime' )( 'value', '' );
     toreg( 'thoughtStep' )( 'value', '' );
-
-    //---------------------------------------------------
-    // //\\ equalizes decor and rg
-    //---------------------------------------------------
-    /*
-    eachprop( decor, (dec,kName) => {
-        if( dec.isPoint ) return; //avoids dubbing work
-        var pname = kName;
-        toreg( kName );
-        Object.assign( decor[ kName ], rg[ kName ] );
-        Object.assign( rg[ kName ], decor[ kName ] );
-        decor[ kName ] = rg[ kName ];
-    });
-    */
-    //---------------------------------------------------
-    // \\// equalizes decor and rg
-    //---------------------------------------------------
 
     //==================================================
     // //\\ equalizes predefinedTopics, fixedColors, and

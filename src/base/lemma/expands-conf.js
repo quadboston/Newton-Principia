@@ -262,6 +262,8 @@
 
                 rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
                                   gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+                
+                
                 //---------------------------------------------------------
                 // \\// transfers properties from line-options to rg-lines:
                 //---------------------------------------------------------
