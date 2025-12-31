@@ -157,12 +157,6 @@
                 //this does the same completion as for fixedColors, but
                 //based on camel key:
                 fixedColorsOriginal[ topicKey ] = fc;
-                //lemma-specific flags are set to false in fixedColors and
-                //fixedColorsOriginal,
-                fc.isPoint = false;
-                fc.isLine = false;
-                fc.isArea = false;
-                fc.isPoint0Line = false;
             });
 
             //--------------------------------------------------
@@ -225,12 +219,9 @@
                     //specific shapes permitting them own flags isPoint, etc.
                     let fc = fixedColors[ tk ] = gshape.pcolor.concat();
                     fixedColorsOriginal[ pname ] = fc;
-                    fc.isPoint = false;
-                    fc.isLine = true;
-                    fc.isArea = false;
-                    fc.isPoint0Line = true;
                     rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
+                    rgX.opaqueColor = sDomF.getFixedColor(
+                                      gshape.pcolor, !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.getFixedColor( pname );
                     rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
@@ -403,12 +394,9 @@
                     var tk = sDomF.topicIdUpperCase_2_underscore( pname );
                     let fc = fixedColors[ tk ] = op.pcolor; //low
                     fixedColorsOriginal[ pname ] = fc;       //camel
-                    fc.isPoint = true;                       //adds prop to array
-                    fc.isLine = false;
-                    fc.isArea = false;
-                    fc.isPoint0Line = true;
                     rgX.pcolor = sDomF.getFixedColor( op.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( op.pcolor, !!'makeOpacity1' );
+                    rgX.opaqueColor = sDomF.getFixedColor( op.pcolor,
+                                      !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.getFixedColor( pname );
                     rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );

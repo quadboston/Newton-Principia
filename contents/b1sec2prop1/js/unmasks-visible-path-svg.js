@@ -48,10 +48,7 @@
         $$.$( rg[ 'kepltr-' + 0 ].svgel).removeClass( 'undisplay' );
         //Also show the path segment.
         $$.$( rg[ 'pathSegment-' + 0 ].svgel).removeClass( 'undisplay' );
-        //const VVV0svg = haz( rg[ 'VVV0' ], 'svgel' );
-        //VVV0svg && $$.$( VVV0svg ).removeClass( 'undisplay' );
         rg[ 'VVV0' ].undisplay = false;
-        //ccc( 'rg.VVV0=', nspaste( {}, rg[ 'VVV0' ] ) );
         //--------------------------------------
         // \\// picture drawing began
         //--------------------------------------
@@ -88,7 +85,6 @@
                     paintee?.svgel && $$.$(paintee.svgel).removeClass( 'undisplay' );
                     paintee?.vectorArrowSvg$?.removeClass( 'undisplay' );
                     paintee && (paintee.undisplay = false);
-                   
                     //this is perplexing, todo
                     //if( !paintee?.vectorArrowSvg$ )
                       //c cc( 'no vectorArrowSvg$', nspaste( {}, paintee ) );
@@ -113,26 +109,6 @@
                 dec.undisplay = false;
             }
             if( !dec.isPoint ) {
-                /*
-                return;
-                if( has( dec, 'svgel$' )){
-                    dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
-                } else {
-                    ccc( dec.pname + ' missed svgel$ in lemma`s unmask' );
-                }
-                if( dec.doPaintPname &&
-                    !haz( rg, 'allLettersAreHidden' )
-                ) {
-                    if( has( dec, 'pnameLabelsvg$' )){
-                        dec.pnameLabelsvg$.tgcls( 'undisplay',
-                                                  haz( dec, 'undisplay' ) );
-                    } else {
-                        ccc( dec.pname +
-                             ' missed pnameLabelsvg$ in lemmas`s unmask' );
-                    }
-                }
-                } else {
-                */
                 const arrow$ = haz( dec, 'vectorArrowSvg$' );
                 if( arrow$ ) {
                     const act = haz( dec, 'undisplay' );

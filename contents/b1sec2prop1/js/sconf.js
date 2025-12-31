@@ -2,7 +2,7 @@
     const {
         sn, haff, has, eachprop, nspaste, capture, toreg,
         stdMod, fconf, sconf, ssF, ssD, sDomF,
-        fixedColors, fixedColorsOriginal,
+        fixedColors, fixedColorsOriginal, originalPoints,
     } = window.b$l.apptree({ ssFExportList : { init_conf } });
     const linesArray = sn( 'linesArray', sconf, [] );
     return;
@@ -11,18 +11,27 @@
 function init_conf (){
     ccc( 'init_conf' );
     //----------------------------------
-    // //\\ original material parameters
+    // //\\ scenario
     //----------------------------------
-    //point e    28x46
-    //point A    28x456
+    sconf.enableStudylab = false;
+    //hideProofSlider = true, //false,
+    sconf.enableCapture = true;
+    sconf.enableTools = true;
+    //enableDataFunctionsRepository : true,
+    //----------------------------------
+    // \\// scenario
+    //----------------------------------
+     
+    //----------------------------------
+    // //\\ picture points medpos
+    //----------------------------------
     sconf.pictureWidth = 687;
     sconf.pictureHeight = 657;
-    {
-        let realSvgSize = sconf.pictureWidth + sconf.pictureHeight;
-        sconf.controlsScale = realSvgSize / sconf.standardSvgSize
-    }
-    fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
-
+    sconf.controlsScale = (sconf.pictureWidth + sconf.pictureHeight)
+                          / sconf.standardSvgSize
+    sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
+    sconf.innerMediaWidth = sconf.pictureWidth;
+                          
     //----------------------------------
     // //\\ app view parameters
     //      ,in svg or media space,
@@ -35,38 +44,37 @@ function init_conf (){
     //  1  codirectional with the screen
     //     which means from screen-top to
     //      screen bottom
-    var MONITOR_Y_FLIP = -1;
-    var pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
+    sconf.MONITOR_Y_FLIP = -1;
+    sconf.pictureActiveArea = 611 - activeAreaOffsetOnPictureY;
 
-    const originX_onPicture = 47; //28
-    var modorInPicX = originX_onPicture;
+    sconf.originX_onPicture = 47; //28
+    //todm duplication?
+    sconf.modorInPicX = sconf.originX_onPicture;
 
     //done in picture-system y-coord:
     //(pic.bottom-y=+picHeight)
-    const originY_onPicture = activeAreaOffsetOnPictureY +
-        ( MONITOR_Y_FLIP === -1 ? pictureActiveArea : 0 );
-    var modorInPicY = originY_onPicture;
+    sconf.originY_onPicture = activeAreaOffsetOnPictureY +
+        ( sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0 );
+    //todm duplic?        
+    sconf.modorInPicY = sconf.originY_onPicture;
     //.set it from graph editor
     //.todm: trully 611 and rotated
+    //for Y:
+    sconf.APP_MODEL_Y_RANGE = sconf.pictureActiveArea / sconf.mod2inn_scale;
+    sconf.areaScale = 1 / sconf.APP_MODEL_Y_RANGE
+                        / sconf.APP_MODEL_Y_RANGE;
+    sconf.LEGEND_NUMERICAL_SCALE = 1; //todm what is this?
     //----------------------------------
     // \\// app view parameters
     //----------------------------------
-
-    //sconf.pointDecoration.r = 5; // todo: why this doesn't work?
-
-    var initialPath =
-    [
-        { name:'A', pos:[531, 613] },
-        { name:'B', pos:[582, 425 ] },
-        /*
-        { name:'C', pos:[546,264] },
-        { name:'D', pos:[448,152] },
-        { name:'E', pos:[299.5,98.5] },
-        { name:'F', pos:[117.5,112.5] },
-        */
-    ];
+    const medposA = [531, 613];
+    const medposB = [582, 425];
+    //medposC=[546,264]
+    //medposD=[448,152]
+    //medposE=[299.5,98.5]
+    //medposF=[117.5,112.5]
     //----------------------------------
-    // \\// original material parameters
+    // \\// picture points medpos
     //----------------------------------
 
     //----------------------------------------------------
@@ -79,17 +87,17 @@ function init_conf (){
     let timeRange = stepsRange*initialTimieStep;
     let numberOfManyBases = stepsRange*2;
     let timeStepOfManyBases = initialTimieStep/4;
-    //let unitlessMinTime = 1.7500000;
     let unitlessMinTime = 1.000001;
-
     let speed = 1/initialTimieStep;
-    to_sconf =
-    {
-        NUMBER_OF_FORCE_HANDLES : 1, //5,
-
-        TIMER_AND_LOGIC_STEPS_COINSIDE : false,
-        FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
-        hover_width       : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
+    
+    fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
+    //affects drag hanldes in p1
+    sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
+    Object.assign( sconf, {
+        //======================================
+        // //\\ does shape GUI
+        //======================================
+        hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
         //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
         //this collaborates with impulse line-segment, we are afraide to
         //keep this "undefined",
@@ -101,12 +109,20 @@ function init_conf (){
 
         default_tp_lightness : 30,
         mediaBgImage : "../js/img/b1s2p1t1.png",
+        thickness           : 1,
+        default_tp_stroke_width : 10,
+        //======================================
+        // \\//does shape GUI
+        //======================================
 
-        //no dice: handleRadius : Math.floor( 13.5 * sconf.controlsScale ),
+        NUMBER_OF_FORCE_HANDLES : 1, //5,
 
-        //-----------
-        // //\\ model
-        //-----------
+        TIMER_AND_LOGIC_STEPS_COINSIDE : false,
+        FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
+
+        //----------------
+        // //\\ math model
+        //----------------
         force :
         [
             //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
@@ -135,124 +151,34 @@ function init_conf (){
         //too big values will allow user to place
         //point B on legend area ... will look strange ...
         //s0max : 1.4,
-        //-----------
-        // \\// model
-        //-----------
-
-
-
-        //----------------------------------
-        // //\\ model-view parameters
-        //----------------------------------
-        //100; //display in "percents" of Ae
-        //LEGEND_NUMERICAL_SCALE : 100,
-        LEGEND_NUMERICAL_SCALE : 1,
-
-        MONITOR_Y_FLIP      : MONITOR_Y_FLIP,
-
-        pictureActiveArea   : pictureActiveArea,
-        modorInPicX,
-        modorInPicY,
-        innerMediaHeight    : sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-        innerMediaWidth     : sconf.pictureWidth,
-
-        thickness           : 1,
-        default_tp_stroke_width : 10,
-        //hide_perp_P_and_alike : false,
-        //----------------------------------
-        // \\// model-view parameters
-        //----------------------------------
-
-        //----------------------------------
-        // //\\ scenario
-        //----------------------------------
-        enableStudylab : false,
-        //hideProofSlider : true, //false,
-        enableCapture : true,
-        enableTools : true,
-        //enableDataFunctionsRepository : true,
-        //----------------------------------
-        // \\// scenario
-        //----------------------------------
-
-        //:for tools sliders: todo proliferation
-        originX_onPicture : modorInPicX,
-        originY_onPicture : modorInPicY,
-    };
-
-    //----------------------------------
-    // //\\ spawns to_conf
-    //----------------------------------
-    (function () {
-        var a = initialPath[0].pos; //in picture space
-        var b = initialPath[1].pos;
-        //:speed
-        var uu = [ b[0] - a[0], b[1] - a[1] ];
-        var u2 = uu[0]*uu[0] + uu[1]*uu[1];
-        var u = Math.sqrt( u2 );
-        //:
-        var mod2inn_scale = u; //initial unit
-        var inn2mod_scale = 1/mod2inn_scale;
-
-        var vmodel = [
-                uu[0]*inn2mod_scale / to_sconf.initialTimieStep, //* to_sconf.speed,
-                MONITOR_Y_FLIP *
-                uu[1]*inn2mod_scale / to_sconf.initialTimieStep, //* to_sconf.speed
-        ];
-        to_sconf.v0 = vmodel;
-        //for Y:
-        APP_MODEL_Y_RANGE = pictureActiveArea / mod2inn_scale;
-
-        to_sconf.APP_MODEL_Y_RANGE = APP_MODEL_Y_RANGE;
-        to_sconf.mod2inn_scale = mod2inn_scale;
-
-        to_sconf.inn2mod_scale = inn2mod_scale;
-        to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE
-                                / to_sconf.APP_MODEL_Y_RANGE;
-
-        ///creates point A position in model
-        to_sconf.A = [
-            (a[0] - modorInPicX ) * inn2mod_scale,
-            MONITOR_Y_FLIP *
-            (a[1] - modorInPicY ) * inn2mod_scale
-        ];
-
-        //redundant ... v0 is enough ... do fix later
-        ///creates point B position in model
-        to_sconf.B = [
-            //1, 1 //insignificant
-            to_sconf.A[0] + vmodel[0] * initialTimieStep,
-            to_sconf.A[1] + vmodel[1] * initialTimieStep,
-        ];
-        to_sconf.v = [
-            to_sconf.A[0] + vmodel[0],
-            to_sconf.A[1] + vmodel[1],
-        ];
-    })();
-    //----------------------------------
-    // \\// spawns to_conf
+        //----------------
+        // \\// math model
+        //----------------
+    });
+    //----------------------------------------------------
     // \\// prepares sconf data holder
     //----------------------------------------------------
-    to_sconf.originalPoints = {
-        A : {
-            //pos: [...initialPath[0].pos], //todo redundant
-        },
-        S : { pos: [originX_onPicture, initialPath[0].pos[1] ]},
-    };
 
-    //----------------------------------------------------
-    // //\\ copy-pastes to sconf
-    //----------------------------------------------------
-    Object.keys( to_sconf ).forEach( function( key ) {
-        sconf[ key ] = to_sconf[ key ];
-    });
-
-    //affects drag hanldes:
-    sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
-    //----------------------------------------------------
-    // \\// copy-pastes to sconf
-    //----------------------------------------------------
-
+    //----------------------------------
+    // //\\ mod2inn_scale and speed v0
+    //----------------------------------
+    {
+        const mp = sconf.modelPoints = {};
+        const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
+        const u2 = uu[0]*uu[0] + uu[1]*uu[1];
+        const u = Math.sqrt( u2 );
+        sconf.mod2inn_scale = u; //initial unit
+        sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
+        mp.v0 = [
+            uu[0]*sconf.inn2mod_scale / sconf.initialTimieStep,
+            uu[1]*sconf.inn2mod_scale / sconf.initialTimieStep *
+                sconf.MONITOR_Y_FLIP
+        ];
+    }
+    //----------------------------------
+    // \\// mod2inn_scale and speed v0
+    //----------------------------------
+    
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
     if( has( ssF, 'init_conf_addon' ) ) {

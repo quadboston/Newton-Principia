@@ -1,5 +1,5 @@
-( function() {
-    var { ns, sn, haz, nspaste, mat, sconf, sDomF, ssF, ssD, toreg, rg, amode, } 
+(function(){
+    const { ns, sn, haz, nspaste, mat, sconf, sDomF, ssF, ssD, toreg, rg, amode, } 
         = window.b$l.apptree({ stdModExportList : { traj2decs__II, }, });
     return;
 
@@ -21,11 +21,16 @@
         //-----------------------------------------------------
         // \\// allocates positions for c,d,e,f
         //-----------------------------------------------------
+
         //-------------------------------------------------
         // //\\ refills corollary pos
         //-------------------------------------------------
-        nspaste( rg.h.pos, rg.c.pos );  //Duplicate h used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
-        nspaste( rg.g.pos, rg.f.pos );  //Duplicate g used by P1 Corollary 3 see "sconf.js" predefinedTopics for more
+        //Duplicate h used by P1 Corollary 3 see "sconf.js"
+        //predefinedTopics for more
+        nspaste( rg.h.pos, rg.c.pos );
+        //Duplicate g used by P1 Corollary 3 see "sconf.js"
+        //predefinedTopics for more
+        nspaste( rg.g.pos, rg.f.pos );
         //-------------------------------------------------
         // \\// refills corollary pos
         //-------------------------------------------------
@@ -40,7 +45,6 @@
         //-------------------------------------------------
         // \\// recalculates BCDEF points pos
         //-------------------------------------------------
-
 
         //-------------------------------------------------
         // //\\ recalculates sagittaes pos
@@ -59,7 +63,6 @@
         // \\// recalculates sagittaes pos
         //-------------------------------------------------
 
-
         //top of the accelerated kepler-triangle
         nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );
 
@@ -73,7 +76,4 @@
                 rg.V.pos[0];                  //position "V"
         rg.Varacc.pos[1] = rg.Caracc.pos[1]-rg.C.pos[1]+rg.V.pos[1];
     }
-
-
-}) ();
-
+})();

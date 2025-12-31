@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, sv, nsmethods, han, haz, has, mat,
+        ns, sn, $$, sv, nsmethods, nspaste, han, haz, has, mat,
         sconf, ssF, ssD, sDomF, sDomN, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
@@ -267,7 +267,7 @@
             } else if( str.length === 2 ){
                 var splitToken = '';
             } else {
-                throw new Error( 'ambiguous line pivots name' );
+                throw new Error( 'ambiguous line pivots name = ' + str );
             }
             var pns = str.split( splitToken );
         }
@@ -304,6 +304,8 @@
     // \\// creates svg-line or updates it if exists
     //==============================================
 
+    
+    ///master function for polygons
     function namesArr_2_svgpoly(
         pNames,
         cssClass,
@@ -312,10 +314,8 @@
         tostroke,
     ){
         var CLOSED_POLYLINE = true;
-
         var pName = pNames.join( correctJoin ? '--' : '');
         var pivots = pNames.map( pname => rg[ pname ].medpos );
-
         if( CLOSED_POLYLINE ) {
             pivots.push( pivots[0] );
         }
@@ -363,6 +363,10 @@
     // \\// Adds DOM and decorations to pointRack
     //==============================================
 
+    ///this paints green free Kepler triangles, and
+    ///had to be called after media_upcreate_basic to refresh
+    ///these triangles after media rescaled,
+    ///
     ///api: if poly is not supplied, then it must be "this",
     ///does update "undisplay",
     ///switch poly.UPDATE_MPOS_BEFORE_POLY does update mpos before pivots

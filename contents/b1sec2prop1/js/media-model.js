@@ -25,6 +25,8 @@
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect(
             !rg.detected_user_interaction_effect_DONE );
+        //this is a "policy" ... should be in the state manager if any ...
+        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
         //***********************************************************
         //wraps remained tasks into d8d slider
@@ -86,7 +88,6 @@
             rg.Cc.decStart = last;
         }
 
-
         //-------------------------------------------------------
         // //\\ fixes logical step to 7 for corollary of P2
         //-------------------------------------------------------
@@ -112,9 +113,6 @@
         //no svg, only logic:
         pathDelays2forceDraggers();
 
-        //this is a "policy" ... should be in the state manager if any ...
-        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-
         //:updates subessay menu
         //var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
         //var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
@@ -131,31 +129,20 @@
         ///came up which need their own work,
         ///todo may confilict with lemma core shapes svg,
         stdMod.allPathRacks_2_unseenSVGs();
-        stdMod.paints_draggableDecPoints8Line(); //changes svg
+        stdMod.SAvV_model__2__svg(); //changes svg
 
+        /*
         //these are the new generation decorational svg objects
         //does not repeat creation ...A.svgel, ...
         //they may corrupt svg-zorder-for-dragging-handle-points
         //if used non-properly, f.e. create and dress svg first,
-        //stdMod.dec2svg();
         eachprop( stdMod.decor, (dec,pname) => {
             if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
                 dec.poly_2_updatedPolyPos8undisplay();
             }
         });
-
-        /*
-        if( initialization_is_done ) {
-            stdMod.hollowHandles_2_dynamicMedpos();
-            stdMod.hollowForceHandlers_2_dynamicMedpos();
-        } else {
-            ///drags holes, take care for svg-elements are not
-            ///yet created,
-            ///drags holes, but then hides them (why?)
-            stdMod.hollowHandles_2_rgPlaces8media();
-            stdMod.hollowForceHandlers_2_rgPlaces8media();
-        }
         */
+        
         //***********************************************************
         //wraps remained tasks into d8d slider
         //if slider is already created ...
@@ -250,7 +237,7 @@
             //making this point over the line
             svg = haz( rg['VVV0-white-filler'], 'svgel' );
             svg.remove();
-            parent.appendChild( svg );
+            //parent.appendChild( svg );
         }
 
         ssF.mediaModelInitialized = true;
@@ -285,8 +272,14 @@
         });
     }
     
-    
     function media_upcreate___after_basic (){
+        ///todm this fixes refreshment of green free Kepler triangles
+        ///when media scales, 
+        eachprop( stdMod.decor, (dec,pname) => {
+            if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
+                dec.poly_2_updatedPolyPos8undisplay();
+            }
+        });
         //***********************************************************
         //wraps remained tasks into d8d slider
         //if slider is already created ...

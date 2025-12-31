@@ -5,20 +5,15 @@
  * following value assigners.
  * Or, following value assignems can use rg.XXX = instead of toreg.
 */
-
-( function() {
-    var {
+(function(){
+    const {
         ns, sn, haz, nspaste,
-        sconf, sDomF, ssF, ssD, toreg, rg,
-        amode,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+        sconf, sDomF, ssF, ssD, toreg, rg, amode,
+    } = window.b$l.apptree({ stdModExportList : {
             path2rgModelPlaceholders__I,
         },
     });
     return;
-
 
 
     //indices
@@ -40,8 +35,7 @@
     //      and their rgObj: 'freepath-' + pix;
     //      'freePathSegment-' + pix 
     ///at current ver, runs at every model_upcreate
-    function path2rgModelPlaceholders__I()
-    {
+    function path2rgModelPlaceholders__I (){
         var S               = rg.S.pos;
         var force           = rg.force.pos;
         var path            = rg.path.pos;
@@ -60,13 +54,17 @@
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
         //=======================================================
+        //path is better called: pathIx_2_pathRack,
+        //pathRack = rg[ 'path-' + pathIx ].
         path.forEach( (pt, pix) => {
             //-------------------------------------------------------------------------
             // //\\ converts path to rg and media which is pathRacks,
             //         path = rg.path.pos;
             //         pathRacks[ pix  ] === rg[ 'path-' + pix ] :=: [
-            //              rg[ 'path-0' ] = { pos:[], medpos:[], svgel: ... } //at point "A"
-            //              rg[ 'path-1' ] = { pos:[], medpos:[], svgel: ... } //at point "B"
+            //              rg[ 'path-0' ] = { pos:[], medpos:[], svgel: ... }
+            //              at point "A"
+            //              rg[ 'path-1' ] = { pos:[], medpos:[], svgel: ... }
+            //              at point "B"
             //            ...
             //         ]
             //-------------------------------------------------------------------------
@@ -237,6 +235,4 @@
         // \\// real path line segment
         //-------------------------------------------------
     }
-
-}) ();
-
+})();

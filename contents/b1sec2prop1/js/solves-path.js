@@ -1,28 +1,14 @@
-( function() {
-    var {
-        mat,
-        sconf, sDomF, ssF, toreg, rg,
-        stdMod, amode,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
+(function(){
+    const {
+        mat, nspaste,
+        sconf, sDomF, ssF, toreg, rg, stdMod, amode,
+    } = window.b$l.apptree({ ssFExportList : {
             solvesTrajectoryMath__O,
         },
     });
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
     ///=================================================================
     ///
     /// Calculation of path has two distinct models. There are two paths
@@ -208,6 +194,4 @@
         //***********************************************
 
     }
-
-}) ();
-
+})();

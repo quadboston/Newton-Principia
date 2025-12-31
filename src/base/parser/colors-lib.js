@@ -62,8 +62,6 @@
                     hue,
                     sconf.DEFAULT_TP_SATUR,
                     sconf.default_tp_lightness,
-                    //fc.isPoint0Line ? sconf.TP_OPACITY_LOW_POINT :
-                    //                  sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_LOW,
                     sconf.TP_OPACITY_HIGH,
                 );
@@ -134,11 +132,8 @@
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
         saturFromColorArray,
         opacityFromColorArray,
-        isPoint0Line,
     ){
-        const sconfOPACITY_LOW = isPoint0Line ?
-            sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
-        //ccc(isPoint +  'tp P=' + sconf.TP_OPACITY_LOW_POINT, sconf.TP_OPACITY_LOW);
+        const sconfOPACITY_LOW = sconf.TP_OPACITY_LOW;
         if( opacityFromColorArray && colorArray ) {
             if( colorArray[3] || colorArray[3]===0 ) {
                 var lowOpacity = colorArray[3];

@@ -1,17 +1,27 @@
 (function(){
-    const { sn, haff, hafff, haz, globalCss,
+    const { sn, haff, hafff, haz, globalCss, nspaste,
             sconf, ssF, ssD, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({ stdModExportList : {
-            sconf_2_svg8rg,
+            shapeSconf_2_svg,
+            sconf_2_shapes,
         },
     });
     var decor = sn( 'decor', stdMod );
+    const shapesConf = sn( 'shapes', sconf );
     return;
 
+    
+    function shapeSconf_2_svg (){
+        //path and speeds have master-index, pi, offset pi=0
+        toreg( 'path' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
+        toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
+        Object.keys( shapesConf ).forEach( key => {
+            ssF.namesArr_2_svgpoly.apply(
+                null, shapesConf[ key ].initArgs );
+        });
+    }
 
-    function sconf_2_svg8rg (){
-        ccc( 'sconf_2_svg8rg' );
-
+    function sconf_2_shapes (){
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
         ['B','C','D','E','F'].forEach( (name, ix) => {
@@ -21,10 +31,9 @@
         //note: in svg-z-order, these fall behind
         //      decorational-"kepler-triangles" etc, but
         //      due transparency are still well-visible,
-        saggPolyNames_2_rg8svg();
-        keplerPolyNames_2_rg8media();
-        acceleratingArea_2_rg8media();
-
+        saggPolyNames_2_rg();
+        keplerPolyNames_2_rg();
+        acceleratingArea_2_rg();
         //=========================================================
         // //\\ placeholders for body states along trajectory,
         //      Aracc postfix stands for "area-accelerating force"
@@ -48,9 +57,8 @@
             ;
 
         //path and speeds have master-index, pi, offset pi=0
-        toreg( 'path' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
-        toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
-
+        //toreg( 'path' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
+        //toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
         //:auxiliary params
         toreg( 'freePath' )( 'pos', [] ); //awkward prop name. "pos"
         toreg( 'freePathAracc' )( 'pos', [] ); //awkward prop name. "pos"
@@ -73,22 +81,21 @@
         // \\// placeholders for body states along trajectory,
         //=========================================================
     }
-    return;
 
-
-    function saggPolyNames_2_rg8svg (){
+    function saggPolyNames_2_rg (){
         [
             ['A', 'B', 'C', 'V'],   //ABCV
             ['D', 'E', 'F', 'Z'],   //DEFZ
         ].forEach( pNames => {
-            var rgElem = ssF.namesArr_2_svgpoly(
+            var pName = pNames.join( '');
+            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            rgElem.initArgs = [
                 pNames,
                 'theor1corollary tostroke',
                 null,
                 !!'undisplay',
-                null,
-            );
-            decor[ rgElem.pname ] = rgElem;
+            ];
+            decor[ pName ] = rgElem;
             //lead Point defines range and ix
             var leadPoint = 2;
             rgElem.decStart = rg[ pNames[leadPoint] ].decStart;
@@ -99,7 +106,8 @@
         rg.DEFZ.decEnd += 1;
     }
 
-    function keplerPolyNames_2_rg8media (){
+    function keplerPolyNames_2_rg (){
+        //they do not refresh when media scales, todo,
         [   ////these triangles override free triangles attached to path
             ////in path-2-media js-code,
             ['S', 'B', 'c',],   //SBc
@@ -107,7 +115,9 @@
             ['S', 'D', 'e',],   //SDe
             ['S', 'E', 'f',],   //SEf
         ].forEach( pNames => {
-            var rgElem = ssF.namesArr_2_svgpoly(
+            var pName = pNames.join( '');
+            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            rgElem.initArgs = [
                 pNames,
                 //no dice
                 //'theor1proof theor2proof tofill theor2corollary tp-triangle_green',
@@ -117,13 +127,17 @@
                 null,
                 !!'undisplay',
                 !'tostroke',
-            );
-            decor[ rgElem.pname ] = rgElem;
+            ];
+            decor[ pName ] = rgElem;
             var lp = rg[ pNames[ 2 ] ];
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
         });
 
+        /*
+        ///changes args to override svg in init_model, changes end,
+        ///not clear why?,
+        ///
         ///makes first few free-triangles living
         ///until the passing of the point f
         [
@@ -132,31 +146,37 @@
             ['S', 'D', 'e',],   //SDe
             ['S', 'E', 'f',],   //SEf
         ].forEach( pNames => {
-            var rgElem = ssF.namesArr_2_svgpoly(
+            var pName = pNames.join( '');
+            var pName2 = pName+'2'
+            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            var rgElem2 = shapesConf[ pName2 ] = toreg( pName2 )();
+            rgElem2.initArgs = [
                 pNames,
                 '', //'theor1proof theor2proof tofill theor2corollary '
                 null,
                 !!'undisplay',
                 !'tostroke',
-            );
-            var pn = pNames.join('');
-            rg[pn].decEnd = rg.f.decEnd;
+            ];
+            rgElem.decEnd = rg.f.decEnd;
         });
+        */
     }
 
-    function acceleratingArea_2_rg8media(){
+    function acceleratingArea_2_rg (){
         [
             ['S', 'B', 'Caracc',],  //SBCaracc
         ].forEach( pNames => {
-            var rgElem = ssF.namesArr_2_svgpoly(
+            var pName = pNames.join( '');
+            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            rgElem.initArgs = [
                 pNames,
                 'theor2corollary tofill',
                 null,
                 !!'undisplay',
                 !'tostroke',
-            );
+            ];
             var lp = rg[ pNames[ pNames.length-1 ] ];
-            decor[ rgElem.pname ] = rgElem;
+            decor[ pName ] = rgElem;
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
         });

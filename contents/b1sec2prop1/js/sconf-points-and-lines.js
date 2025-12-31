@@ -1,31 +1,24 @@
-(function()
-{
+(function(){
     const { sn, eachprop, mapp, nspaste, haz, has, haff,
             sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
-            fixedColors, fixedColorsOriginal,
+            fixedColors, fixedColorsOriginal, originalPoints,
     } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
     const decor = sn( 'decor', stdMod );
     const LOGIC = false; //true; //makes logic steps c and C clearer;
     return;
 
 
-//----------------------------------------
+//-------------------------------------------------------
 // //\\ declares decorations
 //      complimentary to and runs after
 //      sconf.js::init_conf(),
 //
 //      runs only once at start of init_model_parameters,
-//----------------------------------------
+//-------------------------------------------------------
 function sconf_points8lines (){
-    ccc( 'sconf_points8lines' );
-    var pcolorForceMove = sDomF.getFixedColor( 'forceMove' )
-    //elected topics:
-    const et = sconf.predefinedTopics;
-    //ccc( 'sconf.linesArray=', nspaste( {}, sconf.linesArray ));
-    {
-    const {
+    var {
         force,
-
+        pcolorForceMove,
         freeMove,
         forceMove,
         diagram,
@@ -40,7 +33,8 @@ function sconf_points8lines (){
         perpendicular,
         tangent,
     } = fixedColors;
-    var topics_elected = {
+    ///topic names elected
+    var tpel = {
         speed,
         force,
         forceMove,
@@ -161,7 +155,7 @@ function sconf_points8lines (){
     };
     var p2_elected = haff( ssD, 'P2_electedTopicColors' );
     if( p2_elected ) {
-        Object.assign( topics_elected, p2_elected );
+        Object.assign( tpel, p2_elected );
     }
     
     //******************************
@@ -174,11 +168,10 @@ function sconf_points8lines (){
     //------------------------------------
     var firstSteps_conf = {
         A   : { decStart : -2, decEnd : 1111111111,
-                pos : sconf.A.concat(),
                 draggableX : true, draggableY : true,
-        },
-        //todo redundant
-        B   : { decStart : -2, decEnd : 1111111111, pos : sconf.B.concat() },
+              },
+        B   : { decStart : -2, decEnd : 1111111111,
+              },
     };
     Object.assign( decor, firstSteps_conf );
     //----------------------------------------------------
@@ -186,28 +179,30 @@ function sconf_points8lines (){
     //----------------------------------------------------
     var CDEF_conf = {
         C   : {
+            // //\\ templates are labeled with //t/
             decStart : 6,
+            //pcolor : force,
+            //cssClass : 'tp-force',
             //t/ X : {
-            //t/
-            cssClass : 'tp-force',
-            //t/    pos: S,
-                    pcolor : force,
-            //works
-            //works letterAngle : -90,
-            //works
-            //t/ letterRotRadius : 40,
-            //t/    draggableX  : true,
-            //t/    draggableY  : fconf.sappId === 'b1sec2prop7',
-            //works:
-            //t/    initialR    : 5 * sconf.controlsScale,
-            //t/    fontSize : 30,
-            //t/    undisplayAlways : true,
-            //t/    doPaintPname : false,
-            //t/},
+            //t/ caption : 'X',
+            //t/ pos: S,
+            //t/ letterAngle : -90, //works
+            //t/ letterRotRadius : 40, //works
+            //t/ draggableX  : true,
+            //t/ draggableY  : fconf.sappId === 'b1sec2prop7',
+            //t/ initialR    : 5 * sconf.controlsScale, //works
+            //t/ fontSize : 30,
+            //t/ undisplayAlways : true,
+            //t/ doPaintPname : false,
+            // \\// templates are labeled with //t/
         },
         D   : { decStart : 10, },
-        E   : { decStart : 14, },
-        F   : { decStart : 18 },
+        E   : { decStart : 14,
+                letterAngle : 45,
+        },
+        F   : { decStart : 18,
+                letterAngle : 90,
+        },
     };
     ///makes proof points disappear after a while
     eachprop( CDEF_conf, (fs, kName) => {
@@ -291,22 +286,22 @@ function sconf_points8lines (){
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
                 cssClass : 'theor1corollary',
-                },
+              },
         V   : { decStart : 2, decEnd : 1111111,
                 cssClass : 'theor1corollary theor2corollary'
-        },
+              },
     };
 
     var mixedSteps_conf = ssD.mixedSteps_conf = {
         S   : {
-                //pos      :  //medpos in common app
                 decStart : -2, //always visible
-                },
+                letterAngle : -90,
+              },
         v   : {
-                pos      : sconf.B.concat(),
+                //pos      : sconf.B.concat(),
                 decStart : -2, //always visible
                 draggableX : true, draggableY : true,
-                },
+              },
         P   : {
                 decStart : -2, //always visible
                 doPaintPname : false,
@@ -353,19 +348,19 @@ function sconf_points8lines (){
         },
     };
     ['B','C','D','E','F'].forEach( (pname, ix) => {
-        let nam0 = 'VV'+ix;
-        let nam1 = 'VVV'+ix;
+        let nam0 = 'VV'+ix;  //starts of forces
+        let nam1 = 'VVV'+ix; //tips of forces (double sagittas)
+        //possibly white kernels, possibly duplicates
         let nam1f = nam1+'-white-filler';
         let doPaintPname = false;
-        let pcolor = fixedColors.force;
+        let pcolor = tpel.force;
         mixedSteps_conf[ nam0 ] = {
             doPaintPname,
             pointWrap : { doPaintPname },
             pcolor,
             initialR    : 5 * sconf.controlsScale,
-            draggableX : true,
-            draggableY : true,
         };
+        //tips of foreces (double sagittas)
         mixedSteps_conf[ nam1 ] = {
             doPaintPname,
             pointWrap : { doPaintPname },
@@ -381,30 +376,20 @@ function sconf_points8lines (){
         };
     });
     Object.assign( decor, mixedSteps_conf );
-
-    //---------------------------------------------------
-    // //\\ fills decor
-    //---------------------------------------------------
     Object.assign( decor, middleSteps_conf );
     Object.assign( decor, forceTip_conf );
     Object.assign( decor, aracc_conf );
-    //---------------------------------------------------
-    // \\// fills decor
-    //---------------------------------------------------
-    ///unifies with other lemmas expand-config machinery
-    let wrongOriginalPoints = {};
+
+    ///unifies with originalPoints
     Object.keys( decor ).forEach( propKey => {
         const point = decor[propKey];
-        const pointRack = sconf.originalPoints[propKey]={};
+        const pointRack = originalPoints[propKey]={};
         Object.keys( point ).forEach( pointKey => {
             let pointProp = point[pointKey];
-            if( pointKey === 'pos' ) {
-                pointProp = ssF.mod2inn( pointProp );
-            }
             pointRack[pointKey] = pointProp;
         });
     });
-    //ccc( 'originalPoints=', nspaste({}, sconf.originalPoints ));
+    
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
@@ -413,13 +398,11 @@ function sconf_points8lines (){
         rgElem.pname = pname;
         rgElem.isPoint = true;
         var doPaintPname    = has( dec, 'doPaintPname' ) ?
-                                dec.doPaintPname : true;
+                              dec.doPaintPname : true;
             Object.assign( dec, {
-            //pos,
-            //medpos : [0,0], //fake reasonA, //todm reasonA seems weird ... why?
-            //pname,
             doPaintPname,
             isPoint : true,
+
             //todm ? ... proliferated coding: medpos, pos, ...  are two places:
             //           because of pWrap of itself is a
             //           proliferation of rg.pname rack
@@ -552,7 +535,17 @@ function sconf_points8lines (){
         // CaraccParacc
 
     ].forEach( pNam => {
-            if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
+        const lineName = pNam.nam[0]+pNam.nam[1];
+        let laObj = {};
+        laObj[ lineName ] = {
+            isLine : true,
+            //placeholder to add for expand array,
+            //fe caption
+            //caption : "MOO", //works
+        };
+        sconf.linesArray.push(laObj);
+
+        if( pNam.nam[0] === 'A' && pNam.nam[1] === 'v' ) {
             ////patch for purpose of drawing a vector tip
             let pcolor = sDomF.getFixedColor( 'speed' );
             let line = toreg( 'Av' )
@@ -585,28 +578,15 @@ function sconf_points8lines (){
             ////patch for purpose of drawing a vector tip
             let line = toreg( 'BV' )();
         }
-        //adding el. to l. arr. to fit expand-conf machine:
-        let laObj = {};
-        const lineName = pNam.nam[0]+pNam.nam[1];
-        laObj[ lineName ] = {
-            //placeholder to add for expand array,
-            //fe caption
-            //caption : "MOO", //works
-        };
-        const cssClass = haz( pNam, 'cssClass' );
+         const cssClass = haz( pNam, 'cssClass' );
         if( cssClass ) {
             laObj[ lineName ].cssClass = cssClass;
         }
-        sconf.linesArray.push(laObj);
-        rgElem = sn( lineName, rg );
+        //equalizing rg and decor elements:
+        let rgElem = decor[ lineName ] = sn( lineName, rg );
         rgElem.pname = lineName;
         rgElem.pivotNames = [pNam.nam[0],pNam.nam[1]];
         rgElem.isPoint = false;
-        //rgElem.isLine = true;
-
-        //equalizing rg and decor elements:
-        decor[ lineName ] = rgElem;
-        decor[ lineName ].isPoint = false;
 
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
@@ -628,6 +608,7 @@ function sconf_points8lines (){
     //---------------------------------------------------
     // //\\ equalizes decor and rg
     //---------------------------------------------------
+    /*
     eachprop( decor, (dec,kName) => {
         if( dec.isPoint ) return; //avoids dubbing work
         var pname = kName;
@@ -636,6 +617,7 @@ function sconf_points8lines (){
         Object.assign( rg[ kName ], decor[ kName ] );
         decor[ kName ] = rg[ kName ];
     });
+    */
     //---------------------------------------------------
     // \\// equalizes decor and rg
     //---------------------------------------------------
@@ -646,41 +628,37 @@ function sconf_points8lines (){
     // which should be done in the core,
     //
     // this is abnormal, there must be two arrays:
-    // topics_repo and topics_elected
+    // topics_repo and tpel
     //
     // expands predefinedTopic colors into rg,
     // todo rg.SCd will be crashed later without this
     // expansion, this scenario must have more steps    
     //==================================================
-    sconf.predefinedTopics = topics_elected;
-    ////array topics_elected will be discraded upon leaving this function,
-    Object.keys( topics_elected ).forEach( tpCamel => {
+    sconf.predefinedTopics = tpel;
+    ////array tpel will be discraded upon leaving this function,
+    Object.keys( tpel ).forEach( tpCamel => {
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
         toreg( tpCamel )( 'pname', tpCamel );
         var tpLowKey = sDomF.topicIdUpperCase_2_underscore( tpCamel );
         //compliments fixedColors from stuff created in this sconf,
         //fixedColors are based on non-Camel id,
-        var fck = fixedColors[ tpLowKey ] = topics_elected[ tpCamel ].concat();
+        var fck = fixedColors[ tpLowKey ] = tpel[ tpCamel ].concat();
         //compensates missing of "extend-confib" in engine core
         fixedColorsOriginal[ tpCamel ] = fck; //based on Camel Id
         //todo why rg colors are not set here?
     });
-    ///adds flag isPoint0Line to P2_electedTopicColors
     if( has( ssD, 'P2_electedTopicColors' ) ) {
         ////we are working in prop 2,
         ////above condition is a flag
         Object.keys( p2_elected ).forEach( camelId => {
-        if( camelId === 'SBCaracc' ) return;
-        var tpLowKey = sDomF.topicIdUpperCase_2_underscore( camelId );
-        let fc = fixedColorsOriginal[ camelId ] =
-                 fixedColors[ tpLowKey ] =
-                 topics_elected[ camelId ];
-            //this thing only affects difference between strokable
-            //and areas like this:
-            //sconfOPACITY_LOW = isPoint0Line ?
-            //sconf.TP_OPACITY_LOW_POINT : sconf.TP_OPACITY_LOW;
-        fc.isPoint0Line = true;
+            if( camelId === 'SBCaracc' ) return;
+            var tpLowKey = sDomF.topicIdUpperCase_2_underscore( camelId );
+            let fc = fixedColorsOriginal[ camelId ] =
+                    fixedColors[ tpLowKey ] =
+                    tpel[ camelId ];
+                //this thing only affects difference between strokable
+                //and areas like this:
         });
     }
     //==================================================
@@ -719,28 +697,4 @@ function sconf_points8lines (){
     //******************************
     // \\// lines config
     //******************************
-   
-    //todo get rid all of this: let core do this:
-    //Duplicate g and h used by P1 Corollary 3 see predefinedTopics for more
-    'A B C D E F S c d e f P g h'.split(' ').forEach( camelId => {
-        let fc = fixedColorsOriginal[ camelId ];
-        fc.isPoint = true;
-        fc.isPoint0Line = true;
-    });
-    //Duplicate Ch and Fg used by P1 Corollary 3 see predefinedTopics for more
-    ( 'Ch Fg SP Av dt time Ff Ee Dd Cc ' +
-      'force-0-applied force-1-applied force-2-applied ' +
-      'force-3-applied force-4-applied')
-      .split(' ')
-        .forEach( camelId => {
-            let fc = fixedColorsOriginal[ camelId ];
-            laObj = {};
-            laObj[ camelId ] = { pcolor : [...fc]};
-            //sconf.linesArray.push( laObj );
-            fc.isLine = true;
-            fc.isPoint0Line = true;
-        });
-    }
-} 
-}
-)();
+}})();

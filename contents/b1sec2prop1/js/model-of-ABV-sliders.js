@@ -16,8 +16,8 @@
         //initially does job which sliders do at run-time
         toreg( 'slider_sltime' )( 'curtime',
                 sconf.unitlessMinTime * sconf.initialTimieStep );
-        toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
-        toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
+        toreg( 'speeds' )( 'pos', [ sconf.modelPoints.v0 ] );
+        toreg( 'speedsAracc' )( 'pos', [ sconf.modelPoints.v0 ] );
         toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
         //**********************
 
@@ -32,9 +32,6 @@
         ['B','C','D','E','F'].forEach( (name, ix) => {
             let nam1='VVV'+ix;
             rgX = sn( nam1, rg );
-            //rgX.draggableX = true;
-            //rgX.draggableY = true;
-            //rgX.initialR = 60;
             rgX.acceptPos =
                 function( newVPos, dummyPar, enforceNewPos ) {
                     return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
