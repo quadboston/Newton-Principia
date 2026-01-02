@@ -627,7 +627,7 @@ function sconf_points8lines (){
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
         toreg( tpCamel )( 'pname', tpCamel );
-        var tpLowKey = sDomF.topicIdUpperCase_2_underscore( tpCamel );
+        var tpLowKey = sDomF.tpid2low( tpCamel );
         //compliments fixedColors from stuff created in this sconf,
         //fixedColors are based on non-Camel id,
         var fck = fixedColors[ tpLowKey ] = tpel[ tpCamel ].concat();
@@ -640,7 +640,7 @@ function sconf_points8lines (){
         ////above condition is a flag
         Object.keys( p2_elected ).forEach( camelId => {
             if( camelId === 'SBCaracc' ) return;
-            var tpLowKey = sDomF.topicIdUpperCase_2_underscore( camelId );
+            var tpLowKey = sDomF.tpid2low( camelId );
             let fc = fixedColorsOriginal[ camelId ] =
                     fixedColors[ tpLowKey ] =
                     tpel[ camelId ];

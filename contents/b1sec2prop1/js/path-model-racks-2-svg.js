@@ -120,7 +120,7 @@
                 //      not a sagittae,
                 //----------------------------------
                 var wwpname = fkey+'-applied';
-                let pcolor = sDomF.getFixedColor( 'forceMove' )
+                let pcolor = sDomF.tpname0arr_2_rgba( 'forceMove' )
                 var wwline = toreg( wwpname )
                     ({ undisplay : true })
 

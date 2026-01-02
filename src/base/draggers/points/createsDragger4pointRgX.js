@@ -38,7 +38,7 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' +
-            sDomF.topicIdUpperCase_2_underscore( rgX.pname ) +
+            sDomF.tpid2low( rgX.pname ) +
             '-slider';
         //**rgX must have dragDecorColor' ) || pcolor:
         pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;

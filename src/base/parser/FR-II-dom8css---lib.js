@@ -216,7 +216,7 @@
                     //..........................................................
 
                     //lowcase anchor's topic id
-                    var low_tpID = nsmethods.topicIdUpperCase_2_underscore( anchorOperator );
+                    var low_tpID = nsmethods.tpid2low( anchorOperator );
                     //anchorRack has collection of anchor commands,
                     ///now we do add anchorRack.tpid2tru to anchorRack,
                     if( low_tpID  && low_tpID.replace( / /g, '' ) ) {

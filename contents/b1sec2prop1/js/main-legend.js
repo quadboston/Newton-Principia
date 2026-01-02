@@ -117,7 +117,7 @@
     ///        tip for the css-class
     function makeCl( row, mname, mcaption, table_logic_phase )
     {
-        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
+        var cssName = sDomF.tpid2low( mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

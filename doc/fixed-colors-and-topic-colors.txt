@@ -64,7 +64,7 @@ Former tp-model.
         fixedColors come from sconf.original_points and set
             in form fixedColors[ normalized-topic-id ] = array aka [0,21,0, 0.5 ];
                 bookkeeping is:
-                    var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                    var tk = sDomF.tpid2low( topicKey );
                     fixedColors[ tk ] = predefinedTopics[ topicKey ];
 
     3.
@@ -81,6 +81,6 @@ Former tp-model.
                 rgba_high
             }
     5.
-        method getFixedColor( ... does retrieve low opacity
+        method tpname0arr_2_rgba( ... does retrieve low opacity
 
 

@@ -41,8 +41,8 @@
 
         ].forEach( gname => { rg[ gname ].undisplay = true; });
 
-        rg.pivotPoint1.pcolor = sDomF.getFixedColor( 'given' )
-        rg.Ag.pcolor = sDomF.getFixedColor( 'given' )
+        rg.pivotPoint1.pcolor = sDomF.tpname0arr_2_rgba( 'given' )
+        rg.Ag.pcolor = sDomF.tpname0arr_2_rgba( 'given' )
 
         if( logic_phase === 'claim' ) {
             //Sets and constrains the tiltAngle as follows.
@@ -53,8 +53,8 @@
         ) {
             sDomF.detected_user_interaction_effect( !'doUndetected' );
         }
-        rg.Ae.pcolor = sDomF.getFixedColor( 'given' )
-        rg.e.pcolor = sDomF.getFixedColor( 'given' )
+        rg.Ae.pcolor = sDomF.tpname0arr_2_rgba( 'given' )
+        rg.e.pcolor = sDomF.tpname0arr_2_rgba( 'given' )
 
         return captured;
     }

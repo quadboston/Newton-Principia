@@ -72,10 +72,10 @@
         var dressed = ownProp.call( line, 'pointIsAlreadyDressed' );
         if( !dressed ) {
             ////longer part of optimization: creates svg
-            var tpclass = sDomF.topicIdUpperCase_2_underscore(
+            var tpclass = sDomF.tpid2low(
                           ( ns.haz( lineAttr, 'tpclass' ) ) || pName
             );
-            var ww          = sDomF.getFixedColor( tpclass );
+            var ww          = sDomF.tpname0arr_2_rgba( tpclass );
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
             var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
                               lineAttr['cssClass'] + ' ' :  '';
@@ -99,7 +99,7 @@
             }
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
-            var low_tpID = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var low_tpID = nsmethods.tpid2low( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.stroke = line.stroke;
@@ -331,11 +331,11 @@
                               ( cssClass ? ' ' + cssClass : '' ),
            'stroke-width'  : 2,
         };
-        var tpclass = sDomF.topicIdUpperCase_2_underscore(
+        var tpclass = sDomF.tpid2low(
                       ( ns.haz( attr, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
-        var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
+        var stroke      = han( attr, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
         var strokeWidth = han( attr, 'stroke-width', 1 );
         var poly        = toreg( pName )();
         if( typeof undisplay !== 'undefined' && undisplay !== null ) { //was a bug
@@ -420,7 +420,7 @@
             triang.svgel = sv.polyline( svgarg );
             triang.svgel$ = $$.$( triang.svgel );
 
-            var tpclass = sDomF.topicIdUpperCase_2_underscore( tpclass || triangleId );
+            var tpclass = sDomF.tpid2low( tpclass || triangleId );
             cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
             $$.$( triang.svgel ).cls( 'tofill' + cssCls + 'tp-' + tpclass );
 

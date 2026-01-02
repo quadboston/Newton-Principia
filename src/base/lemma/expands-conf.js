@@ -148,7 +148,7 @@
             ///--------------------------------------------------
             Object.keys( predefinedTopics ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
-                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                var tk = sDomF.tpid2low( topicKey );
 
                 //this adds colors generated in specific lemma and
                 //bases them on the lowkey:
@@ -214,17 +214,17 @@
                 //here we create even more mess because adding alternative stream for
                 //pcolor
                 if( has( gshape, 'pcolor' ) ) {
-                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    var tk = sDomF.tpid2low( pname );
                     //concat() separates generic color-arrays from
                     //specific shapes permitting them own flags isPoint, etc.
                     let fc = fixedColors[ tk ] = gshape.pcolor.concat();
                     fixedColorsOriginal[ pname ] = fc;
-                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor(
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( gshape.pcolor );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba(
                                       gshape.pcolor, !!'makeOpacity1' );
                 } else {
-                    rgX.pcolor = sDomF.getFixedColor( pname );
-                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname, !!'makeOpacity1' );
                 }
 
                 ///todm: this code is extremely non-automated:
@@ -393,15 +393,15 @@
 
 
                 if( has( op, 'pcolor' ) ) {
-                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    var tk = sDomF.tpid2low( pname );
                     let fc = fixedColors[ tk ] = op.pcolor; //low
                     fixedColorsOriginal[ pname ] = fc;       //camel
-                    rgX.pcolor = sDomF.getFixedColor( op.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( op.pcolor,
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( op.pcolor );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( op.pcolor,
                                       !!'makeOpacity1' );
                 } else {
-                    rgX.pcolor = sDomF.getFixedColor( pname );
-                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname, !!'makeOpacity1' );
                 }
                 rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
 
@@ -437,7 +437,7 @@
                 if( letterColor ) {
                     //todm ...
                     //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor;
-                    rgX.letterColor = sDomF.getFixedColor( letterColor );
+                    rgX.letterColor = sDomF.tpname0arr_2_rgba( letterColor );
                 }
                 rgX.fontSize = fontSize;
                 //----------------------------------------------------------

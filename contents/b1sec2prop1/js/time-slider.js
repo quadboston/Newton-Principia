@@ -35,7 +35,7 @@
 
         var captionPrefix = 'm = ';
         ///will be overridden with tp-color if any:
-        var COLOR         = sDomF.getFixedColor( sliderId );
+        var COLOR         = sDomF.tpname0arr_2_rgba( sliderId );
         var customSliderShift = 0; //picture units
         //=========================================
         // \\// slider api pars

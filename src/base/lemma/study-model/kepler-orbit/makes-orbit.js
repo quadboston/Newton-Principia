@@ -36,7 +36,7 @@
         var curveName = op.curveName ? op.curveName : 'orbit';
 
         //both: css and rg names
-        var lowname     = curveName; //sDomF.topicIdUpperCase_2_underscore( curveName );
+        var lowname     = curveName; //sDomF.tpid2low( curveName );
         var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
 
         //prevents leaks polylineSvg from js-prototype

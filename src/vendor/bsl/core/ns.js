@@ -996,7 +996,7 @@
     globalCss.replace       = replace;
     globalCss.replaceNow    = replace;
 
-    nsmethods.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    nsmethods.tpid2low = tpid2low;
     nsmethods.camelName2cssName = camelName2cssName;
     return;
 
@@ -1019,7 +1019,7 @@
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
-                    .cls( topicIdUpperCase_2_underscore( htmlkey ) )
+                    .cls( tpid2low( htmlkey ) )
                     .to( document.head )
                     ,    
                 queueHandle : null, //timeout handle
@@ -1104,7 +1104,7 @@
     };
 
     ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( camelId )
+    function tpid2low( camelId )
     {
         return camelName2cssName( camelId );
     }

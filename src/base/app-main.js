@@ -240,7 +240,7 @@
                             //this place looks like
                             //the best to establish initial topics,
                             //then additional topics will be extracted from exegs
-                            var wwCase = sDomF.topicIdUpperCase_2_underscore;
+                            var wwCase = sDomF.tpid2low;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             // //\\ central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp

@@ -10,7 +10,7 @@
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
-    sDomF.getFixedColor = getFixedColor;
+    sDomF.tpname0arr_2_rgba = tpname0arr_2_rgba;
     var dataFiles = sn( 'dataFiles', ssD, [] );
     var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
     return;
@@ -586,7 +586,7 @@
     ///               if array, converted as array to color
     ///       makeOpacity1 - means "do make opacity equal to 1",
     ///returns string of fixed color or black,
-    function getFixedColor( ptype0colorArray, makeOpacity1 )
+    function tpname0arr_2_rgba( ptype0colorArray, makeOpacity1 )
     {
         if( typeof ptype0colorArray === 'string' ) {
             //returns blank, ' ' if ptype0colorArray is falsy

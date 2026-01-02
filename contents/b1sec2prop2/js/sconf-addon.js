@@ -23,7 +23,7 @@
             let pt = P2_electedTopicColors();
             Object.keys( P2_electedTopicColors() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
-                var tk = sDomF.topicIdUpperCase_2_underscore( topicKey );
+                var tk = sDomF.tpid2low( topicKey );
                 fixedColors[ tk ] = pt[ topicKey ];
             });
             */

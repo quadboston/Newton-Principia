@@ -27,9 +27,9 @@ Letter and kerel
 
 In pos2pointy
   there is a mess:
-            pt.stroke               = han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
+            pt.stroke               = han( attrs, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
             pt.fill                 = haz( pt, 'fill' ) ||
-                                      han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
+                                      han( attrs, 'fill', sDomF.tpname0arr_2_rgba( tpclass ) );
   tpClass can be complex, which may make it corrupt for letter and kernel
   pt.fill where it gets?
   good part is that attrs are consistent
@@ -66,7 +66,7 @@ double mess with wrap and colors in /media-model/common.js
         'pointWrap',
             {
                 pos : pos,
-                pcolor : sDomF.getFixedColor( pname ), //todm remove
+                pcolor : sDomF.tpname0arr_2_rgba( pname ), //todm remove
 
 unclear usage in angular.js::
         rgAngle.pcolor      = rgSample.pcolor;

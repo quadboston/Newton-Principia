@@ -24,14 +24,14 @@
         ///
         //this is just an example how to reset colors dynamically
         //in model_upcreate():
-        //stdMod.graphFW_lemma.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
+        //stdMod.graphFW_lemma.colorThreadArray[0] = sDomF.tpname0arr_2_rgba( 'force' );
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
-                sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'sagitta' ),
+                sDomF.tpname0arr_2_rgba( 'force' ),
+                sDomF.tpname0arr_2_rgba( 'displacement' ),
+                sDomF.tpname0arr_2_rgba( 'body' ),
+                sDomF.tpname0arr_2_rgba( 'sagitta' ),
             ];
             return colorThreadArray;
         }
@@ -59,7 +59,7 @@
 
         function setsGraphAxes()
         {
-            let n2c = sDomF.getFixedColor; //name to color
+            let n2c = sDomF.tpname0arr_2_rgba; //name to color
             
             //==================================================
             // //\\ calls api

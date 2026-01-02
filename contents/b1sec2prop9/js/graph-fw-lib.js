@@ -27,8 +27,8 @@
         function doSetColorThreadArray()
         {
             let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
+                sDomF.tpname0arr_2_rgba( 'force' ),
+                sDomF.tpname0arr_2_rgba( 'displacement' ),
             ];
             return colorThreadArray;
         }
@@ -57,7 +57,7 @@
 
         function setsGraphAxes()
         {
-            let n2c = sDomF.getFixedColor; //name to color
+            let n2c = sDomF.tpname0arr_2_rgba; //name to color
                     
             //==================================================
             // //\\ calls api

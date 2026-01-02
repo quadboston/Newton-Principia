@@ -55,7 +55,7 @@
 
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = nsmethods.topicIdUpperCase_2_underscore(
+            var tpclass = nsmethods.tpid2low(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
@@ -65,9 +65,9 @@
             pt.pname                = pName;
             //optional attrs
             pt.stroke               = haz( pt, 'stroke' ) ||
-                                      han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
+                                      han( attrs, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
             pt.fill                 = haz( pt, 'fill' ) ||
-                                      han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
+                                      han( attrs, 'fill', sDomF.tpname0arr_2_rgba( tpclass ) );
             pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;
@@ -86,7 +86,7 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var low_tpID = nsmethods.topicIdUpperCase_2_underscore( pName );
+            var low_tpID = nsmethods.tpid2low( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;

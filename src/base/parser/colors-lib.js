@@ -31,7 +31,7 @@
             lowtpid__2__glocss8anchorRack,
         },
     });
-    sDomF.topicIdUpperCase_2_underscore = nsmethods.camelName2cssName;
+    sDomF.tpid2low = nsmethods.camelName2cssName;
     return;
 
 

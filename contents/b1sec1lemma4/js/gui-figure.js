@@ -18,7 +18,7 @@
         const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST} =
             dr.POINT_LABELS;
         const curveName = CTRL_PT_FIRST + CURVE_MIDDLE + CTRL_PT_LAST;
-        return sDomF.topicIdUpperCase_2_underscore(curveName);
+        return sDomF.tpid2low(curveName);
     }
 
 
@@ -31,7 +31,7 @@
             dr.POINT_LABELS;
         const figureName = BASE_PT_FIRST + CTRL_PT_FIRST + CURVE_MIDDLE +
             CTRL_PT_LAST;
-        return sDomF.topicIdUpperCase_2_underscore(figureName);
+        return sDomF.tpid2low(figureName);
     }
 
 

@@ -147,7 +147,7 @@
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, claim0proof )
     {
-        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
+        var cssName = sDomF.tpid2low( mname );
         var c$ = $$.c('td')
                    .html( mcaption||mname )
                    .addClass('tostroke tocolor tobold tp-' + cssName)
